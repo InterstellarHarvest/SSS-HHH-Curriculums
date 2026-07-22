@@ -1,0 +1,480 @@
+{
+  "C1": [
+    {
+      "id": "iss",
+      "name": "ISS Greenhouse Module",
+      "main": true,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 91,
+      "nOptions": 231,
+      "totalWords": 4241,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: locked, apology_attempt"
+      ],
+      "revealCounts": {
+        "ROOTS_DIRECTIONLESS": [
+          "crew.problem_main",
+          "crew.gravity_insight",
+          "crew.gravitropism_discussion",
+          "crew.root_observation",
+          "crew.encouraged",
+          "crew.problem_curt"
+        ],
+        "ZERO_GRAVITY": [
+          "sensors.gravity",
+          "sensors.gravitropism_query"
+        ],
+        "ROOT_TANGLE": [
+          "plants.roots",
+          "plants.tug_analysis"
+        ],
+        "GRAVITROPISM_MISSING": [
+          "logs.gravitropism_entry",
+          "logs.root_morph"
+        ]
+      }
+    },
+    {
+      "id": "lunar",
+      "name": "Lunar Greenhouse",
+      "main": true,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 55,
+      "nOptions": 133,
+      "totalWords": 2867,
+      "issues": [],
+      "warnings": [],
+      "revealCounts": {
+        "FLOWERS_NO_FRUIT": [
+          "crew.problem_main"
+        ],
+        "LOW_AIRFLOW": [
+          "sensors.airflow"
+        ],
+        "POLLEN_UNDISTURBED": [
+          "plants.pollen_close",
+          "plants.flower_drop"
+        ],
+        "NO_POLLINATION_PLAN": [
+          "logs.crop_protocols",
+          "logs.pollination_search"
+        ]
+      }
+    },
+    {
+      "id": "mars",
+      "name": "Mars Habitat",
+      "main": true,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 55,
+      "nOptions": 135,
+      "totalWords": 3039,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, locked"
+      ],
+      "revealCounts": {
+        "YELLOWING_TOP_DOWN": [
+          "crew.problem_main",
+          "crew.annoyed",
+          "crew.locked"
+        ],
+        "LIGHT_PIPE_SYSTEM": [
+          "sensors.lighting_data"
+        ],
+        "CHLOROPHYLL_FAILURE_NEW": [
+          "plants.upper_leaves",
+          "plants.growing_tips"
+        ],
+        "LIGHT_SPECTRUM_KEY": [
+          "logs.red_wavelength_detail",
+          "logs.chlorophyll_search"
+        ]
+      }
+    },
+    {
+      "id": "orbital",
+      "name": "Hayes Orbital Station",
+      "main": true,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 49,
+      "nOptions": 112,
+      "totalWords": 2801,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, locked"
+      ],
+      "revealCounts": {
+        "LIGHTING_SCHEDULE_CHANGED": [
+          "crew.lighting_change",
+          "crew.annoyed",
+          "crew.snapped",
+          "crew.locked"
+        ],
+        "NO_DARK_PERIOD": [
+          "sensors.light_data"
+        ],
+        "PHOTOOXIDATIVE_DAMAGE": [
+          "plants.microscope"
+        ],
+        "DARK_PERIOD_REQUIRED": [
+          "logs.photoperiod_entry"
+        ]
+      }
+    },
+    {
+      "id": "europa",
+      "name": "Europa Outpost",
+      "main": true,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 48,
+      "nOptions": 123,
+      "totalWords": 2813,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, exit_cold"
+      ],
+      "revealCounts": {
+        "CONSISTENT_FAILURE": [
+          "crew.problem_main",
+          "crew.annoyed"
+        ],
+        "HIGH_RADIATION": [
+          "sensors.radiation_detail"
+        ],
+        "DNA_DAMAGE_PATTERN": [
+          "plants.microscope"
+        ],
+        "SHIELDING_INSUFFICIENT": [
+          "logs.construction_log"
+        ]
+      }
+    },
+    {
+      "id": "alien1",
+      "name": "First Contact Protocol",
+      "main": false,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 58,
+      "nOptions": 163,
+      "totalWords": 5650,
+      "issues": [],
+      "warnings": [],
+      "revealCounts": {
+        "SYMBIOSIS_BROKEN": [
+          "crew.symbiosis_detail"
+        ],
+        "HUMAN_SCRUBBERS_ACTIVE": [
+          "sensors.atmosphere"
+        ],
+        "NETWORK_DORMANT": [
+          "plants.network",
+          "plants.signal_structures"
+        ],
+        "VOC_SIGNALING": [
+          "logs.network_comm"
+        ]
+      }
+    },
+    {
+      "id": "alien2",
+      "name": "The Gift",
+      "main": false,
+      "nSources": 4,
+      "nClues": 4,
+      "nNodes": 47,
+      "nOptions": 128,
+      "totalWords": 5439,
+      "issues": [],
+      "warnings": [],
+      "revealCounts": {
+        "PROXIMITY_REQUIRED": [
+          "crew.proximity_detail"
+        ],
+        "MISSING_VOCS": [
+          "sensors.atmosphere"
+        ],
+        "WAITING_FOR_TRIGGER": [
+          "plants.what_signal",
+          "plants.receptors"
+        ],
+        "GERMINATION_COMPOUND": [
+          "logs.germination"
+        ]
+      }
+    }
+  ],
+  "C2": [
+    {
+      "id": "heavy_hands",
+      "name": "Vressk Centrifuge Habitat",
+      "main": true,
+      "nSources": 5,
+      "nClues": 5,
+      "nNodes": 52,
+      "nOptions": 119,
+      "totalWords": 3111,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, locked"
+      ],
+      "revealCounts": {
+        "GORLROOT_UPWARD": [
+          "crew.vressk_greeting",
+          "crew.problem_main",
+          "crew.gravity_insight",
+          "crew.tradition_insight",
+          "crew.tuber_insight",
+          "crew.database_insight",
+          "crew.annoyed",
+          "crew.locked"
+        ],
+        "GRAVITY_GRADIENT": [
+          "sensors.gravity_profile"
+        ],
+        "TUBERS_MISALIGNED": [
+          "plants.root_inspection",
+          "plants.tuber_orientation"
+        ],
+        "GORLROOT_NEEDS_UNIFORM_G": [
+          "logs.gorlroot_cultivation",
+          "logs.gravitropism"
+        ],
+        "CENTRIFUGAL_GRADIENT_KNOWN": [
+          "database.centrifugal_gradient"
+        ]
+      }
+    },
+    {
+      "id": "missing_dance",
+      "name": "Ares Botanical Garden",
+      "main": true,
+      "nSources": 5,
+      "nClues": 5,
+      "nNodes": 44,
+      "nOptions": 101,
+      "totalWords": 3018,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, exit_cold"
+      ],
+      "revealCounts": {
+        "LYREFLOWER_BUDS_ABORT": [
+          "crew.telluvian_greeting",
+          "crew.cultural_barrier",
+          "crew.what_it_needs",
+          "crew.acoustic_insight",
+          "crew.pollen_insight",
+          "crew.remediation_insight",
+          "crew.database_insight",
+          "crew.realization",
+          "crew.annoyed"
+        ],
+        "NO_ACOUSTIC_TRIGGER": [
+          "sensors.acoustic_scan"
+        ],
+        "POLLEN_RETAINED": [
+          "plants.anther_exam",
+          "plants.aborted_bud"
+        ],
+        "HAND_POLLINATION_FAILED": [
+          "logs.pollination_log",
+          "logs.remediation"
+        ],
+        "BUZZ_POLLINATION_ACOUSTIC": [
+          "database.buzz_pollination",
+          "database.lyreflower_file"
+        ]
+      }
+    },
+    {
+      "id": "wrong_color_light",
+      "name": "Oolian Mariculture Dome",
+      "main": true,
+      "nSources": 5,
+      "nClues": 5,
+      "nNodes": 48,
+      "nOptions": 105,
+      "totalWords": 3301,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, recovery, locked, exit_cold"
+      ],
+      "revealCounts": {
+        "KELP_DYING_NEW_DOME": [
+          "crew.oolian_greeting",
+          "crew.problem_main",
+          "crew.cant_use_red",
+          "crew.usable_fraction",
+          "crew.spectrum_insight",
+          "crew.pigment_insight",
+          "crew.evolution_insight",
+          "crew.database_insight",
+          "crew.annoyed",
+          "crew.locked"
+        ],
+        "LIGHT_SPECTRUM_RED_HEAVY": [
+          "sensors.spectral_analysis",
+          "sensors.comparison"
+        ],
+        "PIGMENT_MISMATCH": [
+          "plants.magnification",
+          "plants.color_compare"
+        ],
+        "KELP_EVOLVED_DEEP_OCEAN_LIGHT": [
+          "logs.kelp_profile",
+          "logs.habitat"
+        ],
+        "CHLOROPHYLL_C_BLUE_GREEN": [
+          "database.chlorophyll_variants",
+          "database.action_spectra"
+        ]
+      }
+    },
+    {
+      "id": "silent_grove",
+      "name": "Zhel'ii Diaspora Grove",
+      "main": true,
+      "nSources": 5,
+      "nClues": 5,
+      "nNodes": 46,
+      "nOptions": 107,
+      "totalWords": 3593,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, exit_cold"
+      ],
+      "revealCounts": {
+        "NETWORK_FALLEN_SILENT": [
+          "crew.zhelii_greeting",
+          "crew.timeline",
+          "crew.signaling_explained",
+          "crew.dark_period_question",
+          "crew.no_dark_realization",
+          "crew.what_changed",
+          "crew.light_insight",
+          "crew.compound_insight",
+          "crew.schedule_insight",
+          "crew.database_insight",
+          "crew.annoyed"
+        ],
+        "CONTINUOUS_LIGHT_24H": [
+          "sensors.light_data",
+          "sensors.voc_data",
+          "sensors.timeline"
+        ],
+        "SIGNALING_COMPOUNDS_ABSENT": [
+          "plants.signal_structures",
+          "plants.fungal_mat"
+        ],
+        "LIGHT_SCHEDULE_CHANGED": [
+          "logs.health_timeline",
+          "logs.light_history"
+        ],
+        "CIRCADIAN_SIGNALING_NEEDS_DARK": [
+          "database.circadian_data",
+          "database.voc_reference"
+        ]
+      }
+    },
+    {
+      "id": "too_clean_room",
+      "name": "Concord Botanical Vault",
+      "main": true,
+      "nSources": 5,
+      "nClues": 5,
+      "nNodes": 44,
+      "nOptions": 104,
+      "totalWords": 3892,
+      "issues": [],
+      "warnings": [
+        "crew: structurally unreachable nodes: annoyed, exit_cold"
+      ],
+      "revealCounts": {
+        "BLOOMS_INERT": [
+          "crew.rhessi_greeting",
+          "crew.keltor_suspicion",
+          "crew.what_tried",
+          "crew.radiation_insight",
+          "crew.pathway_insight",
+          "crew.homeworld_insight",
+          "crew.database_insight",
+          "crew.annoyed"
+        ],
+        "RADIATION_ZERO": [
+          "sensors.radiation_data"
+        ],
+        "DNA_REPAIR_PATHWAY_INACTIVE": [
+          "plants.tissue_analysis",
+          "plants.dna_repair"
+        ],
+        "KARRETH_HOMEWORLD_HIGH_RAD": [
+          "logs.homeworld",
+          "logs.transplant_doc"
+        ],
+        "HORMESIS_OBLIGATE_RADIATION": [
+          "database.hormesis",
+          "database.karreth_bio"
+        ]
+      }
+    },
+    {
+      "id": "first_garden",
+      "name": "The First Garden",
+      "main": false,
+      "nSources": 5,
+      "nClues": 5,
+      "nNodes": 73,
+      "nOptions": 151,
+      "totalWords": 5575,
+      "issues": [
+        "vorn_shael.active_transport goto missing mycorrhizal_confirm",
+        "ilreth_mar.start goto missing regulation_direct",
+        "ilreth_mar.start goto missing exemption_question"
+      ],
+      "warnings": [
+        "nova: structurally unreachable nodes: annoyed, exit_cold",
+        "vorn_shael: structurally unreachable nodes: annoyed, exit_cold",
+        "kess: structurally unreachable nodes: annoyed, exit_cold",
+        "ilreth_mar: structurally unreachable nodes: annoyed, locked"
+      ],
+      "revealCounts": {
+        "RESTORATION_HISTORY": [
+          "nova.problem",
+          "nova.history",
+          "nova.tried_everything",
+          "nova.chemical_response",
+          "nova.mycorrhizal_response",
+          "nova.annoyed"
+        ],
+        "CHEMICAL_DISCONNECTION": [
+          "vorn_shael.chemical_reading",
+          "vorn_shael.unusual_pattern",
+          "vorn_shael.healthy_comparison",
+          "vorn_shael.annoyed"
+        ],
+        "MYCORRHIZAL_NETWORK": [
+          "kess.database_assist",
+          "kess.third_fragment"
+        ],
+        "CONCORD_REGULATION": [
+          "ilreth_mar.biosafety_overview",
+          "ilreth_mar.specific_reg",
+          "ilreth_mar.reform_discussion",
+          "ilreth_mar.annoyed",
+          "ilreth_mar.locked"
+        ],
+        "DATABASE_PRECEDENT": [
+          "database.exemptions"
+        ]
+      }
+    }
+  ]
+}
