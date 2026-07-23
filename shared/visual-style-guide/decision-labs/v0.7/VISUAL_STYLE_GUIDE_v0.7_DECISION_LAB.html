@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Style Guide v0.7 Identity and Marker Lab</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ui-bg:#e9edf0;
+  --ui-panel:#ffffff;
+  --ui-ink:#18212b;
+  --ui-muted:#596673;
+  --ui-line:#c8d0d6;
+  --ui-accent:#0b6f82;
+
+  --paper:#ffffff;
+  --ink:#18212b;
+  --muted:#4b5967;
+  --rule:#8c9aa8;
+  --panel:#edf1f4;
+  --panel-light:#f7f9fa;
+
+  --sss-primary:#0b6f82;
+  --sss-secondary:#147a45;
+  --sss-soft:#e7f3f5;
+
+  --hhh-primary:#8a5a00;
+  --hhh-secondary:#0b6f82;
+  --hhh-soft:#f5eddd;
+
+  --primary:var(--sss-primary);
+  --secondary:var(--sss-secondary);
+  --soft:var(--sss-soft);
+
+  --critical:#8f2f2f;
+  --success:#236b3b;
+  --caution:#8a5a00;
+  --information:#0b6f82;
+  --component-radius:3px;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--ui-bg);
+  color:var(--ui-ink);
+  font-family:Inter,Arial,sans-serif;
+}
+
+button, select, input { font:inherit; }
+
+button, select {
+  min-height:38px;
+  border:1px solid var(--ui-line);
+  border-radius:6px;
+  background:#fff;
+  color:var(--ui-ink);
+  padding:7px 10px;
+}
+
+button { cursor:pointer; }
+button:hover { border-color:var(--ui-accent); }
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline:3px solid rgba(11,111,130,.22);
+  outline-offset:2px;
+}
+
+.app {
+  max-width:1530px;
+  margin:0 auto;
+  padding:18px;
+}
+
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+
+.topbar h1 {
+  margin:0 0 5px;
+  font-size:24px;
+}
+
+.topbar p {
+  margin:0;
+  color:var(--ui-muted);
+  max-width:900px;
+}
+
+.notice {
+  max-width:420px;
+  border:1px solid var(--ui-line);
+  background:#fff;
+  padding:10px 12px;
+  border-radius:7px;
+  font-size:12px;
+  line-height:1.45;
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:minmax(330px,425px) minmax(585px,1fr);
+  gap:15px;
+  align-items:start;
+}
+
+.controls {
+  display:grid;
+  gap:11px;
+}
+
+.card {
+  background:var(--ui-panel);
+  border:1px solid var(--ui-line);
+  border-radius:8px;
+  padding:13px;
+}
+
+.card h2 {
+  margin:0 0 9px;
+  font-size:15px;
+}
+
+.help {
+  margin:-3px 0 9px;
+  color:var(--ui-muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.segmented {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+}
+
+.segmented.three {
+  grid-template-columns:repeat(3,1fr);
+}
+
+.segmented button[aria-pressed="true"] {
+  background:var(--ui-accent);
+  color:#fff;
+  border-color:var(--ui-accent);
+}
+
+.options {
+  display:grid;
+  gap:7px;
+}
+
+.option {
+  display:grid;
+  grid-template-columns:19px 1fr;
+  gap:8px;
+  align-items:start;
+  border:1px solid var(--ui-line);
+  border-radius:6px;
+  padding:9px;
+  cursor:pointer;
+}
+
+.option:has(input:checked) {
+  border-color:var(--ui-accent);
+  box-shadow:inset 3px 0 0 var(--ui-accent);
+}
+
+.option input { margin:3px 0 0; }
+
+.option strong {
+  display:block;
+  font-size:13px;
+}
+
+.option small {
+  display:block;
+  margin-top:2px;
+  color:var(--ui-muted);
+  line-height:1.35;
+}
+
+.recommended {
+  display:inline-block;
+  margin-left:5px;
+  padding:1px 5px;
+  border:1px solid #82aab2;
+  color:#145d6b;
+  font:600 9px/1.4 "JetBrains Mono",monospace;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.action-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.action-row .primary {
+  background:var(--ui-accent);
+  color:#fff;
+  border-color:var(--ui-accent);
+}
+
+.summary {
+  margin-top:8px;
+  max-height:320px;
+  overflow:auto;
+  white-space:pre-wrap;
+  background:#f5f7f8;
+  border:1px solid var(--ui-line);
+  border-radius:5px;
+  padding:9px;
+  font:11px/1.5 "JetBrains Mono",monospace;
+}
+
+.preview-shell {
+  position:sticky;
+  top:10px;
+  min-width:0;
+}
+
+.preview-toolbar {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--ui-line);
+  border-bottom:0;
+  border-radius:8px 8px 0 0;
+  padding:8px 10px;
+}
+
+.preview-toolbar .group {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  align-items:center;
+}
+
+.preview-toolbar label {
+  color:var(--ui-muted);
+  font-size:12px;
+}
+
+.preview-stage {
+  min-height:830px;
+  padding:18px;
+  overflow:auto;
+  border:1px solid var(--ui-line);
+  border-radius:0 0 8px 8px;
+  background:
+    linear-gradient(45deg,#d6dade 25%,transparent 25%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 9px -9px/18px 18px,
+    linear-gradient(45deg,#d6dade 25%,#eef0f2 25%) 9px -9px/18px 18px;
+}
+
+.scale-wrap {
+  width:max-content;
+  margin:0 auto;
+  transform-origin:top center;
+}
+
+.page {
+  width:816px;
+  min-height:1056px;
+  background:var(--paper);
+  color:var(--ink);
+  box-shadow:0 5px 23px rgba(0,0,0,.18);
+  font-family:Inter,Arial,sans-serif;
+  padding:48px;
+}
+
+.page.grayscale { filter:grayscale(1); }
+
+.mission-header {
+  display:grid;
+  grid-template-columns:1fr 58px;
+  gap:14px;
+  align-items:start;
+  padding-bottom:10px;
+  border-bottom:3px solid var(--primary);
+}
+
+.title-stack {
+  border-left:4px solid var(--primary);
+  padding-left:12px;
+}
+
+.kicker {
+  font:600 8px/1.35 "JetBrains Mono",monospace;
+  color:var(--primary);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:3px;
+}
+
+.doc-title {
+  margin:0;
+  font-size:22px;
+  line-height:1.08;
+  letter-spacing:-.02em;
+}
+
+.doc-subtitle {
+  margin:4px 0 0;
+  font-size:9.5px;
+  line-height:1.4;
+  color:var(--muted);
+}
+
+.header-mark {
+  width:52px;
+  height:52px;
+}
+
+.header-mark svg,
+.header-mark img {
+  display:block;
+  width:100%;
+  height:100%;
+}
+
+.page-body {
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:12px;
+  margin-top:14px;
+  align-items:start;
+}
+
+.span-12 { grid-column:span 12; }
+.span-8 { grid-column:span 8; }
+.span-7 { grid-column:span 7; }
+.span-6 { grid-column:span 6; }
+.span-5 { grid-column:span 5; }
+.span-4 { grid-column:span 4; }
+
+.section-heading {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:0 0 7px;
+}
+
+.technical-label {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border:1px solid var(--primary);
+  border-radius:3px;
+  padding:3px 5px;
+  color:var(--primary);
+  font:600 7px/1.3 "JetBrains Mono",monospace;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.technical-label i {
+  font-size:14px;
+}
+
+.section-heading h2 {
+  margin:0;
+  font-size:12px;
+  line-height:1.2;
+}
+
+.identity-panel {
+  border:1px solid var(--rule);
+  border-radius:3px;
+  padding:10px;
+}
+
+.identity-grid {
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:12px;
+  align-items:start;
+}
+
+.identity-source {
+  border-right:1px solid var(--rule);
+  padding-right:12px;
+}
+
+.identity-source h3,
+.candidate-area h3 {
+  margin:0 0 7px;
+  font-size:10px;
+}
+
+.taa-source {
+  display:grid;
+  grid-template-columns:84px 1fr;
+  gap:8px;
+  align-items:center;
+}
+
+.taa-source img {
+  width:84px;
+  height:84px;
+  image-rendering:pixelated;
+}
+
+.taa-source p,
+.candidate-area p {
+  margin:0;
+  color:var(--muted);
+  font-size:8px;
+  line-height:1.4;
+}
+
+.saa-candidates {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:8px;
+}
+
+.insignia-card {
+  border:1px solid var(--rule);
+  border-radius:3px;
+  padding:8px;
+  text-align:center;
+  cursor:pointer;
+}
+
+.insignia-card.selected {
+  border-color:var(--primary);
+  box-shadow:inset 0 0 0 1px var(--primary);
+  background:var(--soft);
+}
+
+.insignia-card svg {
+  width:82px;
+  height:82px;
+  display:block;
+  margin:0 auto 5px;
+}
+
+.insignia-card strong {
+  display:block;
+  font-size:8.5px;
+}
+
+.insignia-card small {
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:7px;
+  line-height:1.3;
+}
+
+.size-tests {
+  display:flex;
+  align-items:end;
+  justify-content:center;
+  gap:10px;
+  margin-top:8px;
+  padding-top:7px;
+  border-top:1px solid var(--rule);
+}
+
+.size-test {
+  text-align:center;
+  color:var(--muted);
+  font:6.5px "JetBrains Mono",monospace;
+}
+
+.size-test svg,
+.size-test img {
+  display:block;
+  margin:0 auto 3px;
+}
+
+.size-test.large svg,
+.size-test.large img { width:48px;height:48px; }
+.size-test.medium svg,
+.size-test.medium img { width:32px;height:32px; }
+.size-test.small svg,
+.size-test.small img { width:20px;height:20px; }
+
+.icon-vocabulary {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--rule);
+  border-radius:3px;
+  overflow:hidden;
+}
+
+.icon-item {
+  min-height:90px;
+  padding:8px 5px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  text-align:center;
+}
+
+.icon-item:nth-child(5n) { border-right:0; }
+.icon-item:nth-last-child(-n+5) { border-bottom:0; }
+
+.icon-item i {
+  display:block;
+  margin-bottom:5px;
+  color:var(--primary);
+  font-size:25px;
+}
+
+.icon-item strong {
+  display:block;
+  font-size:7.8px;
+}
+
+.icon-item small {
+  display:block;
+  margin-top:2px;
+  color:var(--muted);
+  font-size:6.7px;
+  line-height:1.3;
+}
+
+.icon-item.suppressed i {
+  opacity:.16;
+}
+
+.icon-item.suppressed {
+  color:var(--muted);
+  background:var(--panel-light);
+}
+
+.semantic-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.semantic-callout {
+  border-left:3px solid var(--marker-color,var(--primary));
+  border-radius:3px;
+  background:var(--marker-soft,var(--soft));
+  padding:8px 9px;
+  min-height:66px;
+  font-size:8px;
+  line-height:1.38;
+}
+
+.semantic-marker {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin-bottom:4px;
+  color:var(--marker-color,var(--primary));
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.semantic-marker i { font-size:14px; }
+
+.semantic-callout.marker-label .semantic-marker i { display:none; }
+
+.semantic-callout.marker-rail .semantic-marker {
+  color:var(--ink);
+}
+
+.semantic-callout.marker-rail .semantic-marker i {
+  display:grid;
+  place-items:center;
+  width:19px;
+  height:19px;
+  border-radius:50%;
+  background:var(--marker-color,var(--primary));
+  color:#fff;
+}
+
+.status-demo {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  padding:10px;
+  border:1px solid var(--rule);
+  border-radius:3px;
+}
+
+.pub-mark {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.pub-mark.stamp-outline {
+  border:1.5px solid currentColor;
+  border-radius:3px;
+  padding:4px 7px;
+  color:var(--muted);
+}
+
+.pub-mark.stamp-label {
+  border-left:3px solid currentColor;
+  padding:3px 6px;
+  color:var(--muted);
+  background:var(--panel-light);
+}
+
+.pub-mark.stamp-filled {
+  border-radius:3px;
+  padding:4px 7px;
+  color:#fff;
+  background:var(--muted);
+}
+
+.pub-mark.approved { color:var(--success); }
+.pub-mark.draft { color:var(--caution); }
+.pub-mark.deprecated { color:var(--critical); }
+
+.pub-mark.stamp-filled.approved { background:var(--success);color:#fff; }
+.pub-mark.stamp-filled.draft { background:var(--caution);color:#fff; }
+.pub-mark.stamp-filled.deprecated { background:var(--critical);color:#fff; }
+
+.usage-note {
+  margin-top:8px;
+  padding:7px 9px;
+  border-left:3px solid var(--muted);
+  border-radius:3px;
+  background:var(--panel-light);
+  font-size:7.8px;
+  line-height:1.4;
+}
+
+.footer {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  margin-top:14px;
+  padding-top:7px;
+  border-top:1px solid var(--rule);
+  color:var(--muted);
+  font:400 6.8px/1.35 "JetBrains Mono",monospace;
+}
+
+.review {
+  margin-top:14px;
+  padding:13px;
+  background:#fff;
+  border:1px solid var(--ui-line);
+  border-radius:8px;
+}
+
+.review h2 {
+  margin:0 0 9px;
+  font-size:15px;
+}
+
+.review-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.mini {
+  border:1px solid var(--ui-line);
+  border-radius:5px;
+  padding:9px;
+  font-size:11px;
+  line-height:1.4;
+}
+
+.mini strong {
+  display:block;
+  margin-bottom:4px;
+}
+
+.mini code {
+  font:10px "JetBrains Mono",monospace;
+  color:var(--ui-muted);
+}
+
+.offline {
+  margin-top:8px;
+  color:var(--ui-muted);
+  font-size:11px;
+}
+
+@media (max-width:1140px) {
+  .layout { grid-template-columns:1fr; }
+  .preview-shell { position:static; }
+}
+
+@media (max-width:690px) {
+  .app { padding:10px; }
+  .topbar { display:block; }
+  .notice { max-width:none; margin-top:10px; }
+  .review-grid { grid-template-columns:1fr; }
+  .preview-stage { padding:7px; }
+}
+
+@media print {
+  .topbar,.controls,.preview-toolbar,.review { display:none!important; }
+  .layout { display:block; }
+  .preview-stage { border:0;background:#fff;padding:0; }
+  .page { box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <h1>Visual Style Guide v0.7 Identity and Marker Lab</h1>
+      <p>Choose the SAA sister insignia direction, curriculum treatment of the existing TAA mark, section-icon density, semantic-marker treatment, and publication-status marks.</p>
+    </div>
+    <div class="notice">
+      <strong>Important distinction</strong><br>
+      Institutional insignia identify SAA or TAA. Phosphor section icons organize content. Publication marks identify Draft, Review, Approved, Deprecated, or edition status. These systems must never be treated as interchangeable decoration.
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="controls" aria-label="Identity and marker controls">
+      <section class="card">
+        <h2>SAA insignia direction</h2>
+        <p class="help">Select the sister-mark concept. Each candidate is shown as a clean curriculum vector, not final pixel art.</p>
+        <div class="segmented three">
+          <button type="button" data-saa="solar" aria-pressed="true">A · Solar Sprout</button>
+          <button type="button" data-saa="dome" aria-pressed="false">B · Orbital Dome</button>
+          <button type="button" data-saa="array" aria-pressed="false">C · Solar Array</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Institutional master strategy</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="master" value="dual" checked>
+            <span>
+              <strong>Dual-master system <span class="recommended">Recommended</span></strong>
+              <small>Vector curriculum mark for print and documents; pixel source mark retained for explicitly game-derived contexts.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="master" value="vector">
+            <span>
+              <strong>Vector curriculum marks only</strong>
+              <small>Use clean vector adaptations everywhere in curriculum materials.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="master" value="pixel">
+            <span>
+              <strong>Pixel marks as primary</strong>
+              <small>Maximum game continuity, but weaker print scaling and formal-document flexibility.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section-icon density</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="density" value="priority" checked>
+            <span>
+              <strong>Priority sections only <span class="recommended">Recommended</span></strong>
+              <small>Icons appear on major recurring phases; ordinary subsections rely on technical labels.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="density" value="all">
+            <span>
+              <strong>Every recurring section</strong>
+              <small>Strong navigation system, but visually busier and more game-like.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="density" value="labels">
+            <span>
+              <strong>Technical labels only</strong>
+              <small>No section icons except semantic warnings and publication controls.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Semantic-marker treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="marker" value="icon" checked>
+            <span>
+              <strong>Icon + technical label <span class="recommended">Recommended</span></strong>
+              <small>Marker appears inside the approved left-rule callout.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="marker" value="label">
+            <span>
+              <strong>Technical label only</strong>
+              <small>Quietest treatment; depends more heavily on text scanning.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="marker" value="rail">
+            <span>
+              <strong>Icon medallion + label</strong>
+              <small>Strongest semantic cue, but more visually assertive.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Publication-status mark</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="stamp" value="outline" checked>
+            <span>
+              <strong>Outlined technical stamp <span class="recommended">Recommended</span></strong>
+              <small>Rectangular, unrotated, JetBrains Mono; appropriate for covers and quiet footer use.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="stamp" value="label">
+            <span>
+              <strong>Side-rule status label</strong>
+              <small>Matches teacher-note geometry but is less stamp-like.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="stamp" value="filled">
+            <span>
+              <strong>Filled status mark</strong>
+              <small>Strongest visibility; best reserved for digital review workflows.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Insignia color preview</h2>
+        <div class="segmented">
+          <button type="button" id="mark-color" aria-pressed="true">Institutional color</button>
+          <button type="button" id="mark-mono" aria-pressed="false">One-color print</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Decision output</h2>
+        <div class="action-row">
+          <button type="button" class="primary" id="download">Download decision note</button>
+          <button type="button" id="reset">Reset recommendation</button>
+        </div>
+        <div class="summary" id="summary" aria-live="polite"></div>
+      </section>
+    </aside>
+
+    <main class="preview-shell">
+      <div class="preview-toolbar">
+        <div class="group">
+          <strong style="font-size:13px">Live identity-system preview</strong>
+          <button type="button" id="color-mode" aria-pressed="true">Color</button>
+          <button type="button" id="gray-mode" aria-pressed="false">Grayscale</button>
+        </div>
+        <div class="group">
+          <label for="scale">Scale</label>
+          <select id="scale">
+            <option value=".62">62%</option>
+            <option value=".72" selected>72%</option>
+            <option value=".82">82%</option>
+            <option value="1">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-stage">
+        <div class="scale-wrap" id="scale-wrap">
+          <article class="page" id="page">
+            <header class="mission-header">
+              <div class="title-stack">
+                <div class="kicker">Solar Agricultural Authority · Identity System</div>
+                <h1 class="doc-title">Insignia, Section Icons, and Status Marks</h1>
+                <p class="doc-subtitle">Curriculum visual-system sample · Not final lesson content</p>
+              </div>
+              <div class="header-mark" id="header-mark"></div>
+            </header>
+
+            <div class="page-body">
+              <section class="span-12">
+                <div class="section-heading">
+                  <span class="technical-label">INSTITUTION</span>
+                  <h2>SAA sister insignia and TAA curriculum treatment</h2>
+                </div>
+
+                <div class="identity-panel">
+                  <div class="identity-grid">
+                    <div class="identity-source">
+                      <h3>Existing TAA source mark</h3>
+                      <div class="taa-source">
+                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+tpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMC1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjQgKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDI2LTA2LTE4VDIyOjI3OjQxLTA0OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNi0wNi0xOVQwMjo0MDoxNS0yMDowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNi0wNi0xOVQwMjo0MDoxNS0yMDowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0E3NkVFQ0U2M0EzMTFGMUEwMjhDM0ZGN0MzMDQyQkUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0E3NkVFQ0Y2M0EzMTFGMUEwMjhDM0ZGN0MzMDQyQkUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RS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" alt="Existing pixel-art TAA insignia">
+                        <p>The shipped 96 × 96 pixel mark remains the canonical game source. The curriculum strategy determines where it appears directly and where a print adaptation is used.</p>
+                      </div>
+                      <div class="size-tests" id="taa-size-tests"></div>
+                    </div>
+
+                    <div class="candidate-area">
+                      <h3>Proposed SAA sister-mark directions</h3>
+                      <p>All candidates use a compact circular field, central agricultural symbol, and orbital or solar geometry so they read as a sister institution to TAA.</p>
+                      <div class="saa-candidates" id="saa-candidates"></div>
+                      <div class="size-tests" id="saa-size-tests"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="span-12">
+                <div class="section-heading">
+                  <span class="technical-label"><i class="ph ph-signpost"></i> NAVIGATION</span>
+                  <h2>Proposed Phosphor section-icon vocabulary</h2>
+                </div>
+                <div class="icon-vocabulary" id="icon-vocabulary"></div>
+              </section>
+
+              <section class="span-12">
+                <div class="section-heading">
+                  <span class="technical-label"><i class="ph ph-warning-circle"></i> STATUS</span>
+                  <h2>Semantic markers inside approved callouts</h2>
+                </div>
+                <div class="semantic-grid" id="semantic-grid"></div>
+              </section>
+
+              <section class="span-12">
+                <div class="section-heading">
+                  <span class="technical-label">PUBLICATION</span>
+                  <h2>Document and release marks</h2>
+                </div>
+                <div class="status-demo" id="status-demo"></div>
+                <div class="usage-note">
+                  <strong>Placement rule:</strong> Draft, Review, Approved, and Deprecated belong on covers and in quiet publication metadata. Student Edition, Teacher Edition, and Answer Key remain document-role labels—not institutional insignia.
+                </div>
+              </section>
+            </div>
+
+            <footer class="footer">
+              <span>VISUAL STYLE GUIDE · v0.7 DECISION LAB</span>
+              <span id="footer-status"></span>
+            </footer>
+          </article>
+        </div>
+      </div>
+
+      <section class="review">
+        <h2>Systems separated by this checkpoint</h2>
+        <div class="review-grid">
+          <div class="mini">
+            <strong>Institutional identity</strong>
+            <code>SAA · TAA · INSIGNIA · MASTER ART</code><br>
+            Identifies the issuing authority and survives print, grayscale, small-size, and game-derived contexts.
+          </div>
+          <div class="mini">
+            <strong>Instructional navigation</strong>
+            <code>PHOSPHOR · SECTION ICON · TECHNICAL LABEL</code><br>
+            Helps students scan recurring phases without converting every heading into decoration.
+          </div>
+          <div class="mini">
+            <strong>Document status</strong>
+            <code>DRAFT · REVIEW · APPROVED · DEPRECATED</code><br>
+            Tracks publication state and edition without competing with institutional marks.
+          </div>
+        </div>
+        <p class="offline">Phosphor icons load from the official web package CDN. Text labels remain visible if the icon font is unavailable offline.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const TAA_DATA = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+tpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMC1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjQgKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDI2LTA2LTE4VDIyOjI3OjQxLTA0OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNi0wNi0xOVQwMjo0MDoxNS0yMDowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNi0wNi0xOVQwMjo0MDoxNS0yMDowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0E3NkVFQ0U2M0EzMTFGMUEwMjhDM0ZGN0MzMDQyQkUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0E3NkVFQ0Y2M0EzMTFGMUEwMjhDM0ZGN0MzMDQyQkUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RS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";
+
+const state = {
+  saa:"solar",
+  master:"dual",
+  density:"priority",
+  marker:"icon",
+  stamp:"outline",
+  markMono:false,
+  grayscale:false,
+  scale:.72
+};
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+
+function press(selector,current) {
+  $$(selector).forEach(button => {
+    button.setAttribute("aria-pressed",button === current ? "true" : "false");
+  });
+}
+
+function palette() {
+  if (state.markMono) {
+    return {
+      p:"var(--ink)",
+      s:"var(--muted)",
+      f:"var(--paper)"
+    };
+  }
+  return {
+    p:"var(--sss-primary)",
+    s:"var(--sss-secondary)",
+    f:"var(--sss-soft)"
+  };
+}
+
+function taaVectorSvg(size=96, mono=false) {
+  const p = mono ? "var(--ink)" : "var(--hhh-primary)";
+  const s = mono ? "var(--muted)" : "var(--hhh-secondary)";
+  const f = mono ? "var(--paper)" : "var(--hhh-soft)";
+  return `
+  <svg viewBox="0 0 96 96" role="img" aria-label="Curriculum adaptation of the TAA insignia">
+    <circle cx="48" cy="48" r="43" fill="${f}" stroke="${p}" stroke-width="4"/>
+    <circle cx="48" cy="48" r="36" fill="none" stroke="${s}" stroke-width="2"/>
+    <path d="M22 68 C10 46,20 22,42 13" fill="none" stroke="${p}" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M74 68 C86 46,76 22,54 13" fill="none" stroke="${p}" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M48 16 V78" fill="none" stroke="${s}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M48 28 C38 26,33 32,42 36 C34 35,31 42,42 45 C34 45,32 52,43 55 C35 56,35 63,45 64" fill="${p}" stroke="${p}" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M48 28 C58 26,63 32,54 36 C62 35,65 42,54 45 C62 45,64 52,53 55 C61 56,61 63,51 64" fill="${p}" stroke="${p}" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M33 74 Q48 84 63 74" fill="none" stroke="${p}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M31 20 Q48 8 65 20" fill="none" stroke="${s}" stroke-width="2" stroke-dasharray="2 4"/>
+  </svg>`;
+}
+
+function saaSolarSvg(size=96, mono=false) {
+  const c = palette();
+  return `
+  <svg viewBox="0 0 96 96" role="img" aria-label="SAA Solar Sprout insignia candidate">
+    <circle cx="48" cy="48" r="43" fill="${c.f}" stroke="${c.p}" stroke-width="4"/>
+    <circle cx="48" cy="48" r="35" fill="none" stroke="${c.s}" stroke-width="2"/>
+    <circle cx="48" cy="29" r="10" fill="none" stroke="${c.p}" stroke-width="3"/>
+    <path d="M48 12 V17 M48 41 V46 M31 29 H36 M60 29 H65 M36 17 L40 21 M56 37 L60 41 M60 17 L56 21 M40 37 L36 41"
+          fill="none" stroke="${c.p}" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M48 75 V48" fill="none" stroke="${c.s}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M47 59 C33 46,25 54,30 64 C35 71,43 67,47 63 Z" fill="${c.p}" stroke="${c.p}" stroke-width="1"/>
+    <path d="M49 59 C63 46,71 54,66 64 C61 71,53 67,49 63 Z" fill="${c.p}" stroke="${c.p}" stroke-width="1"/>
+    <ellipse cx="48" cy="49" rx="34" ry="14" fill="none" stroke="${c.p}" stroke-width="2.8" transform="rotate(-14 48 49)"/>
+    <circle cx="78" cy="41" r="3.5" fill="${c.s}"/>
+  </svg>`;
+}
+
+function saaDomeSvg(size=96, mono=false) {
+  const c = palette();
+  return `
+  <svg viewBox="0 0 96 96" role="img" aria-label="SAA Orbital Greenhouse insignia candidate">
+    <circle cx="48" cy="48" r="43" fill="${c.f}" stroke="${c.p}" stroke-width="4"/>
+    <circle cx="48" cy="48" r="35" fill="none" stroke="${c.s}" stroke-width="2"/>
+    <path d="M23 64 A25 25 0 0 1 73 64" fill="none" stroke="${c.p}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M30 64 A18 24 0 0 1 66 64 M40 64 A8 24 0 0 1 56 64" fill="none" stroke="${c.s}" stroke-width="2"/>
+    <path d="M23 64 H73" fill="none" stroke="${c.p}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M48 66 V44" fill="none" stroke="${c.s}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M47 54 C36 45,30 51,34 59 C38 64,44 61,47 58 Z" fill="${c.p}"/>
+    <path d="M49 54 C60 45,66 51,62 59 C58 64,52 61,49 58 Z" fill="${c.p}"/>
+    <path d="M18 31 Q48 10 78 31" fill="none" stroke="${c.p}" stroke-width="2.8" stroke-linecap="round"/>
+    <circle cx="48" cy="18" r="5" fill="${c.s}"/>
+    <path d="M31 75 Q48 84 65 75" fill="none" stroke="${c.p}" stroke-width="3" stroke-linecap="round"/>
+  </svg>`;
+}
+
+function saaArraySvg(size=96, mono=false) {
+  const c = palette();
+  return `
+  <svg viewBox="0 0 96 96" role="img" aria-label="SAA Solar Array and Sprout insignia candidate">
+    <circle cx="48" cy="48" r="43" fill="${c.f}" stroke="${c.p}" stroke-width="4"/>
+    <circle cx="48" cy="48" r="35" fill="none" stroke="${c.s}" stroke-width="2"/>
+    <rect x="27" y="20" width="42" height="25" rx="2" fill="none" stroke="${c.p}" stroke-width="3"/>
+    <path d="M41 20 V45 M55 20 V45 M27 32.5 H69" fill="none" stroke="${c.s}" stroke-width="2"/>
+    <path d="M48 76 V46" fill="none" stroke="${c.s}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M47 58 C34 48,27 55,31 64 C36 70,43 66,47 62 Z" fill="${c.p}"/>
+    <path d="M49 58 C62 48,69 55,65 64 C60 70,53 66,49 62 Z" fill="${c.p}"/>
+    <path d="M18 67 Q48 88 78 67" fill="none" stroke="${c.p}" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="75" cy="24" r="4" fill="${c.s}"/>
+    <path d="M75 15 V18 M75 30 V33 M66 24 H69 M81 24 H84" stroke="${c.s}" stroke-width="2" stroke-linecap="round"/>
+  </svg>`;
+}
+
+function chosenSaaSvg(mono=state.markMono) {
+  if (state.saa === "solar") return saaSolarSvg(96,mono);
+  if (state.saa === "dome") return saaDomeSvg(96,mono);
+  return saaArraySvg(96,mono);
+}
+
+function renderCandidates() {
+  const candidates = [
+    {id:"solar",name:"A · Solar Sprout",note:"Sun, orbit, and living sprout"},
+    {id:"dome",name:"B · Orbital Dome",note:"Controlled greenhouse and sprout"},
+    {id:"array",name:"C · Solar Array",note:"Energy system and cultivation"}
+  ];
+
+  $("#saa-candidates").innerHTML = candidates.map(candidate => {
+    let svg;
+    if (candidate.id === "solar") svg = saaSolarSvg();
+    if (candidate.id === "dome") svg = saaDomeSvg();
+    if (candidate.id === "array") svg = saaArraySvg();
+    return `
+      <div class="insignia-card ${candidate.id === state.saa ? "selected" : ""}" data-card-saa="${candidate.id}">
+        ${svg}
+        <strong>${candidate.name}</strong>
+        <small>${candidate.note}</small>
+      </div>`;
+  }).join("");
+
+  $$("[data-card-saa]").forEach(card => {
+    card.addEventListener("click",() => {
+      state.saa = card.dataset.cardSaa;
+      press("[data-saa]",$(`[data-saa="${state.saa}"]`));
+      render();
+    });
+  });
+}
+
+function renderMasterTests() {
+  const taaTests = $("#taa-size-tests");
+  const saaTests = $("#saa-size-tests");
+
+  if (state.master === "pixel") {
+    taaTests.innerHTML = `
+      <div class="size-test large"><img src="${TAA_DATA}" style="image-rendering:pixelated"><span>48 PX</span></div>
+      <div class="size-test medium"><img src="${TAA_DATA}" style="image-rendering:pixelated"><span>32 PX</span></div>
+      <div class="size-test small"><img src="${TAA_DATA}" style="image-rendering:pixelated"><span>20 PX</span></div>`;
+    saaTests.innerHTML = `
+      <div class="size-test large">${chosenSaaSvg()}<span>VECTOR PREVIEW</span></div>
+      <div class="size-test medium">${chosenSaaSvg()}<span>PIXEL MASTER NEEDED</span></div>`;
+  } else if (state.master === "vector") {
+    taaTests.innerHTML = `
+      <div class="size-test large">${taaVectorSvg(96,state.markMono)}<span>48 PX</span></div>
+      <div class="size-test medium">${taaVectorSvg(96,state.markMono)}<span>32 PX</span></div>
+      <div class="size-test small">${taaVectorSvg(96,state.markMono)}<span>20 PX</span></div>`;
+    saaTests.innerHTML = `
+      <div class="size-test large">${chosenSaaSvg()}<span>48 PX</span></div>
+      <div class="size-test medium">${chosenSaaSvg()}<span>32 PX</span></div>
+      <div class="size-test small">${chosenSaaSvg()}<span>20 PX</span></div>`;
+  } else {
+    taaTests.innerHTML = `
+      <div class="size-test large">${taaVectorSvg(96,state.markMono)}<span>VECTOR 48</span></div>
+      <div class="size-test medium">${taaVectorSvg(96,state.markMono)}<span>VECTOR 32</span></div>
+      <div class="size-test small"><img src="${TAA_DATA}" style="image-rendering:pixelated"><span>PIXEL 20</span></div>`;
+    saaTests.innerHTML = `
+      <div class="size-test large">${chosenSaaSvg()}<span>VECTOR 48</span></div>
+      <div class="size-test medium">${chosenSaaSvg()}<span>VECTOR 32</span></div>
+      <div class="size-test small">${chosenSaaSvg()}<span>PIXEL MASTER</span></div>`;
+  }
+}
+
+const icons = [
+  {key:"mission",icon:"ph-satellite",label:"Mission Brief",sub:"Case setup",priority:true},
+  {key:"focus",icon:"ph-leaf",label:"Science / History Focus",sub:"Core concept",priority:true},
+  {key:"vocab",icon:"ph-book-open-text",label:"Vocabulary",sub:"Key terms",priority:false},
+  {key:"predict",icon:"ph-lightbulb",label:"Prediction",sub:"Before evidence",priority:false},
+  {key:"evidence",icon:"ph-magnifying-glass",label:"Evidence",sub:"Observe and record",priority:true},
+  {key:"mechanism",icon:"ph-gear",label:"Mechanism",sub:"Explain why",priority:true},
+  {key:"cer",icon:"ph-note-pencil",label:"CER",sub:"Claim and reasoning",priority:true},
+  {key:"recommend",icon:"ph-wrench",label:"Recommendation",sub:"Apply evidence",priority:true},
+  {key:"debrief",icon:"ph-check-square",label:"Debrief / Exit",sub:"Reflect and transfer",priority:true},
+  {key:"map",icon:"ph-map-trifold",label:"Map / Timeline",sub:"Place and sequence",priority:false}
+];
+
+function renderIcons() {
+  $("#icon-vocabulary").innerHTML = icons.map(item => {
+    const suppressed =
+      state.density === "labels" ||
+      (state.density === "priority" && !item.priority);
+    return `
+      <div class="icon-item ${suppressed ? "suppressed" : ""}">
+        <i class="ph ${item.icon}" aria-hidden="true"></i>
+        <strong>${item.label}</strong>
+        <small>${suppressed ? "Technical label only" : item.sub}</small>
+      </div>`;
+  }).join("");
+}
+
+const semanticItems = [
+  {label:"Science / History Focus",icon:"ph-atom",body:"Names the real concept or historical reasoning focus.",color:"var(--primary)",soft:"var(--soft)"},
+  {label:"Established / Documented",icon:"ph-seal-check",body:"Supported by established science or direct documentation.",color:"var(--success)",soft:"#eaf3ed"},
+  {label:"Inferred / Debated",icon:"ph-question",body:"Interpretation, reconstruction, or evidence with uncertainty.",color:"var(--caution)",soft:"#f7f0e2"},
+  {label:"Fictional Context",icon:"ph-sparkle",body:"A game-world organism, technology, event, or visualization.",color:"var(--muted)",soft:"var(--panel-light)"},
+  {label:"Caution",icon:"ph-warning",body:"Safety, misconception, or important limitation.",color:"var(--critical)",soft:"#f7e9e9"},
+  {label:"Optional",icon:"ph-star",body:"Extension that is not required for full credit.",color:"var(--secondary)",soft:"var(--soft)"}
+];
+
+function renderSemantic() {
+  $("#semantic-grid").innerHTML = semanticItems.map(item => `
+    <div class="semantic-callout marker-${state.marker}" style="--marker-color:${item.color};--marker-soft:${item.soft}">
+      <div class="semantic-marker"><i class="ph ${item.icon}" aria-hidden="true"></i>${item.label}</div>
+      ${item.body}
+    </div>
+  `).join("");
+}
+
+function renderStamps() {
+  const stampClass = `stamp-${state.stamp}`;
+  $("#status-demo").innerHTML = `
+    <span class="pub-mark ${stampClass} draft"><i class="ph ph-pencil-simple"></i>Draft</span>
+    <span class="pub-mark ${stampClass}"><i class="ph ph-eye"></i>Review</span>
+    <span class="pub-mark ${stampClass} approved"><i class="ph ph-seal-check"></i>Approved</span>
+    <span class="pub-mark ${stampClass} deprecated"><i class="ph ph-warning-octagon"></i>Deprecated</span>
+    <span class="pub-mark ${stampClass}"><i class="ph ph-student"></i>Student Edition</span>
+    <span class="pub-mark ${stampClass}"><i class="ph ph-chalkboard-teacher"></i>Teacher Edition</span>
+    <span class="pub-mark ${stampClass}"><i class="ph ph-key"></i>Answer Key</span>`;
+  $("#footer-status").innerHTML = `<span class="pub-mark ${stampClass} approved">Approved</span>`;
+}
+
+function renderHeaderMark() {
+  $("#header-mark").innerHTML = chosenSaaSvg();
+}
+
+function applyPage() {
+  const page = $("#page");
+  page.classList.toggle("grayscale",state.grayscale);
+
+  const wrap = $("#scale-wrap");
+  wrap.style.transform = `scale(${state.scale})`;
+  wrap.style.width = `${816 * state.scale}px`;
+  wrap.style.height = `${1056 * state.scale}px`;
+}
+
+function decisionMarkdown() {
+  const saaName = {
+    solar:"A · Solar Sprout",
+    dome:"B · Orbital Dome",
+    array:"C · Solar Array"
+  }[state.saa];
+
+  const masterName = {
+    dual:"Dual-master system",
+    vector:"Vector curriculum marks only",
+    pixel:"Pixel marks as primary"
+  }[state.master];
+
+  const densityName = {
+    priority:"Priority sections only",
+    all:"Every recurring section",
+    labels:"Technical labels only"
+  }[state.density];
+
+  const markerName = {
+    icon:"Icon + technical label",
+    label:"Technical label only",
+    rail:"Icon medallion + label"
+  }[state.marker];
+
+  const stampName = {
+    outline:"Outlined technical stamp",
+    label:"Side-rule status label",
+    filled:"Filled status mark"
+  }[state.stamp];
+
+  return `# VISUAL_STYLE_GUIDE_v0.7 — Decision Note
+
+## Selected Preview
+
+- SAA insignia direction: ${saaName}
+- Institutional master strategy: ${masterName}
+- Section-icon density: ${densityName}
+- Semantic-marker treatment: ${markerName}
+- Publication-status mark: ${stampName}
+- Insignia color preview: ${state.markMono ? "One-color print" : "Institutional color"}
+- Grayscale page preview viewed: ${state.grayscale ? "Yes" : "No"}
+
+## Proposed Shared Rules
+
+- [ ] Preserve the existing TAA pixel insignia as the canonical game source.
+- [ ] Create curriculum-ready vector and monochrome adaptations according to the selected master strategy.
+- [ ] Develop the selected SAA concept as a matched sister insignia.
+- [ ] Keep institutional insignia separate from Phosphor section icons.
+- [ ] Use the selected section-icon density across student and teacher documents.
+- [ ] Use the selected semantic-marker treatment inside approved callouts.
+- [ ] Use the selected publication-status mark for Draft, Review, Approved, and Deprecated.
+- [ ] Keep Student Edition, Teacher Edition, and Answer Key as document-role labels rather than institutional marks.
+- [ ] Require minimum-size, clear-space, grayscale, one-color, and small-icon tests before final approval.
+- [ ] Request revisions.
+
+## Notes
+
+Add any changes or exceptions here before v0.7 is locked.
+`;
+}
+
+function render() {
+  renderCandidates();
+  renderMasterTests();
+  renderIcons();
+  renderSemantic();
+  renderStamps();
+  renderHeaderMark();
+  applyPage();
+  $("#summary").textContent = decisionMarkdown();
+}
+
+$$("[data-saa]").forEach(button => {
+  button.addEventListener("click",() => {
+    state.saa = button.dataset.saa;
+    press("[data-saa]",button);
+    render();
+  });
+});
+
+["master","density","marker","stamp"].forEach(group => {
+  $$(`input[name="${group}"]`).forEach(input => {
+    input.addEventListener("change",() => {
+      state[group] = input.value;
+      render();
+    });
+  });
+});
+
+$("#mark-color").addEventListener("click",() => {
+  state.markMono = false;
+  press("#mark-color,#mark-mono",$("#mark-color"));
+  render();
+});
+
+$("#mark-mono").addEventListener("click",() => {
+  state.markMono = true;
+  press("#mark-color,#mark-mono",$("#mark-mono"));
+  render();
+});
+
+$("#color-mode").addEventListener("click",() => {
+  state.grayscale = false;
+  press("#color-mode,#gray-mode",$("#color-mode"));
+  render();
+});
+
+$("#gray-mode").addEventListener("click",() => {
+  state.grayscale = true;
+  press("#color-mode,#gray-mode",$("#gray-mode"));
+  render();
+});
+
+$("#scale").addEventListener("change",event => {
+  state.scale = Number(event.target.value);
+  render();
+});
+
+$("#reset").addEventListener("click",() => {
+  Object.assign(state,{
+    saa:"solar",
+    master:"dual",
+    density:"priority",
+    marker:"icon",
+    stamp:"outline",
+    markMono:false,
+    grayscale:false,
+    scale:.72
+  });
+
+  press("[data-saa]",$('[data-saa="solar"]'));
+  $('input[name="master"][value="dual"]').checked = true;
+  $('input[name="density"][value="priority"]').checked = true;
+  $('input[name="marker"][value="icon"]').checked = true;
+  $('input[name="stamp"][value="outline"]').checked = true;
+  press("#mark-color,#mark-mono",$("#mark-color"));
+  press("#color-mode,#gray-mode",$("#color-mode"));
+  $("#scale").value = ".72";
+  render();
+});
+
+$("#download").addEventListener("click",() => {
+  const blob = new Blob([decisionMarkdown()],{type:"text/markdown;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "VISUAL_STYLE_GUIDE_v0.7_DECISIONS.md";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+press("[data-saa]",$('[data-saa="solar"]'));
+press("#mark-color,#mark-mono",$("#mark-color"));
+press("#color-mode,#gray-mode",$("#color-mode"));
+render();
+</script>
+</body>
+</html>

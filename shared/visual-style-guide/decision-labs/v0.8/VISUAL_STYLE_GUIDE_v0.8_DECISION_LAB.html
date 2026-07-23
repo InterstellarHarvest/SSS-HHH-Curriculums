@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Style Guide v0.8 Imagery and Covers Lab</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root{
+  --ui-bg:#e9edf0;
+  --ui-panel:#ffffff;
+  --ui-ink:#18212b;
+  --ui-muted:#596673;
+  --ui-line:#c8d0d6;
+  --ui-accent:#0b6f82;
+
+  --paper:#ffffff;
+  --ink:#18212b;
+  --muted:#4b5967;
+  --rule:#8c9aa8;
+  --panel-light:#f7f9fa;
+
+  --primary:#0b6f82;
+  --secondary:#147a45;
+  --soft:#e7f3f5;
+  --component-radius:3px;
+}
+
+*{ box-sizing:border-box; }
+body{ margin:0; background:var(--ui-bg); color:var(--ui-ink); font-family:Inter,Arial,sans-serif; }
+button, select, input{ font:inherit; }
+button, select{
+  min-height:38px; border:1px solid var(--ui-line); border-radius:6px; background:#fff; color:var(--ui-ink); padding:7px 10px;
+}
+button{ cursor:pointer; }
+button:hover{ border-color:var(--ui-accent); }
+button:focus-visible, select:focus-visible, input:focus-visible{
+  outline:3px solid rgba(11,111,130,.22); outline-offset:2px;
+}
+.app{ max-width:1540px; margin:0 auto; padding:18px; }
+.topbar{ display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:14px; }
+.topbar h1{ margin:0 0 5px; font-size:24px; }
+.topbar p{ margin:0; color:var(--ui-muted); max-width:900px; }
+.notice{
+  max-width:440px; border:1px solid var(--ui-line); background:#fff; padding:10px 12px; border-radius:7px; font-size:12px; line-height:1.45;
+}
+.layout{ display:grid; grid-template-columns:minmax(330px,430px) minmax(600px,1fr); gap:15px; align-items:start; }
+.controls{ display:grid; gap:11px; }
+.card{ background:var(--ui-panel); border:1px solid var(--ui-line); border-radius:8px; padding:13px; }
+.card h2{ margin:0 0 9px; font-size:15px; }
+.help{ margin:-3px 0 9px; color:var(--ui-muted); font-size:12px; line-height:1.4; }
+.segmented{ display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
+.segmented.three{ grid-template-columns:repeat(3,1fr); }
+.segmented button[aria-pressed="true"]{ background:var(--ui-accent); color:#fff; border-color:var(--ui-accent); }
+.options{ display:grid; gap:7px; }
+.option{
+  display:grid; grid-template-columns:19px 1fr; gap:8px; align-items:start; border:1px solid var(--ui-line); border-radius:6px; padding:9px; cursor:pointer;
+}
+.option:has(input:checked){ border-color:var(--ui-accent); box-shadow:inset 3px 0 0 var(--ui-accent); }
+.option input{ margin:3px 0 0; }
+.option strong{ display:block; font-size:13px; }
+.option small{ display:block; margin-top:2px; color:var(--ui-muted); line-height:1.35; }
+.recommended{
+  display:inline-block; margin-left:5px; padding:1px 5px; border:1px solid #82aab2; color:#145d6b; font:600 9px/1.4 "JetBrains Mono",monospace; letter-spacing:.05em; text-transform:uppercase;
+}
+.action-row{ display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.action-row .primary{ background:var(--ui-accent); color:#fff; border-color:var(--ui-accent); }
+.summary{
+  margin-top:8px; max-height:320px; overflow:auto; white-space:pre-wrap; background:#f5f7f8; border:1px solid var(--ui-line); border-radius:5px; padding:9px; font:11px/1.5 "JetBrains Mono",monospace;
+}
+.preview-shell{ position:sticky; top:10px; min-width:0; }
+.preview-toolbar{
+  display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; align-items:center; background:#fff; border:1px solid var(--ui-line); border-bottom:0; border-radius:8px 8px 0 0; padding:8px 10px;
+}
+.preview-toolbar .group{ display:flex; flex-wrap:wrap; gap:7px; align-items:center; }
+.preview-toolbar label{ color:var(--ui-muted); font-size:12px; }
+.preview-stage{
+  min-height:860px; padding:18px; overflow:auto; border:1px solid var(--ui-line); border-radius:0 0 8px 8px;
+  background:
+    linear-gradient(45deg,#d6dade 25%,transparent 25%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 9px -9px/18px 18px,
+    linear-gradient(45deg,#d6dade 25%,#eef0f2 25%) 9px -9px/18px 18px;
+}
+.scale-wrap{ width:max-content; margin:0 auto; transform-origin:top center; }
+.page{
+  width:816px; min-height:1120px; background:var(--paper); color:var(--ink); box-shadow:0 5px 23px rgba(0,0,0,.18); font-family:Inter,Arial,sans-serif; padding:48px;
+}
+.page.grayscale{ filter:grayscale(1); }
+.cover-page{
+  width:816px; min-height:1120px; background:var(--paper); color:var(--ink); box-shadow:0 5px 23px rgba(0,0,0,.18); font-family:Inter,Arial,sans-serif; padding:48px;
+}
+.cover-page.grayscale{ filter:grayscale(1); }
+
+.cover-head{
+  display:grid; grid-template-columns:1fr auto; gap:14px; align-items:start;
+  border-bottom:3px solid var(--primary); padding-bottom:12px;
+}
+.cover-kicker{
+  font:600 8px/1.35 "JetBrains Mono",monospace; color:var(--primary); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;
+}
+.cover-title{ margin:0; font-size:26px; line-height:1.05; }
+.cover-sub{ margin:6px 0 0; color:var(--muted); font-size:10px; line-height:1.45; }
+.mark-slot{
+  width:56px; height:56px; border:1px solid var(--primary); border-radius:50%; display:grid; place-items:center; color:var(--primary); font:600 10px "JetBrains Mono",monospace;
+}
+.hero-block{
+  margin-top:16px; display:grid; grid-template-columns:2fr 1fr; gap:12px; align-items:start;
+}
+.hero-visual{
+  border:1px solid var(--rule); border-radius:3px; padding:10px;
+}
+.hero-shell{
+  height:240px; border:1px solid var(--rule); border-radius:3px; display:grid; place-items:center; background:#fff;
+}
+.hero-shell.full-bleed{
+  border:0;
+}
+.hero-caption{
+  margin-top:8px; font-size:8px; line-height:1.4;
+}
+.hero-source{
+  margin-top:4px; color:var(--muted); font:7px/1.45 "JetBrains Mono",monospace;
+}
+.cover-side{
+  display:grid; gap:10px;
+}
+.side-card{
+  border:1px solid var(--rule); border-radius:3px; padding:9px;
+}
+.side-card h3{
+  margin:0 0 6px; font-size:9px;
+}
+.side-card p{
+  margin:0; color:var(--muted); font-size:8px; line-height:1.42;
+}
+.body-grid{
+  display:grid; grid-template-columns:repeat(12,minmax(0,1fr)); gap:12px; margin-top:16px; align-items:start;
+}
+.span-12{ grid-column:span 12; }
+.span-8{ grid-column:span 8; }
+.span-6{ grid-column:span 6; }
+.span-4{ grid-column:span 4; }
+.section-heading{
+  display:flex; align-items:center; gap:8px; margin:0 0 7px;
+}
+.technical-label{
+  display:inline-flex; align-items:center; gap:5px; border:1px solid var(--primary); border-radius:3px; padding:3px 5px; color:var(--primary);
+  font:600 7px/1.3 "JetBrains Mono",monospace; letter-spacing:.05em; text-transform:uppercase; white-space:nowrap;
+}
+.technical-label i{ font-size:14px; }
+.section-heading h2{ margin:0; font-size:12px; line-height:1.2; }
+
+.image-frame{
+  border:1px solid var(--rule); border-radius:3px; padding:10px; background:#fff;
+}
+.image-shell{
+  height:166px; border:1px solid var(--rule); border-radius:3px; display:grid; place-items:center; background:#fff;
+}
+.image-shell img{ max-width:100%; max-height:100%; display:block; image-rendering:pixelated; }
+.mock-photo, .mock-illustration, .mock-map, .mock-scan, .mock-game{
+  width:100%; height:100%; display:grid; place-items:center; text-align:center;
+  font:600 10px/1.35 "JetBrains Mono",monospace; color:var(--muted);
+  background:
+    linear-gradient(135deg,#ffffff,#eef2f4);
+}
+.mock-game{
+  background:
+    linear-gradient(0deg, rgba(0,0,0,.04), rgba(0,0,0,.04)),
+    linear-gradient(135deg,#fefefe,#eef5f7);
+}
+.mock-photo::before{ content:"HISTORICAL PHOTO / ARCHIVE IMAGE"; }
+.mock-illustration::before{ content:"CURRICULUM ILLUSTRATION / DIAGRAM"; }
+.mock-map::before{ content:"SOURCED MAP / SPATIAL FIGURE"; }
+.mock-scan::before{ content:"DOCUMENT SCAN / SOURCE EXCERPT"; }
+.caption-band{
+  margin-top:7px; border:1px solid var(--rule); border-radius:3px; padding:7px 8px; background:var(--panel-light);
+}
+.caption-band .cap{ font-size:8px; line-height:1.4; }
+.caption-band .src{ margin-top:3px; color:var(--muted); font:7px/1.4 "JetBrains Mono",monospace; }
+
+.callout{
+  border-left:3px solid var(--primary); border-radius:3px; background:var(--soft); padding:8px 9px; font-size:8px; line-height:1.38;
+}
+.callout .tag{
+  display:inline-flex; align-items:center; gap:5px; margin-bottom:4px; color:var(--primary); font:600 7px "JetBrains Mono",monospace; letter-spacing:.04em; text-transform:uppercase;
+}
+.callout .tag i{ font-size:14px; }
+
+.cover-options{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+}
+.cover-option{
+  border:1px solid var(--rule); border-radius:3px; padding:10px; background:#fff;
+}
+.cover-option strong{ display:block; margin-bottom:6px; font-size:8.5px; text-align:center; }
+.cover-mini{
+  height:110px; border:1px solid var(--rule); border-radius:3px; position:relative; overflow:hidden; background:#fff;
+}
+.cover-mini.default .bar{ position:absolute; left:0; top:0; width:100%; height:18px; background:var(--panel-light); border-bottom:1px solid var(--rule); }
+.cover-mini.default .box{ position:absolute; left:8px; top:28px; right:8px; bottom:8px; border:1px solid var(--rule); }
+.cover-mini.hero .box{ position:absolute; left:8px; top:8px; right:8px; bottom:8px; border:1px solid var(--rule); background:linear-gradient(135deg,#fff,#ecf3f5); }
+.cover-mini.hero .tag{ position:absolute; left:12px; bottom:12px; right:12px; background:rgba(255,255,255,.92); border:1px solid var(--rule); padding:4px; font:600 6px "JetBrains Mono",monospace; }
+.cover-mini.band .wide{ position:absolute; left:0; right:0; top:22px; height:38px; background:var(--panel-light); border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); }
+.cover-mini.band .small{ position:absolute; left:10px; right:10px; top:68px; bottom:10px; border:1px solid var(--rule); }
+
+.footer{
+  display:grid; grid-template-columns:1fr auto; gap:12px; margin-top:14px; padding-top:7px; border-top:1px solid var(--rule); color:var(--muted); font:400 6.8px/1.35 "JetBrains Mono",monospace;
+}
+.review{
+  margin-top:14px; padding:13px; background:#fff; border:1px solid var(--ui-line); border-radius:8px;
+}
+.review h2{ margin:0 0 9px; font-size:15px; }
+.review-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+.mini{ border:1px solid var(--ui-line); border-radius:5px; padding:9px; font-size:11px; line-height:1.4; }
+.mini strong{ display:block; margin-bottom:4px; }
+.mini code{ font:10px "JetBrains Mono",monospace; color:var(--ui-muted); }
+.offline{ margin-top:8px; color:var(--ui-muted); font-size:11px; }
+
+@media (max-width:1140px){
+  .layout{ grid-template-columns:1fr; }
+  .preview-shell{ position:static; }
+}
+@media (max-width:700px){
+  .app{ padding:10px; }
+  .topbar{ display:block; }
+  .notice{ max-width:none; margin-top:10px; }
+  .review-grid{ grid-template-columns:1fr; }
+  .preview-stage{ padding:7px; }
+}
+@media print{
+  .topbar,.controls,.preview-toolbar,.review{ display:none!important; }
+  .layout{ display:block; }
+  .preview-stage{ border:0;background:#fff;padding:0; }
+  .page,.cover-page{ box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <h1>Visual Style Guide v0.8 Imagery and Covers Lab</h1>
+      <p>Choose the cover structure, image framing and caption treatment, source-excerpt treatment, historical photo handling, scientific illustration handling, and selective game-asset reuse rules.</p>
+    </div>
+    <div class="notice">
+      <strong>Scope boundary</strong><br>
+      This checkpoint does not need the final exported SAA SVG to proceed. It only relies on the already locked identity strategy and section-marker system. The final insignia artwork can drop into the approved cover and image treatments later.
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="controls">
+      <section class="card">
+        <h2>Preview mode</h2>
+        <div class="segmented">
+          <button type="button" data-view="cover" aria-pressed="true">Cover / packet opener</button>
+          <button type="button" data-view="imagery" aria-pressed="false">Inside-page imagery</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Cover structure</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="cover" value="default" checked>
+            <span>
+              <strong>Mission-title cover <span class="recommended">Recommended</span></strong>
+              <small>Mission Title Block plus one restrained hero visual and supporting metadata.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="cover" value="hero">
+            <span>
+              <strong>Hero-image cover</strong>
+              <small>Larger image emphasis for packet openers and showcase documents.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="cover" value="band">
+            <span>
+              <strong>Banded dossier cover</strong>
+              <small>More formal documentary strip layout with reduced visual emphasis.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Image frame treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="frame" value="technical" checked>
+            <span>
+              <strong>Thin technical frame <span class="recommended">Recommended</span></strong>
+              <small>Same restrained figure family as v0.6, suitable for most images.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="frame" value="open">
+            <span>
+              <strong>Open image</strong>
+              <small>Clean for simple illustrations, but weaker for photographs and screenshots.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="frame" value="field">
+            <span>
+              <strong>Pale field frame</strong>
+              <small>Useful when white-edge imagery disappears into the page.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Caption / source treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="caption" value="band" checked>
+            <span>
+              <strong>Caption metadata band <span class="recommended">Recommended</span></strong>
+              <small>Carry forward the approved v0.6 figure-caption system.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="caption" value="stacked">
+            <span>
+              <strong>Stacked caption below image</strong>
+              <small>Quieter but less clearly structured for source-rich imagery.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Historical-photo treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="photo" value="authentic" checked>
+            <span>
+              <strong>Retain authentic tonal character <span class="recommended">Recommended</span></strong>
+              <small>Preserve source character; only crop, frame, and caption consistently.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="photo" value="normalized">
+            <span>
+              <strong>Normalize to curriculum grayscale</strong>
+              <small>More consistent page system, but risks flattening archival character.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Game-asset reuse policy</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="reuse" value="selective" checked>
+            <span>
+              <strong>Selective framed reuse <span class="recommended">Recommended</span></strong>
+              <small>Use screenshots and sprites only when instructionally useful and clearly labeled.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="reuse" value="free">
+            <span>
+              <strong>Broad expressive reuse</strong>
+              <small>More immersive, but risks worksheet pages becoming too game-forward.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="reuse" value="minimal">
+            <span>
+              <strong>Minimal reuse</strong>
+              <small>Only occasional reference images; strongest academic tone.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Decision output</h2>
+        <div class="action-row">
+          <button type="button" class="primary" id="download">Download decision note</button>
+          <button type="button" id="reset">Reset recommendation</button>
+        </div>
+        <div class="summary" id="summary"></div>
+      </section>
+    </aside>
+
+    <main class="preview-shell">
+      <div class="preview-toolbar">
+        <div class="group">
+          <strong style="font-size:13px">Live v0.8 preview</strong>
+          <button type="button" id="color-mode" aria-pressed="true">Color</button>
+          <button type="button" id="gray-mode" aria-pressed="false">Grayscale</button>
+        </div>
+        <div class="group">
+          <label for="scale">Scale</label>
+          <select id="scale">
+            <option value=".62">62%</option>
+            <option value=".72" selected>72%</option>
+            <option value=".82">82%</option>
+            <option value="1">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-stage">
+        <div class="scale-wrap" id="scale-wrap">
+          <article class="cover-page" id="cover-page">
+            <header class="cover-head">
+              <div>
+                <div class="cover-kicker">Solar Agricultural Authority · Student Packet</div>
+                <h1 class="cover-title">Mission Packet: Light, Gravity, and Plant Response</h1>
+                <p class="cover-sub">Packet opener preview showing the relationship between institutional identity, restrained imagery, metadata, and source treatment.</p>
+              </div>
+              <div class="mark-slot">SAA</div>
+            </header>
+
+            <section class="hero-block" id="hero-block">
+              <div class="hero-visual">
+                <div class="hero-shell" id="hero-shell">
+                  <div class="mock-illustration"></div>
+                </div>
+                <div class="hero-caption" id="hero-caption">Figure C1. Cover visual preview illustrating the approved image-treatment style.</div>
+                <div class="hero-source" id="hero-source">SOURCE STATUS · CURRICULUM-ORIGINAL ILLUSTRATION · STYLE SAMPLE</div>
+              </div>
+
+              <div class="cover-side">
+                <div class="side-card">
+                  <h3>Document role</h3>
+                  <p>Student Edition · Approved</p>
+                </div>
+                <div class="side-card">
+                  <h3>Imagery role</h3>
+                  <p id="side-imagery">One controlled hero image supports orientation without turning the cover into marketing art.</p>
+                </div>
+                <div class="side-card">
+                  <h3>Asset note</h3>
+                  <p id="side-asset">Game-derived visuals may appear only when clearly framed, captioned, and instructionally relevant.</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="body-grid" id="imagery-page" style="display:none">
+              <section class="span-6">
+                <div class="section-heading">
+                  <span class="technical-label"><i class="ph ph-camera"></i> HISTORICAL PHOTO</span>
+                  <h2>Archive image handling</h2>
+                </div>
+                <div class="image-frame" id="photo-frame">
+                  <div class="image-shell"><div class="mock-photo"></div></div>
+                  <div class="caption-band" id="photo-caption">
+                    <div class="cap">Figure 2. Sample historical photograph treatment preserving source identity while aligning with the curriculum frame and caption system.</div>
+                    <div class="src">REPRODUCED FROM · ARCHIVE SOURCE · DATE PLACEHOLDER</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="span-6">
+                <div class="section-heading">
+                  <span class="technical-label"><i class="ph ph-pencil-ruler"></i> ILLUSTRATION</span>
+                  <h2>Scientific illustration and diagram imagery</h2>
+                </div>
+                <div class="image-frame" id="illustration-frame">
+                  <div class="image-shell"><div class="mock-illustration"></div></div>
+                  <div class="caption-band" id="illustration-caption">
+                    <div class="cap">Figure 3. Sample curriculum illustration using the shared explanatory-visual caption and source-status treatment.</div>
+                    <div class="src">CURRICULUM-ORIGINAL FIGURE · SCHEMATIC · NOT TO SCALE</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="span-6">
+                <div class="section-heading">
+                  <span class="technical-label"><i class="ph ph-game-controller"></i> GAME ASSET</span>
+                  <h2>Selective game-asset reuse</h2>
+                </div>
+                <div class="image-frame" id="game-frame">
+                  <div class="image-shell"><div class="mock-game"></div></div>
+                  <div class="caption-band" id="game-caption">
+                    <div class="cap">Figure 4. Example of a game-derived screenshot or sprite panel used only when it directly supports explanation or comparison.</div>
+                    <div class="src">SOURCE · SPACE SPROUT SLEUTH GAME ASSET · SCREENSHOT OR SPRITE PANEL</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="span-6">
+                <div class="section-heading">
+                  <span class="technical-label"><i class="ph ph-file-text"></i> SOURCE EXCERPT</span>
+                  <h2>Document scan and excerpt handling</h2>
+                </div>
+                <div class="image-frame" id="scan-frame">
+                  <div class="image-shell"><div class="mock-scan"></div></div>
+                  <div class="caption-band" id="scan-caption">
+                    <div class="cap">Figure 5. Sample source-excerpt treatment showing how scans remain clearly bounded and attributed.</div>
+                    <div class="src">REPRODUCED FROM · DOCUMENT SCAN · EXCERPT CROPPED FOR CLASSROOM USE</div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="span-12">
+                <div class="callout">
+                  <div class="tag"><i class="ph ph-warning-circle"></i> V0.8 RULE</div>
+                  Images do not become decorative fillers. Every image must earn its place by clarifying evidence, illustrating a mechanism, orienting the student, or documenting a real source.
+                </div>
+              </section>
+            </section>
+
+            <section class="body-grid" id="cover-options-section">
+              <section class="span-12">
+                <div class="section-heading">
+                  <span class="technical-label">COVER FAMILY</span>
+                  <h2>Cover structure comparison</h2>
+                </div>
+                <div class="cover-options">
+                  <div class="cover-option">
+                    <strong>Mission-title cover</strong>
+                    <div class="cover-mini default"><div class="bar"></div><div class="box"></div></div>
+                  </div>
+                  <div class="cover-option">
+                    <strong>Hero-image cover</strong>
+                    <div class="cover-mini hero"><div class="box"></div><div class="tag">HERO VISUAL + TITLE</div></div>
+                  </div>
+                  <div class="cover-option">
+                    <strong>Banded dossier cover</strong>
+                    <div class="cover-mini band"><div class="wide"></div><div class="small"></div></div>
+                  </div>
+                </div>
+              </section>
+            </section>
+
+            <footer class="footer">
+              <span>VISUAL STYLE GUIDE · v0.8 DECISION LAB</span>
+              <span id="footer-mode"></span>
+            </footer>
+          </article>
+        </div>
+      </div>
+
+      <section class="review">
+        <h2>What this checkpoint locks</h2>
+        <div class="review-grid">
+          <div class="mini">
+            <strong>Cover and opener system</strong>
+            <code>PACKET COVER · CASE DIVIDER · FORMAL PRESENTATION</code><br>
+            Determines how far imagery can lead a first page without overwhelming the document system.
+          </div>
+          <div class="mini">
+            <strong>Image and asset treatment</strong>
+            <code>PHOTO · ILLUSTRATION · MAP · SCAN · SCREENSHOT</code><br>
+            Determines framing, captioning, attribution, and academic restraint.
+          </div>
+          <div class="mini">
+            <strong>Game-asset reuse</strong>
+            <code>SELECTIVE · FRAMED · INSTRUCTIONAL</code><br>
+            Determines when the game world may appear directly in the curriculum.
+          </div>
+        </div>
+        <p class="offline">Phosphor icons load from the official web package CDN. The preview remains usable if the icon font is unavailable.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const state = {
+  view:"cover",
+  cover:"default",
+  frame:"technical",
+  caption:"band",
+  photo:"authentic",
+  reuse:"selective",
+  grayscale:false,
+  scale:.72
+};
+
+const $ = selector => document.querySelector(selector);
+const $$ = selector => [...document.querySelectorAll(selector)];
+
+function press(selector,current){
+  $$(selector).forEach(button => {
+    button.setAttribute("aria-pressed", button === current ? "true" : "false");
+  });
+}
+
+function setFrame(id){
+  const box = $(id);
+  box.style.border = state.frame === "open" ? "0" : "1px solid var(--rule)";
+  box.style.background = state.frame === "field" ? "var(--panel-light)" : "#fff";
+  box.style.borderRadius = "3px";
+}
+function setCaption(id){
+  const cap = $(id);
+  if(state.caption === "band"){
+    cap.style.border = "1px solid var(--rule)";
+    cap.style.background = "var(--panel-light)";
+    cap.style.padding = "7px 8px";
+    cap.style.borderRadius = "3px";
+  } else {
+    cap.style.border = "0";
+    cap.style.background = "transparent";
+    cap.style.padding = "6px 0 0";
+    cap.style.borderRadius = "0";
+  }
+}
+
+function renderPreview(){
+  $("#cover-page").classList.toggle("grayscale", state.grayscale);
+  const wrap = $("#scale-wrap");
+  wrap.style.transform = `scale(${state.scale})`;
+  wrap.style.width = `${816 * state.scale}px`;
+  wrap.style.height = `${1120 * state.scale}px`;
+
+  const cover = $("#cover-page");
+  const heroShell = $("#hero-shell");
+  const heroBlock = $("#hero-block");
+  const sideImagery = $("#side-imagery");
+  const sideAsset = $("#side-asset");
+
+  // cover structure
+  heroShell.classList.remove("full-bleed");
+  if(state.cover === "default"){
+    heroBlock.style.gridTemplateColumns = "2fr 1fr";
+    heroShell.style.height = "240px";
+    sideImagery.textContent = "One controlled hero image supports orientation without turning the cover into marketing art.";
+  } else if(state.cover === "hero"){
+    heroBlock.style.gridTemplateColumns = "1fr";
+    heroShell.style.height = "320px";
+    heroShell.classList.add("full-bleed");
+    sideImagery.textContent = "The image leads the page more strongly. Use for packet openers and showcase documents, not every worksheet.";
+  } else {
+    heroBlock.style.gridTemplateColumns = "1fr 1fr";
+    heroShell.style.height = "170px";
+    sideImagery.textContent = "More restrained documentary emphasis. Strongest institutional tone; least visually inviting.";
+  }
+
+  // view mode
+  $("#hero-block").style.display = state.view === "cover" ? "grid" : "none";
+  $("#cover-options-section").style.display = state.view === "cover" ? "grid" : "none";
+  $("#imagery-page").style.display = state.view === "imagery" ? "grid" : "none";
+
+  // frame + caption
+  ["#photo-frame","#illustration-frame","#game-frame","#scan-frame"].forEach(setFrame);
+  ["#photo-caption","#illustration-caption","#game-caption","#scan-caption"].forEach(setCaption);
+
+  // photo treatment
+  $("#photo-caption .cap").textContent =
+    state.photo === "authentic"
+    ? "Figure 2. Sample historical photograph treatment preserving source character while aligning with the curriculum frame and caption system."
+    : "Figure 2. Sample historical photograph treatment normalized toward the curriculum grayscale range for stronger system consistency.";
+  $("#photo-caption .src").textContent =
+    state.photo === "authentic"
+    ? "REPRODUCED FROM · ARCHIVE SOURCE · TONAL CHARACTER PRESERVED"
+    : "REPRODUCED FROM · ARCHIVE SOURCE · TONAL RANGE NORMALIZED FOR CURRICULUM USE";
+
+  // reuse policy
+  if(state.reuse === "selective"){
+    sideAsset.textContent = "Game-derived visuals may appear only when clearly framed, captioned, and instructionally relevant.";
+    $("#game-caption .src").textContent = "SOURCE · SPACE SPROUT SLEUTH GAME ASSET · USED FOR DIRECT INSTRUCTIONAL PURPOSE";
+  } else if(state.reuse === "free"){
+    sideAsset.textContent = "Game-derived visuals may appear more often for immersion, but they must still remain captioned and subordinate to instruction.";
+    $("#game-caption .src").textContent = "SOURCE · SPACE SPROUT SLEUTH GAME ASSET · REUSED FOR CONTEXT AND INSTRUCTION";
+  } else {
+    sideAsset.textContent = "Game-derived visuals are reserved for rare cases when no cleaner curriculum-original alternative serves the same function.";
+    $("#game-caption .src").textContent = "SOURCE · SPACE SPROUT SLEUTH GAME ASSET · EXCEPTIONAL USE ONLY";
+  }
+
+  $("#footer-mode").textContent = state.view === "cover" ? "COVER MODE" : "INSIDE-PAGE IMAGERY MODE";
+}
+
+function decisionMarkdown(){
+  const coverName = {
+    default:"Mission-title cover",
+    hero:"Hero-image cover",
+    band:"Banded dossier cover"
+  }[state.cover];
+  const frameName = {
+    technical:"Thin technical frame",
+    open:"Open image",
+    field:"Pale field frame"
+  }[state.frame];
+  const captionName = {
+    band:"Caption metadata band",
+    stacked:"Stacked caption below image"
+  }[state.caption];
+  const photoName = {
+    authentic:"Retain authentic tonal character",
+    normalized:"Normalize to curriculum grayscale"
+  }[state.photo];
+  const reuseName = {
+    selective:"Selective framed reuse",
+    free:"Broad expressive reuse",
+    minimal:"Minimal reuse"
+  }[state.reuse];
+
+  return `# VISUAL_STYLE_GUIDE_v0.8 — Decision Note
+
+## Selected Preview
+
+- Cover structure: ${coverName}
+- Image frame treatment: ${frameName}
+- Caption / source treatment: ${captionName}
+- Historical-photo treatment: ${photoName}
+- Game-asset reuse policy: ${reuseName}
+- Grayscale page preview viewed: ${state.grayscale ? "Yes" : "No"}
+
+## Proposed Shared Rules
+
+- [ ] Use the selected cover structure as the ordinary packet and opener default.
+- [ ] Use the selected image frame treatment for photos, screenshots, scans, and illustrations unless an exception is justified.
+- [ ] Use the selected caption / source treatment across imagery.
+- [ ] Apply the selected historical-photo treatment to archival photos.
+- [ ] Apply the selected game-asset reuse policy across SSS and HHH curriculum documents.
+- [ ] Keep every image instructionally justified, sourced, and captioned.
+- [ ] Distinguish curriculum-original figures, reproduced sources, adapted sources, and game assets explicitly.
+- [ ] Request revisions.
+
+## Notes
+
+Add any image-treatment or cover-specific exceptions here before v0.8 is locked.
+`;
+}
+
+function render(){
+  renderPreview();
+  $("#summary").textContent = decisionMarkdown();
+}
+
+$$("[data-view]").forEach(button => button.addEventListener("click",() => {
+  state.view = button.dataset.view;
+  press("[data-view]",button);
+  render();
+}));
+
+["cover","frame","caption","photo","reuse"].forEach(group => {
+  $$(`input[name="${group}"]`).forEach(input => input.addEventListener("change",() => {
+    state[group] = input.value;
+    render();
+  }));
+});
+
+$("#color-mode").addEventListener("click",() => {
+  state.grayscale = false;
+  press("#color-mode,#gray-mode",$("#color-mode"));
+  render();
+});
+$("#gray-mode").addEventListener("click",() => {
+  state.grayscale = true;
+  press("#color-mode,#gray-mode",$("#gray-mode"));
+  render();
+});
+$("#scale").addEventListener("change",e => {
+  state.scale = Number(e.target.value);
+  render();
+});
+$("#reset").addEventListener("click",() => {
+  Object.assign(state,{
+    view:"cover",
+    cover:"default",
+    frame:"technical",
+    caption:"band",
+    photo:"authentic",
+    reuse:"selective",
+    grayscale:false,
+    scale:.72
+  });
+  press("[data-view]",$('[data-view="cover"]'));
+  $('input[name="cover"][value="default"]').checked = true;
+  $('input[name="frame"][value="technical"]').checked = true;
+  $('input[name="caption"][value="band"]').checked = true;
+  $('input[name="photo"][value="authentic"]').checked = true;
+  $('input[name="reuse"][value="selective"]').checked = true;
+  press("#color-mode,#gray-mode",$("#color-mode"));
+  $("#scale").value = ".72";
+  render();
+});
+$("#download").addEventListener("click",() => {
+  const blob = new Blob([decisionMarkdown()], {type:"text/markdown;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "VISUAL_STYLE_GUIDE_v0.8_DECISIONS.md";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+press("[data-view]",$('[data-view="cover"]'));
+press("#color-mode,#gray-mode",$("#color-mode"));
+render();
+</script>
+</body>
+</html>
