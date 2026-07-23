@@ -1,0 +1,1333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Style Guide v0.3 Decision Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Source+Code+Pro:wght@400;500;600&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+:root {
+  --ui-bg: #e9ecef;
+  --ui-panel: #ffffff;
+  --ui-text: #1e252b;
+  --ui-muted: #5f6972;
+  --ui-rule: #c6ccd1;
+  --ui-accent: #175f70;
+
+  --paper: #ffffff;
+  --ink: #18212b;
+  --muted: #4b5967;
+  --rule: #8c9aa8;
+  --panel: #edf1f4;
+  --panel-2: #f7f9fa;
+  --accent: #0b6f82;
+  --accent-2: #147a45;
+  --accent-soft: #e7f3f5;
+  --danger: #8f2f2f;
+  --warning: #8a5a00;
+  --success: #236b3b;
+
+  --body-font: "IBM Plex Sans", Arial, sans-serif;
+  --tech-font: "IBM Plex Mono", "Courier New", monospace;
+  --icon-stroke: 2;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--ui-bg);
+  color: var(--ui-text);
+  font-family: Inter, system-ui, sans-serif;
+}
+button, select, input { font: inherit; }
+button, select {
+  min-height: 38px;
+  border: 1px solid var(--ui-rule);
+  background: white;
+  color: var(--ui-text);
+  border-radius: 6px;
+  padding: 7px 10px;
+}
+button:hover { border-color: var(--ui-accent); }
+button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 3px solid rgba(23,95,112,.24);
+  outline-offset: 2px;
+}
+.app {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 20px;
+}
+.topbar {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.topbar h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  line-height: 1.2;
+}
+.topbar p {
+  margin: 0;
+  color: var(--ui-muted);
+}
+.status {
+  border: 1px solid var(--ui-rule);
+  background: var(--ui-panel);
+  padding: 10px 12px;
+  border-radius: 6px;
+  min-width: 260px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 390px) minmax(520px, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.controls {
+  display: grid;
+  gap: 12px;
+}
+.control-card {
+  background: var(--ui-panel);
+  border: 1px solid var(--ui-rule);
+  border-radius: 8px;
+  padding: 14px;
+}
+.control-card h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+.control-card p.help {
+  margin: -4px 0 10px;
+  color: var(--ui-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+}
+.segmented.three { grid-template-columns: repeat(3, 1fr); }
+.segmented button[aria-pressed="true"] {
+  background: var(--ui-accent);
+  color: white;
+  border-color: var(--ui-accent);
+}
+.option-list {
+  display: grid;
+  gap: 7px;
+}
+.option {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 8px;
+  align-items: start;
+  border: 1px solid var(--ui-rule);
+  border-radius: 6px;
+  padding: 9px;
+  cursor: pointer;
+}
+.option:has(input:checked) {
+  border-color: var(--ui-accent);
+  box-shadow: inset 3px 0 0 var(--ui-accent);
+}
+.option input { margin-top: 3px; }
+.option strong {
+  display: block;
+  font-size: 13px;
+}
+.option small {
+  display: block;
+  color: var(--ui-muted);
+  margin-top: 2px;
+  line-height: 1.35;
+}
+.recommended {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border: 1px solid #8aaeb6;
+  color: #175f70;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  vertical-align: 1px;
+}
+.swatches {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+.swatch {
+  width: 28px;
+  height: 14px;
+  border: 1px solid rgba(0,0,0,.18);
+}
+.icon-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.icon-strip svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: var(--icon-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.actions button.primary {
+  background: var(--ui-accent);
+  color: white;
+  border-color: var(--ui-accent);
+}
+.summary {
+  white-space: pre-wrap;
+  background: #f4f6f7;
+  border: 1px solid var(--ui-rule);
+  border-radius: 5px;
+  padding: 10px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  max-height: 230px;
+  overflow: auto;
+}
+
+.preview-shell {
+  position: sticky;
+  top: 12px;
+  min-width: 0;
+}
+.preview-toolbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--ui-panel);
+  border: 1px solid var(--ui-rule);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  padding: 8px 10px;
+}
+.preview-toolbar .left,
+.preview-toolbar .right {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.preview-toolbar label {
+  font-size: 12px;
+  color: var(--ui-muted);
+}
+.preview-stage {
+  background:
+    linear-gradient(45deg, #d6d9dc 25%, transparent 25%) 0 0 / 18px 18px,
+    linear-gradient(45deg, transparent 75%, #d6d9dc 75%) 0 0 / 18px 18px,
+    linear-gradient(45deg, transparent 75%, #d6d9dc 75%) 9px -9px / 18px 18px,
+    linear-gradient(45deg, #d6d9dc 25%, #eceeef 25%) 9px -9px / 18px 18px;
+  border: 1px solid var(--ui-rule);
+  border-radius: 0 0 8px 8px;
+  padding: 20px;
+  min-height: 780px;
+  overflow: auto;
+}
+.preview-scale-wrap {
+  width: max-content;
+  margin: 0 auto;
+  transform-origin: top center;
+}
+.page {
+  width: 816px;
+  min-height: 1056px;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: 0 5px 22px rgba(0,0,0,.16);
+  font-family: var(--body-font);
+  padding: 46px 52px 38px;
+  position: relative;
+}
+.page.grayscale {
+  filter: grayscale(1);
+}
+.page * { box-sizing: border-box; }
+.doc-header {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 12px;
+}
+.mark {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+}
+.mark img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  image-rendering: pixelated;
+}
+.sss-mark {
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at center, var(--accent-soft) 0 34%, transparent 35%),
+    var(--paper);
+}
+.sss-mark:before {
+  content: "";
+  position: absolute;
+  width: 43px;
+  height: 18px;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  transform: rotate(-16deg);
+}
+.sss-mark img {
+  width: 30px;
+  z-index: 1;
+}
+.kicker {
+  font-family: var(--tech-font);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.curriculum {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.1;
+}
+.institution {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.meta {
+  text-align: right;
+  font-family: var(--tech-font);
+  font-size: 9px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+.meta strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.title-block {
+  padding: 25px 0 17px;
+}
+.eyebrow {
+  color: var(--accent);
+  font-family: var(--tech-font);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.title-block h1 {
+  font-size: 30px;
+  line-height: 1.08;
+  margin: 6px 0 8px;
+  letter-spacing: -.025em;
+}
+.title-block p {
+  margin: 0;
+  max-width: 620px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.48;
+}
+.info-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 1px solid var(--rule);
+  margin: 3px 0 18px;
+}
+.info-cell {
+  padding: 8px 10px;
+  min-height: 47px;
+  border-right: 1px solid var(--rule);
+}
+.info-cell:last-child { border-right: 0; }
+.info-cell span {
+  display: block;
+  font-family: var(--tech-font);
+  color: var(--muted);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.info-cell strong {
+  display: block;
+  font-size: 11px;
+  margin-top: 4px;
+}
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 18px;
+}
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 6px;
+  margin: 0 0 9px;
+}
+.section-title svg,
+.callout svg {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: var(--icon-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.section-title h2 {
+  font-size: 15px;
+  margin: 0;
+}
+.body-copy {
+  font-size: 11.5px;
+  line-height: 1.55;
+  margin: 0 0 10px;
+}
+.callout {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 9px;
+  background: var(--panel);
+  border-left: 3px solid var(--accent);
+  padding: 10px 11px;
+  margin: 12px 0 14px;
+}
+.callout strong {
+  display: block;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+.callout p {
+  margin: 0;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+.diagram {
+  border: 1px solid var(--rule);
+  background: var(--panel-2);
+  min-height: 235px;
+  padding: 12px;
+  position: relative;
+}
+.diagram-title {
+  font-family: var(--tech-font);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.diagram svg {
+  width: 100%;
+  height: 185px;
+  overflow: visible;
+}
+.diagram .line {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 2;
+}
+.diagram .accent-line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+}
+.diagram .accent-fill {
+  fill: var(--accent-soft);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+.diagram .node {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.6;
+}
+.diagram text {
+  font-family: var(--tech-font);
+  font-size: 8px;
+  fill: var(--ink);
+}
+.figure-caption {
+  margin: 6px 0 0;
+  font-size: 9px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  font-size: 9.5px;
+}
+.data-table th,
+.data-table td {
+  border: 1px solid var(--rule);
+  padding: 6px 7px;
+  text-align: left;
+}
+.data-table th {
+  font-family: var(--tech-font);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  background: var(--panel);
+}
+.response {
+  margin-top: 18px;
+}
+.response-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.response-label strong {
+  font-size: 12px;
+}
+.response-label span {
+  font-family: var(--tech-font);
+  color: var(--muted);
+  font-size: 8px;
+  text-transform: uppercase;
+}
+.response-box {
+  height: 150px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+.doc-footer {
+  position: absolute;
+  left: 52px;
+  right: 52px;
+  bottom: 27px;
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--tech-font);
+  color: var(--muted);
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+.accent-sample {
+  display: inline-block;
+  padding: 2px 5px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: var(--tech-font);
+  font-size: 8px;
+  font-weight: 600;
+}
+
+.comparison {
+  margin-top: 16px;
+  background: var(--ui-panel);
+  border: 1px solid var(--ui-rule);
+  border-radius: 8px;
+  padding: 14px;
+}
+.comparison h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+.type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.type-sample {
+  border: 1px solid var(--ui-rule);
+  padding: 10px;
+  border-radius: 5px;
+  min-height: 112px;
+}
+.type-sample strong {
+  font-size: 12px;
+  display: block;
+  margin-bottom: 5px;
+}
+.type-sample .sample-heading {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.type-sample .sample-body {
+  font-size: 11px;
+  line-height: 1.42;
+}
+.type-sample .sample-code {
+  font-size: 9px;
+  color: var(--ui-muted);
+  margin-top: 6px;
+}
+.offline-note {
+  font-size: 11px;
+  color: var(--ui-muted);
+  margin-top: 8px;
+}
+
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: 1fr; }
+  .preview-shell { position: static; }
+}
+@media (max-width: 650px) {
+  .app { padding: 10px; }
+  .topbar { display: block; }
+  .status { margin-top: 10px; min-width: 0; }
+  .type-grid { grid-template-columns: 1fr; }
+  .preview-stage { padding: 8px; }
+}
+@media print {
+  body { background: white; }
+  .topbar, .controls, .preview-toolbar, .comparison { display: none !important; }
+  .layout { display: block; }
+  .preview-stage { border: 0; padding: 0; background: white; }
+  .page { box-shadow: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <div>
+      <h1>Visual Style Guide v0.3 Decision Lab</h1>
+      <p>Test typography, grayscale, accent, and icon-weight choices before they are locked into the guide.</p>
+    </div>
+    <div class="status">
+      <strong>Project-defining checkpoint</strong><br>
+      Default selections show the lead-design recommendation. Change any option and export the resulting decision note.
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="controls" aria-label="Visual design controls">
+      <section class="control-card">
+        <h2>Preview document</h2>
+        <div class="segmented" role="group" aria-label="Curriculum preview">
+          <button type="button" id="project-sss" aria-pressed="true">SSS / SAA</button>
+          <button type="button" id="project-hhh" aria-pressed="false">HHH / TAA</button>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h2>Typography pairing</h2>
+        <p class="help">The first family handles headings and body copy. The second handles metadata, codes, labels, and compact data.</p>
+        <div class="option-list" id="type-options">
+          <label class="option">
+            <input type="radio" name="type" value="plex" checked>
+            <span>
+              <strong>IBM Plex Sans + IBM Plex Mono <span class="recommended">Recommended</span></strong>
+              <small>Technical, legible, institutional, and strong in data-heavy documents.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="type" value="source">
+            <span>
+              <strong>Source Sans 3 + Source Code Pro</strong>
+              <small>Open, neutral, and highly readable; slightly less distinctive.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="type" value="atkinson">
+            <span>
+              <strong>Atkinson Hyperlegible + IBM Plex Mono</strong>
+              <small>Maximum character distinction and accessibility; more utilitarian.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="type" value="inter">
+            <span>
+              <strong>Inter + JetBrains Mono</strong>
+              <small>Modern digital-system character; least mission-document specific.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h2>Shared grayscale foundation</h2>
+        <p class="help">This controls paper text, rules, panels, tables, and the no-color print appearance.</p>
+        <div class="option-list" id="gray-options">
+          <label class="option">
+            <input type="radio" name="gray" value="cool" checked>
+            <span>
+              <strong>Cool Mission Gray <span class="recommended">Recommended</span></strong>
+              <small>Blue-gray technical character without depending on visible color.</small>
+              <span class="swatches">
+                <i class="swatch" style="background:#18212b"></i>
+                <i class="swatch" style="background:#4b5967"></i>
+                <i class="swatch" style="background:#8c9aa8"></i>
+                <i class="swatch" style="background:#edf1f4"></i>
+              </span>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="gray" value="neutral">
+            <span>
+              <strong>Neutral Technical Gray</strong>
+              <small>Most conventional and publisher-neutral.</small>
+              <span class="swatches">
+                <i class="swatch" style="background:#202124"></i>
+                <i class="swatch" style="background:#555b61"></i>
+                <i class="swatch" style="background:#9ca3aa"></i>
+                <i class="swatch" style="background:#f2f3f4"></i>
+              </span>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="gray" value="warm">
+            <span>
+              <strong>Warm Record Gray</strong>
+              <small>Subtle archival warmth, but risks pulling shared SSS pages toward HHH.</small>
+              <span class="swatches">
+                <i class="swatch" style="background:#27231e"></i>
+                <i class="swatch" style="background:#5f584f"></i>
+                <i class="swatch" style="background:#a39a8d"></i>
+                <i class="swatch" style="background:#f3f0eb"></i>
+              </span>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h2>Institutional accent palette</h2>
+        <p class="help">Options change with the SSS/HHH preview. All accents are darker print-safe adaptations of repository colors.</p>
+        <div class="option-list" id="accent-options"></div>
+      </section>
+
+      <section class="control-card">
+        <h2>Phosphor icon weight treatment</h2>
+        <p class="help">These are stroke-weight simulations for page-scale testing. The final guide will cite the corresponding Phosphor weight.</p>
+        <div class="segmented three" role="group" aria-label="Icon weight">
+          <button type="button" data-icon="regular" aria-pressed="false">Regular</button>
+          <button type="button" data-icon="medium" aria-pressed="true">Medium</button>
+          <button type="button" data-icon="bold" aria-pressed="false">Bold</button>
+        </div>
+        <div class="icon-strip" aria-label="Icon weight preview">
+          <svg viewBox="0 0 24 24"><path d="M20 4c-7 .2-12 3.4-13.5 8.5C5 17.5 8 20 12 20c5.2 0 8-4.6 8-16Z"/><path d="M5 21c2.6-5.1 6.3-8.5 11-11"/></svg>
+          <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"/><path d="M12 8v5"/><path d="M12 16.6h.01"/></svg>
+          <svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="1"/><path d="M9 4V2h6v2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>
+        </div>
+      </section>
+
+      <section class="control-card">
+        <h2>Decision output</h2>
+        <div class="actions">
+          <button type="button" class="primary" id="download-md">Download decision note</button>
+          <button type="button" id="reset">Reset recommendation</button>
+        </div>
+        <div class="summary" id="summary" aria-live="polite"></div>
+      </section>
+    </aside>
+
+    <main class="preview-shell">
+      <div class="preview-toolbar">
+        <div class="left">
+          <strong style="font-size:13px">Live curriculum-page preview</strong>
+          <button type="button" id="color-mode" aria-pressed="true">Color</button>
+          <button type="button" id="gray-mode" aria-pressed="false">Grayscale</button>
+        </div>
+        <div class="right">
+          <label for="scale">Preview scale</label>
+          <select id="scale">
+            <option value="0.65">65%</option>
+            <option value="0.75" selected>75%</option>
+            <option value="0.85">85%</option>
+            <option value="1">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-stage" id="preview-stage">
+        <div class="preview-scale-wrap" id="scale-wrap">
+          <article class="page" id="page-preview">
+            <header class="doc-header">
+              <div class="mark" id="mark"></div>
+              <div>
+                <div class="kicker" id="doc-type">Observation Record</div>
+                <div class="curriculum" id="curriculum">Space Sprout Sleuth</div>
+                <div class="institution" id="institution">Solar Agricultural Authority</div>
+              </div>
+              <div class="meta">
+                <div><strong id="ref-code">SSS-GRV-02</strong></div>
+                <div>CURRICULUM EDITION 1</div>
+                <div>STUDENT RECORD</div>
+              </div>
+            </header>
+
+            <section class="title-block">
+              <div class="eyebrow" id="eyebrow">Controlled Environment Investigation</div>
+              <h1 id="page-title">Plant Growth Under Altered Gravity</h1>
+              <p id="subtitle">Use the evidence below to distinguish an environmental cause from a plant-health symptom. Record only conclusions supported by the diagram and observations.</p>
+            </section>
+
+            <section class="info-row" aria-label="Document metadata">
+              <div class="info-cell"><span>Student</span><strong>________________________</strong></div>
+              <div class="info-cell"><span>Class / section</span><strong>________________</strong></div>
+              <div class="info-cell"><span>Date</span><strong>______________</strong></div>
+            </section>
+
+            <div class="content-grid">
+              <section>
+                <div class="section-title">
+                  <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+                  <h2 id="left-heading">Observe the evidence</h2>
+                </div>
+                <p class="body-copy" id="body-copy">The two plants received the same light, water, nutrient solution, and substrate. Their orientation differed. Compare the root and stem directions before deciding which variable best explains the change.</p>
+
+                <div class="callout">
+                  <svg viewBox="0 0 24 24"><path d="M12 3 2.8 19h18.4L12 3Z"/><path d="M12 8v5"/><path d="M12 16.6h.01"/></svg>
+                  <div>
+                    <strong id="callout-title">Evidence rule</strong>
+                    <p id="callout-copy">Do not treat correlation as proof. Name the changed variable and the visible response separately.</p>
+                  </div>
+                </div>
+
+                <table class="data-table">
+                  <thead>
+                    <tr><th id="col-one">Condition</th><th id="col-two">Plant A</th><th id="col-three">Plant B</th></tr>
+                  </thead>
+                  <tbody id="table-body">
+                    <tr><td>Light cycle</td><td>16 h</td><td>16 h</td></tr>
+                    <tr><td>Root direction</td><td>Downward</td><td>Sideways</td></tr>
+                    <tr><td>Stem direction</td><td>Upward</td><td>Curved</td></tr>
+                    <tr><td>Leaf color</td><td>Normal</td><td>Normal</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section>
+                <div class="section-title">
+                  <svg viewBox="0 0 24 24"><path d="M20 4c-7 .2-12 3.4-13.5 8.5C5 17.5 8 20 12 20c5.2 0 8-4.6 8-16Z"/><path d="M5 21c2.6-5.1 6.3-8.5 11-11"/></svg>
+                  <h2 id="right-heading">System diagram</h2>
+                </div>
+                <figure style="margin:0">
+                  <div class="diagram" id="diagram"></div>
+                  <figcaption class="figure-caption" id="caption">Figure 1. Simplified comparison. Accent color identifies the variable under investigation; labels preserve the meaning in grayscale.</figcaption>
+                </figure>
+              </section>
+            </div>
+
+            <section class="response">
+              <div class="response-label">
+                <strong id="response-title">Evidence-based conclusion</strong>
+                <span id="response-guidance">2–4 complete sentences</span>
+              </div>
+              <div class="response-box"></div>
+            </section>
+
+            <footer class="doc-footer">
+              <span id="footer-left">SOLAR AGRICULTURAL AUTHORITY · SSS</span>
+              <span><span class="accent-sample">REFERENCE</span> · PAGE 1 OF 1</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+
+      <section class="comparison">
+        <h2>Typography comparison at identical sizes</h2>
+        <div class="type-grid">
+          <div class="type-sample" style="font-family:'IBM Plex Sans',Arial,sans-serif">
+            <strong>A · IBM Plex</strong>
+            <div class="sample-heading">Evidence Record</div>
+            <div class="sample-body">Compare the observations, identify the changed variable, and support the conclusion with evidence.</div>
+            <div class="sample-code" style="font-family:'IBM Plex Mono',monospace">ARCHIVE REF · HHH-EVD-03</div>
+          </div>
+          <div class="type-sample" style="font-family:'Source Sans 3',Arial,sans-serif">
+            <strong>B · Source</strong>
+            <div class="sample-heading">Evidence Record</div>
+            <div class="sample-body">Compare the observations, identify the changed variable, and support the conclusion with evidence.</div>
+            <div class="sample-code" style="font-family:'Source Code Pro',monospace">ARCHIVE REF · HHH-EVD-03</div>
+          </div>
+          <div class="type-sample" style="font-family:'Atkinson Hyperlegible',Arial,sans-serif">
+            <strong>C · Atkinson</strong>
+            <div class="sample-heading">Evidence Record</div>
+            <div class="sample-body">Compare the observations, identify the changed variable, and support the conclusion with evidence.</div>
+            <div class="sample-code" style="font-family:'IBM Plex Mono',monospace">ARCHIVE REF · HHH-EVD-03</div>
+          </div>
+          <div class="type-sample" style="font-family:Inter,Arial,sans-serif">
+            <strong>D · Inter</strong>
+            <div class="sample-heading">Evidence Record</div>
+            <div class="sample-body">Compare the observations, identify the changed variable, and support the conclusion with evidence.</div>
+            <div class="sample-code" style="font-family:'JetBrains Mono',monospace">ARCHIVE REF · HHH-EVD-03</div>
+          </div>
+        </div>
+        <p class="offline-note">The file uses web-hosted font previews. Without an internet connection, browser fallbacks will appear instead; all controls and palette tests still work.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const embedded = {
+  taa: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABgCAYAAADimHc4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA+tpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDcuMC1jMDAwIDc5LmRhYmFjYmIsIDIwMjEvMDQvMTQtMDA6Mzk6NDQgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIDIyLjQgKE1hY2ludG9zaCkiIHhtcDpDcmVhdGVEYXRlPSIyMDI2LTA2LTE4VDIyOjI3OjQxLTA0OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNi0wNi0xOVQwMjo0MDoxNS0yMDowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNi0wNi0xOVQwMjo0MDoxNS0yMDowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0E3NkVFQ0U2M0EzMTFGMUEwMjhDM0ZGN0MzMDQyQkUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0E3NkVFQ0Y2M0EzMTFGMUEwMjhDM0ZGN0MzMDQyQkUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RS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",
+  sss: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAeCAYAAACiyHcXAAAACXBIWXMAAAdiAAAHYgE4epnbAAAH/mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4wLWMwMDAgNzkuZGFiYWNiYiwgMjAyMS8wNC8xNC0wMDozOTo0NCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6QXR0cmliPSJodHRwOi8vbnMuYXR0cmlidXRpb24uY29tL2Fkcy8xLjAvIiB4bWxuczpDb250YWluc0FpR2VuZXJhdGVkQ29udGVudD0iaHR0cHM6Ly9jYW52YS5jb20vZXhwb3J0IiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgQ29udGFpbnNBaUdlbmVyYXRlZENvbnRlbnQ6Q29udGFpbnNBaUdlbmVyYXRlZENvbnRlbnQ9IlllcyIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHhtcDpDcmVhdG9yVG9vbD0iQ2FudmEgZG9jPURBSEYwdDFpWk9jIHVzZXI9VUFGTFg1dXBoZ0UgYnJhbmQ9U3RhZmYgJmFtcDsgQWRtaW4iIHhtcDpDcmVhdGVEYXRlPSIyMDI2LTA0LTAzVDE0OjQyOjUwLTA0OjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAyNi0wNC0wM1QxNDo0Nzo1MC0wNDowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAyNi0wNC0wM1QxNDo0Nzo1MC0wNDowMCIgcGhvdG9zaG9wOkNvbG9yTW9kZT0iMyIgcGhvdG9zaG9wOklDQ1Byb2ZpbGU9InNSR0IgSUVDNjE5NjYtMi4xIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOmMyYjk4NmQxLWRjN2QtNDljOS1iN2JmLWY0MzVmYmZiNzVlNCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpjMmI5ODZkMS1kYzdkLTQ5YzktYjdiZi1mNDM1ZmJmYjc1ZTQiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpjMmI5ODZkMS1kYzdkLTQ5YzktYjdiZi1mNDM1ZmJmYjc1ZTQiPiA8QXR0cmliOkFkcz4gPHJkZjpTZXE+IDxyZGY6bGkgQXR0cmliOkNyZWF0ZWQ9IjIwMjYtMDQtMDMiIEF0dHJpYjpEYXRhPSJ7JnF1b3Q7ZG9jJnF1b3Q7OiZxdW90O0RBSEYwdDFpWk9jJnF1b3Q7LCZxdW90O3VzZXImcXVvdDs6JnF1b3Q7VUFGTFg1dXBoZ0UmcXVvdDssJnF1b3Q7YnJhbmQmcXVvdDs6JnF1b3Q7U3RhZmYgJmFtcDsgQWRtaW4mcXVvdDt9IiBBdHRyaWI6RXh0SWQ9IjE0ODY1YjU5LTdjZTAtNGI0NC1iZDVkLTM4ZTQxZmU4YWUyNiIgQXR0cmliOkZiSWQ9IjUyNTI2NTkxNDE3OTU4MCIgQXR0cmliOlRvdWNoVHlwZT0iMiIvPiA8L3JkZjpTZXE+IDwvQXR0cmliOkFkcz4gPGRjOnRpdGxlPiA8cmRmOkFsdD4gPHJkZjpsaSB4bWw6bGFuZz0ieC1kZWZhdWx0Ij5zcGFjZSBzcHJvdXQgc2xldXRoIGxvZ28gLSAxPC9yZGY6bGk+IDwvcmRmOkFsdD4gPC9kYzp0aXRsZT4gPGRjOmNyZWF0b3I+IDxyZGY6U2VxPiA8cmRmOmxpPldlaXMsIE5hdGhhbjwvcmRmOmxpPiA8L3JkZjpTZXE+IDwvZGM6Y3JlYXRvcj4gPHhtcE1NOkhpc3Rvcnk+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"
+};
+
+const typeChoices = {
+  plex: {
+    label: "IBM Plex Sans + IBM Plex Mono",
+    body: '"IBM Plex Sans", Arial, sans-serif',
+    tech: '"IBM Plex Mono", "Courier New", monospace'
+  },
+  source: {
+    label: "Source Sans 3 + Source Code Pro",
+    body: '"Source Sans 3", Arial, sans-serif',
+    tech: '"Source Code Pro", "Courier New", monospace'
+  },
+  atkinson: {
+    label: "Atkinson Hyperlegible + IBM Plex Mono",
+    body: '"Atkinson Hyperlegible", Arial, sans-serif',
+    tech: '"IBM Plex Mono", "Courier New", monospace'
+  },
+  inter: {
+    label: "Inter + JetBrains Mono",
+    body: 'Inter, Arial, sans-serif',
+    tech: '"JetBrains Mono", "Courier New", monospace'
+  }
+};
+
+const grayChoices = {
+  cool: {
+    label: "Cool Mission Gray",
+    paper: "#ffffff", ink: "#18212b", muted: "#4b5967",
+    rule: "#8c9aa8", panel: "#edf1f4", panel2: "#f7f9fa"
+  },
+  neutral: {
+    label: "Neutral Technical Gray",
+    paper: "#ffffff", ink: "#202124", muted: "#555b61",
+    rule: "#9ca3aa", panel: "#f2f3f4", panel2: "#fafafa"
+  },
+  warm: {
+    label: "Warm Record Gray",
+    paper: "#fffefa", ink: "#27231e", muted: "#5f584f",
+    rule: "#a39a8d", panel: "#f3f0eb", panel2: "#faf8f4"
+  }
+};
+
+const accentChoices = {
+  sss: [
+    {
+      id: "sss-cyan-green",
+      label: "Orbital Cyan + Botanical Green",
+      note: "Closest professional adaptation of the existing SSS cyan/green game identity.",
+      primary: "#0b6f82", secondary: "#147a45", soft: "#e7f3f5",
+      recommended: true
+    },
+    {
+      id: "sss-amber-green",
+      label: "Solar Amber + Botanical Green",
+      note: "Emphasizes the word Solar, but overlaps more strongly with TAA.",
+      primary: "#9a6700", secondary: "#166534", soft: "#f6efdf"
+    },
+    {
+      id: "sss-teal-amber",
+      label: "Deep Teal + Signal Amber",
+      note: "Strong mission-document feel with less direct game-color continuity.",
+      primary: "#0f5f66", secondary: "#8a5a00", soft: "#e6f0f0"
+    }
+  ],
+  hhh: [
+    {
+      id: "hhh-amber-cyan",
+      label: "Archive Amber + Record Cyan",
+      note: "Closest professional adaptation of the TAA insignia and HHH interface.",
+      primary: "#8a5a00", secondary: "#0b6f82", soft: "#f5eddd",
+      recommended: true
+    },
+    {
+      id: "hhh-amber-magenta",
+      label: "Archive Amber + Concord Magenta",
+      note: "Preserves more of the game palette, but is less restrained on print pages.",
+      primary: "#8a5a00", secondary: "#7c3f78", soft: "#f5eddd"
+    },
+    {
+      id: "hhh-graphite-amber",
+      label: "Graphite + Archive Amber",
+      note: "Most conservative and archival; weakest visual separation from grayscale.",
+      primary: "#46515d", secondary: "#8a5a00", soft: "#edf0f2"
+    }
+  ]
+};
+
+const iconChoices = {
+  regular: { label: "Phosphor Regular", stroke: 1.5 },
+  medium: { label: "Phosphor Regular at reinforced print weight", stroke: 2 },
+  bold: { label: "Phosphor Bold", stroke: 2.5 }
+};
+
+let state = {
+  project: "sss",
+  type: "plex",
+  gray: "cool",
+  accent: "sss-cyan-green",
+  icon: "medium",
+  mode: "color",
+  scale: 0.75
+};
+
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => [...document.querySelectorAll(sel)];
+
+function selectedAccent() {
+  return accentChoices[state.project].find(x => x.id === state.accent) || accentChoices[state.project][0];
+}
+
+function renderAccentOptions() {
+  const options = accentChoices[state.project];
+  if (!options.some(o => o.id === state.accent)) state.accent = options[0].id;
+
+  $("#accent-options").innerHTML = options.map(o => `
+    <label class="option">
+      <input type="radio" name="accent" value="${o.id}" ${o.id === state.accent ? "checked" : ""}>
+      <span>
+        <strong>${o.label}${o.recommended ? ' <span class="recommended">Recommended</span>' : ""}</strong>
+        <small>${o.note}</small>
+        <span class="swatches">
+          <i class="swatch" style="background:${o.primary}"></i>
+          <i class="swatch" style="background:${o.secondary}"></i>
+          <i class="swatch" style="background:${o.soft}"></i>
+        </span>
+      </span>
+    </label>
+  `).join("");
+
+  $$('input[name="accent"]').forEach(input => {
+    input.addEventListener("change", () => {
+      state.accent = input.value;
+      render();
+    });
+  });
+}
+
+function setPressed(groupSelector, match) {
+  $$(groupSelector).forEach(button => {
+    button.setAttribute("aria-pressed", button === match ? "true" : "false");
+  });
+}
+
+function sssDiagram() {
+  return `
+    <div class="diagram-title">Orientation response comparison</div>
+    <svg viewBox="0 0 290 185" role="img" aria-label="Two plant chambers with different orientation responses">
+      <defs>
+        <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent)"></path>
+        </marker>
+      </defs>
+      <rect class="node" x="12" y="24" width="116" height="120"></rect>
+      <rect class="node" x="162" y="24" width="116" height="120"></rect>
+      <text x="20" y="38">CHAMBER A</text>
+      <text x="170" y="38">CHAMBER B</text>
+      <line class="line" x1="24" y1="121" x2="116" y2="121"></line>
+      <line class="line" x1="174" y1="121" x2="266" y2="121"></line>
+      <path class="accent-line" d="M70 120 C69 96, 68 76, 70 54"></path>
+      <path class="accent-line" d="M220 120 C218 99, 203 85, 198 62"></path>
+      <path class="line" d="M70 121 C69 139, 69 150, 69 164"></path>
+      <path class="line" d="M220 121 C235 130, 244 139, 253 151"></path>
+      <path class="accent-fill" d="M70 72 C51 64, 46 77, 69 85 Z"></path>
+      <path class="accent-fill" d="M70 72 C89 64, 94 77, 71 85 Z"></path>
+      <path class="accent-fill" d="M203 80 C185 70, 180 83, 201 93 Z"></path>
+      <path class="accent-fill" d="M203 80 C220 67, 228 79, 207 92 Z"></path>
+      <line x1="145" y1="51" x2="145" y2="112" stroke="var(--accent)" stroke-width="2" marker-end="url(#arrow)"></line>
+      <text x="132" y="45">GRAVITY</text>
+      <text x="22" y="158">NORMAL ORIENTATION</text>
+      <text x="171" y="158">ALTERED ORIENTATION</text>
+    </svg>`;
+}
+
+function hhhDiagram() {
+  return `
+    <div class="diagram-title">Evidence sequence and provenance</div>
+    <svg viewBox="0 0 290 185" role="img" aria-label="Three historical records linked across time">
+      <defs>
+        <marker id="arrow2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+          <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent)"></path>
+        </marker>
+      </defs>
+      <line class="accent-line" x1="42" y1="89" x2="248" y2="89"></line>
+      <circle class="accent-fill" cx="48" cy="89" r="9"></circle>
+      <circle class="accent-fill" cx="145" cy="89" r="9"></circle>
+      <circle class="accent-fill" cx="242" cy="89" r="9"></circle>
+      <rect class="node" x="12" y="25" width="72" height="42"></rect>
+      <rect class="node" x="109" y="111" width="72" height="42"></rect>
+      <rect class="node" x="206" y="25" width="72" height="42"></rect>
+      <line class="line" x1="48" y1="67" x2="48" y2="80"></line>
+      <line class="line" x1="145" y1="98" x2="145" y2="111"></line>
+      <line class="line" x1="242" y1="67" x2="242" y2="80"></line>
+      <text x="22" y="40">FIELD NOTE</text>
+      <text x="22" y="53">SOURCE A</text>
+      <text x="119" y="127">LEDGER</text>
+      <text x="119" y="140">SOURCE B</text>
+      <text x="216" y="40">LATER REPORT</text>
+      <text x="216" y="53">SOURCE C</text>
+      <text x="34" y="106">EARLIER</text>
+      <text x="224" y="106">LATER</text>
+      <path d="M82 162 C120 175, 174 175, 211 160" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#arrow2)"></path>
+      <text x="95" y="181">PROVENANCE CHECK</text>
+    </svg>`;
+}
+
+function setProjectContent() {
+  const isSSS = state.project === "sss";
+  $("#project-sss").setAttribute("aria-pressed", isSSS ? "true" : "false");
+  $("#project-hhh").setAttribute("aria-pressed", isSSS ? "false" : "true");
+
+  if (isSSS) {
+    $("#mark").className = "mark sss-mark";
+    $("#mark").innerHTML = `<img src="${embedded.sss}" alt="Provisional SAA sprout-mark preview">`;
+    $("#doc-type").textContent = "Observation Record";
+    $("#curriculum").textContent = "Space Sprout Sleuth";
+    $("#institution").textContent = "Solar Agricultural Authority";
+    $("#ref-code").textContent = "SSS-GRV-02";
+    $("#eyebrow").textContent = "Controlled Environment Investigation";
+    $("#page-title").textContent = "Plant Growth Under Altered Gravity";
+    $("#subtitle").textContent = "Use the evidence below to distinguish an environmental cause from a plant-health symptom. Record only conclusions supported by the diagram and observations.";
+    $("#left-heading").textContent = "Observe the evidence";
+    $("#body-copy").textContent = "The two plants received the same light, water, nutrient solution, and substrate. Their orientation differed. Compare the root and stem directions before deciding which variable best explains the change.";
+    $("#callout-title").textContent = "Evidence rule";
+    $("#callout-copy").textContent = "Do not treat correlation as proof. Name the changed variable and the visible response separately.";
+    $("#col-one").textContent = "Condition";
+    $("#col-two").textContent = "Plant A";
+    $("#col-three").textContent = "Plant B";
+    $("#table-body").innerHTML = `
+      <tr><td>Light cycle</td><td>16 h</td><td>16 h</td></tr>
+      <tr><td>Root direction</td><td>Downward</td><td>Sideways</td></tr>
+      <tr><td>Stem direction</td><td>Upward</td><td>Curved</td></tr>
+      <tr><td>Leaf color</td><td>Normal</td><td>Normal</td></tr>`;
+    $("#right-heading").textContent = "System diagram";
+    $("#diagram").innerHTML = sssDiagram();
+    $("#caption").textContent = "Figure 1. Simplified comparison. Accent color identifies the variable under investigation; labels preserve the meaning in grayscale.";
+    $("#response-title").textContent = "Evidence-based conclusion";
+    $("#response-guidance").textContent = "2–4 complete sentences";
+    $("#footer-left").textContent = "SOLAR AGRICULTURAL AUTHORITY · SSS";
+  } else {
+    $("#mark").className = "mark";
+    $("#mark").innerHTML = `<img src="${embedded.taa}" alt="Temporal Agricultural Archive insignia">`;
+    $("#doc-type").textContent = "Evidence Record";
+    $("#curriculum").textContent = "Hunger, Harvest, & History";
+    $("#institution").textContent = "Temporal Agricultural Archive";
+    $("#ref-code").textContent = "HHH-EVD-03";
+    $("#eyebrow").textContent = "Historical Evidence Investigation";
+    $("#page-title").textContent = "Comparing Records Across Time";
+    $("#subtitle").textContent = "Use source details, sequence, and provenance to determine which claims are supported by the surviving record.";
+    $("#left-heading").textContent = "Compare the records";
+    $("#body-copy").textContent = "Three sources describe the same agricultural change. Their dates, purposes, and proximity to the event differ. Compare what each source can establish before judging the later account.";
+    $("#callout-title").textContent = "Archive rule";
+    $("#callout-copy").textContent = "A later source may summarize earlier evidence accurately, but it does not replace the original record.";
+    $("#col-one").textContent = "Source";
+    $("#col-two").textContent = "Date";
+    $("#col-three").textContent = "Evidence type";
+    $("#table-body").innerHTML = `
+      <tr><td>Field note</td><td>Year 1</td><td>Direct observation</td></tr>
+      <tr><td>Ledger</td><td>Year 3</td><td>Recorded quantities</td></tr>
+      <tr><td>Later report</td><td>Year 18</td><td>Retrospective summary</td></tr>
+      <tr><td>Archive status</td><td>Verified</td><td>Linked provenance</td></tr>`;
+    $("#right-heading").textContent = "Evidence sequence";
+    $("#diagram").innerHTML = hhhDiagram();
+    $("#caption").textContent = "Figure 1. Sequence and source type are encoded by position and labels, so the diagram remains legible without color.";
+    $("#response-title").textContent = "Supported historical conclusion";
+    $("#response-guidance").textContent = "Cite at least two sources";
+    $("#footer-left").textContent = "TEMPORAL AGRICULTURAL ARCHIVE · HHH";
+  }
+}
+
+function applyVariables() {
+  const type = typeChoices[state.type];
+  const gray = grayChoices[state.gray];
+  const accent = selectedAccent();
+  const icon = iconChoices[state.icon];
+  const root = document.documentElement.style;
+
+  root.setProperty("--body-font", type.body);
+  root.setProperty("--tech-font", type.tech);
+  root.setProperty("--paper", gray.paper);
+  root.setProperty("--ink", gray.ink);
+  root.setProperty("--muted", gray.muted);
+  root.setProperty("--rule", gray.rule);
+  root.setProperty("--panel", gray.panel);
+  root.setProperty("--panel-2", gray.panel2);
+  root.setProperty("--accent", accent.primary);
+  root.setProperty("--accent-2", accent.secondary);
+  root.setProperty("--accent-soft", accent.soft);
+  root.setProperty("--icon-stroke", icon.stroke);
+
+  $("#page-preview").classList.toggle("grayscale", state.mode === "grayscale");
+  $("#color-mode").setAttribute("aria-pressed", state.mode === "color" ? "true" : "false");
+  $("#gray-mode").setAttribute("aria-pressed", state.mode === "grayscale" ? "true" : "false");
+
+  const wrap = $("#scale-wrap");
+  wrap.style.transform = `scale(${state.scale})`;
+  const pageHeight = 1056 * state.scale;
+  const pageWidth = 816 * state.scale;
+  wrap.style.width = `${pageWidth}px`;
+  wrap.style.height = `${pageHeight}px`;
+}
+
+function decisionMarkdown() {
+  const accent = selectedAccent();
+  const icon = iconChoices[state.icon];
+  return `# VISUAL_STYLE_GUIDE_v0.3 — Decision Note
+
+## Selected Preview
+
+- Curriculum preview: ${state.project === "sss" ? "Space Sprout Sleuth / SAA" : "Hunger, Harvest, & History / TAA"}
+- Typography: ${typeChoices[state.type].label}
+- Shared grayscale foundation: ${grayChoices[state.gray].label}
+- Institutional accent: ${accent.label}
+- Primary accent: \`${accent.primary}\`
+- Secondary accent: \`${accent.secondary}\`
+- Pale panel accent: \`${accent.soft}\`
+- Icon treatment: ${icon.label}
+- Grayscale test viewed: ${state.mode === "grayscale" ? "Yes" : "No"}
+
+## Approval Status
+
+- [ ] Approve typography
+- [ ] Approve shared grayscale foundation
+- [ ] Approve SSS accent system
+- [ ] Approve HHH accent system
+- [ ] Approve icon treatment
+- [ ] Request revisions
+
+## Notes
+
+Add any changes or exceptions here before v0.3 is locked.
+`;
+}
+
+function updateSummary() {
+  $("#summary").textContent = decisionMarkdown();
+}
+
+function render() {
+  setProjectContent();
+  applyVariables();
+  updateSummary();
+}
+
+$("#project-sss").addEventListener("click", () => {
+  state.project = "sss";
+  state.accent = accentChoices.sss[0].id;
+  renderAccentOptions();
+  render();
+});
+$("#project-hhh").addEventListener("click", () => {
+  state.project = "hhh";
+  state.accent = accentChoices.hhh[0].id;
+  renderAccentOptions();
+  render();
+});
+
+$$('input[name="type"]').forEach(input => {
+  input.addEventListener("change", () => {
+    state.type = input.value;
+    render();
+  });
+});
+$$('input[name="gray"]').forEach(input => {
+  input.addEventListener("change", () => {
+    state.gray = input.value;
+    render();
+  });
+});
+$$("[data-icon]").forEach(button => {
+  button.addEventListener("click", () => {
+    state.icon = button.dataset.icon;
+    setPressed("[data-icon]", button);
+    render();
+  });
+});
+$("#color-mode").addEventListener("click", () => {
+  state.mode = "color";
+  render();
+});
+$("#gray-mode").addEventListener("click", () => {
+  state.mode = "grayscale";
+  render();
+});
+$("#scale").addEventListener("change", e => {
+  state.scale = Number(e.target.value);
+  render();
+});
+$("#reset").addEventListener("click", () => {
+  state = {
+    project: "sss",
+    type: "plex",
+    gray: "cool",
+    accent: "sss-cyan-green",
+    icon: "medium",
+    mode: "color",
+    scale: 0.75
+  };
+  $('input[name="type"][value="plex"]').checked = true;
+  $('input[name="gray"][value="cool"]').checked = true;
+  $("#scale").value = "0.75";
+  setPressed("[data-icon]", $('[data-icon="medium"]'));
+  renderAccentOptions();
+  render();
+});
+$("#download-md").addEventListener("click", () => {
+  const blob = new Blob([decisionMarkdown()], {type: "text/markdown;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "VISUAL_STYLE_GUIDE_v0.3_DECISIONS.md";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
+renderAccentOptions();
+setPressed("[data-icon]", $('[data-icon="medium"]'));
+render();
+</script>
+</body>
+</html>
