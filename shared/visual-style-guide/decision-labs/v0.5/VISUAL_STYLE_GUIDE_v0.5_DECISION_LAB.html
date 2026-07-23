@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Style Guide v0.5 Component System Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ui-bg:#e9edf0;
+  --ui-panel:#ffffff;
+  --ui-ink:#18212b;
+  --ui-muted:#596673;
+  --ui-line:#c8d0d6;
+  --ui-accent:#0b6f82;
+
+  --paper:#ffffff;
+  --ink:#18212b;
+  --muted:#4b5967;
+  --rule:#8c9aa8;
+  --panel:#edf1f4;
+  --panel-light:#f7f9fa;
+  --primary:#0b6f82;
+  --secondary:#147a45;
+  --soft:#e7f3f5;
+  --critical:#8f2f2f;
+  --success:#236b3b;
+  --caution:#8a5a00;
+
+  --component-radius:0px;
+  --response-border:1.25px;
+  --section-gap:12px;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:var(--ui-bg);
+  color:var(--ui-ink);
+  font-family:Inter,Arial,sans-serif;
+}
+
+button, select, input { font:inherit; }
+
+button, select {
+  min-height:38px;
+  border:1px solid var(--ui-line);
+  border-radius:6px;
+  background:#fff;
+  color:var(--ui-ink);
+  padding:7px 10px;
+}
+
+button { cursor:pointer; }
+button:hover { border-color:var(--ui-accent); }
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline:3px solid rgba(11,111,130,.22);
+  outline-offset:2px;
+}
+
+.app {
+  max-width:1510px;
+  margin:0 auto;
+  padding:18px;
+}
+
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+
+.topbar h1 {
+  margin:0 0 5px;
+  font-size:24px;
+}
+
+.topbar p {
+  margin:0;
+  color:var(--ui-muted);
+  max-width:860px;
+}
+
+.notice {
+  max-width:390px;
+  border:1px solid var(--ui-line);
+  background:#fff;
+  padding:10px 12px;
+  border-radius:7px;
+  font-size:12px;
+  line-height:1.45;
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:minmax(320px,410px) minmax(560px,1fr);
+  gap:15px;
+  align-items:start;
+}
+
+.controls {
+  display:grid;
+  gap:11px;
+}
+
+.card {
+  background:var(--ui-panel);
+  border:1px solid var(--ui-line);
+  border-radius:8px;
+  padding:13px;
+}
+
+.card h2 {
+  margin:0 0 9px;
+  font-size:15px;
+}
+
+.help {
+  margin:-3px 0 9px;
+  color:var(--ui-muted);
+  font-size:12px;
+  line-height:1.4;
+}
+
+.segmented {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+}
+
+.segmented.three {
+  grid-template-columns:repeat(3,1fr);
+}
+
+.segmented button[aria-pressed="true"] {
+  background:var(--ui-accent);
+  color:#fff;
+  border-color:var(--ui-accent);
+}
+
+.options {
+  display:grid;
+  gap:7px;
+}
+
+.option {
+  display:grid;
+  grid-template-columns:19px 1fr;
+  gap:8px;
+  align-items:start;
+  border:1px solid var(--ui-line);
+  border-radius:6px;
+  padding:9px;
+  cursor:pointer;
+}
+
+.option:has(input:checked) {
+  border-color:var(--ui-accent);
+  box-shadow:inset 3px 0 0 var(--ui-accent);
+}
+
+.option input { margin:3px 0 0; }
+
+.option strong {
+  display:block;
+  font-size:13px;
+}
+
+.option small {
+  display:block;
+  margin-top:2px;
+  color:var(--ui-muted);
+  line-height:1.35;
+}
+
+.recommended {
+  display:inline-block;
+  margin-left:5px;
+  padding:1px 5px;
+  border:1px solid #82aab2;
+  color:#145d6b;
+  font:600 9px/1.4 "JetBrains Mono",monospace;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.action-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+
+.action-row .primary {
+  background:var(--ui-accent);
+  color:#fff;
+  border-color:var(--ui-accent);
+}
+
+.summary {
+  margin-top:8px;
+  max-height:290px;
+  overflow:auto;
+  white-space:pre-wrap;
+  background:#f5f7f8;
+  border:1px solid var(--ui-line);
+  border-radius:5px;
+  padding:9px;
+  font:11px/1.5 "JetBrains Mono",monospace;
+}
+
+.preview-shell {
+  position:sticky;
+  top:10px;
+  min-width:0;
+}
+
+.preview-toolbar {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--ui-line);
+  border-bottom:0;
+  border-radius:8px 8px 0 0;
+  padding:8px 10px;
+}
+
+.preview-toolbar .group {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  align-items:center;
+}
+
+.preview-toolbar label {
+  color:var(--ui-muted);
+  font-size:12px;
+}
+
+.preview-stage {
+  min-height:810px;
+  padding:18px;
+  overflow:auto;
+  border:1px solid var(--ui-line);
+  border-radius:0 0 8px 8px;
+  background:
+    linear-gradient(45deg,#d6dade 25%,transparent 25%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 9px -9px/18px 18px,
+    linear-gradient(45deg,#d6dade 25%,#eef0f2 25%) 9px -9px/18px 18px;
+}
+
+.scale-wrap {
+  width:max-content;
+  margin:0 auto;
+  transform-origin:top center;
+}
+
+.page {
+  width:816px;
+  min-height:1056px;
+  background:var(--paper);
+  color:var(--ink);
+  box-shadow:0 5px 23px rgba(0,0,0,.18);
+  font-family:Inter,Arial,sans-serif;
+  padding:48px;
+}
+
+.page.grayscale { filter:grayscale(1); }
+
+.mission-header {
+  display:grid;
+  grid-template-columns:1fr 58px;
+  gap:14px;
+  align-items:start;
+  padding-bottom:10px;
+  border-bottom:3px solid var(--primary);
+}
+
+.title-stack {
+  border-left:4px solid var(--primary);
+  padding-left:12px;
+}
+
+.kicker {
+  font:600 8px/1.35 "JetBrains Mono",monospace;
+  color:var(--primary);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:3px;
+}
+
+.doc-title {
+  margin:0;
+  font-size:22px;
+  line-height:1.08;
+  letter-spacing:-.02em;
+}
+
+.doc-subtitle {
+  margin:4px 0 0;
+  font-size:9.5px;
+  line-height:1.4;
+  color:var(--muted);
+}
+
+.mark-slot {
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  color:var(--primary);
+  font:600 11px/1 "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-align:center;
+}
+
+.mark-slot small {
+  display:block;
+  margin-top:3px;
+  font-size:6px;
+  color:var(--muted);
+}
+
+.student-row {
+  display:grid;
+  grid-template-columns:1.4fr 1fr .7fr;
+  border:1px solid var(--rule);
+  margin-top:12px;
+}
+
+.student-row > div {
+  min-height:42px;
+  padding:6px 8px;
+  border-right:1px solid var(--rule);
+}
+
+.student-row > div:last-child { border-right:0; }
+
+.student-row label {
+  display:block;
+  font:6.8px "JetBrains Mono",monospace;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+.student-row strong {
+  display:block;
+  margin-top:4px;
+  font-size:8.8px;
+}
+
+.page-body {
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:12px;
+  margin-top:14px;
+  align-items:start;
+}
+
+.span-12 { grid-column:span 12; }
+.span-8 { grid-column:span 8; }
+.span-7 { grid-column:span 7; }
+.span-6 { grid-column:span 6; }
+.span-5 { grid-column:span 5; }
+.span-4 { grid-column:span 4; }
+
+.component {
+  min-width:0;
+}
+
+.section-heading {
+  margin:0 0 6px;
+}
+
+.section-heading h2 {
+  margin:0;
+  font-size:12px;
+  line-height:1.2;
+}
+
+.section-heading code {
+  font:7px "JetBrains Mono",monospace;
+  color:var(--muted);
+}
+
+.section-heading.style-rule {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  padding-bottom:4px;
+  border-bottom:1px solid var(--rule);
+}
+
+.section-heading.style-left {
+  display:grid;
+  grid-template-columns:4px 1fr auto;
+  gap:8px;
+  align-items:center;
+}
+
+.section-heading.style-left::before {
+  content:"";
+  align-self:stretch;
+  background:var(--primary);
+}
+
+.section-heading.style-label {
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.section-heading.style-label code {
+  order:-1;
+  padding:3px 5px;
+  border:1px solid var(--primary);
+  color:var(--primary);
+}
+
+.body-copy {
+  margin:0 0 7px;
+  font-size:9.5px;
+  line-height:1.45;
+}
+
+.directions {
+  margin:0;
+  padding-left:18px;
+  font-size:9.2px;
+  line-height:1.45;
+}
+
+.directions li { margin-bottom:3px; }
+
+.callout {
+  font-size:8.8px;
+  line-height:1.42;
+  border-radius:var(--component-radius);
+}
+
+.callout strong {
+  display:block;
+  margin-bottom:2px;
+  font-size:9px;
+}
+
+.callout.style-left {
+  border-left:3px solid var(--primary);
+  background:var(--soft);
+  padding:8px 10px;
+}
+
+.callout.style-outline {
+  border:1px solid var(--rule);
+  border-top:3px solid var(--primary);
+  background:#fff;
+  padding:8px 10px;
+}
+
+.callout.style-band {
+  border:1px solid var(--rule);
+  background:#fff;
+  padding:0 10px 8px;
+}
+
+.callout.style-band strong {
+  margin:0 -10px 7px;
+  padding:5px 10px;
+  background:var(--soft);
+  border-bottom:1px solid var(--rule);
+  color:var(--primary);
+  font-family:"JetBrains Mono",monospace;
+  font-size:7.5px;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.response-group {
+  display:grid;
+  gap:6px;
+}
+
+.response-prompt {
+  font-size:9.3px;
+  line-height:1.4;
+  font-weight:500;
+}
+
+.response-guidance {
+  font:7px "JetBrains Mono",monospace;
+  color:var(--muted);
+}
+
+.response-box {
+  min-height:100px;
+  background:#fff;
+  border:var(--response-border) solid var(--ink);
+  border-radius:var(--component-radius);
+}
+
+.response-group.style-captioned {
+  border:var(--response-border) solid var(--ink);
+  padding:8px;
+}
+
+.response-group.style-captioned .response-box {
+  border:0;
+  min-height:86px;
+}
+
+.response-group.style-captioned .response-prompt {
+  padding-bottom:6px;
+  border-bottom:1px solid var(--rule);
+}
+
+.response-group.style-numbered {
+  grid-template-columns:30px 1fr;
+  align-items:stretch;
+}
+
+.response-group.style-numbered .response-number {
+  display:grid;
+  place-items:center;
+  background:var(--primary);
+  color:#fff;
+  font:600 10px "JetBrains Mono",monospace;
+}
+
+.response-group.style-numbered .response-content {
+  display:grid;
+  gap:6px;
+}
+
+.response-group:not(.style-numbered) .response-number { display:none; }
+.response-group:not(.style-numbered) .response-content { display:contents; }
+
+.data-table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:8px;
+}
+
+.data-table th,
+.data-table td {
+  text-align:left;
+  vertical-align:top;
+  padding:5px 6px;
+}
+
+.data-table.style-grid th,
+.data-table.style-grid td {
+  border:1px solid var(--rule);
+}
+
+.data-table.style-grid th {
+  background:var(--panel);
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.data-table.style-banded {
+  border:1px solid var(--rule);
+}
+
+.data-table.style-banded th {
+  background:var(--primary);
+  color:#fff;
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.data-table.style-banded td {
+  border-top:1px solid var(--rule);
+}
+
+.data-table.style-banded tbody tr:nth-child(even) {
+  background:var(--panel-light);
+}
+
+.data-table.style-minimal th {
+  border-bottom:1.5px solid var(--ink);
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.data-table.style-minimal td {
+  border-bottom:1px solid var(--rule);
+}
+
+.teacher-note {
+  font-size:8.3px;
+  line-height:1.42;
+  border-radius:var(--component-radius);
+}
+
+.teacher-note strong {
+  display:block;
+  margin-bottom:3px;
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.teacher-note.style-neutral {
+  border-left:3px solid var(--muted);
+  background:var(--panel-light);
+  padding:8px 10px;
+}
+
+.teacher-note.style-label {
+  border:1px solid var(--rule);
+  padding:8px 10px;
+}
+
+.teacher-note.style-label strong {
+  display:inline-block;
+  margin:-8px 0 7px -10px;
+  padding:4px 7px;
+  color:#fff;
+  background:var(--muted);
+}
+
+.teacher-note.style-outline {
+  border:1px solid var(--rule);
+  background:#fff;
+  padding:8px 10px;
+}
+
+.evidence-gallery {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.evidence-card {
+  border:1px solid var(--rule);
+  padding:8px;
+  min-height:130px;
+}
+
+.evidence-card h3 {
+  margin:0 0 7px;
+  font-size:9px;
+}
+
+.evidence-card p {
+  margin:0;
+  font-size:7.8px;
+  line-height:1.35;
+  color:var(--muted);
+}
+
+.matrix-mini {
+  display:grid;
+  grid-template-columns:.9fr 1fr 1fr;
+  margin-top:7px;
+  border-top:1px solid var(--rule);
+  border-left:1px solid var(--rule);
+}
+
+.matrix-mini i {
+  min-height:20px;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+
+.compare-mini {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-top:7px;
+}
+
+.compare-mini i {
+  min-height:68px;
+  border:1px solid var(--rule);
+  background:var(--panel-light);
+}
+
+.sequence-mini {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin-top:28px;
+}
+
+.sequence-mini i {
+  width:24px;
+  height:24px;
+  border:1px solid var(--primary);
+  border-radius:50%;
+  background:var(--soft);
+}
+
+.sequence-mini b {
+  flex:1;
+  border-top:2px solid var(--primary);
+}
+
+.footer {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  margin-top:14px;
+  padding-top:7px;
+  border-top:1px solid var(--rule);
+  color:var(--muted);
+  font:400 6.8px/1.35 "JetBrains Mono",monospace;
+}
+
+.page.teacher-mode .student-only { display:none; }
+.page.student-mode .teacher-only { display:none; }
+
+.page.grayscale .mark-slot,
+.page.grayscale .response-number {
+  color:var(--ink);
+}
+
+.review {
+  margin-top:14px;
+  padding:13px;
+  background:#fff;
+  border:1px solid var(--ui-line);
+  border-radius:8px;
+}
+
+.review h2 {
+  margin:0 0 9px;
+  font-size:15px;
+}
+
+.review-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.mini {
+  border:1px solid var(--ui-line);
+  border-radius:5px;
+  padding:9px;
+  font-size:11px;
+  line-height:1.4;
+}
+
+.mini strong {
+  display:block;
+  margin-bottom:4px;
+}
+
+.mini code {
+  font:10px "JetBrains Mono",monospace;
+  color:var(--ui-muted);
+}
+
+.offline {
+  margin-top:8px;
+  color:var(--ui-muted);
+  font-size:11px;
+}
+
+@media (max-width:1120px) {
+  .layout { grid-template-columns:1fr; }
+  .preview-shell { position:static; }
+}
+
+@media (max-width:660px) {
+  .app { padding:10px; }
+  .topbar { display:block; }
+  .notice { max-width:none; margin-top:10px; }
+  .review-grid { grid-template-columns:1fr; }
+  .preview-stage { padding:7px; }
+}
+
+@media print {
+  .topbar,.controls,.preview-toolbar,.review { display:none!important; }
+  .layout { display:block; }
+  .preview-stage { border:0;background:#fff;padding:0; }
+  .page { box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <h1>Visual Style Guide v0.5 Component System Lab</h1>
+      <p>Compare the reusable page components that will appear across student missions, evidence pages, teacher guides, answer keys, and formal lesson plans.</p>
+    </div>
+    <div class="notice">
+      <strong>Scope guard</strong><br>
+      This lab decides component framing and hierarchy only. It does not decide final insignia, scientific diagram, historical illustration, or game-asset treatments.
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="controls" aria-label="Component design controls">
+      <section class="card">
+        <h2>Preview context</h2>
+        <div class="segmented">
+          <button type="button" data-project="sss" aria-pressed="true">SSS / SAA</button>
+          <button type="button" data-project="hhh" aria-pressed="false">HHH / TAA</button>
+        </div>
+        <div class="segmented" style="margin-top:6px">
+          <button type="button" data-role="student" aria-pressed="true">Student page</button>
+          <button type="button" data-role="teacher" aria-pressed="false">Teacher page</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Section-heading treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="heading" value="rule" checked>
+            <span>
+              <strong>Rule heading <span class="recommended">Recommended</span></strong>
+              <small>Heading and technical label separated by a thin horizontal rule.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="heading" value="left">
+            <span>
+              <strong>Accent rail heading</strong>
+              <small>Compact vertical accent with no full-width divider.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="heading" value="label">
+            <span>
+              <strong>Technical label heading</strong>
+              <small>Small bordered code precedes the heading.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Callout treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="callout" value="left" checked>
+            <span>
+              <strong>Left rule + pale field <span class="recommended">Recommended</span></strong>
+              <small>Strong enough to organize without becoming a boxed card system.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="callout" value="outline">
+            <span>
+              <strong>Outlined technical panel</strong>
+              <small>White field, full border, and institutional top rule.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="callout" value="band">
+            <span>
+              <strong>Top-band panel</strong>
+              <small>Most formal and visually assertive; uses more space.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Response-area treatment</h2>
+        <p class="help">All options preserve the locked blank, unruled response area.</p>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="response" value="open" checked>
+            <span>
+              <strong>Prompt above blank box <span class="recommended">Recommended</span></strong>
+              <small>Clearest separation between task and writing area.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="response" value="captioned">
+            <span>
+              <strong>Captioned response frame</strong>
+              <small>Prompt and box share one outer frame.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="response" value="numbered">
+            <span>
+              <strong>Numbered response panel</strong>
+              <small>Useful for sequential tasks but visually heavier.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Table treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="table" value="grid" checked>
+            <span>
+              <strong>Ruled technical table <span class="recommended">Recommended</span></strong>
+              <small>Gray header, full grid, strongest for handwritten student use.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="table" value="banded">
+            <span>
+              <strong>Institutional header + banded rows</strong>
+              <small>More color-forward and stronger on teacher reference pages.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="table" value="minimal">
+            <span>
+              <strong>Minimal horizontal rules</strong>
+              <small>Cleanest for reading, weakest for handwriting and photocopying.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Teacher-note treatment</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="teacher" value="neutral" checked>
+            <span>
+              <strong>Neutral side stripe <span class="recommended">Recommended</span></strong>
+              <small>Clearly teacher-facing without competing with institutional identity.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="teacher" value="label">
+            <span>
+              <strong>Compact note label</strong>
+              <small>Small dark label attached to an outlined note.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="teacher" value="outline">
+            <span>
+              <strong>Plain outlined note</strong>
+              <small>Most restrained, but easiest to confuse with ordinary content.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Corner geometry</h2>
+        <div class="segmented">
+          <button type="button" data-radius="0" aria-pressed="true">Sharp</button>
+          <button type="button" data-radius="3" aria-pressed="false">3 px technical</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Decision output</h2>
+        <div class="action-row">
+          <button type="button" class="primary" id="download">Download decision note</button>
+          <button type="button" id="reset">Reset recommendation</button>
+        </div>
+        <div class="summary" id="summary" aria-live="polite"></div>
+      </section>
+    </aside>
+
+    <main class="preview-shell">
+      <div class="preview-toolbar">
+        <div class="group">
+          <strong style="font-size:13px">Live component-page preview</strong>
+          <button type="button" id="color" aria-pressed="true">Color</button>
+          <button type="button" id="gray" aria-pressed="false">Grayscale</button>
+        </div>
+        <div class="group">
+          <label for="scale">Scale</label>
+          <select id="scale">
+            <option value=".62">62%</option>
+            <option value=".72" selected>72%</option>
+            <option value=".82">82%</option>
+            <option value="1">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-stage">
+        <div class="scale-wrap" id="scale-wrap">
+          <article class="page student-mode" id="page">
+            <header class="mission-header">
+              <div class="title-stack">
+                <div class="kicker" id="kicker">Solar Agricultural Authority · Student Mission</div>
+                <h1 class="doc-title" id="doc-title">Case 01 · ISS Greenhouse Module</h1>
+                <p class="doc-subtitle" id="doc-subtitle">Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity</p>
+              </div>
+              <div class="mark-slot"><span id="mark">SAA<small>MARK SLOT</small></span></div>
+            </header>
+
+            <section class="student-row student-only">
+              <div><label>Student</label><strong>________________________</strong></div>
+              <div><label>Class / Period</label><strong>________________</strong></div>
+              <div><label>Date</label><strong>____________</strong></div>
+            </section>
+
+            <div class="page-body">
+              <section class="component span-7 student-only">
+                <div class="section-heading style-rule" id="heading-one">
+                  <h2>Mission question</h2>
+                  <code>01 · LAUNCH</code>
+                </div>
+                <p class="body-copy" id="question-copy">Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?</p>
+
+                <div class="callout style-left" id="callout">
+                  <strong id="callout-title">Science focus · Gravitropism</strong>
+                  <span id="callout-copy">Investigate how plants sense direction and why microgravity changes the cues available to roots and shoots.</span>
+                </div>
+              </section>
+
+              <section class="component span-5 student-only">
+                <div class="section-heading style-rule" id="heading-two">
+                  <h2>Directions</h2>
+                  <code>READ · RECORD</code>
+                </div>
+                <ol class="directions">
+                  <li>Open the case.</li>
+                  <li>Read the mission question.</li>
+                  <li>Record evidence that helps explain the failure.</li>
+                  <li>Complete the diagnosis after it unlocks.</li>
+                </ol>
+              </section>
+
+              <section class="component span-12 student-only">
+                <div class="section-heading style-rule" id="heading-three">
+                  <h2>Evidence matrix</h2>
+                  <code>02 · INVESTIGATE</code>
+                </div>
+                <table class="data-table style-grid" id="table">
+                  <thead>
+                    <tr><th>Evidence source</th><th>Observation</th><th>Why it matters</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>Plant inspection</td><td></td><td></td></tr>
+                    <tr><td>Environment readings</td><td></td><td></td></tr>
+                    <tr><td>Mission record</td><td></td><td></td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="component span-6 student-only">
+                <div class="section-heading style-rule" id="heading-four">
+                  <h2>Initial thinking</h2>
+                  <code>UNGRADED</code>
+                </div>
+                <div class="response-group style-open" id="response-one">
+                  <div class="response-number">1</div>
+                  <div class="response-content">
+                    <div class="response-prompt">Which system or environmental cue should be investigated first?</div>
+                    <div class="response-guidance">ONE OR TWO SENTENCES</div>
+                    <div class="response-box"></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="component span-6 student-only">
+                <div class="section-heading style-rule" id="heading-five">
+                  <h2>Evidence-based diagnosis</h2>
+                  <code>CLAIM · MECHANISM</code>
+                </div>
+                <div class="response-group style-open" id="response-two">
+                  <div class="response-number">2</div>
+                  <div class="response-content">
+                    <div class="response-prompt">State the diagnosis and explain the mechanism.</div>
+                    <div class="response-guidance">TWO TO FOUR SENTENCES</div>
+                    <div class="response-box"></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="component span-12 teacher-only">
+                <div class="section-heading style-rule" id="heading-teacher-one">
+                  <h2>Teacher quick start</h2>
+                  <code>60 MINUTES</code>
+                </div>
+                <div class="callout style-left" id="teacher-callout">
+                  <strong>Correct diagnosis</strong>
+                  Missing or altered gravity cues disrupt normal root and shoot orientation responses.
+                </div>
+              </section>
+
+              <section class="component span-7 teacher-only">
+                <div class="section-heading style-rule" id="heading-teacher-two">
+                  <h2>Procedure by time</h2>
+                  <code>TEACHER USE</code>
+                </div>
+                <table class="data-table style-grid" id="teacher-table">
+                  <thead>
+                    <tr><th>Time</th><th>Teacher action</th><th>Student action</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>0–10</td><td>Launch the phenomenon.</td><td>Record initial thinking.</td></tr>
+                    <tr><td>10–30</td><td>Monitor investigation.</td><td>Play and gather evidence.</td></tr>
+                    <tr><td>30–48</td><td>Prompt reasoning.</td><td>Diagnose and complete CER.</td></tr>
+                    <tr><td>48–60</td><td>Facilitate transfer.</td><td>Apply and exit.</td></tr>
+                  </tbody>
+                </table>
+              </section>
+
+              <section class="component span-5 teacher-only">
+                <div class="section-heading style-rule" id="heading-teacher-three">
+                  <h2>Watch for</h2>
+                  <code>MISCONCEPTIONS</code>
+                </div>
+                <div class="teacher-note style-neutral" id="teacher-note-one">
+                  <strong>Do not say</strong>
+                  Roots become completely random in space.
+                </div>
+                <div class="teacher-note style-neutral" id="teacher-note-two" style="margin-top:7px">
+                  <strong>Emphasize</strong>
+                  Plants use several interacting signals; the case isolates one important directional cue.
+                </div>
+              </section>
+
+              <section class="component span-12">
+                <div class="section-heading style-rule" id="heading-gallery">
+                  <h2>Approved evidence-layout families</h2>
+                  <code>MULTIPLE PATTERNS</code>
+                </div>
+                <div class="evidence-gallery">
+                  <div class="evidence-card">
+                    <h3>Evidence matrix</h3>
+                    <p>Compare sources, observations, and relevance.</p>
+                    <div class="matrix-mini">
+                      <i></i><i></i><i></i>
+                      <i></i><i></i><i></i>
+                      <i></i><i></i><i></i>
+                    </div>
+                  </div>
+                  <div class="evidence-card">
+                    <h3>Matched comparison</h3>
+                    <p>Place two conditions, sources, or explanations side by side.</p>
+                    <div class="compare-mini"><i></i><i></i></div>
+                  </div>
+                  <div class="evidence-card">
+                    <h3>Sequence / timeline</h3>
+                    <p>Show ordered events, process stages, or source chronology.</p>
+                    <div class="sequence-mini"><i></i><b></b><i></i><b></b><i></i></div>
+                  </div>
+                </div>
+              </section>
+            </div>
+
+            <footer class="footer">
+              <span id="footer-left">SSS-C1-01 · CURRICULUM VERSION · GAME BASELINE · PUBLICATION DATE</span>
+              <span>PAGE 1 OF 2</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+
+      <section class="review">
+        <h2>Component principles being tested</h2>
+        <div class="review-grid">
+          <div class="mini">
+            <strong>Panels stay selective</strong>
+            <code>ORGANIZE · DO NOT CARD EVERYTHING</code><br>
+            Ordinary sections remain open; callouts appear only when they add hierarchy.
+          </div>
+          <div class="mini">
+            <strong>Writing areas stay blank</strong>
+            <code>NO RULED LINES · NO PATTERN FILL</code><br>
+            Prompt, guidance, and response space remain visually distinct.
+          </div>
+          <div class="mini">
+            <strong>Evidence layout follows function</strong>
+            <code>MATRIX · COMPARE · SEQUENCE</code><br>
+            The guide will approve several structures rather than force one activity format.
+          </div>
+        </div>
+        <p class="offline">Inter and JetBrains Mono are loaded from Google Fonts for comparison. Browser fallbacks appear offline; the component controls still function.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const projectData = {
+  sss: {
+    primary:"#0b6f82",
+    secondary:"#147a45",
+    soft:"#e7f3f5",
+    mark:"SAA",
+    institution:"Solar Agricultural Authority",
+    title:"Case 01 · ISS Greenhouse Module",
+    subtitle:"Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity",
+    question:"Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?",
+    focusTitle:"Science focus · Gravitropism",
+    focusCopy:"Investigate how plants sense direction and why microgravity changes the cues available to roots and shoots.",
+    footer:"SSS-C1-01 · CURRICULUM VERSION · GAME BASELINE · PUBLICATION DATE"
+  },
+  hhh: {
+    primary:"#8a5a00",
+    secondary:"#0b6f82",
+    soft:"#f5eddd",
+    mark:"TAA",
+    institution:"Temporal Agricultural Archive",
+    title:"Case 01 · The First Fields",
+    subtitle:"Campaign 1 · Agricultural Origins · Comparing Historical Evidence",
+    question:"Which surviving evidence most strongly supports the explanation for how this agricultural change occurred?",
+    focusTitle:"History focus · Evidence and provenance",
+    focusCopy:"Compare what different records can establish, when they were created, and how later claims depend on earlier evidence.",
+    footer:"HHH-C1-01 · CURRICULUM VERSION · GAME BASELINE · PUBLICATION DATE"
+  }
+};
+
+const state = {
+  project:"sss",
+  role:"student",
+  heading:"rule",
+  callout:"left",
+  response:"open",
+  table:"grid",
+  teacher:"neutral",
+  radius:0,
+  grayscale:false,
+  scale:.72
+};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function press(selector, current) {
+  $$(selector).forEach(button => {
+    button.setAttribute("aria-pressed", button === current ? "true" : "false");
+  });
+}
+
+function applyProject() {
+  const data = projectData[state.project];
+  document.documentElement.style.setProperty("--primary", data.primary);
+  document.documentElement.style.setProperty("--secondary", data.secondary);
+  document.documentElement.style.setProperty("--soft", data.soft);
+
+  $("#mark").innerHTML = `${data.mark}<small>MARK SLOT</small>`;
+  $("#kicker").textContent = `${data.institution} · ${state.role === "student" ? "Student Mission" : "Teacher Quick Start"}`;
+  $("#doc-title").textContent = data.title;
+  $("#doc-subtitle").textContent = data.subtitle;
+  $("#question-copy").textContent = data.question;
+  $("#callout-title").textContent = data.focusTitle;
+  $("#callout-copy").textContent = data.focusCopy;
+  $("#footer-left").textContent = data.footer;
+}
+
+function applyComponents() {
+  $$("[id^='heading-']").forEach(el => {
+    el.className = `section-heading style-${state.heading}`;
+  });
+
+  $("#callout").className = `callout style-${state.callout}`;
+  $("#teacher-callout").className = `callout style-${state.callout}`;
+
+  ["response-one","response-two"].forEach(id => {
+    const el = $(`#${id}`);
+    el.className = `response-group style-${state.response}`;
+  });
+
+  $("#table").className = `data-table style-${state.table}`;
+  $("#teacher-table").className = `data-table style-${state.table}`;
+
+  $("#teacher-note-one").className = `teacher-note style-${state.teacher}`;
+  $("#teacher-note-two").className = `teacher-note style-${state.teacher}`;
+
+  document.documentElement.style.setProperty("--component-radius", `${state.radius}px`);
+
+  const page = $("#page");
+  page.className = `page ${state.role}-mode${state.grayscale ? " grayscale" : ""}`;
+
+  const wrap = $("#scale-wrap");
+  wrap.style.transform = `scale(${state.scale})`;
+  wrap.style.width = `${816 * state.scale}px`;
+  wrap.style.height = `${1056 * state.scale}px`;
+}
+
+function decisionMarkdown() {
+  const headingLabel = {
+    rule:"Rule heading",
+    left:"Accent rail heading",
+    label:"Technical label heading"
+  }[state.heading];
+
+  const calloutLabel = {
+    left:"Left rule + pale field",
+    outline:"Outlined technical panel",
+    band:"Top-band panel"
+  }[state.callout];
+
+  const responseLabel = {
+    open:"Prompt above blank box",
+    captioned:"Captioned response frame",
+    numbered:"Numbered response panel"
+  }[state.response];
+
+  const tableLabel = {
+    grid:"Ruled technical table",
+    banded:"Institutional header + banded rows",
+    minimal:"Minimal horizontal rules"
+  }[state.table];
+
+  const teacherLabel = {
+    neutral:"Neutral side stripe",
+    label:"Compact note label",
+    outline:"Plain outlined note"
+  }[state.teacher];
+
+  return `# VISUAL_STYLE_GUIDE_v0.5 — Decision Note
+
+## Selected Preview
+
+- Institution preview: ${state.project === "sss" ? "Space Sprout Sleuth / SAA" : "Hunger, Harvest, & History / TAA"}
+- Document role viewed: ${state.role === "student" ? "Student page" : "Teacher page"}
+- Section-heading treatment: ${headingLabel}
+- Callout treatment: ${calloutLabel}
+- Response-area treatment: ${responseLabel}
+- Table treatment: ${tableLabel}
+- Teacher-note treatment: ${teacherLabel}
+- Corner geometry: ${state.radius === 0 ? "Sharp" : "3 px technical rounding"}
+- Grayscale preview viewed: ${state.grayscale ? "Yes" : "No"}
+
+## Proposed Shared Rules
+
+- [ ] Use panels selectively rather than boxing every section.
+- [ ] Keep extended response areas blank and unruled.
+- [ ] Use the selected section-heading treatment as the ordinary default.
+- [ ] Use the selected callout treatment for science/history focus and priority notes.
+- [ ] Use the selected response-area treatment for ordinary written responses.
+- [ ] Use the selected table treatment for ordinary student evidence tables.
+- [ ] Use the selected teacher-note treatment for misconceptions and facilitation notes.
+- [ ] Approve multiple evidence-layout families based on instructional function.
+- [ ] Request revisions.
+
+## Notes
+
+Add any changes or exceptions here before v0.5 is locked.
+`;
+}
+
+function render() {
+  applyProject();
+  applyComponents();
+  $("#summary").textContent = decisionMarkdown();
+}
+
+$$("[data-project]").forEach(button => {
+  button.addEventListener("click", () => {
+    state.project = button.dataset.project;
+    press("[data-project]", button);
+    render();
+  });
+});
+
+$$("[data-role]").forEach(button => {
+  button.addEventListener("click", () => {
+    state.role = button.dataset.role;
+    press("[data-role]", button);
+    render();
+  });
+});
+
+["heading","callout","response","table","teacher"].forEach(group => {
+  $$(`input[name="${group}"]`).forEach(input => {
+    input.addEventListener("change", () => {
+      state[group] = input.value;
+      render();
+    });
+  });
+});
+
+$$("[data-radius]").forEach(button => {
+  button.addEventListener("click", () => {
+    state.radius = Number(button.dataset.radius);
+    press("[data-radius]", button);
+    render();
+  });
+});
+
+$("#color").addEventListener("click", () => {
+  state.grayscale = false;
+  press("#color,#gray", $("#color"));
+  render();
+});
+
+$("#gray").addEventListener("click", () => {
+  state.grayscale = true;
+  press("#color,#gray", $("#gray"));
+  render();
+});
+
+$("#scale").addEventListener("change", event => {
+  state.scale = Number(event.target.value);
+  render();
+});
+
+$("#reset").addEventListener("click", () => {
+  Object.assign(state, {
+    project:"sss",
+    role:"student",
+    heading:"rule",
+    callout:"left",
+    response:"open",
+    table:"grid",
+    teacher:"neutral",
+    radius:0,
+    grayscale:false,
+    scale:.72
+  });
+
+  press("[data-project]", $('[data-project="sss"]'));
+  press("[data-role]", $('[data-role="student"]'));
+  $('input[name="heading"][value="rule"]').checked = true;
+  $('input[name="callout"][value="left"]').checked = true;
+  $('input[name="response"][value="open"]').checked = true;
+  $('input[name="table"][value="grid"]').checked = true;
+  $('input[name="teacher"][value="neutral"]').checked = true;
+  press("[data-radius]", $('[data-radius="0"]'));
+  press("#color,#gray", $("#color"));
+  $("#scale").value = ".72";
+  render();
+});
+
+$("#download").addEventListener("click", () => {
+  const blob = new Blob([decisionMarkdown()], {type:"text/markdown;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "VISUAL_STYLE_GUIDE_v0.5_DECISIONS.md";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+});
+
+press("[data-project]", $('[data-project="sss"]'));
+press("[data-role]", $('[data-role="student"]'));
+press("[data-radius]", $('[data-radius="0"]'));
+press("#color,#gray", $("#color"));
+render();
+</script>
+</body>
+</html>

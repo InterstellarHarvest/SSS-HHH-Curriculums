@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visual Style Guide v0.4 Page Architecture Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ui-bg:#e9edf0;
+  --ui-panel:#ffffff;
+  --ui-ink:#18212b;
+  --ui-muted:#596673;
+  --ui-line:#c8d0d6;
+  --ui-accent:#0b6f82;
+
+  --paper:#ffffff;
+  --ink:#18212b;
+  --muted:#4b5967;
+  --rule:#8c9aa8;
+  --panel:#edf1f4;
+  --panel-light:#f7f9fa;
+  --primary:#0b6f82;
+  --secondary:#147a45;
+  --soft:#e7f3f5;
+
+  --page-w:816px;
+  --page-h:1056px;
+  --margin:48px;
+  --gutter:12px;
+  --baseline:8px;
+  --density:1;
+}
+
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--ui-bg);
+  color:var(--ui-ink);
+  font-family:Inter,Arial,sans-serif;
+}
+button, select, input { font:inherit; }
+button, select {
+  min-height:38px;
+  border:1px solid var(--ui-line);
+  border-radius:6px;
+  background:#fff;
+  color:var(--ui-ink);
+  padding:7px 10px;
+}
+button { cursor:pointer; }
+button:hover { border-color:var(--ui-accent); }
+button:focus-visible, select:focus-visible, input:focus-visible {
+  outline:3px solid rgba(11,111,130,.22);
+  outline-offset:2px;
+}
+.app {
+  max-width:1500px;
+  margin:0 auto;
+  padding:18px;
+}
+.topbar {
+  display:flex;
+  justify-content:space-between;
+  gap:18px;
+  align-items:flex-start;
+  margin-bottom:14px;
+}
+.topbar h1 {
+  margin:0 0 5px;
+  font-size:24px;
+}
+.topbar p {
+  margin:0;
+  color:var(--ui-muted);
+  max-width:850px;
+}
+.notice {
+  max-width:370px;
+  border:1px solid var(--ui-line);
+  background:#fff;
+  padding:10px 12px;
+  border-radius:7px;
+  font-size:12px;
+  line-height:1.45;
+}
+.layout {
+  display:grid;
+  grid-template-columns:minmax(310px,400px) minmax(550px,1fr);
+  gap:15px;
+  align-items:start;
+}
+.controls {
+  display:grid;
+  gap:11px;
+}
+.card {
+  background:var(--ui-panel);
+  border:1px solid var(--ui-line);
+  border-radius:8px;
+  padding:13px;
+}
+.card h2 {
+  font-size:15px;
+  margin:0 0 9px;
+}
+.help {
+  margin:-3px 0 9px;
+  font-size:12px;
+  line-height:1.4;
+  color:var(--ui-muted);
+}
+.segmented {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:6px;
+}
+.segmented.three { grid-template-columns:repeat(3,1fr); }
+.segmented.four { grid-template-columns:repeat(2,1fr); }
+.segmented button[aria-pressed="true"] {
+  background:var(--ui-accent);
+  color:#fff;
+  border-color:var(--ui-accent);
+}
+.options {
+  display:grid;
+  gap:7px;
+}
+.option {
+  display:grid;
+  grid-template-columns:19px 1fr;
+  gap:8px;
+  align-items:start;
+  border:1px solid var(--ui-line);
+  border-radius:6px;
+  padding:9px;
+  cursor:pointer;
+}
+.option:has(input:checked) {
+  border-color:var(--ui-accent);
+  box-shadow:inset 3px 0 0 var(--ui-accent);
+}
+.option input { margin:3px 0 0; }
+.option strong {
+  display:block;
+  font-size:13px;
+}
+.option small {
+  display:block;
+  margin-top:2px;
+  color:var(--ui-muted);
+  line-height:1.35;
+}
+.recommended {
+  display:inline-block;
+  margin-left:5px;
+  padding:1px 5px;
+  border:1px solid #82aab2;
+  color:#145d6b;
+  font:600 9px/1.4 "JetBrains Mono",monospace;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+.action-row {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+}
+.action-row .primary {
+  background:var(--ui-accent);
+  color:#fff;
+  border-color:var(--ui-accent);
+}
+.summary {
+  margin-top:8px;
+  max-height:270px;
+  overflow:auto;
+  white-space:pre-wrap;
+  background:#f5f7f8;
+  border:1px solid var(--ui-line);
+  border-radius:5px;
+  padding:9px;
+  font:11px/1.5 "JetBrains Mono",monospace;
+}
+
+.preview-shell {
+  position:sticky;
+  top:10px;
+  min-width:0;
+}
+.preview-toolbar {
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+  background:#fff;
+  border:1px solid var(--ui-line);
+  border-bottom:0;
+  border-radius:8px 8px 0 0;
+  padding:8px 10px;
+}
+.preview-toolbar .group {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  align-items:center;
+}
+.preview-toolbar label {
+  color:var(--ui-muted);
+  font-size:12px;
+}
+.preview-stage {
+  min-height:790px;
+  padding:19px;
+  overflow:auto;
+  border:1px solid var(--ui-line);
+  border-radius:0 0 8px 8px;
+  background:
+    linear-gradient(45deg,#d6dade 25%,transparent 25%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 0 0/18px 18px,
+    linear-gradient(45deg,transparent 75%,#d6dade 75%) 9px -9px/18px 18px,
+    linear-gradient(45deg,#d6dade 25%,#eef0f2 25%) 9px -9px/18px 18px;
+}
+.scale-wrap {
+  width:max-content;
+  margin:0 auto;
+  transform-origin:top center;
+}
+.page {
+  position:relative;
+  width:var(--page-w);
+  height:var(--page-h);
+  overflow:hidden;
+  background:var(--paper);
+  color:var(--ink);
+  box-shadow:0 5px 23px rgba(0,0,0,.18);
+  font-family:Inter,Arial,sans-serif;
+}
+.page.grayscale { filter:grayscale(1); }
+.page-inner {
+  position:absolute;
+  inset:var(--margin);
+  display:flex;
+  flex-direction:column;
+}
+.page.show-guides .page-inner {
+  outline:1px dashed rgba(173,42,42,.55);
+}
+.grid-overlay {
+  pointer-events:none;
+  display:none;
+  position:absolute;
+  inset:var(--margin);
+  grid-template-columns:repeat(12,1fr);
+  gap:var(--gutter);
+  opacity:.14;
+  z-index:20;
+}
+.page.show-grid .grid-overlay { display:grid; }
+.grid-overlay i {
+  background:var(--primary);
+  min-width:0;
+}
+.baseline-overlay {
+  display:none;
+  pointer-events:none;
+  position:absolute;
+  inset:var(--margin);
+  z-index:19;
+  background:repeating-linear-gradient(
+    to bottom,
+    rgba(143,47,47,.24) 0,
+    rgba(143,47,47,.24) 1px,
+    transparent 1px,
+    transparent var(--baseline)
+  );
+}
+.page.show-baseline .baseline-overlay { display:block; }
+
+.identity-header {
+  flex:0 0 auto;
+}
+.header-a {
+  display:grid;
+  grid-template-columns:6px 58px 1fr 150px;
+  gap:12px;
+  align-items:center;
+  padding-bottom:12px;
+  border-bottom:1.5px solid var(--ink);
+}
+.header-a .accent-rail {
+  align-self:stretch;
+  background:var(--primary);
+}
+.header-b {
+  border-top:7px solid var(--primary);
+  padding-top:11px;
+  display:grid;
+  grid-template-columns:58px 1fr;
+  gap:13px;
+  align-items:center;
+  padding-bottom:11px;
+  border-bottom:1px solid var(--rule);
+}
+.header-b .metadata {
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--rule);
+  margin-top:1px;
+}
+.header-b .metadata div {
+  padding:5px 7px;
+  border-right:1px solid var(--rule);
+}
+.header-b .metadata div:last-child { border-right:0; }
+.header-c {
+  display:grid;
+  grid-template-columns:1fr 60px;
+  gap:14px;
+  align-items:start;
+  padding-bottom:10px;
+  border-bottom:3px solid var(--primary);
+}
+.header-c .title-stack {
+  border-left:4px solid var(--primary);
+  padding-left:12px;
+}
+.header-c .metadata {
+  margin-top:7px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.mark-slot {
+  width:52px;
+  height:52px;
+  display:grid;
+  place-items:center;
+  border:1.5px solid var(--ink);
+  border-radius:50%;
+  color:var(--primary);
+  font:600 11px/1 "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-align:center;
+}
+.mark-slot small {
+  display:block;
+  margin-top:3px;
+  font-size:6px;
+  color:var(--muted);
+}
+.kicker {
+  font:600 8px/1.35 "JetBrains Mono",monospace;
+  color:var(--primary);
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:3px;
+}
+.doc-title {
+  margin:0;
+  font-size:22px;
+  line-height:1.08;
+  letter-spacing:-.02em;
+}
+.doc-subtitle {
+  margin:4px 0 0;
+  font-size:9.5px;
+  line-height:1.4;
+  color:var(--muted);
+}
+.metadata {
+  font:400 7.5px/1.45 "JetBrains Mono",monospace;
+  color:var(--muted);
+}
+.metadata strong {
+  color:var(--ink);
+  font-weight:600;
+}
+.metadata.right { text-align:right; }
+
+.continuation-header {
+  display:none;
+  grid-template-columns:auto 1fr auto;
+  gap:10px;
+  align-items:center;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:7px;
+}
+.continuation-header .mini-mark {
+  width:25px;
+  height:25px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--ink);
+  border-radius:50%;
+  color:var(--primary);
+  font:600 7px "JetBrains Mono",monospace;
+}
+.continuation-header strong {
+  font-size:10px;
+}
+.continuation-header span {
+  font:7px "JetBrains Mono",monospace;
+  color:var(--muted);
+}
+.page.continuation .identity-header { display:none; }
+.page.continuation .continuation-header { display:grid; }
+
+.page-body {
+  flex:1 1 auto;
+  min-height:0;
+  padding-top:calc(14px * var(--density));
+  display:grid;
+  gap:calc(13px * var(--density));
+  align-content:start;
+}
+.grid-modular {
+  grid-template-columns:repeat(12,1fr);
+}
+.grid-two {
+  grid-template-columns:minmax(0,3fr) minmax(0,2fr);
+}
+.grid-single {
+  grid-template-columns:1fr;
+}
+.span-12 { grid-column:span 12; }
+.span-8 { grid-column:span 8; }
+.span-7 { grid-column:span 7; }
+.span-6 { grid-column:span 6; }
+.span-5 { grid-column:span 5; }
+.span-4 { grid-column:span 4; }
+.span-3 { grid-column:span 3; }
+
+.block {
+  min-width:0;
+}
+.section-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin:0 0 calc(6px * var(--density));
+  padding-bottom:4px;
+  border-bottom:1px solid var(--rule);
+}
+.section-heading h2 {
+  margin:0;
+  font-size:12px;
+  line-height:1.2;
+}
+.section-heading code {
+  font:7px "JetBrains Mono",monospace;
+  color:var(--muted);
+}
+.body-copy {
+  margin:0 0 calc(6px * var(--density));
+  font-size:9.5px;
+  line-height:1.45;
+}
+.directions {
+  margin:0;
+  padding-left:18px;
+  font-size:9.25px;
+  line-height:1.45;
+}
+.directions li { margin-bottom:3px; }
+
+.callout {
+  border-left:3px solid var(--primary);
+  background:var(--soft);
+  padding:calc(8px * var(--density)) 10px;
+  font-size:8.75px;
+  line-height:1.42;
+}
+.callout strong {
+  display:block;
+  margin-bottom:2px;
+  font-size:9px;
+}
+.data-row {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--rule);
+}
+.data-row > div {
+  padding:6px 8px;
+  border-right:1px solid var(--rule);
+}
+.data-row > div:last-child { border-right:0; }
+.data-row label {
+  display:block;
+  font:6.8px "JetBrains Mono",monospace;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+.data-row strong {
+  display:block;
+  margin-top:3px;
+  font-size:8.8px;
+}
+.response-box {
+  min-height:95px;
+  border:1.25px solid var(--ink);
+  background:#fff;
+}
+.response-box.short { min-height:55px; }
+.response-box.tall { min-height:150px; }
+
+.figure-placeholder {
+  min-height:205px;
+  border:1px solid var(--rule);
+  background:
+    linear-gradient(135deg,transparent 0 48%,rgba(140,154,168,.16) 49% 51%,transparent 52% 100%),
+    var(--panel-light);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:18px;
+}
+.figure-placeholder strong {
+  display:block;
+  font:600 9px "JetBrains Mono",monospace;
+  color:var(--ink);
+  letter-spacing:.06em;
+}
+.figure-placeholder span {
+  display:block;
+  max-width:230px;
+  margin-top:5px;
+  font-size:8px;
+  line-height:1.4;
+  color:var(--muted);
+}
+.figure-caption {
+  margin:5px 0 0;
+  font-size:7.5px;
+  line-height:1.35;
+  color:var(--muted);
+}
+.simple-table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:8px;
+}
+.simple-table th,
+.simple-table td {
+  border:1px solid var(--rule);
+  padding:5px 6px;
+  text-align:left;
+  vertical-align:top;
+}
+.simple-table th {
+  background:var(--panel);
+  font:600 7px "JetBrains Mono",monospace;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.check-list {
+  display:grid;
+  gap:5px;
+  font-size:8.75px;
+}
+.check-row {
+  display:grid;
+  grid-template-columns:14px 1fr;
+  gap:7px;
+}
+.check-box {
+  width:12px;
+  height:12px;
+  border:1px solid var(--ink);
+  margin-top:1px;
+}
+.teacher-note {
+  border:1px solid var(--rule);
+  background:var(--panel-light);
+  padding:8px;
+  font-size:8px;
+  line-height:1.4;
+}
+.teacher-note b {
+  font-family:"JetBrains Mono",monospace;
+  font-size:7px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+.footer {
+  flex:0 0 auto;
+  margin-top:10px;
+  color:var(--muted);
+  font:400 6.8px/1.35 "JetBrains Mono",monospace;
+}
+.footer-a {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:12px;
+  padding-top:7px;
+  border-top:1px solid var(--rule);
+}
+.footer-b {
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:8px;
+  align-items:center;
+}
+.footer-b .page-tab {
+  padding:4px 7px;
+  background:var(--primary);
+  color:white;
+  font-weight:600;
+}
+.footer-b .footer-line {
+  border-top:1px solid var(--rule);
+}
+.footer-c {
+  text-align:center;
+  padding-top:6px;
+  border-top:1px solid var(--rule);
+}
+.footer-c strong { color:var(--ink); }
+
+.page.header-b-choice .header-a,
+.page.header-b-choice .header-c { display:none; }
+.page.header-a-choice .header-b,
+.page.header-a-choice .header-c { display:none; }
+.page.header-c-choice .header-a,
+.page.header-c-choice .header-b { display:none; }
+
+.page.footer-a-choice .footer-b,
+.page.footer-a-choice .footer-c { display:none; }
+.page.footer-b-choice .footer-a,
+.page.footer-b-choice .footer-c { display:none; }
+.page.footer-c-choice .footer-a,
+.page.footer-c-choice .footer-b { display:none; }
+
+.page.template-student .teacher-only,
+.page.template-evidence .teacher-only { display:none; }
+.page.template-teacher .student-only { display:none; }
+.page.template-formal .student-only { display:none; }
+.page:not(.template-formal) .formal-only { display:none; }
+
+.annotation {
+  display:none;
+  position:absolute;
+  z-index:30;
+  color:#8f2f2f;
+  font:600 8px "JetBrains Mono",monospace;
+  background:#fff;
+  border:1px solid #8f2f2f;
+  padding:3px 5px;
+}
+.page.show-anatomy .annotation { display:block; }
+.ann-header { top:15px; left:310px; }
+.ann-margin { top:105px; left:6px; }
+.ann-body { top:470px; left:10px; }
+.ann-footer { bottom:13px; left:335px; }
+
+.review {
+  margin-top:14px;
+  padding:13px;
+  background:#fff;
+  border:1px solid var(--ui-line);
+  border-radius:8px;
+}
+.review h2 {
+  margin:0 0 9px;
+  font-size:15px;
+}
+.review-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+.mini {
+  border:1px solid var(--ui-line);
+  border-radius:5px;
+  padding:9px;
+  font-size:11px;
+  line-height:1.4;
+}
+.mini strong {
+  display:block;
+  margin-bottom:4px;
+}
+.mini code {
+  font:10px "JetBrains Mono",monospace;
+  color:var(--ui-muted);
+}
+.offline {
+  margin-top:8px;
+  color:var(--ui-muted);
+  font-size:11px;
+}
+
+@media (max-width:1100px) {
+  .layout { grid-template-columns:1fr; }
+  .preview-shell { position:static; }
+}
+@media (max-width:650px) {
+  .app { padding:10px; }
+  .topbar { display:block; }
+  .notice { max-width:none; margin-top:10px; }
+  .review-grid { grid-template-columns:1fr; }
+  .preview-stage { padding:7px; }
+}
+@media print {
+  .topbar,.controls,.preview-toolbar,.review { display:none!important; }
+  .layout { display:block; }
+  .preview-stage { border:0;background:#fff;padding:0; }
+  .page { box-shadow:none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div>
+      <h1>Visual Style Guide v0.4 Page Architecture Lab</h1>
+      <p>Compare the shared Letter-page grid, document anatomy, header, footer, margin, and density choices that will govern both curricula.</p>
+    </div>
+    <div class="notice">
+      <strong>Scope guard</strong><br>
+      The circular mark is only a labeled location placeholder. The figure area is only a layout block. Neither is proposed insignia or diagram artwork.
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="controls" aria-label="Page architecture controls">
+      <section class="card">
+        <h2>Institution preview</h2>
+        <div class="segmented">
+          <button type="button" data-project="sss" aria-pressed="true">SSS / SAA</button>
+          <button type="button" data-project="hhh" aria-pressed="false">HHH / TAA</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Document role</h2>
+        <div class="segmented four">
+          <button type="button" data-template="student" aria-pressed="true">Student mission</button>
+          <button type="button" data-template="evidence" aria-pressed="false">Evidence page</button>
+          <button type="button" data-template="teacher" aria-pressed="false">Teacher quick start</button>
+          <button type="button" data-template="formal" aria-pressed="false">Formal lesson page</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Header architecture</h2>
+        <p class="help">The mark area stays subordinate to the curriculum title and never becomes a decorative picture frame.</p>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="header" value="a" checked>
+            <span>
+              <strong>Identity Rail <span class="recommended">Recommended</span></strong>
+              <small>Accent rail, compact mark slot, title stack, and right-aligned metadata. Strongest shared system.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="header" value="b">
+            <span>
+              <strong>Technical Masthead</strong>
+              <small>Top identity bar with a full metadata row. More formal but consumes more vertical space.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="header" value="c">
+            <span>
+              <strong>Mission Title Block</strong>
+              <small>Closest to the existing prototype. Efficient, but the institutional relationship is weaker.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Underlying page grid</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="grid" value="modular" checked>
+            <span>
+              <strong>12-column modular grid <span class="recommended">Recommended</span></strong>
+              <small>Supports single-column, 7/5, 8/4, 6/6, and 4/4/4 compositions without changing systems.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="grid" value="two">
+            <span>
+              <strong>Fixed 60/40 grid</strong>
+              <small>Predictable for evidence pages, but too restrictive across teacher and student templates.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="grid" value="single">
+            <span>
+              <strong>Single-column base</strong>
+              <small>Most readable for prose, but wastes space in compact mission and reference documents.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Page margins</h2>
+        <p class="help">All document roles default to 0.50-inch margins. Wider margins remain optional when a specific page needs additional readability.</p>
+        <div class="segmented three">
+          <button type="button" data-margin="48" aria-pressed="true">0.50 in</button>
+          <button type="button" data-margin="60" aria-pressed="false">0.625 in</button>
+          <button type="button" data-margin="67" aria-pressed="false">0.70 in</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Information density</h2>
+        <div class="segmented three">
+          <button type="button" data-density="1.18" aria-pressed="false">Open</button>
+          <button type="button" data-density="1" aria-pressed="true">Balanced</button>
+          <button type="button" data-density=".82" aria-pressed="false">Compact</button>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Footer architecture</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="footer" value="a" checked>
+            <span>
+              <strong>Split metadata rule <span class="recommended">Recommended</span></strong>
+              <small>Compatibility and document code on the left; page count on the right.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="footer" value="b">
+            <span>
+              <strong>Number tab</strong>
+              <small>Strong page navigation, but more visually assertive and less neutral.</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="footer" value="c">
+            <span>
+              <strong>Centered publication line</strong>
+              <small>Quiet and formal, but harder to scan in long teacher packets.</small>
+            </span>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Decision output</h2>
+        <div class="action-row">
+          <button type="button" class="primary" id="download">Download decision note</button>
+          <button type="button" id="reset">Reset recommendation</button>
+        </div>
+        <div class="summary" id="summary" aria-live="polite"></div>
+      </section>
+    </aside>
+
+    <main class="preview-shell">
+      <div class="preview-toolbar">
+        <div class="group">
+          <strong style="font-size:13px">Live Letter-page preview</strong>
+          <button type="button" id="first-page" aria-pressed="true">First page</button>
+          <button type="button" id="continuation" aria-pressed="false">Continuation</button>
+          <button type="button" id="color" aria-pressed="true">Color</button>
+          <button type="button" id="gray" aria-pressed="false">Grayscale</button>
+        </div>
+        <div class="group">
+          <button type="button" id="grid-toggle" aria-pressed="false">12-col overlay</button>
+          <button type="button" id="baseline-toggle" aria-pressed="false">Baseline</button>
+          <button type="button" id="margin-toggle" aria-pressed="false">Margins</button>
+          <button type="button" id="anatomy-toggle" aria-pressed="false">Anatomy</button>
+          <label for="scale">Scale</label>
+          <select id="scale">
+            <option value=".62">62%</option>
+            <option value=".72" selected>72%</option>
+            <option value=".82">82%</option>
+            <option value="1">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="preview-stage">
+        <div class="scale-wrap" id="scale-wrap">
+          <article class="page header-a-choice footer-a-choice template-student" id="page">
+            <div class="grid-overlay" aria-hidden="true">
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="baseline-overlay" aria-hidden="true"></div>
+            <div class="annotation ann-header">IDENTITY HEADER</div>
+            <div class="annotation ann-margin">SAFE MARGIN</div>
+            <div class="annotation ann-body">MODULAR BODY</div>
+            <div class="annotation ann-footer">PUBLICATION FOOTER</div>
+
+            <div class="page-inner">
+              <header class="identity-header">
+                <div class="header-a">
+                  <div class="accent-rail"></div>
+                  <div class="mark-slot"><span id="mark-a">SAA<small>MARK SLOT</small></span></div>
+                  <div>
+                    <div class="kicker" id="kicker-a">Solar Agricultural Authority · Student Mission</div>
+                    <h1 class="doc-title" id="title-a">Case 01 · ISS Greenhouse Module</h1>
+                    <p class="doc-subtitle" id="subtitle-a">Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity</p>
+                  </div>
+                  <div class="metadata right">
+                    <div><strong id="code-a">SSS-C1-01</strong></div>
+                    <div>CURRICULUM v0.3</div>
+                    <div>GAME 2a6e8a7</div>
+                    <div>STUDENT RECORD</div>
+                  </div>
+                </div>
+
+                <div class="header-b">
+                  <div class="mark-slot"><span id="mark-b">SAA<small>MARK SLOT</small></span></div>
+                  <div>
+                    <div class="kicker" id="kicker-b">Solar Agricultural Authority · Student Mission</div>
+                    <h1 class="doc-title" id="title-b">Case 01 · ISS Greenhouse Module</h1>
+                    <p class="doc-subtitle" id="subtitle-b">Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity</p>
+                  </div>
+                  <div class="metadata">
+                    <div><span>DOCUMENT</span><br><strong id="code-b">SSS-C1-01</strong></div>
+                    <div><span>CURRICULUM</span><br><strong>v0.3</strong></div>
+                    <div><span>COMPATIBILITY</span><br><strong>2a6e8a7</strong></div>
+                    <div><span>EDITION</span><br><strong>STUDENT</strong></div>
+                  </div>
+                </div>
+
+                <div class="header-c">
+                  <div class="title-stack">
+                    <div class="kicker" id="kicker-c">Solar Agricultural Authority · Student Mission</div>
+                    <h1 class="doc-title" id="title-c">Case 01 · ISS Greenhouse Module</h1>
+                    <p class="doc-subtitle" id="subtitle-c">Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity</p>
+                    <div class="metadata">
+                      <span><strong id="code-c">SSS-C1-01</strong></span>
+                      <span>CURRICULUM v0.3</span>
+                      <span>GAME 2a6e8a7</span>
+                    </div>
+                  </div>
+                  <div class="mark-slot"><span id="mark-c">SAA<small>MARK SLOT</small></span></div>
+                </div>
+              </header>
+
+              <header class="continuation-header">
+                <div class="mini-mark" id="mini-mark">SAA</div>
+                <div>
+                  <strong id="continuation-title">Case 01 · ISS Greenhouse Module</strong><br>
+                  <span id="continuation-label">STUDENT MISSION · CONTINUED</span>
+                </div>
+                <span id="continuation-code">SSS-C1-01</span>
+              </header>
+
+              <div class="page-body grid-modular" id="page-body">
+                <section class="block span-12 student-only">
+                  <div class="data-row">
+                    <div><label>Student</label><strong>________________________</strong></div>
+                    <div><label>Class / period</label><strong>________________</strong></div>
+                    <div><label>Date</label><strong>______________</strong></div>
+                  </div>
+                </section>
+
+                <section class="block span-7 student-only">
+                  <div class="section-heading"><h2>Mission question</h2><code>01 · LAUNCH</code></div>
+                  <p class="body-copy" id="mission-question">Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?</p>
+                  <div class="callout">
+                    <strong id="focus-label">Science focus · Gravitropism</strong>
+                    <span id="focus-copy">Investigate how plants sense direction and why microgravity changes the cues available to roots and shoots.</span>
+                  </div>
+                </section>
+
+                <section class="block span-5 student-only">
+                  <div class="section-heading"><h2>Start here</h2><code>READ · RECORD</code></div>
+                  <ol class="directions">
+                    <li>Open the case.</li>
+                    <li>Read the mission question.</li>
+                    <li>Record evidence that helps explain the failure.</li>
+                    <li>Complete the diagnosis after it unlocks.</li>
+                  </ol>
+                </section>
+
+                <section class="block span-7 student-only">
+                  <div class="section-heading"><h2>Evidence task</h2><code>02 · INVESTIGATE</code></div>
+                  <table class="simple-table">
+                    <thead><tr><th>Evidence source</th><th>Observation</th><th>Why it matters</th></tr></thead>
+                    <tbody>
+                      <tr><td>Plant inspection</td><td></td><td></td></tr>
+                      <tr><td>Environment readings</td><td></td><td></td></tr>
+                      <tr><td>Mission record</td><td></td><td></td></tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <section class="block span-5 student-only">
+                  <div class="section-heading"><h2>Figure area</h2><code>EXPLANATORY ONLY</code></div>
+                  <div class="figure-placeholder">
+                    <div>
+                      <strong>APPROVED FIGURE OR DIAGRAM</strong>
+                      <span>This box tests page space only. No diagram style or artwork is being proposed here.</span>
+                    </div>
+                  </div>
+                  <p class="figure-caption">Figure 1. Caption, source, and grayscale-independent explanation.</p>
+                </section>
+
+                <section class="block span-6 student-only">
+                  <div class="section-heading"><h2>Initial thinking</h2><code>UNGRADED</code></div>
+                  <div class="response-box short"></div>
+                </section>
+
+                <section class="block span-6 student-only">
+                  <div class="section-heading"><h2>Evidence-based diagnosis</h2><code>CLAIM · MECHANISM</code></div>
+                  <div class="response-box short"></div>
+                </section>
+
+                <section class="block span-12 teacher-only">
+                  <div class="data-row">
+                    <div><label>Duration</label><strong>60 minutes</strong></div>
+                    <div><label>Gameplay</label><strong>~20 minutes</strong></div>
+                    <div><label>Collection</label><strong>Mission sheet + exit ticket</strong></div>
+                  </div>
+                </section>
+
+                <section class="block span-8 teacher-only">
+                  <div class="section-heading"><h2>Lesson purpose</h2><code>TEACHER QUICK START</code></div>
+                  <p class="body-copy">Students investigate a plant-orientation failure in microgravity, distinguish symptoms from causes, and propose a feasible directional cue.</p>
+                  <div class="callout">
+                    <strong>Correct diagnosis</strong>
+                    Missing or altered gravity cues disrupt normal root and shoot orientation responses.
+                  </div>
+                </section>
+
+                <section class="block span-4 teacher-only">
+                  <div class="section-heading"><h2>Prepare</h2><code>BEFORE CLASS</code></div>
+                  <div class="check-list">
+                    <div class="check-row"><i class="check-box"></i><span>Open the game and case.</span></div>
+                    <div class="check-row"><i class="check-box"></i><span>Print or share the student sheet.</span></div>
+                    <div class="check-row"><i class="check-box"></i><span>Confirm the fallback evidence digest.</span></div>
+                  </div>
+                </section>
+
+                <section class="block span-7 teacher-only">
+                  <div class="section-heading"><h2>Procedure</h2><code>BY TIME</code></div>
+                  <table class="simple-table">
+                    <thead><tr><th>Time</th><th>Teacher action</th><th>Student action</th></tr></thead>
+                    <tbody>
+                      <tr><td>0–10</td><td>Launch the phenomenon.</td><td>Record initial thinking.</td></tr>
+                      <tr><td>10–30</td><td>Monitor investigation.</td><td>Play and gather evidence.</td></tr>
+                      <tr><td>30–48</td><td>Prompt evidence reasoning.</td><td>Diagnose and complete CER.</td></tr>
+                      <tr><td>48–60</td><td>Facilitate transfer.</td><td>Apply and exit.</td></tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <section class="block span-5 teacher-only">
+                  <div class="section-heading"><h2>Watch for</h2><code>MISCONCEPTIONS</code></div>
+                  <div class="teacher-note"><b>Do not say:</b><br>Roots become completely random in space.</div>
+                  <div class="teacher-note" style="margin-top:6px"><b>Emphasize:</b><br>Plants use several interacting signals; the case isolates one important directional cue.</div>
+                </section>
+
+                <section class="block span-12 formal-only">
+                  <div class="section-heading"><h2>Formal lesson-plan section</h2><code>CONTROLLED SOURCE</code></div>
+                  <p class="body-copy">Formal lesson pages use the same identity header, grid, and publication footer. Longer prose defaults to one column, while standards, objectives, materials, and procedure may use modular columns.</p>
+                </section>
+              </div>
+
+              <footer class="footer">
+                <div class="footer-a">
+                  <span id="footer-a-left">SSS · CURRICULUM v0.3 · COMPATIBLE GAME 2a6e8a7 · DRAFT</span>
+                  <span><strong>PAGE 1 OF 2</strong></span>
+                </div>
+                <div class="footer-b">
+                  <span class="page-tab">01 / 02</span>
+                  <span class="footer-line"></span>
+                  <span id="footer-b-right">SSS-C1-01 · STUDENT MISSION</span>
+                </div>
+                <div class="footer-c">
+                  <span id="footer-c-center"><strong>SSS-C1-01</strong> · CURRICULUM v0.3 · COMPATIBLE GAME 2a6e8a7 · PAGE 1 OF 2</span>
+                </div>
+              </footer>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <section class="review">
+        <h2>What this checkpoint will lock</h2>
+        <div class="review-grid">
+          <div class="mini"><strong>Shared geometry</strong><code>US LETTER · 12 COLUMNS · 8 PX BASELINE</code><br>One underlying system with multiple page compositions.</div>
+          <div class="mini"><strong>Page hierarchy</strong><code>FULL FIRST HEADER · COMPACT CONTINUATION</code><br>Identity remains clear without repeating a large masthead on every page.</div>
+          <div class="mini"><strong>Publication metadata</strong><code>FOOTER · VERSION · COMPATIBILITY · PAGE</code><br>Required release information stays visible but subordinate.</div>
+        </div>
+        <p class="offline">Inter and JetBrains Mono are loaded from Google Fonts for comparison. Browser fallbacks appear offline; the architecture controls still function.</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+const projectData = {
+  sss: {
+    primary:"#0b6f82", secondary:"#147a45", soft:"#e7f3f5",
+    mark:"SAA", institution:"Solar Agricultural Authority",
+    studentType:"Student Mission", evidenceType:"Evidence Record",
+    teacherType:"Teacher Quick Start", formalType:"Formal Lesson Plan",
+    title:"Case 01 · ISS Greenhouse Module",
+    subtitle:"Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity",
+    code:"SSS-C1-01",
+    short:"SSS",
+    focus:"Science focus · Gravitropism",
+    focusCopy:"Investigate how plants sense direction and why microgravity changes the cues available to roots and shoots.",
+    question:"Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?"
+  },
+  hhh: {
+    primary:"#8a5a00", secondary:"#0b6f82", soft:"#f5eddd",
+    mark:"TAA", institution:"Temporal Agricultural Archive",
+    studentType:"Student Evidence Record", evidenceType:"Archive Evidence Page",
+    teacherType:"Teacher Quick Start", formalType:"Formal Lesson Plan",
+    title:"Case 01 · The First Fields",
+    subtitle:"Campaign 1 · Agricultural Origins · Comparing Historical Evidence",
+    code:"HHH-C1-01",
+    short:"HHH",
+    focus:"History focus · Evidence and provenance",
+    focusCopy:"Compare what different records can establish, when they were created, and how later claims depend on earlier evidence.",
+    question:"Which surviving evidence most strongly supports the explanation for how this agricultural change occurred?"
+  }
+};
+
+const templateLabels = {
+  student:"STUDENT MISSION",
+  evidence:"EVIDENCE PAGE",
+  teacher:"TEACHER QUICK START",
+  formal:"FORMAL LESSON PLAN"
+};
+
+const state = {
+  project:"sss",
+  template:"student",
+  header:"a",
+  grid:"modular",
+  margin:48,
+  density:1,
+  footer:"a",
+  continuation:false,
+  grayscale:false,
+  showGrid:false,
+  showBaseline:false,
+  showMargins:false,
+  showAnatomy:false,
+  scale:.72
+};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+function press(selector, current) {
+  $$(selector).forEach(b => b.setAttribute("aria-pressed", b === current ? "true" : "false"));
+}
+
+function activeType(data) {
+  if (state.template === "student") return data.studentType;
+  if (state.template === "evidence") return data.evidenceType;
+  if (state.template === "teacher") return data.teacherType;
+  return data.formalType;
+}
+
+function updateContent() {
+  const d = projectData[state.project];
+  document.documentElement.style.setProperty("--primary", d.primary);
+  document.documentElement.style.setProperty("--secondary", d.secondary);
+  document.documentElement.style.setProperty("--soft", d.soft);
+
+  ["a","b","c"].forEach(s => {
+    $(`#mark-${s}`).innerHTML = `${d.mark}<small>MARK SLOT</small>`;
+    $(`#kicker-${s}`).textContent = `${d.institution} · ${activeType(d)}`;
+    $(`#title-${s}`).textContent = d.title;
+    $(`#subtitle-${s}`).textContent = d.subtitle;
+    $(`#code-${s}`).textContent = d.code;
+  });
+  $("#mini-mark").textContent = d.mark;
+  $("#continuation-title").textContent = d.title;
+  $("#continuation-label").textContent = `${templateLabels[state.template]} · CONTINUED`;
+  $("#continuation-code").textContent = d.code;
+  $("#mission-question").textContent = d.question;
+  $("#focus-label").textContent = d.focus;
+  $("#focus-copy").textContent = d.focusCopy;
+  const pageNumber = state.continuation ? "2" : "1";
+  $("#footer-a-left").textContent = `${d.short} · CURRICULUM v0.3 · COMPATIBLE GAME RELEASE · DRAFT`;
+  $(".footer-a span:last-child").innerHTML = `<strong>PAGE ${pageNumber} OF 2</strong>`;
+  $(".footer-b .page-tab").textContent = `${pageNumber.padStart(2,"0")} / 02`;
+  $("#footer-b-right").textContent = `${d.code} · ${templateLabels[state.template]}`;
+  $("#footer-c-center").innerHTML = `<strong>${d.code}</strong> · CURRICULUM v0.3 · COMPATIBLE GAME RELEASE · PAGE ${pageNumber} OF 2`;
+}
+
+function updatePage() {
+  const page = $("#page");
+  page.className = [
+    "page",
+    `header-${state.header}-choice`,
+    `footer-${state.footer}-choice`,
+    `template-${state.template}`,
+    state.continuation ? "continuation" : "",
+    state.grayscale ? "grayscale" : "",
+    state.showGrid ? "show-grid" : "",
+    state.showBaseline ? "show-baseline" : "",
+    state.showMargins ? "show-guides" : "",
+    state.showAnatomy ? "show-anatomy" : ""
+  ].filter(Boolean).join(" ");
+
+  const body = $("#page-body");
+  body.className = `page-body grid-${state.grid}`;
+
+  const modularSpans = $$("#page-body > .block");
+  if (state.grid === "two") {
+    modularSpans.forEach((el,i) => {
+      el.style.gridColumn = "auto";
+      if (el.classList.contains("span-12")) el.style.gridColumn = "1 / -1";
+    });
+  } else if (state.grid === "single") {
+    modularSpans.forEach(el => el.style.gridColumn = "1 / -1");
+  } else {
+    modularSpans.forEach(el => el.style.gridColumn = "");
+  }
+
+  document.documentElement.style.setProperty("--margin", `${state.margin}px`);
+  document.documentElement.style.setProperty("--density", state.density);
+
+  const wrap = $("#scale-wrap");
+  wrap.style.transform = `scale(${state.scale})`;
+  wrap.style.width = `${816 * state.scale}px`;
+  wrap.style.height = `${1056 * state.scale}px`;
+}
+
+function decisionMarkdown() {
+  const d = projectData[state.project];
+  const marginLabel = state.margin === 48 ? "0.50 in" : state.margin === 60 ? "0.625 in" : "0.70 in";
+  const densityLabel = state.density > 1 ? "Open" : state.density < 1 ? "Compact" : "Balanced";
+  const headerLabel = {a:"Identity Rail",b:"Technical Masthead",c:"Mission Title Block"}[state.header];
+  const gridLabel = {modular:"12-column modular grid",two:"Fixed 60/40 grid",single:"Single-column base"}[state.grid];
+  const footerLabel = {a:"Split metadata rule",b:"Number tab",c:"Centered publication line"}[state.footer];
+
+  return `# VISUAL_STYLE_GUIDE_v0.4 — Decision Note
+
+## Selected Preview
+
+- Institution preview: ${state.project === "sss" ? "Space Sprout Sleuth / SAA" : "Hunger, Harvest, & History / TAA"}
+- Document role viewed: ${activeType(d)}
+- Header architecture: ${headerLabel}
+- Underlying page grid: ${gridLabel}
+- Margin preview: ${marginLabel}
+- Information density: ${densityLabel}
+- Footer architecture: ${footerLabel}
+- Continuation-page preview viewed: ${state.continuation ? "Yes" : "No"}
+- Grayscale preview viewed: ${state.grayscale ? "Yes" : "No"}
+- Grid overlay viewed: ${state.showGrid ? "Yes" : "No"}
+- Baseline overlay viewed: ${state.showBaseline ? "Yes" : "No"}
+
+## Proposed Shared Rules
+
+- [ ] Use a full institutional header on the first page.
+- [ ] Use a compact continuation header on later pages.
+- [ ] Use the same underlying grid for SSS and HHH.
+- [ ] Keep compatibility and version metadata in the footer.
+- [ ] Approve 0.50-inch margins as the default for every document role.
+- [ ] Keep wider margins available only as a page-specific exception.
+- [ ] Approve the selected balanced/open/compact density as default.
+- [ ] Request revisions.
+
+## Notes
+
+Add any changes or exceptions here before v0.4 is locked.
+`;
+}
+
+function render() {
+  updateContent();
+  updatePage();
+  $("#summary").textContent = decisionMarkdown();
+}
+
+$$("[data-project]").forEach(b => b.addEventListener("click", () => {
+  state.project = b.dataset.project;
+  press("[data-project]", b);
+  render();
+}));
+$$("[data-template]").forEach(b => b.addEventListener("click", () => {
+  state.template = b.dataset.template;
+  press("[data-template]", b);
+  render();
+}));
+$$('input[name="header"]').forEach(i => i.addEventListener("change", () => {
+  state.header = i.value;
+  render();
+}));
+$$('input[name="grid"]').forEach(i => i.addEventListener("change", () => {
+  state.grid = i.value;
+  render();
+}));
+$$("[data-margin]").forEach(b => b.addEventListener("click", () => {
+  state.margin = Number(b.dataset.margin);
+  press("[data-margin]", b);
+  render();
+}));
+$$("[data-density]").forEach(b => b.addEventListener("click", () => {
+  state.density = Number(b.dataset.density);
+  press("[data-density]", b);
+  render();
+}));
+$$('input[name="footer"]').forEach(i => i.addEventListener("change", () => {
+  state.footer = i.value;
+  render();
+}));
+
+$("#first-page").addEventListener("click", () => {
+  state.continuation = false;
+  press("#first-page,#continuation", $("#first-page"));
+  render();
+});
+$("#continuation").addEventListener("click", () => {
+  state.continuation = true;
+  press("#first-page,#continuation", $("#continuation"));
+  render();
+});
+$("#color").addEventListener("click", () => {
+  state.grayscale = false;
+  press("#color,#gray", $("#color"));
+  render();
+});
+$("#gray").addEventListener("click", () => {
+  state.grayscale = true;
+  press("#color,#gray", $("#gray"));
+  render();
+});
+$("#grid-toggle").addEventListener("click", e => {
+  state.showGrid = !state.showGrid;
+  e.currentTarget.setAttribute("aria-pressed", state.showGrid);
+  render();
+});
+$("#baseline-toggle").addEventListener("click", e => {
+  state.showBaseline = !state.showBaseline;
+  e.currentTarget.setAttribute("aria-pressed", state.showBaseline);
+  render();
+});
+$("#margin-toggle").addEventListener("click", e => {
+  state.showMargins = !state.showMargins;
+  e.currentTarget.setAttribute("aria-pressed", state.showMargins);
+  render();
+});
+$("#anatomy-toggle").addEventListener("click", e => {
+  state.showAnatomy = !state.showAnatomy;
+  e.currentTarget.setAttribute("aria-pressed", state.showAnatomy);
+  render();
+});
+$("#scale").addEventListener("change", e => {
+  state.scale = Number(e.target.value);
+  render();
+});
+
+$("#reset").addEventListener("click", () => {
+  Object.assign(state, {
+    project:"sss", template:"student", header:"a", grid:"modular",
+    margin:48, density:1, footer:"a", continuation:false,
+    grayscale:false, showGrid:false, showBaseline:false,
+    showMargins:false, showAnatomy:false, scale:.72
+  });
+  press("[data-project]", $('[data-project="sss"]'));
+  press("[data-template]", $('[data-template="student"]'));
+  $('input[name="header"][value="a"]').checked = true;
+  $('input[name="grid"][value="modular"]').checked = true;
+  press("[data-margin]", $('[data-margin="48"]'));
+  press("[data-density]", $('[data-density="1"]'));
+  $('input[name="footer"][value="a"]').checked = true;
+  press("#first-page,#continuation", $("#first-page"));
+  press("#color,#gray", $("#color"));
+  ["grid-toggle","baseline-toggle","margin-toggle","anatomy-toggle"].forEach(id => $(`#${id}`).setAttribute("aria-pressed","false"));
+  $("#scale").value = ".72";
+  render();
+});
+
+$("#download").addEventListener("click", () => {
+  const blob = new Blob([decisionMarkdown()], {type:"text/markdown;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "VISUAL_STYLE_GUIDE_v0.4_DECISIONS.md";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+});
+
+press("[data-project]", $('[data-project="sss"]'));
+press("[data-template]", $('[data-template="student"]'));
+press("[data-margin]", $('[data-margin="48"]'));
+press("[data-density]", $('[data-density="1"]'));
+press("#first-page,#continuation", $("#first-page"));
+press("#color,#gray", $("#color"));
+render();
+</script>
+</body>
+</html>
