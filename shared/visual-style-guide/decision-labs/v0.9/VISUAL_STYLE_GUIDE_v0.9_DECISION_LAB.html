@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visual Style Guide v0.9 Decision Lab</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+:root{--bg:#e9edf0;--paper:#fff;--ink:#18212b;--muted:#4b5967;--rule:#8c9aa8;--panel:#edf1f4;--soft:#e7f3f5;--primary:#0b6f82;--success:#236b3b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,Arial,sans-serif;color:var(--ink)}
+button,input{font:inherit}button{min-height:38px;border:1px solid #c8d0d6;border-radius:6px;background:#fff;padding:7px 10px;cursor:pointer}
+.app{max-width:1480px;margin:auto;padding:18px}.top{display:flex;justify-content:space-between;gap:18px;margin-bottom:14px}.top h1{margin:0 0 5px;font-size:24px}.top p{margin:0;color:var(--muted);max-width:850px}
+.layout{display:grid;grid-template-columns:400px 1fr;gap:15px}.controls{display:grid;gap:10px}.card{background:#fff;border:1px solid #c8d0d6;border-radius:8px;padding:13px}.card h2{font-size:15px;margin:0 0 8px}
+.option{display:grid;grid-template-columns:18px 1fr;gap:8px;border:1px solid #c8d0d6;border-radius:6px;padding:8px;margin-top:6px}.option:has(input:checked){border-color:var(--primary);box-shadow:inset 3px 0 var(--primary)}.option strong{font-size:13px}.option small{display:block;color:var(--muted);margin-top:2px}
+.rec{font:600 9px "JetBrains Mono",monospace;color:var(--primary)}.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.summary{white-space:pre-wrap;background:#f5f7f8;border:1px solid #c8d0d6;border-radius:5px;padding:9px;margin-top:8px;font:11px/1.5 "JetBrains Mono",monospace;max-height:300px;overflow:auto}
+.stage{background:#d8dde1;border:1px solid #c8d0d6;border-radius:8px;padding:18px;overflow:auto}.page{width:816px;min-height:1056px;margin:auto;background:#fff;padding:48px;box-shadow:0 5px 23px #0003}.page.gray{filter:grayscale(1)}
+.mission-header{display:grid;grid-template-columns:1fr 58px;gap:14px;align-items:start;padding-bottom:10px;border-bottom:3px solid var(--primary)}.title-stack{border-left:4px solid var(--primary);padding-left:12px}.kicker{font:600 8px/1.35 "JetBrains Mono",monospace;color:var(--primary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}.mission-header h1{font-size:22px;line-height:1.08;letter-spacing:-.02em;margin:0}.mission-subtitle{margin:4px 0 0;font-size:9.5px;line-height:1.4;color:var(--muted)}.header-mark{width:52px;height:52px;display:grid;place-items:center}.header-mark img{display:block;width:52px;height:52px;object-fit:contain}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.full{grid-column:1/-1}.heading{display:flex;gap:7px;align-items:center;margin-bottom:6px}.label{border:1px solid var(--primary);border-radius:3px;padding:3px 5px;font:600 7px "JetBrains Mono",monospace;color:var(--primary)}.heading h2{font-size:12px;margin:0}
+.cer{border:1px solid var(--ink);border-radius:3px;padding:8px}.cer-row{padding:7px 0;border-bottom:1px solid var(--rule)}.cer-row:last-child{border:0}.cer-row strong{font-size:8px}.blank{height:38px}.guide{font:7px "JetBrains Mono",monospace;color:var(--muted)}
+.vocab{border:1px solid var(--rule);border-radius:3px;overflow:hidden}.term{display:grid;grid-template-columns:1fr 2fr;gap:6px;padding:7px;border-bottom:1px solid var(--rule);font-size:7.5px}.term:last-child{border:0}.term strong{font-size:8px}.term span{color:var(--muted)}
+.forms,.answer,.print{border:1px solid var(--rule);border-radius:3px;padding:9px;font-size:8px}.check{display:inline-block;width:14px;height:14px;border:1.5px solid var(--ink);vertical-align:middle;margin-right:4px}.choices{display:flex;gap:12px;flex-wrap:wrap}.scale{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:8px}.scale span{border:1px solid var(--rule);padding:5px;text-align:center;font:7px "JetBrains Mono",monospace}
+table{width:100%;border-collapse:collapse;font-size:7px}th,td{border:1px solid var(--rule);padding:5px;vertical-align:top}th{background:var(--panel);font:600 7px "JetBrains Mono",monospace}.answer{border-left:3px solid var(--success);background:#edf5ef}.footer{display:flex;justify-content:space-between;border-top:1px solid var(--rule);margin-top:14px;padding-top:7px;font:7px "JetBrains Mono",monospace;color:var(--muted)}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}}@media print{.controls,.top{display:none}.layout{display:block}.stage{border:0;background:#fff}.page{box-shadow:none}}
+</style>
+</head>
+<body><div class="app">
+<header class="top"><div><h1>Visual Style Guide v0.9 Decision Lab</h1><p>Choose the remaining specialized systems for CER, vocabulary, rubrics, teacher answers, accessible editions, and print production. The preview now uses the locked Mission Title Block and repository SAA insignia.</p></div></header>
+<div class="layout"><aside class="controls">
+<section class="card"><h2>CER layout</h2>
+<label class="option"><input type="radio" name="cer" value="integrated" checked><span><strong>Integrated CER frame</strong> <span class="rec">RECOMMENDED</span><small>Claim, Evidence, and Reasoning in one component.</small></span></label>
+<label class="option"><input type="radio" name="cer" value="stacked"><span><strong>Three stacked boxes</strong><small>Most explicit scaffold, but heavier.</small></span></label>
+<label class="option"><input type="radio" name="cer" value="table"><span><strong>Two-column CER table</strong><small>Compact, but less natural for extended writing.</small></span></label></section>
+<section class="card"><h2>Vocabulary</h2>
+<label class="option"><input type="radio" name="vocab" value="table" checked><span><strong>Term-definition table</strong> <span class="rec">RECOMMENDED</span><small>Compact and consistent across both curricula.</small></span></label>
+<label class="option"><input type="radio" name="vocab" value="cards"><span><strong>Vocabulary cards</strong><small>Best for a few illustrated terms.</small></span></label>
+<label class="option"><input type="radio" name="vocab" value="strip"><span><strong>Compact term strip</strong><small>Fast reference, limited explanation.</small></span></label></section>
+<section class="card"><h2>Rubric</h2>
+<label class="option"><input type="radio" name="rubric" value="analytic" checked><span><strong>Analytic criteria grid</strong> <span class="rec">RECOMMENDED</span><small>Criteria as rows, proficiency as columns.</small></span></label>
+<label class="option"><input type="radio" name="rubric" value="checklist"><span><strong>Checklist rubric</strong><small>Fast completion scoring.</small></span></label>
+<label class="option"><input type="radio" name="rubric" value="single"><span><strong>Single-point rubric</strong><small>Strong narrative feedback.</small></span></label></section>
+<section class="card"><h2>Teacher answers</h2>
+<label class="option"><input type="radio" name="answer" value="key" checked><span><strong>Dedicated answer-key blocks</strong> <span class="rec">RECOMMENDED</span><small>Clear publication default.</small></span></label>
+<label class="option"><input type="radio" name="answer" value="overlay"><span><strong>Teacher overlay</strong><small>Mirrors student layout.</small></span></label>
+<label class="option"><input type="radio" name="answer" value="inline"><span><strong>Inline annotations</strong><small>Compact, but clutter-prone.</small></span></label></section>
+<section class="card"><h2>Accessible edition</h2>
+<label class="option"><input type="radio" name="access" value="parallel" checked><span><strong>Parallel accessible edition</strong> <span class="rec">RECOMMENDED</span><small>Same order, larger type, reduced density.</small></span></label>
+<label class="option"><input type="radio" name="access" value="adaptive"><span><strong>Single adaptive master</strong><small>One HTML source changes layouts.</small></span></label>
+<label class="option"><input type="radio" name="access" value="manual"><span><strong>Case-by-case changes</strong><small>Flexible, but inconsistent.</small></span></label></section>
+<section class="card"><div class="actions"><button class="primary" id="download">Download decision note</button><button id="gray">Toggle grayscale</button></div><div class="summary" id="summary"></div></section>
+</aside>
+<main class="stage"><article class="page" id="page">
+<header class="mission-header">
+<div class="title-stack">
+  <div class="kicker">Solar Agricultural Authority · Student Assessment</div>
+  <h1>Evidence, Reasoning, and Reflection</h1>
+  <p class="mission-subtitle">Case 01 · Campaign 1 · Evidence-Based Explanation</p>
+</div>
+<div class="header-mark">
+  <img src="../../../assets/insignia/saa.svg"
+       onerror="this.onerror=null;this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI3MzguMTkiIGhlaWdodD0iNzM5Ljg1IiB2aWV3Qm94PSIwIDAgNzM4LjE5IDczOS44NSI+PHBhdGggZD0iTTMzMi4xNSwxNjkuMzhjMC00MC4xLDMxLjQ4LTcxLjE3LDcyLjA2LTcxLjE1LDM5LjIsMCw3MC43MywzMS44MSw3MC43OSw3MS4zNy4wNiwzOS44LTMxLjg4LDcxLjM0LTcyLjE1LDcxLjI1QzM2My42OCwyNDAuNzYsMzMyLjE0LDIwOC44NywzMzIuMTUsMTY5LjM4WiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIzLjQ0IC0yOSkiIHN0eWxlPSJmaWxsOiNmY2IxMDMiLz48cGF0aCBkPSJNNDEzLjc1LDQzMS4wOUgzOTIuMjRjLjkyLTEzLjY3LDEuNTQtMjcuMzcsMi44Ny00MSwuNjEtNi4zMy0xLjMzLTYuOTQtNy01LjgyLTQyLjY1LDguNDUtNzQuMDctMTAuNzQtOTkuMTItNDIuNTMtOS4yNS0xMS43NC0xMy41OC0yNi41LTEwLjQ0LTQyLjIxLDEwLjA5LDUuMzgsMjAuNDEsMTAuMzYsMzAuMjEsMTYuMjFxNDUuNDksMjcuMTMsOTAuNjEsNTQuOTFjMy4yNCwyLDUuMjQsMi4yNyw4LjU2LjA5cTQ0LjYtMjkuMzEsOTEtNTUuNzljOS4xOC01LjI1LDE5LjgxLTguMTcsMjcuMzItMTYuMjQuNjcsMS4yOSwxLjM1LDIuNTcsMiwzLjg2LDAsMTcuMzMtNC4zOSwzMy42LTE2LjQ2LDQ2LjEtMjYuMTcsMjcuMS01Ni40OSw0NC40NS05Ni4yLDM1LjM0LTQuMTgtMS01LjI4LjU2LTUsNC41NUM0MTEuNzksNDAyLjczLDQxMi43Myw0MTYuOTEsNDEzLjc1LDQzMS4wOVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMy40NCAtMjkpIiBzdHlsZT0iZmlsbDojNTI5NzRhIi8+PHBhdGggZD0iTTUyNi4yNCwyOTguNzJjLTcuNTEsOC4wNy0xOC4xNCwxMS0yNy4zMiwxNi4yNHEtNDYuMzQsMjYuNTQtOTEsNTUuNzljLTMuMzIsMi4xOC01LjMyLDEuOS04LjU2LS4wOVEzNTQuMjUsMzQzLDMwOC43OSwzMTUuNzVjLTkuOC01Ljg1LTIwLjEyLTEwLjgzLTMwLjIxLTE2LjIxLDguNzEtOS4yOSwyMC4xNy0xMi41NywzMi4xOC0xMy41OCw0MC41Mi0zLjQsNzcuNDgsMjMuMjksODkuMTIsNjMuODlhNjEuMzQsNjEuMzQsMCwwLDAsMy4wOSw5YzMuMjItMTQuMzQsOC40NS0yNy43MSwxNy43NC0zOC45MSwyMy4yNy0yOCw1Mi4wNy00MSw4OC43Ni0zMWEyMSwyMSwwLDAsMCwzLC4zN0M1MTYuNzQsMjkyLjksNTIzLDI5My41OSw1MjYuMjQsMjk4LjcyWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIzLjQ0IC0yOSkiIHN0eWxlPSJmaWxsOiM2MWE4NTIiLz48cGF0aCBkPSJNMzkyLjI0LDI5QzU5Ni42NywyOS4wOSw3NjIsMTk1LjMyLDc2MS42Myw0MDAuNjJjLS40LDIwMS43Ny0xNjQuNzUsMzY4LTM2Ny44MSwzNjguMjMtMjAzLjk0LjI0LTM3MC44OS0xNjMuMDctMzcwLjM4LTM3MS4yN0MyMy45MywxOTMuODQsMTg5LjY5LDI5LjM4LDM5Mi4yNCwyOVptLjU5LDcwOC45MWMxODUuNjMsMCwzMzctMTUxLjU4LDMzOC4wNS0zMzcuMUM3MzEuOTQsMjE2LjUyLDU4MS4xLDU5LjIxLDM5MS4zOSw2MGMtMTg0Ljg4Ljc5LTMzNS45MiwxNTEuNjUtMzM3LDMzNi44NkM1My4zNyw1ODYuNDQsMjA3LjU3LDczOC4yOSwzOTIuODMsNzM3LjkxWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTIzLjQ0IC0yOSkiIHN0eWxlPSJmaWxsOiMyZTg0ODQiLz48Y2lyY2xlIGN4PSIzODIuNTYiIGN5PSI1MTgiIHI9IjExOCIgc3R5bGU9ImZpbGw6IzMzNTk2ZSIvPjxwYXRoIGQ9Ik0zMzcuMyw2NDEuMjFjLTE2LjE4LjUzLTMxLjU4LDUuODktNDcuNjMsNy40NS0yMy40OCwyLjI4LTQ2Ljg5LDQuMjgtNzAuMjYtLjc2LTIuMjktLjQ5LTQuNi0xLTYuODUtMS42NS0zMC04Ljk0LTM3Ljg0LTI5LjIxLTIwLjktNTUuNDQsMTguNDItMjguNSw0Ni4wNy00Ni41Niw3NC4xNi02NCwyLjMxLTEuNDMsNS4xMS0yLjc0LDcsLjU1LDIsMy41MS0uNTUsNS41OS0zLDcuNTItMTEuMTEsOC43NC0yMi4xLDE3LjY5LTMwLjY5LDI5LTcuMjksOS42LTE2LjEsMTkuNi0xMC41NSwzMi43NCw1LjM4LDEyLjcyLDE4LjQsMTMuNTMsMzAsMTUsMTYuODEsMi4xOCwzMy41My42Miw1MC4wNi0zLDcxLjIzLTEyLDEzNy0zOC43LDE5OS42NS03NCwyNC43OC0xMyw0OC4zNS0yNy44Nyw2Ny40Ni00OC42Myw3LjY3LTguMzMsMTYuNDYtMTcuNTIsMTEuNzYtMzAuMjItNC44LTEzLTE3Ljg3LTE0LjI5LTI5LjI5LTE2LjIxLTE0LjY0LTIuNDYtMjkuNDgtMS42MS00NC4yMi4yMi0yLjkzLjM2LTYuNTcsMS4zOS03LjQ0LTIuNzlzMi45My00LjkxLDUuNzItNS41NmMzMi41Ni03LjU4LDY1LjQxLTEzLDk4Ljc5LTYuNjYsMzAuNCw1Ljc4LDM5LjMzLDI3LjM5LDIyLjY5LDUzLjY2LTE1LjYyLDI0LjY0LTM4LjA4LDQyLjI0LTYxLjY1LDU4LjYyLTIwLjE1LDE0LTQyLDI1LjItNjMsMzcuOC0zNy41OCwxOC4xNC03NS4zMiwzNS45MS0xMTUuMTcsNDguNjVDMzc1LjExLDYyOS42NiwzNTYuMTgsNjM1LjM2LDMzNy4zLDY0MS4yMVoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yMy40NCAtMjkpIiBzdHlsZT0iZmlsbDojZjRhODI3Ii8+PC9zdmc+'"
+       alt="Solar Agricultural Authority insignia">
+</div>
+</header>
+<div class="grid">
+<section class="full"><div class="heading"><span class="label">CER</span><h2>Evidence-based explanation</h2></div><div id="cerBox"></div></section>
+<section><div class="heading"><span class="label">VOCABULARY</span><h2>Key terms</h2></div><div id="vocabBox"></div></section>
+<section><div class="heading"><span class="label">FORM</span><h2>Selections and confidence</h2></div><div class="forms"><div class="choices"><span><i class="check"></i>Evidence complete</span><span><i class="check"></i>Mechanism explained</span></div><div class="scale"><span>1 · LOW</span><span>2</span><span>3</span><span>4 · HIGH</span></div></div></section>
+<section class="full"><div class="heading"><span class="label">RUBRIC</span><h2>Reasoning criteria</h2></div><div id="rubricBox"></div></section>
+<section class="full"><div class="heading"><span class="label">ANSWER KEY</span><h2>Model response</h2></div><div class="answer" id="answerBox"></div></section>
+</div><footer class="footer"><span>CASE 01 · PAGE 2 OF 4</span><span>CURRICULUM VERSION · APPROVED</span></footer>
+</article></main></div></div>
+<script>
+const state={cer:"integrated",vocab:"table",rubric:"analytic",answer:"key",access:"parallel",gray:false};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+function cer(){const b=$("#cerBox");if(state.cer==="integrated"){b.className="cer";b.innerHTML=["Claim","Evidence","Reasoning"].map((x,i)=>`<div class="cer-row"><strong>${x}</strong><div class="guide">${i===0?"STATE THE EXPLANATION":i===1?"CITE RELEVANT OBSERVATIONS":"CONNECT EVIDENCE TO THE MECHANISM"}</div><div class="blank"></div></div>`).join("")}else if(state.cer==="stacked"){b.className="";b.innerHTML=["Claim","Evidence","Reasoning"].map(x=>`<div class="cer" style="margin-bottom:6px"><strong>${x}</strong><div class="blank"></div></div>`).join("")}else{b.className="";b.innerHTML=`<table><tr><th>Claim</th><td style="height:55px"></td></tr><tr><th>Evidence</th><td style="height:55px"></td></tr><tr><th>Reasoning</th><td style="height:55px"></td></tr></table>`}}
+function vocab(){const terms=[["Gravitropism","Directional growth influenced by gravity."],["Stimulus","A change that produces a response."],["Mechanism","The process explaining how an effect occurs."],["Evidence","Information supporting or challenging a claim."]];const b=$("#vocabBox");if(state.vocab==="table"){b.className="vocab";b.innerHTML=terms.map(t=>`<div class="term"><strong>${t[0]}</strong><span>${t[1]}</span></div>`).join("")}else if(state.vocab==="cards"){b.className="";b.innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">${terms.map(t=>`<div class="forms"><strong>${t[0]}</strong><br><span>${t[1]}</span></div>`).join("")}</div>`}else{b.className="";b.innerHTML=`<div class="forms">${terms.map(t=>`<strong style="margin-right:9px">${t[0]}</strong>`).join("")}</div>`}}
+function rubric(){const b=$("#rubricBox");if(state.rubric==="analytic")b.innerHTML=`<table><tr><th>Criterion</th><th>Beginning</th><th>Developing</th><th>Secure</th></tr><tr><td>Claim</td><td>Missing</td><td>Mostly accurate</td><td>Accurate and focused</td></tr><tr><td>Evidence</td><td>Insufficient</td><td>Partly relevant</td><td>Relevant and sufficient</td></tr><tr><td>Reasoning</td><td>Connection missing</td><td>Partial connection</td><td>Mechanism explained</td></tr></table>`;else if(state.rubric==="checklist")b.innerHTML=`<div class="forms"><span><i class="check"></i>Accurate claim</span> &nbsp; <span><i class="check"></i>Two evidence sources</span> &nbsp; <span><i class="check"></i>Mechanism explained</span></div>`;else b.innerHTML=`<table><tr><th>Secure performance</th><th>Concerns</th><th>Advanced evidence</th></tr><tr><td>Accurate claim, relevant evidence, and mechanism-based reasoning.</td><td></td><td></td></tr></table>`}
+function answer(){const b=$("#answerBox");const text={key:"Model response plus accepted alternatives and common incomplete responses appear in a dedicated answer-key block.",overlay:"Teacher answers occupy the same positions as the matching student prompts.",inline:"Short answer annotations appear immediately after each student-facing element."};b.textContent=text[state.answer]}
+function md(){const names={cer:{integrated:"Integrated CER frame",stacked:"Three stacked boxes",table:"Two-column CER table"},vocab:{table:"Term-definition table",cards:"Vocabulary cards",strip:"Compact term strip"},rubric:{analytic:"Analytic criteria grid",checklist:"Checklist rubric",single:"Single-point rubric"},answer:{key:"Dedicated answer-key blocks",overlay:"Teacher overlay",inline:"Inline annotations"},access:{parallel:"Parallel accessible edition",adaptive:"Single adaptive master",manual:"Case-by-case changes"}};return `# VISUAL_STYLE_GUIDE_v0.9 — Decision Note
+
+- CER layout: ${names.cer[state.cer]}
+- Vocabulary treatment: ${names.vocab[state.vocab]}
+- Rubric format: ${names.rubric[state.rubric]}
+- Teacher-answer treatment: ${names.answer[state.answer]}
+- Accessible variant: ${names.access[state.access]}
+- Grayscale preview viewed: ${state.gray?"Yes":"No"}
+
+## Notes
+
+Add exceptions before v0.9 is locked.
+`}
+function render(){cer();vocab();rubric();answer();$("#page").classList.toggle("gray",state.gray);$("#summary").textContent=md()}
+["cer","vocab","rubric","answer","access"].forEach(g=>$$(`input[name="${g}"]`).forEach(i=>i.addEventListener("change",()=>{state[g]=i.value;render()})));
+$("#gray").onclick=()=>{state.gray=!state.gray;render()};
+$("#download").onclick=()=>{const u=URL.createObjectURL(new Blob([md()],{type:"text/markdown"}));const a=document.createElement("a");a.href=u;a.download="VISUAL_STYLE_GUIDE_v0.9_DECISIONS.md";a.click();URL.revokeObjectURL(u)};
+render();
+</script></body></html>
