@@ -1,0 +1,1248 @@
+{
+  "metadata": {
+    "version": "0.2",
+    "audit_date": "2026-07-22",
+    "canonical_game_branch": "main",
+    "canonical_game_commit": "9f07e00",
+    "source_snapshot_note": "Uploaded ZIP predates 9f07e00; the known narrow fixes are applied as canonical dispositions in this inventory.",
+    "status": "Pass 2 complete; exact science replacement-text pass remains before audit v1.0."
+  },
+  "resolved_implementation_findings": [
+    {
+      "finding": "Campaign 2 Case 6 missing dialogue destinations",
+      "resolved_in": "9f07e00"
+    },
+    {
+      "finding": "Help/tutorial contradicted diagnosis gating",
+      "resolved_in": "9f07e00"
+    },
+    {
+      "finding": "Europa moodStart schema mismatch",
+      "resolved_in": "9f07e00"
+    }
+  ],
+  "aggregate_counts": {
+    "cases": 13,
+    "sources": 58,
+    "formal_clues": 58,
+    "nodes": 710,
+    "options": 1712,
+    "approx_raw_authored_words": 49340
+  },
+  "cases": {
+    "C1-1": {
+      "id": "iss",
+      "name": "ISS Greenhouse Module",
+      "source_count": 4,
+      "direct_route_words": 541,
+      "estimated_gameplay_window": "8–12 min direct; 15–20 min with one cross-check per source",
+      "primary_activity": "Evidence triage: identify which observations are symptoms, which are controlled variables, and which identify the missing cue.",
+      "best_optional_crosscheck": "Return to Kim after collecting sensor, plant, and log evidence; her gated responses explicitly connect zero gravity, root morphology, and the historical record.",
+      "distractors": [
+        "nutrient burn",
+        "incorrect photoperiod",
+        "genetically defective seed stock"
+      ],
+      "likely_stumbling_point": "Students may equate microgravity with “no forces” or assume roots simply grow toward water. The case also uses “zero g,” which should be corrected to microgravity/apparent weightlessness.",
+      "cer": "Claim which environmental cue is missing; cite the gravity reading and root pattern; explain gravitropism and why physical/light guides could substitute.",
+      "exit_ticket": "Why can a plant remain alive in microgravity while still growing in a disorganized way?",
+      "ngss_candidates": [
+        "SEP: Constructing Explanations",
+        "CCC: Cause and Effect",
+        "MS-ETS1-1 (supporting, if students define guide criteria)"
+      ],
+      "science_disposition": "Core mechanism is sound. Edit “zero g” language and correct the Veggie first-harvest fun fact.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main",
+          "action": "Ask what the problem is.",
+          "evidence": "Roots fail to orient downward."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → gravity",
+          "action": "Display gravity data.",
+          "evidence": "The habitat is in microgravity."
+        },
+        {
+          "source": "Plants",
+          "nodes": "start → roots",
+          "action": "Examine the roots.",
+          "evidence": "Roots form tangled mats; shoots orient poorly."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → gravitropism_entry",
+          "action": "Search gravitropism.",
+          "evidence": "Gravity normally supplies a directional cue."
+        }
+      ]
+    },
+    "C1-2": {
+      "id": "lunar",
+      "name": "Lunar Greenhouse",
+      "source_count": 4,
+      "direct_route_words": 515,
+      "estimated_gameplay_window": "8–12 min direct; 14–18 min with mechanical-pollination exploration",
+      "primary_activity": "Reproductive-process flowchart: flower → pollen release/movement → stigma contact → fruit set; mark the missing step.",
+      "best_optional_crosscheck": "After the pollen clue, read the hand/mechanical pollination log entries or try the gated stem-shaking interaction. These turn the solution into a testable mechanism rather than a vocabulary answer.",
+      "distractors": [
+        "toxic lunar regolith",
+        "missing ultraviolet light",
+        "excess carbon dioxide"
+      ],
+      "likely_stumbling_point": "Students may think “self-pollinating” means no pollen movement is needed, or assume every flowering crop uses the same mechanism.",
+      "cer": "Claim that pollination failure caused the missing fruit; cite undisturbed pollen, low airflow, and absent pollination plan; explain why healthy flowers alone are insufficient.",
+      "exit_ticket": "Why did extra nutrients or healthier leaves fail to solve this case?",
+      "ngss_candidates": [
+        "SEP: Constructing Explanations",
+        "CCC: Structure and Function",
+        "MS-ETS1-2 (compare fans, vibration, or manual approaches)"
+      ],
+      "science_disposition": "Core tomato-pollination mechanism is sound. Replace the unsupported 1990s bumblebee fun fact with NASA’s documented honeybee experiments (1982/1984).",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main",
+          "action": "Ask for the observed pattern.",
+          "evidence": "Healthy flowers drop without fruit."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → airflow",
+          "action": "Display air circulation.",
+          "evidence": "Air movement is nearly absent."
+        },
+        {
+          "source": "Plants",
+          "nodes": "start → flowers → pollen_close",
+          "action": "Inspect flowers, then pollen.",
+          "evidence": "Mature pollen remains undisturbed."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → crop_protocols",
+          "action": "Open crop protocols.",
+          "evidence": "No pollination plan was implemented."
+        }
+      ]
+    },
+    "C1-3": {
+      "id": "mars",
+      "name": "Mars Habitat",
+      "source_count": 4,
+      "direct_route_words": 609,
+      "estimated_gameplay_window": "9–13 min direct; 15–20 min with spectral cross-checks",
+      "primary_activity": "Spectrum comparison: separate total photon flux, wavelength distribution, pigment response, and observed tissue pattern.",
+      "best_optional_crosscheck": "Use the gated spectral analysis and fiber-optic search to compare total PAR with wavelength distribution. This is the case’s strongest conceptual move: quantity is not quality.",
+      "distractors": [
+        "perchlorate/root poisoning",
+        "excess carbon dioxide",
+        "Martian-sol photoperiod disruption"
+      ],
+      "likely_stumbling_point": "The current mechanism teaches a real spectrum concept through a likely false engineering cause: Martian dust is described as preferentially removing red light, while NASA observations show dust storms transmitting red while strongly suppressing green and blue.",
+      "cer": "Claim that a spectrum mismatch—not total light or nutrients—caused the symptom; cite new-growth bleaching and the measured delivery system; explain why adequate PAR can still be biologically inadequate.",
+      "exit_ticket": "What is the difference between “enough light” and “the right light”?",
+      "ngss_candidates": [
+        "SEP: Analyzing and Interpreting Data",
+        "CCC: Energy and Matter",
+        "MS-LS1-6 (supporting context only)",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Major game-text edit required. Preserve the spectrum lesson but replace the Mars-dust/borosilicate red-loss mechanism with a measured equipment fault, filter/coating problem, or failed red LED channel. Soften the claim that green light is wasted.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main",
+          "action": "Ask about the crop decline.",
+          "evidence": "New growth yellows first and ignores nutrient additions."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → lighting_data",
+          "action": "Display lighting-system data.",
+          "evidence": "Light arrives through surface pipes plus white LEDs."
+        },
+        {
+          "source": "Plants",
+          "nodes": "start → upper_leaves",
+          "action": "Examine new leaves.",
+          "evidence": "New tissue fails to develop chlorophyll."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → spectrum_search → red_wavelength_detail",
+          "action": "Search spectrum requirements, then details.",
+          "evidence": "The record attributes chlorophyll formation to needed wavelengths."
+        }
+      ]
+    },
+    "C1-4": {
+      "id": "orbital",
+      "name": "Hayes Orbital Station",
+      "source_count": 4,
+      "direct_route_words": 579,
+      "estimated_gameplay_window": "9–13 min direct; 15–20 min with timeline cross-checks",
+      "primary_activity": "Timeline and variable isolation: distinguish the independent system change, delayed response, cellular damage, and downstream sensor fluctuations.",
+      "best_optional_crosscheck": "Build the change/crash timeline, then read the continuous-light and photooxidative-stress entries. The temporal sequence is stronger evidence than the manual’s overbroad biological claim.",
+      "distractors": [
+        "nutrient contamination",
+        "inconsistent carbon dioxide",
+        "microbial infection"
+      ],
+      "likely_stumbling_point": "Students may learn the false universal rule that Spirulina necessarily dies without darkness. Continuous cultivation and illumination can work; damage depends on irradiance, culture density, mixing, temperature, and reactor control.",
+      "cer": "Claim that the lighting change exceeded the reactor/culture’s safe operating conditions; cite the change timeline and microscopy; explain photoinhibition/photooxidative stress without declaring darkness universally essential.",
+      "exit_ticket": "Why is the CO₂ fluctuation better treated as an effect of the crash than its original cause?",
+      "ngss_candidates": [
+        "SEP: Analyzing and Interpreting Data",
+        "CCC: Cause and Effect",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Major game-text edit required. Reframe from “continuous light always causes collapse” to reactor-specific excessive continuous irradiance/insufficient light control; restoring a controlled cycle is one valid engineering fix, not a universal biological law.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main → lighting_change",
+          "action": "Ask what happened and what changed.",
+          "evidence": "Crashes began after the station switched to 24/0 light."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → light_data",
+          "action": "Display light exposure.",
+          "evidence": "The reactor receives continuous corridor lighting."
+        },
+        {
+          "source": "Culture",
+          "nodes": "start → microscope",
+          "action": "Inspect under a microscope.",
+          "evidence": "Cells show photooxidative stress rather than infection."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → photoperiod_entry",
+          "action": "Search light requirements.",
+          "evidence": "The manual asserts a required dark period."
+        }
+      ]
+    },
+    "C1-5": {
+      "id": "europa",
+      "name": "Europa Outpost",
+      "source_count": 4,
+      "direct_route_words": 529,
+      "estimated_gameplay_window": "8–12 min direct; 15–20 min with evidence-convergence dialogue",
+      "primary_activity": "Risk-convergence matrix: hazard evidence, biological effect, failed protection, and eliminated alternatives.",
+      "best_optional_crosscheck": "The crew tree contains multiple pairwise and full-picture responses. Returning after two or three clues gives students explicit practice combining independent lines of evidence.",
+      "distractors": [
+        "low gravity",
+        "mineral-contaminated water",
+        "excessive LED intensity"
+      ],
+      "likely_stumbling_point": "The specific fictional dose can look more certain than it is, and the explanation incorrectly groups lunar bases with the ISS as protected by Earth’s magnetosphere.",
+      "cer": "Claim that inadequate radiation shielding caused repeated seedling failure; cite the radiation reading, DNA-damage pattern, and unvalidated shielding; explain why reproducing the result across seed batches points away from genetics.",
+      "exit_ticket": "Why is the construction log necessary if the sensor and microscope already point to radiation?",
+      "ngss_candidates": [
+        "SEP: Argument from Evidence",
+        "CCC: Cause and Effect",
+        "MS-ETS1-1",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Core radiation-risk principle is sound. Label the Europa dose and secondary-particle scenario as modeled fiction. Correct the Moon comparison: the ISS receives substantial geomagnetic protection; the lunar surface is largely exposed.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main",
+          "action": "Ask what has remained consistent.",
+          "evidence": "Every seed batch follows the same failure pattern."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → radiation_detail",
+          "action": "Display radiation monitoring.",
+          "evidence": "The growth bay has an elevated ionizing-radiation reading."
+        },
+        {
+          "source": "Plants",
+          "nodes": "start → microscope",
+          "action": "Inspect seedlings microscopically.",
+          "evidence": "Rapidly dividing tissues show damage consistent with DNA injury."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → construction_log",
+          "action": "Review shielding specifications.",
+          "evidence": "Shielding was not assessed for crop tolerance."
+        }
+      ]
+    },
+    "C1-6": {
+      "id": "alien1",
+      "name": "First Contact Protocol",
+      "source_count": 4,
+      "direct_route_words": 977,
+      "estimated_gameplay_window": "13–17 min direct; 18–22 min with story/rapport exploration",
+      "primary_activity": "Systems-interruption map: scrubber input → removed compounds → failed coordination → dormancy.",
+      "best_optional_crosscheck": "Ask what changed at docking, then cross-reference the filtered compounds. This cleanly links a human engineering system to an unintended biological consequence.",
+      "distractors": [
+        "physical docking damage",
+        "long-term atmospheric drift",
+        "symbiont incompatibility"
+      ],
+      "likely_stumbling_point": "Students may anthropomorphize chemical signaling or interpret an alien mechanism as direct evidence that Earth plants consciously communicate.",
+      "cer": "Claim that atmospheric scrubbing disrupted the symbiosis; cite intact anatomy, missing volatiles, and docking timing; explain why “cleaner” air can be harmful to a different biological system.",
+      "exit_ticket": "Which part of the human habitat worked exactly as designed—and still caused the failure?",
+      "ngss_candidates": [
+        "SEP: Developing and Using Models",
+        "CCC: Systems and System Models",
+        "MS-LS2-4 (analogy, not literal alien evidence)",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Treat the alien network as fiction inspired by real VOC signaling and symbiosis. Teacher materials must distinguish chemical responses from intentional language or established “plant conversation.”",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → symbiosis_detail",
+          "action": "Ask about the “three-who-are-one.”",
+          "evidence": "The organism depends on coordinated symbiosis."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → atmosphere",
+          "action": "Analyze atmospheric composition.",
+          "evidence": "Human scrubbers remove trace volatile compounds."
+        },
+        {
+          "source": "Organism",
+          "nodes": "start → network",
+          "action": "Inspect network structures.",
+          "evidence": "The network is intact but dormant."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → network_comm",
+          "action": "Search communication records.",
+          "evidence": "The system coordinates through volatile signals."
+        }
+      ]
+    },
+    "C1-7": {
+      "id": "alien2",
+      "name": "The Gift",
+      "source_count": 4,
+      "direct_route_words": 928,
+      "estimated_gameplay_window": "13–17 min direct; 18–22 min with solution-choice discussion",
+      "primary_activity": "Missing-variable investigation plus solution comparison.",
+      "best_optional_crosscheck": "Compare extraction, synthesis, and living-network placement. This makes the case a compact culmination about mechanism, evidence, risk, and intervention.",
+      "distractors": [
+        "wrong light wavelength",
+        "transfer damage",
+        "inhibitory human microbes"
+      ],
+      "likely_stumbling_point": "Students may collapse “a molecule can trigger germination” into “all seeds need nearby mature plants.” The implemented biology is alien fiction.",
+      "cer": "Claim that the pod requires a chemical germination cue; cite receptor readiness, missing VOCs, and archive evidence; explain why viability without germination indicates dormancy rather than damage.",
+      "exit_ticket": "What evidence proves that the pod is waiting rather than dead?",
+      "ngss_candidates": [
+        "SEP: Constructing Explanations and Designing Solutions",
+        "CCC: Structure and Function",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Keep as clearly labeled alien fiction. Use Earth VOC/germination research only as inspiration, noting that biological volatiles can stimulate or inhibit responses depending on organism and compound.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → proximity_detail",
+          "action": "Ask why the pod must be near mature growth.",
+          "evidence": "Established networks supply a missing context."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → atmosphere",
+          "action": "Scan atmospheric composition.",
+          "evidence": "The isolation chamber lacks trace VOCs."
+        },
+        {
+          "source": "Pod",
+          "nodes": "start → receptors",
+          "action": "Inspect receptor structures.",
+          "evidence": "The viable pod is waiting for a chemical trigger."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → germination",
+          "action": "Search germination biology.",
+          "evidence": "A mature network releases the needed trigger compound."
+        }
+      ]
+    },
+    "C2-1": {
+      "id": "heavy_hands",
+      "name": "Vressk Centrifuge Habitat",
+      "source_count": 5,
+      "direct_route_words": 842,
+      "estimated_gameplay_window": "12–16 min direct; 17–20 min with species/cross-check dialogue",
+      "primary_activity": "Gradient model: sketch direction and relative magnitude at the top and bottom of the bed; annotate biological response.",
+      "best_optional_crosscheck": "Return to the Vressk botanist with each evidence type. The gated responses convert a physics fact into a species-specific design failure.",
+      "distractors": [
+        "average gravity too strong",
+        "wrong nutrients",
+        "shallow soil alone"
+      ],
+      "likely_stumbling_point": "Students may focus on the displayed average g and miss spatial variation. The case should not require formal algebra unless adapted for older learners.",
+      "cer": "Claim that nonuniform centrifugal acceleration caused the pattern; cite the profile and organ orientation; explain why matching average 2.1g is insufficient.",
+      "exit_ticket": "How can a system be “calibrated correctly” and still provide the wrong environment?",
+      "ngss_candidates": [
+        "SEP: Developing and Using Models",
+        "CCC: Scale, Proportion, and Quantity",
+        "MS-ETS1-1",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "The rotational gradient is real; species sensitivity and exact design tolerances are fictional. Treat large habitat-dimension claims as fictional engineering context unless separately sourced.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main",
+          "action": "Ask what the crop is doing.",
+          "evidence": "Tubers grow toward the ring wall."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → gravity_profile",
+          "action": "Run the gravity profile.",
+          "evidence": "Acceleration changes across bed depth."
+        },
+        {
+          "source": "Plants",
+          "nodes": "start → root_inspection",
+          "action": "Inspect roots/tubers.",
+          "evidence": "Organs align with the local vector rather than intended rows."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → gorlroot_cultivation",
+          "action": "Read species requirements.",
+          "evidence": "The crop is adapted to a uniform native field."
+        },
+        {
+          "source": "Database",
+          "nodes": "start → centrifugal_gradient",
+          "action": "Read centrifugal-gradient entry.",
+          "evidence": "Rotating habitats inherently produce radial gradients."
+        }
+      ]
+    },
+    "C2-2": {
+      "id": "missing_dance",
+      "name": "Ares Botanical Garden",
+      "source_count": 5,
+      "direct_route_words": 901,
+      "estimated_gameplay_window": "12–16 min direct; 17–20 min with failed-solution analysis",
+      "primary_activity": "Failed-solution analysis: what was tried, what assumption it made, why it failed, and what mechanism the replacement must produce.",
+      "best_optional_crosscheck": "Use the hand-pollination failure as explicit disconfirming evidence. This teaches that a plausible solution can fail because it targets the wrong mechanism.",
+      "distractors": [
+        "ordinary hand pollination",
+        "wrong photoperiod",
+        "trace nutrient deficiency"
+      ],
+      "likely_stumbling_point": "Students may treat frequency as a magic number rather than one part of vibration amplitude, coupling, duration, and flower structure.",
+      "cer": "Claim that an acoustic/mechanical trigger is missing; cite trapped pollen, absent vibration, and failed hand transfer; explain buzz pollination.",
+      "exit_ticket": "What did the failed hand-pollination attempt teach that a successful attempt could not?",
+      "ngss_candidates": [
+        "SEP: Evaluating Design Solutions",
+        "CCC: Structure and Function",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Earth buzz pollination is well established. The Telluvian organism, exact frequency, and cultural history are fictional; avoid implying frequency alone determines release.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → cultural_barrier",
+          "action": "Ask what the botanist suspects.",
+          "evidence": "Buds abort and crucial knowledge was not shared clearly."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → acoustic_scan",
+          "action": "Scan acoustic conditions.",
+          "evidence": "The expected vibration is absent."
+        },
+        {
+          "source": "Plants",
+          "nodes": "start → anther_exam",
+          "action": "Inspect anthers.",
+          "evidence": "Mature pollen remains trapped."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → pollination_log",
+          "action": "Review prior attempts.",
+          "evidence": "Contact-based hand pollination already failed."
+        },
+        {
+          "source": "Database",
+          "nodes": "start → buzz_pollination",
+          "action": "Read vibration-pollination entry.",
+          "evidence": "Pollen release requires mechanical vibration."
+        }
+      ]
+    },
+    "C2-3": {
+      "id": "wrong_color_light",
+      "name": "Oolian Mariculture Dome",
+      "source_count": 5,
+      "direct_route_words": 853,
+      "estimated_gameplay_window": "12–16 min direct; 17–20 min with action-spectrum comparison",
+      "primary_activity": "Action-spectrum matching: overlay available wavelengths with relative pigment absorption and identify the weakest overlap.",
+      "best_optional_crosscheck": "Compare old and new domes as a natural control. The “defective light” distractor becomes useful for separating equipment function from biological suitability.",
+      "distractors": [
+        "defective lamps",
+        "insufficient total intensity",
+        "water chemistry drift"
+      ],
+      "likely_stumbling_point": "The current correct diagnosis says the kelp cannot use red light and the dome is functionally dark. Real brown algae still use chlorophyll a and transfer energy from chlorophyll c/fucoxanthin; the mismatch should be relative, not absolute.",
+      "cer": "Claim that the lamp spectrum is poorly matched to the organism; cite the spectrum, pigment profile, and old-dome comparison; explain adaptation to available light.",
+      "exit_ticket": "Why are the lights neither broken nor appropriate?",
+      "ngss_candidates": [
+        "SEP: Analyzing and Interpreting Data",
+        "CCC: Energy and Matter",
+        "MS-LS1-6 (supporting)",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Minor-to-moderate wording edit. Preserve the pigment lesson but replace absolutes (“cannot use red,” “effectively dark”) with low efficiency/poor spectral match.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → problem_main",
+          "action": "Ask what changed.",
+          "evidence": "Kelp declined only in the new Earth-lit dome."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → spectral_analysis",
+          "action": "Inspect spectrum.",
+          "evidence": "The system is heavily red-weighted."
+        },
+        {
+          "source": "Kelp",
+          "nodes": "start → magnification",
+          "action": "Inspect pigments/tissue.",
+          "evidence": "Pigments are adapted to blue-green-rich conditions."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → kelp_profile",
+          "action": "Read evolutionary habitat.",
+          "evidence": "The organism evolved in spectrally filtered deep water."
+        },
+        {
+          "source": "Database",
+          "nodes": "start → chlorophyll_variants",
+          "action": "Compare pigment systems.",
+          "evidence": "Different antenna pigments capture different spectral regions."
+        }
+      ]
+    },
+    "C2-4": {
+      "id": "silent_grove",
+      "name": "Zhel’ii Diaspora Grove",
+      "source_count": 5,
+      "direct_route_words": 1009,
+      "estimated_gameplay_window": "13–17 min direct; 18–22 min with callback synthesis",
+      "primary_activity": "Two-concept synthesis: create a chain linking schedule, internal timing, compound production, and network behavior.",
+      "best_optional_crosscheck": "Ask the caretaker about each clue after collection. The case is strongest when students explicitly combine the Campaign 1 lighting and signaling concepts.",
+      "distractors": [
+        "atmospheric filtering drift",
+        "light-intensity bleaching",
+        "general transit stress"
+      ],
+      "likely_stumbling_point": "Students may overgeneralize the alien requirement into “all plants perform their most important work at night” or “stomata close at night in every plant.”",
+      "cer": "Claim that continuous light suppressed the fictional circadian signaling pathway; cite healthy tissue, absent compounds, and the timeline; explain why this is functional silence rather than damage.",
+      "exit_ticket": "Which evidence shows that this case is about timing rather than too much energy?",
+      "ngss_candidates": [
+        "SEP: Constructing Explanations",
+        "CCC: Patterns",
+        "CCC: Cause and Effect"
+      ],
+      "science_disposition": "Keep as species-specific alien fiction. Teacher notes should explain that Earth circadian responses and continuous-light tolerance vary widely; nighttime examples are illustrative, not universal.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → timeline",
+          "action": "Ask when signaling stopped.",
+          "evidence": "Silence follows a recent management change."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → light_data",
+          "action": "Inspect light schedule.",
+          "evidence": "The grove receives 24/0 light."
+        },
+        {
+          "source": "Grove",
+          "nodes": "start → signal_structures",
+          "action": "Inspect structures.",
+          "evidence": "Tissue is healthy but signal compounds are absent."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → health_timeline",
+          "action": "Compare the timeline.",
+          "evidence": "The shift from 18/6 to 24/0 precedes silence."
+        },
+        {
+          "source": "Database",
+          "nodes": "start → circadian_data",
+          "action": "Read species rhythm data.",
+          "evidence": "The fictional network requires darkness to activate/reset signaling."
+        }
+      ]
+    },
+    "C2-5": {
+      "id": "too_clean_room",
+      "name": "Concord Botanical Vault",
+      "source_count": 5,
+      "direct_route_words": 998,
+      "estimated_gameplay_window": "13–17 min direct; 18–22 min with policy/solution choice",
+      "primary_activity": "Assumption and policy audit: identify the policy assumption, evidence that violates it, proposed exception, and safety constraints.",
+      "best_optional_crosscheck": "Compare a general safety policy with species-specific evidence. The case is an excellent assumption audit even if the Earth analogy is corrected.",
+      "distractors": [
+        "trace nutrient deficiency",
+        "humidity/temperature mismatch",
+        "delayed transplant shock"
+      ],
+      "likely_stumbling_point": "The current text presents radiation hormesis and fungal “radiosynthesis” as settled, direct analogues. Evidence exists for enhanced growth/metabolism in some melanized fungi under particular exposures, but the mechanism and generality are not equivalent to photosynthesis; human/plant hormesis is contested.",
+      "cer": "Claim that the fictional species requires a low-level radiation-triggered pathway; cite zero exposure, inactive pathway, and native conditions; clearly separate story biology from the tentative Earth analogy.",
+      "exit_ticket": "Why is “remove every hazard” not automatically a biologically neutral policy?",
+      "ngss_candidates": [
+        "SEP: Argument from Evidence",
+        "CCC: Stability and Change",
+        "MS-ETS1-1",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Major qualification required. Label obligate radiation dependence as fiction. Rewrite the Earth parallel to say some experiments found radiation-enhanced growth/metabolism in melanized fungi under specific conditions; avoid stating established radiosynthesis or general radiation hormesis.",
+      "direct_routes": [
+        {
+          "source": "Crew",
+          "nodes": "start → keltor_suspicion",
+          "action": "Ask for the administrator’s theory.",
+          "evidence": "Medicinal output fails despite a seemingly perfect vault."
+        },
+        {
+          "source": "Sensors",
+          "nodes": "start → radiation_data",
+          "action": "Read radiation data.",
+          "evidence": "The chamber reports zero background radiation."
+        },
+        {
+          "source": "Bloom",
+          "nodes": "start → tissue_analysis",
+          "action": "Analyze tissue/pathway activity.",
+          "evidence": "The DNA-repair-linked pathway is inactive."
+        },
+        {
+          "source": "Logs",
+          "nodes": "start → homeworld",
+          "action": "Read native environment.",
+          "evidence": "The species evolved under high background radiation."
+        },
+        {
+          "source": "Database",
+          "nodes": "start → hormesis",
+          "action": "Read Concord entry.",
+          "evidence": "The database asserts fictional obligate radiation dependence."
+        }
+      ]
+    },
+    "C2-6": {
+      "id": "first_garden",
+      "name": "The First Garden",
+      "source_count": 5,
+      "direct_route_words": 1099,
+      "estimated_gameplay_window": "14–18 min direct; 20+ min if the full Kess memory/rapport path is required",
+      "primary_activity": "Evidence-based restoration recommendation with separate science, intervention, regulation, risk, and uncertainty boxes.",
+      "best_optional_crosscheck": "The richer path is Kess’s fragmented-memory sequence plus the database’s mycorrhizal and biosafety entries. The shortest current path can reveal the mycorrhizal clue through a “database entries” prompt after reading only the legal-precedent clue; teacher materials should direct students to the biology entry before accepting the conclusion.",
+      "distractors": [
+        "residual pH imbalance",
+        "irrigation inconsistency",
+        "new invasive organisms"
+      ],
+      "likely_stumbling_point": "The case turns a valid fungal-root mutualism into overly categorical claims about mature trees subsidizing seedlings, defense warnings, universal resource sharing, and inoculation as the single required restoration fix.",
+      "cer": "Claim that missing fungal-root connectivity is a plausible limiting factor; cite isolated chemical patches and soil history; explain the proposed mechanism while acknowledging uncertainty and evaluating the exemption.",
+      "exit_ticket": "Which part of the final recommendation is directly supported, which is inferred, and which remains uncertain?",
+      "ngss_candidates": [
+        "SEP: Argument from Evidence",
+        "SEP: Evaluating Design Solutions",
+        "CCC: Systems and System Models",
+        "MS-LS2-3",
+        "MS-LS2-5",
+        "MS-ETS1-2"
+      ],
+      "science_disposition": "Major qualification required. Keep mycorrhizal mutualism and fungal nutrient acquisition as established. Present plant-to-plant transfer/benefit as context-dependent and debated. Correct the carbon fun fact to 13.12 Gt CO₂e allocated to mycorrhizal mycelium annually—not 13 billion tons of stored carbon or a 2023 global map.",
+      "direct_routes": [
+        {
+          "source": "Nova",
+          "nodes": "start → problem",
+          "action": "Ask what restoration has already tried.",
+          "evidence": "Chemistry and conventional repairs have been exhausted."
+        },
+        {
+          "source": "Vorn-Shael",
+          "nodes": "start → chemical_reading",
+          "action": "Ask what the chemical pattern shows.",
+          "evidence": "Useful compounds remain isolated in patches."
+        },
+        {
+          "source": "Ilreth-Mar",
+          "nodes": "start → role → biosafety_overview",
+          "action": "Ask role, then applicable protocol.",
+          "evidence": "Cross-zone inoculation is restricted."
+        },
+        {
+          "source": "Database",
+          "nodes": "start → exemptions",
+          "action": "After regulation is known, search precedents.",
+          "evidence": "An exemption route exists."
+        },
+        {
+          "source": "Kess",
+          "nodes": "start → database_assist",
+          "action": "Use the database-assisted prompt.",
+          "evidence": "The missing biological connection is identified as mycorrhizal."
+        }
+      ]
+    }
+  },
+  "original_static_inventory": {
+    "C1": [
+      {
+        "id": "iss",
+        "name": "ISS Greenhouse Module",
+        "main": true,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 91,
+        "nOptions": 231,
+        "totalWords": 4241,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: locked, apology_attempt"
+        ],
+        "revealCounts": {
+          "ROOTS_DIRECTIONLESS": [
+            "crew.problem_main",
+            "crew.gravity_insight",
+            "crew.gravitropism_discussion",
+            "crew.root_observation",
+            "crew.encouraged",
+            "crew.problem_curt"
+          ],
+          "ZERO_GRAVITY": [
+            "sensors.gravity",
+            "sensors.gravitropism_query"
+          ],
+          "ROOT_TANGLE": [
+            "plants.roots",
+            "plants.tug_analysis"
+          ],
+          "GRAVITROPISM_MISSING": [
+            "logs.gravitropism_entry",
+            "logs.root_morph"
+          ]
+        }
+      },
+      {
+        "id": "lunar",
+        "name": "Lunar Greenhouse",
+        "main": true,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 55,
+        "nOptions": 133,
+        "totalWords": 2867,
+        "issues": [],
+        "warnings": [],
+        "revealCounts": {
+          "FLOWERS_NO_FRUIT": [
+            "crew.problem_main"
+          ],
+          "LOW_AIRFLOW": [
+            "sensors.airflow"
+          ],
+          "POLLEN_UNDISTURBED": [
+            "plants.pollen_close",
+            "plants.flower_drop"
+          ],
+          "NO_POLLINATION_PLAN": [
+            "logs.crop_protocols",
+            "logs.pollination_search"
+          ]
+        }
+      },
+      {
+        "id": "mars",
+        "name": "Mars Habitat",
+        "main": true,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 55,
+        "nOptions": 135,
+        "totalWords": 3039,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, locked"
+        ],
+        "revealCounts": {
+          "YELLOWING_TOP_DOWN": [
+            "crew.problem_main",
+            "crew.annoyed",
+            "crew.locked"
+          ],
+          "LIGHT_PIPE_SYSTEM": [
+            "sensors.lighting_data"
+          ],
+          "CHLOROPHYLL_FAILURE_NEW": [
+            "plants.upper_leaves",
+            "plants.growing_tips"
+          ],
+          "LIGHT_SPECTRUM_KEY": [
+            "logs.red_wavelength_detail",
+            "logs.chlorophyll_search"
+          ]
+        }
+      },
+      {
+        "id": "orbital",
+        "name": "Hayes Orbital Station",
+        "main": true,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 49,
+        "nOptions": 112,
+        "totalWords": 2801,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, locked"
+        ],
+        "revealCounts": {
+          "LIGHTING_SCHEDULE_CHANGED": [
+            "crew.lighting_change",
+            "crew.annoyed",
+            "crew.snapped",
+            "crew.locked"
+          ],
+          "NO_DARK_PERIOD": [
+            "sensors.light_data"
+          ],
+          "PHOTOOXIDATIVE_DAMAGE": [
+            "plants.microscope"
+          ],
+          "DARK_PERIOD_REQUIRED": [
+            "logs.photoperiod_entry"
+          ]
+        }
+      },
+      {
+        "id": "europa",
+        "name": "Europa Outpost",
+        "main": true,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 48,
+        "nOptions": 123,
+        "totalWords": 2813,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, exit_cold"
+        ],
+        "revealCounts": {
+          "CONSISTENT_FAILURE": [
+            "crew.problem_main",
+            "crew.annoyed"
+          ],
+          "HIGH_RADIATION": [
+            "sensors.radiation_detail"
+          ],
+          "DNA_DAMAGE_PATTERN": [
+            "plants.microscope"
+          ],
+          "SHIELDING_INSUFFICIENT": [
+            "logs.construction_log"
+          ]
+        }
+      },
+      {
+        "id": "alien1",
+        "name": "First Contact Protocol",
+        "main": false,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 58,
+        "nOptions": 163,
+        "totalWords": 5650,
+        "issues": [],
+        "warnings": [],
+        "revealCounts": {
+          "SYMBIOSIS_BROKEN": [
+            "crew.symbiosis_detail"
+          ],
+          "HUMAN_SCRUBBERS_ACTIVE": [
+            "sensors.atmosphere"
+          ],
+          "NETWORK_DORMANT": [
+            "plants.network",
+            "plants.signal_structures"
+          ],
+          "VOC_SIGNALING": [
+            "logs.network_comm"
+          ]
+        }
+      },
+      {
+        "id": "alien2",
+        "name": "The Gift",
+        "main": false,
+        "nSources": 4,
+        "nClues": 4,
+        "nNodes": 47,
+        "nOptions": 128,
+        "totalWords": 5439,
+        "issues": [],
+        "warnings": [],
+        "revealCounts": {
+          "PROXIMITY_REQUIRED": [
+            "crew.proximity_detail"
+          ],
+          "MISSING_VOCS": [
+            "sensors.atmosphere"
+          ],
+          "WAITING_FOR_TRIGGER": [
+            "plants.what_signal",
+            "plants.receptors"
+          ],
+          "GERMINATION_COMPOUND": [
+            "logs.germination"
+          ]
+        }
+      }
+    ],
+    "C2": [
+      {
+        "id": "heavy_hands",
+        "name": "Vressk Centrifuge Habitat",
+        "main": true,
+        "nSources": 5,
+        "nClues": 5,
+        "nNodes": 52,
+        "nOptions": 119,
+        "totalWords": 3111,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, locked"
+        ],
+        "revealCounts": {
+          "GORLROOT_UPWARD": [
+            "crew.vressk_greeting",
+            "crew.problem_main",
+            "crew.gravity_insight",
+            "crew.tradition_insight",
+            "crew.tuber_insight",
+            "crew.database_insight",
+            "crew.annoyed",
+            "crew.locked"
+          ],
+          "GRAVITY_GRADIENT": [
+            "sensors.gravity_profile"
+          ],
+          "TUBERS_MISALIGNED": [
+            "plants.root_inspection",
+            "plants.tuber_orientation"
+          ],
+          "GORLROOT_NEEDS_UNIFORM_G": [
+            "logs.gorlroot_cultivation",
+            "logs.gravitropism"
+          ],
+          "CENTRIFUGAL_GRADIENT_KNOWN": [
+            "database.centrifugal_gradient"
+          ]
+        }
+      },
+      {
+        "id": "missing_dance",
+        "name": "Ares Botanical Garden",
+        "main": true,
+        "nSources": 5,
+        "nClues": 5,
+        "nNodes": 44,
+        "nOptions": 101,
+        "totalWords": 3018,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, exit_cold"
+        ],
+        "revealCounts": {
+          "LYREFLOWER_BUDS_ABORT": [
+            "crew.telluvian_greeting",
+            "crew.cultural_barrier",
+            "crew.what_it_needs",
+            "crew.acoustic_insight",
+            "crew.pollen_insight",
+            "crew.remediation_insight",
+            "crew.database_insight",
+            "crew.realization",
+            "crew.annoyed"
+          ],
+          "NO_ACOUSTIC_TRIGGER": [
+            "sensors.acoustic_scan"
+          ],
+          "POLLEN_RETAINED": [
+            "plants.anther_exam",
+            "plants.aborted_bud"
+          ],
+          "HAND_POLLINATION_FAILED": [
+            "logs.pollination_log",
+            "logs.remediation"
+          ],
+          "BUZZ_POLLINATION_ACOUSTIC": [
+            "database.buzz_pollination",
+            "database.lyreflower_file"
+          ]
+        }
+      },
+      {
+        "id": "wrong_color_light",
+        "name": "Oolian Mariculture Dome",
+        "main": true,
+        "nSources": 5,
+        "nClues": 5,
+        "nNodes": 48,
+        "nOptions": 105,
+        "totalWords": 3301,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, recovery, locked, exit_cold"
+        ],
+        "revealCounts": {
+          "KELP_DYING_NEW_DOME": [
+            "crew.oolian_greeting",
+            "crew.problem_main",
+            "crew.cant_use_red",
+            "crew.usable_fraction",
+            "crew.spectrum_insight",
+            "crew.pigment_insight",
+            "crew.evolution_insight",
+            "crew.database_insight",
+            "crew.annoyed",
+            "crew.locked"
+          ],
+          "LIGHT_SPECTRUM_RED_HEAVY": [
+            "sensors.spectral_analysis",
+            "sensors.comparison"
+          ],
+          "PIGMENT_MISMATCH": [
+            "plants.magnification",
+            "plants.color_compare"
+          ],
+          "KELP_EVOLVED_DEEP_OCEAN_LIGHT": [
+            "logs.kelp_profile",
+            "logs.habitat"
+          ],
+          "CHLOROPHYLL_C_BLUE_GREEN": [
+            "database.chlorophyll_variants",
+            "database.action_spectra"
+          ]
+        }
+      },
+      {
+        "id": "silent_grove",
+        "name": "Zhel'ii Diaspora Grove",
+        "main": true,
+        "nSources": 5,
+        "nClues": 5,
+        "nNodes": 46,
+        "nOptions": 107,
+        "totalWords": 3593,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, exit_cold"
+        ],
+        "revealCounts": {
+          "NETWORK_FALLEN_SILENT": [
+            "crew.zhelii_greeting",
+            "crew.timeline",
+            "crew.signaling_explained",
+            "crew.dark_period_question",
+            "crew.no_dark_realization",
+            "crew.what_changed",
+            "crew.light_insight",
+            "crew.compound_insight",
+            "crew.schedule_insight",
+            "crew.database_insight",
+            "crew.annoyed"
+          ],
+          "CONTINUOUS_LIGHT_24H": [
+            "sensors.light_data",
+            "sensors.voc_data",
+            "sensors.timeline"
+          ],
+          "SIGNALING_COMPOUNDS_ABSENT": [
+            "plants.signal_structures",
+            "plants.fungal_mat"
+          ],
+          "LIGHT_SCHEDULE_CHANGED": [
+            "logs.health_timeline",
+            "logs.light_history"
+          ],
+          "CIRCADIAN_SIGNALING_NEEDS_DARK": [
+            "database.circadian_data",
+            "database.voc_reference"
+          ]
+        }
+      },
+      {
+        "id": "too_clean_room",
+        "name": "Concord Botanical Vault",
+        "main": true,
+        "nSources": 5,
+        "nClues": 5,
+        "nNodes": 44,
+        "nOptions": 104,
+        "totalWords": 3892,
+        "issues": [],
+        "warnings": [
+          "crew: structurally unreachable nodes: annoyed, exit_cold"
+        ],
+        "revealCounts": {
+          "BLOOMS_INERT": [
+            "crew.rhessi_greeting",
+            "crew.keltor_suspicion",
+            "crew.what_tried",
+            "crew.radiation_insight",
+            "crew.pathway_insight",
+            "crew.homeworld_insight",
+            "crew.database_insight",
+            "crew.annoyed"
+          ],
+          "RADIATION_ZERO": [
+            "sensors.radiation_data"
+          ],
+          "DNA_REPAIR_PATHWAY_INACTIVE": [
+            "plants.tissue_analysis",
+            "plants.dna_repair"
+          ],
+          "KARRETH_HOMEWORLD_HIGH_RAD": [
+            "logs.homeworld",
+            "logs.transplant_doc"
+          ],
+          "HORMESIS_OBLIGATE_RADIATION": [
+            "database.hormesis",
+            "database.karreth_bio"
+          ]
+        }
+      },
+      {
+        "id": "first_garden",
+        "name": "The First Garden",
+        "main": false,
+        "nSources": 5,
+        "nClues": 5,
+        "nNodes": 73,
+        "nOptions": 151,
+        "totalWords": 5575,
+        "issues": [
+          "vorn_shael.active_transport goto missing mycorrhizal_confirm",
+          "ilreth_mar.start goto missing regulation_direct",
+          "ilreth_mar.start goto missing exemption_question"
+        ],
+        "warnings": [
+          "nova: structurally unreachable nodes: annoyed, exit_cold",
+          "vorn_shael: structurally unreachable nodes: annoyed, exit_cold",
+          "kess: structurally unreachable nodes: annoyed, exit_cold",
+          "ilreth_mar: structurally unreachable nodes: annoyed, locked"
+        ],
+        "revealCounts": {
+          "RESTORATION_HISTORY": [
+            "nova.problem",
+            "nova.history",
+            "nova.tried_everything",
+            "nova.chemical_response",
+            "nova.mycorrhizal_response",
+            "nova.annoyed"
+          ],
+          "CHEMICAL_DISCONNECTION": [
+            "vorn_shael.chemical_reading",
+            "vorn_shael.unusual_pattern",
+            "vorn_shael.healthy_comparison",
+            "vorn_shael.annoyed"
+          ],
+          "MYCORRHIZAL_NETWORK": [
+            "kess.database_assist",
+            "kess.third_fragment"
+          ],
+          "CONCORD_REGULATION": [
+            "ilreth_mar.biosafety_overview",
+            "ilreth_mar.specific_reg",
+            "ilreth_mar.reform_discussion",
+            "ilreth_mar.annoyed",
+            "ilreth_mar.locked"
+          ],
+          "DATABASE_PRECEDENT": [
+            "database.exemptions"
+          ]
+        }
+      }
+    ]
+  },
+  "serious_science_priorities": [
+    {
+      "priority": 1,
+      "case": "C1-3",
+      "topic": "Mars spectral-loss mechanism",
+      "action": "edit_game_text"
+    },
+    {
+      "priority": 2,
+      "case": "C1-4",
+      "topic": "universal Spirulina dark-period claim",
+      "action": "edit_game_text"
+    },
+    {
+      "priority": 3,
+      "case": "C2-5",
+      "topic": "settled radiation hormesis/radiosynthesis framing",
+      "action": "edit_game_text"
+    },
+    {
+      "priority": 4,
+      "case": "C2-6",
+      "topic": "categorical common-mycorrhizal-network cooperation/restoration claims",
+      "action": "edit_game_text"
+    },
+    {
+      "priority": 5,
+      "case": "C1-5",
+      "topic": "Moon grouped with ISS geomagnetic protection",
+      "action": "edit_game_text"
+    },
+    {
+      "priority": 6,
+      "case": "C1-1/C1-2",
+      "topic": "historical space-plant and bee fun facts",
+      "action": "edit_game_text"
+    },
+    {
+      "priority": 7,
+      "case": "C1-3/C2-3",
+      "topic": "absolute statements about green/red light usability",
+      "action": "edit_or_soften"
+    }
+  ],
+  "cross_case_findings": [
+    "Formal clue acquisition is shallow by design; curriculum rigor must come from interpretation and reasoning.",
+    "Every case has a purposeful evidence route compatible with approximately 20 minutes of gameplay.",
+    "Optional gated dialogue often contains the best cross-source reasoning but cannot be required.",
+    "Campaign 2 advances from missing-variable diagnosis to species-specific assumption and policy testing.",
+    "Game score must remain separate from academic assessment.",
+    "C2-6 curriculum should require reading the mycorrhizal biology entry before accepting the restoration recommendation."
+  ]
+}

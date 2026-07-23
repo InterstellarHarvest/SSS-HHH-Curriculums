@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Space Sprout Sleuth Curriculum Planning Questionnaire</title>
+<style>
+:root {
+  --bg:#f4f6f8; --panel:#fff; --ink:#17202a; --muted:#5f6b76; --line:#d8dee5;
+  --accent:#176b5b; --accent2:#e8f3f0; --warn:#9a5a00;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--ink); }
+header { background:#102a2b; color:#fff; padding:24px; }
+header h1 { margin:0 0 6px; font-size:clamp(1.4rem,3vw,2rem); }
+header p { margin:0; color:#d6e6e2; }
+.toolbar { position:sticky; top:0; z-index:5; display:flex; flex-wrap:wrap; gap:8px; padding:10px 16px; background:#fff; border-bottom:1px solid var(--line); }
+button { border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:8px; padding:9px 12px; font-weight:650; cursor:pointer; }
+button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+button:hover { filter:brightness(.97); }
+.layout { display:grid; grid-template-columns:minmax(220px,300px) minmax(0,850px); gap:20px; max-width:1200px; margin:20px auto; padding:0 16px 40px; }
+nav { align-self:start; position:sticky; top:68px; display:flex; flex-direction:column; gap:6px; }
+.tabbtn { text-align:left; }
+.tabbtn.active { background:var(--accent2); border-color:var(--accent); color:#0f4f43; }
+main { min-width:0; }
+.progresswrap { background:#fff; border:1px solid var(--line); border-radius:12px; padding:12px 14px; margin-bottom:14px; }
+progress { width:100%; height:14px; }
+.tab { display:none; background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:22px; }
+.tab.active { display:block; }
+h2 { margin-top:0; }
+.question { padding:16px 0; border-top:1px solid var(--line); }
+.question:first-of-type { border-top:none; }
+.prompt { display:block; font-weight:720; margin-bottom:10px; }
+input[type="text"], input[type="number"], textarea {
+  width:100%; border:1px solid #bfc8d2; border-radius:8px; padding:10px; font:inherit; background:#fff;
+}
+textarea { resize:vertical; }
+.choice { display:block; margin:8px 0; line-height:1.35; }
+.small { color:var(--muted); font-size:.92rem; }
+.navrow { display:flex; justify-content:space-between; gap:10px; margin-top:20px; }
+#status { margin-left:auto; color:var(--muted); align-self:center; font-size:.9rem; }
+dialog { width:min(900px,94vw); max-height:88vh; border:none; border-radius:12px; box-shadow:0 20px 80px #0004; }
+dialog textarea { height:55vh; font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+@media (max-width:760px) {
+ .layout { grid-template-columns:1fr; }
+ nav { position:static; display:grid; grid-template-columns:1fr 1fr; }
+ .toolbar { position:static; }
+}
+@media print {
+ header,.toolbar,nav,.progresswrap,.navrow,dialog { display:none !important; }
+ body { background:#fff; }
+ .layout { display:block; margin:0; padding:0; }
+ .tab { display:block !important; border:none; page-break-after:always; padding:0; }
+ input,textarea { border:none !important; border-bottom:1px solid #777 !important; }
+ .choice { margin:5px 0; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Space Sprout Sleuth Curriculum Planning Questionnaire</h1>
+  <p>Answer what you know, skip what you do not, then copy or export everything in a format ready to paste back into ChatGPT.</p>
+</header>
+
+<div class="toolbar">
+  <button class="primary" type="button" id="copyBtn">Copy parsed responses</button>
+  <button type="button" id="previewBtn">Preview parsed responses</button>
+  <button type="button" id="downloadTxtBtn">Download .txt</button>
+  <button type="button" id="downloadJsonBtn">Download .json</button>
+  <button type="button" id="printBtn">Print / Save PDF</button>
+  <button type="button" id="clearBtn">Clear all</button>
+  <span id="status">Autosaved locally</span>
+</div>
+
+<div class="layout">
+<nav>
+<button type="button" class="tabbtn active" data-tab="tab0">1. Students and course placement</button><button type="button" class="tabbtn" data-tab="tab1">2. Standards and graduate-program requirements</button><button type="button" class="tabbtn" data-tab="tab2">3. Classroom timing and logistics</button><button type="button" class="tabbtn" data-tab="tab3">4. Gameplay and worksheet integration</button><button type="button" class="tabbtn" data-tab="tab4">5. Assessment</button><button type="button" class="tabbtn" data-tab="tab5">6. Teacher-facing package</button><button type="button" class="tabbtn" data-tab="tab6">7. Accuracy and sourcing</button><button type="button" class="tabbtn" data-tab="tab7">8. Story, campaigns, and crossover</button><button type="button" class="tabbtn" data-tab="tab8">9. Visual and file format</button><button type="button" class="tabbtn" data-tab="tab9">10. Repository audit</button><button type="button" class="tabbtn" data-tab="tab10">11. Your overall preferences</button>
+</nav>
+<main>
+<div class="progresswrap">
+  <div><strong>Completion:</strong> <span id="progressText">0%</span></div>
+  <progress id="progressBar" max="100" value="0"></progress>
+  <div class="small">Blank answers are omitted from the copied response.</div>
+</div>
+<form id="form">
+<section id="tab0" class="tab active"><h2>Students and course placement</h2><div class="question" data-key="grade_range"><label class="prompt" for="f_grade_range">What grade level or grade range is SSS primarily meant for?</label>
+<input id="f_grade_range" name="grade_range" type="text">
+</div>
+<div class="question" data-key="course_context"><label class="prompt" for="f_course_context">What course(s) should it fit: general science, life science, environmental science, agricultural science, biology, STEM, or something else?</label>
+<textarea id="f_course_context" name="course_context" rows="4"></textarea>
+</div>
+<div class="question" data-key="audience_scope"><label class="prompt" for="f_audience_scope">Is this mainly for your own classes, or should unfamiliar teachers be able to use it too?</label>
+<label class="choice"><input type="radio" name="audience_scope" value="My own classes"> My own classes</label>
+<label class="choice"><input type="radio" name="audience_scope" value="Other teachers too"> Other teachers too</label>
+<label class="choice"><input type="radio" name="audience_scope" value="Both"> Both</label>
+</div>
+<div class="question" data-key="reading_level"><label class="prompt" for="f_reading_level">What reading level should student materials target?</label>
+<input id="f_reading_level" name="reading_level" type="text">
+</div>
+<div class="question" data-key="versions"><label class="prompt" for="f_versions">Do you eventually want simplified and advanced versions?</label>
+<label class="choice"><input type="checkbox" name="versions" value="One standard version first"> One standard version first</label>
+<label class="choice"><input type="checkbox" name="versions" value="Simplified version later"> Simplified version later</label>
+<label class="choice"><input type="checkbox" name="versions" value="Advanced version later"> Advanced version later</label>
+</div>
+<div class="question" data-key="ell"><label class="prompt" for="f_ell">Are English-language learners a significant part of the audience?</label>
+<label class="choice"><input type="radio" name="ell" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="ell" value="No"> No</label>
+<label class="choice"><input type="radio" name="ell" value="Somewhat / varies"> Somewhat / varies</label>
+</div>
+<div class="question" data-key="accommodations"><label class="prompt" for="f_accommodations">What accommodations are most important?</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Reduced writing"> Reduced writing</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Chunked directions"> Chunked directions</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Large print"> Large print</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Text-to-speech compatibility"> Text-to-speech compatibility</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Alternate response formats"> Alternate response formats</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Extra processing time"> Extra processing time</label>
+<label class="choice"><input type="checkbox" name="accommodations" value="Other"> Other</label>
+</div></section><section id="tab1" class="tab"><h2>Standards and graduate-program requirements</h2><div class="question" data-key="standards"><label class="prompt" for="f_standards">Which standards should anchor the curriculum?</label>
+<label class="choice"><input type="checkbox" name="standards" value="NGSS"> NGSS</label>
+<label class="choice"><input type="checkbox" name="standards" value="Maryland standards"> Maryland standards</label>
+<label class="choice"><input type="checkbox" name="standards" value="Common Core literacy"> Common Core literacy</label>
+<label class="choice"><input type="checkbox" name="standards" value="Agricultural education standards"> Agricultural education standards</label>
+<label class="choice"><input type="checkbox" name="standards" value="Other"> Other</label>
+</div>
+<div class="question" data-key="alignment_depth"><label class="prompt" for="f_alignment_depth">How strong should standards claims be?</label>
+<label class="choice"><input type="radio" name="alignment_depth" value="One main performance expectation per case"> One main performance expectation per case</label>
+<label class="choice"><input type="radio" name="alignment_depth" value="Use DCIs/SEPs/CCCs without claiming a full PE"> Use DCIs/SEPs/CCCs without claiming a full PE</label>
+<label class="choice"><input type="radio" name="alignment_depth" value="Use best judgment"> Use best judgment</label>
+</div>
+<div class="question" data-key="masters_template"><label class="prompt" for="f_masters_template">Does your master’s program require a specific lesson-plan template, rubric, framework, or terminology?</label>
+<textarea id="f_masters_template" name="masters_template" rows="4"></textarea>
+</div>
+<div class="question" data-key="artifact_type"><label class="prompt" for="f_artifact_type">What might this eventually be submitted as?</label>
+<label class="choice"><input type="checkbox" name="artifact_type" value="Capstone"> Capstone</label>
+<label class="choice"><input type="checkbox" name="artifact_type" value="Portfolio"> Portfolio</label>
+<label class="choice"><input type="checkbox" name="artifact_type" value="Action research"> Action research</label>
+<label class="choice"><input type="checkbox" name="artifact_type" value="Practicum"> Practicum</label>
+<label class="choice"><input type="checkbox" name="artifact_type" value="Course artifact"> Course artifact</label>
+<label class="choice"><input type="checkbox" name="artifact_type" value="Not sure yet"> Not sure yet</label>
+</div>
+<div class="question" data-key="research_base"><label class="prompt" for="f_research_base">Should the final package include citations and a research rationale for game-based learning?</label>
+<label class="choice"><input type="radio" name="research_base" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="research_base" value="No"> No</label>
+<label class="choice"><input type="radio" name="research_base" value="Probably"> Probably</label>
+</div></section><section id="tab2" class="tab"><h2>Classroom timing and logistics</h2><div class="question" data-key="period_limit"><label class="prompt" for="f_period_limit">Does the 60-minute limit include setup, login, directions, gameplay, worksheet, and closure?</label>
+<label class="choice"><input type="radio" name="period_limit" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="period_limit" value="No"> No</label>
+<label class="choice"><input type="radio" name="period_limit" value="Mostly"> Mostly</label>
+</div>
+<div class="question" data-key="gameplay_minutes"><label class="prompt" for="f_gameplay_minutes">Ideal number of gameplay minutes per case?</label>
+<input id="f_gameplay_minutes" name="gameplay_minutes" type="number" min="0">
+</div>
+<div class="question" data-key="chapter_period"><label class="prompt" for="f_chapter_period">Should one chapter normally equal one class period?</label>
+<label class="choice"><input type="radio" name="chapter_period" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="chapter_period" value="No"> No</label>
+<label class="choice"><input type="radio" name="chapter_period" value="Usually"> Usually</label>
+</div>
+<div class="question" data-key="self_contained"><label class="prompt" for="f_self_contained">Should every lesson work as a self-contained activity for absences or schedule interruptions?</label>
+<label class="choice"><input type="radio" name="self_contained" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="self_contained" value="No"> No</label>
+<label class="choice"><input type="radio" name="self_contained" value="Preferably"> Preferably</label>
+</div>
+<div class="question" data-key="video_limit"><label class="prompt" for="f_video_limit">Maximum acceptable required video length in minutes?</label>
+<input id="f_video_limit" name="video_limit" type="number" min="0">
+</div>
+<div class="question" data-key="reading_limit"><label class="prompt" for="f_reading_limit">Maximum acceptable required reading length?</label>
+<label class="choice"><input type="radio" name="reading_limit" value="Half page"> Half page</label>
+<label class="choice"><input type="radio" name="reading_limit" value="One page"> One page</label>
+<label class="choice"><input type="radio" name="reading_limit" value="Two pages"> Two pages</label>
+<label class="choice"><input type="radio" name="reading_limit" value="Use judgment"> Use judgment</label>
+</div>
+<div class="question" data-key="devices"><label class="prompt" for="f_devices">What devices will students use?</label>
+<label class="choice"><input type="checkbox" name="devices" value="Chromebooks"> Chromebooks</label>
+<label class="choice"><input type="checkbox" name="devices" value="Windows PCs"> Windows PCs</label>
+<label class="choice"><input type="checkbox" name="devices" value="Macs"> Macs</label>
+<label class="choice"><input type="checkbox" name="devices" value="iPads"> iPads</label>
+<label class="choice"><input type="checkbox" name="devices" value="Mixed"> Mixed</label>
+</div>
+<div class="question" data-key="headphones"><label class="prompt" for="f_headphones">Are headphones normally available?</label>
+<label class="choice"><input type="radio" name="headphones" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="headphones" value="No"> No</label>
+<label class="choice"><input type="radio" name="headphones" value="Sometimes"> Sometimes</label>
+</div>
+<div class="question" data-key="internet"><label class="prompt" for="f_internet">How reliable/restricted is internet access?</label>
+<textarea id="f_internet" name="internet" rows="4"></textarea>
+</div>
+<div class="question" data-key="youtube"><label class="prompt" for="f_youtube">Is YouTube accessible on the school network?</label>
+<label class="choice"><input type="radio" name="youtube" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="youtube" value="No"> No</label>
+<label class="choice"><input type="radio" name="youtube" value="Sometimes / uncertain"> Sometimes / uncertain</label>
+</div>
+<div class="question" data-key="offline_backup"><label class="prompt" for="f_offline_backup">Should every external resource have an offline alternative?</label>
+<label class="choice"><input type="radio" name="offline_backup" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="offline_backup" value="No"> No</label>
+<label class="choice"><input type="radio" name="offline_backup" value="For required resources only"> For required resources only</label>
+</div></section><section id="tab3" class="tab"><h2>Gameplay and worksheet integration</h2><div class="question" data-key="sheet_visibility"><label class="prompt" for="f_sheet_visibility">Should students see the whole worksheet at the start?</label>
+<label class="choice"><input type="radio" name="sheet_visibility" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="sheet_visibility" value="No, reveal by checkpoint"> No, reveal by checkpoint</label>
+<label class="choice"><input type="radio" name="sheet_visibility" value="Either is fine"> Either is fine</label>
+</div>
+<div class="question" data-key="recording_style"><label class="prompt" for="f_recording_style">How should students record work during play?</label>
+<label class="choice"><input type="radio" name="recording_style" value="Pause at designated checkpoints"> Pause at designated checkpoints</label>
+<label class="choice"><input type="radio" name="recording_style" value="Record continuously as clues appear"> Record continuously as clues appear</label>
+<label class="choice"><input type="radio" name="recording_style" value="A mix"> A mix</label>
+</div>
+<div class="question" data-key="code_prompts"><label class="prompt" for="f_code_prompts">Should the curriculum work without code changes, or may we recommend in-game prompts?</label>
+<label class="choice"><input type="radio" name="code_prompts" value="No code changes required"> No code changes required</label>
+<label class="choice"><input type="radio" name="code_prompts" value="Recommend useful code changes"> Recommend useful code changes</label>
+<label class="choice"><input type="radio" name="code_prompts" value="Both"> Both</label>
+</div>
+<div class="question" data-key="fiction_science_terms"><label class="prompt" for="f_fiction_science_terms">How should fictional and scientific vocabulary be presented?</label>
+<label class="choice"><input type="radio" name="fiction_science_terms" value="Game term first, science term second"> Game term first, science term second</label>
+<label class="choice"><input type="radio" name="fiction_science_terms" value="Science term first, game term second"> Science term first, game term second</label>
+<label class="choice"><input type="radio" name="fiction_science_terms" value="Use both naturally"> Use both naturally</label>
+</div>
+<div class="question" data-key="writing_load"><label class="prompt" for="f_writing_load">Typical writing load per case?</label>
+<label class="choice"><input type="radio" name="writing_load" value="Mostly checkboxes/short answers"> Mostly checkboxes/short answers</label>
+<label class="choice"><input type="radio" name="writing_load" value="A few short responses"> A few short responses</label>
+<label class="choice"><input type="radio" name="writing_load" value="One compact paragraph"> One compact paragraph</label>
+<label class="choice"><input type="radio" name="writing_load" value="Varies by case"> Varies by case</label>
+</div>
+<div class="question" data-key="cer_frequency"><label class="prompt" for="f_cer_frequency">How often should CER be used?</label>
+<label class="choice"><input type="radio" name="cer_frequency" value="Every case"> Every case</label>
+<label class="choice"><input type="radio" name="cer_frequency" value="Only when it fits"> Only when it fits</label>
+<label class="choice"><input type="radio" name="cer_frequency" value="Rarely"> Rarely</label>
+</div>
+<div class="question" data-key="open_game"><label class="prompt" for="f_open_game">May students consult game dialogue while answering?</label>
+<label class="choice"><input type="radio" name="open_game" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="open_game" value="No"> No</label>
+<label class="choice"><input type="radio" name="open_game" value="Depends on item"> Depends on item</label>
+</div>
+<div class="question" data-key="grading_focus"><label class="prompt" for="f_grading_focus">What should grading emphasize?</label>
+<label class="choice"><input type="checkbox" name="grading_focus" value="Scientific reasoning"> Scientific reasoning</label>
+<label class="choice"><input type="checkbox" name="grading_focus" value="Accurate evidence collection"> Accurate evidence collection</label>
+<label class="choice"><input type="checkbox" name="grading_focus" value="Completion"> Completion</label>
+<label class="choice"><input type="checkbox" name="grading_focus" value="Vocabulary"> Vocabulary</label>
+<label class="choice"><input type="checkbox" name="grading_focus" value="Short written explanation"> Short written explanation</label>
+</div>
+<div class="question" data-key="game_skill_grade"><label class="prompt" for="f_game_skill_grade">Should gameplay skill affect academic grades?</label>
+<label class="choice"><input type="radio" name="game_skill_grade" value="No"> No</label>
+<label class="choice"><input type="radio" name="game_skill_grade" value="A little"> A little</label>
+<label class="choice"><input type="radio" name="game_skill_grade" value="Yes"> Yes</label>
+</div>
+<div class="question" data-key="bypass"><label class="prompt" for="f_bypass">If a student cannot complete a gameplay challenge, what should happen?</label>
+<label class="choice"><input type="checkbox" name="bypass" value="Teacher bypass"> Teacher bypass</label>
+<label class="choice"><input type="checkbox" name="bypass" value="Replay option"> Replay option</label>
+<label class="choice"><input type="checkbox" name="bypass" value="Alternative evidence source"> Alternative evidence source</label>
+<label class="choice"><input type="checkbox" name="bypass" value="Hint mode"> Hint mode</label>
+<label class="choice"><input type="checkbox" name="bypass" value="Use judgment"> Use judgment</label>
+</div></section><section id="tab4" class="tab"><h2>Assessment</h2><div class="question" data-key="assessment_type"><label class="prompt" for="f_assessment_type">What should these usually be?</label>
+<label class="choice"><input type="checkbox" name="assessment_type" value="Formative assessment"> Formative assessment</label>
+<label class="choice"><input type="checkbox" name="assessment_type" value="Completion grade"> Completion grade</label>
+<label class="choice"><input type="checkbox" name="assessment_type" value="Graded assignment"> Graded assignment</label>
+<label class="choice"><input type="checkbox" name="assessment_type" value="Varies by case"> Varies by case</label>
+</div>
+<div class="question" data-key="points"><label class="prompt" for="f_points">Do you want numeric points printed on student pages?</label>
+<label class="choice"><input type="radio" name="points" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="points" value="No"> No</label>
+<label class="choice"><input type="radio" name="points" value="Maybe"> Maybe</label>
+</div>
+<div class="question" data-key="scoring_support"><label class="prompt" for="f_scoring_support">What teacher scoring support should each case include?</label>
+<label class="choice"><input type="checkbox" name="scoring_support" value="Answer key"> Answer key</label>
+<label class="choice"><input type="checkbox" name="scoring_support" value="Quick rubric"> Quick rubric</label>
+<label class="choice"><input type="checkbox" name="scoring_support" value="Formal rubric"> Formal rubric</label>
+<label class="choice"><input type="checkbox" name="scoring_support" value="Success criteria"> Success criteria</label>
+</div>
+<div class="question" data-key="exit_ticket"><label class="prompt" for="f_exit_ticket">Should every lesson end with an exit ticket?</label>
+<label class="choice"><input type="radio" name="exit_ticket" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="exit_ticket" value="No"> No</label>
+<label class="choice"><input type="radio" name="exit_ticket" value="Worksheet ending can serve as closure"> Worksheet ending can serve as closure</label>
+</div>
+<div class="question" data-key="pre_post"><label class="prompt" for="f_pre_post">Do you want a campaign pre-assessment and post-assessment?</label>
+<label class="choice"><input type="radio" name="pre_post" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="pre_post" value="No"> No</label>
+<label class="choice"><input type="radio" name="pre_post" value="Maybe"> Maybe</label>
+</div>
+<div class="question" data-key="research_ready"><label class="prompt" for="f_research_ready">Should the materials make later classroom research/data collection easier?</label>
+<label class="choice"><input type="radio" name="research_ready" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="research_ready" value="No"> No</label>
+<label class="choice"><input type="radio" name="research_ready" value="Maybe"> Maybe</label>
+</div></section><section id="tab5" class="tab"><h2>Teacher-facing package</h2><div class="question" data-key="teacher_detail"><label class="prompt" for="f_teacher_detail">How detailed should the formal lesson plan be?</label>
+<label class="choice"><input type="radio" name="teacher_detail" value="Full administrative detail"> Full administrative detail</label>
+<label class="choice"><input type="radio" name="teacher_detail" value="Moderate detail"> Moderate detail</label>
+<label class="choice"><input type="radio" name="teacher_detail" value="Compact"> Compact</label>
+</div>
+<div class="question" data-key="quick_guide"><label class="prompt" for="f_quick_guide">Should each case also have a one-page quick-start teacher guide?</label>
+<label class="choice"><input type="radio" name="quick_guide" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="quick_guide" value="No"> No</label>
+<label class="choice"><input type="radio" name="quick_guide" value="Maybe"> Maybe</label>
+</div>
+<div class="question" data-key="sub_ready"><label class="prompt" for="f_sub_ready">Should a substitute or unfamiliar teacher be able to run it?</label>
+<label class="choice"><input type="radio" name="sub_ready" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="sub_ready" value="No"> No</label>
+<label class="choice"><input type="radio" name="sub_ready" value="Preferably"> Preferably</label>
+</div>
+<div class="question" data-key="tech_notes"><label class="prompt" for="f_tech_notes">Include game controls and technical troubleshooting?</label>
+<label class="choice"><input type="radio" name="tech_notes" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="tech_notes" value="No"> No</label>
+</div>
+<div class="question" data-key="teacher_script"><label class="prompt" for="f_teacher_script">Include suggested teacher wording?</label>
+<label class="choice"><input type="radio" name="teacher_script" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="teacher_script" value="No"> No</label>
+<label class="choice"><input type="radio" name="teacher_script" value="Only where useful"> Only where useful</label>
+</div>
+<div class="question" data-key="why_matters"><label class="prompt" for="f_why_matters">Include a real-world relevance section in every case?</label>
+<label class="choice"><input type="radio" name="why_matters" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="why_matters" value="No"> No</label>
+<label class="choice"><input type="radio" name="why_matters" value="Usually"> Usually</label>
+</div>
+<div class="question" data-key="fact_fiction"><label class="prompt" for="f_fact_fiction">Clearly separate factual science/history from fictional story elements?</label>
+<label class="choice"><input type="radio" name="fact_fiction" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="fact_fiction" value="No"> No</label>
+</div></section><section id="tab6" class="tab"><h2>Accuracy and sourcing</h2><div class="question" data-key="claim_sources"><label class="prompt" for="f_claim_sources">Should teacher materials source all important scientific claims?</label>
+<label class="choice"><input type="radio" name="claim_sources" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="claim_sources" value="No"> No</label>
+<label class="choice"><input type="radio" name="claim_sources" value="Key claims only"> Key claims only</label>
+</div>
+<div class="question" data-key="student_citations"><label class="prompt" for="f_student_citations">Should student readings include citations?</label>
+<label class="choice"><input type="radio" name="student_citations" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="student_citations" value="No"> No</label>
+<label class="choice"><input type="radio" name="student_citations" value="Simple source line only"> Simple source line only</label>
+</div>
+<div class="question" data-key="source_preferences"><label class="prompt" for="f_source_preferences">Preferred source types?</label>
+<label class="choice"><input type="checkbox" name="source_preferences" value="Government"> Government</label>
+<label class="choice"><input type="checkbox" name="source_preferences" value="Universities"> Universities</label>
+<label class="choice"><input type="checkbox" name="source_preferences" value="Museums"> Museums</label>
+<label class="choice"><input type="checkbox" name="source_preferences" value="Scientific organizations"> Scientific organizations</label>
+<label class="choice"><input type="checkbox" name="source_preferences" value="Peer-reviewed research"> Peer-reviewed research</label>
+<label class="choice"><input type="checkbox" name="source_preferences" value="High-quality educational sources"> High-quality educational sources</label>
+</div>
+<div class="question" data-key="flag_simplifications"><label class="prompt" for="f_flag_simplifications">Should the audit flag scientific simplifications or inaccuracies in the game?</label>
+<label class="choice"><input type="radio" name="flag_simplifications" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="flag_simplifications" value="No"> No</label>
+<label class="choice"><input type="radio" name="flag_simplifications" value="Only serious issues"> Only serious issues</label>
+</div>
+<div class="question" data-key="speculation_labels"><label class="prompt" for="f_speculation_labels">Should space-agriculture content distinguish established science, extrapolation, and fiction?</label>
+<label class="choice"><input type="radio" name="speculation_labels" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="speculation_labels" value="No"> No</label>
+</div>
+<div class="question" data-key="allow_corrections"><label class="prompt" for="f_allow_corrections">May the curriculum audit recommend changes to dialogue or mechanics when needed for accuracy?</label>
+<label class="choice"><input type="radio" name="allow_corrections" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="allow_corrections" value="No"> No</label>
+<label class="choice"><input type="radio" name="allow_corrections" value="Only major problems"> Only major problems</label>
+</div></section><section id="tab7" class="tab"><h2>Story, campaigns, and crossover</h2><div class="question" data-key="campaign_names"><label class="prompt" for="f_campaign_names">What are the official names of SSS’s two campaigns?</label>
+<textarea id="f_campaign_names" name="campaign_names" rows="4"></textarea>
+</div>
+<div class="question" data-key="campaign_counts"><label class="prompt" for="f_campaign_counts">How many chapters/cases are in each campaign?</label>
+<textarea id="f_campaign_counts" name="campaign_counts" rows="4"></textarea>
+</div>
+<div class="question" data-key="campaign_complete"><label class="prompt" for="f_campaign_complete">Are both campaigns complete?</label>
+<label class="choice"><input type="radio" name="campaign_complete" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="campaign_complete" value="No"> No</label>
+<label class="choice"><input type="radio" name="campaign_complete" value="Mostly"> Mostly</label>
+</div>
+<div class="question" data-key="campaign2_dependency"><label class="prompt" for="f_campaign2_dependency">Does campaign 2 assume students completed campaign 1?</label>
+<label class="choice"><input type="radio" name="campaign2_dependency" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="campaign2_dependency" value="No"> No</label>
+<label class="choice"><input type="radio" name="campaign2_dependency" value="Somewhat"> Somewhat</label>
+</div>
+<div class="question" data-key="spiral_concepts"><label class="prompt" for="f_spiral_concepts">Should concepts return in more sophisticated forms later?</label>
+<label class="choice"><input type="radio" name="spiral_concepts" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="spiral_concepts" value="No"> No</label>
+<label class="choice"><input type="radio" name="spiral_concepts" value="Use judgment"> Use judgment</label>
+</div>
+<div class="question" data-key="campaign_difference"><label class="prompt" for="f_campaign_difference">What is the main distinction between the two campaigns?</label>
+<textarea id="f_campaign_difference" name="campaign_difference" rows="4"></textarea>
+</div>
+<div class="question" data-key="culminations"><label class="prompt" for="f_culminations">Should each campaign have a different one-period culminating task?</label>
+<label class="choice"><input type="radio" name="culminations" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="culminations" value="No"> No</label>
+<label class="choice"><input type="radio" name="culminations" value="Use judgment"> Use judgment</label>
+</div>
+<div class="question" data-key="final_sss"><label class="prompt" for="f_final_sss">Should there also be a final SSS synthesis after both campaigns?</label>
+<label class="choice"><input type="radio" name="final_sss" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="final_sss" value="No"> No</label>
+<label class="choice"><input type="radio" name="final_sss" value="Maybe"> Maybe</label>
+</div>
+<div class="question" data-key="hhh_foreshadow"><label class="prompt" for="f_hhh_foreshadow">How much should SSS foreshadow Hunger Harvest History?</label>
+<label class="choice"><input type="radio" name="hhh_foreshadow" value="Barely"> Barely</label>
+<label class="choice"><input type="radio" name="hhh_foreshadow" value="Subtly"> Subtly</label>
+<label class="choice"><input type="radio" name="hhh_foreshadow" value="Clearly"> Clearly</label>
+</div>
+<div class="question" data-key="shared_formats"><label class="prompt" for="f_shared_formats">Should evidence logs, credentials, and scientific-practice formats stay consistent across both games?</label>
+<label class="choice"><input type="radio" name="shared_formats" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="shared_formats" value="No"> No</label>
+<label class="choice"><input type="radio" name="shared_formats" value="Mostly"> Mostly</label>
+</div>
+<div class="question" data-key="hhh_standalone"><label class="prompt" for="f_hhh_standalone">Should HHH remain usable without playing SSS first?</label>
+<label class="choice"><input type="radio" name="hhh_standalone" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="hhh_standalone" value="No"> No</label>
+<label class="choice"><input type="radio" name="hhh_standalone" value="Preferably"> Preferably</label>
+</div></section><section id="tab8" class="tab"><h2>Visual and file format</h2><div class="question" data-key="visual_style"><label class="prompt" for="f_visual_style">How should student materials look?</label>
+<label class="choice"><input type="radio" name="visual_style" value="In-universe station documents"> In-universe station documents</label>
+<label class="choice"><input type="radio" name="visual_style" value="Conventional worksheets"> Conventional worksheets</label>
+<label class="choice"><input type="radio" name="visual_style" value="Hybrid"> Hybrid</label>
+</div>
+<div class="question" data-key="grayscale"><label class="prompt" for="f_grayscale">Must they print well in grayscale?</label>
+<label class="choice"><input type="radio" name="grayscale" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="grayscale" value="No"> No</label>
+<label class="choice"><input type="radio" name="grayscale" value="Preferably"> Preferably</label>
+</div>
+<div class="question" data-key="completion_mode"><label class="prompt" for="f_completion_mode">How will students complete them?</label>
+<label class="choice"><input type="checkbox" name="completion_mode" value="Paper"> Paper</label>
+<label class="choice"><input type="checkbox" name="completion_mode" value="Fillable PDF"> Fillable PDF</label>
+<label class="choice"><input type="checkbox" name="completion_mode" value="Google Docs"> Google Docs</label>
+<label class="choice"><input type="checkbox" name="completion_mode" value="Other digital format"> Other digital format</label>
+</div>
+<div class="question" data-key="page_limit"><label class="prompt" for="f_page_limit">Maximum student pages per case?</label>
+<label class="choice"><input type="radio" name="page_limit" value="One page"> One page</label>
+<label class="choice"><input type="radio" name="page_limit" value="One double-sided sheet"> One double-sided sheet</label>
+<label class="choice"><input type="radio" name="page_limit" value="Two double-sided sheets"> Two double-sided sheets</label>
+<label class="choice"><input type="radio" name="page_limit" value="Use judgment"> Use judgment</label>
+</div>
+<div class="question" data-key="artwork"><label class="prompt" for="f_artwork">May materials use screenshots and artwork from the game?</label>
+<label class="choice"><input type="radio" name="artwork" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="artwork" value="No"> No</label>
+<label class="choice"><input type="radio" name="artwork" value="Selectively"> Selectively</label>
+</div>
+<div class="question" data-key="case_visuals"><label class="prompt" for="f_case_visuals">Should each case have unique visual styling, or use one consistent campaign template?</label>
+<label class="choice"><input type="radio" name="case_visuals" value="Unique per case"> Unique per case</label>
+<label class="choice"><input type="radio" name="case_visuals" value="Consistent template"> Consistent template</label>
+<label class="choice"><input type="radio" name="case_visuals" value="Consistent template with case accents"> Consistent template with case accents</label>
+</div></section><section id="tab9" class="tab"><h2>Repository audit</h2><div class="question" data-key="authoritative_branch"><label class="prompt" for="f_authoritative_branch">Which GitHub branch should be treated as authoritative?</label>
+<input id="f_authoritative_branch" name="authoritative_branch" type="text">
+</div>
+<div class="question" data-key="local_missing"><label class="prompt" for="f_local_missing">Are any important dialogue files or design documents only local and not committed?</label>
+<textarea id="f_local_missing" name="local_missing" rows="4"></textarea>
+</div>
+<div class="question" data-key="external_docs"><label class="prompt" for="f_external_docs">Are there outside docs, notes, spreadsheets, or chats with educational intent not present in GitHub?</label>
+<textarea id="f_external_docs" name="external_docs" rows="4"></textarea>
+</div>
+<div class="question" data-key="history_issues"><label class="prompt" for="f_history_issues">Should the audit inspect commit history, closed issues, open issues, and TODOs?</label>
+<label class="choice"><input type="checkbox" name="history_issues" value="Commit history"> Commit history</label>
+<label class="choice"><input type="checkbox" name="history_issues" value="Closed issues"> Closed issues</label>
+<label class="choice"><input type="checkbox" name="history_issues" value="Open issues"> Open issues</label>
+<label class="choice"><input type="checkbox" name="history_issues" value="TODOs/comments"> TODOs/comments</label>
+</div>
+<div class="question" data-key="canonical_rule"><label class="prompt" for="f_canonical_rule">When code, dev notes, and visible dialogue disagree, what should be treated as canonical?</label>
+<label class="choice"><input type="radio" name="canonical_rule" value="Implemented student-facing content"> Implemented student-facing content</label>
+<label class="choice"><input type="radio" name="canonical_rule" value="Newest dev notes"> Newest dev notes</label>
+<label class="choice"><input type="radio" name="canonical_rule" value="Ask case by case"> Ask case by case</label>
+<label class="choice"><input type="radio" name="canonical_rule" value="Use judgment"> Use judgment</label>
+</div>
+<div class="question" data-key="embedded_text"><label class="prompt" for="f_embedded_text">Could important text be embedded in images, audio, or video?</label>
+<textarea id="f_embedded_text" name="embedded_text" rows="4"></textarea>
+</div>
+<div class="question" data-key="existing_sources"><label class="prompt" for="f_existing_sources">Are there existing source lists or references already used during development?</label>
+<textarea id="f_existing_sources" name="existing_sources" rows="4"></textarea>
+</div></section><section id="tab10" class="tab"><h2>Your overall preferences</h2><div class="question" data-key="defaults_ok"><label class="prompt" for="f_defaults_ok">Are the proposed defaults generally acceptable?</label>
+<label class="choice"><input type="radio" name="defaults_ok" value="Yes"> Yes</label>
+<label class="choice"><input type="radio" name="defaults_ok" value="Mostly"> Mostly</label>
+<label class="choice"><input type="radio" name="defaults_ok" value="No"> No</label>
+</div>
+<div class="question" data-key="must_have"><label class="prompt" for="f_must_have">What are your absolute must-haves?</label>
+<textarea id="f_must_have" name="must_have" rows="4"></textarea>
+</div>
+<div class="question" data-key="must_avoid"><label class="prompt" for="f_must_avoid">What should the materials absolutely avoid?</label>
+<textarea id="f_must_avoid" name="must_avoid" rows="4"></textarea>
+</div>
+<div class="question" data-key="anything_else"><label class="prompt" for="f_anything_else">Anything else I forgot or should know before the audit?</label>
+<textarea id="f_anything_else" name="anything_else" rows="4"></textarea>
+</div></section>
+</form>
+</main>
+</div>
+
+<dialog id="previewDialog">
+  <h2>Parsed responses</h2>
+  <textarea id="previewText" readonly></textarea>
+  <div class="navrow">
+    <button type="button" id="closePreview">Close</button>
+    <button type="button" class="primary" id="copyPreview">Copy</button>
+  </div>
+</dialog>
+
+<script>
+const STORAGE_KEY = "sss_curriculum_questionnaire_v1";
+const form = document.getElementById("form");
+const statusEl = document.getElementById("status");
+
+document.querySelectorAll(".tabbtn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabbtn,.tab").forEach(x => x.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+    window.scrollTo({top:0,behavior:"smooth"});
+  });
+});
+
+function collectRaw() {
+  const data = {};
+  const fd = new FormData(form);
+  for (const [k,v] of fd.entries()) {
+    if (data[k]) data[k] = Array.isArray(data[k]) ? [...data[k],v] : [data[k],v];
+    else data[k] = v;
+  }
+  return data;
+}
+
+function save() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(collectRaw()));
+  statusEl.textContent = "Saved";
+  setTimeout(()=>statusEl.textContent="Autosaved locally",900);
+  updateProgress();
+}
+
+function load() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (!raw) return;
+  let data;
+  try { data = JSON.parse(raw); } catch { return; }
+  Object.entries(data).forEach(([k,v]) => {
+    const values = Array.isArray(v) ? v : [v];
+    const els = form.querySelectorAll(`[name="${CSS.escape(k)}"]`);
+    els.forEach(el => {
+      if (el.type === "radio" || el.type === "checkbox") el.checked = values.includes(el.value);
+      else el.value = values[0] ?? "";
+    });
+  });
+}
+
+const schema = {"Students and course placement": [{"key": "grade_range", "label": "What grade level or grade range is SSS primarily meant for?", "type": "text"}, {"key": "course_context", "label": "What course(s) should it fit: general science, life science, environmental science, agricultural science, biology, STEM, or something else?", "type": "textarea"}, {"key": "audience_scope", "label": "Is this mainly for your own classes, or should unfamiliar teachers be able to use it too?", "type": "radio"}, {"key": "reading_level", "label": "What reading level should student materials target?", "type": "text"}, {"key": "versions", "label": "Do you eventually want simplified and advanced versions?", "type": "checkbox"}, {"key": "ell", "label": "Are English-language learners a significant part of the audience?", "type": "radio"}, {"key": "accommodations", "label": "What accommodations are most important?", "type": "checkbox"}], "Standards and graduate-program requirements": [{"key": "standards", "label": "Which standards should anchor the curriculum?", "type": "checkbox"}, {"key": "alignment_depth", "label": "How strong should standards claims be?", "type": "radio"}, {"key": "masters_template", "label": "Does your master\u2019s program require a specific lesson-plan template, rubric, framework, or terminology?", "type": "textarea"}, {"key": "artifact_type", "label": "What might this eventually be submitted as?", "type": "checkbox"}, {"key": "research_base", "label": "Should the final package include citations and a research rationale for game-based learning?", "type": "radio"}], "Classroom timing and logistics": [{"key": "period_limit", "label": "Does the 60-minute limit include setup, login, directions, gameplay, worksheet, and closure?", "type": "radio"}, {"key": "gameplay_minutes", "label": "Ideal number of gameplay minutes per case?", "type": "number"}, {"key": "chapter_period", "label": "Should one chapter normally equal one class period?", "type": "radio"}, {"key": "self_contained", "label": "Should every lesson work as a self-contained activity for absences or schedule interruptions?", "type": "radio"}, {"key": "video_limit", "label": "Maximum acceptable required video length in minutes?", "type": "number"}, {"key": "reading_limit", "label": "Maximum acceptable required reading length?", "type": "radio"}, {"key": "devices", "label": "What devices will students use?", "type": "checkbox"}, {"key": "headphones", "label": "Are headphones normally available?", "type": "radio"}, {"key": "internet", "label": "How reliable/restricted is internet access?", "type": "textarea"}, {"key": "youtube", "label": "Is YouTube accessible on the school network?", "type": "radio"}, {"key": "offline_backup", "label": "Should every external resource have an offline alternative?", "type": "radio"}], "Gameplay and worksheet integration": [{"key": "sheet_visibility", "label": "Should students see the whole worksheet at the start?", "type": "radio"}, {"key": "recording_style", "label": "How should students record work during play?", "type": "radio"}, {"key": "code_prompts", "label": "Should the curriculum work without code changes, or may we recommend in-game prompts?", "type": "radio"}, {"key": "fiction_science_terms", "label": "How should fictional and scientific vocabulary be presented?", "type": "radio"}, {"key": "writing_load", "label": "Typical writing load per case?", "type": "radio"}, {"key": "cer_frequency", "label": "How often should CER be used?", "type": "radio"}, {"key": "open_game", "label": "May students consult game dialogue while answering?", "type": "radio"}, {"key": "grading_focus", "label": "What should grading emphasize?", "type": "checkbox"}, {"key": "game_skill_grade", "label": "Should gameplay skill affect academic grades?", "type": "radio"}, {"key": "bypass", "label": "If a student cannot complete a gameplay challenge, what should happen?", "type": "checkbox"}], "Assessment": [{"key": "assessment_type", "label": "What should these usually be?", "type": "checkbox"}, {"key": "points", "label": "Do you want numeric points printed on student pages?", "type": "radio"}, {"key": "scoring_support", "label": "What teacher scoring support should each case include?", "type": "checkbox"}, {"key": "exit_ticket", "label": "Should every lesson end with an exit ticket?", "type": "radio"}, {"key": "pre_post", "label": "Do you want a campaign pre-assessment and post-assessment?", "type": "radio"}, {"key": "research_ready", "label": "Should the materials make later classroom research/data collection easier?", "type": "radio"}], "Teacher-facing package": [{"key": "teacher_detail", "label": "How detailed should the formal lesson plan be?", "type": "radio"}, {"key": "quick_guide", "label": "Should each case also have a one-page quick-start teacher guide?", "type": "radio"}, {"key": "sub_ready", "label": "Should a substitute or unfamiliar teacher be able to run it?", "type": "radio"}, {"key": "tech_notes", "label": "Include game controls and technical troubleshooting?", "type": "radio"}, {"key": "teacher_script", "label": "Include suggested teacher wording?", "type": "radio"}, {"key": "why_matters", "label": "Include a real-world relevance section in every case?", "type": "radio"}, {"key": "fact_fiction", "label": "Clearly separate factual science/history from fictional story elements?", "type": "radio"}], "Accuracy and sourcing": [{"key": "claim_sources", "label": "Should teacher materials source all important scientific claims?", "type": "radio"}, {"key": "student_citations", "label": "Should student readings include citations?", "type": "radio"}, {"key": "source_preferences", "label": "Preferred source types?", "type": "checkbox"}, {"key": "flag_simplifications", "label": "Should the audit flag scientific simplifications or inaccuracies in the game?", "type": "radio"}, {"key": "speculation_labels", "label": "Should space-agriculture content distinguish established science, extrapolation, and fiction?", "type": "radio"}, {"key": "allow_corrections", "label": "May the curriculum audit recommend changes to dialogue or mechanics when needed for accuracy?", "type": "radio"}], "Story, campaigns, and crossover": [{"key": "campaign_names", "label": "What are the official names of SSS\u2019s two campaigns?", "type": "textarea"}, {"key": "campaign_counts", "label": "How many chapters/cases are in each campaign?", "type": "textarea"}, {"key": "campaign_complete", "label": "Are both campaigns complete?", "type": "radio"}, {"key": "campaign2_dependency", "label": "Does campaign 2 assume students completed campaign 1?", "type": "radio"}, {"key": "spiral_concepts", "label": "Should concepts return in more sophisticated forms later?", "type": "radio"}, {"key": "campaign_difference", "label": "What is the main distinction between the two campaigns?", "type": "textarea"}, {"key": "culminations", "label": "Should each campaign have a different one-period culminating task?", "type": "radio"}, {"key": "final_sss", "label": "Should there also be a final SSS synthesis after both campaigns?", "type": "radio"}, {"key": "hhh_foreshadow", "label": "How much should SSS foreshadow Hunger Harvest History?", "type": "radio"}, {"key": "shared_formats", "label": "Should evidence logs, credentials, and scientific-practice formats stay consistent across both games?", "type": "radio"}, {"key": "hhh_standalone", "label": "Should HHH remain usable without playing SSS first?", "type": "radio"}], "Visual and file format": [{"key": "visual_style", "label": "How should student materials look?", "type": "radio"}, {"key": "grayscale", "label": "Must they print well in grayscale?", "type": "radio"}, {"key": "completion_mode", "label": "How will students complete them?", "type": "checkbox"}, {"key": "page_limit", "label": "Maximum student pages per case?", "type": "radio"}, {"key": "artwork", "label": "May materials use screenshots and artwork from the game?", "type": "radio"}, {"key": "case_visuals", "label": "Should each case have unique visual styling, or use one consistent campaign template?", "type": "radio"}], "Repository audit": [{"key": "authoritative_branch", "label": "Which GitHub branch should be treated as authoritative?", "type": "text"}, {"key": "local_missing", "label": "Are any important dialogue files or design documents only local and not committed?", "type": "textarea"}, {"key": "external_docs", "label": "Are there outside docs, notes, spreadsheets, or chats with educational intent not present in GitHub?", "type": "textarea"}, {"key": "history_issues", "label": "Should the audit inspect commit history, closed issues, open issues, and TODOs?", "type": "checkbox"}, {"key": "canonical_rule", "label": "When code, dev notes, and visible dialogue disagree, what should be treated as canonical?", "type": "radio"}, {"key": "embedded_text", "label": "Could important text be embedded in images, audio, or video?", "type": "textarea"}, {"key": "existing_sources", "label": "Are there existing source lists or references already used during development?", "type": "textarea"}], "Your overall preferences": [{"key": "defaults_ok", "label": "Are the proposed defaults generally acceptable?", "type": "radio"}, {"key": "must_have", "label": "What are your absolute must-haves?", "type": "textarea"}, {"key": "must_avoid", "label": "What should the materials absolutely avoid?", "type": "textarea"}, {"key": "anything_else", "label": "Anything else I forgot or should know before the audit?", "type": "textarea"}]};
+
+function parsedText() {
+  const data = collectRaw();
+  let lines = [
+    "SPACE SPROUT SLEUTH CURRICULUM PLANNING RESPONSES",
+    "",
+    "Please use these answers as the working constraints for the repository audit and curriculum design.",
+    ""
+  ];
+  for (const [section, items] of Object.entries(schema)) {
+    const answered = items.filter(item => {
+      const v = data[item.key];
+      return Array.isArray(v) ? v.length : (v !== undefined && String(v).trim() !== "");
+    });
+    if (!answered.length) continue;
+    lines.push("## " + section);
+    for (const item of answered) {
+      let v = data[item.key];
+      if (Array.isArray(v)) v = v.join("; ");
+      lines.push("- " + item.label + "\n  " + v);
+    }
+    lines.push("");
+  }
+  return lines.join("\n");
+}
+
+function updateProgress() {
+  const allQuestions = [...document.querySelectorAll(".question")];
+  let answered = 0;
+  allQuestions.forEach(q => {
+    const els = [...q.querySelectorAll("input,textarea")];
+    if (els.some(el => (el.type==="radio"||el.type==="checkbox") ? el.checked : el.value.trim() !== "")) answered++;
+  });
+  const pct = Math.round(answered / allQuestions.length * 100);
+  document.getElementById("progressBar").value = pct;
+  document.getElementById("progressText").textContent = pct + "%";
+}
+
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    statusEl.textContent = "Copied to clipboard";
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove();
+    statusEl.textContent = "Copied to clipboard";
+  }
+}
+
+function download(name, content, type) {
+  const blob = new Blob([content], {type});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob); a.download = name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+
+form.addEventListener("input", save);
+document.getElementById("copyBtn").onclick = () => copyText(parsedText());
+document.getElementById("previewBtn").onclick = () => {
+  document.getElementById("previewText").value = parsedText();
+  document.getElementById("previewDialog").showModal();
+};
+document.getElementById("closePreview").onclick = () => document.getElementById("previewDialog").close();
+document.getElementById("copyPreview").onclick = () => copyText(document.getElementById("previewText").value);
+document.getElementById("downloadTxtBtn").onclick = () => download("sss-curriculum-responses.txt", parsedText(), "text/plain");
+document.getElementById("downloadJsonBtn").onclick = () => download("sss-curriculum-responses.json", JSON.stringify(collectRaw(),null,2), "application/json");
+document.getElementById("printBtn").onclick = () => window.print();
+document.getElementById("clearBtn").onclick = () => {
+  if (!confirm("Clear every response and remove the local autosave?")) return;
+  form.reset(); localStorage.removeItem(STORAGE_KEY); updateProgress();
+};
+
+load();
+updateProgress();
+</script>
+</body>
+</html>

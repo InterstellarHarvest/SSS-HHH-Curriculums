@@ -1,0 +1,20 @@
+{
+  "prototype_version": "0.3",
+  "game_commit": "2a6e8a7",
+  "date": "2026-07-22",
+  "case": {
+    "campaign": 1,
+    "number": 1,
+    "id": "iss",
+    "title": "ISS Greenhouse Module"
+  },
+  "outputs": {
+    "html_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v0.3.html",
+    "student_pdf": "published/SSS_C1_CASE01_STUDENT_MISSION_v0.3.pdf",
+    "teacher_pdf": "published/SSS_C1_CASE01_TEACHER_PACKET_v0.3.pdf"
+  },
+  "design_changes": [
+    "Extended writing boxes are blank and unruled; internal handwriting lines removed.",
+    "Replaced the generic Established Science disclaimer with a student-facing Science Focus: Gravitropism in Microgravity box and retained detailed NGSS alignment in the teacher packet."
+  ]
+}
