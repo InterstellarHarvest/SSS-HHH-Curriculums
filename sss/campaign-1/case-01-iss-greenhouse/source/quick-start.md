@@ -1,55 +1,52 @@
-# Quick Start - ISS Greenhouse Module
+# Teacher Quick Start — ISS Greenhouse Module
 
-**Time:** 60 minutes | **Gameplay:** about 20 minutes | **Case:** Campaign 1, Case 1  
-**Game:** https://interstellarharvest.github.io/Space-Sprout-Sleuth/ | **Baseline:** `2a6e8a7`
+**Time:** 60 minutes  
+**Gameplay target:** about 20 minutes  
+**Game:** `https://interstellarharvest.github.io/Space-Sprout-Sleuth/`  
+**Case path:** Campaign 1 → Case 1
 
-## Students are learning
+## Lesson purpose
 
-Plants normally use gravity as an orientation cue. In microgravity, statoliths do not settle in one consistent direction, so roots can lose a reliable "down" signal. Students use evidence to diagnose the problem and define an engineering response.
-
-## Distribute
-
-- Student mission sheet, double-sided
-- Chromebook and headphones
+Students use four evidence sources to diagnose disrupted gravitropism in microgravity, reject alternatives, explain the mechanism, and define an engineered orientation cue.
 
 ## Before class
 
 - Confirm the game loads.
-- Keep the evidence fallback ready.
-
-## 60-minute plan
-
-- **0-5:** Launch game and materials
-- **5-10:** Initial prediction
-- **10-30:** Investigate crew, sensors, plants, and logs
-- **30-38:** Eliminate alternatives
-- **38-48:** Diagnose and complete CER
-- **48-55:** Engineering response
-- **55-60:** Exit ticket
+- Print the Student mission double-sided or use fillable HTML mode.
+- Keep the no-game evidence digest ready.
+- Provide headphones where appropriate.
 
 ## Correct diagnosis
 
-Microgravity disrupts gravitropism. The roots lack a consistent gravity-based orientation cue and need an alternative cue or guidance system.
+Microgravity disrupts gravitropism. Roots lack a consistent gravity-based orientation cue and need an alternative cue or guidance system.
+
+## 60-minute plan
+
+| Time | Action |
+|---|---|
+| 0–5 | Launch game and materials. |
+| 5–10 | Students complete **2 · Initial thinking**. |
+| 10–30 | Students complete **3 · Investigate four evidence sources** during play. |
+| 30–38 | Students complete **4 · Test the competing explanations**. |
+| 38–48 | Students complete **6 · Diagnose and reject an alternative**, then **7 · Claim-Evidence-Reasoning**. |
+| 48–55 | Students complete **8 · Supply a consistent orientation cue**. |
+| 55–60 | Students complete **9 · Exit ticket** independently. |
 
 ## Evidence students should notice
 
-- Crew reports that roots do not grow downward.
-- Nutrients, water, temperature, and lighting are nominal.
-- Roots form tangled mats and stems grow at unusual angles.
-- Logs connect the pattern to gravitropism and describe alternative cues.
+- **Crew:** Roots do not grow downward; resource adjustments did not solve the pattern.
+- **Sensors:** Microgravity is the major unusual condition; nutrients, water, temperature, humidity, and lighting are nominal.
+- **Plants:** Dense root tangles, poor anchoring, and unusual stem angles.
+- **Logs:** Gravitropism/statolith mechanism and possible replacement cues.
 
-## Main misconception
+## Likely sticking point
 
-Microgravity is not the literal absence of gravity. The ISS and everything inside it are continuously falling around Earth, creating apparent weightlessness.
+Microgravity is not the literal absence of gravity. The ISS and everything inside it are continuously falling around Earth, producing apparent weightlessness.
 
 ## What to collect
 
-- Completed evidence task
-- Diagnosis and rejected alternative
-- CER
-- Engineering criterion/constraint
-- Exit ticket
+**3 · Investigate four evidence sources**, **6 · Diagnose and reject an alternative**, **7 · Claim-Evidence-Reasoning**, **8 · Supply a consistent orientation cue**, and **9 · Exit ticket**.
 
 ## Technical fallback
 
-Give students the evidence digest in `technical-notes.md`. They complete the same academic task without the game.
+Use the evidence digest in `technical-notes.md`. Students complete the same academic tasks without the game; technical failure is not graded.

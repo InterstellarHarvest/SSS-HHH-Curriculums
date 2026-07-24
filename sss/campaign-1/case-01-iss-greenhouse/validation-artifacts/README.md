@@ -1,29 +1,42 @@
-# Case 01 v1.0 — Validation Artifacts
+# Case 01 v1.0 Release-Candidate Validation Artifacts
 
-Post-edit layout/publishing regression evidence for `master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`.
+This directory contains the portable validation harness and machine-readable results for the current v1.0 master.
 
-**Context:** The original v1.0 validation (see `../master/SSS_C1_CASE01_V1_VALIDATION_REPORT.md`) referenced a `validation-artifacts/validation-results.json` and a Playwright script that were never committed. After the game-content audit applied four small text corrections to the packet, this folder was created to store the **post-edit** rerun so the packet, the audit report, the validation report, and the checksum all describe the same final build.
+## Run
 
-## Contents
+From this directory:
 
-| File | What it is |
-|---|---|
-| `revalidate_packet.mjs` | Repeatable headless-Chromium harness. Drives the packet's own role `<select>`, grayscale/print-preview toggles, and overflow logic; measures per-role page counts and overflow; checks fill/persistence across a real reload; generates the Teacher PDF. |
-| `revalidation-results.json` | Machine-readable output of the rerun (all roles PASS, zero overflow, no JS errors). |
-| `teacher_v1.0_revalidated.pdf` | Teacher role rendered to PDF post-edit — 7 pages. Regression evidence only, **not** a published deliverable. |
-| `CHECKSUMS.txt` | SHA-256 of the edited `SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html` under test. |
-
-## How to rerun
-
-```
-NODE=~/.nvm/versions/node/v20.20.2/bin/node
-"$NODE" revalidate_packet.mjs \
-  "../master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html" \
-  "$(pwd)"
+```bash
+python validate_case01_rc.py
 ```
 
-## Result summary (2026-07-23)
+The harness resolves all paths relative to its own repository location. It does not contain machine-specific home-directory imports.
 
-Student 3 · Teacher 7 · Answer Key 3 · Accessible 6 · All 19 pages — every role zero overflow, grayscale and print preview clean, persistence restores after reload, Teacher PDF 7 pages, no console/page errors. Matches the pre-edit baseline; the two added Teacher notes caused no overflow or pagination change.
+## Checks
 
-These are review evidence, not permanent curriculum-source files, unless the repository adopts a validation-artifact policy.
+- Student, Teacher, Answer Key, Accessible, and All Pages role counts
+- visible-page overflow
+- grayscale and print-preview behavior
+- unique DOM IDs and named response fields
+- first-page-only Student identification placement
+- exact Student/Accessible/Answer Key task headings
+- Teacher task-reference emphasis
+- required Answer Key exemplar content
+- known malformed-text regression
+- Teacher production-metadata visibility
+- fill/edit keyboard access
+- persistence across reload
+- selective Student/Accessible clearing
+- separate Teacher/Answer Key notes clearing
+- reset-to-open-file behavior
+- downloaded edited-HTML portability and reset semantics
+- five release-candidate PDF builds and page counts
+
+## Outputs
+
+- `CASE01_RC_VALIDATION_RESULTS.json`
+- `CASE01_RC_CHECKSUMS.sha256`
+- `downloaded-html-portability-test.html` (validation evidence; not a distribution master)
+- five role-specific PDFs under `../published/`
+
+All outputs retain **VALIDATION BUILD** status until owner physical print testing passes.

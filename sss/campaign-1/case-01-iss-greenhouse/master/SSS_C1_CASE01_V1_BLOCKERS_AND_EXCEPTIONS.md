@@ -1,11 +1,21 @@
-# SSS Case 01 v1.0 Blockers and Justified Exceptions
+# SSS Case 01 v1.0 — Blockers and Justified Exceptions
 
-## 1. Unresolved blockers before release approval
+**Reconciled:** 2026-07-24  
+**Status:** Release candidate; not release-approved
 
-### 1.1 Physical print sample
+## 1. Open release blocker
 
-**Status:** Open release blocker  
-**Required action:** print Student, Teacher, Answer Key, Accessible, and Grayscale samples at 100% scale on an ordinary school printer.
+### 1.1 Owner physical print test
+
+**Status:** OPEN — release approval blocker
+
+Print the following at 100% scale on an ordinary school printer:
+
+- Student Mission
+- Teacher Packet
+- Answer Key
+- Accessible Mission
+- Grayscale Review
 
 Confirm:
 
@@ -14,87 +24,61 @@ Confirm:
 - thin rules reproduce cleanly;
 - grayscale fills remain distinguishable;
 - writing areas have practical physical height;
-- duplex orientation is correct where used.
+- duplex orientation is correct where used;
+- the SAA insignia and all glyphs render cleanly.
 
-The implementation must remain `VALIDATION BUILD` until this is complete.
+The HTML and PDFs must remain labeled **VALIDATION BUILD** until the owner records this test as passed.
 
-### 1.2 Deterministic offline fonts
+## 2. Open repository-wide publishing decisions that do not block Case 01 content reconciliation
 
-**Status:** Open publishing decision  
-**Current behavior:** the master declares Inter and JetBrains Mono through the same web-font import pattern used by the v1.0 reference implementation, with system fallbacks.
+### 2.1 Deterministic offline fonts
 
-In an offline classroom or archived build:
+The master requests Inter and JetBrains Mono through the approved web-font pattern and provides system fallbacks. A future repository-wide decision may package approved fonts or standardize on installed system fonts for deterministic offline line wrapping. No font files are included in this release candidate.
 
-- Inter may resolve from the operating system;
-- JetBrains Mono may fall back to Consolas or another monospace font;
-- line wrapping can vary slightly between systems.
+This is a shared publishing-policy decision, not an unresolved Case 01 content or game-compatibility blocker.
 
-A repository-wide font packaging or approved system-font policy is needed for deterministic offline output. No font files are included in this migration package.
+### 2.2 Tagged PDF / PDF-UA pipeline
 
-### 1.3 Tagged accessible PDF
+The HTML Accessible role supports semantic headings, programmatic labels, keyboard fill, and parallel task content. Chromium-generated PDFs are not guaranteed to be tagged PDF/UA files. A separate tagged-PDF workflow is required only when formal PDF accessibility compliance is an institutional deliverable.
 
-**Status:** Conditional blocker  
-**Applies when:** a tagged PDF or PDF/UA file is required as an official accessible edition.
+This conditional requirement does not invalidate the Accessible HTML or the current print-review PDF.
 
-The HTML Accessible Edition passes the implemented screen-reader and keyboard basics, and its print layout is parallel and readable. Chromium’s generated PDFs are not tagged. A separate tagged-PDF publishing pipeline is required for formal PDF accessibility compliance.
+## 3. Closed blockers
 
-### 1.4 Content-source and game-baseline verification
+### 3.1 Content-source verification — CLOSED
 
-**Status:** Outside visual-migration scope; pending curriculum/source QA
+The SSS Master Audit v1.0 verified the scientific architecture and appropriate qualification. The Case 01 Game-Content Audit verified all printed source URLs and corrected the citation attribution and NASA label in the v1.0 packet.
 
-- Source URLs were preserved but not independently re-researched.
-- Standards statements were preserved but not re-aligned.
-- Game compatibility baseline `2a6e8a7` was preserved but not re-tested against game source.
+### 3.2 Game-baseline verification — CLOSED
 
-No content was invented to close these gaps.
+The Game-Content Audit crosswalked the curriculum against the canonical runtime at game commit `2a6e8a7`, confirmed the four evidence sources, diagnosis options, correct diagnosis, clue gate, mechanism, and worksheet-only engineering application, and found the packet compatible with the live baseline.
 
-## 2. Justified implementation exceptions
+### 3.3 Source/master synchronization — CLOSED FOR RC
 
-### 2.1 Student packet increased from two pages to three
+The controlled Markdown sources, task registry, HTML master, Answer Key exemplars, manifest, and validation content checks now use the same v1.0 task architecture.
 
-**Reason:** the approved type scale, usable evidence rows, diagnosis space, stacked CER hierarchy, engineering fields, and exit ticket could not coexist on two Letter pages without unacceptable compression.
+## 4. Justified implementation exceptions
 
-**Decision:** repaginate. Do not reduce type or writing space.
+### 4.1 Student packet uses three pages
 
-### 2.2 Answer Key increased from two pages to three
+Approved type scale, usable evidence rows, diagnosis space, CER hierarchy, engineering fields, and the exit ticket cannot fit on two Letter pages without unacceptable compression. Repagination is preferred over shrinking type or response space.
 
-**Reason:** the two-page key was too compressed for live instructional use and left no practical annotation area after the models were made readable.
+### 4.2 Answer Key uses three pages
 
-**Decision:** separate evidence/alternatives, mechanism/diagnosis, and CER/design/exit into three pages.
+Three pages keep evidence/alternatives, mechanism/diagnosis, and CER/design/exit models legible and usable during instruction.
 
-### 2.3 Accessible Edition uses six pages
+### 4.3 Accessible Edition uses six pages
 
-**Reason:** larger type, reduced density, one-column sequencing, and expanded physical response areas are required for a genuinely parallel accessible edition.
+Larger type, reduced density, one-column sequencing, and expanded response areas require additional pages while preserving the exact task order and expectations.
 
-**Decision:** retain the same numbered task order and instructional expectations while permitting additional pages.
+### 4.4 Teacher Packet uses seven pages
 
-### 2.4 Teacher page count remains seven
+The seven-page role contains the quick start, formal lesson plan, assessment/access notes, case analysis, rubrics, references, fallback, and genuine note areas without decorative padding.
 
-The short teacher pages were not padded with decorative material. Genuine planning and reference notes areas were added to use remaining printable space. The existing seven-page role structure remains practical and coherent.
+### 4.5 Grayscale uses semantic tokens
 
-### 2.5 Grayscale implemented through tokens, not a page filter
+Grayscale mode replaces semantic color variables and filters artwork rather than applying a whole-page filter that could rasterize or damage PDF accessibility.
 
-The whole-workspace filter produced an image-only PDF in Chromium. That was an accessibility and publishing failure.
+## 5. Governing-document conflict review
 
-The final grayscale mode changes semantic color variables and filters only artwork. This is an implementation correction required to satisfy the approved grayscale and accessibility intent.
-
-### 2.6 Publication status remains “Validation Build”
-
-The master is not marked Approved because physical print, final content/source QA, and any tagged-PDF requirement remain open. This prevents a visually complete file from being mistaken for a released curriculum artifact.
-
-## 3. No governing-document conflict found
-
-No exception required changing:
-
-- Mission Title Block architecture;
-- continuation headers;
-- 0.50-inch margins;
-- Inter + JetBrains Mono intent;
-- Phosphor icon family;
-- 12-column grid;
-- callout treatment;
-- blank response boxes;
-- stacked CER;
-- teacher-note neutrality;
-- answer-key separation;
-- accessible-edition parallelism.
+No project-wide policy conflict was found. The release candidate preserves the approved Mission Title Block, continuation headers, 0.50-inch margins, type hierarchy, Phosphor icons, mixed grid, blank response boxes, stacked CER, Teacher-note treatment, independent Answer Key, accessible parity, task-reference parity, and Teacher metadata visibility rules.

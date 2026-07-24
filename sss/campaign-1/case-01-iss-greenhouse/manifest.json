@@ -1,20 +1,111 @@
 {
-  "prototype_version": "0.3",
-  "game_commit": "2a6e8a7",
-  "date": "2026-07-22",
+  "schema_version": "1.0",
   "case": {
     "campaign": 1,
     "number": 1,
     "id": "iss",
+    "slug": "case-01-iss-greenhouse",
     "title": "ISS Greenhouse Module"
   },
-  "outputs": {
-    "html_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v0.3.html",
-    "student_pdf": "published/SSS_C1_CASE01_STUDENT_MISSION_v0.3.pdf",
-    "teacher_pdf": "published/SSS_C1_CASE01_TEACHER_PACKET_v0.3.pdf"
+  "release_candidate": {
+    "curriculum_version": "1.0",
+    "label": "v1.0 RC",
+    "status": "VALIDATION BUILD",
+    "date": "2026-07-24",
+    "game_commit": "2a6e8a7",
+    "curriculum_bible": "shared/curriculum-bible/SSS_HHH_CURRICULUM_BIBLE_v1.3.md",
+    "repository_base_head": "c68f05d964c828297d6d9c6ca00d77253a9d78fe"
   },
-  "design_changes": [
-    "Extended writing boxes are blank and unruled; internal handwriting lines removed.",
-    "Replaced the generic Established Science disclaimer with a student-facing Science Focus: Gravitropism in Microgravity box and retained detailed NGSS alignment in the teacher packet."
-  ]
+  "current": {
+    "html_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
+    "task_registry": "source/task-registry.js",
+    "validation_report": "master/SSS_C1_CASE01_V1_VALIDATION_REPORT.md",
+    "validation_results": "validation-artifacts/CASE01_RC_VALIDATION_RESULTS.json",
+    "checksums": "validation-artifacts/CASE01_RC_CHECKSUMS.sha256",
+    "pdfs": {
+      "student": "published/SSS_C1_CASE01_STUDENT_MISSION_v1.0_RC.pdf",
+      "teacher": "published/SSS_C1_CASE01_TEACHER_PACKET_v1.0_RC.pdf",
+      "answer_key": "published/SSS_C1_CASE01_ANSWER_KEY_v1.0_RC.pdf",
+      "accessible": "published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0_RC.pdf",
+      "grayscale_review": "published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0_RC.pdf"
+    },
+    "print_test_checklist": "published/SSS_C1_CASE01_v1.0_RC_PRINT_TEST_CHECKLIST.md"
+  },
+  "controlled_sources": [
+    "source/student-mission-sheet.md",
+    "source/lesson-plan.md",
+    "source/quick-start.md",
+    "source/teacher-case-analysis.md",
+    "source/answer-key.md",
+    "source/quick-rubric.md",
+    "source/formal-rubric.md",
+    "source/references.md",
+    "source/technical-notes.md",
+    "source/task-registry.js"
+  ],
+  "historical": {
+    "status": "retained for provenance; not current production masters",
+    "html_masters": [
+      "master/SSS_C1_CASE01_EDITABLE_MASTER_v0.2.html",
+      "master/SSS_C1_CASE01_EDITABLE_MASTER_v0.3.html"
+    ],
+    "pdfs": [
+      "published/SSS_C1_CASE01_STUDENT_MISSION_v0.2.pdf",
+      "published/SSS_C1_CASE01_STUDENT_MISSION_v0.3.pdf",
+      "published/SSS_C1_CASE01_TEACHER_PACKET_v0.2.pdf",
+      "published/SSS_C1_CASE01_TEACHER_PACKET_v0.3.pdf"
+    ]
+  },
+  "release_gate": {
+    "physical_print_test": "OPEN",
+    "required_before_status_change": true
+  },
+  "artifact_hashes": {
+    "README.md": "9e3a5f2199159b9916a72ce0ae6b2088ca0e54386797812fbab422cdd2392625",
+    "SSS_C1_CASE01_v1.0_RC_HANDOFF.md": "aa3fbb5ea5366cc916d46000af1a348ab7bf2894c7c5eb2a20b1bd3e7adc2a31",
+    "shared/assets/insignia/saa.svg": "445866e1083a223ed302dd24891eb81cbed19968eb1ac10fa52eb8c003ea4da9",
+    "shared/curriculum-bible/SSS_HHH_CURRICULUM_BIBLE_v1.3.md": "98f16fb1f9715eebce3d971f6655b774d96301ad301305d25abca694b35996cf",
+    "sss/campaign-1/case-01-iss-greenhouse/README.md": "a9a964aaa2407482a0f118b9bf2f63ab32ec1b3f638be2b9af82ab20923e96ce",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html": "56c8374bb4192e783346588ca7202e2f01a7808dcec121ef68464092dad65710",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1_BLOCKERS_AND_EXCEPTIONS.md": "4d1f987c224f312daaeaaa742eed326fe662395001884dc0d3ad503a038c1628",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1_IMPLEMENTATION_PLAN.md": "e4cc391043a71d2b9b2b47b050f1900789337d5997673bb16c94507727f4c86b",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1_MIGRATION_AUDIT.md": "0e2d084b1a419bd9885684ff7b988bd42d0d28243e8e6dd545154928e4773389",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1_RELEASE_CANDIDATE_CHANGELOG.md": "3fa3bfd2f0da83c206f20b9e2d0d6c679503b9fbf5888f8bd9983fce418a4b27",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1_VALIDATION_REPORT.md": "4f2446541cb55a6acfd09fc62a3aef10c931d40d6be9ea9dc93ccb2adb7b2961",
+    "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0_RC.pdf": "5d847ae08d34267ce7ff7420cf2e2179618e775674a606a44a22a967d7c8dd6f",
+    "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_ANSWER_KEY_v1.0_RC.pdf": "bcb38bba1a6fbd472a521601a13bb25344c2ae0f5809b9d3dd183c48ac49ab5f",
+    "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0_RC.pdf": "91088dec260d7135df0589721bcb4d3476ad58f01aa5fa3dbc2ba8bb8b8e702d",
+    "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_STUDENT_MISSION_v1.0_RC.pdf": "de5ad2675d1a77b0914e9a899c1111c1ba20470b6afa0c12d86cb3b3604a297a",
+    "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_TEACHER_PACKET_v1.0_RC.pdf": "ec0836256eb51ef33fe6157983ab6e2e7b47328b8ad9c4722bf5d0fb7c9f516f",
+    "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_v1.0_RC_PRINT_TEST_CHECKLIST.md": "646835af18f10437aaffda5f3f8d992f626cbdcd1f9b02467fcc9691328b3006",
+    "sss/campaign-1/case-01-iss-greenhouse/source/answer-key.md": "4eac39dc8e895cc117578b3f25de48c0135e91c6376a79f5cc060459048940ca",
+    "sss/campaign-1/case-01-iss-greenhouse/source/formal-rubric.md": "b2152d9409a84c967c777c7707a4d2c5e5e8b0ec5992755d7b1feac19bbfda5d",
+    "sss/campaign-1/case-01-iss-greenhouse/source/lesson-plan.md": "3cabd226b219ed80f4a24cf74aacaacbebab2cba46e2b4b23499a599e9bbd8e7",
+    "sss/campaign-1/case-01-iss-greenhouse/source/quick-rubric.md": "a545333f4267e6b29ab32f866946ab3e2fb0f1b3e2bcf410af039515b5201ae8",
+    "sss/campaign-1/case-01-iss-greenhouse/source/quick-start.md": "0beb330a3e4ffb9e489d17a043ead43625afc995cd36878e02dbd2cfdca439dd",
+    "sss/campaign-1/case-01-iss-greenhouse/source/references.md": "b9abbdb23373a8472a74c2ede640639b6829652ce2255e79b58de6056c7c6850",
+    "sss/campaign-1/case-01-iss-greenhouse/source/student-mission-sheet.md": "56ae495865a73488872754c67d9772bfed249ba207ad286770606715c138982e",
+    "sss/campaign-1/case-01-iss-greenhouse/source/task-registry.js": "d01c10a4e286e632f261b831eea5a855c206878bb93f5a449abdfcd561ba2583",
+    "sss/campaign-1/case-01-iss-greenhouse/source/teacher-case-analysis.md": "30b69ce9f303db0d3a8acdd4e37452c81cd0c0e8842e4ddb315013bf9c3c226f",
+    "sss/campaign-1/case-01-iss-greenhouse/source/technical-notes.md": "1ca7b33529d5244445abc0f299346dc4273283e609067efe590d1f338267dba9",
+    "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/CASE01_RC_PDF_PREFLIGHT.json": "4243989030addcff69c12d845eaa105be3e5984b0b70301fed4fd754df2c409d",
+    "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/CASE01_RC_PDF_VISUAL_REVIEW.md": "c25769c7da1f7f8fec5f65c5f06e20fb7cf5cec21d36fd96a35bfce878f937ed",
+    "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/CASE01_RC_VALIDATION_RESULTS.json": "90bb69ef520216e866d2803adb73a3c167bd65e6256545f84b6a8af01b0c1cb6",
+    "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/README.md": "74c4b36b58dfb40b5285a40e4726719c8e247b6ff43240a7c08704256027991d",
+    "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/downloaded-html-portability-test.html": "68c4895a0aef5e3ad06a2f9b7c450c28f687054d3eb5ad6d3ca4f8aa892babbb",
+    "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/validate_case01_rc.py": "ab08b2d09f8f8656407787b08b2b81a0bf61a6510707fedf71adc367e1dbb207"
+  },
+  "validation_summary": {
+    "overall_pass": true,
+    "role_pages": {
+      "student": 3,
+      "teacher": 7,
+      "answer_key": 3,
+      "accessible": 6,
+      "grayscale_review": 19
+    },
+    "javascript_errors": 0,
+    "overflow_pages": 0,
+    "physical_print_test": "OPEN"
+  }
 }

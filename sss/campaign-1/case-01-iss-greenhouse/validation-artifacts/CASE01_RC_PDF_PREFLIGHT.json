@@ -1,0 +1,57 @@
+{
+  "validation_date": "2026-07-24",
+  "renderer_verification": "PDFium 150 dpi",
+  "files": [
+    {
+      "file": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0_RC.pdf",
+      "pages": 6,
+      "ok_open": true,
+      "encrypted": false,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "sha256": "5d847ae08d34267ce7ff7420cf2e2179618e775674a606a44a22a967d7c8dd6f"
+    },
+    {
+      "file": "SSS_C1_CASE01_ANSWER_KEY_v1.0_RC.pdf",
+      "pages": 3,
+      "ok_open": true,
+      "encrypted": false,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "sha256": "bcb38bba1a6fbd472a521601a13bb25344c2ae0f5809b9d3dd183c48ac49ab5f"
+    },
+    {
+      "file": "SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0_RC.pdf",
+      "pages": 19,
+      "ok_open": true,
+      "encrypted": false,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "sha256": "91088dec260d7135df0589721bcb4d3476ad58f01aa5fa3dbc2ba8bb8b8e702d"
+    },
+    {
+      "file": "SSS_C1_CASE01_STUDENT_MISSION_v1.0_RC.pdf",
+      "pages": 3,
+      "ok_open": true,
+      "encrypted": false,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "sha256": "de5ad2675d1a77b0914e9a899c1111c1ba20470b6afa0c12d86cb3b3604a297a"
+    },
+    {
+      "file": "SSS_C1_CASE01_TEACHER_PACKET_v1.0_RC.pdf",
+      "pages": 7,
+      "ok_open": true,
+      "encrypted": false,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "sha256": "ec0836256eb51ef33fe6157983ab6e2e7b47328b8ad9c4722bf5d0fb7c9f516f"
+    }
+  ],
+  "overall_pass": true
+}

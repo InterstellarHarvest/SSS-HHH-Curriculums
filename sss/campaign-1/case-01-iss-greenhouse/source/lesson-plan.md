@@ -1,228 +1,149 @@
-# Campaign 1, Case 1 - ISS Greenhouse Module
+# Formal Lesson Plan — ISS Greenhouse Module
 
-**Document:** Formal Lesson Plan  
-**Curriculum version:** 0.1 prototype  
-**Compatible game baseline:** SSS `2a6e8a7`  
+**Campaign:** 1  
+**Case:** 01  
 **Duration:** 60 minutes  
 **Audience:** Middle school through adult/general public  
-**Course contexts:** Environmental Science, STEM  
+**Course contexts:** Environmental Science, STEM
 
 ## Lesson overview
 
-Students investigate a stunted lettuce crop aboard the International Space Station. They use crew testimony, environmental sensors, plant observations, and mission logs to determine why the roots form tangled balls even though water, nutrients, temperature, and lighting are within expected ranges. Students explain how microgravity disrupts gravitropism and evaluate an engineering response that provides an alternative directional cue.
+Students investigate a stunted lettuce crop aboard the International Space Station. They compare crew testimony, environmental sensors, direct plant observations, and mission logs to determine why roots form tangled balls despite normal resources. Students explain the gravitropism mechanism and evaluate an engineered alternative cue.
 
-The game is part of the investigation. The written mission sheet directs attention to evidence and requires reasoning beyond simply selecting the correct diagnosis.
+The game is part of the investigation. The mission sheet directs attention to evidence and requires reasoning beyond selecting the correct diagnosis.
 
 ## Guiding question
 
-**Why are the lettuce roots tangled and directionless even though the greenhouse resources appear normal?**
+**Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?**
 
 ## Standards alignment
 
-### NGSS connections
+- **MS-ETS1-1:** Supports defining criteria and constraints for a root-guidance solution.
+- **MS-ETS1-2:** Supports evaluating competing orientation solutions.
+- **SEP:** Constructing Explanations and Designing Solutions; Analyzing and Interpreting Data.
+- **DCI:** ETS1.A and ETS1.B, with plant structure and function as supporting science.
+- **CCC:** Cause and Effect; Structure and Function.
 
-- **MS-ETS1-1 - Engineering Design:** Supports defining criteria and constraints for a root-guidance solution.
-- **MS-ETS1-2 - Engineering Design:** Supports evaluating competing approaches such as physical root channels, directional lighting, and moisture gradients.
-
-### Three-dimensional alignment
-
-- **Science and Engineering Practices:** Constructing Explanations and Designing Solutions; Analyzing and Interpreting Data.
-- **Disciplinary Core Ideas:** ETS1.A - Defining and Delimiting Engineering Problems; ETS1.B - Developing Possible Solutions. Plant structure and function provide supporting life-science context.
-- **Crosscutting Concepts:** Cause and Effect; Structure and Function.
-
-This lesson supports components of the listed performance expectations. It does not by itself fulfill an entire NGSS performance expectation.
+This lesson supports components of the standards; it does not by itself fulfill an entire performance expectation.
 
 ## Learning objectives
 
 Students will be able to:
 
 1. Distinguish observations from explanations across four evidence sources.
-2. Use evidence to identify microgravity-disrupted gravitropism as the best explanation for the root pattern.
-3. Explain that plant gravity-sensing cells use statolith movement as a directional cue and that microgravity removes a consistent settling direction.
-4. Reject at least one alternative explanation using case evidence.
-5. Define one criterion and one constraint for an engineered orientation system.
+2. Identify disrupted gravitropism as the best-supported cause.
+3. Explain statolith movement as part of a directional gravity-sensing mechanism.
+4. Reject an alternative explanation using evidence.
+5. Define a criterion and constraint for an orientation system.
 
 ## Success criteria
 
-Students succeed when they:
-
-- record relevant evidence from at least three source types;
-- explain the mechanism rather than only naming gravitropism;
-- reject one plausible alternative with specific evidence;
-- complete a concise CER;
-- propose an engineering response tied to a directional cue.
+Proficient work includes relevant evidence from at least three sources, a correct mechanism, an evidence-based alternative rejection, a concise CER, and an engineering response that provides a directional cue.
 
 ## Vocabulary
 
-- **Gravitropism:** Directional plant growth in response to gravity.
-- **Microgravity:** A condition of apparent weightlessness produced by continuous free fall in orbit; gravity is not literally absent.
-- **Statocyte:** A specialized plant cell involved in gravity sensing.
-- **Statolith:** A dense, starch-filled structure whose movement helps a plant detect direction relative to gravity.
-- **Phototropism:** Directional plant growth in response to light.
+Gravitropism · microgravity · statocyte · statolith · phototropism
 
 ## Materials and technology
 
-- One Chromebook per student
-- Headphones
-- Space Sprout Sleuth game: https://interstellarharvest.github.io/Space-Sprout-Sleuth/
-- Student mission sheet, printed double-sided or opened in fillable HTML mode
-- Teacher quick-start guide
-- Optional projector for launch image and whole-class debrief
+- Chromebook or comparable current browser device
+- Headphones where appropriate
+- Space Sprout Sleuth game
+- Student mission sheet or fillable HTML
+- Teacher quick start
+- Evidence fallback
 
 ## Teacher preparation
 
 1. Open the game and confirm Campaign 1, Case 1 loads.
-2. Test audio/headphones if used.
-3. Print the student mission sheet double-sided or share the editable HTML master.
-4. Decide whether students will navigate to the first case independently or receive the direct game link.
-5. Keep the one-page evidence fallback available in case the game or network fails.
+2. Test audio and headphones.
+3. Print or share the Student mission sheet.
+4. Keep the evidence fallback ready.
 
-## Lesson sequence
+## Lesson procedure
 
-### 0-5 minutes - Setup
+### 0–5 minutes — Setup
 
-- Distribute or open the mission sheet.
-- Students launch the game and select Campaign 1, Case 1.
-- Tell students that game score and speed are not graded.
+Students launch the game and open the mission sheet. State that game score, rank, speed, and optional dialogue are not academically graded.
 
-Suggested teacher wording:
+### 5–10 minutes — Phenomenon launch
 
-> Your job is not to click everything. Your job is to determine which evidence best explains the root pattern.
+Show the greenhouse image or read the briefing. Ask what evidence would distinguish a resource problem from an orientation problem. Students complete **2 · Initial thinking**; do not confirm the diagnosis.
 
-### 5-10 minutes - Phenomenon launch
+### 10–30 minutes — Gameplay investigation
 
-Display the ISS greenhouse scene or read the briefing.
+Students visit crew, sensors, plants, and logs while completing **3 · Investigate four evidence sources**. They record only evidence that supports or rejects a cause.
 
-Ask:
+Facilitation prompts:
 
-> The crop has water, nutrients, and light, but the roots curl into tangled balls. What evidence would help you decide whether this is a resource problem or an orientation problem?
+- Which detail is a symptom?
+- Which normal reading rules out an explanation?
+- Have you used more than one source?
 
-Students complete the initial-thinking box. Do not confirm the diagnosis.
+### 30–38 minutes — Evidence checkpoint
 
-### 10-30 minutes - Gameplay investigation
+Students complete **4 · Test the competing explanations**. Confirm that resource readings are normal and that the root pattern is directional and repeated. Do not require optional dialogue completion.
 
-Students investigate:
+### 38–48 minutes — Diagnosis and CER
 
-- Astronaut Kim
-- Sensor array
-- Lettuce specimens
-- Mission logs
+Students complete **6 · Diagnose and reject an alternative** after the game unlocks, then complete **7 · Claim-Evidence-Reasoning** using evidence from several sources and reasoning that links microgravity to a weakened directional cue.
 
-Students record only evidence that helps support or reject a cause.
+### 48–55 minutes — Engineering application
 
-Teacher prompts:
+Students complete **8 · Supply a consistent orientation cue** by choosing or designing an alternative cue and giving one criterion and one constraint. Strong responses distinguish a direct root cue from lighting that primarily guides shoots.
 
-- Which observation is a symptom, and which evidence points to a cause?
-- Which normal reading rules out a competing explanation?
-- Have you checked evidence from more than one source?
+This is a worksheet engineering task. Campaign 1 does not include an in-game apply-the-fix screen.
 
-### 30-38 minutes - Evidence checkpoint
+### 55–60 minutes — Exit ticket
 
-Students complete the competing-explanations section.
-
-Quick check:
-
-- nutrients are nominal;
-- lighting schedule and intensity are within expected range;
-- the same directional root problem appears across plants and prior missions;
-- microgravity is the major environmental difference linked to orientation.
-
-Do not require every optional dialogue node.
-
-### 38-48 minutes - Diagnosis and CER
-
-Students submit the diagnosis in the game after it unlocks, then write:
-
-- a claim;
-- two or three specific pieces of evidence;
-- reasoning connecting microgravity, statolith behavior, and directionless root growth.
-
-### 48-55 minutes - Engineering application
-
-Students select or design an alternative cue.
-
-Acceptable approaches include:
-
-- physical root channels or directional mesh;
-- a controlled moisture gradient;
-- directional light for shoots, combined with a root-specific guide;
-- a rotating growth chamber that produces a consistent acceleration cue.
-
-Students identify:
-
-- one criterion, such as reducing root tangling;
-- one constraint, such as low mass, water access, oxygen access, or compatibility with plant pillows.
-
-### 55-60 minutes - Exit ticket
-
-Students answer the transfer question independently.
-
-Collect the mission sheet or save the digital copy.
+Students complete **9 · Exit ticket** independently. Collect the paper packet or save the digital file.
 
 ## Checks for understanding
 
-- Can the student separate root tangling from its proposed cause?
-- Can the student explain why nominal nutrient readings matter?
-- Does the student describe microgravity as apparent weightlessness rather than the total absence of gravity?
-- Does the student connect statolith settling to a directional signal?
-- Does the proposed solution actually provide a directional cue?
+- Separates symptom from cause.
+- Uses normal readings to reject alternatives.
+- Describes microgravity as apparent weightlessness.
+- Links statolith direction to root orientation.
+- Proposes a cue that addresses the problem.
 
 ## Assessment
 
-### Formative
+**Formative:** initial thinking, evidence matrix, explanation ranking, and teacher questions.
 
-- Initial prediction
-- Evidence-source matrix
-- Elimination of alternatives
-- Teacher questioning during gameplay
+**Collected:** Tasks 3, 6, 7, 8, and 9.
 
-### Graded or collected product
-
-- Diagnosis
-- Rejected alternative
-- CER
-- Engineering criterion and constraint
-- Exit ticket
-
-Use the quick rubric for routine classroom grading and the analytic rubric for portfolio/research use.
+Use `quick-rubric.md` for routine classroom feedback and `formal-rubric.md` for portfolio or research documentation.
 
 ## Differentiation and accessibility
 
-- Permit bullet-point evidence.
-- Provide the CER sentence frame without requiring students to use it.
+- Accept bullet-point evidence.
+- Permit use of the CER frame without requiring it.
 - Use text-to-speech for directions and game dialogue when available.
-- Allow students to consult game evidence while writing.
-- Provide the evidence fallback if gameplay is inaccessible.
-- Advanced students may compare physical guides with a rotating artificial-gravity system.
-- No partner or group product is required.
+- Allow students to keep game evidence open while writing.
+- Provide the evidence fallback when gameplay is inaccessible.
+- Require no partner or group product.
+- Use the six-page Accessible role when larger type, lower density, or one-column sequencing is needed.
 
-## Likely misconceptions
+## Common misconceptions
 
-1. **"There is no gravity on the ISS."**  
-   The station and its contents remain under Earth's gravity but are continuously falling around Earth, producing microgravity/apparent weightlessness.
+1. **There is no gravity on the ISS.** The station remains under Earth's gravity while continuously falling around Earth.
+2. **Roots use only gravity.** Roots also respond to moisture, touch, chemicals, light, and internal growth programs.
+3. **Brighter light directly fixes roots.** Light is a stronger shoot cue; roots need a more direct guide.
+4. **Plants cannot grow in space.** Growth is possible with adapted water, air, orientation, and environmental systems.
+5. **Plant pillows recreate gravity.** They manage media and fluids, not a gravity vector.
 
-2. **"Roots only use gravity."**  
-   Roots also respond to water, touch, chemicals, and other environmental cues. The case focuses on the loss of a reliable gravity direction.
+## Science, engineering, and fiction boundaries
 
-3. **"Brighter lights will directly fix the roots."**  
-   Directional light is a strong shoot cue. Roots need a more direct physical, moisture, or acceleration cue.
+- **Established:** gravitropism, statolith involvement, phototropism, and plant responses to microgravity.
+- **Plausible engineering:** root channels, moisture cues, and rotating systems.
+- **Fictional context:** the specific emergency, crew, SAA investigation, and exact symptoms.
 
-4. **"Plants cannot grow in space."**  
-   Plants can grow in microgravity, but growth systems must manage water, air, orientation, and other conditions differently.
-
-5. **"Plant pillows completely solve gravitropism."**  
-   NASA plant pillows help contain growth media and distribute water, nutrients, and air. They do not recreate a full gravity vector.
-
-## Science, extrapolation, and fiction
-
-- **Established science:** gravitropism, statocytes/statoliths, phototropism, plant responses to microgravity.
-- **Plausible engineering:** physical channels, controlled moisture cues, rotating plant systems.
-- **Fictional case details:** the specific ISS emergency, characters, exact crop symptoms, and SAA investigation.
+The game simplifies a complex plant response. Do not teach that roots are completely random, that statoliths are the only gravity-sensing mechanism, or that plant pillows fully solve orientation.
 
 ## Technical fallback
 
-If the game cannot run, provide the case evidence digest from `technical-notes.md`. Students complete the same mission sheet and assessment. Do not grade the technical failure.
+Distribute the evidence digest. Students complete the same mission sheet; technical failure is not graded.
 
 ## References
 
-See `references.md` for the complete source list.
+See `references.md`.
