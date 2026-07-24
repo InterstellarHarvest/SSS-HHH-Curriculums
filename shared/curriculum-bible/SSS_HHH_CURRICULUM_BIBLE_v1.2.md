@@ -469,6 +469,13 @@ The Student worksheet is the source of truth for numbered task identifiers and v
 - Non-keyable tasks may be omitted from the Answer Key without explanation. The remaining sections keep their original Student numbers and are never renumbered to close gaps.
 - If one Student task needs more than one Answer Key block, each block retains the same Student task identifier; the technical label may distinguish diagnosis, rejected alternative, model response, scoring guidance, or another teacher function.
 - Continuations use the same identifier followed by `Continued` only when needed.
+- A direct Teacher reference to a numbered Student task shows the exact number and title in **bold** (`<strong class="task-reference">`, shared CSS `.task-reference { font-weight: 700; }`); only the reference is bolded. See `TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md`.
+
+## 6.4.2 Teacher production-metadata visibility
+
+Ordinary Teacher pages do not include a visible body section devoted to internal compatibility or production lineage. Game baseline, source-master version, migration date, repository path, commit hash, validation history, checksums, and internal filenames remain in HTML metadata, the quiet publication footer, migration and validation reports, decision records, release manifests, and Git history. A concise compatibility value may remain in the footer.
+
+An ordinary Teacher page must not carry a dedicated visible block titled or functioning as Compatibility, Source Baseline, Migration History, or Build Provenance. A separate administrator, deployment, release-management, or technical-compatibility document may present this information where it is operationally necessary. See `TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md`.
 
 ## 6.5 References
 

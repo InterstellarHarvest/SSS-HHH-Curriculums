@@ -17,6 +17,7 @@
 - [ ] First page uses the Mission Title Block.
 - [ ] Continuation pages use the compact header.
 - [ ] Production metadata remains in the footer or cover metadata.
+- [ ] Ordinary Teacher-page body content omits Compatibility / Source Baseline / migration-provenance blocks; internal production metadata remains in footer, HTML metadata, or repository records.
 - [ ] Page number and total are correct.
 
 ## Page Geometry
@@ -102,6 +103,7 @@
 - [ ] Every keyed Answer Key heading preserves the Student task number and exact visible title.
 - [ ] Non-keyable tasks are omitted without renumbering later Answer Key sections.
 - [ ] Teacher references to specific worksheet tasks use the same number and title.
+- [ ] Direct Teacher references to numbered Student tasks reproduce the exact task number and title in bold.
 - [ ] Model response allows valid alternatives.
 - [ ] Common incomplete responses are identified where useful.
 - [ ] Teacher content is absent from student output.

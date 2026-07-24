@@ -1783,6 +1783,8 @@ The role label changes appropriately:
 
 Teacher pages do not receive a different visual identity or automatic margin system.
 
+Ordinary Teacher pages do not include a visible body section devoted to internal compatibility or production lineage. Game baseline, source-master version, migration date, repository path, commit hash, validation history, checksums, and internal filenames remain in HTML metadata, the quiet publication footer, migration and validation reports, decision records, release manifests, and Git history; a concise compatibility value may remain in the footer. An ordinary Teacher page must not carry a dedicated visible block titled or functioning as Compatibility, Source Baseline, Migration History, or Build Provenance. A separate administrator, deployment, release-management, or technical-compatibility document may present this information where operationally necessary. See `TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md`.
+
 ---
 
 # 23. Continuation Header
@@ -1996,6 +1998,8 @@ Task-reference parity is required:
 - remaining Answer Key sections retain their Student numbers rather than being renumbered;
 - teacher-facing references to a specific worksheet task use the same number and title;
 - technical labels may identify the teacher function without replacing the shared task title.
+
+Direct teacher-facing references to a specific worksheet task appear in **bold** with the exact number and title (`<strong class="task-reference">6 · Diagnose and reject an alternative</strong>`, shared CSS `.task-reference { font-weight: 700; }`). Only the reference is bolded; italics or color alone are not used. General teacher concepts and teacher-only sections that do not point to a Student task remain unnumbered and unbolded. See `TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md`.
 
 Use:
 

@@ -17,3 +17,12 @@ The standard Student worksheet is the source of truth for numbered task identifi
 ## Case 01 application
 
 The Case 01 Answer Key begins with `3 · Investigate four evidence sources`. Tasks 1 and 2 are omitted because they do not require keyed responses. No explanatory note is added. Tasks 3–9 retain the exact Student numbering and titles.
+
+## Teacher reference emphasis
+
+When Teacher material directly refers to a numbered Student task, the complete matching task number and title appear in **bold**. Only the reference is bolded; surrounding prose stays regular weight, and italics or color alone are not used.
+
+- HTML: `<strong class="task-reference">6 · Diagnose and reject an alternative</strong>`
+- Shared CSS: `.task-reference { font-weight: 700; }`
+
+General Teacher concepts and Teacher-only sections that do not point to a specific Student task remain unnumbered and unbolded. See `TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md`.

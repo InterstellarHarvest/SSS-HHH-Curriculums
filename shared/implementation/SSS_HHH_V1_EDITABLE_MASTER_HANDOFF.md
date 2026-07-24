@@ -137,6 +137,8 @@ Use `.publication-footer` with:
 
 Keep these values data-driven when the production pipeline is extracted from the single-file prototype.
 
+Production provenance (commit hash, source-master version, migration date, repository path, checksums, internal filenames) stays in these footer and metadata channels, migration and validation reports, decision records, and Git history — not in ordinary Teacher-page body sections. See `TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md`.
+
 ### Exact-match word-bank contract
 
 For a constrained fill-in-the-blank activity, place `.word-bank` adjacent to the supported blanks.
@@ -249,6 +251,7 @@ The standard Student role owns numbered task identifiers and visible task titles
 - General teacher sections remain unnumbered when they are not cross-references.
 - Technical labels may distinguish `MODEL RESPONSE`, `REJECTED ALTERNATIVE`, `SCORING GUIDANCE`, or similar teacher functions, but they do not replace the shared numbered title.
 - Accessible editions retain the same numbered titles as the standard Student edition.
+- A direct Teacher reference to a specific Student task is rendered in bold as `<strong class="task-reference">N · Title</strong>` (shared CSS `.task-reference { font-weight: 700; }`); only the reference is bolded. See `TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md`.
 
 ## 4. Role architecture
 
