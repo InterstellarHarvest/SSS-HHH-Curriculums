@@ -238,6 +238,18 @@ Use `.notes-area` for genuine remaining-page planning or annotation space. Do no
 
 Use `.answer-block` only inside the independent Answer Key role. Do not restore inline student-page answer toggles.
 
+<!-- TASK_REFERENCE_PARITY_RULE_v1.0.1: HANDOFF -->
+### 3.8 Student-task reference parity
+
+The standard Student role owns numbered task identifiers and visible task titles.
+
+- Answer Key headings for keyed work repeat the Student number and title exactly.
+- Non-keyable tasks are omitted silently; later Answer Key sections keep the original Student numbering.
+- Teacher-facing prose or tables that direct a teacher to a specific worksheet task include the same number and title.
+- General teacher sections remain unnumbered when they are not cross-references.
+- Technical labels may distinguish `MODEL RESPONSE`, `REJECTED ALTERNATIVE`, `SCORING GUIDANCE`, or similar teacher functions, but they do not replace the shared numbered title.
+- Accessible editions retain the same numbered titles as the standard Student edition.
+
 ## 4. Role architecture
 
 Required role values:

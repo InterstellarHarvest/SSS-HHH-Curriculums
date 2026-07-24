@@ -281,3 +281,37 @@ The relocated identification rows and the two new Task 5 word banks did not add 
 **Backups:** `.student-id-update-backup/20260723-213011` and `.word-bank-update-backup/20260723-213011` at the repo root.
 
 **Verdict unchanged:** PASS FOR REPOSITORY REVIEW — NOT YET RELEASE-APPROVED.
+
+---
+
+## 12. Revalidation Addendum — task-reference parity, registry-rendered clean source (2026-07-24)
+
+**Reason:** Task-reference parity was first applied by an updater script (commit `b808fd9`). During subsequent working-tree operations the packet was **browser-reserialized** by an external tool (self-closing tags flattened, a runtime `style="--margin…"` injected on `<html>`), diverging from the committed clean source. To guarantee clean bytes, the packet was restored to the exact `63a7ead` source (SHA-256 `3a4e7ba4…`, verified byte-identical) and the parity change was re-applied **without reserialization** and finalized by rendering task references from the canonical `source/task-registry.js`, preserving the original clean serialization.
+
+**Changes (identical intent to `b808fd9`, with refinements):**
+- Answer Key headings retitled to Student task ids; Answer Key now begins at Task 3; heading number sequence is **3, 4, 5, 6, 6, 7, 8, 9**.
+- Non-keyable Task 2 "Initial Thinking" Answer Key block removed in full (no `INITIAL THINKING` / `Accepted evidence needs` remains).
+- Teacher lesson-flow, collection, and procedure references cite the exact numbered task titles; the four in-prose Teacher references are wrapped in `<strong class="task-reference">…</strong>` (with a `.task-reference` style rule), rendered from `source/task-registry.js`. Table structure, headers, rows, and answer text are unchanged.
+- **Both** Accessible Task 6 headings now read `6 · Diagnose and reject an alternative` (the script had changed only the first).
+- The script's `<!-- …PARITY…: MASTER -->` marker comment is **intentionally omitted** (it was the source of an earlier HTML-validity defect and is not required).
+
+**Canonical task registry:** `source/task-registry.js` (frozen ES module, self-validating) archives the exact task ids/titles; `taskLabel(n)` yields the strings used above (e.g. `6 · Diagnose and reject an alternative`), with Task 6 declaring two Answer Key parts (`diagnosis`, `rejected-alternative`) — the reason the Answer Key sequence carries a doubled 6.
+
+**Build under test:** `SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
+SHA-256 `3a657ddb731ff20d65b7e42521fcde620814d517ed2abb92560b7dca10a1abbe` (supersedes `5b9f1c89…`; see `../validation-artifacts/CHECKSUMS.txt`).
+
+**Serialization integrity:** 563 lines; self-closing tags preserved; no runtime `html` style attribute; text diff vs `63a7ead` is 18 insertions / 17 deletions (small and localized).
+
+**Environment:** Headless Chromium via Playwright (Chromium 1217, node v20.20.2).
+
+| Check | Expected | Result |
+|---|---|---|
+| Student / Teacher / Answer / Accessible / All pages | 3 / 7 / 3 / 6 / 19 | 3 / 7 / 3 / 6 / 19, no overflow |
+| Teacher grayscale / print preview | fits | no overflow |
+| Edit/fill + persistence | restores after reload | restored |
+| Teacher PDF page count | 7 | 7 |
+| Console / page JS errors | none | none |
+| Answer Key heading sequence | 3,4,5,6,6,7,8,9 | 3,4,5,6,6,7,8,9 |
+| Task 3 table headers / rows | Source · Model evidence · Interpretation / Crew · Sensors · Plants · Logs | intact |
+
+**Verdict unchanged:** PASS FOR REPOSITORY REVIEW — NOT YET RELEASE-APPROVED.

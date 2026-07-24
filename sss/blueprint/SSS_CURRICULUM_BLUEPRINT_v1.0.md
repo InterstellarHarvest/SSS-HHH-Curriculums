@@ -252,6 +252,11 @@ One or two pages:
 - scoring guidance;
 - exit-ticket response.
 
+<!-- TASK_REFERENCE_PARITY_RULE_v1.0.1: BLUEPRINT -->
+### Cross-document task references
+
+The Student mission packet controls numbered task identifiers. Answer keys preserve the same task number and exact visible title for every keyed response. Non-keyable tasks may be omitted silently, and later tasks retain their original numbers. Teacher materials use the same number and title whenever they direct the teacher to a specific worksheet task; ordinary planning, standards, pacing, and misconception sections remain unnumbered.
+
 ## 5.5 Scoring tools
 
 Every case includes:

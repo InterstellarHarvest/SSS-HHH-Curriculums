@@ -1987,6 +1987,16 @@ Long formal prose should default to a single readable column. Modular columns ma
 
 The answer key should mirror the student document's order where practical.
 
+<!-- TASK_REFERENCE_PARITY_RULE_v1.0.1: STYLE GUIDE -->
+Task-reference parity is required:
+
+- the Student worksheet controls the task number and visible title;
+- keyed Answer Key sections repeat that number and title exactly;
+- non-keyable Student tasks may be omitted without an explanatory note;
+- remaining Answer Key sections retain their Student numbers rather than being renumbered;
+- teacher-facing references to a specific worksheet task use the same number and title;
+- technical labels may identify the teacher function without replacing the shared task title.
+
 Use:
 
 - identical section titles;

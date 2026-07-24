@@ -99,6 +99,9 @@
 - [ ] Teacher notes use the neutral side stripe.
 - [ ] Dedicated answer-key blocks are used.
 - [ ] Answer-key order mirrors student order.
+- [ ] Every keyed Answer Key heading preserves the Student task number and exact visible title.
+- [ ] Non-keyable tasks are omitted without renumbering later Answer Key sections.
+- [ ] Teacher references to specific worksheet tasks use the same number and title.
 - [ ] Model response allows valid alternatives.
 - [ ] Common incomplete responses are identified where useful.
 - [ ] Teacher content is absent from student output.

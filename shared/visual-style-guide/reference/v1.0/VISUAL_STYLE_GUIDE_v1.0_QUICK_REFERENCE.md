@@ -153,6 +153,8 @@ Use one controlled hero visual. The title remains dominant.
 
 - Teacher answers never appear in student output.
 - Answer keys mirror student section order.
+- Keyed Answer Key headings preserve the Student task number and exact visible title; non-keyable tasks may be omitted silently without renumbering later tasks.
+- Teacher references to a specific worksheet task use the same number and title.
 - Parallel accessible edition preserves the same identifiers and order.
 - Accessible versions may enlarge type, reduce density, increase pages, and support alternate response modes.
 

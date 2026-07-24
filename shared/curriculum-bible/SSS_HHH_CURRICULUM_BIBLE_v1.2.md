@@ -459,6 +459,17 @@ The answer key includes:
 - exit-ticket answer;
 - annotated student-sheet version where useful.
 
+<!-- TASK_REFERENCE_PARITY_RULE_v1.0.1: BIBLE -->
+## 6.4.1 Student-task identifier parity
+
+The Student worksheet is the source of truth for numbered task identifiers and visible task titles.
+
+- An Answer Key section that answers a Student task must preserve that task's original number and exact visible title.
+- A Teacher document that points to a specific worksheet task must include the same number and title. General lesson sections that do not point to one task remain unnumbered.
+- Non-keyable tasks may be omitted from the Answer Key without explanation. The remaining sections keep their original Student numbers and are never renumbered to close gaps.
+- If one Student task needs more than one Answer Key block, each block retains the same Student task identifier; the technical label may distinguish diagnosis, rejected alternative, model response, scoring guidance, or another teacher function.
+- Continuations use the same identifier followed by `Continued` only when needed.
+
 ## 6.5 References
 
 Every important scientific claim in teacher materials is sourced.
