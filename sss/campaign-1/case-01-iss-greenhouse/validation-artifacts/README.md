@@ -2,6 +2,31 @@
 
 This directory contains the portable validation harness and machine-readable results for the current v1.0 master.
 
+## Validation environment setup
+
+The Case 01 validation harness requires Python 3 and the packages listed in
+`requirements.txt`.
+
+From the repository root:
+
+```bash
+python3 -m venv .venv-case01-validation
+source .venv-case01-validation/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r \
+  sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/requirements.txt
+python -m playwright install chromium
+```
+
+On Linux CI or a minimal Linux workstation, Playwright may also require:
+
+```bash
+python -m playwright install --with-deps chromium
+```
+
+Run the validation harness using the command documented below. The generated
+virtual environment is local tooling and must not be committed.
+
 ## Run
 
 From this directory:
