@@ -1673,6 +1673,8 @@ Do not fill a page by:
 
 The approved first-page header is the **Mission Title Block**.
 
+For Student and Accessible worksheets, the first-page identification row precedes the Mission Title Block and is the topmost printable element.
+
 The Mission Title Block uses:
 
 - a narrow institutional accent rule or rail;
@@ -1745,25 +1747,27 @@ Those items belong in the footer or source metadata.
 
 ## 22.4 Student Identification Row
 
-Student documents place the identification row immediately below the first-page header.
+Student and Accessible worksheets place a conventional identification row at the absolute top of page 1, inside the selected margins and above the Mission Title Block.
 
-Default fields:
+Default fields, in order:
 
 ```text
 Name
-Class / Period
 Date
+Period
 ```
 
-Additional fields may be added only when required, such as:
+For multi-page worksheets:
 
-- group name for an optional collaborative extension;
-- teacher name;
-- school;
-- course;
-- student ID where institutionally required.
+- the row appears only on page 1;
+- continuation pages do not repeat it;
+- the compact continuation header remains the first institutional element on later pages.
 
-Do not crowd the header with form fields.
+Teacher and Answer Key documents do not receive the student identification row.
+
+Additional fields may be added only when institutionally required, such as a student ID or course code. They must not displace the default fields or crowd the Mission Title Block.
+
+In fillable HTML, every field requires a programmatic label, keyboard access, visible focus, and persistence consistent with other student response fields.
 
 ## 22.5 Teacher Documents
 
@@ -1812,7 +1816,7 @@ Continuation headers should not contain:
 - publication date;
 - compatibility information;
 - large campaign metadata;
-- repeated student name fields;
+- repeated Name, Date, or Period fields;
 - a second full-size insignia.
 
 Page number and publication metadata remain in the footer.
@@ -1916,8 +1920,8 @@ A footer may not become a second content panel.
 
 Typical sequence:
 
-1. Mission Title Block
-2. Student identification row
+1. Student identification row — Name, Date, Period; page 1 only
+2. Mission Title Block
 3. Mission or investigation question
 4. Science or history focus
 5. Directions
@@ -2162,12 +2166,14 @@ A page passes the v0.4 review when all applicable answers are **yes**.
 
 ## 28.4 Header
 
-- [ ] The first page uses the Mission Title Block.
+- [ ] The first Student and Accessible page begins with Name, Date, and Period above all other content.
+- [ ] The identification row appears only on page 1.
+- [ ] Teacher, Answer Key, and continuation pages do not repeat student identification.
+- [ ] The first institutional header is the Mission Title Block.
 - [ ] The institution and document role are visible.
 - [ ] The activity title is the dominant header element.
 - [ ] The insignia remains subordinate to the document title.
 - [ ] Version, commit, publication date, and status are absent from the prominent header.
-- [ ] Student identification fields appear below the header rather than inside it.
 
 ## 28.5 Continuation Pages
 
@@ -2590,7 +2596,33 @@ Numbered response panels may be used for:
 
 They are not the default ordinary response treatment because the colored number block adds visual weight.
 
-## 32.8 Prohibited Response Treatments
+## 32.8 Exact-Match Word Banks
+
+Use a word bank for constrained fill-in-the-blank work when the required word or phrase may be difficult to retrieve even though the student understands the mechanism, source, sequence, or concept.
+
+The bank must contain exactly the answers used by that activity:
+
+- one visible entry per blank;
+- no decoys;
+- no additional vocabulary;
+- no omitted answer;
+- repeated entries when the same answer is required more than once;
+- complete phrases where the response is a phrase.
+
+The bank may be ordered differently from the blanks. It must remain on the same page and immediately before or after the supported item.
+
+Visual treatment:
+
+- short `WORD BANK` technical label;
+- compact white or Cool Wash field;
+- 0.75–1 pt Instrument Gray border;
+- Mission Ink text;
+- separators, wrapping, or individual outlined terms that remain clear in grayscale;
+- no saturated fill, drag-only interaction, decorative chips, or unrelated distractors.
+
+The Standard and Accessible editions use the same entries. Accessible output may increase type and allow the bank to wrap. The Answer Key must use the same wording exactly.
+
+## 32.9 Prohibited Response Treatments
 
 Do not use:
 
@@ -5104,9 +5136,7 @@ Do not use:
 
 Teacher covers may add duration, standards summary, answer-key status, and implementation notes.
 
-Student covers may add Name, Class / Period, Date, and a packet-completion field.
-
----
+When a Student or Accessible cover is also the first worksheet page, the Name / Date / Period row remains the topmost printable element above the Mission Title Block and cover title. A separate decorative cover with no student work may omit the row only when the next page is treated as worksheet page 1 and begins with the required row.
 
 # 74. Cover Exceptions
 
@@ -6487,6 +6517,8 @@ When revised or republished, they should migrate to v1.0.
 | Short reference pages | Combine content or use genuine notes space; do not bloat |
 | Institutional differentiation | SSS operational archetype; HHH archival archetype |
 | Grid | 12-column modular |
+| Student identification | Name · Date · Period at absolute top of first Student/Accessible page only |
+| Constrained word banks | Exactly one answer entry per blank; no decoys, extras, or omissions |
 | Header | Mission Title Block |
 | Continuation | Compact institutional header |
 | Footer | Split metadata rule |
@@ -6522,6 +6554,8 @@ When revised or republished, they should migrate to v1.0.
 # 110. Version History
 
 ## v1.0
+
+- Clarified that Name, Date, and Period precede the Mission Title Block on only the first Student and Accessible page.
 
 - Consolidated all approved v0.1–v0.9 decisions.
 - Declared the authoritative source-of-truth hierarchy.

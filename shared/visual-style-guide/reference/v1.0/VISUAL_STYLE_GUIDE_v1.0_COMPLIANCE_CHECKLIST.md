@@ -12,6 +12,8 @@
 
 - [ ] Document role is visible.
 - [ ] Campaign and case identifiers are correct.
+- [ ] First Student and Accessible pages begin with Name, Date, and Period above the Mission Title Block.
+- [ ] Student identification appears only on page 1 and is absent from continuation, Teacher, and Answer Key pages.
 - [ ] First page uses the Mission Title Block.
 - [ ] Continuation pages use the compact header.
 - [ ] Production metadata remains in the footer or cover metadata.
@@ -72,6 +74,14 @@
 - [ ] CER uses Claim, Evidence, and Reasoning stacked boxes.
 - [ ] Evidence receives enough space.
 - [ ] Reasoning asks for mechanism or connection.
+
+## Word Banks
+
+- [ ] A constrained fill-in-the-blank activity has a word bank when exact recall would otherwise be an unnecessary barrier.
+- [ ] The bank contains exactly one answer entry per blank, with no decoys, extras, or omissions.
+- [ ] Repeated answers are repeated and multiword answers remain intact phrases.
+- [ ] Student, Accessible, and Answer Key wording matches exactly.
+- [ ] The bank is adjacent to the supported task and remains readable in grayscale.
 
 ## Tables, Forms, and Rubrics
 

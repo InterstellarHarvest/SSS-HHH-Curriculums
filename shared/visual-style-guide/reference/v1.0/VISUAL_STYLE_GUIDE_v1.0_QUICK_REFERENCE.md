@@ -15,7 +15,8 @@
 | Body type | Inter |
 | Technical type | JetBrains Mono |
 | Corners | 3 px technical rounding |
-| First page | Mission Title Block |
+| Student identification | Name · Date · Period; topmost on first Student/Accessible page only |
+| First-page identity | Student identification row, then Mission Title Block |
 | Later pages | Compact continuation header |
 | Footer | Split metadata, page number right |
 
@@ -88,6 +89,18 @@ Use icons for recurring standardized sections. Use a plain heading or label-only
 | Formal scoring | Analytic criteria grid |
 | Completion check | Checklist rubric |
 | New vocabulary | Term-definition table |
+
+## Exact-Match Word Banks
+
+Use for constrained fill-in-the-blank tasks when exact technical wording may be hard to retrieve.
+
+- One bank entry per blank.
+- Include all expected answers.
+- No decoys, extras, or omissions.
+- Repeat entries when reused.
+- Keep phrase answers intact.
+- Place beside the task on the same page.
+- Standard, Accessible, and Answer Key wording must match exactly.
 
 ## Response Areas
 

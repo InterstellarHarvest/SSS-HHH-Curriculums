@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="SSS Campaign 1 Case 01 editable curriculum publishing master migrated to the v1.0 visual and publishing system." name="description"/>
+<meta content="SSS-C1-01" name="sss-document-code"/>
+<meta content="1.0" name="sss-master-version"/>
+<meta content="SSS_C1_CASE01_EDITABLE_MASTER_v0.3.html" name="sss-source-master"/>
+<meta content="2a6e8a7" name="sss-game-baseline"/>
+<meta content="2026-07-23" name="sss-publication-date"/>
+<meta content="validation-build" name="sss-status"/>
+<title>SSS Case 01 · ISS Greenhouse Module · Editable Publishing Master v1.0</title>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap");
+:root {
+  --page-w: 8.5in; --page-h: 11in; --margin: .5in; --gutter: .125in;
+  --density: 1; --fill: 1;
+  --ink: #1d2730; --muted: #5b6872; --line: #8998a3; --line-light: #c8d1d6;
+  --paper: #fff; --screen: #dce3e6; --cyan: #0b6f82; --cyan-dark: #075362;
+  --green: #147a45; --cyan-field: #e7f3f5; --neutral-field: #eff2f4;
+  --amber: #8a5a00; --amber-field: #f5eddd; --critical: #a7332a; --critical-field: #f7e9e7;
+  --slate: #536572; --radius: 3px;
+  --hero: 27pt; --hero-lh: 31.5pt; --title: 18pt; --title-lh: 22pt;
+  --section: 13.5pt; --section-lh: 17pt; --deck: 10.75pt; --deck-lh: 15pt;
+  --body: 9.8pt; --body-lh: 13.8pt; --small: 8.8pt; --small-lh: 12.2pt;
+  --caption: 7.9pt; --caption-lh: 10pt; --micro: 7.25pt; --micro-lh: 9.6pt;
+  --space-1: calc(.035in * var(--density)); --space-2: calc(.065in * var(--density));
+  --space-3: calc(.095in * var(--density)); --space-4: calc(.14in * var(--density));
+}
+* { box-sizing: border-box; }
+html { background: var(--screen); }
+body { margin: 0; color: var(--ink); background: var(--screen); font-family: Inter, Arial, sans-serif; font-size: var(--body); line-height: var(--body-lh); }
+button, select, input { font: inherit; }
+.skip-link { position: fixed; left: .5rem; top: -5rem; z-index: 1000; background:#fff; padding:.5rem; color:#000; }
+.skip-link:focus { top:.5rem; }
+.toolbar { position:sticky; top:0; z-index:100; display:flex; flex-wrap:wrap; gap:.45rem .75rem; align-items:end; padding:.55rem .75rem; background:#132a31; color:#fff; box-shadow:0 2px 9px rgba(0,0,0,.28); }
+.control-group { display:flex; flex-wrap:wrap; align-items:end; gap:.35rem; padding-right:.65rem; border-right:1px solid rgba(255,255,255,.22); }
+.control-group:last-of-type { border-right:0; }
+.toolbar label { display:flex; flex-direction:column; gap:.15rem; font-size:11px; font-weight:600; }
+.toolbar select, .toolbar button { min-height:34px; border:1px solid #8da2aa; border-radius:4px; padding:.3rem .48rem; background:#fff; color:#14252b; }
+.toolbar button { cursor:pointer; font-weight:700; }
+.toolbar button[aria-pressed="true"] { background:#cdebef; border-color:#5db0bb; box-shadow:inset 0 0 0 1px #0b6f82; }
+.toolbar button:focus-visible, .toolbar select:focus-visible, [contenteditable="true"]:focus-visible { outline:3px solid #fcb103; outline-offset:2px; }
+.toolbar-status { margin-left:auto; align-self:center; max-width:28rem; font-size:11px; line-height:1.35; }
+.screen-instructions { width:min(8.5in, calc(100% - 1rem)); margin:.45rem auto 0; color:#384a53; font-size:12px; }
+.workspace { padding:.45in 0 .8in; }
+.page { display:none; position:relative; width:var(--page-w); height:var(--page-h); margin:0 auto .34in; background:var(--paper); box-shadow:0 3px 13px rgba(0,0,0,.24); overflow:visible; break-after:page; page-break-after:always; }
+body[data-role="student"] .role-student, body[data-role="teacher"] .role-teacher, body[data-role="answer"] .role-answer, body[data-role="accessible"] .role-accessible, body[data-role="all"] .page { display:block; }
+.page-frame { position:absolute; inset:var(--margin); display:flex; flex-direction:column; min-height:0; overflow:hidden; }
+.content-area { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; overflow:hidden; }
+.overflow-warning { display:none; position:absolute; z-index:20; right:.08in; top:.08in; padding:.05in .08in; background:#b42318; color:#fff; border:2px solid #fff; border-radius:3px; font:700 8pt/1.1 "JetBrains Mono", monospace; box-shadow:0 1px 4px rgba(0,0,0,.28); }
+.page.overflowing .overflow-warning { display:block; }
+body.show-guides .page-frame { outline:1px dashed rgba(180,40,40,.75); outline-offset:-1px; }
+body.print-preview .toolbar, body.print-preview .screen-instructions { opacity:.25; }
+body.grayscale {
+  --cyan:#4b4b4b; --cyan-dark:#303030; --green:#555; --cyan-field:#ededed;
+  --amber:#555; --amber-field:#f0f0f0; --critical:#333; --critical-field:#eeeeee; --slate:#555;
+}
+body.grayscale .saa-insignia,
+body.grayscale .continuation-header img,
+body.grayscale .figure-frame img { filter:grayscale(1); }
+body.edit-mode [data-editable] { outline:1px dotted rgba(11,111,130,.55); background:rgba(231,243,245,.28); }
+body.fill-mode [data-response] { cursor:text; }
+body.fill-mode [data-response]:empty::before { content:"Type response"; color:#89949b; font-style:italic; }
+.ph-icon { width:.18in; height:.18in; flex:0 0 .18in; fill:currentColor; }
+.technical-label { display:block; font-family:"JetBrains Mono", Consolas, monospace; font-size:var(--micro); line-height:var(--micro-lh); font-weight:700; letter-spacing:.075em; text-transform:uppercase; color:var(--cyan-dark); }
+.mission-title-block { position:relative; display:grid; grid-template-columns:.08in 1fr 1.02in; gap:.14in; align-items:start; padding-bottom:.12in; margin-bottom:.11in; border-bottom:1px solid var(--line); }
+.mission-rail { height:100%; min-height:1.08in; background:var(--cyan); }
+.mission-title-copy { min-width:0; }
+.institution-line { margin-top:.015in; }
+.hero-title { margin:.04in 0 .035in; font-size:var(--hero); line-height:var(--hero-lh); letter-spacing:-.025em; color:#17232b; }
+.mission-subtitle { margin:0; max-width:6in; font-size:var(--deck); line-height:var(--deck-lh); color:var(--muted); }
+.saa-insignia { width:.92in; height:.92in; object-fit:contain; justify-self:end; }
+.publication-mark { display:inline-block; margin-top:.055in; padding:.025in .055in; border-radius:2px; background:var(--slate); color:#fff; font:700 var(--micro)/1 "JetBrains Mono", monospace; letter-spacing:.06em; }
+.continuation-header { display:grid; grid-template-columns:.32in 1fr; gap:.09in; align-items:center; padding-bottom:.07in; margin-bottom:.085in; border-bottom:1px solid var(--line); }
+.continuation-header img { width:.27in; height:.27in; object-fit:contain; }
+.continuation-header h1 { margin:.01in 0 0; font-size:var(--title); line-height:var(--title-lh); letter-spacing:-.012em; }
+.publication-footer { flex:0 0 auto; display:flex; justify-content:space-between; gap:.2in; align-items:flex-end; margin-top:.08in; padding-top:.045in; border-top:1px solid var(--line); color:var(--muted); font:500 var(--micro)/var(--micro-lh) "JetBrains Mono", monospace; }
+.footer-code, .footer-status { font-weight:700; color:#42535e; }
+.grid-12 { display:grid; grid-template-columns:repeat(12, minmax(0,1fr)); gap:var(--gutter); }
+.span-12 { grid-column:span 12; } .span-8 { grid-column:span 8; } .span-7 { grid-column:span 7; } .span-6 { grid-column:span 6; } .span-5 { grid-column:span 5; } .span-4 { grid-column:span 4; }
+.section-heading { display:flex; align-items:flex-start; gap:.065in; margin:var(--space-3) 0 var(--space-1); color:var(--cyan-dark); }
+.section-heading .ph-icon { margin-top:.015in; }
+.section-title { display:block; font-size:var(--section); line-height:var(--section-lh); font-weight:700; color:#1a2a32; letter-spacing:-.008em; }
+h3.subhead { margin:var(--space-2) 0 var(--space-1); font-size:10.6pt; line-height:14pt; }
+p { margin:var(--space-1) 0 var(--space-2); }
+ul, ol { margin:var(--space-1) 0 var(--space-2) .22in; padding:0; }
+li { margin:.018in 0; }
+.small { font-size:var(--small); line-height:var(--small-lh); color:var(--muted); }
+.micro { font-size:var(--micro); line-height:var(--micro-lh); color:var(--muted); }
+.student-id { display:grid; grid-template-columns:1fr 1fr 1fr; gap:var(--gutter); margin-bottom:var(--space-2); }
+.id-field { min-height:.35in; border-bottom:1px solid var(--line); padding:.04in .04in .02in; font-size:var(--small); }
+.id-field strong { font-family:"JetBrains Mono", monospace; font-size:var(--micro); text-transform:uppercase; letter-spacing:.055em; }
+.callout { display:grid; grid-template-columns:.2in 1fr; gap:.075in; padding:.075in .09in; margin:var(--space-2) 0; border-left:4px solid var(--cyan); background:var(--cyan-field); border-radius:0 var(--radius) var(--radius) 0; }
+.callout .ph-icon { margin-top:.015in; }
+.callout-neutral { border-left-color:var(--slate); background:var(--neutral-field); }
+.callout-caution { border-left-color:var(--amber); background:var(--amber-field); }
+.callout-critical { border-left-color:var(--critical); background:var(--critical-field); }
+.callout-success { border-left-color:var(--green); background:#e9f3ed; }
+.response-block { display:flex; flex-direction:column; min-height:0; margin:var(--space-1) 0 var(--space-2); }
+.response-prompt { font-weight:600; margin-bottom:.035in; }
+.response-guidance { margin-bottom:.03in; color:var(--muted); font:500 var(--micro)/var(--micro-lh) "JetBrains Mono", monospace; }
+.response-area { flex:1 1 auto; min-height:.34in; padding:.055in; border:1px solid var(--line); border-radius:var(--radius); background:#fff; overflow:auto; }
+.response-block.short .response-area { min-height:.34in; }
+.response-block.medium .response-area { min-height:.58in; }
+.response-block.tall .response-area { min-height:.88in; }
+.response-block.grow { flex:1 1 0; }
+.response-block.grow .response-area { min-height:.6in; }
+.response-block.grow-tall { flex:2 1 0; }
+.response-block.grow-tall .response-area { min-height:1.1in; }
+.tech-table { width:100%; border-collapse:collapse; table-layout:fixed; margin:var(--space-1) 0 var(--space-2); font-size:9.1pt; line-height:12.5pt; }
+.tech-table th, .tech-table td { border:1px solid var(--line); padding:.045in .05in; vertical-align:top; overflow-wrap:anywhere; }
+.tech-table th { background:var(--neutral-field); color:#23353e; font-weight:700; }
+.tech-table .editable-cell, .tech-table [data-response] { min-height:.38in; }
+.tech-table.compact { font-size:8.35pt; line-height:11.2pt; }
+.tech-table.compact th, .tech-table.compact td { padding:.03in .04in; }
+.compare-card { border:1px solid var(--line); border-radius:var(--radius); padding:.06in .075in; background:#fff; }
+.compare-card h3 { margin:0 0 .045in; font-size:10.5pt; }
+.word-bank { display:flex; align-items:flex-start; gap:.07in; margin:var(--space-1) 0 var(--space-2); padding:.04in .055in; border:1px solid var(--line); border-radius:var(--radius); background:var(--neutral-field); font-size:var(--small); line-height:var(--small-lh); }
+.word-bank-label { flex:0 0 auto; font:700 var(--micro)/var(--micro-lh) "JetBrains Mono", monospace; letter-spacing:.055em; text-transform:uppercase; color:var(--cyan-dark); }
+.word-bank-terms { min-width:0; color:var(--ink); }
+.accessible-page .word-bank { font-size:10.5pt; line-height:15.5pt; padding:.055in .07in; }
+.mini-blank { display:inline-block; min-width:1.15in; min-height:.21in; vertical-align:bottom; border:1px solid var(--line); border-radius:2px; padding:0 .025in; }
+.status-grid { display:grid; grid-template-columns:1.45fr .68fr 2fr; border-top:1px solid var(--line); border-left:1px solid var(--line); margin-bottom:var(--space-2); }
+.status-grid > div { min-height:.31in; padding:.035in .045in; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.status-grid .head { background:var(--neutral-field); font-weight:700; }
+.cer-stack { display:flex; flex-direction:column; gap:.055in; min-height:2.25in; flex:1 1 auto; }
+.cer-box { display:grid; grid-template-columns:.72in 1fr; gap:.055in; min-height:0; }
+.cer-box.claim { flex:1 1 .46in; } .cer-box.evidence { flex:1 1 .66in; } .cer-box.reasoning { flex:1 1 .76in; }
+.cer-label { display:flex; align-items:center; justify-content:center; padding:.05in; background:var(--cyan-dark); color:#fff; border-radius:var(--radius); font:700 var(--micro)/1.1 "JetBrains Mono", monospace; letter-spacing:.05em; }
+.cer-response { min-height:0; border:1px solid var(--line); border-radius:var(--radius); padding:.055in; overflow:auto; }
+.teacher-note { display:grid; grid-template-columns:.06in 1fr; gap:.07in; margin:var(--space-2) 0; background:var(--neutral-field); border:1px solid var(--line-light); border-radius:var(--radius); padding:.06in .075in; }
+.teacher-note::before { content:""; background:var(--slate); border-radius:2px; }
+.notes-area { flex:1 1 auto; min-height:.72in; border:1px solid var(--line); border-radius:var(--radius); margin-top:var(--space-2); padding:.055in; }
+.notes-area::before { content:"NOTES"; display:block; color:var(--muted); font:700 var(--micro)/1 "JetBrains Mono", monospace; letter-spacing:.06em; }
+.answer-block { border:1px solid var(--line); border-left:5px solid var(--cyan-dark); border-radius:var(--radius); padding:.065in .08in; margin:var(--space-2) 0; background:#f7fafb; }
+.answer-block .technical-label { margin-bottom:.025in; }
+.figure-frame { border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; }
+.figure-frame img { display:block; width:100%; image-rendering:pixelated; }
+.caption-band { padding:.045in .055in; background:var(--neutral-field); border-top:1px solid var(--line); font-size:var(--caption); line-height:var(--caption-lh); color:var(--muted); }
+.accessible-page { --body:11.2pt; --body-lh:17.2pt; --small:10pt; --small-lh:15.5pt; --section:15pt; --section-lh:19pt; }
+.accessible-page .content-area { line-height:1.55; }
+.accessible-page .response-area { min-height:.78in; }
+.accessible-page .tech-table { font-size:10.2pt; line-height:15.4pt; }
+.accessible-page .technical-label { font-size:8pt; line-height:11pt; }
+.accessible-page .mission-title-block { grid-template-columns:.08in 1fr .85in; }
+.accessible-page .hero-title { font-size:24pt; line-height:29pt; }
+.visually-hidden { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+@media (max-width: 900px) { .toolbar { position:static; } .toolbar-status { width:100%; margin-left:0; } .workspace { overflow-x:auto; padding:.15in 0 .5in; } .page { margin-left:.15in; margin-right:.15in; } }
+@media print {
+  @page { size:Letter portrait; margin:0; }
+  html, body { background:#fff!important; }
+  .toolbar, .screen-instructions, .skip-link, .overflow-warning { display:none!important; }
+  .workspace { padding:0; }
+  .page { margin:0!important; box-shadow:none!important; break-after:page; page-break-after:always; }
+  .page:last-of-type { break-after:auto; page-break-after:auto; }
+  [contenteditable="true"] { outline:none!important; }
+}
+
+/* Case 01 validated page-fill refinements */
+.student-intro-page .response-block.grow-tall { flex: 1 1 auto; min-height: 2.2in; }
+.student-intro-page .response-block.grow-tall .response-area { min-height: 1.8in; }
+.student-evidence-page .evidence-table tbody tr { height: .68in; }
+.student-evidence-page .status-grid > div:not(.head) { min-height: .52in; }
+.student-evidence-page .grid-12 { margin-top: .02in; }
+.student-conclusion-page .cer-stack { flex: 1 1 auto; min-height: 2.55in; }
+.student-conclusion-page .response-block.medium .response-area { min-height: .68in; }
+.role-answer[data-page-id="answer-2"] .notes-area { min-height: 2.2in; }
+</style>
+</head>
+<body data-role="student">
+<a class="skip-link" href="#workspace">Skip publishing controls</a>
+<svg aria-hidden="true" class="visually-hidden" height="0" width="0"><defs><symbol id="ph-question" viewbox="0 0 256 256"><path d="M140,180a12,12,0,1,1-12-12A12,12,0,0,1,140,180ZM128,72c-22.06,0-40,16.15-40,36v4a8,8,0,0,0,16,0v-4c0-11,10.77-20,24-20s24,9,24,20-10.77,20-24,20a8,8,0,0,0-8,8v8a8,8,0,0,0,16,0v-.72c18.24-3.35,32-17.9,32-35.28C168,88.15,150.06,72,128,72Zm104,56A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path></symbol><symbol id="ph-flask" viewbox="0 0 256 256"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"></path></symbol><symbol id="ph-book" viewbox="0 0 256 256"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64ZM160,88h40a8,8,0,0,1,0,16H160a8,8,0,0,1,0-16Zm48,40a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,128Zm0,32a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,160Z"></path></symbol><symbol id="ph-search" viewbox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></symbol><symbol id="ph-tree" viewbox="0 0 256 256"><path d="M160,112h48a16,16,0,0,0,16-16V48a16,16,0,0,0-16-16H160a16,16,0,0,0-16,16V64H128a24,24,0,0,0-24,24v32H72v-8A16,16,0,0,0,56,96H24A16,16,0,0,0,8,112v32a16,16,0,0,0,16,16H56a16,16,0,0,0,16-16v-8h32v32a24,24,0,0,0,24,24h16v16a16,16,0,0,0,16,16h48a16,16,0,0,0,16-16V160a16,16,0,0,0-16-16H160a16,16,0,0,0-16,16v16H128a8,8,0,0,1-8-8V88a8,8,0,0,1,8-8h16V96A16,16,0,0,0,160,112ZM56,144H24V112H56v32Zm104,16h48v48H160Zm0-112h48V96H160Z"></path></symbol><symbol id="ph-check" viewbox="0 0 256 256"><path d="M173.66,98.34a8,8,0,0,1,0,11.32l-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35A8,8,0,0,1,173.66,98.34ZM224,48V208a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32H208A16,16,0,0,1,224,48ZM208,208V48H48V208H208Z"></path></symbol><symbol id="ph-wrench" viewbox="0 0 256 256"><path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z"></path></symbol><symbol id="ph-key" viewbox="0 0 256 256"><path d="M216.57,39.43A80,80,0,0,0,83.91,120.78L28.69,176A15.86,15.86,0,0,0,24,187.31V216a16,16,0,0,0,16,16H72a8,8,0,0,0,8-8V208H96a8,8,0,0,0,8-8V184h16a8,8,0,0,0,5.66-2.34l9.56-9.57A79.73,79.73,0,0,0,160,176h.1A80,80,0,0,0,216.57,39.43ZM224,98.1c-1.09,34.09-29.75,61.86-63.89,61.9H160a63.7,63.7,0,0,1-23.65-4.51,8,8,0,0,0-8.84,1.68L116.69,168H96a8,8,0,0,0-8,8v16H72a8,8,0,0,0-8,8v16H40V187.31l58.83-58.82a8,8,0,0,0,1.68-8.84A63.72,63.72,0,0,1,96,95.92c0-34.14,27.81-62.8,61.9-63.89A64,64,0,0,1,224,98.1ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"></path></symbol><symbol id="ph-access" viewbox="0 0 256 256"><path d="M255.59,189.47a8,8,0,0,0-10.12-5.06l-17.42,5.81-28.9-57.8A8,8,0,0,0,192,128H112V104h56a8,8,0,0,0,0-16H112V79a32,32,0,1,0-16,0V89.81A72,72,0,0,0,112,232c33.52,0,63.69-22.71,71.75-54a8,8,0,1,0-15.5-4C162.09,198,137.91,216,112,216A56,56,0,0,1,96,106.34V136a8,8,0,0,0,8,8h83.05l29.79,59.58a8,8,0,0,0,9.69,4l24-8A8,8,0,0,0,255.59,189.47ZM88,48a16,16,0,1,1,16,16A16,16,0,0,1,88,48Z"></path></symbol></defs></svg>
+<header aria-label="Publishing controls" class="toolbar">
+<div class="control-group"><label>Document role<select id="roleSelect"><option value="student">Student</option><option value="teacher">Teacher</option><option value="answer">Answer Key</option><option value="accessible">Accessible</option><option value="all">All Pages</option></select></label></div>
+<div class="control-group"><button aria-pressed="false" id="editToggle" type="button">Edit</button><button aria-pressed="false" id="fillToggle" type="button">Fillable Student</button></div>
+<div class="control-group"><label>Margins<select id="marginSelect"><option value=".50">0.50 in · approved</option><option value=".60">0.60 in · draft</option><option value=".75">0.75 in · draft</option></select></label><label>Density<select id="densitySelect"><option value="balanced">Balanced · approved</option><option value="roomy">Roomy · draft</option><option value="compact">Compact · draft</option></select></label></div>
+<div class="control-group"><button aria-pressed="false" id="grayToggle" type="button">Grayscale</button><button aria-pressed="false" id="previewToggle" type="button">Print Preview</button><button aria-pressed="false" id="guidesToggle" type="button">Margin Guides</button></div>
+<div class="control-group"><button id="printBtn" type="button">Print / Export PDF</button><button id="downloadBtn" type="button">Download Edited HTML</button></div>
+<div class="control-group"><button id="clearBtn" type="button">Clear Responses</button><button id="resetBtn" type="button">Reset Source</button></div>
+<div aria-live="polite" class="toolbar-status" id="toolbarStatus" role="status">Loading publishing state…</div>
+</header>
+<p class="screen-instructions">Fixed US Letter pages use the approved 0.50-inch margin and balanced-density defaults. Role changes preserve every active setting. Red overflow warnings are screen-only and never print.</p>
+<main class="workspace" id="workspace"><section aria-labelledby="student-1-title" class="page role-student student-intro-page" data-page-id="student-1" data-role="student" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><div aria-label="Student identification" class="student-id"><div class="id-field"><strong>Name</strong> <span aria-label="Student Name" data-field="student-name" data-response=""></span></div><div class="id-field"><strong>Date</strong> <span aria-label="Student Date" data-field="student-date" data-response=""></span></div><div class="id-field"><strong>Period</strong> <span aria-label="Student Period" data-field="student-class" data-response=""></span></div></div>
+<header class="mission-title-block">
+<div aria-hidden="true" class="mission-rail"></div>
+<div class="mission-title-copy">
+<div class="technical-label institution-line" data-editable="">SOLAR AGRICULTURAL AUTHORITY · STUDENT MISSION</div>
+<h1 class="hero-title" data-editable="" id="student-1-title">CASE 01 · ISS GREENHOUSE MODULE</h1>
+<p class="mission-subtitle" data-editable="">Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity</p>
+<span class="publication-mark">VALIDATION BUILD</span>
+</div>
+<img alt="Solar Agricultural Authority insignia" class="saa-insignia" src="../../../../shared/assets/insignia/saa.svg"/>
+</header><div class="content-area">
+<aside class="callout callout-institution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><div><div class="technical-label" data-editable="">MISSION QUESTION</div><div data-editable="">Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?</div></div></aside>
+<aside class="callout callout-institution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-flask"></use></svg><div><div class="technical-label" data-editable="">SCIENCE FOCUS · GRAVITROPISM IN MICROGRAVITY</div><div data-editable="">Plants normally use gravity to help guide root and shoot growth. In microgravity, that directional cue becomes unreliable, so engineers must provide another way for plants to orient.<div class="small"><strong>Science status:</strong> The ISS case story is fictional. Gravitropism, statoliths, and plant responses to environmental cues are real.</div></div></div></aside>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">REFERENCE</span><span class="section-title" data-editable="">1 · Vocabulary</span></span></h2>
+<table class="tech-table compact"><caption class="visually-hidden">Vocabulary definitions</caption><tbody>
+<tr><th data-editable="">Gravitropism</th><td data-editable="">Directional growth in response to gravity.</td><th data-editable="">Microgravity</th><td data-editable="">Apparent weightlessness during continuous free fall in orbit.</td></tr>
+<tr><th data-editable="">Statocyte</th><td data-editable="">Plant cell involved in sensing gravity.</td><th data-editable="">Statolith</th><td data-editable="">Dense starch-filled structure that helps provide a direction cue.</td></tr>
+<tr><th data-editable="">Phototropism</th><td colspan="3" data-editable="">Directional growth in response to light.</td></tr></tbody></table>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><span><span class="technical-label">PREDICTION</span><span class="section-title" data-editable="">2 · Initial thinking</span></span></h2>
+<div class="response-block grow-tall"><div class="response-prompt" data-editable="">What evidence would help you distinguish a resource problem from an orientation problem?</div><div class="response-guidance" data-editable="">Name the reading, observation, or record that would help.</div><div aria-label="What evidence would help you distinguish a resource problem from an orientation problem?" class="response-area" data-field="s1-initial" data-response="" role="textbox"></div></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-STU</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 1 of 3</div></footer></div>
+</section><section aria-labelledby="student-2-title" class="page role-student student-evidence-page" data-page-id="student-2" data-role="student" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · STUDENT MISSION · Continued</div><h1 data-editable="" id="student-2-title">Evidence, Causes &amp; Mechanism</h1></div>
+</header><div class="content-area"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">EVIDENCE TASK</span><span class="section-title" data-editable="">3 · Investigate four evidence sources</span></span></h2>
+<p class="small" data-editable="">Record only evidence that helps support or reject a cause. O = observation/data; I = inference/explanation.</p>
+<table class="tech-table compact evidence-table"><caption class="visually-hidden">Evidence source analysis</caption><thead><tr><th data-editable="" style="width:15%">Source</th><th data-editable="" style="width:42%">Observation or data</th><th data-editable="" style="width:34%">What does it support or reject?</th><th data-editable="" style="width:9%">O / I</th></tr></thead><tbody>
+<tr><th data-editable="">Crew</th><td aria-label="S1 Evidence Crew" data-field="s1-evidence-crew" data-response=""></td><td aria-label="S1 Support Crew" data-field="s1-support-crew" data-response=""></td><td aria-label="S1 Oi Crew" data-field="s1-oi-crew" data-response=""></td></tr>
+<tr><th data-editable="">Sensors</th><td aria-label="S1 Evidence Sensors" data-field="s1-evidence-sensors" data-response=""></td><td aria-label="S1 Support Sensors" data-field="s1-support-sensors" data-response=""></td><td aria-label="S1 Oi Sensors" data-field="s1-oi-sensors" data-response=""></td></tr>
+<tr><th data-editable="">Plants</th><td aria-label="S1 Evidence Plants" data-field="s1-evidence-plants" data-response=""></td><td aria-label="S1 Support Plants" data-field="s1-support-plants" data-response=""></td><td aria-label="S1 Oi Plants" data-field="s1-oi-plants" data-response=""></td></tr>
+<tr><th data-editable="">Mission logs</th><td aria-label="S1 Evidence Logs" data-field="s1-evidence-logs" data-response=""></td><td aria-label="S1 Support Logs" data-field="s1-support-logs" data-response=""></td><td aria-label="S1 Oi Logs" data-field="s1-oi-logs" data-response=""></td></tr>
+</tbody></table>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">CAUSE TEST</span><span class="section-title" data-editable="">4 · Test the competing explanations</span></span></h2>
+<div class="status-grid"><div class="head" data-editable="">Explanation</div><div class="head" data-editable="">Status</div><div class="head" data-editable="">One evidence-based reason</div>
+<div data-editable="">Nutrient solution is damaging roots.</div><div aria-label="S1 Status Nutrient" data-field="s1-status-nutrient" data-response=""></div><div aria-label="S1 Reason Nutrient" data-field="s1-reason-nutrient" data-response=""></div>
+<div data-editable="">The light cycle is wrong.</div><div aria-label="S1 Status Light" data-field="s1-status-light" data-response=""></div><div aria-label="S1 Reason Light" data-field="s1-reason-light" data-response=""></div>
+<div data-editable="">The seed stock is defective.</div><div aria-label="S1 Status Seed" data-field="s1-status-seed" data-response=""></div><div aria-label="S1 Reason Seed" data-field="s1-reason-seed" data-response=""></div>
+<div data-editable="">Microgravity disrupts orientation.</div><div aria-label="S1 Status Micro" data-field="s1-status-micro" data-response=""></div><div aria-label="S1 Reason Micro" data-field="s1-reason-micro" data-response=""></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">MECHANISM MODEL</span><span class="section-title" data-editable="">5 · Build the mechanism</span></span></h2><div aria-label="Word bank for Task 5" class="word-bank"><span class="word-bank-label">WORD BANK</span><span class="word-bank-terms" data-editable="">curve or grow without consistent orientation · downward · settle · settle in one direction</span></div>
+<div class="grid-12"><div class="span-6 compare-card"><h3 data-editable="">Earth gravity</h3><p data-editable="">Statoliths <span aria-label="S2 Earth Settle" class="mini-blank" data-field="s2-earth-settle" data-response=""></span></p><p data-editable="">→ consistent direction signal</p><p data-editable="">→ roots grow <span aria-label="S2 Earth Root" class="mini-blank" data-field="s2-earth-root" data-response=""></span></p></div>
+<div class="span-6 compare-card"><h3 data-editable="">Microgravity</h3><p data-editable="">Statoliths do not <span aria-label="S2 Micro Settle" class="mini-blank" data-field="s2-micro-settle" data-response=""></span> consistently</p><p data-editable="">→ unreliable direction signal</p><p data-editable="">→ roots <span aria-label="S2 Micro Root" class="mini-blank" data-field="s2-micro-root" data-response=""></span></p></div></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-STU</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 2 of 3</div></footer></div>
+</section><section aria-labelledby="student-3-title" class="page role-student student-conclusion-page" data-page-id="student-3" data-role="student" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · STUDENT MISSION · Continued</div><h1 data-editable="" id="student-3-title">Diagnosis &amp; Design Response</h1></div>
+</header><div class="content-area"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">DIAGNOSIS</span><span class="section-title" data-editable="">6 · Diagnose and reject an alternative</span></span></h2>
+<div class="grid-12"><div class="span-6"><div class="response-block medium"><div class="response-prompt" data-editable="">State the cause in your own words.</div><div class="response-guidance" data-editable="">Use the environmental condition and the plant mechanism.</div><div aria-label="State the cause in your own words." class="response-area" data-field="s2-diagnosis" data-response="" role="textbox"></div></div></div><div class="span-6"><div class="response-block medium"><div class="response-prompt" data-editable="">Reject the most tempting alternative using evidence.</div><div class="response-guidance" data-editable="">Name the alternative and the evidence that weakens it.</div><div aria-label="Reject the most tempting alternative using evidence." class="response-area" data-field="s2-reject" data-response="" role="textbox"></div></div></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">EXPLANATION</span><span class="section-title" data-editable="">7 · Claim-Evidence-Reasoning</span></span></h2>
+<div aria-label="Claim Evidence Reasoning response" class="cer-stack">
+<div class="cer-box claim"><div class="cer-label">CLAIM</div><div aria-label="Claim" class="cer-response" data-field="s2-claim" data-response="" role="textbox"></div></div>
+<div class="cer-box evidence"><div class="cer-label">EVIDENCE</div><div aria-label="Evidence" class="cer-response" data-field="s2-evidence" data-response="" role="textbox"></div></div>
+<div class="cer-box reasoning"><div class="cer-label">REASONING</div><div aria-label="Reasoning" class="cer-response" data-field="s2-reasoning" data-response="" role="textbox"></div></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">ENGINEERING RESPONSE</span><span class="section-title" data-editable="">8 · Supply a consistent orientation cue</span></span></h2>
+<p class="small" data-editable="">Choose or design root channels/mesh, a moisture gradient, shoot lighting plus a root guide, a rotating chamber, or another justified design.</p>
+<div class="grid-12"><div class="span-4"><div class="response-block short"><div class="response-prompt" data-editable="">Design</div><div aria-label="Design" class="response-area" data-field="s2-design" data-response="" role="textbox"></div></div></div><div class="span-4"><div class="response-block short"><div class="response-prompt" data-editable="">One criterion</div><div aria-label="One criterion" class="response-area" data-field="s2-criterion" data-response="" role="textbox"></div></div></div><div class="span-4"><div class="response-block short"><div class="response-prompt" data-editable="">One constraint</div><div aria-label="One constraint" class="response-area" data-field="s2-constraint" data-response="" role="textbox"></div></div></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">TRANSFER CHECK</span><span class="section-title" data-editable="">9 · Exit ticket</span></span></h2>
+<div class="response-block medium"><div class="response-prompt" data-editable="">Engineers add narrow root channels but do not change the lighting. Which symptom should improve first: tangled roots or pale leaves? Explain.</div><div aria-label="Engineers add narrow root channels but do not change the lighting. Which symptom should improve first: tangled roots or pale leaves? Explain." class="response-area" data-field="s2-exit" data-response="" role="textbox"></div></div>
+<aside class="callout callout-neutral"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><div><div class="technical-label" data-editable="">OPTIONAL EXTENSION</div><div data-editable="">Compare a physical root guide with a rotating growth chamber. Which is easier to use on the ISS, and which more closely replaces gravity?</div></div></aside>
+<p class="micro" data-editable="">Student source line: NASA Plant Biology and Plant Gravity Perception resources; NGSS MS-ETS1 Engineering Design.</p>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-STU</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 3 of 3</div></footer></div>
+</section><section aria-labelledby="teacher-1-title" class="page role-teacher" data-page-id="teacher-1" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="mission-title-block">
+<div aria-hidden="true" class="mission-rail"></div>
+<div class="mission-title-copy">
+<div class="technical-label institution-line" data-editable="">SOLAR AGRICULTURAL AUTHORITY · TEACHER QUICK START</div>
+<h1 class="hero-title" data-editable="" id="teacher-1-title">ISS GREENHOUSE MODULE</h1>
+<p class="mission-subtitle" data-editable="">Campaign 1 · Case 1 · Gravitropism in Microgravity · 60 minutes</p>
+<span class="publication-mark">VALIDATION BUILD</span>
+</div>
+<img alt="Solar Agricultural Authority insignia" class="saa-insignia" src="../../../../shared/assets/insignia/saa.svg"/>
+</header><div class="content-area">
+<div class="grid-12"><div class="span-7">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">PREPARATION</span><span class="section-title" data-editable="">Before class</span></span></h2><ul><li data-editable="">Confirm the game loads.</li><li data-editable="">Print the student sheet double-sided or use fillable HTML mode.</li><li data-editable="">Keep the evidence fallback ready.</li><li data-editable="">Provide headphones.</li></ul>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">GAME ACCESS</span><span class="section-title" data-editable="">Launch path</span></span></h2><p data-editable="">interstellarharvest.github.io/Space-Sprout-Sleuth/</p><p class="small" data-editable="">Select Campaign 1 → Case 1.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-key"></use></svg><span><span class="technical-label">CORRECT DIAGNOSIS</span><span class="section-title" data-editable="">Central interpretation</span></span></h2><p data-editable="">Microgravity disrupts gravitropism. Roots need an alternative consistent cue or guidance system.</p>
+</div><div class="span-5">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">LESSON FLOW</span><span class="section-title" data-editable="">60-minute plan</span></span></h2><table class="tech-table compact"><caption class="visually-hidden">Sixty minute lesson plan</caption><thead><tr><th>Time</th><th>Action</th></tr></thead><tbody><tr><td>0–5</td><td data-editable="">Launch game and materials</td></tr><tr><td>5–10</td><td data-editable="">Initial prediction</td></tr><tr><td>10–30</td><td data-editable="">Investigate four sources</td></tr><tr><td>30–38</td><td data-editable="">Eliminate alternatives</td></tr><tr><td>38–48</td><td data-editable="">Diagnose + CER</td></tr><tr><td>48–55</td><td data-editable="">Engineering response</td></tr><tr><td>55–60</td><td data-editable="">Exit ticket</td></tr></tbody></table></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">ESSENTIAL EVIDENCE</span><span class="section-title" data-editable="">Evidence students should notice</span></span></h2>
+<table class="tech-table compact"><caption class="visually-hidden">Essential evidence by source</caption><thead><tr><th data-editable="">Source</th><th data-editable="">Essential evidence</th></tr></thead><tbody><tr><td data-editable="">Crew</td><td data-editable="">Roots do not grow down; resource adjustments did not solve the pattern.</td></tr><tr><td data-editable="">Sensors</td><td data-editable="">Microgravity is the major unusual condition; nutrients, water, temperature, humidity, and lighting are nominal.</td></tr><tr><td data-editable="">Plants</td><td data-editable="">Dense tangles, poor anchoring, and unusual stem angles.</td></tr><tr><td data-editable="">Logs</td><td data-editable="">Gravitropism/statolith mechanism and possible replacement cues.</td></tr></tbody></table>
+<aside class="callout callout-caution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><div><div class="technical-label" data-editable="">LIKELY STICKING POINT</div><div data-editable="">Microgravity is not the literal absence of gravity. The ISS and everything inside it are continuously falling around Earth, producing apparent weightlessness.</div></div></aside>
+<div class="grid-12"><div class="span-7"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">COLLECTION</span><span class="section-title" data-editable="">What to collect</span></span></h2><p data-editable="">Evidence task · diagnosis and rejected alternative · CER · engineering criterion/constraint · exit ticket</p></div><div class="span-5"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">FALLBACK</span><span class="section-title" data-editable="">Technical fallback</span></span></h2><p data-editable="">Use the evidence digest on the final teacher page. Students complete the same academic task without the game.</p></div></div>
+<div class="teacher-note"><div><span class="technical-label">TEACHER LINE</span><span data-editable="">“Your job is not to click everything. Your job is to determine which evidence best explains the root pattern.”</span></div></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 1 of 7</div></footer></div>
+</section><section aria-labelledby="teacher-2-title" class="page role-teacher" data-page-id="teacher-2" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · FORMAL LESSON PLAN · Continued</div><h1 data-editable="" id="teacher-2-title">ISS Greenhouse Module</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">OVERVIEW</span><span class="section-title" data-editable="">Lesson overview</span></span></h2><p data-editable="">Students investigate a stunted lettuce crop aboard the International Space Station. They compare crew testimony, environmental sensors, direct plant observations, and mission logs to determine why roots form tangled balls despite normal resources. Students explain the gravitropism mechanism and evaluate an engineered alternative cue.</p>
+<aside class="callout callout-institution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><div><div class="technical-label" data-editable="">GUIDING QUESTION</div><div data-editable="">Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?</div></div></aside>
+<div class="grid-12"><div class="span-6"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">ALIGNMENT</span><span class="section-title" data-editable="">Standards alignment</span></span></h2><ul><li data-editable=""><strong>MS-ETS1-1:</strong> Supports defining criteria and constraints for a root-guidance solution.</li><li data-editable=""><strong>MS-ETS1-2:</strong> Supports evaluating competing orientation solutions.</li><li data-editable=""><strong>SEP:</strong> Constructing Explanations and Designing Solutions; Analyzing and Interpreting Data.</li><li data-editable=""><strong>DCI:</strong> ETS1.A and ETS1.B, with plant structure/function as supporting science.</li><li data-editable=""><strong>CCC:</strong> Cause and Effect; Structure and Function.</li></ul><p class="small" data-editable="">This lesson supports components of the standards; it does not by itself fulfill an entire performance expectation.</p></div>
+<div class="span-6"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">OUTCOMES</span><span class="section-title" data-editable="">Learning objectives</span></span></h2><ol><li data-editable="">Distinguish observations from explanations across four evidence sources.</li><li data-editable="">Identify disrupted gravitropism as the best-supported cause.</li><li data-editable="">Explain statolith movement as part of a directional gravity-sensing mechanism.</li><li data-editable="">Reject an alternative explanation using evidence.</li><li data-editable="">Define a criterion and constraint for an orientation system.</li></ol></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">SUCCESS CRITERIA</span><span class="section-title" data-editable="">What proficient work includes</span></span></h2><p data-editable="">Relevant evidence from at least three sources · correct mechanism · evidence-based alternative rejection · concise CER · directional engineering response.</p>
+<div class="grid-12"><div class="span-6"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">REFERENCE</span><span class="section-title" data-editable="">Vocabulary</span></span></h2><p data-editable="">gravitropism · microgravity · statocyte · statolith · phototropism</p></div><div class="span-6"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">PREPARATION</span><span class="section-title" data-editable="">Materials</span></span></h2><p data-editable="">Chromebooks · headphones · game access · double-sided mission sheet or editable HTML · evidence fallback.</p></div></div>
+<div aria-label="Teacher planning notes" class="notes-area" data-field="teacher-lp1-notes" data-response=""></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 2 of 7</div></footer></div>
+</section><section aria-labelledby="teacher-3-title" class="page role-teacher" data-page-id="teacher-3" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · FORMAL LESSON PLAN · Continued</div><h1 data-editable="" id="teacher-3-title">Procedure</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">PREPARATION</span><span class="section-title" data-editable="">Teacher preparation</span></span></h2><ol><li data-editable="">Open the game and confirm Campaign 1, Case 1 loads.</li><li data-editable="">Test audio/headphones.</li><li data-editable="">Print or share the student sheet.</li><li data-editable="">Keep the evidence fallback ready.</li></ol>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">0–5 minutes · Setup</span></span></h2><p data-editable="">Students launch the game and open the mission sheet. State that game score, rank, speed, and optional dialogue are not academically graded.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">5–10 minutes · Phenomenon launch</span></span></h2><p data-editable="">Show the greenhouse image or read the briefing. Ask what evidence would distinguish a resource problem from an orientation problem. Students complete initial thinking; do not confirm the diagnosis.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">10–30 minutes · Gameplay investigation</span></span></h2><p data-editable="">Students visit crew, sensors, plants, and logs. They record only evidence that supports or rejects a cause.</p>
+<div class="teacher-note"><div><span class="technical-label">FACILITATION PROMPTS</span><span data-editable="">Which detail is a symptom? Which normal reading rules out an explanation? Have you used more than one source?</span></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">30–38 minutes · Evidence checkpoint</span></span></h2><p data-editable="">Students rank competing explanations. Confirm that resource readings are normal and that the root pattern is directional and repeated. Do not require optional dialogue completion.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">38–48 minutes · Diagnosis and CER</span></span></h2><p data-editable="">Students submit the game diagnosis after it unlocks, then write a claim, evidence from several sources, and reasoning that links microgravity to a weakened directional cue.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">48–55 minutes · Engineering application</span></span></h2><p data-editable="">Students choose an alternative cue and give one criterion and constraint. Strong responses distinguish a direct root cue from lighting that primarily guides shoots.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">PROCEDURE</span><span class="section-title" data-editable="">55–60 minutes · Exit ticket</span></span></h2><p data-editable="">Students answer independently. Collect or save the mission file.</p>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 3 of 7</div></footer></div>
+</section><section aria-labelledby="teacher-4-title" class="page role-teacher" data-page-id="teacher-4" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · FORMAL LESSON PLAN · Continued</div><h1 data-editable="" id="teacher-4-title">Assessment, Access &amp; Accuracy</h1></div>
+</header><div class="content-area">
+<div class="grid-12"><div class="span-6"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">FORMATIVE CHECKS</span><span class="section-title" data-editable="">Checks for understanding</span></span></h2><ul><li data-editable="">Separates symptom from cause.</li><li data-editable="">Uses normal readings to reject alternatives.</li><li data-editable="">Describes microgravity as apparent weightlessness.</li><li data-editable="">Links statolith direction to root orientation.</li><li data-editable="">Proposes a cue that addresses the problem.</li></ul>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">ASSESSMENT</span><span class="section-title" data-editable="">Evidence of learning</span></span></h2><p data-editable=""><strong>Formative:</strong> prediction, evidence matrix, explanation ranking, teacher questions.</p><p data-editable=""><strong>Collected:</strong> diagnosis, rejected alternative, CER, engineering response, exit ticket.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-access"></use></svg><span><span class="technical-label">ACCESS</span><span class="section-title" data-editable="">Accessibility supports</span></span></h2><ul><li data-editable="">Bullet-point evidence accepted.</li><li data-editable="">CER frame available but optional.</li><li data-editable="">Text-to-speech compatible.</li><li data-editable="">Game evidence may remain open.</li><li data-editable="">Evidence fallback available.</li><li data-editable="">No group product required.</li></ul></div>
+<div class="span-6"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><span><span class="technical-label">MISCONCEPTIONS</span><span class="section-title" data-editable="">Common misconceptions</span></span></h2><ol><li data-editable=""><strong>No gravity:</strong> The ISS remains under gravity while continuously falling around Earth.</li><li data-editable=""><strong>Roots use only gravity:</strong> Roots also respond to moisture, touch, chemicals, and other cues.</li><li data-editable=""><strong>Brighter light fixes roots:</strong> Light is a stronger shoot cue; roots need a more direct guide.</li><li data-editable=""><strong>Plants cannot grow in space:</strong> Growth is possible with adapted environmental systems.</li><li data-editable=""><strong>Plant pillows recreate gravity:</strong> They manage media and fluids, not a gravity vector.</li></ol>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-flask"></use></svg><span><span class="technical-label">SOURCE STATUS</span><span class="section-title" data-editable="">Science status</span></span></h2><aside class="callout callout-success"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-flask"></use></svg><div><div class="technical-label" data-editable="">ESTABLISHED</div><div data-editable="">gravitropism, statolith involvement, phototropism, plant responses to microgravity.</div></div></aside><aside class="callout callout-caution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><div><div class="technical-label" data-editable="">PLAUSIBLE ENGINEERING</div><div data-editable="">root channels, moisture cues, rotating systems. Students design this on the worksheet (Task 8); Campaign 1 has no in-game apply-the-fix step, so these solutions appear only as discussion in the mission logs, not as a selectable action.</div></div></aside><aside class="callout callout-neutral"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><div><div class="technical-label" data-editable="">FICTIONAL CONTEXT</div><div data-editable="">the specific emergency, crew, SAA, and exact symptoms.</div></div></aside></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">FALLBACK</span><span class="section-title" data-editable="">Technical fallback</span></span></h2><p data-editable="">Distribute the evidence digest. Students complete the same mission sheet; technical failure is not graded.</p>
+<div aria-label="Teacher implementation notes" class="notes-area" data-field="teacher-lp3-notes" data-response=""></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 4 of 7</div></footer></div>
+</section><section aria-labelledby="teacher-5-title" class="page role-teacher" data-page-id="teacher-5" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · TEACHER CASE ANALYSIS · Continued</div><h1 data-editable="" id="teacher-5-title">Evidence Architecture &amp; Distractors</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">EVIDENCE ARCHITECTURE</span><span class="section-title" data-editable="">Evidence map</span></span></h2><table class="tech-table"><caption class="visually-hidden">Evidence architecture</caption><thead><tr><th data-editable="">Source</th><th data-editable="">Essential evidence</th><th data-editable="">Role</th></tr></thead><tbody><tr><td data-editable="">Crew</td><td data-editable="">Roots do not grow down; changing resources did not help.</td><td data-editable="">Symptom and failed interventions</td></tr><tr><td data-editable="">Sensors</td><td data-editable="">Microgravity; normal nutrients, water, climate, and lighting.</td><td data-editable="">Strong causal difference and elimination evidence</td></tr><tr><td data-editable="">Plants</td><td data-editable="">Tangled roots, poor anchoring, unusual stems.</td><td data-editable="">Direct biological observation</td></tr><tr><td data-editable="">Logs</td><td data-editable="">Gravitropism/statolith mechanism and possible replacement cues.</td><td data-editable="">Mechanism and design options</td></tr></tbody></table>
+<div class="grid-12"><div class="span-5"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">REASONING PATH</span><span class="section-title" data-editable="">How the case resolves</span></span></h2><ol><li data-editable="">Root tangling is the symptom.</li><li data-editable="">Normal resources weaken simple resource explanations.</li><li data-editable="">Microgravity is the major unusual environmental condition.</li><li data-editable="">Logs connect gravity sensing to directional growth.</li><li data-editable="">Disrupted gravitropism best explains the pattern.</li><li data-editable="">A useful solution supplies another consistent cue.</li></ol></div><div class="span-7"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><span><span class="technical-label">DISTRACTORS</span><span class="section-title" data-editable="">Competing explanations</span></span></h2><table class="tech-table compact"><caption class="visually-hidden">Distractor analysis</caption><thead><tr><th data-editable="">Distractor</th><th data-editable="">Why tempting</th><th data-editable="">Why rejected</th></tr></thead><tbody><tr><td data-editable="">Nutrient burn</td><td data-editable="">Pale, stunted plants</td><td data-editable="">Nominal solution; directional tangling is a poor match</td></tr><tr><td data-editable="">Wrong light cycle</td><td data-editable="">Odd stems and pale leaves</td><td data-editable="">16/8 and PAR are nominal; roots are the strongest abnormality</td></tr><tr><td data-editable="">Defective seeds</td><td data-editable="">All plants affected</td><td data-editable="">Pattern repeats with environment and prior plantings</td></tr><tr><td data-editable="">Water problem</td><td data-editable="">Roots seek water</td><td data-editable="">Delivery works; uniform wicking may reduce a cue but does not best explain the case</td></tr></tbody></table><p class="micro" data-editable="">The nutrient, light, and seed distractors are the three incorrect options students can select on the game's Diagnose screen. "Water problem" is an additional teacher discussion distractor for class conversation — it is not one of the selectable in-game diagnoses.</p></div></div>
+<aside class="callout callout-critical"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><div><div class="technical-label" data-editable="">BOUNDARY NOTE</div><div data-editable="">The game simplifies a complex plant response. Do not teach that roots are completely random, that statoliths are the only gravity-sensing mechanism, or that plant pillows fully solve orientation.</div></div></aside>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">INSTRUCTIONAL IDENTITY</span><span class="section-title" data-editable="">Student role and primary practice</span></span></h2><p data-editable=""><strong>Student role:</strong> Pattern investigator. <strong>Primary practice:</strong> compare multiple evidence types, eliminate alternatives, explain a mechanism, and define an engineering problem.</p>
+<div aria-label="Case analysis notes" class="notes-area" data-field="teacher-analysis-notes" data-response=""></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 5 of 7</div></footer></div>
+</section><section aria-labelledby="teacher-6-title" class="page role-teacher" data-page-id="teacher-6" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · SCORING TOOLS · Continued</div><h1 data-editable="" id="teacher-6-title">Quick &amp; Analytic Rubrics</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">CHECKLIST RUBRIC</span><span class="section-title" data-editable="">Quick classroom rubric</span></span></h2><table class="tech-table compact"><caption class="visually-hidden">Quick classroom rubric</caption><thead><tr><th data-editable="">Dimension</th><th data-editable="">Secure</th><th data-editable="">Developing</th><th data-editable="">Beginning</th></tr></thead><tbody><tr><td data-editable="">Evidence</td><td data-editable="">Specific, relevant evidence from several sources</td><td data-editable="">Some relevant evidence; important detail/source missing</td><td data-editable="">Vague, copied, or irrelevant evidence</td></tr><tr><td data-editable="">Mechanism</td><td data-editable="">Connects microgravity, statolith direction, and root orientation</td><td data-editable="">Names gravitropism but mechanism is incomplete</td><td data-editable="">Cause stated without mechanism</td></tr><tr><td data-editable="">Reasoning</td><td data-editable="">Connects evidence to claim and rejects an alternative</td><td data-editable="">Partial connection or weak rejection</td><td data-editable="">Evidence listed without explanation</td></tr><tr><td data-editable="">Communication</td><td data-editable="">Accurate vocabulary and complete product</td><td data-editable="">Minor vocabulary/completion gaps</td><td data-editable="">Major gaps impede meaning</td></tr></tbody></table>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">ANALYTIC GRID</span><span class="section-title" data-editable="">Formal analytic rubric</span></span></h2><table class="tech-table compact rubric"><caption class="visually-hidden">Formal analytic rubric</caption><thead><tr><th data-editable="">Criterion</th><th data-editable="">4 · Accomplished</th><th data-editable="">3 · Proficient</th><th data-editable="">2 · Developing</th><th data-editable="">1 · Beginning</th></tr></thead><tbody><tr><td data-editable="">Evidence selection</td><td data-editable="">Most relevant; symptom/cause distinguished</td><td data-editable="">Relevant with minor omissions</td><td data-editable="">Mixed relevant/irrelevant</td><td data-editable="">Little usable evidence</td></tr><tr><td data-editable="">Source diversity</td><td data-editable="">Integrates 3–4 source types</td><td data-editable="">Uses at least 2 source types</td><td data-editable="">Mostly one source</td><td data-editable="">Sources unclear</td></tr><tr><td data-editable="">Mechanism</td><td data-editable="">Accurate and appropriately qualified</td><td data-editable="">Central mechanism accurate</td><td data-editable="">Important gaps</td><td data-editable="">Unsupported/inaccurate</td></tr><tr><td data-editable="">Alternative evaluation</td><td data-editable="">Specific contradictory evidence</td><td data-editable="">Generally relevant evidence</td><td data-editable="">Weak support</td><td data-editable="">No evaluation</td></tr><tr><td data-editable="">Engineering</td><td data-editable="">Feasible cue, criterion, constraint</td><td data-editable="">Relevant solution + criterion/constraint</td><td data-editable="">Loosely related solution</td><td data-editable="">Does not address orientation</td></tr><tr><td data-editable="">Communication</td><td data-editable="">Clear, concise, complete</td><td data-editable="">Mostly clear/complete</td><td data-editable="">Inconsistent but understandable</td><td data-editable="">Incomplete/difficult</td></tr></tbody></table>
+<aside class="callout callout-neutral"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-key"></use></svg><div><div class="technical-label" data-editable="">SCORING BOUNDARY</div><div data-editable="">No numeric points appear on the student page by default. Game score, rank, speed, and optional exploration are never academic criteria.</div></div></aside>
+<div aria-label="Rubric notes" class="notes-area" data-field="teacher-rubric-notes" data-response=""></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 6 of 7</div></footer></div>
+</section><section aria-labelledby="teacher-7-title" class="page role-teacher" data-page-id="teacher-7" data-role="teacher" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · REFERENCES &amp; TECHNICAL FALLBACK · Continued</div><h1 data-editable="" id="teacher-7-title">ISS Greenhouse Module</h1></div>
+</header><div class="content-area">
+<div class="grid-12"><div class="span-7"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">AUTHORITATIVE SOURCES</span><span class="section-title" data-editable="">Source list</span></span></h2><ol class="source-list"><li data-editable="">NASA, <em>Growing Plants in Space</em><br/>nasa.gov/exploration-research-and-technology/growing-plants-in-space/</li><li data-editable="">NASA Ames, <em>Plant Gravity Perception (Space-13)</em><br/>nasa.gov/ames/space-biosciences/plant-gravity-perception-spacex-13/</li><li data-editable="">NASA, <em>Veggie Plant Growth System Activated on ISS</em><br/>nasa.gov/missions/station/veggie-plant-growth-system-activated-on-international-space-station/</li><li data-editable="">NASA Science, <em>Plant Biology Program · Hardware</em><br/>science.nasa.gov/biological-physical/focus-areas/plant-biology/hardware/</li><li data-editable="">Ditengou, Teale &amp; Palme (2020), <em>Settling for Less: Do Statoliths Modulate Gravity Perception?</em><br/>pubmed.ncbi.nlm.nih.gov/31963631/</li><li data-editable="">NASA OSDR, Arabidopsis Seedlings in Microgravity (OSD-38)<br/>osdr.nasa.gov/bio/repo/data/studies/OSD-38</li><li data-editable="">NGSS MS-ETS1-1 and MS-ETS1-2<br/>nextgenscience.org</li></ol></div>
+<div class="span-5"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">EVIDENCE FALLBACK</span><span class="section-title" data-editable="">No-game evidence digest</span></span></h2><p data-editable=""><strong>Briefing:</strong> ISS lettuce is stunted; roots curl around plant pillows instead of anchoring.</p><p data-editable=""><strong>Crew:</strong> roots do not grow downward; changing resources did not help.</p><p data-editable=""><strong>Sensors:</strong> microgravity; nutrients, water, temperature, humidity, and lighting are nominal.</p><p data-editable=""><strong>Plants:</strong> dense tangles, poor anchoring, and angled stems.</p><p data-editable=""><strong>Logs:</strong> statolith-based gravity sensing normally provides direction; possible compensations include root channels, moisture gradients, shoot lighting, or rotating systems.</p>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">TECHNICAL NOTES</span><span class="section-title" data-editable="">Classroom fallback</span></span></h2><ul><li data-editable="">Refresh once if the game does not load.</li><li data-editable="">Use a current Chromebook Chrome tab.</li><li data-editable="">The Diagnose screen unlocks after formal clues are collected.</li><li data-editable="">Do not require every optional conversation branch.</li><li data-editable="">Move to the fallback within two minutes rather than losing lesson time.</li></ul>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">COMPATIBILITY</span><span class="section-title" data-editable="">Source baseline</span></span></h2><p data-editable="">Curriculum source master v0.3 · Compatible with SSS commit 2a6e8a7 · v1.0 visual-system migration prepared 2026-07-23.</p></div></div>
+<div aria-label="Technical and source notes" class="notes-area" data-field="teacher-reference-notes" data-response=""></div></div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-TCH</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 7 of 7</div></footer></div>
+</section><section aria-labelledby="answer-1-title" class="page role-answer" data-page-id="answer-1" data-role="answer" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="mission-title-block">
+<div aria-hidden="true" class="mission-rail"></div>
+<div class="mission-title-copy">
+<div class="technical-label institution-line" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ANSWER KEY</div>
+<h1 class="hero-title" data-editable="" id="answer-1-title">EVIDENCE &amp; ALTERNATIVES</h1>
+<p class="mission-subtitle" data-editable="">Case 01 · ISS Greenhouse Module · Teacher-only model responses</p>
+<span class="publication-mark">VALIDATION BUILD</span>
+</div>
+<img alt="Solar Agricultural Authority insignia" class="saa-insignia" src="../../../../shared/assets/insignia/saa.svg"/>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-key"></use></svg><span><span class="technical-label">INITIAL THINKING</span><span class="section-title" data-editable="">Accepted evidence needs</span></span></h2><div class="answer-block"><div class="technical-label">MODEL GUIDANCE</div><div data-editable="">Accept evidence needs such as nutrient readings, water delivery, light settings, root patterns, gravity environment, repeated batches, or mission records.</div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">EVIDENCE TASK</span><span class="section-title" data-editable="">Evidence matrix</span></span></h2><table class="tech-table"><caption class="visually-hidden">Model evidence matrix</caption><thead><tr><th data-editable="">Source</th><th data-editable="">Model evidence</th><th data-editable="">Interpretation</th></tr></thead><tbody><tr><td data-editable="">Crew</td><td data-editable="">Roots grow in many directions; nutrient, water, and light adjustments did not fix them.</td><td data-editable="">Supports orientation problem; weakens simple resource causes.</td></tr><tr><td data-editable="">Sensors</td><td data-editable="">Microgravity; other major readings nominal.</td><td data-editable="">Identifies unusual condition and rejects several alternatives.</td></tr><tr><td data-editable="">Plants</td><td data-editable="">Dense tangles, wrapping, weak anchoring, odd stems.</td><td data-editable="">Direct symptom of disrupted directional growth.</td></tr><tr><td data-editable="">Logs</td><td data-editable="">Statolith/gravitropism mechanism and replacement cues.</td><td data-editable="">Explains cause and provides engineering options.</td></tr></tbody></table>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">CAUSE TEST</span><span class="section-title" data-editable="">Competing explanations</span></span></h2><ul><li data-editable=""><strong>Nutrient damage · weakened:</strong> readings are nominal; tangling is not a strong match.</li><li data-editable=""><strong>Wrong light cycle · weakened:</strong> schedule/intensity are nominal; lighting does not best explain roots.</li><li data-editable=""><strong>Defective seeds · weakened:</strong> repeated environment-linked pattern.</li><li data-editable=""><strong>Microgravity · supported:</strong> matches all four evidence sources and the mechanism.</li></ul>
+<div aria-label="Answer key evidence notes" class="notes-area" data-field="answer-evidence-notes" data-response=""></div></div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-KEY</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 1 of 3</div></footer></div>
+</section><section aria-labelledby="answer-2-title" class="page role-answer" data-page-id="answer-2" data-role="answer" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ANSWER KEY · Continued</div><h1 data-editable="" id="answer-2-title">Mechanism &amp; Diagnosis</h1></div>
+</header><div class="content-area"><h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">MECHANISM MODEL</span><span class="section-title" data-editable="">Earth gravity and microgravity</span></span></h2><div class="answer-block"><p data-editable="">Earth gravity → statoliths <strong>settle</strong> → consistent signal → roots grow <strong>downward</strong>.</p><p data-editable="">Microgravity → statoliths do not <strong>settle in one direction</strong> → unreliable signal → roots <strong>curve or grow without consistent orientation</strong>.</p></div>
+<aside class="callout callout-caution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-flask"></use></svg><div><div class="technical-label" data-editable="">ACCURACY NOTE</div><div data-editable="">Avoid requiring “random.” Roots may still respond to moisture, light, touch, chemicals, and internal growth programs.</div></div></aside>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-key"></use></svg><span><span class="technical-label">DIAGNOSIS</span><span class="section-title" data-editable="">Model response</span></span></h2><div class="answer-block" data-editable="">Microgravity disrupted normal gravitropic orientation. Without a stable settling direction for statoliths, roots lacked a reliable “down” cue and formed tangled growth around the plant pillows.</div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-key"></use></svg><span><span class="technical-label">REJECTED ALTERNATIVE</span><span class="section-title" data-editable="">Model response</span></span></h2><div class="answer-block" data-editable="">Nutrient damage is tempting because the plants are stunted and pale, but the sensors show nominal nutrient levels. It also does not explain the roots’ consistent directional/tangling problem.</div>
+<div aria-label="Teacher answer key notes" class="notes-area" data-field="answer-mechanism-notes" data-response=""></div></div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-KEY</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 2 of 3</div></footer></div>
+</section><section aria-labelledby="answer-3-title" class="page role-answer" data-page-id="answer-3" data-role="answer" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ANSWER KEY · Continued</div><h1 data-editable="" id="answer-3-title">CER, Design &amp; Exit Ticket</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">CLAIM-EVIDENCE-REASONING</span><span class="section-title" data-editable="">Model CER</span></span></h2><div class="cer-stack answer-cer"><div class="cer-box claim"><div class="cer-label">CLAIM</div><div class="answer-block" data-editable="">The crop problem was caused by disrupted gravitropism in microgravity.</div></div><div class="cer-box evidence"><div class="cer-label">EVIDENCE</div><div class="answer-block" data-editable="">Kim reported roots that did not grow downward. Sensors showed microgravity while resources were normal. Plant inspection showed dense tangles and poor anchoring. Logs connected statolith-based sensing to root direction.</div></div><div class="cer-box reasoning"><div class="cer-label">REASONING</div><div class="answer-block" data-editable="">Gravitropism depends on a consistent gravity direction. In microgravity, statoliths do not settle in one stable direction, so roots lose a reliable orientation signal. This explains the root pattern better than nutrient, lighting, or seed explanations, which are weakened by normal readings and the repeated environmental pattern.</div></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">ENGINEERING RESPONSE</span><span class="section-title" data-editable="">Model design</span></span></h2><div class="answer-block"><p data-editable=""><strong>Example design:</strong> Directional root channels inside the plant pillow. <strong>Criterion:</strong> most roots should extend into the medium rather than wrapping around the surface. <strong>Constraint:</strong> channels must remain lightweight and permit water and oxygen flow.</p><p data-editable="">Directional light alone is a weaker root solution but can support shoot orientation as part of a combined design.</p></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">EXIT TICKET</span><span class="section-title" data-editable="">Expected response</span></span></h2><div class="answer-block" data-editable=""><strong>Expected:</strong> Tangled roots should improve first because channels directly guide root direction and anchoring. Pale leaves may improve later if root structure improves resource access.</div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-key"></use></svg><span><span class="technical-label">ACCEPTABLE VARIATION</span><span class="section-title" data-editable="">Scoring guidance</span></span></h2><ul><li data-editable="">Students may use “apparent weightlessness,” “microgravity,” or “reduced reliable gravity cue.”</li><li data-editable="">Students do not need to describe auxin unless taught separately.</li><li data-editable="">A rotating chamber, moisture gradient, or combined guide can earn full credit when criteria and constraints are defensible.</li></ul>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-KEY</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 3 of 3</div></footer></div>
+</section><section aria-labelledby="accessible-1-title" class="page role-accessible accessible-page" data-page-id="accessible-1" data-role="accessible" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><div aria-label="Student identification" class="student-id"><div class="id-field"><strong>Name</strong> <span aria-label="Accessible Student Name" data-field="a-name" data-response=""></span></div><div class="id-field"><strong>Date</strong> <span aria-label="Accessible Student Date" data-field="a-date" data-response=""></span></div><div class="id-field"><strong>Period</strong> <span aria-label="Accessible Student Period" data-field="a-class" data-response=""></span></div></div>
+<header class="mission-title-block">
+<div aria-hidden="true" class="mission-rail"></div>
+<div class="mission-title-copy">
+<div class="technical-label institution-line" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ACCESSIBLE STUDENT MISSION</div>
+<h1 class="hero-title" data-editable="" id="accessible-1-title">CASE 01 · ISS GREENHOUSE MODULE</h1>
+<p class="mission-subtitle" data-editable="">Parallel accessible edition · Same investigation and evidence sequence</p>
+<span class="publication-mark">VALIDATION BUILD</span>
+</div>
+<img alt="Solar Agricultural Authority insignia" class="saa-insignia" src="../../../../shared/assets/insignia/saa.svg"/>
+</header><div class="content-area">
+<aside class="callout callout-institution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><div><div class="technical-label" data-editable="">MISSION QUESTION</div><div data-editable="">Why are the lettuce roots tangled and directionless even though water, nutrients, temperature, and lighting appear normal?</div></div></aside>
+<aside class="callout callout-institution"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-flask"></use></svg><div><div class="technical-label" data-editable="">SCIENCE FOCUS</div><div data-editable="">Plants normally use gravity to help guide root and shoot growth. In microgravity, that directional cue becomes unreliable, so engineers must provide another way for plants to orient.</div></div></aside>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-book"></use></svg><span><span class="technical-label">REFERENCE</span><span class="section-title" data-editable="">1 · Vocabulary</span></span></h2><table class="tech-table"><caption class="visually-hidden">Accessible vocabulary list</caption><tbody><tr><th data-editable="">Gravitropism</th><td data-editable="">Directional growth in response to gravity.</td></tr><tr><th data-editable="">Microgravity</th><td data-editable="">Apparent weightlessness during continuous free fall in orbit.</td></tr><tr><th data-editable="">Statocyte</th><td data-editable="">Plant cell involved in sensing gravity.</td></tr><tr><th data-editable="">Statolith</th><td data-editable="">Dense starch-filled structure that helps provide a direction cue.</td></tr><tr><th data-editable="">Phototropism</th><td data-editable="">Directional growth in response to light.</td></tr></tbody></table>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><span><span class="technical-label">PREDICTION</span><span class="section-title" data-editable="">2 · Initial thinking</span></span></h2><div class="response-block grow-tall"><div class="response-prompt" data-editable="">What evidence would help you tell a resource problem from an orientation problem?</div><div class="response-guidance" data-editable="">You may answer with words, phrases, or bullet points.</div><div aria-label="What evidence would help you tell a resource problem from an orientation problem?" class="response-area" data-field="a-initial" data-response="" role="textbox"></div></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-ACC</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 1 of 6</div></footer></div>
+</section><section aria-labelledby="accessible-2-title" class="page role-accessible accessible-page" data-page-id="accessible-2" data-role="accessible" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ACCESSIBLE STUDENT MISSION · Continued</div><h1 data-editable="" id="accessible-2-title">Evidence Sources</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-search"></use></svg><span><span class="technical-label">EVIDENCE TASK</span><span class="section-title" data-editable="">3 · Investigate four evidence sources</span></span></h2><p data-editable="">Record only evidence that helps support or reject a cause. You may use phrases or bullet points.</p>
+<table class="tech-table"><caption class="visually-hidden">Accessible evidence table</caption><thead><tr><th data-editable="" style="width:20%">Source</th><th data-editable="">Observation or data</th><th data-editable="">What does it support or reject?</th></tr></thead><tbody><tr><th data-editable="">Crew</th><td aria-label="A Crew Evidence" data-field="a-crew-evidence" data-response=""></td><td aria-label="A Crew Meaning" data-field="a-crew-meaning" data-response=""></td></tr><tr><th data-editable="">Sensors</th><td aria-label="A Sensor Evidence" data-field="a-sensor-evidence" data-response=""></td><td aria-label="A Sensor Meaning" data-field="a-sensor-meaning" data-response=""></td></tr><tr><th data-editable="">Plants</th><td aria-label="A Plant Evidence" data-field="a-plant-evidence" data-response=""></td><td aria-label="A Plant Meaning" data-field="a-plant-meaning" data-response=""></td></tr><tr><th data-editable="">Mission logs</th><td aria-label="A Log Evidence" data-field="a-log-evidence" data-response=""></td><td aria-label="A Log Meaning" data-field="a-log-meaning" data-response=""></td></tr></tbody></table>
+<div aria-label="Additional evidence notes" class="notes-area" data-field="a-evidence-notes" data-response=""></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-ACC</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 2 of 6</div></footer></div>
+</section><section aria-labelledby="accessible-3-title" class="page role-accessible accessible-page" data-page-id="accessible-3" data-role="accessible" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ACCESSIBLE STUDENT MISSION · Continued</div><h1 data-editable="" id="accessible-3-title">Competing Explanations &amp; Mechanism</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">CAUSE TEST</span><span class="section-title" data-editable="">4 · Test the competing explanations</span></span></h2><p data-editable="">For each explanation, mark supported or weakened. Then give one reason.</p>
+<div class="response-block grow"><div class="response-prompt" data-editable="">Nutrient solution is damaging roots.</div><div class="response-guidance" data-editable="">Status and one evidence-based reason.</div><div aria-label="Nutrient solution is damaging roots." class="response-area" data-field="a-cause-nutrient" data-response="" role="textbox"></div></div>
+<div class="response-block grow"><div class="response-prompt" data-editable="">The light cycle is wrong.</div><div class="response-guidance" data-editable="">Status and one evidence-based reason.</div><div aria-label="The light cycle is wrong." class="response-area" data-field="a-cause-light" data-response="" role="textbox"></div></div>
+<div class="response-block grow"><div class="response-prompt" data-editable="">The seed stock is defective.</div><div class="response-guidance" data-editable="">Status and one evidence-based reason.</div><div aria-label="The seed stock is defective." class="response-area" data-field="a-cause-seed" data-response="" role="textbox"></div></div>
+<div class="response-block grow"><div class="response-prompt" data-editable="">Microgravity disrupts orientation.</div><div class="response-guidance" data-editable="">Status and one evidence-based reason.</div><div aria-label="Microgravity disrupts orientation." class="response-area" data-field="a-cause-micro" data-response="" role="textbox"></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">MECHANISM MODEL</span><span class="section-title" data-editable="">5 · Build the mechanism</span></span></h2><div aria-label="Word bank for Task 5" class="word-bank"><span class="word-bank-label">WORD BANK</span><span class="word-bank-terms" data-editable="">curve or grow without consistent orientation · downward · settle · settle in one direction</span></div><div class="grid-12"><div class="span-6 compare-card"><h3 data-editable="">Earth gravity</h3><p data-editable="">Statoliths <span aria-label="A Earth Settle" class="mini-blank" data-field="a-earth-settle" data-response=""></span></p><p data-editable="">Roots grow <span aria-label="A Earth Root" class="mini-blank" data-field="a-earth-root" data-response=""></span></p></div><div class="span-6 compare-card"><h3 data-editable="">Microgravity</h3><p data-editable="">Statoliths do not <span aria-label="A Micro Settle" class="mini-blank" data-field="a-micro-settle" data-response=""></span> consistently.</p><p data-editable="">Roots <span aria-label="A Micro Root" class="mini-blank" data-field="a-micro-root" data-response=""></span></p></div></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-ACC</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 3 of 6</div></footer></div>
+</section><section aria-labelledby="accessible-4-title" class="page role-accessible accessible-page" data-page-id="accessible-4" data-role="accessible" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ACCESSIBLE STUDENT MISSION · Continued</div><h1 data-editable="" id="accessible-4-title">Diagnosis &amp; Alternative</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">DIAGNOSIS</span><span class="section-title" data-editable="">6 · State the cause</span></span></h2><div class="response-block grow-tall"><div class="response-prompt" data-editable="">What caused the tangled, directionless roots?</div><div class="response-guidance" data-editable="">Use the environmental condition and the plant mechanism.</div><div aria-label="What caused the tangled, directionless roots?" class="response-area" data-field="a-diagnosis" data-response="" role="textbox"></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-question"></use></svg><span><span class="technical-label">ALTERNATIVE</span><span class="section-title" data-editable="">Reject one other explanation</span></span></h2><div class="response-block grow-tall"><div class="response-prompt" data-editable="">Which other explanation is tempting, and what evidence weakens it?</div><div class="response-guidance" data-editable="">You may answer in two sentences or bullet points.</div><div aria-label="Which other explanation is tempting, and what evidence weakens it?" class="response-area" data-field="a-reject" data-response="" role="textbox"></div></div>
+<div aria-label="Planning notes or drawing area" class="notes-area" data-field="a-diagnosis-notes" data-response=""></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-ACC</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 4 of 6</div></footer></div>
+</section><section aria-labelledby="accessible-5-title" class="page role-accessible accessible-page" data-page-id="accessible-5" data-role="accessible" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ACCESSIBLE STUDENT MISSION · Continued</div><h1 data-editable="" id="accessible-5-title">Claim-Evidence-Reasoning</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-tree"></use></svg><span><span class="technical-label">EXPLANATION</span><span class="section-title" data-editable="">7 · Claim-Evidence-Reasoning</span></span></h2><p class="small" data-editable="">You may write sentences or use bullet points. Use evidence from more than one source.</p><div class="cer-stack" style="min-height:7.1in"><div class="cer-box claim"><div class="cer-label">CLAIM</div><div aria-label="Accessible claim" class="cer-response" data-field="a-claim" data-response="" role="textbox"></div></div><div class="cer-box evidence"><div class="cer-label">EVIDENCE</div><div aria-label="Accessible evidence" class="cer-response" data-field="a-evidence" data-response="" role="textbox"></div></div><div class="cer-box reasoning"><div class="cer-label">REASONING</div><div aria-label="Accessible reasoning" class="cer-response" data-field="a-reasoning" data-response="" role="textbox"></div></div></div>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-ACC</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 5 of 6</div></footer></div>
+</section><section aria-labelledby="accessible-6-title" class="page role-accessible accessible-page" data-page-id="accessible-6" data-role="accessible" role="region">
+<div aria-live="polite" class="overflow-warning" role="status">PAGE OVERFLOW</div>
+<div class="page-frame"><header class="continuation-header">
+<img alt="" aria-hidden="true" src="../../../../shared/assets/insignia/saa.svg"/>
+<div><div class="technical-label" data-editable="">SOLAR AGRICULTURAL AUTHORITY · ACCESSIBLE STUDENT MISSION · Continued</div><h1 data-editable="" id="accessible-6-title">Engineering Response &amp; Exit Ticket</h1></div>
+</header><div class="content-area">
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><span><span class="technical-label">ENGINEERING RESPONSE</span><span class="section-title" data-editable="">8 · Supply a consistent orientation cue</span></span></h2><p data-editable="">Choose or design a system that gives roots a consistent cue.</p><div class="response-block grow-tall"><div class="response-prompt" data-editable="">Describe or draw your design.</div><div class="response-guidance" data-editable="">Examples include root channels, a moisture gradient, a root guide plus lighting, or a rotating chamber.</div><div aria-label="Describe or draw your design." class="response-area" data-field="a-design" data-response="" role="textbox"></div></div>
+<div class="grid-12"><div class="span-6"><div class="response-block grow"><div class="response-prompt" data-editable="">One criterion</div><div class="response-guidance" data-editable="">What must the design accomplish?</div><div aria-label="One criterion" class="response-area" data-field="a-criterion" data-response="" role="textbox"></div></div></div><div class="span-6"><div class="response-block grow"><div class="response-prompt" data-editable="">One constraint</div><div class="response-guidance" data-editable="">What limit must the design work within?</div><div aria-label="One constraint" class="response-area" data-field="a-constraint" data-response="" role="textbox"></div></div></div></div>
+<h2 class="section-heading"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-check"></use></svg><span><span class="technical-label">TRANSFER CHECK</span><span class="section-title" data-editable="">9 · Exit ticket</span></span></h2><div class="response-block grow-tall"><div class="response-prompt" data-editable="">Engineers add narrow root channels but do not change the lighting. Which symptom should improve first: tangled roots or pale leaves? Explain.</div><div aria-label="Engineers add narrow root channels but do not change the lighting. Which symptom should improve first: tangled roots or pale leaves? Explain." class="response-area" data-field="a-exit" data-response="" role="textbox"></div></div>
+<aside class="callout callout-neutral"><svg aria-hidden="true" class="ph-icon" viewbox="0 0 256 256"><use href="#ph-wrench"></use></svg><div><div class="technical-label" data-editable="">OPTIONAL EXTENSION</div><div data-editable="">Compare a physical root guide with a rotating growth chamber. Which is easier to use on the ISS, and which more closely replaces gravity?</div></div></aside>
+</div><footer class="publication-footer"><div><span class="footer-code">SSS-C1-01-ACC</span> · Master v1.0 · Game baseline 2a6e8a7 · 2026-07-23 · <span class="footer-status">VALIDATION BUILD</span></div><div>Page 6 of 6</div></footer></div>
+</section></main>
+<script>
+(() => {
+  'use strict';
+  const STORAGE_STATE = 'sss-case01-v1-state';
+  const STORAGE_CONTENT = 'sss-case01-v1-content';
+  const root = document.documentElement;
+  const body = document.body;
+  const pages = [...document.querySelectorAll('.page')];
+  const controls = {
+    role: document.getElementById('roleSelect'), margin: document.getElementById('marginSelect'), density: document.getElementById('densitySelect'),
+    edit: document.getElementById('editToggle'), fill: document.getElementById('fillToggle'), grayscale: document.getElementById('grayToggle'),
+    preview: document.getElementById('previewToggle'), guides: document.getElementById('guidesToggle'), print: document.getElementById('printBtn'),
+    download: document.getElementById('downloadBtn'), clear: document.getElementById('clearBtn'), reset: document.getElementById('resetBtn'), status: document.getElementById('toolbarStatus')
+  };
+  const defaults = { role:'student', margin:'.50', density:'balanced', edit:false, fill:false, grayscale:false, preview:false, guides:false };
+  let state = {...defaults};
+  const editableNodes = [...document.querySelectorAll('[data-editable]')];
+  const responseNodes = [...document.querySelectorAll('[data-response]')];
+  const storedSource = new Map();
+
+  function assignStableIds() {
+    pages.forEach(page => {
+      let e = 0, r = 0;
+      page.querySelectorAll('[data-editable]').forEach(node => {
+        if (!node.dataset.persistId) node.dataset.persistId = `${page.dataset.pageId}-e${++e}`;
+        storedSource.set(node.dataset.persistId, node.innerHTML);
+      });
+      page.querySelectorAll('[data-response]').forEach(node => {
+        if (!node.dataset.persistId) node.dataset.persistId = node.dataset.field || `${page.dataset.pageId}-r${++r}`;
+        storedSource.set(node.dataset.persistId, node.innerHTML);
+      });
+    });
+  }
+  function loadState() { try { state = {...defaults, ...JSON.parse(localStorage.getItem(STORAGE_STATE) || '{}')}; } catch { state = {...defaults}; } }
+  function saveState() { localStorage.setItem(STORAGE_STATE, JSON.stringify(state)); }
+  function loadContent() {
+    let saved = {}; try { saved = JSON.parse(localStorage.getItem(STORAGE_CONTENT) || '{}'); } catch { saved = {}; }
+    document.querySelectorAll('[data-persist-id]').forEach(node => { if (Object.prototype.hasOwnProperty.call(saved,node.dataset.persistId)) node.innerHTML = saved[node.dataset.persistId]; });
+  }
+  function saveContent() {
+    const data = {}; document.querySelectorAll('[data-persist-id]').forEach(node => data[node.dataset.persistId] = node.innerHTML);
+    localStorage.setItem(STORAGE_CONTENT, JSON.stringify(data));
+  }
+  function densityValue(value) { return value === 'compact' ? '.82' : value === 'roomy' ? '1.18' : '1'; }
+  function applyState({announce=false}={}) {
+    body.dataset.role = state.role;
+    body.classList.toggle('edit-mode', state.edit);
+    body.classList.toggle('fill-mode', state.fill);
+    body.classList.toggle('grayscale', state.grayscale);
+    body.classList.toggle('print-preview', state.preview);
+    body.classList.toggle('show-guides', state.guides);
+    root.style.setProperty('--margin', `${state.margin}in`);
+    root.style.setProperty('--density', densityValue(state.density));
+    controls.role.value = state.role; controls.margin.value = state.margin; controls.density.value = state.density;
+    [['edit',controls.edit],['fill',controls.fill],['grayscale',controls.grayscale],['preview',controls.preview],['guides',controls.guides]].forEach(([key,button]) => button.setAttribute('aria-pressed', String(Boolean(state[key]))));
+    editableNodes.forEach(node => { node.contentEditable = state.edit ? 'true' : 'false'; node.tabIndex = state.edit ? 0 : -1; });
+    responseNodes.forEach(node => { const active = state.edit || state.fill; node.contentEditable = active ? 'true' : 'false'; node.tabIndex = active ? 0 : -1; });
+    saveState();
+    requestAnimationFrame(() => { checkOverflow(); updateStatus(announce); });
+  }
+  function visiblePages() { return pages.filter(page => getComputedStyle(page).display !== 'none'); }
+  function checkOverflow() {
+    pages.forEach(page => {
+      if (getComputedStyle(page).display === 'none') { page.classList.remove('overflowing'); return; }
+      const frame = page.querySelector('.page-frame'); const content = page.querySelector('.content-area');
+      const overflow = frame.scrollHeight > frame.clientHeight + 2 || frame.scrollWidth > frame.clientWidth + 2 || content.scrollHeight > content.clientHeight + 2 || content.scrollWidth > content.clientWidth + 2;
+      page.classList.toggle('overflowing', overflow);
+      const badge = page.querySelector('.overflow-warning');
+      if (overflow) badge.textContent = `PAGE OVERFLOW · ${Math.max(0, Math.ceil(content.scrollHeight-content.clientHeight))} px`;
+    });
+  }
+  function updateStatus(announce=false) {
+    const visible = visiblePages().length; const overflow = visiblePages().filter(p => p.classList.contains('overflowing')).length;
+    const nonstandard = state.margin !== '.50' || state.density !== 'balanced';
+    controls.status.textContent = `${visible} page${visible===1?'':'s'} · ${state.margin} in margins · ${state.density} density${overflow ? ` · ${overflow} overflow warning${overflow===1?'':'s'}` : ' · no visible overflow'}${nonstandard ? ' · nonstandard production setting' : ''}`;
+    if (announce) controls.status.focus?.();
+  }
+  function toggle(key) { state[key] = !state[key]; applyState(); }
+  controls.role.addEventListener('change', e => { state.role=e.target.value; applyState(); });
+  controls.margin.addEventListener('change', e => { state.margin=e.target.value; applyState(); });
+  controls.density.addEventListener('change', e => { state.density=e.target.value; applyState(); });
+  controls.edit.addEventListener('click', () => toggle('edit'));
+  controls.fill.addEventListener('click', () => toggle('fill'));
+  controls.grayscale.addEventListener('click', () => toggle('grayscale'));
+  controls.preview.addEventListener('click', () => toggle('preview'));
+  controls.guides.addEventListener('click', () => toggle('guides'));
+  controls.print.addEventListener('click', () => { checkOverflow(); window.print(); });
+  controls.clear.addEventListener('click', () => { if (!confirm('Clear all student and accessible response fields?')) return; responseNodes.forEach(n => n.innerHTML=''); saveContent(); checkOverflow(); });
+  controls.reset.addEventListener('click', () => { if (!confirm('Reset edits, responses, and publishing controls to the repository source?')) return; localStorage.removeItem(STORAGE_STATE); localStorage.removeItem(STORAGE_CONTENT); location.reload(); });
+  controls.download.addEventListener('click', () => {
+    saveContent(); const clone = document.documentElement.cloneNode(true); clone.querySelectorAll('[contenteditable]').forEach(n => { n.setAttribute('contenteditable','false'); n.setAttribute('tabindex','-1'); }); clone.querySelectorAll('.page').forEach(n => n.classList.remove('overflowing')); const cloneBody = clone.querySelector('body'); cloneBody.classList.remove('edit-mode');
+    const text = '<!DOCTYPE html>\n' + clone.outerHTML; const blob = new Blob([text], {type:'text/html;charset=utf-8'}); const link=document.createElement('a'); link.href=URL.createObjectURL(blob); link.download='SSS_C1_CASE01_EDITABLE_MASTER_v1.0_custom.html'; link.click(); setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+  });
+  document.addEventListener('input', e => { if (e.target.closest('[data-editable],[data-response]')) { saveContent(); requestAnimationFrame(checkOverflow); } });
+  window.addEventListener('resize', () => requestAnimationFrame(checkOverflow));
+  window.addEventListener('beforeprint', checkOverflow);
+  document.fonts?.ready.then(checkOverflow);
+  assignStableIds(); loadState(); loadContent(); applyState();
+})();
+</script>
+</body>
+</html>

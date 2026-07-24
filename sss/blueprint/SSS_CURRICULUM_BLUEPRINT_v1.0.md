@@ -106,16 +106,27 @@ The default is **one double-sided sheet** per ordinary case. A second sheet is a
 
 ## Front side
 
-### A. Mission header
+### A. Student identification
+
+The first page begins with a conventional classroom identification row at the absolute top of the printable area, above the Mission Title Block and all institutional or instructional content.
+
+Default fields, in order:
+
+- Name
+- Date
+- Period
+
+The row appears only on the first page of a multi-page Student or Accessible worksheet. It is not repeated on continuation pages and does not appear on Teacher or Answer Key editions.
+
+### B. Mission header
 
 - Campaign and case number
 - Case title and setting
-- Student name/date/class
 - Mission question
 - Three to five key vocabulary terms
 - A short established-science / fictional-context marker when needed
 
-### B. Initial thinking
+### C. Initial thinking
 
 One brief prompt, such as:
 
@@ -126,7 +137,7 @@ One brief prompt, such as:
 
 This is not graded for correctness.
 
-### C. Evidence task
+### D. Evidence task
 
 The case-specific activity occupies the largest space.
 
@@ -147,13 +158,13 @@ Students should record only evidence needed for the reasoning task, not transcri
 
 ## Back side
 
-### D. Diagnosis
+### E. Diagnosis
 
 - Selected diagnosis
 - Biological or physical mechanism
 - One rejected alternative and why it does not fit
 
-### E. CER
+### F. CER
 
 A compact response:
 
@@ -161,15 +172,15 @@ A compact response:
 - **Evidence:** two or three specific pieces from different sources where possible;
 - **Reasoning:** two to four sentences connecting the evidence to the mechanism.
 
-### F. Real-world connection
+### G. Real-world connection
 
 One short application, comparison, or engineering decision.
 
-### G. Exit ticket
+### H. Exit ticket
 
 One independent transfer question that can be answered in two to four minutes.
 
-### H. Optional extension
+### I. Optional extension
 
 A small box for early finishers. It must not affect the standard grade.
 
@@ -362,6 +373,23 @@ Because the standard version serves middle school through adults:
 - allow bullet-point evidence;
 - require only one compact reasoning paragraph;
 - define unfamiliar fictional terms beside the scientific term.
+
+### Exact-match word banks for constrained blanks
+
+Use a word bank when a fill-in-the-blank task requires a specific scientific, historical, or technical word or phrase that may be hard to generate even when the student understands the idea.
+
+For each supported activity:
+
+- include exactly one bank entry for each blank;
+- include every expected answer and no unrelated terms;
+- do not add decoys;
+- repeat an entry when it is required more than once;
+- keep multiword answers as complete phrases;
+- place the bank beside the supported task on the same page;
+- provide the same answer set in the Accessible edition;
+- use the identical wording in the Answer Key.
+
+This support is for constrained recall. It does not replace open-ended evidence, CER, explanation, design, or interpretation tasks.
 
 ## 7.3 Alternative access path
 

@@ -228,31 +228,67 @@ Page count must never grow merely because more text is available.
 
 Every ordinary student mission sheet includes:
 
-1. Mission header
-2. Investigation question
-3. Vocabulary
-4. Initial thinking
-5. Case-specific evidence task
-6. Diagnosis
-7. Rejected alternative
-8. CER
-9. Real-world application
-10. Exit ticket
-11. Optional extension
+1. Student identification row on the first page only
+2. Mission header
+3. Investigation question
+4. Vocabulary
+5. Initial thinking
+6. Case-specific evidence task
+7. Diagnosis
+8. Rejected alternative
+9. CER
+10. Real-world application
+11. Exit ticket
+12. Optional extension
+
+
+## 5.2A Student identification row
+
+The identification row is the first printable element inside the page margins on page 1 of every Student and Accessible worksheet.
+
+Default fields, in order:
+
+1. Name
+2. Date
+3. Period
+
+The row appears above the Mission Title Block, institution label, insignia, case title, mission question, and all other content.
+
+For a multi-page worksheet, the row appears only on page 1. Continuation pages do not repeat it. Teacher and Answer Key editions do not use the student identification row.
+
+Additional fields may be added only when institutionally required. They must not displace the three default fields or turn the row into a decorative metadata panel.
+
+Digital fields require programmatic labels, keyboard access, and persistence where the master supports fillable student content.
+
+## 5.2B Exact-match word banks
+
+A constrained fill-in-the-blank task must include a word bank when the intended response depends on recalling an exact technical word or phrase that is not obvious from the sentence structure alone.
+
+The bank uses a one-to-one answer contract:
+
+1. one entry per blank;
+2. every expected answer included;
+3. no decoys or unrelated vocabulary;
+4. no extra entries;
+5. repeated entries when one answer is used more than once;
+6. phrase answers preserved as phrases.
+
+The bank may be reordered so it does not mirror blank order. It remains immediately adjacent to the activity and on the same page.
+
+The Standard and Accessible editions use the same answer set. The Answer Key repeats the same terms or phrases exactly. Open-ended evidence, diagnosis, CER, interpretation, and design prompts do not receive word banks unless the task has intentionally been converted into a constrained response.
 
 ## 5.3 Mission header
 
-The header includes:
+The mission header follows the student identification row on the first Student and Accessible page. It includes:
 
 - game title;
 - campaign;
 - case number;
 - case title;
 - setting;
-- student name;
-- date;
-- class/period;
 - version or compatibility label in small print.
+
+Student Name, Date, and Period are not placed inside or below the Mission Title Block; they remain in the topmost identification row.
 
 ## 5.3.1 Science-focus box
 
@@ -1000,6 +1036,8 @@ Curriculum v1.0 · Compatible with SSS commit 2a6e8a7 · Published 2026-07-22
 
 # 16. Versioning
 
+**Approved student-identification clarification:** Name, Date, and Period are the topmost first-page elements in Student and Accessible worksheets and are not repeated on continuation pages.
+
 **v1.1 design clarification:** Extended-response boxes are blank and unruled. Compact sentence-completion blanks may still use a single underline when appropriate.
 
 ## 16.1 Version meanings
@@ -1125,6 +1163,9 @@ No case is approved until it passes all applicable checks.
 
 ## Publishing
 
+- [ ] Constrained fill-in-the-blank activities use an exact-match word bank with one entry per blank, no decoys, no extras, and no omissions
+- [ ] First Student and Accessible pages begin with Name, Date, and Period above the Mission Title Block
+- [ ] Student identification appears only on page 1 and is absent from continuation, Teacher, and Answer Key pages
 - [ ] Letter-size pages
 - [ ] Margins within safe range
 - [ ] No accidental overflow
@@ -1190,6 +1231,8 @@ It must demonstrate the full system before other cases are scaled.
 
 The prototype master must include:
 
+- exact-match word-bank markup adjacent to constrained blanks, with the same entries in Student, Accessible, and Answer Key roles;
+- a first-page-only Name / Date / Period row above the Mission Title Block in Student and Accessible roles;
 - Letter-size page view;
 - adjustable margins;
 - margin-guide toggle;

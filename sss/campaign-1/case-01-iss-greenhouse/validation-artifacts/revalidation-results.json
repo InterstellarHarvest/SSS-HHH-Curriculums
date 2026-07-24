@@ -1,0 +1,75 @@
+{
+  "file": "/Users/MrDashiki/Experiments & Projects/SSS-HHH-Curriculums/sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
+  "jsErrors": [],
+  "roles": {
+    "student": {
+      "expectedPages": 3,
+      "visiblePages": 3,
+      "pageCountOK": true,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "3 pages · .50 in margins · balanced density · no visible overflow"
+    },
+    "teacher": {
+      "expectedPages": 7,
+      "visiblePages": 7,
+      "pageCountOK": true,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "7 pages · .50 in margins · balanced density · no visible overflow"
+    },
+    "answer": {
+      "expectedPages": 3,
+      "visiblePages": 3,
+      "pageCountOK": true,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "3 pages · .50 in margins · balanced density · no visible overflow"
+    },
+    "accessible": {
+      "expectedPages": 6,
+      "visiblePages": 6,
+      "pageCountOK": true,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "6 pages · .50 in margins · balanced density · no visible overflow"
+    },
+    "all": {
+      "expectedPages": 19,
+      "visiblePages": 19,
+      "pageCountOK": true,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "19 pages · .50 in margins · balanced density · no visible overflow"
+    }
+  },
+  "toggles": {
+    "grayscale": {
+      "clicked": "Grayscale",
+      "visiblePages": 7,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "7 pages · .50 in margins · balanced density · no visible overflow"
+    },
+    "printPreview": {
+      "clicked": "Print Preview",
+      "visiblePages": 7,
+      "overflowCount": 0,
+      "overflowPages": [],
+      "status": "7 pages · .50 in margins · balanced density · no visible overflow"
+    }
+  },
+  "pdf": {
+    "teacher": {
+      "path": "/private/tmp/claude-501/-Users-MrDashiki-Experiments---Projects/251aaa79-e836-48cb-a241-99738357bae0/scratchpad/teacher_v1.0_revalidated.pdf",
+      "approxPageCount": 7,
+      "expected": 7
+    }
+  },
+  "persistence": {
+    "wrote": {
+      "ok": true
+    },
+    "restoredAfterReload": true
+  }
+}
