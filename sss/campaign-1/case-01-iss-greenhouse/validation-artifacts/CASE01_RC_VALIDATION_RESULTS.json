@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
   "case": "SSS-C1-CASE01",
-  "build": "v1.0 RC",
-  "status": "VALIDATION BUILD",
+  "build": "v1.0",
+  "status": "APPROVED",
   "validation_date": "2026-07-24",
-  "generated_utc": "2026-07-24T15:45:55+00:00",
+  "generated_utc": "2026-07-24T18:19:24+00:00",
   "master": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
-  "master_sha256": "56c8374bb4192e783346588ca7202e2f01a7808dcec121ef68464092dad65710",
+  "master_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
   "environment": {
     "python": "3.9.10",
     "playwright": "python",
@@ -285,10 +285,11 @@
         "technical_controls": true
       }
     },
-    "validation_status_retained": {
+    "approved_release_status": {
       "ok": true,
       "details": {
-        "visible_count": 23
+        "approved_visible_count": 23,
+        "validation_build_count": 0
       }
     }
   },
@@ -300,7 +301,7 @@
           "expected": 3,
           "actual": 3,
           "overflow": [],
-          "status": "Loading publishing state…",
+          "status": "3 pages · .50 in margins · balanced density · no visible overflow",
           "ok": true
         },
         "teacher": {
@@ -439,43 +440,43 @@
       "ok": true,
       "details": {
         "student": {
-          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_STUDENT_MISSION_v1.0_RC.pdf",
+          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_STUDENT_MISSION_v1.0.pdf",
           "expected_pages": 3,
           "actual_pages": 3,
-          "bytes": 267578,
-          "sha256": "de5ad2675d1a77b0914e9a899c1111c1ba20470b6afa0c12d86cb3b3604a297a",
+          "bytes": 267506,
+          "sha256": "31edd855a4f99a087abac751356e1048a8c44492c357d16382760267869d6dee",
           "ok": true
         },
         "teacher": {
-          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_TEACHER_PACKET_v1.0_RC.pdf",
+          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_TEACHER_PACKET_v1.0.pdf",
           "expected_pages": 7,
           "actual_pages": 7,
-          "bytes": 385333,
-          "sha256": "ec0836256eb51ef33fe6157983ab6e2e7b47328b8ad9c4722bf5d0fb7c9f516f",
+          "bytes": 384955,
+          "sha256": "ff1b41a11f9086590a597e69cda265bef444c767555c0c97a28fbf0d27ac1613",
           "ok": true
         },
         "answer": {
-          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_ANSWER_KEY_v1.0_RC.pdf",
+          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_ANSWER_KEY_v1.0.pdf",
           "expected_pages": 3,
           "actual_pages": 3,
-          "bytes": 201655,
-          "sha256": "bcb38bba1a6fbd472a521601a13bb25344c2ae0f5809b9d3dd183c48ac49ab5f",
+          "bytes": 201334,
+          "sha256": "4a6bc405c7b0f8ca8a7ed8132d175ad5b2e37aa2a4cc692b7a283b5e7449583f",
           "ok": true
         },
         "accessible": {
-          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0_RC.pdf",
+          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0.pdf",
           "expected_pages": 6,
           "actual_pages": 6,
-          "bytes": 262449,
-          "sha256": "5d847ae08d34267ce7ff7420cf2e2179618e775674a606a44a22a967d7c8dd6f",
+          "bytes": 262191,
+          "sha256": "5e873090037fc685dda1c4b00b60b1d3fafcbbc71c32bb7f98d3383724e3f45a",
           "ok": true
         },
         "grayscale_review": {
-          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0_RC.pdf",
+          "file": "sss/campaign-1/case-01-iss-greenhouse/published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0.pdf",
           "expected_pages": 19,
           "actual_pages": 19,
-          "bytes": 777256,
-          "sha256": "91088dec260d7135df0589721bcb4d3476ad58f01aa5fa3dbc2ba8bb8b8e702d",
+          "bytes": 776840,
+          "sha256": "31c277a3b8091b618b3f9313cfb575dfaeeef81eb759db4be0442d2a6cb8197d",
           "ok": true
         }
       }
@@ -488,6 +489,8 @@
     }
   },
   "overall_pass": true,
-  "release_approved": false,
-  "remaining_release_gate": "Owner physical print testing at 100% scale"
+  "release_approved": true,
+  "physical_print_test": "PASSED",
+  "approval_date": "2026-07-24",
+  "remaining_release_gate": null
 }

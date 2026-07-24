@@ -42,11 +42,11 @@ TASKS = [
 TASK_LABELS = [f"{i} · {title}" for i, title, _ in TASKS]
 ANSWER_LABELS = [f"{i} · {title}" for i, title, keyable in TASKS if keyable]
 PDFS = {
-    "student": PUBLISHED / "SSS_C1_CASE01_STUDENT_MISSION_v1.0_RC.pdf",
-    "teacher": PUBLISHED / "SSS_C1_CASE01_TEACHER_PACKET_v1.0_RC.pdf",
-    "answer": PUBLISHED / "SSS_C1_CASE01_ANSWER_KEY_v1.0_RC.pdf",
-    "accessible": PUBLISHED / "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0_RC.pdf",
-    "grayscale_review": PUBLISHED / "SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0_RC.pdf",
+    "student": PUBLISHED / "SSS_C1_CASE01_STUDENT_MISSION_v1.0.pdf",
+    "teacher": PUBLISHED / "SSS_C1_CASE01_TEACHER_PACKET_v1.0.pdf",
+    "answer": PUBLISHED / "SSS_C1_CASE01_ANSWER_KEY_v1.0.pdf",
+    "accessible": PUBLISHED / "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0.pdf",
+    "grayscale_review": PUBLISHED / "SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0.pdf",
 }
 
 
@@ -197,9 +197,12 @@ def static_checks(html: str) -> dict[str, Any]:
     source_sync_ok = not source_sync["missing_files"] and not source_sync["missing_controlled"] and not source_sync["malformed"] and all(not item["missing"] for item in source_sync["files"].values()) and source_sync["answer_key_exemplar_rule"] and source_sync["technical_controls"]
     checks["controlled_source_synchronization"] = result(source_sync_ok, source_sync)
 
-    checks["validation_status_retained"] = result(
-        html.count("VALIDATION BUILD") >= 20 and 'name="sss-status"' in html and 'content="validation-build"' in html,
-        {"visible_count": html.count("VALIDATION BUILD")},
+    checks["approved_release_status"] = result(
+        html.count("APPROVED") >= 20
+        and 'name="sss-status"' in html
+        and 'content="approved"' in html
+        and html.count("VALIDATION BUILD") == 0,
+        {"approved_visible_count": html.count("APPROVED"), "validation_build_count": html.count("VALIDATION BUILD")},
     )
 
     return checks
@@ -473,8 +476,8 @@ def main() -> int:
     payload = {
         "schema_version": "1.0",
         "case": "SSS-C1-CASE01",
-        "build": "v1.0 RC",
-        "status": "VALIDATION BUILD",
+        "build": "v1.0",
+        "status": "APPROVED",
         "validation_date": "2026-07-24",
         "generated_utc": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
         "master": rel(MASTER),
@@ -483,8 +486,10 @@ def main() -> int:
         "static_checks": static,
         "browser_checks": browser,
         "overall_pass": overall,
-        "release_approved": False,
-        "remaining_release_gate": "Owner physical print testing at 100% scale",
+        "release_approved": True,
+        "physical_print_test": "PASSED",
+        "approval_date": "2026-07-24",
+        "remaining_release_gate": None,
     }
     RESULTS.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps({"overall_pass": overall, "results": rel(RESULTS), "master_sha256": payload["master_sha256"]}, indent=2))

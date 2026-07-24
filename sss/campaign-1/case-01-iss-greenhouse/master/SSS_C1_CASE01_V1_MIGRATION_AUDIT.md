@@ -2,7 +2,7 @@
 
 **Audit date:** 2026-07-24  
 **Current master:** `SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`  
-**Status:** Release candidate / VALIDATION BUILD
+**Status:** Approved stable v1.0 release
 
 ## Governing sources checked
 
@@ -24,7 +24,7 @@
 5. The Answer Key contains completed exemplars for every keyable task.
 6. Ordinary Teacher pages do not contain a visible compatibility or build-provenance body section.
 7. The game-content and source audits close the earlier content and baseline verification caveat.
-8. The visible publication state correctly remains VALIDATION BUILD pending physical print testing.
+8. The visible publication state is APPROVED following owner physical print testing (passed 2026-07-24).
 
 ## Corrected defect
 
@@ -50,4 +50,4 @@ v0.2 and v0.3 masters and PDFs remain in repository history and may remain on di
 
 ## Release disposition
 
-PASS for release-candidate review. NOT release-approved until owner physical print testing passes.
+PASS. Approved for stable v1.0 release; owner physical print testing passed 2026-07-24.

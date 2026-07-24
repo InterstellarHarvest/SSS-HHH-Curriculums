@@ -1,13 +1,13 @@
-# SSS Case 01 v1.0 Release-Candidate Validation Report
+# SSS Case 01 v1.0 Release Validation Report
 
 **Validation date:** 2026-07-24  
 **Master:** `SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`  
-**SHA-256:** `56c8374bb4192e783346588ca7202e2f01a7808dcec121ef68464092dad65710`  
-**Status:** PASS FOR RELEASE-CANDIDATE REVIEW — VALIDATION BUILD
+**SHA-256:** `4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00`  
+**Status:** APPROVED — STABLE v1.0 RELEASE
 
 ## Executive result
 
-The reconciled Case 01 master passed every automated and digital visual check. It is not release-approved because the owner physical print test remains open.
+The reconciled Case 01 master passed every automated and digital visual check. The owner completed physical 100% scale print testing on 2026-07-24, closing the only remaining release gate.
 
 - Static/content checks: **16/16 passed**
 - Live browser checks: **13/13 passed**
@@ -61,14 +61,14 @@ Downloaded edited HTML passed portability and reset tests. The download embeds t
 
 | Output | Pages | SHA-256 |
 |---|---:|---|
-| Student Mission | 3 | `de5ad2675d1a77b0914e9a899c1111c1ba20470b6afa0c12d86cb3b3604a297a` |
-| Teacher Packet | 7 | `ec0836256eb51ef33fe6157983ab6e2e7b47328b8ad9c4722bf5d0fb7c9f516f` |
-| Answer Key | 3 | `bcb38bba1a6fbd472a521601a13bb25344c2ae0f5809b9d3dd183c48ac49ab5f` |
-| Accessible Mission | 6 | `5d847ae08d34267ce7ff7420cf2e2179618e775674a606a44a22a967d7c8dd6f` |
-| Grayscale Review | 19 | `91088dec260d7135df0589721bcb4d3476ad58f01aa5fa3dbc2ba8bb8b8e702d` |
+| Student Mission | 3 | `31edd855a4f99a087abac751356e1048a8c44492c357d16382760267869d6dee` |
+| Teacher Packet | 7 | `ff1b41a11f9086590a597e69cda265bef444c767555c0c97a28fbf0d27ac1613` |
+| Answer Key | 3 | `4a6bc405c7b0f8ca8a7ed8132d175ad5b2e37aa2a4cc692b7a283b5e7449583f` |
+| Accessible Mission | 6 | `5e873090037fc685dda1c4b00b60b1d3fafcbbc71c32bb7f98d3383724e3f45a` |
+| Grayscale Review | 19 | `31c277a3b8091b618b3f9313cfb575dfaeeef81eb759db4be0442d2a6cb8197d` |
 
 All five PDFs opened successfully, were text-based rather than scanned, contained no XFA, and produced no preflight warnings. All 38 pages were rendered with PDFium and visually reviewed.
 
-## Remaining release gate
+## Release gate — closed
 
-The owner must print all five review outputs at 100% scale and complete `published/SSS_C1_CASE01_v1.0_RC_PRINT_TEST_CHECKLIST.md`. Until that test passes, all artifacts retain **VALIDATION BUILD** status.
+The owner printed all five outputs at 100% scale and recorded PASS in `published/SSS_C1_CASE01_v1.0_PRINT_TEST_CHECKLIST.md` on 2026-07-24 (tester: Nate / Owner). Case 01 is the approved stable v1.0 release with no remaining release blockers.

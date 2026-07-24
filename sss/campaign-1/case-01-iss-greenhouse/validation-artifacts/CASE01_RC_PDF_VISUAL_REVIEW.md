@@ -2,7 +2,7 @@
 
 **Verification date:** 2026-07-24  
 **Renderer:** PDFium at 150 dpi  
-**Status:** PASS for digital release-candidate review
+**Status:** PASS — approved stable v1.0 release
 
 All 38 generated pages were rendered to PNG and inspected as role contact sheets.
 

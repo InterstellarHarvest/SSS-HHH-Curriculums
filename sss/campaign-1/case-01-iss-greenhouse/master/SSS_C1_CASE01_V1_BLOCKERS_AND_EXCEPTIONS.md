@@ -3,11 +3,11 @@
 **Reconciled:** 2026-07-24  
 **Status:** Release candidate; not release-approved
 
-## 1. Open release blocker
+## 1. Closed release gate — physical print test
 
 ### 1.1 Owner physical print test
 
-**Status:** OPEN — release approval blocker
+**Status:** CLOSED — passed 2026-07-24 (tester: Nate / Owner)
 
 Print the following at 100% scale on an ordinary school printer:
 
@@ -27,13 +27,13 @@ Confirm:
 - duplex orientation is correct where used;
 - the SAA insignia and all glyphs render cleanly.
 
-The HTML and PDFs must remain labeled **VALIDATION BUILD** until the owner records this test as passed.
+The owner recorded this test as passed on 2026-07-24; the HTML and PDFs are labeled **APPROVED**.
 
 ## 2. Open repository-wide publishing decisions that do not block Case 01 content reconciliation
 
 ### 2.1 Deterministic offline fonts
 
-The master requests Inter and JetBrains Mono through the approved web-font pattern and provides system fallbacks. A future repository-wide decision may package approved fonts or standardize on installed system fonts for deterministic offline line wrapping. No font files are included in this release candidate.
+The master requests Inter and JetBrains Mono through the approved web-font pattern and provides system fallbacks. A future repository-wide decision may package approved fonts or standardize on installed system fonts for deterministic offline line wrapping. No font files are included in this release.
 
 This is a shared publishing-policy decision, not an unresolved Case 01 content or game-compatibility blocker.
 
@@ -81,4 +81,4 @@ Grayscale mode replaces semantic color variables and filters artwork rather than
 
 ## 5. Governing-document conflict review
 
-No project-wide policy conflict was found. The release candidate preserves the approved Mission Title Block, continuation headers, 0.50-inch margins, type hierarchy, Phosphor icons, mixed grid, blank response boxes, stacked CER, Teacher-note treatment, independent Answer Key, accessible parity, task-reference parity, and Teacher metadata visibility rules.
+No project-wide policy conflict was found. The approved v1.0 release preserves the approved Mission Title Block, continuation headers, 0.50-inch margins, type hierarchy, Phosphor icons, mixed grid, blank response boxes, stacked CER, Teacher-note treatment, independent Answer Key, accessible parity, task-reference parity, and Teacher metadata visibility rules.

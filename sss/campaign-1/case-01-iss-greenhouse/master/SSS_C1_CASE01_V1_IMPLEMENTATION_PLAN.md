@@ -1,6 +1,6 @@
 # SSS Case 01 v1.0 — Implementation Plan and Completion Record
 
-**Status:** Implemented for release-candidate validation on 2026-07-24
+**Status:** Implemented for the approved v1.0 release; owner print test passed 2026-07-24
 
 ## Scope
 
@@ -19,8 +19,8 @@ Reconcile Case 01 into a coherent v1.0 validation master and reusable production
 - Clarified Reset This File behavior and implemented restoration to the content embedded in the open file.
 - Reconciled the blockers document with the completed game-content and source audits.
 - Added content-regression checks for task headings, exemplar coverage, and malformed text.
-- Generated Student, Teacher, Answer Key, Accessible, and Grayscale release-candidate PDFs.
-- Retained VALIDATION BUILD pending owner physical print testing.
+- Generated the final Student, Teacher, Answer Key, Accessible, and Grayscale v1.0 PDFs.
+- Promoted to APPROVED after owner physical print testing passed on 2026-07-24.
 
 ## Reusable foundation contracts
 

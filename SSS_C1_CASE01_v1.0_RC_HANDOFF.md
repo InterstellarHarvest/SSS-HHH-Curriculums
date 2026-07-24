@@ -5,7 +5,7 @@
 
 ## Apply
 
-Extract the repository overlay at the root of a checkout at the inspected base, then review the replacements with `git diff`. The overlay contains only new or replaced release-candidate files; historical v0.2/v0.3 files already in the repository remain untouched.
+Extract the repository overlay at the root of a checkout at the inspected base, then review the replacements with `git diff`. The overlay contains only new or replaced approved v1.0 release files; historical v0.2/v0.3 files already in the repository remain untouched.
 
 Run:
 
@@ -18,7 +18,7 @@ The harness discovers Chromium through `CHROMIUM_PATH`, `chromium`, or `chromium
 
 ## Result
 
-Automated validation passed. The release remains a VALIDATION BUILD until owner physical print testing is documented.
+Automated validation passed and the owner completed physical 100% scale print testing on 2026-07-24. Case 01 is the approved stable v1.0 release.
 
 ## Publishing note
 

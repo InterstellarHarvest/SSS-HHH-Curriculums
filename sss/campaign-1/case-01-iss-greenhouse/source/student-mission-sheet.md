@@ -2,8 +2,8 @@
 
 **Campaign:** 1  
 **Case:** 01  
-**Current master:** v1.0 release candidate  
-**Status:** VALIDATION BUILD
+**Current master:** v1.0 (approved stable release)  
+**Status:** APPROVED
 
 > The printable Student and Accessible editions begin with Name, Date, and Period on page 1 only.
 

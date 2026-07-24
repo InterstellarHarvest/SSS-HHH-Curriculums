@@ -1,4 +1,4 @@
-# SSS Case 01 v1.0 Release-Candidate Changelog
+# SSS Case 01 v1.0 Release Changelog
 
 **Date:** 2026-07-24
 
@@ -28,4 +28,4 @@
 
 ## Publication status
 
-Remains **VALIDATION BUILD** until owner physical print testing is complete.
+Owner physical 100% scale print testing passed on 2026-07-24 (tester: Nate / Owner). Case 01 is the **approved stable v1.0 release**; the five published outputs use final non-RC filenames and the HTML master and footers are labeled **APPROVED**. No Case 01 release blockers remain.

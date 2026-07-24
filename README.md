@@ -27,7 +27,7 @@ The current reusable production foundation is:
 
 `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
 
-Case 01 is a **v1.0 release candidate** and remains marked **VALIDATION BUILD**. Automated role, accessibility, persistence, grayscale, overflow, serialization, content-regression, and PDF-generation checks have been completed. Release approval remains blocked until the owner performs physical 100% scale print testing of the five review outputs.
+Case 01 is the **approved stable v1.0 release**. Automated role, accessibility, persistence, grayscale, overflow, serialization, content-regression, and PDF-generation checks passed, and the owner completed physical 100% scale print testing of the five outputs on 2026-07-24. No Case 01 release blockers remain.
 
 ## Historical artifacts
 

@@ -6,8 +6,8 @@ This directory contains the first validated production foundation for the shared
 
 `master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
 
-- **Version:** v1.0 release candidate
-- **Status:** VALIDATION BUILD
+- **Version:** v1.0 (approved stable release)
+- **Status:** APPROVED
 - **Game baseline:** `2a6e8a7`
 - **Curriculum Bible:** v1.3
 - **Task registry:** `source/task-registry.js` v1.0
@@ -31,13 +31,13 @@ The Markdown sources, HTML master, Answer Key exemplars, and task registry use t
 
 ## Release-candidate PDFs
 
-- `published/SSS_C1_CASE01_STUDENT_MISSION_v1.0_RC.pdf`
-- `published/SSS_C1_CASE01_TEACHER_PACKET_v1.0_RC.pdf`
-- `published/SSS_C1_CASE01_ANSWER_KEY_v1.0_RC.pdf`
-- `published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0_RC.pdf`
-- `published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0_RC.pdf`
+- `published/SSS_C1_CASE01_STUDENT_MISSION_v1.0.pdf`
+- `published/SSS_C1_CASE01_TEACHER_PACKET_v1.0.pdf`
+- `published/SSS_C1_CASE01_ANSWER_KEY_v1.0.pdf`
+- `published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0.pdf`
+- `published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0.pdf`
 
-These remain review artifacts until the owner completes physical print testing at 100% scale.
+These are the current published outputs; the owner completed physical print testing at 100% scale on 2026-07-24.
 
 ## Validation
 
@@ -55,4 +55,4 @@ The harness validates role counts, overflow, accessibility basics, persistence, 
 
 ## Release gate
 
-The only open Case 01 release-approval blocker is owner physical print testing. Do not change the visible status from **VALIDATION BUILD** until that test is documented as passed.
+The owner completed physical print testing at 100% scale on 2026-07-24. Case 01 is the approved stable v1.0 release; the visible status is **APPROVED** and no release blockers remain.

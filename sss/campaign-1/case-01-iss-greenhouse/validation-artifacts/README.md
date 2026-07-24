@@ -1,4 +1,4 @@
-# Case 01 v1.0 Release-Candidate Validation Artifacts
+# Case 01 v1.0 Validation Artifacts
 
 This directory contains the portable validation harness and machine-readable results for the current v1.0 master.
 
@@ -55,7 +55,7 @@ The harness resolves all paths relative to its own repository location. It does 
 - separate Teacher/Answer Key notes clearing
 - reset-to-open-file behavior
 - downloaded edited-HTML portability and reset semantics
-- five release-candidate PDF builds and page counts
+- five approved v1.0 PDF builds and page counts
 
 ## Outputs
 
@@ -64,4 +64,4 @@ The harness resolves all paths relative to its own repository location. It does 
 - `downloaded-html-portability-test.html` (validation evidence; not a distribution master)
 - five role-specific PDFs under `../published/`
 
-All outputs retain **VALIDATION BUILD** status until owner physical print testing passes.
+All outputs are part of the approved stable v1.0 release; owner physical print testing passed on 2026-07-24.
