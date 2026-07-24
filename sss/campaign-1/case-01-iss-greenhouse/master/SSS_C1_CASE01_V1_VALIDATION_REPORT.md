@@ -315,3 +315,28 @@ SHA-256 `3a657ddb731ff20d65b7e42521fcde620814d517ed2abb92560b7dca10a1abbe` (supe
 | Task 3 table headers / rows | Source · Model evidence · Interpretation / Crew · Sensors · Plants · Logs | intact |
 
 **Verdict unchanged:** PASS FOR REPOSITORY REVIEW — NOT YET RELEASE-APPROVED.
+
+---
+
+## 13. Revalidation Addendum — Teacher production-metadata visibility applied (2026-07-24)
+
+**Reason:** Applying the new Teacher production-metadata visibility rule (`TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md`) to Case 01. The visible Teacher-page "COMPATIBILITY / Source baseline" body block — `Curriculum source master v0.3 · Compatible with SSS commit 2a6e8a7 · v1.0 visual-system migration prepared 2026-07-23.` — was removed. The concise compatibility value remains in the publication footer (`Game baseline 2a6e8a7`), as the rule permits; full provenance stays in HTML metadata, migration/validation reports, decision records, and Git history.
+
+**Change:** localized 1-line edit (the COMPATIBILITY heading + source-baseline paragraph removed); clean source serialization preserved (563 lines, self-closing tags intact, no runtime `html` style attribute).
+
+**Build under test:** `SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
+SHA-256 `a5e1e37c7dd204d42a25cde599b48f5feb67f09584a1e11ce27c2038624aaea9` (supersedes `3a657ddb…`; see `../validation-artifacts/CHECKSUMS.txt`).
+
+**Environment:** Headless Chromium via Playwright (Chromium 1217, node v20.20.2).
+
+| Check | Expected | Result |
+|---|---|---|
+| Student / Teacher / Answer / Accessible / All pages | 3 / 7 / 3 / 6 / 19 | 3 / 7 / 3 / 6 / 19, no overflow |
+| Teacher grayscale / print preview | fits | no overflow |
+| Edit/fill + persistence | restores after reload | restored |
+| Teacher PDF page count | 7 | 7 |
+| Console / page JS errors | none | none |
+| Visible Teacher COMPATIBILITY / Source-baseline body block | absent | absent (removed) |
+| Footer compatibility value | retained | `Game baseline 2a6e8a7` retained |
+
+**Verdict unchanged:** PASS FOR REPOSITORY REVIEW — NOT YET RELEASE-APPROVED.
