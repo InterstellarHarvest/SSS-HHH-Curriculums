@@ -29,7 +29,7 @@ Use this file, not the v0.2 or v0.3 prototypes, for validation, PDF generation, 
 
 The Markdown sources, HTML master, Answer Key exemplars, and task registry use the same exact numbered task titles.
 
-## Release-candidate PDFs
+## Published v1.0 PDFs
 
 - `published/SSS_C1_CASE01_STUDENT_MISSION_v1.0.pdf`
 - `published/SSS_C1_CASE01_TEACHER_PACKET_v1.0.pdf`
