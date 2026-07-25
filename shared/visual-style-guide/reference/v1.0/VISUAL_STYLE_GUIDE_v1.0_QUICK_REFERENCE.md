@@ -5,7 +5,6 @@
 
 ## Core Page
 
-
 | Rule | Standard |
 |---|---|
 | Page | US Letter, portrait |
@@ -23,7 +22,6 @@
 ## Print Type Reminder
 
 A 96 px/in page preview must use point-equivalent CSS sizes. Ordinary body text is approximately 14.3 px for 10.75 pt; ordinary table text is approximately 12.7 px for 9.5 pt. Do not judge the approved scale from an undersized browser mockup.
-
 
 ## Page-Fill Rule
 
@@ -183,3 +181,9 @@ Use `VISUAL_STYLE_GUIDE_v1.0_COMPLIANCE_CHECKLIST.md` before release.
 ## Balanced Page Fill and Vertical Rhythm v1.0.2
 
 When a page has meaningful surplus height, use it first for restrained separation between major tasks, then for proportionate multi-line writing/model space, then for useful padding. Keep one-word, phrase, classification, status, criterion, constraint, label, and single-line fields compact. Preserve intentional bottom reserve; do not force complete page fill. Human judgment is final.
+
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
+## Printable Page Identity — v1.0.4
+
+This project follows the consolidated `PRINTABLE_PAGE_IDENTITY_v1.0.4.md` rule. First pages use the compact accent-rail/title/location/institution-role structure; continuation pages use the compact case-title/role-continuation structure with institutional identity at right; printable footers contain only role and `N of total`; visible production-state metadata is excluded. Case 01 preserves approved v1.0 and uses a separate v1.1 validation successor. Case 02 applies the identity system to its single reconciled v1.0 master while retaining Balanced Page Fill and Vertical Rhythm v1.0.2.
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->

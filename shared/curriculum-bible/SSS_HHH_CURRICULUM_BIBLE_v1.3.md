@@ -93,3 +93,9 @@ SSS Campaign 1 Case 01 is the first implementation of this v1.3 requirement. Its
 - **v1.2:** Added task-reference parity, Teacher task-reference emphasis, and Teacher production-metadata visibility rules while retaining prior curriculum and publishing standards.
 - **v1.1:** Clarified that extended-response boxes are blank and unruled.
 - **v1.0:** Established the initial approved governing standard.
+
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
+## Printable Page Identity — v1.0.4
+
+Printable page identity is governed by `shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md`. It changes publication identity and metadata visibility only; it does not change instructional content, task order, evidence requirements, assessment boundaries, or accessibility expectations.
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->

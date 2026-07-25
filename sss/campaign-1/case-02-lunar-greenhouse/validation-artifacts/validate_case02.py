@@ -27,6 +27,7 @@ MANIFEST = CASE / 'CASE02_V1_RELEASE_MANIFEST.json'
 CHECKSUMS = CASE / 'validation-artifacts/CASE02_CHECKSUMS.sha256'
 TASKS = {1:'Vocabulary',2:'Initial thinking',3:'Model the pollination sequence',4:'Identify the failed step',5:'Test the competing explanations',6:'Diagnose and reject an alternative',7:'Claim-Evidence-Reasoning',8:'Design a reliable pollination support',9:'Exit ticket'}
 ROLE_COUNTS = {'student':2,'teacher':7,'answer':3,'accessible':5}
+ROLE_LABELS = {'student':'Student Mission','teacher':'Teacher Guide','answer':'Answer Key','accessible':'Accessible Mission'}
 ROLE_EXPORTS = {
     'student': ('SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html','SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf',2),
     'teacher': ('SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html','SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf',7),
@@ -100,14 +101,19 @@ ck('v1.0 master metadata',soup.find('meta',attrs={'name':'sss-master-version','c
 ck('balanced fill metadata',soup.find('meta',attrs={'name':'sss-balanced-page-fill','content':'1.0.2'}) is not None)
 ck('single current Case 02 master',not (CASE/'master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html').exists())
 ck('single current Case 02 manifest',not (CASE/'CASE02_V1_1_MASTER_MANIFEST.json').exists())
-ck('universal identity excluded','universal-v1.1' not in text and 'UNIVERSAL_PRINTABLE_PAGE_IDENTITY' not in text)
-ck('approved v1.0 architecture retained','status-mark' in text and 'cont-brand' in text and 'publication-footer' in text)
+ck('printable identity metadata',soup.find('meta',attrs={'name':'sss-page-identity','content':'1.0.4'}) is not None)
+ck('printable identity structure',all(p.select_one('[data-header-contract="printable-v1.1"]') for p in soup.select('.page')) and all(p.select_one('[data-footer-contract="printable-v1.1"]') for p in soup.select('.page')))
 ck('balanced CSS present','Balanced Page Fill and Vertical Rhythm v1.0.2' in text)
 ck('process model central','process-chain' in text and 'Model the pollination sequence' in text)
 ck('no unsupported frequency or airflow values',not re.search(r'60\s*[–-]\s*90\s*Hz|0\.5\s*[–-]\s*1\.0\s*m/s',text,re.I))
 ck('no Case 01 evidence matrix','Investigate four evidence sources' not in text)
 for role,count in ROLE_COUNTS.items():
     pages=soup.select(f'.page[data-role="{role}"]'); ck(f'{role} page count',len(pages)==count,len(pages))
+    for index,page_node in enumerate(pages,1):
+        footer=page_node.select_one('[data-footer-contract="printable-v1.1"]')
+        ck(f'{role} footer {index}',footer is not None and footer.get_text(' ',strip=True)==f'{ROLE_LABELS[role]} {index} of {count}',footer.get_text(' ',strip=True) if footer else '')
+identity_text=' '.join(x.get_text(' ',strip=True).upper() for x in soup.select('.mission-title-block,.continuation-header,.publication-footer'))
+ck('no visible production status','VALIDATION BUILD' not in identity_text and 'APPROVED' not in identity_text,identity_text[:240])
 ck('student task parity',task_map(soup,'student')==TASKS,task_map(soup,'student'))
 ck('accessible task parity',task_map(soup,'accessible')==TASKS,task_map(soup,'accessible'))
 ck('answer task parity',task_map(soup,'answer')=={i:TASKS[i] for i in range(3,10)},task_map(soup,'answer'))
@@ -135,11 +141,11 @@ science_assertions=['viable pollen remains','stigmas remain clean','physical agi
 printable=' '.join(p.get_text(' ',strip=True).lower() for p in soup.select('.page'))
 ck('content-regression science assertions',all(x in printable for x in science_assertions),science_assertions)
 ck('balanced amendment exists',(ROOT/'shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md').exists())
-ck('v1.0.3 excluded',not (ROOT/'shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md').exists())
-ck('v1.0.4 excluded',not (ROOT/'shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md').exists())
+ck('printable identity amendment exists',(ROOT/'shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md').exists())
+ck('competing identity amendments absent',not (ROOT/'shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md').exists() and not (ROOT/'shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md').exists())
 
 PUBLISHED.mkdir(parents=True,exist_ok=True); RENDER_DIR.mkdir(parents=True,exist_ok=True)
-for old in RENDER_DIR.glob('*'): old.unlink()
+for old in RENDER_DIR.glob('*-contact-sheet.png'): old.unlink()
 for role,(html_name,pdf_name,_) in ROLE_EXPORTS.items():
     write(PUBLISHED/html_name,make_export(text,role))
 
@@ -150,6 +156,10 @@ try:
     page=browser.new_page(viewport={'width':1500,'height':1200}); page.on('pageerror',lambda e:js_errors.append(str(e)))
     page.set_content(text.replace('</head>',poly+'</head>',1),wait_until='load'); page.wait_for_timeout(300)
     bc('JavaScript initialized',page.evaluate('!!window.__case02'))
+    geometry=page.evaluate("""() => { const first=document.querySelector('.page[data-role=student] .mission-title-block'); const cont=document.querySelector('.page[data-role=student] .continuation-header'); const footer=document.querySelector('.page[data-role=student] .publication-footer'); const insignia=cont?.querySelector('.saa-insignia'); const institution=cont?.querySelector('.institution'); return {firstHeight:first?.getBoundingClientRect().height||0,firstTitle:first?getComputedStyle(first.querySelector('.hero-title')).fontSize:'',subtitle:first?getComputedStyle(first.querySelector('.mission-subtitle')).fontSize:'',continuationHeight:cont?.getBoundingClientRect().height||0,identityGap:insignia&&institution?institution.getBoundingClientRect().left-insignia.getBoundingClientRect().right:0,footerText:footer?.innerText.trim()||''}; }""")
+    bc('compact first-page identity',geometry['firstHeight']<=84 and geometry['firstTitle'] in {'34.6667px','34.667px'} and geometry['subtitle']=='12px',geometry)
+    bc('compact continuation identity',geometry['continuationHeight']<=58 and geometry['identityGap']>=7,geometry)
+    bc('role-specific footer numbering',geometry['footerText']=='Student Mission 1 of 2',geometry)
     for role,count in ROLE_COUNTS.items():
         page.evaluate('(r)=>window.__case02.setRole(r)',role); page.wait_for_timeout(100)
         bc(f'{role} visible page isolation',page.locator('.page:visible').count()==count,page.locator('.page:visible').count())
@@ -180,7 +190,7 @@ try:
     bc('selective clearing preserves other role',atask2.inner_text()=='ACCESSIBLE KEEP')
     atask2.evaluate("el=>{el.innerHTML='PORTABLE';el.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText',data:'x'}));}")
     serial=page.evaluate('window.__case02.serializePortableHTML()')
-    bc('portable HTML persists fill','PORTABLE' in serial and 'sss-balanced-page-fill' in serial)
+    bc('portable HTML persists fill','PORTABLE' in serial and 'sss-balanced-page-fill' in serial and 'sss-page-identity' in serial)
     page.evaluate('window.__case02.resetSource(true)')
     bc('reset clears stored responses',task2.inner_text()=='' and atask2.inner_text()=='')
     bc('no JavaScript errors',not js_errors,js_errors)
@@ -235,7 +245,7 @@ write(PREFLIGHT,json.dumps({'case':'SSS-C1-CASE02','version':'1.0','roles':pdf_p
 
 # Results before derivative reports/manifests.
 result={
- 'case':'SSS-C1-CASE02','master_version':'1.0','balanced_page_fill':'1.0.2',
+ 'case':'SSS-C1-CASE02','master_version':'1.0','balanced_page_fill':'1.0.2','printable_page_identity':'1.0.4',
  'pass':not failures and not browser_failures,
  'static_checks':checks,'static_failures':failures,
  'browser_checks':browser_checks,'browser_failures':browser_failures,
@@ -250,6 +260,7 @@ write(CASE/'reports/CASE02_VALIDATION_REPORT.md',f'''# Case 02 Validation Report
 
 **Build:** SSS-C1-CASE02 v1.0  
 **Balanced Page Fill:** v1.0.2  
+**Printable Page Identity:** v1.0.4  
 **Automated status:** {status}  
 **Physical print gate:** OPEN
 
@@ -261,6 +272,7 @@ write(CASE/'reports/CASE02_VALIDATION_REPORT.md',f'''# Case 02 Validation Report
 - Task-reference and content-regression assertions
 - Keyboard/fill behavior, persistence, selective clearing, reset, and portable HTML
 - Letter-size PDF preflight and direct rendered contact-sheet review evidence
+- Approved first-page, continuation-header, institution/role-lockup, and role-specific footer identity
 - Balanced-fill diagnostics for bottom reserve, major-group spacing, multi-line work sizing, and compact-field restraint
 
 ## Result
@@ -280,7 +292,7 @@ write(CASE/'reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md','''# Case 02 Blockers and
 ## Closed reconciliation blockers
 
 - The v1.0/v1.1 master contradiction is removed; v1.0 is the single current production track.
-- The unapproved universal page-identity experiment is excluded from the merge-ready file set.
+- The approved printable page-identity design is recovered through one consolidated v1.0.4 amendment.
 - All five role outputs are regenerated from the v1.0 master.
 - Balanced Page Fill and Vertical Rhythm v1.0.2 is implemented and validated without stretching compact short-answer fields.
 
@@ -307,7 +319,7 @@ write(CASE/'README.md','''# SSS Campaign 1, Case 02 - Lunar Greenhouse
 - Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
 - Status: VALIDATION BUILD
 
-The v1.1 master and universal page-identity experiment are not part of this production track. They remain available through Git history for later design review.
+The current v1.0 master combines the approved Printable Page Identity v1.0.4 system with Balanced Page Fill and Vertical Rhythm v1.0.2. The contradictory Case 02 v1.1 master/manifest layer remains excluded.
 
 ## Outputs
 
@@ -329,7 +341,7 @@ All five role outputs are generated from `../master/SSS_C1_CASE02_EDITABLE_MASTE
 ''')
 write(CASE/'validation-artifacts/README.md','''# Case 02 Validation Artifacts
 
-`validate_case02.py` is the canonical reproducible build and validation harness for the reconciled v1.0 track. It regenerates all five role outputs, performs static/browser/interaction/balanced-fill/PDF checks, writes current checksums and manifest data, and creates direct PDF-rendered contact sheets in `rendered-review/`.
+`validate_case02.py` is the canonical reproducible build and validation harness for the reconciled v1.0 track. It regenerates all five role outputs, validates the approved printable page identity plus balanced-fill behavior, performs static/browser/interaction/PDF checks, writes current checksums and manifest data, and creates direct PDF-rendered contact sheets in `rendered-review/`.
 
 Automated balanced-fill measurements are diagnostic; human design judgment remains final.
 ''')
@@ -347,14 +359,17 @@ ready=subprocess.run(['git','diff','--name-only','origin/main','--'],cwd=ROOT,te
 if merge_report.relative_to(ROOT).as_posix() not in ready: ready.append(merge_report.relative_to(ROOT).as_posix())
 ready=sorted(x for x in ready if x)
 excluded=[
-'SSS_V1_1_PAGE_SYSTEM_VALIDATION_RESULTS.json','review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.html','review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.png','review/continuation-header.png','review/first-page-banner.png','review/minimal-footer.png','scripts/apply-sss-v1.1-page-system.py','scripts/validate-sss-v1.1-page-system.py','shared/implementation/SSS_HHH_V1_1_PAGE_IDENTITY_HANDOFF.md','shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md','shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md','sss/campaign-1/case-01-iss-greenhouse/CASE01_V1_1_MASTER_MANIFEST.json','sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html','sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1.1_CHANGELOG.md','sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_1_MASTER_MANIFEST.json','sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html']
-write(merge_report,'# Case 02 Reconciliation and Merge Report\n\n## Files ready for main\n\n'+''.join(f'- `{x}`\n' for x in ready)+'\n## Deliberately excluded page-identity proposals\n\n'+''.join(f'- `{x}`\n' for x in excluded)+f'''\n## Final validation status
+'SSS_V1_1_PAGE_SYSTEM_VALIDATION_RESULTS.json','review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.html','review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.png','review/continuation-header.png','review/first-page-banner.png','review/minimal-footer.png','scripts/apply-sss-v1.1-page-system.py','scripts/validate-sss-v1.1-page-system.py','shared/implementation/SSS_HHH_V1_1_PAGE_IDENTITY_HANDOFF.md','shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md','shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md','sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_1_MASTER_MANIFEST.json','sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html']
+write(merge_report,'# Case 02 Reconciliation and Merge Report\n\n## Files ready for main\n\n'+''.join(f'- `{x}`\n' for x in ready)+'\n## Deliberately excluded obsolete or contradictory identity artifacts\n\n'+''.join(f'- `{x}`\n' for x in excluded)+f'''\n## Final validation status
 
 - Automated validation: **{status}**
 - Single current master: `SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`
 - Five role outputs: regenerated and preflighted
+- Printable Page Identity v1.0.4: recovered and validated
 - Balanced Page Fill and Vertical Rhythm v1.0.2: implemented
 - Approved Case 01 v1.0: unchanged from main
+- Case 01 v1.1: separate validation successor
+- Visual comparison: `validation-artifacts/rendered-review/page-identity-comparison.png`
 
 ## Remaining owner gate
 
@@ -373,12 +388,12 @@ manifest={
  'case':'SSS-C1-CASE02','title':'Lunar Greenhouse','version':'1.0','status':'VALIDATION BUILD','publication_date':'2026-07-24',
  'game_repository':'InterstellarHarvest/Space-Sprout-Sleuth','game_commit':'2a6e8a7bb75c8c96f26f9ebfe7523668107ab712',
  'curriculum_bible':'1.3','student_identity':'Process Modeler','master':'master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html',
- 'task_registry':'source/task-registry.js','balanced_page_fill':'1.0.2',
+ 'task_registry':'source/task-registry.js','balanced_page_fill':'1.0.2','printable_page_identity':'1.0.4',
  'page_counts':{'student':2,'teacher':7,'answer':3,'accessible':5,'grayscale':2},
  'automated_validation':{'status':status,'static':f"{sum(x['pass'] for x in checks)}/{len(checks)} PASS",'browser':f"{sum(x['pass'] for x in browser_checks)}/{len(browser_checks)} PASS",'pdf':f"{sum(x['pass'] for x in pdf_preflight.values())}/{len(pdf_preflight)} PASS",'physical_print':'OPEN'},
  'release_gate':{'may_mark_approved':False,'reason':'Owner physical 100% print testing has not passed.'},
- 'governing_amendments':['shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md','shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md','shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md','shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md','shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md','shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md','shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md'],
- 'excluded_page_identity_proposals':excluded,
+ 'governing_amendments':['shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md','shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md','shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md','shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md','shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md','shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md','shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md','shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md'],
+ 'excluded_obsolete_identity_artifacts':excluded,
  'files':tracked
 }
 write(MANIFEST,json.dumps(manifest,indent=2))

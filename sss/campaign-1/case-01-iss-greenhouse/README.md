@@ -56,3 +56,14 @@ The harness validates role counts, overflow, accessibility basics, persistence, 
 ## Release gate
 
 The owner completed physical print testing at 100% scale on 2026-07-24. Case 01 is the approved stable v1.0 release; the visible status is **APPROVED** and no release blockers remain.
+
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
+## Case 01 v1.1 validation successor
+
+- Approved historical master: `master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html` — unchanged.
+- Design successor: `master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`.
+- Governing identity rule: `shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md`.
+- Status: VALIDATION BUILD pending owner physical 100% print testing.
+
+The v1.1 successor changes printable first-page identity, continuation identity, footer treatment, and visible production-metadata separation only. Instructional content and publishing behavior remain inherited from approved v1.0.
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->

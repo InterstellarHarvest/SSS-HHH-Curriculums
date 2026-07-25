@@ -215,3 +215,17 @@
 - [ ] A reasonable intentional bottom reserve remains.
 - [ ] Typography, headers, insignias, icons, and decoration were not enlarged to fill the page.
 - [ ] Automated flags were reviewed as diagnostic signals; human design judgment made the final determination.
+
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
+## Printable Page Identity — v1.0.4
+
+- [ ] First page uses the compact accent rail, title/location copy, insignia, three-line institution lockup, and document role.
+- [ ] Student and Accessible identification remains above the first-page header only.
+- [ ] Continuation pages show the case title plus `<Role> · Continued` at left and compact institutional identity at right.
+- [ ] Footer contains only the role and role-specific `N of total`.
+- [ ] Grayscale Student output retains the Student Mission footer.
+- [ ] No visible validation, approval, version, baseline, date, document-code, checksum, or repository-path metadata appears.
+- [ ] Case 01 v1.0 remains byte-identical when Case 01 v1.1 is generated.
+- [ ] Header/footer identity is not enlarged to consume surplus page space.
+- [ ] Validators assert identity structure, role counts, zero overflow, JavaScript behavior, PDF preflight, rendered review, current checksums, and no machine-local paths.
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->

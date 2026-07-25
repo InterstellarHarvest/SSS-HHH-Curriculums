@@ -409,3 +409,9 @@ Do not extract Case 01 vocabulary, prompts, tables, answers, or timing into fram
 ## Balanced Page Fill and Vertical Rhythm v1.0.2 implementation note
 
 Production masters and derived role exports must apply the shared balanced-fill clarification without changing the approved typography or page-identity architecture. Page-specific CSS may add restrained task separation and proportionate height to genuinely multi-line work areas. Validation should record bottom reserve, major-group spacing, and expected-response sizing, but should fail only when meaningful surplus space coexists with compressed major tasks or undersized multi-line work. Compact short-answer fields and intentional reserve are valid. Human design judgment remains the release authority.
+
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
+## Printable Page Identity — v1.0.4
+
+This project follows the consolidated `PRINTABLE_PAGE_IDENTITY_v1.0.4.md` rule. First pages use the compact accent-rail/title/location/institution-role structure; continuation pages use the compact case-title/role-continuation structure with institutional identity at right; printable footers contain only role and `N of total`; visible production-state metadata is excluded. Case 01 preserves approved v1.0 and uses a separate v1.1 validation successor. Case 02 applies the identity system to its single reconciled v1.0 master while retaining Balanced Page Fill and Vertical Rhythm v1.0.2.
+<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->

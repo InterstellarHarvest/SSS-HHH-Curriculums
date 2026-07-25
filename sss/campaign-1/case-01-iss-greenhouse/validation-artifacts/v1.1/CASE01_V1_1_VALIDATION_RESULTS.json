@@ -1,0 +1,669 @@
+{
+  "case": "SSS-C1-CASE01",
+  "master_version": "1.1",
+  "printable_page_identity": "1.0.4",
+  "pass": true,
+  "case01_v1_0_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
+  "static_checks": [
+    {
+      "name": "v1.1 master exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v1.1 metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printable identity metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "validation successor status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v1.0 historical master preserved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Case 01 v1.0 byte-identical to origin/main",
+      "pass": true,
+      "detail": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00"
+    },
+    {
+      "name": "instructional content unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "page ids unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "response fields unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "consolidated amendment exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "competing amendment files absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student page count",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "student identity header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student footer 1",
+      "pass": true,
+      "detail": "Student Mission 1 of 3"
+    },
+    {
+      "name": "student first-page institution lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student role lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student identity header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student footer 2",
+      "pass": true,
+      "detail": "Student Mission 2 of 3"
+    },
+    {
+      "name": "student continuation label 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student identity header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student footer 3",
+      "pass": true,
+      "detail": "Student Mission 3 of 3"
+    },
+    {
+      "name": "student continuation label 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher page count",
+      "pass": true,
+      "detail": "7"
+    },
+    {
+      "name": "teacher identity header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 1",
+      "pass": true,
+      "detail": "Teacher Guide 1 of 7"
+    },
+    {
+      "name": "teacher first-page institution lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher role lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher identity header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 2",
+      "pass": true,
+      "detail": "Teacher Guide 2 of 7"
+    },
+    {
+      "name": "teacher continuation label 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher identity header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 3",
+      "pass": true,
+      "detail": "Teacher Guide 3 of 7"
+    },
+    {
+      "name": "teacher continuation label 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher identity header 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 4",
+      "pass": true,
+      "detail": "Teacher Guide 4 of 7"
+    },
+    {
+      "name": "teacher continuation label 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher identity header 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 5",
+      "pass": true,
+      "detail": "Teacher Guide 5 of 7"
+    },
+    {
+      "name": "teacher continuation label 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher identity header 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 6",
+      "pass": true,
+      "detail": "Teacher Guide 6 of 7"
+    },
+    {
+      "name": "teacher continuation label 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher identity header 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher footer 7",
+      "pass": true,
+      "detail": "Teacher Guide 7 of 7"
+    },
+    {
+      "name": "teacher continuation label 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer page count",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "answer identity header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer footer 1",
+      "pass": true,
+      "detail": "Answer Key 1 of 3"
+    },
+    {
+      "name": "answer first-page institution lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer role lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer identity header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer footer 2",
+      "pass": true,
+      "detail": "Answer Key 2 of 3"
+    },
+    {
+      "name": "answer continuation label 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer identity header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer footer 3",
+      "pass": true,
+      "detail": "Answer Key 3 of 3"
+    },
+    {
+      "name": "answer continuation label 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible page count",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "accessible identity header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible footer 1",
+      "pass": true,
+      "detail": "Accessible Mission 1 of 6"
+    },
+    {
+      "name": "accessible first-page institution lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible role lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible identity header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible footer 2",
+      "pass": true,
+      "detail": "Accessible Mission 2 of 6"
+    },
+    {
+      "name": "accessible continuation label 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible identity header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible footer 3",
+      "pass": true,
+      "detail": "Accessible Mission 3 of 6"
+    },
+    {
+      "name": "accessible continuation label 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible identity header 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible footer 4",
+      "pass": true,
+      "detail": "Accessible Mission 4 of 6"
+    },
+    {
+      "name": "accessible continuation label 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible identity header 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible footer 5",
+      "pass": true,
+      "detail": "Accessible Mission 5 of 6"
+    },
+    {
+      "name": "accessible continuation label 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible identity header 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible footer 6",
+      "pass": true,
+      "detail": "Accessible Mission 6 of 6"
+    },
+    {
+      "name": "accessible continuation label 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no visible production status",
+      "pass": true,
+      "detail": "ISS GREENHOUSE MODULE CAMPAIGN 1 \u00b7 CASE 01 \u00b7 LOW EARTH ORBIT SOLAR AGRICULTURAL AGENCY STUDENT MISSION STUDENT MISSION 1 OF 3 ISS GREENHOUSE MODULE STUDENT MISSION \u00b7 CONTINUED SOLAR AGRICULTURAL AGENC"
+    },
+    {
+      "name": "download successor filename",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "successor storage keys",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3116, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "teacher PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 7, 'pages': 7, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 13015, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "answer PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3772, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "accessible PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 6, 'pages': 6, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3552, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "grayscale PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3119, 'letter_portrait': True, 'pass': True}"
+    }
+  ],
+  "static_failures": [],
+  "browser_checks": [
+    {
+      "name": "compact first-page identity",
+      "pass": true,
+      "detail": "{'firstHeight': 81.140625, 'title': '34.6667px', 'subtitle': '12px', 'continuationHeight': 51.875, 'gap': 8.625}"
+    },
+    {
+      "name": "compact continuation identity",
+      "pass": true,
+      "detail": "{'firstHeight': 81.140625, 'title': '34.6667px', 'subtitle': '12px', 'continuationHeight': 51.875, 'gap': 8.625}"
+    },
+    {
+      "name": "student role isolation",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "student zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "teacher role isolation",
+      "pass": true,
+      "detail": "7"
+    },
+    {
+      "name": "teacher zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "answer role isolation",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "answer zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "accessible role isolation",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "accessible zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "fill persistence across role changes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "active response keyboard reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student clear works",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student clear preserves teacher notes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "portable HTML persists fill",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reset clears local fill",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "browser_failures": [],
+  "pdf_preflight": {
+    "student": {
+      "file": "SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 3,
+      "pages": 3,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3116,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "teacher": {
+      "file": "SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 7,
+      "pages": 7,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 13015,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "answer": {
+      "file": "SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 3,
+      "pages": 3,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3772,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "accessible": {
+      "file": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 6,
+      "pages": 6,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3552,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "grayscale": {
+      "file": "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 3,
+      "pages": 3,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3119,
+      "letter_portrait": true,
+      "pass": true
+    }
+  },
+  "physical_print_gate": "OPEN"
+}

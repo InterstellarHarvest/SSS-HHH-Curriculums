@@ -2,12 +2,41 @@
 
 ## Files ready for main
 
+- `shared/curriculum-bible/SSS_HHH_CURRICULUM_BIBLE_v1.3.md`
 - `shared/implementation/SSS_HHH_V1_EDITABLE_MASTER_HANDOFF.md`
 - `shared/visual-style-guide/VISUAL_STYLE_GUIDE_v1.0.md`
 - `shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md`
 - `shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md`
+- `shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md`
 - `shared/visual-style-guide/reference/v1.0/VISUAL_STYLE_GUIDE_v1.0_COMPLIANCE_CHECKLIST.md`
 - `shared/visual-style-guide/reference/v1.0/VISUAL_STYLE_GUIDE_v1.0_QUICK_REFERENCE.md`
+- `sss/campaign-1/case-01-iss-greenhouse/CASE01_V1_1_MASTER_MANIFEST.json`
+- `sss/campaign-1/case-01-iss-greenhouse/README.md`
+- `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`
+- `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1.1_CHANGELOG.md`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/OWNER_PRINT_TEST_CHECKLIST.md`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/README.md`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.html`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.html`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.html`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.html`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.html`
+- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf`
+- `sss/campaign-1/case-01-iss-greenhouse/reports/CASE01_V1_1_VALIDATION_REPORT.md`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/CASE01_V1_1_CHECKSUMS.sha256`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/CASE01_V1_1_PDF_PREFLIGHT.json`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/CASE01_V1_1_VALIDATION_RESULTS.json`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/README.md`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/rendered-review/accessible-contact-sheet.png`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/rendered-review/answer-contact-sheet.png`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/rendered-review/grayscale-contact-sheet.png`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/rendered-review/student-contact-sheet.png`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/rendered-review/teacher-contact-sheet.png`
+- `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/validate_case01_v1_1.py`
 - `sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_RELEASE_MANIFEST.json`
 - `sss/campaign-1/case-02-lunar-greenhouse/README.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/assets/pollination-process-model.svg`
@@ -29,6 +58,7 @@
 - `sss/campaign-1/case-02-lunar-greenhouse/reports/CASE02_RUNTIME_CONTENT_AUDIT.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/reports/CASE02_STRUCTURAL_STRESS_TEST_REPORT.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/reports/CASE02_VALIDATION_REPORT.md`
+- `sss/campaign-1/case-02-lunar-greenhouse/reports/PAGE_IDENTITY_VISUAL_COMPARISON.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/source/answer-key.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/source/figure-research-and-rights.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/source/formal-rubric.md`
@@ -47,12 +77,13 @@
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/rendered-review/accessible-contact-sheet.png`
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/rendered-review/answer-contact-sheet.png`
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/rendered-review/grayscale-contact-sheet.png`
+- `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/rendered-review/page-identity-comparison.png`
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/rendered-review/student-contact-sheet.png`
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/rendered-review/teacher-contact-sheet.png`
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/requirements.txt`
 - `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/validate_case02.py`
 
-## Deliberately excluded page-identity proposals
+## Deliberately excluded obsolete or contradictory identity artifacts
 
 - `SSS_V1_1_PAGE_SYSTEM_VALIDATION_RESULTS.json`
 - `review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.html`
@@ -65,9 +96,6 @@
 - `shared/implementation/SSS_HHH_V1_1_PAGE_IDENTITY_HANDOFF.md`
 - `shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md`
 - `shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`
-- `sss/campaign-1/case-01-iss-greenhouse/CASE01_V1_1_MASTER_MANIFEST.json`
-- `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`
-- `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1.1_CHANGELOG.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_1_MASTER_MANIFEST.json`
 - `sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html`
 
@@ -76,8 +104,11 @@
 - Automated validation: **PASS**
 - Single current master: `SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`
 - Five role outputs: regenerated and preflighted
+- Printable Page Identity v1.0.4: recovered and validated
 - Balanced Page Fill and Vertical Rhythm v1.0.2: implemented
 - Approved Case 01 v1.0: unchanged from main
+- Case 01 v1.1: separate validation successor
+- Visual comparison: `validation-artifacts/rendered-review/page-identity-comparison.png`
 
 ## Remaining owner gate
 

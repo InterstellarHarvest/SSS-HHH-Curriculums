@@ -8,7 +8,7 @@
 - Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
 - Status: VALIDATION BUILD
 
-The v1.1 master and universal page-identity experiment are not part of this production track. They remain available through Git history for later design review.
+The current v1.0 master combines the approved Printable Page Identity v1.0.4 system with Balanced Page Fill and Vertical Rhythm v1.0.2. The contradictory Case 02 v1.1 master/manifest layer remains excluded.
 
 ## Outputs
 

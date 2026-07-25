@@ -1,0 +1,152 @@
+{
+  "case": "SSS-C1-CASE01",
+  "title": "ISS Greenhouse Module",
+  "master_version": "1.1",
+  "status": "VALIDATION BUILD",
+  "current_validation_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+  "historical_approved_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
+  "historical_v1_0_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
+  "v1_1_sha256": "c6680ef904b347f137b4dfc81c6cb31cad8b6b4f1801b176ef8e2e47e48e4541",
+  "printable_page_identity": "1.0.4",
+  "page_counts": {
+    "student": 3,
+    "teacher": 7,
+    "answer": 3,
+    "accessible": 6,
+    "grayscale": 3
+  },
+  "automated_validation": {
+    "status": "PASS",
+    "static": "84/84 PASS",
+    "browser": "17/17 PASS",
+    "pdf": "5/5 PASS",
+    "physical_print": "OPEN"
+  },
+  "release_gate": {
+    "may_mark_approved": false,
+    "reason": "Owner physical 100% print testing has not passed for v1.1."
+  },
+  "governing_amendment": "shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
+  "files": [
+    {
+      "path": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+      "sha256": "c6680ef904b347f137b4dfc81c6cb31cad8b6b4f1801b176ef8e2e47e48e4541",
+      "bytes": 121799
+    },
+    {
+      "path": "master/SSS_C1_CASE01_V1.1_CHANGELOG.md",
+      "sha256": "ebc89cb9891f7a1d8f7388c033375c5bdc9fc38c8151520d79282a09e530add8",
+      "bytes": 565
+    },
+    {
+      "path": "validation-artifacts/validate_case01_v1_1.py",
+      "sha256": "a4b7ece64e3bab167c507302826d8ea750032e7945e22c0df24db7931498ca61",
+      "bytes": 21198
+    },
+    {
+      "path": "reports/CASE01_V1_1_VALIDATION_REPORT.md",
+      "sha256": "3413b50d8f8f99311f6d3cb08f9c2ca6fef12cb09fb813730f385086ffac95fa",
+      "bytes": 1064
+    },
+    {
+      "path": "published/v1.1/OWNER_PRINT_TEST_CHECKLIST.md",
+      "sha256": "ad07d3b4841d9c240a32abc67fa8a28f09ad09eb3ecd58c752e0bdb83560ae90",
+      "bytes": 655
+    },
+    {
+      "path": "published/v1.1/README.md",
+      "sha256": "27024324fc8dba67b4a9eaf91f4abe55fc5d82dccad7538025c31463f6503532",
+      "bytes": 285
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.html",
+      "sha256": "72f6be236e8a4f8b44dcb43c3ced1b079cb54e16a114e249c8357fc24bf06c94",
+      "bytes": 77977
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf",
+      "sha256": "7cce9718a143c22e248b5e3ba4f4495755faa00dcb1a6122c3eaeb294ccd4cbb",
+      "bytes": 277760
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.html",
+      "sha256": "f0cab807283036f421c59d0d0dd4be540c75af8876cffb143bf93adc6ca0be5e",
+      "bytes": 59660
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf",
+      "sha256": "4791f1aaa4174c621cea7fe34c91869ad283464b03f7c3ed786d7cfe967b5830",
+      "bytes": 213204
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.html",
+      "sha256": "f6b90a510ae1b3bdd33d6c51a9e0aa96a17f3ed7701f8a61995fdbbce92b5ff3",
+      "bytes": 64731
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf",
+      "sha256": "e3bc7d1e1ae732012b44a61fc12e2a30cd3b899ea9b4f237de391e2582283435",
+      "bytes": 300372
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.html",
+      "sha256": "61125389827477b02206f6d6ab4eb08cd484b36628b0f51a90c2258176911abc",
+      "bytes": 64703
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf",
+      "sha256": "4f6a47167dd1027b77df511bcbdad078a7693de2ebed66f594a30d56f4bf6a98",
+      "bytes": 283992
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.html",
+      "sha256": "89ebecbd83081c604c9f6f1a67cd145c3867bf8e9d0482dd8e34d8079134ca0d",
+      "bytes": 99529
+    },
+    {
+      "path": "published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf",
+      "sha256": "61d79509dcc284b2d42f0851f5155f49af2e320877d746a54d8ac4e487709a86",
+      "bytes": 393274
+    },
+    {
+      "path": "validation-artifacts/v1.1/CASE01_V1_1_PDF_PREFLIGHT.json",
+      "sha256": "89f11567f64436055d5c333750f31154334956bc4d6b46dbce078b3c4ac61c52",
+      "bytes": 2740
+    },
+    {
+      "path": "validation-artifacts/v1.1/CASE01_V1_1_VALIDATION_RESULTS.json",
+      "sha256": "14091dcab166355044eb78ad3cb29a6f3c59c80635518c4deb0b89a41a9d2af6",
+      "bytes": 14876
+    },
+    {
+      "path": "validation-artifacts/v1.1/README.md",
+      "sha256": "42e4086531ed0e06fd49bb8a5a85f21bbd5e704057270f6283024d2372782342",
+      "bytes": 287
+    },
+    {
+      "path": "validation-artifacts/v1.1/rendered-review/accessible-contact-sheet.png",
+      "sha256": "8aba60563a5bff14f0a0658662d12a6d0b9c3c7b49898b900097d7dbe273e999",
+      "bytes": 168454
+    },
+    {
+      "path": "validation-artifacts/v1.1/rendered-review/answer-contact-sheet.png",
+      "sha256": "859c86cb99ebbf833d0f3193de434bfbf837a4fa163a2bd3c9e3ffd39cc8994b",
+      "bytes": 175266
+    },
+    {
+      "path": "validation-artifacts/v1.1/rendered-review/grayscale-contact-sheet.png",
+      "sha256": "ba0835cd339e64f00b3fc769c015286da682d8ca35c1dc8c96d151364b395a4b",
+      "bytes": 141694
+    },
+    {
+      "path": "validation-artifacts/v1.1/rendered-review/student-contact-sheet.png",
+      "sha256": "e6a720e87bbbfea2978b76fa55b1c249635502dec6475f9804b06f507c9954f6",
+      "bytes": 141325
+    },
+    {
+      "path": "validation-artifacts/v1.1/rendered-review/teacher-contact-sheet.png",
+      "sha256": "7463bf7991306469d608cfc031a189bc57eb0471c67cfec197b2f97f060f9b38",
+      "bytes": 516963
+    }
+  ]
+}

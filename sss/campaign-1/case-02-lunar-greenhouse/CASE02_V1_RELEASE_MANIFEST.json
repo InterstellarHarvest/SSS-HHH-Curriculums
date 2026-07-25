@@ -11,6 +11,7 @@
   "master": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
   "task_registry": "source/task-registry.js",
   "balanced_page_fill": "1.0.2",
+  "printable_page_identity": "1.0.4",
   "page_counts": {
     "student": 2,
     "teacher": 7,
@@ -20,8 +21,8 @@
   },
   "automated_validation": {
     "status": "PASS",
-    "static": "38/38 PASS",
-    "browser": "16/16 PASS",
+    "static": "56/56 PASS",
+    "browser": "19/19 PASS",
     "pdf": "5/5 PASS",
     "physical_print": "OPEN"
   },
@@ -36,9 +37,10 @@
     "shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md",
     "shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md",
     "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md",
-    "shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md"
+    "shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md",
+    "shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md"
   ],
-  "excluded_page_identity_proposals": [
+  "excluded_obsolete_identity_artifacts": [
     "SSS_V1_1_PAGE_SYSTEM_VALIDATION_RESULTS.json",
     "review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.html",
     "review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.png",
@@ -50,17 +52,14 @@
     "shared/implementation/SSS_HHH_V1_1_PAGE_IDENTITY_HANDOFF.md",
     "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md",
     "shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
-    "sss/campaign-1/case-01-iss-greenhouse/CASE01_V1_1_MASTER_MANIFEST.json",
-    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
-    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1.1_CHANGELOG.md",
     "sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_1_MASTER_MANIFEST.json",
     "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html"
   ],
   "files": [
     {
       "path": "README.md",
-      "sha256": "ccb20ad4bdb181eee954cff68edf5398825763c472a0abcae550c14cfa4491b3",
-      "bytes": 929
+      "sha256": "a06a7e512343bdc031059899f35c83b5d264fa89ccae3b3693c3b2439bd20aff",
+      "bytes": 975
     },
     {
       "path": "assets/pollination-process-model.svg",
@@ -69,13 +68,13 @@
     },
     {
       "path": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
-      "sha256": "34f11e497171550afe906fc661692a3fde88eaf3ece4627891fe6892377cbf87",
-      "bytes": 147199
+      "sha256": "3d386f9bed067386b648ac3019e9587f50caf2514983920fcf2514492748b2f1",
+      "bytes": 152212
     },
     {
       "path": "published/OWNER_PRINT_TEST_CHECKLIST.md",
-      "sha256": "221e2b43a128a41b1e64af9370e185a93e3058d2b10d24477021d9bcd975b7bf",
-      "bytes": 1605
+      "sha256": "a37d58d1fad7fdae9839f52f11e1d26b67bb1f92731faadaa1b76a1f8fcd6a0b",
+      "bytes": 2398
     },
     {
       "path": "published/README.md",
@@ -84,63 +83,63 @@
     },
     {
       "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.html",
-      "sha256": "290d9f33062a4eff6dd327f196a5ed005b21ad3e42a8958bd80f814daec462b9",
-      "bytes": 67049
+      "sha256": "1f682406c6671fd634a8d60b19d130c7fabb3174bd9d27dae07eca606dbdb14c",
+      "bytes": 71411
     },
     {
       "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "89b73ead77519bdf8ad643d4c71621c897ea7fcd368dfe40f8486237163f125d",
-      "bytes": 223808
+      "sha256": "240e582a4a85363ac05348ca4c5f8e5e702b103e5d089fe81d726bb0ec2bf0bd",
+      "bytes": 226358
     },
     {
       "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.html",
-      "sha256": "7cc1200a4113430b99c0a6b70fae7662717122e195ce150912665293c865cdc7",
-      "bytes": 53688
+      "sha256": "6beb7483fc287d627ba0b71bb96254fd85b94a01893bd43b70ed8d76a16ee457",
+      "bytes": 58040
     },
     {
       "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf",
-      "sha256": "607355ad11423594b334feae2bcba64e60a07055898bf9c4ebf75fc4ed7e9d67",
-      "bytes": 300713
+      "sha256": "5b9cd8b3e31dbabcaf0f2105baebf6dab1e56f3af7868c8adf5dd86e0002c48b",
+      "bytes": 292647
     },
     {
       "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.html",
-      "sha256": "f98e19a6156a21d370678f32b1564ea3107f155c91bc840c4cb98a6edc63fd65",
-      "bytes": 57260
+      "sha256": "912969c39c4834483fe808fa15efb0673286dbe88fac04e680f6fcbd3e984bfb",
+      "bytes": 61535
     },
     {
       "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "e8ac1612bec8ea2959bf7f2f27d29d530242324a7052f5ae12461d0dcd7108e3",
-      "bytes": 319944
+      "sha256": "31902565858182614186063bfdcc3d133beef1936ba953b3bd74a6bfb2d21166",
+      "bytes": 325065
     },
     {
       "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html",
-      "sha256": "4d76bb2fed26d8b5be61d4cb956d4b3fd2cfcca0dbdb687a9f142b3e4d423f4b",
-      "bytes": 57213
+      "sha256": "dd1deb050c9aaa7129a4ed6f0b173bf43ed37f145f8a024acb37c302bb414bbd",
+      "bytes": 61488
     },
     {
       "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "19fbedae1319a29155c49e2b6970acfd4264e9604b9361e000c542d904271920",
-      "bytes": 320034
+      "sha256": "7b22367a8fa47f9656768e2470a64efae69588c6d33cafbccf15e65b04c60fcc",
+      "bytes": 325181
     },
     {
       "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html",
-      "sha256": "bf3b5593161d67cfa78ae2bfce16ea9b1c0c31672453f84a937e1e201713f41c",
-      "bytes": 70489
+      "sha256": "bcb6aa22fd6e7196c45eb04b1580a284c8357e6b17518c753bd5fd141123a714",
+      "bytes": 75113
     },
     {
       "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf",
-      "sha256": "3a2735d98e401699be1719c640a5f2fd61c39d3f842506cb5656fa2e212d53ed",
-      "bytes": 249753
+      "sha256": "9f252f61c0a3f8c7b614113b1d4cd9612aace25e00ce835b2434ff217fd5be93",
+      "bytes": 243612
     },
     {
       "path": "reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md",
-      "sha256": "7d408bfa0adf4a3309ae9a531fbffbe35ecbdff062a5a5b7b81ab2f91aa9bf5c",
-      "bytes": 688
+      "sha256": "8e12a911e73864c789678b42bbee609871edf9ffac31e2208b4b2f48032d7980",
+      "bytes": 695
     },
     {
       "path": "reports/CASE02_MERGE_REPORT.md",
-      "sha256": "457669e871e200f1ddc4223d059f0f37b0e4420e45afe5feba7e7dcff8cc771d",
-      "bytes": 5758
+      "sha256": "eaad9082eeb0822273bb344ca9d33b8ab311204f9619d67526469fd6eec9144c",
+      "bytes": 8684
     },
     {
       "path": "reports/CASE02_RUNTIME_CONTENT_AUDIT.md",
@@ -154,8 +153,13 @@
     },
     {
       "path": "reports/CASE02_VALIDATION_REPORT.md",
-      "sha256": "193a7a618d797b0dfd030a8733e9181548b730795f5bc262398a76c649c9c0b0",
-      "bytes": 921
+      "sha256": "5becb161e0574883d8ccf8b37fa381cb8f7c590c78c0509fe01af8a96615c5e1",
+      "bytes": 1062
+    },
+    {
+      "path": "reports/PAGE_IDENTITY_VISUAL_COMPARISON.md",
+      "sha256": "db345a2e5d9f8259f005f2702cb4ced5b4cbe0e8e70fab0d1d8df6d4a4d6db80",
+      "bytes": 518
     },
     {
       "path": "source/answer-key.md",
@@ -214,43 +218,48 @@
     },
     {
       "path": "validation-artifacts/CASE02_PDF_PREFLIGHT.json",
-      "sha256": "b0f7fe62daef7dd3a089cd3135f514edcb05f67efd6172f01e221cdf55424dbd",
+      "sha256": "0b81e8968c24a78211daf1fcfedcd5184c759d366c43fb1504b81a4ffbed6260",
       "bytes": 2572
     },
     {
       "path": "validation-artifacts/CASE02_VALIDATION_RESULTS.json",
-      "sha256": "035ce262bd2b07682a09f5728995e332ab0a6c3fd9d48f3858b1a75e88bad7f2",
-      "bytes": 23465
+      "sha256": "8fdf7ba2da8c55aafc3d9ac9b3db195a0c644afad5d0e86b514511602e0d6e16",
+      "bytes": 26514
     },
     {
       "path": "validation-artifacts/README.md",
-      "sha256": "f764402258e9155d2ddd7d301434fc3d7f9a9f3e0f603b2df7b6220b646bcf3e",
-      "bytes": 448
+      "sha256": "9645a1880e1d2160f87522260e4dd06a18a1cf8195a2296c29bd9794f2764c2a",
+      "bytes": 510
     },
     {
       "path": "validation-artifacts/rendered-review/accessible-contact-sheet.png",
-      "sha256": "86224d42fe6ad889008f6983123f5ac2970fa5d4d668945c60f02f35b84df3c9",
-      "bytes": 169418
+      "sha256": "85035d6bafba27b52f2ef9fc632068b9157a8133f824799ed8f8746a11b5f0cc",
+      "bytes": 160199
     },
     {
       "path": "validation-artifacts/rendered-review/answer-contact-sheet.png",
-      "sha256": "8598dff9b990ee5bdb88056374cd935c129e79a84bb61407a37e19562bdacdbe",
-      "bytes": 200168
+      "sha256": "23cea2372ffb47b1c2c90bbee5fdf4d927e1408ec3a861beb852a81c210c9ae0",
+      "bytes": 195944
     },
     {
       "path": "validation-artifacts/rendered-review/grayscale-contact-sheet.png",
-      "sha256": "ff6b8d7942a4729b61c2b65aa68bb2677f672efd9dab8a9b3b84821bced11ebd",
-      "bytes": 137382
+      "sha256": "cac16ba091e7c6d96347f5cd3045262ddec7bcbc73450c05ab5882bb7e92e459",
+      "bytes": 133598
+    },
+    {
+      "path": "validation-artifacts/rendered-review/page-identity-comparison.png",
+      "sha256": "544eb20ceb5f97cf4b080779fa34f5ddc4b21d322f75385f28f8940a3056bfc4",
+      "bytes": 739460
     },
     {
       "path": "validation-artifacts/rendered-review/student-contact-sheet.png",
-      "sha256": "f0f08b13440866412de4853e82991eac3ed32f380af56fca68cd02dab3b18d9f",
-      "bytes": 137060
+      "sha256": "5d7e28703f6d949b6533866fd8df1efe72a7ae0ecb1ea4388569462a1fc850cf",
+      "bytes": 133450
     },
     {
       "path": "validation-artifacts/rendered-review/teacher-contact-sheet.png",
-      "sha256": "da51b9a4949039553ac4870574583040394f922c92501299157bd4c6eb0d59f9",
-      "bytes": 464824
+      "sha256": "1b32782ec48f550b32b6f62b83b17287f39cd2846a00e409feb64430292c55ae",
+      "bytes": 455222
     },
     {
       "path": "validation-artifacts/requirements.txt",
@@ -259,8 +268,8 @@
     },
     {
       "path": "validation-artifacts/validate_case02.py",
-      "sha256": "3194f34333bf7729f348850afb31ed03bd8d447c4e47ea67d23f220f80009a7c",
-      "bytes": 27820
+      "sha256": "4430482e2c5483b5b9ba09cc98c5ab8be2ed7a1fe1238361852cb9c4132f4d56",
+      "bytes": 30425
     }
   ]
 }
