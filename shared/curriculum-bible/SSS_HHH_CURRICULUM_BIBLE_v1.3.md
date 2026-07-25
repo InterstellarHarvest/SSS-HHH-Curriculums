@@ -11,13 +11,16 @@ Curriculum Bible v1.3 incorporates **all requirements, definitions, protections,
 
 Where this document is silent, the text of v1.2 continues unchanged. Where this document adds a rule, the new rule is cumulative. No v1.2 requirement is superseded except where v1.3 says so explicitly; v1.3 makes no such exception.
 
-The approved v1.0.1 visual-system amendments also remain controlling:
+The approved visual-system and production amendments also remain controlling:
 
 - `STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md`
 - `EXACT_MATCH_WORD_BANKS_v1.0.1.md`
 - `TASK_REFERENCE_PARITY_v1.0.1.md`
 - `TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md`
 - `TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md`
+- `CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md`
+- `MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md`
+- `UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`
 
 ## 2. Carried-forward task-reference rule
 
@@ -87,9 +90,21 @@ The same task expectation governs the Standard and Accessible editions. The Answ
 
 SSS Campaign 1 Case 01 is the first implementation of this v1.3 requirement. Its controlled Answer Key includes completed exemplars for Tasks 3 through 9, while Tasks 1 and 2 remain non-keyable and are omitted without renumbering.
 
+## 5A. Approved v1.0.2 production clarification
+
+`CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md` is cumulative and controls future case production. It requires alphabetical student-facing vocabulary, fixed shuffled word banks for sequential tasks, directions limited to actions the student must actually perform, grading-policy commentary kept in Teacher materials, and continuous-flow Accessible pagination that uses available page space without sacrificing readability or response area.
+
+## 5B. Approved v1.0.3 production clarification
+
+`MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md` is cumulative and controls future case production. It freezes the Case 01 v1.0 Mission Title Block and continuation-header anatomy across Student, Accessible, Teacher, and Answer Key roles. Internal document codes and visible version boxes stay out of the prominent title; continuation pages use a compact institutional line and a page-specific title rather than a redesigned or split banner.
+
+## 5C. Approved v1.0.4 production clarification
+
+`UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md` supersedes the visible first-page, continuation-header, status-mark, and footer details in v1.0.3. It establishes one cross-role first-page banner, generic role-level continuation headers, location-only banner subtitles, role-plus-position footers, and complete separation of production metadata from ordinary printable pages. Applying the change to an existing v1.0 master creates a preserved v1.1 successor rather than overwriting v1.0.
+
 ## 6. Version record
 
-- **v1.3:** Carries forward all v1.2 rules and adds the completed-exemplar Answer Key requirement.
+- **v1.3:** Carries forward all v1.2 rules and adds the completed-exemplar Answer Key requirement. Approved production amendments listed in Section 1 remain cumulative.
 - **v1.2:** Added task-reference parity, Teacher task-reference emphasis, and Teacher production-metadata visibility rules while retaining prior curriculum and publishing standards.
 - **v1.1:** Clarified that extended-response boxes are blank and unruled.
 - **v1.0:** Established the initial approved governing standard.

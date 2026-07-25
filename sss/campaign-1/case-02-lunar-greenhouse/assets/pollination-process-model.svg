@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Pollination-to-fruit-set process model</title>
+  <desc id="desc">Six connected stages: viable pollen in anthers, physical agitation, pollen reaches stigma, pollen tube growth, fertilization, and fruit set. Stage two is marked as the failed step in the lunar greenhouse.</desc>
+  <defs>
+    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#65727b" stroke-width="3"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#24333b"/></marker>
+    <style>
+      .box{fill:#fff;stroke:#24333b;stroke-width:3;rx:5}.failed{fill:url(#hatch);stroke:#111;stroke-width:5;stroke-dasharray:12 7}.num{font:700 26px Inter,Arial,sans-serif;fill:#fff}.num-bg{fill:#33596e}.label{font:700 22px Inter,Arial,sans-serif;fill:#17242a}.sub{font:500 17px Inter,Arial,sans-serif;fill:#46535a}.arrow{stroke:#24333b;stroke-width:4;fill:none;marker-end:url(#arrow)}.tag{font:700 15px 'JetBrains Mono',monospace;letter-spacing:1px}.failtag{fill:#111}.key{fill:#fff;stroke:#111;stroke-width:2}
+    </style>
+  </defs>
+  <rect width="1200" height="420" fill="#fff"/>
+  <text x="30" y="42" class="tag">CURRICULUM-ORIGINAL PROCESS SCHEMATIC · READ LEFT TO RIGHT</text>
+  <g transform="translate(28,90)">
+    <g transform="translate(0,0)"><rect class="box" width="170" height="170"/><circle class="num-bg" cx="30" cy="30" r="22"/><text class="num" x="23" y="39">1</text><text class="label" x="18" y="78">Viable pollen</text><text class="label" x="18" y="106">in anthers</text><text class="sub" x="18" y="142">Working in case</text></g>
+    <path class="arrow" d="M174 85 H202"/>
+    <g transform="translate(205,0)"><rect class="box failed" width="170" height="170"/><circle class="num-bg" cx="30" cy="30" r="22"/><text class="num" x="23" y="39">2</text><text class="label" x="18" y="78">Physical</text><text class="label" x="18" y="106">agitation</text><rect class="key" x="18" y="127" width="134" height="28"/><text class="tag failtag" x="28" y="147">FAILED STEP</text></g>
+    <path class="arrow" d="M379 85 H407"/>
+    <g transform="translate(410,0)"><rect class="box" width="170" height="170"/><circle class="num-bg" cx="30" cy="30" r="22"/><text class="num" x="23" y="39">3</text><text class="label" x="18" y="78">Pollen reaches</text><text class="label" x="18" y="106">stigma</text><text class="sub" x="18" y="142">Interrupted</text></g>
+    <path class="arrow" d="M584 85 H612"/>
+    <g transform="translate(615,0)"><rect class="box" width="170" height="170"/><circle class="num-bg" cx="30" cy="30" r="22"/><text class="num" x="23" y="39">4</text><text class="label" x="18" y="78">Pollen tube</text><text class="label" x="18" y="106">growth</text><text class="sub" x="18" y="142">Downstream</text></g>
+    <path class="arrow" d="M789 85 H817"/>
+    <g transform="translate(820,0)"><rect class="box" width="170" height="170"/><circle class="num-bg" cx="30" cy="30" r="22"/><text class="num" x="23" y="39">5</text><text class="label" x="18" y="78">Fertilization</text><text class="sub" x="18" y="112">Downstream</text></g>
+    <path class="arrow" d="M994 85 H1022"/>
+    <g transform="translate(1025,0)"><rect class="box" width="145" height="170"/><circle class="num-bg" cx="30" cy="30" r="22"/><text class="num" x="23" y="39">6</text><text class="label" x="18" y="78">Fruit set</text><text class="sub" x="18" y="112">Not reached</text></g>
+  </g>
+  <g transform="translate(30,300)"><rect x="0" y="0" width="1140" height="86" fill="#eef2f3" stroke="#65727b" stroke-width="2"/><text x="20" y="30" class="tag">MODEL READING RULE</text><text x="20" y="59" class="sub">The first failed event blocks later events. A downstream stage may be biologically capable but cannot proceed because the necessary prior event did not occur.</text></g>
+</svg>

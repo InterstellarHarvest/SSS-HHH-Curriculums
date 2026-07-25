@@ -1,0 +1,204 @@
+{
+  "case": "SSS-C1-CASE02",
+  "title": "Lunar Greenhouse",
+  "version": "1.0",
+  "status": "VALIDATION BUILD",
+  "publication_date": "2026-07-24",
+  "game_repository": "InterstellarHarvest/Space-Sprout-Sleuth",
+  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "curriculum_bible": "1.3",
+  "student_identity": "Process Modeler",
+  "task_registry": "source/task-registry.js",
+  "page_counts": {
+    "student": 2,
+    "teacher": 7,
+    "answer": 3,
+    "accessible": 5,
+    "grayscale": 2
+  },
+  "automated_validation": {
+    "static": "94/94 PASS",
+    "browser": "33/33 PASS",
+    "physical_print": "OPEN"
+  },
+  "release_gate": {
+    "may_mark_approved": false,
+    "reason": "Owner physical 100% print testing has not passed."
+  },
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "b4c8aebb8df1a68e0cdad53c505905f99f4e2e0f22e86a92d060868f43d52efa",
+      "bytes": 2070
+    },
+    {
+      "path": "assets/pollination-process-model.svg",
+      "sha256": "e9cd88e390a5649b7e30af5fc7d91fdd34b365163dd019db2f4b7e909f66c609",
+      "bytes": 4048
+    },
+    {
+      "path": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
+      "sha256": "7165bd53011bd555a7f4dec943e2c005dedf4805f1eea3a366350cee6b404807",
+      "bytes": 142529
+    },
+    {
+      "path": "published/OWNER_PRINT_TEST_CHECKLIST.md",
+      "sha256": "1d4a360499f1a590ef89bc1a1a1338f34be6ae9824984420a23c94fe7da62732",
+      "bytes": 1258
+    },
+    {
+      "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.html",
+      "sha256": "b2a12c11f5b0d4d686aa2ec24af7c5a36cdfb62054262d1e8b25aea7ad20a6eb",
+      "bytes": 61137
+    },
+    {
+      "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf",
+      "sha256": "e594342caba13b4d9ec7f2a29c77399135f8018f6e1bb760ea8bdfa78a921b39",
+      "bytes": 167635
+    },
+    {
+      "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.html",
+      "sha256": "2ae2587368c95af625bb1686221361898e32c9f048558c307a7787cb03a19fa0",
+      "bytes": 48331
+    },
+    {
+      "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf",
+      "sha256": "498ba668031a17274fac684f2b040cfe9fa145477f164dff4ff911e1234a3eb5",
+      "bytes": 168097
+    },
+    {
+      "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.html",
+      "sha256": "67ff056c6e10056e197af961317a590dc47f0a1e9c3664aeec1399a2c972f5f6",
+      "bytes": 51408
+    },
+    {
+      "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf",
+      "sha256": "538080601bc4ceb41dfa1996f9a46e58df5ce82528e23ac2c8574b8c212d1efa",
+      "bytes": 162714
+    },
+    {
+      "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html",
+      "sha256": "b02ba3faf3b28034858d3a8c9af2d47af7d8492f5522a9307744ee965f0ee9e0",
+      "bytes": 51399
+    },
+    {
+      "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf",
+      "sha256": "40b8120b2502776635a0fce0a79f1019ccba5177114638e9a4561ee17bdef254",
+      "bytes": 162790
+    },
+    {
+      "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html",
+      "sha256": "f7f32e510f405c45b5a0b0d1de4aafeeea3dbd399b9694bc1cc5d5d772f56647",
+      "bytes": 65074
+    },
+    {
+      "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf",
+      "sha256": "80fcb77463376c1b95f4a3d998a23afc3187c3207066e507b4785d8bad0ce9b5",
+      "bytes": 183954
+    },
+    {
+      "path": "reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md",
+      "sha256": "4b0e58a2be8f21b8d28ce9f76b83da2b47d9ff6e08a47914fb854ef08ba7ec49",
+      "bytes": 1515
+    },
+    {
+      "path": "reports/CASE02_RUNTIME_CONTENT_AUDIT.md",
+      "sha256": "cf4a0473bf767883a5adf3f60461cd71ba484f6043028a7195e7434b8e1841b4",
+      "bytes": 5023
+    },
+    {
+      "path": "reports/CASE02_STRUCTURAL_STRESS_TEST_REPORT.md",
+      "sha256": "4d940e18277ea3217787abf9e19fb18ceb212092e244205488584389d75222be",
+      "bytes": 9195
+    },
+    {
+      "path": "reports/CASE02_VALIDATION_REPORT.md",
+      "sha256": "953dbc6a1862daf27a7e8d5f463a62bb02d88fe4ec013fb04bfd6b5c9b39af68",
+      "bytes": 4241
+    },
+    {
+      "path": "source/answer-key.md",
+      "sha256": "0cfe5eb9ceacdf9118b607f4707600b5da97ac98049ac25d1ac7358f197918c5",
+      "bytes": 5840
+    },
+    {
+      "path": "source/figure-research-and-rights.md",
+      "sha256": "6107f2a902b745df062e4d2c2af298861a19047017e68d3a70772633a876dccf",
+      "bytes": 1318
+    },
+    {
+      "path": "source/formal-rubric.md",
+      "sha256": "4e32ebff501a557a1161ff8d1bb42c59ab3f2994245c1d3e7f101b3da9c15efc",
+      "bytes": 2766
+    },
+    {
+      "path": "source/lesson-plan.md",
+      "sha256": "ef2f3da0e68ce1a5311e8c29f9d21b37cb57f3b79006b343512738c24b68dbd3",
+      "bytes": 8605
+    },
+    {
+      "path": "source/quick-rubric.md",
+      "sha256": "4ffa261d51615328d52c129563c4bb1a1e958a2c45c4d815c843ec967e463363",
+      "bytes": 1222
+    },
+    {
+      "path": "source/quick-start.md",
+      "sha256": "94c68ab69b30bd41295a7d1dd657509f5244d3e20b553280bf7f06ab7e069974",
+      "bytes": 2441
+    },
+    {
+      "path": "source/references.md",
+      "sha256": "c7a71843afc111278a568360260dd782fd19f92e5faef7a56023a5c22e0b76c6",
+      "bytes": 3806
+    },
+    {
+      "path": "source/student-mission-sheet.md",
+      "sha256": "f50cda3f2697dd9d546fadc14ace6ada5832a60491390e3fe2706d7ca8cdcb71",
+      "bytes": 4164
+    },
+    {
+      "path": "source/task-registry.js",
+      "sha256": "4ac6a5e90d5d3a72ab1734c4458efd34c7d069a14840aa7c98e36a11c994ee1a",
+      "bytes": 4013
+    },
+    {
+      "path": "source/teacher-case-analysis.md",
+      "sha256": "8b76270c2e467f779c5600c32e7a29280e02de2053375023efbf7d1a620e10cd",
+      "bytes": 4051
+    },
+    {
+      "path": "source/technical-notes.md",
+      "sha256": "2b48edba96244f7d54c10b7342dabe32a6bcdb09e05367c45e1e1847e4c3d199",
+      "bytes": 4943
+    },
+    {
+      "path": "validation-artifacts/README.md",
+      "sha256": "dbc01aa42f028d51c2e15d06ab4f3386a945fe09e6a627b9e1bd2e87ab6113ae",
+      "bytes": 957
+    },
+    {
+      "path": "validation-artifacts/requirements.txt",
+      "sha256": "adec0fe08eb9a272fc958ea9cc2ea62ab9c3de89b8312bff9bdc23d4ab8c3922",
+      "bytes": 32
+    },
+    {
+      "path": "validation-artifacts/validate_case02.py",
+      "sha256": "849516e1cf052ae4b09c99fd2bd7b4854db4162f3e86ba6ae34f072145169f7b",
+      "bytes": 21702
+    }
+  ],
+  "governing_amendments": [
+    "shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md",
+    "shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md",
+    "shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md",
+    "shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md",
+    "shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md",
+    "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md",
+    "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md"
+  ],
+  "shared_rule_files": {
+    "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md": "e266ee88433c5907c5114f852b93322667cac354d3f39900d29fd7a56342c060",
+    "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md": "6622497a2602373a46a37914d283897d90f3a77b91181b59fd1b004db3942bef",
+    "shared/curriculum-bible/SSS_HHH_CURRICULUM_BIBLE_v1.3.md": "4f645bf27b0937936f3e8aedf17287c0938b7e1830c3c94ef558383a62b34167"
+  }
+}

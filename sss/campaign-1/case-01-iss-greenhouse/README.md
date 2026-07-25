@@ -56,3 +56,13 @@ The harness validates role counts, overflow, accessibility basics, persistence, 
 ## Release gate
 
 The owner completed physical print testing at 100% scale on 2026-07-24. Case 01 is the approved stable v1.0 release; the visible status is **APPROVED** and no release blockers remain.
+
+<!-- V1.1_PAGE_IDENTITY_START -->
+## Current v1.1 review master
+
+`master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`
+
+The approved v1.0 master and its fixed outputs remain unchanged as the historical release. The v1.1 master applies the universal printable page identity system: location-only subtitle, institutional identity at right, generic continuation headers, role-plus-position footers, and no visible production metadata.
+
+Fixed v1.1 PDFs are not committed during review. Generate temporary test output only when needed; publish fixed files after automated review and owner physical print testing.
+<!-- V1.1_PAGE_IDENTITY_END -->

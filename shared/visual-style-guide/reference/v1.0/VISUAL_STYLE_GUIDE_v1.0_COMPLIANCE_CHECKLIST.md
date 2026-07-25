@@ -204,3 +204,14 @@
 | Accessibility passed | |
 | Attribution passed | |
 | Approved for release | |
+
+<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_START -->
+## Universal printable page identity — v1.0.4
+
+- [ ] First-page banner uses left accent rail, title/location at left, and institution/role at right.
+- [ ] Subtitle contains campaign, case, and location only.
+- [ ] Continuation header is generic within the role and places institutional identity at right.
+- [ ] Printable footer contains only the role and `N of total`.
+- [ ] No printable approval, validation, version, baseline, date, or document-code metadata appears.
+- [ ] A v1.0 master remains preserved when a v1.1 successor is created.
+<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_END -->

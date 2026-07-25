@@ -1,0 +1,10 @@
+{
+  "case": "SSS-C1-CASE01",
+  "current_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+  "historical_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
+  "master_version": "1.1",
+  "source_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
+  "v1_1_sha256": "27fbf6d5ea4ce8ae405f7890d12d295035e98330b2b5a66c67eedcea9c91802d",
+  "governing_amendment": "shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
+  "fixed_output_policy": "No new v1.1 PDFs committed during review."
+}

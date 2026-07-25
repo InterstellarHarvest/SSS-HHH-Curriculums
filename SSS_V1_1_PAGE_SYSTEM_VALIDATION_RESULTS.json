@@ -1,0 +1,1251 @@
+{
+  "pass": true,
+  "checks": [
+    {
+      "name": "case01 v1.1 exists",
+      "pass": true,
+      "detail": "/Users/MrDashiki/Experiments & Projects/SSS-HHH-Curriculums/sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html"
+    },
+    {
+      "name": "case01 v1.1 metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 no visible production status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 status words absent from printable pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student pages present",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "case01 student first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student footer 1",
+      "pass": true,
+      "detail": "Student Mission 1 of 3"
+    },
+    {
+      "name": "case01 student footer 2",
+      "pass": true,
+      "detail": "Student Mission 2 of 3"
+    },
+    {
+      "name": "case01 student continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student footer 3",
+      "pass": true,
+      "detail": "Student Mission 3 of 3"
+    },
+    {
+      "name": "case01 student continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 student continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher pages present",
+      "pass": true,
+      "detail": "7"
+    },
+    {
+      "name": "case01 teacher first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher footer 1",
+      "pass": true,
+      "detail": "Teacher Guide 1 of 7"
+    },
+    {
+      "name": "case01 teacher footer 2",
+      "pass": true,
+      "detail": "Teacher Guide 2 of 7"
+    },
+    {
+      "name": "case01 teacher continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher footer 3",
+      "pass": true,
+      "detail": "Teacher Guide 3 of 7"
+    },
+    {
+      "name": "case01 teacher continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher footer 4",
+      "pass": true,
+      "detail": "Teacher Guide 4 of 7"
+    },
+    {
+      "name": "case01 teacher continuation 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation title 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation role 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution on right 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher continuation three-line lockup 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher footer 5",
+      "pass": true,
+      "detail": "Teacher Guide 5 of 7"
+    },
+    {
+      "name": "case01 teacher continuation 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation title 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation role 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution on right 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher continuation three-line lockup 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher footer 6",
+      "pass": true,
+      "detail": "Teacher Guide 6 of 7"
+    },
+    {
+      "name": "case01 teacher continuation 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation title 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation role 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution on right 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher continuation three-line lockup 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher footer 7",
+      "pass": true,
+      "detail": "Teacher Guide 7 of 7"
+    },
+    {
+      "name": "case01 teacher continuation 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation title 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher generic continuation role 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher institution on right 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 teacher continuation three-line lockup 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer pages present",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "case01 answer first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer footer 1",
+      "pass": true,
+      "detail": "Answer Key 1 of 3"
+    },
+    {
+      "name": "case01 answer footer 2",
+      "pass": true,
+      "detail": "Answer Key 2 of 3"
+    },
+    {
+      "name": "case01 answer continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer footer 3",
+      "pass": true,
+      "detail": "Answer Key 3 of 3"
+    },
+    {
+      "name": "case01 answer continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 answer continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible pages present",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "case01 accessible first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible footer 1",
+      "pass": true,
+      "detail": "Accessible Mission 1 of 6"
+    },
+    {
+      "name": "case01 accessible footer 2",
+      "pass": true,
+      "detail": "Accessible Mission 2 of 6"
+    },
+    {
+      "name": "case01 accessible continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible footer 3",
+      "pass": true,
+      "detail": "Accessible Mission 3 of 6"
+    },
+    {
+      "name": "case01 accessible continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible footer 4",
+      "pass": true,
+      "detail": "Accessible Mission 4 of 6"
+    },
+    {
+      "name": "case01 accessible continuation 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation title 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation role 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible institution on right 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible continuation three-line lockup 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible footer 5",
+      "pass": true,
+      "detail": "Accessible Mission 5 of 6"
+    },
+    {
+      "name": "case01 accessible continuation 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation title 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation role 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible institution on right 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible continuation three-line lockup 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible footer 6",
+      "pass": true,
+      "detail": "Accessible Mission 6 of 6"
+    },
+    {
+      "name": "case01 accessible continuation 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation title 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible generic continuation role 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible institution on right 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 accessible continuation three-line lockup 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 no legacy Page footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 no top banner accent rule in v1.1 CSS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case01 compact banner geometry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 v1.1 exists",
+      "pass": true,
+      "detail": "/Users/MrDashiki/Experiments & Projects/SSS-HHH-Curriculums/sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html"
+    },
+    {
+      "name": "case02 v1.1 metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 no visible production status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 status words absent from printable pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student pages present",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "name": "case02 student first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student footer 1",
+      "pass": true,
+      "detail": "Student Mission 1 of 2"
+    },
+    {
+      "name": "case02 student footer 2",
+      "pass": true,
+      "detail": "Student Mission 2 of 2"
+    },
+    {
+      "name": "case02 student continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 student continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher pages present",
+      "pass": true,
+      "detail": "7"
+    },
+    {
+      "name": "case02 teacher first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher footer 1",
+      "pass": true,
+      "detail": "Teacher Guide 1 of 7"
+    },
+    {
+      "name": "case02 teacher footer 2",
+      "pass": true,
+      "detail": "Teacher Guide 2 of 7"
+    },
+    {
+      "name": "case02 teacher continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher footer 3",
+      "pass": true,
+      "detail": "Teacher Guide 3 of 7"
+    },
+    {
+      "name": "case02 teacher continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher footer 4",
+      "pass": true,
+      "detail": "Teacher Guide 4 of 7"
+    },
+    {
+      "name": "case02 teacher continuation 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation title 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation role 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution on right 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher continuation three-line lockup 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher footer 5",
+      "pass": true,
+      "detail": "Teacher Guide 5 of 7"
+    },
+    {
+      "name": "case02 teacher continuation 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation title 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation role 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution on right 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher continuation three-line lockup 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher footer 6",
+      "pass": true,
+      "detail": "Teacher Guide 6 of 7"
+    },
+    {
+      "name": "case02 teacher continuation 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation title 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation role 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution on right 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher continuation three-line lockup 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher footer 7",
+      "pass": true,
+      "detail": "Teacher Guide 7 of 7"
+    },
+    {
+      "name": "case02 teacher continuation 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation title 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher generic continuation role 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher institution on right 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 teacher continuation three-line lockup 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer pages present",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "case02 answer first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer footer 1",
+      "pass": true,
+      "detail": "Answer Key 1 of 3"
+    },
+    {
+      "name": "case02 answer footer 2",
+      "pass": true,
+      "detail": "Answer Key 2 of 3"
+    },
+    {
+      "name": "case02 answer continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer footer 3",
+      "pass": true,
+      "detail": "Answer Key 3 of 3"
+    },
+    {
+      "name": "case02 answer continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 answer continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible pages present",
+      "pass": true,
+      "detail": "5"
+    },
+    {
+      "name": "case02 accessible first banner",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible first title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible subtitle",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible identity right structure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible institution three-line lockup",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible role label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible footer 1",
+      "pass": true,
+      "detail": "Accessible Mission 1 of 5"
+    },
+    {
+      "name": "case02 accessible footer 2",
+      "pass": true,
+      "detail": "Accessible Mission 2 of 5"
+    },
+    {
+      "name": "case02 accessible continuation 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation title 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation role 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible institution on right 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible continuation three-line lockup 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible footer 3",
+      "pass": true,
+      "detail": "Accessible Mission 3 of 5"
+    },
+    {
+      "name": "case02 accessible continuation 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation title 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation role 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible institution on right 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible continuation three-line lockup 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible footer 4",
+      "pass": true,
+      "detail": "Accessible Mission 4 of 5"
+    },
+    {
+      "name": "case02 accessible continuation 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation title 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation role 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible institution on right 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible continuation three-line lockup 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible footer 5",
+      "pass": true,
+      "detail": "Accessible Mission 5 of 5"
+    },
+    {
+      "name": "case02 accessible continuation 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation title 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible generic continuation role 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible institution on right 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 accessible continuation three-line lockup 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 no legacy Page footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 no top banner accent rule in v1.1 CSS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case02 compact banner geometry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v1.0.4 amendment exists",
+      "pass": true,
+      "detail": "/Users/MrDashiki/Experiments & Projects/SSS-HHH-Curriculums/shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md"
+    },
+    {
+      "name": "amendment complete",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Bible references v1.0.4",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}
