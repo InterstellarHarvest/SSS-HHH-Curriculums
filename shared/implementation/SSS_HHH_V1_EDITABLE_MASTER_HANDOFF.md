@@ -406,8 +406,6 @@ Case 01 is intentionally a self-contained HTML proof. After one additional SSS c
 
 Do not extract Case 01 vocabulary, prompts, tables, answers, or timing into framework code.
 
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_START -->
-## Universal printable page identity — v1.0.4
+## Balanced Page Fill and Vertical Rhythm v1.0.2 implementation note
 
-This document now follows `UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`: first-page title/location copy at left with institutional identity at right; generic role-level continuation headers; role-plus-position printable footers; no visible production status, version, baseline, date, or document code; and v1.1 successor files rather than overwriting v1.0 masters.
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_END -->
+Production masters and derived role exports must apply the shared balanced-fill clarification without changing the approved typography or page-identity architecture. Page-specific CSS may add restrained task separation and proportionate height to genuinely multi-line work areas. Validation should record bottom reserve, major-group spacing, and expected-response sizing, but should fail only when meaningful surplus space coexists with compressed major tasks or undersized multi-line work. Compact short-answer fields and intentional reserve are valid. Human design judgment remains the release authority.

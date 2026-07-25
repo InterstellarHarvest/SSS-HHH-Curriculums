@@ -8,7 +8,9 @@
   "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
   "curriculum_bible": "1.3",
   "student_identity": "Process Modeler",
+  "master": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
   "task_registry": "source/task-registry.js",
+  "balanced_page_fill": "1.0.2",
   "page_counts": {
     "student": 2,
     "teacher": 7,
@@ -17,19 +19,48 @@
     "grayscale": 2
   },
   "automated_validation": {
-    "static": "94/94 PASS",
-    "browser": "33/33 PASS",
+    "status": "PASS",
+    "static": "38/38 PASS",
+    "browser": "16/16 PASS",
+    "pdf": "5/5 PASS",
     "physical_print": "OPEN"
   },
   "release_gate": {
     "may_mark_approved": false,
     "reason": "Owner physical 100% print testing has not passed."
   },
+  "governing_amendments": [
+    "shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md",
+    "shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md",
+    "shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md",
+    "shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md",
+    "shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md",
+    "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md",
+    "shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md"
+  ],
+  "excluded_page_identity_proposals": [
+    "SSS_V1_1_PAGE_SYSTEM_VALIDATION_RESULTS.json",
+    "review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.html",
+    "review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.png",
+    "review/continuation-header.png",
+    "review/first-page-banner.png",
+    "review/minimal-footer.png",
+    "scripts/apply-sss-v1.1-page-system.py",
+    "scripts/validate-sss-v1.1-page-system.py",
+    "shared/implementation/SSS_HHH_V1_1_PAGE_IDENTITY_HANDOFF.md",
+    "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md",
+    "shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
+    "sss/campaign-1/case-01-iss-greenhouse/CASE01_V1_1_MASTER_MANIFEST.json",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+    "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1.1_CHANGELOG.md",
+    "sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_1_MASTER_MANIFEST.json",
+    "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html"
+  ],
   "files": [
     {
       "path": "README.md",
-      "sha256": "b4c8aebb8df1a68e0cdad53c505905f99f4e2e0f22e86a92d060868f43d52efa",
-      "bytes": 2070
+      "sha256": "ccb20ad4bdb181eee954cff68edf5398825763c472a0abcae550c14cfa4491b3",
+      "bytes": 929
     },
     {
       "path": "assets/pollination-process-model.svg",
@@ -38,68 +69,78 @@
     },
     {
       "path": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
-      "sha256": "7165bd53011bd555a7f4dec943e2c005dedf4805f1eea3a366350cee6b404807",
-      "bytes": 142529
+      "sha256": "34f11e497171550afe906fc661692a3fde88eaf3ece4627891fe6892377cbf87",
+      "bytes": 147199
     },
     {
       "path": "published/OWNER_PRINT_TEST_CHECKLIST.md",
-      "sha256": "1d4a360499f1a590ef89bc1a1a1338f34be6ae9824984420a23c94fe7da62732",
-      "bytes": 1258
+      "sha256": "221e2b43a128a41b1e64af9370e185a93e3058d2b10d24477021d9bcd975b7bf",
+      "bytes": 1605
+    },
+    {
+      "path": "published/README.md",
+      "sha256": "437a9be25ff933790a653400ef26862dd9ac314a5bf98144ecb2437ec561fdd6",
+      "bytes": 258
     },
     {
       "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.html",
-      "sha256": "b2a12c11f5b0d4d686aa2ec24af7c5a36cdfb62054262d1e8b25aea7ad20a6eb",
-      "bytes": 61137
+      "sha256": "290d9f33062a4eff6dd327f196a5ed005b21ad3e42a8958bd80f814daec462b9",
+      "bytes": 67049
     },
     {
       "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "e594342caba13b4d9ec7f2a29c77399135f8018f6e1bb760ea8bdfa78a921b39",
-      "bytes": 167635
+      "sha256": "89b73ead77519bdf8ad643d4c71621c897ea7fcd368dfe40f8486237163f125d",
+      "bytes": 223808
     },
     {
       "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.html",
-      "sha256": "2ae2587368c95af625bb1686221361898e32c9f048558c307a7787cb03a19fa0",
-      "bytes": 48331
+      "sha256": "7cc1200a4113430b99c0a6b70fae7662717122e195ce150912665293c865cdc7",
+      "bytes": 53688
     },
     {
       "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf",
-      "sha256": "498ba668031a17274fac684f2b040cfe9fa145477f164dff4ff911e1234a3eb5",
-      "bytes": 168097
+      "sha256": "607355ad11423594b334feae2bcba64e60a07055898bf9c4ebf75fc4ed7e9d67",
+      "bytes": 300713
     },
     {
       "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.html",
-      "sha256": "67ff056c6e10056e197af961317a590dc47f0a1e9c3664aeec1399a2c972f5f6",
-      "bytes": 51408
+      "sha256": "f98e19a6156a21d370678f32b1564ea3107f155c91bc840c4cb98a6edc63fd65",
+      "bytes": 57260
     },
     {
       "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "538080601bc4ceb41dfa1996f9a46e58df5ce82528e23ac2c8574b8c212d1efa",
-      "bytes": 162714
+      "sha256": "e8ac1612bec8ea2959bf7f2f27d29d530242324a7052f5ae12461d0dcd7108e3",
+      "bytes": 319944
     },
     {
       "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html",
-      "sha256": "b02ba3faf3b28034858d3a8c9af2d47af7d8492f5522a9307744ee965f0ee9e0",
-      "bytes": 51399
+      "sha256": "4d76bb2fed26d8b5be61d4cb956d4b3fd2cfcca0dbdb687a9f142b3e4d423f4b",
+      "bytes": 57213
     },
     {
       "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "40b8120b2502776635a0fce0a79f1019ccba5177114638e9a4561ee17bdef254",
-      "bytes": 162790
+      "sha256": "19fbedae1319a29155c49e2b6970acfd4264e9604b9361e000c542d904271920",
+      "bytes": 320034
     },
     {
       "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html",
-      "sha256": "f7f32e510f405c45b5a0b0d1de4aafeeea3dbd399b9694bc1cc5d5d772f56647",
-      "bytes": 65074
+      "sha256": "bf3b5593161d67cfa78ae2bfce16ea9b1c0c31672453f84a937e1e201713f41c",
+      "bytes": 70489
     },
     {
       "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf",
-      "sha256": "80fcb77463376c1b95f4a3d998a23afc3187c3207066e507b4785d8bad0ce9b5",
-      "bytes": 183954
+      "sha256": "3a2735d98e401699be1719c640a5f2fd61c39d3f842506cb5656fa2e212d53ed",
+      "bytes": 249753
     },
     {
       "path": "reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md",
-      "sha256": "4b0e58a2be8f21b8d28ce9f76b83da2b47d9ff6e08a47914fb854ef08ba7ec49",
-      "bytes": 1515
+      "sha256": "7d408bfa0adf4a3309ae9a531fbffbe35ecbdff062a5a5b7b81ab2f91aa9bf5c",
+      "bytes": 688
+    },
+    {
+      "path": "reports/CASE02_MERGE_REPORT.md",
+      "sha256": "457669e871e200f1ddc4223d059f0f37b0e4420e45afe5feba7e7dcff8cc771d",
+      "bytes": 5758
     },
     {
       "path": "reports/CASE02_RUNTIME_CONTENT_AUDIT.md",
@@ -108,13 +149,13 @@
     },
     {
       "path": "reports/CASE02_STRUCTURAL_STRESS_TEST_REPORT.md",
-      "sha256": "4d940e18277ea3217787abf9e19fb18ceb212092e244205488584389d75222be",
-      "bytes": 9195
+      "sha256": "f66013554ab15d9610160801c689a09e58eccbaf4fa45bb4dbbb43a7c6124e73",
+      "bytes": 11238
     },
     {
       "path": "reports/CASE02_VALIDATION_REPORT.md",
-      "sha256": "953dbc6a1862daf27a7e8d5f463a62bb02d88fe4ec013fb04bfd6b5c9b39af68",
-      "bytes": 4241
+      "sha256": "193a7a618d797b0dfd030a8733e9181548b730795f5bc262398a76c649c9c0b0",
+      "bytes": 921
     },
     {
       "path": "source/answer-key.md",
@@ -168,37 +209,58 @@
     },
     {
       "path": "source/technical-notes.md",
-      "sha256": "2b48edba96244f7d54c10b7342dabe32a6bcdb09e05367c45e1e1847e4c3d199",
-      "bytes": 4943
+      "sha256": "ef0c00bc716321f5566f28c0157bcf42f5896c5e6f004673794d7c0b4a609e39",
+      "bytes": 5581
+    },
+    {
+      "path": "validation-artifacts/CASE02_PDF_PREFLIGHT.json",
+      "sha256": "b0f7fe62daef7dd3a089cd3135f514edcb05f67efd6172f01e221cdf55424dbd",
+      "bytes": 2572
+    },
+    {
+      "path": "validation-artifacts/CASE02_VALIDATION_RESULTS.json",
+      "sha256": "035ce262bd2b07682a09f5728995e332ab0a6c3fd9d48f3858b1a75e88bad7f2",
+      "bytes": 23465
     },
     {
       "path": "validation-artifacts/README.md",
-      "sha256": "dbc01aa42f028d51c2e15d06ab4f3386a945fe09e6a627b9e1bd2e87ab6113ae",
-      "bytes": 957
+      "sha256": "f764402258e9155d2ddd7d301434fc3d7f9a9f3e0f603b2df7b6220b646bcf3e",
+      "bytes": 448
+    },
+    {
+      "path": "validation-artifacts/rendered-review/accessible-contact-sheet.png",
+      "sha256": "86224d42fe6ad889008f6983123f5ac2970fa5d4d668945c60f02f35b84df3c9",
+      "bytes": 169418
+    },
+    {
+      "path": "validation-artifacts/rendered-review/answer-contact-sheet.png",
+      "sha256": "8598dff9b990ee5bdb88056374cd935c129e79a84bb61407a37e19562bdacdbe",
+      "bytes": 200168
+    },
+    {
+      "path": "validation-artifacts/rendered-review/grayscale-contact-sheet.png",
+      "sha256": "ff6b8d7942a4729b61c2b65aa68bb2677f672efd9dab8a9b3b84821bced11ebd",
+      "bytes": 137382
+    },
+    {
+      "path": "validation-artifacts/rendered-review/student-contact-sheet.png",
+      "sha256": "f0f08b13440866412de4853e82991eac3ed32f380af56fca68cd02dab3b18d9f",
+      "bytes": 137060
+    },
+    {
+      "path": "validation-artifacts/rendered-review/teacher-contact-sheet.png",
+      "sha256": "da51b9a4949039553ac4870574583040394f922c92501299157bd4c6eb0d59f9",
+      "bytes": 464824
     },
     {
       "path": "validation-artifacts/requirements.txt",
-      "sha256": "adec0fe08eb9a272fc958ea9cc2ea62ab9c3de89b8312bff9bdc23d4ab8c3922",
-      "bytes": 32
+      "sha256": "744ab83479a8625677b5dcc42c651c5e40336fd561369841a9da95f8c240db8c",
+      "bytes": 47
     },
     {
       "path": "validation-artifacts/validate_case02.py",
-      "sha256": "849516e1cf052ae4b09c99fd2bd7b4854db4162f3e86ba6ae34f072145169f7b",
-      "bytes": 21702
+      "sha256": "3194f34333bf7729f348850afb31ed03bd8d447c4e47ea67d23f220f80009a7c",
+      "bytes": 27820
     }
-  ],
-  "governing_amendments": [
-    "shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md",
-    "shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md",
-    "shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md",
-    "shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md",
-    "shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md",
-    "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md",
-    "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md"
-  ],
-  "shared_rule_files": {
-    "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md": "e266ee88433c5907c5114f852b93322667cac354d3f39900d29fd7a56342c060",
-    "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md": "6622497a2602373a46a37914d283897d90f3a77b91181b59fd1b004db3942bef",
-    "shared/curriculum-bible/SSS_HHH_CURRICULUM_BIBLE_v1.3.md": "4f645bf27b0937936f3e8aedf17287c0938b7e1830c3c94ef558383a62b34167"
-  }
+  ]
 }

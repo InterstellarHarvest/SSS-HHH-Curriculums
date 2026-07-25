@@ -1,45 +1,41 @@
 {
   "case": "SSS-C1-CASE02",
-  "master_version": "1.1",
+  "master_version": "1.0",
+  "balanced_page_fill": "1.0.2",
   "pass": true,
   "static_checks": [
     {
-      "name": "master v1.1",
+      "name": "v1.0 master metadata",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "historical v1.0 preserved",
+      "name": "balanced fill metadata",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "review status metadata",
+      "name": "single current Case 02 master",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "no printable status words",
+      "name": "single current Case 02 manifest",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "location-only subtitle",
+      "name": "universal identity excluded",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "three-line first-page institution",
+      "name": "approved v1.0 architecture retained",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "three-line continuation institution",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "compact header CSS",
+      "name": "balanced CSS present",
       "pass": true,
       "detail": ""
     },
@@ -49,184 +45,34 @@
       "detail": ""
     },
     {
+      "name": "no unsupported frequency or airflow values",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "no Case 01 evidence matrix",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "no unsupported frequency/airflow values",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "student count",
+      "name": "student page count",
       "pass": true,
       "detail": "2"
     },
     {
-      "name": "student footer 1",
-      "pass": true,
-      "detail": "Student Mission 1 of 2"
-    },
-    {
-      "name": "student footer 2",
-      "pass": true,
-      "detail": "Student Mission 2 of 2"
-    },
-    {
-      "name": "student generic continuation 2",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "teacher count",
+      "name": "teacher page count",
       "pass": true,
       "detail": "7"
     },
     {
-      "name": "teacher footer 1",
-      "pass": true,
-      "detail": "Teacher Guide 1 of 7"
-    },
-    {
-      "name": "teacher footer 2",
-      "pass": true,
-      "detail": "Teacher Guide 2 of 7"
-    },
-    {
-      "name": "teacher generic continuation 2",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "teacher footer 3",
-      "pass": true,
-      "detail": "Teacher Guide 3 of 7"
-    },
-    {
-      "name": "teacher generic continuation 3",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "teacher footer 4",
-      "pass": true,
-      "detail": "Teacher Guide 4 of 7"
-    },
-    {
-      "name": "teacher generic continuation 4",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "teacher footer 5",
-      "pass": true,
-      "detail": "Teacher Guide 5 of 7"
-    },
-    {
-      "name": "teacher generic continuation 5",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "teacher footer 6",
-      "pass": true,
-      "detail": "Teacher Guide 6 of 7"
-    },
-    {
-      "name": "teacher generic continuation 6",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "teacher footer 7",
-      "pass": true,
-      "detail": "Teacher Guide 7 of 7"
-    },
-    {
-      "name": "teacher generic continuation 7",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "answer count",
+      "name": "answer page count",
       "pass": true,
       "detail": "3"
     },
     {
-      "name": "answer footer 1",
-      "pass": true,
-      "detail": "Answer Key 1 of 3"
-    },
-    {
-      "name": "answer footer 2",
-      "pass": true,
-      "detail": "Answer Key 2 of 3"
-    },
-    {
-      "name": "answer generic continuation 2",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "answer footer 3",
-      "pass": true,
-      "detail": "Answer Key 3 of 3"
-    },
-    {
-      "name": "answer generic continuation 3",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "accessible count",
+      "name": "accessible page count",
       "pass": true,
       "detail": "5"
-    },
-    {
-      "name": "accessible footer 1",
-      "pass": true,
-      "detail": "Accessible Mission 1 of 5"
-    },
-    {
-      "name": "accessible footer 2",
-      "pass": true,
-      "detail": "Accessible Mission 2 of 5"
-    },
-    {
-      "name": "accessible generic continuation 2",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "accessible footer 3",
-      "pass": true,
-      "detail": "Accessible Mission 3 of 5"
-    },
-    {
-      "name": "accessible generic continuation 3",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "accessible footer 4",
-      "pass": true,
-      "detail": "Accessible Mission 4 of 5"
-    },
-    {
-      "name": "accessible generic continuation 4",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "accessible footer 5",
-      "pass": true,
-      "detail": "Accessible Mission 5 of 5"
-    },
-    {
-      "name": "accessible generic continuation 5",
-      "pass": true,
-      "detail": ""
     },
     {
       "name": "student task parity",
@@ -244,19 +90,34 @@
       "detail": "{3: 'Model the pollination sequence', 4: 'Identify the failed step', 5: 'Test the competing explanations', 6: 'Diagnose and reject an alternative', 7: 'Claim-Evidence-Reasoning', 8: 'Design a reliable pollination support', 9: 'Exit ticket'}"
     },
     {
-      "name": "student vocabulary alphabetical",
+      "name": "task registry agreement",
       "pass": true,
-      "detail": "[]"
+      "detail": "{1: 'Vocabulary', 2: 'Initial thinking', 3: 'Model the pollination sequence', 4: 'Identify the failed step', 5: 'Test the competing explanations', 6: 'Diagnose and reject an alternative', 7: 'Claim-Evidence-Reasoning', 8: 'Design a reliable pollination support', 9: 'Exit ticket'}"
     },
     {
-      "name": "accessible vocabulary alphabetical",
+      "name": "student controlled-source agreement",
       "pass": true,
-      "detail": "[]"
+      "detail": ""
     },
     {
-      "name": "sequence bank shuffled",
+      "name": "answer controlled-source agreement",
       "pass": true,
-      "detail": "['fruit set', 'physical agitation', 'viable pollen in anthers', 'fertilization', 'pollen tube growth', 'pollen reaches stigma']"
+      "detail": ""
+    },
+    {
+      "name": "teacher controlled-source agreement",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher task references exact",
+      "pass": true,
+      "detail": "['2 \u00b7 Initial thinking', '3 \u00b7 Model the pollination sequence', '4 \u00b7 Identify the failed step', '5 \u00b7 Test the competing explanations', '6 \u00b7 Diagnose and reject an alternative', '7 \u00b7 Claim-Evidence-Reasoning', '8 \u00b7 Design a reliable pollination support', '9 \u00b7 Exit ticket', '2 \u00b7 Initial thinking', '3 \u00b7 Model the pollination sequence', '4 \u00b7 Identify the failed step', '5 \u00b7 Test the competing explanations', '6 \u00b7 Diagnose and reject an alternative', '7 \u00b7 Claim-Evidence-Reasoning', '8 \u00b7 Design a reliable pollination support', '9 \u00b7 Exit ticket']"
+    },
+    {
+      "name": "teacher task reference coverage",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "accessible continuous packing",
@@ -264,57 +125,87 @@
       "detail": ""
     },
     {
-      "name": "v1.0.4 amendment",
+      "name": "exact-match word bank complete",
+      "pass": true,
+      "detail": "['fruit set', 'physical agitation', 'viable pollen in anthers', 'fertilization', 'pollen tube growth', 'pollen reaches stigma']"
+    },
+    {
+      "name": "word bank shuffled",
+      "pass": true,
+      "detail": "['fruit set', 'physical agitation', 'viable pollen in anthers', 'fertilization', 'pollen tube growth', 'pollen reaches stigma']"
+    },
+    {
+      "name": "answer key exemplars complete",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "content-regression science assertions",
+      "pass": true,
+      "detail": "['viable pollen remains', 'stigmas remain clean', 'physical agitation', 'pollen-tube growth', 'fertilization', 'fruit set']"
+    },
+    {
+      "name": "balanced amendment exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v1.0.3 excluded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v1.0.4 excluded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "balanced-fill diagnostic has no unresolved flags",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "compact short-answer fields remain compact",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "student PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 2, 'pages': 2, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0]], 'text_characters': 3413, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "teacher PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 7, 'pages': 7, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 10785, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "answer PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 5321, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "accessible PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 5, 'pages': 5, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3741, 'letter_portrait': True, 'pass': True}"
+    },
+    {
+      "name": "grayscale PDF preflight",
+      "pass": true,
+      "detail": "{'file': 'SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 2, 'pages': 2, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0]], 'text_characters': 3413, 'letter_portrait': True, 'pass': True}"
     }
   ],
   "static_failures": [],
   "browser_checks": [
     {
-      "name": "JS initialized",
+      "name": "JavaScript initialized",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "compact first-page header",
+      "name": "student visible page isolation",
       "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "tight identification-to-banner spacing",
-      "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "tight banner-to-content spacing",
-      "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "first-page title is 26pt",
-      "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "subtitle is 9pt",
-      "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "continuation lockup padding",
-      "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "continuation institution left aligned",
-      "pass": true,
-      "detail": "{'headerHeight': 81.140625, 'idGap': 2.875, 'afterGap': 5.28, 'subtitle': '12px', 'hero': '34.6667px', 'continuationGap': 8.625, 'institutionAlign': 'left'}"
-    },
-    {
-      "name": "student visible pages",
-      "pass": true,
-      "detail": ""
+      "detail": "2"
     },
     {
       "name": "student zero overflow",
@@ -322,9 +213,9 @@
       "detail": ""
     },
     {
-      "name": "teacher visible pages",
+      "name": "teacher visible page isolation",
       "pass": true,
-      "detail": ""
+      "detail": "7"
     },
     {
       "name": "teacher zero overflow",
@@ -332,9 +223,9 @@
       "detail": ""
     },
     {
-      "name": "answer visible pages",
+      "name": "answer visible page isolation",
       "pass": true,
-      "detail": ""
+      "detail": "3"
     },
     {
       "name": "answer zero overflow",
@@ -342,9 +233,9 @@
       "detail": ""
     },
     {
-      "name": "accessible visible pages",
+      "name": "accessible visible page isolation",
       "pass": true,
-      "detail": ""
+      "detail": "5"
     },
     {
       "name": "accessible zero overflow",
@@ -352,12 +243,32 @@
       "detail": ""
     },
     {
-      "name": "portable HTML persists response",
+      "name": "fill persistence across role changes",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "reset clears response",
+      "name": "active responses keyboard reachable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selective clearing clears current role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "selective clearing preserves other role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "portable HTML persists fill",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "reset clears stored responses",
       "pass": true,
       "detail": ""
     },
@@ -368,5 +279,566 @@
     }
   ],
   "browser_failures": [],
-  "pdfs_retained": false
+  "balance_metrics": [
+    {
+      "pageId": "student-01",
+      "role": "student",
+      "reserve": 158.8125,
+      "minimumMajorGap": 12,
+      "gaps": [
+        12
+      ],
+      "multi": [
+        {
+          "field": "student-task2",
+          "height": 67.1875,
+          "classes": "response-block medium multi-line-work expected-3-lines"
+        }
+      ],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "student-02",
+      "role": "student",
+      "reserve": 37.59375,
+      "minimumMajorGap": 8,
+      "gaps": [
+        8,
+        9,
+        9
+      ],
+      "multi": [
+        {
+          "field": "student-task6-diagnosis",
+          "height": 46.078125,
+          "classes": "response-block medium multi-line-work expected-2-lines"
+        },
+        {
+          "field": "student-task6-alternative",
+          "height": 46.078125,
+          "classes": "response-block medium multi-line-work expected-2-lines"
+        },
+        {
+          "field": "student-task7-claim",
+          "height": 30.765625,
+          "classes": "response-block cer-claim multi-line-work expected-2-lines"
+        },
+        {
+          "field": "student-task7-evidence",
+          "height": 40.3125,
+          "classes": "response-block cer-evidence multi-line-work expected-3-lines"
+        },
+        {
+          "field": "student-task7-reasoning",
+          "height": 48,
+          "classes": "response-block cer-reasoning multi-line-work expected-3-lines"
+        },
+        {
+          "field": "student-task8-design",
+          "height": 30.765625,
+          "classes": "response-block short multi-line-work design-explanation expected-2-lines"
+        },
+        {
+          "field": "student-task8-check",
+          "height": 30.765625,
+          "classes": "response-block short multi-line-work mechanism-check expected-2-lines"
+        },
+        {
+          "field": "student-task9",
+          "height": 55.671875,
+          "classes": "response-block exit multi-line-work expected-3-lines"
+        }
+      ],
+      "compact": [
+        {
+          "field": "student-task8-criterion",
+          "height": 30.765625
+        },
+        {
+          "field": "student-task8-constraint",
+          "height": 30.765625
+        }
+      ],
+      "meaningfulUnusedSpace": false,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [
+        {
+          "field": "student-task7-claim",
+          "height": 30.765625,
+          "minimum": 36
+        },
+        {
+          "field": "student-task7-evidence",
+          "height": 40.3125,
+          "minimum": 43
+        },
+        {
+          "field": "student-task8-design",
+          "height": 30.765625,
+          "minimum": 36
+        },
+        {
+          "field": "student-task8-check",
+          "height": 30.765625,
+          "minimum": 36
+        }
+      ],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-01",
+      "role": "teacher",
+      "reserve": 238.640625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-02",
+      "role": "teacher",
+      "reserve": 250.234375,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-03",
+      "role": "teacher",
+      "reserve": 268.15625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-04",
+      "role": "teacher",
+      "reserve": 270.40625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-05",
+      "role": "teacher",
+      "reserve": 326.40625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-06",
+      "role": "teacher",
+      "reserve": 327.8125,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "teacher-07",
+      "role": "teacher",
+      "reserve": 295.953125,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "answer-01",
+      "role": "answer",
+      "reserve": 263.765625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "answer-02",
+      "role": "answer",
+      "reserve": 215.609375,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "answer-03",
+      "role": "answer",
+      "reserve": 278.15625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "accessible-01",
+      "role": "accessible",
+      "reserve": 168.5,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [
+        {
+          "field": "accessible-task2",
+          "height": 110.390625,
+          "classes": "response-block accessible-large multi-line-work expected-3-lines"
+        }
+      ],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "accessible-02",
+      "role": "accessible",
+      "reserve": 5.046875,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [
+        {
+          "field": "accessible-task4-observation1",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        },
+        {
+          "field": "accessible-task4-observation2",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        },
+        {
+          "field": "accessible-task4-downstream",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        }
+      ],
+      "compact": [
+        {
+          "field": "accessible-task4-failed",
+          "height": 48
+        }
+      ],
+      "meaningfulUnusedSpace": false,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "accessible-03",
+      "role": "accessible",
+      "reserve": 102.28125,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [
+        {
+          "field": "accessible-task5-regolith-reason",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        },
+        {
+          "field": "accessible-task5-light-reason",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        },
+        {
+          "field": "accessible-task5-pollination-reason",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        },
+        {
+          "field": "accessible-task5-co2-reason",
+          "height": 59.515625,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        }
+      ],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "accessible-04",
+      "role": "accessible",
+      "reserve": 304.90625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [
+        {
+          "field": "accessible-task6-diagnosis",
+          "height": 67.1875,
+          "classes": "response-block accessible-compact multi-line-work expected-3-lines"
+        },
+        {
+          "field": "accessible-task6-alternative",
+          "height": 67.1875,
+          "classes": "response-block accessible-compact multi-line-work expected-3-lines"
+        },
+        {
+          "field": "accessible-task7-claim",
+          "height": 55.671875,
+          "classes": "response-block accessible-compact multi-line-work expected-2-lines"
+        },
+        {
+          "field": "accessible-task7-evidence",
+          "height": 84.46875,
+          "classes": "response-block accessible-tall multi-line-work expected-4-lines"
+        },
+        {
+          "field": "accessible-task7-reasoning",
+          "height": 84.46875,
+          "classes": "response-block accessible-tall multi-line-work expected-4-lines"
+        }
+      ],
+      "compact": [],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    },
+    {
+      "pageId": "accessible-05",
+      "role": "accessible",
+      "reserve": 323.90625,
+      "minimumMajorGap": null,
+      "gaps": [],
+      "multi": [
+        {
+          "field": "accessible-task8-design",
+          "height": 69.109375,
+          "classes": "response-block accessible-medium multi-line-work expected-3-lines"
+        },
+        {
+          "field": "accessible-task8-check",
+          "height": 69.109375,
+          "classes": "response-block accessible-medium multi-line-work expected-3-lines"
+        },
+        {
+          "field": "accessible-task9",
+          "height": 105.59375,
+          "classes": "response-block accessible-large multi-line-work expected-4-lines"
+        }
+      ],
+      "compact": [
+        {
+          "field": "accessible-task8-criterion",
+          "height": 49.90625
+        },
+        {
+          "field": "accessible-task8-constraint",
+          "height": 49.90625
+        }
+      ],
+      "meaningfulUnusedSpace": true,
+      "compressedMajorSpacing": false,
+      "undersizedMultiLine": [],
+      "stretchedCompactFields": [],
+      "automatedFlag": false
+    }
+  ],
+  "balance_validation_note": "Automated flags are diagnostic. Intentional blank space and proportionate compact fields are valid; human design judgment remains final.",
+  "pdf_preflight": {
+    "student": {
+      "file": "SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 2,
+      "pages": 2,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3413,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "teacher": {
+      "file": "SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 7,
+      "pages": 7,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 10785,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "answer": {
+      "file": "SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 3,
+      "pages": 3,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 5321,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "accessible": {
+      "file": "SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 5,
+      "pages": 5,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3741,
+      "letter_portrait": true,
+      "pass": true
+    },
+    "grayscale": {
+      "file": "SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf",
+      "exists": true,
+      "expected_pages": 2,
+      "pages": 2,
+      "encrypted": false,
+      "page_sizes": [
+        [
+          612.0,
+          792.0
+        ],
+        [
+          612.0,
+          792.0
+        ]
+      ],
+      "text_characters": 3413,
+      "letter_portrait": true,
+      "pass": true
+    }
+  },
+  "physical_print_gate": "OPEN"
 }

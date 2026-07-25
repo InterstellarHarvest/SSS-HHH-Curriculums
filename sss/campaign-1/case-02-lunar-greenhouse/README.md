@@ -1,50 +1,25 @@
-# SSS Campaign 1, Case 02 — Lunar Greenhouse
+# SSS Campaign 1, Case 02 - Lunar Greenhouse
 
-This directory is the second validated implementation of the shared SSS-HHH curriculum production system and the first structural stress test of the Case 01 production foundation.
+## Current production track
 
-## Current master
+- Master: `master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`
+- Curriculum version: v1.0
+- Balanced Page Fill and Vertical Rhythm: v1.0.2
+- Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
+- Status: VALIDATION BUILD
 
-`master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html`
+The v1.1 master and universal page-identity experiment are not part of this production track. They remain available through Git history for later design review.
 
-- **Master version:** v1.1 review build
-- **Historical master:** `master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`
-- **Game baseline:** `2a6e8a7`
-- **Curriculum Bible:** v1.3
-- **Student identity:** Process Modeler
-- **Task registry:** `source/task-registry.js` v1.0
+## Outputs
 
-The v1.1 master applies the universal first-page banner, generic continuation header, minimal role-plus-position footer, and printable-metadata separation in `UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`. Production status remains in metadata and repository records rather than on classroom pages.
+- Student Mission: 2 pages
+- Teacher Packet: 7 pages
+- Answer Key: 3 pages
+- Accessible Mission: 5 pages
+- Grayscale Mission: 2 pages
 
-## Controlled source documents
+Run `python validation-artifacts/validate_case02.py` from any directory. The harness regenerates role-isolated HTML/PDF outputs, rendered-review contact sheets, validation evidence, manifest, and checksums.
 
-- `source/student-mission-sheet.md`
-- `source/lesson-plan.md`
-- `source/quick-start.md`
-- `source/teacher-case-analysis.md`
-- `source/answer-key.md`
-- `source/quick-rubric.md`
-- `source/formal-rubric.md`
-- `source/references.md`
-- `source/technical-notes.md`
-- `source/figure-research-and-rights.md`
-- `source/task-registry.js`
+## Release gate
 
-## Original figure
-
-`assets/pollination-process-model.svg`
-
-The figure is curriculum-original. Authoritative diagrams were researched, but no external figure was copied or adapted because reuse rights were not explicit.
-
-## Published outputs
-
-The editable HTML master is the layout authority during review. Fixed PDFs are generated only when needed for testing and are not committed by default. The `published/` folder is reserved for approved release outputs after automated review and owner physical print testing.
-
-## Validation
-
-Run:
-
-```bash
-python validation-artifacts/validate_case02.py
-```
-
-The default harness validates content, role isolation, persistence, selective clearing, reset behavior, portable HTML serialization, accessibility, grayscale behavior, overflow, and the v1.1 page-identity contract without retaining PDFs.
+Automated validation must pass. Final approval still requires owner physical 100% print testing.

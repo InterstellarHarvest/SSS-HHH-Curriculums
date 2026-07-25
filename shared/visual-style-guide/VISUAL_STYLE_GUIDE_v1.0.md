@@ -6623,8 +6623,6 @@ When revised or republished, they should migrate to v1.0.
 
 - Established the initial visual direction.
 
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_START -->
-## Universal printable page identity — v1.0.4
+## Balanced Page Fill and Vertical Rhythm v1.0.2
 
-This document now follows `UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`: first-page title/location copy at left with institutional identity at right; generic role-level continuation headers; role-plus-position printable footers; no visible production status, version, baseline, date, or document code; and v1.1 successor files rather than overwriting v1.0 masters.
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_END -->
+Apply `amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md` when meaningful unused vertical space coexists with compressed major tasks. Prioritize modest task separation, then proportionate growth of genuinely multi-line work areas, then useful internal padding, while preserving intentional bottom reserve. Short-answer, classification, criterion, constraint, and single-line fields remain compact. Human design judgment is final.

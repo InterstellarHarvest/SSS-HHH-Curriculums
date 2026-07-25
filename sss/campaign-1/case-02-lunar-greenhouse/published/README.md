@@ -1,5 +1,3 @@
-# Published outputs
+# Case 02 Published Validation Outputs
 
-This folder is reserved for fixed release outputs after the current HTML master passes automated review and owner physical print testing.
-
-Routine validation may generate temporary PDFs or screenshots outside the repository package. Review artifacts are not committed here by default. The editable HTML master remains the current layout authority.
+All five role outputs are generated from `../master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`. The PDFs remain validation builds until the owner physical-print gate passes. Do not hand-edit generated HTML or PDF files.

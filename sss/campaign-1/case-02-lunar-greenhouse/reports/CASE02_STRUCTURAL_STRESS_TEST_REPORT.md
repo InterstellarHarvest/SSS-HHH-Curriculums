@@ -145,3 +145,9 @@ Owner review found that the Case 02 v1.0 banner, continuation headers, visible p
 - fixed outputs deferred until release testing.
 
 This is a reusable framework correction and must be applied to Case 01 v1.1 and all future masters.
+
+## Balanced Page Fill and Vertical Rhythm v1.0.2
+
+Case 02 was reviewed page by page across Student, Accessible, Teacher, and Answer Key roles. Student page 1 receives modest separation before Task 3, slightly more process-frame padding, proportionate process-cell height, and separation before the model rule. Student page 2 receives restrained separation between Task 4, Task 5, the Task 6/7 row, and the Task 8/9 row. Failed step, classifications, criterion, constraint, and other compact responses remain compact; diagnosis, rejected alternative, CER, design explanation, mechanism check, and exit-ticket work areas grow only in proportion to expected writing.
+
+Accessible pages preserve linear flow and larger text while distinguishing phrase/classification fields from multi-line evidence and reasoning. Teacher and Answer Key pages use surplus height primarily for clearer section rhythm and modest internal padding, not larger typography or identity elements. Automated validation records reserve and spacing signals but flags only the combination of meaningful unused height with compressed major tasks or undersized multi-line work. Human design judgment remains final.

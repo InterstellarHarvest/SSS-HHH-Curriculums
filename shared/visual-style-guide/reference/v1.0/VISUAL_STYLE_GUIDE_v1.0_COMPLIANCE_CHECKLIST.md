@@ -205,13 +205,13 @@
 | Attribution passed | |
 | Approved for release | |
 
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_START -->
-## Universal printable page identity — v1.0.4
+## Balanced Page Fill and Vertical Rhythm v1.0.2
 
-- [ ] First-page banner uses left accent rail, title/location at left, and institution/role at right.
-- [ ] Subtitle contains campaign, case, and location only.
-- [ ] Continuation header is generic within the role and places institutional identity at right.
-- [ ] Printable footer contains only the role and `N of total`.
-- [ ] No printable approval, validation, version, baseline, date, or document-code metadata appears.
-- [ ] A v1.0 master remains preserved when a v1.1 successor is created.
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_END -->
+- [ ] Meaningful unused height is not paired with visibly compressed major numbered tasks.
+- [ ] Surplus space was used first for modest major-task separation.
+- [ ] Only genuinely multi-line response, model, diagram, table-writing, or notes areas received proportionate growth.
+- [ ] One-word, short-phrase, single-line, classification, status, label, criterion, and constraint fields remain compact.
+- [ ] Internal padding improves readability or writing use rather than merely consuming space.
+- [ ] A reasonable intentional bottom reserve remains.
+- [ ] Typography, headers, insignias, icons, and decoration were not enlarged to fill the page.
+- [ ] Automated flags were reviewed as diagnostic signals; human design judgment made the final determination.

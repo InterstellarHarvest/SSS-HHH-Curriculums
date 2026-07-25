@@ -39,4 +39,9 @@
 
 ### Notes / defects
 
+## Balanced Page Fill and Vertical Rhythm v1.0.2
 
+- [ ] Major task transitions feel distinct without exaggerated gaps.
+- [ ] Multi-line work areas are proportionate to expected answers.
+- [ ] Short-answer, classification, criterion, and constraint fields remain compact.
+- [ ] Intentional bottom reserve reads as deliberate rather than unfinished.

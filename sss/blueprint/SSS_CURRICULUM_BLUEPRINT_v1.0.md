@@ -808,9 +808,3 @@ The Curriculum Bible should now establish:
 8. the exact acceptance criteria for the ISS prototype lesson.
 
 Remain on **Medium** for the Curriculum Bible. Switch to **High** before the prototype lesson is designed in full.
-
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_START -->
-## Universal printable page identity — v1.0.4
-
-This document now follows `UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`: first-page title/location copy at left with institutional identity at right; generic role-level continuation headers; role-plus-position printable footers; no visible production status, version, baseline, date, or document code; and v1.1 successor files rather than overwriting v1.0 masters.
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_END -->

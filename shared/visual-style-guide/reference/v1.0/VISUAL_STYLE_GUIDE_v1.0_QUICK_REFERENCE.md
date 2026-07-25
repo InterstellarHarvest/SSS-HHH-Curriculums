@@ -180,8 +180,6 @@ Do not publish with:
 
 Use `VISUAL_STYLE_GUIDE_v1.0_COMPLIANCE_CHECKLIST.md` before release.
 
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_START -->
-## Universal printable page identity — v1.0.4
+## Balanced Page Fill and Vertical Rhythm v1.0.2
 
-This document now follows `UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md`: first-page title/location copy at left with institutional identity at right; generic role-level continuation headers; role-plus-position printable footers; no visible production status, version, baseline, date, or document code; and v1.1 successor files rather than overwriting v1.0 masters.
-<!-- UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1_0_4_END -->
+When a page has meaningful surplus height, use it first for restrained separation between major tasks, then for proportionate multi-line writing/model space, then for useful padding. Keep one-word, phrase, classification, status, criterion, constraint, label, and single-line fields compact. Preserve intentional bottom reserve; do not force complete page fill. Human judgment is final.

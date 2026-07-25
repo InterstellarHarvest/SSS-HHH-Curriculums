@@ -1,9 +1,5 @@
-# Case 02 v1.1 validation
+# Case 02 Validation Artifacts
 
-Run from the repository root or this case directory:
+`validate_case02.py` is the canonical reproducible build and validation harness for the reconciled v1.0 track. It regenerates all five role outputs, performs static/browser/interaction/balanced-fill/PDF checks, writes current checksums and manifest data, and creates direct PDF-rendered contact sheets in `rendered-review/`.
 
-```bash
-python sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/validate_case02.py
-```
-
-The harness validates the controlled content, task parity, accessible flow, universal v1.1 banner/header/footer contract, role isolation, persistence, portable HTML, reset behavior, and zero default overflow. It does not retain PDFs. Temporary print output may be generated separately when physical-review testing requires it.
+Automated balanced-fill measurements are diagnostic; human design judgment remains final.
