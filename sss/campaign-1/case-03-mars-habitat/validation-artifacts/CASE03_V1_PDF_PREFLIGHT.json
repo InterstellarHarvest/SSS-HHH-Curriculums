@@ -1,0 +1,50 @@
+{
+  "status": "PASS",
+  "files": {
+    "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0": {
+      "ok_open": true,
+      "encrypted": false,
+      "pages": 6,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "pdffonts_excerpt": null
+    },
+    "SSS_C1_CASE03_ANSWER_KEY_v1.0": {
+      "ok_open": true,
+      "encrypted": false,
+      "pages": 4,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "pdffonts_excerpt": null
+    },
+    "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0": {
+      "ok_open": true,
+      "encrypted": false,
+      "pages": 4,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "pdffonts_excerpt": null
+    },
+    "SSS_C1_CASE03_STUDENT_MISSION_v1.0": {
+      "ok_open": true,
+      "encrypted": false,
+      "pages": 4,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "pdffonts_excerpt": null
+    },
+    "SSS_C1_CASE03_TEACHER_GUIDE_v1.0": {
+      "ok_open": true,
+      "encrypted": false,
+      "pages": 8,
+      "likely_scanned": false,
+      "xfa_present": false,
+      "warnings": [],
+      "pdffonts_excerpt": null
+    }
+  }
+}

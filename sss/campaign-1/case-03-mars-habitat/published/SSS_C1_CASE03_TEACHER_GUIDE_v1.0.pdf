@@ -1,0 +1,3344 @@
+%PDF-1.4
+%ASCI ReportLab Generated PDF document (opensource)
+1 0 obj
+<<
+/F1 2 0 R /F2 3 0 R /F3 5 0 R
+>>
+endobj
+2 0 obj
+<<
+/BaseFont /Helvetica /Encoding /WinAnsiEncoding /Name /F1 /Subtype /Type1 /Type /Font
+>>
+endobj
+3 0 obj
+<<
+/BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding /Name /F2 /Subtype /Type1 /Type /Font
+>>
+endobj
+4 0 obj
+<<
+/Contents 16 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+5 0 obj
+<<
+/BaseFont /ZapfDingbats /Name /F3 /Subtype /Type1 /Type /Font
+>>
+endobj
+6 0 obj
+<<
+/Contents 17 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+7 0 obj
+<<
+/Contents 18 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+8 0 obj
+<<
+/Contents 19 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+9 0 obj
+<<
+/Contents 20 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+10 0 obj
+<<
+/Contents 21 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+11 0 obj
+<<
+/Contents 22 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+12 0 obj
+<<
+/Contents 23 0 R /MediaBox [ 0 0 612 792 ] /Parent 15 0 R /Resources <<
+/Font 1 0 R /ProcSet [ /PDF /Text /ImageB /ImageC /ImageI ]
+>> /Rotate 0 /Trans <<
+
+>> 
+  /Type /Page
+>>
+endobj
+13 0 obj
+<<
+/PageMode /UseNone /Pages 15 0 R /Type /Catalog
+>>
+endobj
+14 0 obj
+<<
+/Author (\(anonymous\)) /CreationDate (D:20260730195111+00'00') /Creator (\(unspecified\)) /Keywords () /ModDate (D:20260730195111+00'00') /Producer (ReportLab PDF Library - \(opensource\)) 
+  /Subject (\(unspecified\)) /Title (Mars Habitat - Teacher Guide) /Trapped /False
+>>
+endobj
+15 0 obj
+<<
+/Count 8 /Kids [ 4 0 R 6 0 R 7 0 R 8 0 R 9 0 R 10 0 R 11 0 R 12 0 R ] /Type /Pages
+>>
+endobj
+16 0 obj
+<<
+/Length 7068
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 22 Tf 26.4 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Campaign 1 - Case 03 - Arcadia Planitia, Mars) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 1 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Teacher quick start) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 658.24 cm
+q
+BT 1 0 0 1 0 13.6 Tm 11.4 TL /F2 9.2 Tf .094118 .129412 .168627 rg (Students act as Data Analysts.) Tj /F1 9.2 Tf ( They compare spectral distribution with an adequate total PPFD reading, reject \223not enough total) Tj T* (light,\224 diagnose selective red/deep-red rejection by the collector filter, and write CER.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 535.54 cm
+q
+.929412 .945098 .956863 rg
+n 0 118.7 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 104.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (At a glance) Tj T* ET
+Q
+Q
+q
+1 0 0 1 109.4 104.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Case 03 - Mars Habitat) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Duration) Tj T* ET
+Q
+Q
+q
+1 0 0 1 109.4 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (60 minutes; gameplay target 18-20 minutes) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Correct diagnosis) Tj T* ET
+Q
+Q
+q
+1 0 0 1 109.4 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Light-delivery filtering removes red wavelengths needed in the game chlorophyll-biosynthesis mechanism.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 50.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Core evidence) Tj T* ET
+Q
+Q
+q
+1 0 0 1 109.4 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL -0.062972 Tw (280 PPFD; 12 m silica light pipe; 68% aggregate transmission; filter replaced 47 sols ago; 92%, 88%, 31%, and) Tj T* 0 Tw (12% band transmission; FS-7 required and BP-4 incorrect.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Collect) Tj T* ET
+Q
+Q
+q
+1 0 0 1 109.4 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Student Mission or selected Tasks 3, 5, 7, and 9.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Fallback) Tj T* ET
+Q
+Q
+q
+1 0 0 1 109.4 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Use the controlled evidence digest; keep all tasks and rubric unchanged.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 118.7 m 522 118.7 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 118.7 l S
+n 522 0 m 522 118.7 l S
+n 0 100.6 m 522 100.6 l S
+n 0 82.5 m 522 82.5 l S
+n 0 64.4 m 522 64.4 l S
+n 0 36.2 m 522 36.2 l S
+n 0 18.1 m 522 18.1 l S
+n 104.4 0 m 104.4 118.7 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 516.54 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (60-minute timeline) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 376.74 cm
+q
+.929412 .945098 .956863 rg
+n 0 136.8 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 122.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Time) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 122.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Teacher move) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 122.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Student action) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 104.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (0-5) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 104.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Launch the adequate-light/yellow-growth contradiction.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 104.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Read mission question; predict needed evidence.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (5-10) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 76.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Frame quantity versus distribution without revealing) Tj T* (diagnosis.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Complete Task 1.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (10-28) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Circulate; redirect to sensors, plants, and archive.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Play and collect targeted evidence.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (28-38) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Check exact values and no invented data.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Complete Tasks 2-4.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (38-50) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Prompt mechanism and alternative rejection.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Complete Tasks 5-7.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (50-60) Tj T* ET
+Q
+Q
+q
+1 0 0 1 51.8 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Transfer and exit ticket.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 271.4 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Complete Tasks 8-9.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 136.8 m 522 136.8 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 136.8 l S
+n 522 0 m 522 136.8 l S
+n 0 118.7 m 522 118.7 l S
+n 0 100.6 m 522 100.6 l S
+n 0 72.4 m 522 72.4 l S
+n 0 54.3 m 522 54.3 l S
+n 0 36.2 m 522 36.2 l S
+n 0 18.1 m 522 18.1 l S
+n 46.8 0 m 46.8 136.8 l S
+n 266.4 0 m 266.4 136.8 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 347.94 cm
+q
+BT 1 0 0 1 0 13.6 Tm 11.4 TL /F2 9.2 Tf .094118 .129412 .168627 rg (Likely sticking point:) Tj /F1 9.2 Tf ( \223Adequate\224 describes total photon quantity, not complete spectral adequacy. Ask: Adequate total of what,) Tj T* (distributed how?) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+17 0 obj
+<<
+/Length 6185
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 2 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Formal lesson plan: outcomes and standards) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Overview) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 627.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 25 Tm /F1 9.2 Tf 11.4 TL (Students investigate a Mars potato-growth failure by distinguishing a scalar quantity measurement from spectral distribution. They) Tj T* (use direct game-provided transmission values, the collector-filter record, tissue pattern, and controlled conditions to reject) Tj T* (alternatives and explain the case mechanism.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 608.84 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Measurable learning objectives) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 594.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 594.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Interpret PPFD as photon quantity over a defined waveband rather than a complete spectrum.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 577.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 577.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Graph and compare wavelength-band transmission without inventing missing measurements.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 559.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 559.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Use symptom location and timing to infer a failure in new pigment formation.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 542.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 542.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Reject an alternative that conflicts with adequate total intensity and healthy roots.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 524.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 524.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Write a concise Claim-Evidence-Reasoning explanation.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 505.84 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Standards alignment) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 491.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 491.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (NGSS MS-LS1-6: construct a scientific explanation based on evidence for the role of photosynthesis.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 474.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 474.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (NGSS MS-PS4-2: model reflection, absorption, and transmission of waves through materials.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 456.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 456.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Practices: analyzing and interpreting data; constructing explanations; argument from evidence.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 439.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 439.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Crosscutting concepts: cause and effect; systems and system models; energy and matter.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 420.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Success criteria) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 405.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 405.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Uses 280 umol m-2 s-1 and all four exact transmission values.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 388.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 388.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Explains that adequate total photon quantity does not guarantee adequate spectral distribution.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 371.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 371.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Identifies red at 31% as the lowest-transmission band within 400-700 nm.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 353.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 353.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Explains why new tissue is affected before older tissue.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 336.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 336.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Avoids \223more brightness always fixes it\224 and \223plants use only red\224 claims.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+18 0 obj
+<<
+/Length 6597
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 3 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Formal lesson plan: preparation and procedure) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Materials and preparation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 653.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 653.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Game or technical fallback digest; role-appropriate mission packet; pencil.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 636.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 636.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Open Case 03 and confirm audio/headphone expectations.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 618.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 618.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Print at 100% / Actual Size. Keep the Answer Key private.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 601.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 601.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Do not preview the correct diagnosis or describe red light as the only useful wavelength.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 582.44 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Procedure) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 420.34 cm
+q
+.929412 .945098 .956863 rg
+n 0 159.1 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 145 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Phase) Tj T* ET
+Q
+Q
+q
+1 0 0 1 77 145 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Teacher actions) Tj T* ET
+Q
+Q
+q
+1 0 0 1 336.2 145 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Student evidence product) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 126.9 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Launch) Tj T* ET
+Q
+Q
+q
+1 0 0 1 77 116.8 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Present the contradiction: an adequate PPFD reading with) Tj T* (bleaching new growth. Ask what one total number cannot reveal.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 336.2 126.9 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Task 1: measurement limits.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 98.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Gameplay) Tj T* ET
+Q
+Q
+q
+1 0 0 1 77 88.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Prompt students to revisit crew, sensors, plants, logs, and deep) Tj T* (archive rather than relying on symptoms alone.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 336.2 98.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Runtime notes and exact values.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 70.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Data checkpoint) Tj T* ET
+Q
+Q
+q
+1 0 0 1 77 60.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (At Task 2, require only the four provided values. At Task 3, require) Tj T* (explicit rejection of low total PPFD.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 336.2 60.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Transmission comparison and quantity-quality) Tj T* (explanation.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 42.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Diagnosis) Tj T* ET
+Q
+Q
+q
+1 0 0 1 77 32.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (At Task 5, require one selected and one rejected diagnosis. At Task) Tj T* (6, require a complete causal chain.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 336.2 42.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Diagnosis and mechanism model.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 14.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (CER/transfer) Tj T* ET
+Q
+Q
+q
+1 0 0 1 77 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Require data-specific evidence and a next measurement, not a) Tj T* (generic \223add brighter lights\224 fix.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 336.2 14.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Tasks 7-9.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 159.1 m 522 159.1 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 159.1 l S
+n 522 0 m 522 159.1 l S
+n 0 141 m 522 141 l S
+n 0 112.8 m 522 112.8 l S
+n 0 84.6 m 522 84.6 l S
+n 0 56.4 m 522 56.4 l S
+n 0 28.2 m 522 28.2 l S
+n 72 0 m 72 159.1 l S
+n 331.2 0 m 331.2 159.1 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 401.34 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Checks for understanding) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 386.94 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 386.94 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Can the student explain why two lights with the same PPFD can have different spectra?) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 369.54 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 369.54 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Can the student identify red at 31% as the lowest transmission inside 400-700 nm?) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 352.14 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 352.14 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Does the student separate the game mechanism from broader red/blue/green plant responses?) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+19 0 obj
+<<
+/Length 26197
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 4 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Teacher case analysis) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Story problem) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 639.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 13.6 Tm /F1 9.2 Tf 11.4 TL (Potato plants grew normally for about three weeks. Then top-canopy and newest leaves became pale yellow to white while older) Tj T* (lower leaves retained green. Roots remained healthy, and iron/nitrogen additions did not help.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 620.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Evidence channels) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 472.24 cm
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 0 76 266.5 69 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 6 133 Tm (CREW) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 6 121 Tm (Top-down progression; nutrient additions failed.) Tj T* ET
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 273.5 76 266.5 69 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 279.5 133 Tm (SENSORS) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 279.5 121 Tm (12 m light pipes plus white LEDs; 280 PPFD.) Tj T* ET
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 0 0 266.5 69 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 6 57 Tm (PLANTS) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 6 45 Tm (Healthy roots; pigment failure concentrated in new tissue.) Tj T* ET
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 273.5 0 266.5 69 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 279.5 57 Tm (LOGS / ARCHIVE) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 279.5 45 Tm (Filter replaced 47 sols ago without a logged part number; FS-7 required and) Tj T* ET
+BT 1 0 0 1 279.5 36 Tm (BP-4 incorrect.) Tj T* ET
+Q
+q
+1 0 0 1 40 453.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Essential versus supporting evidence) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 341.64 cm
+q
+.929412 .945098 .956863 rg
+n 0 108.6 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 94.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Evidence) Tj T* ET
+Q
+Q
+q
+1 0 0 1 231.8 94.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Instructional weight) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 76.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (280 PPFD described as adequate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 231.8 76.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Essential: rejects simple low total light.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (31% red transmission; 12% deep-red transmission) Tj T* ET
+Q
+Q
+q
+1 0 0 1 231.8 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Essential: reveals selective rejection.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (New tissue bleaches first) Tj T* ET
+Q
+Q
+q
+1 0 0 1 231.8 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Essential: points to new chlorophyll formation.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Healthy roots; nutrients failed) Tj T* ET
+Q
+Q
+q
+1 0 0 1 231.8 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Essential for rejecting root/nutrient alternatives.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (20 C, CO2 1200 ppm, UV index 0.1) Tj T* ET
+Q
+Q
+q
+1 0 0 1 231.8 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Supporting controls; do not overinterpret.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 108.6 m 522 108.6 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 108.6 l S
+n 522 0 m 522 108.6 l S
+n 0 90.5 m 522 90.5 l S
+n 0 72.4 m 522 72.4 l S
+n 0 54.3 m 522 54.3 l S
+n 0 36.2 m 522 36.2 l S
+n 0 18.1 m 522 18.1 l S
+n 226.8 0 m 226.8 108.6 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 156.64 cm
+.094118 .129412 .168627 rg
+BT /F2 8.5 Tf 10.2 TL ET
+BT 1 0 0 1 0 175 Tm (Surface intake to habitat output transmission) Tj T* ET
+.54902 .603922 .658824 RG
+.294118 .34902 .403922 rg
+BT /F1 6.8 Tf 8.16 TL ET
+.776471 .803922 .819608 RG
+.35 w
+n 48 38 m 530 38 l S
+.294118 .34902 .403922 rg
+BT 1 0 0 1 39.2192 36 Tm (0) Tj T* ET
+.776471 .803922 .819608 RG
+.35 w
+n 48 62.2 m 530 62.2 l S
+.294118 .34902 .403922 rg
+BT 1 0 0 1 35.4384 60.2 Tm (20) Tj T* ET
+.776471 .803922 .819608 RG
+.35 w
+n 48 86.4 m 530 86.4 l S
+.294118 .34902 .403922 rg
+BT 1 0 0 1 35.4384 84.4 Tm (40) Tj T* ET
+.776471 .803922 .819608 RG
+.35 w
+n 48 110.6 m 530 110.6 l S
+.294118 .34902 .403922 rg
+BT 1 0 0 1 35.4384 108.6 Tm (60) Tj T* ET
+.776471 .803922 .819608 RG
+.35 w
+n 48 134.8 m 530 134.8 l S
+.294118 .34902 .403922 rg
+BT 1 0 0 1 35.4384 132.8 Tm (80) Tj T* ET
+.776471 .803922 .819608 RG
+.35 w
+n 48 159 m 530 159 l S
+.294118 .34902 .403922 rg
+BT 1 0 0 1 31.6576 157 Tm (100) Tj T* ET
+.094118 .129412 .168627 RG
+.8 w
+n 48 38 m 48 159 l S
+n 48 38 m 530 38 l S
+q
+0 1 -1 0 12 98.5 cm
+BT /F2 7 Tf 8.4 TL ET
+.094118 .129412 .168627 rg
+BT 1 0 0 1 -29.1725 0 Tm (Transmission \(%\)) Tj T* ET
+Q
+.91 .91 .91 rg
+.094118 .129412 .168627 RG
+.7 w
+n 101.2 38 54 111.32 re B*
+q
+n 101.2 38 54 111.32 re W* n
+.294118 .34902 .403922 RG
+.55 w
+n -9.8 38 m 101.52 149.32 l S
+n -1.8 38 m 109.52 149.32 l S
+n 6.2 38 m 117.52 149.32 l S
+n 14.2 38 m 125.52 149.32 l S
+n 22.2 38 m 133.52 149.32 l S
+n 30.2 38 m 141.52 149.32 l S
+n 38.2 38 m 149.52 149.32 l S
+n 46.2 38 m 157.52 149.32 l S
+n 54.2 38 m 165.52 149.32 l S
+n 62.2 38 m 173.52 149.32 l S
+n 70.2 38 m 181.52 149.32 l S
+n 78.2 38 m 189.52 149.32 l S
+n 86.2 38 m 197.52 149.32 l S
+n 94.2 38 m 205.52 149.32 l S
+n 102.2 38 m 213.52 149.32 l S
+n 110.2 38 m 221.52 149.32 l S
+n 118.2 38 m 229.52 149.32 l S
+n 126.2 38 m 237.52 149.32 l S
+n 134.2 38 m 245.52 149.32 l S
+n 142.2 38 m 253.52 149.32 l S
+n 150.2 38 m 261.52 149.32 l S
+n 158.2 38 m 269.52 149.32 l S
+n 166.2 38 m 277.52 149.32 l S
+n 174.2 38 m 285.52 149.32 l S
+n 182.2 38 m 293.52 149.32 l S
+n 190.2 38 m 301.52 149.32 l S
+n 198.2 38 m 309.52 149.32 l S
+n 206.2 38 m 317.52 149.32 l S
+n 214.2 38 m 325.52 149.32 l S
+n 222.2 38 m 333.52 149.32 l S
+n 230.2 38 m 341.52 149.32 l S
+n 238.2 38 m 349.52 149.32 l S
+n 246.2 38 m 357.52 149.32 l S
+n 254.2 38 m 365.52 149.32 l S
+n 262.2 38 m 373.52 149.32 l S
+Q
+.094118 .129412 .168627 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 120.6962 153.32 Tm (92%) Tj T* ET
+BT /F2 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 120.8322 22 Tm (Blue) Tj T* ET
+BT /F1 6.2 Tf 7.44 TL ET
+BT 1 0 0 1 111.6584 12 Tm (400-500 nm) Tj T* ET
+.82 .82 .82 rg
+.094118 .129412 .168627 RG
+.7 w
+n 208.4 38 54 106.48 re B*
+q
+n 208.4 38 54 106.48 re W* n
+.294118 .34902 .403922 RG
+.55 w
+.294118 .34902 .403922 rg
+n
+213.1 42 m
+213.1 42.60751 212.6075 43.1 212 43.1 c
+211.3925 43.1 210.9 42.60751 210.9 42 c
+210.9 41.39249 211.3925 40.9 212 40.9 c
+212.6075 40.9 213.1 41.39249 213.1 42 c
+f*
+n
+213.1 50 m
+213.1 50.60751 212.6075 51.1 212 51.1 c
+211.3925 51.1 210.9 50.60751 210.9 50 c
+210.9 49.39249 211.3925 48.9 212 48.9 c
+212.6075 48.9 213.1 49.39249 213.1 50 c
+f*
+n
+213.1 58 m
+213.1 58.60751 212.6075 59.1 212 59.1 c
+211.3925 59.1 210.9 58.60751 210.9 58 c
+210.9 57.39249 211.3925 56.9 212 56.9 c
+212.6075 56.9 213.1 57.39249 213.1 58 c
+f*
+n
+213.1 66 m
+213.1 66.60751 212.6075 67.1 212 67.1 c
+211.3925 67.1 210.9 66.60751 210.9 66 c
+210.9 65.39249 211.3925 64.9 212 64.9 c
+212.6075 64.9 213.1 65.39249 213.1 66 c
+f*
+n
+213.1 74 m
+213.1 74.60751 212.6075 75.1 212 75.1 c
+211.3925 75.1 210.9 74.60751 210.9 74 c
+210.9 73.39249 211.3925 72.9 212 72.9 c
+212.6075 72.9 213.1 73.39249 213.1 74 c
+f*
+n
+213.1 82 m
+213.1 82.60751 212.6075 83.1 212 83.1 c
+211.3925 83.1 210.9 82.60751 210.9 82 c
+210.9 81.39249 211.3925 80.9 212 80.9 c
+212.6075 80.9 213.1 81.39249 213.1 82 c
+f*
+n
+213.1 90 m
+213.1 90.60751 212.6075 91.1 212 91.1 c
+211.3925 91.1 210.9 90.60751 210.9 90 c
+210.9 89.39249 211.3925 88.9 212 88.9 c
+212.6075 88.9 213.1 89.39249 213.1 90 c
+f*
+n
+213.1 98 m
+213.1 98.60751 212.6075 99.1 212 99.1 c
+211.3925 99.1 210.9 98.60751 210.9 98 c
+210.9 97.39249 211.3925 96.9 212 96.9 c
+212.6075 96.9 213.1 97.39249 213.1 98 c
+f*
+n
+213.1 106 m
+213.1 106.6075 212.6075 107.1 212 107.1 c
+211.3925 107.1 210.9 106.6075 210.9 106 c
+210.9 105.3925 211.3925 104.9 212 104.9 c
+212.6075 104.9 213.1 105.3925 213.1 106 c
+f*
+n
+213.1 114 m
+213.1 114.6075 212.6075 115.1 212 115.1 c
+211.3925 115.1 210.9 114.6075 210.9 114 c
+210.9 113.3925 211.3925 112.9 212 112.9 c
+212.6075 112.9 213.1 113.3925 213.1 114 c
+f*
+n
+213.1 122 m
+213.1 122.6075 212.6075 123.1 212 123.1 c
+211.3925 123.1 210.9 122.6075 210.9 122 c
+210.9 121.3925 211.3925 120.9 212 120.9 c
+212.6075 120.9 213.1 121.3925 213.1 122 c
+f*
+n
+213.1 130 m
+213.1 130.6075 212.6075 131.1 212 131.1 c
+211.3925 131.1 210.9 130.6075 210.9 130 c
+210.9 129.3925 211.3925 128.9 212 128.9 c
+212.6075 128.9 213.1 129.3925 213.1 130 c
+f*
+n
+213.1 138 m
+213.1 138.6075 212.6075 139.1 212 139.1 c
+211.3925 139.1 210.9 138.6075 210.9 138 c
+210.9 137.3925 211.3925 136.9 212 136.9 c
+212.6075 136.9 213.1 137.3925 213.1 138 c
+f*
+n
+221.1 42 m
+221.1 42.60751 220.6075 43.1 220 43.1 c
+219.3925 43.1 218.9 42.60751 218.9 42 c
+218.9 41.39249 219.3925 40.9 220 40.9 c
+220.6075 40.9 221.1 41.39249 221.1 42 c
+f*
+n
+221.1 50 m
+221.1 50.60751 220.6075 51.1 220 51.1 c
+219.3925 51.1 218.9 50.60751 218.9 50 c
+218.9 49.39249 219.3925 48.9 220 48.9 c
+220.6075 48.9 221.1 49.39249 221.1 50 c
+f*
+n
+221.1 58 m
+221.1 58.60751 220.6075 59.1 220 59.1 c
+219.3925 59.1 218.9 58.60751 218.9 58 c
+218.9 57.39249 219.3925 56.9 220 56.9 c
+220.6075 56.9 221.1 57.39249 221.1 58 c
+f*
+n
+221.1 66 m
+221.1 66.60751 220.6075 67.1 220 67.1 c
+219.3925 67.1 218.9 66.60751 218.9 66 c
+218.9 65.39249 219.3925 64.9 220 64.9 c
+220.6075 64.9 221.1 65.39249 221.1 66 c
+f*
+n
+221.1 74 m
+221.1 74.60751 220.6075 75.1 220 75.1 c
+219.3925 75.1 218.9 74.60751 218.9 74 c
+218.9 73.39249 219.3925 72.9 220 72.9 c
+220.6075 72.9 221.1 73.39249 221.1 74 c
+f*
+n
+221.1 82 m
+221.1 82.60751 220.6075 83.1 220 83.1 c
+219.3925 83.1 218.9 82.60751 218.9 82 c
+218.9 81.39249 219.3925 80.9 220 80.9 c
+220.6075 80.9 221.1 81.39249 221.1 82 c
+f*
+n
+221.1 90 m
+221.1 90.60751 220.6075 91.1 220 91.1 c
+219.3925 91.1 218.9 90.60751 218.9 90 c
+218.9 89.39249 219.3925 88.9 220 88.9 c
+220.6075 88.9 221.1 89.39249 221.1 90 c
+f*
+n
+221.1 98 m
+221.1 98.60751 220.6075 99.1 220 99.1 c
+219.3925 99.1 218.9 98.60751 218.9 98 c
+218.9 97.39249 219.3925 96.9 220 96.9 c
+220.6075 96.9 221.1 97.39249 221.1 98 c
+f*
+n
+221.1 106 m
+221.1 106.6075 220.6075 107.1 220 107.1 c
+219.3925 107.1 218.9 106.6075 218.9 106 c
+218.9 105.3925 219.3925 104.9 220 104.9 c
+220.6075 104.9 221.1 105.3925 221.1 106 c
+f*
+n
+221.1 114 m
+221.1 114.6075 220.6075 115.1 220 115.1 c
+219.3925 115.1 218.9 114.6075 218.9 114 c
+218.9 113.3925 219.3925 112.9 220 112.9 c
+220.6075 112.9 221.1 113.3925 221.1 114 c
+f*
+n
+221.1 122 m
+221.1 122.6075 220.6075 123.1 220 123.1 c
+219.3925 123.1 218.9 122.6075 218.9 122 c
+218.9 121.3925 219.3925 120.9 220 120.9 c
+220.6075 120.9 221.1 121.3925 221.1 122 c
+f*
+n
+221.1 130 m
+221.1 130.6075 220.6075 131.1 220 131.1 c
+219.3925 131.1 218.9 130.6075 218.9 130 c
+218.9 129.3925 219.3925 128.9 220 128.9 c
+220.6075 128.9 221.1 129.3925 221.1 130 c
+f*
+n
+221.1 138 m
+221.1 138.6075 220.6075 139.1 220 139.1 c
+219.3925 139.1 218.9 138.6075 218.9 138 c
+218.9 137.3925 219.3925 136.9 220 136.9 c
+220.6075 136.9 221.1 137.3925 221.1 138 c
+f*
+n
+229.1 42 m
+229.1 42.60751 228.6075 43.1 228 43.1 c
+227.3925 43.1 226.9 42.60751 226.9 42 c
+226.9 41.39249 227.3925 40.9 228 40.9 c
+228.6075 40.9 229.1 41.39249 229.1 42 c
+f*
+n
+229.1 50 m
+229.1 50.60751 228.6075 51.1 228 51.1 c
+227.3925 51.1 226.9 50.60751 226.9 50 c
+226.9 49.39249 227.3925 48.9 228 48.9 c
+228.6075 48.9 229.1 49.39249 229.1 50 c
+f*
+n
+229.1 58 m
+229.1 58.60751 228.6075 59.1 228 59.1 c
+227.3925 59.1 226.9 58.60751 226.9 58 c
+226.9 57.39249 227.3925 56.9 228 56.9 c
+228.6075 56.9 229.1 57.39249 229.1 58 c
+f*
+n
+229.1 66 m
+229.1 66.60751 228.6075 67.1 228 67.1 c
+227.3925 67.1 226.9 66.60751 226.9 66 c
+226.9 65.39249 227.3925 64.9 228 64.9 c
+228.6075 64.9 229.1 65.39249 229.1 66 c
+f*
+n
+229.1 74 m
+229.1 74.60751 228.6075 75.1 228 75.1 c
+227.3925 75.1 226.9 74.60751 226.9 74 c
+226.9 73.39249 227.3925 72.9 228 72.9 c
+228.6075 72.9 229.1 73.39249 229.1 74 c
+f*
+n
+229.1 82 m
+229.1 82.60751 228.6075 83.1 228 83.1 c
+227.3925 83.1 226.9 82.60751 226.9 82 c
+226.9 81.39249 227.3925 80.9 228 80.9 c
+228.6075 80.9 229.1 81.39249 229.1 82 c
+f*
+n
+229.1 90 m
+229.1 90.60751 228.6075 91.1 228 91.1 c
+227.3925 91.1 226.9 90.60751 226.9 90 c
+226.9 89.39249 227.3925 88.9 228 88.9 c
+228.6075 88.9 229.1 89.39249 229.1 90 c
+f*
+n
+229.1 98 m
+229.1 98.60751 228.6075 99.1 228 99.1 c
+227.3925 99.1 226.9 98.60751 226.9 98 c
+226.9 97.39249 227.3925 96.9 228 96.9 c
+228.6075 96.9 229.1 97.39249 229.1 98 c
+f*
+n
+229.1 106 m
+229.1 106.6075 228.6075 107.1 228 107.1 c
+227.3925 107.1 226.9 106.6075 226.9 106 c
+226.9 105.3925 227.3925 104.9 228 104.9 c
+228.6075 104.9 229.1 105.3925 229.1 106 c
+f*
+n
+229.1 114 m
+229.1 114.6075 228.6075 115.1 228 115.1 c
+227.3925 115.1 226.9 114.6075 226.9 114 c
+226.9 113.3925 227.3925 112.9 228 112.9 c
+228.6075 112.9 229.1 113.3925 229.1 114 c
+f*
+n
+229.1 122 m
+229.1 122.6075 228.6075 123.1 228 123.1 c
+227.3925 123.1 226.9 122.6075 226.9 122 c
+226.9 121.3925 227.3925 120.9 228 120.9 c
+228.6075 120.9 229.1 121.3925 229.1 122 c
+f*
+n
+229.1 130 m
+229.1 130.6075 228.6075 131.1 228 131.1 c
+227.3925 131.1 226.9 130.6075 226.9 130 c
+226.9 129.3925 227.3925 128.9 228 128.9 c
+228.6075 128.9 229.1 129.3925 229.1 130 c
+f*
+n
+229.1 138 m
+229.1 138.6075 228.6075 139.1 228 139.1 c
+227.3925 139.1 226.9 138.6075 226.9 138 c
+226.9 137.3925 227.3925 136.9 228 136.9 c
+228.6075 136.9 229.1 137.3925 229.1 138 c
+f*
+n
+237.1 42 m
+237.1 42.60751 236.6075 43.1 236 43.1 c
+235.3925 43.1 234.9 42.60751 234.9 42 c
+234.9 41.39249 235.3925 40.9 236 40.9 c
+236.6075 40.9 237.1 41.39249 237.1 42 c
+f*
+n
+237.1 50 m
+237.1 50.60751 236.6075 51.1 236 51.1 c
+235.3925 51.1 234.9 50.60751 234.9 50 c
+234.9 49.39249 235.3925 48.9 236 48.9 c
+236.6075 48.9 237.1 49.39249 237.1 50 c
+f*
+n
+237.1 58 m
+237.1 58.60751 236.6075 59.1 236 59.1 c
+235.3925 59.1 234.9 58.60751 234.9 58 c
+234.9 57.39249 235.3925 56.9 236 56.9 c
+236.6075 56.9 237.1 57.39249 237.1 58 c
+f*
+n
+237.1 66 m
+237.1 66.60751 236.6075 67.1 236 67.1 c
+235.3925 67.1 234.9 66.60751 234.9 66 c
+234.9 65.39249 235.3925 64.9 236 64.9 c
+236.6075 64.9 237.1 65.39249 237.1 66 c
+f*
+n
+237.1 74 m
+237.1 74.60751 236.6075 75.1 236 75.1 c
+235.3925 75.1 234.9 74.60751 234.9 74 c
+234.9 73.39249 235.3925 72.9 236 72.9 c
+236.6075 72.9 237.1 73.39249 237.1 74 c
+f*
+n
+237.1 82 m
+237.1 82.60751 236.6075 83.1 236 83.1 c
+235.3925 83.1 234.9 82.60751 234.9 82 c
+234.9 81.39249 235.3925 80.9 236 80.9 c
+236.6075 80.9 237.1 81.39249 237.1 82 c
+f*
+n
+237.1 90 m
+237.1 90.60751 236.6075 91.1 236 91.1 c
+235.3925 91.1 234.9 90.60751 234.9 90 c
+234.9 89.39249 235.3925 88.9 236 88.9 c
+236.6075 88.9 237.1 89.39249 237.1 90 c
+f*
+n
+237.1 98 m
+237.1 98.60751 236.6075 99.1 236 99.1 c
+235.3925 99.1 234.9 98.60751 234.9 98 c
+234.9 97.39249 235.3925 96.9 236 96.9 c
+236.6075 96.9 237.1 97.39249 237.1 98 c
+f*
+n
+237.1 106 m
+237.1 106.6075 236.6075 107.1 236 107.1 c
+235.3925 107.1 234.9 106.6075 234.9 106 c
+234.9 105.3925 235.3925 104.9 236 104.9 c
+236.6075 104.9 237.1 105.3925 237.1 106 c
+f*
+n
+237.1 114 m
+237.1 114.6075 236.6075 115.1 236 115.1 c
+235.3925 115.1 234.9 114.6075 234.9 114 c
+234.9 113.3925 235.3925 112.9 236 112.9 c
+236.6075 112.9 237.1 113.3925 237.1 114 c
+f*
+n
+237.1 122 m
+237.1 122.6075 236.6075 123.1 236 123.1 c
+235.3925 123.1 234.9 122.6075 234.9 122 c
+234.9 121.3925 235.3925 120.9 236 120.9 c
+236.6075 120.9 237.1 121.3925 237.1 122 c
+f*
+n
+237.1 130 m
+237.1 130.6075 236.6075 131.1 236 131.1 c
+235.3925 131.1 234.9 130.6075 234.9 130 c
+234.9 129.3925 235.3925 128.9 236 128.9 c
+236.6075 128.9 237.1 129.3925 237.1 130 c
+f*
+n
+237.1 138 m
+237.1 138.6075 236.6075 139.1 236 139.1 c
+235.3925 139.1 234.9 138.6075 234.9 138 c
+234.9 137.3925 235.3925 136.9 236 136.9 c
+236.6075 136.9 237.1 137.3925 237.1 138 c
+f*
+n
+245.1 42 m
+245.1 42.60751 244.6075 43.1 244 43.1 c
+243.3925 43.1 242.9 42.60751 242.9 42 c
+242.9 41.39249 243.3925 40.9 244 40.9 c
+244.6075 40.9 245.1 41.39249 245.1 42 c
+f*
+n
+245.1 50 m
+245.1 50.60751 244.6075 51.1 244 51.1 c
+243.3925 51.1 242.9 50.60751 242.9 50 c
+242.9 49.39249 243.3925 48.9 244 48.9 c
+244.6075 48.9 245.1 49.39249 245.1 50 c
+f*
+n
+245.1 58 m
+245.1 58.60751 244.6075 59.1 244 59.1 c
+243.3925 59.1 242.9 58.60751 242.9 58 c
+242.9 57.39249 243.3925 56.9 244 56.9 c
+244.6075 56.9 245.1 57.39249 245.1 58 c
+f*
+n
+245.1 66 m
+245.1 66.60751 244.6075 67.1 244 67.1 c
+243.3925 67.1 242.9 66.60751 242.9 66 c
+242.9 65.39249 243.3925 64.9 244 64.9 c
+244.6075 64.9 245.1 65.39249 245.1 66 c
+f*
+n
+245.1 74 m
+245.1 74.60751 244.6075 75.1 244 75.1 c
+243.3925 75.1 242.9 74.60751 242.9 74 c
+242.9 73.39249 243.3925 72.9 244 72.9 c
+244.6075 72.9 245.1 73.39249 245.1 74 c
+f*
+n
+245.1 82 m
+245.1 82.60751 244.6075 83.1 244 83.1 c
+243.3925 83.1 242.9 82.60751 242.9 82 c
+242.9 81.39249 243.3925 80.9 244 80.9 c
+244.6075 80.9 245.1 81.39249 245.1 82 c
+f*
+n
+245.1 90 m
+245.1 90.60751 244.6075 91.1 244 91.1 c
+243.3925 91.1 242.9 90.60751 242.9 90 c
+242.9 89.39249 243.3925 88.9 244 88.9 c
+244.6075 88.9 245.1 89.39249 245.1 90 c
+f*
+n
+245.1 98 m
+245.1 98.60751 244.6075 99.1 244 99.1 c
+243.3925 99.1 242.9 98.60751 242.9 98 c
+242.9 97.39249 243.3925 96.9 244 96.9 c
+244.6075 96.9 245.1 97.39249 245.1 98 c
+f*
+n
+245.1 106 m
+245.1 106.6075 244.6075 107.1 244 107.1 c
+243.3925 107.1 242.9 106.6075 242.9 106 c
+242.9 105.3925 243.3925 104.9 244 104.9 c
+244.6075 104.9 245.1 105.3925 245.1 106 c
+f*
+n
+245.1 114 m
+245.1 114.6075 244.6075 115.1 244 115.1 c
+243.3925 115.1 242.9 114.6075 242.9 114 c
+242.9 113.3925 243.3925 112.9 244 112.9 c
+244.6075 112.9 245.1 113.3925 245.1 114 c
+f*
+n
+245.1 122 m
+245.1 122.6075 244.6075 123.1 244 123.1 c
+243.3925 123.1 242.9 122.6075 242.9 122 c
+242.9 121.3925 243.3925 120.9 244 120.9 c
+244.6075 120.9 245.1 121.3925 245.1 122 c
+f*
+n
+245.1 130 m
+245.1 130.6075 244.6075 131.1 244 131.1 c
+243.3925 131.1 242.9 130.6075 242.9 130 c
+242.9 129.3925 243.3925 128.9 244 128.9 c
+244.6075 128.9 245.1 129.3925 245.1 130 c
+f*
+n
+245.1 138 m
+245.1 138.6075 244.6075 139.1 244 139.1 c
+243.3925 139.1 242.9 138.6075 242.9 138 c
+242.9 137.3925 243.3925 136.9 244 136.9 c
+244.6075 136.9 245.1 137.3925 245.1 138 c
+f*
+n
+253.1 42 m
+253.1 42.60751 252.6075 43.1 252 43.1 c
+251.3925 43.1 250.9 42.60751 250.9 42 c
+250.9 41.39249 251.3925 40.9 252 40.9 c
+252.6075 40.9 253.1 41.39249 253.1 42 c
+f*
+n
+253.1 50 m
+253.1 50.60751 252.6075 51.1 252 51.1 c
+251.3925 51.1 250.9 50.60751 250.9 50 c
+250.9 49.39249 251.3925 48.9 252 48.9 c
+252.6075 48.9 253.1 49.39249 253.1 50 c
+f*
+n
+253.1 58 m
+253.1 58.60751 252.6075 59.1 252 59.1 c
+251.3925 59.1 250.9 58.60751 250.9 58 c
+250.9 57.39249 251.3925 56.9 252 56.9 c
+252.6075 56.9 253.1 57.39249 253.1 58 c
+f*
+n
+253.1 66 m
+253.1 66.60751 252.6075 67.1 252 67.1 c
+251.3925 67.1 250.9 66.60751 250.9 66 c
+250.9 65.39249 251.3925 64.9 252 64.9 c
+252.6075 64.9 253.1 65.39249 253.1 66 c
+f*
+n
+253.1 74 m
+253.1 74.60751 252.6075 75.1 252 75.1 c
+251.3925 75.1 250.9 74.60751 250.9 74 c
+250.9 73.39249 251.3925 72.9 252 72.9 c
+252.6075 72.9 253.1 73.39249 253.1 74 c
+f*
+n
+253.1 82 m
+253.1 82.60751 252.6075 83.1 252 83.1 c
+251.3925 83.1 250.9 82.60751 250.9 82 c
+250.9 81.39249 251.3925 80.9 252 80.9 c
+252.6075 80.9 253.1 81.39249 253.1 82 c
+f*
+n
+253.1 90 m
+253.1 90.60751 252.6075 91.1 252 91.1 c
+251.3925 91.1 250.9 90.60751 250.9 90 c
+250.9 89.39249 251.3925 88.9 252 88.9 c
+252.6075 88.9 253.1 89.39249 253.1 90 c
+f*
+n
+253.1 98 m
+253.1 98.60751 252.6075 99.1 252 99.1 c
+251.3925 99.1 250.9 98.60751 250.9 98 c
+250.9 97.39249 251.3925 96.9 252 96.9 c
+252.6075 96.9 253.1 97.39249 253.1 98 c
+f*
+n
+253.1 106 m
+253.1 106.6075 252.6075 107.1 252 107.1 c
+251.3925 107.1 250.9 106.6075 250.9 106 c
+250.9 105.3925 251.3925 104.9 252 104.9 c
+252.6075 104.9 253.1 105.3925 253.1 106 c
+f*
+n
+253.1 114 m
+253.1 114.6075 252.6075 115.1 252 115.1 c
+251.3925 115.1 250.9 114.6075 250.9 114 c
+250.9 113.3925 251.3925 112.9 252 112.9 c
+252.6075 112.9 253.1 113.3925 253.1 114 c
+f*
+n
+253.1 122 m
+253.1 122.6075 252.6075 123.1 252 123.1 c
+251.3925 123.1 250.9 122.6075 250.9 122 c
+250.9 121.3925 251.3925 120.9 252 120.9 c
+252.6075 120.9 253.1 121.3925 253.1 122 c
+f*
+n
+253.1 130 m
+253.1 130.6075 252.6075 131.1 252 131.1 c
+251.3925 131.1 250.9 130.6075 250.9 130 c
+250.9 129.3925 251.3925 128.9 252 128.9 c
+252.6075 128.9 253.1 129.3925 253.1 130 c
+f*
+n
+253.1 138 m
+253.1 138.6075 252.6075 139.1 252 139.1 c
+251.3925 139.1 250.9 138.6075 250.9 138 c
+250.9 137.3925 251.3925 136.9 252 136.9 c
+252.6075 136.9 253.1 137.3925 253.1 138 c
+f*
+n
+261.1 42 m
+261.1 42.60751 260.6075 43.1 260 43.1 c
+259.3925 43.1 258.9 42.60751 258.9 42 c
+258.9 41.39249 259.3925 40.9 260 40.9 c
+260.6075 40.9 261.1 41.39249 261.1 42 c
+f*
+n
+261.1 50 m
+261.1 50.60751 260.6075 51.1 260 51.1 c
+259.3925 51.1 258.9 50.60751 258.9 50 c
+258.9 49.39249 259.3925 48.9 260 48.9 c
+260.6075 48.9 261.1 49.39249 261.1 50 c
+f*
+n
+261.1 58 m
+261.1 58.60751 260.6075 59.1 260 59.1 c
+259.3925 59.1 258.9 58.60751 258.9 58 c
+258.9 57.39249 259.3925 56.9 260 56.9 c
+260.6075 56.9 261.1 57.39249 261.1 58 c
+f*
+n
+261.1 66 m
+261.1 66.60751 260.6075 67.1 260 67.1 c
+259.3925 67.1 258.9 66.60751 258.9 66 c
+258.9 65.39249 259.3925 64.9 260 64.9 c
+260.6075 64.9 261.1 65.39249 261.1 66 c
+f*
+n
+261.1 74 m
+261.1 74.60751 260.6075 75.1 260 75.1 c
+259.3925 75.1 258.9 74.60751 258.9 74 c
+258.9 73.39249 259.3925 72.9 260 72.9 c
+260.6075 72.9 261.1 73.39249 261.1 74 c
+f*
+n
+261.1 82 m
+261.1 82.60751 260.6075 83.1 260 83.1 c
+259.3925 83.1 258.9 82.60751 258.9 82 c
+258.9 81.39249 259.3925 80.9 260 80.9 c
+260.6075 80.9 261.1 81.39249 261.1 82 c
+f*
+n
+261.1 90 m
+261.1 90.60751 260.6075 91.1 260 91.1 c
+259.3925 91.1 258.9 90.60751 258.9 90 c
+258.9 89.39249 259.3925 88.9 260 88.9 c
+260.6075 88.9 261.1 89.39249 261.1 90 c
+f*
+n
+261.1 98 m
+261.1 98.60751 260.6075 99.1 260 99.1 c
+259.3925 99.1 258.9 98.60751 258.9 98 c
+258.9 97.39249 259.3925 96.9 260 96.9 c
+260.6075 96.9 261.1 97.39249 261.1 98 c
+f*
+n
+261.1 106 m
+261.1 106.6075 260.6075 107.1 260 107.1 c
+259.3925 107.1 258.9 106.6075 258.9 106 c
+258.9 105.3925 259.3925 104.9 260 104.9 c
+260.6075 104.9 261.1 105.3925 261.1 106 c
+f*
+n
+261.1 114 m
+261.1 114.6075 260.6075 115.1 260 115.1 c
+259.3925 115.1 258.9 114.6075 258.9 114 c
+258.9 113.3925 259.3925 112.9 260 112.9 c
+260.6075 112.9 261.1 113.3925 261.1 114 c
+f*
+n
+261.1 122 m
+261.1 122.6075 260.6075 123.1 260 123.1 c
+259.3925 123.1 258.9 122.6075 258.9 122 c
+258.9 121.3925 259.3925 120.9 260 120.9 c
+260.6075 120.9 261.1 121.3925 261.1 122 c
+f*
+n
+261.1 130 m
+261.1 130.6075 260.6075 131.1 260 131.1 c
+259.3925 131.1 258.9 130.6075 258.9 130 c
+258.9 129.3925 259.3925 128.9 260 128.9 c
+260.6075 128.9 261.1 129.3925 261.1 130 c
+f*
+n
+261.1 138 m
+261.1 138.6075 260.6075 139.1 260 139.1 c
+259.3925 139.1 258.9 138.6075 258.9 138 c
+258.9 137.3925 259.3925 136.9 260 136.9 c
+260.6075 136.9 261.1 137.3925 261.1 138 c
+f*
+Q
+.094118 .129412 .168627 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 227.8963 148.48 Tm (88%) Tj T* ET
+BT /F2 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 225.574 22 Tm (Green) Tj T* ET
+BT /F1 6.2 Tf 7.44 TL ET
+BT 1 0 0 1 218.8584 12 Tm (500-600 nm) Tj T* ET
+.67 .67 .67 rg
+.094118 .129412 .168627 RG
+.7 w
+n 315.6 38 54 37.51 re B*
+q
+n 315.6 38 54 37.51 re W* n
+.294118 .34902 .403922 RG
+.55 w
+n 278.6 38 m 316.11 75.51 l S
+n 278.6 75.51 m 316.11 38 l S
+n 288.6 38 m 326.11 75.51 l S
+n 288.6 75.51 m 326.11 38 l S
+n 298.6 38 m 336.11 75.51 l S
+n 298.6 75.51 m 336.11 38 l S
+n 308.6 38 m 346.11 75.51 l S
+n 308.6 75.51 m 346.11 38 l S
+n 318.6 38 m 356.11 75.51 l S
+n 318.6 75.51 m 356.11 38 l S
+n 328.6 38 m 366.11 75.51 l S
+n 328.6 75.51 m 366.11 38 l S
+n 338.6 38 m 376.11 75.51 l S
+n 338.6 75.51 m 376.11 38 l S
+n 348.6 38 m 386.11 75.51 l S
+n 348.6 75.51 m 386.11 38 l S
+n 358.6 38 m 396.11 75.51 l S
+n 358.6 75.51 m 396.11 38 l S
+n 368.6 38 m 406.11 75.51 l S
+n 368.6 75.51 m 406.11 38 l S
+n 378.6 38 m 416.11 75.51 l S
+n 378.6 75.51 m 416.11 38 l S
+n 388.6 38 m 426.11 75.51 l S
+n 388.6 75.51 m 426.11 38 l S
+n 398.6 38 m 436.11 75.51 l S
+n 398.6 75.51 m 436.11 38 l S
+Q
+.094118 .129412 .168627 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 335.0962 79.51 Tm (31%) Tj T* ET
+BT /F2 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 336.1774 22 Tm (Red) Tj T* ET
+BT /F1 6.2 Tf 7.44 TL ET
+BT 1 0 0 1 326.0584 12 Tm (600-700 nm) Tj T* ET
+.54 .54 .54 rg
+.094118 .129412 .168627 RG
+.7 w
+n 422.8 38 54 14.52 re B*
+q
+n 422.8 38 54 14.52 re W* n
+.294118 .34902 .403922 RG
+.55 w
+n 422.8 43 m 476.8 43 l S
+n 422.8 50 m 476.8 50 l S
+Q
+.094118 .129412 .168627 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 442.2962 56.52 Tm (12%) Tj T* ET
+BT /F2 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 435.2514 22 Tm (Deep red) Tj T* ET
+BT /F1 6.2 Tf 7.44 TL ET
+BT 1 0 0 1 437.6511 12 Tm (700 nm+) Tj T* ET
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 260.0235 0 Tm (Wavelength band) Tj T* ET
+Q
+q
+1 0 0 1 40 144.94 cm
+q
+BT 1 0 0 1 0 1.5 Tm 8.7 TL /F2 7.2 Tf .294118 .34902 .403922 rg (SOURCE STATUS:) Tj /F1 7.2 Tf ( Numerical bars are exact game values; general plant-light principles come from primary research.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+20 0 obj
+<<
+/Length 7280
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 5 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Mechanism, distractors, and misconceptions) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Correct case mechanism) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 520.04 cm
+.094118 .129412 .168627 RG
+1 1 1 rg
+n 0 18 94.4 111 re B*
+.094118 .129412 .168627 rg
+BT /F2 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 9.2368 115 Tm (47-sol filter replacement) Tj T* ET
+.094118 .129412 .168627 RG
+n 96.4 73.5 m 108.4 73.5 l S
+n 104.4 76.5 m 108.4 73.5 l S
+n 104.4 70.5 m 108.4 73.5 l S
+.094118 .129412 .168627 RG
+.968627 .976471 .980392 rg
+n 110.4 18 94.4 111 re B*
+.094118 .129412 .168627 rg
+BT /F2 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 117.802 115 Tm (BP-4 rejects red/deep red) Tj T* ET
+.094118 .129412 .168627 RG
+n 206.8 73.5 m 218.8 73.5 l S
+n 214.8 76.5 m 218.8 73.5 l S
+n 214.8 70.5 m 218.8 73.5 l S
+.094118 .129412 .168627 RG
+.968627 .976471 .980392 rg
+n 220.8 18 94.4 111 re B*
+.094118 .129412 .168627 rg
+BT /F2 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 229.4791 115 Tm (case-critical red delivery) Tj T* ET
+BT 1 0 0 1 262.4989 106 Tm (low) Tj T* ET
+.094118 .129412 .168627 RG
+n 317.2 73.5 m 329.2 73.5 l S
+n 325.2 76.5 m 329.2 73.5 l S
+n 325.2 70.5 m 329.2 73.5 l S
+.094118 .129412 .168627 RG
+.968627 .976471 .980392 rg
+n 331.2 18 94.4 111 re B*
+.094118 .129412 .168627 rg
+BT /F2 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 353.2771 115 Tm (new chlorophyll) Tj T* ET
+BT 1 0 0 1 343.3738 106 Tm (development impaired) Tj T* ET
+.094118 .129412 .168627 RG
+n 427.6 73.5 m 439.6 73.5 l S
+n 435.6 76.5 m 439.6 73.5 l S
+n 435.6 70.5 m 439.6 73.5 l S
+.094118 .129412 .168627 RG
+1 1 1 rg
+n 441.6 18 94.4 111 re B*
+.094118 .129412 .168627 rg
+BT /F2 6.6 Tf 7.92 TL ET
+BT 1 0 0 1 462.9445 115 Tm (pale new growth) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 6.8 Tf 8.16 TL ET
+BT 1 0 0 1 0 4 Tm (Case mechanism model. General plant-light responses also involve blue, green, and red wavelengths.) Tj T* ET
+Q
+q
+1 0 0 1 40 479.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 25 Tm /F1 9.2 Tf 11.4 TL (Within the game model, the collector/light-pipe system delivers enough total photons for an adequate PPFD value while a likely) Tj T* (BP-4 filter disproportionately rejects red/deep-red wavelengths. New tissue must form new chlorophyll; the game links the) Tj T* (light-dependent POR step to that process. The pattern therefore appears first in new growth.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 460.84 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Why the wrong answers are tempting) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 357.24 cm
+q
+.929412 .945098 .956863 rg
+n 0 100.6 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Option) Tj T* ET
+Q
+Q
+q
+1 0 0 1 116.6 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Why tempting) Tj T* ET
+Q
+Q
+q
+1 0 0 1 282.2 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Why it fails) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Perchlorates poison roots) Tj T* ET
+Q
+Q
+q
+1 0 0 1 116.6 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Mars setting activates prior knowledge.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 282.2 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Roots are healthy; crop uses a prepared nutrient system.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 50.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (CO2 too high) Tj T* ET
+Q
+Q
+q
+1 0 0 1 116.6 50.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (1200 ppm sounds extreme.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 282.2 50.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Runtime states it is within tolerance and symptoms do not fit.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Mars sol disrupts) Tj T* (photoperiod) Tj T* ET
+Q
+Q
+q
+1 0 0 1 116.6 32.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Mars day length is memorable.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 282.2 32.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Does not explain wavelength data or new-tissue pattern.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Not enough total light) Tj T* ET
+Q
+Q
+q
+1 0 0 1 116.6 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Bleaching suggests weak light.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 282.2 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (PPFD is 280 and described as adequate.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 100.6 m 522 100.6 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 100.6 l S
+n 522 0 m 522 100.6 l S
+n 0 82.5 m 522 82.5 l S
+n 0 64.4 m 522 64.4 l S
+n 0 46.3 m 522 46.3 l S
+n 0 18.1 m 522 18.1 l S
+n 111.6 0 m 111.6 100.6 l S
+n 277.2 0 m 277.2 100.6 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 338.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Misconceptions to prevent) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 323.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 323.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (PPFD is a complete description of light quality.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 306.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 306.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (A brighter lamp always fixes a lighting failure.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 289.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 289.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Green photons are useless.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 271.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 271.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Only red light matters to every plant process.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 254.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 254.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Yellowing automatically proves nutrient deficiency.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+21 0 obj
+<<
+/Length 8549
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 6 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Assessment, rubrics, and supports) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Quick rubric) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 536.24 cm
+q
+.929412 .945098 .956863 rg
+n 0 128.8 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 114.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Dimension) Tj T* ET
+Q
+Q
+q
+1 0 0 1 84.2 114.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Secure) Tj T* ET
+Q
+Q
+q
+1 0 0 1 235.4 114.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Developing) Tj T* ET
+Q
+Q
+q
+1 0 0 1 386.6 114.7 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Beginning) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 96.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Data use) Tj T* ET
+Q
+Q
+q
+1 0 0 1 84.2 86.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Uses 280 and all four exact) Tj T* (transmission values.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 235.4 96.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Minor omission or error.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 386.6 96.6 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Omits or invents values.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Quantity vs) Tj T* (spectrum) Tj T* ET
+Q
+Q
+q
+1 0 0 1 84.2 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Clear distinction and rejection.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 235.4 68.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Partial distinction.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 386.6 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 11.9 Tm /F1 8.3 Tf 10.1 TL (Treats PPFD as a complete) Tj T* (spectrum.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Mechanism) Tj T* ET
+Q
+Q
+q
+1 0 0 1 84.2 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Complete data-to-symptom chain.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 235.4 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Cause identified; chain incomplete.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 386.6 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Conclusion without mechanism.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Alternatives) Tj T* ET
+Q
+Q
+q
+1 0 0 1 84.2 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Rejects with evidence.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 235.4 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Weak rejection.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 386.6 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (No evaluation.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Communication) Tj T* ET
+Q
+Q
+q
+1 0 0 1 84.2 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Clear CER and vocabulary.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 235.4 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Understandable but incomplete.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 386.6 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Major gaps.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 128.8 m 522 128.8 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 128.8 l S
+n 522 0 m 522 128.8 l S
+n 0 110.7 m 522 110.7 l S
+n 0 82.5 m 522 82.5 l S
+n 0 54.3 m 522 54.3 l S
+n 0 36.2 m 522 36.2 l S
+n 0 18.1 m 522 18.1 l S
+n 79.2 0 m 79.2 128.8 l S
+n 230.4 0 m 230.4 128.8 l S
+n 381.6 0 m 381.6 128.8 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 517.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Formal analytic rubric) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 502.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 502.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Accurate game data) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 485.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 485.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Graph interpretation and quantitative comparison) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 468.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 468.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Quantity-versus-distribution distinction) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 450.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 450.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Mechanistic reasoning) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 433.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 433.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Competing-diagnosis evaluation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 415.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 415.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Source-status and uncertainty awareness) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 398.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 398.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Scientific communication and completion) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 379.44 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Differentiation and accessibility) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 365.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 365.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Use the six-page Accessible Mission with larger type and linear tables.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 347.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 347.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Permit oral dictation, speech-to-text, or typed response.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 330.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 330.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Read source-status labels aloud.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 312.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 312.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (No arithmetic is required; students compare direct measurements.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 295.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 295.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Provide the technical fallback without reducing reasoning demand.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 276.44 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Academic grading boundary) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 247.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 13.6 Tm /F1 9.2 Tf 11.4 TL (Assess evidence, mechanism, reasoning, vocabulary, alternative evaluation, and completion. Do not grade game score, speed,) Tj T* (rapport, optional dialogue, or clue-discovery order.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+22 0 obj
+<<
+/Length 5778
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 7 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (References and source-status guidance) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Authoritative and primary sources) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 653.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 653.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Illuminating Engineering Society: PPFD definition as photon quantity per area and time in the 400-700 nm band.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 636.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 636.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (McCree \(1971/1972\): wavelength-dependent action spectra across 22 crop species with broad blue and red maxima.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 618.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 618.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Hogewoning et al. \(2010\): equal irradiance with different blue:red composition produced different plant function.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 601.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 601.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Heyes, Ruban, and Hunter \(2003\): POR is a light-driven chlorophyll-biosynthesis enzyme.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 584.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 584.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Armstrong et al. \(1995\): light-dependent protochlorophyllide reduction in angiosperm chlorophyll biosynthesis.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 555.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 16.3 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 555.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 13.6 Tm /F1 9.2 Tf 11.4 TL (Bula et al. \(NASA/HortScience, 1991/1994\): controlled-environment LED sources provide specified PAR flux and spectral) Tj T* (regions.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 536.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Game-specific and curriculum-original data) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 424.64 cm
+q
+.929412 .945098 .956863 rg
+n 0 108.6 522 -18.1 re f*
+.094118 .129412 .168627 rg
+BT /F2 10 Tf 12 TL ET
+q
+1 0 0 1 5 94.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Item) Tj T* ET
+Q
+Q
+q
+1 0 0 1 329 94.5 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Status) Tj T* ET
+Q
+Q
+BT /F1 10 Tf 12 TL ET
+q
+1 0 0 1 5 76.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (280 PPFD; 12 m silica pipe; aggregate transmission 68%) Tj T* ET
+Q
+Q
+q
+1 0 0 1 329 76.4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Game-provided Case 03 runtime data.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (92%, 88%, 31%, 12% transmission) Tj T* ET
+Q
+Q
+q
+1 0 0 1 329 58.3 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Direct game-provided band readings.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (47-sol replacement; FS-7 and BP-4 filter models) Tj T* ET
+Q
+Q
+q
+1 0 0 1 329 40.2 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL -0.050625 Tw (Game-specific maintenance and hardware records.) Tj T* 0 Tw ET
+Q
+Q
+q
+1 0 0 1 5 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Mars symptoms and diagnosis) Tj T* ET
+Q
+Q
+q
+1 0 0 1 329 22.1 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Game-specific controlled case model.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 5 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Graphs and mechanism diagrams) Tj T* ET
+Q
+Q
+q
+1 0 0 1 329 4 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 1.8 Tm /F1 8.3 Tf 10.1 TL (Curriculum-original vector constructions.) Tj T* ET
+Q
+Q
+q
+1 J
+1 j
+.54902 .603922 .658824 RG
+.55 w
+n 0 108.6 m 522 108.6 l S
+n 0 0 m 522 0 l S
+n 0 0 m 0 108.6 l S
+n 522 0 m 522 108.6 l S
+n 0 90.5 m 522 90.5 l S
+n 0 72.4 m 522 72.4 l S
+n 0 54.3 m 522 54.3 l S
+n 0 36.2 m 522 36.2 l S
+n 0 18.1 m 522 18.1 l S
+n 324 0 m 324 108.6 l S
+Q
+Q
+Q
+q
+1 0 0 1 40 405.64 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Rights and precision) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 376.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 13.6 Tm /F1 9.2 Tf 11.4 TL (No publisher figure is copied or adapted. The graphs use whole-number values and do not interpolate a continuous spectrum or) Tj T* (imply greater instrument precision. NASA records are cited for facts; no external imagery is reproduced.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+23 0 obj
+<<
+/Length 6460
+>>
+stream
+1 0 0 1 0 0 cm  BT /F1 12 Tf 14.4 TL ET
+q
+.043137 .435294 .509804 RG
+3 w
+n 36 725.04 m 36 758.16 l S
+.094118 .129412 .168627 rg
+BT /F2 13 Tf 15.6 TL ET
+BT 1 0 0 1 44 743.76 Tm (Mars Habitat) Tj T* ET
+.294118 .34902 .403922 rg
+BT /F1 8 Tf 9.6 TL ET
+BT 1 0 0 1 44 731.52 Tm (Teacher Guide - Continued) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 551.5 752.4 Tm (SOLAR) Tj T* ET
+BT 1 0 0 1 520.399 743.76 Tm (AGRICULTURAL) Tj T* ET
+BT 1 0 0 1 535.169 735.12 Tm (AUTHORITY) Tj T* ET
+.54902 .603922 .658824 RG
+.55 w
+n 36 720 m 576 720 l S
+n 36 33.84 m 576 33.84 l S
+.294118 .34902 .403922 rg
+BT /F2 7 Tf 8.4 TL ET
+BT 1 0 0 1 507.141 22.32 Tm (Teacher Guide 8 of 8) Tj T* ET
+Q
+q
+1 0 0 1 40 688.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.5 Tm /F2 14.5 Tf 17 TL (Technical fallback and release gate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 668.04 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Fallback principle) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 639.24 cm
+q
+BT 1 0 0 1 0 13.6 Tm 11.4 TL /F2 9.2 Tf .094118 .129412 .168627 rg (Technical failure must not become academic failure.) Tj /F1 9.2 Tf ( Give students the same controlled evidence, exact tasks, and rubric. Do) Tj T* (not provide the diagnosis.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 620.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Controlled evidence digest) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 462.24 cm
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 0 81 266.5 74 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 6 143 Tm (CREW) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 6 131 Tm (Three weeks of normal growth; newest leaves become washed out; iron and) Tj T* ET
+BT 1 0 0 1 6 122 Tm (nitrogen do not help.) Tj T* ET
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 273.5 81 266.5 74 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 279.5 143 Tm (SENSORS) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 279.5 131 Tm (12 m light pipe plus white LEDs; combined PPFD 280; no spectral analysis had) Tj T* ET
+BT 1 0 0 1 279.5 122 Tm (been performed.) Tj T* ET
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 0 0 266.5 74 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 6 62 Tm (PLANTS) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 6 50 Tm (Healthy roots; older leaves retain green; new growth is pale yellow-white.) Tj T* ET
+.968627 .976471 .980392 rg
+.54902 .603922 .658824 RG
+n 273.5 0 266.5 74 re B*
+.043137 .435294 .509804 rg
+BT /F2 7.5 Tf 9 TL ET
+BT 1 0 0 1 279.5 62 Tm (ARCHIVE) Tj T* ET
+.094118 .129412 .168627 rg
+BT /F1 7.1 Tf 8.52 TL ET
+BT 1 0 0 1 279.5 50 Tm (Filter replaced 47 sols ago without a logged part number. Required FS-7;) Tj T* ET
+BT 1 0 0 1 279.5 41 Tm (incorrect BP-4 passes blue/green and rejects most red/deep red. Transmission:) Tj T* ET
+BT 1 0 0 1 279.5 32 Tm (92%, 88%, 31%, 12%.) Tj T* ET
+Q
+q
+1 0 0 1 40 443.24 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Facilitation) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 428.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 428.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Read the digest once and allow students to revisit it.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 411.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 411.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Require Tasks 1-9 unchanged.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 394.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 394.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Use the same quick or formal rubric.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 376.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 376.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Allow speech-to-text or oral response as documented accommodations; arithmetic is not required.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 357.64 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Physical-print gate) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 317.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 25 Tm /F1 9.2 Tf 11.4 TL (Automated static, browser, PDF, portability, accessibility, overflow, checksum, and rendered-review checks may pass while the) Tj T* (release remains unreleased. Owner physical 100%-scale printing must still verify clipping, line survival, patterns, direct labels, and) Tj T* (writing usability before approval.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 298.44 cm
+q
+.043137 .435294 .509804 rg
+BT 1 0 0 1 0 2.2 Tm /F2 10.8 Tf 13 TL (Owner print checks) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 284.04 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 284.04 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Print each role at 100% / Actual Size on ordinary classroom equipment.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 266.64 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 266.64 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Confirm compact page identity and role-specific N of total footers.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 249.24 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 249.24 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Confirm graph axes, units, data labels, and patterns survive black-and-white copying.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 231.84 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 231.84 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Confirm response boxes match expected answer length and bottom reserve remains intentional.) Tj T* ET
+Q
+Q
+q
+1 0 0 1 40 214.44 cm
+BT /F1 6.5 Tf 7.8 TL ET
+0 0 0 rg
+BT 1 0 0 1 -6 4.9 Tm /F3 6.5 Tf 7.8 TL (l) Tj /F1 6.5 Tf 7.8 TL T* ET
+Q
+q
+1 0 0 1 50 214.44 cm
+q
+.094118 .129412 .168627 rg
+BT 1 0 0 1 0 2.2 Tm /F1 9.2 Tf 11.4 TL (Confirm no production metadata appears on ordinary printable pages.) Tj T* ET
+Q
+Q
+ 
+endstream
+endobj
+xref
+0 24
+0000000000 65535 f 
+0000000061 00000 n 
+0000000112 00000 n 
+0000000219 00000 n 
+0000000331 00000 n 
+0000000526 00000 n 
+0000000609 00000 n 
+0000000804 00000 n 
+0000000999 00000 n 
+0000001194 00000 n 
+0000001389 00000 n 
+0000001585 00000 n 
+0000001781 00000 n 
+0000001977 00000 n 
+0000002047 00000 n 
+0000002343 00000 n 
+0000002448 00000 n 
+0000009568 00000 n 
+0000015805 00000 n 
+0000022454 00000 n 
+0000048704 00000 n 
+0000056036 00000 n 
+0000064637 00000 n 
+0000070467 00000 n 
+trailer
+<<
+/ID 
+[<a3e52f9bb9da329e0e9dd7de553dfae2><a3e52f9bb9da329e0e9dd7de553dfae2>]
+% ReportLab generated PDF document -- digest (opensource)
+
+/Info 14 0 R
+/Root 13 0 R
+/Size 24
+>>
+startxref
+76979
+%%EOF

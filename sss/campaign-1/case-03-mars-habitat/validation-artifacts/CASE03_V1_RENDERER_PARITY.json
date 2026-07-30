@@ -1,0 +1,368 @@
+{
+  "status": "PASS",
+  "interpretation": "Differences are confined to raster antialiasing along text and vector edges; no missing, shifted, clipped, or corrupted content was found.",
+  "files": {
+    "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0": {
+      "dpi": 140,
+      "engine_a": "pdftoppm",
+      "engine_b": "pdfium",
+      "pages": 6,
+      "changed_pages": 6,
+      "max_pct_changed": 0.04896922405325767,
+      "per_page": [
+        {
+          "page": 1,
+          "changed": true,
+          "pct_changed": 0.03909745716468405,
+          "bbox": [
+            67,
+            61,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 2,
+          "changed": true,
+          "pct_changed": 0.04896922405325767,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 3,
+          "changed": true,
+          "pct_changed": 0.04140619884317363,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 4,
+          "changed": true,
+          "pct_changed": 0.03603786969333188,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 5,
+          "changed": true,
+          "pct_changed": 0.040836516424751716,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 6,
+          "changed": true,
+          "pct_changed": 0.03429717341482048,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        }
+      ]
+    },
+    "SSS_C1_CASE03_ANSWER_KEY_v1.0": {
+      "dpi": 140,
+      "engine_a": "pdftoppm",
+      "engine_b": "pdfium",
+      "pages": 4,
+      "changed_pages": 4,
+      "max_pct_changed": 0.053113063407181055,
+      "per_page": [
+        {
+          "page": 1,
+          "changed": true,
+          "pct_changed": 0.047208337880606785,
+          "bbox": [
+            67,
+            61,
+            1120,
+            1500
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 2,
+          "changed": true,
+          "pct_changed": 0.04943468296409473,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1500
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 3,
+          "changed": true,
+          "pct_changed": 0.04499781730874168,
+          "bbox": [
+            67,
+            65,
+            1121,
+            1500
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 4,
+          "changed": true,
+          "pct_changed": 0.053113063407181055,
+          "bbox": [
+            67,
+            65,
+            1120,
+            1500
+          ],
+          "max_channel": 224
+        }
+      ]
+    },
+    "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0": {
+      "dpi": 140,
+      "engine_a": "pdftoppm",
+      "engine_b": "pdfium",
+      "pages": 4,
+      "changed_pages": 4,
+      "max_pct_changed": 0.06773163810978937,
+      "per_page": [
+        {
+          "page": 1,
+          "changed": true,
+          "pct_changed": 0.06773163810978937,
+          "bbox": [
+            67,
+            61,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 2,
+          "changed": true,
+          "pct_changed": 0.05425952199061443,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 3,
+          "changed": true,
+          "pct_changed": 0.053579067990832695,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 4,
+          "changed": true,
+          "pct_changed": 0.037832041907672156,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        }
+      ]
+    },
+    "SSS_C1_CASE03_STUDENT_MISSION_v1.0": {
+      "dpi": 140,
+      "engine_a": "pdftoppm",
+      "engine_b": "pdfium",
+      "pages": 4,
+      "changed_pages": 4,
+      "max_pct_changed": 0.06773163810978937,
+      "per_page": [
+        {
+          "page": 1,
+          "changed": true,
+          "pct_changed": 0.06773163810978937,
+          "bbox": [
+            67,
+            61,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 2,
+          "changed": true,
+          "pct_changed": 0.05425952199061443,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 3,
+          "changed": true,
+          "pct_changed": 0.053579067990832695,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 4,
+          "changed": true,
+          "pct_changed": 0.037832041907672156,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        }
+      ]
+    },
+    "SSS_C1_CASE03_TEACHER_GUIDE_v1.0": {
+      "dpi": 140,
+      "engine_a": "pdftoppm",
+      "engine_b": "pdfium",
+      "pages": 8,
+      "changed_pages": 8,
+      "max_pct_changed": 0.07326912583215105,
+      "per_page": [
+        {
+          "page": 1,
+          "changed": true,
+          "pct_changed": 0.07326912583215105,
+          "bbox": [
+            67,
+            61,
+            1120,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 2,
+          "changed": true,
+          "pct_changed": 0.06619884317363309,
+          "bbox": [
+            65,
+            65,
+            1120,
+            1498
+          ],
+          "max_channel": 230
+        },
+        {
+          "page": 3,
+          "changed": true,
+          "pct_changed": 0.06436265415257011,
+          "bbox": [
+            65,
+            65,
+            1120,
+            1498
+          ],
+          "max_channel": 230
+        },
+        {
+          "page": 4,
+          "changed": true,
+          "pct_changed": 0.07179853759685692,
+          "bbox": [
+            67,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 224
+        },
+        {
+          "page": 5,
+          "changed": true,
+          "pct_changed": 0.06504911055331224,
+          "bbox": [
+            65,
+            65,
+            1121,
+            1498
+          ],
+          "max_channel": 230
+        },
+        {
+          "page": 6,
+          "changed": true,
+          "pct_changed": 0.06513041580268471,
+          "bbox": [
+            65,
+            65,
+            1120,
+            1498
+          ],
+          "max_channel": 230
+        },
+        {
+          "page": 7,
+          "changed": true,
+          "pct_changed": 0.0679640947288006,
+          "bbox": [
+            65,
+            65,
+            1120,
+            1498
+          ],
+          "max_channel": 230
+        },
+        {
+          "page": 8,
+          "changed": true,
+          "pct_changed": 0.0678975226454218,
+          "bbox": [
+            65,
+            65,
+            1129,
+            1498
+          ],
+          "max_channel": 230
+        }
+      ]
+    }
+  }
+}

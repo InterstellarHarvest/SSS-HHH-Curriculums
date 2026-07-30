@@ -1,0 +1,2241 @@
+{
+  "case": "SSS-C1-CASE03",
+  "version": "1.0",
+  "status": "PASS",
+  "build_status": "VALIDATION BUILD",
+  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "page_counts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 6,
+    "grayscale": 4
+  },
+  "groups": {
+    "static": {
+      "pass": 15,
+      "total": 15
+    },
+    "identity": {
+      "pass": 50,
+      "total": 50
+    },
+    "task parity": {
+      "pass": 30,
+      "total": 30
+    },
+    "data": {
+      "pass": 13,
+      "total": 13
+    },
+    "graph": {
+      "pass": 11,
+      "total": 11
+    },
+    "content": {
+      "pass": 10,
+      "total": 10
+    },
+    "regression": {
+      "pass": 5,
+      "total": 5
+    },
+    "accessibility": {
+      "pass": 4,
+      "total": 4
+    },
+    "publishing": {
+      "pass": 6,
+      "total": 6
+    },
+    "portable": {
+      "pass": 25,
+      "total": 25
+    },
+    "browser": {
+      "pass": 33,
+      "total": 33
+    },
+    "pdf": {
+      "pass": 142,
+      "total": 142
+    },
+    "render": {
+      "pass": 10,
+      "total": 10
+    },
+    "checksum": {
+      "pass": 1,
+      "total": 1
+    }
+  },
+  "total": {
+    "pass": 355,
+    "total": 355
+  },
+  "pdfs": {
+    "student": {
+      "pdf": "SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
+      "pages": 4,
+      "sha256": "9cdc115d09a0ed23e9c9432cca29f2a519e0e0b3329deb90389c375191ad87f9",
+      "bytes": 43460
+    },
+    "teacher": {
+      "pdf": "SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
+      "pages": 8,
+      "sha256": "e13b0bfa98ee2b832dbf3095ccae3ef6aa096a541a0218c162104be7aff5a9e7",
+      "bytes": 77675
+    },
+    "answer": {
+      "pdf": "SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
+      "pages": 4,
+      "sha256": "48e76b808bfb9c04c65df06e373a53ea3fc08d7a94a3cd317bbd8e08c28c756c",
+      "bytes": 41070
+    },
+    "accessible": {
+      "pdf": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
+      "pages": 6,
+      "sha256": "def47e9b24cf6bbea296e1afc71b4965f98a97bb465b4f665e976314e8651834",
+      "bytes": 52871
+    },
+    "grayscale": {
+      "pdf": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
+      "pages": 4,
+      "sha256": "486edcd48d1e726ca6adc2c11e890de20f82353126f0a7f6baa16ef6cfeae4d7",
+      "bytes": 43452
+    }
+  },
+  "failures": [],
+  "checks": [
+    {
+      "group": "static",
+      "name": "master exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "metadata sss-case",
+      "pass": true,
+      "detail": "SSS-C1-CASE03"
+    },
+    {
+      "group": "static",
+      "name": "metadata sss-status",
+      "pass": true,
+      "detail": "validation-build"
+    },
+    {
+      "group": "static",
+      "name": "metadata sss-game-baseline",
+      "pass": true,
+      "detail": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712"
+    },
+    {
+      "group": "static",
+      "name": "metadata sss-page-identity",
+      "pass": true,
+      "detail": "1.0.4"
+    },
+    {
+      "group": "static",
+      "name": "metadata sss-balanced-page-fill",
+      "pass": true,
+      "detail": "1.0.2"
+    },
+    {
+      "group": "static",
+      "name": "metadata sss-visible-production-status",
+      "pass": true,
+      "detail": "none"
+    },
+    {
+      "group": "static",
+      "name": "canonical institution authority",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "wrong institution absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "student identification only first student and accessible pages",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "group": "static",
+      "name": "student master page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "identity",
+      "name": "student footer 1",
+      "pass": true,
+      "detail": "Student Mission 1 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "student header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "student footer 2",
+      "pass": true,
+      "detail": "Student Mission 2 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "student header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "student footer 3",
+      "pass": true,
+      "detail": "Student Mission 3 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "student header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "student footer 4",
+      "pass": true,
+      "detail": "Student Mission 4 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "student header 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "teacher master page count",
+      "pass": true,
+      "detail": "8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 1",
+      "pass": true,
+      "detail": "Teacher Guide 1 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 2",
+      "pass": true,
+      "detail": "Teacher Guide 2 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 3",
+      "pass": true,
+      "detail": "Teacher Guide 3 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 4",
+      "pass": true,
+      "detail": "Teacher Guide 4 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 5",
+      "pass": true,
+      "detail": "Teacher Guide 5 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 6",
+      "pass": true,
+      "detail": "Teacher Guide 6 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 7",
+      "pass": true,
+      "detail": "Teacher Guide 7 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "teacher footer 8",
+      "pass": true,
+      "detail": "Teacher Guide 8 of 8"
+    },
+    {
+      "group": "identity",
+      "name": "teacher header 8",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "answer master page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "identity",
+      "name": "answer footer 1",
+      "pass": true,
+      "detail": "Answer Key 1 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "answer header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "answer footer 2",
+      "pass": true,
+      "detail": "Answer Key 2 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "answer header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "answer footer 3",
+      "pass": true,
+      "detail": "Answer Key 3 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "answer header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "answer footer 4",
+      "pass": true,
+      "detail": "Answer Key 4 of 4"
+    },
+    {
+      "group": "identity",
+      "name": "answer header 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "accessible master page count",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible footer 1",
+      "pass": true,
+      "detail": "Accessible Mission 1 of 6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible header 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "accessible footer 2",
+      "pass": true,
+      "detail": "Accessible Mission 2 of 6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible header 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "accessible footer 3",
+      "pass": true,
+      "detail": "Accessible Mission 3 of 6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible header 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "accessible footer 4",
+      "pass": true,
+      "detail": "Accessible Mission 4 of 6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible header 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "accessible footer 5",
+      "pass": true,
+      "detail": "Accessible Mission 5 of 6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible header 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "accessible footer 6",
+      "pass": true,
+      "detail": "Accessible Mission 6 of 6"
+    },
+    {
+      "group": "identity",
+      "name": "accessible header 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static",
+      "name": "grayscale master page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 1 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 2 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 3 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 4 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 5 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 6 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 7 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 8 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "student task 9 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 1 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 2 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 3 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 4 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 5 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 6 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 7 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 8 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "accessible task 9 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 1 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 2 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 3 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 4 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 5 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 6 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 7 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 8 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "answer task 9 exact title",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "group": "task parity",
+      "name": "teacher direct reference task 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "task parity",
+      "name": "teacher direct reference task 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "task parity",
+      "name": "teacher direct reference task 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 280",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 68%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 47 sols",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 92%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 88%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 31%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 12%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 400-500 nm",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 500-600 nm",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 600-700 nm",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text 700 nm+",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text FS-7 FULL SPECTRUM",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "data",
+      "name": "exact value/text BP-4 BLUE PASS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "graph label Transmission (%)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "graph label Wavelength band",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "graph label Game-provided sensor data",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "grayscale pattern diag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "grayscale pattern dots",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "grayscale pattern cross",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "grayscale pattern horiz",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "direct bar labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "SVG titles and descriptions",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "axes and units not color-only",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "graph",
+      "name": "no continuous-spectrum precision claim",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "exact correct diagnosis",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "mechanism element wrong BP-4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "mechanism element red/deep-red rejection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "mechanism element new chlorophyll",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "mechanism element new growth bleaches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "reject low-total-light explanation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "brightness misconception warning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "red-only misconception warning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "green-is-useless misconception warning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "content",
+      "name": "dust-only rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "regression",
+      "name": "stale content absent: 8%, 12%, 45%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "regression",
+      "name": "stale content absent: 55%, 35%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "regression",
+      "name": "stale content absent: borosilicate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "regression",
+      "name": "stale content absent: Loss through pipe (%)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "regression",
+      "name": "stale content absent: stated 12 m light-pipe losses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "printable metadata absent: VALIDATION BUILD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "printable metadata absent: 2a6e8a7bb75c8c96f26f9ebfe752",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "printable metadata absent: SSS_C1_CASE03_EDITABLE_MASTE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "printable metadata absent: CASE03_V1_CHECKSUMS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "printable metadata absent: machine-local path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "identity",
+      "name": "printable metadata absent: github.com/",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "accessibility",
+      "name": "skip link",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "accessibility",
+      "name": "all figures labeled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "accessibility",
+      "name": "response textboxes labeled",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "accessibility",
+      "name": "accessible role larger type",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "publishing",
+      "name": "local persistence code",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "publishing",
+      "name": "selective response clearing",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "publishing",
+      "name": "reset behavior",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "publishing",
+      "name": "portable downloaded HTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "publishing",
+      "name": "overflow warning logic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "publishing",
+      "name": "standalone control guards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "student standalone exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "student standalone page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "portable",
+      "name": "student toolbar absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "student self-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "student source master metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "teacher standalone exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "teacher standalone page count",
+      "pass": true,
+      "detail": "8"
+    },
+    {
+      "group": "portable",
+      "name": "teacher toolbar absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "teacher self-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "teacher source master metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "answer standalone exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "answer standalone page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "portable",
+      "name": "answer toolbar absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "answer self-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "answer source master metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "accessible standalone exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "accessible standalone page count",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "portable",
+      "name": "accessible toolbar absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "accessible self-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "accessible source master metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "grayscale standalone exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "grayscale standalone page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "portable",
+      "name": "grayscale toolbar absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "grayscale self-contained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "portable",
+      "name": "grayscale source master metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "master loads without JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "initial student pages visible",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "browser",
+      "name": "response persistence",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "teacher role isolation",
+      "pass": true,
+      "detail": "8"
+    },
+    {
+      "group": "browser",
+      "name": "teacher zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "answer role isolation",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "browser",
+      "name": "answer zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "accessible role isolation",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "browser",
+      "name": "accessible zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "student role isolation",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "browser",
+      "name": "student zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "selective clear clears responses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "selective clear preserves ID",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "grayscale class toggles",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "portable accessible page count",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "browser",
+      "name": "portable output excludes toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "keyboard focus reaches interactive element",
+      "pass": true,
+      "detail": "True"
+    },
+    {
+      "group": "browser",
+      "name": "reset clears saved fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "student standalone no JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "student standalone visible pages",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "browser",
+      "name": "student standalone zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "teacher standalone no JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "teacher standalone visible pages",
+      "pass": true,
+      "detail": "8"
+    },
+    {
+      "group": "browser",
+      "name": "teacher standalone zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "answer standalone no JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "answer standalone visible pages",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "browser",
+      "name": "answer standalone zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "accessible standalone no JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "accessible standalone visible pages",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "browser",
+      "name": "accessible standalone zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "browser",
+      "name": "grayscale standalone no JS errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "browser",
+      "name": "grayscale standalone visible pages",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "browser",
+      "name": "grayscale standalone zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "group": "pdf",
+      "name": "student PDF exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student PDF page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "pdf",
+      "name": "student page 1 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "student footer 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student page 2 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "student footer 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student page 3 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "student footer 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student page 4 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "student footer 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student no visible metadata VALIDATION BUILD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student no visible metadata 2a6e8a7bb75c8c96f2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student no visible metadata machine-local path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student no visible metadata SSS_C1_CASE03_EDIT",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student contains 280",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student contains 92%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student contains 88%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student contains 31%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student contains 12%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student stale PDF content absent 45%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student stale PDF content absent 65%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student stale PDF content absent 55%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student stale PDF content absent 35%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student stale PDF content absent greatest loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student stale PDF content absent Loss through pipe",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "student ASCII-safe bytes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "render",
+      "name": "student rendered page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "render",
+      "name": "student nonempty rendered pages",
+      "pass": true,
+      "detail": "[162861, 126331, 119364, 83353]"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher PDF exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher PDF page count",
+      "pass": true,
+      "detail": "8"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 1 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 2 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 3 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 4 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 5 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 6 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 7 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher page 8 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "teacher footer 8",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher no visible metadata VALIDATION BUILD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher no visible metadata 2a6e8a7bb75c8c96f2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher no visible metadata machine-local path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher no visible metadata SSS_C1_CASE03_EDIT",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher stale PDF content absent 45%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher stale PDF content absent 65%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher stale PDF content absent 55%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher stale PDF content absent 35%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher stale PDF content absent greatest loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher stale PDF content absent Loss through pipe",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher current runtime evidence 68%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher current runtime evidence 47 sols",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher current runtime evidence FS-7",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher current runtime evidence BP-4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher current runtime evidence 92%, 88%, 31%, 12%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "teacher ASCII-safe bytes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "render",
+      "name": "teacher rendered page count",
+      "pass": true,
+      "detail": "8"
+    },
+    {
+      "group": "render",
+      "name": "teacher nonempty rendered pages",
+      "pass": true,
+      "detail": "[179318, 199595, 178227, 173107, 176482, 184766, 184650, 203013]"
+    },
+    {
+      "group": "pdf",
+      "name": "answer PDF exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer PDF page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "pdf",
+      "name": "answer page 1 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "answer footer 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer page 2 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "answer footer 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer page 3 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "answer footer 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer page 4 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "answer footer 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer no visible metadata VALIDATION BUILD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer no visible metadata 2a6e8a7bb75c8c96f2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer no visible metadata machine-local path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer no visible metadata SSS_C1_CASE03_EDIT",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer contains 280",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer contains 92%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer contains 88%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer contains 31%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer contains 12%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer stale PDF content absent 45%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer stale PDF content absent 65%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer stale PDF content absent 55%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer stale PDF content absent 35%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer stale PDF content absent greatest loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer stale PDF content absent Loss through pipe",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "answer ASCII-safe bytes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "render",
+      "name": "answer rendered page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "render",
+      "name": "answer nonempty rendered pages",
+      "pass": true,
+      "detail": "[116226, 119900, 116483, 140860]"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible PDF exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible PDF page count",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible page 1 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible footer 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible page 2 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible footer 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible page 3 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible footer 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible page 4 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible footer 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible page 5 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible footer 5",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible page 6 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "accessible footer 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible no visible metadata VALIDATION BUILD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible no visible metadata 2a6e8a7bb75c8c96f2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible no visible metadata machine-local path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible no visible metadata SSS_C1_CASE03_EDIT",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible contains 280",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible contains 92%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible contains 88%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible contains 31%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible contains 12%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible stale PDF content absent 45%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible stale PDF content absent 65%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible stale PDF content absent 55%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible stale PDF content absent 35%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible stale PDF content absent greatest loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible stale PDF content absent Loss through pipe",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "accessible ASCII-safe bytes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "render",
+      "name": "accessible rendered page count",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "group": "render",
+      "name": "accessible nonempty rendered pages",
+      "pass": true,
+      "detail": "[89895, 117790, 99696, 84873, 94609, 85167]"
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale PDF exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale PDF page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale page 1 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale footer 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale page 2 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale footer 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale page 3 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale footer 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale page 4 letter size",
+      "pass": true,
+      "detail": "612.0x792.0"
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale footer 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale no visible metadata VALIDATION BUILD",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale no visible metadata 2a6e8a7bb75c8c96f2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale no visible metadata machine-local path",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale no visible metadata SSS_C1_CASE03_EDIT",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale contains 280",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale contains 92%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale contains 88%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale contains 31%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale contains 12%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale stale PDF content absent 45%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale stale PDF content absent 65%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale stale PDF content absent 55%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale stale PDF content absent 35%",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale stale PDF content absent greatest loss",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale stale PDF content absent Loss through pipe",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "pdf",
+      "name": "grayscale ASCII-safe bytes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "render",
+      "name": "grayscale rendered page count",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "group": "render",
+      "name": "grayscale nonempty rendered pages",
+      "pass": true,
+      "detail": "[162863, 126332, 119365, 83353]"
+    },
+    {
+      "group": "checksum",
+      "name": "checksum ledger created",
+      "pass": true,
+      "detail": "41"
+    }
+  ]
+}

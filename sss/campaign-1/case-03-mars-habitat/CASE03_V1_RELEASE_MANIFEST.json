@@ -1,0 +1,208 @@
+{
+  "case": "SSS-C1-CASE03",
+  "title": "Mars Habitat",
+  "version": "1.0",
+  "status": "VALIDATION BUILD",
+  "release_status": "AUTOMATED_VALIDATION_PASS_PHYSICAL_PRINT_OPEN",
+  "student_identity": "Data Analyst",
+  "core_science": "light spectrum versus total intensity",
+  "curriculum_baseline": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "runtime_source": "space_sprout_sleuth_data.js#mars",
+  "printable_page_identity": "1.0.4",
+  "balanced_page_fill": "1.0.2",
+  "current_master": {
+    "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+    "sha256": "8c6294e876c679245526cc031ccfc5937e8168bc558b3b7b8f8e490ac0658cf9",
+    "bytes": 86004
+  },
+  "page_counts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 6,
+    "grayscale": 4
+  },
+  "automated_validation": {
+    "status": "PASS",
+    "assertions": "355/355",
+    "browser": "33/33",
+    "pdf": "142/142",
+    "preflight": "5/5 PASS",
+    "rendered_review": "PASS",
+    "renderer_parity": "PASS - antialiasing-only differences",
+    "physical_print": "OPEN"
+  },
+  "outputs": {
+    "student": {
+      "pages": 4,
+      "html": {
+        "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
+        "sha256": "8f68d79ff49fd9cf5f53f28572997bca64f609a711ae7c1908c7adfd086c6eba",
+        "bytes": 29615
+      },
+      "pdf": {
+        "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
+        "sha256": "9cdc115d09a0ed23e9c9432cca29f2a519e0e0b3329deb90389c375191ad87f9",
+        "bytes": 43460
+      }
+    },
+    "teacher": {
+      "pages": 8,
+      "html": {
+        "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
+        "sha256": "055ab5f862090c7e0fb44cf75b152b5b08368ad00e80047e7b5ab9ad8724e155",
+        "bytes": 34057
+      },
+      "pdf": {
+        "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
+        "sha256": "e13b0bfa98ee2b832dbf3095ccae3ef6aa096a541a0218c162104be7aff5a9e7",
+        "bytes": 77675
+      }
+    },
+    "answer": {
+      "pages": 4,
+      "html": {
+        "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
+        "sha256": "8ed44c623c6167d2c223755636b40273b4122f3cb9fe0dd478fcc5aff4fb6a67",
+        "bytes": 25818
+      },
+      "pdf": {
+        "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
+        "sha256": "48e76b808bfb9c04c65df06e373a53ea3fc08d7a94a3cd317bbd8e08c28c756c",
+        "bytes": 41070
+      }
+    },
+    "accessible": {
+      "pages": 6,
+      "html": {
+        "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
+        "sha256": "71be4ef109bcd18c2698226ff0a4d723f4c6b2786320744698e4f9514bae7e61",
+        "bytes": 29737
+      },
+      "pdf": {
+        "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
+        "sha256": "def47e9b24cf6bbea296e1afc71b4965f98a97bb465b4f665e976314e8651834",
+        "bytes": 52871
+      }
+    },
+    "grayscale": {
+      "pages": 4,
+      "html": {
+        "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
+        "sha256": "194ea8e7deb1ed6a19e41d166fb73e7d4b7b5743fb8882ea512622b576b404e8",
+        "bytes": 29626
+      },
+      "pdf": {
+        "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
+        "sha256": "486edcd48d1e726ca6adc2c11e890de20f82353126f0a7f6baa16ef6cfeae4d7",
+        "bytes": 43452
+      }
+    }
+  },
+  "controlled_sources": [
+    {
+      "path": "source/SSS_C1_CASE03_COMPLETED_EXEMPLAR_ANSWER_KEY.md",
+      "sha256": "c9404583fa27f89c56020e346043501d6f2704a790f3d46b6786ff8b81b92f2b",
+      "bytes": 2544
+    },
+    {
+      "path": "source/SSS_C1_CASE03_FIGURE_DATA_RESEARCH_RIGHTS_RECORD.md",
+      "sha256": "3a5a01163ce3a515c1a248fc843ccd0c187b2ff9c6068c631cf2d16a8ddedd46",
+      "bytes": 1143
+    },
+    {
+      "path": "source/SSS_C1_CASE03_LESSON_PLAN.md",
+      "sha256": "73c709c9499326108defb45d07316ed94dff80fc7ceccece5762f48c1ff35e9c",
+      "bytes": 3381
+    },
+    {
+      "path": "source/SSS_C1_CASE03_QUICK_START.md",
+      "sha256": "bc38c4ed9e78494c062520ea270dbe577d6c55deed7bd5144ce5531eddb282a5",
+      "bytes": 1033
+    },
+    {
+      "path": "source/SSS_C1_CASE03_REFERENCES.md",
+      "sha256": "a61dde29ec2f1e73f54acdbfb1c1222a21f04bae897d6e29dc6735dc61f5c9b4",
+      "bytes": 2218
+    },
+    {
+      "path": "source/SSS_C1_CASE03_RUBRICS.md",
+      "sha256": "c6f0fbde2e144fb3f107d9ccde779b3c98531bc789232988035805158ed8b6df",
+      "bytes": 932
+    },
+    {
+      "path": "source/SSS_C1_CASE03_STUDENT_MISSION_SOURCE.md",
+      "sha256": "5b28298e7693be3bf6056b2e4448c375db557de8fa888d4f581a1f27b8f8e9db",
+      "bytes": 2978
+    },
+    {
+      "path": "source/SSS_C1_CASE03_TEACHER_CASE_ANALYSIS.md",
+      "sha256": "0ca2d7661637f52bba5c719cfabb6e2ac1d83d18fb053863dec3a5c6d671983b",
+      "bytes": 1583
+    },
+    {
+      "path": "source/SSS_C1_CASE03_TECHNICAL_FALLBACK.md",
+      "sha256": "5eeca51bd9d625dad5b049f737b2973e0316a77dd2346d2f603d2d877e349c1c",
+      "bytes": 863
+    },
+    {
+      "path": "source/task-registry.js",
+      "sha256": "8c9e4ebe8e9a58ce0fb498c3e529c58f9c9c19d637160922230964180db26f38",
+      "bytes": 3038
+    }
+  ],
+  "reports": [
+    {
+      "path": "reports/CASE03_RENDERED_REVIEW.md",
+      "sha256": "ef43e8f1e787296bf6699cda9dfa85e4bd533b083297e334210d6e1d8e91ac03",
+      "bytes": 2174
+    },
+    {
+      "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
+      "sha256": "a9279e4615b4e0372a3aab65e0043dcfdd342670b52cc1f26e1915b7d300e7ed",
+      "bytes": 2185
+    },
+    {
+      "path": "reports/CASE03_STRUCTURAL_STRESS_TEST_REPORT.md",
+      "sha256": "a79db18d7426b05d85ada3d679b21e071de83f63c7c8cfc9f62175b32b640dc4",
+      "bytes": 2465
+    },
+    {
+      "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
+      "sha256": "926873576700f816674d378dfc2de9795d0658b2d77751ff5e377ad7a6697c5e",
+      "bytes": 2648
+    }
+  ],
+  "validation_files": [
+    {
+      "path": "validation-artifacts/CASE03_V1_PDF_PREFLIGHT.json",
+      "sha256": "98cbbe15c05b9be9bc44880f2b1f657eb3ae5f1d7e602d25dac22afab5cb8056",
+      "bytes": 1187
+    },
+    {
+      "path": "validation-artifacts/CASE03_V1_RENDERER_PARITY.json",
+      "sha256": "a69c4ce71437063724b5911166c550a7c750ed3b57e2d6f4f0a1ac632497199d",
+      "bytes": 7769
+    },
+    {
+      "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
+      "sha256": "d3e786b11d92e666040da801e6421a585b956c423358df681c752d07c4e439e0",
+      "bytes": 46795
+    },
+    {
+      "path": "validation-artifacts/build_case03_pdfs.py",
+      "sha256": "9bd7c5c8eca5965976e73bc2da3759afe51b7864cb637c60d13bd323f4977872",
+      "bytes": 40121
+    },
+    {
+      "path": "validation-artifacts/validate_case03_v1.py",
+      "sha256": "6a28bd8902c45cf5fc08b1966b309236a515d260867b5347a3d9c1b1cfd888cf",
+      "bytes": 17168
+    }
+  ],
+  "release_gate": {
+    "may_mark_approved": false,
+    "reason": "Owner physical 100%-scale print testing has not passed."
+  }
+}
