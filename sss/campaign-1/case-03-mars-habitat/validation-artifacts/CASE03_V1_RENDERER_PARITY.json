@@ -8,12 +8,12 @@
       "engine_b": "pdfium",
       "pages": 6,
       "changed_pages": 6,
-      "max_pct_changed": 0.04896922405325767,
+      "max_pct_changed": 0.04888300774855397,
       "per_page": [
         {
           "page": 1,
           "changed": true,
-          "pct_changed": 0.03909745716468405,
+          "pct_changed": 0.03901124085998035,
           "bbox": [
             67,
             61,
@@ -25,7 +25,7 @@
         {
           "page": 2,
           "changed": true,
-          "pct_changed": 0.04896922405325767,
+          "pct_changed": 0.04888300774855397,
           "bbox": [
             67,
             65,
@@ -37,7 +37,7 @@
         {
           "page": 3,
           "changed": true,
-          "pct_changed": 0.04140619884317363,
+          "pct_changed": 0.04131998253846993,
           "bbox": [
             67,
             65,
@@ -49,7 +49,7 @@
         {
           "page": 4,
           "changed": true,
-          "pct_changed": 0.03603786969333188,
+          "pct_changed": 0.03595165338862818,
           "bbox": [
             67,
             65,
@@ -61,7 +61,7 @@
         {
           "page": 5,
           "changed": true,
-          "pct_changed": 0.040836516424751716,
+          "pct_changed": 0.040750300120048016,
           "bbox": [
             67,
             65,
@@ -73,7 +73,7 @@
         {
           "page": 6,
           "changed": true,
-          "pct_changed": 0.03429717341482048,
+          "pct_changed": 0.03421095711011678,
           "bbox": [
             67,
             65,
@@ -90,12 +90,12 @@
       "engine_b": "pdfium",
       "pages": 4,
       "changed_pages": 4,
-      "max_pct_changed": 0.053113063407181055,
+      "max_pct_changed": 0.053026847102477355,
       "per_page": [
         {
           "page": 1,
           "changed": true,
-          "pct_changed": 0.047208337880606785,
+          "pct_changed": 0.047122121575903085,
           "bbox": [
             67,
             61,
@@ -107,7 +107,7 @@
         {
           "page": 2,
           "changed": true,
-          "pct_changed": 0.04943468296409473,
+          "pct_changed": 0.04934846665939103,
           "bbox": [
             67,
             65,
@@ -119,7 +119,7 @@
         {
           "page": 3,
           "changed": true,
-          "pct_changed": 0.04499781730874168,
+          "pct_changed": 0.04491160100403798,
           "bbox": [
             67,
             65,
@@ -131,7 +131,7 @@
         {
           "page": 4,
           "changed": true,
-          "pct_changed": 0.053113063407181055,
+          "pct_changed": 0.053026847102477355,
           "bbox": [
             67,
             65,
@@ -148,12 +148,12 @@
       "engine_b": "pdfium",
       "pages": 4,
       "changed_pages": 4,
-      "max_pct_changed": 0.06773163810978937,
+      "max_pct_changed": 0.06764542180508568,
       "per_page": [
         {
           "page": 1,
           "changed": true,
-          "pct_changed": 0.06773163810978937,
+          "pct_changed": 0.06764542180508568,
           "bbox": [
             67,
             61,
@@ -165,7 +165,7 @@
         {
           "page": 2,
           "changed": true,
-          "pct_changed": 0.05425952199061443,
+          "pct_changed": 0.05417330568591073,
           "bbox": [
             67,
             65,
@@ -177,7 +177,7 @@
         {
           "page": 3,
           "changed": true,
-          "pct_changed": 0.053579067990832695,
+          "pct_changed": 0.053492851686128995,
           "bbox": [
             67,
             65,
@@ -189,7 +189,7 @@
         {
           "page": 4,
           "changed": true,
-          "pct_changed": 0.037832041907672156,
+          "pct_changed": 0.037745825602968464,
           "bbox": [
             67,
             65,
@@ -201,166 +201,166 @@
       ]
     },
     "SSS_C1_CASE03_STUDENT_MISSION_v1.0": {
-      "dpi": 140,
+      "dpi": 110,
       "engine_a": "pdftoppm",
       "engine_b": "pdfium",
       "pages": 4,
       "changed_pages": 4,
-      "max_pct_changed": 0.06773163810978937,
+      "max_pct_changed": 0.08174923763645203,
       "per_page": [
         {
           "page": 1,
           "changed": true,
-          "pct_changed": 0.06773163810978937,
+          "pct_changed": 0.08174923763645203,
           "bbox": [
-            67,
-            61,
-            1129,
-            1498
+            52,
+            48,
+            887,
+            1177
           ],
           "max_channel": 224
         },
         {
           "page": 2,
           "changed": true,
-          "pct_changed": 0.05425952199061443,
+          "pct_changed": 0.06315463826402086,
           "bbox": [
-            67,
-            65,
-            1129,
-            1498
+            52,
+            51,
+            887,
+            1177
           ],
           "max_channel": 224
         },
         {
           "page": 3,
           "changed": true,
-          "pct_changed": 0.053579067990832695,
+          "pct_changed": 0.06351703716798515,
           "bbox": [
-            67,
-            65,
-            1129,
-            1498
+            52,
+            51,
+            887,
+            1177
           ],
           "max_channel": 224
         },
         {
           "page": 4,
           "changed": true,
-          "pct_changed": 0.037832041907672156,
+          "pct_changed": 0.0453475935828877,
           "bbox": [
-            67,
-            65,
-            1129,
-            1498
+            52,
+            51,
+            887,
+            1177
           ],
           "max_channel": 224
         }
       ]
     },
     "SSS_C1_CASE03_TEACHER_GUIDE_v1.0": {
-      "dpi": 140,
+      "dpi": 110,
       "engine_a": "pdftoppm",
       "engine_b": "pdfium",
       "pages": 8,
       "changed_pages": 8,
-      "max_pct_changed": 0.07326912583215105,
+      "max_pct_changed": 0.086671675432006,
       "per_page": [
         {
           "page": 1,
           "changed": true,
-          "pct_changed": 0.07326912583215105,
+          "pct_changed": 0.086671675432006,
           "bbox": [
-            67,
-            61,
-            1120,
-            1498
+            52,
+            48,
+            881,
+            1177
           ],
           "max_channel": 224
         },
         {
           "page": 2,
           "changed": true,
-          "pct_changed": 0.06619884317363309,
+          "pct_changed": 0.07461616652671588,
           "bbox": [
-            65,
-            65,
-            1120,
-            1498
+            51,
+            51,
+            881,
+            1177
           ],
-          "max_channel": 230
+          "max_channel": 247
         },
         {
           "page": 3,
           "changed": true,
-          "pct_changed": 0.06436265415257011,
+          "pct_changed": 0.07511556989437398,
           "bbox": [
-            65,
-            65,
-            1120,
-            1498
+            51,
+            51,
+            881,
+            1177
           ],
-          "max_channel": 230
+          "max_channel": 247
         },
         {
           "page": 4,
           "changed": true,
-          "pct_changed": 0.07179853759685692,
+          "pct_changed": 0.08597074291775313,
           "bbox": [
-            67,
-            65,
-            1129,
-            1498
+            52,
+            51,
+            887,
+            1177
           ],
           "max_channel": 224
         },
         {
           "page": 5,
           "changed": true,
-          "pct_changed": 0.06504911055331224,
+          "pct_changed": 0.07701241879170902,
           "bbox": [
-            65,
-            65,
-            1121,
-            1498
+            51,
+            51,
+            881,
+            1177
           ],
-          "max_channel": 230
+          "max_channel": 247
         },
         {
           "page": 6,
           "changed": true,
-          "pct_changed": 0.06513041580268471,
+          "pct_changed": 0.07569717594024837,
           "bbox": [
-            65,
-            65,
-            1120,
-            1498
+            51,
+            51,
+            881,
+            1177
           ],
-          "max_channel": 230
+          "max_channel": 247
         },
         {
           "page": 7,
           "changed": true,
-          "pct_changed": 0.0679640947288006,
+          "pct_changed": 0.0777000928094754,
           "bbox": [
-            65,
-            65,
-            1120,
-            1498
+            51,
+            51,
+            881,
+            1177
           ],
-          "max_channel": 230
+          "max_channel": 247
         },
         {
           "page": 8,
           "changed": true,
-          "pct_changed": 0.0678975226454218,
+          "pct_changed": 0.07815264948954788,
           "bbox": [
-            65,
-            65,
-            1129,
-            1498
+            51,
+            51,
+            887,
+            1177
           ],
-          "max_channel": 230
+          "max_channel": 247
         }
       ]
     }

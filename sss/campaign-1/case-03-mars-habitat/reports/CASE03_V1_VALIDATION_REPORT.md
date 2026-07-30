@@ -7,6 +7,9 @@
 **Automated result:** PASS - 355/355 assertions  
 **Physical 100%-scale print gate:** OPEN
 
+## Institutional identity correction
+The canonical SAA expansion is **Solar Agricultural Agency**. This is a follow-up terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not replace or rewrite that initial commit. The corrected master, all standalone HTML outputs, all PDFs, alt text, lockups, print checklist, PDF generator, and validator now match approved Case 01/02 usage. The validator requires Agency and rejects Authority and Space variants on printable pages. The current game repository still requires a separate lore-only naming patch; the science/runtime audit remains anchored to the recorded game baseline.
+
 ## Page counts
 - Student Mission: 4
 - Teacher Guide: 8

@@ -20,7 +20,7 @@ The patterned band chart, quantity-versus-distribution comparison, direct-value 
 4. The initial PDF generator retained stale loss wording after the HTML source was corrected. PDF-level content-regression assertions are now required, not merely HTML assertions.
 
 ## Shared terminology conflict
-The current game and governing Visual Style Guide identify SAA as **Solar Agricultural Authority**, while approved Case 01/02 printable outputs use **Solar Agricultural Agency**. Case 03 follows the game and governing Visual Style Guide. The conflict is documented here rather than resolved through a new shared amendment because that would alter approved shared policy.
+After Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`, a follow-up terminology audit identified that the original game and Visual Style Guide used the historical expansion **Solar Agricultural Authority**, while the approved Case 01 and Case 02 curriculum masters used **Solar Agricultural Agency**. Owner direction resolves the canonical expansion as **Solar Agricultural Agency (SAA)**. This follow-up corrects Case 03 and current governing materials without replacing the initial commit; the shared amendment requires future cases, alt text, lockups, validators, and manifests to reject Authority and Space variants.
 
 ## Scaling judgment
 The framework is ready for routine Campaign 1 scaling with three conditions: perform a fresh runtime audit from repository main; choose a case-specific task/visual family; and assert current values in both HTML and PDF outputs. Case 04 was not begun.

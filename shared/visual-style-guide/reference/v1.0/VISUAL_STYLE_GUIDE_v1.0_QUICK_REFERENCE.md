@@ -36,6 +36,7 @@ A 96 px/in page preview must use point-equivalent CSS sizes. Ordinary body text 
 
 | SSS / SAA | HHH / TAA |
 |---|---|
+| Solar Agricultural Agency | Temporal Agricultural Archive |
 | Orbital Cyan `#0b6f82` | Archive Amber `#8a5a00` |
 | Botanical Green `#147a45` | Record Cyan `#0b6f82` |
 | Cyan Field `#e7f3f5` | Archive Field `#f5eddd` |

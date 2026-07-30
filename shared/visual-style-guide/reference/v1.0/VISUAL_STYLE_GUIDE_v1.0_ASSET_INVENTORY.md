@@ -7,7 +7,7 @@
 
 | Asset | Repository path | v1.0 role |
 |---|---|---|
-| SAA insignia | `shared/assets/insignia/saa.svg` | Primary scalable SSS curriculum mark |
+| Solar Agricultural Agency (SAA) insignia | `shared/assets/insignia/saa.svg` | Primary scalable SSS curriculum mark |
 | TAA insignia | `shared/assets/insignia/taa.svg` | Primary scalable HHH curriculum mark |
 
 These are the insignias used by v1.0 reference templates.

@@ -213,30 +213,31 @@ If it does none of these, remove it.
 
 # 5. Canonical Institutional Terminology
 
-## 5.1 Solar Agricultural Authority
+## 5.1 Solar Agricultural Agency
 
-**Canonical full name:** Solar Agricultural Authority  
+**Canonical full name:** Solar Agricultural Agency
 **Canonical abbreviation:** SAA  
 **Associated curriculum:** *Space Sprout Sleuth*
 
-The SSS repository consistently uses **Solar Agricultural Authority**. Earlier curriculum-guide wording that expanded SAA as “Space Agricultural Authority” or “Space Agriculture Authority” was incorrect.
+The SSS repository uses **Solar Agricultural Agency**. Earlier materials that expanded SAA with “Authority,” “Space,” or the singular “Agriculture” were incorrect and are superseded by `amendments/SAA_CANONICAL_INSTITUTION_NAME_v1.0.5.md`.
 
 ### Required Usage
 
 Use:
 
-> Solar Agricultural Authority (SAA)
+> Solar Agricultural Agency (SAA)
 
 Do not use:
 
+- Solar Agricultural Authority
 - Space Agricultural Authority
+- Space Agricultural Agency
+- Solar Agriculture Agency
 - Space Agriculture Authority
-- Solar Agriculture Authority
-- Space Agronomy Authority
 
 ### Institutional Character
 
-For curriculum visual purposes, SAA is presented as an international and interplanetary scientific authority operating across the solar system. It investigates plant-growth failures, develops agricultural understanding, and supports successful cultivation beyond Earth.
+For curriculum visual purposes, SAA is presented as an international and interplanetary scientific agency operating across the solar system. It investigates plant-growth failures, develops agricultural understanding, and supports successful cultivation beyond Earth.
 
 SAA materials should suggest:
 
@@ -244,7 +245,7 @@ SAA materials should suggest:
 - controlled investigations;
 - orbital and planetary research;
 - evidence-based diagnosis;
-- public-service technical authority;
+- public-service technical agency;
 - practical, contemporary mission work.
 
 SAA must not be visually framed as:
@@ -1697,7 +1698,7 @@ The preferred hierarchy is:
 Example SSS student header:
 
 ```text
-SOLAR AGRICULTURAL AUTHORITY · STUDENT MISSION
+SOLAR AGRICULTURAL AGENCY · STUDENT MISSION
 
 CASE 01 · ISS GREENHOUSE MODULE
 Campaign 1 · Low Earth Orbit · Gravitropism in Microgravity

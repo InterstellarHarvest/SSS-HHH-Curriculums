@@ -48,8 +48,8 @@ check('static','master exists',MASTER.exists())
 for meta,val in [('sss-case','SSS-C1-CASE03'),('sss-status','validation-build'),('sss-game-baseline',GAME),('sss-page-identity','1.0.4'),('sss-balanced-page-fill','1.0.2'),('sss-visible-production-status','none')]:
     m=soup.find('meta',attrs={'name':meta})
     check('static',f'metadata {meta}',m is not None and m.get('content')==val,m.get('content') if m else 'missing')
-check('static','canonical institution authority','Solar Agricultural Authority' in visible)
-check('static','wrong institution absent','Space Agricultural Authority' not in visible and 'Solar Agricultural Agency' not in visible)
+check('static','canonical institution agency','Solar Agricultural Agency' in visible)
+check('static','wrong institution expansions absent',all(x not in visible for x in ['Solar Agricultural Authority','Space Agricultural Authority','Space Agricultural Agency','Solar Agriculture Agency']))
 check('static','student identification only first student and accessible pages',len(soup.select('.student-id'))==2,len(soup.select('.student-id')))
 for role,(_,_,count,footer_role) in ROLES.items():
     target='student' if role=='grayscale' else role
@@ -125,7 +125,15 @@ for role,(htmlname,pdfname,count,footer_role) in ROLES.items():
 
 # Browser checks using set_content. Network navigation is blocked in this execution environment.
 with sync_playwright() as pw:
-    browser=pw.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox'])
+    browser_executable = next(
+        path for path in [
+            os.environ.get('CHROMIUM_EXECUTABLE'),
+            '/usr/bin/chromium',
+            '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+        ]
+        if path and Path(path).exists()
+    )
+    browser=pw.chromium.launch(headless=True,executable_path=browser_executable,args=['--no-sandbox'])
     page=browser.new_page(viewport={'width':1440,'height':1200})
     # about:blank has an opaque-origin Storage getter; install an in-memory Storage-compatible object.
     page.evaluate("Object.defineProperty(window,'localStorage',{configurable:true,value:{_d:{},getItem(k){return Object.prototype.hasOwnProperty.call(this._d,k)?this._d[k]:null},setItem(k,v){this._d[k]=String(v)},removeItem(k){delete this._d[k]},clear(){this._d={}}}})")
@@ -222,6 +230,8 @@ for p in sorted(ROOT.rglob('*')):
     rel=p.relative_to(ROOT)
     if rel.parts[:2]==('validation-artifacts','rendered-review'): continue
     if rel.parts[:2]==('validation-artifacts','renderer-parity'): continue
+    if '__pycache__' in rel.parts: continue
+    if rel.name in {'.DS_Store','CASE03_GITHUB_HANDOFF.md'}: continue
     if rel.name=='CASE03_V1_CHECKSUMS.sha256': continue
     files.append(p)
 CHECKSUMS.write_text('\n'.join(f'{sha(p)}  {p.relative_to(ROOT).as_posix()}' for p in files)+'\n',encoding='ascii')

@@ -479,7 +479,7 @@ Student pages should use brief markers only where misunderstanding is likely. Te
 
 Every case uses a different primary thinking task so the curriculum does not become thirteen copies of the same clue log.
 
-## Campaign 1 — Solar Agricultural Authority
+## Campaign 1 — Solar Agricultural Agency
 
 | Case | Core science | Student identity | Primary task |
 |---|---|---|---|
@@ -583,7 +583,7 @@ The student packet should require:
 
 Working title:
 
-**Solar Agricultural Authority — Evidence Specialist Certification**
+**Solar Agricultural Agency — Evidence Specialist Certification**
 
 Format:
 

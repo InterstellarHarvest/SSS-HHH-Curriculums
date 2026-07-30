@@ -77,32 +77,32 @@
     "student": {
       "pdf": "SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
       "pages": 4,
-      "sha256": "9cdc115d09a0ed23e9c9432cca29f2a519e0e0b3329deb90389c375191ad87f9",
-      "bytes": 43460
+      "sha256": "20192fb713ffdbe6cbb1a26dc10f41a4d8653944feb69bd8542ed292fafca779",
+      "bytes": 43448
     },
     "teacher": {
       "pdf": "SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
       "pages": 8,
-      "sha256": "e13b0bfa98ee2b832dbf3095ccae3ef6aa096a541a0218c162104be7aff5a9e7",
-      "bytes": 77675
+      "sha256": "d14cc7fad0852ba18978920730fa26d25e8c6b7a4c4e6c6ce071ef2085466f8c",
+      "bytes": 77651
     },
     "answer": {
       "pdf": "SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
       "pages": 4,
-      "sha256": "48e76b808bfb9c04c65df06e373a53ea3fc08d7a94a3cd317bbd8e08c28c756c",
-      "bytes": 41070
+      "sha256": "27174c917b0808d21420e8e52d8d94eff5ee93bbfbdadeb41b19fc96f2b0c5e3",
+      "bytes": 41058
     },
     "accessible": {
       "pdf": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
       "pages": 6,
-      "sha256": "def47e9b24cf6bbea296e1afc71b4965f98a97bb465b4f665e976314e8651834",
-      "bytes": 52871
+      "sha256": "33a5e51da2705fbba96f31d90e0ab904954ccbb0e9bacf4bedb6969225aeb13d",
+      "bytes": 52853
     },
     "grayscale": {
       "pdf": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
       "pages": 4,
-      "sha256": "486edcd48d1e726ca6adc2c11e890de20f82353126f0a7f6baa16ef6cfeae4d7",
-      "bytes": 43452
+      "sha256": "9f3d6289b15e4ae0a98d554d8c09ab20f909f56ba6ffedcf3626e77cc93d8a1d",
+      "bytes": 43440
     }
   },
   "failures": [],
@@ -151,13 +151,13 @@
     },
     {
       "group": "static",
-      "name": "canonical institution authority",
+      "name": "canonical institution agency",
       "pass": true,
       "detail": ""
     },
     {
       "group": "static",
-      "name": "wrong institution absent",
+      "name": "wrong institution expansions absent",
       "pass": true,
       "detail": ""
     },
@@ -1485,7 +1485,7 @@
       "group": "render",
       "name": "student nonempty rendered pages",
       "pass": true,
-      "detail": "[162861, 126331, 119364, 83353]"
+      "detail": "[139646, 103692, 99128, 66989]"
     },
     {
       "group": "pdf",
@@ -1701,7 +1701,7 @@
       "group": "render",
       "name": "teacher nonempty rendered pages",
       "pass": true,
-      "detail": "[179318, 199595, 178227, 173107, 176482, 184766, 184650, 203013]"
+      "detail": "[143958, 153546, 142881, 146697, 141972, 146454, 142710, 157158]"
     },
     {
       "group": "pdf",
@@ -1869,7 +1869,7 @@
       "group": "render",
       "name": "answer nonempty rendered pages",
       "pass": true,
-      "detail": "[116226, 119900, 116483, 140860]"
+      "detail": "[101640, 99105, 95613, 108392]"
     },
     {
       "group": "pdf",
@@ -2061,7 +2061,7 @@
       "group": "render",
       "name": "accessible nonempty rendered pages",
       "pass": true,
-      "detail": "[89895, 117790, 99696, 84873, 94609, 85167]"
+      "detail": "[74902, 106818, 84366, 70796, 80467, 68713]"
     },
     {
       "group": "pdf",
@@ -2229,13 +2229,13 @@
       "group": "render",
       "name": "grayscale nonempty rendered pages",
       "pass": true,
-      "detail": "[162863, 126332, 119365, 83353]"
+      "detail": "[139648, 103691, 99126, 66989]"
     },
     {
       "group": "checksum",
       "name": "checksum ledger created",
       "pass": true,
-      "detail": "41"
+      "detail": "34"
     }
   ]
 }

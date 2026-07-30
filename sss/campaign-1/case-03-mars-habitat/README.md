@@ -12,3 +12,6 @@
 - Owner physical 100%-scale print test: OPEN
 
 The editable master is the only production source for the five independent role outputs. Do not hand-edit generated HTML or PDF files.
+
+## Institutional identity
+The canonical SAA expansion for this validation build is **Solar Agricultural Agency** under the owner-directed follow-up correction after initial Case 03 commit `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`.

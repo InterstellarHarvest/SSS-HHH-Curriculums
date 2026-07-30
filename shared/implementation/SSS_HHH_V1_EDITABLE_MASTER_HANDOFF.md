@@ -367,7 +367,7 @@ Change the recurring institutional structures:
 
 | SSS | HHH |
 |---|---|
-| Solar Agricultural Authority | Temporal Agricultural Archive |
+| Solar Agricultural Agency | Temporal Agricultural Archive |
 | `shared/assets/insignia/saa.svg` | `shared/assets/insignia/taa.svg` |
 | Mission/system status language | Accession/source-status language |
 | Mechanism and diagnosis | Provenance and interpretation |

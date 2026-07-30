@@ -221,7 +221,7 @@ Text-to-speech compatibility is realistic because the source is real text rather
 
 ## 5. Campaign architecture
 
-## Campaign 1 — Solar Agricultural Authority
+## Campaign 1 — Solar Agricultural Agency
 
 Campaign 1 establishes five core space-agriculture principles, then applies ecosystem communication and germination signaling in a two-part first-contact ending.
 
@@ -1482,7 +1482,7 @@ The game uses several labels for narrative and organizational purposes. The curr
 
 ## Campaign 1
 
-**Curriculum label:** `Campaign 1 — Solar Agricultural Authority`
+**Curriculum label:** `Campaign 1 — Solar Agricultural Agency`
 
 | Curriculum number | Runtime ID | Student-facing case name |
 |---:|---|---|
@@ -1641,4 +1641,3 @@ The original uploaded data snapshot parsed successfully, each case contained exa
 - NGSS MS-LS1-6: https://www.nextgenscience.org/pe/ms-ls1-6-molecules-organisms-structures-and-processes
 - NGSS MS-LS2: https://www.nextgenscience.org/dci-arrangement/ms-ls2-ecosystems-interactions-energy-and-dynamics
 - NGSS MS-ETS1: https://www.nextgenscience.org/msets1-engineering-design
-

@@ -14,8 +14,11 @@
 | Accessible | 6 | Larger type and response areas fit without clipping. Tasks remain in canonical order and continuous flow. Task 2 now uses direct transmission rather than stale loss arithmetic. |
 | Grayscale | 4 | The Student layout remains interpretable without color. Bar patterns, direct values, axes, table rules, response boundaries, and institutional structure survive grayscale rendering. |
 
+## Institutional identity
+Every rendered first-page and continuation lockup reads **Solar Agricultural Agency**. PDF text extraction confirms the three-line `SOLAR / AGRICULTURAL / AGENCY` lockup in all five role outputs.
+
 ## Two-renderer comparison
-All pages rendered completely in Poppler and PDFium. Pixel differences ranged from ordinary font/line antialiasing to a maximum changed-pixel proportion of 0.0733; diff images followed text and vector edges rather than revealing missing, shifted, or clipped content. No renderer-specific glyph failure, black rectangle, or chart corruption was found.
+All pages rendered completely in Poppler and PDFium. Pixel differences ranged from ordinary font/line antialiasing to a maximum changed-pixel proportion of 0.0867; diff images followed text and vector edges rather than revealing missing, shifted, or clipped content. No renderer-specific glyph failure, black rectangle, or chart corruption was found.
 
 ## Page-fill judgment
 The Student Task 5/6 page was the only page where meaningful unused space coexisted with undersized multi-line work areas; those two areas were increased. Other bottom reserves were retained because the nearby fields were short-answer, completed-exemplar, or teacher-reference content and did not warrant artificial expansion.

@@ -4,6 +4,8 @@
 
 ## Document Identity
 
+- [ ] SSS expands SAA only as **Solar Agricultural Agency**.
+- [ ] No rejected SAA expansion appears in current production content.
 - [ ] Correct institution is shown.
 - [ ] Correct repository insignia is used.
 - [ ] SSS uses an operational mission / systems evidence archetype where appropriate.

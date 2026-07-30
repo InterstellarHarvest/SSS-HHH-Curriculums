@@ -212,7 +212,7 @@ class C3Doc(BaseDocTemplate):
         c.saveState(); c.setStrokeColor(accent); c.setLineWidth(3); c.line(LEFT,PAGE_H-.93*inch,LEFT,PAGE_H-.47*inch)
         c.setFillColor(INK); c.setFont('Helvetica-Bold',22 if first else 13); c.drawString(LEFT+8,PAGE_H-.67*inch,'Mars Habitat')
         c.setFillColor(MUTED); c.setFont('Helvetica',8); sub='Campaign 1 - Case 03 - Arcadia Planitia, Mars' if first else f'{self.role} - Continued'; c.drawString(LEFT+8,PAGE_H-.84*inch,sub)
-        c.setFillColor(INK); c.setFont('Helvetica-Bold',7); c.drawRightString(PAGE_W-RIGHT,PAGE_H-.55*inch,'SOLAR'); c.drawRightString(PAGE_W-RIGHT,PAGE_H-.67*inch,'AGRICULTURAL'); c.drawRightString(PAGE_W-RIGHT,PAGE_H-.79*inch,'AUTHORITY')
+        c.setFillColor(INK); c.setFont('Helvetica-Bold',7); c.drawRightString(PAGE_W-RIGHT,PAGE_H-.55*inch,'SOLAR'); c.drawRightString(PAGE_W-RIGHT,PAGE_H-.67*inch,'AGRICULTURAL'); c.drawRightString(PAGE_W-RIGHT,PAGE_H-.79*inch,'AGENCY')
         c.setStrokeColor(RULE); c.setLineWidth(.55); c.line(LEFT,PAGE_H-1.0*inch,PAGE_W-RIGHT,PAGE_H-1.0*inch)
         c.line(LEFT,.47*inch,PAGE_W-RIGHT,.47*inch); c.setFillColor(MUTED); c.setFont('Helvetica-Bold',7); c.drawRightString(PAGE_W-RIGHT,.31*inch,f'{self.role} {p} of {self.total}')
         c.restoreState()

@@ -29,6 +29,6 @@
 ## Photocopy and usability
 - [ ] One black-and-white photocopy preserves patterns, direct labels, axes, table rules, and response boundaries.
 - [ ] No printable page shows VALIDATION BUILD, commit SHA, repository path, checksum, or internal filename.
-- [ ] Identity lockup reads Solar Agricultural Authority consistently.
+- [ ] Identity lockup reads Solar Agricultural Agency consistently.
 
 Owner sign-off: ____________________  Date: __________  Printer/copier: ____________________

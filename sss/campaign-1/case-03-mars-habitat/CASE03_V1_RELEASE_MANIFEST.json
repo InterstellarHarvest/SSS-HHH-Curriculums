@@ -13,8 +13,8 @@
   "balanced_page_fill": "1.0.2",
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "8c6294e876c679245526cc031ccfc5937e8168bc558b3b7b8f8e490ac0658cf9",
-    "bytes": 86004
+    "sha256": "44e9736234e558bb64ee9a784dd64e1ac3dd78119d4f5db20c4068d8ac59556a",
+    "bytes": 85872
   },
   "page_counts": {
     "student": 4,
@@ -38,65 +38,65 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "8f68d79ff49fd9cf5f53f28572997bca64f609a711ae7c1908c7adfd086c6eba",
-        "bytes": 29615
+        "sha256": "bdd8a378a57ef622d69bb1a0a82111a6aa7c08aca6118a18deed9a514d9f8e25",
+        "bytes": 29591
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
-        "sha256": "9cdc115d09a0ed23e9c9432cca29f2a519e0e0b3329deb90389c375191ad87f9",
-        "bytes": 43460
+        "sha256": "20192fb713ffdbe6cbb1a26dc10f41a4d8653944feb69bd8542ed292fafca779",
+        "bytes": 43448
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "055ab5f862090c7e0fb44cf75b152b5b08368ad00e80047e7b5ab9ad8724e155",
-        "bytes": 34057
+        "sha256": "bba73d08a7af0cead91fef4d21be24dda01d53e98e64e1e541f5d063515ba4d7",
+        "bytes": 34009
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
-        "sha256": "e13b0bfa98ee2b832dbf3095ccae3ef6aa096a541a0218c162104be7aff5a9e7",
-        "bytes": 77675
+        "sha256": "d14cc7fad0852ba18978920730fa26d25e8c6b7a4c4e6c6ce071ef2085466f8c",
+        "bytes": 77651
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "8ed44c623c6167d2c223755636b40273b4122f3cb9fe0dd478fcc5aff4fb6a67",
-        "bytes": 25818
+        "sha256": "ced7b0c5acacd1b084816d8ab4bd9720a9a329c16bb3b159e3b92ad2f25ab94f",
+        "bytes": 25794
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
-        "sha256": "48e76b808bfb9c04c65df06e373a53ea3fc08d7a94a3cd317bbd8e08c28c756c",
-        "bytes": 41070
+        "sha256": "27174c917b0808d21420e8e52d8d94eff5ee93bbfbdadeb41b19fc96f2b0c5e3",
+        "bytes": 41058
       }
     },
     "accessible": {
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "71be4ef109bcd18c2698226ff0a4d723f4c6b2786320744698e4f9514bae7e61",
-        "bytes": 29737
+        "sha256": "fa9eff40064affd5c5ca212af91b3d08b33d1fdc5f6ee2c86e30ceb6e349e802",
+        "bytes": 29701
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
-        "sha256": "def47e9b24cf6bbea296e1afc71b4965f98a97bb465b4f665e976314e8651834",
-        "bytes": 52871
+        "sha256": "33a5e51da2705fbba96f31d90e0ab904954ccbb0e9bacf4bedb6969225aeb13d",
+        "bytes": 52853
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "194ea8e7deb1ed6a19e41d166fb73e7d4b7b5743fb8882ea512622b576b404e8",
-        "bytes": 29626
+        "sha256": "c8f11116f466a10c91ad4b17af0e823b224bb8429a323d6916ede50d963fc44e",
+        "bytes": 29602
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
-        "sha256": "486edcd48d1e726ca6adc2c11e890de20f82353126f0a7f6baa16ef6cfeae4d7",
-        "bytes": 43452
+        "sha256": "9f3d6289b15e4ae0a98d554d8c09ab20f909f56ba6ffedcf3626e77cc93d8a1d",
+        "bytes": 43440
       }
     }
   },
@@ -155,8 +155,8 @@
   "reports": [
     {
       "path": "reports/CASE03_RENDERED_REVIEW.md",
-      "sha256": "ef43e8f1e787296bf6699cda9dfa85e4bd533b083297e334210d6e1d8e91ac03",
-      "bytes": 2174
+      "sha256": "8d2b73019068784a1edfe7ae7a9365063da1d378f69ad9be7a8ef254b503096e",
+      "bytes": 2397
     },
     {
       "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
@@ -165,44 +165,52 @@
     },
     {
       "path": "reports/CASE03_STRUCTURAL_STRESS_TEST_REPORT.md",
-      "sha256": "a79db18d7426b05d85ada3d679b21e071de83f63c7c8cfc9f62175b32b640dc4",
-      "bytes": 2465
+      "sha256": "c487aac69044dd88deaad34e1c807fe5ae3fa27bd0a45a8d16b53561c7eda05e",
+      "bytes": 2750
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "926873576700f816674d378dfc2de9795d0658b2d77751ff5e377ad7a6697c5e",
-      "bytes": 2648
+      "sha256": "f7f08344d48e75e8f1ef33d679637fd99a5bf73b770211f1c840fe371804ce95",
+      "bytes": 3340
     }
   ],
   "validation_files": [
     {
       "path": "validation-artifacts/CASE03_V1_PDF_PREFLIGHT.json",
-      "sha256": "98cbbe15c05b9be9bc44880f2b1f657eb3ae5f1d7e602d25dac22afab5cb8056",
-      "bytes": 1187
+      "sha256": "d458d12e0e43249bad0eb177027ff0e1d8fdaf832fda8c72dbf49a71ecaf299e",
+      "bytes": 1188
     },
     {
       "path": "validation-artifacts/CASE03_V1_RENDERER_PARITY.json",
-      "sha256": "a69c4ce71437063724b5911166c550a7c750ed3b57e2d6f4f0a1ac632497199d",
-      "bytes": 7769
+      "sha256": "d8ee39b956e6f137902298dde82d645807788493b2abee694a368a2f02079e37",
+      "bytes": 7752
     },
     {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "d3e786b11d92e666040da801e6421a585b956c423358df681c752d07c4e439e0",
-      "bytes": 46795
+      "sha256": "8a4b93df107ae380149e40558cc4bbd74d317ac0b73b4da0ecb189a667f2afd7",
+      "bytes": 46799
     },
     {
       "path": "validation-artifacts/build_case03_pdfs.py",
-      "sha256": "9bd7c5c8eca5965976e73bc2da3759afe51b7864cb637c60d13bd323f4977872",
-      "bytes": 40121
+      "sha256": "be6da2df09eaa285edb535b96de35e81c10558fcf62958336d2c003eb3804406",
+      "bytes": 40118
     },
     {
       "path": "validation-artifacts/validate_case03_v1.py",
-      "sha256": "6a28bd8902c45cf5fc08b1966b309236a515d260867b5347a3d9c1b1cfd888cf",
-      "bytes": 17168
+      "sha256": "912c11c3c0bb3dee7fd645bf4c8ff9b160a34c9b68f736896a79597fe4efe87c",
+      "bytes": 17617
     }
   ],
   "release_gate": {
     "may_mark_approved": false,
     "reason": "Owner physical 100%-scale print testing has not passed."
+  },
+  "institutional_identity": {
+    "abbreviation": "SAA",
+    "canonical_full_name": "Solar Agricultural Agency",
+    "shared_correction": "shared/visual-style-guide/amendments/SAA_CANONICAL_INSTITUTION_NAME_v1.0.5.md",
+    "correction_context": "Follow-up after initial Case 03 commit 378f4d873a8fcc46b91af3fb0b552650c2ddeea7",
+    "validation": "Agency required; Authority and Space variants rejected on printable pages",
+    "game_repository_alignment": "PENDING SEPARATE LORE-ONLY COMMIT"
   }
 }
