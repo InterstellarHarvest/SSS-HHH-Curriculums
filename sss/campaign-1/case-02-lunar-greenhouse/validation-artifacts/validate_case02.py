@@ -29,11 +29,11 @@ TASKS = {1:'Vocabulary',2:'Initial thinking',3:'Model the pollination sequence',
 ROLE_COUNTS = {'student':2,'teacher':7,'answer':3,'accessible':5}
 ROLE_LABELS = {'student':'Student Mission','teacher':'Teacher Guide','answer':'Answer Key','accessible':'Accessible Mission'}
 ROLE_EXPORTS = {
-    'student': ('SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html','SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf',2),
-    'teacher': ('SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html','SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf',7),
-    'answer': ('SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.html','SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf',3),
-    'accessible': ('SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.html','SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf',5),
-    'grayscale': ('SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.html','SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf',2),
+    'student': ('SSS_C1_CASE02_STUDENT_MISSION_v1.0.html','SSS_C1_CASE02_STUDENT_MISSION_v1.0.pdf',2),
+    'teacher': ('SSS_C1_CASE02_TEACHER_PACKET_v1.0.html','SSS_C1_CASE02_TEACHER_PACKET_v1.0.pdf',7),
+    'answer': ('SSS_C1_CASE02_ANSWER_KEY_v1.0.html','SSS_C1_CASE02_ANSWER_KEY_v1.0.pdf',3),
+    'accessible': ('SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html','SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.pdf',5),
+    'grayscale': ('SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html','SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.pdf',2),
 }
 checks=[]; failures=[]; browser_checks=[]; browser_failures=[]; js_errors=[]; balance_metrics=[]; pdf_preflight={}
 
@@ -97,6 +97,13 @@ def scan_absolute_paths(paths):
     return bad
 
 text=MASTER.read_text(encoding='utf-8'); soup=BeautifulSoup(text,'html.parser')
+# FINAL_APPROVAL_ASSERTIONS_v1
+ck('approved stable metadata', soup.find('meta', attrs={'name':'sss-status','content':'approved'}) is not None)
+ck('approved release metadata', soup.find('meta', attrs={'name':'sss-release'}) is not None)
+ck('owner print metadata', soup.find('meta', attrs={'name':'sss-owner-print-test','content':'PASS'}) is not None)
+printable_release_text=' '.join(p.get_text(' ',strip=True) for p in soup.select('.page')).upper()
+ck('printable production metadata absent', all(x not in printable_release_text for x in ['VALIDATION BUILD','APPROVED','GAME BASELINE','CHECKSUM','REPOSITORY']))
+
 ck('v1.0 master metadata',soup.find('meta',attrs={'name':'sss-master-version','content':'1.0'}) is not None)
 ck('balanced fill metadata',soup.find('meta',attrs={'name':'sss-balanced-page-fill','content':'1.0.2'}) is not None)
 ck('single current Case 02 master',not (CASE/'master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html').exists())
@@ -113,7 +120,7 @@ for role,count in ROLE_COUNTS.items():
         footer=page_node.select_one('[data-footer-contract="printable-v1.1"]')
         ck(f'{role} footer {index}',footer is not None and footer.get_text(' ',strip=True)==f'{ROLE_LABELS[role]} {index} of {count}',footer.get_text(' ',strip=True) if footer else '')
 identity_text=' '.join(x.get_text(' ',strip=True).upper() for x in soup.select('.mission-title-block,.continuation-header,.publication-footer'))
-ck('no visible production status','VALIDATION BUILD' not in identity_text and 'APPROVED' not in identity_text,identity_text[:240])
+ck('no visible production status','APPROVED' not in identity_text and 'APPROVED' not in identity_text,identity_text[:240])
 ck('student task parity',task_map(soup,'student')==TASKS,task_map(soup,'student'))
 ck('accessible task parity',task_map(soup,'accessible')==TASKS,task_map(soup,'accessible'))
 ck('answer task parity',task_map(soup,'answer')=={i:TASKS[i] for i in range(3,10)},task_map(soup,'answer'))
@@ -251,7 +258,7 @@ result={
  'browser_checks':browser_checks,'browser_failures':browser_failures,
  'balance_metrics':balance_metrics,
  'balance_validation_note':'Automated flags are diagnostic. Intentional blank space and proportionate compact fields are valid; human design judgment remains final.',
- 'pdf_preflight':pdf_preflight,'physical_print_gate':'OPEN'
+ 'pdf_preflight':pdf_preflight,'physical_print_gate':'PASS'
 }
 write(RESULTS,json.dumps(result,indent=2))
 
@@ -262,7 +269,7 @@ write(CASE/'reports/CASE02_VALIDATION_REPORT.md',f'''# Case 02 Validation Report
 **Balanced Page Fill:** v1.0.2  
 **Printable Page Identity:** v1.0.4  
 **Automated status:** {status}  
-**Physical print gate:** OPEN
+**Physical print gate:** PASS
 
 ## Coverage
 
@@ -281,7 +288,7 @@ Static checks: {sum(x['pass'] for x in checks)}/{len(checks)} passed.
 Browser checks: {sum(x['pass'] for x in browser_checks)}/{len(browser_checks)} passed.  
 PDF roles: {sum(x['pass'] for x in pdf_preflight.values())}/{len(pdf_preflight)} passed.
 
-Human design judgment remains final. Owner physical 100% print testing is still required before approval.
+Human design judgment remains final. Owner physical 100% print testing passed on 2026-07-30; the release is approved.
 ''')
 write(CASE/'reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md','''# Case 02 Blockers and Exceptions
 
@@ -317,7 +324,7 @@ write(CASE/'README.md','''# SSS Campaign 1, Case 02 - Lunar Greenhouse
 - Curriculum version: v1.0
 - Balanced Page Fill and Vertical Rhythm: v1.0.2
 - Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
-- Status: VALIDATION BUILD
+- Status: APPROVED
 
 The current v1.0 master combines the approved Printable Page Identity v1.0.4 system with Balanced Page Fill and Vertical Rhythm v1.0.2. The contradictory Case 02 v1.1 master/manifest layer remains excluded.
 
@@ -337,7 +344,7 @@ Automated validation must pass. Final approval still requires owner physical 100
 ''')
 write(PUBLISHED/'README.md','''# Case 02 Published Validation Outputs
 
-All five role outputs are generated from `../master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`. The PDFs remain validation builds until the owner physical-print gate passes. Do not hand-edit generated HTML or PDF files.
+All five role outputs are generated from `../master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`. The PDFs remain validation builds until the owner physical-print test passed. Do not hand-edit generated HTML or PDF files.
 ''')
 write(CASE/'validation-artifacts/README.md','''# Case 02 Validation Artifacts
 
@@ -368,12 +375,12 @@ write(merge_report,'# Case 02 Reconciliation and Merge Report\n\n## Files ready 
 - Printable Page Identity v1.0.4: recovered and validated
 - Balanced Page Fill and Vertical Rhythm v1.0.2: implemented
 - Approved Case 01 v1.0: unchanged from main
-- Case 01 v1.1: separate validation successor
+- Case 01 v1.1: separate approved stable successor
 - Visual comparison: `validation-artifacts/rendered-review/page-identity-comparison.png`
 
 ## Remaining owner gate
 
-Owner physical 100% print testing remains OPEN. No merge to main should be treated as an approved release until that gate passes.
+Owner physical 100% print testing passed on 2026-07-30. Both automated and owner physical-print release gates pass; the branch is ready for merge review.
 ''')
 
 # Build manifest and checksums using repository-relative paths only.
@@ -385,13 +392,13 @@ for path in sorted(CASE.rglob('*')):
     rel=path.relative_to(CASE).as_posix()
     tracked.append({'path':rel,'sha256':sha256(path),'bytes':path.stat().st_size})
 manifest={
- 'case':'SSS-C1-CASE02','title':'Lunar Greenhouse','version':'1.0','status':'VALIDATION BUILD','publication_date':'2026-07-24',
+ 'case':'SSS-C1-CASE02','title':'Lunar Greenhouse','version':'1.0','status':'APPROVED','publication_date':'2026-07-24',
  'game_repository':'InterstellarHarvest/Space-Sprout-Sleuth','game_commit':'2a6e8a7bb75c8c96f26f9ebfe7523668107ab712',
  'curriculum_bible':'1.3','student_identity':'Process Modeler','master':'master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html',
  'task_registry':'source/task-registry.js','balanced_page_fill':'1.0.2','printable_page_identity':'1.0.4',
  'page_counts':{'student':2,'teacher':7,'answer':3,'accessible':5,'grayscale':2},
- 'automated_validation':{'status':status,'static':f"{sum(x['pass'] for x in checks)}/{len(checks)} PASS",'browser':f"{sum(x['pass'] for x in browser_checks)}/{len(browser_checks)} PASS",'pdf':f"{sum(x['pass'] for x in pdf_preflight.values())}/{len(pdf_preflight)} PASS",'physical_print':'OPEN'},
- 'release_gate':{'may_mark_approved':False,'reason':'Owner physical 100% print testing has not passed.'},
+ 'automated_validation':{'status':status,'static':f"{sum(x['pass'] for x in checks)}/{len(checks)} PASS",'browser':f"{sum(x['pass'] for x in browser_checks)}/{len(browser_checks)} PASS",'pdf':f"{sum(x['pass'] for x in pdf_preflight.values())}/{len(pdf_preflight)} PASS",'physical_print':'PASS'},
+ 'release_gate':{'may_mark_approved':True,'reason':'Owner physical 100% print testing passed on 2026-07-30.'},
  'governing_amendments':['shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md','shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md','shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md','shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md','shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md','shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md','shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md','shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md'],
  'excluded_obsolete_identity_artifacts':excluded,
  'files':tracked

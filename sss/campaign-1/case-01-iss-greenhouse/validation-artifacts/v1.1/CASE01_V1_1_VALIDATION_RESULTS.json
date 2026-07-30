@@ -6,6 +6,26 @@
   "case01_v1_0_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
   "static_checks": [
     {
+      "name": "approved stable metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "approved release metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner print metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printable production metadata absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "v1.1 master exists",
       "pass": true,
       "detail": ""
@@ -21,7 +41,7 @@
       "detail": ""
     },
     {
-      "name": "validation successor status",
+      "name": "approved stable successor status",
       "pass": true,
       "detail": ""
     },
@@ -388,7 +408,7 @@
     {
       "name": "no visible production status",
       "pass": true,
-      "detail": "ISS GREENHOUSE MODULE CAMPAIGN 1 \u00b7 CASE 01 \u00b7 LOW EARTH ORBIT SOLAR AGRICULTURAL AGENCY STUDENT MISSION STUDENT MISSION 1 OF 3 ISS GREENHOUSE MODULE STUDENT MISSION \u00b7 CONTINUED SOLAR AGRICULTURAL AGENC"
+      "detail": "ISS GREENHOUSE MODULE CAMPAIGN 1 · CASE 01 · LOW EARTH ORBIT SOLAR AGRICULTURAL AGENCY STUDENT MISSION STUDENT MISSION 1 OF 3 ISS GREENHOUSE MODULE STUDENT MISSION · CONTINUED SOLAR AGRICULTURAL AGENC"
     },
     {
       "name": "download successor filename",
@@ -403,27 +423,27 @@
     {
       "name": "student PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3116, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE01_STUDENT_MISSION_v1.1.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3116, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "teacher PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 7, 'pages': 7, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 13015, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE01_TEACHER_GUIDE_v1.1.pdf', 'exists': True, 'expected_pages': 7, 'pages': 7, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 13015, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "answer PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3772, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE01_ANSWER_KEY_v1.1.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3772, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "accessible PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 6, 'pages': 6, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3552, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.pdf', 'exists': True, 'expected_pages': 6, 'pages': 6, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3552, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "grayscale PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3119, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3119, 'letter_portrait': True, 'pass': True}"
     }
   ],
   "static_failures": [],
@@ -517,7 +537,7 @@
   "browser_failures": [],
   "pdf_preflight": {
     "student": {
-      "file": "SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_STUDENT_MISSION_v1.1.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,
@@ -541,7 +561,7 @@
       "pass": true
     },
     "teacher": {
-      "file": "SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_TEACHER_GUIDE_v1.1.pdf",
       "exists": true,
       "expected_pages": 7,
       "pages": 7,
@@ -581,7 +601,7 @@
       "pass": true
     },
     "answer": {
-      "file": "SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_ANSWER_KEY_v1.1.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,
@@ -605,7 +625,7 @@
       "pass": true
     },
     "accessible": {
-      "file": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.pdf",
       "exists": true,
       "expected_pages": 6,
       "pages": 6,
@@ -641,7 +661,7 @@
       "pass": true
     },
     "grayscale": {
-      "file": "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,
@@ -665,5 +685,21 @@
       "pass": true
     }
   },
-  "physical_print_gate": "OPEN"
+  "physical_print_gate": "PASS",
+  "status": "APPROVED",
+  "release_status": "APPROVED_STABLE",
+  "physical_print": "PASS",
+  "owner_print_test": {
+    "status": "PASS",
+    "date": "2026-07-30",
+    "tester": "Nate / Owner",
+    "printer_copier": "Not recorded",
+    "paper": "Not recorded",
+    "scale": "100% / Actual Size"
+  },
+  "release_gate": {
+    "may_mark_approved": true,
+    "status": "PASS",
+    "reason": "Automated validation and owner physical 100% print testing passed on 2026-07-30."
+  }
 }

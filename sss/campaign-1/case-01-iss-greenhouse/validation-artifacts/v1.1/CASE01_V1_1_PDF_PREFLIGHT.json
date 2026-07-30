@@ -3,7 +3,7 @@
   "master_version": "1.1",
   "roles": {
     "student": {
-      "file": "SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_STUDENT_MISSION_v1.1.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,
@@ -27,7 +27,7 @@
       "pass": true
     },
     "teacher": {
-      "file": "SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_TEACHER_GUIDE_v1.1.pdf",
       "exists": true,
       "expected_pages": 7,
       "pages": 7,
@@ -67,7 +67,7 @@
       "pass": true
     },
     "answer": {
-      "file": "SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_ANSWER_KEY_v1.1.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,
@@ -91,7 +91,7 @@
       "pass": true
     },
     "accessible": {
-      "file": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.pdf",
       "exists": true,
       "expected_pages": 6,
       "pages": 6,
@@ -127,7 +127,7 @@
       "pass": true
     },
     "grayscale": {
-      "file": "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf",
+      "file": "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,

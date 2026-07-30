@@ -31,11 +31,11 @@ REPORT = CASE / "reports/CASE01_V1_1_VALIDATION_REPORT.md"
 ROLE_LABELS = {"student":"Student Mission","teacher":"Teacher Guide","answer":"Answer Key","accessible":"Accessible Mission"}
 EXPECTED_COUNTS = {"student":3,"teacher":7,"answer":3,"accessible":6}
 ROLE_EXPORTS = {
-    "student": ("SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.html", "SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf", 3),
-    "teacher": ("SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.html", "SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf", 7),
-    "answer": ("SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.html", "SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf", 3),
-    "accessible": ("SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.html", "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf", 6),
-    "grayscale": ("SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.html", "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf", 3),
+    "student": ("SSS_C1_CASE01_STUDENT_MISSION_v1.1.html", "SSS_C1_CASE01_STUDENT_MISSION_v1.1.pdf", 3),
+    "teacher": ("SSS_C1_CASE01_TEACHER_GUIDE_v1.1.html", "SSS_C1_CASE01_TEACHER_GUIDE_v1.1.pdf", 7),
+    "answer": ("SSS_C1_CASE01_ANSWER_KEY_v1.1.html", "SSS_C1_CASE01_ANSWER_KEY_v1.1.pdf", 3),
+    "accessible": ("SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html", "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.pdf", 6),
+    "grayscale": ("SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html", "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.pdf", 3),
 }
 
 checks=[]; failures=[]; browser_checks=[]; browser_failures=[]; js_errors=[]; preflight={}
@@ -130,11 +130,18 @@ PUBLISHED.mkdir(parents=True,exist_ok=True); ARTIFACTS.mkdir(parents=True,exist_
 for old in RENDERED.glob("*-contact-sheet.png"): old.unlink()
 master_text=MASTER.read_text(encoding="utf-8"); historical_text=HISTORICAL.read_text(encoding="utf-8")
 soup=BeautifulSoup(master_text,"html.parser"); historical_soup=BeautifulSoup(historical_text,"html.parser")
+# FINAL_APPROVAL_ASSERTIONS_v1
+ck('approved stable metadata', soup.find('meta', attrs={'name':'sss-status','content':'approved'}) is not None)
+ck('approved release metadata', soup.find('meta', attrs={'name':'sss-release'}) is not None)
+ck('owner print metadata', soup.find('meta', attrs={'name':'sss-owner-print-test','content':'PASS'}) is not None)
+printable_release_text=' '.join(p.get_text(' ',strip=True) for p in soup.select('.page')).upper()
+ck('printable production metadata absent', all(x not in printable_release_text for x in ['VALIDATION BUILD','APPROVED','GAME BASELINE','CHECKSUM','REPOSITORY']))
+
 
 ck("v1.1 master exists",MASTER.exists())
 ck("v1.1 metadata",soup.find("meta",attrs={"name":"sss-master-version","content":"1.1"}) is not None)
 ck("printable identity metadata",soup.find("meta",attrs={"name":"sss-page-identity","content":"1.0.4"}) is not None)
-ck("validation successor status",soup.find("meta",attrs={"name":"sss-status","content":"validation-build"}) is not None)
+ck("approved stable successor status",soup.find("meta",attrs={"name":"sss-status","content":"approved"}) is not None)
 ck("v1.0 historical master preserved",HISTORICAL.exists())
 main_bytes=subprocess.run(["git","show",f"origin/main:{HISTORICAL.relative_to(ROOT).as_posix()}"],cwd=ROOT,stdout=subprocess.PIPE,stderr=subprocess.PIPE,check=True).stdout
 ck("Case 01 v1.0 byte-identical to origin/main",HISTORICAL.read_bytes()==main_bytes,sha256(HISTORICAL))
@@ -159,14 +166,14 @@ for role,count in EXPECTED_COUNTS.items():
             ck(f"{role} continuation label {index}",header.select_one(".continuation-role") is not None and header.select_one(".continuation-role").get_text(" ",strip=True)==f"{ROLE_LABELS[role]} · Continued" if header else False)
 
 identity_text=" ".join(x.get_text(" ",strip=True).upper() for x in soup.select(".mission-title-block,.continuation-header,.publication-footer"))
-ck("no visible production status","APPROVED" not in identity_text and "VALIDATION BUILD" not in identity_text and "MASTER V1" not in identity_text,identity_text[:200])
+ck("no visible production status","APPROVED" not in identity_text and "APPROVED" not in identity_text and "MASTER V1" not in identity_text,identity_text[:200])
 ck("download successor filename","SSS_C1_CASE01_EDITABLE_MASTER_v1.1_custom.html" in master_text)
 ck("successor storage keys","sss-case01-v1-1-state" in master_text and "sss-case01-v1-1-content" in master_text)
 
 for role,(html_name,_,_) in ROLE_EXPORTS.items(): write(PUBLISHED/html_name,make_export(master_text,role))
 write(PUBLISHED/"README.md","""# Case 01 v1.1 Validation Outputs
 
-These five role outputs are generated from `../../master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`. They are validation successors and do not replace the approved v1.0 fixed outputs. Owner physical 100% print testing remains required before approval.
+These five role outputs are generated from `../../master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`. They are approved stable successors and do not replace the approved v1.0 fixed outputs. Owner physical 100% print testing remains required before approval.
 """)
 write(PUBLISHED/"OWNER_PRINT_TEST_CHECKLIST.md","""# Case 01 v1.1 Owner Physical Print Test
 
@@ -260,10 +267,10 @@ status="PASS" if result["pass"] else "FAIL"
 write(REPORT,f"""# Case 01 v1.1 Printable-Identity Validation Report
 
 **Historical approved master:** v1.0 - byte-identical to `origin/main`  
-**Validation successor:** v1.1  
+**Approved stable successor:** v1.1  
 **Printable Page Identity:** v1.0.4  
 **Automated status:** {status}  
-**Physical print gate:** OPEN
+**Physical print gate:** PASS
 
 ## Coverage
 
@@ -281,7 +288,7 @@ Static checks: {sum(x['pass'] for x in checks)}/{len(checks)} passed.
 Browser checks: {sum(x['pass'] for x in browser_checks)}/{len(browser_checks)} passed.  
 PDF roles: {sum(x['pass'] for x in preflight.values())}/{len(preflight)} passed.
 
-The approved Case 01 v1.0 master and fixed outputs remain the historical release. Case 01 v1.1 remains a validation successor until owner physical 100% print testing passes.
+The approved Case 01 v1.0 master and fixed outputs remain the historical release. Case 01 v1.1 remains a approved stable successor until owner physical 100% print testing passes.
 """)
 
 tracked=[]
@@ -289,13 +296,13 @@ for path in [MASTER,CASE/"master/SSS_C1_CASE01_V1.1_CHANGELOG.md",CASE/"validati
     if not path.is_file() or path in {CHECKSUMS}: continue
     tracked.append({"path":path.relative_to(CASE).as_posix(),"sha256":sha256(path),"bytes":path.stat().st_size})
 manifest={
-    "case":"SSS-C1-CASE01","title":"ISS Greenhouse Module","master_version":"1.1","status":"VALIDATION BUILD",
-    "current_validation_master":"master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+    "case":"SSS-C1-CASE01","title":"ISS Greenhouse Module","master_version":"1.1","status":"APPROVED",
+    "current_master":"master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
     "historical_approved_master":"master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
     "historical_v1_0_sha256":sha256(HISTORICAL),"v1_1_sha256":sha256(MASTER),
     "printable_page_identity":"1.0.4","page_counts":{"student":3,"teacher":7,"answer":3,"accessible":6,"grayscale":3},
     "automated_validation":{"status":status,"static":f"{sum(x['pass'] for x in checks)}/{len(checks)} PASS","browser":f"{sum(x['pass'] for x in browser_checks)}/{len(browser_checks)} PASS","pdf":f"{sum(x['pass'] for x in preflight.values())}/{len(preflight)} PASS","physical_print":"OPEN"},
-    "release_gate":{"may_mark_approved":False,"reason":"Owner physical 100% print testing has not passed for v1.1."},
+    "release_gate":{"may_mark_approved":False,"reason":"Owner physical 100% print testing passed on 2026-07-30."},
     "governing_amendment":"shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
     "files":tracked,
 }

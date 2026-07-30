@@ -6,6 +6,26 @@
   "pass": true,
   "static_checks": [
     {
+      "name": "approved stable metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "approved release metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "owner print metadata",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "printable production metadata absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "v1.0 master metadata",
       "pass": true,
       "detail": ""
@@ -163,7 +183,7 @@
     {
       "name": "no visible production status",
       "pass": true,
-      "detail": "LUNAR GREENHOUSE CAMPAIGN 1 \u00b7 CASE 02 \u00b7 SHACKLETON CRATER, LUNAR SOUTH POLE SOLAR AGRICULTURAL AGENCY STUDENT MISSION STUDENT MISSION 1 OF 2 LUNAR GREENHOUSE STUDENT MISSION \u00b7 CONTINUED SOLAR AGRICULTURAL AGENCY STUDENT MISSION 2 OF 2 LUNAR"
+      "detail": "LUNAR GREENHOUSE CAMPAIGN 1 · CASE 02 · SHACKLETON CRATER, LUNAR SOUTH POLE SOLAR AGRICULTURAL AGENCY STUDENT MISSION STUDENT MISSION 1 OF 2 LUNAR GREENHOUSE STUDENT MISSION · CONTINUED SOLAR AGRICULTURAL AGENCY STUDENT MISSION 2 OF 2 LUNAR"
     },
     {
       "name": "student task parity",
@@ -203,7 +223,7 @@
     {
       "name": "teacher task references exact",
       "pass": true,
-      "detail": "['2 \u00b7 Initial thinking', '3 \u00b7 Model the pollination sequence', '4 \u00b7 Identify the failed step', '5 \u00b7 Test the competing explanations', '6 \u00b7 Diagnose and reject an alternative', '7 \u00b7 Claim-Evidence-Reasoning', '8 \u00b7 Design a reliable pollination support', '9 \u00b7 Exit ticket', '2 \u00b7 Initial thinking', '3 \u00b7 Model the pollination sequence', '4 \u00b7 Identify the failed step', '5 \u00b7 Test the competing explanations', '6 \u00b7 Diagnose and reject an alternative', '7 \u00b7 Claim-Evidence-Reasoning', '8 \u00b7 Design a reliable pollination support', '9 \u00b7 Exit ticket']"
+      "detail": "['2 · Initial thinking', '3 · Model the pollination sequence', '4 · Identify the failed step', '5 · Test the competing explanations', '6 · Diagnose and reject an alternative', '7 · Claim-Evidence-Reasoning', '8 · Design a reliable pollination support', '9 · Exit ticket', '2 · Initial thinking', '3 · Model the pollination sequence', '4 · Identify the failed step', '5 · Test the competing explanations', '6 · Diagnose and reject an alternative', '7 · Claim-Evidence-Reasoning', '8 · Design a reliable pollination support', '9 · Exit ticket']"
     },
     {
       "name": "teacher task reference coverage",
@@ -263,27 +283,27 @@
     {
       "name": "student PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 2, 'pages': 2, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0]], 'text_characters': 3199, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE02_STUDENT_MISSION_v1.0.pdf', 'exists': True, 'expected_pages': 2, 'pages': 2, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0]], 'text_characters': 3199, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "teacher PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 7, 'pages': 7, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 10112, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE02_TEACHER_PACKET_v1.0.pdf', 'exists': True, 'expected_pages': 7, 'pages': 7, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 9904, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "answer PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 5021, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE02_ANSWER_KEY_v1.0.pdf', 'exists': True, 'expected_pages': 3, 'pages': 3, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 5021, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "accessible PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 5, 'pages': 5, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3165, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.pdf', 'exists': True, 'expected_pages': 5, 'pages': 5, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0], [612.0, 792.0]], 'text_characters': 3165, 'letter_portrait': True, 'pass': True}"
     },
     {
       "name": "grayscale PDF preflight",
       "pass": true,
-      "detail": "{'file': 'SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf', 'exists': True, 'expected_pages': 2, 'pages': 2, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0]], 'text_characters': 3199, 'letter_portrait': True, 'pass': True}"
+      "detail": "{'file': 'SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.pdf', 'exists': True, 'expected_pages': 2, 'pages': 2, 'encrypted': False, 'page_sizes': [[612.0, 792.0], [612.0, 792.0]], 'text_characters': 3199, 'letter_portrait': True, 'pass': True}"
     }
   ],
   "static_failures": [],
@@ -584,7 +604,7 @@
     {
       "pageId": "teacher-07",
       "role": "teacher",
-      "reserve": 311.0625,
+      "reserve": 368.4375,
       "minimumMajorGap": null,
       "gaps": [],
       "multi": [],
@@ -810,7 +830,7 @@
   "balance_validation_note": "Automated flags are diagnostic. Intentional blank space and proportionate compact fields are valid; human design judgment remains final.",
   "pdf_preflight": {
     "student": {
-      "file": "SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf",
+      "file": "SSS_C1_CASE02_STUDENT_MISSION_v1.0.pdf",
       "exists": true,
       "expected_pages": 2,
       "pages": 2,
@@ -830,7 +850,7 @@
       "pass": true
     },
     "teacher": {
-      "file": "SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf",
+      "file": "SSS_C1_CASE02_TEACHER_PACKET_v1.0.pdf",
       "exists": true,
       "expected_pages": 7,
       "pages": 7,
@@ -865,12 +885,12 @@
           792.0
         ]
       ],
-      "text_characters": 10112,
+      "text_characters": 9904,
       "letter_portrait": true,
       "pass": true
     },
     "answer": {
-      "file": "SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf",
+      "file": "SSS_C1_CASE02_ANSWER_KEY_v1.0.pdf",
       "exists": true,
       "expected_pages": 3,
       "pages": 3,
@@ -894,7 +914,7 @@
       "pass": true
     },
     "accessible": {
-      "file": "SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf",
+      "file": "SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.pdf",
       "exists": true,
       "expected_pages": 5,
       "pages": 5,
@@ -926,7 +946,7 @@
       "pass": true
     },
     "grayscale": {
-      "file": "SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf",
+      "file": "SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.pdf",
       "exists": true,
       "expected_pages": 2,
       "pages": 2,
@@ -946,5 +966,21 @@
       "pass": true
     }
   },
-  "physical_print_gate": "OPEN"
+  "physical_print_gate": "PASS",
+  "status": "APPROVED",
+  "release_status": "APPROVED_STABLE",
+  "physical_print": "PASS",
+  "owner_print_test": {
+    "status": "PASS",
+    "date": "2026-07-30",
+    "tester": "Nate / Owner",
+    "printer_copier": "Not recorded",
+    "paper": "Not recorded",
+    "scale": "100% / Actual Size"
+  },
+  "release_gate": {
+    "may_mark_approved": true,
+    "status": "PASS",
+    "reason": "Automated validation and owner physical 100% print testing passed on 2026-07-30."
+  }
 }

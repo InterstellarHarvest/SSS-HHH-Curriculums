@@ -2,16 +2,13 @@
   "case": "SSS-C1-CASE02",
   "title": "Lunar Greenhouse",
   "version": "1.0",
-  "status": "VALIDATION BUILD",
-  "publication_date": "2026-07-24",
-  "game_repository": "InterstellarHarvest/Space-Sprout-Sleuth",
-  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
-  "curriculum_bible": "1.3",
-  "student_identity": "Process Modeler",
-  "master": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
-  "task_registry": "source/task-registry.js",
-  "balanced_page_fill": "1.0.2",
+  "master_version": "1.0",
+  "status": "APPROVED",
+  "release_status": "APPROVED_STABLE",
+  "publication_date": "2026-07-30",
+  "current_master": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
   "printable_page_identity": "1.0.4",
+  "balanced_page_fill": "1.0.2",
   "page_counts": {
     "student": 2,
     "teacher": 7,
@@ -21,45 +18,30 @@
   },
   "automated_validation": {
     "status": "PASS",
-    "static": "56/56 PASS",
+    "static": "60/60 PASS",
     "browser": "19/19 PASS",
     "pdf": "5/5 PASS",
-    "physical_print": "OPEN"
+    "physical_print": "PASS"
+  },
+  "owner_print_test": {
+    "status": "PASS",
+    "date": "2026-07-30",
+    "tester": "Nate / Owner",
+    "printer_copier": "Not recorded",
+    "paper": "Not recorded",
+    "scale": "100% / Actual Size"
   },
   "release_gate": {
-    "may_mark_approved": false,
-    "reason": "Owner physical 100% print testing has not passed."
+    "may_mark_approved": true,
+    "status": "PASS",
+    "reason": "Automated validation and owner physical 100% print testing passed on 2026-07-30."
   },
-  "governing_amendments": [
-    "shared/visual-style-guide/amendments/STUDENT_IDENTIFICATION_ROW_PLACEMENT_v1.0.1.md",
-    "shared/visual-style-guide/amendments/EXACT_MATCH_WORD_BANKS_v1.0.1.md",
-    "shared/visual-style-guide/amendments/TASK_REFERENCE_PARITY_v1.0.1.md",
-    "shared/visual-style-guide/amendments/TEACHER_TASK_REFERENCE_EMPHASIS_v1.0.1.md",
-    "shared/visual-style-guide/amendments/TEACHER_PRODUCTION_METADATA_VISIBILITY_v1.0.1.md",
-    "shared/visual-style-guide/amendments/CONTENT_ORDERING_AND_ACCESSIBLE_FLOW_v1.0.2.md",
-    "shared/visual-style-guide/amendments/BALANCED_PAGE_FILL_AND_VERTICAL_RHYTHM_v1.0.2.md",
-    "shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md"
-  ],
-  "excluded_obsolete_identity_artifacts": [
-    "SSS_V1_1_PAGE_SYSTEM_VALIDATION_RESULTS.json",
-    "review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.html",
-    "review/SSS_V1.1_PAGE_IDENTITY_PREVIEW.png",
-    "review/continuation-header.png",
-    "review/first-page-banner.png",
-    "review/minimal-footer.png",
-    "scripts/apply-sss-v1.1-page-system.py",
-    "scripts/validate-sss-v1.1-page-system.py",
-    "shared/implementation/SSS_HHH_V1_1_PAGE_IDENTITY_HANDOFF.md",
-    "shared/visual-style-guide/amendments/MISSION_TITLE_AND_CONTINUATION_HEADER_PARITY_v1.0.3.md",
-    "shared/visual-style-guide/amendments/UNIVERSAL_PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
-    "sss/campaign-1/case-02-lunar-greenhouse/CASE02_V1_1_MASTER_MANIFEST.json",
-    "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.1.html"
-  ],
+  "governing_amendment": "shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
   "files": [
     {
       "path": "README.md",
-      "sha256": "a06a7e512343bdc031059899f35c83b5d264fa89ccae3b3693c3b2439bd20aff",
-      "bytes": 975
+      "sha256": "87a7939dfaeb118e6b9b8ddffb5612fab1b25ce8fc116d58bc79e5efc7a80b51",
+      "bytes": 967
     },
     {
       "path": "assets/pollination-process-model.svg",
@@ -68,78 +50,78 @@
     },
     {
       "path": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
-      "sha256": "3d386f9bed067386b648ac3019e9587f50caf2514983920fcf2514492748b2f1",
-      "bytes": 152212
+      "sha256": "d35c3e0d83a61cbf56799e52b6a1eb3fac4668c1089b674ad0681e92bf30ad86",
+      "bytes": 152111
     },
     {
       "path": "published/OWNER_PRINT_TEST_CHECKLIST.md",
-      "sha256": "a37d58d1fad7fdae9839f52f11e1d26b67bb1f92731faadaa1b76a1f8fcd6a0b",
-      "bytes": 2398
+      "sha256": "8714d8799b93c81b1bc8022019c52ff4d5fb40c7899b9a2e42bfad23da030915",
+      "bytes": 939
     },
     {
       "path": "published/README.md",
-      "sha256": "437a9be25ff933790a653400ef26862dd9ac314a5bf98144ecb2437ec561fdd6",
+      "sha256": "c174ca58f227904a930d7ebeb896ea0c0e66ffe1e91980b8bb8adf027e048e7a",
       "bytes": 258
     },
     {
-      "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.html",
-      "sha256": "1f682406c6671fd634a8d60b19d130c7fabb3174bd9d27dae07eca606dbdb14c",
-      "bytes": 71411
+      "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html",
+      "sha256": "f72c719a8b6e6fe17cea608288a8e2c6067c9defae318cffb527e87ba74aa8e5",
+      "bytes": 71566
     },
     {
-      "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "240e582a4a85363ac05348ca4c5f8e5e702b103e5d089fe81d726bb0ec2bf0bd",
+      "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.pdf",
+      "sha256": "93732abf972a00d129767874a7899cd1ea100a70bf91f48c6785eaf12c7f8808",
       "bytes": 226358
     },
     {
-      "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.html",
-      "sha256": "6beb7483fc287d627ba0b71bb96254fd85b94a01893bd43b70ed8d76a16ee457",
-      "bytes": 58040
+      "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
+      "sha256": "6c0ed008e790c4dc66258f8a2aee77c4c219ae9f5b9acc547c2868ee5581f07c",
+      "bytes": 58195
     },
     {
-      "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf",
-      "sha256": "5b9cd8b3e31dbabcaf0f2105baebf6dab1e56f3af7868c8adf5dd86e0002c48b",
+      "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0.pdf",
+      "sha256": "22c3b21b0594136c42cab1bba27078dd2a77cd874f143fe876ecb14d69a0bea2",
       "bytes": 292647
     },
     {
-      "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.html",
-      "sha256": "912969c39c4834483fe808fa15efb0673286dbe88fac04e680f6fcbd3e984bfb",
-      "bytes": 61535
+      "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html",
+      "sha256": "eeb9438165864bbf5d684d51f4b89cc065011856f7b2fa799e5410271b140a8e",
+      "bytes": 61690
     },
     {
-      "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "31902565858182614186063bfdcc3d133beef1936ba953b3bd74a6bfb2d21166",
+      "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.pdf",
+      "sha256": "476391cfb8476fda0ee794243b81c336e48cb5367a10067836bbeba79f6754a7",
       "bytes": 325065
     },
     {
-      "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html",
-      "sha256": "dd1deb050c9aaa7129a4ed6f0b173bf43ed37f145f8a024acb37c302bb414bbd",
-      "bytes": 61488
+      "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.html",
+      "sha256": "429e9da1108c951a0b0dcd61b02f6e0c32b5f094ae30b109f6f90bb9f57456df",
+      "bytes": 61643
     },
     {
-      "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf",
-      "sha256": "7b22367a8fa47f9656768e2470a64efae69588c6d33cafbccf15e65b04c60fcc",
+      "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.pdf",
+      "sha256": "ab053e4023dc10ce64fe74f5fbe113d2a09b0414d979602894b870cceb6c81fe",
       "bytes": 325181
     },
     {
-      "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html",
-      "sha256": "bcb6aa22fd6e7196c45eb04b1580a284c8357e6b17518c753bd5fd141123a714",
-      "bytes": 75113
+      "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html",
+      "sha256": "5d5b1674a7ac31c2240e5b5a35ebe3dd31ef78013712998502a9baf3c21d2482",
+      "bytes": 75012
     },
     {
-      "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf",
-      "sha256": "9f252f61c0a3f8c7b614113b1d4cd9612aace25e00ce835b2434ff217fd5be93",
-      "bytes": 243612
+      "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.pdf",
+      "sha256": "1ab8b2d80e3ed370c56203a1c7142d4cc82cdb77414dec5fa64361c6c85b34f4",
+      "bytes": 242485
     },
     {
       "path": "reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md",
-      "sha256": "8e12a911e73864c789678b42bbee609871edf9ffac31e2208b4b2f48032d7980",
-      "bytes": 695
+      "sha256": "d804e67f8ba27cadaa39e571d7131c11511defbd2226b4223305e33321157ee8",
+      "bytes": 397
     },
     {
       "path": "reports/CASE02_MERGE_REPORT.md",
-      "sha256": "eaad9082eeb0822273bb344ca9d33b8ab311204f9619d67526469fd6eec9144c",
-      "bytes": 8684
+      "sha256": "65d74d4d7af810dcc70633962dffe2e1e506de6c5f9c0e2d84549595c977b962",
+      "bytes": 6599
     },
     {
       "path": "reports/CASE02_RUNTIME_CONTENT_AUDIT.md",
@@ -153,8 +135,8 @@
     },
     {
       "path": "reports/CASE02_VALIDATION_REPORT.md",
-      "sha256": "5becb161e0574883d8ccf8b37fa381cb8f7c590c78c0509fe01af8a96615c5e1",
-      "bytes": 1062
+      "sha256": "f97a22e6c28476cd083d7eff394e29cd5f1697f868f026657b7f0b950a9ea497",
+      "bytes": 466
     },
     {
       "path": "reports/PAGE_IDENTITY_VISUAL_COMPARISON.md",
@@ -218,13 +200,13 @@
     },
     {
       "path": "validation-artifacts/CASE02_PDF_PREFLIGHT.json",
-      "sha256": "0b81e8968c24a78211daf1fcfedcd5184c759d366c43fb1504b81a4ffbed6260",
-      "bytes": 2572
+      "sha256": "39b27f9f277fe83023d4097ff60fb583036bf548c0f059c73b14091361de040b",
+      "bytes": 2516
     },
     {
       "path": "validation-artifacts/CASE02_VALIDATION_RESULTS.json",
-      "sha256": "8fdf7ba2da8c55aafc3d9ac9b3db195a0c644afad5d0e86b514511602e0d6e16",
-      "bytes": 26514
+      "sha256": "ba1de4eb0c5ab3f74a9bd7907e41fb829b3dc22e08184e7c2545cc1fb235be01",
+      "bytes": 27185
     },
     {
       "path": "validation-artifacts/README.md",
@@ -233,18 +215,18 @@
     },
     {
       "path": "validation-artifacts/rendered-review/accessible-contact-sheet.png",
-      "sha256": "85035d6bafba27b52f2ef9fc632068b9157a8133f824799ed8f8746a11b5f0cc",
-      "bytes": 160199
+      "sha256": "4fe4cf2adba4c0e41476b1eeee62cab59a6ca8c2922a7c877de0eb44f6a243cd",
+      "bytes": 159206
     },
     {
       "path": "validation-artifacts/rendered-review/answer-contact-sheet.png",
-      "sha256": "23cea2372ffb47b1c2c90bbee5fdf4d927e1408ec3a861beb852a81c210c9ae0",
-      "bytes": 195944
+      "sha256": "46adce126665222d0f1b0784312bb2fe3fcc53c2de0cc375031e475f60b425eb",
+      "bytes": 195047
     },
     {
       "path": "validation-artifacts/rendered-review/grayscale-contact-sheet.png",
-      "sha256": "cac16ba091e7c6d96347f5cd3045262ddec7bcbc73450c05ab5882bb7e92e459",
-      "bytes": 133598
+      "sha256": "ee55211aa04a94687ed85280cf6d371fc0fc9ca13784a3dd75a1d0455b816782",
+      "bytes": 133301
     },
     {
       "path": "validation-artifacts/rendered-review/page-identity-comparison.png",
@@ -253,13 +235,13 @@
     },
     {
       "path": "validation-artifacts/rendered-review/student-contact-sheet.png",
-      "sha256": "5d7e28703f6d949b6533866fd8df1efe72a7ae0ecb1ea4388569462a1fc850cf",
-      "bytes": 133450
+      "sha256": "8d09bf9dba137cd1a3ee1b529d3c79dd4e622d2189bd360aa118db7315b46791",
+      "bytes": 133210
     },
     {
       "path": "validation-artifacts/rendered-review/teacher-contact-sheet.png",
-      "sha256": "1b32782ec48f550b32b6f62b83b17287f39cd2846a00e409feb64430292c55ae",
-      "bytes": 455222
+      "sha256": "9780db8aaf245eecae804fa588dd8f7c1d4df1c06a553e70cf2a10218965ab03",
+      "bytes": 445879
     },
     {
       "path": "validation-artifacts/requirements.txt",
@@ -268,8 +250,10 @@
     },
     {
       "path": "validation-artifacts/validate_case02.py",
-      "sha256": "4430482e2c5483b5b9ba09cc98c5ab8be2ed7a1fe1238361852cb9c4132f4d56",
-      "bytes": 30425
+      "sha256": "cbdbede541f143da4d9b98a8b324c012196a4989b39c606f8e481418c9ba15f0",
+      "bytes": 30948
     }
-  ]
+  ],
+  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "task_registry": "source/task-registry.js"
 }

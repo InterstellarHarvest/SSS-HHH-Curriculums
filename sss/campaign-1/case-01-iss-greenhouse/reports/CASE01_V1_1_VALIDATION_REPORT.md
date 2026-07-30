@@ -1,25 +1,16 @@
-# Case 01 v1.1 Printable-Identity Validation Report
+# Case 01 v1.1 Validation and Release Report
 
-**Historical approved master:** v1.0 - byte-identical to `origin/main`  
-**Validation successor:** v1.1  
+**Release status:** APPROVED STABLE  
+**Release date:** 2026-07-30  
 **Printable Page Identity:** v1.0.4  
-**Automated status:** PASS  
-**Physical print gate:** OPEN
+**Owner physical print test:** PASS
 
-## Coverage
+## Validation totals
 
-- instructional content, page ids, and response fields unchanged from approved v1.0;
-- Student (3), Teacher (7), Answer Key (3), Accessible (6), and Grayscale (3) outputs;
-- approved first-page, continuation, institution/role-lockup, and footer structures;
-- absence of visible production-state metadata;
-- role isolation, zero overflow, keyboard access, persistence, selective clearing, reset, and portable HTML;
-- Letter portrait PDF preflight and rendered contact sheets;
-- checksums and repository-relative evidence.
+- Static: 88/88 PASS
+- Browser: 17/17 PASS
+- PDF roles: 5/5 PASS
+- JavaScript errors: 0
+- Overflow: 0
 
-## Result
-
-Static checks: 84/84 passed.  
-Browser checks: 17/17 passed.  
-PDF roles: 5/5 passed.
-
-The approved Case 01 v1.0 master and fixed outputs remain the historical release. Case 01 v1.1 remains a validation successor until owner physical 100% print testing passes.
+Case 01 v1.0 remains byte-identical at `4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00` and is retained as the prior approved release. Case 01 v1.1 is the approved stable printable-identity successor.

@@ -6,7 +6,7 @@
 - Curriculum version: v1.0
 - Balanced Page Fill and Vertical Rhythm: v1.0.2
 - Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
-- Status: VALIDATION BUILD
+- Status: APPROVED
 
 The current v1.0 master combines the approved Printable Page Identity v1.0.4 system with Balanced Page Fill and Vertical Rhythm v1.0.2. The contradictory Case 02 v1.1 master/manifest layer remains excluded.
 

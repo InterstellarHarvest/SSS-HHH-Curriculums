@@ -16,16 +16,6 @@
 - `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_V1.1_CHANGELOG.md`
 - `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/OWNER_PRINT_TEST_CHECKLIST.md`
 - `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/README.md`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.html`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_VALIDATION.pdf`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.html`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1_VALIDATION.pdf`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.html`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_VALIDATION.pdf`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.html`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1_VALIDATION.pdf`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.html`
-- `sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1_VALIDATION.pdf`
 - `sss/campaign-1/case-01-iss-greenhouse/reports/CASE01_V1_1_VALIDATION_REPORT.md`
 - `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/CASE01_V1_1_CHECKSUMS.sha256`
 - `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/v1.1/CASE01_V1_1_PDF_PREFLIGHT.json`
@@ -43,16 +33,6 @@
 - `sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`
 - `sss/campaign-1/case-02-lunar-greenhouse/published/OWNER_PRINT_TEST_CHECKLIST.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/published/README.md`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.html`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_VALIDATION.pdf`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.html`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ANSWER_KEY_v1.0_VALIDATION.pdf`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.html`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0_VALIDATION.pdf`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.html`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_STUDENT_MISSION_v1.0_VALIDATION.pdf`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.html`
-- `sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_TEACHER_PACKET_v1.0_VALIDATION.pdf`
 - `sss/campaign-1/case-02-lunar-greenhouse/reports/CASE02_BLOCKERS_AND_EXCEPTIONS.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/reports/CASE02_MERGE_REPORT.md`
 - `sss/campaign-1/case-02-lunar-greenhouse/reports/CASE02_RUNTIME_CONTENT_AUDIT.md`
@@ -107,9 +87,9 @@
 - Printable Page Identity v1.0.4: recovered and validated
 - Balanced Page Fill and Vertical Rhythm v1.0.2: implemented
 - Approved Case 01 v1.0: unchanged from main
-- Case 01 v1.1: separate validation successor
+- Case 01 v1.1: separate approved stable successor
 - Visual comparison: `validation-artifacts/rendered-review/page-identity-comparison.png`
 
 ## Remaining owner gate
 
-Owner physical 100% print testing remains OPEN. No merge to main should be treated as an approved release until that gate passes.
+Owner physical 100% print testing passed on 2026-07-30. Both automated and owner physical-print release gates pass; the branch is ready for merge review.

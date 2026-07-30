@@ -1,26 +1,17 @@
-# Case 02 Validation Report
+# Case 02 Validation and Release Report
 
-**Build:** SSS-C1-CASE02 v1.0  
-**Balanced Page Fill:** v1.0.2  
+**Release status:** APPROVED STABLE  
+**Release date:** 2026-07-30  
 **Printable Page Identity:** v1.0.4  
-**Automated status:** PASS  
-**Physical print gate:** OPEN
+**Balanced Page Fill:** v1.0.2  
+**Owner physical print test:** PASS
 
-## Coverage
+## Validation totals
 
-- Controlled Markdown, task registry, master, and release-track agreement
-- Student (2), Teacher (7), Answer Key (3), Accessible (5), and Grayscale (2) role outputs
-- Zero-overflow and role-isolation browser checks
-- Task-reference and content-regression assertions
-- Keyboard/fill behavior, persistence, selective clearing, reset, and portable HTML
-- Letter-size PDF preflight and direct rendered contact-sheet review evidence
-- Approved first-page, continuation-header, institution/role-lockup, and role-specific footer identity
-- Balanced-fill diagnostics for bottom reserve, major-group spacing, multi-line work sizing, and compact-field restraint
+- Static: 60/60 PASS
+- Browser: 19/19 PASS
+- PDF roles: 5/5 PASS
+- JavaScript errors: 0
+- Overflow: 0
 
-## Result
-
-Static checks: 56/56 passed.  
-Browser checks: 19/19 passed.  
-PDF roles: 5/5 passed.
-
-Human design judgment remains final. Owner physical 100% print testing is still required before approval.
+The reconciled Case 02 v1.0 master is the single current production master. All automated and physical release gates pass.

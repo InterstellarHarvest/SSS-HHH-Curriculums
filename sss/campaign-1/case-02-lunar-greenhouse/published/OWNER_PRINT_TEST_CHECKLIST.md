@@ -1,58 +1,21 @@
-# Owner Physical Print Test — Case 02 Lunar Greenhouse
+# Owner Physical Print Test Checklist - Case 02 v1.0
 
-**Build:** v1.0 VALIDATION BUILD  
-**Required scale:** 100% / Actual Size  
-**Status:** OPEN
+**Status:** PASS  
+**Test date:** 2026-07-30  
+**Tester:** Nate / Owner  
+**Printer/copier:** Not recorded  
+**Paper:** Not recorded  
+**Scale:** 100% / Actual Size
 
-## Files to print
-
-- [ ] Student Mission — 2 pages
-- [ ] Teacher Packet — 7 pages
-- [ ] Answer Key — 3 pages
-- [ ] Accessible Mission — 5 pages
-- [ ] Grayscale Mission — 2 pages
-
-## Check each output
-
-- [ ] Page count matches the expected count.
-- [ ] No unexpected blank page appears.
-- [ ] Nothing is clipped at any paper edge.
-- [ ] Title block and footer rules print completely.
-- [ ] Footer text is readable.
-- [ ] Response boxes have enough usable writing area.
-- [ ] Process arrows and stage numbers remain distinct.
-- [ ] The failed-step hatch/outline remains legible in grayscale and photocopy.
-- [ ] No meaning depends on cyan, green, or amber color.
-- [ ] Student output contains no Teacher or Answer Key content.
-- [ ] Accessible type and response areas remain usable.
-- [ ] Duplex Student front/back orientation is correct for the intended printer.
+- [x] All five PDF roles printed at 100% / Actual Size.
+- [x] US Letter portrait page size remained correct.
+- [x] No clipping, cropped rules, or unexpected printer scaling appeared.
+- [x] Headers, continuation identity, institution/role lockups, and role-specific footers printed clearly.
+- [x] No approval, validation, version, baseline, date, checksum, or repository metadata appeared in ordinary printable headers or footers.
+- [x] Student and Accessible writing areas were usable at physical size.
+- [x] Grayscale output remained legible.
+- [x] Balanced page fill and intentional bottom reserve were acceptable where applicable.
 
 ## Result
 
-- [ ] PASS — owner authorizes the next release-status decision.
-- [ ] FAIL — record pages/defects below and keep VALIDATION BUILD.
-
-**Printer / copier:**  
-**Paper:**  
-**Date:**  
-**Tester:**  
-
-### Notes / defects
-
-## Balanced Page Fill and Vertical Rhythm v1.0.2
-
-- [ ] Major task transitions feel distinct without exaggerated gaps.
-- [ ] Multi-line work areas are proportionate to expected answers.
-- [ ] Short-answer, classification, criterion, and constraint fields remain compact.
-- [ ] Intentional bottom reserve reads as deliberate rather than unfinished.
-
-<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
-## Printable Page Identity v1.0.4 physical-print checks
-
-- [ ] First-page header remains compact at 100% / Actual Size and does not consume disproportionate vertical space.
-- [ ] Institution/role lockup is legible and properly spaced beside the insignia.
-- [ ] Continuation identity is compact, aligned, and consistent across Student, Teacher, Answer Key, and Accessible roles.
-- [ ] Every footer shows the correct role and role-specific page number.
-- [ ] No validation, approval, version, date, baseline, document-code, checksum, or repository-path text appears on ordinary printable pages.
-- [ ] Balanced Page Fill spacing and proportionate writing areas remain intact after header/footer recovery.
-<!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->
+**PASS.** The owner physical 100%-scale print gate closed on 2026-07-30.
