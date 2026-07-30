@@ -3,7 +3,7 @@
   "version": "1.0",
   "status": "PASS",
   "build_status": "VALIDATION BUILD",
-  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "game_commit": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
   "page_counts": {
     "student": 4,
     "teacher": 8,
@@ -77,31 +77,31 @@
     "student": {
       "pdf": "SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
       "pages": 4,
-      "sha256": "20192fb713ffdbe6cbb1a26dc10f41a4d8653944feb69bd8542ed292fafca779",
+      "sha256": "713c7341b4448482564a30a45897f2b9dd4e2b93690d3e020a9500aeb338a1c3",
       "bytes": 43448
     },
     "teacher": {
       "pdf": "SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
       "pages": 8,
-      "sha256": "d14cc7fad0852ba18978920730fa26d25e8c6b7a4c4e6c6ce071ef2085466f8c",
+      "sha256": "38183f3ac32136ba4134e09c0b320a08090fb17b1dc6af0ff0597e8eda719dac",
       "bytes": 77651
     },
     "answer": {
       "pdf": "SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
       "pages": 4,
-      "sha256": "27174c917b0808d21420e8e52d8d94eff5ee93bbfbdadeb41b19fc96f2b0c5e3",
+      "sha256": "be1facc75b62a82d576a7c98b0cb8e10347a5691fbba53a501213d91dd9baf8f",
       "bytes": 41058
     },
     "accessible": {
       "pdf": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
       "pages": 6,
-      "sha256": "33a5e51da2705fbba96f31d90e0ab904954ccbb0e9bacf4bedb6969225aeb13d",
+      "sha256": "d3e845447e7fec8edee7e14954ec1c6385c29282802ee15809bc127feb8717e5",
       "bytes": 52853
     },
     "grayscale": {
       "pdf": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
       "pages": 4,
-      "sha256": "9f3d6289b15e4ae0a98d554d8c09ab20f909f56ba6ffedcf3626e77cc93d8a1d",
+      "sha256": "4cf588c9e63d35dfe2570bcd57e0f46618bce13d33a0a2578a697da98cd71451",
       "bytes": 43440
     }
   },
@@ -129,7 +129,7 @@
       "group": "static",
       "name": "metadata sss-game-baseline",
       "pass": true,
-      "detail": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712"
+      "detail": "c6c17be57880b365793fdf99ff4ad09b62ecacce"
     },
     {
       "group": "static",
@@ -883,7 +883,7 @@
     },
     {
       "group": "identity",
-      "name": "printable metadata absent: 2a6e8a7bb75c8c96f26f9ebfe752",
+      "name": "printable metadata absent: c6c17be57880b365793fdf99ff4a",
       "pass": true,
       "detail": ""
     },
@@ -1231,9 +1231,9 @@
     },
     {
       "group": "browser",
-      "name": "student standalone no JS errors",
+      "name": "student standalone JS and game metadata",
       "pass": true,
-      "detail": ""
+      "detail": "c6c17be57880b365793fdf99ff4ad09b62ecacce"
     },
     {
       "group": "browser",
@@ -1249,9 +1249,9 @@
     },
     {
       "group": "browser",
-      "name": "teacher standalone no JS errors",
+      "name": "teacher standalone JS and game metadata",
       "pass": true,
-      "detail": ""
+      "detail": "c6c17be57880b365793fdf99ff4ad09b62ecacce"
     },
     {
       "group": "browser",
@@ -1267,9 +1267,9 @@
     },
     {
       "group": "browser",
-      "name": "answer standalone no JS errors",
+      "name": "answer standalone JS and game metadata",
       "pass": true,
-      "detail": ""
+      "detail": "c6c17be57880b365793fdf99ff4ad09b62ecacce"
     },
     {
       "group": "browser",
@@ -1285,9 +1285,9 @@
     },
     {
       "group": "browser",
-      "name": "accessible standalone no JS errors",
+      "name": "accessible standalone JS and game metadata",
       "pass": true,
-      "detail": ""
+      "detail": "c6c17be57880b365793fdf99ff4ad09b62ecacce"
     },
     {
       "group": "browser",
@@ -1303,9 +1303,9 @@
     },
     {
       "group": "browser",
-      "name": "grayscale standalone no JS errors",
+      "name": "grayscale standalone JS and game metadata",
       "pass": true,
-      "detail": ""
+      "detail": "c6c17be57880b365793fdf99ff4ad09b62ecacce"
     },
     {
       "group": "browser",
@@ -1387,7 +1387,7 @@
     },
     {
       "group": "pdf",
-      "name": "student no visible metadata 2a6e8a7bb75c8c96f2",
+      "name": "student no visible metadata c6c17be57880b36579",
       "pass": true,
       "detail": ""
     },
@@ -1603,7 +1603,7 @@
     },
     {
       "group": "pdf",
-      "name": "teacher no visible metadata 2a6e8a7bb75c8c96f2",
+      "name": "teacher no visible metadata c6c17be57880b36579",
       "pass": true,
       "detail": ""
     },
@@ -1771,7 +1771,7 @@
     },
     {
       "group": "pdf",
-      "name": "answer no visible metadata 2a6e8a7bb75c8c96f2",
+      "name": "answer no visible metadata c6c17be57880b36579",
       "pass": true,
       "detail": ""
     },
@@ -1963,7 +1963,7 @@
     },
     {
       "group": "pdf",
-      "name": "accessible no visible metadata 2a6e8a7bb75c8c96f2",
+      "name": "accessible no visible metadata c6c17be57880b36579",
       "pass": true,
       "detail": ""
     },
@@ -2131,7 +2131,7 @@
     },
     {
       "group": "pdf",
-      "name": "grayscale no visible metadata 2a6e8a7bb75c8c96f2",
+      "name": "grayscale no visible metadata c6c17be57880b36579",
       "pass": true,
       "detail": ""
     },

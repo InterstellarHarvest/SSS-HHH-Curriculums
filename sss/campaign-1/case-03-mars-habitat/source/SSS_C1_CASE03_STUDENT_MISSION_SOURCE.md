@@ -3,7 +3,7 @@
 **Case:** SSS-C1-CASE03  
 **Student identity:** Data Analyst  
 **Status:** VALIDATION BUILD  
-**Game baseline:** `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
+**Game baseline:** `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 
 ## Mission question
 How can the habitat receive an adequate total amount of light while the potato plants still fail to form normal green new growth?

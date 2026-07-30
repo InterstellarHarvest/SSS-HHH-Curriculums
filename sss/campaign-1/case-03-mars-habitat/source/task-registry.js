@@ -4,7 +4,7 @@ window.SSS_CASE03_TASK_REGISTRY = {
   "title": "Mars Habitat",
   "version": "1.0",
   "status": "VALIDATION BUILD",
-  "gameCommit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "gameCommit": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
   "roles": {
     "student": 4,
     "teacher": 8,

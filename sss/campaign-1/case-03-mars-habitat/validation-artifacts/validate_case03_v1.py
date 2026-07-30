@@ -14,7 +14,7 @@ VAL=ROOT/'validation-artifacts'
 REPORTS=ROOT/'reports'
 RESULTS=VAL/'CASE03_V1_VALIDATION_RESULTS.json'
 CHECKSUMS=VAL/'CASE03_V1_CHECKSUMS.sha256'
-GAME='2a6e8a7bb75c8c96f26f9ebfe7523668107ab712'
+GAME='c6c17be57880b365793fdf99ff4ad09b62ecacce'
 TASKS=[
 ('1','Define the measurement'),
 ('2','Read the spectral-transmission data'),
@@ -183,7 +183,8 @@ with sync_playwright() as pw:
         sp.on('pageerror',lambda e,errs=errs:errs.append(str(e)))
         stxt=(PUB/htmlname).read_text(encoding='utf-8')
         sp.set_content(stxt,wait_until='load'); sp.wait_for_timeout(200)
-        check('browser',f'{role} standalone no JS errors',not errs,' | '.join(errs))
+        standalone_game=sp.locator('meta[name="sss-game-baseline"]').get_attribute('content')
+        check('browser',f'{role} standalone JS and game metadata',not errs and standalone_game==GAME,' | '.join(errs) if errs else standalone_game)
         check('browser',f'{role} standalone visible pages',sp.locator('section.page:visible').count()==count,sp.locator('section.page:visible').count())
         check('browser',f'{role} standalone zero overflow',sp.locator('section.page.has-overflow').count()==0,sp.locator('section.page.has-overflow').count())
         sp.close()

@@ -15,7 +15,7 @@
 8. Bula, R. J., et al. (1991). “Light-emitting diodes as a radiation source for plants.” *HortScience* 26(2); NASA NTRS 20040090327.
 
 ## Game-specific source
-9. *Space Sprout Sleuth*, repository-root `space_sprout_sleuth_data.js`, `id: "mars"`, game commit `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`. Exact hardware, filter models, transmission values, symptoms, and diagnosis are controlled game content.
+9. *Space Sprout Sleuth*, repository-root `space_sprout_sleuth_data.js`, `id: "mars"`, current compatibility commit `c6c17be57880b365793fdf99ff4ad09b62ecacce`. Exact hardware, filter models, transmission values, symptoms, and diagnosis are controlled game content.
 
 ## Interpretation rule
 Authoritative sources support definitions and general biological mechanisms. All Case 03 numerical values and engineering details are game-specific. No external figure is copied or adapted, and no continuous spectral curve is inferred.

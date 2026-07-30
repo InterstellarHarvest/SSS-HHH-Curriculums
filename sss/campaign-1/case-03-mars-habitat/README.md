@@ -3,7 +3,7 @@
 - Curriculum version: v1.0
 - Student identity: Data Analyst
 - Core science: light spectrum versus total intensity
-- Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
+- Game baseline: `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 - Curriculum baseline: `e524d333f28a1515571f038e3ed494d87aa812d3`
 - Printable Page Identity: v1.0.4
 - Balanced Page Fill and Vertical Rhythm: v1.0.2

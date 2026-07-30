@@ -3,12 +3,12 @@
 **Case:** SSS Campaign 1, Case 03 - Mars Habitat  
 **Status:** VALIDATION BUILD  
 **Curriculum baseline:** `e524d333f28a1515571f038e3ed494d87aa812d3`  
-**Game baseline:** `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`  
+**Game baseline:** `c6c17be57880b365793fdf99ff4ad09b62ecacce`  
 **Automated result:** PASS - 355/355 assertions  
 **Physical 100%-scale print gate:** OPEN
 
 ## Institutional identity correction
-The canonical SAA expansion is **Solar Agricultural Agency**. This is a follow-up terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not replace or rewrite that initial commit. The corrected master, all standalone HTML outputs, all PDFs, alt text, lockups, print checklist, PDF generator, and validator now match approved Case 01/02 usage. The validator requires Agency and rejects Authority and Space variants on printable pages. The current game repository still requires a separate lore-only naming patch; the science/runtime audit remains anchored to the recorded game baseline.
+The canonical SAA expansion is **Solar Agricultural Agency**. This is a follow-up terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not replace or rewrite that initial commit. The corrected master, all standalone HTML outputs, all PDFs, alt text, lockups, print checklist, PDF generator, and validator now match approved Case 01/02 usage. The validator requires Agency and rejects Authority and Space variants on printable pages. The game repository canonicalized the same name at `c6c17be57880b365793fdf99ff4ad09b62ecacce`, which is now the current Case 03 compatibility baseline. The former commit `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712` remains recorded only as the historical commit used for the original runtime science audit.
 
 ## Page counts
 - Student Mission: 4

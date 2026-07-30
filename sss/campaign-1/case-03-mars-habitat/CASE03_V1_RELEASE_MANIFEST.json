@@ -7,13 +7,13 @@
   "student_identity": "Data Analyst",
   "core_science": "light spectrum versus total intensity",
   "curriculum_baseline": "e524d333f28a1515571f038e3ed494d87aa812d3",
-  "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
+  "game_commit": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
   "runtime_source": "space_sprout_sleuth_data.js#mars",
   "printable_page_identity": "1.0.4",
   "balanced_page_fill": "1.0.2",
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "44e9736234e558bb64ee9a784dd64e1ac3dd78119d4f5db20c4068d8ac59556a",
+    "sha256": "65d91fad59146bb725d5ccc3efb5cc5cfb3610fa71eb9bf08a45d27cf7ccf67d",
     "bytes": 85872
   },
   "page_counts": {
@@ -38,12 +38,12 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "bdd8a378a57ef622d69bb1a0a82111a6aa7c08aca6118a18deed9a514d9f8e25",
-        "bytes": 29591
+        "sha256": "5947ff81c120b1a73ae08ddee133582721527ec51cb7b445da24f133723ee218",
+        "bytes": 29592
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
-        "sha256": "20192fb713ffdbe6cbb1a26dc10f41a4d8653944feb69bd8542ed292fafca779",
+        "sha256": "713c7341b4448482564a30a45897f2b9dd4e2b93690d3e020a9500aeb338a1c3",
         "bytes": 43448
       }
     },
@@ -51,12 +51,12 @@
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "bba73d08a7af0cead91fef4d21be24dda01d53e98e64e1e541f5d063515ba4d7",
-        "bytes": 34009
+        "sha256": "bdc60199b1dc92afc6b73cefdcf5f3aea9b7f785c228e57f97c1b5b25f888716",
+        "bytes": 34010
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
-        "sha256": "d14cc7fad0852ba18978920730fa26d25e8c6b7a4c4e6c6ce071ef2085466f8c",
+        "sha256": "38183f3ac32136ba4134e09c0b320a08090fb17b1dc6af0ff0597e8eda719dac",
         "bytes": 77651
       }
     },
@@ -64,12 +64,12 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "ced7b0c5acacd1b084816d8ab4bd9720a9a329c16bb3b159e3b92ad2f25ab94f",
-        "bytes": 25794
+        "sha256": "2d4319307a2cc0bc4028ecb89fc1c7f1168a90c120970e93811b6e466d79ac3f",
+        "bytes": 25795
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
-        "sha256": "27174c917b0808d21420e8e52d8d94eff5ee93bbfbdadeb41b19fc96f2b0c5e3",
+        "sha256": "be1facc75b62a82d576a7c98b0cb8e10347a5691fbba53a501213d91dd9baf8f",
         "bytes": 41058
       }
     },
@@ -77,12 +77,12 @@
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "fa9eff40064affd5c5ca212af91b3d08b33d1fdc5f6ee2c86e30ceb6e349e802",
-        "bytes": 29701
+        "sha256": "8902a407ab66575313ed48aefd0b0244fbf994f3261e78932af7e21773b35e38",
+        "bytes": 29702
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
-        "sha256": "33a5e51da2705fbba96f31d90e0ab904954ccbb0e9bacf4bedb6969225aeb13d",
+        "sha256": "d3e845447e7fec8edee7e14954ec1c6385c29282802ee15809bc127feb8717e5",
         "bytes": 52853
       }
     },
@@ -90,12 +90,12 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "c8f11116f466a10c91ad4b17af0e823b224bb8429a323d6916ede50d963fc44e",
-        "bytes": 29602
+        "sha256": "ffc3227eb02c1b7d63843243aedcaaa8a70545c2bc4a05539a5431ba5f40ba2d",
+        "bytes": 29603
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
-        "sha256": "9f3d6289b15e4ae0a98d554d8c09ab20f909f56ba6ffedcf3626e77cc93d8a1d",
+        "sha256": "4cf588c9e63d35dfe2570bcd57e0f46618bce13d33a0a2578a697da98cd71451",
         "bytes": 43440
       }
     }
@@ -123,8 +123,8 @@
     },
     {
       "path": "source/SSS_C1_CASE03_REFERENCES.md",
-      "sha256": "a61dde29ec2f1e73f54acdbfb1c1222a21f04bae897d6e29dc6735dc61f5c9b4",
-      "bytes": 2218
+      "sha256": "3a42a0b372d8e7dde3fbb496c67763e87baf61471eed73076db0435fdd6f1356",
+      "bytes": 2235
     },
     {
       "path": "source/SSS_C1_CASE03_RUBRICS.md",
@@ -133,7 +133,7 @@
     },
     {
       "path": "source/SSS_C1_CASE03_STUDENT_MISSION_SOURCE.md",
-      "sha256": "5b28298e7693be3bf6056b2e4448c375db557de8fa888d4f581a1f27b8f8e9db",
+      "sha256": "2fec0672dabebeece7c313ca3327308c3f9d216cf023009e45dc7e99dd40cb35",
       "bytes": 2978
     },
     {
@@ -148,7 +148,7 @@
     },
     {
       "path": "source/task-registry.js",
-      "sha256": "8c9e4ebe8e9a58ce0fb498c3e529c58f9c9c19d637160922230964180db26f38",
+      "sha256": "351870aad868c753e9342d26de14e3c84e2a51032754daca89ea7c89baf1eca4",
       "bytes": 3038
     }
   ],
@@ -160,8 +160,8 @@
     },
     {
       "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
-      "sha256": "a9279e4615b4e0372a3aab65e0043dcfdd342670b52cc1f26e1915b7d300e7ed",
-      "bytes": 2185
+      "sha256": "18dc3e4ec37448253f4117d17c19e829bffec0f0f304ad546c1778c9e2dbdfcd",
+      "bytes": 2513
     },
     {
       "path": "reports/CASE03_STRUCTURAL_STRESS_TEST_REPORT.md",
@@ -170,8 +170,8 @@
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "f7f08344d48e75e8f1ef33d679637fd99a5bf73b770211f1c840fe371804ce95",
-      "bytes": 3340
+      "sha256": "881f516e16aabd8ed27cb007ed3aed86f4777d72f7c34f8b04eac1b93e424a4c",
+      "bytes": 3493
     }
   ],
   "validation_files": [
@@ -187,8 +187,8 @@
     },
     {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "8a4b93df107ae380149e40558cc4bbd74d317ac0b73b4da0ecb189a667f2afd7",
-      "bytes": 46799
+      "sha256": "904b6658d7320854afbb9977c1d55391057bcefe9b903ea68178fb7eca8ad047",
+      "bytes": 47039
     },
     {
       "path": "validation-artifacts/build_case03_pdfs.py",
@@ -197,8 +197,8 @@
     },
     {
       "path": "validation-artifacts/validate_case03_v1.py",
-      "sha256": "912c11c3c0bb3dee7fd645bf4c8ff9b160a34c9b68f736896a79597fe4efe87c",
-      "bytes": 17617
+      "sha256": "f63baf9b800ef83d31c98a85fef2450e4bc5ba27f1e8d76aef932b1b66e2cafb",
+      "bytes": 17774
     }
   ],
   "release_gate": {
@@ -211,6 +211,6 @@
     "shared_correction": "shared/visual-style-guide/amendments/SAA_CANONICAL_INSTITUTION_NAME_v1.0.5.md",
     "correction_context": "Follow-up after initial Case 03 commit 378f4d873a8fcc46b91af3fb0b552650c2ddeea7",
     "validation": "Agency required; Authority and Space variants rejected on printable pages",
-    "game_repository_alignment": "PENDING SEPARATE LORE-ONLY COMMIT"
+    "game_repository_alignment": "ALIGNED AT c6c17be57880b365793fdf99ff4ad09b62ecacce"
   }
 }

@@ -1,8 +1,8 @@
 # Case 03 Runtime Content Audit
 
-**Game commit:** `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`  
+**Historical science-audit game commit:** `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`  
 **Controlling files:** repository-root `space_sprout_sleuth_data.js` (`id: "mars"`) controls mission text, evidence, numerical values, diagnosis choices, correct diagnosis, and explanation. Repository-root `index.html` is the shared engine that loads and renders the case data.  
-**Status:** VERIFIED AGAINST CURRENT MAIN
+**Status:** HISTORICAL RUNTIME SCIENCE AUDIT; current compatibility baseline is `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 
 ## Mission problem
 Potatoes grow normally for about three weeks; newest leaves then become washed out, followed by top-canopy yellowing and nearly white new growth.
@@ -10,7 +10,7 @@ Potatoes grow normally for about three weeks; newest leaves then become washed o
 ## Evidence channels
 Crew, Sensors, Plants, and Logs/Archive. The playable sequence moves from adequate total PAR to wavelength-resolved sensor analysis, plant pigment evidence, and collector-filter maintenance records.
 
-## Exact current values
+## Exact values audited at the historical commit
 - 12 m full-spectrum silica light pipe.
 - 4000 K white LEDs, approximately 30% of total PAR; red weak, deep red minimal.
 - Combined PAR/PPFD: 280 umol m-2 s-1, nominal/adequate.
@@ -27,4 +27,4 @@ Perchlorates; high CO2; Mars-sol photoperiod; correct diagnosis: `The light deli
 Adequate total PPFD -> spectral analysis shows selective red/deep-red rejection -> maintenance/archive evidence identifies likely wrong collector filter -> plant evidence shows failure concentrated in new pigment formation -> diagnosis.
 
 ## Important correction from the first interrupted build
-The uploaded local ZIP contained older Case 03 content with 8/12/45/65 loss values and a borosilicate/dust explanation. Current GitHub main at the verified game commit contains 92/88/31/12 transmission values and the wrong-filter mechanism. The validation build uses only current-main content.
+The uploaded local ZIP contained older Case 03 content with 8/12/45/65 loss values and a borosilicate/dust explanation. Game commit `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`, used for the original runtime science audit, contains 92/88/31/12 transmission values and the wrong-filter mechanism. The current validation build records `c6c17be57880b365793fdf99ff4ad09b62ecacce` as its compatibility baseline; the later canonical-name change does not alter the audited numerical science content.
