@@ -73,6 +73,9 @@
 - [ ] Standard numbered task titles render at 11.5 pt; Accessible task titles render at 14 pt.
 - [ ] The technical label is semantic and does not repeat the number as `TASK 01`, `TASK 7`, or similar.
 - [ ] The visible task title contains its number exactly once as `N · Title`.
+- [ ] Open-response tasks are stacked full-width unless both complete components remain compact and uncrowded side by side.
+- [ ] Large lower-page surplus has been converted into useful writing/model space and deliberate separation where practical.
+- [ ] Optional extensions use the canonical Case 01 neutral callout, solid slate rail, and wrench-icon treatment.
 - [ ] Ordinary response areas are blank and unruled.
 - [ ] Prompt is above the response box.
 - [ ] Guidance is concise.

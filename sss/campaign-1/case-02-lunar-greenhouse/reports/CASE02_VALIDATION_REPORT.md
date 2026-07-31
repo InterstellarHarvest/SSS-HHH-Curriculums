@@ -20,7 +20,7 @@ The reconciled Case 02 v1.0 master is the single current production master. All 
 
 Every maintained HTML role now uses semantic technical labels, one task number per title, the shared 11.5pt standard task-title size, and the canonical 14pt Accessible task-title size. Labels such as `TASK 01` are absent. Task 7 on the standard Student worksheet and its Grayscale counterpart uses shared CER component v1.0. The full-width Claim, Evidence, and Reasoning boxes have identical source CSS and measured geometry in the master, Student HTML, and Grayscale HTML.
 
-- HTML-only assertions: 98/98 PASS
+- HTML-only assertions: 110/110 PASS
 - Student HTML pages: 3
 - Teacher HTML pages: 7
 - Answer HTML pages: 3
@@ -29,5 +29,7 @@ Every maintained HTML role now uses semantic technical labels, one task number p
 - HTML overflow: 0
 - Existing checksum-controlled PDFs: byte-identical to the prior approved release
 - PDFs generated: none
+
+Student page 2 now uses the available height for larger response areas in Tasks 4–6 and retains a 100.3px bottom reserve. Student page 3 stacks Tasks 8 and 9 full-width, expands their writing fields, and retains a 115.3px reserve. Browser geometry validation enforces the stacking order, full content width, minimum writing heights, page counts, and zero overflow in the master, Student, and Grayscale HTML.
 
 The approved PDFs and their prior physical-print record were not changed. Their page counts remain Student 2, Teacher 7, Answer 3, Accessible 5, Grayscale 2. A later PDF release would require its own rebuild, validation, and physical-print cycle.

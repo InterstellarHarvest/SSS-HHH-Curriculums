@@ -917,7 +917,7 @@
       "group": "rendered_browser_review",
       "name": "Student and Accessible pages retain balanced writable-space reserves",
       "pass": true,
-      "detail": "{'student': {'student-mission-01': 61.5, 'student-mission-02': 101, 'student-mission-03': 120.2, 'student-mission-04': 108.3}, 'accessible': {'accessible-mission-01': 165.8, 'accessible-mission-02': 168.2, 'accessible-mission-03': 140.3, 'accessible-mission-04': 152.7, 'accessible-mission-05': 71.6, 'accessible-mission-06': 164}}"
+      "detail": "{'student': {'student-mission-01': 44.3, 'student-mission-02': 101, 'student-mission-03': 120.2, 'student-mission-04': 105.9}, 'accessible': {'accessible-mission-01': 165.8, 'accessible-mission-02': 168.2, 'accessible-mission-03': 140.3, 'accessible-mission-04': 152.7, 'accessible-mission-05': 71.6, 'accessible-mission-06': 161.7}}"
     },
     {
       "group": "rendered_browser_review",

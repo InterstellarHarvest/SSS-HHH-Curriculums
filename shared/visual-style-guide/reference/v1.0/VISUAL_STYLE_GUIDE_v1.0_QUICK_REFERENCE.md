@@ -70,6 +70,8 @@ Use icons for recurring standardized sections. Use a plain heading or label-only
 
 For numbered tasks, the standard title is 11.5 pt (14 pt in Accessible). Use a semantic technical label and show the number exactly once in `N · Title`. Never pair `TASK 01` with `1 · Title`.
 
+Stack open-response tasks full-width by default; use side-by-side task layouts only when both complete components remain compact and uncrowded. Convert substantial lower-page surplus into useful writing/model space where practical. Optional extensions always use the Case 01 neutral callout: solid slate rail, neutral field, and wrench icon.
+
 ## Choose the Component
 
 | Need | Use |

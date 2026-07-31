@@ -1,8 +1,8 @@
 {
   "validator": "case01-html-task-heading-maintenance",
   "pdfGeneration": "SKIPPED",
-  "assertions": 33,
-  "passed": 33,
+  "assertions": 50,
+  "passed": 50,
   "failed": 0,
   "pageCounts": {
     "student": 3,
@@ -46,6 +46,16 @@
       "detail": ""
     },
     {
+      "name": "master uses the canonical Case 01 neutral optional-extension component",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "name": "master HTML contains exactly one document doctype declaration",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "master HTML opens without JavaScript errors",
       "pass": true,
       "detail": "[]"
@@ -59,6 +69,21 @@
       "name": "master Accessible task titles render at 14pt",
       "pass": true,
       "detail": "['18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px']"
+    },
+    {
+      "name": "master contains the expected canonical optional extensions",
+      "pass": true,
+      "detail": "2"
+    },
+    {
+      "name": "master optional extension renders with the Case 01 neutral callout geometry",
+      "pass": true,
+      "detail": "{'display': 'grid', 'columns': '19.1875px 672.375px', 'gap': '7.2px', 'padding': '7.2px 8.64px', 'borderLeft': '4px solid rgb(83, 101, 114)', 'background': 'rgb(239, 242, 244)', 'radius': '0px 3px 3px 0px'}"
+    },
+    {
+      "name": "student HTML contains exactly one document doctype declaration",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "student HTML opens without JavaScript errors",
@@ -76,6 +101,16 @@
       "detail": "[]"
     },
     {
+      "name": "student contains the expected canonical optional extensions",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "name": "student optional extension renders with the Case 01 neutral callout geometry",
+      "pass": true,
+      "detail": "{'display': 'grid', 'columns': '19.1875px 672.375px', 'gap': '7.2px', 'padding': '7.2px 8.64px', 'borderLeft': '4px solid rgb(83, 101, 114)', 'background': 'rgb(239, 242, 244)', 'radius': '0px 3px 3px 0px'}"
+    },
+    {
       "name": "student HTML page count remains 3",
       "pass": true,
       "detail": "3"
@@ -84,6 +119,11 @@
       "name": "student HTML has zero overflow",
       "pass": true,
       "detail": "0"
+    },
+    {
+      "name": "teacher HTML contains exactly one document doctype declaration",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "teacher HTML opens without JavaScript errors",
@@ -101,6 +141,11 @@
       "detail": "[]"
     },
     {
+      "name": "teacher contains the expected canonical optional extensions",
+      "pass": true,
+      "detail": "0"
+    },
+    {
       "name": "teacher HTML page count remains 7",
       "pass": true,
       "detail": "7"
@@ -109,6 +154,11 @@
       "name": "teacher HTML has zero overflow",
       "pass": true,
       "detail": "0"
+    },
+    {
+      "name": "answer HTML contains exactly one document doctype declaration",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "answer HTML opens without JavaScript errors",
@@ -126,6 +176,11 @@
       "detail": "[]"
     },
     {
+      "name": "answer contains the expected canonical optional extensions",
+      "pass": true,
+      "detail": "0"
+    },
+    {
       "name": "answer HTML page count remains 3",
       "pass": true,
       "detail": "3"
@@ -134,6 +189,11 @@
       "name": "answer HTML has zero overflow",
       "pass": true,
       "detail": "0"
+    },
+    {
+      "name": "accessible HTML contains exactly one document doctype declaration",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "accessible HTML opens without JavaScript errors",
@@ -151,6 +211,16 @@
       "detail": "['18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px']"
     },
     {
+      "name": "accessible contains the expected canonical optional extensions",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "name": "accessible optional extension renders with the Case 01 neutral callout geometry",
+      "pass": true,
+      "detail": "{'display': 'grid', 'columns': '19.1875px 672.375px', 'gap': '7.2px', 'padding': '7.2px 8.64px', 'borderLeft': '4px solid rgb(83, 101, 114)', 'background': 'rgb(239, 242, 244)', 'radius': '0px 3px 3px 0px'}"
+    },
+    {
       "name": "accessible HTML page count remains 6",
       "pass": true,
       "detail": "6"
@@ -159,6 +229,11 @@
       "name": "accessible HTML has zero overflow",
       "pass": true,
       "detail": "0"
+    },
+    {
+      "name": "grayscale HTML contains exactly one document doctype declaration",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "grayscale HTML opens without JavaScript errors",
@@ -174,6 +249,16 @@
       "name": "grayscale Accessible task titles render at 14pt",
       "pass": true,
       "detail": "[]"
+    },
+    {
+      "name": "grayscale contains the expected canonical optional extensions",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "name": "grayscale optional extension renders with the Case 01 neutral callout geometry",
+      "pass": true,
+      "detail": "{'display': 'grid', 'columns': '19.1875px 672.375px', 'gap': '7.2px', 'padding': '7.2px 8.64px', 'borderLeft': '4px solid rgb(85, 85, 85)', 'background': 'rgb(239, 242, 244)', 'radius': '0px 3px 3px 0px'}"
     },
     {
       "name": "grayscale HTML page count remains 3",

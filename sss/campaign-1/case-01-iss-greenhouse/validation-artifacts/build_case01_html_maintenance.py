@@ -62,6 +62,14 @@ def apply_standard(soup: BeautifulSoup) -> None:
         heading["data-task-id"] = match.group(1)
         heading["data-task-title"] = match.group(2)
 
+    for callout in soup.select("aside.callout"):
+        label = callout.select_one(".technical-label")
+        if label and label.get_text(" ", strip=True) == "OPTIONAL EXTENSION":
+            callout["class"] = sorted(
+                set(callout.get("class", [])) | {"callout-neutral", "optional-extension"}
+            )
+            callout["data-optional-extension"] = "canonical-v1.0"
+
 
 def embed_insignia(soup: BeautifulSoup) -> None:
     insignia = REPO / "shared/assets/insignia/saa.svg"
@@ -91,13 +99,13 @@ def make_export(master_text: str, role: str) -> str:
         if page.get("data-role") != export_role:
             page.decompose()
     embed_insignia(soup)
-    return "<!DOCTYPE html>\n" + str(soup)
+    return "<!DOCTYPE html>\n" + str(soup.html)
 
 
 def main() -> int:
     soup = BeautifulSoup(MASTER.read_text(encoding="utf-8"), "html.parser")
     apply_standard(soup)
-    master_text = "<!DOCTYPE html>\n" + str(soup)
+    master_text = "<!DOCTYPE html>\n" + str(soup.html)
     MASTER.write_text(master_text, encoding="utf-8")
     print(f"HTML-only task-heading build: {MASTER.relative_to(REPO)}")
     for role, filename in ROLE_EXPORTS.items():

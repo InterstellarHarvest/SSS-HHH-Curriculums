@@ -27,7 +27,8 @@
     "task_heading_standard": "1.0",
     "standard_task_title_size": "11.5pt",
     "accessible_task_title_size": "14pt",
-    "validation": "33/33 PASS",
+    "validation": "50/50 PASS",
+    "optional_extension_component": "canonical-v1.0; Case 01 neutral callout family",
     "html_page_counts": {
       "student": 3,
       "teacher": 7,
@@ -57,13 +58,13 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "ff8bdc20ee0811c609331137c1e1be1b10808f48774a920580e139c464f8a4d1",
-      "bytes": 3785
+      "sha256": "336deba09fdb0489450073841a5d02352e3f99871625ff21a3bb0c5e02be67ee",
+      "bytes": 3992
     },
     {
       "path": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
-      "sha256": "fab44c921d965abd9faa4718b80bddae9f3a4f82a3050b47c0d33c2efd657b61",
-      "bytes": 124188
+      "sha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f",
+      "bytes": 124290
     },
     {
       "path": "master/SSS_C1_CASE01_V1.1_CHANGELOG.md",
@@ -77,23 +78,23 @@
     },
     {
       "path": "validation-artifacts/build_case01_html_maintenance.py",
-      "sha256": "a16bf0ee5687c57f484b1d2f0c32fb79f3cb8cd0baac23df3e8124dfbc0b80d1",
-      "bytes": 3843
+      "sha256": "9bbf6fe90ca08d2b403e0eda8f060bff70cb9fcf03eee3e8c7a2db8bafd07f9b",
+      "bytes": 4245
     },
     {
       "path": "validation-artifacts/validate_case01_html_maintenance.py",
-      "sha256": "8b701be38dcd9ec3f914584065c0308911b48736d42eb372e560ca1b758bbf59",
-      "bytes": 6025
+      "sha256": "39254b65e5849e55671df0cc989c739ffdc314e44a1203e14ef599f10548dc38",
+      "bytes": 7887
     },
     {
       "path": "validation-artifacts/v1.1/CASE01_HTML_MAINTENANCE_RESULTS.json",
-      "sha256": "2c7fabca2a18fb0ecf29bd187ca5e17226f47785614b01cf10603bc6041d0eee",
-      "bytes": 4972
+      "sha256": "993a92ed37488139bede30037f836ccb46a5be10ec074dbfd12ba08c147e9fb0",
+      "bytes": 8101
     },
     {
       "path": "reports/CASE01_V1_1_VALIDATION_REPORT.md",
-      "sha256": "ff7e0918d428c84c3ec76dddf3fa2dfeb1577d527e9f77cbedfdf4a9ef7408bc",
-      "bytes": 1282
+      "sha256": "aa00efacae2ad3fa49ee59b15970f5a26b2f86e45ca45cab61dae5e4fa13a12b",
+      "bytes": 1540
     },
     {
       "path": "published/v1.1/OWNER_PRINT_TEST_CHECKLIST.md",
@@ -122,28 +123,28 @@
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html",
-      "sha256": "4d1fd35f1acc24fb48bb3a4847877119035641de497a9d381af489c2efa1d6ed",
-      "bytes": 79099
+      "sha256": "ca922c3cf2ec3284e85e1f8e3905c477ed59dfa667f454d10b9db226ad8e6af0",
+      "bytes": 79124
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1.html",
-      "sha256": "ad1f852e9256607634e0995c293a27b689a9bb9233bb0559e75b08f82db48423",
-      "bytes": 60658
+      "sha256": "5b3bb048d6e34c3da9f21cf903f45139e760f5b8d59889c3a11e76c6a91d980b",
+      "bytes": 60623
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html",
-      "sha256": "725a6f32af69da9fdd42359bb5d0041c596da8616ccdcbb8613d984d5801dd1c",
-      "bytes": 65770
+      "sha256": "f8e2de4f12a9d4ee6c762a3cdda5c6defb7a5036b52c2efa6f844bfb64cd4f44",
+      "bytes": 65795
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1.html",
-      "sha256": "404d4006bdc6e775ddc292649dc37b0e00559a7d6839f3452767f68d33c6b17a",
-      "bytes": 65742
+      "sha256": "0bc0a5cc945daac4c50e4c33cdf0036f900c62146209869974b51ed9c19ceef8",
+      "bytes": 65767
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1.html",
-      "sha256": "a51453b3a7358b73b5fbe7dc82a5fdc6412f48d93ce692eb8a690e4467727e12",
-      "bytes": 99914
+      "sha256": "7eb5f66b5a7ed31dc90ec23bd916a6a718cd00e27ab86c6cbd5a098755c78ae1",
+      "bytes": 99879
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.pdf",
@@ -198,5 +199,5 @@
   ],
   "historical_approved_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
   "historical_v1_0_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
-  "v1_1_sha256": "fab44c921d965abd9faa4718b80bddae9f3a4f82a3050b47c0d33c2efd657b61"
+  "v1_1_sha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f"
 }

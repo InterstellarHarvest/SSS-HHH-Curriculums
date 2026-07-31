@@ -5,7 +5,10 @@
   --rule: #8c9aa8;
   --panel: #edf1f4;
   --panel-light: #f7f9fa;
+  --neutral-field: #eff2f4;
   --institution: #2e8484;
+  --cyan-dark: #075362;
+  --slate: #536572;
   --botanical: #52974a;
   --accent-dark: #33596e;
   --accent-pale: #e6f0f0;
@@ -114,6 +117,9 @@
 
 /* Balanced Page Fill v1.0.2 — use surplus height for task separation and
    writable response/model space while preserving the approved type scale. */
+.page[data-page-id="student-mission-01"] .task-heading[data-task-id="2"] {
+  margin-top: .18in !important;
+}
 .page[data-page-id="student-mission-02"] .task-heading[data-task-id="4"] {
   margin-top: .1in !important;
 }

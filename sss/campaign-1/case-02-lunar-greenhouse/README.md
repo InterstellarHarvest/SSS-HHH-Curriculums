@@ -20,6 +20,8 @@ The current v1.0 master combines the approved Printable Page Identity v1.0.4 sys
 
 Every maintained HTML role now uses semantic task labels with the task number appearing once in the title; duplicated labels such as `TASK 01` are prohibited. Standard task titles render at 11.5pt, while Accessible titles retain the canonical 14pt size. Task 7 on the standard Student and Grayscale worksheets also uses the shared full-width `student-v1.0` Claim/Evidence/Reasoning component. The Accessible CER layout remains unchanged.
 
+Student page 2 converts lower-page surplus into larger Task 4–6 writing fields. Student page 3 stacks Tasks 8 and 9 as separate full-width sections; open-response tasks are no longer paired side by side merely to fill a row. The measured lower-page reserves are 100.3px and 115.3px respectively.
+
 This was an HTML-only maintenance build. The approved checksum-controlled PDFs were not regenerated: Student and Grayscale PDFs remain 2 pages, Teacher 7, Answer 3, and Accessible 5. Run:
 
 ```bash

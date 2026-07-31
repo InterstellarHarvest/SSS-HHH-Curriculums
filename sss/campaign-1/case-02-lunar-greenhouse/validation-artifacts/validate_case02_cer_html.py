@@ -172,6 +172,7 @@ def run(chrome: Path) -> dict[str, Any]:
         )
 
     dimensions: dict[str, dict[str, float]] = {}
+    layout_dimensions: dict[str, dict[str, Any]] = {}
     overflow_counts: dict[str, int] = {}
     browser_errors: dict[str, list[str]] = {}
     with sync_playwright() as playwright:
@@ -217,6 +218,65 @@ def run(chrome: Path) -> dict[str, Any]:
                 f"{label} CER meets shared minimum height",
                 dimensions[label]["height"] >= 244,
                 f"actual={dimensions[label]['height']}",
+            )
+            layout_dimensions[label] = page.evaluate(
+                """() => {
+                  const rect = selector => document.querySelector(selector).getBoundingClientRect();
+                  const heights = selector => [...document.querySelectorAll(selector)].map(
+                    node => node.getBoundingClientRect().height
+                  );
+                  const page2Content = rect('[data-page-id="student-02"] .content-area');
+                  const page2Last = rect('[data-page-id="student-02"] .task6-row');
+                  const page3Content = rect('[data-page-id="student-03"] .content-area');
+                  const page3Last = rect('[data-page-id="student-03"] .task89-row');
+                  const task8 = rect('[data-page-id="student-03"] [data-task-id="8"]');
+                  const task8Section = document.querySelector(
+                    '[data-page-id="student-03"] [data-task-id="8"]'
+                  ).closest('section').getBoundingClientRect();
+                  const task9Section = document.querySelector(
+                    '[data-page-id="student-03"] [data-task-id="9"]'
+                  ).closest('section').getBoundingClientRect();
+                  return {
+                    page2Reserve: page2Content.bottom - page2Last.bottom,
+                    page3Reserve: page3Content.bottom - page3Last.bottom,
+                    contentWidth: page3Content.width,
+                    task8: {x: task8Section.x, y: task8Section.y,
+                      width: task8Section.width, bottom: task8Section.bottom},
+                    task9: {x: task9Section.x, y: task9Section.y,
+                      width: task9Section.width, bottom: task9Section.bottom},
+                    task4Heights: heights('[data-page-id="student-02"] .task4-block .response-area'),
+                    task5Heights: heights('[data-page-id="student-02"] .task5-block .inline-response'),
+                    task6Heights: heights('[data-page-id="student-02"] .task6-row .response-area'),
+                    task8Heights: heights('[data-page-id="student-03"] [data-task-id="8"] ~ .design-grid .response-area'),
+                    task9Heights: heights('[data-page-id="student-03"] [data-task-id="9"] ~ .response-block .response-area')
+                  };
+                }"""
+            )
+            layout = layout_dimensions[label]
+            check(
+                f"{label} Student page 2 converts lower-page surplus into writing space",
+                40 <= layout["page2Reserve"] <= 180,
+                str(layout["page2Reserve"]),
+            )
+            check(
+                f"{label} Student page 3 retains a balanced lower-page reserve",
+                40 <= layout["page3Reserve"] <= 180,
+                str(layout["page3Reserve"]),
+            )
+            check(
+                f"{label} Tasks 8 and 9 are stacked full-width",
+                abs(layout["task8"]["x"] - layout["task9"]["x"]) <= 1
+                and abs(layout["task8"]["width"] - layout["contentWidth"]) <= 2
+                and abs(layout["task9"]["width"] - layout["contentWidth"]) <= 2
+                and layout["task9"]["y"] >= layout["task8"]["bottom"] + 8,
+                str({"task8": layout["task8"], "task9": layout["task9"]}),
+            )
+            check(
+                f"{label} page 2 response fields meet expanded writing-space minimums",
+                all(value >= 63 for value in layout["task4Heights"])
+                and all(value >= 46 for value in layout["task5Heights"])
+                and all(value >= 97 for value in layout["task6Heights"]),
+                str({key: layout[key] for key in ("task4Heights", "task5Heights", "task6Heights")}),
             )
             context.close()
 
@@ -267,6 +327,7 @@ def run(chrome: Path) -> dict[str, Any]:
         "accessibleHtmlPageCount": 5,
         "overflowCounts": overflow_counts,
         "cerDimensions": dimensions,
+        "layoutDimensions": layout_dimensions,
         "browserErrors": browser_errors,
         "failures": failures,
         "results": assertions,

@@ -88,6 +88,8 @@ Student-facing figure provenance is one compact caption. Production commentary b
 
 Optional extensions use `data-optional-extension="canonical-v1.0"` and the Case 01 neutral callout/icon family. They appear only after all required tasks when usable surplus space remains; they are never required for grading.
 
+Open-response tasks are stacked full-width by default. Two tasks may share a row only when both components are genuinely compact, the prompts remain comfortably readable, each writing area remains adequate, and the pairing does not create visual crowding. Surplus page height should first increase useful writing/model space and deliberate vertical separation rather than remain as a large blank lower-page area.
+
 ## Older cases
 
 Case 01 is the functional reference that informed this shell. Approved Case 01 and Case 02 PDFs are retained only as historical release artifacts. They are not regenerated, and maintained HTML does not require a new PDF counterpart.

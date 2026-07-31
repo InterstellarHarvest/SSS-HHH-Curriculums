@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
 from pathlib import Path
 from typing import Any
@@ -55,12 +56,22 @@ def run(chrome: Path) -> dict[str, Any]:
     check("v1.1 master declares task-heading standard 1.0", master.select_one('meta[name="sss-task-heading-standard"][content="1.0"]') is not None)
     check("v1.1 master marks all numbered section headings as task headings", len(headings) == 27, len(headings))
     check("task titles retain one visible number and title", all(node.select_one(".section-title").get_text(" ", strip=True).startswith(f'{node.get("data-task-id")} · ') for node in headings))
+    extensions = master.select('[data-optional-extension="canonical-v1.0"]')
+    check(
+        "master uses the canonical Case 01 neutral optional-extension component",
+        len(extensions) == 2
+        and all({"callout", "callout-neutral", "optional-extension"}.issubset(node.get("class", [])) for node in extensions),
+        len(extensions),
+    )
 
     output_counts: dict[str, int] = {}
     overflow_counts: dict[str, int] = {}
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(executable_path=str(chrome), headless=True, args=["--no-sandbox"])
         for role, (path, expected_pages) in {"master": (MASTER, 0), **OUTPUTS}.items():
+            html_text = path.read_text(encoding="utf-8")
+            document_doctypes = re.findall(r"(?im)^\s*<!doctype html>\s*$", html_text)
+            check(f"{role} HTML contains exactly one document doctype declaration", len(document_doctypes) == 1)
             page = browser.new_page(viewport={"width": 1440, "height": 1200})
             errors: list[str] = []
             page.on("pageerror", lambda error, bucket=errors: bucket.append(str(error)))
@@ -75,6 +86,24 @@ def run(chrome: Path) -> dict[str, Any]:
             )
             check(f"{role} standard task titles render at 11.5pt", all(value in {"15.3333px", "15.333px"} for value in standard_sizes), standard_sizes)
             check(f"{role} Accessible task titles render at 14pt", all(value in {"18.6667px", "18.666px"} for value in accessible_sizes), accessible_sizes)
+            expected_extensions = {"master": 2, "student": 1, "teacher": 0, "answer": 0, "accessible": 1, "grayscale": 1}[role]
+            extension_count = page.locator('[data-optional-extension="canonical-v1.0"]').count()
+            check(f"{role} contains the expected canonical optional extensions", extension_count == expected_extensions, extension_count)
+            if extension_count:
+                extension_style = page.locator('[data-optional-extension="canonical-v1.0"]').first.evaluate(
+                    """node => { const s=getComputedStyle(node); return {
+                      display:s.display, columns:s.gridTemplateColumns, gap:s.gap,
+                      padding:s.padding, borderLeft:s.borderLeft,
+                      background:s.backgroundColor, radius:s.borderRadius
+                    }; }"""
+                )
+                check(
+                    f"{role} optional extension renders with the Case 01 neutral callout geometry",
+                    extension_style["display"] == "grid"
+                    and extension_style["borderLeft"].startswith("4px solid")
+                    and extension_style["background"] == "rgb(239, 242, 244)",
+                    extension_style,
+                )
             if role != "master":
                 pages = page.locator("section.page")
                 output_counts[role] = pages.count()

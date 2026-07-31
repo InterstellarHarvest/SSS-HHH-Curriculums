@@ -36,8 +36,8 @@
   ],
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "d52a656bfea962f96bf3721dc3bb002b0a6917d8bb8af63d08b0fceb5216001f",
-    "bytes": 190440
+    "sha256": "11534464c4d188e5cefd08c8db4ea25eda1070be6c8d6cbf4c244b73ca040e89",
+    "bytes": 190723
   },
   "page_counts": {
     "student": 4,
@@ -62,7 +62,7 @@
     "status": "PASS",
     "consolidated": "140/140 PASS",
     "shared_shell_contract": "376/376 PASS",
-    "editor_shell_browser": "95/95 PASS",
+    "editor_shell_browser": "97/97 PASS",
     "static_html": "20/20 PASS",
     "component_contract": "20/20 PASS",
     "page_identity": "4/4 PASS",
@@ -74,7 +74,9 @@
     "html_page_counts": "4/8/4/6/4 PASS",
     "html_checksums": "6/6 VERIFIED",
     "rendered_browser_review": "26/26 pages PASS; human contact-sheet review PASS",
-    "balanced_fill_reserves": "Student 61.5-120.2px; Accessible 71.6-168.2px; enforced 40-180px",
+    "balanced_fill_reserves": "Student 44.3-120.2px; Accessible 71.6-168.2px; enforced 40-180px",
+    "student_task_1_2_gap": "17.3px PASS",
+    "optional_extension_component": "canonical-v1.0; Case 01 neutral callout geometry PASS",
     "owner_physical_print": "OPEN"
   },
   "outputs": {
@@ -82,40 +84,40 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "7829ed646ee3076e23d6303fcc78a27d7695e1e197d3f848d7847002449992f2",
-        "bytes": 67930
+        "sha256": "948ab70bcfbbd7c75c29618dfcf8762d5f37bfd324a646a3133056e45c251e3a",
+        "bytes": 68213
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "86c27ba54f713d2d65036166970e03520e6bdced62d6f07a67ba499829f453c3",
-        "bytes": 84485
+        "sha256": "dd97cb24fa606b7a1069b0c0e7e4c17ce7b45499a142fe7c19236e356ca554d6",
+        "bytes": 84768
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "0224a158058bf1bed5de11bdc27faa7c4a149cbb127dc16300b531c9efe2851d",
-        "bytes": 61021
+        "sha256": "3542c1d5c4fc762ae9a1910c74c7f9b2ce0aecf87e1814b00f8ba3ba5ac71257",
+        "bytes": 61304
       }
     },
     "accessible": {
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "508c60ab8a1624cab143b786ad2c30f95c067e4dbc53434063849f59fea0da3f",
-        "bytes": 72926
+        "sha256": "0ef82339c50e646b0f1c0b39bed5cea6c63bab8030f249097e8638ae82723d94",
+        "bytes": 73209
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "e98b7f70e56baad2b531da1a4731d405773cabac03d01100a1718de54f667de8",
-        "bytes": 67929
+        "sha256": "496f40f2ff15618a6024013ff523bfc8aa8c3c569356f7091f9922a75207277c",
+        "bytes": 68212
       }
     }
   },
@@ -177,8 +179,8 @@
     },
     {
       "path": "source/editor/case03.css",
-      "sha256": "8aa8bf8258ad1a6f70bd4f14c89e4bed1ff7ad6e2ab6d4da2432c60be4b2eb65",
-      "bytes": 3819
+      "sha256": "2b7858283a3f49105215804ef51d45f152190930716515877a83d5a563fd7bef",
+      "bytes": 4000
     },
     {
       "path": "source/editor/case03-content.html",
@@ -189,8 +191,8 @@
   "reports": [
     {
       "path": "reports/CASE03_BROWSER_RENDERED_REVIEW.md",
-      "sha256": "3ca60f94bbdf7842c8b511a9e27405b5a9a2abf88fa687e12a038d256232f115",
-      "bytes": 1893
+      "sha256": "dfc2e61b22b28827c277bd5363956a596f28aca0e182814897d718ee607a27f2",
+      "bytes": 2017
     },
     {
       "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
@@ -204,15 +206,15 @@
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "9ba83461d4019835abccccd1ab57c1f575d98c2b8e415bd5ee5682bdfc6801fe",
-      "bytes": 4077
+      "sha256": "4a77e1856e1d5aa16263f9de65a507e268e913dfe4967c95e08bd504239e6778",
+      "bytes": 4346
     }
   ],
   "validation_files": [
     {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "c3d0431c0259a2443ca667641dfcd07d27ad652fffe5f2cfa88ea1c79d424eda",
-      "bytes": 22944
+      "sha256": "0b598520ac66e69f87f265ea85f3db1913d8d3984be7bb7b87006b8a9dc86058",
+      "bytes": 22946
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_CONTRACT_RESULTS.json",
@@ -221,12 +223,12 @@
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_BROWSER_RESULTS.json",
-      "sha256": "c35ccbd3094a88b10952d23b76adbff0c7c651f1e6ba1c5d3fa45208b9028263",
-      "bytes": 22284
+      "sha256": "89404dc7821e220f5fc1edc0761ff80225afafa8b269e776ea67037ce27123d1",
+      "bytes": 23051
     },
     {
       "path": "validation-artifacts/CASE03_BROWSER_RENDERED_REVIEW_RESULTS.json",
-      "sha256": "2481b373ab57296fdc6f069ccbc8e0f8c9050fe08947295828afa1226f1af812",
+      "sha256": "d0b48bbee69e2a8878742366e695a7134c191bfefd485b91f94923efb48403ef",
       "bytes": 4694
     },
     {
@@ -246,8 +248,8 @@
     },
     {
       "path": "validation-artifacts/validate_case03_editor_shell.py",
-      "sha256": "f9e8622b151f8a51db87aa0340126c3bdb217a1168014b571d9e8d29ec1cb8e5",
-      "bytes": 24199
+      "sha256": "7b4faca9b212764f57aafe059c2c9efcb93542459e8a2492ed83ddc536954761",
+      "bytes": 25681
     }
   ],
   "release_gate": {

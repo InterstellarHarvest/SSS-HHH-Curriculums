@@ -30,7 +30,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/student-contact-sheet.png",
-      "contactSheetSha256": "5910bee5eb696aa80f722a9f02641ac3ca20a0dcfaa946cd781c8ece1be630a0",
+      "contactSheetSha256": "1322c0874478f8fe0eae0234e6d03092f03f2733435df792bd1d856fad17746a",
       "status": "PASS"
     },
     "teacher": {
@@ -138,7 +138,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/accessible-contact-sheet.png",
-      "contactSheetSha256": "cdf0d1939ceb9bd40285aff7f06aa36616eaa2db21244acd94521fb1e5815209",
+      "contactSheetSha256": "55c62a03a2ff042d0e809cd11d0cb949c0665938a670a34f141b21a3106adead",
       "status": "PASS"
     },
     "grayscale": {
@@ -166,7 +166,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/grayscale-contact-sheet.png",
-      "contactSheetSha256": "88c35184652a71ad6e08e48f52261d40886572e9efa3a24aacb85cb9d7cabd56",
+      "contactSheetSha256": "ae53f8cd6d84b3ff6aa8f43d3db1d75752601407a0d680b3a8e2f4793db2f003",
       "status": "PASS"
     }
   },

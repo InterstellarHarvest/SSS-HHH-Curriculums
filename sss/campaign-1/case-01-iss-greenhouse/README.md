@@ -77,3 +77,5 @@ Case 01 v1.1 is the approved stable printable-identity successor as of 2026-07-3
 ## HTML task-heading maintenance
 
 The maintained v1.1 master and five role HTML files now use the canonical task-title scale: 11.5 pt for standard roles and 14 pt for Accessible. This is an HTML-only maintenance correction. Run `validation-artifacts/build_case01_html_maintenance.py` and `validation-artifacts/validate_case01_html_maintenance.py`; do not run the legacy release validator, which generates PDFs. Existing approved PDFs remain byte-identical historical artifacts, and physical-print approval is not claimed for the updated HTML until separately tested.
+
+Optional extensions explicitly declare shared component contract `canonical-v1.0` while preserving the approved Case 01 neutral callout, solid slate rail, and wrench-icon geometry that governs later cases.

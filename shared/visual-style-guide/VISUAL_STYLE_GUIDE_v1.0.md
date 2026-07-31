@@ -2992,7 +2992,9 @@ Related components may sit side by side when:
 - answer spaces remain adequate;
 - the relationship is useful.
 
-Do not place unrelated activities side by side merely to fill the grid.
+Open-response tasks are stacked full-width by default. Do not place unrelated activities side by side merely to fill the grid. A side-by-side exception is appropriate only when both complete task components—including prompt, guidance, and response area—remain compact and uncrowded.
+
+When a page has substantial lower-page surplus, enlarge useful writing, drawing, or model space and improve deliberate vertical separation before accepting the unused area. Do not enlarge decorative or non-response components merely to fill the page.
 
 ## 36.3 Panel Competition
 
@@ -4899,7 +4901,7 @@ A semantic callout contains a colored left rule, pale field, small Phosphor icon
 
 Color reinforces the label. It never replaces the label.
 
-Use institutional primary for focus, Success Green for documented or confirmed, Caution Amber for inferred or debated, Critical Red for caution or prohibition, Technical Slate for fictional context, and institutional secondary for optional extensions where appropriate.
+Use institutional primary for focus, Success Green for documented or confirmed, Caution Amber for inferred or debated, Critical Red for caution or prohibition, and Technical Slate for fictional context and optional extensions. Optional extensions use the canonical Case 01 neutral callout with a solid slate rail; they do not use a dashed or green exception style.
 
 ## 65.5 One Marker per Callout
 

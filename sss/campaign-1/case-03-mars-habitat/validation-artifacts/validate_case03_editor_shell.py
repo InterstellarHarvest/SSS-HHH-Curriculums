@@ -271,6 +271,31 @@ def run(chrome: Path) -> dict[str, Any]:
         extensions = case03.locator('[data-optional-extension="canonical-v1.0"]')
         check("Student and Accessible each contain one optional extension", extensions.count() == 2)
         check("optional extensions follow Task 9 on the final required page", extensions.evaluate_all("nodes => nodes.every(n => n.closest('.page').querySelector('[data-task-id=\"9\"]') && !n.nextElementSibling)"))
+        extension_styles = extensions.evaluate_all(
+            """nodes => nodes.map(node => { const s=getComputedStyle(node); const icon=getComputedStyle(node.querySelector('.ph-icon')); return {
+              display:s.display, columns:s.gridTemplateColumns, gap:s.gap, padding:s.padding,
+              borderLeft:s.borderLeft, background:s.backgroundColor, radius:s.borderRadius,
+              iconStroke:icon.stroke
+            }; })"""
+        )
+        check(
+            "optional extensions use the canonical Case 01 neutral callout geometry",
+            all(style["display"] == "grid"
+                and style["borderLeft"].startswith("4px solid")
+                and style["background"] == "rgb(239, 242, 244)"
+                and style["iconStroke"] == "rgb(7, 83, 98)"
+                for style in extension_styles),
+            extension_styles,
+        )
+        case03.evaluate("role => window.__case03.setRole(role)", "student")
+        task12_gap = case03.evaluate(
+            """() => {
+              const response=document.querySelector('[data-page-id="student-mission-01"] [data-persist-id="t1"]');
+              const task2=document.querySelector('[data-page-id="student-mission-01"] [data-task-id="2"]');
+              return +(task2.getBoundingClientRect().top-response.getBoundingClientRect().bottom).toFixed(1);
+            }"""
+        )
+        check("Student page 1 preserves deliberate spacing between Tasks 1 and 2", task12_gap >= 14, task12_gap)
 
         case03.emulate_media(media="print")
         check("toolbar is hidden in browser print preview", case03.locator(".toolbar").evaluate("n => getComputedStyle(n).display") == "none")

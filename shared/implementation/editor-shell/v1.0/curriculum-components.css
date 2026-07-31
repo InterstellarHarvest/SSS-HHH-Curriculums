@@ -416,26 +416,29 @@ h3 {
 
 .optional-extension {
   display: grid;
-  grid-template-columns: 20px minmax(0,1fr);
-  gap: 7px;
+  grid-template-columns: .2in minmax(0,1fr);
+  gap: .075in;
   align-items: start;
-  border-left-color: var(--secondary, #52974a);
-  border-left-style: dashed;
-  background: var(--panel-light, #f7f9fa);
+  margin: 5px 0;
+  padding: .075in .09in;
+  border-left: 4px solid var(--slate, #536572);
+  border-radius: 0 var(--radius, 3px) var(--radius, 3px) 0;
+  background: var(--neutral-field, #eff2f4);
 }
 
 .optional-extension .ph-icon {
-  width: 20px;
-  height: 20px;
+  width: .18in;
+  height: .18in;
+  margin-top: .015in;
   fill: none;
-  stroke: var(--secondary, #52974a);
+  stroke: var(--cyan-dark, #075362);
   stroke-width: 16;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .optional-extension .technical-label {
-  color: var(--secondary, #52974a);
+  color: var(--cyan-dark, #075362);
   font: 700 7pt/1.1 "JetBrains Mono", monospace;
   letter-spacing: .8px;
 }

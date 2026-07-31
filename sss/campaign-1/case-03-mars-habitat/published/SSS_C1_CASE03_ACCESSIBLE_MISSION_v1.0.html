@@ -18,8 +18,8 @@
 <meta content="SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html" name="sss-source-master"/>
 <meta content="1.0" name="sss-editor-shell"/>
 <meta content="6b5b9f075fa88f36ea1c33e1448aa59cf157b21fa4d28c753d177bf81a1aaafd" name="sss-editor-shell-contract-sha256"/>
-<meta content="toolbar:2665d2b95005d2370e76e75fab40b469791b0936674316f3c3590095211ebd89 components:443d06fd6c97c5985481f7ea7c7db8882c9a44917c0e882fd4c5560f6bbd5901 css:f738bbddcebaa9606e28edd7738d8d196e520c7ae82aae8b411716d74b505715 cer:c9953d11bdeac549af6e68c0255dbbc0f9c0d9bbab35a4ec72aadbab44ffc99d icons:4abead07168ff0fa5fe4e08e78c61e2afbea8f6d3df001c9dfe3e2e11daa630d runtime:7c9903553c4950f86237f39837a69d6002909b1328713aa26de84bce6208bdf7" name="sss-editor-shell-assets"/>
-<style data-source-sha256="443d06fd6c97c5985481f7ea7c7db8882c9a44917c0e882fd4c5560f6bbd5901" id="sssCurriculumComponentsCss">* {
+<meta content="toolbar:2665d2b95005d2370e76e75fab40b469791b0936674316f3c3590095211ebd89 components:14aef76542bc94384aec508a03e9ddd8aa5f0456412c81fe6c8621122797c584 css:f738bbddcebaa9606e28edd7738d8d196e520c7ae82aae8b411716d74b505715 cer:c9953d11bdeac549af6e68c0255dbbc0f9c0d9bbab35a4ec72aadbab44ffc99d icons:4abead07168ff0fa5fe4e08e78c61e2afbea8f6d3df001c9dfe3e2e11daa630d runtime:7c9903553c4950f86237f39837a69d6002909b1328713aa26de84bce6208bdf7" name="sss-editor-shell-assets"/>
+<style data-source-sha256="14aef76542bc94384aec508a03e9ddd8aa5f0456412c81fe6c8621122797c584" id="sssCurriculumComponentsCss">* {
   box-sizing: border-box;
 }
 
@@ -437,26 +437,29 @@ h3 {
 
 .optional-extension {
   display: grid;
-  grid-template-columns: 20px minmax(0,1fr);
-  gap: 7px;
+  grid-template-columns: .2in minmax(0,1fr);
+  gap: .075in;
   align-items: start;
-  border-left-color: var(--secondary, #52974a);
-  border-left-style: dashed;
-  background: var(--panel-light, #f7f9fa);
+  margin: 5px 0;
+  padding: .075in .09in;
+  border-left: 4px solid var(--slate, #536572);
+  border-radius: 0 var(--radius, 3px) var(--radius, 3px) 0;
+  background: var(--neutral-field, #eff2f4);
 }
 
 .optional-extension .ph-icon {
-  width: 20px;
-  height: 20px;
+  width: .18in;
+  height: .18in;
+  margin-top: .015in;
   fill: none;
-  stroke: var(--secondary, #52974a);
+  stroke: var(--cyan-dark, #075362);
   stroke-width: 16;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .optional-extension .technical-label {
-  color: var(--secondary, #52974a);
+  color: var(--cyan-dark, #075362);
   font: 700 7pt/1.1 "JetBrains Mono", monospace;
   letter-spacing: .8px;
 }
@@ -505,7 +508,10 @@ h3 {
   --rule: #8c9aa8;
   --panel: #edf1f4;
   --panel-light: #f7f9fa;
+  --neutral-field: #eff2f4;
   --institution: #2e8484;
+  --cyan-dark: #075362;
+  --slate: #536572;
   --botanical: #52974a;
   --accent-dark: #33596e;
   --accent-pale: #e6f0f0;
@@ -614,6 +620,9 @@ h3 {
 
 /* Balanced Page Fill v1.0.2 — use surplus height for task separation and
    writable response/model space while preserving the approved type scale. */
+.page[data-page-id="student-mission-01"] .task-heading[data-task-id="2"] {
+  margin-top: .18in !important;
+}
 .page[data-page-id="student-mission-02"] .task-heading[data-task-id="4"] {
   margin-top: .1in !important;
 }

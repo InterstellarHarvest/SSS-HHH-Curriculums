@@ -2,8 +2,8 @@
   "validator": "case02-student-cer-html",
   "cerComponentVersion": "1.0",
   "pdfGeneration": "SKIPPED",
-  "assertions": 98,
-  "passed": 98,
+  "assertions": 110,
+  "passed": 110,
   "failed": 0,
   "studentHtmlPageCounts": {
     "master": 3,
@@ -40,6 +40,146 @@
       "claim": 62.078125,
       "evidence": 81.296875,
       "reasoning": 90.890625
+    }
+  },
+  "layoutDimensions": {
+    "master": {
+      "page2Reserve": 100.328125,
+      "page3Reserve": 115.296875,
+      "contentWidth": 720,
+      "task8": {
+        "x": 360,
+        "y": 2619.515625,
+        "width": 720,
+        "bottom": 2872.046875
+      },
+      "task9": {
+        "x": 360,
+        "y": 2885.484375,
+        "width": 720,
+        "bottom": 3107
+      },
+      "task4Heights": [
+        63.359375,
+        63.359375,
+        63.359375,
+        63.359375
+      ],
+      "task5Heights": [
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125
+      ],
+      "task6Heights": [
+        97.90625,
+        97.90625
+      ],
+      "task8Heights": [
+        72,
+        72,
+        72,
+        72
+      ],
+      "task9Heights": [
+        148.796875
+      ]
+    },
+    "student": {
+      "page2Reserve": 100.328125,
+      "page3Reserve": 115.296875,
+      "contentWidth": 720,
+      "task8": {
+        "x": 360,
+        "y": 2559.515625,
+        "width": 720,
+        "bottom": 2812.046875
+      },
+      "task9": {
+        "x": 360,
+        "y": 2825.484375,
+        "width": 720,
+        "bottom": 3047
+      },
+      "task4Heights": [
+        63.359375,
+        63.359375,
+        63.359375,
+        63.359375
+      ],
+      "task5Heights": [
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125
+      ],
+      "task6Heights": [
+        97.90625,
+        97.90625
+      ],
+      "task8Heights": [
+        72,
+        72,
+        72,
+        72
+      ],
+      "task9Heights": [
+        148.796875
+      ]
+    },
+    "grayscale": {
+      "page2Reserve": 100.328125,
+      "page3Reserve": 115.296875,
+      "contentWidth": 720,
+      "task8": {
+        "x": 360,
+        "y": 2559.515625,
+        "width": 720,
+        "bottom": 2812.046875
+      },
+      "task9": {
+        "x": 360,
+        "y": 2825.484375,
+        "width": 720,
+        "bottom": 3047
+      },
+      "task4Heights": [
+        63.359375,
+        63.359375,
+        63.359375,
+        63.359375
+      ],
+      "task5Heights": [
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125,
+        46.078125
+      ],
+      "task6Heights": [
+        97.90625,
+        97.90625
+      ],
+      "task8Heights": [
+        72,
+        72,
+        72,
+        72
+      ],
+      "task9Heights": [
+        148.796875
+      ]
     }
   },
   "browserErrors": {
@@ -390,6 +530,26 @@
       "detail": "actual=244.796875"
     },
     {
+      "name": "master Student page 2 converts lower-page surplus into writing space",
+      "pass": true,
+      "detail": "100.328125"
+    },
+    {
+      "name": "master Student page 3 retains a balanced lower-page reserve",
+      "pass": true,
+      "detail": "115.296875"
+    },
+    {
+      "name": "master Tasks 8 and 9 are stacked full-width",
+      "pass": true,
+      "detail": "{'task8': {'x': 360, 'y': 2619.515625, 'width': 720, 'bottom': 2872.046875}, 'task9': {'x': 360, 'y': 2885.484375, 'width': 720, 'bottom': 3107}}"
+    },
+    {
+      "name": "master page 2 response fields meet expanded writing-space minimums",
+      "pass": true,
+      "detail": "{'task4Heights': [63.359375, 63.359375, 63.359375, 63.359375], 'task5Heights': [46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125], 'task6Heights': [97.90625, 97.90625]}"
+    },
+    {
       "name": "student loads without browser errors",
       "pass": true,
       "detail": ""
@@ -415,6 +575,26 @@
       "detail": "actual=244.796875"
     },
     {
+      "name": "student Student page 2 converts lower-page surplus into writing space",
+      "pass": true,
+      "detail": "100.328125"
+    },
+    {
+      "name": "student Student page 3 retains a balanced lower-page reserve",
+      "pass": true,
+      "detail": "115.296875"
+    },
+    {
+      "name": "student Tasks 8 and 9 are stacked full-width",
+      "pass": true,
+      "detail": "{'task8': {'x': 360, 'y': 2559.515625, 'width': 720, 'bottom': 2812.046875}, 'task9': {'x': 360, 'y': 2825.484375, 'width': 720, 'bottom': 3047}}"
+    },
+    {
+      "name": "student page 2 response fields meet expanded writing-space minimums",
+      "pass": true,
+      "detail": "{'task4Heights': [63.359375, 63.359375, 63.359375, 63.359375], 'task5Heights': [46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125], 'task6Heights': [97.90625, 97.90625]}"
+    },
+    {
       "name": "grayscale loads without browser errors",
       "pass": true,
       "detail": ""
@@ -438,6 +618,26 @@
       "name": "grayscale CER meets shared minimum height",
       "pass": true,
       "detail": "actual=244.796875"
+    },
+    {
+      "name": "grayscale Student page 2 converts lower-page surplus into writing space",
+      "pass": true,
+      "detail": "100.328125"
+    },
+    {
+      "name": "grayscale Student page 3 retains a balanced lower-page reserve",
+      "pass": true,
+      "detail": "115.296875"
+    },
+    {
+      "name": "grayscale Tasks 8 and 9 are stacked full-width",
+      "pass": true,
+      "detail": "{'task8': {'x': 360, 'y': 2559.515625, 'width': 720, 'bottom': 2812.046875}, 'task9': {'x': 360, 'y': 2825.484375, 'width': 720, 'bottom': 3047}}"
+    },
+    {
+      "name": "grayscale page 2 response fields meet expanded writing-space minimums",
+      "pass": true,
+      "detail": "{'task4Heights': [63.359375, 63.359375, 63.359375, 63.359375], 'task5Heights': [46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125, 46.078125], 'task6Heights': [97.90625, 97.90625]}"
     },
     {
       "name": "master task-heading HTML opens without browser errors",

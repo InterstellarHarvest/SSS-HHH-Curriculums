@@ -37,6 +37,32 @@ TASK_LABELS = {
     "8": "ENGINEERING RESPONSE",
     "9": "EXIT TICKET",
 }
+STUDENT_LAYOUT_CSS = """/* Canonical Student writable-space and task-stacking maintenance. */
+.role-student[data-page-id="student-02"] .task4-block .response-area {
+  min-height: .66in !important;
+}
+.role-student[data-page-id="student-02"] .task5-block .inline-response {
+  min-height: .48in !important;
+}
+.role-student[data-page-id="student-02"] .task6-row .response-area {
+  min-height: 1.02in !important;
+}
+.role-student[data-page-id="student-02"] .task5-block,
+.role-student[data-page-id="student-02"] .task6-row {
+  margin-top: .14in;
+}
+.role-student[data-page-id="student-03"] .task89-row {
+  display: grid;
+  grid-template-columns: minmax(0,1fr);
+  gap: .14in;
+}
+.role-student[data-page-id="student-03"] .task89-row .design-grid .response-area {
+  min-height: .75in !important;
+}
+.role-student[data-page-id="student-03"] .task89-row .response-block.exit .response-area {
+  min-height: 1.55in !important;
+}
+"""
 
 
 def set_text(node: Tag, text: str) -> None:
@@ -109,6 +135,16 @@ def canonicalize_task_headings(soup: BeautifulSoup) -> None:
         if task_id not in TASK_LABELS or label is None:
             raise ValueError(f"Unknown or incomplete Case 02 task heading: {task_id}")
         set_text(label, TASK_LABELS[task_id])
+
+
+def install_student_layout(soup: BeautifulSoup) -> None:
+    old_style = soup.select_one("#sssCase02StudentLayoutCss")
+    if old_style:
+        old_style.decompose()
+    style = soup.new_tag("style")
+    style["id"] = "sssCase02StudentLayoutCss"
+    style.string = STUDENT_LAYOUT_CSS
+    soup.head.append(style)
 
 
 def update_page_identity(page: Tag, current: int, total: int) -> None:
@@ -185,6 +221,7 @@ def transform(path: Path, install_cer: bool) -> None:
     else:
         raise ValueError(f"{path.name}: expected two baseline or three maintained Student pages.")
 
+    install_student_layout(soup)
     path.write_text("<!doctype html>\n" + str(soup.html), encoding="utf-8")
     print(f"HTML-only CER build: {path.relative_to(REPO)}")
 
