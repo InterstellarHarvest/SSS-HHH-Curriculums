@@ -111,3 +111,64 @@
   font-size: 10.5pt;
   line-height: 1.15;
 }
+
+/* Balanced Page Fill v1.0.2 — use surplus height for task separation and
+   writable response/model space while preserving the approved type scale. */
+.page[data-page-id="student-mission-02"] .task-heading[data-task-id="4"] {
+  margin-top: .1in !important;
+}
+.page[data-page-id="student-mission-02"] .response.medium {
+  min-height: .75in;
+}
+.page[data-page-id="student-mission-03"] .task-heading[data-task-id="6"] {
+  margin-top: .32in !important;
+}
+.page[data-page-id="student-mission-03"] .choice-list { gap: 7px; }
+.page[data-page-id="student-mission-03"] .response.large {
+  min-height: 2.6in;
+}
+.page[data-page-id="student-mission-03"] .canonical-process-stage {
+  min-height: 2.25in;
+}
+.page[data-page-id="student-mission-04"] .canonical-cer[data-cer-contract="student-v1.0"] {
+  min-height: 3.1in;
+}
+.page[data-page-id="student-mission-04"] .task-heading[data-task-id="8"],
+.page[data-page-id="student-mission-04"] .task-heading[data-task-id="9"] {
+  margin-top: .16in !important;
+}
+.page[data-page-id="student-mission-04"] .response.medium {
+  min-height: 1.05in;
+}
+.page[data-page-id="student-mission-04"] .optional-extension {
+  margin-top: .1in;
+}
+
+.page[data-page-id="accessible-mission-01"] .response.medium {
+  min-height: 1.85in;
+}
+.page[data-page-id="accessible-mission-02"] .response.medium {
+  min-height: 2.1in;
+}
+.page[data-page-id="accessible-mission-03"] .response.large {
+  min-height: 1.65in;
+}
+.page[data-page-id="accessible-mission-04"] .task-heading[data-task-id="5"] {
+  margin-top: .18in !important;
+}
+.page[data-page-id="accessible-mission-04"] .response.large {
+  min-height: 1.75in;
+}
+.page[data-page-id="accessible-mission-06"] .canonical-cer-box.reasoning {
+  min-height: 1.55in;
+}
+.page[data-page-id="accessible-mission-06"] .task-heading[data-task-id="8"],
+.page[data-page-id="accessible-mission-06"] .task-heading[data-task-id="9"] {
+  margin-top: .16in !important;
+}
+.page[data-page-id="accessible-mission-06"] .response.large {
+  min-height: 1.65in;
+}
+.page[data-page-id="accessible-mission-06"] .optional-extension {
+  margin-top: .1in;
+}

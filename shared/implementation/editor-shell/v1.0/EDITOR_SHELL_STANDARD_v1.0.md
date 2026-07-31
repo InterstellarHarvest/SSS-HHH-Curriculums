@@ -62,6 +62,8 @@ A case configuration must provide:
 
 Task-heading placeholders use `data-shell-task-heading="N"`. The assembler replaces them with the canonical heading component.
 
+Standard Student, Teacher-reference, and Answer Key task titles render at **11.5 pt**. Accessible task titles render at **14 pt**. The technical label describes the task function (`REFERENCE`, `PREDICTION`, `DATA ANALYSIS`, `EXPLANATION`, and so on); it must not repeat the task number as `TASK 01`, `TASK 7`, or a similar label. The visible title owns the number exactly once in the form `N · Title`.
+
 Every case page has one shared page-identity marker—`data-page-identity="first"` or `data-page-identity="continuation"`—and one `data-publication-footer`. The first page of each role uses the first-page identity; all later pages use the continuation identity. `curriculum-components.css` is the canonical CSS source for those structures and for recurring page, response, callout, table, and figure components.
 
 Every response or note field uses `data-response` and a stable `data-persist-id`. Every instructional node that may be author-edited uses `data-editable` and a stable `data-persist-id`.

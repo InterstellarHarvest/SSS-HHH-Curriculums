@@ -5,6 +5,8 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +24,17 @@ TARGETS = {
     "grayscale": CASE_ROOT / "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html",
 }
 ACCESSIBLE = CASE_ROOT / "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html"
+HEADING_TARGETS = {
+    **TARGETS,
+    "teacher": CASE_ROOT / "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html",
+    "answer": CASE_ROOT / "published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
+    "accessible": ACCESSIBLE,
+}
+TASK_LABELS = {
+    "1": "REFERENCE", "2": "PREDICTION", "3": "MECHANISM MODEL",
+    "4": "CAUSE ANALYSIS", "5": "DIAGNOSIS", "6": "DIAGNOSIS",
+    "7": "EXPLANATION", "8": "ENGINEERING RESPONSE", "9": "EXIT TICKET",
+}
 CASE01_MASTER = (
     REPO
     / "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html"
@@ -108,6 +121,56 @@ def run(chrome: Path) -> dict[str, Any]:
         accessible_soup.select_one('meta[name="sss-cer-component"]') is None,
     )
 
+    tracked_pdfs = subprocess.run(
+        ["git", "ls-files", "*.pdf"], cwd=CASE_ROOT, check=True,
+        capture_output=True, text=True,
+    ).stdout.splitlines()
+    pdf_drift = []
+    for relative in tracked_pdfs:
+        current = CASE_ROOT / relative
+        baseline = subprocess.run(
+            ["git", "show", f"HEAD:{current.relative_to(REPO).as_posix()}"],
+            cwd=REPO, check=True, capture_output=True,
+        ).stdout
+        if current.read_bytes() != baseline:
+            pdf_drift.append(relative)
+    check(
+        "all tracked Case 02 PDFs remain byte-identical to HEAD",
+        not pdf_drift,
+        str(pdf_drift),
+    )
+
+    for label, path in HEADING_TARGETS.items():
+        heading_soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+        headings = heading_soup.select(".task-heading[data-task-id]")
+        check(
+            f"{label} declares canonical task-heading standard",
+            heading_soup.select_one('meta[name="sss-task-heading-standard"][content="1.0"]') is not None,
+        )
+        check(
+            f"{label} has no duplicated TASK-number technical labels",
+            all(not re.fullmatch(r"TASK\s*0?\d+", node.get_text(" ", strip=True), re.I)
+                for node in heading_soup.select(".task-heading .technical-label")),
+        )
+        check(
+            f"{label} task headings use the canonical semantic labels",
+            all(
+                heading.select_one(".technical-label") is not None
+                and heading.select_one(".technical-label").get_text(" ", strip=True)
+                == TASK_LABELS[heading.get("data-task-id")]
+                for heading in headings
+            ),
+        )
+        check(
+            f"{label} task titles contain their number exactly once",
+            all(
+                (title := heading.select_one(".section-title")) is not None
+                and title.get_text(" ", strip=True).startswith(f'{heading.get("data-task-id")} · ')
+                and len(re.findall(rf'(?<!\d){heading.get("data-task-id")}(?!\d)', title.get_text(" ", strip=True))) == 1
+                for heading in headings
+            ),
+        )
+
     dimensions: dict[str, dict[str, float]] = {}
     overflow_counts: dict[str, int] = {}
     browser_errors: dict[str, list[str]] = {}
@@ -154,6 +217,32 @@ def run(chrome: Path) -> dict[str, Any]:
                 f"{label} CER meets shared minimum height",
                 dimensions[label]["height"] >= 244,
                 f"actual={dimensions[label]['height']}",
+            )
+            context.close()
+
+        for label, path in HEADING_TARGETS.items():
+            context = browser.new_context(viewport={"width": 1440, "height": 1100})
+            page = context.new_page()
+            errors: list[str] = []
+            page.on("pageerror", lambda error, bucket=errors: bucket.append(error.stack or str(error)))
+            page.goto(path.resolve().as_uri(), wait_until="load")
+            page.wait_for_timeout(150)
+            check(f"{label} task-heading HTML opens without browser errors", not errors, "; ".join(errors))
+            standard_sizes = page.locator('.task-heading .section-title').evaluate_all(
+                "nodes => nodes.filter(n => !n.closest('[data-role=accessible]')).map(n => getComputedStyle(n).fontSize)"
+            )
+            accessible_sizes = page.locator('.page[data-role="accessible"] .task-heading .section-title').evaluate_all(
+                "nodes => nodes.map(n => getComputedStyle(n).fontSize)"
+            )
+            check(
+                f"{label} standard task titles render at 11.5pt",
+                all(size in {"15.3333px", "15.333px"} for size in standard_sizes),
+                str(standard_sizes),
+            )
+            check(
+                f"{label} Accessible task titles render at canonical 14pt",
+                all(size in {"18.6667px", "18.666px"} for size in accessible_sizes),
+                str(accessible_sizes),
             )
             context.close()
         browser.close()

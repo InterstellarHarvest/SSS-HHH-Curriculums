@@ -70,6 +70,9 @@
 
 ## Student Responses
 
+- [ ] Standard numbered task titles render at 11.5 pt; Accessible task titles render at 14 pt.
+- [ ] The technical label is semantic and does not repeat the number as `TASK 01`, `TASK 7`, or similar.
+- [ ] The visible task title contains its number exactly once as `N · Title`.
 - [ ] Ordinary response areas are blank and unruled.
 - [ ] Prompt is above the response box.
 - [ ] Guidance is concise.

@@ -1,0 +1,189 @@
+{
+  "validator": "case01-html-task-heading-maintenance",
+  "pdfGeneration": "SKIPPED",
+  "assertions": 33,
+  "passed": 33,
+  "failed": 0,
+  "pageCounts": {
+    "student": 3,
+    "teacher": 7,
+    "answer": 3,
+    "accessible": 6,
+    "grayscale": 3
+  },
+  "overflowCounts": {
+    "student": 0,
+    "teacher": 0,
+    "answer": 0,
+    "accessible": 0,
+    "grayscale": 0
+  },
+  "failures": [],
+  "results": [
+    {
+      "name": "Case 01 v1.0 historical master remains byte-identical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "all existing Case 01 PDFs remain byte-identical",
+      "pass": true,
+      "detail": "14"
+    },
+    {
+      "name": "v1.1 master declares task-heading standard 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "v1.1 master marks all numbered section headings as task headings",
+      "pass": true,
+      "detail": "27"
+    },
+    {
+      "name": "task titles retain one visible number and title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master HTML opens without JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "master standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "master Accessible task titles render at 14pt",
+      "pass": true,
+      "detail": "['18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px']"
+    },
+    {
+      "name": "student HTML opens without JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "student standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "student Accessible task titles render at 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "student HTML page count remains 3",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "student HTML has zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "teacher HTML opens without JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "teacher standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "teacher Accessible task titles render at 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "teacher HTML page count remains 7",
+      "pass": true,
+      "detail": "7"
+    },
+    {
+      "name": "teacher HTML has zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "answer HTML opens without JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "answer standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "answer Accessible task titles render at 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "answer HTML page count remains 3",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "answer HTML has zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "accessible HTML opens without JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "accessible standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "accessible Accessible task titles render at 14pt",
+      "pass": true,
+      "detail": "['18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px']"
+    },
+    {
+      "name": "accessible HTML page count remains 6",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "accessible HTML has zero overflow",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "grayscale HTML opens without JavaScript errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "grayscale standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "grayscale Accessible task titles render at 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "grayscale HTML page count remains 3",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "grayscale HTML has zero overflow",
+      "pass": true,
+      "detail": "0"
+    }
+  ]
+}

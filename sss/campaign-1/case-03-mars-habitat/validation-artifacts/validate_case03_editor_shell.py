@@ -86,6 +86,7 @@ def run(chrome: Path) -> dict[str, Any]:
 
     actual_counts: dict[str, int] = {}
     overflow_counts: dict[str, int] = {}
+    bottom_reserves: dict[str, dict[str, float]] = {}
     standalone_results: dict[str, Any] = {}
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(
@@ -245,6 +246,24 @@ def run(chrome: Path) -> dict[str, Any]:
                     ordered = all(stage_boxes[i]["right"] <= arrow_boxes[i]["x"] and arrow_boxes[i]["right"] <= stage_boxes[i + 1]["x"] for i in range(4))
                     check(f"{role} Task 6 keeps Stage 5 on the same row with attached connectors", same_row and equal_width and ordered, {"stages": stage_boxes, "arrows": arrow_boxes})
 
+        for role in ["student", "accessible"]:
+            case03.evaluate("role => window.__case03.setRole(role)", role)
+            case03.wait_for_timeout(80)
+            reserves = case03.locator(f'.page[data-role="{role}"]').evaluate_all(
+                """pages => Object.fromEntries(pages.map(page => {
+                  const content = page.querySelector('.content-area');
+                  const children = Array.from(content.children);
+                  const reserve = content.getBoundingClientRect().bottom - children.at(-1).getBoundingClientRect().bottom;
+                  return [page.dataset.pageId, +reserve.toFixed(1)];
+                }))"""
+            )
+            bottom_reserves[role] = reserves
+            check(
+                f"{role} pages use surplus height while preserving intentional bottom reserve",
+                all(40 <= value <= 180 for value in reserves.values()),
+                reserves,
+            )
+
         text_student_accessible = " ".join(case03.locator('.page[data-role="student"], .page[data-role="accessible"]').all_inner_texts())
         check("PPFD first-use wording and compact definition are present", "PPFD: 280 µmol/m²/s — rated adequate." in text_student_accessible and "PPFD measures how many photosynthetically useful light photons reach each square meter each second." in text_student_accessible)
         check("obsolete PPFD unit spellings are absent", not re.search(r"umol\s*m-2\s*s-1|micromoles?\s+per\s+square\s+meter", text_student_accessible, re.I))
@@ -291,6 +310,7 @@ def run(chrome: Path) -> dict[str, Any]:
         "failed": len(failures),
         "pageCounts": actual_counts,
         "overflowCounts": overflow_counts,
+        "bottomReservesPx": bottom_reserves,
         "standaloneOpenResults": standalone_results,
         "serialization": {
             "instructionalEditPersisted": edited_instruction in portable,

@@ -14,3 +14,15 @@
 - Overflow: 0
 
 Case 01 v1.0 remains byte-identical at `4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00` and is retained as the prior approved release. Case 01 v1.1 is the approved stable printable-identity successor.
+
+## HTML-only canonical task-title maintenance
+
+The maintained v1.1 editable master and five role HTML outputs now use the shared task-title standard: 11.5pt for standard worksheets and direct Teacher/Answer references, and 14pt for the Accessible worksheet. This maintenance does not alter curriculum content or page counts.
+
+- HTML-only assertions: 33/33 PASS
+- HTML page counts: Student 3, Teacher 7, Answer 3, Accessible 6, Grayscale 3
+- Browser overflow: 0
+- Existing checksum-controlled PDFs: byte-identical to the prior approved release
+- PDFs generated: none
+
+The 2026-07-30 physical-print PASS remains truthful historical evidence for the preserved release artifacts. It is not a new physical-print approval claim for the maintained HTML.

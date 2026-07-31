@@ -73,3 +73,7 @@ The v1.1 successor changes printable first-page identity, continuation identity,
 
 Case 01 v1.1 is the approved stable printable-identity successor as of 2026-07-30. Automated validation and the owner 100%-scale physical print test both pass. Tester: Nate / Owner. Printer/copier: Not recorded. Paper: Not recorded. Approved Case 01 v1.0 remains byte-identical and retained as the prior release.
 <!-- FINAL_APPROVAL_2026_07_30_END -->
+
+## HTML task-heading maintenance
+
+The maintained v1.1 master and five role HTML files now use the canonical task-title scale: 11.5 pt for standard roles and 14 pt for Accessible. This is an HTML-only maintenance correction. Run `validation-artifacts/build_case01_html_maintenance.py` and `validation-artifacts/validate_case01_html_maintenance.py`; do not run the legacy release validator, which generates PDFs. Existing approved PDFs remain byte-identical historical artifacts, and physical-print approval is not claimed for the updated HTML until separately tested.

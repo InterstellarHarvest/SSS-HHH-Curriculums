@@ -2,8 +2,8 @@
   "validator": "case02-student-cer-html",
   "cerComponentVersion": "1.0",
   "pdfGeneration": "SKIPPED",
-  "assertions": 55,
-  "passed": 55,
+  "assertions": 98,
+  "passed": 98,
   "failed": 0,
   "studentHtmlPageCounts": {
     "master": 3,
@@ -240,6 +240,131 @@
       "detail": ""
     },
     {
+      "name": "all tracked Case 02 PDFs remain byte-identical to HEAD",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "master declares canonical task-heading standard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master has no duplicated TASK-number technical labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master task headings use the canonical semantic labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master task titles contain their number exactly once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student declares canonical task-heading standard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student has no duplicated TASK-number technical labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student task headings use the canonical semantic labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student task titles contain their number exactly once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale declares canonical task-heading standard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale has no duplicated TASK-number technical labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale task headings use the canonical semantic labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale task titles contain their number exactly once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher declares canonical task-heading standard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher has no duplicated TASK-number technical labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher task headings use the canonical semantic labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher task titles contain their number exactly once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer declares canonical task-heading standard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer has no duplicated TASK-number technical labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer task headings use the canonical semantic labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer task titles contain their number exactly once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible declares canonical task-heading standard",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible has no duplicated TASK-number technical labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible task headings use the canonical semantic labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible task titles contain their number exactly once",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "master loads without browser errors",
       "pass": true,
       "detail": ""
@@ -313,6 +438,96 @@
       "name": "grayscale CER meets shared minimum height",
       "pass": true,
       "detail": "actual=244.796875"
+    },
+    {
+      "name": "master task-heading HTML opens without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "master Accessible task titles render at canonical 14pt",
+      "pass": true,
+      "detail": "['18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px']"
+    },
+    {
+      "name": "student task-heading HTML opens without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "student Accessible task titles render at canonical 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "grayscale task-heading HTML opens without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "grayscale Accessible task titles render at canonical 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "teacher task-heading HTML opens without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "teacher Accessible task titles render at canonical 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "answer task-heading HTML opens without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "['15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px', '15.3333px']"
+    },
+    {
+      "name": "answer Accessible task titles render at canonical 14pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "accessible task-heading HTML opens without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible standard task titles render at 11.5pt",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "accessible Accessible task titles render at canonical 14pt",
+      "pass": true,
+      "detail": "['18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px', '18.6667px']"
     },
     {
       "name": "student CER geometry matches master",

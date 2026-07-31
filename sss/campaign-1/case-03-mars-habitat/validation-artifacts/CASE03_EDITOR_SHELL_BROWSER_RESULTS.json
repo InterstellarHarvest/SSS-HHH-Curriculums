@@ -3,8 +3,8 @@
   "shellVersion": "1.0",
   "literalReference": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
   "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-  "assertions": 93,
-  "passed": 93,
+  "assertions": 95,
+  "passed": 95,
   "failed": 0,
   "pageCounts": {
     "student": 4,
@@ -17,6 +17,22 @@
     "teacher": 0,
     "answer": 0,
     "accessible": 0
+  },
+  "bottomReservesPx": {
+    "student": {
+      "student-mission-01": 61.5,
+      "student-mission-02": 101,
+      "student-mission-03": 120.2,
+      "student-mission-04": 108.3
+    },
+    "accessible": {
+      "accessible-mission-01": 165.8,
+      "accessible-mission-02": 168.2,
+      "accessible-mission-03": 140.3,
+      "accessible-mission-04": 152.7,
+      "accessible-mission-05": 71.6,
+      "accessible-mission-06": 164
+    }
   },
   "standaloneOpenResults": {
     "student": {
@@ -330,7 +346,7 @@
     {
       "name": "student Task 6 keeps Stage 5 on the same row with attached connectors",
       "pass": true,
-      "detail": "{'stages': [{'x': 360, 'y': 2706.765625, 'w': 124.796875, 'h': 78.71875, 'right': 484.796875, 'bottom': 2785.484375}, {'x': 508.796875, 'y': 2706.765625, 'w': 124.796875, 'h': 78.71875, 'right': 633.59375, 'bottom': 2785.484375}, {'x': 657.59375, 'y': 2706.765625, 'w': 124.796875, 'h': 78.71875, 'right': 782.390625, 'bottom': 2785.484375}, {'x': 806.390625, 'y': 2706.765625, 'w': 124.796875, 'h': 78.71875, 'right': 931.1875, 'bottom': 2785.484375}, {'x': 955.1875, 'y': 2706.765625, 'w': 124.8125, 'h': 78.71875, 'right': 1080, 'bottom': 2785.484375}], 'arrows': [{'x': 487.796875, 'y': 2735.453125, 'w': 18, 'h': 21.328125, 'right': 505.796875, 'bottom': 2756.78125}, {'x': 636.59375, 'y': 2735.453125, 'w': 18, 'h': 21.328125, 'right': 654.59375, 'bottom': 2756.78125}, {'x': 785.390625, 'y': 2735.453125, 'w': 18, 'h': 21.328125, 'right': 803.390625, 'bottom': 2756.78125}, {'x': 934.1875, 'y': 2735.453125, 'w': 18, 'h': 21.328125, 'right': 952.1875, 'bottom': 2756.78125}]}"
+      "detail": "{'stages': [{'x': 360, 'y': 2904.890625, 'w': 124.796875, 'h': 216, 'right': 484.796875, 'bottom': 3120.890625}, {'x': 508.796875, 'y': 2904.890625, 'w': 124.796875, 'h': 216, 'right': 633.59375, 'bottom': 3120.890625}, {'x': 657.59375, 'y': 2904.890625, 'w': 124.796875, 'h': 216, 'right': 782.390625, 'bottom': 3120.890625}, {'x': 806.390625, 'y': 2904.890625, 'w': 124.796875, 'h': 216, 'right': 931.1875, 'bottom': 3120.890625}, {'x': 955.1875, 'y': 2904.890625, 'w': 124.8125, 'h': 216, 'right': 1080, 'bottom': 3120.890625}], 'arrows': [{'x': 487.796875, 'y': 3002.21875, 'w': 18, 'h': 21.328125, 'right': 505.796875, 'bottom': 3023.546875}, {'x': 636.59375, 'y': 3002.21875, 'w': 18, 'h': 21.328125, 'right': 654.59375, 'bottom': 3023.546875}, {'x': 785.390625, 'y': 3002.21875, 'w': 18, 'h': 21.328125, 'right': 803.390625, 'bottom': 3023.546875}, {'x': 934.1875, 'y': 3002.21875, 'w': 18, 'h': 21.328125, 'right': 952.1875, 'bottom': 3023.546875}]}"
     },
     {
       "name": "teacher browser page count remains 8",
@@ -376,6 +392,16 @@
       "name": "Accessible Task 6 is a vertically aligned five-stage sequence",
       "pass": true,
       "detail": "[{'x': 360, 'y': 4556.3125, 'w': 720, 'h': 54.71875, 'right': 1080, 'bottom': 4611.03125}, {'x': 360, 'y': 4638.359375, 'w': 720, 'h': 88.796875, 'right': 1080, 'bottom': 4727.15625}, {'x': 360, 'y': 4754.484375, 'w': 720, 'h': 88.796875, 'right': 1080, 'bottom': 4843.28125}, {'x': 360, 'y': 4870.609375, 'w': 720, 'h': 88.796875, 'right': 1080, 'bottom': 4959.40625}, {'x': 360, 'y': 4986.734375, 'w': 720, 'h': 88.796875, 'right': 1080, 'bottom': 5075.53125}]"
+    },
+    {
+      "name": "student pages use surplus height while preserving intentional bottom reserve",
+      "pass": true,
+      "detail": "{'student-mission-01': 61.5, 'student-mission-02': 101, 'student-mission-03': 120.2, 'student-mission-04': 108.3}"
+    },
+    {
+      "name": "accessible pages use surplus height while preserving intentional bottom reserve",
+      "pass": true,
+      "detail": "{'accessible-mission-01': 165.8, 'accessible-mission-02': 168.2, 'accessible-mission-03': 140.3, 'accessible-mission-04': 152.7, 'accessible-mission-05': 71.6, 'accessible-mission-06': 164}"
     },
     {
       "name": "PPFD first-use wording and compact definition are present",

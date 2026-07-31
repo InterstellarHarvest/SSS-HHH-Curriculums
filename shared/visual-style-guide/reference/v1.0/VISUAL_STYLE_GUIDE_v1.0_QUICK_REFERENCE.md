@@ -68,6 +68,8 @@ Do not invent unrelated border systems merely to increase visual difference.
 
 Use icons for recurring standardized sections. Use a plain heading or label-only heading for one-off subsections.
 
+For numbered tasks, the standard title is 11.5 pt (14 pt in Accessible). Use a semantic technical label and show the number exactly once in `N · Title`. Never pair `TASK 01` with `1 · Title`.
+
 ## Choose the Component
 
 | Need | Use |

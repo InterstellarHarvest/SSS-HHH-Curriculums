@@ -18,7 +18,7 @@ The current v1.0 master combines the approved Printable Page Identity v1.0.4 sys
 - Accessible Mission: 5 pages
 - Grayscale Mission HTML maintenance build: 3 pages
 
-Task 7 on the standard Student and Grayscale worksheets now uses the shared full-width `student-v1.0` Claim/Evidence/Reasoning component. The Accessible edition was already suitable and remains unchanged.
+Every maintained HTML role now uses semantic task labels with the task number appearing once in the title; duplicated labels such as `TASK 01` are prohibited. Standard task titles render at 11.5pt, while Accessible titles retain the canonical 14pt size. Task 7 on the standard Student and Grayscale worksheets also uses the shared full-width `student-v1.0` Claim/Evidence/Reasoning component. The Accessible CER layout remains unchanged.
 
 This was an HTML-only maintenance build. The approved checksum-controlled PDFs were not regenerated: Student and Grayscale PDFs remain 2 pages, Teacher 7, Answer 3, and Accessible 5. Run:
 
@@ -31,4 +31,4 @@ Do not run the legacy full release builder merely to reproduce this HTML-only ma
 
 ## Release gate
 
-The approved PDF/physical-print release record remains intact. The updated Student HTML layout has a separate validation-build maintenance status pending any future PDF/print release cycle.
+The approved PDF/physical-print release record remains intact. The maintained HTML layout has a separate validation-build maintenance status pending any future print release cycle.

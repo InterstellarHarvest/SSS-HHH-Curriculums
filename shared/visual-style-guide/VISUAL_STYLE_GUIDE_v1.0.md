@@ -2404,6 +2404,12 @@ Do not:
 - place labels on ordinary body paragraphs;
 - use labels as a substitute for numbered directions.
 
+## 30.8 Numbered Curriculum Tasks
+
+Numbered curriculum tasks use a semantic technical label and place the task number exactly once in the visible title as `N · Title`. The label describes the instructional function (`REFERENCE`, `PREDICTION`, `DATA ANALYSIS`, `EXPLANATION`, and so on); it must not repeat the number as `TASK 01`, `TASK 7`, or a similar construction. Sequence-bearing labels such as `01 · LAUNCH` remain available for non-task document structures.
+
+Standard Student, direct Teacher-reference, and Answer Key task titles render at **11.5 pt**. Accessible task titles render at **14 pt**. These task-specific values govern over the broader section-heading range where both apply.
+
 ---
 
 # 31. Callout System
@@ -3180,6 +3186,9 @@ A page passes the v0.5 component review when all applicable answers are **yes**.
 - [ ] Students can understand the heading without interpreting fictional language.
 - [ ] Labels do not use arbitrary serial numbers.
 - [ ] Long-form formal sections may use the approved plain-heading exception.
+- [ ] Numbered tasks use a semantic label rather than `TASK N`.
+- [ ] The task number appears exactly once in the title as `N · Title`.
+- [ ] Numbered task titles render at 11.5 pt in standard roles and 14 pt in Accessible.
 
 ## 39.2 Callouts
 

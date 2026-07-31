@@ -261,6 +261,22 @@ def main() -> int:
     review = json.loads(review_results_path.read_text(encoding="utf-8")) if review_results_path.is_file() else {}
     check("rendered_browser_review", "browser rendering review passed", review.get("status") == "PASS")
     check("rendered_browser_review", "all 26 HTML pages were rendered", review.get("renderedPageCount") == 26, review.get("renderedPageCount"))
+    shell_browser_path = VALIDATION / "CASE03_EDITOR_SHELL_BROWSER_RESULTS.json"
+    shell_browser = json.loads(shell_browser_path.read_text(encoding="utf-8")) if shell_browser_path.is_file() else {}
+    reserves = shell_browser.get("bottomReservesPx", {})
+    reserve_values = [value for role in reserves.values() for value in role.values()]
+    check(
+        "rendered_browser_review",
+        "Student and Accessible pages retain balanced writable-space reserves",
+        bool(reserve_values) and all(40 <= value <= 180 for value in reserve_values),
+        reserves,
+    )
+    check(
+        "rendered_browser_review",
+        "editor-shell browser contract passes after balanced-fill correction",
+        shell_browser.get("failed") == 0,
+        shell_browser.get("failed"),
+    )
     check("owner_physical_print", "owner physical print gate remains OPEN", manifest.get("release_gate", {}).get("status") == "OPEN")
 
     status = all(item["pass"] for item in checks)

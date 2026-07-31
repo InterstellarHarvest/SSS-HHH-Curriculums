@@ -8,11 +8,11 @@
 
 **Game baseline:** `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 
-**Automated HTML result:** PASS - 138/138 consolidated assertions
+**Automated HTML result:** PASS - 140/140 consolidated assertions
 
 **Shared shell contract:** PASS - 376/376 assertions
 
-**Editor-shell browser result:** PASS - 93/93 assertions
+**Editor-shell browser result:** PASS - 95/95 assertions
 
 **Owner browser physical-print gate:** OPEN
 
@@ -48,6 +48,8 @@ All six canonical HTML checksum-ledger entries verify. All 26 pages rendered in 
 ## Component and page-identity correction
 
 The follow-up component handoff is implemented in full: canonical CER variants; exact PPFD first-use wording and units; independent Task 3 label/track/value columns; compact runtime-data captions; deterministic five-stage Task 6 models; removed Student/Accessible science-boundary and production-commentary boxes; optional end-of-worksheet extensions; one semantic task label and one task number per heading; and mandatory Phosphor icons. The approved Case 01/02 Name/Date/Period row, color insignia, Agency lockup, title block, continuation header, and institutional accent rail now govern every role.
+
+Balanced Page Fill v1.0.2 now governs the Case 03 Student and Accessible worksheet rhythm. Response areas and inter-task spacing expand into available writable space while preserving page counts and zero overflow. Automated browser validation enforces a 40–180 CSS-pixel reserve beneath each final content element; the measured Student range is 61.5–120.2 pixels and the Accessible range is 71.6–168.2 pixels.
 
 ## Accessibility coverage
 

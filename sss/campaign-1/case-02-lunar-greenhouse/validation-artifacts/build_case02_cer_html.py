@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the shared Student CER component to Case 02 HTML only.
+"""Apply the shared CER and task-heading standards to Case 02 HTML only.
 
 This maintenance builder intentionally does not read, write, or regenerate PDFs.
 """
@@ -15,11 +15,28 @@ from bs4 import BeautifulSoup, Tag
 CASE_ROOT = Path(__file__).resolve().parents[1]
 REPO = CASE_ROOT.parents[2]
 CER_SOURCE = REPO / "shared/implementation/editor-shell/v1.0/cer.css"
-TARGETS = [
+CER_TARGETS = [
     CASE_ROOT / "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
     CASE_ROOT / "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.html",
     CASE_ROOT / "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html",
 ]
+ALL_TARGETS = [
+    *CER_TARGETS,
+    CASE_ROOT / "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html",
+    CASE_ROOT / "published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
+    CASE_ROOT / "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html",
+]
+TASK_LABELS = {
+    "1": "REFERENCE",
+    "2": "PREDICTION",
+    "3": "MECHANISM MODEL",
+    "4": "CAUSE ANALYSIS",
+    "5": "DIAGNOSIS",
+    "6": "DIAGNOSIS",
+    "7": "EXPLANATION",
+    "8": "ENGINEERING RESPONSE",
+    "9": "EXIT TICKET",
+}
 
 
 def set_text(node: Tag, text: str) -> None:
@@ -78,6 +95,22 @@ def install_component(soup: BeautifulSoup) -> None:
     soup.head.append(style)
 
 
+def canonicalize_task_headings(soup: BeautifulSoup) -> None:
+    old_meta = soup.select_one('meta[name="sss-task-heading-standard"]')
+    if old_meta:
+        old_meta.decompose()
+    meta = soup.new_tag("meta")
+    meta["name"] = "sss-task-heading-standard"
+    meta["content"] = "1.0"
+    soup.head.append(meta)
+    for heading in soup.select(".task-heading[data-task-id]"):
+        task_id = heading.get("data-task-id")
+        label = heading.select_one(".technical-label")
+        if task_id not in TASK_LABELS or label is None:
+            raise ValueError(f"Unknown or incomplete Case 02 task heading: {task_id}")
+        set_text(label, TASK_LABELS[task_id])
+
+
 def update_page_identity(page: Tag, current: int, total: int) -> None:
     page["aria-label"] = f"Student Mission page {current} of {total}"
     footer = page.select_one(".publication-footer span")
@@ -86,8 +119,14 @@ def update_page_identity(page: Tag, current: int, total: int) -> None:
     set_text(footer, f"Student Mission {current} of {total}")
 
 
-def transform(path: Path) -> None:
+def transform(path: Path, install_cer: bool) -> None:
     soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+    canonicalize_task_headings(soup)
+    if not install_cer:
+        path.write_text("<!doctype html>\n" + str(soup.html), encoding="utf-8")
+        print(f"HTML-only task-heading build: {path.relative_to(REPO)}")
+        return
+
     install_component(soup)
     student_pages = soup.select('.page[data-role="student"]')
 
@@ -151,8 +190,8 @@ def transform(path: Path) -> None:
 
 
 def main() -> int:
-    for target in TARGETS:
-        transform(target)
+    for target in ALL_TARGETS:
+        transform(target, target in CER_TARGETS)
     print("PDF generation: skipped by design")
     return 0
 

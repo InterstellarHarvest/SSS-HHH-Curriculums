@@ -22,6 +22,24 @@
     "pdf": "5/5 PASS",
     "physical_print": "PASS"
   },
+  "html_maintenance": {
+    "status": "VALIDATION BUILD",
+    "task_heading_standard": "1.0",
+    "standard_task_title_size": "11.5pt",
+    "accessible_task_title_size": "14pt",
+    "validation": "33/33 PASS",
+    "html_page_counts": {
+      "student": 3,
+      "teacher": 7,
+      "answer": 3,
+      "accessible": 6,
+      "grayscale": 3
+    },
+    "browser_overflow": "0",
+    "pdfs_regenerated": false,
+    "tracked_pdfs_byte_identical": true,
+    "physical_print": "NOT_CLAIMED_FOR_UPDATED_HTML"
+  },
   "owner_print_test": {
     "status": "PASS",
     "date": "2026-07-30",
@@ -38,9 +56,14 @@
   "governing_amendment": "shared/visual-style-guide/amendments/PRINTABLE_PAGE_IDENTITY_v1.0.4.md",
   "files": [
     {
+      "path": "README.md",
+      "sha256": "ff8bdc20ee0811c609331137c1e1be1b10808f48774a920580e139c464f8a4d1",
+      "bytes": 3785
+    },
+    {
       "path": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
-      "sha256": "f42365e58802201679b5cd751f102d9a4ecd0ea6f6a6565a860df070018ad02a",
-      "bytes": 121902
+      "sha256": "fab44c921d965abd9faa4718b80bddae9f3a4f82a3050b47c0d33c2efd657b61",
+      "bytes": 124188
     },
     {
       "path": "master/SSS_C1_CASE01_V1.1_CHANGELOG.md",
@@ -53,9 +76,24 @@
       "bytes": 21681
     },
     {
+      "path": "validation-artifacts/build_case01_html_maintenance.py",
+      "sha256": "a16bf0ee5687c57f484b1d2f0c32fb79f3cb8cd0baac23df3e8124dfbc0b80d1",
+      "bytes": 3843
+    },
+    {
+      "path": "validation-artifacts/validate_case01_html_maintenance.py",
+      "sha256": "8b701be38dcd9ec3f914584065c0308911b48736d42eb372e560ca1b758bbf59",
+      "bytes": 6025
+    },
+    {
+      "path": "validation-artifacts/v1.1/CASE01_HTML_MAINTENANCE_RESULTS.json",
+      "sha256": "2c7fabca2a18fb0ecf29bd187ca5e17226f47785614b01cf10603bc6041d0eee",
+      "bytes": 4972
+    },
+    {
       "path": "reports/CASE01_V1_1_VALIDATION_REPORT.md",
-      "sha256": "fad4c204e83d2d27e84cc4d99fb11bde2d9ed72b93c9bf3433f36531ab64d96f",
-      "bytes": 534
+      "sha256": "ff7e0918d428c84c3ec76dddf3fa2dfeb1577d527e9f77cbedfdf4a9ef7408bc",
+      "bytes": 1282
     },
     {
       "path": "published/v1.1/OWNER_PRINT_TEST_CHECKLIST.md",
@@ -64,8 +102,8 @@
     },
     {
       "path": "published/v1.1/README.md",
-      "sha256": "7e33eb8eda44052c5041e00f3d93ac128514e7d9fa758156aaf9b959b5d8688d",
-      "bytes": 290
+      "sha256": "30c0df861756a8f370f70f72f729ddf5807b86b43b87bd3a18f7196ffcc76418",
+      "bytes": 381
     },
     {
       "path": "validation-artifacts/v1.1/CASE01_V1_1_PDF_PREFLIGHT.json",
@@ -84,28 +122,28 @@
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html",
-      "sha256": "5676c04a336794022e620f613eb9a73e3ea82352e167c6a4e9b21b95fc3c973e",
-      "bytes": 78080
+      "sha256": "4d1fd35f1acc24fb48bb3a4847877119035641de497a9d381af489c2efa1d6ed",
+      "bytes": 79099
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1.html",
-      "sha256": "9e95fd926bf1426f739c1bf732944db8fb2277e2fec5be17731eb504b5560bfb",
-      "bytes": 59763
+      "sha256": "ad1f852e9256607634e0995c293a27b689a9bb9233bb0559e75b08f82db48423",
+      "bytes": 60658
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html",
-      "sha256": "7426fa38aace260d03e4165cbfd060c072d10106b9fe26cc76d86a396d2ff5a8",
-      "bytes": 64834
+      "sha256": "725a6f32af69da9fdd42359bb5d0041c596da8616ccdcbb8613d984d5801dd1c",
+      "bytes": 65770
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1.html",
-      "sha256": "9b19ad22672387ac19f39d5a10687ac4ef75c161d610db765c66ea0ba6b9556c",
-      "bytes": 64806
+      "sha256": "404d4006bdc6e775ddc292649dc37b0e00559a7d6839f3452767f68d33c6b17a",
+      "bytes": 65742
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1.html",
-      "sha256": "242b4c04e55724a777b3402544ec8452fcc693c855fe274624c58a0bb4d3521d",
-      "bytes": 99632
+      "sha256": "a51453b3a7358b73b5fbe7dc82a5fdc6412f48d93ce692eb8a690e4467727e12",
+      "bytes": 99914
     },
     {
       "path": "published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.pdf",
@@ -160,5 +198,5 @@
   ],
   "historical_approved_master": "master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
   "historical_v1_0_sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00",
-  "v1_1_sha256": "f42365e58802201679b5cd751f102d9a4ecd0ea6f6a6565a860df070018ad02a"
+  "v1_1_sha256": "fab44c921d965abd9faa4718b80bddae9f3a4f82a3050b47c0d33c2efd657b61"
 }

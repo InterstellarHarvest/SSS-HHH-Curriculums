@@ -77,8 +77,8 @@
       "total": 9
     },
     "rendered_browser_review": {
-      "pass": 2,
-      "total": 2
+      "pass": 4,
+      "total": 4
     },
     "owner_physical_print": {
       "pass": 1,
@@ -86,8 +86,8 @@
     }
   },
   "total": {
-    "pass": 138,
-    "total": 138
+    "pass": 140,
+    "total": 140
   },
   "failures": [],
   "checks": [
@@ -912,6 +912,18 @@
       "name": "all 26 HTML pages were rendered",
       "pass": true,
       "detail": "26"
+    },
+    {
+      "group": "rendered_browser_review",
+      "name": "Student and Accessible pages retain balanced writable-space reserves",
+      "pass": true,
+      "detail": "{'student': {'student-mission-01': 61.5, 'student-mission-02': 101, 'student-mission-03': 120.2, 'student-mission-04': 108.3}, 'accessible': {'accessible-mission-01': 165.8, 'accessible-mission-02': 168.2, 'accessible-mission-03': 140.3, 'accessible-mission-04': 152.7, 'accessible-mission-05': 71.6, 'accessible-mission-06': 164}}"
+    },
+    {
+      "group": "rendered_browser_review",
+      "name": "editor-shell browser contract passes after balanced-fill correction",
+      "pass": true,
+      "detail": "0"
     },
     {
       "group": "owner_physical_print",

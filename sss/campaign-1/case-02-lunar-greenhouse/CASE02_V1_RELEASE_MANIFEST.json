@@ -34,15 +34,22 @@
     "status": "VALIDATION BUILD",
     "component": "shared/implementation/editor-shell/v1.0/cer.css",
     "component_version": "1.0",
+    "task_heading_standard": "1.0",
+    "standard_task_title_size": "11.5pt",
+    "accessible_task_title_size": "14pt",
     "scope": [
-      "master Student pages",
+      "editable master",
       "Student role HTML",
-      "Grayscale Student role HTML"
+      "Teacher role HTML",
+      "Answer Key role HTML",
+      "Accessible role HTML",
+      "Grayscale role HTML"
     ],
-    "validation": "55/55 PASS",
+    "validation": "98/98 PASS",
     "browser_overflow": "0",
-    "accessible_html": "UNCHANGED",
+    "accessible_html": "TASK HEADING UPDATED; CER UNCHANGED",
     "pdfs_regenerated": false,
+    "tracked_pdfs_byte_identical": true,
     "physical_print": "NOT_CLAIMED_FOR_UPDATED_HTML"
   },
   "owner_print_test": {
@@ -62,8 +69,8 @@
   "files": [
     {
       "path": "README.md",
-      "sha256": "8bd40664534dea364a0b463a780eebfeadbfba46dbe9718a360b116c3d312240",
-      "bytes": 1545
+      "sha256": "ab776f592734ac49587bd4fe3efa80095d1f742eaecff02c55e7174194d87337",
+      "bytes": 1769
     },
     {
       "path": "assets/pollination-process-model.svg",
@@ -72,8 +79,8 @@
     },
     {
       "path": "master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
-      "sha256": "8cd93b27aa5e7873f4d5df271e4918cead25c38ac5ec860ffb5458a6c8c2abfc",
-      "bytes": 156552
+      "sha256": "8a92e7f6176aeae394566e3c55c62cf0347e257d17bd710e59f8c74dd3d73332",
+      "bytes": 157802
     },
     {
       "path": "published/OWNER_PRINT_TEST_CHECKLIST.md",
@@ -87,8 +94,8 @@
     },
     {
       "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html",
-      "sha256": "f72c719a8b6e6fe17cea608288a8e2c6067c9defae318cffb527e87ba74aa8e5",
-      "bytes": 71566
+      "sha256": "ecb56f7e4cba24e2da99744f1ff5a9cb1cfd6607821cec30e960030d4d478d1b",
+      "bytes": 71647
     },
     {
       "path": "published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.pdf",
@@ -97,8 +104,8 @@
     },
     {
       "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
-      "sha256": "6c0ed008e790c4dc66258f8a2aee77c4c219ae9f5b9acc547c2868ee5581f07c",
-      "bytes": 58195
+      "sha256": "dd95ec6fe8f818541fee20723ea773990b0b16cfeb1ce513d78698c6dff8bb32",
+      "bytes": 58271
     },
     {
       "path": "published/SSS_C1_CASE02_ANSWER_KEY_v1.0.pdf",
@@ -107,8 +114,8 @@
     },
     {
       "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html",
-      "sha256": "c2286bd3d152e1082d99d5d18557cb4df4430a9337882d779720e2395aa53402",
-      "bytes": 66114
+      "sha256": "de8988e3ee3c0d4f576ce20f3d4a8cbb2e55782759bf68e50349e581d4682fd0",
+      "bytes": 67279
     },
     {
       "path": "published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.pdf",
@@ -117,8 +124,8 @@
     },
     {
       "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.html",
-      "sha256": "45ce3276409659b33404ba148bd3dab0bf0266a72415f0b7bf836c83c2e848a2",
-      "bytes": 66067
+      "sha256": "f68970d429ff587096593ced3267f6ae584f541af84bd88a673afb47c418babf",
+      "bytes": 67232
     },
     {
       "path": "published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.pdf",
@@ -127,8 +134,8 @@
     },
     {
       "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html",
-      "sha256": "5d5b1674a7ac31c2240e5b5a35ebe3dd31ef78013712998502a9baf3c21d2482",
-      "bytes": 75012
+      "sha256": "09ed396de48801e6f1b82b7f54895bd761447319011f2b32c76b91b54f322558",
+      "bytes": 75048
     },
     {
       "path": "published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.pdf",
@@ -157,8 +164,8 @@
     },
     {
       "path": "reports/CASE02_VALIDATION_REPORT.md",
-      "sha256": "32ecfce78296e2615e4b1188d22eed47912181a76c097c89b93df4b793d6b81a",
-      "bytes": 1170
+      "sha256": "bad2d74522614c6f95c43626aae629fcdb32170097a058ab0eb964d1ff980f28",
+      "bytes": 1560
     },
     {
       "path": "reports/PAGE_IDENTITY_VISUAL_COMPARISON.md",
@@ -232,13 +239,13 @@
     },
     {
       "path": "validation-artifacts/CASE02_CER_HTML_VALIDATION_RESULTS.json",
-      "sha256": "43aa73e28f8f4618d46566848c4ce7952316e320884995b071b9da92c0bca670",
-      "bytes": 7817
+      "sha256": "a1aafa284378d274028d62a0bfd9192bb4c29473aa5c8176b6dc7cdaf3b687b0",
+      "bytes": 13867
     },
     {
       "path": "validation-artifacts/build_case02_cer_html.py",
-      "sha256": "1bbbb2ed57452d6b0eebfffc635d933c21f3818960d9104badf831d0f21c7117",
-      "bytes": 6251
+      "sha256": "e8e4525cd45e4c3065dd4491e3707f5e9687620be7b328c33bbd756d73b7afab",
+      "bytes": 7692
     },
     {
       "path": "validation-artifacts/README.md",
@@ -287,8 +294,8 @@
     },
     {
       "path": "validation-artifacts/validate_case02_cer_html.py",
-      "sha256": "952513c12a8347b536983fc2fa115f05acdf0a753a131f08157d8f5e8752f34d",
-      "bytes": 9359
+      "sha256": "b8136781c1c9b644436dd9b0da8bfddc79b8cffe718c2bcf5a88eb0b4524bcc7",
+      "bytes": 13436
     }
   ],
   "game_commit": "2a6e8a7bb75c8c96f26f9ebfe7523668107ab712",
