@@ -2,19 +2,21 @@
 
 **Case:** SSS Campaign 1, Case 03 - Mars Habitat
 
-**Status:** VALIDATION BUILD
+**Release status:** APPROVED STABLE
+
+**Approval date:** 2026-07-31
 
 **Artifact policy:** HTML_ONLY
 
 **Game baseline:** `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 
-**Automated HTML result:** PASS - 140/140 consolidated assertions
+**Automated HTML result:** PASS - 142/142 consolidated assertions
 
-**Shared shell contract:** PASS - 376/376 assertions
+**Shared shell and registry contract:** PASS - 377/377 assertions
 
 **Editor-shell browser result:** PASS - 97/97 assertions
 
-**Owner browser physical-print gate:** OPEN
+**Owner browser physical-print gate:** PASS - Nate / Owner, 2026-07-31
 
 ## Canonical artifact set
 
@@ -65,4 +67,4 @@ The canonical expansion is **Solar Agricultural Agency**. This remains a follow-
 
 ## Release gate
 
-Automated HTML and browser results are recorded in `validation-artifacts/`. Case 03 remains VALIDATION BUILD until all automated gates, rendered browser review, and the owner physical-print checklist pass.
+Automated HTML and browser results are recorded in `validation-artifacts/`. All automated gates, rendered browser review, and the owner physical-print checklist passed. Case 03 is APPROVED STABLE under the HTML-only production policy as of 2026-07-31. Browser/printer and paper details were not recorded.

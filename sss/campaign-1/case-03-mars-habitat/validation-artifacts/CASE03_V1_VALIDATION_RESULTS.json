@@ -2,7 +2,7 @@
   "case": "SSS-C1-CASE03",
   "version": "1.0",
   "status": "PASS",
-  "buildStatus": "VALIDATION BUILD",
+  "buildStatus": "APPROVED STABLE",
   "artifactPolicy": "HTML_ONLY",
   "activeReleaseGates": [
     "static HTML validation",
@@ -14,7 +14,7 @@
     "HTML page counts",
     "HTML checksum verification",
     "rendered browser review",
-    "owner physical print test (OPEN)"
+    "owner physical print test (PASS \u2014 Nate / Owner, 2026-07-31)"
   ],
   "pageCounts": {
     "student": 4,
@@ -37,8 +37,8 @@
   },
   "groups": {
     "static_html": {
-      "pass": 20,
-      "total": 20
+      "pass": 21,
+      "total": 21
     },
     "component_contract": {
       "pass": 20,
@@ -81,13 +81,13 @@
       "total": 4
     },
     "owner_physical_print": {
-      "pass": 1,
-      "total": 1
+      "pass": 2,
+      "total": 2
     }
   },
   "total": {
-    "pass": 140,
-    "total": 140
+    "pass": 142,
+    "total": 142
   },
   "failures": [],
   "checks": [
@@ -147,6 +147,12 @@
     },
     {
       "group": "static_html",
+      "name": "metadata sss-publication-date",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "static_html",
       "name": "canonical institution name present",
       "pass": true,
       "detail": ""
@@ -183,7 +189,7 @@
     },
     {
       "group": "static_html",
-      "name": "manifest status remains VALIDATION BUILD",
+      "name": "manifest status is APPROVED",
       "pass": true,
       "detail": ""
     },
@@ -927,9 +933,15 @@
     },
     {
       "group": "owner_physical_print",
-      "name": "owner physical print gate remains OPEN",
+      "name": "owner physical print gate passed",
       "pass": true,
       "detail": ""
+    },
+    {
+      "group": "owner_physical_print",
+      "name": "owner approval metadata is complete and exact",
+      "pass": true,
+      "detail": "{'status': 'PASS', 'date': '2026-07-31', 'tester': 'Nate / Owner', 'browser_printer': 'Not recorded', 'paper': 'Not recorded', 'scale': '100% / Actual Size', 'evidence_path': 'published/OWNER_PRINT_TEST_CHECKLIST.md'}"
     }
   ]
 }

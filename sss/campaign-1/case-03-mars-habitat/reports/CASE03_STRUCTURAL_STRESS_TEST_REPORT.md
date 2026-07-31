@@ -2,7 +2,7 @@
 
 ## Framework elements reused
 
-Letter page geometry; 0.50-inch margins; first-page and continuation identity; role-specific footers; role isolation; editable responses; local persistence; selective clearing; source reset; portable HTML serialization; overflow warnings; keyboard operation; source/master/output separation; and the VALIDATION BUILD release gate.
+Letter page geometry; 0.50-inch margins; first-page and continuation identity; role-specific footers; role isolation; editable responses; local persistence; selective clearing; source reset; portable HTML serialization; overflow warnings; keyboard operation; source/master/output separation; and the approval release gate.
 
 ## Case-specific visualization components
 

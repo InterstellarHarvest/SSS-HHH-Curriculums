@@ -3,7 +3,9 @@ window.SSS_CASE03_TASK_REGISTRY = {
   "case": "SSS-C1-CASE03",
   "title": "Mars Habitat",
   "version": "1.0",
-  "status": "VALIDATION BUILD",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-07-31",
+  "approvedBy": "Nate / Owner",
   "editorShell": "1.0",
   "gameCommit": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
   "roles": {

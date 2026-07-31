@@ -3,7 +3,9 @@
 **Duration:** 60 minutes  
 **Student identity:** Data Analyst  
 **Core science:** light spectrum versus total intensity  
-**Status:** VALIDATION BUILD
+**Status:** APPROVED STABLE
+
+**Approval date:** 2026-07-31
 
 ## Overview
 Students analyze a Mars potato-growth failure by distinguishing aggregate photon quantity from wavelength distribution. They graph the four current runtime transmission values, compare them with the adequate 280 PPFD reading, identify selective red/deep-red rejection at the collector, and explain the new-growth bleaching pattern.

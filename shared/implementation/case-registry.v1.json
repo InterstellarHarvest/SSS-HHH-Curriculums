@@ -50,7 +50,7 @@
               "id": "SSS-C1-CASE03",
               "title": "Mars Habitat",
               "version": "1.0",
-              "status": "VALIDATION BUILD",
+              "status": "APPROVED_STABLE",
               "artifactPolicy": "HTML_ONLY",
               "editorShell": "1.0",
               "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",

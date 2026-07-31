@@ -2,7 +2,10 @@
 
 **Case:** SSS-C1-CASE03  
 **Student identity:** Data Analyst  
-**Status:** VALIDATION BUILD  
+**Status:** APPROVED STABLE
+
+**Approval date:** 2026-07-31
+
 **Game baseline:** `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 
 ## Mission question

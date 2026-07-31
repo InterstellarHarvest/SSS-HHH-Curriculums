@@ -2,9 +2,10 @@
   "case": "SSS-C1-CASE03",
   "title": "Mars Habitat",
   "version": "1.0",
-  "status": "VALIDATION BUILD",
+  "status": "APPROVED",
   "artifact_policy": "HTML_ONLY",
-  "release_status": "AUTOMATED_HTML_VALIDATION_PASS_PHYSICAL_PRINT_OPEN",
+  "release_status": "APPROVED_STABLE",
+  "publication_date": "2026-07-31",
   "student_identity": "Data Analyst",
   "core_science": "light spectrum versus total intensity",
   "curriculum_baseline": "e524d333f28a1515571f038e3ed494d87aa812d3",
@@ -36,8 +37,8 @@
   ],
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "11534464c4d188e5cefd08c8db4ea25eda1070be6c8d6cbf4c244b73ca040e89",
-    "bytes": 190723
+    "sha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce",
+    "bytes": 190771
   },
   "page_counts": {
     "student": 4,
@@ -60,8 +61,8 @@
   ],
   "automated_validation": {
     "status": "PASS",
-    "consolidated": "140/140 PASS",
-    "shared_shell_contract": "376/376 PASS",
+    "consolidated": "142/142 PASS",
+    "shared_shell_contract": "377/377 PASS",
     "editor_shell_browser": "97/97 PASS",
     "static_html": "20/20 PASS",
     "component_contract": "20/20 PASS",
@@ -77,47 +78,47 @@
     "balanced_fill_reserves": "Student 44.3-120.2px; Accessible 71.6-168.2px; enforced 40-180px",
     "student_task_1_2_gap": "17.3px PASS",
     "optional_extension_component": "canonical-v1.0; Case 01 neutral callout geometry PASS",
-    "owner_physical_print": "OPEN"
+    "owner_physical_print": "PASS \u2014 Nate / Owner, 2026-07-31"
   },
   "outputs": {
     "student": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "948ab70bcfbbd7c75c29618dfcf8762d5f37bfd324a646a3133056e45c251e3a",
-        "bytes": 68213
+        "sha256": "5e9a2353f1a9802df7d2c9371de68c92f846ff6b94fc6e661976e725821b49f9",
+        "bytes": 68262
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "dd97cb24fa606b7a1069b0c0e7e4c17ce7b45499a142fe7c19236e356ca554d6",
-        "bytes": 84768
+        "sha256": "527840faa5d297d8ee0f05487f0adab989720c37f2863644be4f06b44934cc35",
+        "bytes": 84817
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "3542c1d5c4fc762ae9a1910c74c7f9b2ce0aecf87e1814b00f8ba3ba5ac71257",
-        "bytes": 61304
+        "sha256": "1211d95ce8c19c285e7c1fa9fcf65cf93d84c1039aaa6ab1e8eda86c36118c7f",
+        "bytes": 61353
       }
     },
     "accessible": {
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "0ef82339c50e646b0f1c0b39bed5cea6c63bab8030f249097e8638ae82723d94",
-        "bytes": 73209
+        "sha256": "1538b8d4ec7092cf224e1fad3cefcaebbf4937a45c8c9c75622d0061b7d167a0",
+        "bytes": 73258
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "496f40f2ff15618a6024013ff523bfc8aa8c3c569356f7091f9922a75207277c",
-        "bytes": 68212
+        "sha256": "323a4559d15c970d61406ffd52a215b29c9177949e45fa05c5b310691f921377",
+        "bytes": 68261
       }
     }
   },
@@ -134,8 +135,8 @@
     },
     {
       "path": "source/SSS_C1_CASE03_LESSON_PLAN.md",
-      "sha256": "73c709c9499326108defb45d07316ed94dff80fc7ceccece5762f48c1ff35e9c",
-      "bytes": 3381
+      "sha256": "5a723bd47697e583725bcc015f2d5c6cf6bd3edc5e9c95252276406b0f54ee45",
+      "bytes": 3411
     },
     {
       "path": "source/SSS_C1_CASE03_QUICK_START.md",
@@ -154,8 +155,8 @@
     },
     {
       "path": "source/SSS_C1_CASE03_STUDENT_MISSION_SOURCE.md",
-      "sha256": "2fec0672dabebeece7c313ca3327308c3f9d216cf023009e45dc7e99dd40cb35",
-      "bytes": 2978
+      "sha256": "f76428f2c4d72bfd35aed5313a4b18461587b5658dd2cc40f5405fe904ab73aa",
+      "bytes": 3007
     },
     {
       "path": "source/SSS_C1_CASE03_TEACHER_CASE_ANALYSIS.md",
@@ -169,13 +170,13 @@
     },
     {
       "path": "source/task-registry.js",
-      "sha256": "8076ade368b798f07417c035c52f0d0c59afc24a2577e82211663a6a98190f85",
-      "bytes": 3653
+      "sha256": "aa8a44eda7581843edda86cb0a4064cf545c30159265019e68c2894f9cc70d9d",
+      "bytes": 3716
     },
     {
       "path": "source/editor/case03-editor-config.json",
-      "sha256": "3002c41368fb765515ebb25e441d151746c7fc5e4d73c2988ea5ea794bd26728",
-      "bytes": 2997
+      "sha256": "5a9a931e72213f46c67cea2eeaae7916753d00efe0fa93d6ef39b44e3566aad7",
+      "bytes": 3031
     },
     {
       "path": "source/editor/case03.css",
@@ -191,8 +192,8 @@
   "reports": [
     {
       "path": "reports/CASE03_BROWSER_RENDERED_REVIEW.md",
-      "sha256": "dfc2e61b22b28827c277bd5363956a596f28aca0e182814897d718ee607a27f2",
-      "bytes": 2017
+      "sha256": "7597c477c59ad9e3b0fc7d69aecadc318fa9a9b01f74e1263c102ebb184c922d",
+      "bytes": 2107
     },
     {
       "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
@@ -201,25 +202,30 @@
     },
     {
       "path": "reports/CASE03_STRUCTURAL_STRESS_TEST_REPORT.md",
-      "sha256": "d62ead8ea2b17ff9330e374098da6c4f30b6d50d16875884c53eea9499a30835",
-      "bytes": 2779
+      "sha256": "73c078f7b8eea8d88bf03988ca5453395058f79284a63f86b67dfdb1169aded7",
+      "bytes": 2771
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "4a77e1856e1d5aa16263f9de65a507e268e913dfe4967c95e08bd504239e6778",
-      "bytes": 4346
+      "sha256": "db3402070841a2767f1ae4f82060fd820e9f8c541cf1bdd9c75aca72af7f7e69",
+      "bytes": 4523
     }
   ],
   "validation_files": [
     {
+      "path": "published/OWNER_PRINT_TEST_CHECKLIST.md",
+      "sha256": "983955cdb8a221014a6168ba08e2eee6ba67c2525a0a74b44ff000db8310c0f1",
+      "bytes": 2666
+    },
+    {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "0b598520ac66e69f87f265ea85f3db1913d8d3984be7bb7b87006b8a9dc86058",
-      "bytes": 22946
+      "sha256": "ff2e72863d7a5d57440aa61436524f61e6cfc3962f603d962f778520944cdffe",
+      "bytes": 23458
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_CONTRACT_RESULTS.json",
-      "sha256": "a837b6980da5bf81c014fd5fa94a4aaa9ef214474739faec8a914bbbd3cc124b",
-      "bytes": 42483
+      "sha256": "f1b0ddccc767bde1f4ec8bb45979d78a0fddf172773bd618229f4ef5ef45ed19",
+      "bytes": 42645
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_BROWSER_RESULTS.json",
@@ -243,8 +249,8 @@
     },
     {
       "path": "validation-artifacts/validate_case03_v1.py",
-      "sha256": "9b9614365f898bed832fbd5c28cbf01d11305cb1c5da55a8cde2e5134223b9bf",
-      "bytes": 20803
+      "sha256": "5ba2b366639fb2fb3cfffdece0472be3a7cb61515023fc6573ee96ae184b41fe",
+      "bytes": 21625
     },
     {
       "path": "validation-artifacts/validate_case03_editor_shell.py",
@@ -252,10 +258,19 @@
       "bytes": 25681
     }
   ],
+  "owner_print_test": {
+    "status": "PASS",
+    "date": "2026-07-31",
+    "tester": "Nate / Owner",
+    "browser_printer": "Not recorded",
+    "paper": "Not recorded",
+    "scale": "100% / Actual Size",
+    "evidence_path": "published/OWNER_PRINT_TEST_CHECKLIST.md"
+  },
   "release_gate": {
-    "may_mark_approved": false,
-    "status": "OPEN",
-    "reason": "Owner browser physical print testing at 100% / Actual Size has not passed."
+    "may_mark_approved": true,
+    "status": "PASS",
+    "reason": "Automated HTML validation, rendered browser review, and owner physical print testing at 100% / Actual Size passed by Nate / Owner on 2026-07-31."
   },
   "institutional_identity": {
     "abbreviation": "SAA",

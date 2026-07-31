@@ -297,6 +297,16 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
     if case_entry:
         check("case registry records shell 1.0", case_entry.get("editorShell") == "1.0")
         check("case registry records HTML-only artifact policy", case_entry.get("artifactPolicy") == "HTML_ONLY")
+        expected_registry_status = (
+            "APPROVED_STABLE"
+            if config["metadata"].get("sss-status") == "approved"
+            else "VALIDATION BUILD"
+        )
+        check(
+            "case registry status matches release metadata",
+            case_entry.get("status") == expected_registry_status,
+            f'actual={case_entry.get("status")} expected={expected_registry_status}',
+        )
     for case in registry_cases:
         check(f"registry master exists for {case['id']}", (REPO / case["master"]).is_file())
         for role, path in case.get("roles", {}).items():

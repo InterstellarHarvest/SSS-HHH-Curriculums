@@ -59,10 +59,11 @@ def main() -> int:
     expected_meta = {
         "sss-case": "SSS-C1-CASE03",
         "sss-curriculum-version": "1.0",
-        "sss-status": "validation-build",
+        "sss-status": "approved",
         "sss-artifact-policy": "html-only",
         "sss-game-baseline": GAME,
         "sss-editor-shell": "1.0",
+        "sss-publication-date": "2026-07-31",
     }
     for name, expected in expected_meta.items():
         node = master.find("meta", attrs={"name": name})
@@ -70,7 +71,7 @@ def main() -> int:
     check("static_html", "canonical institution name present", "Solar Agricultural Agency" in visible)
     for index, rejected in enumerate(REJECTED_SAA, 1):
         check("static_html", f"rejected institution expansion {index} absent", rejected not in visible)
-    check("static_html", "manifest status remains VALIDATION BUILD", manifest.get("status") == "VALIDATION BUILD")
+    check("static_html", "manifest status is APPROVED", manifest.get("status") == "APPROVED")
     check("static_html", "manifest artifact policy is HTML_ONLY", manifest.get("artifact_policy") == "HTML_ONLY")
     check("static_html", "manifest contains no PDF output keys", '"pdf"' not in MANIFEST.read_text(encoding="utf-8").lower())
     case03_pdfs = sorted(path.name for path in ROOT.rglob("*.pdf"))
@@ -277,7 +278,26 @@ def main() -> int:
         shell_browser.get("failed") == 0,
         shell_browser.get("failed"),
     )
-    check("owner_physical_print", "owner physical print gate remains OPEN", manifest.get("release_gate", {}).get("status") == "OPEN")
+    check(
+        "owner_physical_print",
+        "owner physical print gate passed",
+        manifest.get("release_gate", {}).get("status") == "PASS"
+        and manifest.get("release_gate", {}).get("may_mark_approved") is True,
+    )
+    owner_print = manifest.get("owner_print_test", {})
+    check(
+        "owner_physical_print",
+        "owner approval metadata is complete and exact",
+        owner_print.get("status") == "PASS"
+        and owner_print.get("date") == "2026-07-31"
+        and owner_print.get("tester") == "Nate / Owner"
+        and owner_print.get("browser_printer") == "Not recorded"
+        and owner_print.get("paper") == "Not recorded"
+        and owner_print.get("scale") == "100% / Actual Size"
+        and owner_print.get("evidence_path") == "published/OWNER_PRINT_TEST_CHECKLIST.md"
+        and (ROOT / owner_print.get("evidence_path", "")).is_file(),
+        owner_print,
+    )
 
     status = all(item["pass"] for item in checks)
     groups: dict[str, dict[str, int]] = {}
@@ -290,7 +310,7 @@ def main() -> int:
         "case": "SSS-C1-CASE03",
         "version": "1.0",
         "status": "PASS" if status else "FAIL",
-        "buildStatus": "VALIDATION BUILD",
+        "buildStatus": "APPROVED STABLE",
         "artifactPolicy": "HTML_ONLY",
         "activeReleaseGates": [
             "static HTML validation",
@@ -302,7 +322,7 @@ def main() -> int:
             "HTML page counts",
             "HTML checksum verification",
             "rendered browser review",
-            "owner physical print test (OPEN)",
+            "owner physical print test (PASS — Nate / Owner, 2026-07-31)",
         ],
         "pageCounts": actual_counts,
         "overflowCounts": overflow_counts,

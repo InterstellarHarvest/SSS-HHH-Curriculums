@@ -2,8 +2,8 @@
   "validator": "shared-editor-shell-contract",
   "shellVersion": "1.0",
   "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-  "assertions": 376,
-  "passed": 376,
+  "assertions": 377,
+  "passed": 377,
   "failed": 0,
   "failures": [],
   "results": [
@@ -1808,6 +1808,11 @@
       "name": "case registry records HTML-only artifact policy",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "case registry status matches release metadata",
+      "pass": true,
+      "detail": "actual=APPROVED_STABLE expected=APPROVED_STABLE"
     },
     {
       "name": "registry master exists for SSS-C1-CASE01",
