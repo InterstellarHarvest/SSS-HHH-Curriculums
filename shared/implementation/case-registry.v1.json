@@ -53,6 +53,7 @@
               "status": "APPROVED_STABLE",
               "artifactPolicy": "HTML_ONLY",
               "editorShell": "1.0",
+              "editorPackage": "sss/campaign-1/case-03-mars-habitat/source/editor-package/case-package.v1.json",
               "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
               "roles": {
                 "student": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",

@@ -46,6 +46,7 @@
                         "enum": ["HISTORICAL_PDFS_RETAINED", "HTML_ONLY"]
                       },
                       "editorShell": { "type": ["string", "null"] },
+                      "editorPackage": { "type": "string", "minLength": 1 },
                       "master": { "type": "string", "minLength": 1 },
                       "roles": {
                         "type": "object",

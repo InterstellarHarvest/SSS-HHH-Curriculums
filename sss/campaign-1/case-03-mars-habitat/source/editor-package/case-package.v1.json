@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "id": "SSS-C1-CASE03",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "Mars Habitat",
+  "subtitle": "Campaign 1 · Case 03 · Light spectrum versus total intensity",
+  "location": "Mars Habitat",
+  "version": "1.0",
+  "status": "APPROVED_STABLE",
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE03:v1.0:curriculum-editor-v1",
+  "supportedRoles": ["student", "teacher", "answer", "accessible", "grayscale"],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-03-mars-habitat/source/task-registry.js",
+    "global": "SSS_CASE03_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "content": {
+    "source": "sss/campaign-1/case-03-mars-habitat/source/editor/case03-content.html",
+    "format": "html-fragment"
+  },
+  "styles": [
+    {
+      "source": "sss/campaign-1/case-03-mars-habitat/source/editor/case03.css",
+      "scope": "case"
+    }
+  ],
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "inline-svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "spectral-transmission-figures",
+      "type": "inline-svg",
+      "selector": "[data-quantity-spectrum=\"canonical-v1.0\"]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "sourceRole": "student",
+      "documentRole": "Student Mission",
+      "pageCount": 4,
+      "grayscale": false
+    },
+    "teacher": {
+      "sourceRole": "teacher",
+      "documentRole": "Teacher Guide",
+      "pageCount": 8,
+      "grayscale": false
+    },
+    "answer": {
+      "sourceRole": "answer",
+      "documentRole": "Answer Key",
+      "pageCount": 4,
+      "grayscale": false
+    },
+    "accessible": {
+      "sourceRole": "accessible",
+      "documentRole": "Accessible Mission",
+      "pageCount": 6,
+      "grayscale": false
+    },
+    "grayscale": {
+      "sourceRole": "student",
+      "documentRole": "Student Mission",
+      "pageCount": 4,
+      "grayscale": true
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE03_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C1_CASE03_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C1_CASE03_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C1_CASE03_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0_CUSTOM.html",
+    "grayscale": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 Case 03 — Mars Habitat Curriculum Editor",
+    "loadAnnouncement": "Mars Habitat Case 03 loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      "[aria-label*=\"description\"]",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification."
+  }
+}
