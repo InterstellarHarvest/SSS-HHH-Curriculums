@@ -195,7 +195,7 @@ def main() -> int:
     results.check("package and registry statuses agree", package["status"] == case03["status"])
     results.check("package uses shared editor shell 1.0", package["shell"]["version"] == "1.0")
     results.check("package does not load the approved master", "master/" not in json.dumps(package))
-    results.check("all five roles are declared", package["supportedRoles"] == REQUIRED_ROLES, package["supportedRoles"])
+    results.check("all five package output profiles are declared", package["supportedRoles"] == REQUIRED_ROLES, package["supportedRoles"])
     expected_counts = {"student": 4, "teacher": 8, "answer": 4, "accessible": 6, "grayscale": 4}
     results.check("role page-count contract is 4/8/4/6/4", {role: package["rolePageStructure"][role]["pageCount"] for role in REQUIRED_ROLES} == expected_counts)
     results.check("Grayscale maps to Student source pages", package["rolePageStructure"]["grayscale"]["sourceRole"] == "student" and package["rolePageStructure"]["grayscale"]["grayscale"] is True)
@@ -229,6 +229,9 @@ def main() -> int:
     results.check("every task has one Phosphor icon ID", all(task["icon"].startswith("ph-") for task in tasks["tasks"]))
 
     app_html = BeautifulSoup((APP / "index.html").read_text(encoding="utf-8"), "html.parser")
+    app_css = (APP / "editor-app.css").read_text(encoding="utf-8")
+    app_runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
+    portable_runtime = (APP / "portable-runtime.js").read_text(encoding="utf-8")
     results.check("library rail is an aside with labelled navigation", bool(app_html.select_one("aside.library-rail nav[aria-label]")))
     results.check("library selectors have explicit labels", all(app_html.select_one(f'label[for="{identifier}"]') for identifier in ["curriculumSelect", "campaignSelect", "caseSelect"]))
     results.check("role selector is a fieldset with legend", bool(app_html.select_one("fieldset#roleLibrary legend")))
@@ -236,8 +239,15 @@ def main() -> int:
     results.check("editor errors use alert semantics", app_html.select_one("#editorError").get("role") == "alert")
     results.check("skip link targets the main editor", app_html.select_one('a[href="#editorMain"]') is not None and app_html.select_one("main#editorMain") is not None)
     results.check("manual PDF accessibility warning is visible", "does not guarantee PDF accessibility" in app_html.get_text(" "))
-    results.check("reduced-motion CSS is present", "prefers-reduced-motion" in (APP / "editor-app.css").read_text(encoding="utf-8"))
+    results.check("reduced-motion CSS is present", "prefers-reduced-motion" in app_css)
     results.check("app uses only local runtime sources", not app_html.select('script[src^="http"], link[href^="http"]'))
+    results.check("toolbar offset has a CSS fallback without the rejected 92px gap", "--app-toolbar-offset: 76px" in app_css and "--app-toolbar-offset: 92px" not in app_css)
+    results.check("layout and rail share the measured toolbar offset variable", app_css.count("var(--app-toolbar-offset)") >= 3)
+    results.check("toolbar measurement observes resize and font completion", "new ResizeObserver(syncToolbarOffset)" in app_runtime and "document.fonts?.ready.then(syncToolbarOffset)" in app_runtime)
+    results.check("central navigation defines exactly four instructional roles", 'const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"]' in app_runtime)
+    results.check("central toolbar removes its duplicate Role label", 'roleControl.closest("label")?.remove()' in app_runtime)
+    results.check("Grayscale is stored as a presentation modifier", 'classList.toggle("grayscale", state.grayscale)' in app_runtime and 'classList.toggle("grayscale", state.grayscale)' in portable_runtime)
+    results.check("no whole-page grayscale filter was introduced", not re.search(r"filter\s*:\s*grayscale|grayscale\(", app_css + app_runtime + portable_runtime, re.I))
 
     # Required clean-failure cases are exercised in memory without changing repository files.
     unsupported = copy.deepcopy(package)

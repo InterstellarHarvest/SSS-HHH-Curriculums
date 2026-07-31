@@ -25,6 +25,20 @@
       throw new Error("Timed out waiting for browser condition.");
     };
     const visiblePages = frame => Array.from(frame.contentDocument.querySelectorAll(".page")).filter(page => getComputedStyle(page).display !== "none" && !page.hidden);
+    const layoutMetrics = frame => {
+      const doc = frame.contentDocument;
+      const toolbar = doc.querySelector(".toolbar").getBoundingClientRect();
+      const layout = doc.querySelector(".editor-layout");
+      const rail = doc.querySelector(".library-rail").getBoundingClientRect();
+      const main = doc.querySelector(".editor-main").getBoundingClientRect();
+      return {
+        toolbarBottom: toolbar.bottom,
+        toolbarHeight: toolbar.height,
+        layoutPaddingTop: parseFloat(getComputedStyle(layout).paddingTop),
+        railTop: rail.top,
+        mainTop: main.top
+      };
+    };
     const setHtml = (frame, selector, html) => {
       const node = frame.contentDocument.querySelector(selector);
       node.innerHTML = html;
@@ -60,25 +74,61 @@
       check("registry-loaded Case 03 package is current", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.0" && api.getPackage().status === "APPROVED_STABLE");
       check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
       check("load status announces the case", doc.querySelector("#loadStatus").textContent.includes("Mars Habitat"));
-      check("library rail exposes five role radios", doc.querySelectorAll('input[name="libraryRole"]').length === 5);
+      const railRoles = Array.from(doc.querySelectorAll('input[name="libraryRole"]')).map(node => node.value);
+      check("library rail exposes only four instructional roles", JSON.stringify(railRoles) === JSON.stringify(["student", "teacher", "answer", "accessible"]), railRoles.join(","));
+      check("library rail has no Grayscale role option", !doc.querySelector('input[name="libraryRole"][value="grayscale"]'));
 
-      const expectedOrder = ["roleControl", "fillControl", "editControl", "marginTop", "marginRight", "marginBottom", "marginLeft", "marginReset", "densityControl", "grayControl", "guideControl", "boundaryControl", "printButton", "downloadButton", "downloadRoleButton", "clearButton", "resetButton", "stateStatus", "overflowStatus"];
+      const expectedOrder = ["fillControl", "editControl", "marginTop", "marginRight", "marginBottom", "marginLeft", "marginReset", "densityControl", "grayControl", "guideControl", "boundaryControl", "printButton", "downloadButton", "downloadRoleButton", "clearButton", "resetButton", "stateStatus", "overflowStatus"];
       const actualOrder = Array.from(doc.querySelectorAll(".toolbar [id]")).map(node => node.id);
       check("all required controls exist exactly once in contract order", JSON.stringify(actualOrder) === JSON.stringify(expectedOrder), actualOrder.join(","));
+      check("central toolbar has no duplicate Role selector", !doc.querySelector(".toolbar #roleControl"));
+      check("central toolbar retains the Grayscale presentation toggle", Boolean(doc.querySelector('.toolbar #grayControl[aria-label="Grayscale presentation"]')));
+      check("removed Role selector leaves no empty toolbar group", Array.from(doc.querySelectorAll(".toolbar-group")).every(group => group.querySelector("input,select,button")));
       check("toolbar is owned outside case content", !doc.querySelector("#worksheetWorkspace .toolbar"));
       check("toolbar save status is polite live text", doc.querySelector("#stateStatus").getAttribute("aria-live") === "polite");
       check("toolbar overflow status is polite live text", doc.querySelector("#overflowStatus").getAttribute("aria-live") === "polite");
 
-      const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 6, grayscale: 4 };
+      for (const width of [1440, 1100, 820, 640]) {
+        frame.width = String(width);
+        await wait(180);
+        api.syncToolbarOffset();
+        await wait(40);
+        const metrics = layoutMetrics(frame);
+        const railGap = Math.abs(metrics.railTop - metrics.toolbarBottom);
+        const paddingGap = Math.abs(metrics.layoutPaddingTop - metrics.toolbarHeight);
+        const mainGap = width > 700 ? Math.abs(metrics.mainTop - metrics.toolbarBottom) : 0;
+        check(`${width}px layout begins directly below measured toolbar`, railGap <= 1.5 && paddingGap <= 1.5 && mainGap <= 1.5, JSON.stringify({ railGap, paddingGap, mainGap, metrics }));
+      }
+      frame.width = "1440";
+      await wait(180);
+      api.syncToolbarOffset();
+
+      const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 6 };
       for (const [role, expected] of Object.entries(expectedCounts)) {
         api.setRole(role);
         await wait(80);
         check(`${role} role loads ${expected} pages`, visiblePages(frame).length === expected, visiblePages(frame).length);
         check(`${role} role reports zero overflow`, api.checkOverflow() === 0, doc.querySelector("#overflowStatus").textContent);
-        const expectedSource = role === "grayscale" ? "student" : role;
-        check(`${role} role contains no other role pages`, visiblePages(frame).every(page => page.dataset.role === expectedSource));
+        check(`${role} role contains no other role pages`, visiblePages(frame).every(page => page.dataset.role === role));
       }
-      check("Grayscale role uses token grayscale mode", doc.body.classList.contains("grayscale"));
+
+      api.setRole("student");
+      const grayControl = doc.querySelector("#grayControl");
+      grayControl.checked = true;
+      grayControl.dispatchEvent(new win.Event("change", { bubbles: true }));
+      check("Student plus Grayscale retains Student as selected role", api.getState().role === "student" && api.getState().grayscale === true);
+      check("Student plus Grayscale renders four Student pages", visiblePages(frame).length === 4 && visiblePages(frame).every(page => page.dataset.role === "student"));
+      check("Student plus Grayscale maps to canonical Grayscale Mission output", api.getCurrentRoleOutput().outputRole === "grayscale" && api.getCurrentRoleOutput().filename.includes("GRAYSCALE_MISSION"));
+      check("Grayscale uses token presentation rather than a role switch", doc.body.classList.contains("grayscale") && doc.body.dataset.role === "student");
+      doc.querySelector('input[name="libraryRole"][value="teacher"]').click();
+      await wait(60);
+      check("left rail is authoritative for role switching", api.getState().role === "teacher" && visiblePages(frame).length === 8);
+      check("switching roles preserves Grayscale mode", api.getState().grayscale === true && doc.body.classList.contains("grayscale"));
+      check("non-Student Grayscale retains its document-role output", api.getCurrentRoleOutput().outputRole === "teacher" && api.getCurrentRoleOutput().filename.includes("TEACHER_GUIDE"));
+      check("role and Grayscale status are announced", doc.querySelector("#loadStatus").textContent.includes("Teacher selected") && doc.querySelector("#loadStatus").textContent.includes("Grayscale on"));
+      grayControl.checked = false;
+      grayControl.dispatchEvent(new win.Event("change", { bubbles: true }));
+      check("turning Grayscale off does not change selected role", api.getState().role === "teacher" && api.getState().grayscale === false);
 
       api.resetSource(true);
       await wait(50);
@@ -93,7 +143,7 @@
       api.saveState({ editMode: true });
       check("Edit Text enables marked instructional nodes", instruction.contentEditable === "true");
       check("Edit Text leaves responses editable", response.contentEditable === "true");
-      check("Edit Text mode is visibly indicated", doc.body.classList.contains("edit-mode") && doc.querySelector("#modeIndicator").textContent === "Edit Text mode");
+      check("Edit Text mode is visibly indicated", doc.body.classList.contains("edit-mode") && doc.querySelector("#modeIndicator").textContent.includes("Edit Text mode"));
 
       api.saveState({ marginTop: .3, marginRight: .4, marginBottom: .6, marginLeft: .7 });
       check("four margins update independently", [api.getState().marginTop, api.getState().marginRight, api.getState().marginBottom, api.getState().marginLeft].join("|") === "0.3|0.4|0.6|0.7");
@@ -104,7 +154,7 @@
       check("Grayscale applies through token mode", doc.body.classList.contains("grayscale"));
       check("Guides and boundaries apply through central state", doc.body.classList.contains("show-guides") && doc.body.classList.contains("hide-boundaries"));
       win.dispatchEvent(new Event("beforeprint"));
-      check("print-preview event marks the interface", doc.body.classList.contains("print-preview"));
+      check("print-preview reflects selected role and Grayscale state", doc.body.classList.contains("print-preview") && doc.body.dataset.role === "student" && doc.body.classList.contains("grayscale"));
       win.dispatchEvent(new Event("afterprint"));
       check("print-preview state clears after print", !doc.body.classList.contains("print-preview"));
 
@@ -143,6 +193,8 @@
       check("complete serializer has no repository runtime dependencies", !portable.includes('src="/shared/') && !portable.includes('href="/shared/') && !portable.includes('src="/sss/'));
       const portableParsed = new DOMParser().parseFromString(portable, "text/html");
       check("complete serializer removes transient overflow state", !portableParsed.querySelector(".page.has-overflow"));
+      check("complete portable export retains its required Role selector", Boolean(portableParsed.querySelector(".toolbar #roleControl")));
+      check("portable Role selector models four roles plus All Pages, not Grayscale", JSON.stringify(Array.from(portableParsed.querySelectorAll("#roleControl option")).map(option => option.value)) === JSON.stringify(["student", "teacher", "answer", "accessible", "all"]));
       const portableFrame = await loadExport(portable);
       check("portable file opens with its embedded instructional edit", portableFrame.contentDocument.querySelector(instructionSelector).textContent.includes("persisted instructional"));
       check("portable file opens with its embedded response", portableFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
@@ -161,6 +213,19 @@
       const roleFrame = await loadExport(roleHtml);
       check("current-role export opens with empty-key recovery state", roleFrame.contentDocument.querySelectorAll('.page[data-role="student"]').length === 4 && roleFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
       check("current-role export retains browser-print CSS", roleHtml.includes("@media print") && roleHtml.includes("@page"));
+
+      api.saveState({ grayscale: true });
+      const grayProfile = api.getCurrentRoleOutput();
+      const grayRoleHtml = api.serializeRoleHTML("student");
+      const grayRoleDoc = new DOMParser().parseFromString(grayRoleHtml, "text/html");
+      check("Student Grayscale role export uses canonical output profile", grayProfile.outputRole === "grayscale" && grayProfile.filename.includes("GRAYSCALE_MISSION"));
+      check("Student Grayscale export contains Student pages with grayscale presentation", grayRoleDoc.body.classList.contains("grayscale") && grayRoleDoc.querySelectorAll('.page[data-role="student"]').length === 4);
+      check("Grayscale toggling preserves instructional edits and responses", grayRoleHtml.includes("persisted instructional edit") && grayRoleHtml.includes("persisted response"));
+      api.setRole("teacher");
+      const teacherGrayProfile = api.getCurrentRoleOutput();
+      const teacherGrayDoc = new DOMParser().parseFromString(api.serializeRoleHTML("teacher"), "text/html");
+      check("Teacher Grayscale remains Teacher output rather than Grayscale Mission", teacherGrayProfile.outputRole === "teacher" && teacherGrayDoc.body.classList.contains("grayscale") && teacherGrayDoc.querySelectorAll('.page[data-role="teacher"]').length === 8);
+      api.saveState({ grayscale: false });
 
       const headings = Array.from(doc.querySelectorAll(".task-heading"));
       check("all expanded task headings contain one Phosphor icon", headings.every(node => node.querySelectorAll("svg.ph-icon use").length === 1));

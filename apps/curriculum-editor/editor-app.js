@@ -1,5 +1,6 @@
 const REGISTRY_PATH = "/shared/implementation/case-registry.v1.json";
 const SUPPORTED_PACKAGE_SCHEMA = 1;
+const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"];
 const ROLE_LABELS = {
   student: "Student",
   teacher: "Teacher",
@@ -39,6 +40,8 @@ let sourceBaseline = new Map();
 let contentState = {};
 let packageStyleText = [];
 let portableRuntimeSource = "";
+let portableToolbarTemplate;
+let toolbarResizeObserver;
 let exportSequence = 0;
 
 const $ = selector => document.querySelector(selector);
@@ -202,6 +205,23 @@ function installStyles(styleEntries) {
   });
 }
 
+function syncToolbarOffset() {
+  const toolbar = elements.toolbarHost.querySelector(".toolbar");
+  if (!toolbar) return;
+  const height = toolbar.getBoundingClientRect().height;
+  if (height > 0) document.documentElement.style.setProperty("--app-toolbar-offset", `${height}px`);
+}
+
+function observeToolbar(toolbar) {
+  toolbarResizeObserver?.disconnect();
+  if ("ResizeObserver" in window) {
+    toolbarResizeObserver = new ResizeObserver(syncToolbarOffset);
+    toolbarResizeObserver.observe(toolbar);
+  }
+  requestAnimationFrame(syncToolbarOffset);
+  document.fonts?.ready.then(syncToolbarOffset);
+}
+
 function installToolbar(toolbarText) {
   const template = document.createElement("template");
   template.innerHTML = toolbarText.trim();
@@ -213,17 +233,16 @@ function installToolbar(toolbarText) {
   roleDownload.type = "button";
   roleDownload.textContent = "Download Current Role";
   download.after(roleDownload);
-  const roleControl = toolbar.querySelector("#roleControl");
-  const allOption = roleControl.querySelector('option[value="all"]');
-  const grayscale = document.createElement("option");
-  grayscale.value = "grayscale";
-  grayscale.textContent = "Grayscale";
-  roleControl.insertBefore(grayscale, allOption);
   toolbar.querySelector("#stateStatus").setAttribute("aria-live", "polite");
   toolbar.querySelector("#overflowStatus").setAttribute("aria-live", "polite");
   toolbar.querySelector("#printButton").setAttribute("aria-describedby", "pdfNotice");
+  toolbar.querySelector("#grayControl").setAttribute("aria-label", "Grayscale presentation");
+  portableToolbarTemplate = toolbar.cloneNode(true);
+  const roleControl = toolbar.querySelector("#roleControl");
+  roleControl.closest("label")?.remove();
   elements.toolbarHost.replaceChildren(toolbar);
   elements.toolbarHost.setAttribute("aria-busy", "false");
+  observeToolbar(toolbar);
 }
 
 function populateLibrary(curriculum, campaign, caseEntry) {
@@ -237,7 +256,7 @@ function populateLibrary(curriculum, campaign, caseEntry) {
   elements.campaign.replaceChildren(option(campaign.id, campaign.title));
   elements.caseSelect.replaceChildren(option(caseEntry.id, `${caseEntry.title} · v${caseEntry.version}`));
   elements.curriculum.disabled = elements.campaign.disabled = elements.caseSelect.disabled = true;
-  for (const role of casePackage.supportedRoles) {
+  for (const role of NAVIGATION_ROLES) {
     const label = document.createElement("label");
     label.className = "role-option";
     const input = document.createElement("input");
@@ -303,7 +322,7 @@ function persistElement(node) {
 
 function activeForNode(node) {
   const page = node.closest(".page[data-role]");
-  return Boolean(page && (state.role === "all" || page.dataset.role === sourceRole()));
+  return Boolean(page && page.dataset.role === sourceRole());
 }
 
 function applyEditable() {
@@ -330,7 +349,7 @@ function applyState() {
   const renderedRole = sourceRole();
   document.body.dataset.role = renderedRole;
   document.body.classList.toggle("edit-mode", state.editMode);
-  document.body.classList.toggle("grayscale", state.grayscale || state.role === "grayscale");
+  document.body.classList.toggle("grayscale", state.grayscale);
   document.body.classList.toggle("show-guides", state.guides);
   document.body.classList.toggle("hide-boundaries", !state.boundaries);
   document.body.classList.remove("density-normal", "density-compact", "density-spacious");
@@ -340,7 +359,6 @@ function applyState() {
     rootStyle.setProperty(`--margin-${side.toLowerCase()}`, `${state[`margin${side}`]}in`);
   }
   const values = {
-    roleControl: state.role,
     marginTop: state.marginTop,
     marginRight: state.marginRight,
     marginBottom: state.marginBottom,
@@ -351,7 +369,7 @@ function applyState() {
   const checks = {
     fillControl: state.fillMode,
     editControl: state.editMode,
-    grayControl: state.grayscale || state.role === "grayscale",
+    grayControl: state.grayscale,
     guideControl: state.guides,
     boundaryControl: state.boundaries
   };
@@ -363,21 +381,23 @@ function applyState() {
     page.setAttribute("aria-hidden", String(!visible));
   }
   const roleName = ROLE_LABELS[state.role];
-  elements.title.textContent = `${casePackage.title} · ${roleName}`;
-  elements.breadcrumb.textContent = `${casePackage.curriculum} → ${casePackage.campaign} → ${casePackage.title} → ${roleName}`;
-  elements.mode.textContent = state.editMode ? "Edit Text mode" : (state.fillMode ? "Fill Responses mode" : "Preview mode");
-  $("#downloadRoleButton").disabled = state.role === "all";
+  const grayscaleLabel = state.grayscale ? " · Grayscale" : "";
+  const editLabel = state.editMode ? "Edit Text mode" : (state.fillMode ? "Fill Responses mode" : "Preview mode");
+  elements.title.textContent = `${casePackage.title} · ${roleName}${grayscaleLabel}`;
+  elements.breadcrumb.textContent = `${casePackage.curriculum} → ${casePackage.campaign} → ${casePackage.title} → ${roleName}${grayscaleLabel}`;
+  elements.mode.textContent = `${roleName} · ${editLabel} · Grayscale ${state.grayscale ? "on" : "off"}`;
   applyEditable();
   requestAnimationFrame(checkOverflow);
 }
 
+function announceSelection() {
+  elements.loadStatus.textContent = `${ROLE_LABELS[state.role]} selected. Grayscale ${state.grayscale ? "on" : "off"}.`;
+}
+
 function setRole(role) {
-  const valid = [...casePackage.supportedRoles, "all"];
-  if (!valid.includes(role)) throw new Error(`Unsupported role: ${role}`);
-  const patch = { role };
-  if (role === "grayscale") patch.grayscale = true;
-  else if (state.role === "grayscale") patch.grayscale = false;
-  saveState(patch);
+  if (!NAVIGATION_ROLES.includes(role)) throw new Error(`Unsupported navigation role: ${role}`);
+  saveState({ role });
+  announceSelection();
 }
 
 function checkOverflow() {
@@ -434,13 +454,11 @@ function resetSource(force = false) {
 }
 
 function bindToolbar() {
-  $("#roleControl").addEventListener("change", event => setRole(event.target.value));
   $("#fillControl").addEventListener("change", event => saveState({ fillMode: event.target.checked }));
   $("#editControl").addEventListener("change", event => saveState({ editMode: event.target.checked }));
   $("#grayControl").addEventListener("change", event => {
-    const patch = { grayscale: event.target.checked };
-    if (!event.target.checked && state.role === "grayscale") patch.role = "student";
-    saveState(patch);
+    saveState({ grayscale: event.target.checked });
+    announceSelection();
   });
   $("#guideControl").addEventListener("change", event => saveState({ guides: event.target.checked }));
   $("#boundaryControl").addEventListener("change", event => saveState({ boundaries: event.target.checked }));
@@ -461,7 +479,7 @@ function bindToolbar() {
     const node = event.target.closest("[data-persist-id]");
     if (node) persistElement(node);
   });
-  window.addEventListener("resize", checkOverflow);
+  window.addEventListener("resize", () => { syncToolbarOffset(); checkOverflow(); });
   window.addEventListener("beforeprint", () => { document.body.classList.add("print-preview"); checkOverflow(); });
   window.addEventListener("afterprint", () => document.body.classList.remove("print-preview"));
 }
@@ -502,22 +520,24 @@ function cloneWorksheet(role = null) {
 }
 
 function cloneToolbar() {
-  const clone = $(".toolbar").cloneNode(true);
+  const clone = portableToolbarTemplate.cloneNode(true);
   for (const control of $$('input, select', clone)) {
     const live = $(`#${control.id}`);
-    if (!live) continue;
     if (control.matches('[type="checkbox"]')) {
-      control.checked = live.checked;
-      if (live.checked) control.setAttribute("checked", "");
+      const checked = live ? live.checked : false;
+      control.checked = checked;
+      if (checked) control.setAttribute("checked", "");
       else control.removeAttribute("checked");
     } else {
-      control.value = live.value;
-      for (const option of $$('option', control)) option.toggleAttribute("selected", option.value === live.value);
+      const value = control.id === "roleControl" ? state.role : live?.value;
+      if (value == null) continue;
+      control.value = value;
+      for (const option of $$('option', control)) option.toggleAttribute("selected", option.value === value);
     }
   }
   clone.querySelector("#stateStatus").textContent = "EMBEDDED SOURCE";
   clone.querySelector("#overflowStatus").textContent = "0 overflow";
-  clone.querySelector("#downloadRoleButton").disabled = state.role === "all";
+  clone.querySelector("#downloadRoleButton").disabled = false;
   return clone;
 }
 
@@ -525,9 +545,9 @@ function escapedJson(value) {
   return JSON.stringify(value).replace(/</g, "\\u003c").replace(/-->/g, "--\\u003e");
 }
 
-function portableConfig(role = null) {
+function portableConfig(role = null, grayscale = state.grayscale) {
   const sequence = `${Date.now()}-${++exportSequence}`;
-  const initial = { ...state };
+  const initial = { ...state, grayscale };
   if (role) initial.role = role;
   return {
     schemaVersion: 1,
@@ -543,12 +563,11 @@ function portableConfig(role = null) {
   };
 }
 
-function buildPortableDocument(role = null) {
-  const roleName = role ? ROLE_LABELS[role] : "Editable Worksheet";
+function buildPortableDocument(role = null, grayscale = state.grayscale) {
+  const roleName = role ? `${ROLE_LABELS[role]}${grayscale ? " · Grayscale" : ""}` : "Editable Worksheet";
   const worksheet = cloneWorksheet(role);
   const toolbar = role ? "" : cloneToolbar().outerHTML;
-  const config = portableConfig(role);
-  const grayscale = Boolean(role ? casePackage.rolePageStructure[role].grayscale : (state.grayscale || state.role === "grayscale"));
+  const config = portableConfig(role, grayscale);
   const renderedRole = role ? casePackage.rolePageStructure[role].sourceRole : sourceRole();
   const bodyClasses = [role ? "standalone-role" : "", grayscale ? "grayscale" : ""].filter(Boolean).join(" ");
   const metadata = [
@@ -571,6 +590,7 @@ ${metadata}
 </head>
 <body class="${bodyClasses}" data-role="${renderedRole}" data-standalone="${role ? "true" : "false"}">
 <a class="visually-hidden" href="#workspace">Skip to curriculum pages</a>
+<p class="visually-hidden" id="pdfNotice">${casePackage.accessibility.pdfNotice}</p>
 ${elements.icons.innerHTML}
 ${toolbar}
 ${worksheet.outerHTML}
@@ -582,8 +602,13 @@ ${worksheet.outerHTML}
 
 function serializePortableHTML() { return buildPortableDocument(null); }
 function serializeRoleHTML(role = state.role) {
-  if (role === "all") throw new Error("Choose one role before exporting a current-role file.");
-  return buildPortableDocument(role);
+  if (!NAVIGATION_ROLES.includes(role)) throw new Error("Choose one instructional role before exporting a current-role file.");
+  return buildPortableDocument(role, state.grayscale);
+}
+
+function currentRoleOutput() {
+  const outputRole = state.role === "student" && state.grayscale ? "grayscale" : state.role;
+  return { role: state.role, grayscale: state.grayscale, outputRole, filename: casePackage.outputs[outputRole] };
 }
 
 function triggerDownload(html, filename) {
@@ -603,11 +628,8 @@ function downloadPortableHTML() {
 }
 
 function downloadCurrentRole() {
-  if (state.role === "all") {
-    alert("Choose one role before downloading a current-role file.");
-    return false;
-  }
-  triggerDownload(serializeRoleHTML(state.role), casePackage.outputs[state.role]);
+  const output = currentRoleOutput();
+  triggerDownload(serializeRoleHTML(state.role), output.filename);
   return true;
 }
 
@@ -665,14 +687,18 @@ async function initialize() {
   contentKey = `curriculum-editor:${casePackage.documentKey}:content`;
   defaultState = { ...casePackage.defaultToolbarState };
   const saved = storageState();
+  if (saved.role === "grayscale") {
+    saved.role = "student";
+    saved.grayscale = true;
+  }
   state = { ...defaultState, ...saved };
-  if (![...casePackage.supportedRoles, "all"].includes(state.role)) state.role = defaultState.role;
+  if (!NAVIGATION_ROLES.includes(state.role)) state.role = defaultState.role;
   loadPersistentContent();
   bindToolbar();
   setSaveStatus(Object.keys(contentState).length ? "AUTOSAVE RESTORED" : "LOCAL SAVE READY");
   applyState();
   elements.workspace.setAttribute("aria-busy", "false");
-  elements.loadStatus.textContent = casePackage.accessibility.loadAnnouncement;
+  elements.loadStatus.textContent = `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`;
   window.__curriculumEditor = {
     getState: () => ({ ...state }),
     getPackage: () => structuredClone(casePackage),
@@ -685,6 +711,8 @@ async function initialize() {
     resetSource,
     serializePortableHTML,
     serializeRoleHTML,
+    getCurrentRoleOutput: () => ({ ...currentRoleOutput() }),
+    syncToolbarOffset,
     persistElement,
     keys: { stateKey, contentKey }
   };

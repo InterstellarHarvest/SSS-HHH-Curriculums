@@ -16,13 +16,15 @@ The server is required. `file://` is not a supported production path because the
 
 ## Phase 1 workflow
 
-1. Choose Curriculum → Campaign → Case → Role in the library rail. Phase 1 exposes only the current registered Case 03 package.
+1. Choose Curriculum → Campaign → Case → Role in the library rail. The rail contains the four instructional roles: Student, Teacher, Answer Key, and Accessible. Phase 1 exposes only the current registered Case 03 package.
 2. Use **Fill responses** for response fields or **Edit text** for explicitly marked instructional nodes.
 3. Changes autosave to local browser storage under the package's unique case/version/document key.
 4. Use **Download Current HTML** for a self-contained editable worksheet containing every role.
 5. Use **Download Current Role** for a self-contained file containing only the selected role.
 
-Grayscale is the approved Student production mode, so it uses the Student pages and responses with grayscale token overrides. It is selectable as a library/output role while remaining correctly identified as `Student Mission` in printable page footers.
+Grayscale is a toolbar presentation modifier, not a library role. It remains on when switching among instructional roles and never changes the selected role or page set. Student with Grayscale enabled maps to the canonical Grayscale Mission output name. Other roles retain their own output identity while exporting with grayscale presentation. Grayscale uses token overrides and keeps `Student Mission` identity in the canonical Student Grayscale footer.
+
+The central toolbar omits the duplicate Role selector because the library rail is authoritative. A complete portable HTML export restores the shared-shell Role selector because that file has no library rail.
 
 **Clear Current Role** removes response and note fields only from the selected source role. **Reset Source** clears the package autosave, restores package content, and restores toolbar defaults. In a downloaded complete HTML file, Reset Source preserves the instructional edits embedded in that file and clears response recovery work, matching shared-shell v1.0 behavior.
 
@@ -53,6 +55,8 @@ python3 apps/curriculum-editor/tests/run_browser_tests.py --chrome /path/to/chro
 ```
 
 The static suite validates registry/package schemas, references, negative failure modes, task and component contracts, accessibility structure, release hashes, and the no-PDF rule. The browser suite validates controls, roles, page counts, editing, autosave/reload, role isolation, layout controls, print-preview events, zero overflow, portable serialization, Reset Source, current-role export, and browser rendering.
+
+The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/screenshots/curriculum-editor-wide-desktop.png) at 1440×1200.
 
 ## Security and local-file assumptions
 

@@ -1,6 +1,7 @@
 :root {
   --app-rail: 248px;
-  --app-toolbar-offset: 92px;
+  /* Initial fallback; editor-app.js replaces this with the rendered toolbar height. */
+  --app-toolbar-offset: 76px;
   --app-ink: #17242a;
   --app-muted: #58676f;
   --app-border: #b7c4ca;
@@ -33,12 +34,20 @@ body {
 
 .skip-link:focus { transform: translateY(0); }
 
+#packageIcons {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 :focus-visible {
   outline: 3px solid var(--app-focus);
   outline-offset: 2px;
 }
 
 #editorToolbarHost .toolbar {
+  position: fixed;
   min-height: 76px;
 }
 
@@ -204,10 +213,7 @@ body.print-preview .workspace-header,
 body.print-preview .editor-statuses { opacity: .55; }
 
 @media (max-width: 980px) {
-  :root { --app-toolbar-offset: 10px; }
-  #editorToolbarHost .toolbar { position: relative; }
-  .editor-layout { grid-template-columns: 210px minmax(0, 1fr); padding-top: 10px; }
-  .library-rail { top: 10px; height: calc(100vh - 10px); }
+  .editor-layout { grid-template-columns: 210px minmax(0, 1fr); }
   .editor-statuses { grid-template-columns: 1fr; }
 }
 

@@ -92,7 +92,7 @@
     const renderedRole = sourceRole();
     document.body.dataset.role = renderedRole;
     document.body.classList.toggle("edit-mode", state.editMode);
-    document.body.classList.toggle("grayscale", state.grayscale || state.role === "grayscale");
+    document.body.classList.toggle("grayscale", state.grayscale);
     document.body.classList.toggle("show-guides", state.guides);
     document.body.classList.toggle("hide-boundaries", !state.boundaries);
     document.body.classList.remove("density-normal", "density-compact", "density-spacious");
@@ -102,7 +102,7 @@
     }
     const values = { roleControl: state.role, marginTop: state.marginTop, marginRight: state.marginRight, marginBottom: state.marginBottom, marginLeft: state.marginLeft, densityControl: state.density };
     for (const [id, value] of Object.entries(values)) if ($(`#${id}`)) $(`#${id}`).value = value;
-    const checks = { fillControl: state.fillMode, editControl: state.editMode, grayControl: state.grayscale || state.role === "grayscale", guideControl: state.guides, boundaryControl: state.boundaries };
+    const checks = { fillControl: state.fillMode, editControl: state.editMode, grayControl: state.grayscale, guideControl: state.guides, boundaryControl: state.boundaries };
     for (const [id, value] of Object.entries(checks)) if ($(`#${id}`)) $(`#${id}`).checked = value;
     for (const page of $$(".page[data-role]")) {
       const visible = renderedRole === "all" || page.dataset.role === renderedRole;
@@ -123,10 +123,7 @@
 
   function setRole(role) {
     if (config.standaloneRole) return;
-    const patch = { role };
-    if (role === "grayscale") patch.grayscale = true;
-    else if (state.role === "grayscale") patch.grayscale = false;
-    saveState(patch);
+    saveState({ role });
   }
 
   function persist(node) {
@@ -212,8 +209,8 @@
     clone.body.dataset.role = wanted;
     clone.body.dataset.standalone = "true";
     clone.body.classList.add("standalone-role");
-    clone.body.classList.toggle("grayscale", Boolean(config.rolePageStructure[role].grayscale));
-    const nextConfig = { ...config, initialState: { ...state, role }, standaloneRole: role, documentKey: `${config.documentKey}:${role}:${Date.now()}` };
+    clone.body.classList.toggle("grayscale", state.grayscale);
+    const nextConfig = { ...config, initialState: { ...state, role, grayscale: state.grayscale }, standaloneRole: role, documentKey: `${config.documentKey}:${role}:${Date.now()}` };
     clone.querySelector("#portableConfig").textContent = JSON.stringify(nextConfig).replace(/</g, "\\u003c");
     return `<!doctype html>\n${clone.outerHTML}`;
   }
@@ -229,11 +226,16 @@
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
+  function currentRoleOutput() {
+    const outputRole = state.role === "student" && state.grayscale ? "grayscale" : state.role;
+    return { role: state.role, grayscale: state.grayscale, outputRole, filename: config.outputs[outputRole] };
+  }
+
   function bind() {
     $("#roleControl")?.addEventListener("change", event => setRole(event.target.value));
     $("#fillControl")?.addEventListener("change", event => saveState({ fillMode: event.target.checked }));
     $("#editControl")?.addEventListener("change", event => saveState({ editMode: event.target.checked }));
-    $("#grayControl")?.addEventListener("change", event => saveState({ grayscale: event.target.checked, ...(state.role === "grayscale" && !event.target.checked ? { role: "student" } : {}) }));
+    $("#grayControl")?.addEventListener("change", event => saveState({ grayscale: event.target.checked }));
     $("#guideControl")?.addEventListener("change", event => saveState({ guides: event.target.checked }));
     $("#boundaryControl")?.addEventListener("change", event => saveState({ boundaries: event.target.checked }));
     $("#densityControl")?.addEventListener("change", event => saveState({ density: event.target.value }));
@@ -243,7 +245,7 @@
     $("#marginReset")?.addEventListener("click", () => saveState({ marginTop: .5, marginRight: .5, marginBottom: .5, marginLeft: .5 }));
     $("#printButton")?.addEventListener("click", () => { checkOverflow(); window.print(); });
     $("#downloadButton")?.addEventListener("click", () => download(serializePortableHTML(), config.outputs.complete));
-    $("#downloadRoleButton")?.addEventListener("click", () => state.role !== "all" && download(serializeRoleHTML(), config.outputs[state.role]));
+    $("#downloadRoleButton")?.addEventListener("click", () => state.role !== "all" && download(serializeRoleHTML(), currentRoleOutput().filename));
     $("#clearButton")?.addEventListener("click", () => clearCurrentRole(false));
     $("#resetButton")?.addEventListener("click", () => resetSource(false));
     document.addEventListener("input", event => {
@@ -266,6 +268,7 @@
     checkOverflow,
     serializePortableHTML,
     serializeRoleHTML,
+    getCurrentRoleOutput: () => ({ ...currentRoleOutput() }),
     keys: { stateKey, contentKey }
   };
 })();

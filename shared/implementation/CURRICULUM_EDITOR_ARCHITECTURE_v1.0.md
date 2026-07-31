@@ -37,8 +37,10 @@ The approved `SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html` is not a runtime dependen
 4. It fetches every declared shared shell, task, content, style, and source-backed asset path. Missing files fail with a visible load error.
 5. It parses the JSON-compatible task-registry assignment and expands each `data-shell-task-heading` placeholder with the canonical Phosphor/task-heading component.
 6. It rejects runtime/style/iframe elements in the instructional fragment and verifies persistence IDs and embedded asset selectors.
-7. It injects the canonical shared toolbar into the application-owned toolbar host, adds the Phase 1 **Download Current Role** action, and binds every control to one `applyState()` path.
+7. It injects the canonical shared toolbar into the application-owned toolbar host, adds the Phase 1 **Download Current Role** action, removes the duplicate central-app Role selector, and binds every remaining control to one `applyState()` path. The four-role library rail is the authoritative navigation control.
 8. It restores local recovery state and announces the loaded case through a polite live region.
+
+After toolbar mounting, the application measures its rendered height and writes that value to `--app-toolbar-offset`. A `ResizeObserver`, font-ready callback, and viewport-resize callback keep the editor layout padding and library rail top/height synchronized as controls wrap. CSS supplies only an initial fallback before measurement.
 
 The small Python server exposes the repository root so declared package paths resolve consistently over HTTP. It adds no write endpoint, database, account, or network service.
 
@@ -58,7 +60,7 @@ Schema version 1 separates editor mechanics from case data. Its required fields 
 - defaults: role, edit/fill modes, four margins, density, grayscale, guides, and boundaries;
 - accessibility: document language/title, load announcement, extended-description selectors, and the manual-PDF warning.
 
-All package paths are repository-relative, may not traverse upward, and must resolve to files. Grayscale maps to Student source pages because the governing printable-page contract defines grayscale as a production mode rather than a separate instructional role.
+All package paths are repository-relative, may not traverse upward, and must resolve to files. The package retains a Grayscale output profile mapped to Student source pages for export compatibility. Central navigation exposes only Student, Teacher, Answer Key, and Accessible; Grayscale is an independent presentation modifier.
 
 Validation rejects unsupported schema versions, missing package/content/style/task files, missing role definitions, invalid task placeholders, invalid source-backed asset paths, and missing embedded asset selectors. The registry schema permits an optional `editorPackage`, allowing approved historical cases to remain registered without pretending they have been migrated.
 
@@ -70,7 +72,7 @@ One state object controls role, four independent margins, density, edit/fill mod
 - Edit Text additionally exposes `[data-editable]` nodes. Structural attributes, IDs, task keys, role boundaries, and component metadata are never editable.
 - Input saves by stable `data-persist-id` under `curriculum-editor:<documentKey>:content`.
 - State saves under `curriculum-editor:<documentKey>:state`.
-- Role switching does not reconstruct pages. Student and Accessible response IDs remain independent; Teacher/Answer instructional boundaries remain isolated by page role.
+- Role switching does not reconstruct pages or change the Grayscale modifier. Student and Accessible response IDs remain independent; Teacher/Answer instructional boundaries remain isolated by page role.
 - Clear Current Role requires confirmation in normal use and removes only selected-role response/note nodes.
 - Reset Source requires confirmation in normal use, restores the in-memory package baseline, deletes both recovery keys, and reapplies package defaults.
 
@@ -89,7 +91,9 @@ Complete serialization clones the live worksheet, copies current values, removes
 
 The exported file receives a derived document key, so it cannot collide with the central app or another export. In a fresh context, the embedded DOM supplies its instructional Reset Source baseline. Responses open with their embedded values but are cleared by Reset Source, matching shared-shell v1.0 behavior.
 
-Selected-role serialization filters the clone to that role's source pages, applies the grayscale flag where required, and omits the toolbar, library rail, and central statuses. It retains inline print CSS and the portable runtime, so response editing/recovery and browser printing work without repository files or preexisting storage.
+Selected-role serialization filters the clone to that role's source pages, applies the current Grayscale modifier, and omits the toolbar, library rail, and central statuses. Student plus Grayscale uses the canonical Grayscale Mission filename; another grayscale-presented role retains its own filename and document identity. The file retains inline print CSS and the portable runtime, so response editing/recovery and browser printing work without repository files or preexisting storage.
+
+The complete portable export reconstructs the shared Role selector because it has no library rail. Its selector contains the four instructional roles plus the shell's All Pages audit view; Grayscale remains a separate toggle.
 
 Exports use browser download blobs and never silently write or overwrite repository paths.
 
@@ -102,7 +106,7 @@ Exports use browser download blobs and never silently write or overwrite reposit
 - Inactive edit/response nodes use `contenteditable="false"` and `tabindex="-1"`; active nodes use visible focus styles and keyboard reachability.
 - Load, local-save, overflow, and error messages have status/alert semantics. Live announcements are limited to the three user-relevant state channels.
 - Page regions, heading hierarchy, table captions, figure captions/labels, extended descriptions, non-color task/component cues, and selectable text come from the approved Case 03 source and shared shell.
-- Application layout adapts at 980 px and 700 px, focus is visible, and reduced-motion preferences disable transitions/animation.
+- Application layout adapts at 980 px and 700 px, measures wrapped toolbar height at every viewport, keeps focus visible, and honors reduced-motion preferences.
 - Grayscale uses token overrides rather than whole-page filters, retaining selectable text and non-color distinctions.
 
 The interface and documentation repeat the governing warning: browser PDF export does not guarantee PDF accessibility; distribution/publication/archive PDFs need separate verification.
@@ -111,7 +115,7 @@ The interface and documentation repeat the governing warning: browser PDF export
 
 `tests/validate_static.py` is a zero-write validator. It checks both JSON schemas, semantic package references, required negative failure cases, task/component/accessibility structure, page-count contracts, approved Case 03 manifest hashes, Case 01/02 Git protection, and absence of PDF work.
 
-`tests/run_browser_tests.py` starts an ephemeral local server and installed headless Chrome. Its in-browser harness checks exact control order/count, five-role isolation and page counts, response/text modes, independent margins and other layout controls, print-preview events, role-specific clear/reset, autosave reload, complete serialization, fresh-context behavior, current-role export, semantic components, zero overflow, and a temporary rendered screenshot. Test profiles and screenshots are created outside the repository and discarded.
+`tests/run_browser_tests.py` starts an ephemeral local server and installed headless Chrome. Its in-browser harness checks exact control order/count, four-role navigation plus Student Grayscale, responsive toolbar/layout alignment at 1440/1100/820/640 px, response/text modes, independent margins and other layout controls, print-preview events, role-specific clear/reset, autosave reload, complete serialization, fresh-context behavior, current-role export, semantic components, zero overflow, and a temporary rendered screenshot. Test profiles and temporary smoke screenshots are discarded; the requested owner-review 1440×1200 capture is retained under `tests/screenshots/`.
 
 No validator generates or inspects PDFs.
 
