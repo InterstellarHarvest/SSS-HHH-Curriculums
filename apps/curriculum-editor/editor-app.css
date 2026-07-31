@@ -1,0 +1,232 @@
+:root {
+  --app-rail: 248px;
+  --app-toolbar-offset: 92px;
+  --app-ink: #17242a;
+  --app-muted: #58676f;
+  --app-border: #b7c4ca;
+  --app-panel: #f7f9fa;
+  --app-focus: #f4a827;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  padding: 0 !important;
+  color: var(--app-ink);
+  background: #d9e0e4;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 8px;
+  left: 8px;
+  padding: 9px 12px;
+  color: #fff;
+  background: #17242a;
+  transform: translateY(-160%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+:focus-visible {
+  outline: 3px solid var(--app-focus);
+  outline-offset: 2px;
+}
+
+#editorToolbarHost .toolbar {
+  min-height: 76px;
+}
+
+#editorToolbarHost .toolbar-status [aria-live] { display: inline; }
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: var(--app-rail) minmax(0, 1fr);
+  min-height: 100vh;
+  padding-top: var(--app-toolbar-offset);
+}
+
+.library-rail {
+  position: sticky;
+  top: var(--app-toolbar-offset);
+  align-self: start;
+  height: calc(100vh - var(--app-toolbar-offset));
+  overflow-y: auto;
+  padding: 20px 18px;
+  color: #fff;
+  background: #22343c;
+  border-right: 1px solid #0e1c22;
+}
+
+.library-brand { margin-bottom: 22px; }
+.library-brand h1 { margin: 3px 0; font-size: 20px; line-height: 1.15; }
+.library-brand p { margin: 0; color: #c7d4d9; font-size: 13px; }
+.library-kicker,
+.workspace-kicker {
+  font: 700 10px/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.library-kicker { color: #8bd0ce; }
+
+.library-rail nav > label,
+.role-library legend {
+  display: block;
+  margin: 14px 0 5px;
+  color: #cce3e3;
+  font: 700 10px/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.library-rail select {
+  width: 100%;
+  min-height: 38px;
+  padding: 7px 9px;
+  color: var(--app-ink);
+  background: #fff;
+  border: 1px solid #91a4ad;
+  border-radius: 3px;
+}
+
+.case-status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 10px;
+  background: #17272e;
+  border-left: 4px solid #66aaa7;
+}
+.case-status span { color: #cad6da; font-size: 12px; }
+.case-status strong { font: 700 10px/1.2 "JetBrains Mono", monospace; }
+
+.role-library {
+  margin: 18px 0 0;
+  padding: 0;
+  border: 0;
+}
+.role-library legend { margin-top: 0; }
+.role-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.role-option:hover { background: #314952; }
+.role-option:has(input:checked) { background: #3d6268; font-weight: 700; }
+.role-option input { accent-color: #77beb9; }
+
+.policy-note {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #ffffff35;
+}
+.policy-note h2 { margin: 0 0 6px; border: 0; padding: 0; color: #fff; font-size: 13px; }
+.policy-note p { margin: 0; color: #c7d4d9; font-size: 11px; line-height: 1.45; }
+
+.editor-main { min-width: 0; padding: 20px 18px 40px; }
+.workspace-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: min(100%, 980px);
+  margin: 0 auto 10px;
+}
+.workspace-header h2 { margin: 2px 0 0; padding: 0; border: 0; font-size: 22px; }
+.workspace-kicker { color: var(--app-muted); }
+.mode-indicator {
+  flex: 0 0 auto;
+  padding: 7px 10px;
+  color: #174847;
+  background: #dcefed;
+  border: 1px solid #79aaa7;
+  border-radius: 999px;
+  font: 700 11px/1.2 "JetBrains Mono", monospace;
+}
+body.edit-mode .mode-indicator {
+  color: #5c3400;
+  background: #fff0d1;
+  border-color: #c98d30;
+}
+
+.editor-statuses {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(100%, 980px);
+  margin: 0 auto 18px;
+}
+.editor-statuses p {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 10px;
+  background: var(--app-panel);
+  border: 1px solid var(--app-border);
+  font-size: 11px;
+}
+.editor-statuses span { color: var(--app-muted); }
+.editor-statuses strong { font: 700 10px/1.2 "JetBrains Mono", monospace; text-align: right; }
+
+.editor-error {
+  width: min(100%, 980px);
+  margin: 0 auto 18px;
+  padding: 12px;
+  color: #651f1f;
+  background: #fff1f1;
+  border: 1px solid #b76868;
+}
+
+#worksheetWorkspace { min-height: 300px; }
+#worksheetWorkspace[aria-busy="true"]::before {
+  content: "Loading worksheet package…";
+  display: block;
+  padding: 28px;
+  color: var(--app-muted);
+  background: #fff;
+  border: 1px solid var(--app-border);
+}
+
+body.print-preview .library-rail,
+body.print-preview .workspace-header,
+body.print-preview .editor-statuses { opacity: .55; }
+
+@media (max-width: 980px) {
+  :root { --app-toolbar-offset: 10px; }
+  #editorToolbarHost .toolbar { position: relative; }
+  .editor-layout { grid-template-columns: 210px minmax(0, 1fr); padding-top: 10px; }
+  .library-rail { top: 10px; height: calc(100vh - 10px); }
+  .editor-statuses { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+  .editor-layout { display: block; }
+  .library-rail { position: relative; top: auto; width: auto; height: auto; }
+  .workspace-header { align-items: flex-start; flex-direction: column; }
+  .editor-main { padding-inline: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+@media print {
+  .library-rail,
+  .workspace-header,
+  .editor-statuses,
+  .editor-error { display: none !important; }
+  .editor-layout { display: block; padding: 0; }
+  .editor-main { padding: 0; }
+}

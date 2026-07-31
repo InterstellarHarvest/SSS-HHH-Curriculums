@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SSS/HHH Curriculum Editor</title>
+  <meta name="description" content="Local browser editor for registered SSS/HHH curriculum case packages.">
+  <link rel="stylesheet" href="editor-app.css">
+</head>
+<body data-role="student">
+  <a class="skip-link" href="#editorMain">Skip to worksheet editor</a>
+  <div id="packageIcons" aria-hidden="true"></div>
+  <div id="editorToolbarHost" aria-busy="true"></div>
+
+  <div class="editor-layout">
+    <aside class="library-rail" aria-labelledby="libraryHeading">
+      <div class="library-brand">
+        <span class="library-kicker">SSS / HHH</span>
+        <h1 id="libraryHeading">Curriculum Editor</h1>
+        <p>Phase 1 local workspace</p>
+      </div>
+
+      <nav aria-label="Curriculum library">
+        <label for="curriculumSelect">Curriculum</label>
+        <select id="curriculumSelect"></select>
+
+        <label for="campaignSelect">Campaign</label>
+        <select id="campaignSelect"></select>
+
+        <label for="caseSelect">Case</label>
+        <select id="caseSelect"></select>
+
+        <div class="case-status" aria-label="Current case status">
+          <span>Status</span>
+          <strong id="caseStatus">NOT LOADED</strong>
+        </div>
+
+        <fieldset id="roleLibrary" class="role-library">
+          <legend>Role</legend>
+        </fieldset>
+      </nav>
+
+      <div class="policy-note">
+        <h2>HTML-only workflow</h2>
+        <p id="pdfNotice">Browser PDF export does not guarantee PDF accessibility. Any distributed, published, or archived PDF requires separate accessibility verification.</p>
+      </div>
+    </aside>
+
+    <main id="editorMain" class="editor-main" tabindex="-1">
+      <header class="workspace-header">
+        <div>
+          <span class="workspace-kicker" id="caseBreadcrumb">Curriculum → Campaign → Case → Role</span>
+          <h2 id="workspaceTitle">Loading curriculum library…</h2>
+        </div>
+        <div class="mode-indicator" id="modeIndicator" role="status">Fill Responses mode</div>
+      </header>
+
+      <section class="editor-statuses" aria-label="Editor status">
+        <p><span>Load</span> <strong id="loadStatus" role="status" aria-live="polite">Loading registry…</strong></p>
+        <p><span>Autosave</span> <strong id="saveStatusMirror">LOCAL SAVE READY</strong></p>
+        <p><span>Overflow</span> <strong id="overflowStatusMirror">0 overflow</strong></p>
+      </section>
+
+      <div id="editorError" class="editor-error" role="alert" hidden></div>
+      <div id="worksheetWorkspace" class="workspace" aria-busy="true" aria-labelledby="workspaceTitle"></div>
+    </main>
+  </div>
+
+  <noscript>This local curriculum editor requires JavaScript.</noscript>
+  <script type="module" src="editor-app.js"></script>
+</body>
+</html>
