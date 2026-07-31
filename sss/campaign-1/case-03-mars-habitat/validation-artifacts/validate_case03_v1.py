@@ -22,7 +22,7 @@ TASKS=[
 ('4','Connect the symptom pattern'),
 ('5','Select and reject diagnoses'),
 ('6','Model the mechanism'),
-('7','Write the case conclusion'),
+('7','Claim-Evidence-Reasoning'),
 ('8','Transfer the analysis'),
 ('9','Exit ticket'),
 ]
@@ -103,14 +103,14 @@ for forbidden in ['VALIDATION BUILD',GAME,'SSS_C1_CASE03_EDITABLE_MASTER','CASE0
 # Accessibility and interaction structure.
 check('accessibility','skip link',bool(soup.select_one('a[href="#workspace"]')))
 check('accessibility','all figures labeled',all(svg.find('title') or svg.get('aria-label') for svg in soup.select('figure svg')))
-check('accessibility','response textboxes labeled',all(n.get('role')=='textbox' and n.get('aria-multiline')=='true' for n in soup.select('.response[contenteditable="true"]')))
-check('accessibility','accessible role larger type','.accessible{font-size:13pt' in html and len(soup.select('section.page.accessible[data-role="accessible"]'))==6)
-check('publishing','local persistence code',"localStorage.setItem(KEY" in html and "localStorage.getItem(KEY" in html)
-check('publishing','selective response clearing',"querySelectorAll('.response[contenteditable=\"true\"]')" in html)
-check('publishing','reset behavior',"localStorage.removeItem(KEY)" in html)
-check('publishing','portable downloaded HTML',"function portable(role,gray=false)" in html and "new Blob([text]" in html)
-check('publishing','overflow warning logic','has-overflow' in html and 'scrollHeight>c.clientHeight+2' in html)
-check('publishing','standalone control guards',all(x in html for x in ['if(roleSelect)','if(grayToggle)','if(clearBtn)','if(resetBtn)','if(downloadBtn)']))
+check('accessibility','response textboxes labeled',all(n.get('role')=='textbox' and n.get('aria-multiline')=='true' for n in soup.select('[data-response]')))
+check('accessibility','accessible role larger type',bool(re.search(r'\.accessible\s*\{\s*font-size:\s*13pt',html)) and len(soup.select('section.page.accessible[data-role="accessible"]'))==6)
+check('publishing','local persistence code','localStorage.setItem(storageKey("state")' in html and 'localStorage.getItem(storageKey("state")' in html)
+check('publishing','selective response clearing','function clearCurrentRole' in html and 'responseNodes().filter' in html)
+check('publishing','reset behavior','function resetSource' in html and 'localStorage.removeItem(storageKey("state")' in html)
+check('publishing','portable downloaded HTML','function serializeEditedMasterHTML' in html and 'function serializeCurrentRoleHTML' in html and 'new Blob([text]' in html)
+check('publishing','overflow warning logic','has-overflow' in html and 'content.scrollHeight > content.clientHeight + 2' in html)
+check('publishing','standalone control guards','config.standaloneRole' in html and 'controls.roleSelect?' in html and 'controls.printBtn?' in html)
 
 # Standalone static checks.
 for role,(htmlname,pdfname,count,footer_role) in ROLES.items():
@@ -120,7 +120,7 @@ for role,(htmlname,pdfname,count,footer_role) in ROLES.items():
     check('portable',f'{role} standalone exists',p.exists())
     check('portable',f'{role} standalone page count',len(ss.select('section.page'))==count,len(ss.select('section.page')))
     check('portable',f'{role} toolbar absent',not ss.select('.toolbar'))
-    check('portable',f'{role} self-contained','http://' not in txt and 'https://' not in txt and '<style>' in txt and '<script' in txt)
+    check('portable',f'{role} self-contained','http://' not in txt and 'https://' not in txt and bool(ss.select('style')) and bool(ss.select('script')))
     check('portable',f'{role} source master metadata',bool(ss.find('meta',attrs={'name':'sss-source-master','content':'SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html'})))
 
 # Browser checks using set_content. Network navigation is blocked in this execution environment.
@@ -143,12 +143,12 @@ with sync_playwright() as pw:
     page.wait_for_timeout(250)
     check('browser','master loads without JS errors',not errors,' | '.join(errors))
     check('browser','initial student pages visible',page.locator('section.page[data-role="student"]:visible').count()==4,page.locator('section.page:visible').count())
-    first=page.locator('section.page[data-role="student"] .response[contenteditable="true"]').first
+    first=page.locator('section.page[data-role="student"] .response[data-response]').first
     first.fill('persistence test')
     page.wait_for_timeout(500)
     first.fill('')
-    page.evaluate('load()')
-    check('browser','response persistence',page.locator('section.page[data-role="student"] .response[contenteditable="true"]').first.inner_text()=='persistence test')
+    page.evaluate('window.SSSEditorShell.loadLocalState()')
+    check('browser','response persistence',page.locator('section.page[data-role="student"] .response[data-response]').first.inner_text()=='persistence test')
     for role in ['teacher','answer','accessible','student']:
         page.select_option('#roleSelect',role)
         page.wait_for_timeout(150)
@@ -158,14 +158,15 @@ with sync_playwright() as pw:
     page.select_option('#roleSelect','student')
     idf=page.locator('.student-id .id-field').first
     idf.fill('Nate Test')
-    resp=page.locator('section.page[data-role="student"] .response[contenteditable="true"]').first
+    resp=page.locator('section.page[data-role="student"] .response[data-response]').first
     resp.fill('clear me')
-    page.click('#clearBtn'); page.wait_for_timeout(100)
+    page.on('dialog',lambda d:d.accept())
+    page.click('#clearRoleBtn'); page.wait_for_timeout(100)
     check('browser','selective clear clears responses',resp.inner_text()=='')
     check('browser','selective clear preserves ID',idf.inner_text()=='Nate Test')
     page.check('#grayToggle')
-    check('browser','grayscale class toggles',page.locator('body.grayscale').count()==1)
-    portable=page.evaluate("portable('accessible',false)")
+    check('browser','grayscale class toggles',page.locator('body.shell-grayscale').count()==1)
+    portable=page.evaluate("window.SSSEditorShell.serializeCurrentRoleHTML('accessible')")
     portable_soup=BeautifulSoup(portable,'html.parser')
     portable_count=len(portable_soup.select('section.page[data-role="accessible"]'))
     check('browser','portable accessible page count',portable_count==6,portable_count)
@@ -173,9 +174,8 @@ with sync_playwright() as pw:
     page.locator('body').press('Tab'); page.locator('body').press('Tab')
     focused=page.evaluate("document.activeElement && document.activeElement.matches('button,select,[contenteditable=true],a,input')")
     check('browser','keyboard focus reaches interactive element',bool(focused),focused)
-    page.on('dialog',lambda d:d.accept())
-    page.click('#resetBtn'); page.wait_for_timeout(150)
-    check('browser','reset clears saved fields',page.locator('[contenteditable="true"]').evaluate_all("els=>els.every(e=>e.innerHTML==='')"))
+    page.click('#resetSourceBtn'); page.wait_for_timeout(150)
+    check('browser','reset clears saved fields',page.locator('[data-response]').evaluate_all("els=>els.every(e=>e.innerHTML==='')"))
     for role,(htmlname,_,count,_) in ROLES.items():
         errs=[]
         sp=browser.new_page(viewport={'width':1440,'height':1200})

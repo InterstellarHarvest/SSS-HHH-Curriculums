@@ -15,3 +15,16 @@
 - Overflow: 0
 
 The reconciled Case 02 v1.0 master is the single current production master. All automated and physical release gates pass.
+
+## Student CER HTML maintenance
+
+Task 7 on the standard Student worksheet and its Grayscale counterpart now uses shared CER component v1.0. The full-width Claim, Evidence, and Reasoning boxes have identical source CSS and measured geometry in the master, Student HTML, and Grayscale HTML.
+
+- HTML-only assertions: 55/55 PASS
+- Student HTML pages: 3
+- Grayscale HTML pages: 3
+- Accessible HTML pages: 5, unchanged
+- HTML overflow: 0
+- PDFs generated: none
+
+The approved PDFs and their prior physical-print record were not changed. Their page counts remain Student 2, Teacher 7, Answer 3, Accessible 5, Grayscale 2. A later PDF release would require its own rebuild, validation, and physical-print cycle.

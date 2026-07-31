@@ -1,0 +1,77 @@
+{
+  "shellVersion": "1.0",
+  "shellContract": "shared/implementation/editor-shell/v1.0/editor-shell.contract.json",
+  "documentKey": "SSS-C1-CASE03:v1.0:editor-shell-1.0",
+  "title": "SSS C1 Case 03 - Mars Habitat - Editable Master v1.0",
+  "metadata": {
+    "sss-case": "SSS-C1-CASE03",
+    "sss-curriculum-version": "1.0",
+    "sss-status": "validation-build",
+    "sss-game-baseline": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
+    "sss-curriculum-bible": "1.3",
+    "sss-student-identity": "Data Analyst",
+    "sss-runtime-source": "space_sprout_sleuth_data.js#mars",
+    "sss-balanced-page-fill": "1.0.2",
+    "sss-page-identity": "1.0.4",
+    "sss-visible-production-status": "none",
+    "sss-source-master": "SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html"
+  },
+  "roles": ["student", "teacher", "answer", "accessible"],
+  "pageCounts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 6,
+    "grayscale": 4
+  },
+  "defaults": {
+    "role": "student",
+    "fillResponses": true,
+    "editText": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "balanced",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "editedMasterFilename": "SSS_C1_CASE03_EDITABLE_MASTER_v1.0_custom.html",
+  "caseCss": "case03.css",
+  "content": "case03-content.html",
+  "tasks": [
+    {"number": 1, "semanticLabel": "REFERENCE", "title": "Define the measurement", "icon": "ph-book"},
+    {"number": 2, "semanticLabel": "DATA ANALYSIS", "title": "Read the spectral-transmission data", "icon": "ph-scales"},
+    {"number": 3, "semanticLabel": "DATA ANALYSIS", "title": "Compare quantity and quality", "icon": "ph-scales"},
+    {"number": 4, "semanticLabel": "PATTERN ANALYSIS", "title": "Connect the symptom pattern", "icon": "ph-nodes"},
+    {"number": 5, "semanticLabel": "DIAGNOSIS", "title": "Select and reject diagnoses", "icon": "ph-diagnosis"},
+    {"number": 6, "semanticLabel": "MECHANISM MODEL", "title": "Model the mechanism", "icon": "ph-flow"},
+    {"number": 7, "semanticLabel": "EXPLANATION", "title": "Claim-Evidence-Reasoning", "icon": "ph-cer"},
+    {"number": 8, "semanticLabel": "TRANSFER CHECK", "title": "Transfer the analysis", "icon": "ph-wrench"},
+    {"number": 9, "semanticLabel": "EXIT TICKET", "title": "Exit ticket", "icon": "ph-ticket"}
+  ],
+  "outputs": {
+    "student": {
+      "role": "student",
+      "filename": "SSS_C1_CASE03_STUDENT_MISSION_v1.0.html"
+    },
+    "teacher": {
+      "role": "teacher",
+      "filename": "SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html"
+    },
+    "answer": {
+      "role": "answer",
+      "filename": "SSS_C1_CASE03_ANSWER_KEY_v1.0.html"
+    },
+    "accessible": {
+      "role": "accessible",
+      "filename": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html"
+    },
+    "grayscale": {
+      "role": "student",
+      "grayscale": true,
+      "filename": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html"
+    }
+  }
+}

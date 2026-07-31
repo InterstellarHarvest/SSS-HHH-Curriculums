@@ -1,0 +1,1701 @@
+{
+  "validator": "shared-editor-shell-contract",
+  "shellVersion": "1.0",
+  "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+  "assertions": 338,
+  "passed": 338,
+  "failed": 0,
+  "failures": [],
+  "results": [
+    {
+      "name": "config targets shell 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master declares shell version",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master declares exact contract hash",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "components asset is embedded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "components source hash attribute matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "components embedded bytes match shared source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "css asset is embedded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "css source hash attribute matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "css embedded bytes match shared source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cer asset is embedded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cer source hash attribute matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "cer embedded bytes match shared source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime asset is embedded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime source hash attribute matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime embedded bytes match shared source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared icon sprite is embedded exactly",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical toolbar is present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "toolbar controls follow contract order",
+      "pass": true,
+      "detail": "actual=['roleSelect', 'fillToggle', 'editToggle', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'marginReset', 'densitySelect', 'grayToggle', 'guidesToggle', 'boundariesToggle', 'printBtn', 'downloadMasterBtn', 'downloadRoleBtn', 'clearRoleBtn', 'resetSourceBtn', 'localSaveStatus', 'overflowStatus']"
+    },
+    {
+      "name": "toolbar markup is the shared source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "roleSelect uses canonical label",
+      "pass": true,
+      "detail": "actual=Role Student Teacher Answer Key Accessible All Pages"
+    },
+    {
+      "name": "fillToggle uses canonical label",
+      "pass": true,
+      "detail": "actual=Fill Responses"
+    },
+    {
+      "name": "editToggle uses canonical label",
+      "pass": true,
+      "detail": "actual=Edit Text"
+    },
+    {
+      "name": "marginTop uses canonical label",
+      "pass": true,
+      "detail": "actual=Top margin"
+    },
+    {
+      "name": "marginRight uses canonical label",
+      "pass": true,
+      "detail": "actual=Right margin"
+    },
+    {
+      "name": "marginBottom uses canonical label",
+      "pass": true,
+      "detail": "actual=Bottom margin"
+    },
+    {
+      "name": "marginLeft uses canonical label",
+      "pass": true,
+      "detail": "actual=Left margin"
+    },
+    {
+      "name": "marginReset uses canonical label",
+      "pass": true,
+      "detail": "actual=Reset Margins"
+    },
+    {
+      "name": "densitySelect uses canonical label",
+      "pass": true,
+      "detail": "actual=Density Balanced Compact Roomy"
+    },
+    {
+      "name": "grayToggle uses canonical label",
+      "pass": true,
+      "detail": "actual=Grayscale"
+    },
+    {
+      "name": "guidesToggle uses canonical label",
+      "pass": true,
+      "detail": "actual=Guides"
+    },
+    {
+      "name": "boundariesToggle uses canonical label",
+      "pass": true,
+      "detail": "actual=Boundaries"
+    },
+    {
+      "name": "printBtn uses canonical label",
+      "pass": true,
+      "detail": "actual=Print / Save PDF"
+    },
+    {
+      "name": "downloadMasterBtn uses canonical label",
+      "pass": true,
+      "detail": "actual=Download Edited Master HTML"
+    },
+    {
+      "name": "downloadRoleBtn uses canonical label",
+      "pass": true,
+      "detail": "actual=Download Current Role HTML"
+    },
+    {
+      "name": "clearRoleBtn uses canonical label",
+      "pass": true,
+      "detail": "actual=Clear Current Role"
+    },
+    {
+      "name": "resetSourceBtn uses canonical label",
+      "pass": true,
+      "detail": "actual=Reset Source"
+    },
+    {
+      "name": "runtime exposes loadLocalState",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes saveLocalState",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes serializeEditedMasterHTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes serializeCurrentRoleHTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes clearCurrentRole",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes resetSource",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes setRole",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime exposes checkOverflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "no unexpanded task placeholders remain",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "task headings are present",
+      "pass": true,
+      "detail": "count=27"
+    },
+    {
+      "name": "heading 1 task 1 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 1 task 1 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 1 task 1 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 1 task 1 title exact",
+      "pass": true,
+      "detail": "actual=1 \u00b7 Define the measurement"
+    },
+    {
+      "name": "heading 1 task 1 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 1 task 1 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 1 task 1 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 2 task 2 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 2 task 2 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 2 task 2 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 2 task 2 title exact",
+      "pass": true,
+      "detail": "actual=2 \u00b7 Read the spectral-transmission data"
+    },
+    {
+      "name": "heading 2 task 2 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 2 task 2 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 2 task 2 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 3 task 3 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 3 task 3 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 3 task 3 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 3 task 3 title exact",
+      "pass": true,
+      "detail": "actual=3 \u00b7 Compare quantity and quality"
+    },
+    {
+      "name": "heading 3 task 3 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 3 task 3 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 3 task 3 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 4 task 4 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 4 task 4 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 4 task 4 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 4 task 4 title exact",
+      "pass": true,
+      "detail": "actual=4 \u00b7 Connect the symptom pattern"
+    },
+    {
+      "name": "heading 4 task 4 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 4 task 4 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 4 task 4 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 5 task 5 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 5 task 5 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 5 task 5 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 5 task 5 title exact",
+      "pass": true,
+      "detail": "actual=5 \u00b7 Select and reject diagnoses"
+    },
+    {
+      "name": "heading 5 task 5 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 5 task 5 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 5 task 5 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 6 task 6 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 6 task 6 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 6 task 6 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 6 task 6 title exact",
+      "pass": true,
+      "detail": "actual=6 \u00b7 Model the mechanism"
+    },
+    {
+      "name": "heading 6 task 6 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 6 task 6 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 6 task 6 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 7 task 7 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 7 task 7 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 7 task 7 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 7 task 7 title exact",
+      "pass": true,
+      "detail": "actual=7 \u00b7 Claim-Evidence-Reasoning"
+    },
+    {
+      "name": "heading 7 task 7 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 7 task 7 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 7 task 7 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 8 task 8 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 8 task 8 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 8 task 8 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 8 task 8 title exact",
+      "pass": true,
+      "detail": "actual=8 \u00b7 Transfer the analysis"
+    },
+    {
+      "name": "heading 8 task 8 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 8 task 8 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 8 task 8 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 9 task 9 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 9 task 9 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 9 task 9 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 9 task 9 title exact",
+      "pass": true,
+      "detail": "actual=9 \u00b7 Exit ticket"
+    },
+    {
+      "name": "heading 9 task 9 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 9 task 9 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 9 task 9 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 10 task 1 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 10 task 1 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 10 task 1 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 10 task 1 title exact",
+      "pass": true,
+      "detail": "actual=1 \u00b7 Define the measurement"
+    },
+    {
+      "name": "heading 10 task 1 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 10 task 1 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 10 task 1 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 11 task 2 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 11 task 2 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 11 task 2 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 11 task 2 title exact",
+      "pass": true,
+      "detail": "actual=2 \u00b7 Read the spectral-transmission data"
+    },
+    {
+      "name": "heading 11 task 2 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 11 task 2 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 11 task 2 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 12 task 3 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 12 task 3 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 12 task 3 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 12 task 3 title exact",
+      "pass": true,
+      "detail": "actual=3 \u00b7 Compare quantity and quality"
+    },
+    {
+      "name": "heading 12 task 3 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 12 task 3 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 12 task 3 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 13 task 4 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 13 task 4 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 13 task 4 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 13 task 4 title exact",
+      "pass": true,
+      "detail": "actual=4 \u00b7 Connect the symptom pattern"
+    },
+    {
+      "name": "heading 13 task 4 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 13 task 4 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 13 task 4 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 14 task 5 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 14 task 5 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 14 task 5 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 14 task 5 title exact",
+      "pass": true,
+      "detail": "actual=5 \u00b7 Select and reject diagnoses"
+    },
+    {
+      "name": "heading 14 task 5 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 14 task 5 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 14 task 5 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 15 task 6 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 15 task 6 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 15 task 6 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 15 task 6 title exact",
+      "pass": true,
+      "detail": "actual=6 \u00b7 Model the mechanism"
+    },
+    {
+      "name": "heading 15 task 6 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 15 task 6 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 15 task 6 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 16 task 7 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 16 task 7 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 16 task 7 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 16 task 7 title exact",
+      "pass": true,
+      "detail": "actual=7 \u00b7 Claim-Evidence-Reasoning"
+    },
+    {
+      "name": "heading 16 task 7 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 16 task 7 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 16 task 7 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 17 task 8 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 17 task 8 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 17 task 8 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 17 task 8 title exact",
+      "pass": true,
+      "detail": "actual=8 \u00b7 Transfer the analysis"
+    },
+    {
+      "name": "heading 17 task 8 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 17 task 8 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 17 task 8 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 18 task 9 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 18 task 9 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 18 task 9 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 18 task 9 title exact",
+      "pass": true,
+      "detail": "actual=9 \u00b7 Exit ticket"
+    },
+    {
+      "name": "heading 18 task 9 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 18 task 9 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 18 task 9 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 19 task 1 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 19 task 1 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 19 task 1 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 19 task 1 title exact",
+      "pass": true,
+      "detail": "actual=1 \u00b7 Define the measurement"
+    },
+    {
+      "name": "heading 19 task 1 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 19 task 1 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 19 task 1 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 20 task 2 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 20 task 2 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 20 task 2 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 20 task 2 title exact",
+      "pass": true,
+      "detail": "actual=2 \u00b7 Read the spectral-transmission data"
+    },
+    {
+      "name": "heading 20 task 2 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 20 task 2 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 20 task 2 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 21 task 3 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 21 task 3 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 21 task 3 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 21 task 3 title exact",
+      "pass": true,
+      "detail": "actual=3 \u00b7 Compare quantity and quality"
+    },
+    {
+      "name": "heading 21 task 3 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 21 task 3 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 21 task 3 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 22 task 4 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 22 task 4 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 22 task 4 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 22 task 4 title exact",
+      "pass": true,
+      "detail": "actual=4 \u00b7 Connect the symptom pattern"
+    },
+    {
+      "name": "heading 22 task 4 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 22 task 4 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 22 task 4 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 23 task 5 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 23 task 5 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 23 task 5 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 23 task 5 title exact",
+      "pass": true,
+      "detail": "actual=5 \u00b7 Select and reject diagnoses"
+    },
+    {
+      "name": "heading 23 task 5 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 23 task 5 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 23 task 5 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 24 task 6 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 24 task 6 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 24 task 6 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 24 task 6 title exact",
+      "pass": true,
+      "detail": "actual=6 \u00b7 Model the mechanism"
+    },
+    {
+      "name": "heading 24 task 6 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 24 task 6 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 24 task 6 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 25 task 7 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 25 task 7 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 25 task 7 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 25 task 7 title exact",
+      "pass": true,
+      "detail": "actual=7 \u00b7 Claim-Evidence-Reasoning"
+    },
+    {
+      "name": "heading 25 task 7 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 25 task 7 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 25 task 7 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 26 task 8 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 26 task 8 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 26 task 8 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 26 task 8 title exact",
+      "pass": true,
+      "detail": "actual=8 \u00b7 Transfer the analysis"
+    },
+    {
+      "name": "heading 26 task 8 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 26 task 8 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 26 task 8 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 27 task 9 maps to case config",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 27 task 9 semantic label exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 27 task 9 semantic label allowed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 27 task 9 title exact",
+      "pass": true,
+      "detail": "actual=9 \u00b7 Exit ticket"
+    },
+    {
+      "name": "heading 27 task 9 number appears once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 27 task 9 icon exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "heading 27 task 9 data title exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "legacy TASK 0N headings absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-01 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-01 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-02 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-02 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-03 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-03 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-04 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student-mission-04 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-01 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-01 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-02 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-02 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-03 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-03 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-04 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-04 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-05 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-05 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-06 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-06 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-07 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-07 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-08 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher-guide-08 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-01 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-01 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-02 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-02 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-03 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-03 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-04 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer-key-04 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-01 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-01 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-02 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-02 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-03 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-03 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-04 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-04 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-05 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-05 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-06 has one shared page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible-mission-06 has one shared publication footer",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student first page uses first-page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student later pages use continuation identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher first page uses first-page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher later pages use continuation identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer first page uses first-page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer later pages use continuation identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible first page uses first-page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible later pages use continuation identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student CER contract is present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student CER has Claim Evidence Reasoning boxes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master has no external stylesheet",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master has no external script",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master has no external image dependency",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "editable persist identifiers are unique",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student master page count",
+      "pass": true,
+      "detail": "actual=4"
+    },
+    {
+      "name": "teacher master page count",
+      "pass": true,
+      "detail": "actual=8"
+    },
+    {
+      "name": "answer master page count",
+      "pass": true,
+      "detail": "actual=4"
+    },
+    {
+      "name": "accessible master page count",
+      "pass": true,
+      "detail": "actual=6"
+    },
+    {
+      "name": "student role output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student role output has no toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student role output is role-isolated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student role output page count",
+      "pass": true,
+      "detail": "actual=4"
+    },
+    {
+      "name": "teacher role output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher role output has no toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher role output is role-isolated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher role output page count",
+      "pass": true,
+      "detail": "actual=8"
+    },
+    {
+      "name": "answer role output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer role output has no toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer role output is role-isolated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer role output page count",
+      "pass": true,
+      "detail": "actual=4"
+    },
+    {
+      "name": "accessible role output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible role output has no toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible role output is role-isolated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible role output page count",
+      "pass": true,
+      "detail": "actual=6"
+    },
+    {
+      "name": "grayscale role output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale role output has no toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale role output is role-isolated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale role output page count",
+      "pass": true,
+      "detail": "actual=4"
+    },
+    {
+      "name": "case registry includes current case",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case registry records shell 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry master exists for SSS-C1-CASE01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE01 student output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE01 teacher output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE01 answer output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE01 accessible output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE01 grayscale output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry master exists for SSS-C1-CASE02",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE02 student output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE02 teacher output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE02 answer output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE02 accessible output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE02 grayscale output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry master exists for SSS-C1-CASE03",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE03 student output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE03 teacher output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE03 answer output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE03 accessible output exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry SSS-C1-CASE03 grayscale output exists",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

@@ -2235,7 +2235,7 @@
       "group": "checksum",
       "name": "checksum ledger created",
       "pass": true,
-      "detail": "34"
+      "detail": "41"
     }
   ]
 }

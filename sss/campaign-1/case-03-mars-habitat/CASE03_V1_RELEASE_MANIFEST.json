@@ -11,10 +11,17 @@
   "runtime_source": "space_sprout_sleuth_data.js#mars",
   "printable_page_identity": "1.0.4",
   "balanced_page_fill": "1.0.2",
+  "editor_shell": {
+    "version": "1.0",
+    "contract": "shared/implementation/editor-shell/v1.0/editor-shell.contract.json",
+    "assembler": "shared/implementation/editor-shell/v1.0/assemble_editable_master.py",
+    "case_config": "source/editor/case03-editor-config.json",
+    "portable_self_contained_master": true
+  },
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "65d91fad59146bb725d5ccc3efb5cc5cfb3610fa71eb9bf08a45d27cf7ccf67d",
-    "bytes": 85872
+    "sha256": "d38a10136eb99e38a6e2c8327976ed8e9c6e6bae9d274a6fd3bc70802ace204b",
+    "bytes": 131804
   },
   "page_counts": {
     "student": 4,
@@ -31,15 +38,20 @@
     "preflight": "5/5 PASS",
     "rendered_review": "PASS",
     "renderer_parity": "PASS - antialiasing-only differences",
-    "physical_print": "OPEN"
+    "physical_print": "OPEN",
+    "shared_shell_contract": "338/338 PASS",
+    "editor_shell_browser": "34/34 PASS",
+    "html_overflow": "0",
+    "serialization_fresh_storage": "PASS",
+    "pdfs_regenerated_in_shell_maintenance": false
   },
   "outputs": {
     "student": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "5947ff81c120b1a73ae08ddee133582721527ec51cb7b445da24f133723ee218",
-        "bytes": 29592
+        "sha256": "78abb90dbcd3f3f420cef1ab253616bfa953d3340f15549ad0709232d59b8fca",
+        "bytes": 54282
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
@@ -51,8 +63,8 @@
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "bdc60199b1dc92afc6b73cefdcf5f3aea9b7f785c228e57f97c1b5b25f888716",
-        "bytes": 34010
+        "sha256": "24c65f8dff2ac612ebe80648e481d9fab66c65cee39b37fce0634c35f1eb031d",
+        "bytes": 62618
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
@@ -64,8 +76,8 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "2d4319307a2cc0bc4028ecb89fc1c7f1168a90c120970e93811b6e466d79ac3f",
-        "bytes": 25795
+        "sha256": "dab0ea8f0e648da29287bb16e33c8ccb79b80e9fbfa33856bb620737dad91abd",
+        "bytes": 48327
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
@@ -77,8 +89,8 @@
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "8902a407ab66575313ed48aefd0b0244fbf994f3261e78932af7e21773b35e38",
-        "bytes": 29702
+        "sha256": "d48393df63b9ee5ae62307af11c267bea151e7d64ebd33307dd8bb6b0943db16",
+        "bytes": 54333
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
@@ -90,8 +102,8 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "ffc3227eb02c1b7d63843243aedcaaa8a70545c2bc4a05539a5431ba5f40ba2d",
-        "bytes": 29603
+        "sha256": "ad4fecf0add288afb4a66f66edfee2b46f7dceaeeca7bda5d75796cb6eda62a7",
+        "bytes": 54296
       },
       "pdf": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
@@ -148,8 +160,23 @@
     },
     {
       "path": "source/task-registry.js",
-      "sha256": "351870aad868c753e9342d26de14e3c84e2a51032754daca89ea7c89baf1eca4",
-      "bytes": 3038
+      "sha256": "8076ade368b798f07417c035c52f0d0c59afc24a2577e82211663a6a98190f85",
+      "bytes": 3653
+    },
+    {
+      "path": "source/editor/case03-editor-config.json",
+      "sha256": "a3b1de61f0e40d49d49fc82b00c5ee988c167b972329ac3134003fdbe05da831",
+      "bytes": 2957
+    },
+    {
+      "path": "source/editor/case03.css",
+      "sha256": "04b0ab7c7f4a900c0cfafda1fa0f69d55156ad1b22a79f89c70e3f5636650bc1",
+      "bytes": 1754
+    },
+    {
+      "path": "source/editor/case03-content.html",
+      "sha256": "01258c4ae2d7897ff05f75fc78e31be9fdc631948341d8290ede6089e6385878",
+      "bytes": 91533
     }
   ],
   "reports": [
@@ -170,8 +197,8 @@
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "881f516e16aabd8ed27cb007ed3aed86f4777d72f7c34f8b04eac1b93e424a4c",
-      "bytes": 3493
+      "sha256": "abf8cbcd2d50cfef99fc007422b240da20a57ede2c0f55abad5fabfb26e7a416",
+      "bytes": 4519
     }
   ],
   "validation_files": [
@@ -187,18 +214,38 @@
     },
     {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "904b6658d7320854afbb9977c1d55391057bcefe9b903ea68178fb7eca8ad047",
+      "sha256": "d6580ead2f092dcec97e2258c7fd7b9121adab4f8244ebbea2254eb1faec9bdc",
       "bytes": 47039
     },
     {
+      "path": "validation-artifacts/CASE03_EDITOR_SHELL_CONTRACT_RESULTS.json",
+      "sha256": "0362ca89630883bf0deab6a44491d28cc08cd254e2c9c25920bb69be467d2c09",
+      "bytes": 38145
+    },
+    {
+      "path": "validation-artifacts/CASE03_EDITOR_SHELL_BROWSER_RESULTS.json",
+      "sha256": "3115e5429922e9f08553e9577e10fd6d187473c34fd4df776ca36505bbb9cd62",
+      "bytes": 4488
+    },
+    {
+      "path": "validation-artifacts/build_case03_html.py",
+      "sha256": "8edd3a33680e043c81a28006f6a1e8ef8f565499cda5fa674e07030d339a38bd",
+      "bytes": 1123
+    },
+    {
       "path": "validation-artifacts/build_case03_pdfs.py",
-      "sha256": "be6da2df09eaa285edb535b96de35e81c10558fcf62958336d2c003eb3804406",
-      "bytes": 40118
+      "sha256": "11d1bf6345a530669a30600aa22996a949187a38b377b07a2f3a1ccd157dfd5c",
+      "bytes": 40393
     },
     {
       "path": "validation-artifacts/validate_case03_v1.py",
-      "sha256": "f63baf9b800ef83d31c98a85fef2450e4bc5ba27f1e8d76aef932b1b66e2cafb",
-      "bytes": 17774
+      "sha256": "e9cb85c9c349e9b035830b5e1d7bf07fcd6481c88806e9aa7b1b1282fb8861b4",
+      "bytes": 17989
+    },
+    {
+      "path": "validation-artifacts/validate_case03_editor_shell.py",
+      "sha256": "f37f7d92c5dd506bdf1552e1efac28cde4356315e64adbff8fd47f6742d61f04",
+      "bytes": 11644
     }
   ],
   "release_gate": {

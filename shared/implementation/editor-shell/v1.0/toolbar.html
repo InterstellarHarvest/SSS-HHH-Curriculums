@@ -1,0 +1,49 @@
+<div class="toolbar" role="region" aria-label="Canonical editable-master controls" data-editor-shell-toolbar="1.0">
+  <fieldset class="toolbar-group toolbar-view">
+    <legend>View</legend>
+    <label for="roleSelect">Role
+      <select id="roleSelect">
+        <option value="student">Student</option>
+        <option value="teacher">Teacher</option>
+        <option value="answer">Answer Key</option>
+        <option value="accessible">Accessible</option>
+        <option value="all">All Pages</option>
+      </select>
+    </label>
+    <label class="toggle-label" for="fillToggle"><input id="fillToggle" type="checkbox"> Fill Responses</label>
+    <label class="toggle-label" for="editToggle"><input id="editToggle" type="checkbox"> Edit Text</label>
+  </fieldset>
+  <fieldset class="toolbar-group toolbar-margins">
+    <legend>Margins (in)</legend>
+    <label for="marginTop">Top margin <input id="marginTop" type="number" min="0.25" max="1" step="0.05"></label>
+    <label for="marginRight">Right margin <input id="marginRight" type="number" min="0.25" max="1" step="0.05"></label>
+    <label for="marginBottom">Bottom margin <input id="marginBottom" type="number" min="0.25" max="1" step="0.05"></label>
+    <label for="marginLeft">Left margin <input id="marginLeft" type="number" min="0.25" max="1" step="0.05"></label>
+    <button id="marginReset" type="button">Reset Margins</button>
+  </fieldset>
+  <fieldset class="toolbar-group toolbar-display">
+    <legend>Display</legend>
+    <label for="densitySelect">Density
+      <select id="densitySelect">
+        <option value="balanced">Balanced</option>
+        <option value="compact">Compact</option>
+        <option value="roomy">Roomy</option>
+      </select>
+    </label>
+    <label class="toggle-label" for="grayToggle"><input id="grayToggle" type="checkbox"> Grayscale</label>
+    <label class="toggle-label" for="guidesToggle"><input id="guidesToggle" type="checkbox"> Guides</label>
+    <label class="toggle-label" for="boundariesToggle"><input id="boundariesToggle" type="checkbox"> Boundaries</label>
+  </fieldset>
+  <fieldset class="toolbar-group toolbar-actions">
+    <legend>Publish</legend>
+    <button id="printBtn" type="button">Print / Save PDF</button>
+    <button id="downloadMasterBtn" type="button">Download Edited Master HTML</button>
+    <button id="downloadRoleBtn" type="button">Download Current Role HTML</button>
+    <button id="clearRoleBtn" type="button">Clear Current Role</button>
+    <button id="resetSourceBtn" class="danger" type="button">Reset Source</button>
+  </fieldset>
+  <div class="toolbar-statuses">
+    <span id="localSaveStatus" role="status" aria-live="polite">Local save: ready</span>
+    <span id="overflowStatus" role="status" aria-live="polite">Overflow: checking</span>
+  </div>
+</div>

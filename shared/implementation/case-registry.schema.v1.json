@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://interstellarharvest.example/schemas/case-registry.v1.json",
+  "title": "SSS/HHH repository case registry",
+  "type": "object",
+  "required": ["schemaVersion", "curricula"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "curricula": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "campaigns"],
+        "properties": {
+          "id": { "enum": ["SSS", "HHH"] },
+          "title": { "type": "string", "minLength": 1 },
+          "campaigns": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "cases"],
+              "properties": {
+                "id": { "type": "string", "minLength": 1 },
+                "title": { "type": "string", "minLength": 1 },
+                "cases": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "title", "version", "status", "master", "roles"],
+                    "properties": {
+                      "id": { "type": "string", "minLength": 1 },
+                      "title": { "type": "string", "minLength": 1 },
+                      "version": { "type": "string", "minLength": 1 },
+                      "status": { "type": "string", "minLength": 1 },
+                      "editorShell": { "type": ["string", "null"] },
+                      "master": { "type": "string", "minLength": 1 },
+                      "roles": {
+                        "type": "object",
+                        "additionalProperties": { "type": "string", "minLength": 1 }
+                      }
+                    },
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

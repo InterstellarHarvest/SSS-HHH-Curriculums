@@ -1,20 +1,1105 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mars Habitat - SSS_C1_CASE03_STUDENT_MISSION_v1.0.html</title><meta name="sss-case" content="SSS-C1-CASE03"><meta name="sss-status" content="validation-build"><meta name="sss-game-baseline" content="c6c17be57880b365793fdf99ff4ad09b62ecacce"><meta name="sss-source-master" content="SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html"><meta name="sss-balanced-page-fill" content="1.0.2"><meta name="sss-page-identity" content="1.0.4"><meta name="sss-visible-production-status" content="none"><style>
-:root{--paper:#fff;--ink:#18212b;--muted:#4b5967;--rule:#8c9aa8;--panel:#edf1f4;--panel-light:#f7f9fa;--primary:#0b6f82;--secondary:#147a45;--soft:#e7f3f5;--page-w:8.5in;--page-h:11in;--mt:.5in;--mr:.5in;--mb:.5in;--ml:.5in;--radius:3px}
-*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;color:var(--ink);background:#d9e0e4;font-size:11pt;line-height:1.28}body{padding:84px 18px 34px}.toolbar{position:fixed;z-index:50;inset:0 0 auto;background:#18212b;color:#fff;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 12px;min-height:68px}.toolbar label{font:700 8pt "JetBrains Mono",monospace;display:flex;gap:5px;align-items:center}.toolbar select,.toolbar button{font:700 9pt Inter,Arial,sans-serif;padding:5px 7px;border:1px solid #bdc8cf;border-radius:3px;background:white;color:#18212b}.toolbar button{cursor:pointer}.toolbar-status{margin-left:auto;font:700 8pt "JetBrains Mono",monospace}.workspace{display:flex;flex-direction:column;align-items:center;gap:22px}.page{display:none;position:relative;width:var(--page-w);height:var(--page-h);background:var(--paper);box-shadow:0 8px 24px #23303a44;overflow:hidden}.page-frame{position:absolute;inset:var(--mt) var(--mr) var(--mb) var(--ml);display:flex;flex-direction:column}.content{flex:1;min-height:0}.page[data-role="student"],.page[data-role="teacher"],.page[data-role="answer"],.page[data-role="accessible"]{display:none}body[data-role="student"] .page[data-role="student"],body[data-role="teacher"] .page[data-role="teacher"],body[data-role="answer"] .page[data-role="answer"],body[data-role="accessible"] .page[data-role="accessible"],body[data-role="all"] .page{display:block}body.grayscale{filter:grayscale(1)}body.standalone{padding-top:22px}body.standalone .toolbar{display:none}.overflow-warning{display:none;position:absolute;right:3px;top:3px;z-index:5;background:#781f1f;color:white;font:700 8pt "JetBrains Mono",monospace;padding:3px 6px}.page.has-overflow .overflow-warning{display:block}.student-id{display:grid;grid-template-columns:2fr 1fr .7fr;gap:12px;margin-bottom:6px;font:700 9pt "JetBrains Mono",monospace}.id-field{display:inline-block;min-width:1in;min-height:20px;border-bottom:1px solid var(--ink)}.first-header,.cont-header{border-left:4px solid var(--primary);border-bottom:1px solid var(--rule);display:grid;grid-template-columns:1fr auto;align-items:center;padding:5px 0 6px 10px;margin-bottom:9px}.first-header h1{font-size:26pt;line-height:1;margin:0 0 2px}.subtitle{font-size:9pt;color:var(--muted)}.identity{display:flex;align-items:center;gap:8px;padding-right:3px}.insignia{width:.58in;height:.58in}.cont-header .insignia{width:.34in;height:.34in}.institution{font:800 8.5pt "JetBrains Mono",monospace;text-transform:uppercase;line-height:1.05}.role-label{font-size:8pt;color:var(--muted)}.cont-header h1{font-size:14pt;margin:0}.cont-copy{font-size:8.5pt;color:var(--muted)}.footer{border-top:1px solid var(--rule);padding-top:4px;margin-top:6px;font:700 7pt "JetBrains Mono",monospace;text-align:right;color:var(--muted)}h2{font-size:15pt;margin:0 0 7px;border-bottom:2px solid var(--primary);padding-bottom:4px}h3{font-size:10.5pt;margin:7px 0 4px}.task-title{display:flex;align-items:baseline;gap:7px;border-bottom:1px solid var(--rule);padding-bottom:3px;margin:8px 0 5px}.task-title .num{font:800 8pt "JetBrains Mono",monospace;color:var(--primary)}.task-title strong{font-size:11.5pt}.directions{font-size:9.2pt;margin:0 0 4px}.callout{border-left:4px solid var(--primary);background:var(--soft);padding:6px 8px;margin:5px 0}.callout.botanical{border-color:var(--secondary);background:var(--panel-light)}.callout.caution{border-color:#6b5922;background:#f7f4e8}.callout p{margin:2px 0}.label{font:800 7pt "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}.response{border:1.1px solid var(--ink);border-radius:var(--radius);background:#fff;min-height:.45in;padding:5px;outline:none}.response.short{min-height:.3in}.response.medium{min-height:.65in}.response.large{min-height:.95in}.response:focus,.id-field:focus{outline:2px solid var(--primary);outline-offset:1px}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:9px}.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.data-table{width:100%;border-collapse:collapse;font-size:8.8pt}.data-table th,.data-table td{border:1px solid var(--rule);padding:4px 5px;vertical-align:top}.data-table th{background:var(--panel);text-align:left}.figure{border:1px solid var(--rule);padding:6px;margin:5px 0}.figure svg{display:block;width:100%;height:auto}.spectrum-figure svg{height:2.55in;width:100%}.figure figcaption{border-top:1px solid #bac4ca;margin-top:5px;padding-top:4px;font-size:7.5pt}.source-status{font:800 6.7pt "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.05em}.choice-list{display:grid;gap:4px}.choice{border:1px solid var(--rule);padding:5px 7px;font-size:8.8pt}.check{display:inline-block;width:14px;height:14px;border:1px solid var(--ink);margin-right:6px;vertical-align:-2px}.mechanism{display:grid;grid-template-columns:1fr 20px 1fr 20px 1fr 20px 1fr;align-items:stretch;gap:3px}.mech-box{border:1.4px solid var(--ink);padding:6px;min-height:.75in;font-size:8.5pt}.arrow{align-self:center;text-align:center;font-size:15pt}.cer{display:grid;gap:4px}.cer .response.claim{min-height:.38in}.cer .response.evidence{min-height:.65in}.cer .response.reasoning{min-height:.8in}.teacher-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.teacher-card{border:1px solid var(--rule);padding:6px;background:var(--panel-light);font-size:8.8pt}.teacher-card p,.teacher-card ul{margin:2px 0}.procedure>div{display:grid;grid-template-columns:.52in 1fr;gap:8px;border-bottom:1px solid #c1c9ce;padding:5px 0}.procedure .time{font:800 8pt "JetBrains Mono",monospace;color:var(--primary)}.rubric{font-size:7.7pt}.answer-block{border:1px solid var(--rule);border-left:4px solid var(--secondary);padding:6px 8px;margin:5px 0}.answer-block p{margin:2px 0;font-size:9pt}.accessible{font-size:13pt;line-height:1.35}.accessible .task-title strong{font-size:14pt}.accessible .directions{font-size:11.5pt}.accessible .response{min-height:.8in}.accessible .response.large{min-height:1.25in}.accessible .data-table{font-size:10.5pt}.accessible .choice{font-size:11pt;padding:8px}.alt-support{border:1px dashed var(--rule);padding:7px;margin:6px 0;font-size:10.5pt}.visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media print{body{padding:0;background:#fff}.toolbar{display:none}.workspace{gap:0}.page{box-shadow:none;break-after:page}.page:last-child{break-after:auto}}@page{size:letter;margin:0}
-</style></head><body class="standalone " data-role="student"><a class="visually-hidden" href="#workspace">Skip to document</a><main id="workspace" class="workspace"><section aria-label="Student Mission page 1 of 4" class="page" data-page-id="student-mission-01" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><div class="student-id"><label>Name <span class="id-field" contenteditable="true" data-key="name"></span></label><label>Date <span class="id-field" contenteditable="true" data-key="date"></span></label><label>Period <span class="id-field" contenteditable="true" data-key="period"></span></label></div><header class="first-header"><div><h1>Mars Habitat</h1><div class="subtitle">Campaign 1 · Case 03 · Arcadia Planitia, Mars</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div><div class="institution">Solar<br/>Agricultural<br/>Agency</div><div class="role-label">Student Mission</div></div></div></header><div class="callout"><span class="label">Mission question</span><p><strong>How can the habitat receive an adequate total amount of light while potato plants still fail to form normal green new growth?</strong></p></div><div class="two-col"><div><h3>Controlled observations</h3><ul><li>Combined PPFD: <strong>280 umol m-2 s-1</strong>, described as adequate.</li><li>Primary delivery: <strong>12 m light pipe and collector filter</strong> plus white LEDs.</li><li>New growth is pale; older leaves retain green.</li><li>Healthy roots; nutrient additions did not help.</li></ul></div><div><h3>Vocabulary</h3><table class="data-table"><tr><th>Term</th><th>Working meaning</th></tr><tr><td>attenuation</td><td>reduction during transmission</td></tr><tr><td>PAR</td><td>400-700 nm waveband used for photosynthesis metrics</td></tr><tr><td>PPFD</td><td>photon quantity per area per time</td></tr><tr><td>spectrum</td><td>distribution by wavelength</td></tr></table></div></div><div class="task-title"><span class="num">TASK 1</span><strong>Define the measurement</strong></div><p class="directions">In your own words, state what the 280 PPFD reading measures and one thing it cannot show.</p><div aria-multiline="true" class="response" contenteditable="true" data-key="t1" role="textbox"></div><div class="task-title"><span class="num">TASK 2</span><strong>Read the spectral-transmission data</strong></div><p class="directions">Use the four game values. Label the lowest-transmission band inside 400-700 nm.</p><figure class="figure spectrum-figure"><svg aria-labelledby="transTitle transDesc" role="img" viewbox="0 0 520 250"><title id="transTitle">Surface intake to habitat output transmission by wavelength band</title><desc id="transDesc">Game-provided transmission values are blue 92 percent, green 88 percent, red 31 percent, and deep red 12 percent. Direct values and four different patterns distinguish the bars in grayscale.</desc><defs><pattern height="8" id="diag" patternunits="userSpaceOnUse" width="8"><path d="M0 8L8 0" stroke="#4b5967" stroke-width="2"></path></pattern><pattern height="8" id="dots" patternunits="userSpaceOnUse" width="8"><circle cx="2" cy="2" fill="#4b5967" r="1.5"></circle></pattern><pattern height="10" id="cross" patternunits="userSpaceOnUse" width="10"><path d="M0 0L10 10M10 0L0 10" stroke="#4b5967"></path></pattern><pattern height="8" id="horiz" patternunits="userSpaceOnUse" width="8"><path d="M0 2H8M0 6H8" stroke="#4b5967"></path></pattern></defs><line stroke="#c3cbd0" x1="60" x2="485" y1="190.0" y2="190.0"></line><text font-size="9" text-anchor="end" x="52" y="194.0">0</text><line stroke="#c3cbd0" x1="60" x2="485" y1="159.0" y2="159.0"></line><text font-size="9" text-anchor="end" x="52" y="163.0">20</text><line stroke="#c3cbd0" x1="60" x2="485" y1="128.0" y2="128.0"></line><text font-size="9" text-anchor="end" x="52" y="132.0">40</text><line stroke="#c3cbd0" x1="60" x2="485" y1="97.0" y2="97.0"></line><text font-size="9" text-anchor="end" x="52" y="101.0">60</text><line stroke="#c3cbd0" x1="60" x2="485" y1="66.0" y2="66.0"></line><text font-size="9" text-anchor="end" x="52" y="70.0">80</text><line stroke="#c3cbd0" x1="60" x2="485" y1="35.0" y2="35.0"></line><text font-size="9" text-anchor="end" x="52" y="39.0">100</text><line stroke="#18212b" stroke-width="1.5" x1="60" x2="60" y1="35" y2="190"></line><line stroke="#18212b" stroke-width="1.5" x1="60" x2="485" y1="190" y2="190"></line><text font-weight="700" text-anchor="middle" transform="rotate(-90 18 112)" x="18" y="112">Transmission (%)</text><text font-weight="700" text-anchor="middle" x="273" y="244">Wavelength band</text><rect fill="url(#diag)" height="142.6" stroke="#18212b" width="62" x="95" y="47.4"></rect><text font-weight="800" text-anchor="middle" x="126" y="41.4">92%</text><text font-weight="700" text-anchor="middle" x="126" y="208">Blue</text><text font-size="9" text-anchor="middle" x="126" y="222">400-500 nm</text><rect fill="url(#dots)" height="136.4" stroke="#18212b" width="62" x="195" y="53.6"></rect><text font-weight="800" text-anchor="middle" x="226" y="47.6">88%</text><text font-weight="700" text-anchor="middle" x="226" y="208">Green</text><text font-size="9" text-anchor="middle" x="226" y="222">500-600 nm</text><rect fill="url(#cross)" height="48.1" stroke="#18212b" width="62" x="295" y="141.9"></rect><text font-weight="800" text-anchor="middle" x="326" y="135.9">31%</text><text font-weight="700" text-anchor="middle" x="326" y="208">Red</text><text font-size="9" text-anchor="middle" x="326" y="222">600-700 nm</text><rect fill="url(#horiz)" height="18.6" stroke="#18212b" width="62" x="395" y="171.4"></rect><text font-weight="800" text-anchor="middle" x="426" y="165.4">12%</text><text font-weight="700" text-anchor="middle" x="426" y="208">Deep red</text><text font-size="9" text-anchor="middle" x="426" y="222">700 nm+</text></svg><figcaption><span class="source-status">Game-provided sensor data</span> Surface intake versus habitat output, reported as four broad wavelength-band transmission percentages. No continuous spectrum or intermediate values are inferred.</figcaption></figure><p class="directions">Lowest transmission within 400-700 nm:</p><div aria-multiline="true" class="response short" contenteditable="true" data-key="t2" role="textbox"></div></div><footer class="footer">Student Mission 1 of 4</footer></div></section><section aria-label="Student Mission page 2 of 4" class="page" data-page-id="student-mission-02" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><header class="cont-header"><div><h1>Mars Habitat</h1><div class="cont-copy">Student Mission · Continued</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div class="institution">Solar<br/>Agricultural<br/>Agency</div></div></header><div class="task-title"><span class="num">TASK 3</span><strong>Compare quantity and quality</strong></div><p class="directions">Compare the adequate quantity reading with the wavelength distribution. Complete both conclusions.</p><figure class="figure"><svg aria-labelledby="qqTitle qqDesc" role="img" viewbox="0 0 520 205"><title id="qqTitle">Total photon quantity versus wavelength distribution</title><desc id="qqDesc">The game reports combined PPFD of 280 micromoles per square meter per second as adequate. A separate spectral analysis reports 92 percent blue transmission, 88 percent green, 31 percent red, and 12 percent deep red.</desc><defs><pattern height="8" id="qdiag" patternunits="userSpaceOnUse" width="8"><path d="M0 8L8 0" stroke="#4b5967" stroke-width="2"></path></pattern><pattern height="8" id="qdots" patternunits="userSpaceOnUse" width="8"><circle cx="2" cy="2" fill="#4b5967" r="1.5"></circle></pattern><pattern height="10" id="qcross" patternunits="userSpaceOnUse" width="10"><path d="M0 0L10 10M10 0L0 10" stroke="#4b5967"></path></pattern><pattern height="8" id="qhoriz" patternunits="userSpaceOnUse" width="8"><path d="M0 2H8M0 6H8" stroke="#4b5967"></path></pattern></defs><rect fill="#f7f9fa" height="145" rx="3" stroke="#18212b" width="225" x="18" y="25"></rect><text font-weight="800" text-anchor="middle" x="130" y="50">TOTAL QUANTITY</text><text font-size="38" font-weight="800" text-anchor="middle" x="130" y="102">280</text><text text-anchor="middle" x="130" y="124">umol m-2 s-1 PPFD</text><rect fill="#edf1f4" height="23" stroke="#18212b" width="100" x="80" y="137"></rect><text font-weight="800" text-anchor="middle" x="130" y="153">ADEQUATE</text><rect fill="#fff" height="145" rx="3" stroke="#18212b" width="237" x="265" y="25"></rect><text font-weight="800" text-anchor="middle" x="383" y="50">SPECTRAL TRANSMISSION</text><text font-weight="700" x="290" y="75">Blue</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="64"></rect><rect fill="url(#qdiag)" height="14" stroke="#18212b" width="105.8" x="355" y="64"></rect><text font-weight="700" text-anchor="end" x="478" y="75">92%</text><text font-weight="700" x="290" y="102">Green</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="91"></rect><rect fill="url(#qdots)" height="14" stroke="#18212b" width="101.2" x="355" y="91"></rect><text font-weight="700" text-anchor="end" x="478" y="102">88%</text><text font-weight="700" x="290" y="129">Red</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="118"></rect><rect fill="url(#qcross)" height="14" stroke="#18212b" width="35.6" x="355" y="118"></rect><text font-weight="700" text-anchor="end" x="478" y="129">31%</text><text font-weight="700" x="290" y="156">Deep red</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="145"></rect><rect fill="url(#qhoriz)" height="14" stroke="#18212b" width="13.8" x="355" y="145"></rect><text font-weight="700" text-anchor="end" x="478" y="156">12%</text></svg><figcaption><span class="source-status">Game-provided comparison</span> The total PPFD and all four transmission percentages come directly from the current Case 03 runtime. Adequate total quantity does not guarantee balanced wavelength delivery.</figcaption></figure><div class="two-col"><div><p class="directions"><strong>Why “not enough total light” does not fit:</strong></p><div aria-multiline="true" class="response medium" contenteditable="true" data-key="t3a" role="textbox"></div></div><div><p class="directions"><strong>What the spectrum data does show:</strong></p><div aria-multiline="true" class="response medium" contenteditable="true" data-key="t3b" role="textbox"></div></div></div><div class="task-title"><span class="num">TASK 4</span><strong>Connect the symptom pattern</strong></div><p class="directions">Use the tissue pattern to decide which explanation fits better.</p><table class="data-table"><tr><th>Evidence</th><th>What it suggests</th></tr><tr><td>Older lower leaves retain green</td><td><div aria-multiline="true" class="response short" contenteditable="true" data-key="t4a" role="textbox"></div></td></tr><tr><td>New leaves are pale yellow to white</td><td><div aria-multiline="true" class="response short" contenteditable="true" data-key="t4b" role="textbox"></div></td></tr><tr><td>Roots healthy; iron and nitrogen did not help</td><td><div aria-multiline="true" class="response short" contenteditable="true" data-key="t4c" role="textbox"></div></td></tr></table><p class="directions"><strong>Best pattern conclusion:</strong></p><div aria-multiline="true" class="response medium" contenteditable="true" data-key="t4d" role="textbox"></div></div><footer class="footer">Student Mission 2 of 4</footer></div></section><section aria-label="Student Mission page 3 of 4" class="page" data-page-id="student-mission-03" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><header class="cont-header"><div><h1>Mars Habitat</h1><div class="cont-copy">Student Mission · Continued</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div class="institution">Solar<br/>Agricultural<br/>Agency</div></div></header><div class="task-title"><span class="num">TASK 5</span><strong>Select and reject diagnoses</strong></div><p class="directions">Mark the diagnosis that fits all evidence. Then reject one alternative using a specific observation or measurement.</p><div class="choice-list"><div class="choice"><span class="check"></span>Mars soil perchlorates are poisoning the roots.</div><div class="choice"><span class="check"></span>CO2 levels are too high for potatoes.</div><div class="choice"><span class="check"></span>Martian day length is disrupting the photoperiod.</div><div class="choice"><span class="check"></span>The light delivery system is filtering out red wavelengths needed for chlorophyll biosynthesis.</div></div><p class="directions"><strong>Rejected alternative and why:</strong></p><div aria-multiline="true" class="response medium large" contenteditable="true" data-key="t5" role="textbox"></div><div class="task-title"><span class="num">TASK 6</span><strong>Model the mechanism</strong></div><p class="directions">Complete the missing stages. The arrows are already supplied.</p><div class="mechanism"><div class="mech-box"><span class="label">Stage 1</span><div>12 m light pipe and collector filter</div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 2</span><div><div aria-multiline="true" class="response short large" contenteditable="true" data-key="m1" role="textbox"></div></div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 3</span><div></div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 4</span><div></div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 5</span><div><div aria-multiline="true" class="response short large" contenteditable="true" data-key="m4" role="textbox"></div></div></div></div><div class="callout caution"><span class="label">Science boundary</span><p>The case focuses on red-band transmission deficit. Do not generalize that plants use only red light; blue and other wavelengths also affect photosynthesis and development.</p></div></div><footer class="footer">Student Mission 3 of 4</footer></div></section><section aria-label="Student Mission page 4 of 4" class="page" data-page-id="student-mission-04" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><header class="cont-header"><div><h1>Mars Habitat</h1><div class="cont-copy">Student Mission · Continued</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div class="institution">Solar<br/>Agricultural<br/>Agency</div></div></header><div class="task-title"><span class="num">TASK 7</span><strong>Write the case conclusion</strong></div><p class="directions">Write a concise CER using at least three exact data points or observations.</p><div class="cer"><div><span class="label">Claim</span><div aria-multiline="true" class="response claim" contenteditable="true" data-key="t7c" role="textbox"></div></div><div><span class="label">Evidence</span><div aria-multiline="true" class="response evidence" contenteditable="true" data-key="t7e" role="textbox"></div></div><div><span class="label">Reasoning</span><div aria-multiline="true" class="response reasoning" contenteditable="true" data-key="t7r" role="textbox"></div></div></div><div class="task-title"><span class="num">TASK 8</span><strong>Transfer the analysis</strong></div><p class="directions">Why might increasing brightness without changing the spectrum fail to solve this case?</p><div aria-multiline="true" class="response medium" contenteditable="true" data-key="t8" role="textbox"></div><div class="task-title"><span class="num">TASK 9</span><strong>Exit ticket</strong></div><p class="directions">In a new lighting failure, what two measurements would you compare first?</p><div aria-multiline="true" class="response medium" contenteditable="true" data-key="t9" role="textbox"></div><div class="callout botanical"><span class="label">Source status</span><p>Scientific definitions are authoritative. The exact Mars hardware and transmission percentages are game-specific. The graphs use only those values and transparent arithmetic.</p></div></div><footer class="footer">Student Mission 4 of 4</footer></div></section></main><script id="runtimeScript">
-const KEY='sss-case03-v1-state';
-const roleSelect=document.getElementById('roleSelect');
-function editableNodes(){return [...document.querySelectorAll('[contenteditable="true"]')]}
-function nodeKey(n,i){const p=n.closest('.page');return (p?.dataset.role||'x')+':'+(n.dataset.key||('e'+i))}
-function load(){let s={role:document.body.dataset.role||'student',grayscale:document.body.classList.contains('grayscale'),values:{}};try{s=Object.assign(s,JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){};if(roleSelect){document.body.dataset.role=s.role||'student';roleSelect.value=s.role||'student'};document.body.classList.toggle('grayscale',!!s.grayscale);const gray=document.getElementById('grayToggle');if(gray)gray.checked=!!s.grayscale;editableNodes().forEach((n,i)=>{const k=nodeKey(n,i);if(s.values&&s.values[k]!=null)n.innerHTML=s.values[k]});checkOverflow()}
-function save(){const values={};editableNodes().forEach((n,i)=>values[nodeKey(n,i)]=n.innerHTML);const state={role:document.body.dataset.role,grayscale:document.body.classList.contains('grayscale'),values};localStorage.setItem(KEY,JSON.stringify(state));const status=document.getElementById('saveStatus');if(status)status.textContent='Saved'}
-let timer;document.addEventListener('input',()=>{clearTimeout(timer);const status=document.getElementById('saveStatus');if(status)status.textContent='Saving...';timer=setTimeout(save,250)});
-if(roleSelect)roleSelect.addEventListener('change',()=>{document.body.dataset.role=roleSelect.value;save();setTimeout(checkOverflow,0)});
-const grayToggle=document.getElementById('grayToggle');if(grayToggle)grayToggle.addEventListener('change',e=>{document.body.classList.toggle('grayscale',e.target.checked);save()});
-const clearBtn=document.getElementById('clearBtn');if(clearBtn)clearBtn.addEventListener('click',()=>{document.querySelectorAll('.response[contenteditable="true"]').forEach(n=>n.innerHTML='');save()});
-const resetBtn=document.getElementById('resetBtn');if(resetBtn)resetBtn.addEventListener('click',()=>{if(confirm('Reset all saved fields and publishing controls for this Case 03 master?')){localStorage.removeItem(KEY);editableNodes().forEach(n=>n.innerHTML='');load()}});
-function checkOverflow(){document.querySelectorAll('.page').forEach(p=>{const c=p.querySelector('.content');p.classList.toggle('has-overflow',c.scrollHeight>c.clientHeight+2)})}
-window.addEventListener('resize',checkOverflow);window.addEventListener('load',()=>{load();setTimeout(checkOverflow,150)});
-function portable(role,gray=false){const pages=[...document.querySelectorAll('.page[data-role="'+role+'"]')].map(p=>p.outerHTML).join('\n');let css=document.querySelector('style').textContent;let html='<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mars Habitat - '+role+'</title><style>'+css+'</style></head><body class="standalone '+(gray?'grayscale ':'')+'" data-role="'+role+'"><a class="visually-hidden" href="#workspace">Skip to document</a><main id="workspace" class="workspace">'+pages+'</main><script>'+document.getElementById('runtimeScript').textContent.split('</scr'+'ipt>').join('<\\/scr'+'ipt>')+'<\\/script></body></html>';return html}
-const downloadBtn=document.getElementById('downloadBtn');if(downloadBtn)downloadBtn.addEventListener('click',()=>{const role=document.body.dataset.role==='all'?'student':document.body.dataset.role;const text=portable(role,document.body.classList.contains('grayscale'));const blob=new Blob([text],{type:'text/html'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SSS_C1_CASE03_'+role.toUpperCase()+'_v1.0.html';a.click();URL.revokeObjectURL(a.href)});
-</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>SSS C1 Case 03 - Mars Habitat - Editable Master v1.0</title>
+<meta content="SSS-C1-CASE03" name="sss-case"/>
+<meta content="1.0" name="sss-curriculum-version"/>
+<meta content="validation-build" name="sss-status"/>
+<meta content="c6c17be57880b365793fdf99ff4ad09b62ecacce" name="sss-game-baseline"/>
+<meta content="1.3" name="sss-curriculum-bible"/>
+<meta content="Data Analyst" name="sss-student-identity"/>
+<meta content="space_sprout_sleuth_data.js#mars" name="sss-runtime-source"/>
+<meta content="1.0.2" name="sss-balanced-page-fill"/>
+<meta content="1.0.4" name="sss-page-identity"/>
+<meta content="none" name="sss-visible-production-status"/>
+<meta content="SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html" name="sss-source-master"/>
+<meta content="1.0" name="sss-editor-shell"/>
+<meta content="2af76ed6fee2698477f89b60e397d045523f418d281fe65ce4ed0ba60e1cc947" name="sss-editor-shell-contract-sha256"/>
+<meta content="toolbar:ad0378e5b071987974810293a8fb0e052f081baa4eccdbe9dc2734cb1f19be90 components:23464028f1982019a3a02e113f9db46d02b6f47a2aab4af22e4082bf3e862b65 css:c4dca30c9700c041f6d99aee37a041255d7a08862cb3d10f1e59dd99d24fe3ad cer:bb4aa82d43902f4508f9603561db8ffcce0e561c7b19b94b1afbab4a7d8ca6eb icons:4abead07168ff0fa5fe4e08e78c61e2afbea8f6d3df001c9dfe3e2e11daa630d runtime:e393de3195f9fca091cef65eb5c653ffec10a6b920ce713d133a1c1371a69f94" name="sss-editor-shell-assets"/>
+<style data-source-sha256="23464028f1982019a3a02e113f9db46d02b6f47a2aab4af22e4082bf3e862b65" id="sssCurriculumComponentsCss">* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+  color: var(--ink);
+  background: #d9e0e4;
+  font: 11pt/1.28 Inter, Arial, sans-serif;
+}
+
+body {
+  padding: 18px 18px 34px;
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+.page {
+  position: relative;
+  width: var(--page-w);
+  height: var(--page-h);
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow: 0 8px 24px #23303a44;
+}
+
+.page-frame {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+}
+
+.student-id {
+  display: grid;
+  grid-template-columns: 2fr 1fr .7fr;
+  gap: 12px;
+  margin-bottom: 6px;
+  font: 700 9pt "JetBrains Mono", monospace;
+}
+
+.id-field {
+  display: inline-block;
+  min-width: 1in;
+  min-height: 20px;
+  border-bottom: 1px solid var(--ink);
+}
+
+[data-page-identity="first"],
+[data-page-identity="continuation"] {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  margin-bottom: 9px;
+  padding: 5px 0 6px 10px;
+  border-bottom: 1px solid var(--rule);
+  border-left: 4px solid var(--primary);
+}
+
+[data-page-identity="first"] h1 {
+  margin: 0 0 2px;
+  font-size: 26pt;
+  line-height: 1;
+}
+
+[data-page-identity="continuation"] h1 {
+  margin: 0;
+  font-size: 14pt;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 9pt;
+}
+
+.cont-copy {
+  color: var(--muted);
+  font-size: 8.5pt;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 3px;
+}
+
+.insignia {
+  width: .58in;
+  height: .58in;
+}
+
+[data-page-identity="continuation"] .insignia {
+  width: .34in;
+  height: .34in;
+}
+
+.institution {
+  font: 800 8.5pt/1.05 "JetBrains Mono", monospace;
+  text-transform: uppercase;
+}
+
+.role-label {
+  color: var(--muted);
+  font-size: 8pt;
+}
+
+[data-publication-footer] {
+  margin-top: 6px;
+  padding-top: 4px;
+  color: var(--muted);
+  border-top: 1px solid var(--rule);
+  font: 700 7pt "JetBrains Mono", monospace;
+  text-align: right;
+}
+
+h2 {
+  margin: 0 0 7px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--primary);
+  font-size: 15pt;
+}
+
+h3 {
+  margin: 7px 0 4px;
+  font-size: 10.5pt;
+}
+
+.directions {
+  margin: 0 0 4px;
+  font-size: 9.2pt;
+}
+
+.callout {
+  margin: 5px 0;
+  padding: 6px 8px;
+  border-left: 4px solid var(--primary);
+  background: var(--soft);
+}
+
+.callout.botanical {
+  border-color: var(--secondary);
+  background: var(--panel-light);
+}
+
+.callout.caution {
+  border-color: #6b5922;
+  background: #f7f4e8;
+}
+
+.callout p {
+  margin: 2px 0;
+}
+
+.label {
+  color: var(--muted);
+  font: 800 7pt "JetBrains Mono", monospace;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.response {
+  min-height: .45in;
+  padding: 5px;
+  border: 1.1px solid var(--ink);
+  border-radius: var(--radius);
+  outline: none;
+  background: var(--paper);
+}
+
+.response.short {
+  min-height: .3in;
+}
+
+.response.medium {
+  min-height: .65in;
+}
+
+.response.large {
+  min-height: .95in;
+}
+
+.response:focus,
+.id-field:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.three-col {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 7px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.8pt;
+}
+
+.data-table th,
+.data-table td {
+  padding: 4px 5px;
+  border: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+.data-table th {
+  background: var(--panel);
+  text-align: left;
+}
+
+.figure {
+  margin: 5px 0;
+  padding: 6px;
+  border: 1px solid var(--rule);
+}
+
+.figure svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.figure figcaption {
+  margin-top: 5px;
+  padding-top: 4px;
+  border-top: 1px solid #bac4ca;
+  font-size: 7.5pt;
+}
+
+.source-status {
+  font: 800 6.7pt "JetBrains Mono", monospace;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.choice-list {
+  display: grid;
+  gap: 4px;
+}
+
+.choice {
+  padding: 5px 7px;
+  border: 1px solid var(--rule);
+  font-size: 8.8pt;
+}
+
+.check {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 6px;
+  border: 1px solid var(--ink);
+  vertical-align: -2px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media print {
+  body {
+    padding: 0;
+    background: #fff;
+  }
+
+  .workspace {
+    gap: 0;
+  }
+
+  .page {
+    box-shadow: none;
+    break-after: page;
+  }
+
+  .page:last-child {
+    break-after: auto;
+  }
+}
+
+@page {
+  size: letter;
+  margin: 0;
+}
+</style>
+<style id="caseStyles">:root {
+  --paper: #fff;
+  --ink: #18212b;
+  --muted: #4b5967;
+  --rule: #8c9aa8;
+  --panel: #edf1f4;
+  --panel-light: #f7f9fa;
+  --primary: #0b6f82;
+  --secondary: #147a45;
+  --soft: #e7f3f5;
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --radius: 3px;
+}
+
+.spectrum-figure svg {
+  width: 100%;
+  height: 2.55in;
+}
+
+.mechanism {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
+  align-items: stretch;
+  gap: 3px;
+}
+
+.mech-box {
+  min-height: .75in;
+  padding: 6px;
+  border: 1.4px solid var(--ink);
+  font-size: 8.5pt;
+}
+
+.arrow {
+  align-self: center;
+  font-size: 15pt;
+  text-align: center;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.teacher-card {
+  padding: 6px;
+  border: 1px solid var(--rule);
+  background: var(--panel-light);
+  font-size: 8.8pt;
+}
+
+.teacher-card p,
+.teacher-card ul {
+  margin: 2px 0;
+}
+
+.procedure > div {
+  display: grid;
+  grid-template-columns: .52in 1fr;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #c1c9ce;
+}
+
+.procedure .time {
+  color: var(--primary);
+  font: 800 8pt "JetBrains Mono", monospace;
+}
+
+.rubric {
+  font-size: 7.7pt;
+}
+
+.answer-block {
+  margin: 5px 0;
+  padding: 6px 8px;
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--secondary);
+}
+
+.answer-block p {
+  margin: 2px 0;
+  font-size: 9pt;
+}
+
+.accessible {
+  font-size: 13pt;
+  line-height: 1.35;
+}
+
+.accessible .directions {
+  font-size: 11.5pt;
+}
+
+.accessible .response {
+  min-height: .8in;
+}
+
+.accessible .response.large {
+  min-height: 1.25in;
+}
+
+.accessible .data-table {
+  font-size: 10.5pt;
+}
+
+.accessible .choice {
+  padding: 8px;
+  font-size: 11pt;
+}
+
+.alt-support {
+  margin: 6px 0;
+  padding: 7px;
+  border: 1px dashed var(--rule);
+  font-size: 10.5pt;
+}
+</style>
+<style data-source-sha256="c4dca30c9700c041f6d99aee37a041255d7a08862cb3d10f1e59dd99d24fe3ad" id="sssEditorShellCss">:root {
+  --shell-toolbar-bg: #17242c;
+  --shell-toolbar-ink: #f7fbfc;
+  --shell-toolbar-accent: #65c7d7;
+  --shell-focus: #f4b63f;
+  --shell-margin-top: .50in;
+  --shell-margin-right: .50in;
+  --shell-margin-bottom: .50in;
+  --shell-margin-left: .50in;
+}
+
+body {
+  margin: 0;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1.05fr 1.45fr 1fr 1.65fr auto;
+  gap: 8px;
+  align-items: stretch;
+  padding: 8px 10px;
+  color: var(--shell-toolbar-ink);
+  background: var(--shell-toolbar-bg);
+  border-bottom: 3px solid var(--shell-toolbar-accent);
+  font: 700 11px/1.25 Inter, Arial, sans-serif;
+}
+
+.toolbar-group {
+  min-width: 0;
+  margin: 0;
+  padding: 5px 7px 7px;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 4px;
+}
+
+.toolbar-group legend {
+  padding: 0 4px;
+  color: var(--shell-toolbar-accent);
+  font: 700 9px/1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.toolbar label,
+.toolbar button,
+.toolbar select,
+.toolbar input {
+  font: inherit;
+}
+
+.toolbar label {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  margin: 2px 5px 2px 0;
+}
+
+.toolbar input[type="number"] {
+  width: 52px;
+}
+
+.toolbar button,
+.toolbar select,
+.toolbar input {
+  min-height: 28px;
+  border: 1px solid rgba(255,255,255,.45);
+  border-radius: 3px;
+}
+
+.toolbar button {
+  margin: 2px 4px 2px 0;
+  padding: 4px 8px;
+  color: var(--shell-toolbar-ink);
+  background: #27414d;
+  cursor: pointer;
+}
+
+.toolbar button:hover {
+  background: #345968;
+}
+
+.toolbar button.danger {
+  border-color: #e58a86;
+  background: #632d31;
+}
+
+.toolbar :focus-visible,
+[contenteditable="true"]:focus-visible {
+  outline: 3px solid var(--shell-focus);
+  outline-offset: 2px;
+}
+
+.toolbar-statuses {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  min-width: 120px;
+  color: #dcecef;
+  font: 700 9px/1.25 "JetBrains Mono", monospace;
+}
+
+.page .page-frame {
+  inset: var(--shell-margin-top) var(--shell-margin-right) var(--shell-margin-bottom) var(--shell-margin-left);
+  padding: 0;
+}
+
+.page[data-role]:not([hidden]) {
+  display: block;
+}
+
+.page[data-role][hidden] {
+  display: none !important;
+}
+
+body.shell-guides .page .page-frame::after {
+  position: absolute;
+  inset: var(--shell-margin-top) var(--shell-margin-right) var(--shell-margin-bottom) var(--shell-margin-left);
+  border: 1px dashed rgba(11,111,130,.45);
+  content: "";
+  pointer-events: none;
+}
+
+body.shell-boundaries .page {
+  outline: 2px solid rgba(11,111,130,.55);
+  outline-offset: 3px;
+}
+
+body.shell-grayscale {
+  filter: grayscale(1);
+}
+
+body.shell-density-compact .content,
+body.shell-density-compact .content-area {
+  gap: .045in !important;
+}
+
+body.shell-density-roomy .content,
+body.shell-density-roomy .content-area {
+  gap: .11in !important;
+}
+
+body.shell-edit-text::before {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 1200;
+  padding: 6px 9px;
+  color: #fff;
+  background: #8a5a00;
+  border-radius: 3px;
+  content: "EDIT TEXT MODE";
+  font: 700 10px/1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+}
+
+[data-editable][contenteditable="true"] {
+  background: rgba(244,182,63,.13);
+  box-shadow: inset 0 -1px 0 #8a5a00;
+}
+
+[data-response][contenteditable="true"] {
+  cursor: text;
+}
+
+.task-heading {
+  display: grid !important;
+  grid-template-columns: 20px minmax(0,1fr);
+  gap: .08in;
+  align-items: start;
+  margin: 0 0 .055in !important;
+  padding: 0 0 .045in !important;
+  border-bottom: 1px solid var(--rule, #8c9aa3);
+  color: var(--ink, #18212b);
+}
+
+.task-heading .ph-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  color: var(--primary, #0b6f82);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 16;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.task-heading-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.task-heading .technical-label {
+  display: block;
+  color: var(--primary, #0b6f82);
+  font: 700 7pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+}
+
+.task-heading .section-title {
+  display: block;
+  font: 800 11.5pt/1.15 Inter, Arial, sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.page[data-role="accessible"] .task-heading {
+  grid-template-columns: 24px minmax(0,1fr);
+  gap: .10in;
+}
+
+.page[data-role="accessible"] .task-heading .ph-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.page[data-role="accessible"] .task-heading .section-title {
+  font-size: 14pt;
+}
+
+.task-reference {
+  font-weight: 800;
+}
+
+.overflow-warning {
+  display: none;
+}
+
+.page.has-overflow .overflow-warning {
+  display: block;
+}
+
+@media print {
+  .toolbar,
+  body.shell-edit-text::before {
+    display: none !important;
+  }
+
+  body {
+    filter: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .toolbar {
+    position: relative;
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+<style data-source-sha256="bb4aa82d43902f4508f9603561db8ffcce0e561c7b19b94b1afbab4a7d8ca6eb" id="sssCerComponentCss">.canonical-cer[data-cer-contract="student-v1.0"] {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: .055in;
+  min-height: 2.55in;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box {
+  display: grid;
+  grid-template-columns: .72in minmax(0,1fr);
+  gap: .055in;
+  min-height: 0;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.claim {
+  flex: 1 1 .46in;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.evidence {
+  flex: 1 1 .66in;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.reasoning {
+  flex: 1 1 .76in;
+}
+
+.canonical-cer-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .05in;
+  color: #fff;
+  background: var(--primary, #0b6f82);
+  border-radius: var(--radius, 3px);
+  font: 700 7pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .05em;
+}
+
+.canonical-cer-response {
+  min-height: 0;
+  padding: .055in;
+  overflow: auto;
+  border: 1px solid var(--rule, #8c9aa3);
+  border-radius: var(--radius, 3px);
+  background: var(--paper, #fff);
+}
+</style>
+<meta content="student" name="sss-standalone-role"/></head>
+<body class="standalone-role">
+<a class="visually-hidden" href="#workspace">Skip to curriculum pages</a>
+<svg aria-hidden="true" class="editor-shell-icons" focusable="false" height="0" width="0">
+<defs>
+<symbol id="ph-book" viewbox="0 0 256 256"><path d="M40 40h56a32 32 0 0 1 32 32v144a32 32 0 0 0-32-32H40Z"></path><path d="M216 40h-56a32 32 0 0 0-32 32v144a32 32 0 0 1 32-32h56Z"></path></symbol>
+<symbol id="ph-scales" viewbox="0 0 256 256"><path d="M128 32v176"></path><path d="M72 216h112"></path><path d="M40 64h176"></path><path d="m72 64-40 72h80Z"></path><path d="m184 64-40 72h80Z"></path></symbol>
+<symbol id="ph-nodes" viewbox="0 0 256 256"><circle cx="48" cy="128" r="24"></circle><circle cx="128" cy="56" r="24"></circle><circle cx="208" cy="128" r="24"></circle><circle cx="128" cy="200" r="24"></circle><path d="m66 112 44-40m36 0 44 40m0 32-44 40m-36 0-44-40"></path></symbol>
+<symbol id="ph-diagnosis" viewbox="0 0 256 256"><circle cx="112" cy="112" r="64"></circle><path d="m158 158 50 50"></path><path d="M88 112h48m-24-24v48"></path></symbol>
+<symbol id="ph-flow" viewbox="0 0 256 256"><rect height="80" rx="8" width="56" x="24" y="88"></rect><rect height="80" rx="8" width="56" x="176" y="88"></rect><path d="M80 128h96m-24-24 24 24-24 24"></path></symbol>
+<symbol id="ph-cer" viewbox="0 0 256 256"><rect height="48" rx="8" width="192" x="32" y="40"></rect><rect height="48" rx="8" width="192" x="32" y="104"></rect><rect height="48" rx="8" width="192" x="32" y="168"></rect><path d="M52 64h72m-72 64h112m-112 64h136"></path></symbol>
+<symbol id="ph-wrench" viewbox="0 0 256 256"><path d="M152 48a56 56 0 0 0-67 72L32 173a24 24 0 0 0 34 34l53-53a56 56 0 0 0 72-67l-35 35-34-34Z"></path></symbol>
+<symbol id="ph-ticket" viewbox="0 0 256 256"><path d="M40 72a16 16 0 0 1 16-16h144a16 16 0 0 1 16 16v32a24 24 0 0 0 0 48v32a16 16 0 0 1-16 16H56a16 16 0 0 1-16-16v-32a24 24 0 0 0 0-48Z"></path><path d="M128 72v16m0 24v16m0 24v16"></path></symbol>
+</defs>
+</svg>
+
+<main class="workspace" data-editor-content="case03-v1.0" id="workspace"><section aria-label="Student Mission page 1 of 4" class="page" data-page-id="student-mission-01" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><div class="student-id"><label>Name <span aria-multiline="true" class="id-field" data-key="name" data-persist-id="student-name" data-response="" role="textbox"></span></label><label>Date <span aria-multiline="true" class="id-field" data-key="date" data-persist-id="student-date" data-response="" role="textbox"></span></label><label>Period <span aria-multiline="true" class="id-field" data-key="period" data-persist-id="student-period" data-response="" role="textbox"></span></label></div><header class="first-header" data-page-identity="first"><div><h1>Mars Habitat</h1><div class="subtitle">Campaign 1 · Case 03 · Arcadia Planitia, Mars</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div><div class="institution">Solar<br/>Agricultural<br/>Agency</div><div class="role-label">Student Mission</div></div></div></header><div class="callout"><span class="label">Mission question</span><p data-editable="" data-persist-id="student-mission-01-instruction-001"><strong>How can the habitat receive an adequate total amount of light while potato plants still fail to form normal green new growth?</strong></p></div><div class="two-col"><div><h3 data-editable="" data-persist-id="student-mission-01-instruction-002">Controlled observations</h3><ul><li data-editable="" data-persist-id="student-mission-01-instruction-003">Combined PPFD: <strong>280 umol m-2 s-1</strong>, described as adequate.</li><li data-editable="" data-persist-id="student-mission-01-instruction-004">Primary delivery: <strong>12 m light pipe and collector filter</strong> plus white LEDs.</li><li data-editable="" data-persist-id="student-mission-01-instruction-005">New growth is pale; older leaves retain green.</li><li data-editable="" data-persist-id="student-mission-01-instruction-006">Healthy roots; nutrient additions did not help.</li></ul></div><div><h3 data-editable="" data-persist-id="student-mission-01-instruction-007">Vocabulary</h3><table class="data-table"><tr><th data-editable="" data-persist-id="student-mission-01-instruction-008">Term</th><th data-editable="" data-persist-id="student-mission-01-instruction-009">Working meaning</th></tr><tr><td data-editable="" data-persist-id="student-mission-01-instruction-010">attenuation</td><td data-editable="" data-persist-id="student-mission-01-instruction-011">reduction during transmission</td></tr><tr><td data-editable="" data-persist-id="student-mission-01-instruction-012">PAR</td><td data-editable="" data-persist-id="student-mission-01-instruction-013">400-700 nm waveband used for photosynthesis metrics</td></tr><tr><td data-editable="" data-persist-id="student-mission-01-instruction-014">PPFD</td><td data-editable="" data-persist-id="student-mission-01-instruction-015">photon quantity per area per time</td></tr><tr><td data-editable="" data-persist-id="student-mission-01-instruction-016">spectrum</td><td data-editable="" data-persist-id="student-mission-01-instruction-017">distribution by wavelength</td></tr></table></div></div><h2 class="task-heading" data-task-id="1" data-task-title="Define the measurement"><svg aria-hidden="true" class="ph-icon"><use href="#ph-book"></use></svg><span class="task-heading-copy"><span class="technical-label">REFERENCE</span><span class="section-title">1 · Define the measurement</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-01-instruction-018">In your own words, state what the 280 PPFD reading measures and one thing it cannot show.</p><div aria-multiline="true" class="response" data-key="t1" data-persist-id="t1" data-response="" role="textbox"></div><h2 class="task-heading" data-task-id="2" data-task-title="Read the spectral-transmission data"><svg aria-hidden="true" class="ph-icon"><use href="#ph-scales"></use></svg><span class="task-heading-copy"><span class="technical-label">DATA ANALYSIS</span><span class="section-title">2 · Read the spectral-transmission data</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-01-instruction-019">Use the four game values. Label the lowest-transmission band inside 400-700 nm.</p><figure class="figure spectrum-figure"><svg aria-labelledby="transTitle transDesc" role="img" viewbox="0 0 520 250"><title id="transTitle">Surface intake to habitat output transmission by wavelength band</title><desc id="transDesc">Game-provided transmission values are blue 92 percent, green 88 percent, red 31 percent, and deep red 12 percent. Direct values and four different patterns distinguish the bars in grayscale.</desc><defs><pattern height="8" id="diag" patternunits="userSpaceOnUse" width="8"><path d="M0 8L8 0" stroke="#4b5967" stroke-width="2"></path></pattern><pattern height="8" id="dots" patternunits="userSpaceOnUse" width="8"><circle cx="2" cy="2" fill="#4b5967" r="1.5"></circle></pattern><pattern height="10" id="cross" patternunits="userSpaceOnUse" width="10"><path d="M0 0L10 10M10 0L0 10" stroke="#4b5967"></path></pattern><pattern height="8" id="horiz" patternunits="userSpaceOnUse" width="8"><path d="M0 2H8M0 6H8" stroke="#4b5967"></path></pattern></defs><line stroke="#c3cbd0" x1="60" x2="485" y1="190.0" y2="190.0"></line><text font-size="9" text-anchor="end" x="52" y="194.0">0</text><line stroke="#c3cbd0" x1="60" x2="485" y1="159.0" y2="159.0"></line><text font-size="9" text-anchor="end" x="52" y="163.0">20</text><line stroke="#c3cbd0" x1="60" x2="485" y1="128.0" y2="128.0"></line><text font-size="9" text-anchor="end" x="52" y="132.0">40</text><line stroke="#c3cbd0" x1="60" x2="485" y1="97.0" y2="97.0"></line><text font-size="9" text-anchor="end" x="52" y="101.0">60</text><line stroke="#c3cbd0" x1="60" x2="485" y1="66.0" y2="66.0"></line><text font-size="9" text-anchor="end" x="52" y="70.0">80</text><line stroke="#c3cbd0" x1="60" x2="485" y1="35.0" y2="35.0"></line><text font-size="9" text-anchor="end" x="52" y="39.0">100</text><line stroke="#18212b" stroke-width="1.5" x1="60" x2="60" y1="35" y2="190"></line><line stroke="#18212b" stroke-width="1.5" x1="60" x2="485" y1="190" y2="190"></line><text font-weight="700" text-anchor="middle" transform="rotate(-90 18 112)" x="18" y="112">Transmission (%)</text><text font-weight="700" text-anchor="middle" x="273" y="244">Wavelength band</text><rect fill="url(#diag)" height="142.6" stroke="#18212b" width="62" x="95" y="47.4"></rect><text font-weight="800" text-anchor="middle" x="126" y="41.4">92%</text><text font-weight="700" text-anchor="middle" x="126" y="208">Blue</text><text font-size="9" text-anchor="middle" x="126" y="222">400-500 nm</text><rect fill="url(#dots)" height="136.4" stroke="#18212b" width="62" x="195" y="53.6"></rect><text font-weight="800" text-anchor="middle" x="226" y="47.6">88%</text><text font-weight="700" text-anchor="middle" x="226" y="208">Green</text><text font-size="9" text-anchor="middle" x="226" y="222">500-600 nm</text><rect fill="url(#cross)" height="48.1" stroke="#18212b" width="62" x="295" y="141.9"></rect><text font-weight="800" text-anchor="middle" x="326" y="135.9">31%</text><text font-weight="700" text-anchor="middle" x="326" y="208">Red</text><text font-size="9" text-anchor="middle" x="326" y="222">600-700 nm</text><rect fill="url(#horiz)" height="18.6" stroke="#18212b" width="62" x="395" y="171.4"></rect><text font-weight="800" text-anchor="middle" x="426" y="165.4">12%</text><text font-weight="700" text-anchor="middle" x="426" y="208">Deep red</text><text font-size="9" text-anchor="middle" x="426" y="222">700 nm+</text></svg><figcaption data-editable="" data-persist-id="student-mission-01-instruction-020"><span class="source-status">Game-provided sensor data</span> Surface intake versus habitat output, reported as four broad wavelength-band transmission percentages. No continuous spectrum or intermediate values are inferred.</figcaption></figure><p class="directions" data-editable="" data-persist-id="student-mission-01-instruction-021">Lowest transmission within 400-700 nm:</p><div aria-multiline="true" class="response short" data-key="t2" data-persist-id="t2" data-response="" role="textbox"></div></div><footer class="footer" data-publication-footer="">Student Mission 1 of 4</footer></div></section><section aria-label="Student Mission page 2 of 4" class="page" data-page-id="student-mission-02" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><header class="cont-header" data-page-identity="continuation"><div><h1>Mars Habitat</h1><div class="cont-copy">Student Mission · Continued</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div class="institution">Solar<br/>Agricultural<br/>Agency</div></div></header><h2 class="task-heading" data-task-id="3" data-task-title="Compare quantity and quality"><svg aria-hidden="true" class="ph-icon"><use href="#ph-scales"></use></svg><span class="task-heading-copy"><span class="technical-label">DATA ANALYSIS</span><span class="section-title">3 · Compare quantity and quality</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-02-instruction-022">Compare the adequate quantity reading with the wavelength distribution. Complete both conclusions.</p><figure class="figure"><svg aria-labelledby="qqTitle qqDesc" role="img" viewbox="0 0 520 205"><title id="qqTitle">Total photon quantity versus wavelength distribution</title><desc id="qqDesc">The game reports combined PPFD of 280 micromoles per square meter per second as adequate. A separate spectral analysis reports 92 percent blue transmission, 88 percent green, 31 percent red, and 12 percent deep red.</desc><defs><pattern height="8" id="qdiag" patternunits="userSpaceOnUse" width="8"><path d="M0 8L8 0" stroke="#4b5967" stroke-width="2"></path></pattern><pattern height="8" id="qdots" patternunits="userSpaceOnUse" width="8"><circle cx="2" cy="2" fill="#4b5967" r="1.5"></circle></pattern><pattern height="10" id="qcross" patternunits="userSpaceOnUse" width="10"><path d="M0 0L10 10M10 0L0 10" stroke="#4b5967"></path></pattern><pattern height="8" id="qhoriz" patternunits="userSpaceOnUse" width="8"><path d="M0 2H8M0 6H8" stroke="#4b5967"></path></pattern></defs><rect fill="#f7f9fa" height="145" rx="3" stroke="#18212b" width="225" x="18" y="25"></rect><text font-weight="800" text-anchor="middle" x="130" y="50">TOTAL QUANTITY</text><text font-size="38" font-weight="800" text-anchor="middle" x="130" y="102">280</text><text text-anchor="middle" x="130" y="124">umol m-2 s-1 PPFD</text><rect fill="#edf1f4" height="23" stroke="#18212b" width="100" x="80" y="137"></rect><text font-weight="800" text-anchor="middle" x="130" y="153">ADEQUATE</text><rect fill="#fff" height="145" rx="3" stroke="#18212b" width="237" x="265" y="25"></rect><text font-weight="800" text-anchor="middle" x="383" y="50">SPECTRAL TRANSMISSION</text><text font-weight="700" x="290" y="75">Blue</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="64"></rect><rect fill="url(#qdiag)" height="14" stroke="#18212b" width="105.8" x="355" y="64"></rect><text font-weight="700" text-anchor="end" x="478" y="75">92%</text><text font-weight="700" x="290" y="102">Green</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="91"></rect><rect fill="url(#qdots)" height="14" stroke="#18212b" width="101.2" x="355" y="91"></rect><text font-weight="700" text-anchor="end" x="478" y="102">88%</text><text font-weight="700" x="290" y="129">Red</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="118"></rect><rect fill="url(#qcross)" height="14" stroke="#18212b" width="35.6" x="355" y="118"></rect><text font-weight="700" text-anchor="end" x="478" y="129">31%</text><text font-weight="700" x="290" y="156">Deep red</text><rect fill="none" height="14" stroke="#18212b" width="115" x="355" y="145"></rect><rect fill="url(#qhoriz)" height="14" stroke="#18212b" width="13.8" x="355" y="145"></rect><text font-weight="700" text-anchor="end" x="478" y="156">12%</text></svg><figcaption data-editable="" data-persist-id="student-mission-02-instruction-023"><span class="source-status">Game-provided comparison</span> The total PPFD and all four transmission percentages come directly from the current Case 03 runtime. Adequate total quantity does not guarantee balanced wavelength delivery.</figcaption></figure><div class="two-col"><div><p class="directions" data-editable="" data-persist-id="student-mission-02-instruction-024"><strong>Why “not enough total light” does not fit:</strong></p><div aria-multiline="true" class="response medium" data-key="t3a" data-persist-id="t3a" data-response="" role="textbox"></div></div><div><p class="directions" data-editable="" data-persist-id="student-mission-02-instruction-025"><strong>What the spectrum data does show:</strong></p><div aria-multiline="true" class="response medium" data-key="t3b" data-persist-id="t3b" data-response="" role="textbox"></div></div></div><h2 class="task-heading" data-task-id="4" data-task-title="Connect the symptom pattern"><svg aria-hidden="true" class="ph-icon"><use href="#ph-nodes"></use></svg><span class="task-heading-copy"><span class="technical-label">PATTERN ANALYSIS</span><span class="section-title">4 · Connect the symptom pattern</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-02-instruction-026">Use the tissue pattern to decide which explanation fits better.</p><table class="data-table"><tr><th data-editable="" data-persist-id="student-mission-02-instruction-027">Evidence</th><th data-editable="" data-persist-id="student-mission-02-instruction-028">What it suggests</th></tr><tr><td data-editable="" data-persist-id="student-mission-02-instruction-029">Older lower leaves retain green</td><td data-editable="" data-persist-id="student-mission-02-instruction-030"><div aria-multiline="true" class="response short" data-key="t4a" data-persist-id="t4a" data-response="" role="textbox"></div></td></tr><tr><td data-editable="" data-persist-id="student-mission-02-instruction-031">New leaves are pale yellow to white</td><td data-editable="" data-persist-id="student-mission-02-instruction-032"><div aria-multiline="true" class="response short" data-key="t4b" data-persist-id="t4b" data-response="" role="textbox"></div></td></tr><tr><td data-editable="" data-persist-id="student-mission-02-instruction-033">Roots healthy; iron and nitrogen did not help</td><td data-editable="" data-persist-id="student-mission-02-instruction-034"><div aria-multiline="true" class="response short" data-key="t4c" data-persist-id="t4c" data-response="" role="textbox"></div></td></tr></table><p class="directions" data-editable="" data-persist-id="student-mission-02-instruction-035"><strong>Best pattern conclusion:</strong></p><div aria-multiline="true" class="response medium" data-key="t4d" data-persist-id="t4d" data-response="" role="textbox"></div></div><footer class="footer" data-publication-footer="">Student Mission 2 of 4</footer></div></section><section aria-label="Student Mission page 3 of 4" class="page" data-page-id="student-mission-03" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><header class="cont-header" data-page-identity="continuation"><div><h1>Mars Habitat</h1><div class="cont-copy">Student Mission · Continued</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div class="institution">Solar<br/>Agricultural<br/>Agency</div></div></header><h2 class="task-heading" data-task-id="5" data-task-title="Select and reject diagnoses"><svg aria-hidden="true" class="ph-icon"><use href="#ph-diagnosis"></use></svg><span class="task-heading-copy"><span class="technical-label">DIAGNOSIS</span><span class="section-title">5 · Select and reject diagnoses</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-03-instruction-036">Mark the diagnosis that fits all evidence. Then reject one alternative using a specific observation or measurement.</p><div class="choice-list"><div class="choice"><span class="check"></span>Mars soil perchlorates are poisoning the roots.</div><div class="choice"><span class="check"></span>CO2 levels are too high for potatoes.</div><div class="choice"><span class="check"></span>Martian day length is disrupting the photoperiod.</div><div class="choice"><span class="check"></span>The light delivery system is filtering out red wavelengths needed for chlorophyll biosynthesis.</div></div><p class="directions" data-editable="" data-persist-id="student-mission-03-instruction-037"><strong>Rejected alternative and why:</strong></p><div aria-multiline="true" class="response medium large" data-key="t5" data-persist-id="t5" data-response="" role="textbox"></div><h2 class="task-heading" data-task-id="6" data-task-title="Model the mechanism"><svg aria-hidden="true" class="ph-icon"><use href="#ph-flow"></use></svg><span class="task-heading-copy"><span class="technical-label">MECHANISM MODEL</span><span class="section-title">6 · Model the mechanism</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-03-instruction-038">Complete the missing stages. The arrows are already supplied.</p><div class="mechanism"><div class="mech-box"><span class="label">Stage 1</span><div>12 m light pipe and collector filter</div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 2</span><div><div aria-multiline="true" class="response short large" data-key="m1" data-persist-id="m1" data-response="" role="textbox"></div></div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 3</span><div></div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 4</span><div></div></div><div class="arrow">→</div><div class="mech-box"><span class="label">Stage 5</span><div><div aria-multiline="true" class="response short large" data-key="m4" data-persist-id="m4" data-response="" role="textbox"></div></div></div></div><div class="callout caution"><span class="label">Science boundary</span><p data-editable="" data-persist-id="student-mission-03-instruction-039">The case focuses on red-band transmission deficit. Do not generalize that plants use only red light; blue and other wavelengths also affect photosynthesis and development.</p></div></div><footer class="footer" data-publication-footer="">Student Mission 3 of 4</footer></div></section><section aria-label="Student Mission page 4 of 4" class="page" data-page-id="student-mission-04" data-role="student"><div aria-live="polite" class="overflow-warning">PAGE OVERFLOW</div><div class="page-frame"><div class="content"><header class="cont-header" data-page-identity="continuation"><div><h1>Mars Habitat</h1><div class="cont-copy">Student Mission · Continued</div></div><div class="identity"><svg aria-label="Solar Agricultural Agency insignia" class="insignia" role="img" viewbox="0 0 100 100"><circle cx="50" cy="50" fill="none" r="43" stroke="currentColor" stroke-width="5"></circle><circle cx="50" cy="27" fill="currentColor" r="9"></circle><path d="M50 71C36 62 34 49 36 41c10 2 18 8 22 18 3-10 11-16 22-18 2 12-3 25-18 31" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="5"></path><path d="M17 68c23 13 48 13 70-3" fill="none" stroke="currentColor" stroke-width="4"></path></svg><div class="institution">Solar<br/>Agricultural<br/>Agency</div></div></header><h2 class="task-heading" data-task-id="7" data-task-title="Claim-Evidence-Reasoning"><svg aria-hidden="true" class="ph-icon"><use href="#ph-cer"></use></svg><span class="task-heading-copy"><span class="technical-label">EXPLANATION</span><span class="section-title">7 · Claim-Evidence-Reasoning</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-04-instruction-040">Write a concise CER using at least three exact data points or observations.</p><div class="canonical-cer" data-cer-contract="student-v1.0">
+<div class="canonical-cer-box claim"><div class="canonical-cer-label">CLAIM</div><div aria-label="Claim" aria-multiline="true" class="canonical-cer-response" data-key="t7c" data-persist-id="t7c" data-response="" role="textbox"></div></div>
+<div class="canonical-cer-box evidence"><div class="canonical-cer-label">EVIDENCE</div><div aria-label="Evidence" aria-multiline="true" class="canonical-cer-response" data-key="t7e" data-persist-id="t7e" data-response="" role="textbox"></div></div>
+<div class="canonical-cer-box reasoning"><div class="canonical-cer-label">REASONING</div><div aria-label="Reasoning" aria-multiline="true" class="canonical-cer-response" data-key="t7r" data-persist-id="t7r" data-response="" role="textbox"></div></div>
+</div><h2 class="task-heading" data-task-id="8" data-task-title="Transfer the analysis"><svg aria-hidden="true" class="ph-icon"><use href="#ph-wrench"></use></svg><span class="task-heading-copy"><span class="technical-label">TRANSFER CHECK</span><span class="section-title">8 · Transfer the analysis</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-04-instruction-041">Why might increasing brightness without changing the spectrum fail to solve this case?</p><div aria-multiline="true" class="response medium" data-key="t8" data-persist-id="t8" data-response="" role="textbox"></div><h2 class="task-heading" data-task-id="9" data-task-title="Exit ticket"><svg aria-hidden="true" class="ph-icon"><use href="#ph-ticket"></use></svg><span class="task-heading-copy"><span class="technical-label">EXIT TICKET</span><span class="section-title">9 · Exit ticket</span></span></h2><p class="directions" data-editable="" data-persist-id="student-mission-04-instruction-042">In a new lighting failure, what two measurements would you compare first?</p><div aria-multiline="true" class="response medium" data-key="t9" data-persist-id="t9" data-response="" role="textbox"></div><div class="callout botanical"><span class="label">Source status</span><p data-editable="" data-persist-id="student-mission-04-instruction-043">Scientific definitions are authoritative. The exact Mars hardware and transmission percentages are game-specific. The graphs use only those values and transparent arithmetic.</p></div></div><footer class="footer" data-publication-footer="">Student Mission 4 of 4</footer></div></section></main>
+<script id="sssEditorShellCaseConfig" type="application/json">{"shellVersion":"1.0","documentKey":"SSS-C1-CASE03:v1.0:editor-shell-1.0:published:student:color","roles":["student","teacher","answer","accessible"],"defaults":{"role":"student","fillResponses":true,"editText":false,"marginTop":0.5,"marginRight":0.5,"marginBottom":0.5,"marginLeft":0.5,"density":"balanced","grayscale":false,"guides":false,"boundaries":true},"editedMasterFilename":"SSS_C1_CASE03_EDITABLE_MASTER_v1.0_custom.html","roleFilenames":{"student":"SSS_C1_CASE03_STUDENT_MISSION_v1.0.html","teacher":"SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html","answer":"SSS_C1_CASE03_ANSWER_KEY_v1.0.html","accessible":"SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html","grayscale":"SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html"},"standaloneRole":"student"}</script>
+<script data-source-sha256="e393de3195f9fca091cef65eb5c653ffec10a6b920ce713d133a1c1371a69f94" id="sssEditorShellRuntime">(() => {
+  "use strict";
+
+  const configNode = document.getElementById("sssEditorShellCaseConfig");
+  if (!configNode) throw new Error("Missing #sssEditorShellCaseConfig.");
+  const config = JSON.parse(configNode.textContent);
+  const shellVersion = "1.0";
+  if (config.shellVersion !== shellVersion) {
+    throw new Error(`Editor shell mismatch: expected ${shellVersion}, found ${String(config.shellVersion)}.`);
+  }
+
+  const controls = Object.fromEntries([
+    "roleSelect", "fillToggle", "editToggle",
+    "marginTop", "marginRight", "marginBottom", "marginLeft", "marginReset",
+    "densitySelect", "grayToggle", "guidesToggle", "boundariesToggle",
+    "printBtn", "downloadMasterBtn", "downloadRoleBtn", "clearRoleBtn", "resetSourceBtn",
+    "localSaveStatus", "overflowStatus"
+  ].map((id) => [id, document.getElementById(id)]));
+
+  const authorNodes = () => [...document.querySelectorAll("[data-editable], [data-response]")];
+  const responseNodes = () => [...document.querySelectorAll("[data-response]")];
+  const editableNodes = () => [...document.querySelectorAll("[data-editable]")];
+  const pageNodes = () => [...document.querySelectorAll(".page[data-role]")];
+  const embeddedSource = new Map(authorNodes().map((node) => [node.dataset.persistId, node.innerHTML]));
+  const defaultState = structuredClone(config.defaults);
+  let state = structuredClone(defaultState);
+  let saveTimer = 0;
+
+  function storageKey(suffix) {
+    return `sss-editor-shell:${config.documentKey}:${suffix}`;
+  }
+
+  function safeJSON(value, fallback) {
+    if (value === null || value === "") return fallback;
+    try {
+      const parsed = JSON.parse(value);
+      return parsed === null ? fallback : parsed;
+    } catch (_) {
+      return fallback;
+    }
+  }
+
+  function selectedRole() {
+    return controls.roleSelect ? controls.roleSelect.value : (config.standaloneRole || state.role);
+  }
+
+  function pageIsActive(page) {
+    const role = selectedRole();
+    return role === "all" || page.dataset.role === role;
+  }
+
+  function setStatus(message) {
+    if (controls.localSaveStatus) controls.localSaveStatus.textContent = message;
+  }
+
+  function saveLocalState() {
+    if (config.standaloneRole) return;
+    localStorage.setItem(storageKey("state"), JSON.stringify(state));
+    const content = Object.fromEntries(authorNodes().map((node) => [node.dataset.persistId, node.innerHTML]));
+    localStorage.setItem(storageKey("content"), JSON.stringify(content));
+    setStatus("Local save: saved");
+  }
+
+  function scheduleSave() {
+    setStatus("Local save: saving…");
+    clearTimeout(saveTimer);
+    saveTimer = window.setTimeout(saveLocalState, 150);
+  }
+
+  function loadLocalState() {
+    if (!config.standaloneRole) {
+      state = {
+        ...structuredClone(defaultState),
+        ...safeJSON(localStorage.getItem(storageKey("state")), {})
+      };
+      const content = safeJSON(localStorage.getItem(storageKey("content")), {});
+      authorNodes().forEach((node) => {
+        if (Object.prototype.hasOwnProperty.call(content, node.dataset.persistId)) {
+          node.innerHTML = content[node.dataset.persistId];
+        }
+      });
+    }
+    applyState();
+    return structuredClone(state);
+  }
+
+  function applyModes() {
+    const standaloneFill = Boolean(config.standaloneRole);
+    responseNodes().forEach((node) => {
+      const enabled = standaloneFill || state.fillResponses || state.editText;
+      node.contentEditable = enabled ? "true" : "false";
+      node.tabIndex = enabled ? 0 : -1;
+      node.setAttribute("role", "textbox");
+      if (node.tagName !== "INPUT") node.setAttribute("aria-multiline", "true");
+    });
+    editableNodes().forEach((node) => {
+      const enabled = !config.standaloneRole && state.editText;
+      node.contentEditable = enabled ? "true" : "false";
+      node.tabIndex = enabled ? 0 : -1;
+    });
+    document.body.classList.toggle("shell-edit-text", !config.standaloneRole && state.editText);
+  }
+
+  function applyState() {
+    if (controls.roleSelect) controls.roleSelect.value = state.role;
+    if (controls.fillToggle) controls.fillToggle.checked = state.fillResponses;
+    if (controls.editToggle) controls.editToggle.checked = state.editText;
+    ["Top", "Right", "Bottom", "Left"].forEach((side) => {
+      const key = `margin${side}`;
+      const control = controls[key];
+      if (control) control.value = state[key];
+      document.documentElement.style.setProperty(`--shell-margin-${side.toLowerCase()}`, `${state[key]}in`);
+    });
+    if (controls.densitySelect) controls.densitySelect.value = state.density;
+    if (controls.grayToggle) controls.grayToggle.checked = state.grayscale;
+    if (controls.guidesToggle) controls.guidesToggle.checked = state.guides;
+    if (controls.boundariesToggle) controls.boundariesToggle.checked = state.boundaries;
+    document.body.classList.toggle("shell-grayscale", state.grayscale);
+    document.body.classList.toggle("shell-guides", state.guides);
+    document.body.classList.toggle("shell-boundaries", state.boundaries);
+    document.body.classList.toggle("shell-density-compact", state.density === "compact");
+    document.body.classList.toggle("shell-density-roomy", state.density === "roomy");
+    pageNodes().forEach((page) => {
+      page.hidden = !pageIsActive(page);
+      page.setAttribute("aria-hidden", String(!pageIsActive(page)));
+    });
+    applyModes();
+    requestAnimationFrame(checkOverflow);
+  }
+
+  function setRole(role) {
+    if (!config.roles.includes(role) && role !== "all") throw new RangeError(`Unknown role: ${role}`);
+    state.role = role;
+    applyState();
+    scheduleSave();
+  }
+
+  function checkOverflow() {
+    let count = 0;
+    pageNodes().forEach((page) => {
+      const content = page.querySelector(".page-frame") || page;
+      const overflow = !page.hidden && content.scrollHeight > content.clientHeight + 2;
+      page.classList.toggle("has-overflow", overflow);
+      if (overflow) count += 1;
+    });
+    if (controls.overflowStatus) controls.overflowStatus.textContent = `Overflow: ${count}`;
+    return count;
+  }
+
+  function clearCurrentRole(confirmed = false) {
+    const role = selectedRole();
+    if (role === "all") return false;
+    if (!confirmed && !window.confirm(`Clear response and note fields for ${role} only?`)) return false;
+    responseNodes().filter(
+      (node) => node.closest(`.page[data-role="${role}"]`) && !node.classList.contains("id-field")
+    ).forEach((node) => {
+      node.innerHTML = "";
+      node.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "deleteContent" }));
+    });
+    saveLocalState();
+    return true;
+  }
+
+  function resetSource(confirmed = false) {
+    if (!confirmed && !window.confirm("Reset this file to its embedded source and clear its local autosave?")) return false;
+    authorNodes().forEach((node) => {
+      node.innerHTML = embeddedSource.get(node.dataset.persistId) || "";
+    });
+    if (!config.standaloneRole) {
+      localStorage.removeItem(storageKey("state"));
+      localStorage.removeItem(storageKey("content"));
+    }
+    state = structuredClone(defaultState);
+    applyState();
+    setStatus("Local save: reset to embedded source");
+    return true;
+  }
+
+  function scrubClone(root) {
+    const body = root.querySelector("body");
+    [
+      "shell-edit-text", "shell-guides", "shell-boundaries",
+      "shell-density-compact", "shell-density-roomy"
+    ].forEach((name) => body.classList.remove(name));
+    root.querySelectorAll(".has-overflow").forEach((node) => node.classList.remove("has-overflow"));
+    root.querySelectorAll("[data-editable], [data-response]").forEach((node) => {
+      node.setAttribute("contenteditable", "false");
+      node.removeAttribute("tabindex");
+    });
+  }
+
+  function cloneWithCurrentSource() {
+    const root = document.documentElement.cloneNode(true);
+    scrubClone(root);
+    const cloneConfigNode = root.querySelector("#sssEditorShellCaseConfig");
+    const cloneConfig = JSON.parse(cloneConfigNode.textContent);
+    cloneConfig.documentKey = `${config.documentKey}:custom:${Date.now()}`;
+    cloneConfig.defaults = structuredClone(state);
+    cloneConfig.standaloneRole = null;
+    cloneConfigNode.textContent = JSON.stringify(cloneConfig);
+    return root;
+  }
+
+  function serializeRoot(root) {
+    return `<!doctype html>\n${root.outerHTML}`;
+  }
+
+  function serializeEditedMasterHTML() {
+    return serializeRoot(cloneWithCurrentSource());
+  }
+
+  function serializeCurrentRoleHTML(roleOverride = null) {
+    const role = roleOverride || selectedRole();
+    if (role === "all" || !config.roles.includes(role)) throw new RangeError("Select one role before export.");
+    const root = cloneWithCurrentSource();
+    root.querySelector(".toolbar")?.remove();
+    root.querySelectorAll(`.page[data-role]:not([data-role="${role}"])`).forEach((page) => page.remove());
+    root.querySelectorAll(".page[data-role]").forEach((page) => {
+      page.hidden = false;
+      page.removeAttribute("aria-hidden");
+    });
+    const cloneConfigNode = root.querySelector("#sssEditorShellCaseConfig");
+    const cloneConfig = JSON.parse(cloneConfigNode.textContent);
+    cloneConfig.documentKey = `${config.documentKey}:role:${role}:${Date.now()}`;
+    cloneConfig.standaloneRole = role;
+    cloneConfig.defaults.role = role;
+    cloneConfig.defaults.fillResponses = true;
+    cloneConfig.defaults.editText = false;
+    cloneConfigNode.textContent = JSON.stringify(cloneConfig);
+    const meta = root.ownerDocument.createElement("meta");
+    meta.setAttribute("name", "sss-standalone-role");
+    meta.setAttribute("content", role);
+    root.querySelector("head").append(meta);
+    root.querySelector("body").classList.add("standalone-role");
+    return serializeRoot(root);
+  }
+
+  function downloadText(filename, text) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([text], { type: "text/html;charset=utf-8" }));
+    link.download = filename;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  }
+
+  function bind() {
+    authorNodes().forEach((node) => node.addEventListener("input", scheduleSave));
+    controls.roleSelect?.addEventListener("change", () => setRole(controls.roleSelect.value));
+    controls.fillToggle?.addEventListener("change", () => {
+      state.fillResponses = controls.fillToggle.checked;
+      applyState();
+      scheduleSave();
+    });
+    controls.editToggle?.addEventListener("change", () => {
+      state.editText = controls.editToggle.checked;
+      applyState();
+      scheduleSave();
+    });
+    ["Top", "Right", "Bottom", "Left"].forEach((side) => {
+      controls[`margin${side}`]?.addEventListener("change", () => {
+        state[`margin${side}`] = Number(controls[`margin${side}`].value);
+        applyState();
+        scheduleSave();
+      });
+    });
+    controls.marginReset?.addEventListener("click", () => {
+      ["Top", "Right", "Bottom", "Left"].forEach((side) => {
+        state[`margin${side}`] = defaultState[`margin${side}`];
+      });
+      applyState();
+      scheduleSave();
+    });
+    controls.densitySelect?.addEventListener("change", () => {
+      state.density = controls.densitySelect.value;
+      applyState();
+      scheduleSave();
+    });
+    controls.grayToggle?.addEventListener("change", () => {
+      state.grayscale = controls.grayToggle.checked;
+      applyState();
+      scheduleSave();
+    });
+    controls.guidesToggle?.addEventListener("change", () => {
+      state.guides = controls.guidesToggle.checked;
+      applyState();
+      scheduleSave();
+    });
+    controls.boundariesToggle?.addEventListener("change", () => {
+      state.boundaries = controls.boundariesToggle.checked;
+      applyState();
+      scheduleSave();
+    });
+    controls.printBtn?.addEventListener("click", () => window.print());
+    controls.downloadMasterBtn?.addEventListener("click", () => {
+      downloadText(config.editedMasterFilename, serializeEditedMasterHTML());
+    });
+    controls.downloadRoleBtn?.addEventListener("click", () => {
+      const role = selectedRole();
+      downloadText(config.roleFilenames[role], serializeCurrentRoleHTML(role));
+    });
+    controls.clearRoleBtn?.addEventListener("click", () => clearCurrentRole(false));
+    controls.resetSourceBtn?.addEventListener("click", () => resetSource(false));
+    window.addEventListener("resize", checkOverflow);
+    window.addEventListener("beforeprint", checkOverflow);
+  }
+
+  window.SSSEditorShell = Object.freeze({
+    shellVersion,
+    loadLocalState,
+    saveLocalState,
+    serializeEditedMasterHTML,
+    serializeCurrentRoleHTML,
+    clearCurrentRole,
+    resetSource,
+    setRole,
+    checkOverflow
+  });
+
+  bind();
+  loadLocalState();
+  setStatus(config.standaloneRole ? "Embedded role source" : "Local save: ready");
+})();
+</script>
+</body>
+</html>

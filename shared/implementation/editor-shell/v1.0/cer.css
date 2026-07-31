@@ -1,0 +1,47 @@
+.canonical-cer[data-cer-contract="student-v1.0"] {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: .055in;
+  min-height: 2.55in;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box {
+  display: grid;
+  grid-template-columns: .72in minmax(0,1fr);
+  gap: .055in;
+  min-height: 0;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.claim {
+  flex: 1 1 .46in;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.evidence {
+  flex: 1 1 .66in;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.reasoning {
+  flex: 1 1 .76in;
+}
+
+.canonical-cer-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .05in;
+  color: #fff;
+  background: var(--primary, #0b6f82);
+  border-radius: var(--radius, 3px);
+  font: 700 7pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .05em;
+}
+
+.canonical-cer-response {
+  min-height: 0;
+  padding: .055in;
+  overflow: auto;
+  border: 1px solid var(--rule, #8c9aa3);
+  border-radius: var(--radius, 3px);
+  background: var(--paper, #fff);
+}

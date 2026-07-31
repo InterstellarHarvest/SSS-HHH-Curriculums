@@ -4,6 +4,7 @@ window.SSS_CASE03_TASK_REGISTRY = {
   "title": "Mars Habitat",
   "version": "1.0",
   "status": "VALIDATION BUILD",
+  "editorShell": "1.0",
   "gameCommit": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
   "roles": {
     "student": 4,
@@ -15,54 +16,72 @@ window.SSS_CASE03_TASK_REGISTRY = {
   "tasks": [
     {
       "number": "1",
+      "semanticLabel": "REFERENCE",
+      "icon": "ph-book",
       "title": "Define the measurement",
       "description": "Explain what PPFD/PAR quantity tells you and what it does not reveal about spectral distribution.",
       "keyed": true
     },
     {
       "number": "2",
+      "semanticLabel": "DATA ANALYSIS",
+      "icon": "ph-scales",
       "title": "Read the spectral-transmission data",
       "description": "Use the game-provided wavelength-band transmission values to identify the weakest band within 400-700 nm.",
       "keyed": true
     },
     {
       "number": "3",
+      "semanticLabel": "DATA ANALYSIS",
+      "icon": "ph-scales",
       "title": "Compare quantity and quality",
       "description": "Compare the adequate total PPFD reading with uneven wavelength transmission and reject the low-total-light explanation.",
       "keyed": true
     },
     {
       "number": "4",
+      "semanticLabel": "PATTERN ANALYSIS",
+      "icon": "ph-nodes",
       "title": "Connect the symptom pattern",
       "description": "Use old-versus-new leaf evidence to identify a failure in new chlorophyll formation.",
       "keyed": true
     },
     {
       "number": "5",
+      "semanticLabel": "DIAGNOSIS",
+      "icon": "ph-diagnosis",
       "title": "Select and reject diagnoses",
       "description": "Choose the diagnosis that fits all evidence and reject one tempting alternative.",
       "keyed": true
     },
     {
       "number": "6",
+      "semanticLabel": "MECHANISM MODEL",
+      "icon": "ph-flow",
       "title": "Model the mechanism",
       "description": "Complete the chain from the wrong collector filter to bleached new growth.",
       "keyed": true
     },
     {
       "number": "7",
-      "title": "Write the case conclusion",
+      "semanticLabel": "EXPLANATION",
+      "icon": "ph-cer",
+      "title": "Claim-Evidence-Reasoning",
       "description": "Write a concise Claim-Evidence-Reasoning explanation.",
       "keyed": true
     },
     {
       "number": "8",
+      "semanticLabel": "TRANSFER CHECK",
+      "icon": "ph-wrench",
       "title": "Transfer the analysis",
       "description": "Explain why increasing brightness without correcting spectrum may fail.",
       "keyed": true
     },
     {
       "number": "9",
+      "semanticLabel": "EXIT TICKET",
+      "icon": "ph-ticket",
       "title": "Exit ticket",
       "description": "State the first two measurements you would compare in a new lighting failure.",
       "keyed": true

@@ -1,0 +1,119 @@
+:root {
+  --paper: #fff;
+  --ink: #18212b;
+  --muted: #4b5967;
+  --rule: #8c9aa8;
+  --panel: #edf1f4;
+  --panel-light: #f7f9fa;
+  --primary: #0b6f82;
+  --secondary: #147a45;
+  --soft: #e7f3f5;
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --radius: 3px;
+}
+
+.spectrum-figure svg {
+  width: 100%;
+  height: 2.55in;
+}
+
+.mechanism {
+  display: grid;
+  grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
+  align-items: stretch;
+  gap: 3px;
+}
+
+.mech-box {
+  min-height: .75in;
+  padding: 6px;
+  border: 1.4px solid var(--ink);
+  font-size: 8.5pt;
+}
+
+.arrow {
+  align-self: center;
+  font-size: 15pt;
+  text-align: center;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.teacher-card {
+  padding: 6px;
+  border: 1px solid var(--rule);
+  background: var(--panel-light);
+  font-size: 8.8pt;
+}
+
+.teacher-card p,
+.teacher-card ul {
+  margin: 2px 0;
+}
+
+.procedure > div {
+  display: grid;
+  grid-template-columns: .52in 1fr;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #c1c9ce;
+}
+
+.procedure .time {
+  color: var(--primary);
+  font: 800 8pt "JetBrains Mono", monospace;
+}
+
+.rubric {
+  font-size: 7.7pt;
+}
+
+.answer-block {
+  margin: 5px 0;
+  padding: 6px 8px;
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--secondary);
+}
+
+.answer-block p {
+  margin: 2px 0;
+  font-size: 9pt;
+}
+
+.accessible {
+  font-size: 13pt;
+  line-height: 1.35;
+}
+
+.accessible .directions {
+  font-size: 11.5pt;
+}
+
+.accessible .response {
+  min-height: .8in;
+}
+
+.accessible .response.large {
+  min-height: 1.25in;
+}
+
+.accessible .data-table {
+  font-size: 10.5pt;
+}
+
+.accessible .choice {
+  padding: 8px;
+  font-size: 11pt;
+}
+
+.alt-support {
+  margin: 6px 0;
+  padding: 7px;
+  border: 1px dashed var(--rule);
+  font-size: 10.5pt;
+}

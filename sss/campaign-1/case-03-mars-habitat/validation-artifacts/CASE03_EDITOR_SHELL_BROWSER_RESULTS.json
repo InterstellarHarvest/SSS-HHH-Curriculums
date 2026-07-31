@@ -1,0 +1,205 @@
+{
+  "validator": "case03-editor-shell-browser",
+  "shellVersion": "1.0",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "assertions": 34,
+  "passed": 34,
+  "failed": 0,
+  "pageCounts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 6
+  },
+  "overflowCounts": {
+    "student": 0,
+    "teacher": 0,
+    "answer": 0,
+    "accessible": 0
+  },
+  "overflowPageIds": {
+    "student": [],
+    "teacher": [],
+    "answer": [],
+    "accessible": []
+  },
+  "serialization": {
+    "instructionalEditPersisted": true,
+    "responseEditPersisted": true,
+    "freshStorageVerified": true,
+    "resetRestoredEmbeddedEditedSource": true
+  },
+  "failures": [],
+  "results": [
+    {
+      "name": "master loads without JavaScript errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "runtime identifies shared shell 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "browser toolbar order matches contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "default Student view shows four pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "nonselected roles are hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Edit Text enables instructional content",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Fill Responses enables response content",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "local autosave reaches saved state",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "edited-master serializer returns portable document",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "serialized master embeds instructional edit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "serialized master embeds response edit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "downloaded master opens in fresh storage without errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "instructional edit survives fresh empty storage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "response edit survives fresh empty storage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Reset Source restores embedded edited instruction",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Reset Source restores embedded edited response",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "role serializer removes authoring toolbar",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "role serializer isolates Student pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "role serializer retains instructional edit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "role serializer retains response edit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "role serializer identifies standalone role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student browser page count remains 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student has no HTML page overflow",
+      "pass": true,
+      "detail": "actual=0 pages=[]"
+    },
+    {
+      "name": "teacher browser page count remains 8",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher has no HTML page overflow",
+      "pass": true,
+      "detail": "actual=0 pages=[]"
+    },
+    {
+      "name": "answer browser page count remains 4",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer has no HTML page overflow",
+      "pass": true,
+      "detail": "actual=0 pages=[]"
+    },
+    {
+      "name": "accessible browser page count remains 6",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible has no HTML page overflow",
+      "pass": true,
+      "detail": "actual=0 pages=[]"
+    },
+    {
+      "name": "standard task title computes to 11.5pt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible task title computes to 14pt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "standard task icon computes to 20px",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Task 7 uses canonical CER title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "task headings contain their number once",
+      "pass": true,
+      "detail": ""
+    }
+  ]
+}

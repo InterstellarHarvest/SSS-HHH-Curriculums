@@ -12,14 +12,23 @@ The current v1.0 master combines the approved Printable Page Identity v1.0.4 sys
 
 ## Outputs
 
-- Student Mission: 2 pages
+- Student Mission HTML maintenance build: 3 pages
 - Teacher Packet: 7 pages
 - Answer Key: 3 pages
 - Accessible Mission: 5 pages
-- Grayscale Mission: 2 pages
+- Grayscale Mission HTML maintenance build: 3 pages
 
-Run `python validation-artifacts/validate_case02.py` from any directory. The harness regenerates role-isolated HTML/PDF outputs, rendered-review contact sheets, validation evidence, manifest, and checksums.
+Task 7 on the standard Student and Grayscale worksheets now uses the shared full-width `student-v1.0` Claim/Evidence/Reasoning component. The Accessible edition was already suitable and remains unchanged.
+
+This was an HTML-only maintenance build. The approved checksum-controlled PDFs were not regenerated: Student and Grayscale PDFs remain 2 pages, Teacher 7, Answer 3, and Accessible 5. Run:
+
+```bash
+python validation-artifacts/build_case02_cer_html.py
+python validation-artifacts/validate_case02_cer_html.py
+```
+
+Do not run the legacy full release builder merely to reproduce this HTML-only maintenance change; that harness regenerates PDFs.
 
 ## Release gate
 
-Automated validation must pass. Final approval still requires owner physical 100% print testing.
+The approved PDF/physical-print release record remains intact. The updated Student HTML layout has a separate validation-build maintenance status pending any future PDF/print release cycle.

@@ -1,0 +1,328 @@
+{
+  "validator": "case02-student-cer-html",
+  "cerComponentVersion": "1.0",
+  "pdfGeneration": "SKIPPED",
+  "assertions": 55,
+  "passed": 55,
+  "failed": 0,
+  "studentHtmlPageCounts": {
+    "master": 3,
+    "student": 3,
+    "grayscale": 3
+  },
+  "accessibleHtmlPageCount": 5,
+  "overflowCounts": {
+    "master": 0,
+    "student": 0,
+    "grayscale": 0
+  },
+  "cerDimensions": {
+    "master": {
+      "width": 720,
+      "contentWidth": 720,
+      "height": 244.796875,
+      "claim": 62.078125,
+      "evidence": 81.296875,
+      "reasoning": 90.890625
+    },
+    "student": {
+      "width": 720,
+      "contentWidth": 720,
+      "height": 244.796875,
+      "claim": 62.078125,
+      "evidence": 81.296875,
+      "reasoning": 90.890625
+    },
+    "grayscale": {
+      "width": 720,
+      "contentWidth": 720,
+      "height": 244.796875,
+      "claim": 62.078125,
+      "evidence": 81.296875,
+      "reasoning": 90.890625
+    }
+  },
+  "browserErrors": {
+    "master": [],
+    "student": [],
+    "grayscale": []
+  },
+  "failures": [],
+  "results": [
+    {
+      "name": "shared Student CER minimum height matches approved Case 01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared CER vertical gap matches approved Case 01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared CER label column matches approved Case 01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared Claim flex basis matches approved Case 01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared Evidence flex basis matches approved Case 01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared Reasoning flex basis matches approved Case 01",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master declares CER component 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master embeds shared CER CSS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master CER hash exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master CER bytes exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master has three Student pages",
+      "pass": true,
+      "detail": "actual=3"
+    },
+    {
+      "name": "master places Task 7 on Student page 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master has canonical full-width CER",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master CER labels are Claim Evidence Reasoning",
+      "pass": true,
+      "detail": "actual=['CLAIM', 'EVIDENCE', 'REASONING']"
+    },
+    {
+      "name": "master CER retains three response identifiers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master footers identify three-page Student packet",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student declares CER component 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student embeds shared CER CSS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student CER hash exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student CER bytes exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student has three Student pages",
+      "pass": true,
+      "detail": "actual=3"
+    },
+    {
+      "name": "student places Task 7 on Student page 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student has canonical full-width CER",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student CER labels are Claim Evidence Reasoning",
+      "pass": true,
+      "detail": "actual=['CLAIM', 'EVIDENCE', 'REASONING']"
+    },
+    {
+      "name": "student CER retains three response identifiers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student footers identify three-page Student packet",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale declares CER component 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale embeds shared CER CSS",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale CER hash exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale CER bytes exact",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale has three Student pages",
+      "pass": true,
+      "detail": "actual=3"
+    },
+    {
+      "name": "grayscale places Task 7 on Student page 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale has canonical full-width CER",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale CER labels are Claim Evidence Reasoning",
+      "pass": true,
+      "detail": "actual=['CLAIM', 'EVIDENCE', 'REASONING']"
+    },
+    {
+      "name": "grayscale CER retains three response identifiers",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale footers identify three-page Student packet",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Accessible output remains five pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Accessible output does not adopt Student CER component",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master loads without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "master shows three Student pages",
+      "pass": true,
+      "detail": "actual=3"
+    },
+    {
+      "name": "master has no Student HTML overflow",
+      "pass": true,
+      "detail": "actual=0"
+    },
+    {
+      "name": "master CER is full content width",
+      "pass": true,
+      "detail": "cer=720 content=720"
+    },
+    {
+      "name": "master CER meets shared minimum height",
+      "pass": true,
+      "detail": "actual=244.796875"
+    },
+    {
+      "name": "student loads without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student shows three Student pages",
+      "pass": true,
+      "detail": "actual=3"
+    },
+    {
+      "name": "student has no Student HTML overflow",
+      "pass": true,
+      "detail": "actual=0"
+    },
+    {
+      "name": "student CER is full content width",
+      "pass": true,
+      "detail": "cer=720 content=720"
+    },
+    {
+      "name": "student CER meets shared minimum height",
+      "pass": true,
+      "detail": "actual=244.796875"
+    },
+    {
+      "name": "grayscale loads without browser errors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "grayscale shows three Student pages",
+      "pass": true,
+      "detail": "actual=3"
+    },
+    {
+      "name": "grayscale has no Student HTML overflow",
+      "pass": true,
+      "detail": "actual=0"
+    },
+    {
+      "name": "grayscale CER is full content width",
+      "pass": true,
+      "detail": "cer=720 content=720"
+    },
+    {
+      "name": "grayscale CER meets shared minimum height",
+      "pass": true,
+      "detail": "actual=244.796875"
+    },
+    {
+      "name": "student CER geometry matches master",
+      "pass": true,
+      "detail": "master={'width': 720, 'contentWidth': 720, 'height': 244.796875, 'claim': 62.078125, 'evidence': 81.296875, 'reasoning': 90.890625} actual={'width': 720, 'contentWidth': 720, 'height': 244.796875, 'claim': 62.078125, 'evidence': 81.296875, 'reasoning': 90.890625}"
+    },
+    {
+      "name": "grayscale CER geometry matches master",
+      "pass": true,
+      "detail": "master={'width': 720, 'contentWidth': 720, 'height': 244.796875, 'claim': 62.078125, 'evidence': 81.296875, 'reasoning': 90.890625} actual={'width': 720, 'contentWidth': 720, 'height': 244.796875, 'claim': 62.078125, 'evidence': 81.296875, 'reasoning': 90.890625}"
+    }
+  ]
+}

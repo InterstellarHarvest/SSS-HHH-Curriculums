@@ -2,6 +2,37 @@
 
 **Foundation implementation:** `sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
 
+**Canonical extracted implementation:** `shared/implementation/editor-shell/v1.0/`
+
+## Canonical extraction completed
+
+The Case 01 single-file implementation remains the historical foundation, but it is no longer the source to copy into later cases. New or migrated editable masters must be assembled from the versioned shared shell:
+
+```text
+shared canonical editor shell
++ case content/configuration
+→ self-contained case master
+→ independent role HTML outputs
+```
+
+Editor shell v1.0 governs toolbar markup, CSS, JavaScript, save/reset behavior, embedded icons, page identity controls, task headings, the CER component, and common components. The build-time sources remain shared; the assembled master embeds them so the finished HTML is portable and self-contained. A conforming master declares:
+
+```html
+<meta name="sss-editor-shell" content="1.0">
+```
+
+Validation must compare embedded asset bytes and contract hashes with the shared sources. Checking only local class names is insufficient. Case-specific instructional content and configuration remain outside the shell.
+
+The future repository-level library must read `shared/implementation/case-registry.v1.json`:
+
+```text
+case registry
+→ campaign/case/role selector
+→ opens the relevant case master or role output
+```
+
+The registry stores paths; it does not embed every case into a monolithic HTML document. See `REPOSITORY_CURRICULUM_LIBRARY_ARCHITECTURE.md`.
+
 ## 1. Purpose
 
 Case 01 proves that the approved v1.0 visual system can operate as a real editable, fillable, printable curriculum master rather than only as a template gallery.
@@ -214,15 +245,17 @@ Rules:
 
 ### 3.4 CER
 
-Use `.cer-stack` with three `.cer-block` children.
+Student pages use the shared `cer.css` component with:
 
-Minimum hierarchy:
+```html
+<div class="canonical-cer" data-cer-contract="student-v1.0">
+  <div class="canonical-cer-box claim">…</div>
+  <div class="canonical-cer-box evidence">…</div>
+  <div class="canonical-cer-box reasoning">…</div>
+</div>
+```
 
-- Claim shortest;
-- Evidence taller;
-- Reasoning tallest.
-
-When the stack receives surplus page height, distribute additional height equally rather than allowing only Reasoning to absorb it.
+The shared contract fixes the full-width stack, label column, spacing, and proportional Claim/Evidence/Reasoning geometry. Case-specific compression or half-width CER variants are not permitted on standard Student worksheets. Accessible editions may repaginate or use their existing accessible response treatment.
 
 ### 3.5 Technical tables
 
@@ -393,9 +426,9 @@ For each later case:
 11. Complete a physical 100% print test.
 12. Keep status as Validation or Review until all release gates pass.
 
-## 9. Recommended extraction after Case 02
+## 9. Shared extraction status
 
-Case 01 is intentionally a self-contained HTML proof. After one additional SSS case demonstrates that the component contracts generalize, extract:
+The extraction is implemented at `shared/implementation/editor-shell/v1.0/` and includes:
 
 - shared CSS tokens and components;
 - shared Phosphor symbol sprite;
@@ -404,7 +437,7 @@ Case 01 is intentionally a self-contained HTML proof. After one additional SSS c
 - shared overflow test;
 - shared role-print test harness.
 
-Do not extract Case 01 vocabulary, prompts, tables, answers, or timing into framework code.
+Case 01 vocabulary, prompts, tables, answers, and timing remain case content and are not framework code. Existing approved Case 01 and Case 02 masters are not retroactively migrated solely to adopt the editor shell; Case 03 is the first assembled shell v1.0 implementation.
 
 ## Balanced Page Fill and Vertical Rhythm v1.0.2 implementation note
 

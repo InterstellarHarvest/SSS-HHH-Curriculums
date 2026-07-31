@@ -7,6 +7,21 @@
 **Automated result:** PASS - 355/355 assertions  
 **Physical 100%-scale print gate:** OPEN
 
+## Shared editor-shell and task-heading maintenance
+
+Case 03 now targets shared editor shell v1.0. The editable master is assembled from the exact shared toolbar, CSS, JavaScript runtime, icon sprite, task-heading contract, and CER component plus Case 03 content/configuration. The completed master remains a self-contained portable HTML file and declares `<meta name="sss-editor-shell" content="1.0">`.
+
+- Shared-shell static contract: 338/338 PASS
+- Browser/editor behavior: 34/34 PASS
+- Fresh-storage serialization: PASS for instructional edits and responses
+- Reset Source in downloaded edited master: PASS; restores embedded edited source
+- Independent role serialization: PASS; authoring toolbar removed
+- HTML page counts: Student 4, Teacher 8, Answer 4, Accessible 6, Grayscale 4
+- HTML overflow: 0 across all roles
+- Task heading parity: PASS; exact semantic label, icon, number-once title, and configured title
+
+This was an HTML-only maintenance build. No PDF was generated or modified. The five existing PDFs, their prior 5/5 preflight results, and their 4/8/4/6/4 page counts remain the checksum-controlled artifacts from the preceding validation build. The physical-print gate remains OPEN.
+
 ## Institutional identity correction
 The canonical SAA expansion is **Solar Agricultural Agency**. This is a follow-up terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not replace or rewrite that initial commit. The corrected master, all standalone HTML outputs, all PDFs, alt text, lockups, print checklist, PDF generator, and validator now match approved Case 01/02 usage. The validator requires Agency and rejects Authority and Space variants on printable pages. The game repository canonicalized the same name at `c6c17be57880b365793fdf99ff4ad09b62ecacce`, which is now the current Case 03 compatibility baseline. The former commit `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712` remains recorded only as the historical commit used for the original runtime science audit.
 
@@ -28,7 +43,7 @@ The canonical SAA expansion is **Solar Agricultural Agency**. This is a follow-u
 - Checksum generation, preflight, rendered review, and renderer parity.
 
 ## Browser execution note
-The execution sandbox blocks direct browser navigation to `file://`, localhost, and synthetic network origins. Chromium behavior was therefore exercised with the complete HTML injected into a browser document and an in-memory Storage-compatible object. This still executed the production JavaScript and validated persistence/load behavior, controls, role switching, clearing, reset, portable generation, keyboard focus, overflow detection, and each standalone role output.
+The editor-shell validator opened the master and a newly serialized edited copy through `file://` in separate clean browser contexts. This exercised the production localStorage path, embedded-source reset, role isolation, typography, and overflow checks without a synthetic storage substitute.
 
 ## PDF preflight
 All five PDFs opened successfully, were unencrypted, contained searchable text, were not classified as scanned/image-only, contained no XFA, and produced no preflight warnings.

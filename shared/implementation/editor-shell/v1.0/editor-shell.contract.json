@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "shellVersion": "1.0",
+  "metadata": {
+    "versionMetaName": "sss-editor-shell",
+    "contractHashMetaName": "sss-editor-shell-contract-sha256"
+  },
+  "toolbar": {
+    "controlOrder": [
+      "roleSelect",
+      "fillToggle",
+      "editToggle",
+      "marginTop",
+      "marginRight",
+      "marginBottom",
+      "marginLeft",
+      "marginReset",
+      "densitySelect",
+      "grayToggle",
+      "guidesToggle",
+      "boundariesToggle",
+      "printBtn",
+      "downloadMasterBtn",
+      "downloadRoleBtn",
+      "clearRoleBtn",
+      "resetSourceBtn",
+      "localSaveStatus",
+      "overflowStatus"
+    ],
+    "labels": {
+      "roleSelect": "Role",
+      "fillToggle": "Fill Responses",
+      "editToggle": "Edit Text",
+      "marginTop": "Top margin",
+      "marginRight": "Right margin",
+      "marginBottom": "Bottom margin",
+      "marginLeft": "Left margin",
+      "marginReset": "Reset Margins",
+      "densitySelect": "Density",
+      "grayToggle": "Grayscale",
+      "guidesToggle": "Guides",
+      "boundariesToggle": "Boundaries",
+      "printBtn": "Print / Save PDF",
+      "downloadMasterBtn": "Download Edited Master HTML",
+      "downloadRoleBtn": "Download Current Role HTML",
+      "clearRoleBtn": "Clear Current Role",
+      "resetSourceBtn": "Reset Source"
+    }
+  },
+  "pageIdentity": {
+    "firstSelector": "[data-page-identity=\"first\"]",
+    "continuationSelector": "[data-page-identity=\"continuation\"]",
+    "footerSelector": "[data-publication-footer]",
+    "firstPagePerRole": true,
+    "oneIdentityAndFooterPerPage": true
+  },
+  "commonComponents": {
+    "source": "curriculum-components.css",
+    "selectors": [
+      ".page",
+      ".page-frame",
+      ".student-id",
+      ".identity",
+      ".insignia",
+      ".institution",
+      ".response",
+      ".callout",
+      ".data-table",
+      ".figure"
+    ]
+  },
+  "taskHeading": {
+    "semanticLabelPt": 7,
+    "semanticLabelWeight": 700,
+    "semanticLabelTrackingPx": 0.8,
+    "taskTitlePt": 11.5,
+    "taskTitleWeight": 800,
+    "taskTitleLineHeight": 1.15,
+    "accessibleTaskTitlePt": 14,
+    "iconPx": 20,
+    "forbiddenSemanticLabelPattern": "^TASK\\s+0?[0-9]+$",
+    "allowedSemanticLabels": [
+      "REFERENCE",
+      "PREDICTION",
+      "EVIDENCE TASK",
+      "DATA ANALYSIS",
+      "CAUSE TEST",
+      "PATTERN ANALYSIS",
+      "DIAGNOSIS",
+      "MECHANISM MODEL",
+      "EXPLANATION",
+      "ENGINEERING RESPONSE",
+      "TRANSFER CHECK",
+      "EXIT TICKET",
+      "OPTIONAL EXTENSION"
+    ]
+  },
+  "cer": {
+    "version": "1.0",
+    "studentContract": "student-v1.0",
+    "stackMinHeightIn": 2.55,
+    "labelColumnIn": 0.72,
+    "gapIn": 0.055,
+    "claimBasisIn": 0.46,
+    "evidenceBasisIn": 0.66,
+    "reasoningBasisIn": 0.76
+  },
+  "requiredRuntimeApi": [
+    "loadLocalState",
+    "saveLocalState",
+    "serializeEditedMasterHTML",
+    "serializeCurrentRoleHTML",
+    "clearCurrentRole",
+    "resetSource",
+    "setRole",
+    "checkOverflow"
+  ]
+}

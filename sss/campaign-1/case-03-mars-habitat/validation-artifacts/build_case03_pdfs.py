@@ -51,8 +51,24 @@ def P(text, style='BodyC3'):
     return Paragraph(text, styles[style])
 
 
+TASK_LABELS = {
+    1: 'REFERENCE',
+    2: 'DATA ANALYSIS',
+    3: 'DATA ANALYSIS',
+    4: 'PATTERN ANALYSIS',
+    5: 'DIAGNOSIS',
+    6: 'MECHANISM MODEL',
+    7: 'EXPLANATION',
+    8: 'TRANSFER CHECK',
+    9: 'EXIT TICKET',
+}
+
+
 def task(n, title, access=False):
-    return P(f'<b>TASK {n}</b> - {title}', 'TaskAccessC3' if access else 'TaskC3')
+    return P(
+        f'<font size="7">{TASK_LABELS[n]}</font><br/><b>{n} · {title}</b>',
+        'TaskAccessC3' if access else 'TaskC3'
+    )
 
 
 def bullets(items, access=False, level=0):
@@ -260,7 +276,7 @@ def student_pages(accessible=False):
        P('<b>SCIENCE BOUNDARY:</b> This case isolates a red-band rejection. Plants do not use only red light; blue, green, and red wavelengths can all affect plant function.','CaptionC3')]
     pages.append(p)
     # Page 4
-    p=[task(7,'Write the case conclusion',accessible),P('Write a concise Claim-Evidence-Reasoning conclusion. Use the 280 PPFD value, at least two spectral values, and the symptom pattern.',body),
+    p=[task(7,'Claim-Evidence-Reasoning',accessible),P('Write a concise Claim-Evidence-Reasoning conclusion. Use the 280 PPFD value, at least two spectral values, and the symptom pattern.',body),
        P('<b>Claim</b>',body),ResponseBox(62 if accessible else 42),P('<b>Evidence</b>',body),ResponseBox(105 if accessible else 72),P('<b>Reasoning</b>',body),ResponseBox(132 if accessible else 92),
        task(8,'Transfer the analysis',accessible),P('Explain why making the system brighter without correcting the spectrum might fail. Name the next measurement or engineering check.',body),ResponseBox(90 if accessible else 61),
        task(9,'Exit ticket',accessible),P('In a new controlled-environment lighting failure, what two measurements would you compare first, and why?',body),ResponseBox(90 if accessible else 59)]
@@ -275,8 +291,8 @@ def accessible_pages():
     pages.append([task(2,'Read the spectral-transmission data',True),P('Use only the four values shown. Which band inside 400-700 nm has the lowest transmission?',body),tdata([['Band','Range','Transmission'],['Blue','400-500 nm','92%'],['Green','500-600 nm','88%'],['Red','600-700 nm','31%'],['Deep red','700 nm+','12%']],[1.5*inch,2.2*inch,1.1*inch]),TransmissionChart(250),P('<b>SOURCE STATUS:</b> These four whole-number transmission values are game-provided.','CaptionC3'),ResponseBox(88,'Lowest in-PAR transmission and how you know')])
     pages.append([task(3,'Compare quantity and quality',True),P('The total PPFD is 280 umol m-2 s-1 and the game describes it as adequate. Compare that quantity with the uneven distribution below.',body),QuantitySpectrum(205),P('Why does the explanation “not enough total light” conflict with the sensor reading?',body),ResponseBox(115),P('What is wrong with the delivered light instead?',body),ResponseBox(100)])
     pages.append([task(4,'Connect the symptom pattern',True),P('Old leaves retain green. New leaves become pale first. Roots are healthy. Nutrient additions did not help.',body),tdata([['Observation','Meaning'],['Old tissue remains green','Existing chlorophyll is still present.'],['New tissue bleaches first','New chlorophyll formation is disrupted.'],['Healthy roots','Root poisoning is not supported.']],[2.1*inch,5.15*inch]),ResponseBox(126,'Explain the pattern'),task(5,'Select and reject diagnoses',True),P('Choose the diagnosis that fits all evidence. Then reject one other option.',body),ResponseBox(115)])
-    pages.append([task(6,'Model the mechanism',True),P('Complete the causal chain from the light-delivery system to the visible symptom.',body),MechanismDiagram(False,height=170),ResponseBox(125,'Explain the chain in words'),P('<b>SCIENCE BOUNDARY:</b> The case focuses on red-band rejection. Real plants also respond to blue, green, and other red wavelengths.','CaptionC3'),task(7,'Write the case conclusion',True),P('Write the claim and evidence. Reasoning continues on the next page.',body),P('<b>Claim</b>',body),ResponseBox(82),P('<b>Evidence</b>',body),ResponseBox(128)])
-    pages.append([task(7,'Write the case conclusion - continued',True),P('<b>Reasoning</b>: connect the data to the mechanism and symptom pattern.',body),ResponseBox(180),task(8,'Transfer the analysis',True),P('Why might making every wavelength brighter be the wrong first fix? What should the analyst measure next?',body),ResponseBox(140),task(9,'Exit ticket',True),P('Name the first two lighting measurements you would compare in a new case and explain why both are needed.',body),ResponseBox(135)])
+    pages.append([task(6,'Model the mechanism',True),P('Complete the causal chain from the light-delivery system to the visible symptom.',body),MechanismDiagram(False,height=170),ResponseBox(125,'Explain the chain in words'),P('<b>SCIENCE BOUNDARY:</b> The case focuses on red-band rejection. Real plants also respond to blue, green, and other red wavelengths.','CaptionC3'),task(7,'Claim-Evidence-Reasoning',True),P('Write the claim and evidence. Reasoning continues on the next page.',body),P('<b>Claim</b>',body),ResponseBox(82),P('<b>Evidence</b>',body),ResponseBox(128)])
+    pages.append([P('Reasoning · continued','SectionC3'),P('<b>Reasoning</b>: connect the data to the mechanism and symptom pattern.',body),ResponseBox(180),task(8,'Transfer the analysis',True),P('Why might making every wavelength brighter be the wrong first fix? What should the analyst measure next?',body),ResponseBox(140),task(9,'Exit ticket',True),P('Name the first two lighting measurements you would compare in a new case and explain why both are needed.',body),ResponseBox(135)])
     return pages
 
 
@@ -297,7 +313,7 @@ def answer_pages():
       [P('Completed exemplar answer key','PageTitleC3'),task(1,'Define the measurement'),P(ANS[1],'AnswerC3'),task(2,'Read the spectral-transmission data'),TransmissionChart(215),P(ANS[2],'AnswerC3')],
       [task(3,'Compare quantity and quality'),QuantitySpectrum(170),P(ANS[3],'AnswerC3'),task(4,'Connect the symptom pattern'),P(ANS[4],'AnswerC3'),EvidenceCards([('OLD LEAVES','Existing chlorophyll remains.'),('NEW LEAVES','New chlorophyll formation is disrupted.'),('ROOTS','Healthy roots weaken poisoning.'),('NUTRIENTS','Added iron and nitrogen did not help.')],height=130)],
       [task(5,'Select and reject diagnoses'),P(ANS[5],'AnswerC3'),task(6,'Model the mechanism'),MechanismDiagram(True,height=150),P(ANS[6],'AnswerC3'),P('<b>Acceptable alternatives:</b> Equivalent wording is acceptable when it preserves selective attenuation, the case-specific POR/chlorophyll step, and new-tissue bleaching. Do not accept “plants only use red light.”','BodySmallC3')],
-      [task(7,'Write the case conclusion'),P(ANS[7],'AnswerC3'),task(8,'Transfer the analysis'),P(ANS[8],'AnswerC3'),task(9,'Exit ticket'),P(ANS[9],'AnswerC3'),P('<b>Scoring note:</b> Require accurate game values, a clear quantity-versus-spectrum distinction, a mechanistic link, and evidence-based alternative rejection. Game score and speed are excluded.','BodySmallC3')]
+      [task(7,'Claim-Evidence-Reasoning'),P(ANS[7],'AnswerC3'),task(8,'Transfer the analysis'),P(ANS[8],'AnswerC3'),task(9,'Exit ticket'),P(ANS[9],'AnswerC3'),P('<b>Scoring note:</b> Require accurate game values, a clear quantity-versus-spectrum distinction, a mechanistic link, and evidence-based alternative rejection. Game score and speed are excluded.','BodySmallC3')]
     ]
 
 
