@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Curriculum Editor Browser Harness</title></head>
+<body>
+  <h1>Curriculum Editor Browser Harness</h1>
+  <pre id="results">RUNNING</pre>
+  <iframe id="editorFrame" title="Curriculum editor under test" width="1440" height="1200"></iframe>
+  <script type="module">
+    const assertions = [];
+    const check = (name, condition, detail = "") => assertions.push({ name, pass: Boolean(condition), detail: String(detail) });
+    const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+    const report = async payload => {
+      document.querySelector("#results").textContent = JSON.stringify(payload);
+      document.body.dataset.complete = "true";
+      document.title = `${payload.status} ${payload.passed}/${payload.total}`;
+      await fetch("/__browser_test_result", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    };
+    const until = async (callback, timeout = 10000) => {
+      const started = Date.now();
+      while (Date.now() - started < timeout) {
+        const value = callback();
+        if (value) return value;
+        await wait(40);
+      }
+      throw new Error("Timed out waiting for browser condition.");
+    };
+    const visiblePages = frame => Array.from(frame.contentDocument.querySelectorAll(".page")).filter(page => getComputedStyle(page).display !== "none" && !page.hidden);
+    const setHtml = (frame, selector, html) => {
+      const node = frame.contentDocument.querySelector(selector);
+      node.innerHTML = html;
+      node.dispatchEvent(new frame.contentWindow.InputEvent("input", { bubbles: true }));
+      return node;
+    };
+    async function loadEditor(cache = "first") {
+      const frame = document.querySelector("#editorFrame");
+      frame.src = `../index.html?browser-test=${cache}-${Date.now()}`;
+      await until(() => frame.contentWindow?.__curriculumEditor);
+      await wait(180);
+      return frame;
+    }
+    async function loadExport(html) {
+      const frame = document.createElement("iframe");
+      frame.title = "Portable export test";
+      frame.width = "1440";
+      frame.height = "1200";
+      frame.sandbox = "allow-scripts allow-same-origin";
+      frame.srcdoc = html;
+      document.body.append(frame);
+      await until(() => frame.contentWindow?.__curriculumPortable);
+      await wait(100);
+      return frame;
+    }
+    try {
+      localStorage.clear();
+      let frame = await loadEditor();
+      let win = frame.contentWindow;
+      let doc = frame.contentDocument;
+      let api = win.__curriculumEditor;
+      check("central app exposes its runtime API", Boolean(api));
+      check("registry-loaded Case 03 package is current", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.0" && api.getPackage().status === "APPROVED_STABLE");
+      check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
+      check("load status announces the case", doc.querySelector("#loadStatus").textContent.includes("Mars Habitat"));
+      check("library rail exposes five role radios", doc.querySelectorAll('input[name="libraryRole"]').length === 5);
+
+      const expectedOrder = ["roleControl", "fillControl", "editControl", "marginTop", "marginRight", "marginBottom", "marginLeft", "marginReset", "densityControl", "grayControl", "guideControl", "boundaryControl", "printButton", "downloadButton", "downloadRoleButton", "clearButton", "resetButton", "stateStatus", "overflowStatus"];
+      const actualOrder = Array.from(doc.querySelectorAll(".toolbar [id]")).map(node => node.id);
+      check("all required controls exist exactly once in contract order", JSON.stringify(actualOrder) === JSON.stringify(expectedOrder), actualOrder.join(","));
+      check("toolbar is owned outside case content", !doc.querySelector("#worksheetWorkspace .toolbar"));
+      check("toolbar save status is polite live text", doc.querySelector("#stateStatus").getAttribute("aria-live") === "polite");
+      check("toolbar overflow status is polite live text", doc.querySelector("#overflowStatus").getAttribute("aria-live") === "polite");
+
+      const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 6, grayscale: 4 };
+      for (const [role, expected] of Object.entries(expectedCounts)) {
+        api.setRole(role);
+        await wait(80);
+        check(`${role} role loads ${expected} pages`, visiblePages(frame).length === expected, visiblePages(frame).length);
+        check(`${role} role reports zero overflow`, api.checkOverflow() === 0, doc.querySelector("#overflowStatus").textContent);
+        const expectedSource = role === "grayscale" ? "student" : role;
+        check(`${role} role contains no other role pages`, visiblePages(frame).every(page => page.dataset.role === expectedSource));
+      }
+      check("Grayscale role uses token grayscale mode", doc.body.classList.contains("grayscale"));
+
+      api.resetSource(true);
+      await wait(50);
+      const instructionSelector = '[data-persist-id="student-mission-01-instruction-001"]';
+      const responseSelector = '[data-persist-id="t1"]';
+      const accessibleSelector = '[data-persist-id="a1a"]';
+      const instruction = doc.querySelector(instructionSelector);
+      const response = doc.querySelector(responseSelector);
+      const originalInstruction = instruction.innerHTML;
+      check("Fill Responses leaves instructional text locked", instruction.contentEditable === "false");
+      check("Fill Responses enables selected-role response fields", response.contentEditable === "true");
+      api.saveState({ editMode: true });
+      check("Edit Text enables marked instructional nodes", instruction.contentEditable === "true");
+      check("Edit Text leaves responses editable", response.contentEditable === "true");
+      check("Edit Text mode is visibly indicated", doc.body.classList.contains("edit-mode") && doc.querySelector("#modeIndicator").textContent === "Edit Text mode");
+
+      api.saveState({ marginTop: .3, marginRight: .4, marginBottom: .6, marginLeft: .7 });
+      check("four margins update independently", [api.getState().marginTop, api.getState().marginRight, api.getState().marginBottom, api.getState().marginLeft].join("|") === "0.3|0.4|0.6|0.7");
+      doc.querySelector("#marginReset").click();
+      check("Reset Margins restores all four defaults", ["Top", "Right", "Bottom", "Left"].every(side => api.getState()[`margin${side}`] === .5));
+      api.saveState({ density: "compact", grayscale: true, guides: true, boundaries: false });
+      check("Density applies through the central state path", doc.body.classList.contains("density-compact"));
+      check("Grayscale applies through token mode", doc.body.classList.contains("grayscale"));
+      check("Guides and boundaries apply through central state", doc.body.classList.contains("show-guides") && doc.body.classList.contains("hide-boundaries"));
+      win.dispatchEvent(new Event("beforeprint"));
+      check("print-preview event marks the interface", doc.body.classList.contains("print-preview"));
+      win.dispatchEvent(new Event("afterprint"));
+      check("print-preview state clears after print", !doc.body.classList.contains("print-preview"));
+
+      api.resetSource(true);
+      api.saveState({ editMode: true });
+      setHtml(frame, instructionSelector, "BROWSER TEST · edited instructional sentence");
+      setHtml(frame, responseSelector, "BROWSER TEST · student response");
+      api.setRole("accessible");
+      setHtml(frame, accessibleSelector, "BROWSER TEST · accessible response");
+      api.setRole("student");
+      api.clearCurrentRole(true);
+      check("Clear Current Role clears selected-role responses", doc.querySelector(responseSelector).textContent === "");
+      check("Clear Current Role preserves instructional edits", doc.querySelector(instructionSelector).textContent.includes("edited instructional"));
+      check("Clear Current Role preserves another role's work", doc.querySelector(accessibleSelector).textContent.includes("accessible response"));
+      api.resetSource(true);
+      check("Reset Source restores package instructional source", doc.querySelector(instructionSelector).innerHTML === originalInstruction);
+      check("Reset Source clears package response work", doc.querySelector(accessibleSelector).textContent === "");
+      check("Reset Source restores default controls", api.getState().role === "student" && api.getState().density === "normal" && api.getState().fillMode === true && api.getState().editMode === false);
+
+      api.saveState({ editMode: true });
+      setHtml(frame, instructionSelector, "BROWSER TEST · persisted instructional edit");
+      setHtml(frame, responseSelector, "BROWSER TEST · persisted response");
+      frame = await loadEditor("reload");
+      win = frame.contentWindow;
+      doc = frame.contentDocument;
+      api = win.__curriculumEditor;
+      check("autosave survives a full application reload", doc.querySelector(responseSelector).textContent.includes("persisted response") && doc.querySelector(instructionSelector).textContent.includes("persisted instructional"));
+      check("selected role survives reload", api.getState().role === "student");
+      check("reload reports restored autosave", doc.querySelector("#stateStatus").textContent === "AUTOSAVE RESTORED");
+
+      const portable = api.serializePortableHTML();
+      check("complete serializer emits a complete HTML document", portable.toLowerCase().startsWith("<!doctype html>"));
+      check("complete serializer embeds instructional edits", portable.includes("persisted instructional edit"));
+      check("complete serializer embeds response edits", portable.includes("persisted response"));
+      check("complete serializer embeds shell CSS and runtime", portable.includes("sss-editor-shell") && portable.includes("__curriculumPortable"));
+      check("complete serializer has no repository runtime dependencies", !portable.includes('src="/shared/') && !portable.includes('href="/shared/') && !portable.includes('src="/sss/'));
+      const portableParsed = new DOMParser().parseFromString(portable, "text/html");
+      check("complete serializer removes transient overflow state", !portableParsed.querySelector(".page.has-overflow"));
+      const portableFrame = await loadExport(portable);
+      check("portable file opens with its embedded instructional edit", portableFrame.contentDocument.querySelector(instructionSelector).textContent.includes("persisted instructional"));
+      check("portable file opens with its embedded response", portableFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
+      portableFrame.contentWindow.__curriculumPortable.resetSource(true);
+      check("portable Reset Source preserves embedded instructional baseline", portableFrame.contentDocument.querySelector(instructionSelector).textContent.includes("persisted instructional"));
+      check("portable Reset Source clears response recovery work", portableFrame.contentDocument.querySelector(responseSelector).textContent === "");
+      check("portable file reports zero overflow", portableFrame.contentWindow.__curriculumPortable.checkOverflow() === 0);
+
+      api.setRole("student");
+      const roleHtml = api.serializeRoleHTML("student");
+      const roleDoc = new DOMParser().parseFromString(roleHtml, "text/html");
+      check("current-role export contains only four Student pages", roleDoc.querySelectorAll('.page[data-role="student"]').length === 4 && roleDoc.querySelectorAll('.page:not([data-role="student"])').length === 0);
+      check("current-role export hides central authoring and library UI", !roleDoc.querySelector(".toolbar,.library-rail,.editor-statuses"));
+      check("current-role export retains instruction and response edits", roleHtml.includes("persisted instructional edit") && roleHtml.includes("persisted response"));
+      check("current-role export remains self-contained", roleDoc.querySelectorAll("style").length === 1 && !roleDoc.querySelector('link,script[src],img[src]'));
+      const roleFrame = await loadExport(roleHtml);
+      check("current-role export opens with empty-key recovery state", roleFrame.contentDocument.querySelectorAll('.page[data-role="student"]').length === 4 && roleFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
+      check("current-role export retains browser-print CSS", roleHtml.includes("@media print") && roleHtml.includes("@page"));
+
+      const headings = Array.from(doc.querySelectorAll(".task-heading"));
+      check("all expanded task headings contain one Phosphor icon", headings.every(node => node.querySelectorAll("svg.ph-icon use").length === 1));
+      check("all expanded task headings show their number exactly once", headings.every(node => { const id = node.dataset.taskId; const text = node.querySelector(".section-title").textContent; return text.startsWith(`${id} · `) && (text.match(new RegExp(`(^|\\D)${id}(?!\\d)`, "g")) || []).length === 1; }));
+      check("all three CER variants render", new Set(Array.from(doc.querySelectorAll("[data-cer-contract]")).map(node => node.dataset.cerContract)).size === 3);
+      check("five-stage process models retain five stages and four connectors", Array.from(doc.querySelectorAll('[data-process-contract="five-stage-v1.0"]')).every(node => node.querySelectorAll("[data-process-stage]").length === 5 && node.querySelectorAll("[data-process-connector]").length === 4));
+      check("figures retain captions and accessible SVG labels", Array.from(doc.querySelectorAll("figure")).every(figure => figure.querySelector("figcaption") && figure.querySelector('svg[aria-label],svg[aria-labelledby]')));
+      check("table semantics retain captions", Array.from(doc.querySelectorAll("table")).every(table => table.querySelector("caption")));
+
+      const passed = assertions.filter(item => item.pass).length;
+      const payload = { validator: "curriculum-editor-browser-v1", status: passed === assertions.length ? "PASS" : "FAIL", passed, total: assertions.length, assertions };
+      await report(payload);
+    } catch (error) {
+      check("browser harness completed without exception", false, error.stack || error);
+      const passed = assertions.filter(item => item.pass).length;
+      await report({ validator: "curriculum-editor-browser-v1", status: "FAIL", passed, total: assertions.length, assertions });
+    }
+  </script>
+</body>
+</html>
