@@ -17,6 +17,13 @@
     "contract": "shared/implementation/editor-shell/v1.0/editor-shell.contract.json",
     "assembler": "shared/implementation/editor-shell/v1.0/assemble_editable_master.py",
     "case_config": "source/editor/case03-editor-config.json",
+    "literal_toolbar_editor_reference": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
+    "component_contracts": [
+      "canonical-cer student-v1.0 / answer-v1.0 / accessible-v1.0",
+      "five-stage-v1.0 deterministic horizontal / accessible vertical",
+      "canonical-v1.0 optional extension",
+      "printable-v1.1 page identity"
+    ],
     "portable_self_contained_master": true
   },
   "canonical_artifacts": [
@@ -29,8 +36,8 @@
   ],
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "29ca57ec4f95802f3864efe0dee43cd0f72fcc3d435384c46463d55fe7c3cbec",
-    "bytes": 134357
+    "sha256": "a9f97230b74248b513936cd1fe65a1a24ab07c7ff06ac4dde3bac0db8bda1779",
+    "bytes": 188356
   },
   "page_counts": {
     "student": 4,
@@ -53,14 +60,16 @@
   ],
   "automated_validation": {
     "status": "PASS",
-    "consolidated": "115/115 PASS",
-    "shared_shell_contract": "355/355 PASS",
-    "editor_shell_browser": "45/45 PASS",
+    "consolidated": "138/138 PASS",
+    "shared_shell_contract": "376/376 PASS",
+    "editor_shell_browser": "93/93 PASS",
     "static_html": "20/20 PASS",
+    "component_contract": "20/20 PASS",
+    "page_identity": "4/4 PASS",
     "browser_behavior": "4/4 PASS",
     "role_isolation": "19/19 PASS",
     "portability_serialization": "15/15 PASS",
-    "accessibility": "37/37 PASS",
+    "accessibility": "36/36 PASS",
     "overflow_print_preview": "9/9 PASS; zero overflow",
     "html_page_counts": "4/8/4/6/4 PASS",
     "html_checksums": "6/6 VERIFIED",
@@ -72,40 +81,40 @@
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "5d6e4d07950f39653e85e524882d14c276b3f34c56d99cb27b57284a82f5711b",
-        "bytes": 55361
+        "sha256": "5d18f4249517155cd70f687ff4c07f821105b855ce6a42095c748c308076b88d",
+        "bytes": 65846
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "30108dde3532de7bd705c0271c0655c18f48fdbe922b112c554c9653bbf94a17",
-        "bytes": 63296
+        "sha256": "bd36561c9ff9cc1a0662df17fd905656bcdd257f128bfbb18d20d7a038fa4ba4",
+        "bytes": 82401
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "c3342f223b6087efb18deebffbec48948d65944710822d594bad921f5cb89db6",
-        "bytes": 48631
+        "sha256": "ab89da5b64b982f3dc9a6cb66faa537074505dfdf905a86c15126529fff5a8d6",
+        "bytes": 58937
       }
     },
     "accessible": {
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "5606b0de1be8990c42308e645c17605034ec6ce7b8f749b3f2d0a1cab53eed70",
-        "bytes": 55438
+        "sha256": "5caa236cd5098741b255eeaa5a2cd6c94fdf3e6314f5037fc6c70b2a48cdf7c4",
+        "bytes": 70842
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "685f8c20db0836f10991ab77da18e6664d37ba2fa5d2322f1754c05cbd6e2db7",
-        "bytes": 55375
+        "sha256": "e1eecb0b0b37e1838c0839f18671756d2e251dc7d89d5f2fe75246ac0314c848",
+        "bytes": 65845
       }
     }
   },
@@ -167,20 +176,20 @@
     },
     {
       "path": "source/editor/case03.css",
-      "sha256": "32b305885bdb5e9464907b95dfbe4188c76e592c29bafae139c763c503c4e5a9",
-      "bytes": 1872
+      "sha256": "d4225268dfbd36966fbb4b445726210b19e2e6fff39a48ca6706c89eeb10eeaa",
+      "bytes": 1735
     },
     {
       "path": "source/editor/case03-content.html",
-      "sha256": "81b75f504dd254a2b5811f30c269dcbdd3ad1eb65220419fe5bc5aba578c1df8",
-      "bytes": 93579
+      "sha256": "75c8d150a28f00dd6fb8fb9d983a041c1a0b3f91f0b90a28174f34809136c450",
+      "bytes": 148463
     }
   ],
   "reports": [
     {
       "path": "reports/CASE03_BROWSER_RENDERED_REVIEW.md",
-      "sha256": "6ebf701d9a52e8e5c05b17487ea6572ef3c382b9f01beef119fdc222c5d934ee",
-      "bytes": 1101
+      "sha256": "2ce927d90a2dda21df504899e912a8a496b6175da97b1547b4582b60bf8b2907",
+      "bytes": 1504
     },
     {
       "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
@@ -189,35 +198,35 @@
     },
     {
       "path": "reports/CASE03_STRUCTURAL_STRESS_TEST_REPORT.md",
-      "sha256": "4973f17389582440ad52114c13c60924bda6d686b8fffc30febf6295375e121a",
-      "bytes": 2293
+      "sha256": "d62ead8ea2b17ff9330e374098da6c4f30b6d50d16875884c53eea9499a30835",
+      "bytes": 2779
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "68577715607d792d17b74925b616e80ab2363179c348b75ef62e3acb47729b7a",
-      "bytes": 2790
+      "sha256": "0fbfc7cd527a7dea1d9d2d59c271ea69ca6325669001633d6c47c8139e41f89e",
+      "bytes": 3660
     }
   ],
   "validation_files": [
     {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "d603f02b2240d4db26faa2b3b48b6298a06e30cedc36f56e52a58a35d4b48aa9",
-      "bytes": 18300
+      "sha256": "59e01b0c29efc3834872ffdd2784f99a06abe30967955e04f08eacd60e064f1c",
+      "bytes": 22253
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_CONTRACT_RESULTS.json",
-      "sha256": "d23b13ae99ed881696c1f645f3310abb65989f16205aff2d11b84b527088bd79",
-      "bytes": 40075
+      "sha256": "a837b6980da5bf81c014fd5fa94a4aaa9ef214474739faec8a914bbbd3cc124b",
+      "bytes": 42483
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_BROWSER_RESULTS.json",
-      "sha256": "e18e64bbf36b3a376370d0e3fa0e2f999fe933dabf123cfc28cb9dae04e792b4",
-      "bytes": 5770
+      "sha256": "0c6f5116117dd5a71d17d8d6eaae0f9cadca7ab008776175b8676a9709a406db",
+      "bytes": 21273
     },
     {
       "path": "validation-artifacts/CASE03_BROWSER_RENDERED_REVIEW_RESULTS.json",
-      "sha256": "1ab623f8b83e08912a5eccbb370dbc989588c9d8f1795af4d8337ee34b445651",
-      "bytes": 3989
+      "sha256": "893b93e0959f8204764a26d0fed6aecc767c75abaa59d5bababaecbd6636a89e",
+      "bytes": 4694
     },
     {
       "path": "validation-artifacts/build_case03_html.py",
@@ -226,18 +235,18 @@
     },
     {
       "path": "validation-artifacts/render_case03_browser_review.py",
-      "sha256": "85961242ce869e7b17b825e73523f9286fb09a605edc8da9dc55fa36a84c3d26",
-      "bytes": 5817
+      "sha256": "648c648063d58b511672bfde9c9f534a62e512d4901ce880dd44aeaac5409e4c",
+      "bytes": 7130
     },
     {
       "path": "validation-artifacts/validate_case03_v1.py",
-      "sha256": "c894e3e06f0956423b1bc534e3eb0dc20c4a6cceeaaaca22881727b0cf11c637",
-      "bytes": 14164
+      "sha256": "a84436a1af3009a32fa632f5f0a3ba289da7519f62e6555b3755606a71357329",
+      "bytes": 20014
     },
     {
       "path": "validation-artifacts/validate_case03_editor_shell.py",
-      "sha256": "b0da3ead4a0f44e22cd4b05254f08ae9bc168d48f4c73c6e4406e367005b45db",
-      "bytes": 12956
+      "sha256": "c9d267e3f33ca0999f15d749cd5f8dd85d9be704b940ff97182298fe8d1d785a",
+      "bytes": 23151
     }
   ],
   "release_gate": {

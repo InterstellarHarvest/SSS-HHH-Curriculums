@@ -5631,15 +5631,15 @@ CER, vocabulary, forms, rubrics, answers, and accessible variants continue to us
 
 # 90. CER System
 
-## 90.1 Approved Default
+## 90.1 Canonical Component
 
-Use **Three Stacked Boxes** for the ordinary CER scaffold:
+Every curriculum CER uses the shared canonical three-row component:
 
 1. Claim;
 2. Evidence;
 3. Reasoning.
 
-Each part receives its own prompt, guidance, and blank unruled response area.
+Each row has a fixed institutional-accent label block at left and a bordered response field at right. Border, 3 px radius, spacing, label typography, and grayscale behavior remain identical across cases. The task heading uses the semantic label `EXPLANATION`, the visible title `N · Claim-Evidence-Reasoning`, and the approved Phosphor CER icon.
 
 ## 90.2 Claim
 
@@ -5671,15 +5671,15 @@ Reasoning   2–2.5 units
 
 ## 90.6 Scaffolded Variant
 
-A supported version may add sentence starters, source reminders, mechanism vocabulary, or reduced response length.
+A supported version may add sentence starters, source reminders, mechanism vocabulary, or reduced response length without changing the three-row component structure.
 
 ## 90.7 Advanced Variant
 
-An advanced version may reduce guidance while preserving the same three-part sequence.
+An advanced version may reduce guidance while preserving the same three-row component structure and sequence.
 
-## 90.8 Exceptions
+## 90.8 Accessible and Answer-Key Variants
 
-Integrated or table-based CER may be used for short digital tasks, summary pages, or compact teacher references.
+The Accessible edition uses the same component at larger type with proportionately larger response areas. The Answer Key uses the same component with completed responses. Compact Teacher references may summarize a CER in prose, but any rendered CER response scaffold must use the canonical component.
 
 ## 90.9 Prohibited Treatments
 
@@ -6114,9 +6114,12 @@ No page depends on borderless printing.
 ## 101.1 CER
 
 - [ ] Claim, Evidence, and Reasoning use three stacked boxes.
+- [ ] Each row uses the fixed left label block and bordered right response field.
+- [ ] The task heading reads `EXPLANATION` then `N · Claim-Evidence-Reasoning` and contains the CER icon.
 - [ ] Each part has a clear prompt.
 - [ ] Evidence receives more space than Claim.
-- [ ] Reasoning explicitly asks for the connection or mechanism.
+- [ ] Reasoning is the largest response area and explicitly asks for the connection or mechanism.
+- [ ] Student, Accessible, and Answer Key variants retain the same structure.
 - [ ] Supported and advanced variants preserve the sequence.
 
 ## 101.2 Vocabulary

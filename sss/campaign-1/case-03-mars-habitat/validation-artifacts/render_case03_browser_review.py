@@ -15,6 +15,9 @@ from playwright.sync_api import sync_playwright
 
 
 ROOT = Path(__file__).resolve().parents[1]
+REPO = ROOT.parents[2]
+MASTER = ROOT / "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html"
+CASE02 = REPO / "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html"
 PUBLISHED = ROOT / "published"
 OUT = ROOT / "validation-artifacts/browser-rendered-review"
 RESULTS = ROOT / "validation-artifacts/CASE03_BROWSER_RENDERED_REVIEW_RESULTS.json"
@@ -75,6 +78,23 @@ def run(chrome: Path) -> dict[str, Any]:
                 executable_path=str(chrome),
                 args=["--no-sandbox"],
             )
+            toolbar_captures: dict[str, Any] = {}
+            for label, source in [("case02-reference", CASE02), ("case03-master", MASTER)]:
+                toolbar_page = browser.new_page(viewport={"width": 1440, "height": 1200})
+                toolbar_errors: list[str] = []
+                toolbar_page.on("pageerror", lambda error, errors=toolbar_errors: errors.append(str(error)))
+                toolbar_page.goto(source.resolve().as_uri(), wait_until="load")
+                toolbar_page.wait_for_timeout(250)
+                destination = OUT / f"{label}-toolbar.png"
+                toolbar_page.locator(".toolbar").screenshot(path=str(destination), animations="disabled")
+                toolbar_captures[label] = {
+                    "source": str(source.relative_to(REPO)),
+                    "image": str(destination.relative_to(ROOT)),
+                    "sha256": sha256(destination),
+                    "javascriptErrors": toolbar_errors,
+                }
+                all_pass = all_pass and not toolbar_errors
+                toolbar_page.close()
             for role, (filename, expected_pages) in ROLES.items():
                 page = browser.new_page(viewport={"width": 1024, "height": 1200})
                 errors: list[str] = []
@@ -118,6 +138,7 @@ def run(chrome: Path) -> dict[str, Any]:
         "renderedPageCount": rendered_count,
         "expectedPageCount": 26,
         "roles": roles,
+        "toolbarCaptures": toolbar_captures,
         "reviewNote": "Contact sheets require human visual inspection; this result records successful browser rendering, page count, JavaScript, and overflow checks.",
     }
 

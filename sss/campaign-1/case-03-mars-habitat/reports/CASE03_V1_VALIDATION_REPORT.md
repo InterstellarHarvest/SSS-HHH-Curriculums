@@ -8,19 +8,19 @@
 
 **Game baseline:** `c6c17be57880b365793fdf99ff4ad09b62ecacce`
 
-**Automated HTML result:** PASS - 115/115 consolidated assertions
+**Automated HTML result:** PASS - 138/138 consolidated assertions
 
-**Shared shell contract:** PASS - 355/355 assertions
+**Shared shell contract:** PASS - 376/376 assertions
 
-**Editor-shell browser result:** PASS - 45/45 assertions
+**Editor-shell browser result:** PASS - 93/93 assertions
 
 **Owner browser physical-print gate:** OPEN
 
 ## Canonical artifact set
 
-Case 03 is assembled from shared editor shell v1.0 plus Case 03 content/configuration. The portable editable master declares `<meta name="sss-editor-shell" content="1.0">` and remains self-contained. The five independent role outputs are Student, Teacher, Answer Key, Accessible, and Grayscale HTML.
+Case 03 is assembled from shared editor shell v1.0 plus Case 03 content/configuration. The portable editable master declares `<meta name="sss-editor-shell" content="1.0">` and remains self-contained. Its toolbar markup, CSS, JavaScript, controls, labels, order, grouping, sizing, spacing, and behavior match the approved Case 02 editable master. The five independent role outputs are Student, Teacher, Answer Key, Accessible, and Grayscale HTML.
 
-No PDF is generated, stored, preflighted, checksummed, validated, or required. The browser **Print / Save PDF** action is preserved for optional manual use and explicitly warns that browser PDF accessibility is not guaranteed.
+No PDF is generated, stored, preflighted, checksummed, validated, or required. The browser **Print / Save PDF** action is preserved exactly as implemented in Case 02 for optional manual use. Shared documentation—not a Case 03 toolbar redesign—states that browser PDF accessibility is not guaranteed.
 
 ## Active release gates
 
@@ -44,6 +44,10 @@ No PDF is generated, stored, preflighted, checksummed, validated, or required. T
 - Grayscale Student Mission: 4
 
 All six canonical HTML checksum-ledger entries verify. All 26 pages rendered in the browser with zero flagged overflow and passed contact-sheet inspection.
+
+## Component and page-identity correction
+
+The follow-up component handoff is implemented in full: canonical CER variants; exact PPFD first-use wording and units; independent Task 3 label/track/value columns; compact runtime-data captions; deterministic five-stage Task 6 models; removed Student/Accessible science-boundary and production-commentary boxes; optional end-of-worksheet extensions; one semantic task label and one task number per heading; and mandatory Phosphor icons. The approved Case 01/02 Name/Date/Period row, color insignia, Agency lockup, title block, continuation header, and institutional accent rail now govern every role.
 
 ## Accessibility coverage
 

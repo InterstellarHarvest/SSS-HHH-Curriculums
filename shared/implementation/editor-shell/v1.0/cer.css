@@ -1,29 +1,44 @@
-.canonical-cer[data-cer-contract="student-v1.0"] {
+.canonical-cer[data-cer-contract] {
   display: flex;
-  flex: 1 1 auto;
   flex-direction: column;
   gap: .055in;
-  min-height: 2.55in;
 }
 
-.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box {
+.canonical-cer[data-cer-contract] .canonical-cer-box {
   display: grid;
   grid-template-columns: .72in minmax(0,1fr);
   gap: .055in;
   min-height: 0;
 }
 
-.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.claim {
-  flex: 1 1 .46in;
+.canonical-cer[data-cer-contract="student-v1.0"] {
+  flex: 1 1 auto;
+  min-height: 2.55in;
 }
 
-.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.evidence {
-  flex: 1 1 .66in;
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.claim { flex: 1 1 .46in; }
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.evidence { flex: 1 1 .66in; }
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.reasoning { flex: 1 1 .76in; }
+
+.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box.claim { min-height: .46in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box.evidence { min-height: .66in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box.reasoning { min-height: .76in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .answer-block {
+  min-height: 100%;
+  margin: 0;
+  padding: .055in;
+  border: 1px solid var(--rule, #65727b);
+  border-radius: var(--radius, 3px);
+  background: var(--paper, #fff);
 }
 
-.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.reasoning {
-  flex: 1 1 .76in;
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box {
+  grid-template-columns: .95in minmax(0,1fr);
 }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.claim { min-height: .78in; }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.evidence,
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.reasoning { min-height: 1.18in; }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-label { font-size: 8.5pt; }
 
 .canonical-cer-label {
   display: flex;
@@ -31,7 +46,7 @@
   justify-content: center;
   padding: .05in;
   color: #fff;
-  background: var(--primary, #0b6f82);
+  background: var(--institution, var(--primary, #2e8484));
   border-radius: var(--radius, 3px);
   font: 700 7pt/1.1 "JetBrains Mono", monospace;
   letter-spacing: .05em;
@@ -41,7 +56,7 @@
   min-height: 0;
   padding: .055in;
   overflow: auto;
-  border: 1px solid var(--rule, #8c9aa3);
+  border: 1px solid var(--rule, #65727b);
   border-radius: var(--radius, 3px);
   background: var(--paper, #fff);
 }

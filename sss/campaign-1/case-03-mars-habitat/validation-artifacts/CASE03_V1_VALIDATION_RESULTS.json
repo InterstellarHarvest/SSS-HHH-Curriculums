@@ -40,9 +40,17 @@
       "pass": 20,
       "total": 20
     },
+    "component_contract": {
+      "pass": 20,
+      "total": 20
+    },
+    "page_identity": {
+      "pass": 4,
+      "total": 4
+    },
     "accessibility": {
-      "pass": 37,
-      "total": 37
+      "pass": 36,
+      "total": 36
     },
     "role_isolation": {
       "pass": 19,
@@ -78,8 +86,8 @@
     }
   },
   "total": {
-    "pass": 115,
-    "total": 115
+    "pass": 138,
+    "total": 138
   },
   "failures": [],
   "checks": [
@@ -200,6 +208,150 @@
     {
       "group": "static_html",
       "name": "Case 03 has no PDF production or preflight tooling",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "task headings use semantic labels instead of TASK labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "task headings contain exactly one Phosphor icon",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "task numbers occur exactly once in every title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Task 7 is the canonical EXPLANATION heading in every role",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Teacher direct Task 7 references are canonical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Teacher direct references do not use Task N punctuation labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Student, Answer Key, and Accessible use canonical CER variants",
+      "pass": true,
+      "detail": "['student-v1.0', 'answer-v1.0', 'accessible-v1.0', 'accessible-v1.0']"
+    },
+    {
+      "group": "component_contract",
+      "name": "all CER parts use the shared response-field contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Task 6 uses four shared five-stage process models",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "every Task 6 process contains stages 1 through 5 and four connectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Task 6 accessible process is explicitly vertical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Task 3 uses three corrected quantity-spectrum graphics",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Task 3 graphics separate label, track, and value columns",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "Task 3 graphics retain exact 92, 88, 31, and 12 percent values",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "PPFD first-use wording is compact and unit-correct",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "PPFD has the required plain-language definition",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "obsolete PPFD unit spellings are absent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "removed production boxes are absent from Student and Accessible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "optional extension appears once in Student and once in Accessible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "component_contract",
+      "name": "optional extensions occur after Task 9 on final required pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "page_identity",
+      "name": "all four master roles use the approved first-page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "page_identity",
+      "name": "all eighteen continuation pages use the approved identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "page_identity",
+      "name": "Student and Accessible first pages use the approved identity-field row",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "group": "page_identity",
+      "name": "every identity header uses the approved color insignia and Agency lockup",
       "pass": true,
       "detail": ""
     },
@@ -655,19 +807,13 @@
     },
     {
       "group": "browser_behavior",
-      "name": "shared runtime identifies shell 1.0",
+      "name": "Case 02 editor runtime API is available",
       "pass": true,
       "detail": ""
     },
     {
       "group": "browser_behavior",
       "name": "print action remains available",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "group": "accessibility",
-      "name": "print action warns about manual PDF accessibility",
       "pass": true,
       "detail": ""
     },

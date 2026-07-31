@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
 
 from bs4 import BeautifulSoup
@@ -80,6 +81,42 @@ def main() -> int:
         VALIDATION / "CASE03_V1_RENDERER_PARITY.json",
     ]
     check("static_html", "Case 03 has no PDF production or preflight tooling", not any(path.exists() for path in obsolete))
+
+    # Canonical component-layout and page-identity gate.
+    task_headings = master.select(".task-heading[data-task-id]")
+    check("component_contract", "task headings use semantic labels instead of TASK labels", bool(task_headings) and all(not re.fullmatch(r"TASK\s*0?\d+", (node.select_one(".technical-label") or node).get_text(" ", strip=True), re.I) for node in task_headings))
+    check("component_contract", "task headings contain exactly one Phosphor icon", all(len(node.select("svg.ph-icon use")) == 1 for node in task_headings))
+    check("component_contract", "task numbers occur exactly once in every title", all((title := node.select_one(".section-title")) is not None and title.get_text(" ", strip=True).startswith(f'{node.get("data-task-id")} · ') and len(re.findall(rf'(?<!\d){re.escape(node.get("data-task-id", ""))}(?!\d)', title.get_text(" ", strip=True))) == 1 for node in task_headings))
+    task7 = [node for node in task_headings if node.get("data-task-id") == "7"]
+    check("component_contract", "Task 7 is the canonical EXPLANATION heading in every role", bool(task7) and all(node.select_one(".technical-label").get_text(" ", strip=True) == "EXPLANATION" and node.select_one(".section-title").get_text(" ", strip=True) == "7 · Claim-Evidence-Reasoning" for node in task7))
+    teacher_text = " ".join(node.get_text(" ", strip=True) for node in master.select('.page[data-role="teacher"]'))
+    check("component_contract", "Teacher direct Task 7 references are canonical", "7 · Claim-Evidence-Reasoning" in teacher_text)
+    check("component_contract", "Teacher direct references do not use Task N punctuation labels", re.search(r"\bTask\s+\d+\s*[-:]", teacher_text, re.I) is None)
+    cer_contracts = [node.get("data-cer-contract") for node in master.select("[data-cer-contract]")]
+    check("component_contract", "Student, Answer Key, and Accessible use canonical CER variants", set(cer_contracts) == {"student-v1.0", "answer-v1.0", "accessible-v1.0"}, cer_contracts)
+    check("component_contract", "all CER parts use the shared response-field contract", all(node.select_one(".canonical-cer-response") is not None for node in master.select(".canonical-cer-box")))
+    processes = master.select('[data-process-contract="five-stage-v1.0"]')
+    check("component_contract", "Task 6 uses four shared five-stage process models", len(processes) == 4)
+    check("component_contract", "every Task 6 process contains stages 1 through 5 and four connectors", all([node.get("data-process-stage") for node in process.select("[data-process-stage]")] == ["1", "2", "3", "4", "5"] and len(process.select("[data-process-connector]")) == 4 for process in processes))
+    check("component_contract", "Task 6 accessible process is explicitly vertical", len(master.select('[data-process-contract="five-stage-v1.0"][data-process-layout="vertical"]')) == 1)
+    quantity_graphics = master.select('[data-quantity-spectrum="canonical-v1.0"]')
+    check("component_contract", "Task 3 uses three corrected quantity-spectrum graphics", len(quantity_graphics) == 3)
+    check("component_contract", "Task 3 graphics separate label, track, and value columns", all(len(node.select("[data-spectrum-label-column]")) == len(node.select("[data-spectrum-track-column]")) == len(node.select("[data-spectrum-value-column]")) == 1 for node in quantity_graphics))
+    check("component_contract", "Task 3 graphics retain exact 92, 88, 31, and 12 percent values", all([node.get_text(strip=True) for node in graphic.select("[data-spectrum-value]")] == ["92%", "88%", "31%", "12%"] for graphic in quantity_graphics))
+    student_accessible = " ".join(node.get_text(" ", strip=True) for node in master.select('.page[data-role="student"], .page[data-role="accessible"]'))
+    check("component_contract", "PPFD first-use wording is compact and unit-correct", "PPFD: 280 µmol/m²/s — rated adequate." in student_accessible)
+    check("component_contract", "PPFD has the required plain-language definition", "PPFD measures how many photosynthetically useful light photons reach each square meter each second." in student_accessible)
+    check("component_contract", "obsolete PPFD unit spellings are absent", re.search(r"umol\s*m-2\s*s-1|micromoles?\s+per\s+square\s+meter", student_accessible, re.I) is None)
+    check("component_contract", "removed production boxes are absent from Student and Accessible", all(term not in student_accessible.upper() for term in ["SCIENCE BOUNDARY", "SOURCE STATUS", "GAME-PROVIDED COMPARISON", "TRANSPARENT ARITHMETIC"]))
+    extensions = master.select('[data-optional-extension="canonical-v1.0"]')
+    check("component_contract", "optional extension appears once in Student and once in Accessible", len(extensions) == 2 and {node.find_parent("section").get("data-role") for node in extensions} == {"student", "accessible"})
+    check("component_contract", "optional extensions occur after Task 9 on final required pages", all(node.find_parent("section").select_one('[data-task-id="9"]') is not None and node.find_next_sibling() is None for node in extensions))
+    first_headers = master.select('[data-header-contract="printable-v1.1"][data-page-identity="first"]')
+    continuation_headers = master.select('[data-header-contract="printable-v1.1"][data-page-identity="continuation"]')
+    check("page_identity", "all four master roles use the approved first-page identity", len(first_headers) == 4)
+    check("page_identity", "all eighteen continuation pages use the approved identity", len(continuation_headers) == 18)
+    check("page_identity", "Student and Accessible first pages use the approved identity-field row", len(master.select(".student-id")) == 2 and all(len(node.select("label")) == 3 for node in master.select(".student-id")))
+    check("page_identity", "every identity header uses the approved color insignia and Agency lockup", all(all(node.select_one(f".{name}") is not None for name in ["ins-sun", "ins-leaf", "ins-leaf2", "ins-ring", "ins-planet", "ins-orbit"]) and node.select_one('[aria-label="Solar Agricultural Agency"]') is not None for node in [*first_headers, *continuation_headers]))
 
     # Semantic accessibility gate.
     check("accessibility", "skip link targets workspace", master.select_one('a[href="#workspace"]') is not None)
@@ -196,29 +233,24 @@ def main() -> int:
             page.goto(MASTER.resolve().as_uri(), wait_until="load")
             page.wait_for_timeout(300)
             check("browser_behavior", "master loads without JavaScript errors", not errors, errors)
-            check("browser_behavior", "shared runtime identifies shell 1.0", page.evaluate("window.SSSEditorShell?.shellVersion") == "1.0")
-            check("browser_behavior", "print action remains available", page.locator("#printBtn").is_visible())
-            check(
-                "accessibility",
-                "print action warns about manual PDF accessibility",
-                "accessibility is not guaranteed" in (page.locator("#printBtn").get_attribute("aria-label") or "").lower(),
-            )
+            check("browser_behavior", "Case 02 editor runtime API is available", bool(page.evaluate("window.__case03")))
+            check("browser_behavior", "print action remains available", page.locator("#printButton").is_visible())
             page.locator("body").press("Tab")
             focused = page.evaluate("document.activeElement && document.activeElement.matches('a,button,select,input,[contenteditable=true]')")
             check("accessibility", "keyboard focus reaches an interactive control", bool(focused))
             for role in ["student", "teacher", "answer", "accessible"]:
-                page.evaluate("(value) => window.SSSEditorShell.setRole(value)", role)
+                page.evaluate("(value) => window.__case03.setRole(value)", role)
                 page.wait_for_timeout(100)
                 expected = ROLES[role][1]
                 visible_pages = page.locator(f'section.page[data-role="{role}"]:visible').count()
                 all_visible = page.locator("section.page:visible").count()
                 check("role_isolation", f"{role} browser role isolation", visible_pages == expected and all_visible == expected, all_visible)
-                overflow_counts[role] = page.evaluate("window.SSSEditorShell.checkOverflow()")
+                overflow_counts[role] = page.evaluate("window.__case03.checkOverflow()")
                 check("overflow_print_preview", f"{role} screen has zero overflow", overflow_counts[role] == 0, overflow_counts[role])
             page.emulate_media(media="print")
             check("overflow_print_preview", "authoring toolbar is hidden in print media", page.locator(".toolbar").evaluate("node => getComputedStyle(node).display") == "none")
             for role in ["student", "teacher", "answer", "accessible"]:
-                page.evaluate("(value) => window.SSSEditorShell.setRole(value)", role)
+                page.evaluate("(value) => window.__case03.setRole(value)", role)
                 page.wait_for_timeout(50)
                 print_overflow_counts[role] = page.locator(f'section.page[data-role="{role}"].has-overflow').count()
                 check("overflow_print_preview", f"{role} print preview has zero flagged overflow", print_overflow_counts[role] == 0, print_overflow_counts[role])

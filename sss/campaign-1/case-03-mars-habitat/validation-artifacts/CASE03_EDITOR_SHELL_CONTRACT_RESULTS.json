@@ -2,8 +2,8 @@
   "validator": "shared-editor-shell-contract",
   "shellVersion": "1.0",
   "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-  "assertions": 355,
-  "passed": 355,
+  "assertions": 376,
+  "passed": 376,
   "failed": 0,
   "failures": [],
   "results": [
@@ -103,7 +103,7 @@
       "detail": ""
     },
     {
-      "name": "runtime embedded bytes match shared source",
+      "name": "runtime differs from Case 02 only by case identity constants",
       "pass": true,
       "detail": ""
     },
@@ -120,7 +120,7 @@
     {
       "name": "toolbar controls follow contract order",
       "pass": true,
-      "detail": "actual=['roleSelect', 'fillToggle', 'editToggle', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'marginReset', 'densitySelect', 'grayToggle', 'guidesToggle', 'boundariesToggle', 'printBtn', 'downloadMasterBtn', 'downloadRoleBtn', 'clearRoleBtn', 'resetSourceBtn', 'localSaveStatus', 'overflowStatus']"
+      "detail": "actual=['roleControl', 'fillControl', 'editControl', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft', 'marginReset', 'densityControl', 'grayControl', 'guideControl', 'boundaryControl', 'printButton', 'downloadButton', 'clearButton', 'resetButton', 'stateStatus', 'overflowStatus']"
     },
     {
       "name": "toolbar markup is the shared source",
@@ -128,117 +128,112 @@
       "detail": ""
     },
     {
-      "name": "roleSelect uses canonical label",
+      "name": "toolbar HTML is identical to Case 02",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "roleControl uses canonical label",
       "pass": true,
       "detail": "actual=Role Student Teacher Answer Key Accessible All Pages"
     },
     {
-      "name": "fillToggle uses canonical label",
+      "name": "fillControl uses canonical label",
       "pass": true,
-      "detail": "actual=Fill Responses"
+      "detail": "actual=Fill responses"
     },
     {
-      "name": "editToggle uses canonical label",
+      "name": "editControl uses canonical label",
       "pass": true,
-      "detail": "actual=Edit Text"
+      "detail": "actual=Edit text"
     },
     {
       "name": "marginTop uses canonical label",
       "pass": true,
-      "detail": "actual=Top margin"
+      "detail": "actual=Top"
     },
     {
       "name": "marginRight uses canonical label",
       "pass": true,
-      "detail": "actual=Right margin"
+      "detail": "actual=Right"
     },
     {
       "name": "marginBottom uses canonical label",
       "pass": true,
-      "detail": "actual=Bottom margin"
+      "detail": "actual=Bottom"
     },
     {
       "name": "marginLeft uses canonical label",
       "pass": true,
-      "detail": "actual=Left margin"
+      "detail": "actual=Left"
     },
     {
       "name": "marginReset uses canonical label",
       "pass": true,
-      "detail": "actual=Reset Margins"
+      "detail": "actual=Reset margins"
     },
     {
-      "name": "densitySelect uses canonical label",
+      "name": "densityControl uses canonical label",
       "pass": true,
-      "detail": "actual=Density Balanced Compact Roomy"
+      "detail": "actual=Density Normal Compact Spacious"
     },
     {
-      "name": "grayToggle uses canonical label",
+      "name": "grayControl uses canonical label",
       "pass": true,
       "detail": "actual=Grayscale"
     },
     {
-      "name": "guidesToggle uses canonical label",
+      "name": "guideControl uses canonical label",
       "pass": true,
       "detail": "actual=Guides"
     },
     {
-      "name": "boundariesToggle uses canonical label",
+      "name": "boundaryControl uses canonical label",
       "pass": true,
       "detail": "actual=Boundaries"
     },
     {
-      "name": "printBtn uses canonical label",
+      "name": "printButton uses canonical label",
       "pass": true,
       "detail": "actual=Print / Save PDF"
     },
     {
-      "name": "downloadMasterBtn uses canonical label",
+      "name": "downloadButton uses canonical label",
       "pass": true,
-      "detail": "actual=Download Edited Master HTML"
+      "detail": "actual=Download Current HTML"
     },
     {
-      "name": "downloadRoleBtn uses canonical label",
-      "pass": true,
-      "detail": "actual=Download Current Role HTML"
-    },
-    {
-      "name": "clearRoleBtn uses canonical label",
+      "name": "clearButton uses canonical label",
       "pass": true,
       "detail": "actual=Clear Current Role"
     },
     {
-      "name": "resetSourceBtn uses canonical label",
+      "name": "resetButton uses canonical label",
       "pass": true,
       "detail": "actual=Reset Source"
     },
     {
-      "name": "print button warns that browser PDF accessibility is not guaranteed",
+      "name": "shared toolbar runtime source is identical to Case 02",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "toolbar visibly requires PDF verification before distribution",
+      "name": "runtime exposes loadState",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "runtime exposes loadLocalState",
+      "name": "runtime exposes saveState",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "runtime exposes saveLocalState",
+      "name": "runtime exposes serializePortableHTML",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "runtime exposes serializeEditedMasterHTML",
-      "pass": true,
-      "detail": ""
-    },
-    {
-      "name": "runtime exposes serializeCurrentRoleHTML",
+      "name": "runtime exposes downloadPortableHTML",
       "pass": true,
       "detail": ""
     },
@@ -1483,12 +1478,134 @@
       "detail": ""
     },
     {
-      "name": "student CER contract is present",
+      "name": "student uses canonical CER contract",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "student CER has Claim Evidence Reasoning boxes",
+      "name": "student CER has Claim Evidence Reasoning in order",
+      "pass": true,
+      "detail": [
+        "CLAIM",
+        "EVIDENCE",
+        "REASONING"
+      ]
+    },
+    {
+      "name": "student CER boxes use canonical response fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer uses canonical CER contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer CER has Claim Evidence Reasoning in order",
+      "pass": true,
+      "detail": [
+        "CLAIM",
+        "EVIDENCE",
+        "REASONING"
+      ]
+    },
+    {
+      "name": "answer CER boxes use canonical response fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer CER responses are completed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible uses canonical CER contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible CER has Claim Evidence Reasoning in order",
+      "pass": true,
+      "detail": [
+        "CLAIM",
+        "EVIDENCE",
+        "REASONING"
+      ]
+    },
+    {
+      "name": "accessible CER boxes use canonical response fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "canonical five-stage process models are present",
+      "pass": true,
+      "detail": "actual=4"
+    },
+    {
+      "name": "process 1 has five numbered stages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 1 has four connectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 2 has five numbered stages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 2 has four connectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 3 has five numbered stages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 3 has four connectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 4 has five numbered stages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "process 4 has four connectors",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible process uses vertical canonical layout",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "every role uses approved first-page identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "all continuation pages use approved identity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "all page identities use the approved color insignia",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Student and Accessible use approved identification geometry",
       "pass": true,
       "detail": ""
     },

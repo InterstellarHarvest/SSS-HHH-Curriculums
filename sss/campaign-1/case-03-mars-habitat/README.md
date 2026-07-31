@@ -9,7 +9,7 @@
 - Status: VALIDATION BUILD
 - Owner physical print test: OPEN
 
-Case 03 is assembled from `shared/implementation/editor-shell/v1.0/` plus its case configuration, CSS, and instructional content. The build creates exactly six canonical production artifacts:
+Case 03 is assembled from `shared/implementation/editor-shell/v1.0/` plus its case configuration, CSS, and instructional content. The shared shell uses the approved Case 02 editable master as the literal toolbar/editor reference and the approved Case 01/02 printable worksheet identity. The build creates exactly six canonical production artifacts:
 
 - one self-contained portable editable-master HTML;
 - independent Student, Teacher, Answer Key, Accessible, and Grayscale HTML outputs.

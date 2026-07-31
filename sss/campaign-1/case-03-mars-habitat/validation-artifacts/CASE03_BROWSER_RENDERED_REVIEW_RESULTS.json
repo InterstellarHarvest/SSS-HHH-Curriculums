@@ -30,7 +30,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/student-contact-sheet.png",
-      "contactSheetSha256": "84d1b34161902182c10c43f76830b7807fed0ccec6633190ebf3d0a5a4f4b1d7",
+      "contactSheetSha256": "71dd28939d9167be5b0a2306845003732702ed0902021287f89c4e05c808fdb9",
       "status": "PASS"
     },
     "teacher": {
@@ -74,7 +74,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/teacher-contact-sheet.png",
-      "contactSheetSha256": "a1424afc7ad8c9dcb80d9944b44ff7a0dc9dc595b29ad8308f4aa6c926471b51",
+      "contactSheetSha256": "3f0ccaeded2f656b9981a32cccd2d616e507726fefec247dce7b0d45cd95ccc9",
       "status": "PASS"
     },
     "answer": {
@@ -102,7 +102,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/answer-contact-sheet.png",
-      "contactSheetSha256": "e709443a788e022f662c95e49733a9084100f63424fc608286428420b266ea71",
+      "contactSheetSha256": "5b3e69c168e67294b65dfa78122ec59be62d41252d82fc40f9714ae19500429d",
       "status": "PASS"
     },
     "accessible": {
@@ -138,7 +138,7 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/accessible-contact-sheet.png",
-      "contactSheetSha256": "edf66c173a84262376fab4c245c2546db6ebf432141800645bade5e5f5ea1e23",
+      "contactSheetSha256": "d6c2c193affb98235080b62d8c6e9c3daf9905736fe52ca775151b768fbdf801",
       "status": "PASS"
     },
     "grayscale": {
@@ -166,8 +166,22 @@
         ]
       ],
       "contactSheet": "validation-artifacts/browser-rendered-review/grayscale-contact-sheet.png",
-      "contactSheetSha256": "9a0ad739f9733d0a772a6e26b52648d9ad2d29136f358baa37b5fdb01e26b8e1",
+      "contactSheetSha256": "b9dc76215bb66de402969b12797a565a5c07d294931191f4f7a4ac1a60c2972c",
       "status": "PASS"
+    }
+  },
+  "toolbarCaptures": {
+    "case02-reference": {
+      "source": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
+      "image": "validation-artifacts/browser-rendered-review/case02-reference-toolbar.png",
+      "sha256": "55b78e1b17e25b5101634c86742069e2e3ae3b56f85b572b17041ce2263514ef",
+      "javascriptErrors": []
+    },
+    "case03-master": {
+      "source": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+      "image": "validation-artifacts/browser-rendered-review/case03-master-toolbar.png",
+      "sha256": "55b78e1b17e25b5101634c86742069e2e3ae3b56f85b572b17041ce2263514ef",
+      "javascriptErrors": []
     }
   },
   "reviewNote": "Contact sheets require human visual inspection; this result records successful browser rendering, page count, JavaScript, and overflow checks."

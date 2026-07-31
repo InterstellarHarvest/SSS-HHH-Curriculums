@@ -12,6 +12,10 @@ Letter page geometry; 0.50-inch margins; first-page and continuation identity; r
 - Wrong-filter-to-new-growth mechanism chain.
 - Numeric, filter, and content-regression assertions tied to current runtime data.
 
+## Shared component correction
+
+Case 03 now consumes the literal Case 02 toolbar/editor implementation through shared shell v1.0 and the approved Case 01/02 printable identity. CER, five-stage process models, compact figure provenance, optional extensions, and task headings are shared contracts rather than Case 03-local patterns. Browser geometry assertions cover the toolbar, identity fields, headers, Task 3 columns, all Task 6 stages/connectors, and zero-overflow role rendering.
+
 ## Accessibility strengthening
 
 Case 03 now has explicit HTML language/title metadata, logical heading hierarchy, named response fields, captioned tables with scoped headers, labeled graphics, keyboard checks, and non-color-dependent chart encoding. These semantics flow from case source through the shared shell into every standalone role HTML.

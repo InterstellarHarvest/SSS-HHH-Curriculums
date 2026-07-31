@@ -11,7 +11,8 @@ The shell owns:
 - local autosave and portable HTML serialization;
 - reset-to-embedded-source behavior;
 - shared task-heading markup, typography, icons, and numbering rules;
-- the Student CER component;
+- the Student, Accessible, and Answer Key CER variants of one canonical component;
+- the canonical five-stage process model and optional-extension component;
 - common page-identity and authoring-mode CSS.
 
 Case packages own instructional content, task configuration, case-specific figures, case-specific layout CSS, and release metadata.
@@ -35,9 +36,15 @@ shared canonical editor shell
 
 The generated master has no runtime dependency on this directory. It remains portable as one HTML file.
 
+## Literal editor reference
+
+The toolbar HTML, toolbar CSS, runtime behavior, controls, labels, order, grouping, dimensions, and spacing are governed by the approved Case 02 master at `sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`. Shared-shell assembly preserves that implementation. Case-specific storage keys, download filename, and exported global name are the only runtime substitutions, preventing cross-case local-storage collisions without changing behavior.
+
+The worksheet identity also follows the approved Case 01/02 `printable-v1.1` structures: full-width 2fr/1fr/.7fr identification fields, color SAA insignia, three-line Solar Agricultural Agency lockup, first-page accent rail/title geometry, and continuation-header geometry.
+
 ## Save model
 
-Local autosave is recovery state only. `Download Edited Master HTML` clones the live document, embeds the current instructional edits and responses in the clone, gives the clone a distinct document key, and serializes it as self-contained HTML.
+Local autosave is recovery state only. `Download Current HTML` clones the live document, embeds the current instructional edits and responses in the clone, and serializes it as self-contained HTML.
 
 When that downloaded copy opens with empty storage, its DOM becomes its embedded source. `Reset Source` therefore returns to the edits embedded in that downloaded copy.
 
@@ -59,7 +66,7 @@ Every case page has one shared page-identity marker—`data-page-identity="first
 
 Every response or note field uses `data-response` and a stable `data-persist-id`. Every instructional node that may be author-edited uses `data-editable` and a stable `data-persist-id`.
 
-## Student CER component
+## Canonical CER component
 
 The canonical Student component is identified by:
 
@@ -67,7 +74,17 @@ The canonical Student component is identified by:
 <div class="canonical-cer" data-cer-contract="student-v1.0">
 ```
 
-Its Claim, Evidence, and Reasoning boxes use the shared geometry in `cer.css`. Accessible layouts may use a split-page accessible variant when required, but the standard Student and Grayscale sheets use the full-width `student-v1.0` contract.
+Its Claim, Evidence, and Reasoning boxes use the shared geometry in `cer.css`. `student-v1.0`, `accessible-v1.0`, and `answer-v1.0` preserve the same three-row structure, label blocks, borders, spacing, proportional row heights, and grayscale behavior. Accessible layouts may split the component across consecutive pages when required; the combined sequence remains Claim, Evidence, Reasoning. Answer Keys complete the right-hand response fields instead of substituting another layout.
+
+## Five-stage process model
+
+Recurring five-stage mechanisms use `data-process-contract="five-stage-v1.0"`, five `.canonical-process-stage` elements, and four `.canonical-process-arrow` connectors. Standard pages use the deterministic horizontal grid; Accessible pages use the vertical variant. Flex wrapping is prohibited. Geometry validation confirms equal stages, aligned connectors, no collisions, and no detached final stage.
+
+## Figure provenance and optional extensions
+
+Student-facing figure provenance is one compact caption. Production commentary boxes such as `SOURCE STATUS` and `GAME-PROVIDED COMPARISON` are prohibited on Student and Accessible pages. Fuller source distinctions belong in Teacher analysis, rights records, metadata, and reports.
+
+Optional extensions use `data-optional-extension="canonical-v1.0"` and the Case 01 neutral callout/icon family. They appear only after all required tasks when usable surplus space remains; they are never required for grading.
 
 ## Older cases
 

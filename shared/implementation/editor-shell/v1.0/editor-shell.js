@@ -1,324 +1,47 @@
 (() => {
-  "use strict";
-
-  const configNode = document.getElementById("sssEditorShellCaseConfig");
-  if (!configNode) throw new Error("Missing #sssEditorShellCaseConfig.");
-  const config = JSON.parse(configNode.textContent);
-  const shellVersion = "1.0";
-  if (config.shellVersion !== shellVersion) {
-    throw new Error(`Editor shell mismatch: expected ${shellVersion}, found ${String(config.shellVersion)}.`);
-  }
-
-  const controls = Object.fromEntries([
-    "roleSelect", "fillToggle", "editToggle",
-    "marginTop", "marginRight", "marginBottom", "marginLeft", "marginReset",
-    "densitySelect", "grayToggle", "guidesToggle", "boundariesToggle",
-    "printBtn", "downloadMasterBtn", "downloadRoleBtn", "clearRoleBtn", "resetSourceBtn",
-    "localSaveStatus", "overflowStatus"
-  ].map((id) => [id, document.getElementById(id)]));
-
-  const authorNodes = () => [...document.querySelectorAll("[data-editable], [data-response]")];
-  const responseNodes = () => [...document.querySelectorAll("[data-response]")];
-  const editableNodes = () => [...document.querySelectorAll("[data-editable]")];
-  const pageNodes = () => [...document.querySelectorAll(".page[data-role]")];
-  const embeddedSource = new Map(authorNodes().map((node) => [node.dataset.persistId, node.innerHTML]));
-  const defaultState = structuredClone(config.defaults);
-  let state = structuredClone(defaultState);
-  let saveTimer = 0;
-
-  function storageKey(suffix) {
-    return `sss-editor-shell:${config.documentKey}:${suffix}`;
-  }
-
-  function safeJSON(value, fallback) {
-    if (value === null || value === "") return fallback;
-    try {
-      const parsed = JSON.parse(value);
-      return parsed === null ? fallback : parsed;
-    } catch (_) {
-      return fallback;
-    }
-  }
-
-  function selectedRole() {
-    return controls.roleSelect ? controls.roleSelect.value : (config.standaloneRole || state.role);
-  }
-
-  function pageIsActive(page) {
-    const role = selectedRole();
-    return role === "all" || page.dataset.role === role;
-  }
-
-  function setStatus(message) {
-    if (controls.localSaveStatus) controls.localSaveStatus.textContent = message;
-  }
-
-  function saveLocalState() {
-    if (config.standaloneRole) return;
-    localStorage.setItem(storageKey("state"), JSON.stringify(state));
-    const content = Object.fromEntries(authorNodes().map((node) => [node.dataset.persistId, node.innerHTML]));
-    localStorage.setItem(storageKey("content"), JSON.stringify(content));
-    setStatus("Local save: saved");
-  }
-
-  function scheduleSave() {
-    setStatus("Local save: saving…");
-    clearTimeout(saveTimer);
-    saveTimer = window.setTimeout(saveLocalState, 150);
-  }
-
-  function loadLocalState() {
-    if (!config.standaloneRole) {
-      state = {
-        ...structuredClone(defaultState),
-        ...safeJSON(localStorage.getItem(storageKey("state")), {})
-      };
-      const content = safeJSON(localStorage.getItem(storageKey("content")), {});
-      authorNodes().forEach((node) => {
-        if (Object.prototype.hasOwnProperty.call(content, node.dataset.persistId)) {
-          node.innerHTML = content[node.dataset.persistId];
-        }
-      });
-    }
-    applyState();
-    return structuredClone(state);
-  }
-
-  function applyModes() {
-    const standaloneFill = Boolean(config.standaloneRole);
-    responseNodes().forEach((node) => {
-      const enabled = standaloneFill || state.fillResponses || state.editText;
-      node.contentEditable = enabled ? "true" : "false";
-      node.tabIndex = enabled ? 0 : -1;
-      node.setAttribute("role", "textbox");
-      if (node.tagName !== "INPUT") node.setAttribute("aria-multiline", "true");
-    });
-    editableNodes().forEach((node) => {
-      const enabled = !config.standaloneRole && state.editText;
-      node.contentEditable = enabled ? "true" : "false";
-      node.tabIndex = enabled ? 0 : -1;
-    });
-    document.body.classList.toggle("shell-edit-text", !config.standaloneRole && state.editText);
-  }
-
-  function applyState() {
-    if (controls.roleSelect) controls.roleSelect.value = state.role;
-    if (controls.fillToggle) controls.fillToggle.checked = state.fillResponses;
-    if (controls.editToggle) controls.editToggle.checked = state.editText;
-    ["Top", "Right", "Bottom", "Left"].forEach((side) => {
-      const key = `margin${side}`;
-      const control = controls[key];
-      if (control) control.value = state[key];
-      document.documentElement.style.setProperty(`--shell-margin-${side.toLowerCase()}`, `${state[key]}in`);
-    });
-    if (controls.densitySelect) controls.densitySelect.value = state.density;
-    if (controls.grayToggle) controls.grayToggle.checked = state.grayscale;
-    if (controls.guidesToggle) controls.guidesToggle.checked = state.guides;
-    if (controls.boundariesToggle) controls.boundariesToggle.checked = state.boundaries;
-    document.body.classList.toggle("shell-grayscale", state.grayscale);
-    document.body.classList.toggle("shell-guides", state.guides);
-    document.body.classList.toggle("shell-boundaries", state.boundaries);
-    document.body.classList.toggle("shell-density-compact", state.density === "compact");
-    document.body.classList.toggle("shell-density-roomy", state.density === "roomy");
-    pageNodes().forEach((page) => {
-      page.hidden = !pageIsActive(page);
-      page.setAttribute("aria-hidden", String(!pageIsActive(page)));
-    });
-    applyModes();
-    requestAnimationFrame(checkOverflow);
-  }
-
-  function setRole(role) {
-    if (!config.roles.includes(role) && role !== "all") throw new RangeError(`Unknown role: ${role}`);
-    state.role = role;
-    applyState();
-    scheduleSave();
-  }
-
-  function checkOverflow() {
-    let count = 0;
-    pageNodes().forEach((page) => {
-      const content = page.querySelector(".page-frame") || page;
-      const overflow = !page.hidden && content.scrollHeight > content.clientHeight + 2;
-      page.classList.toggle("has-overflow", overflow);
-      if (overflow) count += 1;
-    });
-    if (controls.overflowStatus) controls.overflowStatus.textContent = `Overflow: ${count}`;
-    return count;
-  }
-
-  function clearCurrentRole(confirmed = false) {
-    const role = selectedRole();
-    if (role === "all") return false;
-    if (!confirmed && !window.confirm(`Clear response and note fields for ${role} only?`)) return false;
-    responseNodes().filter(
-      (node) => node.closest(`.page[data-role="${role}"]`) && !node.classList.contains("id-field")
-    ).forEach((node) => {
-      node.innerHTML = "";
-      node.dispatchEvent(new InputEvent("input", { bubbles: true, inputType: "deleteContent" }));
-    });
-    saveLocalState();
-    return true;
-  }
-
-  function resetSource(confirmed = false) {
-    if (!confirmed && !window.confirm("Reset this file to its embedded source and clear its local autosave?")) return false;
-    authorNodes().forEach((node) => {
-      node.innerHTML = embeddedSource.get(node.dataset.persistId) || "";
-    });
-    if (!config.standaloneRole) {
-      localStorage.removeItem(storageKey("state"));
-      localStorage.removeItem(storageKey("content"));
-    }
-    state = structuredClone(defaultState);
-    applyState();
-    setStatus("Local save: reset to embedded source");
-    return true;
-  }
-
-  function scrubClone(root) {
-    const body = root.querySelector("body");
-    [
-      "shell-edit-text", "shell-guides", "shell-boundaries",
-      "shell-density-compact", "shell-density-roomy"
-    ].forEach((name) => body.classList.remove(name));
-    root.querySelectorAll(".has-overflow").forEach((node) => node.classList.remove("has-overflow"));
-    root.querySelectorAll("[data-editable], [data-response]").forEach((node) => {
-      node.setAttribute("contenteditable", "false");
-      node.removeAttribute("tabindex");
-    });
-  }
-
-  function cloneWithCurrentSource() {
-    const root = document.documentElement.cloneNode(true);
-    scrubClone(root);
-    const cloneConfigNode = root.querySelector("#sssEditorShellCaseConfig");
-    const cloneConfig = JSON.parse(cloneConfigNode.textContent);
-    cloneConfig.documentKey = `${config.documentKey}:custom:${Date.now()}`;
-    cloneConfig.defaults = structuredClone(state);
-    cloneConfig.standaloneRole = null;
-    cloneConfigNode.textContent = JSON.stringify(cloneConfig);
-    return root;
-  }
-
-  function serializeRoot(root) {
-    return `<!doctype html>\n${root.outerHTML}`;
-  }
-
-  function serializeEditedMasterHTML() {
-    return serializeRoot(cloneWithCurrentSource());
-  }
-
-  function serializeCurrentRoleHTML(roleOverride = null) {
-    const role = roleOverride || selectedRole();
-    if (role === "all" || !config.roles.includes(role)) throw new RangeError("Select one role before export.");
-    const root = cloneWithCurrentSource();
-    root.querySelector(".toolbar")?.remove();
-    root.querySelectorAll(`.page[data-role]:not([data-role="${role}"])`).forEach((page) => page.remove());
-    root.querySelectorAll(".page[data-role]").forEach((page) => {
-      page.hidden = false;
-      page.removeAttribute("aria-hidden");
-    });
-    const cloneConfigNode = root.querySelector("#sssEditorShellCaseConfig");
-    const cloneConfig = JSON.parse(cloneConfigNode.textContent);
-    cloneConfig.documentKey = `${config.documentKey}:role:${role}:${Date.now()}`;
-    cloneConfig.standaloneRole = role;
-    cloneConfig.defaults.role = role;
-    cloneConfig.defaults.fillResponses = true;
-    cloneConfig.defaults.editText = false;
-    cloneConfigNode.textContent = JSON.stringify(cloneConfig);
-    const meta = root.ownerDocument.createElement("meta");
-    meta.setAttribute("name", "sss-standalone-role");
-    meta.setAttribute("content", role);
-    root.querySelector("head").append(meta);
-    root.querySelector("body").classList.add("standalone-role");
-    return serializeRoot(root);
-  }
-
-  function downloadText(filename, text) {
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(new Blob([text], { type: "text/html;charset=utf-8" }));
-    link.download = filename;
-    document.body.append(link);
-    link.click();
-    link.remove();
-    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
-  }
-
-  function bind() {
-    authorNodes().forEach((node) => node.addEventListener("input", scheduleSave));
-    controls.roleSelect?.addEventListener("change", () => setRole(controls.roleSelect.value));
-    controls.fillToggle?.addEventListener("change", () => {
-      state.fillResponses = controls.fillToggle.checked;
-      applyState();
-      scheduleSave();
-    });
-    controls.editToggle?.addEventListener("change", () => {
-      state.editText = controls.editToggle.checked;
-      applyState();
-      scheduleSave();
-    });
-    ["Top", "Right", "Bottom", "Left"].forEach((side) => {
-      controls[`margin${side}`]?.addEventListener("change", () => {
-        state[`margin${side}`] = Number(controls[`margin${side}`].value);
-        applyState();
-        scheduleSave();
-      });
-    });
-    controls.marginReset?.addEventListener("click", () => {
-      ["Top", "Right", "Bottom", "Left"].forEach((side) => {
-        state[`margin${side}`] = defaultState[`margin${side}`];
-      });
-      applyState();
-      scheduleSave();
-    });
-    controls.densitySelect?.addEventListener("change", () => {
-      state.density = controls.densitySelect.value;
-      applyState();
-      scheduleSave();
-    });
-    controls.grayToggle?.addEventListener("change", () => {
-      state.grayscale = controls.grayToggle.checked;
-      applyState();
-      scheduleSave();
-    });
-    controls.guidesToggle?.addEventListener("change", () => {
-      state.guides = controls.guidesToggle.checked;
-      applyState();
-      scheduleSave();
-    });
-    controls.boundariesToggle?.addEventListener("change", () => {
-      state.boundaries = controls.boundariesToggle.checked;
-      applyState();
-      scheduleSave();
-    });
-    controls.printBtn?.addEventListener("click", () => window.print());
-    controls.downloadMasterBtn?.addEventListener("click", () => {
-      downloadText(config.editedMasterFilename, serializeEditedMasterHTML());
-    });
-    controls.downloadRoleBtn?.addEventListener("click", () => {
-      const role = selectedRole();
-      downloadText(config.roleFilenames[role], serializeCurrentRoleHTML(role));
-    });
-    controls.clearRoleBtn?.addEventListener("click", () => clearCurrentRole(false));
-    controls.resetSourceBtn?.addEventListener("click", () => resetSource(false));
-    window.addEventListener("resize", checkOverflow);
-    window.addEventListener("beforeprint", checkOverflow);
-  }
-
-  window.SSSEditorShell = Object.freeze({
-    shellVersion,
-    loadLocalState,
-    saveLocalState,
-    serializeEditedMasterHTML,
-    serializeCurrentRoleHTML,
-    clearCurrentRole,
-    resetSource,
-    setRole,
-    checkOverflow
-  });
-
-  bind();
-  loadLocalState();
-  setStatus(config.standaloneRole ? "Embedded role source" : "Local save: ready");
+'use strict';
+const STATE_KEY='sss-c1-case02-v1-state';
+const CONTENT_KEY='sss-c1-case02-v1-content';
+const DEFAULT_STATE=Object.freeze({role:'student',marginTop:.5,marginRight:.5,marginBottom:.5,marginLeft:.5,density:'normal',editMode:false,fillMode:true,grayscale:false,guides:false,boundaries:true});
+let state={...DEFAULT_STATE};
+const body=document.body;
+const exportRole=body.dataset.exportRole||'';
+const exportGray=body.dataset.exportGrayscale==='true';
+const $=(s)=>document.querySelector(s);
+const $$=(s)=>Array.from(document.querySelectorAll(s));
+function safeJSON(value,fallback){if(value==null||value==='')return fallback;try{const parsed=JSON.parse(value);return parsed==null?fallback:parsed}catch{return fallback}}
+function loadState(){const saved=safeJSON(localStorage.getItem(STATE_KEY),{});state={...DEFAULT_STATE,...saved};if(exportRole)state.role=exportRole;if(exportGray)state.grayscale=true;}
+function saveState(patch={}){state={...state,...patch};localStorage.setItem(STATE_KEY,JSON.stringify(state));applyState();$('#stateStatus')&&($('#stateStatus').textContent='SAVED LOCALLY');}
+function setRole(role){if(exportRole)return;saveState({role});}
+function applyState(){
+ body.dataset.role=state.role;body.classList.toggle('edit-mode',state.editMode);body.classList.toggle('grayscale',state.grayscale);body.classList.toggle('show-guides',state.guides);body.classList.toggle('hide-boundaries',!state.boundaries);body.classList.remove('density-normal','density-compact','density-spacious');body.classList.add('density-'+state.density);
+ const r=document.documentElement.style;r.setProperty('--margin-top',state.marginTop+'in');r.setProperty('--margin-right',state.marginRight+'in');r.setProperty('--margin-bottom',state.marginBottom+'in');r.setProperty('--margin-left',state.marginLeft+'in');
+ const controls={roleControl:state.role,marginTop:state.marginTop,marginRight:state.marginRight,marginBottom:state.marginBottom,marginLeft:state.marginLeft,densityControl:state.density};for(const [id,v] of Object.entries(controls)){const el=$('#'+id);if(el)el.value=v;}
+ const checks={editControl:state.editMode,fillControl:state.fillMode,grayControl:state.grayscale,guideControl:state.guides,boundaryControl:state.boundaries};for(const [id,v] of Object.entries(checks)){const el=$('#'+id);if(el)el.checked=v;}
+ applyEditable();requestAnimationFrame(checkOverflow);
+}
+function isActiveRole(el){const page=el.closest('.page');return !!page&&(state.role==='all'||page.dataset.role===state.role);}
+function applyEditable(){
+ $$('[data-editable]').forEach(el=>{const active=isActiveRole(el)&&state.editMode;el.contentEditable=active?'true':'false';el.tabIndex=active?0:-1;});
+ $$('[data-response]').forEach(el=>{const page=el.closest('.page');const role=page?page.dataset.role:'';const fillAllowed=state.fillMode&&(role==='student'||role==='accessible');const active=isActiveRole(el)&&(state.editMode||fillAllowed);el.contentEditable=active?'true':'false';el.tabIndex=active?0:-1;});
+}
+function loadPersistentContent(){const saved=safeJSON(localStorage.getItem(CONTENT_KEY),{});$$('[data-persist-id]').forEach(el=>{const id=el.dataset.persistId;if(Object.prototype.hasOwnProperty.call(saved,id))el.innerHTML=saved[id];});}
+function persistElement(el){const saved=safeJSON(localStorage.getItem(CONTENT_KEY),{});saved[el.dataset.persistId]=el.innerHTML;localStorage.setItem(CONTENT_KEY,JSON.stringify(saved));$('#stateStatus')&&($('#stateStatus').textContent='SAVED LOCALLY');}
+function clearCurrentRole(force=false){if(state.role==='all'&&!force){alert('Choose one role before clearing responses.');return false;}if(!force&&!confirm('Clear responses for the current role only?'))return false;const roles=state.role==='all'?['student','teacher','answer','accessible']:[state.role];const saved=safeJSON(localStorage.getItem(CONTENT_KEY),{});roles.forEach(role=>{$$('.page[data-role="'+role+'"] [data-response]').forEach(el=>{el.innerHTML='';delete saved[el.dataset.persistId];});});localStorage.setItem(CONTENT_KEY,JSON.stringify(saved));checkOverflow();return true;}
+function resetSource(force=false){if(!force&&!confirm('Reset all local edits, responses, and settings to the source validation build?'))return false;localStorage.removeItem(STATE_KEY);localStorage.removeItem(CONTENT_KEY);if(force){state={...DEFAULT_STATE};applyState();$$('[data-response]').forEach(el=>el.innerHTML='');return true;}location.reload();}
+function serializePortableHTML(){
+ const clone=document.documentElement.cloneNode(true);const live=new Map($$('[data-persist-id]').map(el=>[el.dataset.persistId,el]));clone.querySelectorAll('[data-persist-id]').forEach(el=>{const src=live.get(el.dataset.persistId);if(src)el.innerHTML=src.innerHTML;el.removeAttribute('contenteditable');el.removeAttribute('tabindex');});
+ const cb=clone.querySelector('body');cb.dataset.initialState=encodeURIComponent(JSON.stringify(state));cb.classList.remove('edit-mode');clone.querySelectorAll('.page').forEach(p=>p.classList.remove('has-overflow'));return '<!doctype html>\n'+clone.outerHTML;
+}
+function downloadPortableHTML(){const html=serializePortableHTML();const blob=new Blob([html],{type:'text/html;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='SSS_C1_CASE02_EDITABLE_MASTER_v1.0_CUSTOM.html';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+function checkOverflow(){let count=0;$$('.page').forEach(page=>{if(getComputedStyle(page).display==='none'){page.classList.remove('has-overflow');return;}const frame=page.querySelector('.page-frame');const overflow=frame.scrollHeight>frame.clientHeight+2||frame.scrollWidth>frame.clientWidth+2;page.classList.toggle('has-overflow',overflow);if(overflow)count++;});const out=$('#overflowStatus');if(out){out.textContent=count+' overflow';out.classList.toggle('toolbar-overflow',count>0);}return count;}
+function bind(){
+ $('#roleControl')?.addEventListener('change',e=>setRole(e.target.value));$('#fillControl')?.addEventListener('change',e=>saveState({fillMode:e.target.checked}));$('#editControl')?.addEventListener('change',e=>saveState({editMode:e.target.checked}));$('#grayControl')?.addEventListener('change',e=>saveState({grayscale:e.target.checked}));$('#guideControl')?.addEventListener('change',e=>saveState({guides:e.target.checked}));$('#boundaryControl')?.addEventListener('change',e=>saveState({boundaries:e.target.checked}));$('#densityControl')?.addEventListener('change',e=>saveState({density:e.target.value}));
+ for(const side of ['Top','Right','Bottom','Left'])$('#margin'+side)?.addEventListener('change',e=>saveState({['margin'+side]:Math.max(.25,Math.min(1,Number(e.target.value)||.5))}));
+ $('#marginReset')?.addEventListener('click',()=>saveState({marginTop:.5,marginRight:.5,marginBottom:.5,marginLeft:.5}));$('#printButton')?.addEventListener('click',()=>{checkOverflow();window.print();});$('#downloadButton')?.addEventListener('click',downloadPortableHTML);$('#clearButton')?.addEventListener('click',()=>clearCurrentRole(false));$('#resetButton')?.addEventListener('click',()=>resetSource(false));
+ document.addEventListener('input',e=>{const el=e.target.closest('[data-persist-id]');if(el)persistElement(el);});window.addEventListener('resize',checkOverflow);window.addEventListener('beforeprint',checkOverflow);
+}
+function loadInitialPortableState(){const raw=body.dataset.initialState;if(raw){const initial=safeJSON(decodeURIComponent(raw),null);if(initial)state={...DEFAULT_STATE,...initial};}}
+loadState();loadInitialPortableState();loadPersistentContent();bind();applyState();
+window.__case02={getState:()=>({...state}),saveState,setRole,applyState,applyEditable,clearCurrentRole,resetSource,serializePortableHTML,downloadPortableHTML,checkOverflow,keys:{STATE_KEY,CONTENT_KEY}};
 })();

@@ -37,6 +37,10 @@ The registry stores paths; it does not embed every case into a monolithic HTML d
 
 Beginning with Case 03, new SSS/HHH production is HTML-only. Canonical outputs are the portable editable master and five independent role HTML files. Routine workflows do not generate, store, preflight, checksum, validate, or require PDFs.
 
+The shared editor shell uses the approved Case 02 toolbar/editor implementation literally. Do not alter its controls, labels, order, grouping, sizing, spacing, or behavior in a case package. Worksheet identity uses the approved Case 01/02 `printable-v1.1` name row, color SAA insignia, institution lockup, first-page title block, continuation header, and accent rail.
+
+Recurring CER tasks use the canonical shared Claim/Evidence/Reasoning component in Student, Accessible, and Answer Key roles. Five-stage mechanisms use the deterministic shared process grid or its Accessible vertical variant. Student figure provenance is a compact caption, and optional extensions appear only after required work when surplus space remains.
+
 The browser **Print / Save PDF** action remains available for physical printing and optional convenience export. It does not guarantee PDF accessibility. Physical print testing uses the browser print dialog at 100% / Actual Size. A manually created PDF is outside the canonical artifact set and requires separate accessibility verification before distribution, publication, or archival use.
 
 ## 1. Purpose

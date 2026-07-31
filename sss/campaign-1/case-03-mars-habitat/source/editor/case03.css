@@ -5,9 +5,15 @@
   --rule: #8c9aa8;
   --panel: #edf1f4;
   --panel-light: #f7f9fa;
-  --primary: #0b6f82;
-  --secondary: #147a45;
-  --soft: #e7f3f5;
+  --institution: #2e8484;
+  --botanical: #52974a;
+  --accent-dark: #33596e;
+  --accent-pale: #e6f0f0;
+  --primary: var(--institution);
+  --secondary: var(--botanical);
+  --soft: var(--accent-pale);
+  --screen: #d8dee1;
+  --small: 9pt;
   --page-w: 8.5in;
   --page-h: 11in;
   --radius: 3px;
@@ -16,26 +22,6 @@
 .spectrum-figure svg {
   width: 100%;
   height: 2.55in;
-}
-
-.mechanism {
-  display: grid;
-  grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
-  align-items: stretch;
-  gap: 3px;
-}
-
-.mech-box {
-  min-height: .75in;
-  padding: 6px;
-  border: 1.4px solid var(--ink);
-  font-size: 8.5pt;
-}
-
-.arrow {
-  align-self: center;
-  font-size: 15pt;
-  text-align: center;
 }
 
 .teacher-grid {

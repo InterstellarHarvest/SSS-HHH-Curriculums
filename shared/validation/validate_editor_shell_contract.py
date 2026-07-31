@@ -59,7 +59,6 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
         ("components", SHELL / "curriculum-components.css", "#sssCurriculumComponentsCss"),
         ("css", SHELL / "editor-shell.css", "#sssEditorShellCss"),
         ("cer", SHELL / "cer.css", "#sssCerComponentCss"),
-        ("runtime", SHELL / "editor-shell.js", "#sssEditorShellRuntime"),
     ]
     for label, source, selector in asset_specs:
         embedded = soup.select_one(selector)
@@ -74,10 +73,27 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
                 (embedded.string or "") == source.read_text(encoding="utf-8"),
             )
 
+    runtime_source_path = SHELL / "editor-shell.js"
+    embedded_runtime = soup.select_one("#sssEditorShellRuntime")
+    check("runtime asset is embedded", embedded_runtime is not None)
+    if embedded_runtime is not None:
+        check(
+            "runtime source hash attribute matches",
+            embedded_runtime.get("data-source-sha256") == sha256(runtime_source_path),
+        )
+        expected_runtime = (
+            runtime_source_path.read_text(encoding="utf-8")
+            .replace("sss-c1-case02-v1-state", f'{config["documentKey"]}:state')
+            .replace("sss-c1-case02-v1-content", f'{config["documentKey"]}:content')
+            .replace("SSS_C1_CASE02_EDITABLE_MASTER_v1.0_CUSTOM.html", config["editedMasterFilename"])
+            .replace("window.__case02", "window.__case03")
+        )
+        check("runtime differs from Case 02 only by case identity constants", (embedded_runtime.string or "") == expected_runtime)
+
     icon_source = (SHELL / "icons.svg").read_text(encoding="utf-8")
     toolbar_source = BeautifulSoup((SHELL / "toolbar.html").read_text(encoding="utf-8"), "html.parser")
     check("shared icon sprite is embedded exactly", icon_source in master_text)
-    toolbar = soup.select_one('[data-editor-shell-toolbar="1.0"]')
+    toolbar = soup.select_one(".toolbar")
     check("canonical toolbar is present", toolbar is not None)
     if toolbar is not None:
         actual_controls = [node.get("id") for node in toolbar.select("[id]")]
@@ -87,7 +103,10 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
             f"actual={actual_controls}",
         )
         source_controls = [node.get("id") for node in toolbar_source.select("[id]")]
-        check("toolbar markup is the shared source", actual_controls == source_controls)
+        check("toolbar markup is the shared source", str(toolbar) == str(toolbar_source.select_one(".toolbar")))
+        reference_path = REPO / contract["toolbar"]["literalReference"]
+        reference_toolbar = BeautifulSoup(reference_path.read_text(encoding="utf-8"), "html.parser").select_one(".toolbar")
+        check("toolbar HTML is identical to Case 02", str(toolbar) == str(reference_toolbar))
         for control_id, expected_label in contract["toolbar"]["labels"].items():
             node = toolbar.select_one(f"#{control_id}")
             if node is None:
@@ -100,19 +119,8 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
                 expected_label in actual_label,
                 f"actual={actual_label}",
             )
-        print_button = toolbar.select_one("#printBtn")
-        check(
-            "print button warns that browser PDF accessibility is not guaranteed",
-            print_button is not None
-            and "accessibility is not guaranteed" in (print_button.get("aria-label") or "").lower(),
-        )
-        print_note = toolbar.select_one(".pdf-accessibility-note")
-        check(
-            "toolbar visibly requires PDF verification before distribution",
-            print_note is not None
-            and "requires accessibility verification before distribution"
-            in normalized_text(print_note).lower(),
-        )
+        reference_script = BeautifulSoup(reference_path.read_text(encoding="utf-8"), "html.parser").select_one("script:not([id])")
+        check("shared toolbar runtime source is identical to Case 02", runtime_source_path.read_text(encoding="utf-8").strip() == (reference_script.string or "").strip())
 
     runtime_text = (soup.select_one("#sssEditorShellRuntime").string or "") if soup.select_one("#sssEditorShellRuntime") else ""
     for method in contract["requiredRuntimeApi"]:
@@ -166,13 +174,46 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
                 for page in role_pages[1:]
             ),
         )
-    check("student CER contract is present", bool(soup.select('[data-cer-contract="student-v1.0"]')))
+    for role, contract_name in {
+        "student": "student-v1.0",
+        "answer": "answer-v1.0",
+        "accessible": "accessible-v1.0",
+    }.items():
+        role_cer = soup.select(f'.page[data-role="{role}"] [data-cer-contract="{contract_name}"]')
+        boxes = [box for cer in role_cer for box in cer.select(":scope > .canonical-cer-box")]
+        labels = [normalized_text(box.select_one(".canonical-cer-label")) for box in boxes if box.select_one(".canonical-cer-label")]
+        check(f"{role} uses canonical CER contract", bool(role_cer))
+        check(f"{role} CER has Claim Evidence Reasoning in order", labels == ["CLAIM", "EVIDENCE", "REASONING"], labels)
+        check(f"{role} CER boxes use canonical response fields", all(box.select_one(".canonical-cer-response") for box in boxes))
+        if role == "answer":
+            check("answer CER responses are completed", all(normalized_text(box.select_one(".canonical-cer-response")) for box in boxes))
+
+    processes = soup.select('[data-process-contract="five-stage-v1.0"]')
+    check("canonical five-stage process models are present", len(processes) == 4, f"actual={len(processes)}")
+    for index, process in enumerate(processes, 1):
+        stages = process.select(":scope > .canonical-process-stage")
+        connectors = process.select(":scope > .canonical-process-arrow")
+        check(f"process {index} has five numbered stages", [stage.get("data-process-stage") for stage in stages] == ["1", "2", "3", "4", "5"])
+        check(f"process {index} has four connectors", len(connectors) == 4)
+    accessible_process = soup.select_one('.page[data-role="accessible"] [data-process-contract="five-stage-v1.0"]')
+    check("accessible process uses vertical canonical layout", accessible_process is not None and accessible_process.get("data-process-layout") == "vertical")
+
+    first_headers = soup.select('.mission-title-block[data-header-contract="printable-v1.1"]')
+    continuation_headers = soup.select('.continuation-header[data-header-contract="printable-v1.1"]')
+    check("every role uses approved first-page identity", len(first_headers) == len(config["roles"]))
+    check("all continuation pages use approved identity", len(first_headers) + len(continuation_headers) == len(pages))
+    check("all page identities use the approved color insignia", all(header.select_one(".saa-insignia .ins-sun") and header.select_one(".saa-insignia .ins-leaf") and header.select_one(".saa-insignia .ins-ring") for header in first_headers + continuation_headers))
+    student_id = soup.select('.page[data-role="student"] .student-id')
+    accessible_id = soup.select('.page[data-role="accessible"] .student-id')
     check(
-        "student CER has Claim Evidence Reasoning boxes",
-        all(
-            [cer.select_one(".claim"), cer.select_one(".evidence"), cer.select_one(".reasoning")]
-            for cer in soup.select('[data-cer-contract="student-v1.0"]')
-        ),
+        "Student and Accessible use approved identification geometry",
+        len(student_id) == len(accessible_id) == 1
+        and student_id[0].find_parent("section") is soup.select_one('.page[data-role="student"]')
+        and accessible_id[0].find_parent("section") is soup.select_one('.page[data-role="accessible"]')
+        and [node.get("data-field") for node in student_id[0].select("[data-field]")]
+        == ["student-name", "student-date", "student-period"]
+        and [node.get("data-field") for node in accessible_id[0].select("[data-field]")]
+        == ["accessible-name", "accessible-date", "accessible-period"],
     )
     check("master has no external stylesheet", not soup.select('link[rel~="stylesheet"]'))
     check("master has no external script", not soup.select("script[src]"))

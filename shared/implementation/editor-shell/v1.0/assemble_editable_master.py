@@ -33,7 +33,7 @@ def task_heading_html(task: dict[str, Any]) -> str:
     number = str(task["number"])
     title = task["title"]
     return (
-        f'<h2 class="task-heading" data-task-id="{number}" data-task-title="{title}">'
+        f'<h2 class="section-heading task-heading" data-task-id="{number}" data-task-title="{title}">'
         f'<svg class="ph-icon" aria-hidden="true"><use href="#{task["icon"]}"></use></svg>'
         '<span class="task-heading-copy">'
         f'<span class="technical-label">{task["semanticLabel"]}</span>'
@@ -85,6 +85,17 @@ def build_master(config_path: Path) -> str:
         "roleFilenames": {key: value["filename"] for key, value in config["outputs"].items()},
         "standaloneRole": None,
     }
+    runtime_source = js_path.read_text(encoding="utf-8")
+    runtime_source = (
+        runtime_source
+        .replace("sss-c1-case02-v1-state", f'{config["documentKey"]}:state')
+        .replace("sss-c1-case02-v1-content", f'{config["documentKey"]}:content')
+        .replace(
+            "SSS_C1_CASE02_EDITABLE_MASTER_v1.0_CUSTOM.html",
+            config["editedMasterFilename"],
+        )
+        .replace("window.__case02", "window.__case03")
+    )
     shell_assets = {
         "toolbar": toolbar_path,
         "components": components_path,
@@ -114,7 +125,7 @@ def build_master(config_path: Path) -> str:
 {toolbar_path.read_text(encoding="utf-8")}
 {content}
 <script id="sssEditorShellCaseConfig" type="application/json">{json.dumps(runtime_config, separators=(",", ":"))}</script>
-<script id="sssEditorShellRuntime" data-source-sha256="{digest(js_path)}">{js_path.read_text(encoding="utf-8")}</script>
+<script id="sssEditorShellRuntime" data-source-sha256="{digest(js_path)}">{runtime_source}</script>
 </body>
 </html>
 """
@@ -131,22 +142,14 @@ def build_role(master_html: str, role: str, grayscale: bool, config: dict[str, A
         else:
             page.attrs.pop("hidden", None)
             page.attrs.pop("aria-hidden", None)
-    config_node = soup.select_one("#sssEditorShellCaseConfig")
-    runtime_config = json.loads(config_node.string)
-    runtime_config["standaloneRole"] = role
-    runtime_config["documentKey"] = f'{runtime_config["documentKey"]}:published:{role}:{"gray" if grayscale else "color"}'
-    runtime_config["defaults"]["role"] = role
-    runtime_config["defaults"]["fillResponses"] = True
-    runtime_config["defaults"]["editText"] = False
-    runtime_config["defaults"]["grayscale"] = grayscale
-    config_node.string = json.dumps(runtime_config, separators=(",", ":"))
     meta = soup.new_tag("meta")
     meta["name"] = "sss-standalone-role"
     meta["content"] = role
     soup.head.append(meta)
     soup.body["class"] = list(soup.body.get("class", [])) + ["standalone-role"]
-    if grayscale:
-        soup.body["class"].append("shell-grayscale")
+    soup.body["data-standalone"] = "true"
+    soup.body["data-export-role"] = role
+    soup.body["data-export-grayscale"] = "true" if grayscale else "false"
     return "<!doctype html>\n" + str(soup.html)
 
 

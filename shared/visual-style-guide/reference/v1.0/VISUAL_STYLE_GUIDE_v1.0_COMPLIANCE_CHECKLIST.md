@@ -75,8 +75,15 @@
 - [ ] Guidance is concise.
 - [ ] Response area matches expected length.
 - [ ] CER uses Claim, Evidence, and Reasoning stacked boxes.
+- [ ] CER rows use the shared fixed left label block and bordered right response field.
+- [ ] CER heading uses `EXPLANATION`, one task number, the exact task title, and the approved Phosphor icon.
 - [ ] Evidence receives enough space.
 - [ ] Reasoning asks for mechanism or connection.
+- [ ] Accessible and Answer Key CER retain the same component structure at their appropriate type/response scale.
+- [ ] Five-stage process models use five stable equal stages and four aligned supplied connectors; they do not flex-wrap.
+- [ ] Accessible five-stage process models use the canonical vertical variant.
+- [ ] Runtime-data provenance is a compact figure caption, not a Student-facing production-commentary box.
+- [ ] Optional Extension appears only after all required tasks and only when meaningful surplus space remains.
 
 ## Word Banks
 
@@ -236,7 +243,7 @@
 
 - [ ] Canonical outputs are the portable editable-master HTML plus Student, Teacher, Answer Key, Accessible, and Grayscale HTML.
 - [ ] No routine workflow generates, stores, preflights, checksums, validates, or requires a PDF.
-- [ ] The browser Print / Save PDF action remains available and warns that accessibility is not guaranteed.
+- [ ] The browser Print / Save PDF action remains available; implementation documentation states that browser export is not automatically accessible.
 - [ ] Static HTML, browser behavior, role isolation, portability/serialization, accessibility, overflow/print preview, HTML page counts, HTML checksums, and rendered browser review pass.
 - [ ] Owner physical printing is tested from the browser print dialog at 100% / Actual Size.
 - [ ] Any manually exported PDF is accessibility-verified before distribution, publication, or archival.

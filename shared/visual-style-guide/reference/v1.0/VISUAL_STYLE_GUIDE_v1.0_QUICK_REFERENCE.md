@@ -75,7 +75,8 @@ Use icons for recurring standardized sections. Use a plain heading or label-only
 | Ordinary prose or directions | Open section |
 | Priority explanation or status | Left-rule pale-field callout |
 | Short written response | Prompt + blank box |
-| CER | Three stacked boxes |
+| CER | Shared three-row label-block + response-field component |
+| Five-stage mechanism | Deterministic equal-stage process grid; Accessible uses the vertical variant |
 | Evidence collection | Ruled technical table |
 | Two things compared | Matched comparison |
 | Ordered events | Timeline |
@@ -132,6 +133,13 @@ Never rely on color alone.
 - Orthogonal connectors for relationships.
 - Caption metadata band.
 - State whether the figure is original, adapted, reproduced, schematic, reconstructed, modeled, fictional, or not to scale.
+- For classroom runtime-data figures, keep provenance to a compact caption. Do not add Student-facing production-commentary boxes such as `SOURCE STATUS` or `GAME-PROVIDED COMPARISON`.
+
+## Recurring Components
+
+- CER always uses the shared Claim / Evidence / Reasoning rows, with fixed accent labels at left and bordered fields at right. Accessible enlarges the same structure; Answer Key completes it.
+- A five-stage process uses a deterministic grid with five equal stages and four aligned connectors. Do not use wrapping flex layouts. Accessible uses the shared vertical variant.
+- Optional Extension is a canonical end-of-worksheet callout used only after required work and only when meaningful surplus space remains.
 
 ## Images
 
@@ -181,7 +189,7 @@ Use `VISUAL_STYLE_GUIDE_v1.0_COMPLIANCE_CHECKLIST.md` before release.
 
 ## HTML-only production
 
-Beginning with Case 03, ship the portable editable-master HTML plus five independent role HTML files. Do not create PDFs during routine production. Use the browser print dialog at 100% / Actual Size for physical testing. Browser Print / Save PDF remains optional, but the result is not automatically accessible and must be verified before distribution.
+Beginning with Case 03, ship the portable editable-master HTML plus five independent role HTML files. Do not create PDFs during routine production. Use the browser print dialog at 100% / Actual Size for physical testing. Browser Print / Save PDF remains optional, but the result is not automatically accessible. Shared implementation documentation must state that accessibility verification is required before distribution.
 
 ## Balanced Page Fill and Vertical Rhythm v1.0.2
 
