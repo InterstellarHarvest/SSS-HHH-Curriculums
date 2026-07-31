@@ -3,7 +3,8 @@
   "title": "Mars Habitat",
   "version": "1.0",
   "status": "VALIDATION BUILD",
-  "release_status": "AUTOMATED_VALIDATION_PASS_PHYSICAL_PRINT_OPEN",
+  "artifact_policy": "HTML_ONLY",
+  "release_status": "AUTOMATED_HTML_VALIDATION_PASS_PHYSICAL_PRINT_OPEN",
   "student_identity": "Data Analyst",
   "core_science": "light spectrum versus total intensity",
   "curriculum_baseline": "e524d333f28a1515571f038e3ed494d87aa812d3",
@@ -18,10 +19,18 @@
     "case_config": "source/editor/case03-editor-config.json",
     "portable_self_contained_master": true
   },
+  "canonical_artifacts": [
+    "portable editable-master HTML",
+    "Student HTML",
+    "Teacher HTML",
+    "Answer Key HTML",
+    "Accessible HTML",
+    "Grayscale HTML"
+  ],
   "current_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-    "sha256": "d38a10136eb99e38a6e2c8327976ed8e9c6e6bae9d274a6fd3bc70802ace204b",
-    "bytes": 131804
+    "sha256": "29ca57ec4f95802f3864efe0dee43cd0f72fcc3d435384c46463d55fe7c3cbec",
+    "bytes": 134357
   },
   "page_counts": {
     "student": 4,
@@ -30,85 +39,73 @@
     "accessible": 6,
     "grayscale": 4
   },
+  "active_release_gates": [
+    "static HTML validation",
+    "browser behavior validation",
+    "role isolation",
+    "portability and serialization",
+    "accessibility",
+    "overflow and print-preview checks",
+    "HTML page counts",
+    "HTML checksum verification",
+    "rendered browser review",
+    "owner physical print test"
+  ],
   "automated_validation": {
     "status": "PASS",
-    "assertions": "355/355",
-    "browser": "33/33",
-    "pdf": "142/142",
-    "preflight": "5/5 PASS",
-    "rendered_review": "PASS",
-    "renderer_parity": "PASS - antialiasing-only differences",
-    "physical_print": "OPEN",
-    "shared_shell_contract": "338/338 PASS",
-    "editor_shell_browser": "34/34 PASS",
-    "html_overflow": "0",
-    "serialization_fresh_storage": "PASS",
-    "pdfs_regenerated_in_shell_maintenance": false
+    "consolidated": "115/115 PASS",
+    "shared_shell_contract": "355/355 PASS",
+    "editor_shell_browser": "45/45 PASS",
+    "static_html": "20/20 PASS",
+    "browser_behavior": "4/4 PASS",
+    "role_isolation": "19/19 PASS",
+    "portability_serialization": "15/15 PASS",
+    "accessibility": "37/37 PASS",
+    "overflow_print_preview": "9/9 PASS; zero overflow",
+    "html_page_counts": "4/8/4/6/4 PASS",
+    "html_checksums": "6/6 VERIFIED",
+    "rendered_browser_review": "26/26 pages PASS; human contact-sheet review PASS",
+    "owner_physical_print": "OPEN"
   },
   "outputs": {
     "student": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
-        "sha256": "78abb90dbcd3f3f420cef1ab253616bfa953d3340f15549ad0709232d59b8fca",
-        "bytes": 54282
-      },
-      "pdf": {
-        "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf",
-        "sha256": "713c7341b4448482564a30a45897f2b9dd4e2b93690d3e020a9500aeb338a1c3",
-        "bytes": 43448
+        "sha256": "5d6e4d07950f39653e85e524882d14c276b3f34c56d99cb27b57284a82f5711b",
+        "bytes": 55361
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
-        "sha256": "24c65f8dff2ac612ebe80648e481d9fab66c65cee39b37fce0634c35f1eb031d",
-        "bytes": 62618
-      },
-      "pdf": {
-        "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf",
-        "sha256": "38183f3ac32136ba4134e09c0b320a08090fb17b1dc6af0ff0597e8eda719dac",
-        "bytes": 77651
+        "sha256": "30108dde3532de7bd705c0271c0655c18f48fdbe922b112c554c9653bbf94a17",
+        "bytes": 63296
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
-        "sha256": "dab0ea8f0e648da29287bb16e33c8ccb79b80e9fbfa33856bb620737dad91abd",
-        "bytes": 48327
-      },
-      "pdf": {
-        "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf",
-        "sha256": "be1facc75b62a82d576a7c98b0cb8e10347a5691fbba53a501213d91dd9baf8f",
-        "bytes": 41058
+        "sha256": "c3342f223b6087efb18deebffbec48948d65944710822d594bad921f5cb89db6",
+        "bytes": 48631
       }
     },
     "accessible": {
       "pages": 6,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
-        "sha256": "d48393df63b9ee5ae62307af11c267bea151e7d64ebd33307dd8bb6b0943db16",
-        "bytes": 54333
-      },
-      "pdf": {
-        "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf",
-        "sha256": "d3e845447e7fec8edee7e14954ec1c6385c29282802ee15809bc127feb8717e5",
-        "bytes": 52853
+        "sha256": "5606b0de1be8990c42308e645c17605034ec6ce7b8f749b3f2d0a1cab53eed70",
+        "bytes": 55438
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
-        "sha256": "ad4fecf0add288afb4a66f66edfee2b46f7dceaeeca7bda5d75796cb6eda62a7",
-        "bytes": 54296
-      },
-      "pdf": {
-        "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf",
-        "sha256": "4cf588c9e63d35dfe2570bcd57e0f46618bce13d33a0a2578a697da98cd71451",
-        "bytes": 43440
+        "sha256": "685f8c20db0836f10991ab77da18e6664d37ba2fa5d2322f1754c05cbd6e2db7",
+        "bytes": 55375
       }
     }
   },
@@ -165,25 +162,25 @@
     },
     {
       "path": "source/editor/case03-editor-config.json",
-      "sha256": "a3b1de61f0e40d49d49fc82b00c5ee988c167b972329ac3134003fdbe05da831",
-      "bytes": 2957
+      "sha256": "3002c41368fb765515ebb25e441d151746c7fc5e4d73c2988ea5ea794bd26728",
+      "bytes": 2997
     },
     {
       "path": "source/editor/case03.css",
-      "sha256": "04b0ab7c7f4a900c0cfafda1fa0f69d55156ad1b22a79f89c70e3f5636650bc1",
-      "bytes": 1754
+      "sha256": "32b305885bdb5e9464907b95dfbe4188c76e592c29bafae139c763c503c4e5a9",
+      "bytes": 1872
     },
     {
       "path": "source/editor/case03-content.html",
-      "sha256": "01258c4ae2d7897ff05f75fc78e31be9fdc631948341d8290ede6089e6385878",
-      "bytes": 91533
+      "sha256": "81b75f504dd254a2b5811f30c269dcbdd3ad1eb65220419fe5bc5aba578c1df8",
+      "bytes": 93579
     }
   ],
   "reports": [
     {
-      "path": "reports/CASE03_RENDERED_REVIEW.md",
-      "sha256": "8d2b73019068784a1edfe7ae7a9365063da1d378f69ad9be7a8ef254b503096e",
-      "bytes": 2397
+      "path": "reports/CASE03_BROWSER_RENDERED_REVIEW.md",
+      "sha256": "6ebf701d9a52e8e5c05b17487ea6572ef3c382b9f01beef119fdc222c5d934ee",
+      "bytes": 1101
     },
     {
       "path": "reports/CASE03_RUNTIME_CONTENT_AUDIT.md",
@@ -192,40 +189,35 @@
     },
     {
       "path": "reports/CASE03_STRUCTURAL_STRESS_TEST_REPORT.md",
-      "sha256": "c487aac69044dd88deaad34e1c807fe5ae3fa27bd0a45a8d16b53561c7eda05e",
-      "bytes": 2750
+      "sha256": "4973f17389582440ad52114c13c60924bda6d686b8fffc30febf6295375e121a",
+      "bytes": 2293
     },
     {
       "path": "reports/CASE03_V1_VALIDATION_REPORT.md",
-      "sha256": "abf8cbcd2d50cfef99fc007422b240da20a57ede2c0f55abad5fabfb26e7a416",
-      "bytes": 4519
+      "sha256": "68577715607d792d17b74925b616e80ab2363179c348b75ef62e3acb47729b7a",
+      "bytes": 2790
     }
   ],
   "validation_files": [
     {
-      "path": "validation-artifacts/CASE03_V1_PDF_PREFLIGHT.json",
-      "sha256": "d458d12e0e43249bad0eb177027ff0e1d8fdaf832fda8c72dbf49a71ecaf299e",
-      "bytes": 1188
-    },
-    {
-      "path": "validation-artifacts/CASE03_V1_RENDERER_PARITY.json",
-      "sha256": "d8ee39b956e6f137902298dde82d645807788493b2abee694a368a2f02079e37",
-      "bytes": 7752
-    },
-    {
       "path": "validation-artifacts/CASE03_V1_VALIDATION_RESULTS.json",
-      "sha256": "d6580ead2f092dcec97e2258c7fd7b9121adab4f8244ebbea2254eb1faec9bdc",
-      "bytes": 47039
+      "sha256": "d603f02b2240d4db26faa2b3b48b6298a06e30cedc36f56e52a58a35d4b48aa9",
+      "bytes": 18300
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_CONTRACT_RESULTS.json",
-      "sha256": "0362ca89630883bf0deab6a44491d28cc08cd254e2c9c25920bb69be467d2c09",
-      "bytes": 38145
+      "sha256": "d23b13ae99ed881696c1f645f3310abb65989f16205aff2d11b84b527088bd79",
+      "bytes": 40075
     },
     {
       "path": "validation-artifacts/CASE03_EDITOR_SHELL_BROWSER_RESULTS.json",
-      "sha256": "3115e5429922e9f08553e9577e10fd6d187473c34fd4df776ca36505bbb9cd62",
-      "bytes": 4488
+      "sha256": "e18e64bbf36b3a376370d0e3fa0e2f999fe933dabf123cfc28cb9dae04e792b4",
+      "bytes": 5770
+    },
+    {
+      "path": "validation-artifacts/CASE03_BROWSER_RENDERED_REVIEW_RESULTS.json",
+      "sha256": "1ab623f8b83e08912a5eccbb370dbc989588c9d8f1795af4d8337ee34b445651",
+      "bytes": 3989
     },
     {
       "path": "validation-artifacts/build_case03_html.py",
@@ -233,31 +225,31 @@
       "bytes": 1123
     },
     {
-      "path": "validation-artifacts/build_case03_pdfs.py",
-      "sha256": "11d1bf6345a530669a30600aa22996a949187a38b377b07a2f3a1ccd157dfd5c",
-      "bytes": 40393
+      "path": "validation-artifacts/render_case03_browser_review.py",
+      "sha256": "85961242ce869e7b17b825e73523f9286fb09a605edc8da9dc55fa36a84c3d26",
+      "bytes": 5817
     },
     {
       "path": "validation-artifacts/validate_case03_v1.py",
-      "sha256": "e9cb85c9c349e9b035830b5e1d7bf07fcd6481c88806e9aa7b1b1282fb8861b4",
-      "bytes": 17989
+      "sha256": "c894e3e06f0956423b1bc534e3eb0dc20c4a6cceeaaaca22881727b0cf11c637",
+      "bytes": 14164
     },
     {
       "path": "validation-artifacts/validate_case03_editor_shell.py",
-      "sha256": "f37f7d92c5dd506bdf1552e1efac28cde4356315e64adbff8fd47f6742d61f04",
-      "bytes": 11644
+      "sha256": "b0da3ead4a0f44e22cd4b05254f08ae9bc168d48f4c73c6e4406e367005b45db",
+      "bytes": 12956
     }
   ],
   "release_gate": {
     "may_mark_approved": false,
-    "reason": "Owner physical 100%-scale print testing has not passed."
+    "status": "OPEN",
+    "reason": "Owner browser physical print testing at 100% / Actual Size has not passed."
   },
   "institutional_identity": {
     "abbreviation": "SAA",
     "canonical_full_name": "Solar Agricultural Agency",
     "shared_correction": "shared/visual-style-guide/amendments/SAA_CANONICAL_INSTITUTION_NAME_v1.0.5.md",
     "correction_context": "Follow-up after initial Case 03 commit 378f4d873a8fcc46b91af3fb0b552650c2ddeea7",
-    "validation": "Agency required; Authority and Space variants rejected on printable pages",
-    "game_repository_alignment": "ALIGNED AT c6c17be57880b365793fdf99ff4ad09b62ecacce"
+    "validation": "Agency required; Authority and Space variants rejected on current production pages"
   }
 }

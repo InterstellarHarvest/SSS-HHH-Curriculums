@@ -35,6 +35,18 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
         assertions.append({"name": name, "pass": bool(condition), "detail": detail})
 
     check("config targets shell 1.0", config.get("shellVersion") == contract["shellVersion"])
+    output_policy = contract.get("outputPolicy", {})
+    check("shell canonical output format is HTML", output_policy.get("canonicalFormat") == "HTML")
+    check("shell workflow does not generate PDFs", output_policy.get("workflowGeneratesPdf") is False)
+    check("browser print remains available", output_policy.get("browserPrintAvailable") is True)
+    check(
+        "browser PDF accessibility is not guaranteed",
+        output_policy.get("browserPdfAccessibilityGuaranteed") is False,
+    )
+    check(
+        "distributed manual PDFs require accessibility verification",
+        output_policy.get("manualPdfDistributionRequiresAccessibilityVerification") is True,
+    )
     shell_meta = soup.select_one('meta[name="sss-editor-shell"]')
     check("master declares shell version", shell_meta is not None and shell_meta.get("content") == "1.0")
     contract_meta = soup.select_one('meta[name="sss-editor-shell-contract-sha256"]')
@@ -88,6 +100,19 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
                 expected_label in actual_label,
                 f"actual={actual_label}",
             )
+        print_button = toolbar.select_one("#printBtn")
+        check(
+            "print button warns that browser PDF accessibility is not guaranteed",
+            print_button is not None
+            and "accessibility is not guaranteed" in (print_button.get("aria-label") or "").lower(),
+        )
+        print_note = toolbar.select_one(".pdf-accessibility-note")
+        check(
+            "toolbar visibly requires PDF verification before distribution",
+            print_note is not None
+            and "requires accessibility verification before distribution"
+            in normalized_text(print_note).lower(),
+        )
 
     runtime_text = (soup.select_one("#sssEditorShellRuntime").string or "") if soup.select_one("#sssEditorShellRuntime") else ""
     for method in contract["requiredRuntimeApi"]:
@@ -157,6 +182,39 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
     )
     persist_ids = [node.get("data-persist-id") for node in soup.select("[data-persist-id]")]
     check("editable persist identifiers are unique", len(persist_ids) == len(set(persist_ids)))
+    check("document language is English", soup.html is not None and soup.html.get("lang") == "en")
+    check("document title is present", bool(soup.title and normalized_text(soup.title)))
+    responses = soup.select("[data-response]")
+    check(
+        "every response field has a programmatic label",
+        bool(responses)
+        and all(node.get("aria-label") or node.get("aria-labelledby") for node in responses),
+    )
+    tables = soup.select("table")
+    check(
+        "every data table has an accessible caption",
+        all(table.select_one(":scope > caption") is not None for table in tables),
+    )
+    check(
+        "every table header declares scope",
+        all(header.get("scope") in {"col", "row", "colgroup", "rowgroup"} for header in soup.select("th")),
+    )
+    figures = soup.select("figure svg")
+    check(
+        "every figure graphic has an accessible name",
+        all(
+            graphic.get("aria-label")
+            or graphic.get("aria-labelledby")
+            or graphic.find("title")
+            for graphic in figures
+        ),
+    )
+    heading_skips: list[str] = []
+    for page in pages:
+        levels = [int(node.name[1]) for node in page.select("h1,h2,h3,h4,h5,h6")]
+        if any(current > previous + 1 for previous, current in zip(levels, levels[1:])):
+            heading_skips.append(page.get("data-page-id", "unknown"))
+    check("page heading hierarchies have no skipped levels", not heading_skips, f"pages={heading_skips}")
 
     for role, expected in config["pageCounts"].items():
         data_role = "student" if role == "grayscale" else role
@@ -184,6 +242,9 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
         )
 
     registry = json.loads(registry_path.read_text(encoding="utf-8"))
+    registry_policy = registry.get("productionPolicy", {})
+    check("registry declares HTML-only new production", registry_policy.get("newProduction") == "HTML_ONLY")
+    check("registry disallows PDF paths in new production", registry_policy.get("pdfPathsAllowed") is False)
     registry_cases = [
         case
         for curriculum in registry.get("curricula", [])
@@ -194,6 +255,7 @@ def validate(config_path: Path, master_path: Path, registry_path: Path) -> dict[
     check("case registry includes current case", case_entry is not None)
     if case_entry:
         check("case registry records shell 1.0", case_entry.get("editorShell") == "1.0")
+        check("case registry records HTML-only artifact policy", case_entry.get("artifactPolicy") == "HTML_ONLY")
     for case in registry_cases:
         check(f"registry master exists for {case['id']}", (REPO / case["master"]).is_file())
         for role, path in case.get("roles", {}).items():

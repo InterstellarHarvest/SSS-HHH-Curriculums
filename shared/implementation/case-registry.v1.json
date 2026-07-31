@@ -1,5 +1,10 @@
 {
   "schemaVersion": 1,
+  "productionPolicy": {
+    "newProduction": "HTML_ONLY",
+    "effectiveFrom": "SSS-C1-CASE03",
+    "pdfPathsAllowed": false
+  },
   "curricula": [
     {
       "id": "SSS",
@@ -14,6 +19,7 @@
               "title": "ISS Greenhouse",
               "version": "1.1",
               "status": "APPROVED",
+              "artifactPolicy": "HISTORICAL_PDFS_RETAINED",
               "editorShell": null,
               "master": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
               "roles": {
@@ -29,6 +35,7 @@
               "title": "Lunar Greenhouse",
               "version": "1.0",
               "status": "APPROVED_WITH_HTML_MAINTENANCE",
+              "artifactPolicy": "HISTORICAL_PDFS_RETAINED",
               "editorShell": null,
               "master": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
               "roles": {
@@ -44,6 +51,7 @@
               "title": "Mars Habitat",
               "version": "1.0",
               "status": "VALIDATION BUILD",
+              "artifactPolicy": "HTML_ONLY",
               "editorShell": "1.0",
               "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
               "roles": {

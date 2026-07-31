@@ -7,6 +7,7 @@
     "sss-case": "SSS-C1-CASE03",
     "sss-curriculum-version": "1.0",
     "sss-status": "validation-build",
+    "sss-artifact-policy": "html-only",
     "sss-game-baseline": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
     "sss-curriculum-bible": "1.3",
     "sss-student-identity": "Data Analyst",

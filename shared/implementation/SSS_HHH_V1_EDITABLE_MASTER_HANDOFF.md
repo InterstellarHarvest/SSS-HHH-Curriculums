@@ -33,6 +33,12 @@ case registry
 
 The registry stores paths; it does not embed every case into a monolithic HTML document. See `REPOSITORY_CURRICULUM_LIBRARY_ARCHITECTURE.md`.
 
+### HTML-only production decision
+
+Beginning with Case 03, new SSS/HHH production is HTML-only. Canonical outputs are the portable editable master and five independent role HTML files. Routine workflows do not generate, store, preflight, checksum, validate, or require PDFs.
+
+The browser **Print / Save PDF** action remains available for physical printing and optional convenience export. It does not guarantee PDF accessibility. Physical print testing uses the browser print dialog at 100% / Actual Size. A manually created PDF is outside the canonical artifact set and requires separate accessibility verification before distribution, publication, or archival use.
+
 ## 1. Purpose
 
 Case 01 proves that the approved v1.0 visual system can operate as a real editable, fillable, printable curriculum master rather than only as a template gallery.
@@ -357,7 +363,7 @@ Do not mutate role before printing. The current role already determines page vis
 
 ### 5.6 Grayscale behavior
 
-Do not apply `filter: grayscale()` to the whole page or workspace. Chromium may rasterize the exported PDF.
+Do not apply `filter: grayscale()` to the whole page or workspace. Use token overrides so browser print and optional end-user export preserve selectable text and predictable rendering.
 
 Use grayscale token overrides for:
 
@@ -390,7 +396,7 @@ It must preserve:
 - assessment target;
 - source and compatibility metadata.
 
-The HTML edition should remain the primary accessible digital artifact unless a tagged-PDF pipeline is added.
+The HTML edition is the canonical accessible digital artifact. New project production does not add a PDF counterpart.
 
 ## 7. SSS versus HHH variables
 
@@ -422,9 +428,9 @@ For each later case:
 7. Confirm Name / Date / Period is topmost on only the first Student and Accessible page.
 8. Validate Student, Teacher, Answer, Accessible, Grayscale, Print Preview, and All Pages.
 9. Test role-state preservation and saved content restoration.
-10. Render PDFs and inspect every page.
-11. Complete a physical 100% print test.
-12. Keep status as Validation or Review until all release gates pass.
+10. Render every HTML page in a browser and complete visual review.
+11. Verify print-preview behavior and print from the browser dialog at 100% / Actual Size.
+12. Keep status as Validation or Review until all HTML, browser, accessibility, rendered-review, and physical-print gates pass.
 
 ## 9. Shared extraction status
 
@@ -435,9 +441,11 @@ The extraction is implemented at `shared/implementation/editor-shell/v1.0/` and 
 - shared publishing toolbar;
 - shared state/persistence module;
 - shared overflow test;
-- shared role-print test harness.
+- shared role-isolation and browser print-preview test harness.
 
 Case 01 vocabulary, prompts, tables, answers, and timing remain case content and are not framework code. Existing approved Case 01 and Case 02 masters are not retroactively migrated solely to adopt the editor shell; Case 03 is the first assembled shell v1.0 implementation.
+
+Approved Case 01 and Case 02 PDFs remain untouched historical artifacts. Case 02 HTML maintenance does not require a replacement PDF.
 
 ## Balanced Page Fill and Vertical Rhythm v1.0.2 implementation note
 

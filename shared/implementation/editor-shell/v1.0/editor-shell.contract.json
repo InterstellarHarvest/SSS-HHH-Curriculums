@@ -5,6 +5,22 @@
     "versionMetaName": "sss-editor-shell",
     "contractHashMetaName": "sss-editor-shell-contract-sha256"
   },
+  "outputPolicy": {
+    "canonicalFormat": "HTML",
+    "effectiveFrom": "SSS-C1-CASE03",
+    "requiredArtifacts": [
+      "portable-editable-master",
+      "student",
+      "teacher",
+      "answer",
+      "accessible",
+      "grayscale"
+    ],
+    "workflowGeneratesPdf": false,
+    "browserPrintAvailable": true,
+    "browserPdfAccessibilityGuaranteed": false,
+    "manualPdfDistributionRequiresAccessibilityVerification": true
+  },
   "toolbar": {
     "controlOrder": [
       "roleSelect",

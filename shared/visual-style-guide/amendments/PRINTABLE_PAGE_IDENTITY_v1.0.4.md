@@ -55,4 +55,4 @@ The header, insignia, role lockup, and footer are fixed identity components and 
 
 ## 7. Validation
 
-Validation must confirm first-page structure, continuation structure, institution/role lockup, role-specific footer numbering, absence of visible production-state text, zero overflow, correct role page counts, JavaScript behavior, PDF preflight, rendered visual review, current checksums, and absence of machine-local paths.
+For HTML-only production beginning with Case 03, validation confirms first-page structure, continuation structure, institution/role lockup, role-specific footer numbering, absence of visible production-state text, zero overflow, correct HTML role page counts, JavaScript behavior, browser print preview, rendered HTML review, HTML checksums, accessibility, and absence of machine-local paths. Earlier approved PDF releases retain their historical validation records.

@@ -179,6 +179,10 @@ Do not publish with:
 
 Use `VISUAL_STYLE_GUIDE_v1.0_COMPLIANCE_CHECKLIST.md` before release.
 
+## HTML-only production
+
+Beginning with Case 03, ship the portable editable-master HTML plus five independent role HTML files. Do not create PDFs during routine production. Use the browser print dialog at 100% / Actual Size for physical testing. Browser Print / Save PDF remains optional, but the result is not automatically accessible and must be verified before distribution.
+
 ## Balanced Page Fill and Vertical Rhythm v1.0.2
 
 When a page has meaningful surplus height, use it first for restrained separation between major tasks, then for proportionate multi-line writing/model space, then for useful padding. Keep one-word, phrase, classification, status, criterion, constraint, label, and single-line fields compact. Preserve intentional bottom reserve; do not force complete page fill. Human judgment is final.

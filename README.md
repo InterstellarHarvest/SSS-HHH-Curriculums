@@ -12,7 +12,7 @@ Use the following hierarchy for production work:
 4. Game-specific audit and blueprint documents
 5. Case-level controlled sources, task registry, validation master, and release manifest
 
-Curriculum Bible v1.3 carries forward every v1.2 rule and adds the completed-exemplar requirement for Answer Keys.
+Curriculum Bible v1.3 carries forward v1.2, adds the completed-exemplar requirement, and records the HTML-only production decision effective with Case 03.
 
 ## Repository map
 
@@ -23,11 +23,9 @@ Curriculum Bible v1.3 carries forward every v1.2 rule and adds the completed-exe
 
 ## Current production foundation
 
-The current reusable production foundation is:
+New cases use `shared/implementation/editor-shell/v1.0/` plus case content/configuration. Beginning with Case 03, canonical production artifacts are the portable editable-master HTML and five independent role HTML files. Routine production does not create PDFs.
 
-`sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
-
-Case 01 is the **approved stable v1.0 release**. Automated role, accessibility, persistence, grayscale, overflow, serialization, content-regression, and PDF-generation checks passed, and the owner completed physical 100% scale print testing of the five outputs on 2026-07-24. No Case 01 release blockers remain.
+Approved Case 01 and Case 02 PDFs remain unchanged historical artifacts. The browser Print / Save PDF action is available for optional manual use, but its output requires accessibility verification before distribution.
 
 ## Historical artifacts
 
@@ -35,4 +33,4 @@ Files labeled v0.2 or v0.3 are retained only for provenance and comparison. They
 
 ## Scaling rule
 
-Do not begin another case by copying a historical prototype. Start from the validated v1.0 Case 01 framework and replace case-specific content only after checking the governing documents and task registry.
+Do not begin another case by copying a historical or case-specific master. Assemble it from the canonical shared editor shell and registered case content/configuration after checking the governing documents and task registry.

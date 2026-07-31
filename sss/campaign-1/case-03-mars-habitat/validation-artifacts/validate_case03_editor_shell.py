@@ -52,6 +52,16 @@ def run(chrome: Path) -> dict[str, Any]:
         ]
         check("browser toolbar order matches contract", actual_controls == expected_controls)
         check(
+            "print action carries the manual PDF accessibility warning",
+            "accessibility is not guaranteed"
+            in (page.locator("#printBtn").get_attribute("aria-label") or "").lower(),
+        )
+        check(
+            "visible toolbar note requires accessibility verification before PDF distribution",
+            "requires accessibility verification before distribution"
+            in page.locator(".pdf-accessibility-note").inner_text().lower(),
+        )
+        check(
             "default Student view shows four pages",
             page.locator('.page[data-role="student"]:visible').count() == 4,
         )
@@ -166,6 +176,24 @@ def run(chrome: Path) -> dict[str, Any]:
                 overflow_counts[role] == 0,
                 f"actual={overflow_counts[role]} pages={overflow_page_ids[role]}",
             )
+
+        page.emulate_media(media="print")
+        check(
+            "toolbar is hidden for browser print preview",
+            page.locator(".toolbar").evaluate("node => getComputedStyle(node).display") == "none",
+        )
+        for role, expected in expected_counts.items():
+            page.evaluate("(role) => window.SSSEditorShell.setRole(role)", role)
+            page.wait_for_timeout(60)
+            check(
+                f"{role} print preview retains {expected} pages",
+                page.locator(f'.page[data-role="{role}"]:visible').count() == expected,
+            )
+            check(
+                f"{role} print preview has no flagged overflow",
+                page.locator(f'.page[data-role="{role}"].has-overflow').count() == 0,
+            )
+        page.emulate_media(media="screen")
 
         standard_title_size = page.locator(
             '.page[data-role="student"] .task-heading .section-title'

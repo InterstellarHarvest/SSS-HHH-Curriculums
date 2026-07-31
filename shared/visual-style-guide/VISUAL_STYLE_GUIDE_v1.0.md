@@ -563,7 +563,7 @@ Editable HTML masters should use:
   monospace;
 ```
 
-For browser-based editable masters, web fonts may be loaded from an approved source. Published PDFs must embed the fonts or convert the text through an export method that preserves appearance and searchability.
+For browser-based editable masters, web fonts may be loaded from an approved source. Beginning with Case 03, canonical production is HTML-only. If an end user manually creates a PDF, font handling and accessibility depend on that export method and must be verified before distribution.
 
 Do not distribute font files through the curriculum repository unless their licenses and redistribution terms have been explicitly reviewed.
 
@@ -817,8 +817,8 @@ Use at least one additional differentiator:
 
 Before publication, test representative pages using:
 
-1. grayscale PDF conversion;
-2. ordinary black-and-white printing;
+1. browser grayscale mode and print preview;
+2. ordinary black-and-white printing from the browser dialog;
 3. one photocopy generation;
 4. reduced-size printing when likely in classroom use.
 
@@ -4735,7 +4735,7 @@ Use the source pixel mark in game-derived screenshots, pixel-art contexts, game-
 
 ## 61.4 Vector Use
 
-Use the curriculum vector in worksheets, PDFs, teacher packets, covers, formal submissions, scalable digital documents, grayscale, and one-color output.
+Use the curriculum vector in worksheets, teacher packets, covers, formal submissions, scalable digital documents, browser print, grayscale, and one-color output.
 
 ---
 
@@ -4747,7 +4747,7 @@ Each institution receives both a vector curriculum master and a pixel game maste
 
 ## 62.2 Vector Responsibilities
 
-The vector master controls print, PDF, scalable digital use, grayscale, one-color, reversed applications, covers, and formal submissions.
+The vector master controls browser print, scalable digital use, grayscale, one-color, reversed applications, covers, and formal submissions.
 
 ## 62.3 Pixel Responsibilities
 
@@ -5989,16 +5989,18 @@ One HTML master may generate the parallel accessible output, but the published e
 
 ## 98.1 Required Tests
 
-Representative documents must be tested as:
+Beginning with Case 03, representative HTML documents must be tested through:
 
-- color PDF;
-- grayscale PDF;
-- laser print;
-- inkjet print;
+- screen rendering in color and grayscale;
+- browser print preview;
+- laser print from the browser dialog at 100% / Actual Size;
+- inkjet print when applicable;
 - low-ink output;
 - first-generation photocopy;
 - second-generation photocopy;
-- duplex print.
+- duplex print when applicable.
+
+Project production does not create or require PDFs. Browser **Print / Save PDF** remains an optional end-user action and does not guarantee an accessible PDF.
 
 ## 98.2 Minimum Rules
 
@@ -6042,8 +6044,9 @@ No page depends on borderless printing.
 
 | Test | Standard | Teacher | Accessible |
 |---|---|---|---|
-| Color PDF | Required | Required | Required |
-| Grayscale PDF | Required | Required | Required |
+| Browser color rendering | Required | Required | Required |
+| Browser grayscale rendering | Required | Required | Required |
+| Browser print preview | Required | Required | Required |
 | Laser print | Required | Required | Required |
 | Inkjet | Sample | Sample | Required |
 | Low-ink | Required | Required | Required |
@@ -6359,7 +6362,7 @@ Use repository SVGs for:
 
 - headers;
 - covers;
-- PDFs;
+- browser print;
 - scalable digital documents;
 - reference templates.
 

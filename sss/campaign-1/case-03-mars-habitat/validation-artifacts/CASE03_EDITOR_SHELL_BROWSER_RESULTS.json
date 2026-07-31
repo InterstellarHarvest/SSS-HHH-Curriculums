@@ -2,8 +2,8 @@
   "validator": "case03-editor-shell-browser",
   "shellVersion": "1.0",
   "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-  "assertions": 34,
-  "passed": 34,
+  "assertions": 45,
+  "passed": 45,
   "failed": 0,
   "pageCounts": {
     "student": 4,
@@ -43,6 +43,16 @@
     },
     {
       "name": "browser toolbar order matches contract",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "print action carries the manual PDF accessibility warning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "visible toolbar note requires accessibility verification before PDF distribution",
       "pass": true,
       "detail": ""
     },
@@ -175,6 +185,51 @@
       "name": "accessible has no HTML page overflow",
       "pass": true,
       "detail": "actual=0 pages=[]"
+    },
+    {
+      "name": "toolbar is hidden for browser print preview",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student print preview retains 4 pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "student print preview has no flagged overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher print preview retains 8 pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "teacher print preview has no flagged overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer print preview retains 4 pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "answer print preview has no flagged overflow",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible print preview retains 6 pages",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "accessible print preview has no flagged overflow",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "standard task title computes to 11.5pt",

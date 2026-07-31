@@ -3,9 +3,19 @@
   "$id": "https://interstellarharvest.example/schemas/case-registry.v1.json",
   "title": "SSS/HHH repository case registry",
   "type": "object",
-  "required": ["schemaVersion", "curricula"],
+  "required": ["schemaVersion", "productionPolicy", "curricula"],
   "properties": {
     "schemaVersion": { "const": 1 },
+    "productionPolicy": {
+      "type": "object",
+      "required": ["newProduction", "effectiveFrom", "pdfPathsAllowed"],
+      "properties": {
+        "newProduction": { "const": "HTML_ONLY" },
+        "effectiveFrom": { "const": "SSS-C1-CASE03" },
+        "pdfPathsAllowed": { "const": false }
+      },
+      "additionalProperties": false
+    },
     "curricula": {
       "type": "array",
       "items": {
@@ -26,12 +36,15 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": ["id", "title", "version", "status", "master", "roles"],
+                    "required": ["id", "title", "version", "status", "artifactPolicy", "master", "roles"],
                     "properties": {
                       "id": { "type": "string", "minLength": 1 },
                       "title": { "type": "string", "minLength": 1 },
                       "version": { "type": "string", "minLength": 1 },
                       "status": { "type": "string", "minLength": 1 },
+                      "artifactPolicy": {
+                        "enum": ["HISTORICAL_PDFS_RETAINED", "HTML_ONLY"]
+                      },
                       "editorShell": { "type": ["string", "null"] },
                       "master": { "type": "string", "minLength": 1 },
                       "roles": {

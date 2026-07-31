@@ -2,13 +2,38 @@
   "validator": "shared-editor-shell-contract",
   "shellVersion": "1.0",
   "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
-  "assertions": 338,
-  "passed": 338,
+  "assertions": 355,
+  "passed": 355,
   "failed": 0,
   "failures": [],
   "results": [
     {
       "name": "config targets shell 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shell canonical output format is HTML",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shell workflow does not generate PDFs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "browser print remains available",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "browser PDF accessibility is not guaranteed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "distributed manual PDFs require accessibility verification",
       "pass": true,
       "detail": ""
     },
@@ -186,6 +211,16 @@
       "name": "resetSourceBtn uses canonical label",
       "pass": true,
       "detail": "actual=Reset Source"
+    },
+    {
+      "name": "print button warns that browser PDF accessibility is not guaranteed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "toolbar visibly requires PDF verification before distribution",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "runtime exposes loadLocalState",
@@ -1478,6 +1513,41 @@
       "detail": ""
     },
     {
+      "name": "document language is English",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "document title is present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "every response field has a programmatic label",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "every data table has an accessible caption",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "every table header declares scope",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "every figure graphic has an accessible name",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "page heading hierarchies have no skipped levels",
+      "pass": true,
+      "detail": "pages=[]"
+    },
+    {
       "name": "student master page count",
       "pass": true,
       "detail": "actual=4"
@@ -1598,12 +1668,27 @@
       "detail": "actual=4"
     },
     {
+      "name": "registry declares HTML-only new production",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "registry disallows PDF paths in new production",
+      "pass": true,
+      "detail": ""
+    },
+    {
       "name": "case registry includes current case",
       "pass": true,
       "detail": ""
     },
     {
       "name": "case registry records shell 1.0",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "case registry records HTML-only artifact policy",
       "pass": true,
       "detail": ""
     },

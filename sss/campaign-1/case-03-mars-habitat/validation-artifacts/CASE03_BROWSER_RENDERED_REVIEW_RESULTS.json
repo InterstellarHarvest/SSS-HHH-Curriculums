@@ -1,0 +1,174 @@
+{
+  "validator": "case03-browser-rendered-review",
+  "status": "PASS",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "renderedPageCount": 26,
+  "expectedPageCount": 26,
+  "roles": {
+    "student": {
+      "source": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
+      "expectedPages": 4,
+      "renderedPages": 4,
+      "overflowPages": 0,
+      "javascriptErrors": [],
+      "pagePixelDimensions": [
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ]
+      ],
+      "contactSheet": "validation-artifacts/browser-rendered-review/student-contact-sheet.png",
+      "contactSheetSha256": "84d1b34161902182c10c43f76830b7807fed0ccec6633190ebf3d0a5a4f4b1d7",
+      "status": "PASS"
+    },
+    "teacher": {
+      "source": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
+      "expectedPages": 8,
+      "renderedPages": 8,
+      "overflowPages": 0,
+      "javascriptErrors": [],
+      "pagePixelDimensions": [
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ]
+      ],
+      "contactSheet": "validation-artifacts/browser-rendered-review/teacher-contact-sheet.png",
+      "contactSheetSha256": "a1424afc7ad8c9dcb80d9944b44ff7a0dc9dc595b29ad8308f4aa6c926471b51",
+      "status": "PASS"
+    },
+    "answer": {
+      "source": "published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
+      "expectedPages": 4,
+      "renderedPages": 4,
+      "overflowPages": 0,
+      "javascriptErrors": [],
+      "pagePixelDimensions": [
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ]
+      ],
+      "contactSheet": "validation-artifacts/browser-rendered-review/answer-contact-sheet.png",
+      "contactSheetSha256": "e709443a788e022f662c95e49733a9084100f63424fc608286428420b266ea71",
+      "status": "PASS"
+    },
+    "accessible": {
+      "source": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
+      "expectedPages": 6,
+      "renderedPages": 6,
+      "overflowPages": 0,
+      "javascriptErrors": [],
+      "pagePixelDimensions": [
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ]
+      ],
+      "contactSheet": "validation-artifacts/browser-rendered-review/accessible-contact-sheet.png",
+      "contactSheetSha256": "edf66c173a84262376fab4c245c2546db6ebf432141800645bade5e5f5ea1e23",
+      "status": "PASS"
+    },
+    "grayscale": {
+      "source": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
+      "expectedPages": 4,
+      "renderedPages": 4,
+      "overflowPages": 0,
+      "javascriptErrors": [],
+      "pagePixelDimensions": [
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ],
+        [
+          816,
+          1057
+        ]
+      ],
+      "contactSheet": "validation-artifacts/browser-rendered-review/grayscale-contact-sheet.png",
+      "contactSheetSha256": "9a0ad739f9733d0a772a6e26b52648d9ad2d29136f358baa37b5fdb01e26b8e1",
+      "status": "PASS"
+    }
+  },
+  "reviewNote": "Contact sheets require human visual inspection; this result records successful browser rendering, page count, JavaScript, and overflow checks."
+}

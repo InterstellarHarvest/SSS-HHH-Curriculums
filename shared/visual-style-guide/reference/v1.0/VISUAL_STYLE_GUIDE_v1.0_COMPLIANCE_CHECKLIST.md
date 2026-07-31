@@ -229,5 +229,14 @@
 - [ ] No visible validation, approval, version, baseline, date, document-code, checksum, or repository-path metadata appears.
 - [ ] Case 01 v1.0 remains byte-identical when Case 01 v1.1 is generated.
 - [ ] Header/footer identity is not enlarged to consume surplus page space.
-- [ ] Validators assert identity structure, role counts, zero overflow, JavaScript behavior, PDF preflight, rendered review, current checksums, and no machine-local paths.
+- [ ] Beginning with Case 03, validators assert identity structure, role counts, zero overflow, JavaScript behavior, browser print preview, rendered HTML review, HTML checksums, accessibility, and no machine-local paths.
 <!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_END -->
+
+## HTML-only production beginning with Case 03
+
+- [ ] Canonical outputs are the portable editable-master HTML plus Student, Teacher, Answer Key, Accessible, and Grayscale HTML.
+- [ ] No routine workflow generates, stores, preflights, checksums, validates, or requires a PDF.
+- [ ] The browser Print / Save PDF action remains available and warns that accessibility is not guaranteed.
+- [ ] Static HTML, browser behavior, role isolation, portability/serialization, accessibility, overflow/print preview, HTML page counts, HTML checksums, and rendered browser review pass.
+- [ ] Owner physical printing is tested from the browser print dialog at 100% / Actual Size.
+- [ ] Any manually exported PDF is accessibility-verified before distribution, publication, or archival.

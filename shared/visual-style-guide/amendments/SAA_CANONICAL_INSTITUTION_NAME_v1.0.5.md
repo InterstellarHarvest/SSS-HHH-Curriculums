@@ -58,7 +58,9 @@ Approved Case 01 v1.1 and Case 02 v1.0 already use **Solar Agricultural Agency**
 
 ## 5. Case 03 application
 
-Case 03 remains version `v1.0` and status `VALIDATION BUILD`, with its physical-print gate `OPEN`. This is a follow-up canonical terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not recreate, replace, or rewrite that initial publication commit. The corrected master, standalone HTML, PDFs, alt text, lockups, print checklist, PDF generator, reports, manifest, checksums, and validation assertions use **Solar Agricultural Agency**.
+Case 03 remains version `v1.0` and status `VALIDATION BUILD`, with its physical-print gate `OPEN`. This is a follow-up canonical terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not recreate, replace, or rewrite that initial publication commit. The corrected master, standalone HTML, alt text, lockups, print checklist, reports, manifest, HTML checksums, and validation assertions use **Solar Agricultural Agency**.
+
+The later HTML-only production decision in `HTML_ONLY_PRODUCTION_AND_MANUAL_PDF_ACCESSIBILITY_v1.0.6.md` supersedes this amendment's former Case 03 PDF implementation references. Case 03 no longer stores or validates PDFs.
 
 ## 6. Validation rule
 

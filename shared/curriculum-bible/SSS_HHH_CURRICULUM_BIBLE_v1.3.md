@@ -9,7 +9,7 @@
 
 Curriculum Bible v1.3 incorporates **all requirements, definitions, protections, publishing rules, accessibility rules, task-reference rules, and Teacher-metadata rules in v1.2 without deletion or relaxation**. The complete v1.2 document remains in the repository as the retained predecessor and historical record.
 
-Where this document is silent, the text of v1.2 continues unchanged. Where this document adds a rule, the new rule is cumulative. No v1.2 requirement is superseded except where v1.3 says so explicitly; v1.3 makes no such exception.
+Where this document is silent, the text of v1.2 continues unchanged. Where this document adds a rule, the new rule is cumulative. Section 7 explicitly supersedes the predecessor's fixed-PDF production requirements beginning with Case 03.
 
 The approved v1.0.1 visual-system amendments also remain controlling:
 
@@ -93,6 +93,16 @@ SSS Campaign 1 Case 01 is the first implementation of this v1.3 requirement. Its
 - **v1.2:** Added task-reference parity, Teacher task-reference emphasis, and Teacher production-metadata visibility rules while retaining prior curriculum and publishing standards.
 - **v1.1:** Clarified that extended-response boxes are blank and unruled.
 - **v1.0:** Established the initial approved governing standard.
+
+## 7. HTML-only production decision
+
+Beginning with SSS Campaign 1 Case 03, new SSS/HHH production is HTML-only. The canonical artifact set is one self-contained portable editable-master HTML plus independent Student, Teacher, Answer Key, Accessible, and Grayscale HTML files.
+
+Routine case production does not generate, regenerate, store, preflight, checksum, validate, or require PDFs. Approved Case 01 and Case 02 PDFs remain untouched historical artifacts; maintained HTML does not require a new PDF counterpart.
+
+The shared editor shell preserves the browser **Print / Save PDF** action for optional owner or end-user use. Browser export is not evidence that a PDF is accessible. Any manually created PDF intended for distribution, publication, or archival requires separate verification of tags, reading order, headings, alt text, tables, field labels, selectable text, title/language metadata, and screen-reader usability.
+
+HTML release gates are static validation, browser behavior, role isolation, portability/serialization, accessibility, overflow and browser print preview, HTML page counts, HTML checksums, rendered browser review, and owner physical testing through the browser print dialog at 100% / Actual Size.
 
 <!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
 ## Printable Page Identity — v1.0.4

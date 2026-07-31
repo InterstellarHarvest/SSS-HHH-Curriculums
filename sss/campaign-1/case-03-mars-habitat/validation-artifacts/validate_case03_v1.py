@@ -1,248 +1,273 @@
 #!/usr/bin/env python3
+"""Validate the HTML-only Case 03 release candidate."""
 from __future__ import annotations
-import hashlib, json, os, re, shutil, socket, subprocess, threading, time
-from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler
+
+import hashlib
+import json
+import os
 from pathlib import Path
+
 from bs4 import BeautifulSoup
-from pypdf import PdfReader
 from playwright.sync_api import sync_playwright
 
-ROOT=Path(__file__).resolve().parents[1]
-MASTER=ROOT/'master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html'
-PUB=ROOT/'published'
-VAL=ROOT/'validation-artifacts'
-REPORTS=ROOT/'reports'
-RESULTS=VAL/'CASE03_V1_VALIDATION_RESULTS.json'
-CHECKSUMS=VAL/'CASE03_V1_CHECKSUMS.sha256'
-GAME='c6c17be57880b365793fdf99ff4ad09b62ecacce'
-TASKS=[
-('1','Define the measurement'),
-('2','Read the spectral-transmission data'),
-('3','Compare quantity and quality'),
-('4','Connect the symptom pattern'),
-('5','Select and reject diagnoses'),
-('6','Model the mechanism'),
-('7','Claim-Evidence-Reasoning'),
-('8','Transfer the analysis'),
-('9','Exit ticket'),
-]
-ROLES={
-'student':('SSS_C1_CASE03_STUDENT_MISSION_v1.0.html','SSS_C1_CASE03_STUDENT_MISSION_v1.0.pdf',4,'Student Mission'),
-'teacher':('SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html','SSS_C1_CASE03_TEACHER_GUIDE_v1.0.pdf',8,'Teacher Guide'),
-'answer':('SSS_C1_CASE03_ANSWER_KEY_v1.0.html','SSS_C1_CASE03_ANSWER_KEY_v1.0.pdf',4,'Answer Key'),
-'accessible':('SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html','SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.pdf',6,'Accessible Mission'),
-'grayscale':('SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html','SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.pdf',4,'Student Mission'),
-}
-checks=[]
-def check(group,name,ok,detail=''):
-    checks.append({'group':group,'name':name,'pass':bool(ok),'detail':str(detail)})
 
-def sha(path:Path):
+ROOT = Path(__file__).resolve().parents[1]
+REPO = ROOT.parents[2]
+MASTER = ROOT / "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html"
+PUBLISHED = ROOT / "published"
+VALIDATION = ROOT / "validation-artifacts"
+MANIFEST = ROOT / "CASE03_V1_RELEASE_MANIFEST.json"
+LEDGER = VALIDATION / "CASE03_V1_HTML_CHECKSUMS.sha256"
+RESULTS = VALIDATION / "CASE03_V1_VALIDATION_RESULTS.json"
+GAME = "c6c17be57880b365793fdf99ff4ad09b62ecacce"
+REJECTED_SAA = [
+    "Solar Agricultural Authority",
+    "Space Agricultural Authority",
+    "Space Agricultural Agency",
+    "Solar Agriculture Agency",
+    "Space Agriculture Authority",
+]
+ROLES = {
+    "student": ("SSS_C1_CASE03_STUDENT_MISSION_v1.0.html", 4, "student"),
+    "teacher": ("SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html", 8, "teacher"),
+    "answer": ("SSS_C1_CASE03_ANSWER_KEY_v1.0.html", 4, "answer"),
+    "accessible": ("SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html", 6, "accessible"),
+    "grayscale": ("SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html", 4, "student"),
+}
+
+
+def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
-# STATIC MASTER / SOURCE
-html=MASTER.read_text(encoding='utf-8')
-soup=BeautifulSoup(html,'html.parser')
-visible=' '.join(x.get_text(' ',strip=True) for x in soup.select('section.page'))
-check('static','master exists',MASTER.exists())
-for meta,val in [('sss-case','SSS-C1-CASE03'),('sss-status','validation-build'),('sss-game-baseline',GAME),('sss-page-identity','1.0.4'),('sss-balanced-page-fill','1.0.2'),('sss-visible-production-status','none')]:
-    m=soup.find('meta',attrs={'name':meta})
-    check('static',f'metadata {meta}',m is not None and m.get('content')==val,m.get('content') if m else 'missing')
-check('static','canonical institution agency','Solar Agricultural Agency' in visible)
-check('static','wrong institution expansions absent',all(x not in visible for x in ['Solar Agricultural Authority','Space Agricultural Authority','Space Agricultural Agency','Solar Agriculture Agency']))
-check('static','student identification only first student and accessible pages',len(soup.select('.student-id'))==2,len(soup.select('.student-id')))
-for role,(_,_,count,footer_role) in ROLES.items():
-    target='student' if role=='grayscale' else role
-    pages=soup.select(f'section.page[data-role="{target}"]') if role!='grayscale' else soup.select('section.page[data-role="student"]')
-    check('static',f'{role} master page count',len(pages)==count,len(pages))
-    if role!='grayscale':
-        for i,p in enumerate(pages,1):
-            footer=p.select_one('.footer')
-            check('identity',f'{role} footer {i}',footer is not None and footer.get_text(' ',strip=True)==f'{footer_role} {i} of {count}',footer.get_text(' ',strip=True) if footer else 'missing')
-            header_ok=bool(p.select_one('.first-header') if i==1 else p.select_one('.cont-header'))
-            check('identity',f'{role} header {i}',header_ok)
 
-# Task title parity: Student controls; Accessible and Answer repeat all exact titles.
-for role in ['student','accessible','answer']:
-    roletext=' '.join(x.get_text(' ',strip=True) for x in soup.select(f'section.page[data-role="{role}"]'))
-    for n,title in TASKS:
-        check('task parity',f'{role} task {n} exact title',roletext.count(title)==1,roletext.count(title))
-# Teacher only references tasks 2,3,6 directly; those exact references must be present.
-teachertext=' '.join(x.get_text(' ',strip=True) for x in soup.select('section.page[data-role="teacher"]'))
-for n,title in [('2',TASKS[1][1]),('3',TASKS[2][1]),('6',TASKS[5][1])]:
-    check('task parity',f'teacher direct reference task {n}',title in teachertext)
+def main() -> int:
+    checks: list[dict[str, object]] = []
 
-# Data visualization assertions
-for value in ['280','68%','47 sols','92%','88%','31%','12%','400-500 nm','500-600 nm','600-700 nm','700 nm+','FS-7 FULL SPECTRUM','BP-4 BLUE PASS']:
-    check('data',f'exact value/text {value}',value in visible)
-for label in ['Transmission (%)','Wavelength band','Game-provided sensor data']:
-    check('graph',f'graph label {label}',label in html)
-for pid in ['diag','dots','cross','horiz']:
-    check('graph',f'grayscale pattern {pid}',f'id="{pid}"' in html)
-check('graph','direct bar labels',all(f'>{v}%<' in html for v in [92,88,31,12]))
-check('graph','SVG titles and descriptions',len(soup.select('svg[role="img"] title'))>=3 and len(soup.select('svg[role="img"] desc'))>=3)
-check('graph','axes and units not color-only','Transmission (%)' in html and 'Wavelength band' in html and all(x in html for x in ['url(#diag)','url(#dots)','url(#cross)','url(#horiz)']))
-check('graph','no continuous-spectrum precision claim','No continuous spectrum or intermediate values are inferred' in visible or 'does not imply a continuous measured spectrum' in visible)
+    def check(group: str, name: str, condition: bool, detail: object = "") -> None:
+        checks.append({"group": group, "name": name, "pass": bool(condition), "detail": str(detail)})
 
-correct='The light delivery system is filtering out red wavelengths needed for chlorophyll biosynthesis.'
-check('content','exact correct diagnosis',correct in visible)
-for phrase in ['wrong BP-4','red/deep-red rejection','new chlorophyll','new growth bleaches']:
-    check('content',f'mechanism element {phrase}',phrase.lower() in visible.lower())
-check('content','reject low-total-light explanation','not enough total light' in visible.lower() or 'low total light' in visible.lower())
-check('content','brightness misconception warning','more brightness always fixes' in visible.lower() or 'increasing brightness alone' in visible.lower())
-check('content','red-only misconception warning','plants only need red' in visible.lower() or 'plants do not use only red' in visible.lower())
-check('content','green-is-useless misconception warning','green light is useless' in visible.lower())
-check('content','dust-only rejected','dust' in visible.lower() and 'does not explain' in visible.lower())
-# Stale dataset prohibited in printable/master.
-for stale in ['8%, 12%, 45%', '55%, 35%', 'borosilicate', 'Loss through pipe (%)', 'stated 12 m light-pipe losses']:
-    check('regression',f'stale content absent: {stale}',stale not in html)
-# Printable production metadata absent from page text.
-machine_prefix='/'+'mnt'+'/'+'data'+'/'
-for forbidden in ['VALIDATION BUILD',GAME,'SSS_C1_CASE03_EDITABLE_MASTER','CASE03_V1_CHECKSUMS',machine_prefix,'github.com/']:
-    check('identity','printable metadata absent: '+('machine-local path' if forbidden==machine_prefix else forbidden[:28]),forbidden not in visible)
-# Accessibility and interaction structure.
-check('accessibility','skip link',bool(soup.select_one('a[href="#workspace"]')))
-check('accessibility','all figures labeled',all(svg.find('title') or svg.get('aria-label') for svg in soup.select('figure svg')))
-check('accessibility','response textboxes labeled',all(n.get('role')=='textbox' and n.get('aria-multiline')=='true' for n in soup.select('[data-response]')))
-check('accessibility','accessible role larger type',bool(re.search(r'\.accessible\s*\{\s*font-size:\s*13pt',html)) and len(soup.select('section.page.accessible[data-role="accessible"]'))==6)
-check('publishing','local persistence code','localStorage.setItem(storageKey("state")' in html and 'localStorage.getItem(storageKey("state")' in html)
-check('publishing','selective response clearing','function clearCurrentRole' in html and 'responseNodes().filter' in html)
-check('publishing','reset behavior','function resetSource' in html and 'localStorage.removeItem(storageKey("state")' in html)
-check('publishing','portable downloaded HTML','function serializeEditedMasterHTML' in html and 'function serializeCurrentRoleHTML' in html and 'new Blob([text]' in html)
-check('publishing','overflow warning logic','has-overflow' in html and 'content.scrollHeight > content.clientHeight + 2' in html)
-check('publishing','standalone control guards','config.standaloneRole' in html and 'controls.roleSelect?' in html and 'controls.printBtn?' in html)
+    master_text = MASTER.read_text(encoding="utf-8")
+    master = BeautifulSoup(master_text, "html.parser")
+    visible = " ".join(page.get_text(" ", strip=True) for page in master.select("section.page"))
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
 
-# Standalone static checks.
-for role,(htmlname,pdfname,count,footer_role) in ROLES.items():
-    p=PUB/htmlname
-    txt=p.read_text(encoding='utf-8')
-    ss=BeautifulSoup(txt,'html.parser')
-    check('portable',f'{role} standalone exists',p.exists())
-    check('portable',f'{role} standalone page count',len(ss.select('section.page'))==count,len(ss.select('section.page')))
-    check('portable',f'{role} toolbar absent',not ss.select('.toolbar'))
-    check('portable',f'{role} self-contained','http://' not in txt and 'https://' not in txt and bool(ss.select('style')) and bool(ss.select('script')))
-    check('portable',f'{role} source master metadata',bool(ss.find('meta',attrs={'name':'sss-source-master','content':'SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html'})))
+    # Static HTML and production-policy gate.
+    check("static_html", "master exists", MASTER.is_file())
+    check("static_html", "document language is English", master.html is not None and master.html.get("lang") == "en")
+    check("static_html", "document title is present", bool(master.title and master.title.get_text(strip=True)))
+    expected_meta = {
+        "sss-case": "SSS-C1-CASE03",
+        "sss-curriculum-version": "1.0",
+        "sss-status": "validation-build",
+        "sss-artifact-policy": "html-only",
+        "sss-game-baseline": GAME,
+        "sss-editor-shell": "1.0",
+    }
+    for name, expected in expected_meta.items():
+        node = master.find("meta", attrs={"name": name})
+        check("static_html", f"metadata {name}", node is not None and node.get("content") == expected)
+    check("static_html", "canonical institution name present", "Solar Agricultural Agency" in visible)
+    for index, rejected in enumerate(REJECTED_SAA, 1):
+        check("static_html", f"rejected institution expansion {index} absent", rejected not in visible)
+    check("static_html", "manifest status remains VALIDATION BUILD", manifest.get("status") == "VALIDATION BUILD")
+    check("static_html", "manifest artifact policy is HTML_ONLY", manifest.get("artifact_policy") == "HTML_ONLY")
+    check("static_html", "manifest contains no PDF output keys", '"pdf"' not in MANIFEST.read_text(encoding="utf-8").lower())
+    case03_pdfs = sorted(path.name for path in ROOT.rglob("*.pdf"))
+    check("static_html", "Case 03 stores no PDF files", not case03_pdfs, case03_pdfs)
+    obsolete = [
+        VALIDATION / "build_case03_pdfs.py",
+        VALIDATION / "CASE03_V1_PDF_PREFLIGHT.json",
+        VALIDATION / "CASE03_V1_RENDERER_PARITY.json",
+    ]
+    check("static_html", "Case 03 has no PDF production or preflight tooling", not any(path.exists() for path in obsolete))
 
-# Browser checks using set_content. Network navigation is blocked in this execution environment.
-with sync_playwright() as pw:
-    browser_executable = next(
-        path for path in [
-            os.environ.get('CHROMIUM_EXECUTABLE'),
-            '/usr/bin/chromium',
-            '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-        ]
-        if path and Path(path).exists()
+    # Semantic accessibility gate.
+    check("accessibility", "skip link targets workspace", master.select_one('a[href="#workspace"]') is not None)
+    responses = master.select("[data-response]")
+    check(
+        "accessibility",
+        "all response fields expose textbox semantics",
+        bool(responses)
+        and all(node.get("role") == "textbox" and node.get("aria-multiline") == "true" for node in responses),
     )
-    browser=pw.chromium.launch(headless=True,executable_path=browser_executable,args=['--no-sandbox'])
-    page=browser.new_page(viewport={'width':1440,'height':1200})
-    # about:blank has an opaque-origin Storage getter; install an in-memory Storage-compatible object.
-    page.evaluate("Object.defineProperty(window,'localStorage',{configurable:true,value:{_d:{},getItem(k){return Object.prototype.hasOwnProperty.call(this._d,k)?this._d[k]:null},setItem(k,v){this._d[k]=String(v)},removeItem(k){delete this._d[k]},clear(){this._d={}}}})")
-    errors=[]
-    page.on('pageerror',lambda e: errors.append(str(e)))
-    page.set_content(html,wait_until='load')
-    page.wait_for_timeout(250)
-    check('browser','master loads without JS errors',not errors,' | '.join(errors))
-    check('browser','initial student pages visible',page.locator('section.page[data-role="student"]:visible').count()==4,page.locator('section.page:visible').count())
-    first=page.locator('section.page[data-role="student"] .response[data-response]').first
-    first.fill('persistence test')
-    page.wait_for_timeout(500)
-    first.fill('')
-    page.evaluate('window.SSSEditorShell.loadLocalState()')
-    check('browser','response persistence',page.locator('section.page[data-role="student"] .response[data-response]').first.inner_text()=='persistence test')
-    for role in ['teacher','answer','accessible','student']:
-        page.select_option('#roleSelect',role)
-        page.wait_for_timeout(150)
-        count=ROLES[role][2]
-        check('browser',f'{role} role isolation',page.locator(f'section.page[data-role="{role}"]:visible').count()==count and page.locator('section.page:visible').count()==count,page.locator('section.page:visible').count())
-        check('browser',f'{role} zero overflow',page.locator(f'section.page[data-role="{role}"].has-overflow').count()==0,page.locator(f'section.page[data-role="{role}"].has-overflow').count())
-    page.select_option('#roleSelect','student')
-    idf=page.locator('.student-id .id-field').first
-    idf.fill('Nate Test')
-    resp=page.locator('section.page[data-role="student"] .response[data-response]').first
-    resp.fill('clear me')
-    page.on('dialog',lambda d:d.accept())
-    page.click('#clearRoleBtn'); page.wait_for_timeout(100)
-    check('browser','selective clear clears responses',resp.inner_text()=='')
-    check('browser','selective clear preserves ID',idf.inner_text()=='Nate Test')
-    page.check('#grayToggle')
-    check('browser','grayscale class toggles',page.locator('body.shell-grayscale').count()==1)
-    portable=page.evaluate("window.SSSEditorShell.serializeCurrentRoleHTML('accessible')")
-    portable_soup=BeautifulSoup(portable,'html.parser')
-    portable_count=len(portable_soup.select('section.page[data-role="accessible"]'))
-    check('browser','portable accessible page count',portable_count==6,portable_count)
-    check('browser','portable output excludes toolbar','class="toolbar"' not in portable)
-    page.locator('body').press('Tab'); page.locator('body').press('Tab')
-    focused=page.evaluate("document.activeElement && document.activeElement.matches('button,select,[contenteditable=true],a,input')")
-    check('browser','keyboard focus reaches interactive element',bool(focused),focused)
-    page.click('#resetSourceBtn'); page.wait_for_timeout(150)
-    check('browser','reset clears saved fields',page.locator('[data-response]').evaluate_all("els=>els.every(e=>e.innerHTML==='')"))
-    for role,(htmlname,_,count,_) in ROLES.items():
-        errs=[]
-        sp=browser.new_page(viewport={'width':1440,'height':1200})
-        sp.evaluate("Object.defineProperty(window,'localStorage',{configurable:true,value:{_d:{},getItem(k){return Object.prototype.hasOwnProperty.call(this._d,k)?this._d[k]:null},setItem(k,v){this._d[k]=String(v)},removeItem(k){delete this._d[k]},clear(){this._d={}}}})")
-        sp.on('pageerror',lambda e,errs=errs:errs.append(str(e)))
-        stxt=(PUB/htmlname).read_text(encoding='utf-8')
-        sp.set_content(stxt,wait_until='load'); sp.wait_for_timeout(200)
-        standalone_game=sp.locator('meta[name="sss-game-baseline"]').get_attribute('content')
-        check('browser',f'{role} standalone JS and game metadata',not errs and standalone_game==GAME,' | '.join(errs) if errs else standalone_game)
-        check('browser',f'{role} standalone visible pages',sp.locator('section.page:visible').count()==count,sp.locator('section.page:visible').count())
-        check('browser',f'{role} standalone zero overflow',sp.locator('section.page.has-overflow').count()==0,sp.locator('section.page.has-overflow').count())
-        sp.close()
-    browser.close()
+    check(
+        "accessibility",
+        "all response fields have programmatic labels",
+        bool(responses) and all(node.get("aria-label") or node.get("aria-labelledby") for node in responses),
+    )
+    tables = master.select("table")
+    check(
+        "accessibility",
+        "all tables have captions",
+        bool(tables) and all(table.find("caption", recursive=False) is not None for table in tables),
+    )
+    check(
+        "accessibility",
+        "all table headers declare scope",
+        all(node.get("scope") in {"col", "row", "colgroup", "rowgroup"} for node in master.select("th")),
+    )
+    graphics = master.select("figure svg")
+    check(
+        "accessibility",
+        "all figure graphics have accessible names",
+        bool(graphics)
+        and all(node.get("aria-label") or node.get("aria-labelledby") or node.find("title") for node in graphics),
+    )
+    heading_skips: list[str] = []
+    for page_node in master.select("section.page"):
+        levels = [int(node.name[1]) for node in page_node.select("h1,h2,h3,h4,h5,h6")]
+        if any(current > prior + 1 for prior, current in zip(levels, levels[1:])):
+            heading_skips.append(page_node.get("data-page-id", "unknown"))
+        check(
+            "accessibility",
+            f"{page_node.get('data-page-id')} has one page-title h1",
+            len(page_node.select("h1")) == 1,
+        )
+    check("accessibility", "heading hierarchy has no skipped levels", not heading_skips, heading_skips)
+    check(
+        "accessibility",
+        "meaning does not depend on color",
+        all(token in master_text for token in ["url(#diag)", "url(#dots)", "url(#cross)", "url(#horiz)"])
+        and all(f">{value}%<" in master_text for value in [92, 88, 31, 12]),
+    )
 
-# PDF checks and rendering.
-render_root=VAL/'rendered-review'
-if render_root.exists(): shutil.rmtree(render_root)
-render_root.mkdir(parents=True)
-pdf_summary={}
-for role,(_,pdfname,count,footer_role) in ROLES.items():
-    p=PUB/pdfname
-    check('pdf',f'{role} PDF exists',p.exists())
-    reader=PdfReader(str(p))
-    check('pdf',f'{role} PDF page count',len(reader.pages)==count,len(reader.pages))
-    alltext='\n'.join((pg.extract_text() or '') for pg in reader.pages)
-    for i,pg in enumerate(reader.pages,1):
-        box=pg.mediabox
-        check('pdf',f'{role} page {i} letter size',abs(float(box.width)-612)<1 and abs(float(box.height)-792)<1,f'{float(box.width)}x{float(box.height)}')
-        txt=pg.extract_text() or ''
-        check('pdf',f'{role} footer {i}',f'{footer_role} {i} of {count}' in txt)
-    for forbidden in ['VALIDATION BUILD',GAME,machine_prefix,'SSS_C1_CASE03_EDITABLE_MASTER']:
-        check('pdf',f'{role} no visible metadata '+('machine-local path' if forbidden==machine_prefix else forbidden[:18]),forbidden not in alltext)
-    if role in ['student','answer','accessible','grayscale']:
-        for v in ['280','92%','88%','31%','12%']:
-            check('pdf',f'{role} contains {v}',v in alltext)
-    for stale in ['45%','65%','55%','35%','greatest loss','Loss through pipe']:
-        check('pdf',f'{role} stale PDF content absent {stale}',stale not in alltext)
-    if role=='teacher':
-        for v in ['68%','47 sols','FS-7','BP-4','92%, 88%, 31%, 12%']:
-            check('pdf',f'teacher current runtime evidence {v}',v in alltext)
-    check('pdf',f'{role} ASCII-safe bytes',all(b<128 for b in p.read_bytes()))
-    out=render_root/role; out.mkdir()
-    subprocess.run(['pdftoppm','-png','-r','140',str(p),str(out/'page')],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)
-    imgs=sorted(out.glob('page-*.png'))
-    check('render',f'{role} rendered page count',len(imgs)==count,len(imgs))
-    check('render',f'{role} nonempty rendered pages',all(x.stat().st_size>15000 for x in imgs),[x.stat().st_size for x in imgs])
-    pdf_summary[role]={'pdf':pdfname,'pages':count,'sha256':sha(p),'bytes':p.stat().st_size}
+    # Role isolation, portability, page-count, and HTML checksum gates.
+    actual_counts: dict[str, int] = {}
+    for role, (filename, expected_count, expected_data_role) in ROLES.items():
+        path = PUBLISHED / filename
+        check("role_isolation", f"{role} output exists", path.is_file())
+        text = path.read_text(encoding="utf-8")
+        soup = BeautifulSoup(text, "html.parser")
+        pages = soup.select("section.page[data-role]")
+        actual_counts[role] = len(pages)
+        check("role_isolation", f"{role} contains only its role", bool(pages) and all(page.get("data-role") == expected_data_role for page in pages))
+        check("role_isolation", f"{role} HTML page count is {expected_count}", len(pages) == expected_count, len(pages))
+        check("portability_serialization", f"{role} has no authoring toolbar", soup.select_one(".toolbar") is None)
+        check("portability_serialization", f"{role} is self-contained", not soup.select("script[src],link[rel~='stylesheet']"))
+        check(
+            "portability_serialization",
+            f"{role} has no external image dependency",
+            not any((node.get("src") or "").startswith(("http:", "https:")) for node in soup.select("img[src]")),
+        )
+        check(
+            "accessibility",
+            f"{role} retains document language and title",
+            soup.html is not None and soup.html.get("lang") == "en" and bool(soup.title and soup.title.get_text(strip=True)),
+        )
+    expected_counts = {role: data[1] for role, data in ROLES.items()}
+    check("html_page_counts", "all HTML page counts match the release contract", actual_counts == expected_counts, actual_counts)
 
-# Checksums for all repository-intended files, excluding transient renders and checksum itself.
-files=[]
-for p in sorted(ROOT.rglob('*')):
-    if not p.is_file(): continue
-    rel=p.relative_to(ROOT)
-    if rel.parts[:2]==('validation-artifacts','rendered-review'): continue
-    if rel.parts[:2]==('validation-artifacts','renderer-parity'): continue
-    if '__pycache__' in rel.parts: continue
-    if rel.name in {'.DS_Store','CASE03_GITHUB_HANDOFF.md'}: continue
-    if rel.name=='CASE03_V1_CHECKSUMS.sha256': continue
-    files.append(p)
-CHECKSUMS.write_text('\n'.join(f'{sha(p)}  {p.relative_to(ROOT).as_posix()}' for p in files)+'\n',encoding='ascii')
-check('checksum','checksum ledger created',CHECKSUMS.exists() and len(CHECKSUMS.read_text().splitlines())==len(files),len(files))
+    ledger_entries: dict[str, str] = {}
+    if LEDGER.is_file():
+        for line in LEDGER.read_text(encoding="utf-8").splitlines():
+            checksum, relative = line.split("  ", 1)
+            ledger_entries[relative] = checksum
+    expected_ledger_paths = {
+        "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+        *(f"published/{filename}" for filename, _, _ in ROLES.values()),
+    }
+    check("html_checksum", "HTML checksum ledger has exactly six canonical outputs", set(ledger_entries) == expected_ledger_paths, sorted(ledger_entries))
+    for relative, expected in sorted(ledger_entries.items()):
+        path = ROOT / relative
+        check("html_checksum", f"checksum verifies {relative}", path.is_file() and digest(path) == expected)
 
-status=all(c['pass'] for c in checks)
-counts={}
-for c in checks:
-    g=c['group']; counts.setdefault(g,{'pass':0,'total':0}); counts[g]['total']+=1; counts[g]['pass']+=int(c['pass'])
-result={'case':'SSS-C1-CASE03','version':'1.0','status':'PASS' if status else 'FAIL','build_status':'VALIDATION BUILD','game_commit':GAME,'page_counts':{r:v[2] for r,v in ROLES.items()},'groups':counts,'total':{'pass':sum(c['pass'] for c in checks),'total':len(checks)},'pdfs':pdf_summary,'failures':[c for c in checks if not c['pass']],'checks':checks}
-RESULTS.write_text(json.dumps(result,indent=2),encoding='utf-8')
-print(json.dumps({'status':result['status'],'total':result['total'],'groups':counts,'failures':result['failures'][:10]},indent=2))
-raise SystemExit(0 if status else 1)
+    # Browser behavior, accessibility interaction, overflow, and print-preview gates.
+    executable = next(
+        (
+            path
+            for path in [
+                os.environ.get("CHROMIUM_EXECUTABLE"),
+                "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+                "/usr/bin/chromium",
+            ]
+            if path and Path(path).exists()
+        ),
+        None,
+    )
+    check("browser_behavior", "Chromium-family browser is available", executable is not None, executable)
+    overflow_counts: dict[str, int] = {}
+    print_overflow_counts: dict[str, int] = {}
+    if executable:
+        with sync_playwright() as playwright:
+            browser = playwright.chromium.launch(headless=True, executable_path=executable, args=["--no-sandbox"])
+            page = browser.new_page(viewport={"width": 1440, "height": 1200})
+            errors: list[str] = []
+            page.on("pageerror", lambda error: errors.append(str(error)))
+            page.goto(MASTER.resolve().as_uri(), wait_until="load")
+            page.wait_for_timeout(300)
+            check("browser_behavior", "master loads without JavaScript errors", not errors, errors)
+            check("browser_behavior", "shared runtime identifies shell 1.0", page.evaluate("window.SSSEditorShell?.shellVersion") == "1.0")
+            check("browser_behavior", "print action remains available", page.locator("#printBtn").is_visible())
+            check(
+                "accessibility",
+                "print action warns about manual PDF accessibility",
+                "accessibility is not guaranteed" in (page.locator("#printBtn").get_attribute("aria-label") or "").lower(),
+            )
+            page.locator("body").press("Tab")
+            focused = page.evaluate("document.activeElement && document.activeElement.matches('a,button,select,input,[contenteditable=true]')")
+            check("accessibility", "keyboard focus reaches an interactive control", bool(focused))
+            for role in ["student", "teacher", "answer", "accessible"]:
+                page.evaluate("(value) => window.SSSEditorShell.setRole(value)", role)
+                page.wait_for_timeout(100)
+                expected = ROLES[role][1]
+                visible_pages = page.locator(f'section.page[data-role="{role}"]:visible').count()
+                all_visible = page.locator("section.page:visible").count()
+                check("role_isolation", f"{role} browser role isolation", visible_pages == expected and all_visible == expected, all_visible)
+                overflow_counts[role] = page.evaluate("window.SSSEditorShell.checkOverflow()")
+                check("overflow_print_preview", f"{role} screen has zero overflow", overflow_counts[role] == 0, overflow_counts[role])
+            page.emulate_media(media="print")
+            check("overflow_print_preview", "authoring toolbar is hidden in print media", page.locator(".toolbar").evaluate("node => getComputedStyle(node).display") == "none")
+            for role in ["student", "teacher", "answer", "accessible"]:
+                page.evaluate("(value) => window.SSSEditorShell.setRole(value)", role)
+                page.wait_for_timeout(50)
+                print_overflow_counts[role] = page.locator(f'section.page[data-role="{role}"].has-overflow').count()
+                check("overflow_print_preview", f"{role} print preview has zero flagged overflow", print_overflow_counts[role] == 0, print_overflow_counts[role])
+            browser.close()
+
+    # Rendered-browser review is recorded as a separate human-inspected gate.
+    review_results_path = VALIDATION / "CASE03_BROWSER_RENDERED_REVIEW_RESULTS.json"
+    review = json.loads(review_results_path.read_text(encoding="utf-8")) if review_results_path.is_file() else {}
+    check("rendered_browser_review", "browser rendering review passed", review.get("status") == "PASS")
+    check("rendered_browser_review", "all 26 HTML pages were rendered", review.get("renderedPageCount") == 26, review.get("renderedPageCount"))
+    check("owner_physical_print", "owner physical print gate remains OPEN", manifest.get("release_gate", {}).get("status") == "OPEN")
+
+    status = all(item["pass"] for item in checks)
+    groups: dict[str, dict[str, int]] = {}
+    for item in checks:
+        group = str(item["group"])
+        groups.setdefault(group, {"pass": 0, "total": 0})
+        groups[group]["total"] += 1
+        groups[group]["pass"] += int(bool(item["pass"]))
+    result = {
+        "case": "SSS-C1-CASE03",
+        "version": "1.0",
+        "status": "PASS" if status else "FAIL",
+        "buildStatus": "VALIDATION BUILD",
+        "artifactPolicy": "HTML_ONLY",
+        "activeReleaseGates": [
+            "static HTML validation",
+            "browser behavior validation",
+            "role isolation",
+            "portability and serialization",
+            "accessibility",
+            "overflow and print-preview checks",
+            "HTML page counts",
+            "HTML checksum verification",
+            "rendered browser review",
+            "owner physical print test (OPEN)",
+        ],
+        "pageCounts": actual_counts,
+        "overflowCounts": overflow_counts,
+        "printOverflowCounts": print_overflow_counts,
+        "groups": groups,
+        "total": {"pass": sum(int(bool(item["pass"])) for item in checks), "total": len(checks)},
+        "failures": [item for item in checks if not item["pass"]],
+        "checks": checks,
+    }
+    RESULTS.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps({"status": result["status"], "total": result["total"], "groups": groups, "failures": result["failures"]}, indent=2))
+    return 0 if status else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

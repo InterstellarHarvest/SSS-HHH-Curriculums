@@ -36,7 +36,7 @@
   </fieldset>
   <fieldset class="toolbar-group toolbar-actions">
     <legend>Publish</legend>
-    <button id="printBtn" type="button">Print / Save PDF</button>
+    <button id="printBtn" type="button" aria-label="Print or save PDF; browser PDF accessibility is not guaranteed">Print / Save PDF</button>
     <button id="downloadMasterBtn" type="button">Download Edited Master HTML</button>
     <button id="downloadRoleBtn" type="button">Download Current Role HTML</button>
     <button id="clearRoleBtn" type="button">Clear Current Role</button>
@@ -45,5 +45,6 @@
   <div class="toolbar-statuses">
     <span id="localSaveStatus" role="status" aria-live="polite">Local save: ready</span>
     <span id="overflowStatus" role="status" aria-live="polite">Overflow: checking</span>
+    <span class="pdf-accessibility-note" role="note">Browser PDF export is optional and requires accessibility verification before distribution.</span>
   </div>
 </div>

@@ -33,9 +33,8 @@ def refresh_manifest(manifest_path: Path) -> tuple[dict[str, Any], list[Path]]:
     if isinstance(manifest.get("current_master"), dict):
         files.append(refresh_entry(manifest["current_master"], case_root))
     for output in manifest.get("outputs", {}).values():
-        for format_name in ("html", "pdf"):
-            if isinstance(output.get(format_name), dict):
-                files.append(refresh_entry(output[format_name], case_root))
+        if isinstance(output.get("html"), dict):
+            files.append(refresh_entry(output["html"], case_root))
     for collection in ("controlled_sources", "reports", "validation_files", "files"):
         for entry in manifest.get(collection, []):
             files.append(refresh_entry(entry, case_root))
@@ -50,8 +49,16 @@ def unique_paths(paths: Iterable[Path]) -> list[Path]:
 
 def write_ledger(manifest_path: Path, ledger_path: Path, represented: list[Path]) -> None:
     case_root = manifest_path.parent
-    paths = [manifest_path.resolve(), *represented]
-    if "files" not in json.loads(manifest_path.read_text(encoding="utf-8")):
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if manifest.get("artifact_policy") == "HTML_ONLY":
+        paths = [case_root / manifest["current_master"]["path"]]
+        paths.extend(
+            case_root / output["html"]["path"]
+            for output in manifest["outputs"].values()
+        )
+    else:
+        paths = [manifest_path.resolve(), *represented]
+    if "files" not in manifest and manifest.get("artifact_policy") != "HTML_ONLY":
         paths.extend((case_root / "README.md", case_root / "published/README.md"))
         paths.extend((case_root / "published").glob("*"))
     paths = [path for path in unique_paths(paths) if path.is_file() and path.resolve() != ledger_path.resolve()]

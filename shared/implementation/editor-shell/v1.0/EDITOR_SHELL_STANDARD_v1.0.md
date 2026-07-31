@@ -16,6 +16,12 @@ The shell owns:
 
 Case packages own instructional content, task configuration, case-specific figures, case-specific layout CSS, and release metadata.
 
+## HTML-only output policy
+
+Beginning with Case 03, the canonical artifact set is the portable editable-master HTML plus independent Student, Teacher, Answer Key, Accessible, and Grayscale HTML files. The shared workflow does not generate, store, preflight, checksum, validate, or require PDFs.
+
+The toolbar retains **Print / Save PDF** for browser printing and optional end-user export. That action does not guarantee an accessible PDF. A manually created PDF must not be distributed, published, or archived without separate accessibility verification. Physical print testing uses the browser print dialog at 100% / Actual Size.
+
 ## Assembly contract
 
 ```text
@@ -65,4 +71,4 @@ Its Claim, Evidence, and Reasoning boxes use the shared geometry in `cer.css`. A
 
 ## Older cases
 
-Case 01 is the functional reference that informed this shell. Older approved cases are not silently regenerated merely to adopt shell markup. When maintenance is explicitly requested, the affected HTML can embed a versioned shared component while approved PDFs remain unchanged and clearly identified.
+Case 01 is the functional reference that informed this shell. Approved Case 01 and Case 02 PDFs are retained only as historical release artifacts. They are not regenerated, and maintained HTML does not require a new PDF counterpart.
