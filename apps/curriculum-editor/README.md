@@ -1,6 +1,10 @@
 # SSS/HHH Curriculum Editor — Phase 1
 
-This repository-local browser application loads the current Case 03 v1.1 validation package. It does not open, iframe, rewrite, or execute a complete Case 03 master. The worksheet-only DOM and exact presentation stylesheet are generated deterministically from the owner-authorized successor build and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
+This accepted repository-local browser application loads the current approved Case 03 v1.1 package. It does not open, iframe, rewrite, or execute a complete Case 03 master. The worksheet-only DOM and exact presentation stylesheet are generated deterministically from the owner-approved successor and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
+
+**Phase 1 status:** OWNER REVIEW PASS · READY TO MERGE
+
+**Proof package:** Case 03 v1.1 APPROVED STABLE
 
 ## Launch
 
@@ -60,7 +64,7 @@ To use a different Chrome-compatible executable:
 python3 apps/curriculum-editor/tests/run_browser_tests.py --chrome /path/to/chrome
 ```
 
-The static suite validates registry/package schemas, deterministic extraction, historical v1.0 protection, v1.1 hashes, task/component atomicity, accessibility structure, and the no-PDF rule. The browser suite validates controls, roles, 4/8/4/7 page counts, editing, autosave/reload, role isolation, layout controls, print-preview events, zero overflow, portable serialization, Reset Source, current-role export, and browser rendering. The parity suite checks every v1.1 role-profile page for structure, page assignment, geometry, computed presentation, rendered pixels, CER containment, independent-role HTML, and current-role export parity.
+The static suite validates registry/package schemas, deterministic extraction, historical v1.0 protection, current approved v1.1 hashes and owner metadata, task/component atomicity, accessibility structure, and the no-PDF rule. The browser suite validates controls, roles, 4/8/4/7 page counts, editing, autosave/reload, role isolation, layout controls, print-preview events, zero overflow, portable serialization, Reset Source, current-role export, keyboard access, screen-reader structure, and browser rendering. The parity suite checks every v1.1 role-profile page for structure, page assignment, geometry, computed presentation, rendered pixels, CER containment, phrase-bank parity, independent-role HTML, complete portable export, and current-role export parity.
 
 The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/screenshots/curriculum-editor-wide-desktop.png) at 1440×1200.
 
@@ -74,12 +78,16 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 
 ## Known Phase 1 limitations
 
-- Only the current registered Case 03 v1.1 validation build is editor-compatible.
+- Only the current registered Case 03 v1.1 approved package is editor-compatible.
 - Historical-version browsing and a prominent version selector are intentionally absent.
 - Case 01 and Case 02 remain on their approved historical master/output implementations.
 - Autosave is browser-profile and origin specific; it does not synchronize between devices or browsers.
 - Browser print behavior and physical results remain browser/driver dependent and require owner review at 100% / Actual Size.
-- Case 03 v1.1 remains a validation build until that owner gate passes; the central-editor branch remains unmerged.
+- Owner review and browser physical-print review passed on 2026-07-31 at 100% / Actual Size; printer and paper were not recorded.
+- Cases 01 and 02 remain unmigrated and will be migrated additively in Phase 2.
+- Embedded editors must not yet be stripped from Cases 01–03. The central editor becomes fully canonical only after Phase 2 parity and owner-approved cutover.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.
 
 See [CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md](../../shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md) for the contract, load sequence, accessibility model, and Phase 2 migration plan.
+
+See [PHASE1_ACCEPTANCE.md](PHASE1_ACCEPTANCE.md) for the final owner-accepted validation summary and cutover boundary.

@@ -2,8 +2,8 @@
   "case": "SSS-C1-CASE03",
   "title": "Mars Habitat",
   "version": "1.1",
-  "status": "VALIDATION_BUILD",
-  "release_status": "OWNER_BROWSER_PHYSICAL_PRINT_GATE_OPEN",
+  "status": "APPROVED_STABLE",
+  "release_status": "APPROVED_STABLE",
   "artifact_policy": "HTML_ONLY",
   "successor_reason": "Accessible CER atomicity and Task 6 phrase-bank correction",
   "historical_v1_0": {
@@ -11,10 +11,10 @@
     "sha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce",
     "preservation": "byte-identical approved historical release"
   },
-  "current_validation_master": {
+  "current_approved_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
-    "sha256": "83d9aa195b3dfeeec74bba6ade20e9006dac233bf09c034d419b318d85b196d1",
-    "bytes": 198851
+    "sha256": "097f3c59efd1a90d4a5ce63274fee83e1bf1bde3dcbf69e427a29e953c913c09",
+    "bytes": 199217
   },
   "page_counts": {
     "student": 4,
@@ -50,46 +50,144 @@
       "grayscale"
     ]
   },
-  "physical_print_gate": "OPEN",
+  "approval": {
+    "date": "2026-07-31",
+    "tester": "Nate / Owner",
+    "ownerReview": "PASS",
+    "browserPhysicalPrint": "PASS",
+    "scale": "100% / Actual Size",
+    "printer": "Not recorded",
+    "paper": "Not recorded",
+    "artifactPolicy": "HTML_ONLY",
+    "validationReport": {
+      "path": "reports/CASE03_V1_1_VALIDATION_REPORT.md",
+      "sha256": "53b20d0798919c40d4b8d2c65a47e3afb79a33cc3c7b3fc4a1d3f58c8895d265",
+      "bytes": 3021
+    },
+    "ownerChecklist": {
+      "path": "published/OWNER_PRINT_BROWSER_CHECKLIST_v1.1.md",
+      "sha256": "cf5bcd5a2cf1d80c73359b79ec0ebd4d7bcae44a15e43c342838a4f7fb7aa9f1",
+      "bytes": 2048
+    }
+  },
+  "release_gate": "CLOSED_PASS",
+  "physical_print_gate": "PASS",
+  "phase_1": {
+    "status": "READY_TO_MERGE",
+    "centralEditorAccepted": true,
+    "proofPackage": "SSS-C1-CASE03 v1.1",
+    "cases01And02Migrated": false,
+    "stripEmbeddedEditorsAuthorized": false,
+    "fullyCanonicalAfter": "Phase 2 parity and owner-approved cutover",
+    "acceptanceRecord": {
+      "path": "apps/curriculum-editor/PHASE1_ACCEPTANCE.md",
+      "sha256": "2326796c5e440c156718e7db731778a63604230d586823aa94bb8072a37b33f7",
+      "bytes": 1322
+    }
+  },
+  "validation": {
+    "status": "PASS",
+    "deterministicBuild": {
+      "passed": 13,
+      "total": 13
+    },
+    "staticValidation": {
+      "passed": 104,
+      "total": 104
+    },
+    "browserValidation": {
+      "passed": 100,
+      "total": 100
+    },
+    "structuralParity": {
+      "passed": 27,
+      "total": 27
+    },
+    "pageAssignmentParity": {
+      "passed": 27,
+      "total": 27
+    },
+    "geometryParity": {
+      "passed": 1614,
+      "total": 1614,
+      "tolerancePx": 0.25
+    },
+    "computedPresentationParity": {
+      "passed": 6456,
+      "total": 6456
+    },
+    "renderedComparison": {
+      "passed": 27,
+      "total": 27
+    },
+    "cerAtomicity": {
+      "passed": 4,
+      "total": 4
+    },
+    "phraseBankContract": {
+      "passed": 4,
+      "total": 4
+    },
+    "zeroOverflowRoles": {
+      "passed": 5,
+      "total": 5
+    },
+    "currentRoleExportParity": {
+      "passed": 5,
+      "total": 5
+    },
+    "completePortableExportParity": {
+      "passed": 23,
+      "total": 23
+    },
+    "accessibilityReview": "PASS",
+    "browserPhysicalPrintReview": "PASS",
+    "noPdfGeneration": true,
+    "machineReadableParityResults": {
+      "path": "apps/curriculum-editor/tests/parity-v1.1-results.json",
+      "sha256": "61c55a7c0c3e6f282771517e49519ddda0ee1efdd67565fea3c5296aa7d8557b",
+      "bytes": 19076
+    }
+  },
   "outputs": {
     "student": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.1.html",
-        "sha256": "6490f6384338f9195a3813c8995097df66877294f8bee0ef9be5b0b646292c98",
-        "bytes": 71037
+        "sha256": "64a688532502f9da6b0026819e57b13bd15c4a0b34aa07db8d2f6e65cc3dc56e",
+        "bytes": 71410
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.1.html",
-        "sha256": "d383049f8423f5f06f8d052f7959bf8776634c4722e2d3b605362a1c110500a6",
-        "bytes": 86761
+        "sha256": "d70a8c45a58de865277b8661244992ab97b8b0973699e83041d87636c1568176",
+        "bytes": 87134
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.1.html",
-        "sha256": "941a07a13c045ddb39ead3e04d2f42d8ed7884d084807e65bf33b57f02aa92ee",
-        "bytes": 64107
+        "sha256": "c3e846c13c67aa1a4fe4b472726df5f4f49a6a951e6feef3049125280bcce6f8",
+        "bytes": 64480
       }
     },
     "accessible": {
       "pages": 7,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1.html",
-        "sha256": "8c76b0e45803581790366f6e965f538952faca933729c61494b96d166a75dd2a",
-        "bytes": 79353
+        "sha256": "70029188b8cd7a1d38435f0f6971340ac0856a3a071379359fd4ac1e6965d387",
+        "bytes": 79726
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html",
-        "sha256": "9013e76d74c06d0a65f09e420cb673ee9dab342a248a24896a9c5f115a20b57d",
-        "bytes": 71036
+        "sha256": "86a9f18fa59c547b96818f1dc06e543d747ee3c0191ddbaa5f636fb11672cd29",
+        "bytes": 71409
       }
     }
   },
@@ -106,8 +204,8 @@
     },
     {
       "path": "source/editor-v1.1/case03-editor-config.json",
-      "sha256": "b1e8dcd9a889071242ca48ebda2e6185e6179ed1d98941cadf32b81421bff5ae",
-      "bytes": 3832
+      "sha256": "4d8c6275fa5f76e72fdbdcb338bd5ba337117f02c85d72f50d551c957e3c81e1",
+      "bytes": 4100
     },
     {
       "path": "source/editor-v1.1/case03-presentation.css",
@@ -116,8 +214,8 @@
     },
     {
       "path": "source/editor-package/case-package.v1.1.json",
-      "sha256": "c62d9207cdff54f0f5028bd0d4eb69dae1912ded5ed0ad47463be3015d244ebf",
-      "bytes": 5507
+      "sha256": "f00d1617a2bee6630e43ff8ebb8f30d047412d0c86ed933c9cf2e0f2203a203d",
+      "bytes": 5782
     }
   ]
 }

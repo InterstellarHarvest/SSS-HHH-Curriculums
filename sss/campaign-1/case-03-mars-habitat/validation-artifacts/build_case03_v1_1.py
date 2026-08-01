@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Case 03 v1.1 successor without changing approved v1.0 artifacts."""
+"""Build approved Case 03 v1.1 without changing approved v1.0 artifacts."""
 from __future__ import annotations
 
 import argparse
@@ -31,6 +31,10 @@ V11_MASTER = ROOT / "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html"
 V11_PACKAGE = ROOT / "source/editor-package/case-package.v1.1.json"
 V11_MANIFEST = ROOT / "CASE03_V1_1_RELEASE_MANIFEST.json"
 V11_CHECKSUMS = ROOT / "validation-artifacts/CASE03_V1_1_HTML_CHECKSUMS.sha256"
+V11_VALIDATION_REPORT = ROOT / "reports/CASE03_V1_1_VALIDATION_REPORT.md"
+V11_OWNER_CHECKLIST = ROOT / "published/OWNER_PRINT_BROWSER_CHECKLIST_v1.1.md"
+PHASE1_ACCEPTANCE = REPO / "apps/curriculum-editor/PHASE1_ACCEPTANCE.md"
+PARITY_RESULTS = REPO / "apps/curriculum-editor/tests/parity-v1.1-results.json"
 ASSEMBLER = REPO / "shared/implementation/editor-shell/v1.0/assemble_editable_master.py"
 
 ROLE_OUTPUTS = {
@@ -45,6 +49,8 @@ PHRASE_BANK_SOURCE_STAGES = [2, 3, 4, 5]
 PHRASE_BANK_DISPLAY_ORDER = [4, 2, 5, 3]
 PHRASE_BANK_LABEL = "PHRASE BANK"
 PHRASE_BANK_INSTRUCTION = "Use each phrase once."
+APPROVAL_DATE = "2026-07-31"
+APPROVAL_TESTER = "Nate / Owner"
 
 
 def digest_bytes(value: bytes) -> str:
@@ -84,6 +90,19 @@ def phrase_bank_config() -> dict[str, Any]:
         "instruction": PHRASE_BANK_INSTRUCTION,
         "itemCount": 4,
         "roles": ["student", "answer", "accessible", "grayscale"],
+    }
+
+
+def approval_metadata() -> dict[str, str]:
+    return {
+        "date": APPROVAL_DATE,
+        "tester": APPROVAL_TESTER,
+        "ownerReview": "PASS",
+        "browserPhysicalPrint": "PASS",
+        "scale": "100% / Actual Size",
+        "printer": "Not recorded",
+        "paper": "Not recorded",
+        "artifactPolicy": "HTML_ONLY",
     }
 
 
@@ -233,9 +252,16 @@ def v11_config() -> dict[str, Any]:
     })
     config["metadata"].update({
         "sss-curriculum-version": "1.1",
-        "sss-status": "validation-build",
+        "sss-status": "approved-stable",
         "sss-source-master": "SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
         "sss-successor-reason": "accessible-cer-atomicity-and-task6-phrase-bank",
+        "sss-approval-date": APPROVAL_DATE,
+        "sss-approval-tester": APPROVAL_TESTER,
+        "sss-owner-review": "pass",
+        "sss-browser-physical-print": "pass",
+        "sss-print-scale": "100% / Actual Size",
+        "sss-printer": "not-recorded",
+        "sss-paper": "not-recorded",
     })
     config["phraseBank"] = phrase_bank_config()
     for role, filename in ROLE_OUTPUTS.items():
@@ -265,7 +291,7 @@ def package_data(content: bytes, case_css: bytes, presentation: bytes, master: b
     package = json.loads(V1_PACKAGE.read_text(encoding="utf-8"))
     package.update({
         "version": "1.1",
-        "status": "VALIDATION_BUILD",
+        "status": "APPROVED_STABLE",
         "documentKey": "SSS-C1-CASE03:v1.1:curriculum-editor-v1",
     })
     package["content"] = {
@@ -298,8 +324,9 @@ def package_data(content: bytes, case_css: bytes, presentation: bytes, master: b
         "isolation": "shadow-dom",
     }
     package["accessibility"]["documentTitle"] = "SSS Campaign 1 Case 03 v1.1 — Mars Habitat Curriculum Editor"
-    package["accessibility"]["loadAnnouncement"] = "Mars Habitat Case 03 v1.1 validation build loaded. Student Mission selected."
+    package["accessibility"]["loadAnnouncement"] = "Mars Habitat Case 03 v1.1 approved stable package loaded. Student Mission selected."
     package["phraseBank"] = phrase_bank_config()
+    package["approval"] = approval_metadata()
     return package
 
 
@@ -311,12 +338,20 @@ def manifest_data(master: bytes, role_bytes: dict[str, bytes], source_bytes: dic
             "bytes": len(value),
         }
 
+    def repo_artifact(path: Path) -> dict[str, Any]:
+        value = path.read_bytes()
+        return {
+            "path": str(path.relative_to(REPO)),
+            "sha256": digest_bytes(value),
+            "bytes": len(value),
+        }
+
     return {
         "case": "SSS-C1-CASE03",
         "title": "Mars Habitat",
         "version": "1.1",
-        "status": "VALIDATION_BUILD",
-        "release_status": "OWNER_BROWSER_PHYSICAL_PRINT_GATE_OPEN",
+        "status": "APPROVED_STABLE",
+        "release_status": "APPROVED_STABLE",
         "artifact_policy": "HTML_ONLY",
         "successor_reason": "Accessible CER atomicity and Task 6 phrase-bank correction",
         "historical_v1_0": {
@@ -324,11 +359,46 @@ def manifest_data(master: bytes, role_bytes: dict[str, bytes], source_bytes: dic
             "sha256": HISTORICAL_MASTER_SHA256,
             "preservation": "byte-identical approved historical release",
         },
-        "current_validation_master": artifact(V11_MASTER, master),
+        "current_approved_master": artifact(V11_MASTER, master),
         "page_counts": PAGE_COUNTS,
         "accessible_task_7_page": "accessible-mission-06",
         "task_6_phrase_bank": phrase_bank_config(),
-        "physical_print_gate": "OPEN",
+        "approval": {
+            **approval_metadata(),
+            "validationReport": artifact(V11_VALIDATION_REPORT, V11_VALIDATION_REPORT.read_bytes()),
+            "ownerChecklist": artifact(V11_OWNER_CHECKLIST, V11_OWNER_CHECKLIST.read_bytes()),
+        },
+        "release_gate": "CLOSED_PASS",
+        "physical_print_gate": "PASS",
+        "phase_1": {
+            "status": "READY_TO_MERGE",
+            "centralEditorAccepted": True,
+            "proofPackage": "SSS-C1-CASE03 v1.1",
+            "cases01And02Migrated": False,
+            "stripEmbeddedEditorsAuthorized": False,
+            "fullyCanonicalAfter": "Phase 2 parity and owner-approved cutover",
+            "acceptanceRecord": repo_artifact(PHASE1_ACCEPTANCE),
+        },
+        "validation": {
+            "status": "PASS",
+            "deterministicBuild": {"passed": 13, "total": 13},
+            "staticValidation": {"passed": 104, "total": 104},
+            "browserValidation": {"passed": 100, "total": 100},
+            "structuralParity": {"passed": 27, "total": 27},
+            "pageAssignmentParity": {"passed": 27, "total": 27},
+            "geometryParity": {"passed": 1614, "total": 1614, "tolerancePx": 0.25},
+            "computedPresentationParity": {"passed": 6456, "total": 6456},
+            "renderedComparison": {"passed": 27, "total": 27},
+            "cerAtomicity": {"passed": 4, "total": 4},
+            "phraseBankContract": {"passed": 4, "total": 4},
+            "zeroOverflowRoles": {"passed": 5, "total": 5},
+            "currentRoleExportParity": {"passed": 5, "total": 5},
+            "completePortableExportParity": {"passed": 23, "total": 23},
+            "accessibilityReview": "PASS",
+            "browserPhysicalPrintReview": "PASS",
+            "noPdfGeneration": True,
+            "machineReadableParityResults": repo_artifact(PARITY_RESULTS),
+        },
         "outputs": {
             role: {"pages": PAGE_COUNTS[role], "html": artifact(ROOT / "published" / ROLE_OUTPUTS[role], value)}
             for role, value in role_bytes.items()

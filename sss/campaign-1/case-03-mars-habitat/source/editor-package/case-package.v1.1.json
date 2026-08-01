@@ -7,7 +7,7 @@
   "subtitle": "Campaign 1 · Case 03 · Light spectrum versus total intensity",
   "location": "Mars Habitat",
   "version": "1.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
@@ -128,7 +128,7 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 03 v1.1 — Mars Habitat Curriculum Editor",
-    "loadAnnouncement": "Mars Habitat Case 03 v1.1 validation build loaded. Student Mission selected.",
+    "loadAnnouncement": "Mars Habitat Case 03 v1.1 approved stable package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       "[aria-label*=\"description\"]",
@@ -141,7 +141,7 @@
     "historicalMaster": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
     "historicalMasterSha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce",
     "successorMaster": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
-    "successorMasterSha256": "83d9aa195b3dfeeec74bba6ade20e9006dac233bf09c034d419b318d85b196d1",
+    "successorMasterSha256": "097f3c59efd1a90d4a5ce63274fee83e1bf1bde3dcbf69e427a29e953c913c09",
     "reason": "Accessible CER atomicity and Task 6 phrase-bank correction",
     "builder": "sss/campaign-1/case-03-mars-habitat/validation-artifacts/build_case03_v1_1.py"
   },
@@ -177,5 +177,15 @@
       "accessible",
       "grayscale"
     ]
+  },
+  "approval": {
+    "date": "2026-07-31",
+    "tester": "Nate / Owner",
+    "ownerReview": "PASS",
+    "browserPhysicalPrint": "PASS",
+    "scale": "100% / Actual Size",
+    "printer": "Not recorded",
+    "paper": "Not recorded",
+    "artifactPolicy": "HTML_ONLY"
   }
 }

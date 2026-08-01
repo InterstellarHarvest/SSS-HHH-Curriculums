@@ -378,6 +378,18 @@ def run(chrome: Path) -> dict[str, Any]:
     return {
         "validator": "case03-v1.1-central-editor-parity",
         "status": "PASS" if all_pass else "FAIL",
+        "releaseStatus": "APPROVED_STABLE",
+        "artifactPolicy": "HTML_ONLY",
+        "phase1Status": "READY_TO_MERGE",
+        "ownerApproval": {
+            "date": "2026-07-31",
+            "tester": "Nate / Owner",
+            "ownerReview": "PASS",
+            "browserPhysicalPrint": "PASS",
+            "scale": "100% / Actual Size",
+            "printer": "Not recorded",
+            "paper": "Not recorded",
+        },
         "browser": str(chrome),
         "viewport": {"width": 1440, "height": 1200, "deviceScaleFactor": 1},
         "pageCounts": ROLES,

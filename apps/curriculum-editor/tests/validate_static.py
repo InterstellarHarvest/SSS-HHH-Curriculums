@@ -183,10 +183,11 @@ def main() -> int:
     )
     results.check("Case 03 is discoverable", bool(case03))
     results.check("Case 03 current version is 1.1", case03["version"] == "1.1", case03["version"])
-    results.check("Case 03 v1.1 status is VALIDATION_BUILD", case03["status"] == "VALIDATION_BUILD", case03["status"])
+    results.check("Case 03 v1.1 status is APPROVED_STABLE", case03["status"] == "APPROVED_STABLE", case03["status"])
     results.check("Case 03 registry targets the corrected v1.1 master", case03["master"].endswith("SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html"))
     historical = case03.get("historicalReleases", [])
     results.check("registry preserves v1.0 as historical approved metadata", len(historical) == 1 and historical[0]["version"] == "1.0" and historical[0]["status"] == "APPROVED_STABLE")
+    results.check("registry records final owner and physical-print approval", case03.get("approval") == {"date": "2026-07-31", "tester": "Nate / Owner", "ownerReview": "PASS", "browserPhysicalPrint": "PASS", "scale": "100% / Actual Size", "printer": "Not recorded", "paper": "Not recorded", "artifactPolicy": "HTML_ONLY"})
     package_path = REPO / case03["editorPackage"]
     results.check("Case 03 editor package exists", package_path.is_file(), case03["editorPackage"])
     package = load_json(package_path)
@@ -197,6 +198,7 @@ def main() -> int:
     results.check("package and registry IDs agree", package["id"] == case03["id"])
     results.check("package and registry versions agree", package["version"] == case03["version"])
     results.check("package and registry statuses agree", package["status"] == case03["status"])
+    results.check("approved package records final owner and physical-print approval", package.get("approval") == case03.get("approval"))
     results.check("package uses shared editor shell 1.0", package["shell"]["version"] == "1.0")
     results.check("package content does not load a complete master", "master/" not in package["content"]["source"])
     results.check("all five package output profiles are declared", package["supportedRoles"] == REQUIRED_ROLES, package["supportedRoles"])
@@ -336,18 +338,20 @@ def main() -> int:
     hash_failures = [str(path.relative_to(REPO)) for path, expected in release_files if sha256(path) != expected]
     results.check("approved Case 03 v1.0 master, role outputs, and controlled-source hashes are unchanged", not hash_failures, hash_failures)
     v11_manifest = load_json(MANIFEST)
-    v11_master = BeautifulSoup((MANIFEST.parent / v11_manifest["current_validation_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
-    results.check("v1.1 package worksheet DOM exactly matches the validation master", str(content.select_one("main")) == str(v11_master.select_one("main")))
+    v11_master = BeautifulSoup((MANIFEST.parent / v11_manifest["current_approved_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
+    results.check("v1.1 package worksheet DOM exactly matches the approved master", str(content.select_one("main")) == str(v11_master.select_one("main")))
+    master_meta = {node.get("name"): node.get("content") for node in v11_master.select("meta[name]")}
+    results.check("approved master metadata records status, date, tester, and print gate", master_meta.get("sss-status") == "approved-stable" and master_meta.get("sss-approval-date") == "2026-07-31" and master_meta.get("sss-approval-tester") == "Nate / Owner" and master_meta.get("sss-browser-physical-print") == "pass")
     historical_master = BeautifulSoup((HISTORICAL_MANIFEST.parent / manifest["current_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
     results.check("v1.1 Task 6 remains on the historical role pages", all(
         historical_master.select_one(f'.page[data-role="{role}"] .task-heading[data-task-id="6"]').find_parent(class_="page").get("data-page-id")
         == v11_master.select_one(f'.page[data-role="{role}"] .task-heading[data-task-id="6"]').find_parent(class_="page").get("data-page-id")
         for role in ["student", "answer", "accessible"]
     ))
-    v11_files = [(MANIFEST.parent / v11_manifest["current_validation_master"]["path"], v11_manifest["current_validation_master"]["sha256"])]
+    v11_files = [(MANIFEST.parent / v11_manifest["current_approved_master"]["path"], v11_manifest["current_approved_master"]["sha256"])]
     v11_files.extend((MANIFEST.parent / output["html"]["path"], output["html"]["sha256"]) for output in v11_manifest["outputs"].values())
     v11_failures = [str(path.relative_to(REPO)) for path, expected in v11_files if sha256(path) != expected]
-    results.check("Case 03 v1.1 master and five role hashes match the validation manifest", not v11_failures, v11_failures)
+    results.check("Case 03 v1.1 master and five role hashes match the approved manifest", not v11_failures, v11_failures)
     published_bank_orders = {}
     for role in ["student", "answer", "accessible", "grayscale"]:
         role_soup = BeautifulSoup((MANIFEST.parent / v11_manifest["outputs"][role]["html"]["path"]).read_text(encoding="utf-8"), "html.parser")
@@ -355,7 +359,9 @@ def main() -> int:
         published_bank_orders[role] = [item.get_text(" ", strip=True) for item in role_banks[0].select(".canonical-phrase-bank-item")] if len(role_banks) == 1 else []
     results.check("Student, Accessible, and Grayscale published banks match", published_bank_orders["student"] == published_bank_orders["accessible"] == published_bank_orders["grayscale"] == expected_bank_order, published_bank_orders)
     results.check("published Answer Key retains the same parity bank", published_bank_orders["answer"] == expected_bank_order, published_bank_orders["answer"])
-    results.check("Case 03 v1.1 owner physical-print gate remains OPEN", v11_manifest["physical_print_gate"] == "OPEN" and v11_manifest["status"] == "VALIDATION_BUILD")
+    results.check("Case 03 v1.1 owner gate is closed PASS and Phase 1 is ready to merge", v11_manifest["physical_print_gate"] == "PASS" and v11_manifest["release_gate"] == "CLOSED_PASS" and v11_manifest["status"] == "APPROVED_STABLE" and v11_manifest["phase_1"]["status"] == "READY_TO_MERGE")
+    parity_results = load_json(APP / "tests/parity-v1.1-results.json")
+    results.check("machine-readable parity results record final approval", parity_results.get("status") == "PASS" and parity_results.get("releaseStatus") == "APPROVED_STABLE" and parity_results.get("phase1Status") == "READY_TO_MERGE" and parity_results.get("ownerApproval", {}).get("tester") == "Nate / Owner")
     deterministic = subprocess.run([sys.executable, str(MANIFEST.parent / "validation-artifacts/build_case03_v1_1.py"), "--check"], cwd=REPO, text=True, capture_output=True)
     results.check("Case 03 v1.1 extraction/build is deterministic", deterministic.returncode == 0, (deterministic.stdout + deterministic.stderr).strip())
     for case_number, path in [(1, "sss/campaign-1/case-01-iss-greenhouse"), (2, "sss/campaign-1/case-02-lunar-greenhouse")]:

@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-**Status:** Phase 1 · Case 03 v1.1 validation build
+**Status:** Phase 1 accepted · owner review PASS · ready to merge
 
 **Application:** `apps/curriculum-editor/`
 
@@ -27,9 +27,9 @@ central Curriculum Editor
         └── self-contained selected-role HTML
 ```
 
-The approved `SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html` remains a byte-identical historical release at SHA-256 `c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce`. Its known split Accessible CER is not the current parity target. The corrected `SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html` is the golden migration reference while v1.1 is under validation. Neither complete master is a central-editor runtime dependency.
+The approved `SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html` remains a byte-identical historical release at SHA-256 `c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce`. Its known split Accessible CER is not the current parity target. The corrected and owner-approved `SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html` is the current Case 03 approved stable master and golden Phase 1 parity reference. Neither complete master is a central-editor runtime dependency.
 
-`build_case03_v1_1.py` verifies the historical hash, extracts the worksheet DOM and exact case presentation, applies the owner-authorized Accessible reflow, and deterministically emits controlled v1.1 sources, a successor master, five independent role outputs, package metadata, hashes, and release manifest. Existing approved cases use this hash-verified extraction/reconciliation path; future cases authored natively in the central editor use their package as canonical source from inception. Page counts alone never establish migration parity.
+`build_case03_v1_1.py` verifies the historical hash, extracts the worksheet DOM and exact case presentation, applies the owner-authorized Accessible reflow and Task 6 phrase bank, and deterministically emits controlled v1.1 sources, the approved successor master, five independent role outputs, package metadata, hashes, and release manifest. Existing approved cases use this hash-verified extraction/reconciliation path; future cases authored natively in the central editor use their package as canonical source from inception. Page counts alone never establish migration parity.
 
 ## 2. Runtime load sequence
 
@@ -60,7 +60,8 @@ Schema version 1 separates editor mechanics from case data. Its required fields 
 - roles: supported roles, default role, source-role mapping, document role, page count, and grayscale flag;
 - output: complete and five current-role filenames;
 - defaults: role, edit/fill modes, four margins, density, grayscale, guides, and boundaries;
-- accessibility: document language/title, load announcement, extended-description selectors, and the manual-PDF warning.
+- accessibility: document language/title, load announcement, extended-description selectors, and the manual-PDF warning;
+- approval: date, tester, owner-review and browser physical-print results, scale, printer/paper record, and artifact policy;
 - migration provenance: historical/successor master paths and hashes, reconciliation reason, and deterministic builder;
 - presentation: extracted content/case/presentation hashes and required isolation mode.
 
@@ -125,13 +126,15 @@ The interface and documentation repeat the governing warning: browser PDF export
 
 No validator generates or inspects PDFs.
 
-## 8. Known limitations
+## 8. Phase 1 acceptance and known limitations
 
-- Phase 1 supports only the current Case 03 v1.1 validation package. There is no historical-version browser.
+- Nate / Owner accepted the central editor and Case 03 v1.1 proof package on 2026-07-31. Exact structural, page-assignment, geometry, computed-presentation, rendered, portable-export, current-role export, accessibility, zero-overflow, and browser physical-print gates pass.
+- Phase 1 supports only the current approved Case 03 v1.1 package. There is no historical-version browser.
 - The selectors reflect the normal Curriculum → Campaign → Case → Role path; single available values are disabled to avoid suggesting unavailable cases.
 - Recovery state is local to a browser origin/profile and does not synchronize.
 - Trusted repository packages may supply HTML fragments and CSS. The app is not a sandbox for untrusted curriculum packages.
-- The v1.1 browser/physical-print owner gate is OPEN. Automated parity does not authorize `APPROVED_STABLE` status.
+- Cases 01 and 02 remain unmigrated. Embedded editors must not yet be stripped from Cases 01–03.
+- Case 03 v1.1 proves the central architecture, but the central editor becomes fully canonical only after Phase 2 parity and owner-approved cutover.
 - PDF accessibility is outside this HTML-only implementation.
 
 ## 9. Phase 2 migration plan — not executed
@@ -147,3 +150,5 @@ Cases 01 and 02 must be migrated independently and additively:
 7. Re-verify all frozen hashes, conduct owner browser and physical-print review, and merge each migration through a separate reviewed change. Owner visual review is a mandatory migration gate.
 
 Historical masters are retained as release records and parity references. Deletion or replacement is not part of Phase 2 unless a later owner-approved preservation policy explicitly authorizes it.
+
+Phase 2 migrations are additive. Until both Case 01 and Case 02 pass independent parity and cutover review, all embedded Case 01–03 editors remain in place.

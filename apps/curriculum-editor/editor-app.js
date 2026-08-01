@@ -140,6 +140,12 @@ function validatePackage(pkg) {
       throw new Error("Phrase-bank display order must differ from the answer sequence.");
     }
   }
+  if (pkg.status === "APPROVED_STABLE") {
+    requireFields(pkg.approval, ["date", "tester", "ownerReview", "browserPhysicalPrint", "scale", "printer", "paper", "artifactPolicy"], "Approval record");
+    if (pkg.approval.ownerReview !== "PASS" || pkg.approval.browserPhysicalPrint !== "PASS" || pkg.approval.artifactPolicy !== "HTML_ONLY") {
+      throw new Error("Approved stable package is missing passed owner/physical-print gates or HTML-only policy.");
+    }
+  }
 }
 
 async function sha256Text(value) {

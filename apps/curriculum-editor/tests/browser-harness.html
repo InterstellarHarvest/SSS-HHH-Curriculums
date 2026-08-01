@@ -75,7 +75,7 @@
       let workspace = api.getWorkspace();
       let worksheetDoc = api.getWorksheetDocument();
       check("central app exposes its runtime API", Boolean(api));
-      check("registry-loaded Case 03 package is current validation build", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.1" && api.getPackage().status === "VALIDATION_BUILD");
+      check("registry-loaded Case 03 package is current approved stable with owner PASS", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.1" && api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval?.date === "2026-07-31" && api.getPackage().approval?.tester === "Nate / Owner" && api.getPackage().approval?.ownerReview === "PASS" && api.getPackage().approval?.browserPhysicalPrint === "PASS" && api.getPackage().approval?.scale === "100% / Actual Size");
       check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
       check("worksheet presentation is isolated in open Shadow DOM", doc.querySelector("#worksheetHost").shadowRoot && workspace.getRootNode() === doc.querySelector("#worksheetHost").shadowRoot);
       check("isolated worksheet retains a labelled main landmark", workspace.tagName === "MAIN" && workspace.getAttribute("aria-label")?.includes("Mars Habitat"));

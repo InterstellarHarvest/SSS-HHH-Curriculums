@@ -1,6 +1,18 @@
 {
   "validator": "case03-v1.1-central-editor-parity",
   "status": "PASS",
+  "releaseStatus": "APPROVED_STABLE",
+  "artifactPolicy": "HTML_ONLY",
+  "phase1Status": "READY_TO_MERGE",
+  "ownerApproval": {
+    "date": "2026-07-31",
+    "tester": "Nate / Owner",
+    "ownerReview": "PASS",
+    "browserPhysicalPrint": "PASS",
+    "scale": "100% / Actual Size",
+    "printer": "Not recorded",
+    "paper": "Not recorded"
+  },
   "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
   "viewport": {
     "width": 1440,
@@ -758,7 +770,7 @@
     },
     "grayscale-editor": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-editor.png",
-      "sha256": "1e4328f4de9f694d57499c84fea12cfafe59078c29727b4c4dbc416aefeab342"
+      "sha256": "d41e39093ed730f765818410f5c1d398e20c32ffa33b4f0cc7a9ef110e92e917"
     },
     "grayscale-master": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-master.png",

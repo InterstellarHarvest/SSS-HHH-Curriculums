@@ -6,7 +6,7 @@
   "metadata": {
     "sss-case": "SSS-C1-CASE03",
     "sss-curriculum-version": "1.1",
-    "sss-status": "validation-build",
+    "sss-status": "approved-stable",
     "sss-artifact-policy": "html-only",
     "sss-game-baseline": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
     "sss-curriculum-bible": "1.3",
@@ -17,7 +17,14 @@
     "sss-publication-date": "2026-07-31",
     "sss-visible-production-status": "none",
     "sss-source-master": "SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
-    "sss-successor-reason": "accessible-cer-atomicity-and-task6-phrase-bank"
+    "sss-successor-reason": "accessible-cer-atomicity-and-task6-phrase-bank",
+    "sss-approval-date": "2026-07-31",
+    "sss-approval-tester": "Nate / Owner",
+    "sss-owner-review": "pass",
+    "sss-browser-physical-print": "pass",
+    "sss-print-scale": "100% / Actual Size",
+    "sss-printer": "not-recorded",
+    "sss-paper": "not-recorded"
   },
   "roles": [
     "student",

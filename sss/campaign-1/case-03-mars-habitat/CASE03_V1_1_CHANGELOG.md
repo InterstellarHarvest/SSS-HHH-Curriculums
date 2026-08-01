@@ -1,10 +1,13 @@
-# Case 03 v1.1 validation-build changelog
+# Case 03 v1.1 approved-stable changelog
 
 ## Status
 
-- Release state: `VALIDATION_BUILD`
+- Release state: `APPROVED_STABLE`
 - Artifact policy: HTML only
-- Owner browser/physical-print gate: **OPEN**
+- Owner browser/physical-print gate: **PASS**
+- Approval: Nate / Owner · 2026-07-31 · 100% / Actual Size
+- Printer: Not recorded
+- Paper: Not recorded
 - Successor reason: Accessible CER atomicity and Task 6 phrase-bank correction
 
 ## Preserved historical release
@@ -23,4 +26,8 @@ No instructional science, task title, answer sequence, evidence, response identi
 
 `validation-artifacts/build_case03_v1_1.py` verifies the approved v1.0 master hash before extracting its worksheet DOM and case CSS, applies the owner-authorized Accessible reflow and Task 6 phrase-bank scaffold, and generates the v1.1 controlled sources, master, five role outputs, package, manifest, and checksums deterministically. The central editor loads the extracted worksheet-only presentation into an open Shadow DOM; neither complete master nor its embedded toolbar/runtime is loaded by the application.
 
-The v1.1 master is the golden migration reference. Automated validation compares all 27 role-profile pages for structure, page assignment, geometry, computed presentation, and rendered pixels, and separately checks current-role export parity and CER containment. Owner approval remains required before v1.1 can become approved stable.
+The v1.1 master is the current approved stable Case 03 master and golden Curriculum Editor Phase 1 reference. Automated validation compares all 27 role-profile pages for structure, page assignment, geometry, computed presentation, and rendered pixels, and separately checks current-role export parity, CER containment, phrase-bank parity, and zero overflow.
+
+## Approval
+
+Nate / Owner approved Case 03 v1.1 and Curriculum Editor Phase 1 on 2026-07-31. Browser physical-print review passed at 100% / Actual Size; printer and paper were not recorded. No PDF was required or authorized. The feature branch is ready for merge review, but the embedded editors remain preserved pending additive Case 01/02 migration and Phase 2 cutover.
