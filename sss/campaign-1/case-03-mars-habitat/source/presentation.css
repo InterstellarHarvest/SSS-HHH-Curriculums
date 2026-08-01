@@ -226,8 +226,8 @@ h3 {
 }
 
 .callout.caution {
-  border-color: #6b5922;
-  background: #f7f4e8;
+  border-color: var(--caution);
+  background: var(--caution-field);
 }
 
 .callout p {
@@ -548,6 +548,8 @@ h3 {
   --botanical: #52974a;
   --accent-dark: #33596e;
   --accent-pale: #e6f0f0;
+  --caution: #6b5922;
+  --caution-field: #f7f4e8;
   --primary: var(--institution);
   --secondary: var(--botanical);
   --soft: var(--accent-pale);
@@ -758,12 +760,20 @@ body.show-guides .page-frame { outline: 1px dashed #8c9aa0; }
 body:not(.edit-mode) [data-editable] { outline: none; }
 
 body.grayscale {
+  --panel: #e5e5e5;
+  --panel-light: #f2f2f2;
   --institution: #4b4b4b;
+  --cyan-dark: #444;
+  --slate: #666;
   --botanical: #666;
   --accent-dark: #3b3b3b;
   --accent-pale: #ededed;
+  --primary: #4b4b4b;
+  --secondary: #666;
+  --soft: #ededed;
   --success: #444;
   --caution: #555;
+  --caution-field: #efefef;
   --critical: #222;
   --neutral-field: #eee;
   --screen: #ddd;

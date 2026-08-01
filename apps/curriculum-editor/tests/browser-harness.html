@@ -28,6 +28,17 @@
     const worksheet = frame => frame.contentWindow.__curriculumEditor.getWorkspace();
     const worksheetDocument = frame => frame.contentWindow.__curriculumEditor.getWorksheetDocument();
     const visiblePages = frame => Array.from(worksheet(frame).querySelectorAll(".page")).filter(page => frame.contentWindow.getComputedStyle(page).display !== "none" && !page.hidden);
+    const isNeutralRgb = color => {
+      const value = color.trim();
+      const shortHex = value.match(/^#([\da-f])([\da-f])([\da-f])$/i);
+      const longHex = value.match(/^#([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i);
+      const channels = shortHex
+        ? shortHex.slice(1).map(channel => parseInt(channel + channel, 16))
+        : longHex
+          ? longHex.slice(1).map(channel => parseInt(channel, 16))
+          : value.match(/[\d.]+/g)?.slice(0, 3).map(Number);
+      return Boolean(channels?.length === 3 && channels[0] === channels[1] && channels[1] === channels[2]);
+    };
     const layoutMetrics = frame => {
       const doc = frame.contentDocument;
       const toolbar = doc.querySelector(".toolbar").getBoundingClientRect();
@@ -387,6 +398,14 @@
         for (const profile of printProfiles) {
           api.setRole(profile.role);
           api.saveState({ grayscale: profile.grayscale });
+          if (item.id === "SSS-C1-CASE03" && profile.grayscale) {
+            const palette = win.getComputedStyle(worksheetDoc);
+            const grayscaleTokens = ["--panel", "--panel-light", "--neutral-field", "--institution", "--cyan-dark", "--slate", "--botanical", "--accent-dark", "--accent-pale", "--primary", "--secondary", "--soft", "--caution", "--caution-field"];
+            const tintedSurfaces = Array.from(workspace.querySelectorAll(".callout,.data-table th,.teacher-card,.canonical-phrase-bank,.optional-extension"));
+            const tokenFailures = grayscaleTokens.filter(token => !isNeutralRgb(palette.getPropertyValue(token).trim()));
+            const surfaceFailures = tintedSurfaces.filter(node => !isNeutralRgb(win.getComputedStyle(node).backgroundColor));
+            check(`${item.id} ${profile.role} grayscale neutralizes colored textbox palette and rendered fills`, tintedSurfaces.length > 0 && tokenFailures.length === 0 && surfaceFailures.length === 0, JSON.stringify({ tokenFailures, surfaceFailures: surfaceFailures.slice(0, 8).map(node => node.className) }));
+          }
           const printHtml = api.buildPrintDocument(profile.role);
           const printDoc = new DOMParser().parseFromString(printHtml, "text/html");
           const printPages = Array.from(printDoc.querySelectorAll("#workspace > .page"));
