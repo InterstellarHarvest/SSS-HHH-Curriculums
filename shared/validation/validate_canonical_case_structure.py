@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 from pathlib import Path
@@ -16,6 +17,40 @@ FORBIDDEN_DIRS = {
 }
 REQUIRED_SOURCE = {"case-package.json", "content.html", "presentation.css", "task-registry.js"}
 ROLES = ["student", "teacher", "answer", "accessible"]
+COMMIT_FIELDS = {
+    "case-01": {
+        "originalReleaseApprovalCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+        "canonicalSourceApprovalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+    },
+    "case-02": {
+        "originalReleaseApprovalCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+        "canonicalSourceApprovalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+    },
+    "case-03": {
+        "originalReleaseApprovalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+        "canonicalSourceApprovalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+    },
+}
+EXPECTED_PRIOR = {
+    "case-01": {
+        "version": "1.0",
+        "commit": "7f3504aa33aaefbf57583ceb2be1ab2af88d10b0",
+        "complete": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
+        "roles": {},
+    },
+    "case-02": None,
+    "case-03": {
+        "version": "1.0",
+        "commit": "a81cdd728dc0f444b969f5fcec2f05dd54115549",
+        "complete": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+        "roles": {
+            "student": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html",
+            "teacher": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html",
+            "answer": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html",
+            "accessible": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html",
+        },
+    },
+}
 
 
 def tracked_files() -> list[str]:
@@ -36,8 +71,45 @@ def strings(value):
             yield from strings(child)
 
 
+def commit_exists(commit: str) -> bool:
+    return subprocess.run(
+        ["git", "cat-file", "-e", f"{commit}^{{commit}}"], cwd=ROOT, capture_output=True
+    ).returncode == 0
+
+
+def verify_commit(label: str, commit: str, failures: list[str], totals: dict[str, int]) -> None:
+    totals["commitReferencesChecked"] += 1
+    if not isinstance(commit, str) or not commit_exists(commit):
+        failures.append(f"{label}: declared commit does not exist: {commit!r}")
+
+
+def verify_artifact(label: str, commit: str, artifact: dict, failures: list[str], totals: dict[str, int]) -> None:
+    totals["artifactRecoveriesChecked"] += 1
+    path = artifact.get("path") if isinstance(artifact, dict) else None
+    expected = artifact.get("sha256") if isinstance(artifact, dict) else None
+    if not path or not expected:
+        failures.append(f"{label}: artifact path and SHA-256 are required")
+        return
+    result = subprocess.run(["git", "show", f"{commit}:{path}"], cwd=ROOT, capture_output=True)
+    if result.returncode != 0:
+        failures.append(f"{label}: path does not exist at {commit}: {path}")
+        return
+    actual = hashlib.sha256(result.stdout).hexdigest()
+    if actual != expected:
+        failures.append(f"{label}: SHA-256 mismatch for {commit}:{path}; expected {expected}, got {actual}")
+        return
+    totals["artifactHashesVerified"] += 1
+
+
 def main() -> int:
     failures: list[str] = []
+    totals = {
+        "commitReferencesChecked": 0,
+        "artifactRecoveriesChecked": 0,
+        "artifactHashesVerified": 0,
+        "priorApprovedReleaseEntries": 0,
+        "localUntrackedArtifactsExcluded": 0,
+    }
     cases = sorted(path for path in CAMPAIGN.glob("case-*") if path.is_dir())
     if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03"]:
         failures.append(f"expected exactly Cases 01–03; found {[path.name for path in cases]}")
@@ -48,7 +120,7 @@ def main() -> int:
         failures.append(f"tracked PDFs are prohibited: {pdfs}")
 
     for case in cases:
-        top_entries = {path.name for path in case.iterdir()}
+        top_entries = {path.name for path in case.iterdir() if path.name != ".DS_Store"}
         allowed_top = {"README.md", "source", "history", "assets"}
         unexpected = sorted(top_entries - allowed_top)
         if unexpected:
@@ -60,7 +132,7 @@ def main() -> int:
                 failures.append(f"{case.name}: forbidden directory: {path.relative_to(case)}")
 
         source = case / "source"
-        source_files = {path.name for path in source.iterdir() if path.is_file()} if source.is_dir() else set()
+        source_files = {path.name for path in source.iterdir() if path.is_file() and path.name != ".DS_Store"} if source.is_dir() else set()
         missing = sorted(REQUIRED_SOURCE - source_files)
         if missing:
             failures.append(f"{case.name}: missing canonical source files: {missing}")
@@ -117,6 +189,87 @@ def main() -> int:
         if extra_history:
             failures.append(f"{case.name}: unexpected history files: {extra_history}")
 
+        if len(records) == 1:
+            try:
+                release = json.loads(records[0].read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError) as error:
+                failures.append(f"{case.name}: invalid release history: {error}")
+                release = {}
+
+            case_key = case.name[:7]
+            for field, expected_commit in COMMIT_FIELDS[case_key].items():
+                commit = release.get(field)
+                if commit != expected_commit:
+                    failures.append(f"{case.name}: {field} must be {expected_commit}; found {commit}")
+                verify_commit(f"{case.name} {field}", commit, failures, totals)
+
+            recovery_commit = release.get("formerArtifactRecoveryCommit")
+            verify_commit(f"{case.name} formerArtifactRecoveryCommit", recovery_commit, failures, totals)
+            expected_recovery = f"git show {recovery_commit}:<former path> > <destination>"
+            if release.get("recovery") != expected_recovery:
+                failures.append(f"{case.name}: current recovery command does not name its recovery commit")
+
+            former = release.get("formerArtifacts", {})
+            former_roles = former.get("roles", {})
+            if set(former_roles) != set(ROLES) or "grayscale" in former_roles:
+                failures.append(f"{case.name}: current historical role artifacts must contain only the four roles")
+            verify_artifact(f"{case.name} current complete", recovery_commit, former.get("complete", {}), failures, totals)
+            for role, artifact in former_roles.items():
+                verify_artifact(f"{case.name} current {role}", recovery_commit, artifact, failures, totals)
+
+            for retired in release.get("retiredArtifacts", []):
+                classification = retired.get("classification", "")
+                path = retired.get("path", "")
+                if "GRAYSCALE" in path.upper():
+                    if not classification.startswith("RETIRED_"):
+                        failures.append(f"{case.name}: historical Grayscale artifact is not clearly retired: {path}")
+                    verify_artifact(f"{case.name} retired presentation snapshot", recovery_commit, retired, failures, totals)
+                elif classification == "IGNORED_LOCAL_RELEASE_ARTIFACT_REMOVED":
+                    totals["localUntrackedArtifactsExcluded"] += 1
+
+            prior = release.get("priorApprovedReleases")
+            expected_prior = EXPECTED_PRIOR[case_key]
+            if expected_prior is None:
+                if prior != []:
+                    failures.append(f"{case.name}: current v1.0 must explicitly have no earlier approved release")
+                prior = prior if isinstance(prior, list) else []
+            else:
+                if not isinstance(prior, list) or len(prior) != 1:
+                    failures.append(f"{case.name}: exactly one prior approved release must be indexed")
+                    prior = []
+                if prior:
+                    item = prior[0]
+                    totals["priorApprovedReleaseEntries"] += 1
+                    if item.get("version") != expected_prior["version"]:
+                        failures.append(f"{case.name}: prior approved version must be {expected_prior['version']}")
+                    if item.get("approvalCommit") != expected_prior["commit"] or item.get("recoveryCommit") != expected_prior["commit"]:
+                        failures.append(f"{case.name}: prior approval and recovery commits are incorrect")
+                    for field in ["approvalCommit", "recoveryCommit"]:
+                        verify_commit(f"{case.name} prior {field}", item.get(field), failures, totals)
+                    expected_command = f"git show {item.get('recoveryCommit')}:<former path> > <destination>"
+                    if item.get("recoveryCommand") != expected_command:
+                        failures.append(f"{case.name}: prior release recovery command is incorrect")
+                    prior_artifacts = item.get("formerArtifacts", {})
+                    prior_roles = prior_artifacts.get("roles", {})
+                    if prior_artifacts.get("complete", {}).get("path") != expected_prior["complete"]:
+                        failures.append(f"{case.name}: prior complete-master path is incorrect")
+                    if {role: artifact.get("path") for role, artifact in prior_roles.items()} != expected_prior["roles"]:
+                        failures.append(f"{case.name}: prior role HTML index is incomplete or incorrect")
+                    if "grayscale" in prior_roles:
+                        failures.append(f"{case.name}: prior approved roles must not model Grayscale")
+                    if case_key == "case-01":
+                        unavailable = item.get("roleHtmlAvailability", {})
+                        if set(unavailable) != set(ROLES) or set(unavailable.values()) != {"NOT_CREATED_AT_APPROVAL_COMMIT"}:
+                            failures.append(f"{case.name}: absence of v1.0 standalone role HTML is not explicit")
+                    verify_artifact(f"{case.name} prior complete", item.get("recoveryCommit"), prior_artifacts.get("complete", {}), failures, totals)
+                    for role, artifact in prior_roles.items():
+                        verify_artifact(f"{case.name} prior {role}", item.get("recoveryCommit"), artifact, failures, totals)
+                    for legacy in item.get("legacyArtifacts", []):
+                        path = legacy.get("path", "")
+                        if "GRAYSCALE" in path.upper() and not legacy.get("classification", "").startswith("RETIRED_"):
+                            failures.append(f"{case.name}: prior Grayscale artifact is not clearly retired: {path}")
+                        verify_artifact(f"{case.name} prior retired artifact", item.get("recoveryCommit"), legacy, failures, totals)
+
         case_prefix = case.relative_to(ROOT).as_posix() + "/"
         case_html = [path for path in tracked if path.startswith(case_prefix) and path.endswith(".html")]
         expected_html = f"{case_prefix}source/content.html"
@@ -127,6 +280,7 @@ def main() -> int:
         "validator": "canonical-case-structure-v1",
         "status": "PASS" if not failures else "FAIL",
         "cases": len(cases),
+        "recoveryValidation": totals,
         "failures": failures,
     }
     print(json.dumps(payload, indent=2))

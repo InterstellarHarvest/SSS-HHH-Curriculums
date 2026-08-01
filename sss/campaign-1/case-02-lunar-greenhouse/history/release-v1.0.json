@@ -5,7 +5,8 @@
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-08-01",
   "owner": "Nate / Owner",
-  "canonicalPackageCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "originalReleaseApprovalCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "canonicalSourceApprovalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
   "sourceHashes": {
     "content": "722939f7c9fdc453ba0a5911d39f041fafc7d7a30d54c013b561c7278576d305",
     "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
@@ -35,6 +36,7 @@
   },
   "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
   "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "priorApprovedReleases": [],
   "migrationNotes": [
     "The accepted worksheet fragment, presentation CSS, task registry, and icon sprite became the canonical package sources.",
     "The complete embedded editor, generated release files, and unreferenced process-model asset were removed from the current tree."

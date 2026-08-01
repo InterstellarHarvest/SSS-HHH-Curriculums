@@ -5,7 +5,8 @@
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-07-31",
   "owner": "Nate / Owner",
-  "canonicalPackageCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+  "originalReleaseApprovalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+  "canonicalSourceApprovalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
   "sourceHashes": {
     "content": "f2477cb3ff26cd3e08f1396bb8d4c1c029cef4c61e9b96f599ced4f408245979",
     "presentation": "932ed6c0589dc57c62b37e382b2611326291f84b749051c54265db0b27a89c02",
@@ -38,9 +39,41 @@
   },
   "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
   "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-07-31",
+      "approvalCommit": "a81cdd728dc0f444b969f5fcec2f05dd54115549",
+      "recoveryCommit": "a81cdd728dc0f444b969f5fcec2f05dd54115549",
+      "formerArtifacts": {
+        "complete": {
+          "path": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+          "sha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce"
+        },
+        "roles": {
+          "student": {"path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_STUDENT_MISSION_v1.0.html", "sha256": "5e9a2353f1a9802df7d2c9371de68c92f846ff6b94fc6e661976e725821b49f9"},
+          "teacher": {"path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_TEACHER_GUIDE_v1.0.html", "sha256": "527840faa5d297d8ee0f05487f0adab989720c37f2863644be4f06b44934cc35"},
+          "answer": {"path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ANSWER_KEY_v1.0.html", "sha256": "1211d95ce8c19c285e7c1fa9fcf65cf93d84c1039aaa6ab1e8eda86c36118c7f"},
+          "accessible": {"path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.0.html", "sha256": "1538b8d4ec7092cf224e1fad3cefcaebbf4937a45c8c9c75622d0061b7d167a0"}
+        }
+      },
+      "recoveryCommand": "git show a81cdd728dc0f444b969f5fcec2f05dd54115549:<former path> > <destination>",
+      "notes": [
+        "The approved v1.0 complete master and four normal role HTML files are fully indexed from the approval commit."
+      ],
+      "legacyArtifacts": [
+        {
+          "classification": "RETIRED_PRESENTATION_SNAPSHOT",
+          "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.0.html",
+          "sha256": "323a4559d15c970d61406ffd52a215b29c9177949e45fa05c5b310691f921377"
+        }
+      ]
+    }
+  ],
   "migrationNotes": [
     "The accepted v1.1 worksheet fragment and assembled presentation CSS became native canonical sources.",
-    "The approved v1.0 package remains recoverable from commit a81cdd728dc0f444b969f5fcec2f05dd54115549.",
+    "The approved v1.0 release is fully indexed in priorApprovedReleases.",
     "Migration-era editor configs, builders, complete embedded editors, and generated role files were retired."
   ],
   "retiredArtifacts": [

@@ -132,9 +132,11 @@ def main() -> int:
     registry_path = ROOT / "shared/implementation/case-registry.v2.json"
     registry_schema_path = ROOT / "shared/implementation/case-registry.schema.v2.json"
     package_schema_path = ROOT / "shared/implementation/case-package.schema.v2.json"
+    history_schema_path = ROOT / "shared/implementation/case-release-history.schema.v1.json"
     registry = load_json(registry_path)
     registry_schema = load_json(registry_schema_path)
     package_schema = load_json(package_schema_path)
+    history_schema = load_json(history_schema_path)
 
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
@@ -189,8 +191,10 @@ def main() -> int:
 
         history_path = ROOT / package["releaseHistory"]
         history = load_json(history_path)
+        history_errors = schema_errors(history, history_schema)
+        results.check(f"{case_id} release history validates against schema v1", not history_errors, history_errors)
         former_roles = history.get("formerArtifacts", {}).get("roles", {})
-        results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and set(former_roles) == set(ROLES) and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery"))
+        results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and set(former_roles) == set(ROLES) and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable = (APP / "portable-runtime.js").read_text(encoding="utf-8")

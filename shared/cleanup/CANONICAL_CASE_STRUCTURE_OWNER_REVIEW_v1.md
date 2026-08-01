@@ -18,7 +18,10 @@ Do not mark this migration accepted until the owner completes this review.
 - [ ] Download Worksheet includes only the selected role, applies its current presentation state, and uses that role's normal filename.
 - [ ] Print / Save PDF builds a clean isolated document for the selected role with no application chrome, blank page, or screen page shadow.
 - [ ] Current role page counts are 3/7/3/6 for Case 01, 3/7/3/5 for Case 02, and 4/8/4/7 for Case 03.
-- [ ] Package schema v2, registry schema v2, source hashes, worksheet structure, task registry, CER/process atomicity, phrase-bank contract, and accessibility checks pass.
+- [ ] Package schema v2, registry schema v2, release-history schema v1, source hashes, worksheet structure, task registry, CER/process atomicity, phrase-bank contract, and accessibility checks pass.
+- [ ] Original-release approval commits and canonical-source approval commits have distinct, explicit meanings and resolve to existing commits.
+- [ ] Case 01 v1.0 and Case 03 v1.0 are fully indexed; Case 02 explicitly records no earlier approved release.
+- [ ] Direct `git show` validation proves every declared recovery path exists and all 25 recovered byte streams match their SHA-256 values.
 - [ ] All 24 case/role/color-or-Grayscale presentation states pass page-count, page-fit, identity, export, and print checks.
 - [ ] The browser suite reports zero JavaScript errors.
 - [ ] No tracked PDFs, generated release HTML, stored editable documents, or routine screenshots remain.

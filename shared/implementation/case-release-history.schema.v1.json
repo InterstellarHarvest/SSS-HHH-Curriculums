@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://interstellarharvest.example/schemas/case-release-history.v1.json",
+  "title": "Canonical compact case release-history record",
+  "type": "object",
+  "required": [
+    "schemaVersion", "caseId", "curriculumVersion", "status", "approvalDate", "owner",
+    "originalReleaseApprovalCommit", "canonicalSourceApprovalCommit", "sourceHashes",
+    "rolePageCounts", "acceptedValidation", "acceptedPrintStatus", "formerArtifacts",
+    "formerArtifactRecoveryCommit", "recovery", "priorApprovedReleases", "migrationNotes",
+    "retiredArtifacts"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "caseId": {"type": "string", "pattern": "^SSS-C[0-9]+-CASE[0-9]{2}$"},
+    "curriculumVersion": {"$ref": "#/$defs/version"},
+    "status": {"const": "APPROVED_STABLE"},
+    "approvalDate": {"$ref": "#/$defs/date"},
+    "owner": {"type": "string", "minLength": 1},
+    "originalReleaseApprovalCommit": {
+      "$ref": "#/$defs/commit",
+      "description": "Commit that approved the original release byte set for this curriculum version."
+    },
+    "canonicalSourceApprovalCommit": {
+      "$ref": "#/$defs/commit",
+      "description": "Commit that approved the maintained package-source baseline used by the canonical editor."
+    },
+    "sourceHashes": {
+      "type": "object",
+      "required": ["content", "presentation", "taskRegistry"],
+      "properties": {
+        "content": {"$ref": "#/$defs/sha256"},
+        "presentation": {"$ref": "#/$defs/sha256"},
+        "taskRegistry": {"$ref": "#/$defs/sha256"},
+        "icons": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "rolePageCounts": {"$ref": "#/$defs/roleCounts"},
+    "acceptedValidation": {"type": "object"},
+    "acceptedPrintStatus": {"type": "string", "minLength": 1},
+    "formerArtifacts": {"$ref": "#/$defs/currentArtifacts"},
+    "formerArtifactRecoveryCommit": {
+      "$ref": "#/$defs/commit",
+      "description": "Commit whose tree contains every path in formerArtifacts and tracked retiredArtifacts."
+    },
+    "recovery": {"type": "string", "minLength": 1},
+    "priorApprovedReleases": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/priorRelease"}
+    },
+    "migrationNotes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "retiredArtifacts": {"type": "array", "items": {"$ref": "#/$defs/legacyArtifact"}}
+  },
+  "$defs": {
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "artifact": {
+      "type": "object",
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^sss/campaign-1/case-[0-9]{2}-"},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "roleArtifacts": {
+      "type": "object",
+      "properties": {
+        "student": {"$ref": "#/$defs/artifact"},
+        "teacher": {"$ref": "#/$defs/artifact"},
+        "answer": {"$ref": "#/$defs/artifact"},
+        "accessible": {"$ref": "#/$defs/artifact"}
+      },
+      "additionalProperties": false
+    },
+    "currentRoleArtifacts": {
+      "type": "object",
+      "required": ["student", "teacher", "answer", "accessible"],
+      "properties": {
+        "student": {"$ref": "#/$defs/artifact"},
+        "teacher": {"$ref": "#/$defs/artifact"},
+        "answer": {"$ref": "#/$defs/artifact"},
+        "accessible": {"$ref": "#/$defs/artifact"}
+      },
+      "additionalProperties": false
+    },
+    "currentArtifacts": {
+      "type": "object",
+      "required": ["complete", "roles"],
+      "properties": {
+        "complete": {"$ref": "#/$defs/artifact"},
+        "roles": {"$ref": "#/$defs/currentRoleArtifacts"}
+      },
+      "additionalProperties": false
+    },
+    "priorArtifacts": {
+      "type": "object",
+      "required": ["complete", "roles"],
+      "properties": {
+        "complete": {"$ref": "#/$defs/artifact"},
+        "roles": {"$ref": "#/$defs/roleArtifacts"}
+      },
+      "additionalProperties": false
+    },
+    "roleCounts": {
+      "type": "object",
+      "required": ["student", "teacher", "answer", "accessible"],
+      "properties": {
+        "student": {"type": "integer", "minimum": 1},
+        "teacher": {"type": "integer", "minimum": 1},
+        "answer": {"type": "integer", "minimum": 1},
+        "accessible": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "roleHtmlAvailability": {
+      "type": "object",
+      "required": ["student", "teacher", "answer", "accessible"],
+      "properties": {
+        "student": {"const": "NOT_CREATED_AT_APPROVAL_COMMIT"},
+        "teacher": {"const": "NOT_CREATED_AT_APPROVAL_COMMIT"},
+        "answer": {"const": "NOT_CREATED_AT_APPROVAL_COMMIT"},
+        "accessible": {"const": "NOT_CREATED_AT_APPROVAL_COMMIT"}
+      },
+      "additionalProperties": false
+    },
+    "legacyArtifact": {
+      "type": "object",
+      "required": ["classification", "path", "sha256"],
+      "properties": {
+        "classification": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "priorRelease": {
+      "type": "object",
+      "required": [
+        "version", "status", "approvalDate", "approvalCommit", "recoveryCommit",
+        "formerArtifacts", "recoveryCommand", "notes", "legacyArtifacts"
+      ],
+      "properties": {
+        "version": {"$ref": "#/$defs/version"},
+        "status": {"const": "APPROVED_STABLE"},
+        "approvalDate": {"$ref": "#/$defs/date"},
+        "approvalCommit": {"$ref": "#/$defs/commit"},
+        "recoveryCommit": {"$ref": "#/$defs/commit"},
+        "formerArtifacts": {"$ref": "#/$defs/priorArtifacts"},
+        "roleHtmlAvailability": {"$ref": "#/$defs/roleHtmlAvailability"},
+        "recoveryCommand": {"type": "string", "minLength": 1},
+        "notes": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "legacyArtifacts": {"type": "array", "items": {"$ref": "#/$defs/legacyArtifact"}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

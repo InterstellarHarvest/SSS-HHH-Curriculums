@@ -5,7 +5,8 @@
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-08-01",
   "owner": "Nate / Owner",
-  "canonicalPackageCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "originalReleaseApprovalCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "canonicalSourceApprovalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
   "sourceHashes": {
     "content": "e3aa3e2aba4199d390755cb19ee69bad3c2ac8850c1eb5a924b996696f40ef41",
     "presentation": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
@@ -35,10 +36,38 @@
   },
   "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
   "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-07-24",
+      "approvalCommit": "7f3504aa33aaefbf57583ceb2be1ab2af88d10b0",
+      "recoveryCommit": "7f3504aa33aaefbf57583ceb2be1ab2af88d10b0",
+      "formerArtifacts": {
+        "complete": {
+          "path": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html",
+          "sha256": "4fd67a08c3ef5e50670389b053ff0078f2d743a9d9ac12f605db8d99d1a92d00"
+        },
+        "roles": {}
+      },
+      "roleHtmlAvailability": {
+        "student": "NOT_CREATED_AT_APPROVAL_COMMIT",
+        "teacher": "NOT_CREATED_AT_APPROVAL_COMMIT",
+        "answer": "NOT_CREATED_AT_APPROVAL_COMMIT",
+        "accessible": "NOT_CREATED_AT_APPROVAL_COMMIT"
+      },
+      "recoveryCommand": "git show 7f3504aa33aaefbf57583ceb2be1ab2af88d10b0:<former path> > <destination>",
+      "notes": [
+        "The approved v1.0 release commit contains no standalone Student, Teacher, Answer Key, or Accessible HTML; its role-specific release artifacts were PDFs.",
+        "The complete-master hash was verified from the approval-commit bytes and agrees with the release manifest and commit message."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
   "migrationNotes": [
     "The accepted worksheet fragment, presentation CSS, task registry, and icon sprite became the canonical package sources.",
     "The complete embedded editor and generated release files were removed from the current tree; Git history remains authoritative for recovery.",
-    "The prior approved v1.0 complete master is recoverable from commit 7f3504aa33aaefbf57583ceb2be1ab2af88d10b0."
+    "The prior approved v1.0 release is fully indexed in priorApprovedReleases."
   ],
   "retiredArtifacts": [
     {"classification": "RETIRED_PRESENTATION_SNAPSHOT", "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html", "sha256": "f8e2de4f12a9d4ee6c762a3cdda5c6defb7a5036b52c2efa6f844bfb64cd4f44"},
