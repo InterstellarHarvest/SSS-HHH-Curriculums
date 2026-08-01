@@ -246,6 +246,37 @@
       },
       "additionalProperties": false
     },
+    "phraseBank": {
+      "type": "object",
+      "required": ["contract", "taskId", "sourceRole", "sourceStages", "displayOrderSourceStages", "label", "instruction", "itemCount", "roles"],
+      "properties": {
+        "contract": { "const": "sequence-v1.0" },
+        "taskId": { "type": "integer", "minimum": 1 },
+        "sourceRole": { "enum": ["answer"] },
+        "sourceStages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "displayOrderSourceStages": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "integer", "minimum": 1 }
+        },
+        "label": { "type": "string", "minLength": 1 },
+        "instruction": { "type": "string", "minLength": 1 },
+        "itemCount": { "type": "integer", "minimum": 1 },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["student", "answer", "accessible", "grayscale"] }
+        }
+      },
+      "additionalProperties": false
+    },
     "migrationSource": {
       "type": "object",
       "required": ["kind", "historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "reason", "builder"],

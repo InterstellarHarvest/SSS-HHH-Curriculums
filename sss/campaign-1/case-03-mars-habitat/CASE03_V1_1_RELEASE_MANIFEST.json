@@ -5,7 +5,7 @@
   "status": "VALIDATION_BUILD",
   "release_status": "OWNER_BROWSER_PHYSICAL_PRINT_GATE_OPEN",
   "artifact_policy": "HTML_ONLY",
-  "successor_reason": "Accessible CER atomicity correction",
+  "successor_reason": "Accessible CER atomicity and Task 6 phrase-bank correction",
   "historical_v1_0": {
     "master": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
     "sha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce",
@@ -13,8 +13,8 @@
   },
   "current_validation_master": {
     "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
-    "sha256": "3ff52e66e37f877d7e3c8724389c73e2a78da03f8d1d61d9e6a51e99ae0edd03",
-    "bytes": 194588
+    "sha256": "83d9aa195b3dfeeec74bba6ade20e9006dac233bf09c034d419b318d85b196d1",
+    "bytes": 198851
   },
   "page_counts": {
     "student": 4,
@@ -24,54 +24,80 @@
     "grayscale": 4
   },
   "accessible_task_7_page": "accessible-mission-06",
+  "task_6_phrase_bank": {
+    "contract": "sequence-v1.0",
+    "taskId": 6,
+    "sourceRole": "answer",
+    "sourceStages": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "displayOrderSourceStages": [
+      4,
+      2,
+      5,
+      3
+    ],
+    "label": "PHRASE BANK",
+    "instruction": "Use each phrase once.",
+    "itemCount": 4,
+    "roles": [
+      "student",
+      "answer",
+      "accessible",
+      "grayscale"
+    ]
+  },
   "physical_print_gate": "OPEN",
   "outputs": {
     "student": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.1.html",
-        "sha256": "e9ec875983ea67ad5f4f7225c6be25df623d2ec69f14cadcf79516ee405d10c8",
-        "bytes": 68775
+        "sha256": "6490f6384338f9195a3813c8995097df66877294f8bee0ef9be5b0b646292c98",
+        "bytes": 71037
       }
     },
     "teacher": {
       "pages": 8,
       "html": {
         "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.1.html",
-        "sha256": "87b76b8525df8c6f135269dbb70e0fdf8b4a516b637e8e0ccc7a64dcdecd1f16",
-        "bytes": 85330
+        "sha256": "d383049f8423f5f06f8d052f7959bf8776634c4722e2d3b605362a1c110500a6",
+        "bytes": 86761
       }
     },
     "answer": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.1.html",
-        "sha256": "3a73aae195a73d9304358038aec35494343cca01277e7c124efc792a49305c0b",
-        "bytes": 61866
+        "sha256": "941a07a13c045ddb39ead3e04d2f42d8ed7884d084807e65bf33b57f02aa92ee",
+        "bytes": 64107
       }
     },
     "accessible": {
       "pages": 7,
       "html": {
         "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1.html",
-        "sha256": "40e379235dda3af6bc29b87742fe5c732a04060248977b77c6713f2ac54c05c7",
-        "bytes": 77076
+        "sha256": "8c76b0e45803581790366f6e965f538952faca933729c61494b96d166a75dd2a",
+        "bytes": 79353
       }
     },
     "grayscale": {
       "pages": 4,
       "html": {
         "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html",
-        "sha256": "88645f37ebb83510df42faddd2cbaf7ae24d658a01b96f38fd97185b835f0c45",
-        "bytes": 68774
+        "sha256": "9013e76d74c06d0a65f09e420cb673ee9dab342a248a24896a9c5f115a20b57d",
+        "bytes": 71036
       }
     }
   },
   "generated_sources": [
     {
       "path": "source/editor-v1.1/case03-content.html",
-      "sha256": "56f508fdbf6113c33f53f2bba99802345871476af0a98330d87d7a45b9c37402",
-      "bytes": 159688
+      "sha256": "f2477cb3ff26cd3e08f1396bb8d4c1c029cef4c61e9b96f599ced4f408245979",
+      "bytes": 162635
     },
     {
       "path": "source/editor-v1.1/case03.css",
@@ -80,18 +106,18 @@
     },
     {
       "path": "source/editor-v1.1/case03-editor-config.json",
-      "sha256": "834ac78755f1c95293802899535b33c542095739817d4e7f773e33387239a7ae",
-      "bytes": 3385
+      "sha256": "b1e8dcd9a889071242ca48ebda2e6185e6179ed1d98941cadf32b81421bff5ae",
+      "bytes": 3832
     },
     {
       "path": "source/editor-v1.1/case03-presentation.css",
-      "sha256": "3907fe5f9abe059522807d55a59842b73daadbc52795137d354e0b8e20ac16bd",
-      "bytes": 20215
+      "sha256": "932ed6c0589dc57c62b37e382b2611326291f84b749051c54265db0b27a89c02",
+      "bytes": 21509
     },
     {
       "path": "source/editor-package/case-package.v1.1.json",
-      "sha256": "036b062df3deea3b2805752d511d66c1d6895a09e897822587121b5b8244c0e6",
-      "bytes": 5059
+      "sha256": "c62d9207cdff54f0f5028bd0d4eb69dae1912ded5ed0ad47463be3015d244ebf",
+      "bytes": 5507
     }
   ]
 }

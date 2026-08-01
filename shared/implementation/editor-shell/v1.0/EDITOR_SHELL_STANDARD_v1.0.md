@@ -12,7 +12,7 @@ The shell owns:
 - reset-to-embedded-source behavior;
 - shared task-heading markup, typography, icons, and numbering rules;
 - the Student, Accessible, and Answer Key CER variants of one canonical component;
-- the canonical five-stage process model and optional-extension component;
+- the canonical five-stage process model, sequence phrase bank, and optional-extension component;
 - common page-identity and authoring-mode CSS.
 
 Case packages own instructional content, task configuration, case-specific figures, case-specific layout CSS, and release metadata.
@@ -81,6 +81,10 @@ Its Claim, Evidence, and Reasoning boxes use the shared geometry in `cer.css`. `
 ## Five-stage process model
 
 Recurring five-stage mechanisms use `data-process-contract="five-stage-v1.0"`, five `.canonical-process-stage` elements, and four `.canonical-process-arrow` connectors. Standard pages use the deterministic horizontal grid; Accessible pages use the vertical variant. Flex wrapping is prohibited. Geometry validation confirms equal stages, aligned connectors, no collisions, and no detached final stage.
+
+## Sequence phrase bank
+
+Recurring sequencing scaffolds use `data-phrase-bank-contract="sequence-v1.0"` on one `.canonical-phrase-bank` immediately after the model it supports. Its DOM order is label, instruction, then one unnumbered `.canonical-phrase-bank-items` list. Each `.canonical-phrase-bank-item` contains one source-controlled phrase. Case configuration owns the exact phrase source, fixed display order, and role scope; runtime reshuffling is prohibited. Student, Accessible, Grayscale, and any layout-parity Answer Key bank use identical wording and order. The bank and its supported task must share one authored page, while the model remains a separate atomic component with all stages and connectors intact.
 
 ## Figure provenance and optional extensions
 

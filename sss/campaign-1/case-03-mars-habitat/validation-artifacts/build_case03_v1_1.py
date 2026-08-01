@@ -41,6 +41,10 @@ ROLE_OUTPUTS = {
     "grayscale": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html",
 }
 PAGE_COUNTS = {"student": 4, "teacher": 8, "answer": 4, "accessible": 7, "grayscale": 4}
+PHRASE_BANK_SOURCE_STAGES = [2, 3, 4, 5]
+PHRASE_BANK_DISPLAY_ORDER = [4, 2, 5, 3]
+PHRASE_BANK_LABEL = "PHRASE BANK"
+PHRASE_BANK_INSTRUCTION = "Use each phrase once."
 
 
 def digest_bytes(value: bytes) -> str:
@@ -69,9 +73,62 @@ def update_accessible_page_identity(page: Tag, number: int, total: int) -> None:
     footer.string = f"Accessible Mission {number} of {total}"
 
 
+def phrase_bank_config() -> dict[str, Any]:
+    return {
+        "contract": "sequence-v1.0",
+        "taskId": 6,
+        "sourceRole": "answer",
+        "sourceStages": PHRASE_BANK_SOURCE_STAGES,
+        "displayOrderSourceStages": PHRASE_BANK_DISPLAY_ORDER,
+        "label": PHRASE_BANK_LABEL,
+        "instruction": PHRASE_BANK_INSTRUCTION,
+        "itemCount": 4,
+        "roles": ["student", "answer", "accessible", "grayscale"],
+    }
+
+
+def controlled_answer_phrases(workspace: Tag) -> dict[int, str]:
+    process = require_one(workspace, '.page[data-role="answer"] [data-process-contract="five-stage-v1.0"]')
+    phrases: dict[int, str] = {}
+    for stage_number in PHRASE_BANK_SOURCE_STAGES:
+        stage = require_one(process, f'[data-process-stage="{stage_number}"]')
+        content = require_one(stage, ".stage-content").get_text(" ", strip=True)
+        if not content:
+            raise ValueError(f"Controlled Answer Key Stage {stage_number} is blank")
+        phrases[stage_number] = content
+    if len(set(phrases.values())) != len(PHRASE_BANK_SOURCE_STAGES):
+        raise ValueError("Controlled Answer Key Stages 2–5 must contain four unique phrases")
+    return phrases
+
+
+def make_phrase_bank(soup: BeautifulSoup, role: str, page_id: str, phrases: dict[int, str]) -> Tag:
+    bank_id = f"{page_id}-task6-phrase-bank"
+    instruction_id = f"{bank_id}-instruction"
+    bank = soup.new_tag("aside", attrs={
+        "class": "canonical-phrase-bank",
+        "data-phrase-bank-contract": "sequence-v1.0",
+        "data-phrase-bank-task": "6",
+        "data-phrase-bank-role": role,
+        "aria-labelledby": bank_id,
+        "aria-describedby": instruction_id,
+    })
+    label = soup.new_tag("div", attrs={"class": "canonical-phrase-bank-label", "id": bank_id})
+    label.string = PHRASE_BANK_LABEL
+    instruction = soup.new_tag("p", attrs={"class": "canonical-phrase-bank-instruction", "id": instruction_id})
+    instruction.string = PHRASE_BANK_INSTRUCTION
+    items = soup.new_tag("ul", attrs={"class": "canonical-phrase-bank-items"})
+    for stage_number in PHRASE_BANK_DISPLAY_ORDER:
+        item = soup.new_tag("li", attrs={"class": "canonical-phrase-bank-item", "data-phrase-bank-item": ""})
+        item.string = phrases[stage_number]
+        items.append(item)
+    bank.extend([label, instruction, items])
+    return bank
+
+
 def corrected_content(master_html: str) -> str:
     soup = BeautifulSoup(master_html, "html.parser")
     workspace = require_one(soup, "main#workspace")
+    phrases = controlled_answer_phrases(workspace)
     page5 = require_one(workspace, '.page[data-page-id="accessible-mission-05"]')
     page6 = require_one(workspace, '.page[data-page-id="accessible-mission-06"]')
     page5_content = require_one(page5, ".content-area")
@@ -121,6 +178,29 @@ def corrected_content(master_html: str) -> str:
     if labels != ["CLAIM", "EVIDENCE", "REASONING"]:
         raise ValueError(f"Corrected Accessible CER rows are invalid: {labels!r}")
 
+    for role in ("student", "answer", "accessible"):
+        task6 = require_one(workspace, f'.page[data-role="{role}"] .task-heading[data-task-id="6"]')
+        page = task6.find_parent("section", class_="page")
+        if page is None:
+            raise ValueError(f"Task 6 page not found for {role}")
+        process = require_one(page, '[data-process-contract="five-stage-v1.0"]')
+        process.insert_after(make_phrase_bank(soup, role, page.get("data-page-id", role), phrases))
+
+    teacher_guidance = require_one(workspace, '.page[data-page-id="teacher-guide-03"] p[data-persist-id="teacher-guide-03-instruction-090"]')
+    task_references = teacher_guidance.select(":scope > strong.task-reference")
+    if [node.get_text(" ", strip=True) for node in task_references] != [
+        "6 · Model the mechanism",
+        "7 · Claim-Evidence-Reasoning",
+    ]:
+        raise ValueError("Historical Task 6 teacher references changed")
+    guidance_middle = task_references[0].next_sibling
+    if str(guidance_middle) != ", require the causal chain. Then complete ":
+        raise ValueError(f"Historical Task 6 teacher guidance changed: {guidance_middle!r}")
+    guidance_middle.replace_with(
+        ", require the causal chain: students sequence the supplied phrases into Stages 2–5 rather than "
+        "generate all mechanism wording independently. Then complete "
+    )
+
     return str(workspace) + "\n"
 
 
@@ -155,8 +235,9 @@ def v11_config() -> dict[str, Any]:
         "sss-curriculum-version": "1.1",
         "sss-status": "validation-build",
         "sss-source-master": "SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
-        "sss-successor-reason": "accessible-cer-atomicity",
+        "sss-successor-reason": "accessible-cer-atomicity-and-task6-phrase-bank",
     })
+    config["phraseBank"] = phrase_bank_config()
     for role, filename in ROLE_OUTPUTS.items():
         config["outputs"][role]["filename"] = filename
     return config
@@ -206,7 +287,7 @@ def package_data(content: bytes, case_css: bytes, presentation: bytes, master: b
         "historicalMasterSha256": HISTORICAL_MASTER_SHA256,
         "successorMaster": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
         "successorMasterSha256": digest_bytes(master),
-        "reason": "Accessible CER atomicity correction",
+        "reason": "Accessible CER atomicity and Task 6 phrase-bank correction",
         "builder": "sss/campaign-1/case-03-mars-habitat/validation-artifacts/build_case03_v1_1.py",
     }
     package["presentation"] = {
@@ -218,6 +299,7 @@ def package_data(content: bytes, case_css: bytes, presentation: bytes, master: b
     }
     package["accessibility"]["documentTitle"] = "SSS Campaign 1 Case 03 v1.1 — Mars Habitat Curriculum Editor"
     package["accessibility"]["loadAnnouncement"] = "Mars Habitat Case 03 v1.1 validation build loaded. Student Mission selected."
+    package["phraseBank"] = phrase_bank_config()
     return package
 
 
@@ -236,7 +318,7 @@ def manifest_data(master: bytes, role_bytes: dict[str, bytes], source_bytes: dic
         "status": "VALIDATION_BUILD",
         "release_status": "OWNER_BROWSER_PHYSICAL_PRINT_GATE_OPEN",
         "artifact_policy": "HTML_ONLY",
-        "successor_reason": "Accessible CER atomicity correction",
+        "successor_reason": "Accessible CER atomicity and Task 6 phrase-bank correction",
         "historical_v1_0": {
             "master": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
             "sha256": HISTORICAL_MASTER_SHA256,
@@ -245,6 +327,7 @@ def manifest_data(master: bytes, role_bytes: dict[str, bytes], source_bytes: dic
         "current_validation_master": artifact(V11_MASTER, master),
         "page_counts": PAGE_COUNTS,
         "accessible_task_7_page": "accessible-mission-06",
+        "task_6_phrase_bank": phrase_bank_config(),
         "physical_print_gate": "OPEN",
         "outputs": {
             role: {"pages": PAGE_COUNTS[role], "html": artifact(ROOT / "published" / ROLE_OUTPUTS[role], value)}

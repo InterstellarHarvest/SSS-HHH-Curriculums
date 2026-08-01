@@ -206,6 +206,11 @@ def main() -> int:
     results.check("document key includes case and version", package["id"] in package["documentKey"] and "v1.1" in package["documentKey"])
     results.check("package records the owner-authorized v1.0 historical hash", package["migrationSource"]["historicalMasterSha256"] == "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce")
     results.check("package declares isolated extracted presentation", package["presentation"]["isolation"] == "shadow-dom")
+    phrase_config = package.get("phraseBank", {})
+    results.check("package declares the shared Task 6 phrase-bank contract", phrase_config.get("contract") == "sequence-v1.0" and phrase_config.get("taskId") == 6)
+    results.check("phrase-bank configuration uses Answer Stages 2–5 once each", phrase_config.get("sourceRole") == "answer" and phrase_config.get("sourceStages") == [2, 3, 4, 5] and phrase_config.get("itemCount") == 4)
+    results.check("phrase-bank configuration fixes a non-sequential display order", phrase_config.get("displayOrderSourceStages") == [4, 2, 5, 3] and phrase_config.get("displayOrderSourceStages") != phrase_config.get("sourceStages"))
+    results.check("phrase-bank role contract includes Student, Answer, Accessible, and Grayscale", phrase_config.get("roles") == ["student", "answer", "accessible", "grayscale"])
     results.check("complete and role output names are distinct", len(set(package["outputs"].values())) == 6)
     results.check("all output names are HTML", all(name.lower().endswith(".html") for name in package["outputs"].values()))
     results.check("portable outputs use clear CUSTOM names", all("CUSTOM" in name for name in package["outputs"].values()))
@@ -231,6 +236,28 @@ def main() -> int:
     accessible_cer = content.select('[data-role="accessible"] [data-cer-contract="accessible-v1.0"]')
     results.check("Accessible Task 7 CER is atomic on page 6", len(accessible_cer) == 1 and accessible_cer[0].find_parent(class_="page").get("data-page-id") == "accessible-mission-06")
     results.check("five-stage process model is present", bool(content.select('[data-process-contract="five-stage-v1.0"]')))
+    answer_process = content.select_one('.page[data-role="answer"] [data-process-contract="five-stage-v1.0"]')
+    answer_stage_phrases = [
+        answer_process.select_one(f'[data-process-stage="{number}"] .stage-content').get_text(" ", strip=True)
+        for number in range(2, 6)
+    ]
+    expected_bank_order = [answer_stage_phrases[index] for index in [2, 0, 3, 1]]
+    banks = content.select('[data-phrase-bank-contract="sequence-v1.0"]')
+    bank_roles = {bank.find_parent(class_="page").get("data-role"): bank for bank in banks}
+    bank_orders = {
+        role: [item.get_text(" ", strip=True) for item in bank.select(":scope > .canonical-phrase-bank-items > .canonical-phrase-bank-item")]
+        for role, bank in bank_roles.items()
+    }
+    results.check("Student, Answer, and Accessible each have one Task 6 phrase bank", len(banks) == 3 and set(bank_roles) == {"student", "answer", "accessible"}, bank_orders)
+    results.check("bank phrase set exactly equals controlled Answer Key Stages 2–5", all(set(order) == set(answer_stage_phrases) for order in bank_orders.values()), bank_orders)
+    results.check("bank uses the fixed deliberately shuffled order", all(order == expected_bank_order and order != answer_stage_phrases for order in bank_orders.values()), bank_orders)
+    results.check("bank contains every phrase exactly once", all(len(order) == len(set(order)) == 4 for order in bank_orders.values()), bank_orders)
+    results.check("Student, Answer, and Accessible bank wording and order match", len({tuple(order) for order in bank_orders.values()}) == 1, bank_orders)
+    results.check("phrase-bank DOM order is label, instruction, then phrases", all(["canonical-phrase-bank-label", "canonical-phrase-bank-instruction", "canonical-phrase-bank-items"] == [child.get("class", [""])[0] for child in bank.find_all(recursive=False)] for bank in banks))
+    results.check("phrase-bank label and instruction are explicit", all(bank.select_one(":scope > .canonical-phrase-bank-label").get_text(" ", strip=True) == "PHRASE BANK" and bank.select_one(":scope > .canonical-phrase-bank-instruction").get_text(" ", strip=True) == "Use each phrase once." for bank in banks))
+    results.check("phrase banks are unnumbered accessible lists", all(bank.select_one(":scope > ul.canonical-phrase-bank-items") and not bank.select_one(":scope > ol") and bank.get("aria-labelledby") and bank.get("aria-describedby") for bank in banks))
+    results.check("each phrase bank follows its complete Task 6 model on the same page", all((page := bank.find_parent(class_="page")) is not None and page.select_one('.task-heading[data-task-id="6"]') and (model := page.select_one('[data-process-contract="five-stage-v1.0"]')) and model.find_next_sibling() is bank and len(model.select('[data-process-stage]')) == 5 and len(model.select('[data-process-connector]')) == 4 for bank in banks))
+    results.check("Teacher guidance says students sequence supplied phrases", "students sequence the supplied phrases into Stages 2–5 rather than generate all mechanism wording independently" in content.select_one('.page[data-page-id="teacher-guide-03"]').get_text(" ", strip=True))
     results.check("optional-extension contract is present", bool(content.select('[data-optional-extension="canonical-v1.0"]')))
     results.check("spectral figures and captions are present", len(content.select('[data-quantity-spectrum="canonical-v1.0"]')) == 3 and bool(content.select("figure figcaption")))
     results.check("task headings remain attached to following task content", all((next_node := node.find_next_sibling()) is not None and next_node.find_parent(class_="page") is node.find_parent(class_="page") for node in content.select(".task-heading")))
@@ -312,16 +339,22 @@ def main() -> int:
     v11_master = BeautifulSoup((MANIFEST.parent / v11_manifest["current_validation_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
     results.check("v1.1 package worksheet DOM exactly matches the validation master", str(content.select_one("main")) == str(v11_master.select_one("main")))
     historical_master = BeautifulSoup((HISTORICAL_MANIFEST.parent / manifest["current_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
-    unchanged_role_dom = all(
-        [str(page) for page in historical_master.select(f'.page[data-role="{role}"]')]
-        == [str(page) for page in v11_master.select(f'.page[data-role="{role}"]')]
-        for role in ["student", "teacher", "answer"]
-    )
-    results.check("v1.1 preserves Student, Teacher, Answer, and Grayscale source-page composition", unchanged_role_dom)
+    results.check("v1.1 Task 6 remains on the historical role pages", all(
+        historical_master.select_one(f'.page[data-role="{role}"] .task-heading[data-task-id="6"]').find_parent(class_="page").get("data-page-id")
+        == v11_master.select_one(f'.page[data-role="{role}"] .task-heading[data-task-id="6"]').find_parent(class_="page").get("data-page-id")
+        for role in ["student", "answer", "accessible"]
+    ))
     v11_files = [(MANIFEST.parent / v11_manifest["current_validation_master"]["path"], v11_manifest["current_validation_master"]["sha256"])]
     v11_files.extend((MANIFEST.parent / output["html"]["path"], output["html"]["sha256"]) for output in v11_manifest["outputs"].values())
     v11_failures = [str(path.relative_to(REPO)) for path, expected in v11_files if sha256(path) != expected]
     results.check("Case 03 v1.1 master and five role hashes match the validation manifest", not v11_failures, v11_failures)
+    published_bank_orders = {}
+    for role in ["student", "answer", "accessible", "grayscale"]:
+        role_soup = BeautifulSoup((MANIFEST.parent / v11_manifest["outputs"][role]["html"]["path"]).read_text(encoding="utf-8"), "html.parser")
+        role_banks = role_soup.select('[data-phrase-bank-contract="sequence-v1.0"]')
+        published_bank_orders[role] = [item.get_text(" ", strip=True) for item in role_banks[0].select(".canonical-phrase-bank-item")] if len(role_banks) == 1 else []
+    results.check("Student, Accessible, and Grayscale published banks match", published_bank_orders["student"] == published_bank_orders["accessible"] == published_bank_orders["grayscale"] == expected_bank_order, published_bank_orders)
+    results.check("published Answer Key retains the same parity bank", published_bank_orders["answer"] == expected_bank_order, published_bank_orders["answer"])
     results.check("Case 03 v1.1 owner physical-print gate remains OPEN", v11_manifest["physical_print_gate"] == "OPEN" and v11_manifest["status"] == "VALIDATION_BUILD")
     deterministic = subprocess.run([sys.executable, str(MANIFEST.parent / "validation-artifacts/build_case03_v1_1.py"), "--check"], cwd=REPO, text=True, capture_output=True)
     results.check("Case 03 v1.1 extraction/build is deterministic", deterministic.returncode == 0, (deterministic.stdout + deterministic.stderr).strip())

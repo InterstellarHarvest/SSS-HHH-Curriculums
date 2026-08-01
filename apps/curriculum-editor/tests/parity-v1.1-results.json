@@ -23,13 +23,13 @@
     "total": 27
   },
   "geometryParity": {
-    "passed": 1494,
-    "total": 1494,
+    "passed": 1614,
+    "total": 1614,
     "tolerancePx": 0.25
   },
   "computedPresentationParity": {
-    "passed": 5976,
-    "total": 5976
+    "passed": 6456,
+    "total": 6456
   },
   "renderedComparison": {
     "passed": 27,
@@ -38,6 +38,10 @@
     "pixelRatioTolerance": 0.0005
   },
   "cerAtomicity": {
+    "passed": 4,
+    "total": 4
+  },
+  "phraseBankContract": {
     "passed": 4,
     "total": 4
   },
@@ -116,13 +120,13 @@
       "pageId": "student-mission-03",
       "structuralParity": true,
       "geometry": {
-        "passed": 78,
-        "total": 78,
+        "passed": 108,
+        "total": 108,
         "failures": []
       },
       "presentation": {
-        "passed": 312,
-        "total": 312,
+        "passed": 432,
+        "total": 432,
         "failures": []
       },
       "rendered": {
@@ -404,13 +408,13 @@
       "pageId": "answer-key-03",
       "structuralParity": true,
       "geometry": {
-        "passed": 66,
-        "total": 66,
+        "passed": 96,
+        "total": 96,
         "failures": []
       },
       "presentation": {
-        "passed": 264,
-        "total": 264,
+        "passed": 384,
+        "total": 384,
         "failures": []
       },
       "rendered": {
@@ -548,20 +552,20 @@
       "pageId": "accessible-mission-05",
       "structuralParity": true,
       "geometry": {
-        "passed": 60,
-        "total": 60,
+        "passed": 90,
+        "total": 90,
         "failures": []
       },
       "presentation": {
-        "passed": 240,
-        "total": 240,
+        "passed": 360,
+        "total": 360,
         "failures": []
       },
       "rendered": {
         "pass": true,
-        "changedPixels": 4,
+        "changedPixels": 24,
         "totalPixels": 861696,
-        "ratio": 4.642008318478907e-06,
+        "ratio": 2.785204991087344e-05,
         "threshold": 8,
         "tolerance": 0.0005
       }
@@ -668,20 +672,20 @@
       "pageId": "student-mission-03",
       "structuralParity": true,
       "geometry": {
-        "passed": 78,
-        "total": 78,
+        "passed": 108,
+        "total": 108,
         "failures": []
       },
       "presentation": {
-        "passed": 312,
-        "total": 312,
+        "passed": 432,
+        "total": 432,
         "failures": []
       },
       "rendered": {
         "pass": true,
-        "changedPixels": 108,
+        "changedPixels": 8,
         "totalPixels": 861696,
-        "ratio": 0.0001253342245989305,
+        "ratio": 9.284016636957814e-06,
         "threshold": 8,
         "tolerance": 0.0005
       }
@@ -714,15 +718,15 @@
   "screenshots": {
     "accessible-diff": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-diff.png",
-      "sha256": "3859b048544a0fe4cd1d4425ad975a2459ed74ce13b28a3c3cccc092081872c6"
+      "sha256": "3d5d834baa961b30c411531cdbf046fd6e07430081a57afa52e4b3150c709a6e"
     },
     "accessible-editor": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-editor.png",
-      "sha256": "09b55eb09af73544e1731ce3edca2535ed53b14457944baa4f09b0a180755892"
+      "sha256": "7886b442b431e7f35cd354ee6581ef365a0865fa724745b7bb211539a97331e5"
     },
     "accessible-master": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-master.png",
-      "sha256": "13dff234d9f113c64c367ea4a48e5c1b2d2e3d657c42c2d1c512dc1cae6e1f45"
+      "sha256": "3d4165af2884e5f0daf9232e1b65b7751922e34f77997e156cc76e0d4b664ecf"
     },
     "accessible-task7-diff": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-task7-diff.png",
@@ -742,23 +746,23 @@
     },
     "answer-editor": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/answer-editor.png",
-      "sha256": "8bfeb10f878af18671dd5833a3190d7f092148ef99dd79fdfc0a50d402390c4a"
+      "sha256": "f84c628b7f6f1597a0a7318d132dc84d4698f1896f77d25a329129f132f1bee7"
     },
     "answer-master": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/answer-master.png",
-      "sha256": "8a145557a99aca6843774ae4a4be651265b8e274190bfa16eafcdff384e1b74e"
+      "sha256": "481ffe09200929c1787fd86bd1995d7a19658f3be18ecd6095acd4c8d669de21"
     },
     "grayscale-diff": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-diff.png",
-      "sha256": "2b4cb3de65f909b46e59865a1bf3f221a377ef4c525ac6f06a0eda90a8a59082"
+      "sha256": "773a9ea7495929b4e9de83d42a6f3ae93453ba802b2fdcc828d7345368381cf7"
     },
     "grayscale-editor": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-editor.png",
-      "sha256": "bf1de6319f3c48c6acf49eaf56d669841f8cf3148c950f2a801eaedacaa503c0"
+      "sha256": "1e4328f4de9f694d57499c84fea12cfafe59078c29727b4c4dbc416aefeab342"
     },
     "grayscale-master": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-master.png",
-      "sha256": "f38db7038bbc9389a9b105d19283d9861ec6815455560e844f0ed13a75fd2e2a"
+      "sha256": "ab480f244a44cdbc28a3c634689afed5fa7ea81564b499f8120ae1b5c6575f8e"
     },
     "student-diff": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/student-diff.png",
@@ -766,11 +770,11 @@
     },
     "student-editor": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/student-editor.png",
-      "sha256": "74927ea4bd8a231f4749c2425c652429ff16ced5a60a5525fc855d77f2177e80"
+      "sha256": "7f2b99357e5c86919eb839897283cad7abd1d21c585ec06f8ecea2887cbbdafe"
     },
     "student-master": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/student-master.png",
-      "sha256": "19e44d7532c9c13255af7b88c0fef0503397f3383e477cdf71ed1696fcb7a034"
+      "sha256": "e3f2bc830670b2469272f6c1cf007a43674947af7db9e7c3e1dd494d769bb6a0"
     },
     "teacher-diff": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/teacher-diff.png",
@@ -778,11 +782,11 @@
     },
     "teacher-editor": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/teacher-editor.png",
-      "sha256": "91fcdc94fb47743f414afdb1c1098516b5668a56b6e2c6cc51a4c91117c7e316"
+      "sha256": "6cd2e912d9a83d69f2f0e81adde1b259d27827eaa4075cfb1077658d41c6a9b9"
     },
     "teacher-master": {
       "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/teacher-master.png",
-      "sha256": "dc3102bad993edfb40dd6fe78d3607fa0253559f78b2baceada83fd69bb5aac8"
+      "sha256": "b99a329e20e6aab8242f22fcd0aebb8b86671af14b32c546a9996b44713e31ff"
     }
   }
 }

@@ -124,6 +124,22 @@ function validatePackage(pkg) {
   requireFields(pkg.presentation, ["contentSha256", "caseCssSha256", "stylesheet", "stylesheetSha256", "isolation"], "Presentation package");
   requireFields(pkg.migrationSource, ["historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "builder"], "Migration source");
   if (pkg.presentation.isolation !== "shadow-dom") throw new Error(`Unsupported worksheet isolation: ${pkg.presentation.isolation}`);
+  if (pkg.phraseBank) {
+    requireFields(pkg.phraseBank, ["contract", "taskId", "sourceRole", "sourceStages", "displayOrderSourceStages", "label", "instruction", "itemCount", "roles"], "Phrase-bank contract");
+    if (pkg.phraseBank.contract !== "sequence-v1.0") throw new Error(`Unsupported phrase-bank contract: ${pkg.phraseBank.contract}`);
+    if (pkg.phraseBank.sourceStages.length !== pkg.phraseBank.itemCount || pkg.phraseBank.displayOrderSourceStages.length !== pkg.phraseBank.itemCount) {
+      throw new Error("Phrase-bank stage counts do not match itemCount.");
+    }
+    if (new Set(pkg.phraseBank.sourceStages).size !== pkg.phraseBank.itemCount || new Set(pkg.phraseBank.displayOrderSourceStages).size !== pkg.phraseBank.itemCount) {
+      throw new Error("Phrase-bank stages must be unique.");
+    }
+    if (JSON.stringify([...pkg.phraseBank.sourceStages].sort()) !== JSON.stringify([...pkg.phraseBank.displayOrderSourceStages].sort())) {
+      throw new Error("Phrase-bank display order must contain exactly the configured source stages.");
+    }
+    if (JSON.stringify(pkg.phraseBank.sourceStages) === JSON.stringify(pkg.phraseBank.displayOrderSourceStages)) {
+      throw new Error("Phrase-bank display order must differ from the answer sequence.");
+    }
+  }
 }
 
 async function sha256Text(value) {

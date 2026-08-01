@@ -53,6 +53,7 @@ SNAPSHOT_SCRIPT = """
     ["footer", "[data-publication-footer]"], ["task", ".task-heading"], ["response", "[data-response]"],
     ["figure", "figure"], ["table", "table"], ["cer", "[data-cer-contract]"],
     ["cer-row", ".canonical-cer-box"], ["process", "[data-process-contract]"],
+    ["phrase-bank", "[data-phrase-bank-contract]"], ["phrase-item", ".canonical-phrase-bank-item"],
     ["optional", "[data-optional-extension]"], ["choices", ".choice-list"]
   ];
   const geometry = {};
@@ -61,14 +62,14 @@ SNAPSHOT_SCRIPT = """
   for (const [kind, selector] of groups) {
     const nodes = selector === ":scope" ? [page] : Array.from(page.querySelectorAll(selector));
     nodes.forEach((node, index) => {
-      const identity = node.dataset.persistId || node.dataset.taskId || node.dataset.cerContract || node.dataset.processContract || node.dataset.pageId || index;
+      const identity = node.dataset.persistId || node.dataset.taskId || node.dataset.cerContract || node.dataset.processContract || node.dataset.phraseBankContract || node.dataset.pageId || index;
       const key = `${kind}:${identity}:${index}`;
       geometry[key] = relativeRect(node);
       const style = getComputedStyle(node);
       presentation[key] = Object.fromEntries(properties.map(property => [property, style[property]]));
     });
   }
-  const orderSelector = ".task-heading,[data-cer-contract],[data-process-contract],figure,table,[data-optional-extension],[data-response]";
+  const orderSelector = ".task-heading,[data-cer-contract],[data-process-contract],[data-phrase-bank-contract],figure,table,[data-optional-extension],[data-response]";
   const structure = {
     pageId: page.dataset.pageId,
     role: page.dataset.role,
@@ -79,6 +80,7 @@ SNAPSHOT_SCRIPT = """
     responses: Array.from(page.querySelectorAll("[data-response]")).map(node => [node.dataset.persistId, node.getAttribute("aria-label"), node.className]),
     cers: Array.from(page.querySelectorAll("[data-cer-contract]")).map(root => ({contract: root.dataset.cerContract, rows: Array.from(root.querySelectorAll(":scope > .canonical-cer-box")).map(row => [row.className, row.querySelector(".canonical-cer-label")?.textContent.trim(), row.querySelector("[data-response]")?.dataset.persistId || null])})),
     processes: Array.from(page.querySelectorAll("[data-process-contract]")).map(node => [node.dataset.processContract, node.querySelectorAll("[data-process-stage]").length, node.querySelectorAll("[data-process-connector]").length]),
+    phraseBanks: Array.from(page.querySelectorAll("[data-phrase-bank-contract]")).map(node => ({contract: node.dataset.phraseBankContract, task: node.dataset.phraseBankTask, children: Array.from(node.children).map(child => child.className), label: node.querySelector(":scope > .canonical-phrase-bank-label")?.textContent.trim(), instruction: node.querySelector(":scope > .canonical-phrase-bank-instruction")?.textContent.trim(), phrases: Array.from(node.querySelectorAll(":scope > .canonical-phrase-bank-items > .canonical-phrase-bank-item")).map(item => item.textContent.trim())})),
     figures: Array.from(page.querySelectorAll("figure")).map(node => [node.className, node.querySelector("figcaption")?.textContent.trim()]),
     tables: Array.from(page.querySelectorAll("table")).map(node => [node.className, node.querySelector("caption")?.textContent.trim(), node.querySelectorAll("tr").length]),
     order: Array.from(page.querySelectorAll(orderSelector)).map(node => [node.tagName, node.dataset.taskId || node.dataset.cerContract || node.dataset.processContract || node.dataset.persistId || node.className])
@@ -204,7 +206,7 @@ def run(chrome: Path) -> dict[str, Any]:
     base = f"http://127.0.0.1:{server.server_address[1]}"
     page_results: list[dict[str, Any]] = []
     structural_passed = geometry_passed = geometry_total = presentation_passed = presentation_total = rendered_passed = export_passed = 0
-    atomic_passed = atomic_total = role_artifact_passed = zero_overflow_roles = complete_export_passed = complete_export_total = 0
+    atomic_passed = atomic_total = phrase_bank_passed = phrase_bank_total = role_artifact_passed = zero_overflow_roles = complete_export_passed = complete_export_total = 0
     total_pages = sum(ROLES.values())
     try:
         with tempfile.TemporaryDirectory(prefix="case03-v11-parity-") as temporary:
@@ -251,6 +253,26 @@ def run(chrome: Path) -> dict[str, Any]:
                             row_labels = [row[1] for row in cer["rows"]]
                             contained = bool(frame_rect and cer_rect and cer_rect["x"] >= frame_rect["x"] - GEOMETRY_TOLERANCE and cer_rect["y"] >= frame_rect["y"] - GEOMETRY_TOLERANCE and cer_rect["right"] <= frame_rect["right"] + GEOMETRY_TOLERANCE and cer_rect["bottom"] <= frame_rect["bottom"] + GEOMETRY_TOLERANCE)
                             atomic_passed += int(row_labels == ["CLAIM", "EVIDENCE", "REASONING"] and contained)
+                        for bank_index, bank in enumerate(editor_snapshot["structure"]["phraseBanks"]):
+                            phrase_bank_total += 1
+                            bank_rect = editor_snapshot["geometry"].get(f'phrase-bank:{bank["contract"]}:{bank_index}')
+                            expected_phrases = [
+                                "New chlorophyll production is disrupted",
+                                "Wrong BP-4 filter installed",
+                                "New growth becomes pale or white",
+                                "Red and deep-red transmission drops",
+                            ]
+                            contained = bool(frame_rect and bank_rect and bank_rect["x"] >= frame_rect["x"] - GEOMETRY_TOLERANCE and bank_rect["y"] >= frame_rect["y"] - GEOMETRY_TOLERANCE and bank_rect["right"] <= frame_rect["right"] + GEOMETRY_TOLERANCE and bank_rect["bottom"] <= frame_rect["bottom"] + GEOMETRY_TOLERANCE)
+                            phrase_bank_passed += int(
+                                bank["task"] == "6"
+                                and bank["children"] == ["canonical-phrase-bank-label", "canonical-phrase-bank-instruction", "canonical-phrase-bank-items"]
+                                and bank["label"] == "PHRASE BANK"
+                                and bank["instruction"] == "Use each phrase once."
+                                and bank["phrases"] == expected_phrases
+                                and len(set(bank["phrases"])) == 4
+                                and any(task[0] == "6" for task in editor_snapshot["structure"]["tasks"])
+                                and contained
+                            )
                         master_image = temp / f"{role}-{index + 1}-master.png"
                         editor_image = temp / f"{role}-{index + 1}-editor.png"
                         diff_image = temp / f"{role}-{index + 1}-diff.png"
@@ -342,6 +364,7 @@ def run(chrome: Path) -> dict[str, Any]:
         and rendered_passed == total_pages
         and export_passed == len(ROLES)
         and atomic_passed == atomic_total == 4
+        and phrase_bank_passed == phrase_bank_total == 4
         and role_artifact_passed == len(ROLES)
         and zero_overflow_roles == len(ROLES)
         and complete_export_passed == complete_export_total == 23
@@ -364,6 +387,7 @@ def run(chrome: Path) -> dict[str, Any]:
         "computedPresentationParity": {"passed": presentation_passed, "total": presentation_total},
         "renderedComparison": {"passed": rendered_passed, "total": total_pages, "pixelDeltaThreshold": PIXEL_DELTA_THRESHOLD, "pixelRatioTolerance": PIXEL_RATIO_TOLERANCE},
         "cerAtomicity": {"passed": atomic_passed, "total": atomic_total},
+        "phraseBankContract": {"passed": phrase_bank_passed, "total": phrase_bank_total},
         "v1.1RoleArtifacts": {"passed": role_artifact_passed, "total": len(ROLES)},
         "zeroOverflowRoles": {"passed": zero_overflow_roles, "total": len(ROLES)},
         "currentRoleExportParity": {"passed": export_passed, "total": len(ROLES)},
@@ -382,7 +406,7 @@ def main() -> int:
         raise SystemExit(f"Chrome executable not found: {args.chrome}")
     result = run(args.chrome.resolve())
     RESULTS.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({key: result[key] for key in ["status", "structuralParity", "pageAssignmentParity", "geometryParity", "computedPresentationParity", "renderedComparison", "cerAtomicity", "v1.1RoleArtifacts", "zeroOverflowRoles", "currentRoleExportParity", "completePortableExportParity", "javascriptErrors"]}, indent=2))
+    print(json.dumps({key: result[key] for key in ["status", "structuralParity", "pageAssignmentParity", "geometryParity", "computedPresentationParity", "renderedComparison", "cerAtomicity", "phraseBankContract", "v1.1RoleArtifacts", "zeroOverflowRoles", "currentRoleExportParity", "completePortableExportParity", "javascriptErrors"]}, indent=2))
     return 0 if result["status"] == "PASS" else 1
 
 

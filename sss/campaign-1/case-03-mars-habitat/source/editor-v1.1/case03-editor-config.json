@@ -17,7 +17,7 @@
     "sss-publication-date": "2026-07-31",
     "sss-visible-production-status": "none",
     "sss-source-master": "SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
-    "sss-successor-reason": "accessible-cer-atomicity"
+    "sss-successor-reason": "accessible-cer-atomicity-and-task6-phrase-bank"
   },
   "roles": [
     "student",
@@ -126,5 +126,31 @@
       "grayscale": true,
       "filename": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html"
     }
+  },
+  "phraseBank": {
+    "contract": "sequence-v1.0",
+    "taskId": 6,
+    "sourceRole": "answer",
+    "sourceStages": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "displayOrderSourceStages": [
+      4,
+      2,
+      5,
+      3
+    ],
+    "label": "PHRASE BANK",
+    "instruction": "Use each phrase once.",
+    "itemCount": 4,
+    "roles": [
+      "student",
+      "answer",
+      "accessible",
+      "grayscale"
+    ]
   }
 }
