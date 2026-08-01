@@ -1,6 +1,6 @@
 # Curriculum Editor Legacy Workflow Inventory v1
 
-**Status:** VALIDATION BUILD · repository cleanup NOT STARTED
+**Status:** APPROVED · OWNER REVIEW PASS · repository cleanup NOT STARTED
 
 This record identifies the case-owned editor/runtime material retained after the central-editor cutover. Nothing in this inventory is deleted, rewritten, regenerated, or reclassified as an active authoring entry point during cutover.
 

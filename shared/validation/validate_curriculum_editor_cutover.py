@@ -17,7 +17,10 @@ MANIFEST_PATH = ROOT / "shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.json"
 INVENTORY_PATH = ROOT / "shared/implementation/CURRICULUM_EDITOR_LEGACY_WORKFLOW_INVENTORY_v1.json"
 REGISTRY_PATH = ROOT / "shared/implementation/case-registry.v1.json"
 LEDGER_PATH = ROOT / "shared/implementation/phase2-protected-artifacts.v1.json"
+APPROVAL_PATH = ROOT / "apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md"
+VALIDATION_RESULTS_PATH = ROOT / "apps/curriculum-editor/CUTOVER_VALIDATION_RESULTS.json"
 CUTOVER_REF = "shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.json"
+APPROVAL_REF = "apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md"
 CASE_ROOTS = (
     "sss/campaign-1/case-01-iss-greenhouse/",
     "sss/campaign-1/case-02-lunar-greenhouse/",
@@ -84,7 +87,7 @@ class Results:
         print("Protected snapshots: 7 masters and 15 current role outputs verified")
         print("Legacy workflow inventory: 44/44 retained items covered")
         print("PDF policy: 20/20 retained PDFs unchanged; 0 added, 0 removed, 0 modified")
-        print("Status: VALIDATION_BUILD · OWNER_GATE_OPEN")
+        print("Status: APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE")
         return 0
 
 
@@ -142,7 +145,11 @@ def validate_packages(results: Results, manifest_cases: list[dict[str, Any]], re
             case.get("packageStatus") == "APPROVED",
             case.get("legacyEmbeddedEditorStatus") == "DEPRECATED_COMPATIBILITY",
             case.get("approvedMasterStatus") == "APPROVED_RELEASE_SNAPSHOT",
+            case.get("cutoverStatus") == "APPROVED",
+            case.get("cutoverOwnerReview") == "OWNER_REVIEW_PASS",
+            case.get("cutoverMergeStatus") == "READY_TO_MERGE",
             case.get("cutoverManifest") == CUTOVER_REF,
+            case.get("cutoverOwnerApproval") == APPROVAL_REF,
         )), case)
         results.check(f"{case_id} manifest identity/status", all((
             cutover_case.get("version") == version,
@@ -233,7 +240,7 @@ def validate_protection(results: Results, manifest: dict[str, Any]) -> None:
 def validate_inventory(results: Results, inventory: dict[str, Any]) -> None:
     items = inventory.get("items", [])
     paths = [item.get("path", "") for item in items]
-    results.check("legacy inventory status and deletion policy", inventory.get("status") == "VALIDATION_BUILD" and inventory.get("policy") == {
+    results.check("legacy inventory status and deletion policy", inventory.get("status") == "APPROVED" and inventory.get("policy") == {
         "embeddedEditor": "DEPRECATED_COMPATIBILITY",
         "deletionDuringCutover": "PROHIBITED",
         "repositoryCleanup": "NOT_STARTED",
@@ -281,7 +288,9 @@ def validate_docs(results: Results) -> None:
         results.check(f"active documentation does not direct primary embedded workflow: {rel}", not any(phrase in lower for phrase in prohibited), [phrase for phrase in prohibited if phrase in lower])
     combined = "\n".join((ROOT / rel).read_text(encoding="utf-8") for rel in ACTIVE_DOCS)
     results.check("active documentation has exact launch command and URL", "python3 apps/curriculum-editor/serve.py" in combined and "http://127.0.0.1:8000/apps/curriculum-editor/" in combined)
-    results.check("active documentation covers both HTML downloads and browser print", all(label in combined for label in ("Download Current HTML", "Download Current Role", "Print / Save PDF")))
+    approved_actions = ("Print / Save PDF", "Download Editable Copy", "Download Worksheet", "Clear Responses", "Reset This Case")
+    results.check("active documentation covers the exact approved toolbar actions", all(label in combined for label in approved_actions))
+    results.check("active documentation omits superseded toolbar labels", all(label not in combined for label in ("Download Current HTML", "Download Current Role", "Clear Current Role", "Reset Source")))
     results.check("active documentation records version-menu and PDF accessibility rules", "Versions are not selected in the primary case menu" in combined and "separate accessibility review" in combined)
     results.check("active documentation records snapshots and compatibility-only editors", "release snapshots" in combined and "compatibility" in combined)
 
@@ -298,8 +307,9 @@ def main() -> int:
     manifest = load_json(MANIFEST_PATH)
     inventory = load_json(INVENTORY_PATH)
     registry = load_json(REGISTRY_PATH)
-    results.check("cutover manifest version/status/gate", manifest.get("schemaVersion") == 1 and manifest.get("cutoverVersion") == "1.0" and manifest.get("status") == "VALIDATION_BUILD" and manifest.get("ownerGate") == "OWNER_GATE_OPEN")
-    results.check("cutover acceptance commits", manifest.get("acceptance", {}).get("phase1Commit") == "7b5b724b4941a7ad926fe1b0d644f6905ff55067" and manifest.get("acceptance", {}).get("phase2Commit") == BASELINE)
+    results.check("cutover manifest version/status/gate", manifest.get("schemaVersion") == 1 and manifest.get("cutoverVersion") == "1.0" and manifest.get("status") == "APPROVED" and manifest.get("ownerGate") == "OWNER_REVIEW_PASS" and manifest.get("mergeStatus") == "READY_TO_MERGE")
+    acceptance = manifest.get("acceptance", {})
+    results.check("cutover acceptance commits", acceptance.get("phase1Commit") == "7b5b724b4941a7ad926fe1b0d644f6905ff55067" and acceptance.get("phase2Commit") == BASELINE and acceptance.get("cutoverImplementationCommit") == "5afda8d78e22e433bbb1e20faab88b4bee882275" and acceptance.get("cutoverOwnerApproval") == APPROVAL_REF)
     results.check("cutover launch path", manifest.get("application", {}) == {
         "path": "apps/curriculum-editor/",
         "launchCommand": "python3 apps/curriculum-editor/serve.py",
@@ -317,7 +327,28 @@ def main() -> int:
     validate_protection(results, manifest)
     validate_inventory(results, inventory)
     validate_docs(results)
-    results.check("owner checklist exists and gate remains open", (ROOT / manifest.get("ownerReviewChecklist", "")).is_file() and manifest.get("ownerGate") == "OWNER_GATE_OPEN")
+    approval = manifest.get("ownerApproval", {})
+    results.check("machine-readable owner approval is exact", approval == {
+        "date": "2026-08-01",
+        "tester": "Nate / Owner",
+        "documentedLaunchPath": "PASS",
+        "cases01Through03CentralLoading": "PASS",
+        "activeDocumentationConsistency": "PASS",
+        "canonicalCentralWorkflow": "PASS",
+        "approvedReleaseSnapshotRetention": "PASS",
+        "deprecatedCompatibilityClassification": "PASS",
+        "noPrematureDeletion": "PASS",
+        "repositoryCleanup": "NOT_STARTED",
+        "case04": "NOT_STARTED",
+        "record": APPROVAL_REF,
+    }, approval)
+    checklist_path = ROOT / manifest.get("ownerReviewChecklist", "")
+    checklist = checklist_path.read_text(encoding="utf-8") if checklist_path.is_file() else ""
+    results.check("owner checklist records approved closed gate", checklist_path.is_file() and "**Cutover status:** APPROVED" in checklist and "**Owner gate:** OWNER REVIEW PASS" in checklist and "**Merge status:** READY TO MERGE" in checklist and "- [x] PASS" in checklist)
+    approval_text = APPROVAL_PATH.read_text(encoding="utf-8") if APPROVAL_PATH.is_file() else ""
+    results.check("additive owner approval record is complete", manifest.get("ownerApprovalRecord") == APPROVAL_REF and APPROVAL_PATH.is_file() and all(token in approval_text for token in ("2026-08-01", "Nate / Owner", "APPROVED", "OWNER REVIEW PASS", "READY TO MERGE", "Repository cleanup: NOT_STARTED", "Case 04: NOT_STARTED")))
+    validation_results = load_json(VALIDATION_RESULTS_PATH) if VALIDATION_RESULTS_PATH.is_file() else {}
+    results.check("machine-readable cutover validation results are approved", manifest.get("validationResults") == "apps/curriculum-editor/CUTOVER_VALIDATION_RESULTS.json" and validation_results.get("status") == "PASS" and validation_results.get("cutoverStatus") == "APPROVED" and validation_results.get("ownerReview") == "OWNER_REVIEW_PASS" and validation_results.get("mergeStatus") == "READY_TO_MERGE")
     return results.finish()
 
 

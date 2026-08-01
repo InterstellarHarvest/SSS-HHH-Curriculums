@@ -1,4 +1,4 @@
-# SSS/HHH Curriculum Editor — canonical workflow validation build
+# SSS/HHH Curriculum Editor — approved canonical workflow
 
 This repository-local browser application loads the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 packages. It does not open, iframe, rewrite, or execute a complete approved master. Worksheet-only DOM and exact presentation stylesheets are generated deterministically from their authorized goldens and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
 
@@ -6,7 +6,7 @@ This repository-local browser application loads the current Case 01 v1.1, Case 0
 
 Cases 01, 02, and 03 are accepted in the central editor. The current maintained Case 01 v1.1 and Case 02 v1.0 HTML presentations, exact Phase 2 parity, browser print previews, and physical printing passed owner review on 2026-08-01 at 100% / Actual Size.
 
-The central editor is now the canonical active authoring and customization interface for these current releases. Their registered packages are the canonical active editable production sources. Approved standalone masters and role HTML remain immutable release snapshots; embedded case-owned editors are deprecated compatibility implementations and are not the active workflow. Cutover status remains **VALIDATION BUILD · OWNER GATE OPEN** until the cutover owner checklist is completed.
+The central editor is now the approved canonical active authoring and customization interface for these current releases. Their registered packages are the canonical active editable production sources. Approved standalone masters and role HTML remain immutable release snapshots; embedded case-owned editors are deprecated compatibility implementations and are not the active workflow. Cutover status is **APPROVED · OWNER REVIEW PASS · READY TO MERGE**.
 
 ## Launch
 
@@ -25,8 +25,9 @@ The server is required. `file://` is not a supported production path because the
 1. Choose the current Case 01, Case 02, or Case 03 package, then choose a role in the library rail. The exact primary case labels are `1 - ISS Greenhouse`, `2 - Lunar Greenhouse`, and `3 - Mars Habitat`. The rail contains only Student, Teacher, Answer Key, and Accessible; versions are not selected in the primary case menu and historical versions are not exposed.
 2. Use **Fill responses** for response fields or **Edit text** for explicitly marked instructional nodes.
 3. Changes autosave to local browser storage under the package's curriculum/campaign/case/version document key. Selected case, role, edits, and responses remain isolated while switching.
-4. Use **Download Current HTML** for a self-contained editable worksheet containing every role.
-5. Use **Download Current Role** for a self-contained file containing only the selected role.
+4. Use the actions in this order: **Print / Save PDF**, **Download Editable Copy**, **Download Worksheet**, **Clear Responses**, and **Reset This Case**.
+5. **Download Editable Copy** creates a self-contained portable editable HTML document containing every role, the editing toolbar, current instructional edits, current responses, current display settings, role switching, and local editing and printing capabilities.
+6. **Download Worksheet** creates a clean self-contained HTML worksheet containing only the selected role, its current responses and instructional edits, and the selected Grayscale state when applicable. It contains no editing toolbar, role selector, application chrome, or authoring controls.
 
 The **Page shadow** toggle is on by default and changes only the screen-only shadow used to separate worksheet pages visually. It does not change page geometry, margins, printable area, guides, page-fit detection, or export pagination, and shadows never print. Page-fit status reads **Pages fit**, **1 page too full**, or **N pages too full**. A page is too full when content extends beyond its printable page area.
 
@@ -34,7 +35,7 @@ Grayscale is a toolbar presentation modifier, not a library role. It remains on 
 
 The central toolbar omits the duplicate Role selector because the library rail is authoritative. A complete portable HTML export restores the shared-shell Role selector because that file has no library rail.
 
-**Clear Current Role** removes response and note fields only from the selected source role. **Reset Source** clears the package autosave, restores package content, and restores toolbar defaults. In a downloaded complete HTML file, Reset Source preserves the instructional edits embedded in that file and clears response recovery work, matching shared-shell v1.0 behavior.
+**Clear Responses** removes response and note fields only from the selected source role; it does not remove instructional edits or affect other roles or cases. **Reset This Case** restores only the loaded case/version to its approved package defaults and removes that case/version's locally saved responses, instructional edits, display settings, and role selection. It does not affect another case/version, unrelated browser storage, the curriculum library, or repository files. In a downloaded complete HTML file, Reset This Case preserves the instructional edits embedded in that file and clears response recovery work, matching shared-shell v1.0 behavior.
 
 ## Portable output and printing
 
@@ -95,7 +96,7 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 - Case 01/02 owner review, browser print-preview review, physical-print review, and exact migration parity passed on 2026-08-01. Browser, printer/copier, and paper were not recorded.
 - Embedded case-owned editors remain present as deprecated compatibility implementations. Removing them is not authorized. Repository cleanup, Case 04, and HHH production have not started.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.
-- Cutover is a validation build with the owner gate open; complete `CUTOVER_OWNER_REVIEW_CHECKLIST.md` before recording acceptance.
+- Cutover is `APPROVED` with `OWNER_REVIEW_PASS` and `READY_TO_MERGE`; see `CUTOVER_OWNER_APPROVAL.md`. Repository cleanup and Case 04 remain `NOT_STARTED`.
 
 See [CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md](../../shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md) for the contract, load sequence, accessibility model, validation coverage, and cutover boundary.
 

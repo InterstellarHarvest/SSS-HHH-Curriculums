@@ -12,7 +12,7 @@ For current SSS Campaign 1 Cases 01–03, the registered package loaded by the c
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Versions are not selected in the primary case menu. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for a clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review before distribution, publication, or archival use.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Versions are not selected in the primary case menu. Use the exact action order **Print / Save PDF**, **Download Editable Copy**, **Download Worksheet**, **Clear Responses**, and **Reset This Case**. Download Editable Copy produces the portable all-role editable document with its toolbar and current changes. Download Worksheet produces only the selected role as clean HTML without editing controls. Browser-created PDFs require separate accessibility review before distribution, publication, or archival use.
 
 Approved standalone masters and role files are immutable release snapshots. Their embedded case-owned editors are retained only as deprecated compatibility/provenance implementations; do not open those snapshots as the active customization workflow and do not strip their runtime.
 

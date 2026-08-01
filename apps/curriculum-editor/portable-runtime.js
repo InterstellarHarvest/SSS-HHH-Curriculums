@@ -147,7 +147,7 @@
       if (!force) alert("Choose one role before clearing responses.");
       return false;
     }
-    if (!force && !confirm("Clear responses for the current role only?")) return false;
+    if (!force && !confirm("Clear all responses in the current role?")) return false;
     for (const node of $$(`.page[data-role="${sourceRole()}"] [data-response]`)) {
       if (node.matches("input,textarea,select")) node.value = "";
       else node.innerHTML = "";
@@ -160,7 +160,7 @@
   }
 
   function resetSource(force = false) {
-    if (!force && !confirm("Reset local edits, responses, and settings to this file's embedded source?")) return false;
+    if (!force && !confirm("Reset this case to its approved defaults?\n\nThis will remove all locally saved responses, instructional edits, and display settings for this case.")) return false;
     for (const node of $$("[data-persist-id]")) {
       const saved = baseline.get(node.dataset.persistId);
       if (!saved) continue;

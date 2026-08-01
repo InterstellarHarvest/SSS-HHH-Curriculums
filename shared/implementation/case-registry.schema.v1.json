@@ -36,7 +36,7 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "artifactPolicy", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "legacyEmbeddedEditorStatus", "approvedMasterStatus", "cutoverManifest", "master", "currentMasterSha256", "roles", "currentRoleSha256"],
+                    "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "artifactPolicy", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "legacyEmbeddedEditorStatus", "approvedMasterStatus", "cutoverStatus", "cutoverOwnerReview", "cutoverMergeStatus", "cutoverManifest", "cutoverOwnerApproval", "master", "currentMasterSha256", "roles", "currentRoleSha256"],
                     "properties": {
                       "id": { "type": "string", "minLength": 1 },
                       "displayOrder": { "type": "integer", "minimum": 1 },
@@ -53,7 +53,11 @@
                       "packageStatus": { "const": "APPROVED" },
                       "legacyEmbeddedEditorStatus": { "const": "DEPRECATED_COMPATIBILITY" },
                       "approvedMasterStatus": { "const": "APPROVED_RELEASE_SNAPSHOT" },
+                      "cutoverStatus": { "const": "APPROVED" },
+                      "cutoverOwnerReview": { "const": "OWNER_REVIEW_PASS" },
+                      "cutoverMergeStatus": { "const": "READY_TO_MERGE" },
                       "cutoverManifest": { "const": "shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.json" },
+                      "cutoverOwnerApproval": { "const": "apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md" },
                       "master": { "type": "string", "minLength": 1 },
                       "htmlMaintenanceRevision": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
                       "reconciliationRecord": { "type": "string", "minLength": 1 },

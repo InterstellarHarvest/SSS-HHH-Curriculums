@@ -10,7 +10,7 @@ Use the central Curriculum Editor, not the embedded editor in a standalone maste
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `1 - ISS Greenhouse`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `1 - ISS Greenhouse`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Print / Save PDF**, **Download Editable Copy** for the portable all-role editable document, **Download Worksheet** for clean selected-role HTML without editing controls, **Clear Responses**, and **Reset This Case**, in that order. Browser-created PDFs require separate accessibility review.
 
 The v1.1 standalone master and role HTML files remain immutable approved release snapshots. Their embedded runtime is deprecated compatibility only; it is retained byte-identical for approval evidence and parity.
 
@@ -20,7 +20,7 @@ The v1.1 standalone master and role HTML files remain immutable approved release
 
 - **Curriculum version:** v1.1 (current release)
 - **HTML maintenance revision:** 2026-07-31
-- **Cutover status:** central workflow CANONICAL · VALIDATION BUILD · OWNER GATE OPEN
+- **Cutover status:** central workflow CANONICAL · APPROVED · OWNER REVIEW PASS · READY TO MERGE
 - **Physical-print gate for maintained HTML:** PASS (2026-08-01, 100% / Actual Size)
 - **Status:** APPROVED
 - **Game baseline:** `2a6e8a7`

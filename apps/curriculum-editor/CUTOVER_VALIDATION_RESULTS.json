@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "validationDate": "2026-08-01",
+  "status": "PASS",
+  "cutoverStatus": "APPROVED",
+  "ownerReview": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
+  "tester": "Nate / Owner",
+  "acceptedImplementationCommit": "5afda8d78e22e433bbb1e20faab88b4bee882275",
+  "suites": {
+    "cutoverValidator": { "status": "PASS", "passed": 215, "total": 215 },
+    "phase1Static": { "status": "PASS", "passed": 103, "total": 103 },
+    "phase2Static": { "status": "PASS", "passed": 74, "total": 74 },
+    "reconciliation": { "status": "PASS", "passed": 133, "total": 133 },
+    "protectedInventory": { "status": "PASS", "passed": 117, "total": 117 },
+    "deterministicExtraction": { "status": "PASS", "passed": 10, "total": 10 },
+    "browserCrossCase": { "status": "PASS", "passed": 283, "total": 283 },
+    "printProfileDom": { "status": "PASS", "passed": 15, "total": 15 }
+  },
+  "parity": {
+    "case01": {
+      "status": "PASS",
+      "pages": { "passed": 22, "total": 22 },
+      "geometry": { "passed": 1758, "total": 1758 },
+      "computedPresentation": { "passed": 6988, "total": 6988 },
+      "renderedComparison": { "passed": 22, "total": 22 },
+      "componentIntegrity": { "passed": 219, "total": 219 },
+      "roleArtifacts": { "passed": 5, "total": 5 },
+      "currentRoleExports": { "passed": 5, "total": 5 },
+      "completePortableExport": { "passed": 19, "total": 19 }
+    },
+    "case02": {
+      "status": "PASS",
+      "pages": { "passed": 21, "total": 21 },
+      "geometry": { "passed": 1800, "total": 1800 },
+      "computedPresentation": { "passed": 7158, "total": 7158 },
+      "renderedComparison": { "passed": 21, "total": 21 },
+      "componentIntegrity": { "passed": 224, "total": 224 },
+      "roleArtifacts": { "passed": 5, "total": 5 },
+      "currentRoleExports": { "passed": 5, "total": 5 },
+      "completePortableExport": { "passed": 18, "total": 18 }
+    },
+    "case03": {
+      "status": "PASS",
+      "pages": { "passed": 27, "total": 27 },
+      "geometry": { "passed": 1614, "total": 1614 },
+      "computedPresentation": { "passed": 6456, "total": 6456 },
+      "renderedComparison": { "passed": 27, "total": 27 },
+      "cerAtomicity": { "passed": 4, "total": 4 },
+      "phraseBankContract": { "passed": 4, "total": 4 },
+      "roleArtifacts": { "passed": 5, "total": 5 },
+      "currentRoleExports": { "passed": 5, "total": 5 },
+      "completePortableExport": { "passed": 23, "total": 23 }
+    }
+  },
+  "javascriptErrors": 0,
+  "protectedArtifacts": {
+    "status": "PASS",
+    "masters": { "unchanged": 7, "total": 7 },
+    "currentRoleHtml": { "unchanged": 15, "total": 15 },
+    "protectedInventoryAssertions": { "passed": 117, "total": 117 }
+  },
+  "pdfProtection": {
+    "status": "PASS",
+    "unchanged": 20,
+    "total": 20,
+    "added": 0,
+    "removed": 0,
+    "modified": 0
+  },
+  "fileDeletions": 0,
+  "repositoryCleanup": "NOT_STARTED",
+  "case04": "NOT_STARTED",
+  "branchDisposition": "READY_FOR_FAST_FORWARD_MERGE"
+}

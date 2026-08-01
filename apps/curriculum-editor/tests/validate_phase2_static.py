@@ -131,10 +131,19 @@ def main() -> int:
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable_runtime = (APP / "portable-runtime.js").read_text(encoding="utf-8")
     app_css = (APP / "editor-app.css").read_text(encoding="utf-8")
+    toolbar_source = (REPO / "shared/implementation/editor-shell/v1.0/toolbar.html").read_text(encoding="utf-8")
     results.check("central runtime has no Case 01/02 branches", "SSS-C1-CASE01" not in runtime and "SSS-C1-CASE02" not in runtime)
     results.check("selected-case, state, and content keys are case/version namespaced", "curriculum-editor:selected-case:v1" in runtime and "casePackage.documentKey" in runtime and "stateKey" in runtime and "contentKey" in runtime)
     results.check("case switching replaces isolated worksheet content and styles", "worksheetShadow.replaceChildren(style, worksheetDocument)" in runtime and "data-case-package-font" in runtime)
     results.check("central toolbar exposes Page shadow and exact accessible descriptions", 'document.createTextNode(" Page shadow")' in runtime and "Adds a screen-only shadow around each worksheet page for visual separation." in runtime and "A page is too full when content extends beyond its printable page area." in runtime)
+    approved_actions = ["Print / Save PDF", "Download Editable Copy", "Download Worksheet", "Clear Responses", "Reset This Case"]
+    transformed_actions = approved_actions[1:]
+    old_actions = ["Download Current HTML", "Download Current Role", "Clear Current Role", "Reset Source"]
+    results.check("central runtime defines exact approved toolbar labels in action order", approved_actions[0] in toolbar_source and all(label in runtime for label in transformed_actions) and all(runtime.index(transformed_actions[index]) < runtime.index(transformed_actions[index + 1]) for index in range(len(transformed_actions) - 1)))
+    results.check("central and portable runtimes omit old visible action labels", all(label not in runtime and label not in portable_runtime for label in old_actions))
+    results.check("download actions define exact accessible descriptions", all(description in runtime for description in ["Downloads all roles with the editing toolbar and current changes.", "Downloads only the selected role as a clean HTML worksheet without editing controls."]))
+    results.check("clear and reset confirmations use exact owner-approved text", all(text in runtime and text in portable_runtime for text in ["Clear all responses in the current role?", "Reset this case to its approved defaults?\\n\\nThis will remove all locally saved responses, instructional edits, and display settings for this case."]))
+    results.check("toolbar action labels cannot wrap internally", '#editorToolbarHost .toolbar button { white-space: nowrap; }' in app_css)
     results.check("page-fit wording covers zero, singular, and plural without changing detection tolerance", all(text in runtime and text in portable_runtime for text in ["Pages fit", "1 page too full", "pages too full"]) and "+ 2" in runtime and "+ 2" in portable_runtime)
     results.check("central and portable print paths use isolated role iframes rather than parent-window print", "preparePrintFrame" in runtime and "preparePrintFrame" in portable_runtime and "frame.contentWindow" in runtime and "printWindow.print()" in runtime and "printWindow.print()" in portable_runtime and "window.print()" not in runtime and "window.print()" not in portable_runtime)
     results.check("isolated printing waits for document load, fonts, and images", all(token in runtime and token in portable_runtime for token in ['addEventListener("load"', ".fonts?.ready", "waitForPrintImage", "image.decode"]))

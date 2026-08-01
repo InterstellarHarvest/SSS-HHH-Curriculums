@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-**Status:** Cases 01/02/03 central workflow CANONICAL · cutover VALIDATION BUILD · OWNER GATE OPEN
+**Status:** Cases 01/02/03 central workflow CANONICAL · cutover APPROVED · OWNER REVIEW PASS · READY TO MERGE
 
 **Application:** `apps/curriculum-editor/`
 
@@ -12,7 +12,7 @@
 
 The central application owns the library rail, toolbar orchestration, editing state, autosave, page-fit reporting, presentation isolation, isolated role printing, and export assembly. The shared shell remains the canonical source for toolbar markup, CER geometry, common components, icons, and established control behavior. The case package owns the hash-verified worksheet-only DOM and presentation CSS, task definitions, metadata, assets, roles, page counts, and filenames.
 
-For the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 releases, this boundary is the canonical active authoring/customization workflow. Launch with `python3 apps/curriculum-editor/serve.py` and open <http://127.0.0.1:8000/apps/curriculum-editor/>. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. A browser-created PDF requires separate accessibility review.
+For the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 releases, this boundary is the canonical active authoring/customization workflow. Launch with `python3 apps/curriculum-editor/serve.py` and open <http://127.0.0.1:8000/apps/curriculum-editor/>. The visible action order is **Print / Save PDF**, **Download Editable Copy**, **Download Worksheet**, **Clear Responses**, and **Reset This Case**. Download Editable Copy produces a portable all-role editable document with its toolbar and current changes; Download Worksheet produces only the selected role without editing controls. A browser-created PDF requires separate accessibility review.
 
 ```text
 case-registry.v1.json
@@ -81,8 +81,8 @@ One state object controls role, four independent margins, density, edit/fill mod
 - Input saves by stable `data-persist-id` under `curriculum-editor:<documentKey>:content`.
 - State saves under `curriculum-editor:<documentKey>:state`.
 - Role switching does not reconstruct pages or change the Grayscale modifier. Student and Accessible response IDs remain independent; Teacher/Answer instructional boundaries remain isolated by page role.
-- Clear Current Role requires confirmation in normal use and removes only selected-role response/note nodes.
-- Reset Source requires confirmation in normal use, restores the in-memory package baseline, deletes both recovery keys, and reapplies package defaults.
+- Clear Responses requires confirmation in normal use and removes only selected-role response/note nodes.
+- Reset This Case requires explicit confirmation in normal use, restores the in-memory package baseline for the loaded case/version, deletes that case/version's recovery keys, and reapplies package defaults without affecting other browser storage.
 
 Local storage is explicitly recovery state. It is not the canonical customized document.
 
@@ -97,7 +97,7 @@ Complete serialization clones the live worksheet, copies current values, removes
 - toolbar markup and current state;
 - a standalone portable runtime and package/output configuration.
 
-The exported file receives a derived document key, so it cannot collide with the central app or another export. In a fresh context, the embedded DOM supplies its instructional Reset Source baseline. Responses open with their embedded values but are cleared by Reset Source, matching shared-shell v1.0 behavior.
+The exported file receives a derived document key, so it cannot collide with the central app or another export. In a fresh context, the embedded DOM supplies its instructional Reset This Case baseline. Responses open with their embedded values but are cleared by Reset This Case, matching shared-shell v1.0 behavior.
 
 Selected-role serialization filters the clone to that role's source pages, applies the current Grayscale modifier, and omits the toolbar, library rail, and central statuses. Student plus Grayscale uses the canonical Grayscale Mission filename; another grayscale-presented role retains its own filename and document identity. The file retains inline print CSS and the portable runtime, so response editing/recovery and browser printing work without repository files or preexisting storage.
 
@@ -135,7 +135,7 @@ The protected ledger covers masters, current role HTML, controlled sources/asset
 
 - Nate / Owner accepted the central editor and Case 03 v1.1 proof package in Phase 1. Its package, tests, and approved artifacts remain unchanged except for generic backward-compatible multi-case application/schema support.
 - Case 01 v1.1 and Case 02 v1.0 are discoverable exact migration packages. Their current maintained HTML bytes and central-editor representations passed owner review, browser print-preview review, physical printing, and exact Phase 2 parity on 2026-08-01 at 100% / Actual Size. Their earlier physically print-approved bytes/PDFs remain historical evidence.
-- Cases 01, 02, and 03 are accepted in the central editor. The central workflow is `CANONICAL`, each current package is `CANONICAL_ACTIVE_SOURCE`, and each approved standalone master is an `APPROVED_RELEASE_SNAPSHOT`. Cutover remains `VALIDATION_BUILD` with `OWNER_GATE_OPEN` until its checklist is completed.
+- Cases 01, 02, and 03 are accepted in the central editor. The central workflow is `CANONICAL`, each current package is `CANONICAL_ACTIVE_SOURCE`, and each approved standalone master is an `APPROVED_RELEASE_SNAPSHOT`. Cutover is `APPROVED` with `OWNER_REVIEW_PASS` and `READY_TO_MERGE`.
 - There is no historical-version browser. Curriculum/campaign selectors remain disabled while only one value exists; the three-value case selector is enabled.
 - Recovery state is local to a browser origin/profile, is isolated by curriculum/campaign/case/version, and does not synchronize.
 - Trusted repository packages may supply HTML fragments and CSS. The app is not a sandbox for untrusted curriculum packages.

@@ -29,13 +29,13 @@ For active customization of SSS Campaign 1 Cases 01–03, use the canonical cent
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Select the current case in the primary case menu; versions are not selected there. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Select the current case in the primary case menu; versions are not selected there. The action order is **Print / Save PDF**, **Download Editable Copy**, **Download Worksheet**, **Clear Responses**, and **Reset This Case**. Download Editable Copy produces the portable all-role editable HTML with its toolbar and current changes. Download Worksheet produces only the selected role as clean HTML without editing controls.
 
 The registered current case package is the canonical active editable production source. New cases and future revisions use package-controlled content, task definitions, assets, and presentation sources with `shared/implementation/editor-shell/v1.0/`, then validate and publish through the central editor. Approved standalone masters and role HTML files are immutable release snapshots. Their embedded editors remain present only for compatibility and provenance; do not use them as the active customization workflow.
 
 Approved historical PDFs remain unchanged retained artifacts. Routine repository production does not create PDFs. A PDF created through the browser requires separate accessibility review before distribution, publication, or archival use.
 
-The cutover record is `shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.md`. Repository cleanup and Case 04 are separate phases and have not started.
+The approved cutover record is `shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.md`; owner approval is recorded in `apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md`. Repository cleanup and Case 04 are separate phases and remain `NOT_STARTED`.
 
 ## Historical artifacts
 

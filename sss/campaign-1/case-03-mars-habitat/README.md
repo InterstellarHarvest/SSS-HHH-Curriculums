@@ -8,7 +8,7 @@ Use the central Curriculum Editor, not the embedded editor in a standalone maste
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `3 - Mars Habitat`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `3 - Mars Habitat`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Print / Save PDF**, **Download Editable Copy** for the portable all-role editable document, **Download Worksheet** for clean selected-role HTML without editing controls, **Clear Responses**, and **Reset This Case**, in that order. Browser-created PDFs require separate accessibility review.
 
 The v1.0 and v1.1 standalone masters and role HTML files remain immutable approved release snapshots. Their embedded runtimes are deprecated compatibility only and remain byte-identical.
 

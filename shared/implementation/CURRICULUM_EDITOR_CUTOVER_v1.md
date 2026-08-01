@@ -1,6 +1,6 @@
 # Curriculum Editor Cutover v1
 
-**Status:** VALIDATION BUILD · OWNER GATE OPEN
+**Status:** APPROVED · OWNER REVIEW PASS · READY TO MERGE
 
 **Effective cases:** SSS-C1-CASE01 v1.1 · SSS-C1-CASE02 v1.0 · SSS-C1-CASE03 v1.1
 
@@ -12,7 +12,7 @@ The central Curriculum Editor is the canonical active authoring and customizatio
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/>. The canonical flow is the central editor plus shared shell v1.0 plus the registered current approved package, producing a customized portable complete HTML or customized current-role HTML and clean isolated-role browser printing.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. The canonical flow is the central editor plus shared shell v1.0 plus the registered current approved package. Its exact visible action order is **Print / Save PDF**, **Download Editable Copy**, **Download Worksheet**, **Clear Responses**, and **Reset This Case**. Download Editable Copy produces a portable all-role editable HTML document with its toolbar and current changes. Download Worksheet produces only the selected role as clean HTML without editing controls.
 
 The registered package is `CANONICAL_ACTIVE_SOURCE`. Current approved standalone masters and role HTML files are immutable `APPROVED_RELEASE_SNAPSHOT` artifacts. Their embedded editors are `DEPRECATED_COMPATIBILITY`: they remain available for release fidelity, provenance, and validation, but active documentation does not direct users to customize through them.
 
@@ -46,6 +46,8 @@ For a new case or future approved revision:
 
 This rule is prospective. It does not rewrite the package or release history of Cases 01–03.
 
-## Evidence and gate
+## Evidence and approval
 
-The Phase 1 and Phase 2 acceptance records remain governing evidence. The cutover validator is `shared/validation/validate_curriculum_editor_cutover.py`; the retained-runtime inventory is `shared/implementation/CURRICULUM_EDITOR_LEGACY_WORKFLOW_INVENTORY_v1.json`. Owner acceptance is intentionally not recorded here: the checklist at `apps/curriculum-editor/CUTOVER_OWNER_REVIEW_CHECKLIST.md` must be completed first.
+The Phase 1 and Phase 2 acceptance records remain governing evidence. Nate / Owner approved the cutover on 2026-08-01 after the documented launch path, Cases 01–03 central loading, active documentation consistency, canonical workflow, release-snapshot retention, deprecated compatibility classification, and no-premature-deletion checks passed. The approval record is `apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md`, the completed checklist is `apps/curriculum-editor/CUTOVER_OWNER_REVIEW_CHECKLIST.md`, and machine-readable results are in `apps/curriculum-editor/CUTOVER_VALIDATION_RESULTS.json`.
+
+The cutover validator is `shared/validation/validate_curriculum_editor_cutover.py`; the retained-runtime inventory is `shared/implementation/CURRICULUM_EDITOR_LEGACY_WORKFLOW_INVENTORY_v1.json`. Repository cleanup and Case 04 remain `NOT_STARTED`. This branch is ready for fast-forward merge, but the approval does not itself merge it.

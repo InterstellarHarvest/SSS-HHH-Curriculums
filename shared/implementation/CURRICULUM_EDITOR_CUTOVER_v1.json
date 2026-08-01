@@ -1,15 +1,32 @@
 {
   "schemaVersion": 1,
   "cutoverVersion": "1.0",
-  "status": "VALIDATION_BUILD",
-  "ownerGate": "OWNER_GATE_OPEN",
+  "status": "APPROVED",
+  "ownerGate": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
   "effectiveDate": "2026-08-01",
   "baselineCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
   "acceptance": {
     "phase1Commit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
     "phase1Record": "apps/curriculum-editor/PHASE1_ACCEPTANCE.md",
     "phase2Commit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
-    "phase2OwnerApproval": "apps/curriculum-editor/PHASE2_OWNER_APPROVAL.md"
+    "phase2OwnerApproval": "apps/curriculum-editor/PHASE2_OWNER_APPROVAL.md",
+    "cutoverImplementationCommit": "5afda8d78e22e433bbb1e20faab88b4bee882275",
+    "cutoverOwnerApproval": "apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md"
+  },
+  "ownerApproval": {
+    "date": "2026-08-01",
+    "tester": "Nate / Owner",
+    "documentedLaunchPath": "PASS",
+    "cases01Through03CentralLoading": "PASS",
+    "activeDocumentationConsistency": "PASS",
+    "canonicalCentralWorkflow": "PASS",
+    "approvedReleaseSnapshotRetention": "PASS",
+    "deprecatedCompatibilityClassification": "PASS",
+    "noPrematureDeletion": "PASS",
+    "repositoryCleanup": "NOT_STARTED",
+    "case04": "NOT_STARTED",
+    "record": "apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md"
   },
   "application": {
     "path": "apps/curriculum-editor/",
@@ -134,5 +151,7 @@
   ],
   "legacyWorkflowInventory": "shared/implementation/CURRICULUM_EDITOR_LEGACY_WORKFLOW_INVENTORY_v1.json",
   "ownerReviewChecklist": "apps/curriculum-editor/CUTOVER_OWNER_REVIEW_CHECKLIST.md",
+  "ownerApprovalRecord": "apps/curriculum-editor/CUTOVER_OWNER_APPROVAL.md",
+  "validationResults": "apps/curriculum-editor/CUTOVER_VALIDATION_RESULTS.json",
   "validator": "shared/validation/validate_curriculum_editor_cutover.py"
 }

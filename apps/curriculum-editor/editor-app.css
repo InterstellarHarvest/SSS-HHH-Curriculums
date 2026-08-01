@@ -87,6 +87,7 @@ body {
 #editorToolbarHost .toolbar input[type="number"] { width: 58px; }
 #editorToolbarHost .toolbar input[type="checkbox"] { width: auto; }
 #editorToolbarHost .toolbar button { cursor: pointer; }
+#editorToolbarHost .toolbar button { white-space: nowrap; }
 #editorToolbarHost .toolbar button:hover { background: #e6f0f0; }
 #editorToolbarHost .toolbar .danger { border-color: #d5a4a4; }
 #editorToolbarHost .toolbar-status {

@@ -329,11 +329,27 @@ function installToolbar(toolbarText) {
   const toolbar = template.content.querySelector(".toolbar");
   if (!toolbar) throw new Error("Shared shell toolbar is missing.");
   const download = toolbar.querySelector("#downloadButton");
+  download.textContent = "Download Editable Copy";
+  download.setAttribute("aria-describedby", "downloadEditableDescription");
   const roleDownload = document.createElement("button");
   roleDownload.id = "downloadRoleButton";
   roleDownload.type = "button";
-  roleDownload.textContent = "Download Current Role";
+  roleDownload.textContent = "Download Worksheet";
+  roleDownload.setAttribute("aria-describedby", "downloadWorksheetDescription");
   download.after(roleDownload);
+  const clear = toolbar.querySelector("#clearButton");
+  clear.textContent = "Clear Responses";
+  const reset = toolbar.querySelector("#resetButton");
+  reset.textContent = "Reset This Case";
+  const downloadEditableDescription = document.createElement("span");
+  downloadEditableDescription.id = "downloadEditableDescription";
+  downloadEditableDescription.className = "visually-hidden toolbar-description";
+  downloadEditableDescription.textContent = "Downloads all roles with the editing toolbar and current changes.";
+  const downloadWorksheetDescription = document.createElement("span");
+  downloadWorksheetDescription.id = "downloadWorksheetDescription";
+  downloadWorksheetDescription.className = "visually-hidden toolbar-description";
+  downloadWorksheetDescription.textContent = "Downloads only the selected role as a clean HTML worksheet without editing controls.";
+  download.closest(".toolbar-group").append(downloadEditableDescription, downloadWorksheetDescription);
   const boundaryControl = toolbar.querySelector("#boundaryControl");
   const boundaryLabel = boundaryControl.closest("label");
   boundaryLabel.replaceChildren(boundaryControl, document.createTextNode(" Page shadow"));
@@ -593,7 +609,7 @@ function clearCurrentRole(force = false) {
     if (!force) alert("Choose one role before clearing responses.");
     return false;
   }
-  if (!force && !confirm("Clear responses for the current role only?")) return false;
+  if (!force && !confirm("Clear all responses in the current role?")) return false;
   const role = sourceRole();
   for (const node of $$(`.page[data-role="${role}"] [data-response]`, elements.workspace)) {
     if (node.matches("input, textarea, select")) node.value = "";
@@ -607,7 +623,7 @@ function clearCurrentRole(force = false) {
 }
 
 function resetSource(force = false) {
-  if (!force && !confirm("Reset all local edits, responses, and settings to the loaded case package?")) return false;
+  if (!force && !confirm("Reset this case to its approved defaults?\n\nThis will remove all locally saved responses, instructional edits, and display settings for this case.")) return false;
   for (const node of $$("[data-persist-id]", elements.workspace)) {
     const baseline = sourceBaseline.get(node.dataset.persistId);
     if (baseline) restoreNode(node, baseline);

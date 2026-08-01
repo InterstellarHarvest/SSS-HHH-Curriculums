@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inventoryVersion": "1.0",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED",
   "baselineCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
   "policy": {
     "embeddedEditor": "DEPRECATED_COMPATIBILITY",
