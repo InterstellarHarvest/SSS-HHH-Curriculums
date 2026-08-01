@@ -8,7 +8,7 @@
 - Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
 - Status: APPROVED
 
-The original print-approved v1.0 HTML byte set is retained as `PRE_MAINTENANCE_PRINT_APPROVED_HISTORICAL`. The maintained v1.0 master and five role HTML files, maintenance revision `2026-07-31`, are `CURRENT_HTML_MIGRATION_BASELINE` and `OWNER_AUTHORIZED_FOR_PHASE2`. Historical physical-print evidence remains preserved but does not transfer to the maintained HTML. Its physical-print gate is `OPEN` until Phase 2 owner review. No new curriculum version was created. See `CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json`.
+The original print-approved v1.0 HTML byte set is retained as `PRE_MAINTENANCE_PRINT_APPROVED_HISTORICAL`. The maintained v1.0 master and five role HTML files, maintenance revision `2026-07-31`, are the approved current HTML presentation and exact Phase 2 parity baseline. Nate / Owner passed browser review, print-preview review, and physical printing on 2026-08-01 at 100% / Actual Size. Historical PDFs remain retained, current production remains HTML-based, and no new PDFs were generated. No new curriculum version was created. See the immutable reconciliation snapshot `CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json` and its additive Phase 2 owner-approval record.
 
 The current v1.0 master combines the approved Printable Page Identity v1.0.4 system with Balanced Page Fill and Vertical Rhythm v1.0.2. The contradictory Case 02 v1.1 master/manifest layer remains excluded.
 
@@ -35,4 +35,4 @@ Do not run the legacy full release builder merely to reproduce this HTML-only ma
 
 ## Release gate
 
-The approved PDF/physical-print release record remains intact. The maintained HTML layout has a separate validation-build maintenance status pending any future print release cycle.
+The approved historical PDF/physical-print release record remains intact. The maintained HTML layout separately passed the Phase 2 owner browser, print-preview, and physical-print reviews on 2026-08-01 and is ready to merge; central cutover has not been performed.

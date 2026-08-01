@@ -8,14 +8,14 @@ This directory contains the first validated production foundation for the shared
 
 - **Curriculum version:** v1.1 (current release)
 - **HTML maintenance revision:** 2026-07-31
-- **Phase 2 status:** CURRENT_HTML_MIGRATION_BASELINE · OWNER_AUTHORIZED_FOR_PHASE2
-- **Physical-print gate for maintained HTML:** OPEN
+- **Phase 2 status:** CURRENT MAINTAINED HTML APPROVED · OWNER REVIEW PASS · READY TO MERGE
+- **Physical-print gate for maintained HTML:** PASS (2026-08-01, 100% / Actual Size)
 - **Status:** APPROVED
 - **Game baseline:** `2a6e8a7`
 - **Curriculum Bible:** v1.3
 - **Task registry:** `source/task-registry.js` v1.0
 
-Use the maintained v1.1 HTML byte set as the exact Phase 2 migration and parity reference. The retained v1.0 master is the prior approved release; v0.2 and v0.3 remain prototypes. Do not regenerate PDFs from this baseline.
+Use the maintained v1.1 HTML byte set as the approved exact Phase 2 migration and parity reference. Nate / Owner passed browser review, print-preview review, and physical printing on 2026-08-01. The retained v1.0 master is the prior approved release; v0.2 and v0.3 remain prototypes. Historical PDFs remain retained, current production remains HTML-based, and no new PDFs were generated.
 
 ## Controlled source documents
 

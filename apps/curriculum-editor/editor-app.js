@@ -143,9 +143,13 @@ function validatePackage(pkg) {
   requireFields(pkg.migrationSource, ["historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "builder"], "Migration source");
   if (pkg.status === "APPROVED_WITH_HTML_MAINTENANCE") {
     requireFields(pkg.migrationSource, ["goldenMaster", "goldenMasterSha256", "preMaintenanceMasterSha256", "reconciliationRecord"], "Maintained-HTML migration source");
-    requireFields(pkg.phase2Authorization, ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "owner", "status", "phase2Status", "ownerGate", "physicalPrintGate"], "Phase 2 authorization");
-    if (pkg.phase2Authorization.status !== "OWNER_AUTHORIZED_FOR_PHASE2" || pkg.phase2Authorization.phase2Status !== "VALIDATION_BUILD" || pkg.phase2Authorization.ownerGate !== "OPEN" || pkg.phase2Authorization.physicalPrintGate !== "OPEN") {
-      throw new Error("Maintained-HTML package has invalid Phase 2 gate status.");
+    requireFields(pkg.phase2Authorization, ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "approvalRecord", "approvalDate", "owner", "status", "phase2Status", "ownerGate", "ownerReview", "browserPrintPreview", "physicalPrintGate", "physicalPrintReview", "phase2MigrationParity", "scale", "browser", "printerCopier", "paper", "artifactPolicy"], "Phase 2 authorization");
+    const phase2 = pkg.phase2Authorization;
+    if (phase2.status !== "APPROVED" || phase2.phase2Status !== "READY_TO_MERGE" || phase2.ownerGate !== "PASS" || phase2.ownerReview !== "PASS" || phase2.browserPrintPreview !== "PASS" || phase2.physicalPrintGate !== "PASS" || phase2.physicalPrintReview !== "PASS" || phase2.phase2MigrationParity !== "PASS") {
+      throw new Error("Maintained-HTML package has invalid final Phase 2 approval status.");
+    }
+    if (phase2.artifactPolicy?.historicalPdfs !== "RETAINED" || phase2.artifactPolicy?.currentProduction !== "HTML_BASED" || phase2.artifactPolicy?.newPdfsGenerated !== false) {
+      throw new Error("Maintained-HTML package has invalid final artifact policy.");
     }
   }
   if (pkg.presentation.isolation !== "shadow-dom") throw new Error(`Unsupported worksheet isolation: ${pkg.presentation.isolation}`);

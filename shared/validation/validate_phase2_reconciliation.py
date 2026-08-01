@@ -16,6 +16,10 @@ RECORDS = {
     "SSS-C1-CASE01": ROOT / "sss/campaign-1/case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
     "SSS-C1-CASE02": ROOT / "sss/campaign-1/case-02-lunar-greenhouse/CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
 }
+APPROVAL_RECORDS = {
+    "SSS-C1-CASE01": ROOT / "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/phase2/CASE01_PHASE2_OWNER_APPROVAL_2026-08-01.json",
+    "SSS-C1-CASE02": ROOT / "sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/phase2/CASE02_PHASE2_OWNER_APPROVAL_2026-08-01.json",
+}
 EXPECTED = {
     "SSS-C1-CASE01": ("1.1", "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f", "f42365e58802201679b5cd751f102d9a4ecd0ea6f6a6565a860df070018ad02a"),
     "SSS-C1-CASE02": ("1.0", "4e5d03a62cba494ae09604194f69578b4c4bcceeeca1f9d53d818109e132fd0d", "d35c3e0d83a61cbf56799e52b6a1eb3fac4668c1089b674ad0681e92bf30ad86"),
@@ -68,13 +72,20 @@ def main() -> int:
 
     for case_id, record_path in RECORDS.items():
         record = json.loads(record_path.read_text())
+        approval = json.loads(APPROVAL_RECORDS[case_id].read_text())
         version, master_hash, historical_hash = EXPECTED[case_id]
         case = find_case(registry, case_id)
         master = record["currentMaster"]
         check(f"{case_id} version", record["curriculumVersion"] == version == case["version"])
-        check(f"{case_id} owner status", record["status"] == case.get("ownerAuthorization") == "OWNER_AUTHORIZED_FOR_PHASE2")
+        check(f"{case_id} reconciled authorization snapshot retained", record["status"] == "OWNER_AUTHORIZED_FOR_PHASE2")
         check(f"{case_id} current classification", record["classification"] == "CURRENT_HTML_MIGRATION_BASELINE")
-        check(f"{case_id} physical print gate", record["physicalPrintGate"] == case.get("physicalPrintGate") == "OPEN")
+        check(f"{case_id} reconciled open-gate snapshot retained", record["physicalPrintGate"] == "OPEN")
+        check(f"{case_id} current maintained HTML approved", approval["currentMaintainedHtml"] == case.get("ownerAuthorization") == case.get("currentMaintainedHtml") == "APPROVED")
+        check(f"{case_id} Phase 2 ready to merge", approval["phase2Status"] == case.get("phase2Status") == "READY_TO_MERGE")
+        check(f"{case_id} final owner and print reviews", all(approval.get(key) == "PASS" for key in ["ownerReview", "browserPrintPreview", "physicalPrintReview", "phase2MigrationParity"]) and case.get("physicalPrintGate") == "PASS")
+        check(f"{case_id} final approval identity", approval["approvalDate"] == "2026-08-01" and approval["tester"] == "Nate / Owner" and approval["scale"] == "100% / Actual Size")
+        check(f"{case_id} final approval references reconciliation", approval["reconciliationRecord"] == str(record_path.relative_to(ROOT)))
+        check(f"{case_id} final artifact policy", approval["artifactPolicy"] == {"historicalPdfs": "RETAINED", "currentProduction": "HTML_BASED", "newPdfsGenerated": False})
         check(f"{case_id} no new curriculum version", record["newCurriculumVersionCreated"] is False)
         check(f"{case_id} historical evidence not inherited", record["historicalPrintEvidencePreservedButNotInherited"] is True)
         check(f"{case_id} current parity target", record["currentHtmlIsParityTarget"] is True)
@@ -107,7 +118,7 @@ def main() -> int:
             print(f"FAIL: {name}: {detail}")
     if failures:
         return 1
-    print("Current HTML baselines are owner-authorized; historical PDFs and protected curriculum bytes are unchanged; no PDFs were generated or modified.")
+    print("Current maintained HTML is approved and Phase 2 is ready to merge; reconciliation snapshots, historical PDFs, and protected curriculum bytes are unchanged; no PDFs were generated or modified.")
     return 0
 
 

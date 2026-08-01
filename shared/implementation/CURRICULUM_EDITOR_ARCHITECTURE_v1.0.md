@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-**Status:** Phase 1 accepted for Case 03 · Phase 2 VALIDATION_BUILD for Cases 01/02 · owner and physical-print gates OPEN
+**Status:** Cases 01/02/03 accepted · Phase 2 OWNER REVIEW PASS · READY TO MERGE
 
 **Application:** `apps/curriculum-editor/`
 
@@ -132,8 +132,8 @@ The protected ledger covers masters, current role HTML, controlled sources/asset
 ## 8. Phase 2 validation status and limitations
 
 - Nate / Owner accepted the central editor and Case 03 v1.1 proof package in Phase 1. Its package, tests, and approved artifacts remain unchanged except for generic backward-compatible multi-case application/schema support.
-- Case 01 v1.1 and Case 02 v1.0 are now discoverable exact migration packages. Their current maintained HTML bytes are owner-authorized Phase 2 goldens, while their earlier physically print-approved bytes/PDFs remain historical evidence.
-- Case 01/02 automated parity is a validation result, not owner acceptance. Status remains `VALIDATION_BUILD`; `OWNER_GATE_OPEN` and `PHYSICAL_PRINT_GATE_OPEN` remain open until review of both maintained standalone HTML and central-editor rendering at 100% / Actual Size.
+- Case 01 v1.1 and Case 02 v1.0 are discoverable exact migration packages. Their current maintained HTML bytes and central-editor representations passed owner review, browser print-preview review, physical printing, and exact Phase 2 parity on 2026-08-01 at 100% / Actual Size. Their earlier physically print-approved bytes/PDFs remain historical evidence.
+- Cases 01, 02, and 03 are accepted in the central editor. Phase 2 status is `OWNER REVIEW PASS` and `READY TO MERGE`; central cutover remains a separate decision.
 - There is no historical-version browser. Curriculum/campaign selectors remain disabled while only one value exists; the three-value case selector is enabled.
 - Recovery state is local to a browser origin/profile, is isolated by curriculum/campaign/case/version, and does not synchronize.
 - Trusted repository packages may supply HTML fragments and CSS. The app is not a sandbox for untrusted curriculum packages.
@@ -144,4 +144,4 @@ The protected ledger covers masters, current role HTML, controlled sources/asset
 
 `phase2-protected-artifacts.v1.json` freezes Case 01/02 masters, role outputs, controlled sources/assets, manifests, validation/owner records, reconciliation records, and PDFs at the separate reconciliation commit. The generic migration builder verifies each maintained golden, task registry, and controlled-source hash before emitting additive content/CSS/icon/task/package files. It never changes an approved artifact.
 
-Current maintained Case 01/02 standalone HTML remains canonical until the owner closes both Phase 2 gates. The owner must review the maintained standalone pages, central-editor pages, retained master/editor/diff contact sheets, and physical browser output. A later, separately authorized cutover may establish the central editor as canonical; this branch neither performs nor implies that cutover.
+Current maintained Case 01/02 standalone HTML remains canonical until a separately authorized cutover. The immutable reconciliation snapshots retain the pre-approval gate state; additive Phase 2 owner-approval records close the active owner and print gates without rewriting protected history. A later cutover may establish the central editor as canonical; this branch neither performs nor implies that cutover.

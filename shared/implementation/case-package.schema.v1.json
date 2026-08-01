@@ -312,16 +312,36 @@
     },
     "phase2Authorization": {
       "type": "object",
-      "required": ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "owner", "status", "phase2Status", "ownerGate", "physicalPrintGate"],
+      "required": ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "approvalRecord", "approvalDate", "owner", "status", "phase2Status", "ownerGate", "ownerReview", "browserPrintPreview", "physicalPrintGate", "physicalPrintReview", "phase2MigrationParity", "scale", "browser", "printerCopier", "paper", "artifactPolicy"],
       "properties": {
         "htmlMaintenanceRevision": { "const": "2026-07-31" },
         "reconciliationRecord": { "type": "string", "minLength": 1 },
         "ownerAuthorizationDate": { "const": "2026-07-31" },
+        "approvalRecord": { "type": "string", "minLength": 1 },
+        "approvalDate": { "const": "2026-08-01" },
         "owner": { "const": "Nate / Owner" },
-        "status": { "const": "OWNER_AUTHORIZED_FOR_PHASE2" },
-        "phase2Status": { "const": "VALIDATION_BUILD" },
-        "ownerGate": { "const": "OPEN" },
-        "physicalPrintGate": { "const": "OPEN" }
+        "status": { "const": "APPROVED" },
+        "phase2Status": { "const": "READY_TO_MERGE" },
+        "ownerGate": { "const": "PASS" },
+        "ownerReview": { "const": "PASS" },
+        "browserPrintPreview": { "const": "PASS" },
+        "physicalPrintGate": { "const": "PASS" },
+        "physicalPrintReview": { "const": "PASS" },
+        "phase2MigrationParity": { "const": "PASS" },
+        "scale": { "const": "100% / Actual Size" },
+        "browser": { "const": "Not recorded" },
+        "printerCopier": { "const": "Not recorded" },
+        "paper": { "const": "Not recorded" },
+        "artifactPolicy": {
+          "type": "object",
+          "required": ["historicalPdfs", "currentProduction", "newPdfsGenerated"],
+          "properties": {
+            "historicalPdfs": { "const": "RETAINED" },
+            "currentProduction": { "const": "HTML_BASED" },
+            "newPdfsGenerated": { "const": false }
+          },
+          "additionalProperties": false
+        }
       },
       "additionalProperties": false
     },

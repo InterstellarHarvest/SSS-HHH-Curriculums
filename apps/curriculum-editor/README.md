@@ -1,10 +1,10 @@
-# SSS/HHH Curriculum Editor — Phase 2 validation build
+# SSS/HHH Curriculum Editor — Phase 2 approved
 
 This repository-local browser application loads the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 packages. It does not open, iframe, rewrite, or execute a complete approved master. Worksheet-only DOM and exact presentation stylesheets are generated deterministically from their authorized goldens and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
 
-**Phase 2 status:** VALIDATION_BUILD · OWNER_GATE_OPEN · PHYSICAL_PRINT_GATE_OPEN
+**Phase 2 status:** OWNER REVIEW PASS · READY TO MERGE
 
-Case 03 remains the accepted Phase 1 proof package. Case 01 and Case 02 remain owner-authorized maintained-HTML migration baselines pending Phase 2 browser/physical-print review.
+Cases 01, 02, and 03 are accepted in the central editor. The current maintained Case 01 v1.1 and Case 02 v1.0 HTML presentations, exact Phase 2 parity, browser print previews, and physical printing passed owner review on 2026-08-01 at 100% / Actual Size.
 
 ## Launch
 
@@ -86,11 +86,11 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 
 - Only current releases are selectable: Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1.
 - Historical-version browsing and a prominent version selector are intentionally absent.
-- Case 01 and Case 02 approved/current maintained standalone artifacts remain canonical. Their editor packages are additive exact migration representations, not replacement releases.
+- Case 01 and Case 02 approved/current maintained standalone artifacts remain canonical until a separately authorized central cutover. Their editor packages are additive exact migration representations, not replacement releases.
 - Autosave is browser-profile and origin specific; it does not synchronize between devices or browsers.
-- Browser print behavior and physical results remain browser/driver dependent and require owner review at 100% / Actual Size.
+- Browser print behavior and physical results remain browser/driver dependent; owner review passed at 100% / Actual Size.
 - Case 03 owner review and browser physical-print review passed on 2026-07-31 at 100% / Actual Size; printer and paper were not recorded.
-- Case 01/02 owner and physical-print gates remain open. Passing automated parity does not constitute Phase 2 acceptance.
+- Case 01/02 owner review, browser print-preview review, physical-print review, and exact migration parity passed on 2026-08-01. Browser, printer/copier, and paper were not recorded.
 - Embedded case-owned editors remain present. Central-editor cutover, embedded-editor removal, repository cleanup, Case 04, and HHH production are not authorized.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.
 

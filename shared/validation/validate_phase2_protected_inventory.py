@@ -75,6 +75,14 @@ def build_ledger() -> dict:
         "protectedAtCommit": PROTECTED_AT,
         "policy": "IMMUTABLE_DURING_PHASE2_MIGRATION",
         "pdfPolicy": "NO_GENERATION_OR_MODIFICATION",
+        "phase2FinalApproval": {
+            "date": "2026-08-01",
+            "tester": "Nate / Owner",
+            "status": "OWNER_REVIEW_PASS",
+            "phase2Status": "READY_TO_MERGE",
+            "protectedArtifactHashesUnchanged": True,
+            "pdfsGeneratedOrModified": False,
+        },
         "artifacts": artifacts,
         "countsByCategory": dict(sorted(counts.items())),
         "totalArtifacts": len(artifacts),
@@ -88,7 +96,7 @@ def validate() -> tuple[int, int, list[str]]:
     declared = expected.get("artifacts", [])
     actual_by_path = {item["path"]: item for item in actual}
     declared_by_path = {item["path"]: item for item in declared}
-    checks = 4 + len(declared)
+    checks = 5 + len(declared)
     if expected.get("schemaVersion") != 1:
         failures.append("schemaVersion is not 1")
     if expected.get("protectedAtCommit") != PROTECTED_AT:
@@ -97,6 +105,15 @@ def validate() -> tuple[int, int, list[str]]:
         failures.append("immutable policy changed")
     if expected.get("pdfPolicy") != "NO_GENERATION_OR_MODIFICATION":
         failures.append("PDF policy changed")
+    if expected.get("phase2FinalApproval") != {
+        "date": "2026-08-01",
+        "tester": "Nate / Owner",
+        "status": "OWNER_REVIEW_PASS",
+        "phase2Status": "READY_TO_MERGE",
+        "protectedArtifactHashesUnchanged": True,
+        "pdfsGeneratedOrModified": False,
+    }:
+        failures.append("Phase 2 final approval metadata is invalid")
     for path, item in declared_by_path.items():
         current = actual_by_path.get(path)
         if current is None:

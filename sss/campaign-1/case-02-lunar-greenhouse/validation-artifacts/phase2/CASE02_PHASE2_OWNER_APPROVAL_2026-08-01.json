@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE02",
+  "title": "Lunar Greenhouse",
+  "curriculumVersion": "1.0",
+  "htmlMaintenanceRevision": "2026-07-31",
+  "reconciliationRecord": "sss/campaign-1/case-02-lunar-greenhouse/CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
+  "approvalDate": "2026-08-01",
+  "tester": "Nate / Owner",
+  "currentMaintainedHtml": "APPROVED",
+  "ownerReview": "PASS",
+  "browserPrintPreview": "PASS",
+  "physicalPrintReview": "PASS",
+  "phase2MigrationParity": "PASS",
+  "phase2Status": "READY_TO_MERGE",
+  "scale": "100% / Actual Size",
+  "browser": "Not recorded",
+  "printerCopier": "Not recorded",
+  "paper": "Not recorded",
+  "rolePageCounts": {
+    "student": 3,
+    "teacher": 7,
+    "answer": 3,
+    "accessible": 5,
+    "grayscale": 3
+  },
+  "allProfilesPagesFit": true,
+  "isolatedCleanRolePrinting": "PASS",
+  "ownerConfirmations": {
+    "caseLabelsAndOrder": "PASS",
+    "releaseStatusVersionPlacement": "PASS",
+    "pageShadowTerminologyBehaviorAndPrintExclusion": "PASS",
+    "pageFitLanguage": "PASS",
+    "allCasesAndRolesRender": "PASS",
+    "caseVersionStateIsolation": "PASS",
+    "completeAndCurrentRoleExports": "PASS",
+    "noApplicationChromeInPrint": true,
+    "noLeadingIntermediateOrTrailingBlankPages": true,
+    "firstPageIdentity": "PASS",
+    "continuationIdentity": "PASS"
+  },
+  "artifactPolicy": {
+    "historicalPdfs": "RETAINED",
+    "currentProduction": "HTML_BASED",
+    "newPdfsGenerated": false
+  }
+}

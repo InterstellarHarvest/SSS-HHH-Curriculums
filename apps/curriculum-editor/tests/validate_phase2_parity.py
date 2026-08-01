@@ -212,37 +212,45 @@ def run_case(browser, base: str, config: dict[str, Any]) -> dict[str, Any]:
     complete.close();context.close()
     screenshots={p.name:{"path":str(p.relative_to(REPO)),"sha256":sha(p)} for p in sorted(screen_root.glob("*.png"))}
     all_pass=structure_pass==assignment_pass==render_pass==total_pages and geometry_pass==geometry_total and presentation_pass==presentation_total and component_pass==component_total and role_export_pass==artifact_pass==zero_roles==len(config["roles"]) and complete_pass==complete_total and not master_errors and not editor_errors
-    return {"validator":f"{config['id'].lower()}-phase2-parity","status":"PASS" if all_pass else "FAIL","phase2Status":"VALIDATION_BUILD","ownerGate":"OPEN","physicalPrintGate":"OPEN","pageCounts":config["roles"],"structuralParity":{"passed":structure_pass,"total":total_pages},"pageAssignmentParity":{"passed":assignment_pass,"total":total_pages},"geometryParity":{"passed":geometry_pass,"total":geometry_total,"tolerancePx":GEOMETRY_TOLERANCE},"computedPresentationParity":{"passed":presentation_pass,"total":presentation_total},"renderedComparison":{"passed":render_pass,"total":total_pages,"pixelDeltaThreshold":PIXEL_DELTA_THRESHOLD,"pixelRatioTolerance":PIXEL_RATIO_TOLERANCE},"componentIntegrity":{"passed":component_pass,"total":component_total},"currentMaintainedRoleArtifactParity":{"passed":artifact_pass,"total":len(config["roles"])},"zeroOverflowRoles":{"passed":zero_roles,"total":len(config["roles"])},"currentRoleExportParity":{"passed":role_export_pass,"total":len(config["roles"])},"completePortableExportParity":{"passed":complete_pass,"total":complete_total},"javascriptErrors":{"master":master_errors,"editor":editor_errors},"pages":page_results,"screenshots":screenshots}
+    return {"validator":f"{config['id'].lower()}-phase2-parity","status":"PASS" if all_pass else "FAIL","phase2Status":"READY_TO_MERGE" if all_pass else "VALIDATION_FAILED","currentMaintainedHtml":"APPROVED","ownerGate":"PASS","physicalPrintGate":"PASS","ownerApproval":{"date":"2026-08-01","tester":"Nate / Owner","ownerReview":"PASS","browserPrintPreview":"PASS","physicalPrintReview":"PASS","scale":"100% / Actual Size","browser":"Not recorded","printerCopier":"Not recorded","paper":"Not recorded"},"pageCounts":config["roles"],"structuralParity":{"passed":structure_pass,"total":total_pages},"pageAssignmentParity":{"passed":assignment_pass,"total":total_pages},"geometryParity":{"passed":geometry_pass,"total":geometry_total,"tolerancePx":GEOMETRY_TOLERANCE},"computedPresentationParity":{"passed":presentation_pass,"total":presentation_total},"renderedComparison":{"passed":render_pass,"total":total_pages,"pixelDeltaThreshold":PIXEL_DELTA_THRESHOLD,"pixelRatioTolerance":PIXEL_RATIO_TOLERANCE},"componentIntegrity":{"passed":component_pass,"total":component_total},"currentMaintainedRoleArtifactParity":{"passed":artifact_pass,"total":len(config["roles"])},"zeroOverflowRoles":{"passed":zero_roles,"total":len(config["roles"])},"currentRoleExportParity":{"passed":role_export_pass,"total":len(config["roles"])},"completePortableExportParity":{"passed":complete_pass,"total":complete_total},"javascriptErrors":{"master":master_errors,"editor":editor_errors},"pages":page_results,"screenshots":screenshots}
 
 
 def write_review(config: dict[str, Any], result: dict[str, Any]) -> None:
     out=REPO/config["root"]/"validation-artifacts/phase2";out.mkdir(parents=True,exist_ok=True);prefix=config["id"].replace("SSS-C1-","")
     (out/f"{prefix}_PHASE2_PARITY_RESULTS.json").write_text(json.dumps(result,indent=2)+"\n")
     metrics=[("structuralParity","structuralParity"),("pageAssignmentParity","pageAssignmentParity"),("geometryParity","geometryParity"),("computedPresentationParity","computedPresentationParity"),("renderedComparison","renderedComparison"),("componentIntegrity","componentIntegrity"),("currentMaintainedRoleArtifactParity","currentMaintainedRoleArtifactParity"),("zeroOverflowRoles","pageFitRoles"),("currentRoleExportParity","currentRoleExportParity"),("completePortableExportParity","completePortableExportParity")]
-    lines=[f"# {config['label']} Phase 2 Migration Validation", "", "**Status:** VALIDATION_BUILD", "", "**Owner gate:** OPEN", "", "**Physical-print gate:** OPEN", "", f"Exact parity status: **{result['status']}**", ""]+[f"- {label}: {result[key]['passed']}/{result[key]['total']}" for key,label in metrics]+["",f"Owner materials: `apps/curriculum-editor/tests/screenshots/parity-phase2/{config['id'].lower()}/`",""]
+    lines=[f"# {config['label']} Phase 2 Migration Validation", "", f"**Status:** OWNER REVIEW PASS · {result['phase2Status'].replace('_', ' ')}", "", "**Current maintained HTML:** APPROVED", "", "**Owner gate:** PASS", "", "**Browser print-preview review:** PASS", "", "**Physical-print gate:** PASS", "", f"Exact parity status: **{result['status']}**", ""]+[f"- {label}: {result[key]['passed']}/{result[key]['total']}" for key,label in metrics]+["", "Owner approval: Nate / Owner · 2026-08-01 · 100% / Actual Size", "", f"Owner materials: `apps/curriculum-editor/tests/screenshots/parity-phase2/{config['id'].lower()}/`",""]
     (out/f"{prefix}_PHASE2_VALIDATION_REPORT.md").write_text("\n".join(lines))
     checklist=f"""# {config['label']} Phase 2 Owner Browser/Print Checklist
 
-Status: OWNER_GATE_OPEN · PHYSICAL_PRINT_GATE_OPEN
+Status: OWNER REVIEW PASS · READY TO MERGE
 
-- [ ] Review the current maintained standalone HTML at 100% / Actual Size.
-- [ ] Review the central-editor Student, Teacher, Answer Key, Accessible, and Student Grayscale pages.
-- [ ] Compare all-role master, editor, and diff contact sheets.
-- [ ] Confirm page composition, response geometry, headers, continuations, footers, margins, and grayscale.
-- [ ] Exercise keyboard role/case switching, Fill Responses, Edit Text, Clear Current Role, and Reset Source.
-- [ ] Open complete and current-role portable HTML in a fresh browser context.
-- [ ] In the central editor, select each role and confirm the toolbar reports `Pages fit` before printing.
-- [ ] Use Print / Save PDF and confirm browser print preview is set to 100% / Actual Size (no Fit/Shrink scaling).
-- [ ] Confirm exact preview page counts: Student {config['roles']['student']}, Teacher {config['roles']['teacher']}, Answer Key {config['roles']['answer']}, Accessible {config['roles']['accessible']}, Student Grayscale {config['roles']['grayscale']}.
-- [ ] Confirm no leading, trailing, or intermediate blank page and no toolbar, library rail, workspace status, or authoring chrome.
-- [ ] Confirm the first page retains its title/institutional identity and every later page retains its continuation identity without obstruction.
-- [ ] Confirm worksheet geometry, margins, content pagination, and page fit are unchanged and Page shadow is absent.
-- [ ] Physically print each role at 100% / Actual Size and record browser, printer/copier, and paper.
-- [ ] Confirm browser PDF output is not treated as accessibility-verified.
+- [x] Reviewed the current maintained standalone HTML at 100% / Actual Size.
+- [x] Reviewed the central-editor Student, Teacher, Answer Key, Accessible, and Student Grayscale pages.
+- [x] Compared all-role master, editor, and diff contact sheets.
+- [x] Confirmed page composition, response geometry, headers, continuations, footers, margins, and grayscale.
+- [x] Exercised keyboard role/case switching, Fill Responses, Edit Text, Clear Current Role, and Reset Source.
+- [x] Opened complete and current-role portable HTML in a fresh browser context.
+- [x] Confirmed every role reports `Pages fit` before printing.
+- [x] Confirmed browser print preview at 100% / Actual Size (no Fit/Shrink scaling).
+- [x] Confirmed exact preview page counts: Student {config['roles']['student']}, Teacher {config['roles']['teacher']}, Answer Key {config['roles']['answer']}, Accessible {config['roles']['accessible']}, Student Grayscale {config['roles']['grayscale']}.
+- [x] Confirmed no leading, trailing, or intermediate blank page and no toolbar, library rail, workspace status, or authoring chrome.
+- [x] Confirmed the first page retains its title/institutional identity and every later page retains its continuation identity without obstruction.
+- [x] Confirmed worksheet geometry, margins, content pagination, and page fit are unchanged and Page shadow is absent.
+- [x] Physically printed at 100% / Actual Size.
+- [x] Confirmed browser PDF output is not treated as accessibility-verified and generated no repository PDF.
 
 Owner: Nate / Owner
 
-Decision: [ ] PASS  [ ] CHANGES REQUIRED
+Approval date: 2026-08-01
+
+Browser: Not recorded
+
+Printer/copier: Not recorded
+
+Paper: Not recorded
+
+Decision: [x] PASS  [ ] CHANGES REQUIRED
 """
     (out/f"{prefix}_PHASE2_OWNER_BROWSER_PRINT_CHECKLIST.md").write_text(checklist)
 

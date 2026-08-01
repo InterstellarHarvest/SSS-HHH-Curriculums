@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deterministically extract Case 01/02 central-editor packages from owner-authorized HTML goldens."""
+"""Deterministically extract approved Case 01/02 central-editor packages."""
 
 from __future__ import annotations
 
@@ -30,6 +30,7 @@ CASES: dict[str, dict[str, Any]] = {
         "masterHash": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f",
         "preMaintenanceHash": "f42365e58802201679b5cd751f102d9a4ecd0ea6f6a6565a860df070018ad02a",
         "reconciliation": "sss/campaign-1/case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
+        "approvalRecord": "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/phase2/CASE01_PHASE2_OWNER_APPROVAL_2026-08-01.json",
         "taskSource": "sss/campaign-1/case-01-iss-greenhouse/source/task-registry.js",
         "taskHash": "d01c10a4e286e632f261b831eea5a855c206878bb93f5a449abdfcd561ba2583",
         "sourceDir": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2",
@@ -69,6 +70,7 @@ CASES: dict[str, dict[str, Any]] = {
         "masterHash": "4e5d03a62cba494ae09604194f69578b4c4bcceeeca1f9d53d818109e132fd0d",
         "preMaintenanceHash": "d35c3e0d83a61cbf56799e52b6a1eb3fac4668c1089b674ad0681e92bf30ad86",
         "reconciliation": "sss/campaign-1/case-02-lunar-greenhouse/CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
+        "approvalRecord": "sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/phase2/CASE02_PHASE2_OWNER_APPROVAL_2026-08-01.json",
         "taskSource": "sss/campaign-1/case-02-lunar-greenhouse/source/task-registry.js",
         "taskHash": "4ac6a5e90d5d3a72ab1734c4458efd34c7d069a14840aa7c98e36a11c994ee1a",
         "sourceDir": "sss/campaign-1/case-02-lunar-greenhouse/source/editor-phase2",
@@ -220,7 +222,31 @@ def build_case(config: dict[str, Any]) -> dict[Path, bytes]:
         "defaultToolbarState": {"role": "student", "fillMode": config["defaultFill"], "editMode": False, "marginTop": .5, "marginRight": .5, "marginBottom": .5, "marginLeft": .5, "density": "normal", "grayscale": False, "guides": False, "boundaries": True},
         "accessibility": {"language": "en", "documentTitle": f"SSS Campaign 1 {config['id'][-6:]} v{config['version']} — {config['title']} Curriculum Editor", "loadAnnouncement": f"{config['title']} {config['id'][-6:].replace('CASE', 'Case ')} v{config['version']} maintained HTML package loaded. Student Mission selected.", "extendedDescriptionSelectors": ["figure figcaption", "[aria-label]"], "pdfNotice": PDF_NOTICE},
         "migrationSource": {"kind": "approved-master-migration", "historicalMaster": config["master"], "historicalMasterSha256": config["masterHash"], "successorMaster": config["master"], "successorMasterSha256": config["masterHash"], "goldenMaster": config["master"], "goldenMasterSha256": config["masterHash"], "preMaintenanceMasterSha256": config["preMaintenanceHash"], "reconciliationRecord": config["reconciliation"], "reason": "Exact owner-authorized maintained-HTML migration; no curriculum successor version created", "builder": BUILDER},
-        "phase2Authorization": {"htmlMaintenanceRevision": "2026-07-31", "reconciliationRecord": config["reconciliation"], "ownerAuthorizationDate": "2026-07-31", "owner": "Nate / Owner", "status": "OWNER_AUTHORIZED_FOR_PHASE2", "phase2Status": "VALIDATION_BUILD", "ownerGate": "OPEN", "physicalPrintGate": "OPEN"},
+        "phase2Authorization": {
+            "htmlMaintenanceRevision": "2026-07-31",
+            "reconciliationRecord": config["reconciliation"],
+            "ownerAuthorizationDate": "2026-07-31",
+            "approvalRecord": config["approvalRecord"],
+            "approvalDate": "2026-08-01",
+            "owner": "Nate / Owner",
+            "status": "APPROVED",
+            "phase2Status": "READY_TO_MERGE",
+            "ownerGate": "PASS",
+            "ownerReview": "PASS",
+            "browserPrintPreview": "PASS",
+            "physicalPrintGate": "PASS",
+            "physicalPrintReview": "PASS",
+            "phase2MigrationParity": "PASS",
+            "scale": "100% / Actual Size",
+            "browser": "Not recorded",
+            "printerCopier": "Not recorded",
+            "paper": "Not recorded",
+            "artifactPolicy": {
+                "historicalPdfs": "RETAINED",
+                "currentProduction": "HTML_BASED",
+                "newPdfsGenerated": False,
+            },
+        },
         "presentation": {"contentSha256": sha(content), "caseCssSha256": sha(presentation), "stylesheet": css_path, "stylesheetSha256": sha(presentation), "isolation": "shadow-dom"},
     }
     return {

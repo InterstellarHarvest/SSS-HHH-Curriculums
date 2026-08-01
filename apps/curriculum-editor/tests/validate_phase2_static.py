@@ -75,7 +75,23 @@ def main() -> int:
         results.check(f"{case_id} registry/package identity, version, and status agree", package["id"] == entry["id"] and package["version"] == entry["version"] == expected["version"] and package["status"] == entry["status"] == "APPROVED_WITH_HTML_MAINTENANCE")
         results.check(f"{case_id} registry points to generated package", entry["editorPackage"] == expected["package"] and (REPO / entry["editorPackage"]).is_file())
         authorization = package.get("phase2Authorization", {})
-        results.check(f"{case_id} Phase 2 owner authorization and open gates are explicit", authorization.get("status") == "OWNER_AUTHORIZED_FOR_PHASE2" and authorization.get("phase2Status") == "VALIDATION_BUILD" and authorization.get("ownerGate") == authorization.get("physicalPrintGate") == "OPEN")
+        approval_path = REPO / authorization.get("approvalRecord", "")
+        approval = load_json(approval_path) if approval_path.is_file() else {}
+        results.check(
+            f"{case_id} final Phase 2 owner approval and closed gates are explicit",
+            authorization.get("status") == entry.get("ownerAuthorization") == entry.get("currentMaintainedHtml") == "APPROVED"
+            and authorization.get("phase2Status") == entry.get("phase2Status") == "READY_TO_MERGE"
+            and authorization.get("ownerGate") == authorization.get("physicalPrintGate") == entry.get("physicalPrintGate") == "PASS"
+            and all(authorization.get(key) == "PASS" for key in ["ownerReview", "browserPrintPreview", "physicalPrintReview", "phase2MigrationParity"])
+            and authorization.get("approvalDate") == "2026-08-01"
+            and authorization.get("owner") == "Nate / Owner"
+            and authorization.get("scale") == "100% / Actual Size"
+            and approval.get("currentMaintainedHtml") == "APPROVED"
+            and all(approval.get(key) == "PASS" for key in ["ownerReview", "browserPrintPreview", "physicalPrintReview", "phase2MigrationParity"])
+            and approval.get("rolePageCounts") == expected["counts"]
+            and approval.get("allProfilesPagesFit") is True
+            and approval.get("artifactPolicy") == {"historicalPdfs": "RETAINED", "currentProduction": "HTML_BASED", "newPdfsGenerated": False},
+        )
         migration = package["migrationSource"]
         results.check(f"{case_id} owner-authorized golden and pre-maintenance hashes are recorded", migration.get("kind") == "approved-master-migration" and migration.get("goldenMasterSha256") == expected["masterHash"] and migration.get("preMaintenanceMasterSha256") == expected["preMaintenanceHash"] and migration.get("reconciliationRecord") == authorization.get("reconciliationRecord"))
         content_path = REPO / package["content"]["source"]

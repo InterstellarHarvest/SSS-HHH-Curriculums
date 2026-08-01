@@ -147,11 +147,26 @@
     "htmlMaintenanceRevision": "2026-07-31",
     "reconciliationRecord": "sss/campaign-1/case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
     "ownerAuthorizationDate": "2026-07-31",
+    "approvalRecord": "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/phase2/CASE01_PHASE2_OWNER_APPROVAL_2026-08-01.json",
+    "approvalDate": "2026-08-01",
     "owner": "Nate / Owner",
-    "status": "OWNER_AUTHORIZED_FOR_PHASE2",
-    "phase2Status": "VALIDATION_BUILD",
-    "ownerGate": "OPEN",
-    "physicalPrintGate": "OPEN"
+    "status": "APPROVED",
+    "phase2Status": "READY_TO_MERGE",
+    "ownerGate": "PASS",
+    "ownerReview": "PASS",
+    "browserPrintPreview": "PASS",
+    "physicalPrintGate": "PASS",
+    "physicalPrintReview": "PASS",
+    "phase2MigrationParity": "PASS",
+    "scale": "100% / Actual Size",
+    "browser": "Not recorded",
+    "printerCopier": "Not recorded",
+    "paper": "Not recorded",
+    "artifactPolicy": {
+      "historicalPdfs": "RETAINED",
+      "currentProduction": "HTML_BASED",
+      "newPdfsGenerated": false
+    }
   },
   "presentation": {
     "contentSha256": "e3aa3e2aba4199d390755cb19ee69bad3c2ac8850c1eb5a924b996696f40ef41",

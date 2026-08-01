@@ -1,10 +1,14 @@
 # Case 01 Phase 2 Migration Validation
 
-**Status:** VALIDATION_BUILD
+**Status:** OWNER REVIEW PASS · READY TO MERGE
 
-**Owner gate:** OPEN
+**Current maintained HTML:** APPROVED
 
-**Physical-print gate:** OPEN
+**Owner gate:** PASS
+
+**Browser print-preview review:** PASS
+
+**Physical-print gate:** PASS
 
 Exact parity status: **PASS**
 
@@ -18,5 +22,7 @@ Exact parity status: **PASS**
 - pageFitRoles: 5/5
 - currentRoleExportParity: 5/5
 - completePortableExportParity: 19/19
+
+Owner approval: Nate / Owner · 2026-08-01 · 100% / Actual Size
 
 Owner materials: `apps/curriculum-editor/tests/screenshots/parity-phase2/sss-c1-case01/`

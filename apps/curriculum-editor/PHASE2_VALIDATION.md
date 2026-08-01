@@ -1,12 +1,14 @@
 # Curriculum Editor Phase 2 Validation Handoff
 
-**Status:** VALIDATION_BUILD
+**Status:** OWNER REVIEW PASS · READY TO MERGE
 
-**Owner gate:** OWNER_GATE_OPEN
+**Owner gate:** PASS
 
-**Physical-print gate:** PHYSICAL_PRINT_GATE_OPEN
+**Browser print-preview review:** PASS
 
-This branch additively migrates the owner-authorized current maintained HTML for Case 01 v1.1 and Case 02 v1.0 into the Phase 1 central editor. It does not create a curriculum release, accept Phase 2, perform cutover, remove embedded editors, clean up history, or create/modify PDFs.
+**Physical-print gate:** PASS
+
+This branch additively migrates the approved current maintained HTML for Case 01 v1.1 and Case 02 v1.0 into the Phase 1 central editor. Nate / Owner accepted Phase 2 on 2026-08-01 after browser review, browser print-preview review, and physical printing at 100% / Actual Size. Browser, printer/copier, and paper were not recorded. The branch is ready for fast-forward merge; it does not perform cutover, remove embedded editors, clean up history, begin Case 04, or create/modify PDFs.
 
 ## Golden baselines and packages
 
@@ -15,7 +17,7 @@ This branch additively migrates the owner-authorized current maintained HTML for
 | Case 01 v1.1 | `737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f` | `sss/campaign-1/case-01-iss-greenhouse/source/editor-package/case-package.v1.1.json` | Student 3 · Teacher 7 · Answer 3 · Accessible 6 · Student Grayscale 3 |
 | Case 02 v1.0 | `4e5d03a62cba494ae09604194f69578b4c4bcceeeca1f9d53d818109e132fd0d` | `sss/campaign-1/case-02-lunar-greenhouse/source/editor-package/case-package.v1.0.json` | Student 3 · Teacher 7 · Answer 3 · Accessible 5 · Student Grayscale 3 |
 
-The generic deterministic builder is `shared/implementation/build_phase2_case_packages.py`. It fails closed on either golden, task registry, or controlled-source hash change and emits 10 deterministic files. The package schema records the maintained golden, pre-maintenance historical hash, reconciliation record, maintenance revision, owner authorization, and open gates.
+The generic deterministic builder is `shared/implementation/build_phase2_case_packages.py`. It fails closed on either golden, task registry, or controlled-source hash change and emits 10 deterministic files. The package schema records the maintained golden, pre-maintenance historical hash, immutable reconciliation snapshot, maintenance revision, additive owner-approval record, and passed gates.
 
 ## Automated results
 
@@ -32,7 +34,7 @@ The generic deterministic builder is `shared/implementation/build_phase2_case_pa
 | Complete portable export pages | 19/19 | 18/18 | 37/37 |
 | Role profiles reporting Pages fit | 5/5 | 5/5 | 10/10 |
 
-The expanded browser/cross-case suite passes 267/267 assertions, including every accepted Phase 1 browser assertion and all 15 isolated print profiles. The Phase 2 static suite passes 69/69; the nested accepted Phase 1 static suite passes 103/103. Reconciliation passes 121/121, deterministic extraction 10/10, and the protected ledger 116/116. Both master and editor browser logs contain zero JavaScript errors.
+The expanded browser/cross-case suite passes 267/267 assertions, including every accepted Phase 1 browser assertion and all 15 isolated print profiles. The Phase 2 static suite passes 69/69; the nested accepted Phase 1 static suite passes 103/103. Final reconciliation passes 133/133, deterministic extraction 10/10, and the protected ledger 117/117. Both master and editor browser logs contain zero JavaScript errors.
 
 The clean-print DOM assertions require exact counts for Case 01 (3/7/3/6/3), Case 02 (3/7/3/5/3), and Case 03 (4/8/4/7/4), in Student/Teacher/Answer Key/Accessible/Student Grayscale order. They also require one intact first-page title/institutional identity, intact continuation identity on every later page, no blank printable fragments, no application chrome or authoring state, preserved current edits/responses, unchanged page geometry, and no Page shadow.
 
@@ -42,15 +44,15 @@ The clean-print DOM assertions require exact counts for Case 01 (3/7/3/6/3), Cas
 
 Case 03 v1.0/v1.1 protection and Phase 1 behavior remain covered by the accepted 103-assertion static suite, the expanded browser suite, and the unchanged Phase 1 parity artifacts.
 
-## Owner review materials
+## Owner approval
 
 - Case 01 screenshots/contact sheets: `tests/screenshots/parity-phase2/sss-c1-case01/`
-- Case 01 parity JSON/report/checklist: `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/phase2/`
+- Case 01 parity JSON/report/checklist/approval: `sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/phase2/`
 - Case 02 screenshots/contact sheets: `tests/screenshots/parity-phase2/sss-c1-case02/`
-- Case 02 parity JSON/report/checklist: `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/phase2/`
+- Case 02 parity JSON/report/checklist/approval: `sss/campaign-1/case-02-lunar-greenhouse/validation-artifacts/phase2/`
 - Binding-rule audit: `tests/PHASE2_BINDING_RULE_AUDIT.md`
 
-The owner review must cover both the current maintained standalone HTML and its exact central-editor rendering. For every role, use the clean Print / Save PDF path and confirm browser print preview at 100% / Actual Size, exact expected page count, no blank fragments or application chrome, intact first-page and continuation identity, unchanged geometry/content pagination, and no Page shadow. Then complete browser physical printing at 100% / Actual Size. Until the owner records that decision, current maintained Case 01/02 standalone artifacts remain canonical and the central editor remains a validation representation.
+The owner confirmed both the current maintained standalone HTML and its exact central-editor rendering. All 15 clean Print / Save PDF profiles passed browser print preview and physical printing at 100% / Actual Size with exact page counts, no blank fragments or application chrome, intact first-page and continuation identity, unchanged geometry/content pagination, and no Page shadow. Historical PDFs remain retained, current production remains HTML-based, and no new PDFs were generated.
 
 ## Reproduction
 

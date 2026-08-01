@@ -1,9 +1,21 @@
 {
   "validator": "sss-c1-case01-phase2-parity",
   "status": "PASS",
-  "phase2Status": "VALIDATION_BUILD",
-  "ownerGate": "OPEN",
-  "physicalPrintGate": "OPEN",
+  "phase2Status": "READY_TO_MERGE",
+  "currentMaintainedHtml": "APPROVED",
+  "ownerGate": "PASS",
+  "physicalPrintGate": "PASS",
+  "ownerApproval": {
+    "date": "2026-08-01",
+    "tester": "Nate / Owner",
+    "ownerReview": "PASS",
+    "browserPrintPreview": "PASS",
+    "physicalPrintReview": "PASS",
+    "scale": "100% / Actual Size",
+    "browser": "Not recorded",
+    "printerCopier": "Not recorded",
+    "paper": "Not recorded"
+  },
   "pageCounts": {
     "student": 3,
     "teacher": 7,

@@ -53,7 +53,9 @@
                       "htmlMaintenanceRevision": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
                       "reconciliationRecord": { "type": "string", "minLength": 1 },
                       "currentMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-                      "ownerAuthorization": { "const": "OWNER_AUTHORIZED_FOR_PHASE2" },
+                      "ownerAuthorization": { "enum": ["OWNER_AUTHORIZED_FOR_PHASE2", "APPROVED"] },
+                      "currentMaintainedHtml": { "const": "APPROVED" },
+                      "phase2Status": { "const": "READY_TO_MERGE" },
                       "physicalPrintGate": { "enum": ["OPEN", "PASS"] },
                       "approval": {
                         "type": "object",
@@ -66,7 +68,15 @@
                           "scale": { "const": "100% / Actual Size" },
                           "printer": { "const": "Not recorded" },
                           "paper": { "const": "Not recorded" },
-                          "artifactPolicy": { "const": "HTML_ONLY" }
+                          "artifactPolicy": { "enum": ["HTML_ONLY", "HISTORICAL_PDFS_RETAINED"] },
+                          "browser": { "const": "Not recorded" },
+                          "browserPrintPreview": { "const": "PASS" },
+                          "physicalPrintReview": { "const": "PASS" },
+                          "phase2MigrationParity": { "const": "PASS" },
+                          "currentMaintainedHtml": { "const": "APPROVED" },
+                          "currentProduction": { "enum": ["HTML_BASED", "HTML_ONLY"] },
+                          "newPdfsGenerated": { "const": false },
+                          "approvalRecord": { "type": "string", "minLength": 1 }
                         },
                         "additionalProperties": false
                       },
