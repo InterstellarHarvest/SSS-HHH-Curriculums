@@ -16,6 +16,8 @@
           "cases": [
             {
               "id": "SSS-C1-CASE01",
+              "displayOrder": 1,
+              "displayLabel": "1 - ISS Greenhouse",
               "title": "ISS Greenhouse",
               "version": "1.1",
               "status": "APPROVED_WITH_HTML_MAINTENANCE",
@@ -38,6 +40,8 @@
             },
             {
               "id": "SSS-C1-CASE02",
+              "displayOrder": 2,
+              "displayLabel": "2 - Lunar Greenhouse",
               "title": "Lunar Greenhouse",
               "version": "1.0",
               "status": "APPROVED_WITH_HTML_MAINTENANCE",
@@ -60,6 +64,8 @@
             },
             {
               "id": "SSS-C1-CASE03",
+              "displayOrder": 3,
+              "displayLabel": "3 - Mars Habitat",
               "title": "Mars Habitat",
               "version": "1.1",
               "status": "APPROVED_STABLE",

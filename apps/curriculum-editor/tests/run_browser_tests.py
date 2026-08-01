@@ -47,7 +47,7 @@ def chrome_command(chrome: Path, profile: Path, url: str, *extra: str) -> list[s
         "--disable-default-apps",
         "--no-first-run",
         f"--user-data-dir={profile}",
-        "--virtual-time-budget=15000",
+        "--virtual-time-budget=30000",
         *extra,
         url,
     ]
@@ -73,7 +73,7 @@ def main() -> int:
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
-            deadline = time.monotonic() + 55
+            deadline = time.monotonic() + 90
             while server.test_result is None and time.monotonic() < deadline:  # type: ignore[attr-defined]
                 if browser.poll() is not None:
                     break

@@ -10,7 +10,7 @@
 
 ## 1. Architecture boundary
 
-The central application owns the library rail, toolbar orchestration, editing state, autosave, overflow reporting, presentation isolation, and export assembly. The shared shell remains the canonical source for toolbar markup, CER geometry, common components, icons, and established control behavior. The case package owns the hash-verified worksheet-only DOM and presentation CSS, task definitions, metadata, assets, roles, page counts, and filenames.
+The central application owns the library rail, toolbar orchestration, editing state, autosave, page-fit reporting, presentation isolation, isolated role printing, and export assembly. The shared shell remains the canonical source for toolbar markup, CER geometry, common components, icons, and established control behavior. The case package owns the hash-verified worksheet-only DOM and presentation CSS, task definitions, metadata, assets, roles, page counts, and filenames.
 
 ```text
 case-registry.v1.json
@@ -59,7 +59,7 @@ Schema version 1 separates editor mechanics from case data. Its required fields 
 - assets: source-backed or content-embedded assets, MIME/type, selector where applicable, and embed requirement;
 - roles: supported roles, default role, source-role mapping, document role, page count, and grayscale flag;
 - output: complete and five current-role filenames;
-- defaults: role, edit/fill modes, four margins, density, grayscale, guides, and boundaries;
+- defaults: role, edit/fill modes, four margins, density, grayscale, Guides, and Page shadow (stored internally as `boundaries` for backward compatibility);
 - accessibility: document language/title, load announcement, extended-description selectors, and the manual-PDF warning;
 - approval: date, tester, owner-review and browser physical-print results, scale, printer/paper record, and artifact policy;
 - migration provenance: golden/historical/successor master paths and hashes, pre-maintenance hash where applicable, reconciliation record, reason, and deterministic builder;
@@ -72,7 +72,7 @@ Validation rejects unsupported schema versions, missing package/content/style/ta
 
 ## 4. Editing and recovery state
 
-One state object controls role, four independent margins, density, edit/fill modes, grayscale, guides, and boundaries. `applyState()` mirrors relevant tokens onto the application body and the isolated worksheet-document root, then updates controls, visible pages, editable nodes, status text, and overflow checks.
+One state object controls role, four independent margins, density, edit/fill modes, grayscale, Guides, and Page shadow. The backward-compatible `boundaries` property controls only screen box shadow. `applyState()` mirrors relevant tokens onto the application body and the isolated worksheet-document root, then updates controls, visible pages, editable nodes, status text, and page-fit checks.
 
 - Fill Responses exposes only `[data-response]` and supported ordinary form fields on the selected source role.
 - Edit Text additionally exposes `[data-editable]` nodes. Structural attributes, IDs, task keys, role boundaries, and component metadata are never editable.
@@ -99,6 +99,8 @@ The exported file receives a derived document key, so it cannot collide with the
 
 Selected-role serialization filters the clone to that role's source pages, applies the current Grayscale modifier, and omits the toolbar, library rail, and central statuses. Student plus Grayscale uses the canonical Grayscale Mission filename; another grayscale-presented role retains its own filename and document identity. The file retains inline print CSS and the portable runtime, so response editing/recovery and browser printing work without repository files or preexisting storage.
 
+Print / Save PDF reuses that selected-role serialization boundary to create a temporary same-origin iframe. Its document physically contains only the selected role pages, current edits/responses and presentation settings, exact package CSS, and embedded assets. It excludes all application chrome and authoring controls, forces Page shadow off, waits for load, `document.fonts.ready`, and image decode/load completion, then focuses the iframe and calls that window's `print()`. `afterprint` removes the iframe, with a delayed fallback. The parent editor is never replaced or printed. App-level print CSS separately hides/reset the complete chrome as defensive fallback protection.
+
 The complete portable export reconstructs the shared Role selector because it has no library rail. Its selector contains the four instructional roles plus the shell's All Pages audit view; Grayscale remains a separate toggle.
 
 Exports use browser download blobs and never silently write or overwrite repository paths.
@@ -110,7 +112,7 @@ Exports use browser download blobs and never silently write or overwrite reposit
 - Hidden roles receive both `hidden` and `aria-hidden`; only the selected source role remains in the accessibility tree.
 - Response fields retain programmatic names, textbox roles, and multiline metadata from the approved source.
 - Inactive edit/response nodes use `contenteditable="false"` and `tabindex="-1"`; active nodes use visible focus styles and keyboard reachability.
-- Load, local-save, overflow, and error messages have status/alert semantics. Live announcements are limited to the three user-relevant state channels.
+- Load, local-save, page-fit, and error messages have status/alert semantics. Page fit reads `Pages fit`, `1 page too full`, or `N pages too full`; warning treatment appears only above zero. Live announcements are limited to the three user-relevant state channels.
 - Page regions, heading hierarchy, table captions, figure captions/labels, extended descriptions, non-color task/component cues, and selectable text come from the approved Case 03 source and shared shell.
 - Application layout adapts at 980 px and 700 px, measures wrapped toolbar height at every viewport, keeps focus visible, and honors reduced-motion preferences.
 - Grayscale uses token overrides rather than whole-page filters, retaining selectable text and non-color distinctions.
@@ -121,9 +123,9 @@ The interface and documentation repeat the governing warning: browser PDF export
 
 `tests/validate_static.py` retains the 103 accepted Phase 1 static/package assertions for Case 03. `tests/validate_phase2_static.py` adds Case 01/02 schema and semantic package validation, golden/extraction hash checks, task and binding-rule checks, deterministic extraction, the reconciled protected-artifact ledger, and the no-PDF rule.
 
-`tests/run_browser_tests.py` retains every Phase 1 browser assertion and adds repeated Case 01 → Case 02 → Case 03 cycling. It checks package discovery/order, keyboard and disabled-selector semantics, per-role page counts/overflow, package-specific styles/content/assets, role/edit/response/autosave isolation, output identities, announcements, duplicate light-DOM IDs, and stale Shadow DOM cleanup.
+`tests/run_browser_tests.py` retains every Phase 1 browser assertion and adds repeated Case 01 → Case 02 → Case 03 cycling. It checks exact case labels/order, keyboard and disabled-selector semantics, per-role page fit, Page shadow geometry isolation, all 15 clean print profiles/page counts, first and continuation identity, chrome exclusion, package-specific styles/content/assets, role/edit/response/autosave isolation, output identities, announcements, duplicate light-DOM IDs, and stale Shadow DOM cleanup.
 
-`tests/validate_phase2_parity.py` renders each Case 01/02 maintained master and isolated central worksheet in the same installed browser, viewport, fonts, defaults, role, and grayscale state. Across all 43 role-profile pages it compares DOM structure, task/page assignment, page-relative critical geometry, computed presentation, and page pixels. It also validates current maintained role HTML, current-role export geometry, complete portable export geometry, component containment, zero overflow, and JavaScript errors. The accepted Case 03 threshold remains a channel delta of 8 and at most 0.05% differing pixels; thresholds were not loosened.
+`tests/validate_phase2_parity.py` renders each Case 01/02 maintained master and isolated central worksheet in the same installed browser, viewport, fonts, defaults, role, and grayscale state. Across all 43 role-profile pages it compares DOM structure, task/page assignment, page-relative critical geometry, computed presentation, and page pixels. It also validates current maintained role HTML, current-role export geometry, complete portable export geometry, component containment, all profiles reporting Pages fit, and JavaScript errors. The accepted Case 03 threshold remains a channel delta of 8 and at most 0.05% differing pixels; thresholds were not loosened.
 
 The protected ledger covers masters, current role HTML, controlled sources/assets, manifests, validation/owner records, and every Case 01/02 historical PDF. Validators hash PDFs but never generate, normalize, or inspect/re-save them.
 

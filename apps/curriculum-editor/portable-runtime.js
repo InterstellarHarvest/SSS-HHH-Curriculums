@@ -19,6 +19,16 @@
     ...safeJson(safeGet(stateKey), {})
   };
   if (config.standaloneRole) state.role = config.standaloneRole;
+  const printProtection = document.createElement("style");
+  printProtection.id = "portablePrintProtection";
+  printProtection.textContent = "@media print{.page{box-shadow:none!important}}";
+  document.head.append(printProtection);
+
+  function formatPageFitStatus(count) {
+    if (count === 0) return "Pages fit";
+    if (count === 1) return "1 page too full";
+    return `${count} pages too full`;
+  }
 
   function sourceRole(role = state.role) {
     if (role === "all") return "all";
@@ -82,7 +92,7 @@
     }
     const output = $("#overflowStatus");
     if (output) {
-      output.textContent = `${count} overflow`;
+      output.textContent = formatPageFitStatus(count);
       output.classList.toggle("toolbar-overflow", count > 0);
     }
     return count;
@@ -182,13 +192,18 @@
       node.removeAttribute("tabindex");
       node.removeAttribute("spellcheck");
     }
+    for (const node of $$("[contenteditable],[tabindex],[spellcheck]", clone)) {
+      node.removeAttribute("contenteditable");
+      node.removeAttribute("tabindex");
+      node.removeAttribute("spellcheck");
+    }
     for (const page of $$(".page", clone)) {
       page.hidden = false;
       page.removeAttribute("hidden");
       page.removeAttribute("aria-hidden");
       page.classList.remove("has-overflow");
     }
-    clone.body?.classList.remove("edit-mode", "print-preview");
+    clone.querySelector("body")?.classList.remove("edit-mode", "print-preview");
   }
 
   function serializePortableHTML() {
@@ -206,13 +221,102 @@
     clone.querySelector(".toolbar")?.remove();
     const wanted = config.rolePageStructure[role].sourceRole;
     for (const page of $$(".page[data-role]", clone)) if (page.dataset.role !== wanted) page.remove();
-    clone.body.dataset.role = wanted;
-    clone.body.dataset.standalone = "true";
-    clone.body.classList.add("standalone-role");
-    clone.body.classList.toggle("grayscale", state.grayscale);
+    const cloneBody = clone.querySelector("body");
+    cloneBody.dataset.role = wanted;
+    cloneBody.dataset.standalone = "true";
+    cloneBody.classList.add("standalone-role");
+    cloneBody.classList.toggle("grayscale", state.grayscale);
     const nextConfig = { ...config, initialState: { ...state, role, grayscale: state.grayscale }, standaloneRole: role, documentKey: `${config.documentKey}:${role}:${Date.now()}` };
     clone.querySelector("#portableConfig").textContent = JSON.stringify(nextConfig).replace(/</g, "\\u003c");
     return `<!doctype html>\n${clone.outerHTML}`;
+  }
+
+  function buildPrintDocument(role = state.role) {
+    if (role === "all" || !config.rolePageStructure[role]) throw new Error("Choose one instructional role before printing.");
+    const clone = document.documentElement.cloneNode(true);
+    cleanClone(clone);
+    for (const selector of [".toolbar", "#editorToolbarHost", ".library-rail", ".workspace-header", ".editor-statuses", ".skip-link", "#pdfNotice", "#portableConfig", "script"]) {
+      for (const node of $$(selector, clone)) node.remove();
+    }
+    for (const link of $$('a[href="#workspace"]', clone)) link.remove();
+    const wanted = config.rolePageStructure[role].sourceRole;
+    for (const page of $$(".page[data-role]", clone)) if (page.dataset.role !== wanted) page.remove();
+    const cloneBody = clone.querySelector("body");
+    cloneBody.dataset.role = wanted;
+    cloneBody.dataset.standalone = "true";
+    cloneBody.dataset.printDocument = "true";
+    cloneBody.className = ["standalone-role", "print-document", "hide-boundaries", `density-${state.density}`, state.grayscale ? "grayscale" : "", state.guides ? "show-guides" : ""].filter(Boolean).join(" ");
+    for (const side of ["top", "right", "bottom", "left"]) clone.style.setProperty(`--margin-${side}`, `${state[`margin${side[0].toUpperCase()}${side.slice(1)}`]}in`);
+    const style = clone.ownerDocument.createElement("style");
+    style.id = "isolatedPrintDocumentStyles";
+    style.textContent = `
+html,body{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
+body.print-document{display:block!important;min-height:0!important;background:#fff!important}
+body.print-document .workspace{display:block!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important}
+body.print-document .page{display:block!important;margin:0 auto!important;box-shadow:none!important;break-after:page!important;page-break-after:always!important}
+body.print-document .page:last-child{break-after:auto!important;page-break-after:auto!important}
+body.print-document .overflow-warning{display:none!important}
+@media print{html,body,body.print-document,body.print-document .workspace{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}body.print-document .page{box-shadow:none!important}}`;
+    clone.querySelector("head").append(style);
+    return `<!doctype html>\n${clone.outerHTML}`;
+  }
+
+  function waitForPrintImage(image) {
+    const decoded = () => typeof image.decode === "function" ? image.decode().catch(() => {}) : Promise.resolve();
+    if (image.complete) return decoded();
+    return new Promise(resolve => {
+      const done = () => { image.removeEventListener("load", done); image.removeEventListener("error", done); resolve(); };
+      image.addEventListener("load", done, { once: true });
+      image.addEventListener("error", done, { once: true });
+    }).then(decoded);
+  }
+
+  async function preparePrintFrame(role = state.role) {
+    const frame = document.createElement("iframe");
+    frame.className = "curriculum-print-frame";
+    frame.title = `${config.title} print document`;
+    frame.setAttribute("aria-hidden", "true");
+    frame.style.cssText = "position:fixed;left:-20000px;top:0;width:1440px;height:1200px;border:0;pointer-events:none";
+    const loaded = new Promise((resolve, reject) => {
+      frame.addEventListener("load", resolve, { once: true });
+      frame.addEventListener("error", () => reject(new Error("The isolated print document could not be loaded.")), { once: true });
+    });
+    frame.srcdoc = buildPrintDocument(role);
+    document.body.append(frame);
+    await loaded;
+    const printDocument = frame.contentDocument;
+    if (!printDocument) {
+      frame.remove();
+      throw new Error("The isolated print document is unavailable.");
+    }
+    await printDocument.fonts?.ready;
+    await Promise.all($$("img", printDocument).map(waitForPrintImage));
+    return frame;
+  }
+
+  async function printCurrentRole(options = {}) {
+    const count = checkOverflow();
+    if (count > 0 && options.confirmOnTooFull !== false && !confirm(`${formatPageFitStatus(count)}. Print anyway?`)) return null;
+    const frame = await preparePrintFrame(state.role);
+    if (options.invokePrint === false) return frame;
+    const printWindow = frame.contentWindow;
+    if (!printWindow) {
+      frame.remove();
+      throw new Error("The isolated print window is unavailable.");
+    }
+    let removed = false;
+    const cleanup = () => {
+      if (removed) return;
+      removed = true;
+      frame.remove();
+    };
+    printWindow.addEventListener("afterprint", () => setTimeout(cleanup, 0), { once: true });
+    setTimeout(cleanup, options.cleanupFallbackMs ?? 60000);
+    frame.contentDocument.body.tabIndex = -1;
+    frame.contentDocument.body.focus({ preventScroll: true });
+    printWindow.focus();
+    printWindow.print();
+    return frame;
   }
 
   function download(html, filename) {
@@ -243,7 +347,9 @@
       $(`#margin${side}`)?.addEventListener("change", event => saveState({ [`margin${side}`]: Math.max(.25, Math.min(1, Number(event.target.value) || .5)) }));
     }
     $("#marginReset")?.addEventListener("click", () => saveState({ marginTop: .5, marginRight: .5, marginBottom: .5, marginLeft: .5 }));
-    $("#printButton")?.addEventListener("click", () => { checkOverflow(); window.print(); });
+    $("#printButton")?.addEventListener("click", () => {
+      void printCurrentRole().catch(error => setStatus(`PRINT FAILED: ${error.message || error}`));
+    });
     $("#downloadButton")?.addEventListener("click", () => download(serializePortableHTML(), config.outputs.complete));
     $("#downloadRoleButton")?.addEventListener("click", () => state.role !== "all" && download(serializeRoleHTML(), currentRoleOutput().filename));
     $("#clearButton")?.addEventListener("click", () => clearCurrentRole(false));
@@ -266,8 +372,12 @@
     clearCurrentRole,
     resetSource,
     checkOverflow,
+    formatPageFitStatus,
     serializePortableHTML,
     serializeRoleHTML,
+    buildPrintDocument,
+    preparePrintFrame,
+    printCurrentRole,
     getCurrentRoleOutput: () => ({ ...currentRoleOutput() }),
     keys: { stateKey, contentKey }
   };

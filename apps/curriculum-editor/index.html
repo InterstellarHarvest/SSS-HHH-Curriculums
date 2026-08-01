@@ -31,7 +31,7 @@
         <select id="caseSelect"></select>
 
         <div class="case-status" aria-label="Current case status">
-          <span>Status</span>
+          <span>Current release</span>
           <strong id="caseStatus">NOT LOADED</strong>
         </div>
 
@@ -58,7 +58,7 @@
       <section class="editor-statuses" aria-label="Editor status">
         <p><span>Load</span> <strong id="loadStatus" role="status" aria-live="polite">Loading registry…</strong></p>
         <p><span>Autosave</span> <strong id="saveStatusMirror">LOCAL SAVE READY</strong></p>
-        <p><span>Overflow</span> <strong id="overflowStatusMirror">0 overflow</strong></p>
+        <p><span>Page fit</span> <strong id="overflowStatusMirror" aria-describedby="pageFitMirrorDescription">Pages fit</strong><span class="visually-hidden" id="pageFitMirrorDescription">A page is too full when content extends beyond its printable page area.</span></p>
       </section>
 
       <div id="editorError" class="editor-error" role="alert" hidden></div>

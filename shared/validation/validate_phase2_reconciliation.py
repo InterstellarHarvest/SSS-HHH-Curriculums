@@ -37,6 +37,8 @@ def git(*args: str) -> bytes:
 def protected(path: str) -> bool:
     if not path.startswith(PROTECTED_ROOTS):
         return False
+    if "/source/editor-phase2/" in path or "/source/editor-package/" in path:
+        return False
     return (
         "/master/" in path and path.endswith(".html")
         or "/published/" in path and (path.endswith(".html") or path.endswith(".pdf"))

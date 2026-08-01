@@ -63,6 +63,7 @@ def main() -> int:
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
     compatible = [case for case in entries if case.get("editorPackage")]
     results.check("exactly Cases 01, 02, and 03 are editor-compatible in case order", [case["id"] for case in compatible] == ["SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"], [case["id"] for case in compatible])
+    results.check("case display metadata provides exact owner labels and order", [(case.get("displayOrder"), case.get("displayLabel")) for case in compatible] == [(1, "1 - ISS Greenhouse"), (2, "2 - Lunar Greenhouse"), (3, "3 - Mars Habitat")])
 
     for case_id, expected in CASES.items():
         entry = next(case for case in entries if case["id"] == case_id)
@@ -112,11 +113,20 @@ def main() -> int:
         results.check(f"{case_id} contains no mandatory group-work direction", not re.search(r"\b(must|required to)\s+(work|collaborate)\s+(with|in)\s+(a |your )?(group|team)\b", text, re.I))
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
+    portable_runtime = (APP / "portable-runtime.js").read_text(encoding="utf-8")
+    app_css = (APP / "editor-app.css").read_text(encoding="utf-8")
     results.check("central runtime has no Case 01/02 branches", "SSS-C1-CASE01" not in runtime and "SSS-C1-CASE02" not in runtime)
     results.check("selected-case, state, and content keys are case/version namespaced", "curriculum-editor:selected-case:v1" in runtime and "casePackage.documentKey" in runtime and "stateKey" in runtime and "contentKey" in runtime)
     results.check("case switching replaces isolated worksheet content and styles", "worksheetShadow.replaceChildren(style, worksheetDocument)" in runtime and "data-case-package-font" in runtime)
+    results.check("central toolbar exposes Page shadow and exact accessible descriptions", 'document.createTextNode(" Page shadow")' in runtime and "Adds a screen-only shadow around each worksheet page for visual separation." in runtime and "A page is too full when content extends beyond its printable page area." in runtime)
+    results.check("page-fit wording covers zero, singular, and plural without changing detection tolerance", all(text in runtime and text in portable_runtime for text in ["Pages fit", "1 page too full", "pages too full"]) and "+ 2" in runtime and "+ 2" in portable_runtime)
+    results.check("central and portable print paths use isolated role iframes rather than parent-window print", "preparePrintFrame" in runtime and "preparePrintFrame" in portable_runtime and "frame.contentWindow" in runtime and "printWindow.print()" in runtime and "printWindow.print()" in portable_runtime and "window.print()" not in runtime and "window.print()" not in portable_runtime)
+    results.check("isolated printing waits for document load, fonts, and images", all(token in runtime and token in portable_runtime for token in ['addEventListener("load"', ".fonts?.ready", "waitForPrintImage", "image.decode"]))
+    results.check("isolated print cleanup uses afterprint plus delayed fallback", all(token in runtime and token in portable_runtime for token in ['addEventListener("afterprint"', "cleanupFallbackMs", "frame.remove()"] ))
+    results.check("defensive app print CSS excludes all chrome and resets application geometry", "#editorToolbarHost" in app_css and ".library-rail" in app_css and ".workspace-header" in app_css and ".editor-statuses" in app_css and "@media print" in app_css and "min-height: 0 !important" in app_css)
     harness = (APP / "tests/browser-harness.html").read_text(encoding="utf-8")
     results.check("cross-case browser harness exercises all three cases repeatedly", all(case_id in harness for case_id in ["SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"]) and harness.count("for (const item of phase2Cases)") >= 2 and harness.count("selectCase") >= 2)
+    results.check("browser harness asserts all 15 isolated print profiles and chrome exclusion", "const printProfiles" in harness and all(label in harness for label in ["Student Grayscale", "isolated print page count is exactly", ".toolbar,#editorToolbarHost,.library-rail,.workspace-header,.editor-statuses", "first-page and continuation identities are intact"]))
     results.check("binding-rule audit is recorded with no blocker", "NO BLOCKING CONTRADICTION" in (APP / "tests/PHASE2_BINDING_RULE_AUDIT.md").read_text(encoding="utf-8"))
     run_check(results, "deterministic Phase 2 extraction passes", [sys.executable, "shared/implementation/build_phase2_case_packages.py", "--check"])
     run_check(results, "protected-artifact inventory passes", [sys.executable, "shared/validation/validate_phase2_protected_inventory.py"])

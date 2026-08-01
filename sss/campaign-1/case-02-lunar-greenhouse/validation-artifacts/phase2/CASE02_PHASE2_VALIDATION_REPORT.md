@@ -15,7 +15,7 @@ Exact parity status: **PASS**
 - renderedComparison: 21/21
 - componentIntegrity: 224/224
 - currentMaintainedRoleArtifactParity: 5/5
-- zeroOverflowRoles: 5/5
+- pageFitRoles: 5/5
 - currentRoleExportParity: 5/5
 - completePortableExportParity: 18/18
 

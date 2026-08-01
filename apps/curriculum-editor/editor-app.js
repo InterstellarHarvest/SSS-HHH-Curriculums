@@ -10,6 +10,18 @@ const ROLE_LABELS = {
   grayscale: "Grayscale",
   all: "All Pages"
 };
+const PRINT_DOCUMENT_CSS = `
+html,body{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
+body.print-document{display:block!important;min-height:0!important;background:#fff!important}
+body.print-document .print-assets{position:absolute!important;width:0!important;height:0!important;overflow:hidden!important}
+body.print-document #workspace{display:block!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important}
+body.print-document .page{display:block!important;margin:0 auto!important;box-shadow:none!important;break-after:page!important;page-break-after:always!important}
+body.print-document .page:last-child{break-after:auto!important;page-break-after:auto!important}
+body.print-document .overflow-warning{display:none!important}
+@media print{
+  html,body,body.print-document,body.print-document #workspace{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
+  body.print-document .page{box-shadow:none!important}
+}`;
 
 const elements = {
   toolbarHost: document.querySelector("#editorToolbarHost"),
@@ -274,7 +286,7 @@ function installWorksheet(presentationCss, iconsText) {
   worksheetShadow = elements.worksheetHost.shadowRoot || elements.worksheetHost.attachShadow({ mode: "open" });
   const style = document.createElement("style");
   style.dataset.casePackagePresentation = `${casePackage.id}:v${casePackage.version}`;
-  style.textContent = `${scopePresentationCss(presentationCss)}\n.worksheet-document{padding:0;background:transparent}`;
+  style.textContent = `${scopePresentationCss(presentationCss)}\n.worksheet-document{padding:0;background:transparent}\n@media print{.worksheet-document .page{box-shadow:none!important}}`;
   worksheetDocument = document.createElement("div");
   worksheetDocument.className = "worksheet-document";
   worksheetDocument.dataset.standalone = "true";
@@ -318,8 +330,25 @@ function installToolbar(toolbarText) {
   roleDownload.type = "button";
   roleDownload.textContent = "Download Current Role";
   download.after(roleDownload);
+  const boundaryControl = toolbar.querySelector("#boundaryControl");
+  const boundaryLabel = boundaryControl.closest("label");
+  boundaryLabel.replaceChildren(boundaryControl, document.createTextNode(" Page shadow"));
+  boundaryControl.setAttribute("aria-describedby", "pageShadowDescription");
+  const pageShadowDescription = document.createElement("span");
+  pageShadowDescription.id = "pageShadowDescription";
+  pageShadowDescription.className = "visually-hidden toolbar-description";
+  pageShadowDescription.textContent = "Adds a screen-only shadow around each worksheet page for visual separation.";
+  boundaryLabel.after(pageShadowDescription);
+  const overflowStatus = toolbar.querySelector("#overflowStatus");
+  overflowStatus.textContent = "Pages fit";
+  overflowStatus.setAttribute("aria-describedby", "pageFitDescription");
+  const pageFitDescription = document.createElement("span");
+  pageFitDescription.id = "pageFitDescription";
+  pageFitDescription.className = "visually-hidden toolbar-description";
+  pageFitDescription.textContent = "A page is too full when content extends beyond its printable page area.";
+  overflowStatus.after(pageFitDescription);
   toolbar.querySelector("#stateStatus").setAttribute("aria-live", "polite");
-  toolbar.querySelector("#overflowStatus").setAttribute("aria-live", "polite");
+  overflowStatus.setAttribute("aria-live", "polite");
   toolbar.querySelector("#printButton").setAttribute("aria-describedby", "pdfNotice");
   toolbar.querySelector("#grayControl").setAttribute("aria-label", "Grayscale presentation");
   portableToolbarTemplate = toolbar.cloneNode(true);
@@ -341,7 +370,7 @@ function populateLibrary(selections) {
   const campaigns = [...new Map(selections.map(item => [`${item.curriculum.id}:${item.campaign.id}`, item.campaign])).values()];
   elements.curriculum.replaceChildren(...curricula.map(item => option(item.id, item.title)));
   elements.campaign.replaceChildren(...campaigns.map(item => option(item.id, item.title)));
-  elements.caseSelect.replaceChildren(...selections.map(item => option(item.caseEntry.id, `${item.caseEntry.title} · v${item.caseEntry.version}`)));
+  elements.caseSelect.replaceChildren(...selections.map(item => option(item.caseEntry.id, item.caseEntry.displayLabel)));
   elements.curriculum.disabled = curricula.length < 2;
   elements.campaign.disabled = campaigns.length < 2;
   elements.caseSelect.disabled = selections.length < 2;
@@ -373,7 +402,7 @@ function syncLibrarySelection(selection) {
   elements.curriculum.value = selection.curriculum.id;
   elements.campaign.value = selection.campaign.id;
   elements.caseSelect.value = selection.caseEntry.id;
-  elements.caseStatus.textContent = casePackage.status;
+  elements.caseStatus.textContent = `v${casePackage.version} · ${casePackage.status}`;
   elements.title.textContent = `${casePackage.title} · ${ROLE_LABELS[casePackage.defaultRole]}`;
   elements.pdfNotice.textContent = casePackage.accessibility.pdfNotice;
 }
@@ -401,14 +430,31 @@ function setSaveStatus(text) {
   elements.saveMirror.textContent = text;
 }
 
+function setLoadStatus(visibleText, announcement = visibleText) {
+  const visible = document.createElement("span");
+  visible.setAttribute("aria-hidden", "true");
+  visible.textContent = visibleText;
+  const accessible = document.createElement("span");
+  accessible.className = "visually-hidden";
+  accessible.textContent = announcement;
+  elements.loadStatus.replaceChildren(visible, accessible);
+}
+
+function formatPageFitStatus(count) {
+  if (count === 0) return "Pages fit";
+  if (count === 1) return "1 page too full";
+  return `${count} pages too full`;
+}
+
 function setOverflowStatus(count) {
-  const text = `${count} overflow`;
+  const text = formatPageFitStatus(count);
   const toolbarStatus = $("#overflowStatus");
   if (toolbarStatus) {
     toolbarStatus.textContent = text;
     toolbarStatus.classList.toggle("toolbar-overflow", count > 0);
   }
   elements.overflowMirror.textContent = text;
+  elements.overflowMirror.classList.toggle("page-fit-warning", count > 0);
 }
 
 function saveState(patch = {}) {
@@ -506,7 +552,10 @@ function applyState() {
 }
 
 function announceSelection() {
-  elements.loadStatus.textContent = `${casePackage.title} v${casePackage.version}. ${ROLE_LABELS[state.role]} selected. Grayscale ${state.grayscale ? "on" : "off"}.`;
+  setLoadStatus(
+    `${casePackage.title} · ${ROLE_LABELS[state.role]} ready`,
+    `${casePackage.title} v${casePackage.version}. ${ROLE_LABELS[state.role]} selected. Grayscale ${state.grayscale ? "on" : "off"}.`
+  );
 }
 
 function setRole(role) {
@@ -585,7 +634,7 @@ function bindToolbar() {
     });
   }
   $("#marginReset").addEventListener("click", () => saveState({ marginTop: .5, marginRight: .5, marginBottom: .5, marginLeft: .5 }));
-  $("#printButton").addEventListener("click", () => { checkOverflow(); window.print(); });
+  $("#printButton").addEventListener("click", () => { void printCurrentRole().catch(showError); });
   $("#downloadButton").addEventListener("click", downloadPortableHTML);
   $("#downloadRoleButton").addEventListener("click", downloadCurrentRole);
   $("#clearButton").addEventListener("click", () => clearCurrentRole(false));
@@ -606,11 +655,16 @@ function syncCloneValues(clone) {
   const liveById = new Map($$("[data-persist-id]", elements.workspace).map(node => [node.dataset.persistId, node]));
   for (const node of $$('[data-persist-id]', clone)) {
     const live = liveById.get(node.dataset.persistId);
+    node.removeAttribute("contenteditable");
+    node.removeAttribute("tabindex");
+    node.removeAttribute("spellcheck");
     if (!live) continue;
     if (node.matches("input, textarea, select")) {
       node.value = live.value;
       node.setAttribute("value", live.value);
     } else node.innerHTML = live.innerHTML;
+  }
+  for (const node of $$("[contenteditable],[tabindex],[spellcheck]", clone)) {
     node.removeAttribute("contenteditable");
     node.removeAttribute("tabindex");
     node.removeAttribute("spellcheck");
@@ -659,7 +713,8 @@ function cloneToolbar() {
     }
   }
   clone.querySelector("#stateStatus").textContent = "EMBEDDED SOURCE";
-  clone.querySelector("#overflowStatus").textContent = "0 overflow";
+  clone.querySelector("#overflowStatus").textContent = "Pages fit";
+  clone.querySelector("#overflowStatus").classList.remove("toolbar-overflow");
   clone.querySelector("#downloadRoleButton").disabled = false;
   return clone;
 }
@@ -686,39 +741,47 @@ function portableConfig(role = null, grayscale = state.grayscale) {
   };
 }
 
-function buildPortableDocument(role = null, grayscale = state.grayscale) {
+function buildPortableDocument(role = null, grayscale = state.grayscale, options = {}) {
+  const printDocument = Boolean(options.printDocument);
   const roleName = role ? `${ROLE_LABELS[role]}${grayscale ? " · Grayscale" : ""}` : "Editable Worksheet";
   const worksheet = cloneWorksheet(role);
-  const toolbar = role ? "" : cloneToolbar().outerHTML;
-  const config = portableConfig(role, grayscale);
+  const toolbar = role || printDocument ? "" : cloneToolbar().outerHTML;
+  const config = printDocument ? null : portableConfig(role, grayscale);
   const renderedRole = role ? casePackage.rolePageStructure[role].sourceRole : sourceRole();
-  const bodyClasses = [role ? "standalone-role" : "", grayscale ? "grayscale" : ""].filter(Boolean).join(" ");
+  const bodyClasses = printDocument ? [
+    "standalone-role",
+    grayscale ? "grayscale" : "",
+    state.guides ? "show-guides" : "",
+    "hide-boundaries",
+    `density-${state.density}`,
+    "print-document"
+  ].filter(Boolean).join(" ") : [role ? "standalone-role" : "", grayscale ? "grayscale" : ""].filter(Boolean).join(" ");
   const metadata = [
     ["sss-case", casePackage.id],
     ["sss-case-version", casePackage.version],
     ["sss-case-package-schema", String(casePackage.schemaVersion)],
     ["sss-editor-shell", casePackage.shell.version],
-    ["sss-export-kind", role ? "current-role" : "complete-editable-html"]
+    ["sss-export-kind", printDocument ? "isolated-role-print" : (role ? "current-role" : "complete-editable-html")]
   ].map(([name, content]) => `<meta name="${name}" content="${content}">`).join("\n");
-  const styles = packageStyleText.join("\n\n") + "\n[hidden]{display:none!important}";
+  const styles = packageStyleText.join("\n\n") + "\n[hidden]{display:none!important}" + (printDocument ? PRINT_DOCUMENT_CSS : "");
   const runtime = portableRuntimeSource.replace(/<\/script/gi, "<\\/script");
   return `<!doctype html>
-<html lang="${casePackage.accessibility.language}">
+<html lang="${casePackage.accessibility.language}"${printDocument ? ` style="--margin-top:${state.marginTop}in;--margin-right:${state.marginRight}in;--margin-bottom:${state.marginBottom}in;--margin-left:${state.marginLeft}in"` : ""}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${casePackage.title} · ${roleName}</title>
+<title>${casePackage.title} · ${roleName}${printDocument ? " · Print" : ""}</title>
 ${metadata}
 <style>${styles}</style>
 </head>
-<body class="${bodyClasses}" data-role="${renderedRole}" data-standalone="${role ? "true" : "false"}">
-<a class="visually-hidden" href="#workspace">Skip to curriculum pages</a>
-<p class="visually-hidden" id="pdfNotice">${casePackage.accessibility.pdfNotice}</p>
-${elements.icons.innerHTML}
+<body class="${bodyClasses}" data-role="${renderedRole}" data-standalone="${role ? "true" : "false"}"${printDocument ? " data-print-document=\"true\"" : ""}>
+${printDocument ? "" : '<a class="visually-hidden" href="#workspace">Skip to curriculum pages</a>'}
+${printDocument ? "" : `<p class="visually-hidden" id="pdfNotice">${casePackage.accessibility.pdfNotice}</p>`}
+${printDocument ? `<div class="print-assets" aria-hidden="true">${elements.icons.innerHTML}</div>` : elements.icons.innerHTML}
 ${toolbar}
 ${worksheet.outerHTML}
-<script id="portableConfig" type="application/json">${escapedJson(config)}</script>
-<script>${runtime}</script>
+${printDocument ? "" : `<script id="portableConfig" type="application/json">${escapedJson(config)}</script>`}
+${printDocument ? "" : `<script>${runtime}</script>`}
 </body>
 </html>`;
 }
@@ -727,6 +790,69 @@ function serializePortableHTML() { return buildPortableDocument(null); }
 function serializeRoleHTML(role = state.role) {
   if (!NAVIGATION_ROLES.includes(role)) throw new Error("Choose one instructional role before exporting a current-role file.");
   return buildPortableDocument(role, state.grayscale);
+}
+
+function buildPrintDocument(role = state.role) {
+  if (!NAVIGATION_ROLES.includes(role)) throw new Error("Choose one instructional role before printing.");
+  return buildPortableDocument(role, state.grayscale, { printDocument: true });
+}
+
+function waitForPrintImage(image) {
+  const decoded = () => typeof image.decode === "function" ? image.decode().catch(() => {}) : Promise.resolve();
+  if (image.complete) return decoded();
+  return new Promise(resolve => {
+    const done = () => { image.removeEventListener("load", done); image.removeEventListener("error", done); resolve(); };
+    image.addEventListener("load", done, { once: true });
+    image.addEventListener("error", done, { once: true });
+  }).then(decoded);
+}
+
+async function preparePrintFrame(role = state.role) {
+  const frame = document.createElement("iframe");
+  frame.className = "curriculum-print-frame";
+  frame.title = `${casePackage.title} ${ROLE_LABELS[role]} print document`;
+  frame.setAttribute("aria-hidden", "true");
+  frame.style.cssText = "position:fixed;left:-20000px;top:0;width:1440px;height:1200px;border:0;pointer-events:none";
+  const loaded = new Promise((resolve, reject) => {
+    frame.addEventListener("load", resolve, { once: true });
+    frame.addEventListener("error", () => reject(new Error("The isolated print document could not be loaded.")), { once: true });
+  });
+  frame.srcdoc = buildPrintDocument(role);
+  document.body.append(frame);
+  await loaded;
+  const printDocument = frame.contentDocument;
+  if (!printDocument) {
+    frame.remove();
+    throw new Error("The isolated print document is unavailable.");
+  }
+  await printDocument.fonts?.ready;
+  await Promise.all($$("img", printDocument).map(waitForPrintImage));
+  return frame;
+}
+
+async function printCurrentRole(options = {}) {
+  const count = checkOverflow();
+  if (count > 0 && options.confirmOnTooFull !== false && !confirm(`${formatPageFitStatus(count)}. Print anyway?`)) return null;
+  const frame = await preparePrintFrame(state.role);
+  if (options.invokePrint === false) return frame;
+  const printWindow = frame.contentWindow;
+  if (!printWindow) {
+    frame.remove();
+    throw new Error("The isolated print window is unavailable.");
+  }
+  let removed = false;
+  const cleanup = () => {
+    if (removed) return;
+    removed = true;
+    frame.remove();
+  };
+  printWindow.addEventListener("afterprint", () => setTimeout(cleanup, 0), { once: true });
+  setTimeout(cleanup, options.cleanupFallbackMs ?? 60000);
+  frame.contentDocument.body.tabIndex = -1;
+  frame.contentDocument.body.focus({ preventScroll: true });
+  printWindow.focus();
+  printWindow.print();
+  return frame;
 }
 
 function currentRoleOutput() {
@@ -760,7 +886,7 @@ function showError(error) {
   console.error(error);
   elements.error.hidden = false;
   elements.error.textContent = error.message || String(error);
-  elements.loadStatus.textContent = "LOAD FAILED";
+  setLoadStatus("LOAD FAILED");
   elements.worksheetHost.setAttribute("aria-busy", "false");
 }
 
@@ -775,7 +901,15 @@ async function initialize() {
       }
     }
   }
-  compatibleCases.sort((a, b) => a.caseEntry.id.localeCompare(b.caseEntry.id, undefined, { numeric: true }));
+  for (const { caseEntry } of compatibleCases) {
+    if (!Number.isInteger(caseEntry.displayOrder) || !caseEntry.displayLabel) {
+      throw new Error(`Case registry display metadata is missing: ${caseEntry.id}`);
+    }
+  }
+  if (new Set(compatibleCases.map(item => item.caseEntry.displayOrder)).size !== compatibleCases.length) {
+    throw new Error("Case registry display order values must be unique.");
+  }
+  compatibleCases.sort((a, b) => a.caseEntry.displayOrder - b.caseEntry.displayOrder);
   if (!compatibleCases.length) throw new Error("No current editor-compatible case is discoverable.");
   populateLibrary(compatibleCases);
   const selectedId = safeStorageGet(SELECTED_CASE_KEY);
@@ -789,7 +923,7 @@ async function loadCase(selected, initial = false) {
   elements.error.hidden = true;
   elements.error.textContent = "";
   elements.worksheetHost.setAttribute("aria-busy", "true");
-  elements.loadStatus.textContent = `Loading ${selected.caseEntry.title} v${selected.caseEntry.version}…`;
+  setLoadStatus(`Loading ${selected.caseEntry.title}…`, `Loading ${selected.caseEntry.title} v${selected.caseEntry.version}…`);
   casePackage = await fetchJson(selected.caseEntry.editorPackage);
   validatePackage(casePackage);
   if (selected.caseEntry.version !== casePackage.version || selected.caseEntry.status !== casePackage.status) {
@@ -840,7 +974,10 @@ async function loadCase(selected, initial = false) {
   await document.fonts?.ready;
   checkOverflow();
   elements.worksheetHost.setAttribute("aria-busy", "false");
-  elements.loadStatus.textContent = `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`;
+  setLoadStatus(
+    `${casePackage.title} · ${ROLE_LABELS[state.role]} ready`,
+    `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`
+  );
   safeStorageSet(SELECTED_CASE_KEY, selected.caseEntry.id);
   window.__curriculumEditor = {
     getState: () => ({ ...state }),
@@ -854,10 +991,14 @@ async function loadCase(selected, initial = false) {
     resetSource,
     serializePortableHTML,
     serializeRoleHTML,
+    buildPrintDocument,
+    preparePrintFrame,
+    printCurrentRole,
+    formatPageFitStatus,
     getCurrentRoleOutput: () => ({ ...currentRoleOutput() }),
     getWorkspace: () => elements.workspace,
     getWorksheetDocument: () => worksheetDocument,
-    getCompatibleCases: () => compatibleCases.map(item => ({ id: item.caseEntry.id, title: item.caseEntry.title, version: item.caseEntry.version })),
+    getCompatibleCases: () => compatibleCases.map(item => ({ id: item.caseEntry.id, displayOrder: item.caseEntry.displayOrder, displayLabel: item.caseEntry.displayLabel, title: item.caseEntry.title, version: item.caseEntry.version })),
     selectCase: async id => {
       const selection = compatibleCases.find(item => item.caseEntry.id === id);
       if (!selection) throw new Error(`Unknown editor-compatible case: ${id}`);

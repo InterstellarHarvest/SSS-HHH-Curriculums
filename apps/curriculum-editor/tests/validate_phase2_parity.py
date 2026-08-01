@@ -218,8 +218,8 @@ def run_case(browser, base: str, config: dict[str, Any]) -> dict[str, Any]:
 def write_review(config: dict[str, Any], result: dict[str, Any]) -> None:
     out=REPO/config["root"]/"validation-artifacts/phase2";out.mkdir(parents=True,exist_ok=True);prefix=config["id"].replace("SSS-C1-","")
     (out/f"{prefix}_PHASE2_PARITY_RESULTS.json").write_text(json.dumps(result,indent=2)+"\n")
-    metrics=["structuralParity","pageAssignmentParity","geometryParity","computedPresentationParity","renderedComparison","componentIntegrity","currentMaintainedRoleArtifactParity","zeroOverflowRoles","currentRoleExportParity","completePortableExportParity"]
-    lines=[f"# {config['label']} Phase 2 Migration Validation", "", "**Status:** VALIDATION_BUILD", "", "**Owner gate:** OPEN", "", "**Physical-print gate:** OPEN", "", f"Exact parity status: **{result['status']}**", ""]+[f"- {name}: {result[name]['passed']}/{result[name]['total']}" for name in metrics]+["",f"Owner materials: `apps/curriculum-editor/tests/screenshots/parity-phase2/{config['id'].lower()}/`",""]
+    metrics=[("structuralParity","structuralParity"),("pageAssignmentParity","pageAssignmentParity"),("geometryParity","geometryParity"),("computedPresentationParity","computedPresentationParity"),("renderedComparison","renderedComparison"),("componentIntegrity","componentIntegrity"),("currentMaintainedRoleArtifactParity","currentMaintainedRoleArtifactParity"),("zeroOverflowRoles","pageFitRoles"),("currentRoleExportParity","currentRoleExportParity"),("completePortableExportParity","completePortableExportParity")]
+    lines=[f"# {config['label']} Phase 2 Migration Validation", "", "**Status:** VALIDATION_BUILD", "", "**Owner gate:** OPEN", "", "**Physical-print gate:** OPEN", "", f"Exact parity status: **{result['status']}**", ""]+[f"- {label}: {result[key]['passed']}/{result[key]['total']}" for key,label in metrics]+["",f"Owner materials: `apps/curriculum-editor/tests/screenshots/parity-phase2/{config['id'].lower()}/`",""]
     (out/f"{prefix}_PHASE2_VALIDATION_REPORT.md").write_text("\n".join(lines))
     checklist=f"""# {config['label']} Phase 2 Owner Browser/Print Checklist
 
@@ -231,7 +231,13 @@ Status: OWNER_GATE_OPEN · PHYSICAL_PRINT_GATE_OPEN
 - [ ] Confirm page composition, response geometry, headers, continuations, footers, margins, and grayscale.
 - [ ] Exercise keyboard role/case switching, Fill Responses, Edit Text, Clear Current Role, and Reset Source.
 - [ ] Open complete and current-role portable HTML in a fresh browser context.
-- [ ] Print each role at 100% / Actual Size and record browser, printer/copier, and paper.
+- [ ] In the central editor, select each role and confirm the toolbar reports `Pages fit` before printing.
+- [ ] Use Print / Save PDF and confirm browser print preview is set to 100% / Actual Size (no Fit/Shrink scaling).
+- [ ] Confirm exact preview page counts: Student {config['roles']['student']}, Teacher {config['roles']['teacher']}, Answer Key {config['roles']['answer']}, Accessible {config['roles']['accessible']}, Student Grayscale {config['roles']['grayscale']}.
+- [ ] Confirm no leading, trailing, or intermediate blank page and no toolbar, library rail, workspace status, or authoring chrome.
+- [ ] Confirm the first page retains its title/institutional identity and every later page retains its continuation identity without obstruction.
+- [ ] Confirm worksheet geometry, margins, content pagination, and page fit are unchanged and Page shadow is absent.
+- [ ] Physically print each role at 100% / Actual Size and record browser, printer/copier, and paper.
 - [ ] Confirm browser PDF output is not treated as accessibility-verified.
 
 Owner: Nate / Owner

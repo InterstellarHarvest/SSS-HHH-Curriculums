@@ -26,6 +26,8 @@ The server is required. `file://` is not a supported production path because the
 4. Use **Download Current HTML** for a self-contained editable worksheet containing every role.
 5. Use **Download Current Role** for a self-contained file containing only the selected role.
 
+The **Page shadow** toggle is on by default and changes only the screen-only shadow used to separate worksheet pages visually. It does not change page geometry, margins, printable area, guides, page-fit detection, or export pagination, and shadows never print. Page-fit status reads **Pages fit**, **1 page too full**, or **N pages too full**. A page is too full when content extends beyond its printable page area.
+
 Grayscale is a toolbar presentation modifier, not a library role. It remains on when switching among instructional roles and never changes the selected role or page set. Student with Grayscale enabled maps to the canonical Grayscale Mission output name. Other roles retain their own output identity while exporting with grayscale presentation. Grayscale uses token overrides and keeps `Student Mission` identity in the canonical Student Grayscale footer.
 
 The central toolbar omits the duplicate Role selector because the library rail is authoritative. A complete portable HTML export restores the shared-shell Role selector because that file has no library rail.
@@ -36,7 +38,9 @@ The central toolbar omits the duplicate Role selector because the library rail i
 
 Both download actions inline the selected package's hash-verified presentation CSS, icon sprite, page content, figures/insignia, current edits, current responses, configuration, and portable runtime. Filenames retain the selected case and version. They do not overwrite repository files.
 
-The **Print / Save PDF** button invokes the browser print dialog. Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification. This application does not create, validate, preflight, checksum, or store PDFs.
+The **Print / Save PDF** button first validates page fit, serializes the current role with current edits, responses, margins, density, Grayscale, and Guides, and loads that clean self-contained role document into a temporary same-origin print iframe. The app waits for the document, fonts, images, and embedded assets; focuses that isolated document; and invokes its browser print dialog. The print document physically contains only the selected role pages and exact worksheet CSS—no toolbar, library rail, application headings/statuses, authoring controls, or page shadow. The editor remains open and unchanged.
+
+Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification. This application does not create, validate, preflight, checksum, or store PDFs. PDF/manual printing remains exclusively a browser-print-dialog action.
 
 ## Validation
 
@@ -66,7 +70,7 @@ To use a different Chrome-compatible executable:
 python3 apps/curriculum-editor/tests/run_browser_tests.py --chrome /path/to/chrome
 ```
 
-The Phase 2 static suite validates both migrated package schemas, deterministic extraction, the protected-artifact ledger, binding rules, reconciliation records, Case 03 Phase 1 regression, and the no-PDF rule. The browser suite retains every accepted Phase 1 assertion and adds repeated three-case switching, page counts, state/content isolation, stale-style/DOM checks, case-specific exports, accessibility announcements, and zero overflow. The Phase 2 parity suite checks all 43 Case 01/02 role-profile pages for structure, task assignment, geometry, computed presentation, rendered pixels, component containment, current maintained role HTML, complete portable export, and current-role export parity.
+The Phase 2 static suite validates both migrated package schemas, deterministic extraction, the protected-artifact ledger, binding rules, reconciliation records, Case 03 Phase 1 regression, and the no-PDF rule. The browser suite retains every accepted Phase 1 assertion and adds repeated three-case switching, exact dropdown labels, page-fit language, Page shadow behavior, isolated print DOMs for all 15 case/role profiles, page counts, first/continuation identity, chrome exclusion, state/content isolation, stale-style/DOM checks, case-specific exports, and accessibility announcements. The Phase 2 parity suite checks all 43 Case 01/02 role-profile pages for structure, task assignment, geometry, computed presentation, rendered pixels, component containment, current maintained role HTML, complete portable export, and current-role export parity.
 
 The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/screenshots/curriculum-editor-wide-desktop.png) at 1440×1200.
 
@@ -85,7 +89,7 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 - Case 01 and Case 02 approved/current maintained standalone artifacts remain canonical. Their editor packages are additive exact migration representations, not replacement releases.
 - Autosave is browser-profile and origin specific; it does not synchronize between devices or browsers.
 - Browser print behavior and physical results remain browser/driver dependent and require owner review at 100% / Actual Size.
-- Owner review and browser physical-print review passed on 2026-07-31 at 100% / Actual Size; printer and paper were not recorded.
+- Case 03 owner review and browser physical-print review passed on 2026-07-31 at 100% / Actual Size; printer and paper were not recorded.
 - Case 01/02 owner and physical-print gates remain open. Passing automated parity does not constitute Phase 2 acceptance.
 - Embedded case-owned editors remain present. Central-editor cutover, embedded-editor removal, repository cleanup, Case 04, and HHH production are not authorized.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.

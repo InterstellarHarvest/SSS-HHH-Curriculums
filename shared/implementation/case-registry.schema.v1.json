@@ -36,9 +36,11 @@
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": ["id", "title", "version", "status", "artifactPolicy", "master", "roles"],
+                    "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "artifactPolicy", "master", "roles"],
                     "properties": {
                       "id": { "type": "string", "minLength": 1 },
+                      "displayOrder": { "type": "integer", "minimum": 1 },
+                      "displayLabel": { "type": "string", "pattern": "^[0-9]+ - .+" },
                       "title": { "type": "string", "minLength": 1 },
                       "version": { "type": "string", "minLength": 1 },
                       "status": { "type": "string", "minLength": 1 },

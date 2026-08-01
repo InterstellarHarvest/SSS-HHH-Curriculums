@@ -85,14 +85,19 @@
       check("library rail has no Grayscale role option", !doc.querySelector('input[name="libraryRole"][value="grayscale"]'));
 
       const expectedOrder = ["fillControl", "editControl", "marginTop", "marginRight", "marginBottom", "marginLeft", "marginReset", "densityControl", "grayControl", "guideControl", "boundaryControl", "printButton", "downloadButton", "downloadRoleButton", "clearButton", "resetButton", "stateStatus", "overflowStatus"];
-      const actualOrder = Array.from(doc.querySelectorAll(".toolbar [id]")).map(node => node.id);
+      const actualOrder = Array.from(doc.querySelectorAll(".toolbar input[id],.toolbar select[id],.toolbar button[id],.toolbar #stateStatus,.toolbar #overflowStatus")).map(node => node.id);
       check("all required controls exist exactly once in contract order", JSON.stringify(actualOrder) === JSON.stringify(expectedOrder), actualOrder.join(","));
       check("central toolbar has no duplicate Role selector", !doc.querySelector(".toolbar #roleControl"));
       check("central toolbar retains the Grayscale presentation toggle", Boolean(doc.querySelector('.toolbar #grayControl[aria-label="Grayscale presentation"]')));
       check("removed Role selector leaves no empty toolbar group", Array.from(doc.querySelectorAll(".toolbar-group")).every(group => group.querySelector("input,select,button")));
       check("toolbar is owned outside case content", !workspace.querySelector(".toolbar"));
       check("toolbar save status is polite live text", doc.querySelector("#stateStatus").getAttribute("aria-live") === "polite");
-      check("toolbar overflow status is polite live text", doc.querySelector("#overflowStatus").getAttribute("aria-live") === "polite");
+      check("toolbar page-fit status is polite live text", doc.querySelector("#overflowStatus").getAttribute("aria-live") === "polite");
+      check("page-fit description explains printable-area fullness", doc.querySelector("#pageFitDescription").textContent.trim() === "A page is too full when content extends beyond its printable page area." && doc.querySelector("#overflowStatus").getAttribute("aria-describedby") === "pageFitDescription");
+      const boundaryControl = doc.querySelector("#boundaryControl");
+      check("toolbar label is exactly Page shadow and old Boundaries label is absent", boundaryControl.closest("label").textContent.trim() === "Page shadow" && !doc.querySelector(".toolbar").innerText.includes("Boundaries"));
+      check("Page shadow has its exact accessible description", boundaryControl.getAttribute("aria-describedby") === "pageShadowDescription" && doc.querySelector("#pageShadowDescription").textContent.trim() === "Adds a screen-only shadow around each worksheet page for visual separation.");
+      check("Page shadow is enabled by default", boundaryControl.checked && api.getState().boundaries === true);
 
       for (const width of [1440, 1100, 820, 640]) {
         frame.width = String(width);
@@ -109,12 +114,34 @@
       await wait(180);
       api.syncToolbarOffset();
 
+      const fitFrames = visiblePages(frame).slice(0, 2).map(page => page.querySelector(".page-frame"));
+      const fitFrameStyles = fitFrames.map(node => node.getAttribute("style"));
+      fitFrames[0].style.height = "1px";
+      check("one affected page uses 1 page too full in both statuses", api.checkOverflow() === 1 && doc.querySelector("#overflowStatus").textContent === "1 page too full" && doc.querySelector("#overflowStatusMirror").textContent === "1 page too full" && doc.querySelector("#overflowStatus").classList.contains("toolbar-overflow") && doc.querySelector("#overflowStatusMirror").classList.contains("page-fit-warning"));
+      fitFrames[1].style.height = "1px";
+      check("multiple affected pages use N pages too full in both statuses", api.checkOverflow() === 2 && doc.querySelector("#overflowStatus").textContent === "2 pages too full" && doc.querySelector("#overflowStatusMirror").textContent === "2 pages too full");
+      fitFrames.forEach((node, index) => fitFrameStyles[index] === null ? node.removeAttribute("style") : node.setAttribute("style", fitFrameStyles[index]));
+      check("restored pages use Pages fit without warning treatment", api.checkOverflow() === 0 && doc.querySelector("#overflowStatus").textContent === "Pages fit" && doc.querySelector("#overflowStatusMirror").textContent === "Pages fit" && !doc.querySelector("#overflowStatus").classList.contains("toolbar-overflow") && !doc.querySelector("#overflowStatusMirror").classList.contains("page-fit-warning"));
+
+      const shadowPage = visiblePages(frame)[0];
+      const shadowFrame = shadowPage.querySelector(".page-frame");
+      const pageRectBefore = shadowPage.getBoundingClientRect();
+      const frameRectBefore = shadowFrame.getBoundingClientRect();
+      const shadowBefore = win.getComputedStyle(shadowPage).boxShadow;
+      boundaryControl.click();
+      const pageRectWithoutShadow = shadowPage.getBoundingClientRect();
+      const frameRectWithoutShadow = shadowFrame.getBoundingClientRect();
+      check("Page shadow toggle changes only the page box shadow", shadowBefore !== "none" && win.getComputedStyle(shadowPage).boxShadow === "none");
+      check("Page shadow toggle does not change page or page-frame geometry", Math.abs(pageRectBefore.width - pageRectWithoutShadow.width) < .01 && Math.abs(pageRectBefore.height - pageRectWithoutShadow.height) < .01 && Math.abs(frameRectBefore.width - frameRectWithoutShadow.width) < .01 && Math.abs(frameRectBefore.height - frameRectWithoutShadow.height) < .01);
+      boundaryControl.click();
+      check("Page shadow can be restored without changing page fit", api.getState().boundaries === true && win.getComputedStyle(shadowPage).boxShadow === shadowBefore && api.checkOverflow() === 0);
+
       const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 7 };
       for (const [role, expected] of Object.entries(expectedCounts)) {
         api.setRole(role);
         await wait(80);
         check(`${role} role loads ${expected} pages`, visiblePages(frame).length === expected, visiblePages(frame).length);
-        check(`${role} role reports zero overflow`, api.checkOverflow() === 0, doc.querySelector("#overflowStatus").textContent);
+        check(`${role} role reports Pages fit`, api.checkOverflow() === 0 && doc.querySelector("#overflowStatus").textContent === "Pages fit" && doc.querySelector("#overflowStatusMirror").textContent === "Pages fit", doc.querySelector("#overflowStatus").textContent);
         check(`${role} role contains no other role pages`, visiblePages(frame).every(page => page.dataset.role === role));
       }
 
@@ -161,7 +188,7 @@
       api.saveState({ density: "compact", grayscale: true, guides: true, boundaries: false });
       check("Density applies through the central state path", doc.body.classList.contains("density-compact"));
       check("Grayscale applies through token mode", doc.body.classList.contains("grayscale"));
-      check("Guides and boundaries apply through central state", doc.body.classList.contains("show-guides") && doc.body.classList.contains("hide-boundaries"));
+      check("Guides and Page shadow apply through central state", doc.body.classList.contains("show-guides") && doc.body.classList.contains("hide-boundaries"));
       win.dispatchEvent(new Event("beforeprint"));
       check("print-preview reflects selected role and Grayscale state", doc.body.classList.contains("print-preview") && doc.body.dataset.role === "student" && doc.body.classList.contains("grayscale"));
       win.dispatchEvent(new Event("afterprint"));
@@ -206,13 +233,23 @@
       check("complete serializer removes transient overflow state", !portableParsed.querySelector(".page.has-overflow"));
       check("complete portable export retains its required Role selector", Boolean(portableParsed.querySelector(".toolbar #roleControl")));
       check("portable Role selector models four roles plus All Pages, not Grayscale", JSON.stringify(Array.from(portableParsed.querySelectorAll("#roleControl option")).map(option => option.value)) === JSON.stringify(["student", "teacher", "answer", "accessible", "all"]));
+      check("complete portable toolbar uses Page shadow and exact accessible descriptions", portableParsed.querySelector("#boundaryControl").closest("label").textContent.trim() === "Page shadow" && portableParsed.querySelector("#pageShadowDescription").textContent.trim() === "Adds a screen-only shadow around each worksheet page for visual separation." && portableParsed.querySelector("#pageFitDescription").textContent.trim() === "A page is too full when content extends beyond its printable page area.");
       const portableFrame = await loadExport(portable);
       check("portable file opens with its embedded instructional edit", portableFrame.contentDocument.querySelector(instructionSelector).textContent.includes("persisted instructional"));
       check("portable file opens with its embedded response", portableFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
       portableFrame.contentWindow.__curriculumPortable.resetSource(true);
       check("portable Reset Source preserves embedded instructional baseline", portableFrame.contentDocument.querySelector(instructionSelector).textContent.includes("persisted instructional"));
       check("portable Reset Source clears response recovery work", portableFrame.contentDocument.querySelector(responseSelector).textContent === "");
-      check("portable file reports zero overflow", portableFrame.contentWindow.__curriculumPortable.checkOverflow() === 0);
+      check("portable file reports Pages fit", portableFrame.contentWindow.__curriculumPortable.checkOverflow() === 0 && portableFrame.contentDocument.querySelector("#overflowStatus").textContent === "Pages fit");
+      check("portable file formats singular and plural page-fit warnings", portableFrame.contentWindow.__curriculumPortable.formatPageFitStatus(1) === "1 page too full" && portableFrame.contentWindow.__curriculumPortable.formatPageFitStatus(2) === "2 pages too full");
+      let portableParentPrintCalls = 0;
+      const portableParentPrint = portableFrame.contentWindow.print;
+      portableFrame.contentWindow.print = () => { portableParentPrintCalls += 1; };
+      const portablePrintFrame = await portableFrame.contentWindow.__curriculumPortable.printCurrentRole({ invokePrint: false, confirmOnTooFull: false });
+      check("portable complete editor uses a same-origin isolated print document, not its parent print", portablePrintFrame.contentDocument.querySelectorAll('.page[data-role="student"]').length === 4 && !portablePrintFrame.contentDocument.querySelector(".toolbar,#editorToolbarHost,.library-rail,.workspace-header,.editor-statuses") && portableParentPrintCalls === 0);
+      check("portable isolated print document never includes Page shadow", portablePrintFrame.contentWindow.getComputedStyle(portablePrintFrame.contentDocument.querySelector(".page")).boxShadow === "none");
+      portablePrintFrame.remove();
+      portableFrame.contentWindow.print = portableParentPrint;
 
       api.setRole("student");
       const roleHtml = api.serializeRoleHTML("student");
@@ -224,6 +261,7 @@
       const roleFrame = await loadExport(roleHtml);
       check("current-role export opens with empty-key recovery state", roleFrame.contentDocument.querySelectorAll('.page[data-role="student"]').length === 4 && roleFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
       check("current-role export retains browser-print CSS", roleHtml.includes("@media print") && roleHtml.includes("@page"));
+      check("current-role print CSS always removes the screen-only page shadow", roleFrame.contentDocument.querySelector("#portablePrintProtection").textContent.includes("box-shadow:none!important"));
 
       api.saveState({ grayscale: true });
       const grayProfile = api.getCurrentRoleOutput();
@@ -258,11 +296,13 @@
       check("table semantics retain captions", Array.from(workspace.querySelectorAll("table")).every(table => table.querySelector("caption")));
 
       const phase2Cases = [
-        { id: "SSS-C1-CASE01", version: "1.1", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE02", version: "1.0", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE03", version: "1.1", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" }
+        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_WITH_HTML_MAINTENANCE", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_WITH_HTML_MAINTENANCE", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" }
       ];
       check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(phase2Cases.map(item => item.id)));
+      check("case dropdown labels are exactly owner-approved and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat"]));
+      check("case dropdown option text contains no version, repository ID, or release status", Array.from(doc.querySelectorAll("#caseSelect option")).every(option => !/\bv\d|SSS-C1|APPROVED/.test(option.textContent)));
       check("multi-case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
       check("single-value selectors are disabled and non-interactive", ["curriculumSelect", "campaignSelect"].every(id => doc.querySelector(`#${id}`).disabled && doc.querySelector(`#${id}`).getAttribute("aria-disabled") === "true"));
 
@@ -273,6 +313,7 @@
         workspace = api.getWorkspace();
         worksheetDoc = api.getWorksheetDocument();
         check(`${item.id} loads from registry with current version`, api.getPackage().id === item.id && api.getPackage().version === item.version);
+        check(`${item.id} shows its version once in the low-prominence release status`, doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === `v${item.version} · ${item.status}` && !doc.querySelector("#workspaceTitle").textContent.includes(`v${item.version}`) && !doc.querySelector("#caseBreadcrumb").textContent.includes(`v${item.version}`) && !doc.querySelector("#loadStatus > span[aria-hidden=true]").textContent.includes(`v${item.version}`));
         check(`${item.id} installs only its current Shadow DOM presentation`, doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("style[data-case-package-presentation]").length === 1 && doc.querySelector("#worksheetHost").shadowRoot.querySelector("style").dataset.casePackagePresentation === `${item.id}:v${item.version}`);
         for (const [role, expected] of Object.entries(item.counts)) {
           api.setRole(role);
@@ -280,7 +321,7 @@
           check(`${item.id} ${role} page count`, visiblePages(frame).length === expected, visiblePages(frame).length);
           const overflowCount = api.checkOverflow();
           const overflowDetail = Array.from(workspace.querySelectorAll(".page.has-overflow")).map(page => { const frame = page.querySelector(".page-frame"); const content = page.querySelector(".content-area"); return { page: page.dataset.pageId, frame: [frame?.scrollHeight, frame?.clientHeight, frame?.scrollWidth, frame?.clientWidth], content: [content?.scrollHeight, content?.clientHeight, content?.scrollWidth, content?.clientWidth] }; });
-          check(`${item.id} ${role} zero overflow`, overflowCount === 0, JSON.stringify(overflowDetail));
+          check(`${item.id} ${role} Pages fit`, overflowCount === 0 && doc.querySelector("#overflowStatus").textContent === "Pages fit", JSON.stringify(overflowDetail));
         }
         api.resetSource(true);
         const response = workspace.querySelector('[data-response][data-persist-id]');
@@ -296,6 +337,69 @@
         api.setRole("student");
         api.saveState({ grayscale: false });
         check(`${item.id} current-role export uses correct identity`, api.getCurrentRoleOutput().filename.includes(item.student) && new DOMParser().parseFromString(api.serializeRoleHTML("student"), "text/html").querySelectorAll('.page[data-role="student"]').length === item.counts.student);
+
+        const printProfiles = [
+          { name: "Student", role: "student", grayscale: false, expected: item.counts.student },
+          { name: "Teacher", role: "teacher", grayscale: false, expected: item.counts.teacher },
+          { name: "Answer Key", role: "answer", grayscale: false, expected: item.counts.answer },
+          { name: "Accessible", role: "accessible", grayscale: false, expected: item.counts.accessible },
+          { name: "Student Grayscale", role: "student", grayscale: true, expected: item.counts.student }
+        ];
+        for (const profile of printProfiles) {
+          api.setRole(profile.role);
+          api.saveState({ grayscale: profile.grayscale });
+          const printHtml = api.buildPrintDocument(profile.role);
+          const printDoc = new DOMParser().parseFromString(printHtml, "text/html");
+          const printPages = Array.from(printDoc.querySelectorAll("#workspace > .page"));
+          check(`${item.id} ${profile.name} isolated print page count is exactly ${profile.expected}`, printPages.length === profile.expected && printDoc.querySelectorAll(`.page[data-role="${profile.role}"]`).length === profile.expected && !printDoc.querySelector(`.page:not([data-role="${profile.role}"])`), printPages.length);
+          check(`${item.id} ${profile.name} print first-page and continuation identities are intact`, Boolean(printPages[0]?.querySelector(".mission-title-block .hero-title") && printPages[0]?.querySelector(".mission-title-block .institution")) && printPages.slice(1).every(page => page.querySelector(".continuation-header h1") && page.querySelector(".continuation-header .institution")));
+          check(`${item.id} ${profile.name} print document excludes all editor chrome`, !printDoc.querySelector(".toolbar,#editorToolbarHost,.library-rail,.workspace-header,.editor-statuses,.skip-link,#portableConfig,script"));
+          check(`${item.id} ${profile.name} has no blank or hidden printable fragments`, printPages.every(page => !page.hidden && page.querySelector(".page-frame")?.textContent.trim()) && Array.from(printDoc.querySelector("#workspace").children).every(node => node.matches(".page")));
+          check(`${item.id} ${profile.name} print document preserves role and grayscale state`, printDoc.body.dataset.role === profile.role && printDoc.body.classList.contains("grayscale") === profile.grayscale && printDoc.body.classList.contains("hide-boundaries"));
+        }
+        api.setRole("student");
+        api.saveState({ grayscale: false });
+        const parentPrint = win.print;
+        let parentPrintCalls = 0;
+        win.print = () => { parentPrintCalls += 1; };
+        const isolatedFrame = await api.printCurrentRole({ invokePrint: false, confirmOnTooFull: false });
+        const isolatedDoc = isolatedFrame.contentDocument;
+        const isolatedPages = Array.from(isolatedDoc.querySelectorAll("#workspace > .page"));
+        check(`${item.id} print path creates a temporary same-origin isolated role iframe without parent print`, isolatedFrame.parentNode === doc.body && isolatedFrame.classList.contains("curriculum-print-frame") && Boolean(isolatedDoc) && parentPrintCalls === 0);
+        check(`${item.id} loaded print iframe excludes chrome and physically contains only selected pages`, !isolatedDoc.querySelector(".toolbar,#editorToolbarHost,.library-rail,.workspace-header,.editor-statuses,.skip-link,#portableConfig,script") && isolatedPages.length === item.counts.student && isolatedDoc.querySelectorAll('.page:not([data-role="student"])').length === 0);
+        check(`${item.id} loaded print iframe preserves current response and instructional edits`, isolatedDoc.querySelector(`[data-persist-id="${response.dataset.persistId}"]`)?.textContent === caseMarkers[item.id].responseText && isolatedDoc.querySelector(`[data-persist-id="${editable.dataset.persistId}"]`)?.textContent === caseMarkers[item.id].editText);
+        const livePageRect = visiblePages(frame)[0].getBoundingClientRect();
+        const printPageRect = isolatedPages[0].getBoundingClientRect();
+        check(`${item.id} loaded print iframe preserves worksheet geometry and removes Page shadow`, Math.abs(livePageRect.width - printPageRect.width) < .1 && Math.abs(livePageRect.height - printPageRect.height) < .1 && isolatedFrame.contentWindow.getComputedStyle(isolatedPages[0]).boxShadow === "none");
+        const printMeta = Boolean(isolatedDoc.querySelector('meta[name="sss-export-kind"][content="isolated-role-print"]'));
+        const printAtPage = isolatedDoc.querySelector("style")?.textContent.includes("@page");
+        const printAuthoringState = isolatedDoc.querySelector('[contenteditable="true"],.page.has-overflow');
+        check(`${item.id} print document embeds print CSS/assets and has no authoring state`, printMeta && printAtPage && !printAuthoringState, JSON.stringify({ printMeta, printAtPage, printAuthoringState: printAuthoringState?.outerHTML.slice(0, 160) || null }));
+        isolatedFrame.remove();
+        if (item.id === "SSS-C1-CASE03") {
+          let isolatedWindowPrintCalls = 0;
+          const printFrameObserved = new Promise(resolve => {
+            const observer = new MutationObserver(records => {
+              const added = records.flatMap(record => Array.from(record.addedNodes)).find(node => node.nodeType === Node.ELEMENT_NODE && node.classList.contains("curriculum-print-frame"));
+              if (!added) return;
+              observer.disconnect();
+              added.addEventListener("load", () => {
+                added.contentWindow.print = () => {
+                  isolatedWindowPrintCalls += 1;
+                  added.contentWindow.dispatchEvent(new added.contentWindow.Event("afterprint"));
+                };
+                resolve(added);
+              }, { once: true });
+            });
+            observer.observe(doc.body, { childList: true });
+          });
+          const actualPrint = api.printCurrentRole({ confirmOnTooFull: false, cleanupFallbackMs: 100 });
+          const actualPrintFrame = await printFrameObserved;
+          await actualPrint;
+          await wait(20);
+          check("Print / Save PDF calls only the isolated role window and removes its temporary iframe after afterprint", parentPrintCalls === 0 && isolatedWindowPrintCalls === 1 && !actualPrintFrame.isConnected);
+        }
+        win.print = parentPrint;
       }
 
       for (const item of phase2Cases) {

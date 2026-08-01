@@ -98,6 +98,19 @@ body {
 
 #editorToolbarHost .toolbar-status [aria-live] { display: inline; }
 
+.visually-hidden,
+.toolbar-description {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 .editor-layout {
   display: grid;
   grid-template-columns: var(--app-rail) minmax(0, 1fr);
@@ -150,8 +163,8 @@ body {
 
 .case-status {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
   margin-top: 18px;
   padding: 10px;
@@ -159,7 +172,7 @@ body {
   border-left: 4px solid #66aaa7;
 }
 .case-status span { color: #cad6da; font-size: 12px; }
-.case-status strong { font: 700 10px/1.2 "JetBrains Mono", monospace; }
+.case-status strong { font: 700 9px/1.35 "JetBrains Mono", monospace; }
 
 .role-library {
   margin: 18px 0 0;
@@ -233,6 +246,7 @@ body.edit-mode .mode-indicator {
 }
 .editor-statuses span { color: var(--app-muted); }
 .editor-statuses strong { font: 700 10px/1.2 "JetBrains Mono", monospace; text-align: right; }
+.editor-statuses strong.page-fit-warning { color: #8a4c00; }
 
 .editor-error {
   width: min(100%, 980px);
@@ -278,11 +292,27 @@ body.print-preview .editor-statuses { opacity: .55; }
 }
 
 @media print {
+  html,
+  body {
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  #editorToolbarHost,
+  #packageIcons,
+  .skip-link,
   .library-rail,
   .workspace-header,
   .editor-statuses,
   .editor-error { display: none !important; }
-  .editor-layout { display: block; padding: 0; }
-  .editor-main { padding: 0; }
-  #worksheetHost { min-height: 0; }
+  .editor-layout,
+  .editor-main,
+  #worksheetHost {
+    display: block !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+  }
 }
