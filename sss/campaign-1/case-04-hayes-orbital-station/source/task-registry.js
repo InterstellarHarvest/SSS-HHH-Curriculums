@@ -33,7 +33,7 @@ window.SSS_CASE04_TASK_REGISTRY = {
     },
     {
       "number": "3",
-      "semanticLabel": "VARIABLE CONTROL",
+      "semanticLabel": "EVIDENCE ANALYSIS",
       "icon": "ph-scales",
       "title": "Isolate Variables and Test Alternatives",
       "description": "Sort changed, stable, symptom, and mechanism evidence and test competing explanations.",
