@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "id": "SSS-C1-CASE03",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "Mars Habitat",
+  "subtitle": "Campaign 1 · Case 03 · Light spectrum versus total intensity",
+  "location": "Mars Habitat",
+  "version": "1.1",
+  "status": "VALIDATION_BUILD",
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE03:v1.1:curriculum-editor-v1",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible",
+    "grayscale"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-03-mars-habitat/source/task-registry.js",
+    "global": "SSS_CASE03_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "content": {
+    "source": "sss/campaign-1/case-03-mars-habitat/source/editor-v1.1/case03-content.html",
+    "format": "html-fragment"
+  },
+  "styles": [
+    {
+      "source": "sss/campaign-1/case-03-mars-habitat/source/editor-v1.1/case03.css",
+      "scope": "case"
+    }
+  ],
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "inline-svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "spectral-transmission-figures",
+      "type": "inline-svg",
+      "selector": "[data-quantity-spectrum=\"canonical-v1.0\"]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "sourceRole": "student",
+      "documentRole": "Student Mission",
+      "pageCount": 4,
+      "grayscale": false
+    },
+    "teacher": {
+      "sourceRole": "teacher",
+      "documentRole": "Teacher Guide",
+      "pageCount": 8,
+      "grayscale": false
+    },
+    "answer": {
+      "sourceRole": "answer",
+      "documentRole": "Answer Key",
+      "pageCount": 4,
+      "grayscale": false
+    },
+    "accessible": {
+      "sourceRole": "accessible",
+      "documentRole": "Accessible Mission",
+      "pageCount": 7,
+      "grayscale": false
+    },
+    "grayscale": {
+      "sourceRole": "student",
+      "documentRole": "Student Mission",
+      "pageCount": 4,
+      "grayscale": true
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE03_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C1_CASE03_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE03_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE03_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1_CUSTOM.html",
+    "grayscale": "SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 Case 03 v1.1 — Mars Habitat Curriculum Editor",
+    "loadAnnouncement": "Mars Habitat Case 03 v1.1 validation build loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      "[aria-label*=\"description\"]",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification."
+  },
+  "migrationSource": {
+    "kind": "approved-master-successor",
+    "historicalMaster": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+    "historicalMasterSha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce",
+    "successorMaster": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
+    "successorMasterSha256": "3ff52e66e37f877d7e3c8724389c73e2a78da03f8d1d61d9e6a51e99ae0edd03",
+    "reason": "Accessible CER atomicity correction",
+    "builder": "sss/campaign-1/case-03-mars-habitat/validation-artifacts/build_case03_v1_1.py"
+  },
+  "presentation": {
+    "contentSha256": "56f508fdbf6113c33f53f2bba99802345871476af0a98330d87d7a45b9c37402",
+    "caseCssSha256": "14a6504149dd7546fe7356f748f627627ecbe7a703d307b79eda60ce5df6007a",
+    "stylesheet": "sss/campaign-1/case-03-mars-habitat/source/editor-v1.1/case03-presentation.css",
+    "stylesheetSha256": "3907fe5f9abe059522807d55a59842b73daadbc52795137d354e0b8e20ac16bd",
+    "isolation": "shadow-dom"
+  }
+}

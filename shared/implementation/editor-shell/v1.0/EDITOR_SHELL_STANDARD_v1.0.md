@@ -76,7 +76,7 @@ The canonical Student component is identified by:
 <div class="canonical-cer" data-cer-contract="student-v1.0">
 ```
 
-Its Claim, Evidence, and Reasoning boxes use the shared geometry in `cer.css`. `student-v1.0`, `accessible-v1.0`, and `answer-v1.0` preserve the same three-row structure, label blocks, borders, spacing, proportional row heights, and grayscale behavior. Accessible layouts may split the component across consecutive pages when required; the combined sequence remains Claim, Evidence, Reasoning. Answer Keys complete the right-hand response fields instead of substituting another layout.
+Its Claim, Evidence, and Reasoning boxes use the shared geometry in `cer.css`. `student-v1.0`, `accessible-v1.0`, and `answer-v1.0` preserve the same three-row structure, label blocks, borders, spacing, proportional row heights, and grayscale behavior. A CER is atomic in every role: all three rows share one canonical root, that root belongs to one `.page`, and its rendered bounds remain inside that page's frame. Accessible layouts may not split the component across pages. The shared `break-inside` protections support this rule but do not replace correct authored page structure. Answer Keys complete the right-hand response fields instead of substituting another layout.
 
 ## Five-stage process model
 

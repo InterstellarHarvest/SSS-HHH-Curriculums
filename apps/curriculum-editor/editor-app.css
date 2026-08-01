@@ -49,7 +49,52 @@ body {
 #editorToolbarHost .toolbar {
   position: fixed;
   min-height: 76px;
+  z-index: 50;
+  inset: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  color: #fff;
+  background: #17242a;
+  box-shadow: 0 2px 8px #0004;
 }
+
+#editorToolbarHost .toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 10px;
+  border-right: 1px solid #ffffff44;
+}
+#editorToolbarHost .toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font: 600 8pt "JetBrains Mono", monospace;
+}
+#editorToolbarHost .toolbar select,
+#editorToolbarHost .toolbar input,
+#editorToolbarHost .toolbar button {
+  padding: 5px 7px;
+  color: #17242a;
+  background: #fff;
+  border: 1px solid #c5d0d5;
+  border-radius: 3px;
+  font: 600 9pt Inter, Arial, sans-serif;
+}
+#editorToolbarHost .toolbar input[type="number"] { width: 58px; }
+#editorToolbarHost .toolbar input[type="checkbox"] { width: auto; }
+#editorToolbarHost .toolbar button { cursor: pointer; }
+#editorToolbarHost .toolbar button:hover { background: #e6f0f0; }
+#editorToolbarHost .toolbar .danger { border-color: #d5a4a4; }
+#editorToolbarHost .toolbar-status {
+  margin-left: auto;
+  color: #cce9e9;
+  font: 700 8pt "JetBrains Mono", monospace;
+}
+#editorToolbarHost .toolbar-overflow { color: #ffce75; }
 
 #editorToolbarHost .toolbar-status [aria-live] { display: inline; }
 
@@ -198,8 +243,8 @@ body.edit-mode .mode-indicator {
   border: 1px solid #b76868;
 }
 
-#worksheetWorkspace { min-height: 300px; }
-#worksheetWorkspace[aria-busy="true"]::before {
+#worksheetHost { display: block; min-height: 300px; }
+#worksheetHost[aria-busy="true"]::before {
   content: "Loading worksheet package…";
   display: block;
   padding: 28px;
@@ -224,6 +269,10 @@ body.print-preview .editor-statuses { opacity: .55; }
   .editor-main { padding-inline: 6px; }
 }
 
+@media (max-width: 900px) {
+  #editorToolbarHost .toolbar-status { margin-left: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
@@ -235,4 +284,5 @@ body.print-preview .editor-statuses { opacity: .55; }
   .editor-error { display: none !important; }
   .editor-layout { display: block; padding: 0; }
   .editor-main { padding: 0; }
+  #worksheetHost { min-height: 0; }
 }

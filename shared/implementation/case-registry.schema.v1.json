@@ -51,6 +51,24 @@
                       "roles": {
                         "type": "object",
                         "additionalProperties": { "type": "string", "minLength": 1 }
+                      },
+                      "historicalReleases": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "required": ["version", "status", "master", "masterSha256", "roles"],
+                          "properties": {
+                            "version": { "type": "string", "minLength": 1 },
+                            "status": { "type": "string", "minLength": 1 },
+                            "master": { "type": "string", "minLength": 1 },
+                            "masterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+                            "roles": {
+                              "type": "object",
+                              "additionalProperties": { "type": "string", "minLength": 1 }
+                            }
+                          },
+                          "additionalProperties": false
+                        }
                       }
                     },
                     "additionalProperties": false

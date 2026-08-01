@@ -1,6 +1,6 @@
 # SSS/HHH Curriculum Editor — Phase 1
 
-This repository-local browser application loads the current Case 03 editor package and combines it with shared editor-shell sources. It does not open, iframe, rewrite, or execute the approved Case 03 master.
+This repository-local browser application loads the current Case 03 v1.1 validation package. It does not open, iframe, rewrite, or execute a complete Case 03 master. The worksheet-only DOM and exact presentation stylesheet are generated deterministically from the owner-authorized successor build and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
 
 ## Launch
 
@@ -30,7 +30,7 @@ The central toolbar omits the duplicate Role selector because the library rail i
 
 ## Portable output and printing
 
-Both download actions inline the shared CSS, Case 03 CSS, Phosphor icon sprite, page content, figures, insignia, current edits, current responses, configuration, and portable runtime. They do not overwrite repository files.
+Both download actions inline the hash-verified v1.1 presentation CSS, Phosphor icon sprite, page content, figures, insignia, current edits, current responses, configuration, and portable runtime. They do not overwrite repository files.
 
 The **Print / Save PDF** button invokes the browser print dialog. Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification. This application does not create, validate, preflight, checksum, or store PDFs.
 
@@ -48,13 +48,19 @@ Browser validation uses the installed Google Chrome executable directly and crea
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 ```
 
+Exact master/editor/export parity uses Playwright, Pillow, and the installed Chrome executable. It retains contact sheets and the corrected Accessible Task 7 comparison under `tests/screenshots/parity-v1.1/`:
+
+```bash
+python3 apps/curriculum-editor/tests/validate_v1_1_parity.py
+```
+
 To use a different Chrome-compatible executable:
 
 ```bash
 python3 apps/curriculum-editor/tests/run_browser_tests.py --chrome /path/to/chrome
 ```
 
-The static suite validates registry/package schemas, references, negative failure modes, task and component contracts, accessibility structure, release hashes, and the no-PDF rule. The browser suite validates controls, roles, page counts, editing, autosave/reload, role isolation, layout controls, print-preview events, zero overflow, portable serialization, Reset Source, current-role export, and browser rendering.
+The static suite validates registry/package schemas, deterministic extraction, historical v1.0 protection, v1.1 hashes, task/component atomicity, accessibility structure, and the no-PDF rule. The browser suite validates controls, roles, 4/8/4/7 page counts, editing, autosave/reload, role isolation, layout controls, print-preview events, zero overflow, portable serialization, Reset Source, current-role export, and browser rendering. The parity suite checks every v1.1 role-profile page for structure, page assignment, geometry, computed presentation, rendered pixels, CER containment, independent-role HTML, and current-role export parity.
 
 The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/screenshots/curriculum-editor-wide-desktop.png) at 1440×1200.
 
@@ -68,11 +74,12 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 
 ## Known Phase 1 limitations
 
-- Only the current registered Case 03 version is editor-compatible.
+- Only the current registered Case 03 v1.1 validation build is editor-compatible.
 - Historical-version browsing and a prominent version selector are intentionally absent.
 - Case 01 and Case 02 remain on their approved historical master/output implementations.
 - Autosave is browser-profile and origin specific; it does not synchronize between devices or browsers.
 - Browser print behavior and physical results remain browser/driver dependent and require owner review at 100% / Actual Size.
+- Case 03 v1.1 remains a validation build until that owner gate passes; the central-editor branch remains unmerged.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.
 
 See [CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md](../../shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md) for the contract, load sequence, accessibility model, and Phase 2 migration plan.

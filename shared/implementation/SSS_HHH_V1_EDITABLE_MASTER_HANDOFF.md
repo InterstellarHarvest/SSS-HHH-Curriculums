@@ -265,7 +265,7 @@ Student pages use the shared `cer.css` component with:
 </div>
 ```
 
-The shared contract fixes the full-width stack, label column, spacing, and proportional Claim/Evidence/Reasoning geometry. Case-specific compression or half-width CER variants are not permitted on standard Student worksheets. Accessible editions may repaginate or use their existing accessible response treatment.
+The shared contract fixes the full-width stack, label column, spacing, and proportional Claim/Evidence/Reasoning geometry. Case-specific compression or half-width CER variants are not permitted on standard Student worksheets. Accessible editions may repaginate or use their existing accessible response treatment, but the complete Claim/Evidence/Reasoning component must remain one canonical root wholly contained by one page.
 
 ### 3.5 Technical tables
 

@@ -245,6 +245,32 @@
         "pdfNotice": { "type": "string", "minLength": 1 }
       },
       "additionalProperties": false
+    },
+    "migrationSource": {
+      "type": "object",
+      "required": ["kind", "historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "reason", "builder"],
+      "properties": {
+        "kind": { "const": "approved-master-successor" },
+        "historicalMaster": { "type": "string", "minLength": 1 },
+        "historicalMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "successorMaster": { "type": "string", "minLength": 1 },
+        "successorMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "reason": { "type": "string", "minLength": 1 },
+        "builder": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "required": ["contentSha256", "caseCssSha256", "stylesheet", "stylesheetSha256", "isolation"],
+      "properties": {
+        "contentSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "caseCssSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "stylesheet": { "type": "string", "minLength": 1 },
+        "stylesheetSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "isolation": { "enum": ["shadow-dom"] }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

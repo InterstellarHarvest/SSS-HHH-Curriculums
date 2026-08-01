@@ -24,7 +24,9 @@
       }
       throw new Error("Timed out waiting for browser condition.");
     };
-    const visiblePages = frame => Array.from(frame.contentDocument.querySelectorAll(".page")).filter(page => getComputedStyle(page).display !== "none" && !page.hidden);
+    const worksheet = frame => frame.contentWindow.__curriculumEditor.getWorkspace();
+    const worksheetDocument = frame => frame.contentWindow.__curriculumEditor.getWorksheetDocument();
+    const visiblePages = frame => Array.from(worksheet(frame).querySelectorAll(".page")).filter(page => frame.contentWindow.getComputedStyle(page).display !== "none" && !page.hidden);
     const layoutMetrics = frame => {
       const doc = frame.contentDocument;
       const toolbar = doc.querySelector(".toolbar").getBoundingClientRect();
@@ -40,7 +42,7 @@
       };
     };
     const setHtml = (frame, selector, html) => {
-      const node = frame.contentDocument.querySelector(selector);
+      const node = worksheet(frame).querySelector(selector);
       node.innerHTML = html;
       node.dispatchEvent(new frame.contentWindow.InputEvent("input", { bubbles: true }));
       return node;
@@ -70,9 +72,13 @@
       let win = frame.contentWindow;
       let doc = frame.contentDocument;
       let api = win.__curriculumEditor;
+      let workspace = api.getWorkspace();
+      let worksheetDoc = api.getWorksheetDocument();
       check("central app exposes its runtime API", Boolean(api));
-      check("registry-loaded Case 03 package is current", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.0" && api.getPackage().status === "APPROVED_STABLE");
+      check("registry-loaded Case 03 package is current validation build", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.1" && api.getPackage().status === "VALIDATION_BUILD");
       check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
+      check("worksheet presentation is isolated in open Shadow DOM", doc.querySelector("#worksheetHost").shadowRoot && workspace.getRootNode() === doc.querySelector("#worksheetHost").shadowRoot);
+      check("isolated worksheet retains a labelled main landmark", workspace.tagName === "MAIN" && workspace.getAttribute("aria-label")?.includes("Mars Habitat"));
       check("load status announces the case", doc.querySelector("#loadStatus").textContent.includes("Mars Habitat"));
       const railRoles = Array.from(doc.querySelectorAll('input[name="libraryRole"]')).map(node => node.value);
       check("library rail exposes only four instructional roles", JSON.stringify(railRoles) === JSON.stringify(["student", "teacher", "answer", "accessible"]), railRoles.join(","));
@@ -84,7 +90,7 @@
       check("central toolbar has no duplicate Role selector", !doc.querySelector(".toolbar #roleControl"));
       check("central toolbar retains the Grayscale presentation toggle", Boolean(doc.querySelector('.toolbar #grayControl[aria-label="Grayscale presentation"]')));
       check("removed Role selector leaves no empty toolbar group", Array.from(doc.querySelectorAll(".toolbar-group")).every(group => group.querySelector("input,select,button")));
-      check("toolbar is owned outside case content", !doc.querySelector("#worksheetWorkspace .toolbar"));
+      check("toolbar is owned outside case content", !workspace.querySelector(".toolbar"));
       check("toolbar save status is polite live text", doc.querySelector("#stateStatus").getAttribute("aria-live") === "polite");
       check("toolbar overflow status is polite live text", doc.querySelector("#overflowStatus").getAttribute("aria-live") === "polite");
 
@@ -103,7 +109,7 @@
       await wait(180);
       api.syncToolbarOffset();
 
-      const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 6 };
+      const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 7 };
       for (const [role, expected] of Object.entries(expectedCounts)) {
         api.setRole(role);
         await wait(80);
@@ -113,13 +119,14 @@
       }
 
       api.setRole("student");
+      check("non-selected worksheet roles leave the accessibility tree", Array.from(workspace.querySelectorAll('.page:not([data-role="student"])')).every(page => page.hidden && page.getAttribute("aria-hidden") === "true") && Array.from(workspace.querySelectorAll('.page[data-role="student"]')).every(page => !page.hidden && page.getAttribute("aria-hidden") === "false"));
       const grayControl = doc.querySelector("#grayControl");
       grayControl.checked = true;
       grayControl.dispatchEvent(new win.Event("change", { bubbles: true }));
       check("Student plus Grayscale retains Student as selected role", api.getState().role === "student" && api.getState().grayscale === true);
       check("Student plus Grayscale renders four Student pages", visiblePages(frame).length === 4 && visiblePages(frame).every(page => page.dataset.role === "student"));
       check("Student plus Grayscale maps to canonical Grayscale Mission output", api.getCurrentRoleOutput().outputRole === "grayscale" && api.getCurrentRoleOutput().filename.includes("GRAYSCALE_MISSION"));
-      check("Grayscale uses token presentation rather than a role switch", doc.body.classList.contains("grayscale") && doc.body.dataset.role === "student");
+      check("Grayscale uses token presentation rather than a role switch", doc.body.classList.contains("grayscale") && doc.body.dataset.role === "student" && worksheetDoc.classList.contains("grayscale") && worksheetDoc.dataset.role === "student");
       doc.querySelector('input[name="libraryRole"][value="teacher"]').click();
       await wait(60);
       check("left rail is authoritative for role switching", api.getState().role === "teacher" && visiblePages(frame).length === 8);
@@ -135,11 +142,13 @@
       const instructionSelector = '[data-persist-id="student-mission-01-instruction-001"]';
       const responseSelector = '[data-persist-id="t1"]';
       const accessibleSelector = '[data-persist-id="a1a"]';
-      const instruction = doc.querySelector(instructionSelector);
-      const response = doc.querySelector(responseSelector);
+      const instruction = workspace.querySelector(instructionSelector);
+      const response = workspace.querySelector(responseSelector);
       const originalInstruction = instruction.innerHTML;
       check("Fill Responses leaves instructional text locked", instruction.contentEditable === "false");
       check("Fill Responses enables selected-role response fields", response.contentEditable === "true");
+      response.focus();
+      check("keyboard focus enters the isolated worksheet response", workspace.getRootNode().activeElement === response && response.tabIndex === 0);
       api.saveState({ editMode: true });
       check("Edit Text enables marked instructional nodes", instruction.contentEditable === "true");
       check("Edit Text leaves responses editable", response.contentEditable === "true");
@@ -166,12 +175,12 @@
       setHtml(frame, accessibleSelector, "BROWSER TEST · accessible response");
       api.setRole("student");
       api.clearCurrentRole(true);
-      check("Clear Current Role clears selected-role responses", doc.querySelector(responseSelector).textContent === "");
-      check("Clear Current Role preserves instructional edits", doc.querySelector(instructionSelector).textContent.includes("edited instructional"));
-      check("Clear Current Role preserves another role's work", doc.querySelector(accessibleSelector).textContent.includes("accessible response"));
+      check("Clear Current Role clears selected-role responses", workspace.querySelector(responseSelector).textContent === "");
+      check("Clear Current Role preserves instructional edits", workspace.querySelector(instructionSelector).textContent.includes("edited instructional"));
+      check("Clear Current Role preserves another role's work", workspace.querySelector(accessibleSelector).textContent.includes("accessible response"));
       api.resetSource(true);
-      check("Reset Source restores package instructional source", doc.querySelector(instructionSelector).innerHTML === originalInstruction);
-      check("Reset Source clears package response work", doc.querySelector(accessibleSelector).textContent === "");
+      check("Reset Source restores package instructional source", workspace.querySelector(instructionSelector).innerHTML === originalInstruction);
+      check("Reset Source clears package response work", workspace.querySelector(accessibleSelector).textContent === "");
       check("Reset Source restores default controls", api.getState().role === "student" && api.getState().density === "normal" && api.getState().fillMode === true && api.getState().editMode === false);
 
       api.saveState({ editMode: true });
@@ -181,7 +190,9 @@
       win = frame.contentWindow;
       doc = frame.contentDocument;
       api = win.__curriculumEditor;
-      check("autosave survives a full application reload", doc.querySelector(responseSelector).textContent.includes("persisted response") && doc.querySelector(instructionSelector).textContent.includes("persisted instructional"));
+      workspace = api.getWorkspace();
+      worksheetDoc = api.getWorksheetDocument();
+      check("autosave survives a full application reload", workspace.querySelector(responseSelector).textContent.includes("persisted response") && workspace.querySelector(instructionSelector).textContent.includes("persisted instructional"));
       check("selected role survives reload", api.getState().role === "student");
       check("reload reports restored autosave", doc.querySelector("#stateStatus").textContent === "AUTOSAVE RESTORED");
 
@@ -227,13 +238,14 @@
       check("Teacher Grayscale remains Teacher output rather than Grayscale Mission", teacherGrayProfile.outputRole === "teacher" && teacherGrayDoc.body.classList.contains("grayscale") && teacherGrayDoc.querySelectorAll('.page[data-role="teacher"]').length === 8);
       api.saveState({ grayscale: false });
 
-      const headings = Array.from(doc.querySelectorAll(".task-heading"));
+      const headings = Array.from(workspace.querySelectorAll(".task-heading"));
       check("all expanded task headings contain one Phosphor icon", headings.every(node => node.querySelectorAll("svg.ph-icon use").length === 1));
       check("all expanded task headings show their number exactly once", headings.every(node => { const id = node.dataset.taskId; const text = node.querySelector(".section-title").textContent; return text.startsWith(`${id} · `) && (text.match(new RegExp(`(^|\\D)${id}(?!\\d)`, "g")) || []).length === 1; }));
-      check("all three CER variants render", new Set(Array.from(doc.querySelectorAll("[data-cer-contract]")).map(node => node.dataset.cerContract)).size === 3);
-      check("five-stage process models retain five stages and four connectors", Array.from(doc.querySelectorAll('[data-process-contract="five-stage-v1.0"]')).every(node => node.querySelectorAll("[data-process-stage]").length === 5 && node.querySelectorAll("[data-process-connector]").length === 4));
-      check("figures retain captions and accessible SVG labels", Array.from(doc.querySelectorAll("figure")).every(figure => figure.querySelector("figcaption") && figure.querySelector('svg[aria-label],svg[aria-labelledby]')));
-      check("table semantics retain captions", Array.from(doc.querySelectorAll("table")).every(table => table.querySelector("caption")));
+      check("all three CER variants render", new Set(Array.from(workspace.querySelectorAll("[data-cer-contract]")).map(node => node.dataset.cerContract)).size === 3);
+      check("Accessible Task 7 is one atomic CER on page 6", (() => { const roots = Array.from(workspace.querySelectorAll('.page[data-role="accessible"] [data-cer-contract="accessible-v1.0"]')); return roots.length === 1 && roots[0].closest(".page")?.dataset.pageId === "accessible-mission-06" && JSON.stringify(Array.from(roots[0].querySelectorAll(":scope > .canonical-cer-box > .canonical-cer-label")).map(node => node.textContent.trim())) === JSON.stringify(["CLAIM", "EVIDENCE", "REASONING"]); })());
+      check("five-stage process models retain five stages and four connectors", Array.from(workspace.querySelectorAll('[data-process-contract="five-stage-v1.0"]')).every(node => node.querySelectorAll("[data-process-stage]").length === 5 && node.querySelectorAll("[data-process-connector]").length === 4));
+      check("figures retain captions and accessible SVG labels", Array.from(workspace.querySelectorAll("figure")).every(figure => figure.querySelector("figcaption") && figure.querySelector('svg[aria-label],svg[aria-labelledby]')));
+      check("table semantics retain captions", Array.from(workspace.querySelectorAll("table")).every(table => table.querySelector("caption")));
 
       const passed = assertions.filter(item => item.pass).length;
       const payload = { validator: "curriculum-editor-browser-v1", status: passed === assertions.length ? "PASS" : "FAIL", passed, total: assertions.length, assertions };

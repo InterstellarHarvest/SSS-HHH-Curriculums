@@ -19,7 +19,8 @@ REPO = APP.parents[1]
 REGISTRY = REPO / "shared/implementation/case-registry.v1.json"
 REGISTRY_SCHEMA = REPO / "shared/implementation/case-registry.schema.v1.json"
 PACKAGE_SCHEMA = REPO / "shared/implementation/case-package.schema.v1.json"
-MANIFEST = REPO / "sss/campaign-1/case-03-mars-habitat/CASE03_V1_RELEASE_MANIFEST.json"
+HISTORICAL_MANIFEST = REPO / "sss/campaign-1/case-03-mars-habitat/CASE03_V1_RELEASE_MANIFEST.json"
+MANIFEST = REPO / "sss/campaign-1/case-03-mars-habitat/CASE03_V1_1_RELEASE_MANIFEST.json"
 REQUIRED_ROLES = ["student", "teacher", "answer", "accessible", "grayscale"]
 
 
@@ -122,6 +123,7 @@ def semantic_package_errors(package: dict[str, Any], content_override: str | Non
         package.get("shell", {}).get("icons"),
         package.get("taskRegistry", {}).get("source"),
         package.get("content", {}).get("source"),
+        package.get("presentation", {}).get("stylesheet"),
         *(item.get("source") for item in package.get("styles", [])),
         *(item.get("source") for item in package.get("assets", []) if item.get("source")),
     ]
@@ -180,9 +182,11 @@ def main() -> int:
         if case["id"] == "SSS-C1-CASE03"
     )
     results.check("Case 03 is discoverable", bool(case03))
-    results.check("Case 03 current version is 1.0", case03["version"] == "1.0", case03["version"])
-    results.check("Case 03 status is APPROVED_STABLE", case03["status"] == "APPROVED_STABLE", case03["status"])
-    results.check("Case 03 registry keeps its approved master path", case03["master"].endswith("SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html"))
+    results.check("Case 03 current version is 1.1", case03["version"] == "1.1", case03["version"])
+    results.check("Case 03 v1.1 status is VALIDATION_BUILD", case03["status"] == "VALIDATION_BUILD", case03["status"])
+    results.check("Case 03 registry targets the corrected v1.1 master", case03["master"].endswith("SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html"))
+    historical = case03.get("historicalReleases", [])
+    results.check("registry preserves v1.0 as historical approved metadata", len(historical) == 1 and historical[0]["version"] == "1.0" and historical[0]["status"] == "APPROVED_STABLE")
     package_path = REPO / case03["editorPackage"]
     results.check("Case 03 editor package exists", package_path.is_file(), case03["editorPackage"])
     package = load_json(package_path)
@@ -194,19 +198,21 @@ def main() -> int:
     results.check("package and registry versions agree", package["version"] == case03["version"])
     results.check("package and registry statuses agree", package["status"] == case03["status"])
     results.check("package uses shared editor shell 1.0", package["shell"]["version"] == "1.0")
-    results.check("package does not load the approved master", "master/" not in json.dumps(package))
+    results.check("package content does not load a complete master", "master/" not in package["content"]["source"])
     results.check("all five package output profiles are declared", package["supportedRoles"] == REQUIRED_ROLES, package["supportedRoles"])
-    expected_counts = {"student": 4, "teacher": 8, "answer": 4, "accessible": 6, "grayscale": 4}
-    results.check("role page-count contract is 4/8/4/6/4", {role: package["rolePageStructure"][role]["pageCount"] for role in REQUIRED_ROLES} == expected_counts)
+    expected_counts = {"student": 4, "teacher": 8, "answer": 4, "accessible": 7, "grayscale": 4}
+    results.check("role page-count contract is 4/8/4/7/4", {role: package["rolePageStructure"][role]["pageCount"] for role in REQUIRED_ROLES} == expected_counts)
     results.check("Grayscale maps to Student source pages", package["rolePageStructure"]["grayscale"]["sourceRole"] == "student" and package["rolePageStructure"]["grayscale"]["grayscale"] is True)
-    results.check("document key includes case and version", package["id"] in package["documentKey"] and "v1.0" in package["documentKey"])
+    results.check("document key includes case and version", package["id"] in package["documentKey"] and "v1.1" in package["documentKey"])
+    results.check("package records the owner-authorized v1.0 historical hash", package["migrationSource"]["historicalMasterSha256"] == "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce")
+    results.check("package declares isolated extracted presentation", package["presentation"]["isolation"] == "shadow-dom")
     results.check("complete and role output names are distinct", len(set(package["outputs"].values())) == 6)
     results.check("all output names are HTML", all(name.lower().endswith(".html") for name in package["outputs"].values()))
     results.check("portable outputs use clear CUSTOM names", all("CUSTOM" in name for name in package["outputs"].values()))
 
     content = BeautifulSoup((REPO / package["content"]["source"]).read_text(encoding="utf-8"), "html.parser")
     role_counts = {role: len(content.select(f'.page[data-role="{role}"]')) for role in ["student", "teacher", "answer", "accessible"]}
-    results.check("source content page counts are 4/8/4/6", role_counts == {"student": 4, "teacher": 8, "answer": 4, "accessible": 6}, role_counts)
+    results.check("source content page counts are 4/8/4/7", role_counts == {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}, role_counts)
     results.check("source content has one main landmark", len(content.select("main")) == 1)
     results.check("all worksheet pages have accessible names", all(page.get("aria-label") or page.get("aria-labelledby") for page in content.select(".page")))
     results.check("all response fields have accessible names", all(node.get("aria-label") or node.get("aria-labelledby") for node in content.select("[data-response]")))
@@ -214,17 +220,43 @@ def main() -> int:
     results.check("all persistence IDs are unique", len(content.select("[data-persist-id]")) == len({node.get("data-persist-id") for node in content.select("[data-persist-id]")}))
     results.check("instruction and response contracts both exist", bool(content.select("[data-editable]")) and bool(content.select("[data-response]")))
     results.check("three CER variants are present", {node.get("data-cer-contract") for node in content.select("[data-cer-contract]")} == {"student-v1.0", "answer-v1.0", "accessible-v1.0"})
+    cer_roots = content.select("[data-cer-contract]")
+    cer_rows = {
+        root.get("data-cer-contract"): [label.get_text(" ", strip=True) for label in root.select(":scope > .canonical-cer-box > .canonical-cer-label")]
+        for root in cer_roots
+    }
+    results.check("each CER variant has one canonical Claim/Evidence/Reasoning root", len(cer_roots) == 3 and all(rows == ["CLAIM", "EVIDENCE", "REASONING"] for rows in cer_rows.values()), cer_rows)
+    results.check("all CER rows share their root's closest page", all(box.find_parent(class_="page") is root.find_parent(class_="page") for root in cer_roots for box in root.select(":scope > .canonical-cer-box")))
+    results.check("CER rows retain attached labels and response areas", all(len(root.select(":scope > .canonical-cer-box")) == 3 and all(box.select_one(":scope > .canonical-cer-label") and box.select_one(":scope > .canonical-cer-response, :scope > .answer-block") for box in root.select(":scope > .canonical-cer-box")) for root in cer_roots))
+    accessible_cer = content.select('[data-role="accessible"] [data-cer-contract="accessible-v1.0"]')
+    results.check("Accessible Task 7 CER is atomic on page 6", len(accessible_cer) == 1 and accessible_cer[0].find_parent(class_="page").get("data-page-id") == "accessible-mission-06")
     results.check("five-stage process model is present", bool(content.select('[data-process-contract="five-stage-v1.0"]')))
     results.check("optional-extension contract is present", bool(content.select('[data-optional-extension="canonical-v1.0"]')))
     results.check("spectral figures and captions are present", len(content.select('[data-quantity-spectrum="canonical-v1.0"]')) == 3 and bool(content.select("figure figcaption")))
+    results.check("task headings remain attached to following task content", all((next_node := node.find_next_sibling()) is not None and next_node.find_parent(class_="page") is node.find_parent(class_="page") for node in content.select(".task-heading")))
+    results.check("figures remain attached to captions on one page", all(figure.select_one(":scope > figcaption") and figure.select_one(":scope > figcaption").find_parent(class_="page") is figure.find_parent(class_="page") for figure in content.select("figure")))
+    results.check("table headers remain attached to first data rows", all(len(table.select(":scope > tr, :scope > thead > tr, :scope > tbody > tr")) >= 2 and table.select_one("th") is not None for table in content.select("table")))
+    results.check("five-stage models remain atomic on one page", all(len(model.select(":scope > [data-process-stage]")) == 5 and len(model.select(":scope > [data-process-connector]")) == 4 and all(node.find_parent(class_="page") is model.find_parent(class_="page") for node in model.select("[data-process-stage],[data-process-connector]")) for model in content.select('[data-process-contract="five-stage-v1.0"]')))
+    results.check("optional extensions and diagnosis groups remain atomic", all(all(child.find_parent(class_="page") is root.find_parent(class_="page") for child in root.select("*")) for root in content.select("[data-optional-extension],.choice-list")))
+    def response_has_context(node: Any) -> bool:
+        page = node.find_parent(class_="page")
+        if page is None:
+            return False
+        if node.find_parent(class_="canonical-cer-box") or node.find_parent(class_="canonical-process-stage") or node.find_parent("td") or node.find_parent("label"):
+            return True
+        prompt = node.find_previous(["p", "h2", "label"])
+        return prompt is not None and prompt.find_parent(class_="page") is page
+    results.check("response fields retain an in-page prompt or component context", all(response_has_context(node) for node in content.select("[data-response]")))
     results.check("content has no runtime, external styles, or iframes", not content.select("script, style, link, iframe"))
 
     tasks = task_registry(REPO / package["taskRegistry"]["source"])
     task_map = {str(task["number"]): task for task in tasks["tasks"]}
     references = [node.get("data-shell-task-heading") for node in content.select("[data-shell-task-heading]")]
+    headings = content.select(".task-heading[data-task-id]")
     results.check("task registry contains canonical Tasks 1–9", list(task_map) == [str(value) for value in range(1, 10)])
-    results.check("every task placeholder resolves", all(reference in task_map for reference in references))
-    results.check("every task appears in Student, Answer, and Accessible", all(references.count(str(value)) == 3 for value in range(1, 10)))
+    results.check("v1.1 extraction contains no unresolved task placeholders", not references)
+    results.check("every task heading matches the canonical task registry title", all(node.get("data-task-title") == task_map[node.get("data-task-id")]["title"] and node.select_one(".section-title").get_text(" ", strip=True) == f'{node.get("data-task-id")} · {task_map[node.get("data-task-id")]["title"]}' for node in headings))
+    results.check("every task appears in Student, Answer, and Accessible", all(sum(1 for node in headings if node.get("data-task-id") == str(value) and node.find_parent(class_="page").get("data-role") in {"student", "answer", "accessible"}) == 3 for value in range(1, 10)))
     results.check("task semantic labels are not numeric TASK labels", all(not re.fullmatch(r"TASK\s+0?\d+", task["semanticLabel"], re.I) for task in tasks["tasks"]))
     results.check("every task has one Phosphor icon ID", all(task["icon"].startswith("ph-") for task in tasks["tasks"]))
 
@@ -241,6 +273,7 @@ def main() -> int:
     results.check("manual PDF accessibility warning is visible", "does not guarantee PDF accessibility" in app_html.get_text(" "))
     results.check("reduced-motion CSS is present", "prefers-reduced-motion" in app_css)
     results.check("app uses only local runtime sources", not app_html.select('script[src^="http"], link[href^="http"]'))
+    results.check("worksheet host is separate from the application DOM", app_html.select_one("#worksheetHost") is not None and app_html.select_one("#worksheetWorkspace") is None)
     results.check("toolbar offset has a CSS fallback without the rejected 92px gap", "--app-toolbar-offset: 76px" in app_css and "--app-toolbar-offset: 92px" not in app_css)
     results.check("layout and rail share the measured toolbar offset variable", app_css.count("var(--app-toolbar-offset)") >= 3)
     results.check("toolbar measurement observes resize and font completion", "new ResizeObserver(syncToolbarOffset)" in app_runtime and "document.fonts?.ready.then(syncToolbarOffset)" in app_runtime)
@@ -267,14 +300,31 @@ def main() -> int:
     missing_package = REPO / "missing/package.json"
     results.check("missing package file fails cleanly", not missing_package.is_file())
 
-    manifest = load_json(MANIFEST)
+    manifest = load_json(HISTORICAL_MANIFEST)
     release_files: list[tuple[Path, str]] = [
-        (MANIFEST.parent / manifest["current_master"]["path"], manifest["current_master"]["sha256"])
+        (HISTORICAL_MANIFEST.parent / manifest["current_master"]["path"], manifest["current_master"]["sha256"])
     ]
-    release_files.extend((MANIFEST.parent / data["html"]["path"], data["html"]["sha256"]) for data in manifest["outputs"].values())
-    release_files.extend((MANIFEST.parent / item["path"], item["sha256"]) for item in manifest["controlled_sources"])
+    release_files.extend((HISTORICAL_MANIFEST.parent / data["html"]["path"], data["html"]["sha256"]) for data in manifest["outputs"].values())
+    release_files.extend((HISTORICAL_MANIFEST.parent / item["path"], item["sha256"]) for item in manifest["controlled_sources"])
     hash_failures = [str(path.relative_to(REPO)) for path, expected in release_files if sha256(path) != expected]
-    results.check("approved Case 03 master, role outputs, and controlled-source hashes are unchanged", not hash_failures, hash_failures)
+    results.check("approved Case 03 v1.0 master, role outputs, and controlled-source hashes are unchanged", not hash_failures, hash_failures)
+    v11_manifest = load_json(MANIFEST)
+    v11_master = BeautifulSoup((MANIFEST.parent / v11_manifest["current_validation_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
+    results.check("v1.1 package worksheet DOM exactly matches the validation master", str(content.select_one("main")) == str(v11_master.select_one("main")))
+    historical_master = BeautifulSoup((HISTORICAL_MANIFEST.parent / manifest["current_master"]["path"]).read_text(encoding="utf-8"), "html.parser")
+    unchanged_role_dom = all(
+        [str(page) for page in historical_master.select(f'.page[data-role="{role}"]')]
+        == [str(page) for page in v11_master.select(f'.page[data-role="{role}"]')]
+        for role in ["student", "teacher", "answer"]
+    )
+    results.check("v1.1 preserves Student, Teacher, Answer, and Grayscale source-page composition", unchanged_role_dom)
+    v11_files = [(MANIFEST.parent / v11_manifest["current_validation_master"]["path"], v11_manifest["current_validation_master"]["sha256"])]
+    v11_files.extend((MANIFEST.parent / output["html"]["path"], output["html"]["sha256"]) for output in v11_manifest["outputs"].values())
+    v11_failures = [str(path.relative_to(REPO)) for path, expected in v11_files if sha256(path) != expected]
+    results.check("Case 03 v1.1 master and five role hashes match the validation manifest", not v11_failures, v11_failures)
+    results.check("Case 03 v1.1 owner physical-print gate remains OPEN", v11_manifest["physical_print_gate"] == "OPEN" and v11_manifest["status"] == "VALIDATION_BUILD")
+    deterministic = subprocess.run([sys.executable, str(MANIFEST.parent / "validation-artifacts/build_case03_v1_1.py"), "--check"], cwd=REPO, text=True, capture_output=True)
+    results.check("Case 03 v1.1 extraction/build is deterministic", deterministic.returncode == 0, (deterministic.stdout + deterministic.stderr).strip())
     for case_number, path in [(1, "sss/campaign-1/case-01-iss-greenhouse"), (2, "sss/campaign-1/case-02-lunar-greenhouse")]:
         comparison = subprocess.run(["git", "diff", "--quiet", "main", "--", path], cwd=REPO)
         results.check(f"approved Case 0{case_number} tracked files are unchanged", comparison.returncode == 0)

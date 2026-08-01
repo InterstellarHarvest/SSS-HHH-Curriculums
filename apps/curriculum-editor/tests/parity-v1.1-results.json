@@ -1,0 +1,788 @@
+{
+  "validator": "case03-v1.1-central-editor-parity",
+  "status": "PASS",
+  "browser": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "viewport": {
+    "width": 1440,
+    "height": 1200,
+    "deviceScaleFactor": 1
+  },
+  "pageCounts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 7,
+    "grayscale": 4
+  },
+  "structuralParity": {
+    "passed": 27,
+    "total": 27
+  },
+  "pageAssignmentParity": {
+    "passed": 27,
+    "total": 27
+  },
+  "geometryParity": {
+    "passed": 1494,
+    "total": 1494,
+    "tolerancePx": 0.25
+  },
+  "computedPresentationParity": {
+    "passed": 5976,
+    "total": 5976
+  },
+  "renderedComparison": {
+    "passed": 27,
+    "total": 27,
+    "pixelDeltaThreshold": 8,
+    "pixelRatioTolerance": 0.0005
+  },
+  "cerAtomicity": {
+    "passed": 4,
+    "total": 4
+  },
+  "v1.1RoleArtifacts": {
+    "passed": 5,
+    "total": 5
+  },
+  "zeroOverflowRoles": {
+    "passed": 5,
+    "total": 5
+  },
+  "currentRoleExportParity": {
+    "passed": 5,
+    "total": 5
+  },
+  "completePortableExportParity": {
+    "passed": 23,
+    "total": 23
+  },
+  "javascriptErrors": {
+    "master": [],
+    "editor": []
+  },
+  "pages": [
+    {
+      "role": "student",
+      "page": 1,
+      "pageId": "student-mission-01",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 78,
+        "total": 78,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 312,
+        "total": 312,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "student",
+      "page": 2,
+      "pageId": "student-mission-02",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 84,
+        "total": 84,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 336,
+        "total": 336,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "student",
+      "page": 3,
+      "pageId": "student-mission-03",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 78,
+        "total": 78,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 312,
+        "total": 312,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "student",
+      "page": 4,
+      "pageId": "student-mission-04",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 102,
+        "total": 102,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 408,
+        "total": 408,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 1,
+      "pageId": "teacher-guide-01",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 30,
+        "total": 30,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 120,
+        "total": 120,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 2,
+      "pageId": "teacher-guide-02",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 24,
+        "total": 24,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 96,
+        "total": 96,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 3,
+      "pageId": "teacher-guide-03",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 24,
+        "total": 24,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 96,
+        "total": 96,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 4,
+      "pageId": "teacher-guide-04",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 30,
+        "total": 30,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 120,
+        "total": 120,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 5,
+      "pageId": "teacher-guide-05",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 36,
+        "total": 36,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 144,
+        "total": 144,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 6,
+      "pageId": "teacher-guide-06",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 30,
+        "total": 30,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 120,
+        "total": 120,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 7,
+      "pageId": "teacher-guide-07",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 24,
+        "total": 24,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 96,
+        "total": 96,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "teacher",
+      "page": 8,
+      "pageId": "teacher-guide-08",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 24,
+        "total": 24,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 96,
+        "total": 96,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "answer",
+      "page": 1,
+      "pageId": "answer-key-01",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 48,
+        "total": 48,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 192,
+        "total": 192,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "answer",
+      "page": 2,
+      "pageId": "answer-key-02",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 42,
+        "total": 42,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 168,
+        "total": 168,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "answer",
+      "page": 3,
+      "pageId": "answer-key-03",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 66,
+        "total": 66,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 264,
+        "total": 264,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "answer",
+      "page": 4,
+      "pageId": "answer-key-04",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 36,
+        "total": 36,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 144,
+        "total": 144,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 1,
+      "pageId": "accessible-mission-01",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 60,
+        "total": 60,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 240,
+        "total": 240,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 4,
+        "totalPixels": 861696,
+        "ratio": 4.642008318478907e-06,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 2,
+      "pageId": "accessible-mission-02",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 48,
+        "total": 48,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 192,
+        "total": 192,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 3,
+      "pageId": "accessible-mission-03",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 48,
+        "total": 48,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 192,
+        "total": 192,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 32,
+        "totalPixels": 861696,
+        "ratio": 3.7136066547831256e-05,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 4,
+      "pageId": "accessible-mission-04",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 54,
+        "total": 54,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 216,
+        "total": 216,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 5,
+      "pageId": "accessible-mission-05",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 60,
+        "total": 60,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 240,
+        "total": 240,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 4,
+        "totalPixels": 861696,
+        "ratio": 4.642008318478907e-06,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 6,
+      "pageId": "accessible-mission-06",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 72,
+        "total": 72,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 288,
+        "total": 288,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 8,
+        "totalPixels": 861696,
+        "ratio": 9.284016636957814e-06,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "accessible",
+      "page": 7,
+      "pageId": "accessible-mission-07",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 54,
+        "total": 54,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 216,
+        "total": 216,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "grayscale",
+      "page": 1,
+      "pageId": "student-mission-01",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 78,
+        "total": 78,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 312,
+        "total": 312,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 1,
+        "totalPixels": 861696,
+        "ratio": 1.1605020796197268e-06,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "grayscale",
+      "page": 2,
+      "pageId": "student-mission-02",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 84,
+        "total": 84,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 336,
+        "total": 336,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 428,
+        "totalPixels": 861696,
+        "ratio": 0.000496694890077243,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "grayscale",
+      "page": 3,
+      "pageId": "student-mission-03",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 78,
+        "total": 78,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 312,
+        "total": 312,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 108,
+        "totalPixels": 861696,
+        "ratio": 0.0001253342245989305,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    },
+    {
+      "role": "grayscale",
+      "page": 4,
+      "pageId": "student-mission-04",
+      "structuralParity": true,
+      "geometry": {
+        "passed": 102,
+        "total": 102,
+        "failures": []
+      },
+      "presentation": {
+        "passed": 408,
+        "total": 408,
+        "failures": []
+      },
+      "rendered": {
+        "pass": true,
+        "changedPixels": 0,
+        "totalPixels": 861696,
+        "ratio": 0.0,
+        "threshold": 8,
+        "tolerance": 0.0005
+      }
+    }
+  ],
+  "screenshots": {
+    "accessible-diff": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-diff.png",
+      "sha256": "3859b048544a0fe4cd1d4425ad975a2459ed74ce13b28a3c3cccc092081872c6"
+    },
+    "accessible-editor": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-editor.png",
+      "sha256": "09b55eb09af73544e1731ce3edca2535ed53b14457944baa4f09b0a180755892"
+    },
+    "accessible-master": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-master.png",
+      "sha256": "13dff234d9f113c64c367ea4a48e5c1b2d2e3d657c42c2d1c512dc1cae6e1f45"
+    },
+    "accessible-task7-diff": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-task7-diff.png",
+      "sha256": "fb68c1283fe5d2b3d0d3c36d5b01604346986b04a6e58549f80f91c35d8de3be"
+    },
+    "accessible-task7-editor": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-task7-editor.png",
+      "sha256": "15c6811d8d6b9b4e7664b93bc4b8429e209ffcea7830c5abc0b4478669363528"
+    },
+    "accessible-task7-master": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/accessible-task7-master.png",
+      "sha256": "54d4b6792c5e14e27f717d21460c063f9217293e39132535534a885d435f4d16"
+    },
+    "answer-diff": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/answer-diff.png",
+      "sha256": "f188799d9cad919a4b00d2593b47576f099c06836492627b9ac6266f09875001"
+    },
+    "answer-editor": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/answer-editor.png",
+      "sha256": "8bfeb10f878af18671dd5833a3190d7f092148ef99dd79fdfc0a50d402390c4a"
+    },
+    "answer-master": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/answer-master.png",
+      "sha256": "8a145557a99aca6843774ae4a4be651265b8e274190bfa16eafcdff384e1b74e"
+    },
+    "grayscale-diff": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-diff.png",
+      "sha256": "2b4cb3de65f909b46e59865a1bf3f221a377ef4c525ac6f06a0eda90a8a59082"
+    },
+    "grayscale-editor": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-editor.png",
+      "sha256": "bf1de6319f3c48c6acf49eaf56d669841f8cf3148c950f2a801eaedacaa503c0"
+    },
+    "grayscale-master": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/grayscale-master.png",
+      "sha256": "f38db7038bbc9389a9b105d19283d9861ec6815455560e844f0ed13a75fd2e2a"
+    },
+    "student-diff": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/student-diff.png",
+      "sha256": "bb277a20703eede965c0528220b63f68261982c45d6fa140a7b912e9e373ec60"
+    },
+    "student-editor": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/student-editor.png",
+      "sha256": "74927ea4bd8a231f4749c2425c652429ff16ced5a60a5525fc855d77f2177e80"
+    },
+    "student-master": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/student-master.png",
+      "sha256": "19e44d7532c9c13255af7b88c0fef0503397f3383e477cdf71ed1696fcb7a034"
+    },
+    "teacher-diff": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/teacher-diff.png",
+      "sha256": "661694b8f8fb0cf28663b873b7f7513ba7f1a04f954620d982519d9918523422"
+    },
+    "teacher-editor": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/teacher-editor.png",
+      "sha256": "91fcdc94fb47743f414afdb1c1098516b5668a56b6e2c6cc51a4c91117c7e316"
+    },
+    "teacher-master": {
+      "path": "apps/curriculum-editor/tests/screenshots/parity-v1.1/teacher-master.png",
+      "sha256": "dc3102bad993edfb40dd6fe78d3607fa0253559f78b2baceada83fd69bb5aac8"
+    }
+  }
+}

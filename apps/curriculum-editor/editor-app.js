@@ -13,7 +13,8 @@ const ROLE_LABELS = {
 const elements = {
   toolbarHost: document.querySelector("#editorToolbarHost"),
   icons: document.querySelector("#packageIcons"),
-  workspace: document.querySelector("#worksheetWorkspace"),
+  worksheetHost: document.querySelector("#worksheetHost"),
+  workspace: null,
   curriculum: document.querySelector("#curriculumSelect"),
   campaign: document.querySelector("#campaignSelect"),
   caseSelect: document.querySelector("#caseSelect"),
@@ -39,6 +40,8 @@ let contentKey;
 let sourceBaseline = new Map();
 let contentState = {};
 let packageStyleText = [];
+let worksheetDocument;
+let worksheetShadow;
 let portableRuntimeSource = "";
 let portableToolbarTemplate;
 let toolbarResizeObserver;
@@ -118,6 +121,20 @@ function validatePackage(pkg) {
   if (!Array.isArray(pkg.shell.styles) || !pkg.shell.styles.length) throw new Error("Shared shell styles are missing.");
   if (!Array.isArray(pkg.styles) || !pkg.styles.length) throw new Error("Case-specific styles are missing.");
   if (/master\//i.test(pkg.content.source)) throw new Error("A case package may not use an approved master as content.");
+  requireFields(pkg.presentation, ["contentSha256", "caseCssSha256", "stylesheet", "stylesheetSha256", "isolation"], "Presentation package");
+  requireFields(pkg.migrationSource, ["historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "builder"], "Migration source");
+  if (pkg.presentation.isolation !== "shadow-dom") throw new Error(`Unsupported worksheet isolation: ${pkg.presentation.isolation}`);
+}
+
+async function sha256Text(value) {
+  const bytes = new TextEncoder().encode(value);
+  const hash = await crypto.subtle.digest("SHA-256", bytes);
+  return Array.from(new Uint8Array(hash), byte => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function requireTextHash(value, expected, label) {
+  const actual = await sha256Text(value);
+  if (actual !== expected) throw new Error(`${label} hash mismatch: expected ${expected}, received ${actual}`);
 }
 
 function parseTaskRegistry(source, globalName) {
@@ -193,16 +210,32 @@ function restoreNode(node, saved) {
   else node.innerHTML = saved.html ?? "";
 }
 
-function installStyles(styleEntries) {
-  for (const old of $$("style[data-case-package-style]")) old.remove();
-  packageStyleText = styleEntries.map(entry => entry.text);
-  styleEntries.forEach((entry, index) => {
-    const style = document.createElement("style");
-    style.dataset.casePackageStyle = String(index + 1);
-    style.dataset.source = entry.path;
-    style.textContent = entry.text;
-    document.head.append(style);
-  });
+function scopePresentationCss(css) {
+  return css
+    .replace(/:root/g, ":host")
+    .replace(/\bhtml\b/g, ":host")
+    .replace(/\bbody\b/g, ".worksheet-document");
+}
+
+function installWorksheet(presentationCss, iconsText) {
+  packageStyleText = [presentationCss];
+  worksheetShadow = elements.worksheetHost.shadowRoot || elements.worksheetHost.attachShadow({ mode: "open" });
+  const style = document.createElement("style");
+  style.dataset.casePackagePresentation = "v1.1";
+  style.textContent = `${scopePresentationCss(presentationCss)}\n.worksheet-document{padding:0;background:transparent}`;
+  worksheetDocument = document.createElement("div");
+  worksheetDocument.className = "worksheet-document";
+  worksheetDocument.dataset.standalone = "true";
+  const icons = document.createElement("div");
+  icons.className = "worksheet-icons";
+  icons.setAttribute("aria-hidden", "true");
+  icons.innerHTML = iconsText;
+  elements.workspace = document.createElement("main");
+  elements.workspace.id = "worksheetWorkspace";
+  elements.workspace.className = "workspace";
+  elements.workspace.setAttribute("aria-label", `${casePackage.title} worksheet pages`);
+  worksheetDocument.append(icons, elements.workspace);
+  worksheetShadow.replaceChildren(style, worksheetDocument);
 }
 
 function syncToolbarOffset() {
@@ -354,7 +387,14 @@ function applyState() {
   document.body.classList.toggle("hide-boundaries", !state.boundaries);
   document.body.classList.remove("density-normal", "density-compact", "density-spacious");
   document.body.classList.add(`density-${state.density}`);
-  const rootStyle = document.documentElement.style;
+  worksheetDocument.dataset.role = renderedRole;
+  worksheetDocument.classList.toggle("edit-mode", state.editMode);
+  worksheetDocument.classList.toggle("grayscale", state.grayscale);
+  worksheetDocument.classList.toggle("show-guides", state.guides);
+  worksheetDocument.classList.toggle("hide-boundaries", !state.boundaries);
+  worksheetDocument.classList.remove("density-normal", "density-compact", "density-spacious");
+  worksheetDocument.classList.add(`density-${state.density}`);
+  const rootStyle = worksheetDocument.style;
   for (const side of ["Top", "Right", "Bottom", "Left"]) {
     rootStyle.setProperty(`--margin-${side.toLowerCase()}`, `${state[`margin${side}`]}in`);
   }
@@ -638,7 +678,7 @@ function showError(error) {
   elements.error.hidden = false;
   elements.error.textContent = error.message || String(error);
   elements.loadStatus.textContent = "LOAD FAILED";
-  elements.workspace.setAttribute("aria-busy", "false");
+  elements.worksheetHost.setAttribute("aria-busy", "false");
 }
 
 async function initialize() {
@@ -665,6 +705,7 @@ async function initialize() {
     casePackage.shell.icons,
     casePackage.taskRegistry.source,
     casePackage.content.source,
+    casePackage.presentation.stylesheet,
     ...casePackage.styles.map(item => item.source),
     ...casePackage.assets.filter(item => item.source).map(item => item.source)
   ];
@@ -675,12 +716,12 @@ async function initialize() {
     return response.text();
   });
   taskRegistry = parseTaskRegistry(loaded.get(casePackage.taskRegistry.source), casePackage.taskRegistry.global);
-  installStyles([
-    ...casePackage.shell.styles.map(path => ({ path, text: loaded.get(path) })),
-    ...casePackage.styles.map(item => ({ path: item.source, text: loaded.get(item.source) }))
-  ]);
+  await requireTextHash(loaded.get(casePackage.content.source), casePackage.presentation.contentSha256, "Worksheet content");
+  await requireTextHash(loaded.get(casePackage.styles[0].source), casePackage.presentation.caseCssSha256, "Case stylesheet");
+  await requireTextHash(loaded.get(casePackage.presentation.stylesheet), casePackage.presentation.stylesheetSha256, "Presentation stylesheet");
   installToolbar(loaded.get(casePackage.shell.toolbar));
   elements.icons.innerHTML = loaded.get(casePackage.shell.icons);
+  installWorksheet(loaded.get(casePackage.presentation.stylesheet), loaded.get(casePackage.shell.icons));
   prepareContent(loaded.get(casePackage.content.source));
   populateLibrary(selected.curriculum, selected.campaign, selected.caseEntry);
   stateKey = `curriculum-editor:${casePackage.documentKey}:state`;
@@ -697,7 +738,7 @@ async function initialize() {
   bindToolbar();
   setSaveStatus(Object.keys(contentState).length ? "AUTOSAVE RESTORED" : "LOCAL SAVE READY");
   applyState();
-  elements.workspace.setAttribute("aria-busy", "false");
+  elements.worksheetHost.setAttribute("aria-busy", "false");
   elements.loadStatus.textContent = `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`;
   window.__curriculumEditor = {
     getState: () => ({ ...state }),
@@ -712,6 +753,8 @@ async function initialize() {
     serializePortableHTML,
     serializeRoleHTML,
     getCurrentRoleOutput: () => ({ ...currentRoleOutput() }),
+    getWorkspace: () => elements.workspace,
+    getWorksheetDocument: () => worksheetDocument,
     syncToolbarOffset,
     persistElement,
     keys: { stateKey, contentKey }

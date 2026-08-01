@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: .055in;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .canonical-cer[data-cer-contract] .canonical-cer-box {
@@ -9,6 +11,8 @@
   grid-template-columns: .72in minmax(0,1fr);
   gap: .055in;
   min-height: 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
 }
 
 .canonical-cer[data-cer-contract="student-v1.0"] {

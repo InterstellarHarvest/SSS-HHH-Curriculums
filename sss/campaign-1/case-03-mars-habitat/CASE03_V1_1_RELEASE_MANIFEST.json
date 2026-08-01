@@ -1,0 +1,97 @@
+{
+  "case": "SSS-C1-CASE03",
+  "title": "Mars Habitat",
+  "version": "1.1",
+  "status": "VALIDATION_BUILD",
+  "release_status": "OWNER_BROWSER_PHYSICAL_PRINT_GATE_OPEN",
+  "artifact_policy": "HTML_ONLY",
+  "successor_reason": "Accessible CER atomicity correction",
+  "historical_v1_0": {
+    "master": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html",
+    "sha256": "c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce",
+    "preservation": "byte-identical approved historical release"
+  },
+  "current_validation_master": {
+    "path": "master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
+    "sha256": "3ff52e66e37f877d7e3c8724389c73e2a78da03f8d1d61d9e6a51e99ae0edd03",
+    "bytes": 194588
+  },
+  "page_counts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 7,
+    "grayscale": 4
+  },
+  "accessible_task_7_page": "accessible-mission-06",
+  "physical_print_gate": "OPEN",
+  "outputs": {
+    "student": {
+      "pages": 4,
+      "html": {
+        "path": "published/SSS_C1_CASE03_STUDENT_MISSION_v1.1.html",
+        "sha256": "e9ec875983ea67ad5f4f7225c6be25df623d2ec69f14cadcf79516ee405d10c8",
+        "bytes": 68775
+      }
+    },
+    "teacher": {
+      "pages": 8,
+      "html": {
+        "path": "published/SSS_C1_CASE03_TEACHER_GUIDE_v1.1.html",
+        "sha256": "87b76b8525df8c6f135269dbb70e0fdf8b4a516b637e8e0ccc7a64dcdecd1f16",
+        "bytes": 85330
+      }
+    },
+    "answer": {
+      "pages": 4,
+      "html": {
+        "path": "published/SSS_C1_CASE03_ANSWER_KEY_v1.1.html",
+        "sha256": "3a73aae195a73d9304358038aec35494343cca01277e7c124efc792a49305c0b",
+        "bytes": 61866
+      }
+    },
+    "accessible": {
+      "pages": 7,
+      "html": {
+        "path": "published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1.html",
+        "sha256": "40e379235dda3af6bc29b87742fe5c732a04060248977b77c6713f2ac54c05c7",
+        "bytes": 77076
+      }
+    },
+    "grayscale": {
+      "pages": 4,
+      "html": {
+        "path": "published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html",
+        "sha256": "88645f37ebb83510df42faddd2cbaf7ae24d658a01b96f38fd97185b835f0c45",
+        "bytes": 68774
+      }
+    }
+  },
+  "generated_sources": [
+    {
+      "path": "source/editor-v1.1/case03-content.html",
+      "sha256": "56f508fdbf6113c33f53f2bba99802345871476af0a98330d87d7a45b9c37402",
+      "bytes": 159688
+    },
+    {
+      "path": "source/editor-v1.1/case03.css",
+      "sha256": "14a6504149dd7546fe7356f748f627627ecbe7a703d307b79eda60ce5df6007a",
+      "bytes": 4332
+    },
+    {
+      "path": "source/editor-v1.1/case03-editor-config.json",
+      "sha256": "834ac78755f1c95293802899535b33c542095739817d4e7f773e33387239a7ae",
+      "bytes": 3385
+    },
+    {
+      "path": "source/editor-v1.1/case03-presentation.css",
+      "sha256": "3907fe5f9abe059522807d55a59842b73daadbc52795137d354e0b8e20ac16bd",
+      "bytes": 20215
+    },
+    {
+      "path": "source/editor-package/case-package.v1.1.json",
+      "sha256": "036b062df3deea3b2805752d511d66c1d6895a09e897822587121b5b8244c0e6",
+      "bytes": 5059
+    }
+  ]
+}

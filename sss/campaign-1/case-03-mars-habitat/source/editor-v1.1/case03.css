@@ -1,0 +1,185 @@
+:root {
+  --paper: #fff;
+  --ink: #18212b;
+  --muted: #4b5967;
+  --rule: #8c9aa8;
+  --panel: #edf1f4;
+  --panel-light: #f7f9fa;
+  --neutral-field: #eff2f4;
+  --institution: #2e8484;
+  --cyan-dark: #075362;
+  --slate: #536572;
+  --botanical: #52974a;
+  --accent-dark: #33596e;
+  --accent-pale: #e6f0f0;
+  --primary: var(--institution);
+  --secondary: var(--botanical);
+  --soft: var(--accent-pale);
+  --screen: #d8dee1;
+  --small: 9pt;
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --radius: 3px;
+}
+
+.spectrum-figure svg {
+  width: 100%;
+  height: 2.55in;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.teacher-card {
+  padding: 6px;
+  border: 1px solid var(--rule);
+  background: var(--panel-light);
+  font-size: 8.8pt;
+}
+
+.teacher-card p,
+.teacher-card ul {
+  margin: 2px 0;
+}
+
+.procedure > div {
+  display: grid;
+  grid-template-columns: .52in 1fr;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid #c1c9ce;
+}
+
+.procedure .time {
+  color: var(--primary);
+  font: 800 8pt "JetBrains Mono", monospace;
+}
+
+.rubric {
+  font-size: 7.7pt;
+}
+
+.answer-block {
+  margin: 5px 0;
+  padding: 6px 8px;
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--secondary);
+}
+
+.answer-block p {
+  margin: 2px 0;
+  font-size: 9pt;
+}
+
+.accessible {
+  font-size: 13pt;
+  line-height: 1.35;
+}
+
+.accessible .directions {
+  font-size: 11.5pt;
+}
+
+.accessible .response {
+  min-height: .8in;
+}
+
+.accessible .response.large {
+  min-height: 1.25in;
+}
+
+.accessible .data-table {
+  font-size: 10.5pt;
+}
+
+.accessible .choice {
+  padding: 8px;
+  font-size: 11pt;
+}
+
+.alt-support {
+  margin: 6px 0;
+  padding: 7px;
+  border: 1px dashed var(--rule);
+  font-size: 10.5pt;
+}
+
+.support-heading {
+  border: 0;
+  margin: 0.06in 0 0.03in;
+  padding: 0;
+  font-size: 10.5pt;
+  line-height: 1.15;
+}
+
+/* Balanced Page Fill v1.0.2 — use surplus height for task separation and
+   writable response/model space while preserving the approved type scale. */
+.page[data-page-id="student-mission-01"] .task-heading[data-task-id="2"] {
+  margin-top: .18in !important;
+}
+.page[data-page-id="student-mission-02"] .task-heading[data-task-id="4"] {
+  margin-top: .1in !important;
+}
+.page[data-page-id="student-mission-02"] .response.medium {
+  min-height: .75in;
+}
+.page[data-page-id="student-mission-03"] .task-heading[data-task-id="6"] {
+  margin-top: .32in !important;
+}
+.page[data-page-id="student-mission-03"] .choice-list { gap: 7px; }
+.page[data-page-id="student-mission-03"] .response.large {
+  min-height: 2.6in;
+}
+.page[data-page-id="student-mission-03"] .canonical-process-stage {
+  min-height: 2.25in;
+}
+.page[data-page-id="student-mission-04"] .canonical-cer[data-cer-contract="student-v1.0"] {
+  min-height: 3.1in;
+}
+.page[data-page-id="student-mission-04"] .task-heading[data-task-id="8"],
+.page[data-page-id="student-mission-04"] .task-heading[data-task-id="9"] {
+  margin-top: .16in !important;
+}
+.page[data-page-id="student-mission-04"] .response.medium {
+  min-height: 1.05in;
+}
+.page[data-page-id="student-mission-04"] .optional-extension {
+  margin-top: .1in;
+}
+
+.page[data-page-id="accessible-mission-01"] .response.medium {
+  min-height: 1.85in;
+}
+.page[data-page-id="accessible-mission-02"] .response.medium {
+  min-height: 2.1in;
+}
+.page[data-page-id="accessible-mission-03"] .response.large {
+  min-height: 1.65in;
+}
+.page[data-page-id="accessible-mission-04"] .task-heading[data-task-id="5"] {
+  margin-top: .18in !important;
+}
+.page[data-page-id="accessible-mission-04"] .response.large {
+  min-height: 1.75in;
+}
+.page[data-page-id="accessible-mission-06"] .canonical-cer[data-cer-contract="accessible-v1.0"] {
+  min-height: 7.8in;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.page[data-page-id="accessible-mission-06"] .canonical-cer-box.claim { flex: 1 1 1.35in; }
+.page[data-page-id="accessible-mission-06"] .canonical-cer-box.evidence,
+.page[data-page-id="accessible-mission-06"] .canonical-cer-box.reasoning { flex: 2 1 2.45in; }
+.page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="8"],
+.page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="9"] {
+  margin-top: .16in !important;
+}
+.page[data-page-id="accessible-mission-07"] .response.large {
+  min-height: 1.65in;
+}
+.page[data-page-id="accessible-mission-07"] .optional-extension {
+  margin-top: .1in;
+}
