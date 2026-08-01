@@ -7,6 +7,7 @@
   <iframe id="editorFrame" title="Curriculum editor under test" width="1440" height="1200"></iframe>
   <script type="module">
     const assertions = [];
+    const javascriptErrors = [];
     const check = (name, condition, detail = "") => assertions.push({ name, pass: Boolean(condition), detail: String(detail) });
     const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
     const report = async payload => {
@@ -51,6 +52,8 @@
       const frame = document.querySelector("#editorFrame");
       frame.src = `../index.html?browser-test=${cache}-${Date.now()}`;
       await until(() => frame.contentWindow?.__curriculumEditor);
+      frame.contentWindow.addEventListener("error", event => javascriptErrors.push(String(event.error?.stack || event.message || "window error")));
+      frame.contentWindow.addEventListener("unhandledrejection", event => javascriptErrors.push(String(event.reason?.stack || event.reason || "unhandled rejection")));
       await wait(180);
       return frame;
     }
@@ -63,6 +66,8 @@
       frame.srcdoc = html;
       document.body.append(frame);
       await until(() => frame.contentWindow?.__curriculumPortable);
+      frame.contentWindow.addEventListener("error", event => javascriptErrors.push(String(event.error?.stack || event.message || "portable window error")));
+      frame.contentWindow.addEventListener("unhandledrejection", event => javascriptErrors.push(String(event.reason?.stack || event.reason || "portable unhandled rejection")));
       await wait(100);
       return frame;
     }
@@ -75,7 +80,7 @@
       let workspace = api.getWorkspace();
       let worksheetDoc = api.getWorksheetDocument();
       check("central app exposes its runtime API", Boolean(api));
-      check("registry-loaded Case 03 package is current approved stable with owner PASS", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().version === "1.1" && api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval?.date === "2026-07-31" && api.getPackage().approval?.tester === "Nate / Owner" && api.getPackage().approval?.ownerReview === "PASS" && api.getPackage().approval?.browserPhysicalPrint === "PASS" && api.getPackage().approval?.scale === "100% / Actual Size");
+      check("registry-loaded Case 03 package is current approved stable with owner PASS", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().schemaVersion === 2 && api.getPackage().version === "1.1" && api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval?.date === "2026-07-31" && api.getPackage().approval?.owner === "Nate / Owner" && api.getPackage().approval?.status === "APPROVED" && api.getPackage().approval?.printStatus === "PASS");
       check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
       check("worksheet presentation is isolated in open Shadow DOM", doc.querySelector("#worksheetHost").shadowRoot && workspace.getRootNode() === doc.querySelector("#worksheetHost").shadowRoot);
       check("isolated worksheet retains a labelled main landmark", workspace.tagName === "MAIN" && workspace.getAttribute("aria-label")?.includes("Mars Habitat"));
@@ -161,13 +166,13 @@
       grayControl.dispatchEvent(new win.Event("change", { bubbles: true }));
       check("Student plus Grayscale retains Student as selected role", api.getState().role === "student" && api.getState().grayscale === true);
       check("Student plus Grayscale renders four Student pages", visiblePages(frame).length === 4 && visiblePages(frame).every(page => page.dataset.role === "student"));
-      check("Student plus Grayscale maps to canonical Grayscale Mission output", api.getCurrentRoleOutput().outputRole === "grayscale" && api.getCurrentRoleOutput().filename.includes("GRAYSCALE_MISSION"));
+      check("Student plus Grayscale keeps the normal Student output identity", api.getCurrentRoleOutput().outputRole === "student" && api.getCurrentRoleOutput().filename.includes("STUDENT_MISSION") && !api.getCurrentRoleOutput().filename.includes("GRAYSCALE"));
       check("Grayscale uses token presentation rather than a role switch", doc.body.classList.contains("grayscale") && doc.body.dataset.role === "student" && worksheetDoc.classList.contains("grayscale") && worksheetDoc.dataset.role === "student");
       doc.querySelector('input[name="libraryRole"][value="teacher"]').click();
       await wait(60);
       check("left rail is authoritative for role switching", api.getState().role === "teacher" && visiblePages(frame).length === 8);
       check("switching roles preserves Grayscale mode", api.getState().grayscale === true && doc.body.classList.contains("grayscale"));
-      check("non-Student Grayscale retains its document-role output", api.getCurrentRoleOutput().outputRole === "teacher" && api.getCurrentRoleOutput().filename.includes("TEACHER_GUIDE"));
+      check("Teacher with Grayscale retains its document-role output", api.getCurrentRoleOutput().outputRole === "teacher" && api.getCurrentRoleOutput().filename.includes("TEACHER_GUIDE"));
       check("role and Grayscale status are announced", doc.querySelector("#loadStatus").textContent.includes("Teacher selected") && doc.querySelector("#loadStatus").textContent.includes("Grayscale on"));
       grayControl.checked = false;
       grayControl.dispatchEvent(new win.Event("change", { bubbles: true }));
@@ -220,7 +225,7 @@
       check("Clear Responses clears selected-role responses", workspace.querySelector(responseSelector).textContent === "");
       check("Clear Responses preserves instructional edits", workspace.querySelector(instructionSelector).textContent.includes("edited instructional"));
       check("Clear Responses preserves another role's work", workspace.querySelector(accessibleSelector).textContent.includes("accessible response"));
-      const otherCaseStateKey = "curriculum-editor:SSS-C1-CASE02:v1.0:curriculum-editor-v1:state";
+      const otherCaseStateKey = "curriculum-editor:SSS-C1-CASE02:v1.0:curriculum-editor-v2:state";
       const unrelatedStorageKey = "curriculum-editor-browser-test:unrelated";
       win.localStorage.setItem(otherCaseStateKey, "OTHER CASE STATE");
       win.localStorage.setItem(unrelatedStorageKey, "UNRELATED STATE");
@@ -251,6 +256,7 @@
       check("selected role survives reload", api.getState().role === "student");
       check("reload reports restored autosave", doc.querySelector("#stateStatus").textContent === "AUTOSAVE RESTORED");
 
+      api.saveState({ grayscale: true });
       const portable = api.serializePortableHTML();
       check("complete serializer emits a complete HTML document", portable.toLowerCase().startsWith("<!doctype html>"));
       check("complete serializer embeds instructional edits", portable.includes("persisted instructional edit"));
@@ -261,6 +267,7 @@
       check("complete serializer removes transient overflow state", !portableParsed.querySelector(".page.has-overflow"));
       check("complete portable export retains its required Role selector", Boolean(portableParsed.querySelector(".toolbar #roleControl")));
       check("Download Editable Copy retains all supported roles and the editing toolbar", ["student", "teacher", "answer", "accessible"].every(role => portableParsed.querySelector(`.page[data-role="${role}"]`)) && actionIds.every(id => portableParsed.querySelector(`.toolbar #${id}`)));
+      check("Download Editable Copy retains the current Grayscale presentation state", JSON.parse(portableParsed.querySelector("#portableConfig").textContent).initialState.grayscale === api.getState().grayscale && portableParsed.body.classList.contains("grayscale") === api.getState().grayscale);
       check("portable Role selector models four roles plus All Pages, not Grayscale", JSON.stringify(Array.from(portableParsed.querySelectorAll("#roleControl option")).map(option => option.value)) === JSON.stringify(["student", "teacher", "answer", "accessible", "all"]));
       check("complete portable toolbar uses Page shadow and exact accessible descriptions", portableParsed.querySelector("#boundaryControl").closest("label").textContent.trim() === "Page shadow" && portableParsed.querySelector("#pageShadowDescription").textContent.trim() === "Adds a screen-only shadow around each worksheet page for visual separation." && portableParsed.querySelector("#pageFitDescription").textContent.trim() === "A page is too full when content extends beyond its printable page area.");
       check("complete portable toolbar retains exact approved actions and descriptions", JSON.stringify(actionIds.map(id => portableParsed.querySelector(`#${id}`).textContent.trim())) === JSON.stringify(actionLabels) && portableParsed.querySelector("#downloadEditableDescription").textContent.trim() === "Downloads all roles with the editing toolbar and current changes." && portableParsed.querySelector("#downloadWorksheetDescription").textContent.trim() === "Downloads only the selected role as a clean HTML worksheet without editing controls." && ["Download Current HTML", "Download Current Role", "Clear Current Role", "Reset Source"].every(label => !portableParsed.querySelector(".toolbar").innerText.includes(label)));
@@ -285,6 +292,7 @@
       portablePrintFrame.remove();
       portableFrame.contentWindow.print = portableParentPrint;
 
+      api.saveState({ grayscale: false });
       api.setRole("student");
       const roleHtml = api.serializeRoleHTML("student");
       const roleDoc = new DOMParser().parseFromString(roleHtml, "text/html");
@@ -301,13 +309,13 @@
       const grayProfile = api.getCurrentRoleOutput();
       const grayRoleHtml = api.serializeRoleHTML("student");
       const grayRoleDoc = new DOMParser().parseFromString(grayRoleHtml, "text/html");
-      check("Student Grayscale role export uses canonical output profile", grayProfile.outputRole === "grayscale" && grayProfile.filename.includes("GRAYSCALE_MISSION"));
-      check("Student Grayscale export contains Student pages with grayscale presentation", grayRoleDoc.body.classList.contains("grayscale") && grayRoleDoc.querySelectorAll('.page[data-role="student"]').length === 4);
+      check("Student export keeps its normal output profile when Grayscale is enabled", grayProfile.outputRole === "student" && grayProfile.filename.includes("STUDENT_MISSION") && !grayProfile.filename.includes("GRAYSCALE"));
+      check("Student export contains Student pages with grayscale presentation", grayRoleDoc.body.classList.contains("grayscale") && grayRoleDoc.body.dataset.role === "student" && grayRoleDoc.querySelectorAll('.page[data-role="student"]').length === 4);
       check("Grayscale toggling preserves instructional edits and responses", grayRoleHtml.includes("persisted instructional edit") && grayRoleHtml.includes("persisted response"));
       api.setRole("teacher");
       const teacherGrayProfile = api.getCurrentRoleOutput();
       const teacherGrayDoc = new DOMParser().parseFromString(api.serializeRoleHTML("teacher"), "text/html");
-      check("Teacher Grayscale remains Teacher output rather than Grayscale Mission", teacherGrayProfile.outputRole === "teacher" && teacherGrayDoc.body.classList.contains("grayscale") && teacherGrayDoc.querySelectorAll('.page[data-role="teacher"]').length === 8);
+      check("Teacher with Grayscale remains the normal Teacher output", teacherGrayProfile.outputRole === "teacher" && !teacherGrayProfile.filename.includes("GRAYSCALE") && teacherGrayDoc.body.classList.contains("grayscale") && teacherGrayDoc.body.dataset.role === "teacher" && teacherGrayDoc.querySelectorAll('.page[data-role="teacher"]').length === 8);
       api.saveState({ grayscale: false });
 
       const headings = Array.from(workspace.querySelectorAll(".task-heading"));
@@ -329,19 +337,19 @@
       check("figures retain captions and accessible SVG labels", Array.from(workspace.querySelectorAll("figure")).every(figure => figure.querySelector("figcaption") && figure.querySelector('svg[aria-label],svg[aria-labelledby]')));
       check("table semantics retain captions", Array.from(workspace.querySelectorAll("table")).every(table => table.querySelector("caption")));
 
-      const phase2Cases = [
-        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_WITH_HTML_MAINTENANCE", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_WITH_HTML_MAINTENANCE", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
+      const canonicalCases = [
+        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" }
       ];
-      check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(phase2Cases.map(item => item.id)));
+      check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(canonicalCases.map(item => item.id)));
       check("case dropdown labels are exactly owner-approved and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat"]));
       check("case dropdown option text contains no version, repository ID, or release status", Array.from(doc.querySelectorAll("#caseSelect option")).every(option => !/\bv\d|SSS-C1|APPROVED/.test(option.textContent)));
       check("multi-case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
       check("single-value selectors are disabled and non-interactive", ["curriculumSelect", "campaignSelect"].every(id => doc.querySelector(`#${id}`).disabled && doc.querySelector(`#${id}`).getAttribute("aria-disabled") === "true"));
 
       const caseMarkers = {};
-      for (const item of phase2Cases) {
+      for (const item of canonicalCases) {
         await api.selectCase(item.id);
         api = win.__curriculumEditor;
         workspace = api.getWorkspace();
@@ -372,13 +380,10 @@
         api.saveState({ grayscale: false });
         check(`${item.id} current-role export uses correct identity`, api.getCurrentRoleOutput().filename.includes(item.student) && new DOMParser().parseFromString(api.serializeRoleHTML("student"), "text/html").querySelectorAll('.page[data-role="student"]').length === item.counts.student);
 
-        const printProfiles = [
-          { name: "Student", role: "student", grayscale: false, expected: item.counts.student },
-          { name: "Teacher", role: "teacher", grayscale: false, expected: item.counts.teacher },
-          { name: "Answer Key", role: "answer", grayscale: false, expected: item.counts.answer },
-          { name: "Accessible", role: "accessible", grayscale: false, expected: item.counts.accessible },
-          { name: "Student Grayscale", role: "student", grayscale: true, expected: item.counts.student }
-        ];
+        const printProfiles = Object.entries(item.counts).flatMap(([role, expected]) => [
+          { name: `${role} color presentation`, role, grayscale: false, expected },
+          { name: `${role} grayscale presentation`, role, grayscale: true, expected }
+        ]);
         for (const profile of printProfiles) {
           api.setRole(profile.role);
           api.saveState({ grayscale: profile.grayscale });
@@ -390,6 +395,7 @@
           check(`${item.id} ${profile.name} print document excludes all editor chrome`, !printDoc.querySelector(".toolbar,#editorToolbarHost,.library-rail,.workspace-header,.editor-statuses,.skip-link,#portableConfig,script"));
           check(`${item.id} ${profile.name} has no blank or hidden printable fragments`, printPages.every(page => !page.hidden && page.querySelector(".page-frame")?.textContent.trim()) && Array.from(printDoc.querySelector("#workspace").children).every(node => node.matches(".page")));
           check(`${item.id} ${profile.name} print document preserves role and grayscale state`, printDoc.body.dataset.role === profile.role && printDoc.body.classList.contains("grayscale") === profile.grayscale && printDoc.body.classList.contains("hide-boundaries"));
+          check(`${item.id} ${profile.name} worksheet export preserves its role and normal filename`, (() => { const output = api.getCurrentRoleOutput(); const exported = new DOMParser().parseFromString(api.serializeRoleHTML(profile.role), "text/html"); return output.outputRole === profile.role && !output.filename.includes("GRAYSCALE") && exported.body.dataset.role === profile.role && exported.body.classList.contains("grayscale") === profile.grayscale && exported.querySelectorAll(`.page[data-role="${profile.role}"]`).length === profile.expected && !exported.querySelector(`.page:not([data-role="${profile.role}"])`); })());
         }
         api.setRole("student");
         api.saveState({ grayscale: false });
@@ -436,7 +442,7 @@
         win.print = parentPrint;
       }
 
-      for (const item of phase2Cases) {
+      for (const item of canonicalCases) {
         await api.selectCase(item.id);
         api = win.__curriculumEditor;
         workspace = api.getWorkspace();
@@ -449,14 +455,15 @@
       const documentIds = Array.from(doc.querySelectorAll("[id]")).map(node => node.id);
       check("case cycling leaves no duplicate IDs in the application document", documentIds.length === new Set(documentIds).size);
       check("case cycling leaves one current worksheet main and no stale light-DOM worksheet", doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("main#worksheetWorkspace").length === 1 && !doc.querySelector("main#worksheetWorkspace"));
+      check("browser run reports zero JavaScript errors", javascriptErrors.length === 0, javascriptErrors.join("\n"));
 
       const passed = assertions.filter(item => item.pass).length;
-      const payload = { validator: "curriculum-editor-browser-v1", status: passed === assertions.length ? "PASS" : "FAIL", passed, total: assertions.length, assertions };
+      const payload = { validator: "curriculum-editor-browser-v2", status: passed === assertions.length ? "PASS" : "FAIL", passed, total: assertions.length, assertions };
       await report(payload);
     } catch (error) {
       check("browser harness completed without exception", false, error.stack || error);
       const passed = assertions.filter(item => item.pass).length;
-      await report({ validator: "curriculum-editor-browser-v1", status: "FAIL", passed, total: assertions.length, assertions });
+      await report({ validator: "curriculum-editor-browser-v2", status: "FAIL", passed, total: assertions.length, assertions });
     }
   </script>
 </body>

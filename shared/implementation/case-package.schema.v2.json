@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://interstellarharvest.example/schemas/case-package.v2.json",
+  "title": "Canonical native curriculum-editor case package",
+  "type": "object",
+  "required": [
+    "schemaVersion", "id", "curriculum", "campaign", "title", "subtitle", "location",
+    "version", "status", "approval", "institutionalIdentity", "documentKey",
+    "supportedRoles", "defaultRole", "shell", "content", "presentation", "taskRegistry",
+    "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility",
+    "sourceHashes", "releaseHistory"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "id": {"type": "string", "pattern": "^[A-Z]{3}-C[0-9]+-CASE[0-9]{2}$"},
+    "curriculum": {"enum": ["SSS", "HHH"]},
+    "campaign": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "subtitle": {"type": "string", "minLength": 1},
+    "location": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "status": {"const": "APPROVED_STABLE"},
+    "approval": {
+      "type": "object",
+      "required": ["date", "owner", "status", "printStatus"],
+      "properties": {
+        "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+        "owner": {"type": "string", "minLength": 1},
+        "status": {"const": "APPROVED"},
+        "printStatus": {"const": "PASS"}
+      },
+      "additionalProperties": false
+    },
+    "institutionalIdentity": {
+      "type": "object",
+      "required": ["id", "name", "lockupLines", "insigniaSelector"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "lockupLines": {"type": "array", "minItems": 3, "items": {"type": "string", "minLength": 1}},
+        "insigniaSelector": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "documentKey": {"type": "string", "minLength": 12},
+    "supportedRoles": {
+      "const": ["student", "teacher", "answer", "accessible"]
+    },
+    "defaultRole": {"enum": ["student", "teacher", "answer", "accessible"]},
+    "shell": {
+      "type": "object",
+      "required": ["version", "toolbar", "styles", "icons"],
+      "properties": {
+        "version": {"const": "1.0"},
+        "toolbar": {"type": "string", "minLength": 1},
+        "styles": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "icons": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "content": {
+      "type": "object",
+      "required": ["source", "format"],
+      "properties": {
+        "source": {"type": "string", "pattern": "/source/content\\.html$"},
+        "format": {"const": "html-fragment"}
+      },
+      "additionalProperties": false
+    },
+    "presentation": {
+      "type": "object",
+      "required": ["source", "isolation"],
+      "properties": {
+        "source": {"type": "string", "pattern": "/source/presentation\\.css$"},
+        "isolation": {"const": "shadow-dom"}
+      },
+      "additionalProperties": false
+    },
+    "taskRegistry": {
+      "type": "object",
+      "required": ["source", "global", "schemaVersion"],
+      "properties": {
+        "source": {"type": "string", "pattern": "/source/task-registry\\.js$"},
+        "global": {"type": "string", "minLength": 1},
+        "schemaVersion": {"const": 1}
+      },
+      "additionalProperties": false
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "embed"],
+        "anyOf": [{"required": ["source"]}, {"required": ["selector"]}],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "type": {"type": "string", "minLength": 1},
+          "embed": {"const": true},
+          "source": {"type": "string", "minLength": 1},
+          "selector": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
+      }
+    },
+    "rolePageStructure": {
+      "type": "object",
+      "required": ["student", "teacher", "answer", "accessible"],
+      "properties": {
+        "student": {"$ref": "#/$defs/roleStructure"},
+        "teacher": {"$ref": "#/$defs/roleStructure"},
+        "answer": {"$ref": "#/$defs/roleStructure"},
+        "accessible": {"$ref": "#/$defs/roleStructure"}
+      },
+      "additionalProperties": false
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["complete", "student", "teacher", "answer", "accessible"],
+      "properties": {
+        "complete": {"type": "string", "pattern": "\\.html$"},
+        "student": {"type": "string", "pattern": "\\.html$"},
+        "teacher": {"type": "string", "pattern": "\\.html$"},
+        "answer": {"type": "string", "pattern": "\\.html$"},
+        "accessible": {"type": "string", "pattern": "\\.html$"}
+      },
+      "additionalProperties": false
+    },
+    "defaultToolbarState": {
+      "type": "object",
+      "required": ["role", "fillMode", "editMode", "marginTop", "marginRight", "marginBottom", "marginLeft", "density", "grayscale", "guides", "boundaries"],
+      "properties": {
+        "role": {"enum": ["student", "teacher", "answer", "accessible"]},
+        "fillMode": {"type": "boolean"},
+        "editMode": {"type": "boolean"},
+        "marginTop": {"type": "number", "minimum": 0.25, "maximum": 1},
+        "marginRight": {"type": "number", "minimum": 0.25, "maximum": 1},
+        "marginBottom": {"type": "number", "minimum": 0.25, "maximum": 1},
+        "marginLeft": {"type": "number", "minimum": 0.25, "maximum": 1},
+        "density": {"enum": ["normal", "compact", "spacious"]},
+        "grayscale": {"type": "boolean"},
+        "guides": {"type": "boolean"},
+        "boundaries": {"type": "boolean"}
+      },
+      "additionalProperties": false
+    },
+    "accessibility": {
+      "type": "object",
+      "required": ["language", "documentTitle", "loadAnnouncement", "extendedDescriptionSelectors", "pdfNotice"],
+      "properties": {
+        "language": {"const": "en"},
+        "documentTitle": {"type": "string", "minLength": 1},
+        "loadAnnouncement": {"type": "string", "minLength": 1},
+        "extendedDescriptionSelectors": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "pdfNotice": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false
+    },
+    "sourceHashes": {
+      "type": "object",
+      "required": ["content", "presentation", "taskRegistry"],
+      "properties": {
+        "content": {"$ref": "#/$defs/sha256"},
+        "presentation": {"$ref": "#/$defs/sha256"},
+        "taskRegistry": {"$ref": "#/$defs/sha256"},
+        "icons": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "releaseHistory": {"type": "string", "pattern": "/history/release-v[0-9]+\\.[0-9]+\\.json$"},
+    "phraseBank": {
+      "type": "object",
+      "required": ["contract", "taskId", "sourceRole", "sourceStages", "displayOrderSourceStages", "label", "instruction", "itemCount", "roles"],
+      "properties": {
+        "contract": {"const": "sequence-v1.0"},
+        "taskId": {"type": "integer", "minimum": 1},
+        "sourceRole": {"const": "answer"},
+        "sourceStages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "displayOrderSourceStages": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "label": {"type": "string", "minLength": 1},
+        "instruction": {"type": "string", "minLength": 1},
+        "itemCount": {"type": "integer", "minimum": 1},
+        "roles": {"type": "array", "uniqueItems": true, "items": {"enum": ["student", "teacher", "answer", "accessible"]}}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "roleStructure": {
+      "type": "object",
+      "required": ["documentRole", "pageCount"],
+      "properties": {
+        "documentRole": {"type": "string", "minLength": 1},
+        "pageCount": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": false
+    },
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+  },
+  "additionalProperties": false
+}

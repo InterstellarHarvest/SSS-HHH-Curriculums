@@ -1,47 +1,17 @@
-# SSS Campaign 1 Case 03 - Mars Habitat
+# Case 03 — Mars Habitat
 
-## Canonical active customization
+Current curriculum version: **1.1**
+Status: **APPROVED_STABLE**
 
-Use the central Curriculum Editor, not the embedded editor in a standalone master, for active Case 03 customization:
+This case is a native central-editor package. Its active production source is `source/case-package.json` plus `content.html`, `presentation.css`, and `task-registry.js` in `source/`; its icon sprite is shared.
 
-```bash
-python3 apps/curriculum-editor/serve.py
-```
+Roles and page counts:
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `3 - Mars Habitat`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Print / Save PDF**, **Download Editable Copy** for the portable all-role editable document, **Download Worksheet** for clean selected-role HTML without editing controls, **Clear Responses**, and **Reset This Case**, in that order. Browser-created PDFs require separate accessibility review.
+- Student: 4
+- Teacher: 8
+- Answer Key: 4
+- Accessible: 7
 
-The v1.0 and v1.1 standalone masters and role HTML files remain immutable approved release snapshots. Their embedded runtimes are deprecated compatibility only and remain byte-identical.
+Grayscale is an independent presentation toggle for every role and does not alter these counts or role filenames. Editable copies and role worksheets are generated on demand; PDFs and generated release documents are not stored.
 
-- Current approved version: v1.1
-- Student identity: Data Analyst
-- Core science: light spectrum versus total intensity
-- Game baseline: `c6c17be57880b365793fdf99ff4ad09b62ecacce`
-- Shared editor shell: v1.0
-- Artifact policy: HTML_ONLY
-- Status: APPROVED STABLE
-- Owner browser/physical print gate: PASS
-- Approval: Nate / Owner · 2026-07-31 · 100% / Actual Size
-
-Case 03 v1.0 remains the byte-identical approved historical release. Its master hash is `c97a880f0be0c58848c0d8a7394ce75925aff26f3fb542dc4d63cca25a9b6bce`; its five role outputs, release manifest, approval evidence, checksum records, reports, and owner print record are preserved.
-
-Case 03 v1.1 is the current approved stable successor and the central Curriculum Editor Phase 1 golden reference. Accessible Task 7 keeps Claim, Evidence, and Reasoning in one canonical CER root on Accessible page 6. Tasks 8–9 occupy page 7, increasing Accessible from six to seven pages without shrinking accessible text or writing areas. Task 6 includes the approved fixed-order phrase bank. Student, Teacher, Answer Key, and Grayscale retain four, eight, four, and four pages respectively.
-
-The approved v1.1 release contains six self-contained HTML snapshots:
-
-- one self-contained portable editable-master HTML;
-- independent Student, Teacher, Answer Key, Accessible, and Grayscale HTML outputs.
-
-Do not hand-edit approved snapshot HTML. Use the central editor and package-controlled sources for active work. Do not generate or store repository PDFs.
-
-```bash
-python3 validation-artifacts/build_case03_v1_1.py --check
-python3 ../../../apps/curriculum-editor/tests/validate_static.py
-python3 ../../../apps/curriculum-editor/tests/run_browser_tests.py
-python3 ../../../apps/curriculum-editor/tests/validate_v1_1_parity.py
-```
-
-The browser action remains labeled **Print / Save PDF**. It is an optional end-user convenience, not a production artifact pipeline. Browser PDF export does not guarantee an accessible PDF; any PDF distributed, published, or archived requires separate accessibility verification.
-
-The canonical SAA expansion is **Solar Agricultural Agency**. This is a follow-up correction after initial Case 03 commit `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`.
-
-See `CASE03_V1_1_CHANGELOG.md`, `CASE03_V1_1_RELEASE_MANIFEST.json`, `reports/CASE03_V1_1_VALIDATION_REPORT.md`, and `published/OWNER_PRINT_BROWSER_CHECKLIST_v1.1.md` for the final approval record. Printer and paper were not recorded. No PDF was required or authorized.
+Approved v1.1 artifact paths, hashes, validation totals, print status, and Git recovery instructions are recorded in `history/release-v1.1.json`. The approved v1.0 release remains recoverable from Git commit `a81cdd728dc0f444b969f5fcec2f05dd54115549`.

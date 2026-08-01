@@ -30,10 +30,7 @@
     return `${count} pages too full`;
   }
 
-  function sourceRole(role = state.role) {
-    if (role === "all") return "all";
-    return config.rolePageStructure[role]?.sourceRole || role;
-  }
+  function currentRoleIdentity(role = state.role) { return role; }
 
   function restore(node, saved) {
     if (node.matches("input,textarea,select")) node.value = saved.value ?? "";
@@ -53,7 +50,7 @@
 
   function active(node) {
     const page = node.closest(".page[data-role]");
-    return Boolean(page && (state.role === "all" || page.dataset.role === sourceRole()));
+    return Boolean(page && (state.role === "all" || page.dataset.role === currentRoleIdentity()));
   }
 
   function applyEditable() {
@@ -99,7 +96,7 @@
   }
 
   function applyState() {
-    const renderedRole = sourceRole();
+    const renderedRole = currentRoleIdentity();
     document.body.dataset.role = renderedRole;
     document.body.classList.toggle("edit-mode", state.editMode);
     document.body.classList.toggle("grayscale", state.grayscale);
@@ -148,7 +145,7 @@
       return false;
     }
     if (!force && !confirm("Clear all responses in the current role?")) return false;
-    for (const node of $$(`.page[data-role="${sourceRole()}"] [data-response]`)) {
+    for (const node of $$(`.page[data-role="${currentRoleIdentity()}"] [data-response]`)) {
       if (node.matches("input,textarea,select")) node.value = "";
       else node.innerHTML = "";
       delete contentState[node.dataset.persistId];
@@ -219,7 +216,7 @@
     const clone = document.documentElement.cloneNode(true);
     cleanClone(clone);
     clone.querySelector(".toolbar")?.remove();
-    const wanted = config.rolePageStructure[role].sourceRole;
+    const wanted = role;
     for (const page of $$(".page[data-role]", clone)) if (page.dataset.role !== wanted) page.remove();
     const cloneBody = clone.querySelector("body");
     cloneBody.dataset.role = wanted;
@@ -239,7 +236,7 @@
       for (const node of $$(selector, clone)) node.remove();
     }
     for (const link of $$('a[href="#workspace"]', clone)) link.remove();
-    const wanted = config.rolePageStructure[role].sourceRole;
+    const wanted = role;
     for (const page of $$(".page[data-role]", clone)) if (page.dataset.role !== wanted) page.remove();
     const cloneBody = clone.querySelector("body");
     cloneBody.dataset.role = wanted;
@@ -331,8 +328,7 @@ body.print-document .overflow-warning{display:none!important}
   }
 
   function currentRoleOutput() {
-    const outputRole = state.role === "student" && state.grayscale ? "grayscale" : state.role;
-    return { role: state.role, grayscale: state.grayscale, outputRole, filename: config.outputs[outputRole] };
+    return { role: state.role, grayscale: state.grayscale, outputRole: state.role, filename: config.outputs[state.role] };
   }
 
   function bind() {

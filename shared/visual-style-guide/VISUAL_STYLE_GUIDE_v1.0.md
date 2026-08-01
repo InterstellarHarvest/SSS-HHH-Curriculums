@@ -7,6 +7,8 @@
 > **Decision records:** `decision-labs/v0.3/VISUAL_STYLE_GUIDE_v0.3_DECISIONS.md`, `decision-labs/v0.4/VISUAL_STYLE_GUIDE_v0.4_DECISIONS.md`, `decision-labs/v0.5/VISUAL_STYLE_GUIDE_v0.5_DECISIONS.md`, `decision-labs/v0.6/VISUAL_STYLE_GUIDE_v0.6_DECISIONS.md`, and `decision-labs/v0.7/VISUAL_STYLE_GUIDE_v0.7_DECISIONS.md`  
 > **Maintenance path:** v1.0.x for corrections and clarifications; v1.1+ only for approved system changes
 
+> **Canonical production clarification (2026-08-01):** Current cases are maintained as registered package-controlled worksheet sources in the central Curriculum Editor. The four instructional roles are Student, Teacher, Answer Key, and Accessible. Grayscale is a presentation toggle available to every role, never a role or output profile. Editable copies and role worksheets are generated on demand; generated HTML, PDFs, and routine screenshots are not committed. The canonical folder and release-history rules in `shared/implementation/REPOSITORY_CURRICULUM_LIBRARY_ARCHITECTURE.md` control production storage and recovery.
+
 ---
 
 ## Document Control
@@ -563,7 +565,7 @@ Editable HTML masters should use:
   monospace;
 ```
 
-For browser-based editable masters, web fonts may be loaded from an approved source. Beginning with Case 03, canonical production is HTML-only. If an end user manually creates a PDF, font handling and accessibility depend on that export method and must be verified before distribution.
+For browser-based generated editable copies, web fonts may be loaded from an approved source. Canonical production is HTML-only. If an end user manually creates a PDF, font handling and accessibility depend on that export method and must be verified before distribution.
 
 Do not distribute font files through the curriculum repository unless their licenses and redistribution terms have been explicitly reviewed.
 
@@ -2042,7 +2044,7 @@ The source master opens with:
 
 ## 26.3 Margin Controls
 
-Editable masters may allow margin adjustment from 0.25 to 1.00 inches.
+Generated editable copies may allow margin adjustment from 0.25 to 1.00 inches.
 
 The reset control returns every role to 0.50 inches.
 
@@ -2205,7 +2207,7 @@ A page passes the v0.4 review when all applicable answers are **yes**.
 - [ ] Footer text is readable but subordinate.
 - [ ] No required instructional content appears in the footer.
 
-## 28.7 Editable Master
+## 28.7 Generated Editable Copy
 
 - [ ] Role changes preserve selected settings.
 - [ ] Reset returns margins to 0.50 inches.
@@ -2833,7 +2835,7 @@ Teacher notes may contain:
 
 ## 34.5 Teacher-Only Visibility
 
-In shared editable masters:
+In shared generated editable copies:
 
 - teacher notes are hidden in student view;
 - teacher notes appear in teacher and all-pages views;
@@ -4482,7 +4484,7 @@ Complex digital figures should include:
 
 # 57. Figure HTML and SVG Tokens
 
-Editable masters should add these tokens.
+Generated editable copies should add these tokens.
 
 ```css
 :root {
@@ -5888,7 +5890,7 @@ Do not imitate handwritten red-pen notes.
 
 ## 95.7 Teacher Overlay Exception
 
-Editable masters may support overlays, but published teacher packets use dedicated answer-key blocks.
+Generated editable copies may support overlays, but generated Teacher packets use dedicated answer-key blocks.
 
 ## 95.8 Student Separation
 
@@ -6344,18 +6346,17 @@ Sample content is illustrative and must not be copied into a case unless it is f
 
 Production templates should inherit shared tokens rather than manually recreating styles.
 
-## 104.4 Editable Masters
+## 104.4 Generated Editable Copies
 
-Editable masters should support:
+An editable copy generated from the canonical package should support:
 
 - Student;
 - Teacher;
 - Answer Key;
 - Accessible;
-- Grayscale;
 - Print Preview.
 
-Switching modes must preserve user settings and must not silently reset margins.
+Grayscale is an independent presentation toggle for every role. It does not add a role, page-count category, or output profile. Switching roles or presentation state must preserve user settings and must not silently reset margins.
 
 ---
 

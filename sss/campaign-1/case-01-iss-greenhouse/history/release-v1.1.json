@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE01",
+  "curriculumVersion": "1.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-01",
+  "owner": "Nate / Owner",
+  "canonicalPackageCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "sourceHashes": {
+    "content": "e3aa3e2aba4199d390755cb19ee69bad3c2ac8850c1eb5a924b996696f40ef41",
+    "presentation": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
+    "taskRegistry": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
+    "icons": "a849e012e8ffec293643d083a778ba55d47b3ba4646246f92810d0226a40aef2"
+  },
+  "rolePageCounts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 6},
+  "acceptedValidation": {
+    "status": "PASS",
+    "static": "88/88",
+    "browser": "17/17",
+    "htmlMaintenance": "50/50",
+    "phase2Parity": "PASS"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "complete": {
+      "path": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+      "sha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f"
+    },
+    "roles": {
+      "student": {"path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1.html", "sha256": "0bc0a5cc945daac4c50e4c33cdf0036f900c62146209869974b51ed9c19ceef8"},
+      "teacher": {"path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1.html", "sha256": "7eb5f66b5a7ed31dc90ec23bd916a6a718cd00e27ab86c6cbd5a098755c78ae1"},
+      "answer": {"path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1.html", "sha256": "5b3bb048d6e34c3da9f21cf903f45139e760f5b8d59889c3a11e76c6a91d980b"},
+      "accessible": {"path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html", "sha256": "ca922c3cf2ec3284e85e1f8e3905c477ed59dfa667f454d10b9db226ad8e6af0"}
+    }
+  },
+  "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "migrationNotes": [
+    "The accepted worksheet fragment, presentation CSS, task registry, and icon sprite became the canonical package sources.",
+    "The complete embedded editor and generated release files were removed from the current tree; Git history remains authoritative for recovery.",
+    "The prior approved v1.0 complete master is recoverable from commit 7f3504aa33aaefbf57583ceb2be1ab2af88d10b0."
+  ],
+  "retiredArtifacts": [
+    {"classification": "RETIRED_PRESENTATION_SNAPSHOT", "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html", "sha256": "f8e2de4f12a9d4ee6c762a3cdda5c6defb7a5036b52c2efa6f844bfb64cd4f44"},
+    {"classification": "IGNORED_LOCAL_RELEASE_ARTIFACT_REMOVED", "path": "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/teacher_v1.0_revalidated.pdf", "sha256": "a7b4db344183939e160ed6188b40363b91e032cd1bebc3295034d9d6b5439dd3", "bytes": 483312}
+  ]
+}

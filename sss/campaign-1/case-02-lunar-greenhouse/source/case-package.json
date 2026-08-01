@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C1-CASE02",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "Lunar Greenhouse",
+  "subtitle": "Campaign 1 · Case 02 · Pollination sequence failure",
+  "location": "Lunar Greenhouse",
+  "version": "1.0",
+  "status": "APPROVED_STABLE",
+  "approval": {
+    "date": "2026-08-01",
+    "owner": "Nate / Owner",
+    "status": "APPROVED",
+    "printStatus": "PASS"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE02:v1.0:curriculum-editor-v2",
+  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "sss/campaign-1/case-02-lunar-greenhouse/source/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-1/case-02-lunar-greenhouse/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-1/case-02-lunar-greenhouse/source/presentation.css",
+    "isolation": "shadow-dom"
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-02-lunar-greenhouse/source/task-registry.js",
+    "global": "SSS_CASE02_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "case02-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "sss/campaign-1/case-02-lunar-greenhouse/source/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "inline-svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {"documentRole": "Student Mission", "pageCount": 3},
+    "teacher": {"documentRole": "Teacher Guide", "pageCount": 7},
+    "answer": {"documentRole": "Answer Key", "pageCount": 3},
+    "accessible": {"documentRole": "Accessible Mission", "pageCount": 5}
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE02_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C1_CASE02_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C1_CASE02_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C1_CASE02_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 Case 02 v1.0 — Lunar Greenhouse Curriculum Editor",
+    "loadAnnouncement": "Lunar Greenhouse Case 02 v1.0 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": ["figure figcaption", "[aria-label]"],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "722939f7c9fdc453ba0a5911d39f041fafc7d7a30d54c013b561c7278576d305",
+    "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
+    "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
+    "icons": "4893dd86224a349520e9ac1fa16a2a369a4e24099924280f65d49b629cf003dd"
+  },
+  "releaseHistory": "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json"
+}

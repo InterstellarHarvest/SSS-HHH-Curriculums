@@ -1,13 +1,12 @@
-const REGISTRY_PATH = "/shared/implementation/case-registry.v1.json";
+const REGISTRY_PATH = "/shared/implementation/case-registry.v2.json";
 const SELECTED_CASE_KEY = "curriculum-editor:selected-case:v1";
-const SUPPORTED_PACKAGE_SCHEMA = 1;
+const SUPPORTED_PACKAGE_SCHEMA = 2;
 const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"];
 const ROLE_LABELS = {
   student: "Student",
   teacher: "Teacher",
   answer: "Answer Key",
   accessible: "Accessible",
-  grayscale: "Grayscale",
   all: "All Pages"
 };
 const PRINT_DOCUMENT_CSS = `
@@ -117,41 +116,39 @@ function requireFields(object, fields, label) {
 
 function validatePackage(pkg) {
   requireFields(pkg, [
-    "schemaVersion", "id", "curriculum", "campaign", "title", "version", "status",
+    "schemaVersion", "id", "curriculum", "campaign", "title", "version", "status", "approval",
     "documentKey", "supportedRoles", "defaultRole", "shell", "taskRegistry", "content",
-    "styles", "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility"
+    "presentation", "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility",
+    "sourceHashes", "releaseHistory"
   ], "Case package");
   if (pkg.schemaVersion !== SUPPORTED_PACKAGE_SCHEMA) {
     throw new Error(`Unsupported case-package schema version: ${pkg.schemaVersion}`);
   }
-  const requiredRoles = ["student", "teacher", "answer", "accessible", "grayscale"];
+  const requiredRoles = ["student", "teacher", "answer", "accessible"];
+  if (JSON.stringify(pkg.supportedRoles) !== JSON.stringify(requiredRoles)) {
+    throw new Error("Case package roles must be exactly student, teacher, answer, and accessible.");
+  }
   for (const role of requiredRoles) {
     if (!pkg.supportedRoles.includes(role) || !pkg.rolePageStructure[role] || !pkg.outputs[role]) {
       throw new Error(`Case package is missing role definition: ${role}`);
     }
     const structure = pkg.rolePageStructure[role];
-    if (!Number.isInteger(structure.pageCount) || structure.pageCount < 1 || !structure.sourceRole) {
+    if (!Number.isInteger(structure.pageCount) || structure.pageCount < 1 || !structure.documentRole) {
       throw new Error(`Invalid page structure for role: ${role}`);
     }
+  }
+  if (JSON.stringify(Object.keys(pkg.rolePageStructure)) !== JSON.stringify(requiredRoles)) {
+    throw new Error("Role page structure contains an unsupported role.");
+  }
+  if (JSON.stringify(Object.keys(pkg.outputs)) !== JSON.stringify(["complete", ...requiredRoles])) {
+    throw new Error("Output templates must contain complete plus the four instructional roles.");
   }
   if (!pkg.supportedRoles.includes(pkg.defaultRole)) throw new Error("Default role is not supported.");
   if (pkg.shell.version !== "1.0") throw new Error(`Unsupported editor shell: ${pkg.shell.version}`);
   if (!Array.isArray(pkg.shell.styles) || !pkg.shell.styles.length) throw new Error("Shared shell styles are missing.");
-  if (!Array.isArray(pkg.styles) || !pkg.styles.length) throw new Error("Case-specific styles are missing.");
   if (/master\//i.test(pkg.content.source)) throw new Error("A case package may not use an approved master as content.");
-  requireFields(pkg.presentation, ["contentSha256", "caseCssSha256", "stylesheet", "stylesheetSha256", "isolation"], "Presentation package");
-  requireFields(pkg.migrationSource, ["historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "builder"], "Migration source");
-  if (pkg.status === "APPROVED_WITH_HTML_MAINTENANCE") {
-    requireFields(pkg.migrationSource, ["goldenMaster", "goldenMasterSha256", "preMaintenanceMasterSha256", "reconciliationRecord"], "Maintained-HTML migration source");
-    requireFields(pkg.phase2Authorization, ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "approvalRecord", "approvalDate", "owner", "status", "phase2Status", "ownerGate", "ownerReview", "browserPrintPreview", "physicalPrintGate", "physicalPrintReview", "phase2MigrationParity", "scale", "browser", "printerCopier", "paper", "artifactPolicy"], "Phase 2 authorization");
-    const phase2 = pkg.phase2Authorization;
-    if (phase2.status !== "APPROVED" || phase2.phase2Status !== "READY_TO_MERGE" || phase2.ownerGate !== "PASS" || phase2.ownerReview !== "PASS" || phase2.browserPrintPreview !== "PASS" || phase2.physicalPrintGate !== "PASS" || phase2.physicalPrintReview !== "PASS" || phase2.phase2MigrationParity !== "PASS") {
-      throw new Error("Maintained-HTML package has invalid final Phase 2 approval status.");
-    }
-    if (phase2.artifactPolicy?.historicalPdfs !== "RETAINED" || phase2.artifactPolicy?.currentProduction !== "HTML_BASED" || phase2.artifactPolicy?.newPdfsGenerated !== false) {
-      throw new Error("Maintained-HTML package has invalid final artifact policy.");
-    }
-  }
+  requireFields(pkg.presentation, ["source", "isolation"], "Presentation package");
+  requireFields(pkg.sourceHashes, ["content", "presentation", "taskRegistry"], "Source hashes");
   if (pkg.presentation.isolation !== "shadow-dom") throw new Error(`Unsupported worksheet isolation: ${pkg.presentation.isolation}`);
   if (pkg.phraseBank) {
     requireFields(pkg.phraseBank, ["contract", "taskId", "sourceRole", "sourceStages", "displayOrderSourceStages", "label", "instruction", "itemCount", "roles"], "Phrase-bank contract");
@@ -169,11 +166,9 @@ function validatePackage(pkg) {
       throw new Error("Phrase-bank display order must differ from the answer sequence.");
     }
   }
-  if (pkg.status === "APPROVED_STABLE") {
-    requireFields(pkg.approval, ["date", "tester", "ownerReview", "browserPhysicalPrint", "scale", "printer", "paper", "artifactPolicy"], "Approval record");
-    if (pkg.approval.ownerReview !== "PASS" || pkg.approval.browserPhysicalPrint !== "PASS" || pkg.approval.artifactPolicy !== "HTML_ONLY") {
-      throw new Error("Approved stable package is missing passed owner/physical-print gates or HTML-only policy.");
-    }
+  requireFields(pkg.approval, ["date", "owner", "status", "printStatus"], "Approval summary");
+  if (pkg.status !== "APPROVED_STABLE" || pkg.approval.status !== "APPROVED" || pkg.approval.printStatus !== "PASS") {
+    throw new Error("Package approval summary is incomplete.");
   }
 }
 
@@ -427,10 +422,7 @@ function syncLibrarySelection(selection) {
   elements.pdfNotice.textContent = casePackage.accessibility.pdfNotice;
 }
 
-function sourceRole(role = state.role) {
-  if (role === "all") return "all";
-  return casePackage.rolePageStructure[role]?.sourceRole || role;
-}
+function currentRoleIdentity(role = state.role) { return role; }
 
 function storageState() {
   return safeJson(safeStorageGet(stateKey), {});
@@ -494,7 +486,7 @@ function persistElement(node) {
 
 function activeForNode(node) {
   const page = node.closest(".page[data-role]");
-  return Boolean(page && page.dataset.role === sourceRole());
+  return Boolean(page && page.dataset.role === currentRoleIdentity());
 }
 
 function applyEditable() {
@@ -518,7 +510,7 @@ function applyEditable() {
 }
 
 function applyState() {
-  const renderedRole = sourceRole();
+  const renderedRole = currentRoleIdentity();
   document.body.dataset.role = renderedRole;
   document.body.classList.toggle("edit-mode", state.editMode);
   document.body.classList.toggle("fill-mode", state.fillMode);
@@ -610,7 +602,7 @@ function clearCurrentRole(force = false) {
     return false;
   }
   if (!force && !confirm("Clear all responses in the current role?")) return false;
-  const role = sourceRole();
+  const role = currentRoleIdentity();
   for (const node of $$(`.page[data-role="${role}"] [data-response]`, elements.workspace)) {
     if (node.matches("input, textarea, select")) node.value = "";
     else node.innerHTML = "";
@@ -710,7 +702,7 @@ function cloneWorksheet(role = null) {
     for (const node of $$(asset.selector, clone)) if (node.matches("img")) node.setAttribute("src", encoded);
   }
   if (role) {
-    const wanted = casePackage.rolePageStructure[role].sourceRole;
+    const wanted = role;
     for (const page of $$(".page[data-role]", clone)) if (page.dataset.role !== wanted) page.remove();
   }
   return clone;
@@ -748,7 +740,7 @@ function portableConfig(role = null, grayscale = state.grayscale) {
   const initial = { ...state, grayscale };
   if (role) initial.role = role;
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     documentKey: `${casePackage.documentKey}:portable:${sequence}`,
     title: casePackage.accessibility.documentTitle,
     initialState: initial,
@@ -763,11 +755,11 @@ function portableConfig(role = null, grayscale = state.grayscale) {
 
 function buildPortableDocument(role = null, grayscale = state.grayscale, options = {}) {
   const printDocument = Boolean(options.printDocument);
-  const roleName = role ? `${ROLE_LABELS[role]}${grayscale ? " · Grayscale" : ""}` : "Editable Worksheet";
+  const roleName = role ? casePackage.rolePageStructure[role].documentRole : "Editable Worksheet";
   const worksheet = cloneWorksheet(role);
   const toolbar = role || printDocument ? "" : cloneToolbar().outerHTML;
   const config = printDocument ? null : portableConfig(role, grayscale);
-  const renderedRole = role ? casePackage.rolePageStructure[role].sourceRole : sourceRole();
+  const renderedRole = role || currentRoleIdentity();
   const bodyClasses = printDocument ? [
     "standalone-role",
     grayscale ? "grayscale" : "",
@@ -781,7 +773,8 @@ function buildPortableDocument(role = null, grayscale = state.grayscale, options
     ["sss-case-version", casePackage.version],
     ["sss-case-package-schema", String(casePackage.schemaVersion)],
     ["sss-editor-shell", casePackage.shell.version],
-    ["sss-export-kind", printDocument ? "isolated-role-print" : (role ? "current-role" : "complete-editable-html")]
+    ["sss-export-kind", printDocument ? "isolated-role-print" : (role ? "current-role" : "complete-editable-html")],
+    ["sss-presentation-grayscale", String(grayscale)]
   ].map(([name, content]) => `<meta name="${name}" content="${content}">`).join("\n");
   const styles = packageStyleText.join("\n\n") + "\n[hidden]{display:none!important}" + (printDocument ? PRINT_DOCUMENT_CSS : "");
   const runtime = portableRuntimeSource.replace(/<\/script/gi, "<\\/script");
@@ -876,8 +869,7 @@ async function printCurrentRole(options = {}) {
 }
 
 function currentRoleOutput() {
-  const outputRole = state.role === "student" && state.grayscale ? "grayscale" : state.role;
-  return { role: state.role, grayscale: state.grayscale, outputRole, filename: casePackage.outputs[outputRole] };
+  return { role: state.role, grayscale: state.grayscale, outputRole: state.role, filename: casePackage.outputs[state.role] };
 }
 
 function triggerDownload(html, filename) {
@@ -912,7 +904,7 @@ function showError(error) {
 
 async function initialize() {
   registry = await fetchJson(REGISTRY_PATH);
-  if (registry.schemaVersion !== 1) throw new Error(`Unsupported registry schema: ${registry.schemaVersion}`);
+  if (registry.schemaVersion !== 2) throw new Error(`Unsupported registry schema: ${registry.schemaVersion}`);
   compatibleCases = [];
   for (const curriculum of registry.curricula) {
     for (const campaign of curriculum.campaigns) {
@@ -955,8 +947,7 @@ async function loadCase(selected, initial = false) {
     casePackage.shell.icons,
     casePackage.taskRegistry.source,
     casePackage.content.source,
-    casePackage.presentation.stylesheet,
-    ...casePackage.styles.map(item => item.source),
+    casePackage.presentation.source,
     ...casePackage.assets.filter(item => item.source).map(item => item.source)
   ];
   const uniquePaths = [...new Set(sourcePaths)];
@@ -967,13 +958,14 @@ async function loadCase(selected, initial = false) {
     return response.text();
   });
   taskRegistry = parseTaskRegistry(loaded.get(casePackage.taskRegistry.source), casePackage.taskRegistry.global);
-  await requireTextHash(loaded.get(casePackage.content.source), casePackage.presentation.contentSha256, "Worksheet content");
-  await requireTextHash(loaded.get(casePackage.styles[0].source), casePackage.presentation.caseCssSha256, "Case stylesheet");
-  await requireTextHash(loaded.get(casePackage.presentation.stylesheet), casePackage.presentation.stylesheetSha256, "Presentation stylesheet");
-  await installPackageFontImports(loaded.get(casePackage.presentation.stylesheet));
+  await requireTextHash(loaded.get(casePackage.content.source), casePackage.sourceHashes.content, "Worksheet content");
+  await requireTextHash(loaded.get(casePackage.presentation.source), casePackage.sourceHashes.presentation, "Presentation stylesheet");
+  await requireTextHash(loaded.get(casePackage.taskRegistry.source), casePackage.sourceHashes.taskRegistry, "Task registry");
+  if (casePackage.sourceHashes.icons) await requireTextHash(loaded.get(casePackage.shell.icons), casePackage.sourceHashes.icons, "Case icon sprite");
+  await installPackageFontImports(loaded.get(casePackage.presentation.source));
   installToolbar(loaded.get(casePackage.shell.toolbar));
   elements.icons.innerHTML = loaded.get(casePackage.shell.icons);
-  installWorksheet(loaded.get(casePackage.presentation.stylesheet), loaded.get(casePackage.shell.icons));
+  installWorksheet(loaded.get(casePackage.presentation.source), loaded.get(casePackage.shell.icons));
   prepareContent(loaded.get(casePackage.content.source));
   currentSelection = selected;
   syncLibrarySelection(selected);
@@ -981,10 +973,6 @@ async function loadCase(selected, initial = false) {
   contentKey = `curriculum-editor:${casePackage.documentKey}:content`;
   defaultState = { ...casePackage.defaultToolbarState };
   const saved = storageState();
-  if (saved.role === "grayscale") {
-    saved.role = "student";
-    saved.grayscale = true;
-  }
   state = { ...defaultState, ...saved };
   if (!NAVIGATION_ROLES.includes(state.role)) state.role = defaultState.role;
   loadPersistentContent();

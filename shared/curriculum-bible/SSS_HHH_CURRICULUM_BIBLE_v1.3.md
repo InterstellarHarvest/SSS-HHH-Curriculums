@@ -9,7 +9,7 @@
 
 Curriculum Bible v1.3 incorporates **all requirements, definitions, protections, publishing rules, accessibility rules, task-reference rules, and Teacher-metadata rules in v1.2 without deletion or relaxation**. The complete v1.2 document remains in the repository as the retained predecessor and historical record.
 
-Where this document is silent, the text of v1.2 continues unchanged. Where this document adds a rule, the new rule is cumulative. Section 7 explicitly supersedes the predecessor's fixed-PDF production requirements beginning with Case 03.
+Where this document is silent, the text of v1.2 continues unchanged. Where this document adds a rule, the new rule is cumulative. Section 7 explicitly supersedes the predecessor's fixed-PDF and stored-output production requirements for all current cases.
 
 The approved v1.0.1 visual-system amendments also remain controlling:
 
@@ -94,15 +94,17 @@ SSS Campaign 1 Case 01 is the first implementation of this v1.3 requirement. Its
 - **v1.1:** Clarified that extended-response boxes are blank and unruled.
 - **v1.0:** Established the initial approved governing standard.
 
-## 7. HTML-only production decision
+## 7. Canonical package-source production decision
 
-Beginning with SSS Campaign 1 Case 03, new SSS/HHH production is HTML-only. The canonical artifact set is one self-contained portable editable-master HTML plus independent Student, Teacher, Answer Key, Accessible, and Grayscale HTML files.
+Current SSS/HHH production is package-source based and HTML-only. The registered package and its package-controlled `source/content.html`, `source/presentation.css`, `source/task-registry.js`, and referenced optional assets are the canonical production source. `content.html` is a worksheet-page fragment, not a complete embedded editor.
 
-Routine case production does not generate, regenerate, store, preflight, checksum, validate, or require PDFs. Approved Case 01 and Case 02 PDFs remain untouched historical artifacts; maintained HTML does not require a new PDF counterpart.
+The four instructional roles are Student, Teacher, Answer Key, and Accessible. Grayscale is an independent Boolean presentation state for every role. It never creates another role, output profile, filename class, or page-count category.
+
+The central Curriculum Editor generates portable editable copies and selected-role worksheets on demand. Generated HTML, PDFs, screenshots, and routine validation output are not committed. Prior approved release artifacts remain recoverable through Git history and compact case history records. Routine case production does not generate, regenerate, store, preflight, checksum, validate, or require PDFs.
 
 The shared editor shell preserves the browser **Print / Save PDF** action for optional owner or end-user use. Browser export is not evidence that a PDF is accessible. Any manually created PDF intended for distribution, publication, or archival requires separate verification of tags, reading order, headings, alt text, tables, field labels, selectable text, title/language metadata, and screen-reader usability.
 
-HTML release gates are static validation, browser behavior, role isolation, portability/serialization, accessibility, overflow and browser print preview, HTML page counts, HTML checksums, rendered browser review, and owner physical testing through the browser print dialog at 100% / Actual Size.
+Release gates operate from canonical package sources and use temporary assembled documents: schema and source-hash validation, browser behavior, four-role isolation, color and Grayscale presentation states, portability/serialization, accessibility, page fit, exact page counts, clean isolated printing, and owner physical testing through the browser print dialog at 100% / Actual Size. Temporary generated output is discarded.
 
 <!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
 ## Printable Page Identity — v1.0.4

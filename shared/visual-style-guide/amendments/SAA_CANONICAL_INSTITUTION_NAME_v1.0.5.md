@@ -49,7 +49,7 @@ Update or verify the canonical full name in:
 
 - the shared Visual Style Guide and quick references;
 - SAA insignia alt text and institutional lockups;
-- editable masters and generated role outputs;
+- canonical case packages, worksheet sources, and on-demand exports;
 - controlled Markdown sources when the full name is written;
 - manifests, templates, publishing scripts, and validators;
 - all future SSS cases.
@@ -58,16 +58,18 @@ Approved Case 01 v1.1 and Case 02 v1.0 already use **Solar Agricultural Agency**
 
 ## 5. Case 03 application
 
-Case 03 remains version `v1.0` and status `VALIDATION BUILD`, with its physical-print gate `OPEN`. This is a follow-up canonical terminology correction after Case 03 was first committed to `main` at `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it does not recreate, replace, or rewrite that initial publication commit. The corrected master, standalone HTML, alt text, lockups, print checklist, reports, manifest, HTML checksums, and validation assertions use **Solar Agricultural Agency**.
+The original correction followed Case 03 commit `378f4d873a8fcc46b91af3fb0b552650c2ddeea7`; it did not recreate, replace, or rewrite that publication commit. Current Case 03 v1.1 package sources, alt text, lockups, and validation assertions use **Solar Agricultural Agency**.
 
 The later HTML-only production decision in `HTML_ONLY_PRODUCTION_AND_MANUAL_PDF_ACCESSIBILITY_v1.0.6.md` supersedes this amendment's former Case 03 PDF implementation references. Case 03 no longer stores or validates PDFs.
 
 ## 6. Validation rule
 
-Current Student, Teacher, Answer Key, Accessible, and Grayscale outputs must:
+Current Student, Teacher, Answer Key, and Accessible role presentations must:
 
 1. contain `Solar Agricultural Agency` in the institutional identity;
 2. show the three-line lockup `Solar / Agricultural / Agency`;
 3. use `Solar Agricultural Agency insignia` in accessible labels where the full name is needed;
 4. reject every variant listed in Section 2;
 5. retain `SAA` for abbreviations and implementation identifiers.
+
+The same requirements apply with Grayscale enabled because Grayscale is an independent presentation toggle, not a role or output.

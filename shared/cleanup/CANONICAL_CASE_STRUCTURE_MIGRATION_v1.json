@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "record": "CANONICAL_CASE_STRUCTURE_MIGRATION_v1",
+  "status": "IMPLEMENTED",
+  "ownerGate": "OWNER_GATE_OPEN",
+  "case04Status": "CASE04_NOT_STARTED",
+  "date": "2026-08-01",
+  "branch": "feature/canonical-case-structure",
+  "baselineCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "supersession": {
+    "type": "ADDITIVE_EXECUTION_AND_OWNER_SUPERSESSION",
+    "recordsPreservedUnmodified": [
+      "shared/cleanup/REPOSITORY_INVENTORY_v1.json",
+      "shared/cleanup/REPOSITORY_INVENTORY_v1.md",
+      "shared/cleanup/PROPOSED_CLEANUP_PLAN_v1.json",
+      "shared/cleanup/PROPOSED_CLEANUP_PLAN_v1.md"
+    ],
+    "decision": "The 2026-08-01 owner direction authorizes this execution and supersedes the earlier conservative proposal where they conflict; the original audit snapshot remains historical evidence."
+  },
+  "pathChanges": {
+    "moved": [
+      {"from": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-content.html", "to": "sss/campaign-1/case-01-iss-greenhouse/source/content.html"},
+      {"from": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-icons.svg", "to": "sss/campaign-1/case-01-iss-greenhouse/source/icons.svg"},
+      {"from": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-presentation.css", "to": "sss/campaign-1/case-01-iss-greenhouse/source/presentation.css"},
+      {"from": "sss/campaign-1/case-02-lunar-greenhouse/source/editor-phase2/case02-content.html", "to": "sss/campaign-1/case-02-lunar-greenhouse/source/content.html"},
+      {"from": "sss/campaign-1/case-02-lunar-greenhouse/source/editor-phase2/case02-icons.svg", "to": "sss/campaign-1/case-02-lunar-greenhouse/source/icons.svg"},
+      {"from": "sss/campaign-1/case-02-lunar-greenhouse/source/editor-phase2/case02-presentation.css", "to": "sss/campaign-1/case-02-lunar-greenhouse/source/presentation.css"},
+      {"from": "sss/campaign-1/case-03-mars-habitat/source/editor-v1.1/case03-content.html", "to": "sss/campaign-1/case-03-mars-habitat/source/content.html"},
+      {"from": "sss/campaign-1/case-03-mars-habitat/source/editor-v1.1/case03-presentation.css", "to": "sss/campaign-1/case-03-mars-habitat/source/presentation.css"}
+    ],
+    "deletedPathCount": 377,
+    "deletedByPrimaryCategory": {
+      "caseMaster": 13,
+      "casePublished": 47,
+      "caseReports": 12,
+      "caseReview": 1,
+      "caseValidationArtifacts": 65,
+      "applicationScreenshots": 154,
+      "otherObsoleteOrDuplicate": 85
+    },
+    "exactDeletedPathCommand": "git diff --name-only --diff-filter=D c79bdc1f5b69bee9efb86998b375c5583542764f..feature/canonical-case-structure"
+  },
+  "metrics": {
+    "baselineTrackedFiles": 483,
+    "finalTrackedFiles": 119,
+    "baselineTrackedBytes": 33677690,
+    "finalTrackedBytes": 4878081,
+    "netTrackedBytesRemoved": 28799609,
+    "grossDeletedPathBytes": 28791930,
+    "trackedPdfsRemoved": 19,
+    "storedReleaseHtmlRemoved": 27,
+    "temporaryGeneratedHtmlRemoved": 1,
+    "duplicateMigrationSourceHtmlRemoved": 1,
+    "trackedScreenshotsRemoved": 172,
+    "unreferencedCaseImageAssetsRemoved": 2
+  },
+  "canonicalModel": {
+    "packageSchema": "shared/implementation/case-package.schema.v2.json",
+    "registrySchema": "shared/implementation/case-registry.schema.v2.json",
+    "registry": "shared/implementation/case-registry.v2.json",
+    "roles": ["student", "teacher", "answer", "accessible"],
+    "grayscale": "Boolean presentation state for every role; never a role, sourceRole, output, document type, filename, or page-count category.",
+    "discovery": "registry -> source/case-package.json -> content.html + presentation.css + task-registry.js + referenced assets",
+    "generatedOutputPolicy": "Editable copies, role worksheets, print documents, rendered pages, and screenshots are produced temporarily or on demand and are not committed. PDFs are neither stored nor required."
+  },
+  "schemaChanges": [
+    "Package schema v2 requires canonical worksheet, presentation, task-registry, source-hash, accessibility, four-role page-count, normal output-name, and release-history fields.",
+    "Package schema v2 rejects additional migration-era fields and any fifth role or output.",
+    "Registry schema v2 retains operational discovery, status, approval, and history pointers only."
+  ],
+  "historyRecordsCreated": [
+    "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.1.json",
+    "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json",
+    "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json"
+  ],
+  "formerArtifactHashes": "Each history record contains the former approved complete-document SHA-256 plus four role-output SHA-256 values and a baseline recovery command. Retired legacy presentation snapshots are audit-only entries.",
+  "localIgnoredFilesRemoved": [
+    {"path": "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/teacher_v1.0_revalidated.pdf", "tracked": false, "bytes": 483312, "sha256": "a7b4db344183939e160ed6188b40363b91e032cd1bebc3295034d9d6b5439dd3", "disposition": "REMOVED_LOCALLY_NOT_IMPORTED"}
+  ],
+  "grayscaleRoleProfileReferencesRemoved": {
+    "activePackages": 3,
+    "activeRegistry": 1,
+    "centralRuntime": true,
+    "portableRuntime": true,
+    "roleSelectors": true,
+    "exportMappings": true,
+    "storedLegacyHtmlProfiles": 4,
+    "storedLegacyPdfProfiles": 3,
+    "note": "Legacy filenames remain only inside clearly labeled release-history or cleanup retirement facts."
+  },
+  "validatorRetirement": [
+    {"retired": "Case 01/02/03 case-local builders, release validators, HTML-maintenance checks, preflight logic, and browser-render scripts", "replacement": "canonical structure validator + static v2 source/package assertions + browser v2 temporary assembly and print matrix", "obsolete": "PDF generation/preflight and comparisons against removed master/published files"},
+    {"retired": "Phase 2 protected-inventory, reconciliation, package builder, binding audit, and cutover validator", "replacement": "schema v2 closed models, source hashes, compact histories, registry discovery, and structure/static gates", "obsolete": "migration authorization and compatibility-master dependencies"},
+    {"retired": "editor-shell contract and standalone assembly script", "replacement": "central and portable runtime assertions plus browser toolbar/export/isolated-print checks", "obsolete": "building a permanent complete master"},
+    {"retired": "Phase 2 and v1.1 stored screenshot parity validators", "replacement": "24-state browser matrix with temporary documents and rendered page-fit checks", "obsolete": "pixel comparison to deleted embedded masters and stored screenshots"},
+    {"retired": "SAA standalone canonical-name validator", "replacement": "static v2 package identity, lockup, canonical-name, and forbidden-variant assertions", "obsolete": "scanning deleted generated outputs"},
+    {"retired": "release-integrity refresher", "replacement": "package source hashes, history metadata, and schema/static validation", "obsolete": "refreshing checksums for permanent generated role files"}
+  ],
+  "replacementValidation": {
+    "structure": {"command": "python3 shared/validation/validate_canonical_case_structure.py", "status": "PASS", "cases": 3},
+    "static": {"command": "python3 apps/curriculum-editor/tests/validate_static.py", "status": "PASS", "passed": 69, "total": 69},
+    "browser": {"command": "python3 apps/curriculum-editor/tests/run_browser_tests.py", "status": "PASS", "passed": 354, "total": 354, "presentationStatesPassed": 24, "presentationStatesTotal": 24, "temporaryOutputDiscarded": true, "javascriptErrors": 0}
+  },
+  "ownerReview": "shared/cleanup/CANONICAL_CASE_STRUCTURE_OWNER_REVIEW_v1.md"
+}

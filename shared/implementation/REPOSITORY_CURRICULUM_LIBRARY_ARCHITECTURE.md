@@ -1,41 +1,36 @@
 # Repository Curriculum Library Architecture
 
-**Cutover status:** APPROVED · OWNER REVIEW PASS · READY TO MERGE
+Status: `IMPLEMENTED · OWNER_GATE_OPEN · CASE04_NOT_STARTED`
 
-## Current production architecture
-
-```text
-central Curriculum Editor
-+ shared canonical editor shell
-+ registered current case package
-→ customized portable complete HTML
-→ customized current-role HTML
-→ clean isolated-role browser printing
-```
-
-For SSS Campaign 1 Cases 01–03, the central Curriculum Editor is the canonical active interface and each registered current package is the canonical active editable production source. Launch with `python3 apps/curriculum-editor/serve.py`, then open <http://127.0.0.1:8000/apps/curriculum-editor/>. Versions are not selected in the primary case menu. The action order is **Print / Save PDF**, **Download Editable Copy**, **Download Worksheet**, **Clear Responses**, and **Reset This Case**; the editable copy includes all roles and the toolbar, while the worksheet contains only the selected role without editing controls.
-
-The shared shell remains the canonical implementation of editor controls and recurring presentation behavior. Portable complete exports embed the shell assets. Page identity and recurring component geometry come from the shared `curriculum-components.css`; case CSS is limited to case-specific tokens, figures, and role layouts.
-
-Case instructional content is not stored inside the shared shell. Task titles, semantic labels, role counts, output paths, and case metadata remain case configuration.
-
-The registry retains approved master and role paths for release discovery and verification, but those files are immutable approved release snapshots rather than ongoing editable sources. Embedded case-owned editors are deprecated compatibility implementations. Historical PDFs remain retained outside the active workflow, and browser-created PDFs require separate accessibility review.
-
-## Registry-backed central library
+## Discovery and production
 
 ```text
-case registry
-→ campaign/case/role selector
-→ loads the current approved package
-→ central editor/export/print workflow
+case-registry.v2.json
+→ source/case-package.json
+→ source/content.html
+→ source/presentation.css
+→ source/task-registry.js
+→ referenced source/assets
+→ central Curriculum Editor
+→ temporary editable/role/print documents
 ```
 
-The central editor reads `case-registry.v1.json`, preserves exact case order and labels, and loads the selected current package. It does not concatenate every case into one monolithic worksheet or execute an approved standalone master.
+The registry contains only current operational discovery and approval metadata. Historical artifact paths and hashes live in each case’s compact release record.
 
-The registry supports both SSS and HHH curricula. A curriculum or campaign may exist with no published cases yet. Each cut-over case records editor shell, package, workflow/snapshot/compatibility statuses, manifest reference, retained master and role paths, and current hashes.
+The package-controlled sources are canonical. The central editor provides editing, response entry, display state, four-role switching, clean printing, editable-copy export, and selected-role worksheet export. Generated documents and rendered validation evidence are temporary and are not committed.
 
-The registry-level production policy is machine-readable: new production is `HTML_ONLY`, effective from `SSS-C1-CASE03`, and PDF paths are not allowed in registry entries.
+## Role model
 
-## Cutover boundaries
+Student, Teacher, Answer Key, and Accessible are the only roles. Grayscale is a Boolean presentation state applied independently to each role. It does not create another output profile, page-count category, stored document, or filename.
 
-Approved snapshots are not rewritten to remove their embedded runtime. Repository cleanup is `NOT_STARTED`, Case 04 is `NOT_STARTED`, and no files are deleted in this cutover.
+## Required case layout
+
+Every current and future case uses `README.md`, canonical files directly under `source/`, and compact records under `history/`. An `assets/` directory exists only when the active package references its files. Case folders do not contain publishing, master, report, review, or validation-output directories.
+
+## History and recovery
+
+The current tree is intentionally lean. Previous complete documents, role files, PDFs, reports, and validation evidence remain available through Git without rewriting history. Each release record supplies the approved commit or recovery commit, former paths, hashes, accepted counts/totals, and a `git show` recovery template.
+
+## Validation
+
+Shared static validation reads canonical sources directly. Browser validation assembles role/export/print documents in memory, uses temporary browser profiles and screenshots, validates all 24 case/role/presentation states, and discards outputs. Validation must leave the worktree unchanged.

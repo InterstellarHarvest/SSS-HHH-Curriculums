@@ -2,7 +2,7 @@ window.SSS_CASE03_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C1-CASE03",
   "title": "Mars Habitat",
-  "version": "1.0",
+  "version": "1.1",
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-07-31",
   "approvedBy": "Nate / Owner",
@@ -12,8 +12,7 @@ window.SSS_CASE03_TASK_REGISTRY = {
     "student": 4,
     "teacher": 8,
     "answer": 4,
-    "accessible": 6,
-    "grayscale": 4
+    "accessible": 7
   },
   "tasks": [
     {

@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 2,
+  "productionPolicy": {
+    "canonicalSource": "CASE_PACKAGE",
+    "generatedArtifacts": "ON_DEMAND_TEMPORARY",
+    "pdfStorage": "PROHIBITED",
+    "caseFolderStandard": "CANONICAL_V1"
+  },
+  "curricula": [
+    {
+      "id": "SSS",
+      "title": "Space Sprout Sleuth",
+      "campaigns": [
+        {
+          "id": "campaign-1",
+          "title": "Campaign 1",
+          "cases": [
+            {
+              "id": "SSS-C1-CASE01",
+              "displayOrder": 1,
+              "displayLabel": "1 - ISS Greenhouse",
+              "title": "ISS Greenhouse",
+              "version": "1.1",
+              "status": "APPROVED_STABLE",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-1/case-01-iss-greenhouse/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "APPROVED",
+              "approval": {"date": "2026-08-01", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "historyRecord": "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.1.json"
+            },
+            {
+              "id": "SSS-C1-CASE02",
+              "displayOrder": 2,
+              "displayLabel": "2 - Lunar Greenhouse",
+              "title": "Lunar Greenhouse",
+              "version": "1.0",
+              "status": "APPROVED_STABLE",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-1/case-02-lunar-greenhouse/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "APPROVED",
+              "approval": {"date": "2026-08-01", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "historyRecord": "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json"
+            },
+            {
+              "id": "SSS-C1-CASE03",
+              "displayOrder": 3,
+              "displayLabel": "3 - Mars Habitat",
+              "title": "Mars Habitat",
+              "version": "1.1",
+              "status": "APPROVED_STABLE",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-1/case-03-mars-habitat/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "APPROVED",
+              "approval": {"date": "2026-07-31", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "historyRecord": "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json"
+            }
+          ]
+        }
+      ]
+    },
+    {"id": "HHH", "title": "History's Harvest", "campaigns": []}
+  ]
+}

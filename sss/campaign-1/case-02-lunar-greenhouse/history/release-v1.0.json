@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE02",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-01",
+  "owner": "Nate / Owner",
+  "canonicalPackageCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "sourceHashes": {
+    "content": "722939f7c9fdc453ba0a5911d39f041fafc7d7a30d54c013b561c7278576d305",
+    "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
+    "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
+    "icons": "4893dd86224a349520e9ac1fa16a2a369a4e24099924280f65d49b629cf003dd"
+  },
+  "rolePageCounts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5},
+  "acceptedValidation": {
+    "status": "PASS",
+    "static": "60/60",
+    "browser": "19/19",
+    "htmlMaintenance": "110/110",
+    "phase2Parity": "PASS"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "complete": {
+      "path": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
+      "sha256": "4e5d03a62cba494ae09604194f69578b4c4bcceeeca1f9d53d818109e132fd0d"
+    },
+    "roles": {
+      "student": {"path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.html", "sha256": "fe5519e9e1cee55bb6d40299e0f0fc84b40dfd8ad81a677286ef6f5d6e5225e1"},
+      "teacher": {"path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html", "sha256": "09ed396de48801e6f1b82b7f54895bd761447319011f2b32c76b91b54f322558"},
+      "answer": {"path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html", "sha256": "dd95ec6fe8f818541fee20723ea773990b0b16cfeb1ce513d78698c6dff8bb32"},
+      "accessible": {"path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html", "sha256": "ecb56f7e4cba24e2da99744f1ff5a9cb1cfd6607821cec30e960030d4d478d1b"}
+    }
+  },
+  "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "migrationNotes": [
+    "The accepted worksheet fragment, presentation CSS, task registry, and icon sprite became the canonical package sources.",
+    "The complete embedded editor, generated release files, and unreferenced process-model asset were removed from the current tree."
+  ],
+  "retiredArtifacts": [
+    {"classification": "RETIRED_PRESENTATION_SNAPSHOT", "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html", "sha256": "f668612b18d91f5bd53b23c6231c3336c15b6181ec52893c87968ee6b1f23c46"}
+  ]
+}
