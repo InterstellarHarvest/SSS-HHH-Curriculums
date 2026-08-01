@@ -1,4 +1,5 @@
 const REGISTRY_PATH = "/shared/implementation/case-registry.v1.json";
+const SELECTED_CASE_KEY = "curriculum-editor:selected-case:v1";
 const SUPPORTED_PACKAGE_SCHEMA = 1;
 const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"];
 const ROLE_LABELS = {
@@ -31,6 +32,8 @@ const elements = {
 };
 
 let registry;
+let compatibleCases = [];
+let currentSelection;
 let casePackage;
 let taskRegistry;
 let state;
@@ -40,12 +43,15 @@ let contentKey;
 let sourceBaseline = new Map();
 let contentState = {};
 let packageStyleText = [];
+let assetSourceText = new Map();
 let worksheetDocument;
 let worksheetShadow;
 let portableRuntimeSource = "";
 let portableToolbarTemplate;
 let toolbarResizeObserver;
 let exportSequence = 0;
+let globalEventsBound = false;
+let libraryBound = false;
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -123,6 +129,13 @@ function validatePackage(pkg) {
   if (/master\//i.test(pkg.content.source)) throw new Error("A case package may not use an approved master as content.");
   requireFields(pkg.presentation, ["contentSha256", "caseCssSha256", "stylesheet", "stylesheetSha256", "isolation"], "Presentation package");
   requireFields(pkg.migrationSource, ["historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "builder"], "Migration source");
+  if (pkg.status === "APPROVED_WITH_HTML_MAINTENANCE") {
+    requireFields(pkg.migrationSource, ["goldenMaster", "goldenMasterSha256", "preMaintenanceMasterSha256", "reconciliationRecord"], "Maintained-HTML migration source");
+    requireFields(pkg.phase2Authorization, ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "owner", "status", "phase2Status", "ownerGate", "physicalPrintGate"], "Phase 2 authorization");
+    if (pkg.phase2Authorization.status !== "OWNER_AUTHORIZED_FOR_PHASE2" || pkg.phase2Authorization.phase2Status !== "VALIDATION_BUILD" || pkg.phase2Authorization.ownerGate !== "OPEN" || pkg.phase2Authorization.physicalPrintGate !== "OPEN") {
+      throw new Error("Maintained-HTML package has invalid Phase 2 gate status.");
+    }
+  }
   if (pkg.presentation.isolation !== "shadow-dom") throw new Error(`Unsupported worksheet isolation: ${pkg.presentation.isolation}`);
   if (pkg.phraseBank) {
     requireFields(pkg.phraseBank, ["contract", "taskId", "sourceRole", "sourceStages", "displayOrderSourceStages", "label", "instruction", "itemCount", "roles"], "Phrase-bank contract");
@@ -234,16 +247,33 @@ function restoreNode(node, saved) {
 
 function scopePresentationCss(css) {
   return css
+    .replace(/--body/g, "--__ce-b-var")
     .replace(/:root/g, ":host")
     .replace(/\bhtml\b/g, ":host")
-    .replace(/\bbody\b/g, ".worksheet-document");
+    .replace(/\bbody\b/g, ".worksheet-document")
+    .replace(/--__ce-b-var/g, "--body");
+}
+
+async function installPackageFontImports(presentationCss) {
+  document.head.querySelectorAll("link[data-case-package-font]").forEach(link => link.remove());
+  const imports = [...presentationCss.matchAll(/@import\s+url\(["']?(https:\/\/fonts\.googleapis\.com\/[^"')]+)["']?\)\s*;/gi)]
+    .map(match => match[1]);
+  await Promise.all([...new Set(imports)].map(href => new Promise(resolve => {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = href;
+    link.dataset.casePackageFont = "true";
+    link.addEventListener("load", resolve, { once: true });
+    link.addEventListener("error", resolve, { once: true });
+    document.head.append(link);
+  })));
 }
 
 function installWorksheet(presentationCss, iconsText) {
   packageStyleText = [presentationCss];
   worksheetShadow = elements.worksheetHost.shadowRoot || elements.worksheetHost.attachShadow({ mode: "open" });
   const style = document.createElement("style");
-  style.dataset.casePackagePresentation = "v1.1";
+  style.dataset.casePackagePresentation = `${casePackage.id}:v${casePackage.version}`;
   style.textContent = `${scopePresentationCss(presentationCss)}\n.worksheet-document{padding:0;background:transparent}`;
   worksheetDocument = document.createElement("div");
   worksheetDocument.className = "worksheet-document";
@@ -300,28 +330,49 @@ function installToolbar(toolbarText) {
   observeToolbar(toolbar);
 }
 
-function populateLibrary(curriculum, campaign, caseEntry) {
+function populateLibrary(selections) {
   const option = (value, text) => {
     const node = document.createElement("option");
     node.value = value;
     node.textContent = text;
     return node;
   };
-  elements.curriculum.replaceChildren(option(curriculum.id, curriculum.title));
-  elements.campaign.replaceChildren(option(campaign.id, campaign.title));
-  elements.caseSelect.replaceChildren(option(caseEntry.id, `${caseEntry.title} · v${caseEntry.version}`));
-  elements.curriculum.disabled = elements.campaign.disabled = elements.caseSelect.disabled = true;
-  for (const role of NAVIGATION_ROLES) {
-    const label = document.createElement("label");
-    label.className = "role-option";
-    const input = document.createElement("input");
-    input.type = "radio";
-    input.name = "libraryRole";
-    input.value = role;
-    input.addEventListener("change", () => input.checked && setRole(role));
-    label.append(input, document.createTextNode(ROLE_LABELS[role]));
-    elements.roleLibrary.append(label);
+  const curricula = [...new Map(selections.map(item => [item.curriculum.id, item.curriculum])).values()];
+  const campaigns = [...new Map(selections.map(item => [`${item.curriculum.id}:${item.campaign.id}`, item.campaign])).values()];
+  elements.curriculum.replaceChildren(...curricula.map(item => option(item.id, item.title)));
+  elements.campaign.replaceChildren(...campaigns.map(item => option(item.id, item.title)));
+  elements.caseSelect.replaceChildren(...selections.map(item => option(item.caseEntry.id, `${item.caseEntry.title} · v${item.caseEntry.version}`)));
+  elements.curriculum.disabled = curricula.length < 2;
+  elements.campaign.disabled = campaigns.length < 2;
+  elements.caseSelect.disabled = selections.length < 2;
+  for (const selector of [elements.curriculum, elements.campaign, elements.caseSelect]) {
+    selector.setAttribute("aria-disabled", String(selector.disabled));
   }
+  if (!libraryBound) {
+    for (const role of NAVIGATION_ROLES) {
+      const label = document.createElement("label");
+      label.className = "role-option";
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "libraryRole";
+      input.value = role;
+      input.addEventListener("change", () => input.checked && setRole(role));
+      label.append(input, document.createTextNode(ROLE_LABELS[role]));
+      elements.roleLibrary.append(label);
+    }
+    elements.caseSelect.addEventListener("change", async event => {
+      const selection = compatibleCases.find(item => item.caseEntry.id === event.target.value);
+      if (!selection || selection === currentSelection) return;
+      try { await loadCase(selection); } catch (error) { showError(error); }
+    });
+    libraryBound = true;
+  }
+}
+
+function syncLibrarySelection(selection) {
+  elements.curriculum.value = selection.curriculum.id;
+  elements.campaign.value = selection.campaign.id;
+  elements.caseSelect.value = selection.caseEntry.id;
   elements.caseStatus.textContent = casePackage.status;
   elements.title.textContent = `${casePackage.title} · ${ROLE_LABELS[casePackage.defaultRole]}`;
   elements.pdfNotice.textContent = casePackage.accessibility.pdfNotice;
@@ -404,6 +455,7 @@ function applyState() {
   const renderedRole = sourceRole();
   document.body.dataset.role = renderedRole;
   document.body.classList.toggle("edit-mode", state.editMode);
+  document.body.classList.toggle("fill-mode", state.fillMode);
   document.body.classList.toggle("grayscale", state.grayscale);
   document.body.classList.toggle("show-guides", state.guides);
   document.body.classList.toggle("hide-boundaries", !state.boundaries);
@@ -411,6 +463,7 @@ function applyState() {
   document.body.classList.add(`density-${state.density}`);
   worksheetDocument.dataset.role = renderedRole;
   worksheetDocument.classList.toggle("edit-mode", state.editMode);
+  worksheetDocument.classList.toggle("fill-mode", state.fillMode);
   worksheetDocument.classList.toggle("grayscale", state.grayscale);
   worksheetDocument.classList.toggle("show-guides", state.guides);
   worksheetDocument.classList.toggle("hide-boundaries", !state.boundaries);
@@ -453,7 +506,7 @@ function applyState() {
 }
 
 function announceSelection() {
-  elements.loadStatus.textContent = `${ROLE_LABELS[state.role]} selected. Grayscale ${state.grayscale ? "on" : "off"}.`;
+  elements.loadStatus.textContent = `${casePackage.title} v${casePackage.version}. ${ROLE_LABELS[state.role]} selected. Grayscale ${state.grayscale ? "on" : "off"}.`;
 }
 
 function setRole(role) {
@@ -541,9 +594,12 @@ function bindToolbar() {
     const node = event.target.closest("[data-persist-id]");
     if (node) persistElement(node);
   });
-  window.addEventListener("resize", () => { syncToolbarOffset(); checkOverflow(); });
-  window.addEventListener("beforeprint", () => { document.body.classList.add("print-preview"); checkOverflow(); });
-  window.addEventListener("afterprint", () => document.body.classList.remove("print-preview"));
+  if (!globalEventsBound) {
+    window.addEventListener("resize", () => { syncToolbarOffset(); checkOverflow(); });
+    window.addEventListener("beforeprint", () => { document.body.classList.add("print-preview"); checkOverflow(); });
+    window.addEventListener("afterprint", () => document.body.classList.remove("print-preview"));
+    globalEventsBound = true;
+  }
 }
 
 function syncCloneValues(clone) {
@@ -574,6 +630,11 @@ function cloneWorksheet(role = null) {
   clone.setAttribute("aria-busy", "false");
   clone.setAttribute("aria-label", `${casePackage.title} worksheet pages`);
   syncCloneValues(clone);
+  for (const asset of casePackage.assets) {
+    if (!asset.selector || !asset.source || !assetSourceText.has(asset.source)) continue;
+    const encoded = `data:${asset.type};charset=utf-8,${encodeURIComponent(assetSourceText.get(asset.source))}`;
+    for (const node of $$(asset.selector, clone)) if (node.matches("img")) node.setAttribute("src", encoded);
+  }
   if (role) {
     const wanted = casePackage.rolePageStructure[role].sourceRole;
     for (const page of $$(".page[data-role]", clone)) if (page.dataset.role !== wanted) page.remove();
@@ -706,16 +767,29 @@ function showError(error) {
 async function initialize() {
   registry = await fetchJson(REGISTRY_PATH);
   if (registry.schemaVersion !== 1) throw new Error(`Unsupported registry schema: ${registry.schemaVersion}`);
-  const compatible = [];
+  compatibleCases = [];
   for (const curriculum of registry.curricula) {
     for (const campaign of curriculum.campaigns) {
       for (const caseEntry of campaign.cases) {
-        if (caseEntry.editorPackage) compatible.push({ curriculum, campaign, caseEntry });
+        if (caseEntry.editorPackage) compatibleCases.push({ curriculum, campaign, caseEntry });
       }
     }
   }
-  const selected = compatible.find(item => item.caseEntry.id === "SSS-C1-CASE03");
-  if (!selected) throw new Error("Case 03 is not discoverable through an editor package.");
+  compatibleCases.sort((a, b) => a.caseEntry.id.localeCompare(b.caseEntry.id, undefined, { numeric: true }));
+  if (!compatibleCases.length) throw new Error("No current editor-compatible case is discoverable.");
+  populateLibrary(compatibleCases);
+  const selectedId = safeStorageGet(SELECTED_CASE_KEY);
+  const selected = compatibleCases.find(item => item.caseEntry.id === selectedId)
+    || compatibleCases.find(item => item.caseEntry.id === "SSS-C1-CASE03")
+    || compatibleCases[0];
+  await loadCase(selected, true);
+}
+
+async function loadCase(selected, initial = false) {
+  elements.error.hidden = true;
+  elements.error.textContent = "";
+  elements.worksheetHost.setAttribute("aria-busy", "true");
+  elements.loadStatus.textContent = `Loading ${selected.caseEntry.title} v${selected.caseEntry.version}…`;
   casePackage = await fetchJson(selected.caseEntry.editorPackage);
   validatePackage(casePackage);
   if (selected.caseEntry.version !== casePackage.version || selected.caseEntry.status !== casePackage.status) {
@@ -733,6 +807,7 @@ async function initialize() {
   ];
   const uniquePaths = [...new Set(sourcePaths)];
   const loaded = new Map(await Promise.all(uniquePaths.map(async path => [path, await fetchText(path)])));
+  assetSourceText = new Map(casePackage.assets.filter(asset => asset.source).map(asset => [asset.source, loaded.get(asset.source)]));
   portableRuntimeSource = await fetch("portable-runtime.js", { cache: "no-store" }).then(response => {
     if (!response.ok) throw new Error("Portable export runtime is missing.");
     return response.text();
@@ -741,11 +816,13 @@ async function initialize() {
   await requireTextHash(loaded.get(casePackage.content.source), casePackage.presentation.contentSha256, "Worksheet content");
   await requireTextHash(loaded.get(casePackage.styles[0].source), casePackage.presentation.caseCssSha256, "Case stylesheet");
   await requireTextHash(loaded.get(casePackage.presentation.stylesheet), casePackage.presentation.stylesheetSha256, "Presentation stylesheet");
+  await installPackageFontImports(loaded.get(casePackage.presentation.stylesheet));
   installToolbar(loaded.get(casePackage.shell.toolbar));
   elements.icons.innerHTML = loaded.get(casePackage.shell.icons);
   installWorksheet(loaded.get(casePackage.presentation.stylesheet), loaded.get(casePackage.shell.icons));
   prepareContent(loaded.get(casePackage.content.source));
-  populateLibrary(selected.curriculum, selected.campaign, selected.caseEntry);
+  currentSelection = selected;
+  syncLibrarySelection(selected);
   stateKey = `curriculum-editor:${casePackage.documentKey}:state`;
   contentKey = `curriculum-editor:${casePackage.documentKey}:content`;
   defaultState = { ...casePackage.defaultToolbarState };
@@ -760,8 +837,11 @@ async function initialize() {
   bindToolbar();
   setSaveStatus(Object.keys(contentState).length ? "AUTOSAVE RESTORED" : "LOCAL SAVE READY");
   applyState();
+  await document.fonts?.ready;
+  checkOverflow();
   elements.worksheetHost.setAttribute("aria-busy", "false");
   elements.loadStatus.textContent = `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`;
+  safeStorageSet(SELECTED_CASE_KEY, selected.caseEntry.id);
   window.__curriculumEditor = {
     getState: () => ({ ...state }),
     getPackage: () => structuredClone(casePackage),
@@ -777,11 +857,18 @@ async function initialize() {
     getCurrentRoleOutput: () => ({ ...currentRoleOutput() }),
     getWorkspace: () => elements.workspace,
     getWorksheetDocument: () => worksheetDocument,
+    getCompatibleCases: () => compatibleCases.map(item => ({ id: item.caseEntry.id, title: item.caseEntry.title, version: item.caseEntry.version })),
+    selectCase: async id => {
+      const selection = compatibleCases.find(item => item.caseEntry.id === id);
+      if (!selection) throw new Error(`Unknown editor-compatible case: ${id}`);
+      await loadCase(selection);
+      return casePackage.id;
+    },
     syncToolbarOffset,
     persistElement,
     keys: { stateKey, contentKey }
   };
-  window.dispatchEvent(new CustomEvent("curriculum-editor-ready"));
+  window.dispatchEvent(new CustomEvent(initial ? "curriculum-editor-ready" : "curriculum-editor-case-ready", { detail: { caseId: casePackage.id, version: casePackage.version } }));
 }
 
 initialize().catch(showError);

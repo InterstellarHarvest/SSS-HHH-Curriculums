@@ -1,10 +1,10 @@
 # Curriculum Editor Architecture v1.0
 
-**Status:** Phase 1 accepted · owner review PASS · ready to merge
+**Status:** Phase 1 accepted for Case 03 · Phase 2 VALIDATION_BUILD for Cases 01/02 · owner and physical-print gates OPEN
 
 **Application:** `apps/curriculum-editor/`
 
-**Proof package:** `SSS-C1-CASE03` v1.1
+**Packages:** `SSS-C1-CASE01` v1.1 · `SSS-C1-CASE02` v1.0 · `SSS-C1-CASE03` v1.1
 
 **Package schema:** `shared/implementation/case-package.schema.v1.json`
 
@@ -16,7 +16,7 @@ The central application owns the library rail, toolbar orchestration, editing st
 case-registry.v1.json
         │ editorPackage
         ▼
-Case 03 package ── extracted content / exact presentation CSS / hashes
+selected current case package ── extracted content / exact presentation CSS / hashes
         │
         ├──────── shared shell toolbar / CSS / CER / icons
         │
@@ -34,13 +34,13 @@ The approved `SSS_C1_CASE03_EDITABLE_MASTER_v1.0.html` remains a byte-identical 
 ## 2. Runtime load sequence
 
 1. `editor-app.js` fetches `shared/implementation/case-registry.v1.json`.
-2. It discovers the current Case 03 v1.1 `editorPackage`; the registry retains v1.0 under historical-release metadata.
+2. It discovers the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 `editorPackage` records in case-number order; historical releases remain metadata/artifacts rather than a prominent selector.
 3. It validates supported schema/shell versions and required role/package fields.
 4. It fetches every declared shared shell, task, extracted content, presentation stylesheet, and source-backed asset path, then verifies the package content, case CSS, and presentation SHA-256 values before mounting.
 5. It parses the task registry and validates/expands any declared task-heading placeholder; the v1.1 extraction already contains the exact expanded master headings.
 6. It rejects runtime/style/iframe elements in the instructional fragment and verifies persistence IDs and embedded asset selectors.
 7. It mounts the exact worksheet presentation in an open Shadow DOM. The app CSS cannot select worksheet descendants, and the scoped worksheet CSS cannot select application chrome. The application-owned toolbar remains outside the shadow root, removes the duplicate Role selector, and controls the isolated document through the same state path.
-8. It restores local recovery state and announces the loaded case through a polite live region.
+8. It restores local recovery state for that exact curriculum/campaign/case/version and announces the case, version, role, and grayscale state through a polite live region. Switching packages replaces the worksheet Shadow DOM, styles, icons, font activation, and output configuration.
 
 After toolbar mounting, the application measures its rendered height and writes that value to `--app-toolbar-offset`. A `ResizeObserver`, font-ready callback, and viewport-resize callback keep the editor layout padding and library rail top/height synchronized as controls wrap. CSS supplies only an initial fallback before measurement.
 
@@ -62,7 +62,8 @@ Schema version 1 separates editor mechanics from case data. Its required fields 
 - defaults: role, edit/fill modes, four margins, density, grayscale, guides, and boundaries;
 - accessibility: document language/title, load announcement, extended-description selectors, and the manual-PDF warning;
 - approval: date, tester, owner-review and browser physical-print results, scale, printer/paper record, and artifact policy;
-- migration provenance: historical/successor master paths and hashes, reconciliation reason, and deterministic builder;
+- migration provenance: golden/historical/successor master paths and hashes, pre-maintenance hash where applicable, reconciliation record, reason, and deterministic builder;
+- Phase 2 authorization where applicable: maintenance revision, owner/date, validation status, and open owner/physical-print gates;
 - presentation: extracted content/case/presentation hashes and required isolation mode.
 
 All package paths are repository-relative, may not traverse upward, and must resolve to files. The package retains a Grayscale output profile mapped to Student source pages for export compatibility. Central navigation exposes only Student, Teacher, Answer Key, and Accessible; Grayscale is an independent presentation modifier.
@@ -88,7 +89,7 @@ Local storage is explicitly recovery state. It is not the canonical customized d
 Complete serialization clones the live worksheet, copies current values, removes content-editing attributes and transient page overflow classes, and then embeds:
 
 - shared components/editor/CER CSS;
-- Case 03 CSS;
+- selected case CSS;
 - Phosphor symbols and inline insignia/figures;
 - all role pages and current instructional/response content;
 - toolbar markup and current state;
@@ -118,37 +119,27 @@ The interface and documentation repeat the governing warning: browser PDF export
 
 ## 7. Validation model
 
-`tests/validate_static.py` checks both JSON schemas, semantic package references, required negative failure cases, task/component/accessibility structure, atomic CER authorship, the 4/8/4/7/4 page-count contract, deterministic rebuilding, v1.0 preservation, v1.1 manifest hashes, Case 01/02 Git protection, and absence of PDF work.
+`tests/validate_static.py` retains the 103 accepted Phase 1 static/package assertions for Case 03. `tests/validate_phase2_static.py` adds Case 01/02 schema and semantic package validation, golden/extraction hash checks, task and binding-rule checks, deterministic extraction, the reconciled protected-artifact ledger, and the no-PDF rule.
 
-`tests/run_browser_tests.py` starts an ephemeral local server and installed headless Chrome. Its in-browser harness checks exact control order/count, four-role navigation plus Student Grayscale, responsive toolbar/layout alignment at 1440/1100/820/640 px, response/text modes, independent margins and other layout controls, print-preview events, role-specific clear/reset, autosave reload, complete serialization, fresh-context behavior, current-role export, semantic components, zero overflow, and a temporary rendered screenshot. Test profiles and temporary smoke screenshots are discarded; the requested owner-review 1440×1200 capture is retained under `tests/screenshots/`.
+`tests/run_browser_tests.py` retains every Phase 1 browser assertion and adds repeated Case 01 → Case 02 → Case 03 cycling. It checks package discovery/order, keyboard and disabled-selector semantics, per-role page counts/overflow, package-specific styles/content/assets, role/edit/response/autosave isolation, output identities, announcements, duplicate light-DOM IDs, and stale Shadow DOM cleanup.
 
-`tests/validate_v1_1_parity.py` renders the v1.1 master and isolated central worksheet in the same installed browser, viewport, fonts, defaults, role, and grayscale state. For all 27 role-profile pages it compares DOM/page assignment, normalized critical geometry, computed presentation, and page pixels; it also validates independent v1.1 role files, current-role export geometry, zero overflow, and CER page-frame containment. Pixel comparison ignores channel deltas up to 8 and permits at most 0.05% differing page pixels for SVG/text antialiasing. Owner visual review of the retained master/editor/diff contact sheets remains a required migration gate.
+`tests/validate_phase2_parity.py` renders each Case 01/02 maintained master and isolated central worksheet in the same installed browser, viewport, fonts, defaults, role, and grayscale state. Across all 43 role-profile pages it compares DOM structure, task/page assignment, page-relative critical geometry, computed presentation, and page pixels. It also validates current maintained role HTML, current-role export geometry, complete portable export geometry, component containment, zero overflow, and JavaScript errors. The accepted Case 03 threshold remains a channel delta of 8 and at most 0.05% differing pixels; thresholds were not loosened.
 
-No validator generates or inspects PDFs.
+The protected ledger covers masters, current role HTML, controlled sources/assets, manifests, validation/owner records, and every Case 01/02 historical PDF. Validators hash PDFs but never generate, normalize, or inspect/re-save them.
 
-## 8. Phase 1 acceptance and known limitations
+## 8. Phase 2 validation status and limitations
 
-- Nate / Owner accepted the central editor and Case 03 v1.1 proof package on 2026-07-31. Exact structural, page-assignment, geometry, computed-presentation, rendered, portable-export, current-role export, accessibility, zero-overflow, and browser physical-print gates pass.
-- Phase 1 supports only the current approved Case 03 v1.1 package. There is no historical-version browser.
-- The selectors reflect the normal Curriculum → Campaign → Case → Role path; single available values are disabled to avoid suggesting unavailable cases.
-- Recovery state is local to a browser origin/profile and does not synchronize.
+- Nate / Owner accepted the central editor and Case 03 v1.1 proof package in Phase 1. Its package, tests, and approved artifacts remain unchanged except for generic backward-compatible multi-case application/schema support.
+- Case 01 v1.1 and Case 02 v1.0 are now discoverable exact migration packages. Their current maintained HTML bytes are owner-authorized Phase 2 goldens, while their earlier physically print-approved bytes/PDFs remain historical evidence.
+- Case 01/02 automated parity is a validation result, not owner acceptance. Status remains `VALIDATION_BUILD`; `OWNER_GATE_OPEN` and `PHYSICAL_PRINT_GATE_OPEN` remain open until review of both maintained standalone HTML and central-editor rendering at 100% / Actual Size.
+- There is no historical-version browser. Curriculum/campaign selectors remain disabled while only one value exists; the three-value case selector is enabled.
+- Recovery state is local to a browser origin/profile, is isolated by curriculum/campaign/case/version, and does not synchronize.
 - Trusted repository packages may supply HTML fragments and CSS. The app is not a sandbox for untrusted curriculum packages.
-- Cases 01 and 02 remain unmigrated. Embedded editors must not yet be stripped from Cases 01–03.
-- Case 03 v1.1 proves the central architecture, but the central editor becomes fully canonical only after Phase 2 parity and owner-approved cutover.
+- Embedded case-owned editors remain present. Central-editor cutover, embedded-editor removal, repository cleanup, Case 04, and HHH production are not authorized.
 - PDF accessibility is outside this HTML-only implementation.
 
-## 9. Phase 2 migration plan — not executed
+## 9. Protected history and remaining cutover boundary
 
-Cases 01 and 02 must be migrated independently and additively:
+`phase2-protected-artifacts.v1.json` freezes Case 01/02 masters, role outputs, controlled sources/assets, manifests, validation/owner records, reconciliation records, and PDFs at the separate reconciliation commit. The generic migration builder verifies each maintained golden, task registry, and controlled-source hash before emitting additive content/CSS/icon/task/package files. It never changes an approved artifact.
 
-1. Inventory each approved master, role output, source file, task mapping, visual differences, and release checksum record.
-2. Freeze and verify every historical approved master, role HTML, and retained PDF hash before package work.
-3. Treat the approved master as the golden migration reference. Verify its hash, deterministically extract/reconcile a worksheet-only DOM and exact presentation CSS, and record all source/presentation hashes without editing the approved master or outputs.
-4. Resolve legacy behavior through package adapters or an explicitly versioned shared-shell successor; do not silently rewrite shell v1.0 or copy a full editor into the package.
-5. Isolate worksheet presentation from application CSS. Prove structural, page-assignment, geometry, computed-style, and rendered parity in addition to role/edit/autosave/export, accessibility, page-count, and overflow behavior. CER and other atomic components must remain wholly inside one page; page counts alone are insufficient.
-6. Add only the `editorPackage` reference to its existing registry entry. Preserve its `master`, `roles`, version, status, and historical-PDF policy paths.
-7. Re-verify all frozen hashes, conduct owner browser and physical-print review, and merge each migration through a separate reviewed change. Owner visual review is a mandatory migration gate.
-
-Historical masters are retained as release records and parity references. Deletion or replacement is not part of Phase 2 unless a later owner-approved preservation policy explicitly authorizes it.
-
-Phase 2 migrations are additive. Until both Case 01 and Case 02 pass independent parity and cutover review, all embedded Case 01–03 editors remain in place.
+Current maintained Case 01/02 standalone HTML remains canonical until the owner closes both Phase 2 gates. The owner must review the maintained standalone pages, central-editor pages, retained master/editor/diff contact sheets, and physical browser output. A later, separately authorized cutover may establish the central editor as canonical; this branch neither performs nor implies that cutover.

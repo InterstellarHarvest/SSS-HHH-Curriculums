@@ -1,0 +1,12 @@
+<svg aria-hidden="true" class="visually-hidden" height="0" width="0"><defs>
+<symbol id="ph-book" viewbox="0 0 256 256"><path d="M32 48h72a24 24 0 0 1 24 24v136a24 24 0 0 0-24-24H32zM224 48h-72a24 24 0 0 0-24 24v136a24 24 0 0 1 24-24h72z"></path></symbol>
+<symbol id="ph-question" viewbox="0 0 256 256"><circle cx="128" cy="128" r="96"></circle><path d="M96 104a32 32 0 1 1 42 30c-10 4-10 10-10 18M128 188h0"></path></symbol>
+<symbol id="ph-flow" viewbox="0 0 256 256"><rect height="56" rx="8" width="56" x="24" y="92"></rect><rect height="56" rx="8" width="56" x="100" y="92"></rect><rect height="56" rx="8" width="56" x="176" y="92"></rect><path d="M80 120h20M156 120h20"></path></symbol>
+<symbol id="ph-target" viewbox="0 0 256 256"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><path d="M128 40v32M128 184v32M40 128h32M184 128h32"></path></symbol>
+<symbol id="ph-scales" viewbox="0 0 256 256"><path d="M128 40v168M64 72h128M64 72l-40 72h80zM192 72l-40 72h80zM80 208h96"></path></symbol>
+<symbol id="ph-diagnosis" viewbox="0 0 256 256"><circle cx="104" cy="104" r="64"></circle><path d="M149 149l59 59M80 104l18 18 34-42"></path></symbol>
+<symbol id="ph-cer" viewbox="0 0 256 256"><path d="M48 40h160v176H48zM80 80h96M80 120h96M80 160h64"></path></symbol>
+<symbol id="ph-wrench" viewbox="0 0 256 256"><path d="M160 48a48 48 0 0 0-58 58L40 168a24 24 0 0 0 34 34l62-62a48 48 0 0 0 58-58l-30 30-28-28z"></path></symbol>
+<symbol id="ph-ticket" viewbox="0 0 256 256"><path d="M32 72h192v112H32zM96 72v112M96 104h0M96 152h0"></path></symbol>
+<symbol id="ph-nodes" viewbox="0 0 256 256"><circle cx="56" cy="128" r="24"></circle><circle cx="200" cy="64" r="24"></circle><circle cx="200" cy="192" r="24"></circle><path d="M80 120l96-48M80 136l96 48"></path></symbol>
+</defs></svg>

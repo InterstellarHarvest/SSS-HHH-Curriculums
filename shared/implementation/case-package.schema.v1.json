@@ -296,13 +296,32 @@
       "type": "object",
       "required": ["kind", "historicalMaster", "historicalMasterSha256", "successorMaster", "successorMasterSha256", "reason", "builder"],
       "properties": {
-        "kind": { "const": "approved-master-successor" },
+        "kind": { "enum": ["approved-master-successor", "approved-master-migration"] },
         "historicalMaster": { "type": "string", "minLength": 1 },
         "historicalMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "successorMaster": { "type": "string", "minLength": 1 },
         "successorMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
         "reason": { "type": "string", "minLength": 1 },
-        "builder": { "type": "string", "minLength": 1 }
+        "builder": { "type": "string", "minLength": 1 },
+        "goldenMaster": { "type": "string", "minLength": 1 },
+        "goldenMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "preMaintenanceMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "reconciliationRecord": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "phase2Authorization": {
+      "type": "object",
+      "required": ["htmlMaintenanceRevision", "reconciliationRecord", "ownerAuthorizationDate", "owner", "status", "phase2Status", "ownerGate", "physicalPrintGate"],
+      "properties": {
+        "htmlMaintenanceRevision": { "const": "2026-07-31" },
+        "reconciliationRecord": { "type": "string", "minLength": 1 },
+        "ownerAuthorizationDate": { "const": "2026-07-31" },
+        "owner": { "const": "Nate / Owner" },
+        "status": { "const": "OWNER_AUTHORIZED_FOR_PHASE2" },
+        "phase2Status": { "const": "VALIDATION_BUILD" },
+        "ownerGate": { "const": "OPEN" },
+        "physicalPrintGate": { "const": "OPEN" }
       },
       "additionalProperties": false
     },

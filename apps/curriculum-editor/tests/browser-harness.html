@@ -257,6 +257,61 @@
       check("figures retain captions and accessible SVG labels", Array.from(workspace.querySelectorAll("figure")).every(figure => figure.querySelector("figcaption") && figure.querySelector('svg[aria-label],svg[aria-labelledby]')));
       check("table semantics retain captions", Array.from(workspace.querySelectorAll("table")).every(table => table.querySelector("caption")));
 
+      const phase2Cases = [
+        { id: "SSS-C1-CASE01", version: "1.1", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE02", version: "1.0", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C1-CASE03", version: "1.1", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" }
+      ];
+      check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(phase2Cases.map(item => item.id)));
+      check("multi-case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
+      check("single-value selectors are disabled and non-interactive", ["curriculumSelect", "campaignSelect"].every(id => doc.querySelector(`#${id}`).disabled && doc.querySelector(`#${id}`).getAttribute("aria-disabled") === "true"));
+
+      const caseMarkers = {};
+      for (const item of phase2Cases) {
+        await api.selectCase(item.id);
+        api = win.__curriculumEditor;
+        workspace = api.getWorkspace();
+        worksheetDoc = api.getWorksheetDocument();
+        check(`${item.id} loads from registry with current version`, api.getPackage().id === item.id && api.getPackage().version === item.version);
+        check(`${item.id} installs only its current Shadow DOM presentation`, doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("style[data-case-package-presentation]").length === 1 && doc.querySelector("#worksheetHost").shadowRoot.querySelector("style").dataset.casePackagePresentation === `${item.id}:v${item.version}`);
+        for (const [role, expected] of Object.entries(item.counts)) {
+          api.setRole(role);
+          await wait(40);
+          check(`${item.id} ${role} page count`, visiblePages(frame).length === expected, visiblePages(frame).length);
+          const overflowCount = api.checkOverflow();
+          const overflowDetail = Array.from(workspace.querySelectorAll(".page.has-overflow")).map(page => { const frame = page.querySelector(".page-frame"); const content = page.querySelector(".content-area"); return { page: page.dataset.pageId, frame: [frame?.scrollHeight, frame?.clientHeight, frame?.scrollWidth, frame?.clientWidth], content: [content?.scrollHeight, content?.clientHeight, content?.scrollWidth, content?.clientWidth] }; });
+          check(`${item.id} ${role} zero overflow`, overflowCount === 0, JSON.stringify(overflowDetail));
+        }
+        api.resetSource(true);
+        const response = workspace.querySelector('[data-response][data-persist-id]');
+        const editable = workspace.querySelector('[data-editable][data-persist-id]');
+        check(`${item.id} exposes stable response and editable persistence IDs`, Boolean(response && editable) && response.dataset.persistId !== editable.dataset.persistId);
+        caseMarkers[item.id] = { response: response.dataset.persistId, editable: editable.dataset.persistId, responseText: `${item.id} isolated response`, editText: `${item.id} isolated edit` };
+        api.saveState({ editMode: true });
+        setHtml(frame, `[data-persist-id="${response.dataset.persistId}"]`, caseMarkers[item.id].responseText);
+        setHtml(frame, `[data-persist-id="${editable.dataset.persistId}"]`, caseMarkers[item.id].editText);
+        api.setRole(item.id === "SSS-C1-CASE01" ? "teacher" : item.id === "SSS-C1-CASE02" ? "accessible" : "answer");
+        api.saveState({ grayscale: item.id === "SSS-C1-CASE01" });
+        check(`${item.id} complete export uses correct identity`, api.getPackage().outputs.complete.includes(item.complete) && api.serializePortableHTML().includes(`sss-case-version" content="${item.version}`));
+        api.setRole("student");
+        api.saveState({ grayscale: false });
+        check(`${item.id} current-role export uses correct identity`, api.getCurrentRoleOutput().filename.includes(item.student) && new DOMParser().parseFromString(api.serializeRoleHTML("student"), "text/html").querySelectorAll('.page[data-role="student"]').length === item.counts.student);
+      }
+
+      for (const item of phase2Cases) {
+        await api.selectCase(item.id);
+        api = win.__curriculumEditor;
+        workspace = api.getWorkspace();
+        const marker = caseMarkers[item.id];
+        check(`${item.id} response autosave is isolated across case switches`, workspace.querySelector(`[data-persist-id="${marker.response}"]`)?.textContent === marker.responseText);
+        check(`${item.id} instructional autosave is isolated across case switches`, workspace.querySelector(`[data-persist-id="${marker.editable}"]`)?.textContent === marker.editText);
+        check(`${item.id} role state is isolated across case switches`, api.getState().role === "student");
+        check(`${item.id} announcement identifies case version role and grayscale`, doc.querySelector("#loadStatus").textContent.includes(api.getPackage().title) && doc.querySelector("#loadStatus").textContent.includes(`v${item.version}`) && doc.querySelector("#loadStatus").textContent.includes("Student Mission") && doc.querySelector("#loadStatus").textContent.includes("Grayscale"));
+      }
+      const documentIds = Array.from(doc.querySelectorAll("[id]")).map(node => node.id);
+      check("case cycling leaves no duplicate IDs in the application document", documentIds.length === new Set(documentIds).size);
+      check("case cycling leaves one current worksheet main and no stale light-DOM worksheet", doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("main#worksheetWorkspace").length === 1 && !doc.querySelector("main#worksheetWorkspace"));
+
       const passed = assertions.filter(item => item.pass).length;
       const payload = { validator: "curriculum-editor-browser-v1", status: passed === assertions.length ? "PASS" : "FAIL", passed, total: assertions.length, assertions };
       await report(payload);

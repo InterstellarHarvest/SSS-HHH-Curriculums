@@ -1,10 +1,10 @@
-# SSS/HHH Curriculum Editor — Phase 1
+# SSS/HHH Curriculum Editor — Phase 2 validation build
 
-This accepted repository-local browser application loads the current approved Case 03 v1.1 package. It does not open, iframe, rewrite, or execute a complete Case 03 master. The worksheet-only DOM and exact presentation stylesheet are generated deterministically from the owner-approved successor and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
+This repository-local browser application loads the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 packages. It does not open, iframe, rewrite, or execute a complete approved master. Worksheet-only DOM and exact presentation stylesheets are generated deterministically from their authorized goldens and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
 
-**Phase 1 status:** OWNER REVIEW PASS · READY TO MERGE
+**Phase 2 status:** VALIDATION_BUILD · OWNER_GATE_OPEN · PHYSICAL_PRINT_GATE_OPEN
 
-**Proof package:** Case 03 v1.1 APPROVED STABLE
+Case 03 remains the accepted Phase 1 proof package. Case 01 and Case 02 remain owner-authorized maintained-HTML migration baselines pending Phase 2 browser/physical-print review.
 
 ## Launch
 
@@ -18,11 +18,11 @@ Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Stop the server with `Ctrl
 
 The server is required. `file://` is not a supported production path because the application fetches the registry, package, content, shared shell, styles, icons, and task registry as separate repository resources.
 
-## Phase 1 workflow
+## Multi-case workflow
 
-1. Choose Curriculum → Campaign → Case → Role in the library rail. The rail contains the four instructional roles: Student, Teacher, Answer Key, and Accessible. Phase 1 exposes only the current registered Case 03 package.
+1. Choose the current Case 01, Case 02, or Case 03 package, then choose a role in the library rail. The rail contains only Student, Teacher, Answer Key, and Accessible; historical versions are not exposed.
 2. Use **Fill responses** for response fields or **Edit text** for explicitly marked instructional nodes.
-3. Changes autosave to local browser storage under the package's unique case/version/document key.
+3. Changes autosave to local browser storage under the package's curriculum/campaign/case/version document key. Selected case, role, edits, and responses remain isolated while switching.
 4. Use **Download Current HTML** for a self-contained editable worksheet containing every role.
 5. Use **Download Current Role** for a self-contained file containing only the selected role.
 
@@ -34,7 +34,7 @@ The central toolbar omits the duplicate Role selector because the library rail i
 
 ## Portable output and printing
 
-Both download actions inline the hash-verified v1.1 presentation CSS, Phosphor icon sprite, page content, figures, insignia, current edits, current responses, configuration, and portable runtime. They do not overwrite repository files.
+Both download actions inline the selected package's hash-verified presentation CSS, icon sprite, page content, figures/insignia, current edits, current responses, configuration, and portable runtime. Filenames retain the selected case and version. They do not overwrite repository files.
 
 The **Print / Save PDF** button invokes the browser print dialog. Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification. This application does not create, validate, preflight, checksum, or store PDFs.
 
@@ -44,6 +44,7 @@ Static/package validation requires Python and Beautiful Soup 4:
 
 ```bash
 python3 apps/curriculum-editor/tests/validate_static.py
+python3 apps/curriculum-editor/tests/validate_phase2_static.py
 ```
 
 Browser validation uses the installed Google Chrome executable directly and creates only temporary profiles/screenshots:
@@ -56,6 +57,7 @@ Exact master/editor/export parity uses Playwright, Pillow, and the installed Chr
 
 ```bash
 python3 apps/curriculum-editor/tests/validate_v1_1_parity.py
+python3 apps/curriculum-editor/tests/validate_phase2_parity.py
 ```
 
 To use a different Chrome-compatible executable:
@@ -64,7 +66,7 @@ To use a different Chrome-compatible executable:
 python3 apps/curriculum-editor/tests/run_browser_tests.py --chrome /path/to/chrome
 ```
 
-The static suite validates registry/package schemas, deterministic extraction, historical v1.0 protection, current approved v1.1 hashes and owner metadata, task/component atomicity, accessibility structure, and the no-PDF rule. The browser suite validates controls, roles, 4/8/4/7 page counts, editing, autosave/reload, role isolation, layout controls, print-preview events, zero overflow, portable serialization, Reset Source, current-role export, keyboard access, screen-reader structure, and browser rendering. The parity suite checks every v1.1 role-profile page for structure, page assignment, geometry, computed presentation, rendered pixels, CER containment, phrase-bank parity, independent-role HTML, complete portable export, and current-role export parity.
+The Phase 2 static suite validates both migrated package schemas, deterministic extraction, the protected-artifact ledger, binding rules, reconciliation records, Case 03 Phase 1 regression, and the no-PDF rule. The browser suite retains every accepted Phase 1 assertion and adds repeated three-case switching, page counts, state/content isolation, stale-style/DOM checks, case-specific exports, accessibility announcements, and zero overflow. The Phase 2 parity suite checks all 43 Case 01/02 role-profile pages for structure, task assignment, geometry, computed presentation, rendered pixels, component containment, current maintained role HTML, complete portable export, and current-role export parity.
 
 The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/screenshots/curriculum-editor-wide-desktop.png) at 1440×1200.
 
@@ -76,16 +78,16 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 - Downloaded HTML contains JavaScript for local editing and printing. Treat customized files from unknown sources as untrusted files.
 - No authentication, cloud service, backend database, or external runtime API is used.
 
-## Known Phase 1 limitations
+## Phase 2 limitations and cutover boundary
 
-- Only the current registered Case 03 v1.1 approved package is editor-compatible.
+- Only current releases are selectable: Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1.
 - Historical-version browsing and a prominent version selector are intentionally absent.
-- Case 01 and Case 02 remain on their approved historical master/output implementations.
+- Case 01 and Case 02 approved/current maintained standalone artifacts remain canonical. Their editor packages are additive exact migration representations, not replacement releases.
 - Autosave is browser-profile and origin specific; it does not synchronize between devices or browsers.
 - Browser print behavior and physical results remain browser/driver dependent and require owner review at 100% / Actual Size.
 - Owner review and browser physical-print review passed on 2026-07-31 at 100% / Actual Size; printer and paper were not recorded.
-- Cases 01 and 02 remain unmigrated and will be migrated additively in Phase 2.
-- Embedded editors must not yet be stripped from Cases 01–03. The central editor becomes fully canonical only after Phase 2 parity and owner-approved cutover.
+- Case 01/02 owner and physical-print gates remain open. Passing automated parity does not constitute Phase 2 acceptance.
+- Embedded case-owned editors remain present. Central-editor cutover, embedded-editor removal, repository cleanup, Case 04, and HHH production are not authorized.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.
 
 See [CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md](../../shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md) for the contract, load sequence, accessibility model, and Phase 2 migration plan.

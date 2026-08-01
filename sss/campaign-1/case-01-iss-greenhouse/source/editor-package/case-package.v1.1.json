@@ -1,0 +1,163 @@
+{
+  "schemaVersion": 1,
+  "id": "SSS-C1-CASE01",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "ISS Greenhouse",
+  "subtitle": "Campaign 1 · Case 01 · Low Earth Orbit",
+  "location": "International Space Station",
+  "version": "1.1",
+  "status": "APPROVED_WITH_HTML_MAINTENANCE",
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE01:v1.1:curriculum-editor-v1",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible",
+    "grayscale"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-icons.svg"
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-task-registry.js",
+    "global": "SSS_CASE01_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "content": {
+    "source": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-content.html",
+    "format": "html-fragment"
+  },
+  "styles": [
+    {
+      "source": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-presentation.css",
+      "scope": "case"
+    }
+  ],
+  "assets": [
+    {
+      "id": "case01-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "sourceRole": "student",
+      "documentRole": "Student Mission",
+      "pageCount": 3,
+      "grayscale": false
+    },
+    "teacher": {
+      "sourceRole": "teacher",
+      "documentRole": "Teacher Guide",
+      "pageCount": 7,
+      "grayscale": false
+    },
+    "answer": {
+      "sourceRole": "answer",
+      "documentRole": "Answer Key",
+      "pageCount": 3,
+      "grayscale": false
+    },
+    "accessible": {
+      "sourceRole": "accessible",
+      "documentRole": "Accessible Mission",
+      "pageCount": 6,
+      "grayscale": false
+    },
+    "grayscale": {
+      "sourceRole": "student",
+      "documentRole": "Student Mission",
+      "pageCount": 3,
+      "grayscale": true
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE01_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C1_CASE01_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE01_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE01_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1_CUSTOM.html",
+    "grayscale": "SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": false,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 CASE01 v1.1 — ISS Greenhouse Curriculum Editor",
+    "loadAnnouncement": "ISS Greenhouse Case 01 v1.1 maintained HTML package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      "figure figcaption",
+      "[aria-label]"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed, published, or archived requires separate accessibility verification."
+  },
+  "migrationSource": {
+    "kind": "approved-master-migration",
+    "historicalMaster": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+    "historicalMasterSha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f",
+    "successorMaster": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+    "successorMasterSha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f",
+    "goldenMaster": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+    "goldenMasterSha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f",
+    "preMaintenanceMasterSha256": "f42365e58802201679b5cd751f102d9a4ecd0ea6f6a6565a860df070018ad02a",
+    "reconciliationRecord": "sss/campaign-1/case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
+    "reason": "Exact owner-authorized maintained-HTML migration; no curriculum successor version created",
+    "builder": "shared/implementation/build_phase2_case_packages.py"
+  },
+  "phase2Authorization": {
+    "htmlMaintenanceRevision": "2026-07-31",
+    "reconciliationRecord": "sss/campaign-1/case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
+    "ownerAuthorizationDate": "2026-07-31",
+    "owner": "Nate / Owner",
+    "status": "OWNER_AUTHORIZED_FOR_PHASE2",
+    "phase2Status": "VALIDATION_BUILD",
+    "ownerGate": "OPEN",
+    "physicalPrintGate": "OPEN"
+  },
+  "presentation": {
+    "contentSha256": "e3aa3e2aba4199d390755cb19ee69bad3c2ac8850c1eb5a924b996696f40ef41",
+    "caseCssSha256": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
+    "stylesheet": "sss/campaign-1/case-01-iss-greenhouse/source/editor-phase2/case01-presentation.css",
+    "stylesheetSha256": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
+    "isolation": "shadow-dom"
+  }
+}
