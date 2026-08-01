@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-Status: `IMPLEMENTED · OWNER_GATE_OPEN · CASE04_NOT_STARTED`
+Status: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
 
 Application: `apps/curriculum-editor/`
 

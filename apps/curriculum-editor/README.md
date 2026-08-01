@@ -2,7 +2,7 @@
 
 The repository-local Curriculum Editor is the canonical interface for SSS Campaign 1 Cases 01–03. It discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-Status: `IMPLEMENTED · OWNER_GATE_OPEN · CASE04_NOT_STARTED`
+Status: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
 
 ## Launch
 

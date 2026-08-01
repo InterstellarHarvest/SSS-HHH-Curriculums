@@ -1,13 +1,17 @@
 # Canonical Case Structure Migration v1
 
-**Status:** `IMPLEMENTED`
+**Status:** `APPROVED`
 
-**Owner gate:** `OWNER_GATE_OPEN`
+**Owner review:** `OWNER_REVIEW_PASS`
+
+**Merge status:** `READY_TO_MERGE`
 
 **Case 04:** `CASE04_NOT_STARTED`
 **Baseline:** `c79bdc1f5b69bee9efb86998b375c5583542764f`
 
 This is the additive execution and owner-supersession record for the canonical Cases 01–03 migration. It does not alter the original `REPOSITORY_INVENTORY_v1` or `PROPOSED_CLEANUP_PLAN_v1` snapshots. The 2026-08-01 owner decision authorizes the cleanup and supersedes that earlier conservative proposal wherever they conflict.
+
+Owner testing by Nate / Owner passed on 2026-08-01. The signed decision is recorded in `CANONICAL_CASE_STRUCTURE_OWNER_APPROVAL_v1.md`. Accepted implementation commits are `34cbe2815e68eac577347a6f8c9d8eb54a085f0a` and `41554da0c7c1d25dee5958bacf6594f1643d5aec`; the reviewed branch also contains the pre-approval Case 03 Grayscale correction `85b0373a9b3301dab4071b78c3cb069ee31a5609`.
 
 ## Outcome
 
@@ -15,7 +19,18 @@ Cases 01–03 now contain only a README, canonical package-controlled worksheet 
 
 Generated editable documents, role HTML, PDFs, and routine screenshots are no longer permanent repository artifacts. Git history preserves every removed tracked file; each current release history gives the former complete document and four role paths, SHA-256 values, approved commit, page counts, validation status, and recovery syntax.
 
-## Measured change
+## Governing rules
+
+- Canonical source is the registered case package and its package-controlled files under `source/`.
+- Student, Teacher, Answer Key, and Accessible are the only instructional roles.
+- Grayscale is only a Boolean presentation toggle; it is never a role, output type, filename, or page-count category.
+- Generated editable copies, worksheets, PDFs, screenshots, and release documents are not committed.
+- Prior approved artifacts are recovered through Git and compact release-history records.
+- The canonical case folder structure is mandatory for Case 04 onward.
+
+## Measured implementation change
+
+These cleanup metrics are the implementation snapshot at `34cbe2815e68eac577347a6f8c9d8eb54a085f0a`; later recovery-metadata, validation, and approval records are additive.
 
 - Tracked files: 483 before; 119 after.
 - Tracked worktree content: 33,677,690 bytes before; 4,878,081 bytes after; net reduction 28,799,609 bytes. The 377 deleted paths contained 28,791,930 bytes at baseline.
@@ -37,7 +52,7 @@ The paired JSON contains the eight exact source moves, deletion-category totals,
 
 The browser gate generates all required role/export/print documents in memory or temporary storage, checks eight role/presentation combinations per case (24 total), and discards temporary output. It is the reproducible visual evidence command; no screenshots are retained.
 
-Final pre-commit results: structure PASS for 3/3 cases, static PASS 69/69, browser PASS 354/354, all 24 presentation states PASS, and zero JavaScript errors. The browser total includes a temporary rendered-screenshot smoke check whose output was discarded.
+Final owner-approval results: structure PASS for 3/3 cases, static PASS 72/72, browser PASS 358/358, all 24 presentation states PASS, recovery commits 13/13, recovery paths 25/25, recovery hashes 25/25, and zero JavaScript errors. The browser total includes a temporary rendered-screenshot smoke check whose output was discarded.
 
 ## Recovery
 
@@ -49,4 +64,4 @@ git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former-path> > <destination>
 
 Use the exact former paths in each `history/release-vX.json`. Earlier approved versions noted by the case README/history can likewise be inspected with `git show <approved-commit>:<path>`.
 
-No merge was performed, Git history was not rewritten, no PDF was generated, and Case 04 was not begun.
+The migration is approved and ready for a fast-forward merge by the owner or integrator. No merge was performed, Git history was not rewritten, no PDF was generated, and Case 04 was not begun.

@@ -2,6 +2,8 @@
 
 Shared curriculum repository for **Space Sprout Sleuth (SSS)** and **Hunger, Harvest, & History (HHH)**.
 
+Canonical case-structure migration: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
+
 ## Canonical production workflow
 
 The registered case package and its package-controlled files are the only active production source. For SSS Campaign 1 Cases 01–03, launch the central Curriculum Editor from the repository root:
@@ -43,6 +45,7 @@ Key implementation records:
 - `shared/implementation/case-registry.schema.v2.json`
 - `shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md`
 - `shared/implementation/REPOSITORY_CURRICULUM_LIBRARY_ARCHITECTURE.md`
+- `shared/cleanup/CANONICAL_CASE_STRUCTURE_OWNER_APPROVAL_v1.md`
 
 ## Validation
 

@@ -1,6 +1,6 @@
 # Repository Curriculum Library Architecture
 
-Status: `IMPLEMENTED · OWNER_GATE_OPEN · CASE04_NOT_STARTED`
+Status: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
 
 ## Discovery and production
 

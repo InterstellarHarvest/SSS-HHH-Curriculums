@@ -1,12 +1,26 @@
 {
   "schemaVersion": 1,
   "record": "CANONICAL_CASE_STRUCTURE_MIGRATION_v1",
-  "status": "IMPLEMENTED",
-  "ownerGate": "OWNER_GATE_OPEN",
+  "status": "APPROVED",
+  "ownerGate": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
   "case04Status": "CASE04_NOT_STARTED",
   "date": "2026-08-01",
   "branch": "feature/canonical-case-structure",
   "baselineCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "acceptedImplementationCommits": [
+    "34cbe2815e68eac577347a6f8c9d8eb54a085f0a",
+    "41554da0c7c1d25dee5958bacf6594f1643d5aec"
+  ],
+  "preApprovalCorrectionCommit": "85b0373a9b3301dab4071b78c3cb069ee31a5609",
+  "ownerApproval": {
+    "date": "2026-08-01",
+    "tester": "Nate / Owner",
+    "decision": "APPROVED",
+    "reviewStatus": "OWNER_REVIEW_PASS",
+    "mergeStatus": "READY_TO_MERGE",
+    "record": "shared/cleanup/CANONICAL_CASE_STRUCTURE_OWNER_APPROVAL_v1.md"
+  },
   "supersession": {
     "type": "ADDITIVE_EXECUTION_AND_OWNER_SUPERSESSION",
     "recordsPreservedUnmodified": [
@@ -41,6 +55,7 @@
     "exactDeletedPathCommand": "git diff --name-only --diff-filter=D c79bdc1f5b69bee9efb86998b375c5583542764f..feature/canonical-case-structure"
   },
   "metrics": {
+    "measurementCommit": "34cbe2815e68eac577347a6f8c9d8eb54a085f0a",
     "baselineTrackedFiles": 483,
     "finalTrackedFiles": 119,
     "baselineTrackedBytes": 33677690,
@@ -63,6 +78,14 @@
     "discovery": "registry -> source/case-package.json -> content.html + presentation.css + task-registry.js + referenced assets",
     "generatedOutputPolicy": "Editable copies, role worksheets, print documents, rendered pages, and screenshots are produced temporarily or on demand and are not committed. PDFs are neither stored nor required."
   },
+  "governingRules": [
+    "Canonical source is the registered case package and its package-controlled files under source/.",
+    "Student, Teacher, Answer Key, and Accessible are the only instructional roles.",
+    "Grayscale is only a Boolean presentation toggle and never a role, output type, filename, or page-count category.",
+    "Generated editable copies, worksheets, PDFs, screenshots, and release documents are not committed.",
+    "Prior approved artifacts are recovered through Git and compact release-history records.",
+    "The canonical case folder structure is mandatory for Case 04 onward."
+  ],
   "schemaChanges": [
     "Package schema v2 requires canonical worksheet, presentation, task-registry, source-hash, accessibility, four-role page-count, normal output-name, and release-history fields.",
     "Package schema v2 rejects additional migration-era fields and any fifth role or output.",
@@ -98,8 +121,10 @@
   ],
   "replacementValidation": {
     "structure": {"command": "python3 shared/validation/validate_canonical_case_structure.py", "status": "PASS", "cases": 3},
-    "static": {"command": "python3 apps/curriculum-editor/tests/validate_static.py", "status": "PASS", "passed": 69, "total": 69},
-    "browser": {"command": "python3 apps/curriculum-editor/tests/run_browser_tests.py", "status": "PASS", "passed": 354, "total": 354, "presentationStatesPassed": 24, "presentationStatesTotal": 24, "temporaryOutputDiscarded": true, "javascriptErrors": 0}
+    "static": {"command": "python3 apps/curriculum-editor/tests/validate_static.py", "status": "PASS", "passed": 72, "total": 72},
+    "browser": {"command": "python3 apps/curriculum-editor/tests/run_browser_tests.py", "status": "PASS", "passed": 358, "total": 358, "presentationStatesPassed": 24, "presentationStatesTotal": 24, "temporaryOutputDiscarded": true, "javascriptErrors": 0},
+    "recovery": {"commitReferencesPassed": 13, "commitReferencesTotal": 13, "artifactPathsPassed": 25, "artifactPathsTotal": 25, "artifactHashesPassed": 25, "artifactHashesTotal": 25}
   },
-  "ownerReview": "shared/cleanup/CANONICAL_CASE_STRUCTURE_OWNER_REVIEW_v1.md"
+  "ownerReview": "shared/cleanup/CANONICAL_CASE_STRUCTURE_OWNER_REVIEW_v1.md",
+  "ownerApprovalRecord": "shared/cleanup/CANONICAL_CASE_STRUCTURE_OWNER_APPROVAL_v1.md"
 }
