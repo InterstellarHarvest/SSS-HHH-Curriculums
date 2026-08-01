@@ -4,9 +4,21 @@
 
 **Canonical extracted implementation:** `shared/implementation/editor-shell/v1.0/`
 
+## Canonical active workflow
+
+For current SSS Campaign 1 Cases 01–03, the registered package loaded by the central Curriculum Editor is the canonical active editable production source. Start the editor from the repository root:
+
+```bash
+python3 apps/curriculum-editor/serve.py
+```
+
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Versions are not selected in the primary case menu. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for a clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review before distribution, publication, or archival use.
+
+Approved standalone masters and role files are immutable release snapshots. Their embedded case-owned editors are retained only as deprecated compatibility/provenance implementations; do not open those snapshots as the active customization workflow and do not strip their runtime.
+
 ## Canonical extraction completed
 
-The Case 01 single-file implementation remains the historical foundation, but it is no longer the source to copy into later cases. New or migrated editable masters must be assembled from the versioned shared shell:
+The Case 01 single-file implementation remains the historical foundation, but it is no longer the source to copy into later cases. New or migrated packages and publishable HTML must use the central editor and versioned shared shell:
 
 ```text
 shared canonical editor shell
@@ -23,15 +35,16 @@ Editor shell v1.0 governs toolbar markup, CSS, JavaScript, save/reset behavior, 
 
 Validation must compare embedded asset bytes and contract hashes with the shared sources. Checking only local class names is insufficient. Case-specific instructional content and configuration remain outside the shell.
 
-The future repository-level library must read `shared/implementation/case-registry.v1.json`:
+The central repository library reads `shared/implementation/case-registry.v1.json`:
 
 ```text
 case registry
 → campaign/case/role selector
-→ opens the relevant case master or role output
+→ loads the registered current package
+→ central editing, export, and print workflow
 ```
 
-The registry stores paths; it does not embed every case into a monolithic HTML document. See `REPOSITORY_CURRICULUM_LIBRARY_ARCHITECTURE.md`.
+The registry retains package, master, and role paths without embedding every case into a monolithic HTML document. The package is the active source; master and role paths identify immutable approved snapshots. See `REPOSITORY_CURRICULUM_LIBRARY_ARCHITECTURE.md`.
 
 ### HTML-only production decision
 
@@ -421,20 +434,16 @@ Do not fork borders, page geometry, response-box rules, or type scales merely to
 
 ## 8. Case-production workflow
 
-For each later case:
+For a new case or future approved revision:
 
-1. Inventory the real source master before editing.
-2. Separate content defects from framework defects.
-3. Map source content into role page sets.
-4. Apply the shared page shell and components.
-5. Repaginate rather than reduce approved type.
-6. Build the accessible role in parallel, not after release.
-7. Confirm Name / Date / Period is topmost on only the first Student and Accessible page.
-8. Validate Student, Teacher, Answer, Accessible, Grayscale, Print Preview, and All Pages.
-9. Test role-state preservation and saved content restoration.
-10. Render every HTML page in a browser and complete visual review.
-11. Verify print-preview behavior and print from the browser dialog at 100% / Actual Size.
-12. Keep status as Validation or Review until all HTML, browser, accessibility, rendered-review, and physical-print gates pass.
+1. Author and maintain package-controlled content, task definitions, assets, and presentation sources.
+2. Load and validate the package through the central editor.
+3. Generate portable complete and role-specific HTML through the approved publishing workflow.
+4. Validate structure, geometry, presentation, page fit, accessibility, and printing.
+5. Freeze approved release artifacts as immutable snapshots.
+6. Never make an approved release snapshot the ongoing editable source again.
+
+This rule is forward-looking and does not retroactively rewrite Case 01–03 package history.
 
 ## 9. Shared extraction status
 
@@ -447,7 +456,7 @@ The extraction is implemented at `shared/implementation/editor-shell/v1.0/` and 
 - shared overflow test;
 - shared role-isolation and browser print-preview test harness.
 
-Case 01 vocabulary, prompts, tables, answers, and timing remain case content and are not framework code. Existing approved Case 01 and Case 02 masters are not retroactively migrated solely to adopt the editor shell; Case 03 is the first assembled shell v1.0 implementation.
+Case 01 vocabulary, prompts, tables, answers, and timing remain case content and are not framework code. Existing approved Case 01 and Case 02 masters are not rewritten to adopt the editor shell; they remain immutable release snapshots. Case 03 is the first assembled shell v1.0 implementation, and its standalone masters are likewise snapshots after approval.
 
 Approved Case 01 and Case 02 PDFs remain untouched historical artifacts. Case 02 HTML maintenance does not require a replacement PDF.
 

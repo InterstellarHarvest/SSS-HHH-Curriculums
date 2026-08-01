@@ -23,9 +23,19 @@ Curriculum Bible v1.3 carries forward v1.2, adds the completed-exemplar requirem
 
 ## Current production foundation
 
-New cases use `shared/implementation/editor-shell/v1.0/` plus case content/configuration. Beginning with Case 03, canonical production artifacts are the portable editable-master HTML and five independent role HTML files. Routine production does not create PDFs.
+For active customization of SSS Campaign 1 Cases 01–03, use the canonical central Curriculum Editor from the repository root:
 
-Approved Case 01 and Case 02 PDFs remain unchanged historical artifacts. The browser Print / Save PDF action is available for optional manual use, but its output requires accessibility verification before distribution.
+```bash
+python3 apps/curriculum-editor/serve.py
+```
+
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. Select the current case in the primary case menu; versions are not selected there. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing.
+
+The registered current case package is the canonical active editable production source. New cases and future revisions use package-controlled content, task definitions, assets, and presentation sources with `shared/implementation/editor-shell/v1.0/`, then validate and publish through the central editor. Approved standalone masters and role HTML files are immutable release snapshots. Their embedded editors remain present only for compatibility and provenance; do not use them as the active customization workflow.
+
+Approved historical PDFs remain unchanged retained artifacts. Routine repository production does not create PDFs. A PDF created through the browser requires separate accessibility review before distribution, publication, or archival use.
+
+The cutover record is `shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.md`. Repository cleanup and Case 04 are separate phases and have not started.
 
 ## Historical artifacts
 
@@ -33,4 +43,4 @@ Files labeled v0.2 or v0.3 are retained only for provenance and comparison. They
 
 ## Scaling rule
 
-Do not begin another case by copying a historical or case-specific master. Assemble it from the canonical shared editor shell and registered case content/configuration after checking the governing documents and task registry.
+Do not begin another case by copying an approved or historical standalone master. Author package-controlled sources, load and validate them through the central editor, publish the approved HTML set, then freeze that set as immutable release snapshots.

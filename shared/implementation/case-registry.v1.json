@@ -24,6 +24,11 @@
               "artifactPolicy": "HISTORICAL_PDFS_RETAINED",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-01-iss-greenhouse/source/editor-package/case-package.v1.1.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "APPROVED",
+              "legacyEmbeddedEditorStatus": "DEPRECATED_COMPATIBILITY",
+              "approvedMasterStatus": "APPROVED_RELEASE_SNAPSHOT",
+              "cutoverManifest": "shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.json",
               "master": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
               "htmlMaintenanceRevision": "2026-07-31",
               "reconciliationRecord": "sss/campaign-1/case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
@@ -56,6 +61,13 @@
                 "answer": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1.html",
                 "accessible": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html",
                 "grayscale": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html"
+              },
+              "currentRoleSha256": {
+                "student": "0bc0a5cc945daac4c50e4c33cdf0036f900c62146209869974b51ed9c19ceef8",
+                "teacher": "7eb5f66b5a7ed31dc90ec23bd916a6a718cd00e27ab86c6cbd5a098755c78ae1",
+                "answer": "5b3bb048d6e34c3da9f21cf903f45139e760f5b8d59889c3a11e76c6a91d980b",
+                "accessible": "ca922c3cf2ec3284e85e1f8e3905c477ed59dfa667f454d10b9db226ad8e6af0",
+                "grayscale": "f8e2de4f12a9d4ee6c762a3cdda5c6defb7a5036b52c2efa6f844bfb64cd4f44"
               }
             },
             {
@@ -68,6 +80,11 @@
               "artifactPolicy": "HISTORICAL_PDFS_RETAINED",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-02-lunar-greenhouse/source/editor-package/case-package.v1.0.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "APPROVED",
+              "legacyEmbeddedEditorStatus": "DEPRECATED_COMPATIBILITY",
+              "approvedMasterStatus": "APPROVED_RELEASE_SNAPSHOT",
+              "cutoverManifest": "shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.json",
               "master": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
               "htmlMaintenanceRevision": "2026-07-31",
               "reconciliationRecord": "sss/campaign-1/case-02-lunar-greenhouse/CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
@@ -100,6 +117,13 @@
                 "answer": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
                 "accessible": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html",
                 "grayscale": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html"
+              },
+              "currentRoleSha256": {
+                "student": "fe5519e9e1cee55bb6d40299e0f0fc84b40dfd8ad81a677286ef6f5d6e5225e1",
+                "teacher": "09ed396de48801e6f1b82b7f54895bd761447319011f2b32c76b91b54f322558",
+                "answer": "dd95ec6fe8f818541fee20723ea773990b0b16cfeb1ce513d78698c6dff8bb32",
+                "accessible": "ecb56f7e4cba24e2da99744f1ff5a9cb1cfd6607821cec30e960030d4d478d1b",
+                "grayscale": "f668612b18d91f5bd53b23c6231c3336c15b6181ec52893c87968ee6b1f23c46"
               }
             },
             {
@@ -112,7 +136,13 @@
               "artifactPolicy": "HTML_ONLY",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-03-mars-habitat/source/editor-package/case-package.v1.1.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "APPROVED",
+              "legacyEmbeddedEditorStatus": "DEPRECATED_COMPATIBILITY",
+              "approvedMasterStatus": "APPROVED_RELEASE_SNAPSHOT",
+              "cutoverManifest": "shared/implementation/CURRICULUM_EDITOR_CUTOVER_v1.json",
               "master": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
+              "currentMasterSha256": "097f3c59efd1a90d4a5ce63274fee83e1bf1bde3dcbf69e427a29e953c913c09",
               "approval": {
                 "date": "2026-07-31",
                 "tester": "Nate / Owner",
@@ -129,6 +159,13 @@
                 "answer": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ANSWER_KEY_v1.1.html",
                 "accessible": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1.html",
                 "grayscale": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html"
+              },
+              "currentRoleSha256": {
+                "student": "64a688532502f9da6b0026819e57b13bd15c4a0b34aa07db8d2f6e65cc3dc56e",
+                "teacher": "d70a8c45a58de865277b8661244992ab97b8b0973699e83041d87636c1568176",
+                "answer": "c3e846c13c67aa1a4fe4b472726df5f4f49a6a951e6feef3049125280bcce6f8",
+                "accessible": "70029188b8cd7a1d38435f0f6971340ac0856a3a071379359fd4ac1e6965d387",
+                "grayscale": "86a9f18fa59c547b96818f1dc06e543d747ee3c0191ddbaa5f636fb11672cd29"
               },
               "historicalReleases": [
                 {

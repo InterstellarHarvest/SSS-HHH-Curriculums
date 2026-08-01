@@ -1,10 +1,12 @@
-# SSS/HHH Curriculum Editor — Phase 2 approved
+# SSS/HHH Curriculum Editor — canonical workflow validation build
 
 This repository-local browser application loads the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 packages. It does not open, iframe, rewrite, or execute a complete approved master. Worksheet-only DOM and exact presentation stylesheets are generated deterministically from their authorized goldens and mounted in an open Shadow DOM so application and worksheet CSS cannot affect each other.
 
 **Phase 2 status:** OWNER REVIEW PASS · READY TO MERGE
 
 Cases 01, 02, and 03 are accepted in the central editor. The current maintained Case 01 v1.1 and Case 02 v1.0 HTML presentations, exact Phase 2 parity, browser print previews, and physical printing passed owner review on 2026-08-01 at 100% / Actual Size.
+
+The central editor is now the canonical active authoring and customization interface for these current releases. Their registered packages are the canonical active editable production sources. Approved standalone masters and role HTML remain immutable release snapshots; embedded case-owned editors are deprecated compatibility implementations and are not the active workflow. Cutover status remains **VALIDATION BUILD · OWNER GATE OPEN** until the cutover owner checklist is completed.
 
 ## Launch
 
@@ -20,7 +22,7 @@ The server is required. `file://` is not a supported production path because the
 
 ## Multi-case workflow
 
-1. Choose the current Case 01, Case 02, or Case 03 package, then choose a role in the library rail. The rail contains only Student, Teacher, Answer Key, and Accessible; historical versions are not exposed.
+1. Choose the current Case 01, Case 02, or Case 03 package, then choose a role in the library rail. The exact primary case labels are `1 - ISS Greenhouse`, `2 - Lunar Greenhouse`, and `3 - Mars Habitat`. The rail contains only Student, Teacher, Answer Key, and Accessible; versions are not selected in the primary case menu and historical versions are not exposed.
 2. Use **Fill responses** for response fields or **Edit text** for explicitly marked instructional nodes.
 3. Changes autosave to local browser storage under the package's curriculum/campaign/case/version document key. Selected case, role, edits, and responses remain isolated while switching.
 4. Use **Download Current HTML** for a self-contained editable worksheet containing every role.
@@ -82,18 +84,19 @@ The current owner-review capture is [curriculum-editor-wide-desktop.png](tests/s
 - Downloaded HTML contains JavaScript for local editing and printing. Treat customized files from unknown sources as untrusted files.
 - No authentication, cloud service, backend database, or external runtime API is used.
 
-## Phase 2 limitations and cutover boundary
+## Cutover status and retained compatibility boundary
 
 - Only current releases are selectable: Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1.
 - Historical-version browsing and a prominent version selector are intentionally absent.
-- Case 01 and Case 02 approved/current maintained standalone artifacts remain canonical until a separately authorized central cutover. Their editor packages are additive exact migration representations, not replacement releases.
+- The current Case 01, Case 02, and Case 03 packages are canonical active sources. Approved/current standalone masters and role files remain immutable approved release snapshots and parity references; they are not ongoing editable sources.
 - Autosave is browser-profile and origin specific; it does not synchronize between devices or browsers.
 - Browser print behavior and physical results remain browser/driver dependent; owner review passed at 100% / Actual Size.
 - Case 03 owner review and browser physical-print review passed on 2026-07-31 at 100% / Actual Size; printer and paper were not recorded.
 - Case 01/02 owner review, browser print-preview review, physical-print review, and exact migration parity passed on 2026-08-01. Browser, printer/copier, and paper were not recorded.
-- Embedded case-owned editors remain present. Central-editor cutover, embedded-editor removal, repository cleanup, Case 04, and HHH production are not authorized.
+- Embedded case-owned editors remain present as deprecated compatibility implementations. Removing them is not authorized. Repository cleanup, Case 04, and HHH production have not started.
 - HTML accessibility is validated; manually created PDFs require their own accessibility review.
+- Cutover is a validation build with the owner gate open; complete `CUTOVER_OWNER_REVIEW_CHECKLIST.md` before recording acceptance.
 
-See [CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md](../../shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md) for the contract, load sequence, accessibility model, and Phase 2 migration plan.
+See [CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md](../../shared/implementation/CURRICULUM_EDITOR_ARCHITECTURE_v1.0.md) for the contract, load sequence, accessibility model, validation coverage, and cutover boundary.
 
 See [PHASE1_ACCEPTANCE.md](PHASE1_ACCEPTANCE.md) for the final owner-accepted validation summary and cutover boundary.

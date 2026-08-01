@@ -1,5 +1,17 @@
 # SSS Campaign 1 Case 03 - Mars Habitat
 
+## Canonical active customization
+
+Use the central Curriculum Editor, not the embedded editor in a standalone master, for active Case 03 customization:
+
+```bash
+python3 apps/curriculum-editor/serve.py
+```
+
+Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `3 - Mars Habitat`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review.
+
+The v1.0 and v1.1 standalone masters and role HTML files remain immutable approved release snapshots. Their embedded runtimes are deprecated compatibility only and remain byte-identical.
+
 - Current approved version: v1.1
 - Student identity: Data Analyst
 - Core science: light spectrum versus total intensity
@@ -14,12 +26,12 @@ Case 03 v1.0 remains the byte-identical approved historical release. Its master 
 
 Case 03 v1.1 is the current approved stable successor and the central Curriculum Editor Phase 1 golden reference. Accessible Task 7 keeps Claim, Evidence, and Reasoning in one canonical CER root on Accessible page 6. Tasks 8–9 occupy page 7, increasing Accessible from six to seven pages without shrinking accessible text or writing areas. Task 6 includes the approved fixed-order phrase bank. Student, Teacher, Answer Key, and Grayscale retain four, eight, four, and four pages respectively.
 
-The v1.1 build creates six self-contained approved HTML artifacts:
+The approved v1.1 release contains six self-contained HTML snapshots:
 
 - one self-contained portable editable-master HTML;
 - independent Student, Teacher, Answer Key, Accessible, and Grayscale HTML outputs.
 
-Do not hand-edit generated HTML. Do not generate or store PDFs.
+Do not hand-edit approved snapshot HTML. Use the central editor and package-controlled sources for active work. Do not generate or store repository PDFs.
 
 ```bash
 python3 validation-artifacts/build_case03_v1_1.py --check

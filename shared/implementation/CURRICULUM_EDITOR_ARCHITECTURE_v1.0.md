@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-**Status:** Cases 01/02/03 accepted · Phase 2 OWNER REVIEW PASS · READY TO MERGE
+**Status:** Cases 01/02/03 central workflow CANONICAL · cutover VALIDATION BUILD · OWNER GATE OPEN
 
 **Application:** `apps/curriculum-editor/`
 
@@ -11,6 +11,8 @@
 ## 1. Architecture boundary
 
 The central application owns the library rail, toolbar orchestration, editing state, autosave, page-fit reporting, presentation isolation, isolated role printing, and export assembly. The shared shell remains the canonical source for toolbar markup, CER geometry, common components, icons, and established control behavior. The case package owns the hash-verified worksheet-only DOM and presentation CSS, task definitions, metadata, assets, roles, page counts, and filenames.
+
+For the current Case 01 v1.1, Case 02 v1.0, and Case 03 v1.1 releases, this boundary is the canonical active authoring/customization workflow. Launch with `python3 apps/curriculum-editor/serve.py` and open <http://127.0.0.1:8000/apps/curriculum-editor/>. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. A browser-created PDF requires separate accessibility review.
 
 ```text
 case-registry.v1.json
@@ -68,7 +70,7 @@ Schema version 1 separates editor mechanics from case data. Its required fields 
 
 All package paths are repository-relative, may not traverse upward, and must resolve to files. The package retains a Grayscale output profile mapped to Student source pages for export compatibility. Central navigation exposes only Student, Teacher, Answer Key, and Accessible; Grayscale is an independent presentation modifier.
 
-Validation rejects unsupported schema versions, missing package/content/style/task files, missing role definitions, invalid task placeholders, invalid source-backed asset paths, and missing embedded asset selectors. The registry schema permits an optional `editorPackage`, allowing approved historical cases to remain registered without pretending they have been migrated.
+Validation rejects unsupported schema versions, missing package/content/style/task files, missing role definitions, invalid task placeholders, invalid source-backed asset paths, and missing embedded asset selectors. For every current cut-over case, the registry requires editor shell/package paths, canonical workflow and approved package status, explicit compatibility/snapshot status, the cutover-manifest reference, retained master and role paths, and current master/role hashes. Historical releases remain metadata and immutable artifacts rather than primary-menu version choices.
 
 ## 4. Editing and recovery state
 
@@ -129,19 +131,23 @@ The interface and documentation repeat the governing warning: browser PDF export
 
 The protected ledger covers masters, current role HTML, controlled sources/assets, manifests, validation/owner records, and every Case 01/02 historical PDF. Validators hash PDFs but never generate, normalize, or inspect/re-save them.
 
-## 8. Phase 2 validation status and limitations
+## 8. Cutover status and limitations
 
 - Nate / Owner accepted the central editor and Case 03 v1.1 proof package in Phase 1. Its package, tests, and approved artifacts remain unchanged except for generic backward-compatible multi-case application/schema support.
 - Case 01 v1.1 and Case 02 v1.0 are discoverable exact migration packages. Their current maintained HTML bytes and central-editor representations passed owner review, browser print-preview review, physical printing, and exact Phase 2 parity on 2026-08-01 at 100% / Actual Size. Their earlier physically print-approved bytes/PDFs remain historical evidence.
-- Cases 01, 02, and 03 are accepted in the central editor. Phase 2 status is `OWNER REVIEW PASS` and `READY TO MERGE`; central cutover remains a separate decision.
+- Cases 01, 02, and 03 are accepted in the central editor. The central workflow is `CANONICAL`, each current package is `CANONICAL_ACTIVE_SOURCE`, and each approved standalone master is an `APPROVED_RELEASE_SNAPSHOT`. Cutover remains `VALIDATION_BUILD` with `OWNER_GATE_OPEN` until its checklist is completed.
 - There is no historical-version browser. Curriculum/campaign selectors remain disabled while only one value exists; the three-value case selector is enabled.
 - Recovery state is local to a browser origin/profile, is isolated by curriculum/campaign/case/version, and does not synchronize.
 - Trusted repository packages may supply HTML fragments and CSS. The app is not a sandbox for untrusted curriculum packages.
-- Embedded case-owned editors remain present. Central-editor cutover, embedded-editor removal, repository cleanup, Case 04, and HHH production are not authorized.
+- Embedded case-owned editors remain present as `DEPRECATED_COMPATIBILITY`. Their removal is not authorized. Repository cleanup is `NOT_STARTED`; Case 04 is `NOT_STARTED`; HHH production is outside this cutover.
 - PDF accessibility is outside this HTML-only implementation.
 
-## 9. Protected history and remaining cutover boundary
+## 9. Protected history and canonical-source boundary
 
 `phase2-protected-artifacts.v1.json` freezes Case 01/02 masters, role outputs, controlled sources/assets, manifests, validation/owner records, reconciliation records, and PDFs at the separate reconciliation commit. The generic migration builder verifies each maintained golden, task registry, and controlled-source hash before emitting additive content/CSS/icon/task/package files. It never changes an approved artifact.
 
-Current maintained Case 01/02 standalone HTML remains canonical until a separately authorized cutover. The immutable reconciliation snapshots retain the pre-approval gate state; additive Phase 2 owner-approval records close the active owner and print gates without rewriting protected history. A later cutover may establish the central editor as canonical; this branch neither performs nor implies that cutover.
+The current registered packages, not the standalone masters, are the active editable production sources. The standalone masters and role outputs remain byte-identical approved release and parity snapshots, including their embedded runtimes. The immutable reconciliation snapshots retain their historical gate state and the additive Phase 2 owner-approval records retain the final owner/print decisions without rewriting protected history.
+
+For new cases and future approved revisions, author package-controlled content, task definitions, assets, and presentation sources; load and validate them through the central editor; generate portable complete and role-specific HTML through the approved publishing workflow; validate structure, geometry, presentation, page fit, accessibility, and printing; then freeze approved artifacts as immutable snapshots. Never return a frozen snapshot to service as the ongoing editable source. This prospective rule does not rewrite Case 01–03 package history.
+
+The controlling records are `CURRICULUM_EDITOR_CUTOVER_v1.json` and `CURRICULUM_EDITOR_LEGACY_WORKFLOW_INVENTORY_v1.json`. Cleanup remains a separate owner-authorized phase.

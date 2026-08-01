@@ -1,5 +1,17 @@
 # SSS Campaign 1, Case 02 - Lunar Greenhouse
 
+## Canonical active customization
+
+Use the central Curriculum Editor, not the embedded editor in the standalone master, for active Case 02 customization:
+
+```bash
+python3 apps/curriculum-editor/serve.py
+```
+
+Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `2 - Lunar Greenhouse`. Versions are not selected in the primary case menu. The registered v1.0 package is the canonical active editable production source. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review.
+
+The v1.0 standalone master and role HTML files remain immutable approved release snapshots. Their embedded runtime is deprecated compatibility only; it is retained byte-identical for approval evidence and parity.
+
 ## Current production track
 
 - Master: `master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html`
@@ -35,4 +47,4 @@ Do not run the legacy full release builder merely to reproduce this HTML-only ma
 
 ## Release gate
 
-The approved historical PDF/physical-print release record remains intact. The maintained HTML layout separately passed the Phase 2 owner browser, print-preview, and physical-print reviews on 2026-08-01 and is ready to merge; central cutover has not been performed.
+The approved historical PDF/physical-print release record remains intact. The maintained HTML layout separately passed the Phase 2 owner browser, print-preview, and physical-print reviews on 2026-08-01. The central workflow is canonical; cutover remains a validation build with the owner gate open.

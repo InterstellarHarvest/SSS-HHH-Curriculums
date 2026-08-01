@@ -2,13 +2,25 @@
 
 This directory contains the first validated production foundation for the shared SSS-HHH curriculum system.
 
+## Canonical active customization
+
+Use the central Curriculum Editor, not the embedded editor in a standalone master, for active Case 01 customization:
+
+```bash
+python3 apps/curriculum-editor/serve.py
+```
+
+Open <http://127.0.0.1:8000/apps/curriculum-editor/> and select `1 - ISS Greenhouse`. Versions are not selected in the primary case menu. The registered v1.1 package is the canonical active editable production source. Use **Download Current HTML** for a portable editable copy, **Download Current Role** for clean role-specific HTML, and **Print / Save PDF** for clean isolated-role browser printing. Browser-created PDFs require separate accessibility review.
+
+The v1.1 standalone master and role HTML files remain immutable approved release snapshots. Their embedded runtime is deprecated compatibility only; it is retained byte-identical for approval evidence and parity.
+
 ## Current approved master
 
 `master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`
 
 - **Curriculum version:** v1.1 (current release)
 - **HTML maintenance revision:** 2026-07-31
-- **Phase 2 status:** CURRENT MAINTAINED HTML APPROVED · OWNER REVIEW PASS · READY TO MERGE
+- **Cutover status:** central workflow CANONICAL · VALIDATION BUILD · OWNER GATE OPEN
 - **Physical-print gate for maintained HTML:** PASS (2026-08-01, 100% / Actual Size)
 - **Status:** APPROVED
 - **Game baseline:** `2a6e8a7`
