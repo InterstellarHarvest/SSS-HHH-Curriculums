@@ -364,9 +364,17 @@ def main() -> int:
     results.check("machine-readable parity results record final approval", parity_results.get("status") == "PASS" and parity_results.get("releaseStatus") == "APPROVED_STABLE" and parity_results.get("phase1Status") == "READY_TO_MERGE" and parity_results.get("ownerApproval", {}).get("tester") == "Nate / Owner")
     deterministic = subprocess.run([sys.executable, str(MANIFEST.parent / "validation-artifacts/build_case03_v1_1.py"), "--check"], cwd=REPO, text=True, capture_output=True)
     results.check("Case 03 v1.1 extraction/build is deterministic", deterministic.returncode == 0, (deterministic.stdout + deterministic.stderr).strip())
-    for case_number, path in [(1, "sss/campaign-1/case-01-iss-greenhouse"), (2, "sss/campaign-1/case-02-lunar-greenhouse")]:
-        comparison = subprocess.run(["git", "diff", "--quiet", "main", "--", path], cwd=REPO)
-        results.check(f"approved Case 0{case_number} tracked files are unchanged", comparison.returncode == 0)
+    reconciliation = subprocess.run(
+        [sys.executable, str(REPO / "shared/validation/validate_phase2_reconciliation.py")],
+        cwd=REPO,
+        text=True,
+        capture_output=True,
+    )
+    results.check(
+        "Case 01/02 owner reconciliation and protected curriculum bytes validate",
+        reconciliation.returncode == 0,
+        (reconciliation.stdout + reconciliation.stderr).strip(),
+    )
     changed = subprocess.run(["git", "status", "--porcelain"], cwd=REPO, text=True, capture_output=True, check=True).stdout.splitlines()
     pdf_changes = [line for line in changed if line.lower().endswith(".pdf")]
     results.check("no PDF was generated or modified", not pdf_changes, pdf_changes)

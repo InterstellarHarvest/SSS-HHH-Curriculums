@@ -3,6 +3,12 @@
   "branch": "wip/case02-generated-review-2026-07-24",
   "release_date": "2026-07-30",
   "tester": "Nate / Owner",
+  "record_classification": "PRE_MAINTENANCE_PRINT_APPROVED_HISTORICAL",
+  "superseded_for_html_migration_by": {
+    "case01": "case-01-iss-greenhouse/CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json",
+    "case02": "case-02-lunar-greenhouse/CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json"
+  },
+  "historical_note": "Hashes and physical-print facts in this record describe the pre-maintenance byte sets. They remain historical evidence and are not the current Phase 2 HTML migration goldens.",
   "case01": {
     "release": "v1.1",
     "status": "APPROVED_STABLE",

@@ -8,6 +8,8 @@
 - Game baseline: `2a6e8a7bb75c8c96f26f9ebfe7523668107ab712`
 - Status: APPROVED
 
+The original print-approved v1.0 HTML byte set is retained as `PRE_MAINTENANCE_PRINT_APPROVED_HISTORICAL`. The maintained v1.0 master and five role HTML files, maintenance revision `2026-07-31`, are `CURRENT_HTML_MIGRATION_BASELINE` and `OWNER_AUTHORIZED_FOR_PHASE2`. Historical physical-print evidence remains preserved but does not transfer to the maintained HTML. Its physical-print gate is `OPEN` until Phase 2 owner review. No new curriculum version was created. See `CASE02_CURRENT_HTML_RECONCILIATION_2026-07-31.json`.
+
 The current v1.0 master combines the approved Printable Page Identity v1.0.4 system with Balanced Page Fill and Vertical Rhythm v1.0.2. The contradictory Case 02 v1.1 master/manifest layer remains excluded.
 
 ## Outputs

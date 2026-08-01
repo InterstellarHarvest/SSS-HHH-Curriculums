@@ -4,15 +4,18 @@ This directory contains the first validated production foundation for the shared
 
 ## Current approved master
 
-`master/SSS_C1_CASE01_EDITABLE_MASTER_v1.0.html`
+`master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html`
 
-- **Version:** v1.0 (approved stable release)
+- **Curriculum version:** v1.1 (current release)
+- **HTML maintenance revision:** 2026-07-31
+- **Phase 2 status:** CURRENT_HTML_MIGRATION_BASELINE · OWNER_AUTHORIZED_FOR_PHASE2
+- **Physical-print gate for maintained HTML:** OPEN
 - **Status:** APPROVED
 - **Game baseline:** `2a6e8a7`
 - **Curriculum Bible:** v1.3
 - **Task registry:** `source/task-registry.js` v1.0
 
-Use this file, not the v0.2 or v0.3 prototypes, for validation, PDF generation, and future framework extraction.
+Use the maintained v1.1 HTML byte set as the exact Phase 2 migration and parity reference. The retained v1.0 master is the prior approved release; v0.2 and v0.3 remain prototypes. Do not regenerate PDFs from this baseline.
 
 ## Controlled source documents
 
@@ -37,7 +40,7 @@ The Markdown sources, HTML master, Answer Key exemplars, and task registry use t
 - `published/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.0.pdf`
 - `published/SSS_C1_CASE01_GRAYSCALE_REVIEW_v1.0.pdf`
 
-These are the current published outputs; the owner completed physical print testing at 100% scale on 2026-07-24.
+These are retained v1.0 historical outputs; the owner completed physical print testing at 100% scale on 2026-07-24.
 
 ## Validation
 
@@ -79,3 +82,5 @@ Case 01 v1.1 is the approved stable printable-identity successor as of 2026-07-3
 The maintained v1.1 master and five role HTML files now use the canonical task-title scale: 11.5 pt for standard roles and 14 pt for Accessible. This is an HTML-only maintenance correction. Run `validation-artifacts/build_case01_html_maintenance.py` and `validation-artifacts/validate_case01_html_maintenance.py`; do not run the legacy release validator, which generates PDFs. Existing approved PDFs remain byte-identical historical artifacts, and physical-print approval is not claimed for the updated HTML until separately tested.
 
 Optional extensions explicitly declare shared component contract `canonical-v1.0` while preserving the approved Case 01 neutral callout, solid slate rail, and wrench-icon geometry that governs later cases.
+
+The original print-approved v1.1 HTML hashes are preserved as `PRE_MAINTENANCE_PRINT_APPROVED_HISTORICAL`. The maintained v1.1 master and role HTML are the owner-authorized current Phase 2 parity baseline. Historical physical-print evidence is preserved but is not inherited by the maintained HTML; its physical-print gate remains open until Phase 2 owner review. No new curriculum version was created. See `CASE01_CURRENT_HTML_RECONCILIATION_2026-07-31.json`.

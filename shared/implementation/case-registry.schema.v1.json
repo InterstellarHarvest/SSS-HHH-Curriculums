@@ -48,6 +48,11 @@
                       "editorShell": { "type": ["string", "null"] },
                       "editorPackage": { "type": "string", "minLength": 1 },
                       "master": { "type": "string", "minLength": 1 },
+                      "htmlMaintenanceRevision": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+                      "reconciliationRecord": { "type": "string", "minLength": 1 },
+                      "currentMasterSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+                      "ownerAuthorization": { "const": "OWNER_AUTHORIZED_FOR_PHASE2" },
+                      "physicalPrintGate": { "enum": ["OPEN", "PASS"] },
                       "approval": {
                         "type": "object",
                         "required": ["date", "tester", "ownerReview", "browserPhysicalPrint", "scale", "printer", "paper", "artifactPolicy"],
