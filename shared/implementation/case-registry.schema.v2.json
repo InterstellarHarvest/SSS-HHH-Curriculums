@@ -46,31 +46,60 @@
   "$defs": {
     "case": {
       "type": "object",
-      "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval", "historyRecord"],
+      "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"],
       "properties": {
         "id": {"type": "string", "minLength": 1},
         "displayOrder": {"type": "integer", "minimum": 1},
         "displayLabel": {"type": "string", "pattern": "^[0-9]+ - .+"},
         "title": {"type": "string", "minLength": 1},
         "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
-        "status": {"const": "APPROVED_STABLE"},
+        "status": {"enum": ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN", "APPROVED_STABLE"]},
         "editorShell": {"const": "1.0"},
         "editorPackage": {"type": "string", "pattern": "/source/case-package\\.json$"},
         "centralWorkflow": {"const": "CANONICAL"},
-        "packageStatus": {"const": "APPROVED"},
+        "packageStatus": {"enum": ["DRAFT", "VALIDATION", "OWNER_REVIEW", "APPROVED"]},
         "approval": {
           "type": "object",
-          "required": ["date", "owner", "status", "printStatus"],
+          "required": ["owner", "status", "printStatus"],
           "properties": {
             "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
             "owner": {"type": "string", "minLength": 1},
-            "status": {"const": "APPROVED"},
-            "printStatus": {"const": "PASS"}
+            "status": {"enum": ["OWNER_REVIEW_NOT_STARTED", "OWNER_REVIEW_IN_PROGRESS", "OWNER_REVIEW_PASS", "APPROVED"]},
+            "printStatus": {"enum": ["NOT_RUN", "PASS", "FAIL"]}
           },
           "additionalProperties": false
         },
         "historyRecord": {"type": "string", "pattern": "/history/release-v[0-9]+\\.[0-9]+\\.json$"}
       },
+      "allOf": [
+        {
+          "if": {"properties": {"status": {"const": "APPROVED_STABLE"}}},
+          "then": {
+            "required": ["historyRecord"],
+            "properties": {
+              "packageStatus": {"const": "APPROVED"},
+              "approval": {
+                "required": ["date", "owner", "status", "printStatus"],
+                "properties": {"status": {"const": "APPROVED"}, "printStatus": {"const": "PASS"}}
+              }
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"const": "DRAFT"}}},
+          "then": {
+            "not": {"required": ["historyRecord"]},
+            "properties": {
+              "packageStatus": {"const": "DRAFT"},
+              "approval": {"properties": {"status": {"const": "OWNER_REVIEW_NOT_STARTED"}}}
+            }
+          }
+        },
+        {
+          "if": {"properties": {"status": {"enum": ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"]}}},
+          "then": {"not": {"required": ["historyRecord"]}}
+        }
+      ],
       "additionalProperties": false
     }
   },

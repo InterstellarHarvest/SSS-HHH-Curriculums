@@ -56,6 +56,19 @@
               "packageStatus": "APPROVED",
               "approval": {"date": "2026-07-31", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
               "historyRecord": "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json"
+            },
+            {
+              "id": "SSS-C1-CASE04",
+              "displayOrder": 4,
+              "displayLabel": "4 - Hayes Orbital Station",
+              "title": "Hayes Orbital Station",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-1/case-04-hayes-orbital-station/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_NOT_STARTED", "printStatus": "NOT_RUN"}
             }
           ]
         }

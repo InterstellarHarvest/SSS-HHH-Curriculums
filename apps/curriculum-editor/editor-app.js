@@ -30,6 +30,7 @@ const elements = {
   curriculum: document.querySelector("#curriculumSelect"),
   campaign: document.querySelector("#campaignSelect"),
   caseSelect: document.querySelector("#caseSelect"),
+  caseStatusLabel: document.querySelector(".case-status > span"),
   caseStatus: document.querySelector("#caseStatus"),
   roleLibrary: document.querySelector("#roleLibrary"),
   title: document.querySelector("#workspaceTitle"),
@@ -119,7 +120,7 @@ function validatePackage(pkg) {
     "schemaVersion", "id", "curriculum", "campaign", "title", "version", "status", "approval",
     "documentKey", "supportedRoles", "defaultRole", "shell", "taskRegistry", "content",
     "presentation", "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility",
-    "sourceHashes", "releaseHistory"
+    "sourceHashes"
   ], "Case package");
   if (pkg.schemaVersion !== SUPPORTED_PACKAGE_SCHEMA) {
     throw new Error(`Unsupported case-package schema version: ${pkg.schemaVersion}`);
@@ -166,9 +167,19 @@ function validatePackage(pkg) {
       throw new Error("Phrase-bank display order must differ from the answer sequence.");
     }
   }
-  requireFields(pkg.approval, ["date", "owner", "status", "printStatus"], "Approval summary");
-  if (pkg.status !== "APPROVED_STABLE" || pkg.approval.status !== "APPROVED" || pkg.approval.printStatus !== "PASS") {
-    throw new Error("Package approval summary is incomplete.");
+  requireFields(pkg.approval, ["owner", "status", "printStatus"], "Approval summary");
+  const lifecycle = ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN", "APPROVED_STABLE"];
+  if (!lifecycle.includes(pkg.status)) throw new Error(`Unsupported package lifecycle status: ${pkg.status}`);
+  if (pkg.status === "APPROVED_STABLE") {
+    requireFields(pkg.approval, ["date", "owner", "status", "printStatus"], "Approved package summary");
+    if (pkg.approval.status !== "APPROVED" || pkg.approval.printStatus !== "PASS" || !pkg.releaseHistory) {
+      throw new Error("Approved package summary or release history is incomplete.");
+    }
+  } else if (pkg.releaseHistory) {
+    throw new Error("Unreleased packages may not declare release history.");
+  }
+  if (pkg.status === "DRAFT" && (pkg.approval.status !== "OWNER_REVIEW_NOT_STARTED" || pkg.approval.printStatus !== "NOT_RUN")) {
+    throw new Error("Draft package must remain OWNER_REVIEW_NOT_STARTED with print status NOT_RUN.");
   }
 }
 
@@ -417,7 +428,11 @@ function syncLibrarySelection(selection) {
   elements.curriculum.value = selection.curriculum.id;
   elements.campaign.value = selection.campaign.id;
   elements.caseSelect.value = selection.caseEntry.id;
-  elements.caseStatus.textContent = `v${casePackage.version} · ${casePackage.status}`;
+  const isReleased = casePackage.status === "APPROVED_STABLE";
+  elements.caseStatusLabel.textContent = isReleased ? "Current release" : "Development status";
+  elements.caseStatus.textContent = isReleased
+    ? `v${casePackage.version} · ${casePackage.status}`
+    : `${casePackage.status} · ${casePackage.approval.status}`;
   elements.title.textContent = `${casePackage.title} · ${ROLE_LABELS[casePackage.defaultRole]}`;
   elements.pdfNotice.textContent = casePackage.accessibility.pdfNotice;
 }

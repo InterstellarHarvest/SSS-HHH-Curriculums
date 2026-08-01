@@ -1,8 +1,8 @@
 # SSS/HHH Curriculum Editor
 
-The repository-local Curriculum Editor is the canonical interface for SSS Campaign 1 Cases 01–03. It discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
+The repository-local Curriculum Editor is the canonical interface for SSS Campaign 1 Cases 01–04. It discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-Status: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
+Status: Cases 01–03 `APPROVED_STABLE` · Case 04 `DRAFT · OWNER_REVIEW_NOT_STARTED`
 
 ## Launch
 
@@ -40,6 +40,6 @@ python3 apps/curriculum-editor/tests/validate_static.py
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 ```
 
-The browser suite covers all 24 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, identities, and JavaScript errors. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
+The browser suite covers all 32 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, identities, and JavaScript errors. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
 
 The server binds to `127.0.0.1` and serves repository files read-only. Packages are trusted repository content; downloaded editable HTML contains JavaScript and should be treated accordingly.

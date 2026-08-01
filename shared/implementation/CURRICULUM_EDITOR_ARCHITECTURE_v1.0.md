@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-Status: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
+Status: Cases 01–03 `APPROVED_STABLE` · Case 04 `DRAFT · OWNER_REVIEW_NOT_STARTED`
 
 Application: `apps/curriculum-editor/`
 
@@ -9,7 +9,7 @@ Package schema: `shared/implementation/case-package.schema.v2.json`
 
 ## Runtime boundary
 
-The central application owns library navigation, toolbar orchestration, editing state, autosave, page-fit reporting, Shadow DOM isolation, export assembly, and isolated printing. Shared shell files own recurring controls and component styles. Each case package owns identity, approval summary, worksheet content, presentation CSS, task definitions, referenced assets, four role page counts, output filename templates, defaults, accessibility metadata, source hashes, and its release-history record.
+The central application owns library navigation, toolbar orchestration, editing state, autosave, page-fit reporting, Shadow DOM isolation, export assembly, and isolated printing. Shared shell files own recurring controls and component styles. Each case package owns identity, lifecycle and approval summary, worksheet content, presentation CSS, task definitions, referenced assets, four role page counts, output filename templates, defaults, accessibility metadata, and source hashes. An `APPROVED_STABLE` package also owns a release-history record; an unreleased native package must not declare one.
 
 Packages never depend on stored complete documents or role outputs.
 
@@ -50,7 +50,7 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 
 - `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
 - `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, release history, and runtime serialization rules.
-- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 24 case/role/presentation states plus switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
+- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 32 case/role/presentation states plus switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
 
 The browser runner uses only temporary directories for profiles and screenshots. A full run must leave the tracked tree unchanged.
 

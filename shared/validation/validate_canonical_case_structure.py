@@ -111,8 +111,8 @@ def main() -> int:
         "localUntrackedArtifactsExcluded": 0,
     }
     cases = sorted(path for path in CAMPAIGN.glob("case-*") if path.is_dir())
-    if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03"]:
-        failures.append(f"expected exactly Cases 01–03; found {[path.name for path in cases]}")
+    if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03", "case-04"]:
+        failures.append(f"expected exactly Cases 01–04; found {[path.name for path in cases]}")
 
     tracked = tracked_files()
     pdfs = [path for path in tracked if path.lower().endswith(".pdf")]
@@ -181,15 +181,25 @@ def main() -> int:
 
         history = case / "history"
         records = sorted(history.glob("release-v*.json")) if history.is_dir() else []
-        if not records:
-            failures.append(f"{case.name}: at least one history/release-vX.json is required")
-        if package.get("releaseHistory") not in {path.relative_to(ROOT).as_posix() for path in records}:
-            failures.append(f"{case.name}: package releaseHistory does not name a retained record")
         extra_history = sorted(path.name for path in history.iterdir() if path.is_file() and path not in records) if history.is_dir() else []
         if extra_history:
             failures.append(f"{case.name}: unexpected history files: {extra_history}")
+        released = package.get("status") == "APPROVED_STABLE"
+        if released:
+            if len(records) != 1:
+                failures.append(f"{case.name}: APPROVED_STABLE requires exactly one history/release-vX.json")
+            if package.get("releaseHistory") not in {path.relative_to(ROOT).as_posix() for path in records}:
+                failures.append(f"{case.name}: package releaseHistory does not name a retained record")
+        else:
+            if package.get("status") not in {"DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"}:
+                failures.append(f"{case.name}: unsupported unreleased lifecycle status: {package.get('status')}")
+            if records or "releaseHistory" in package:
+                failures.append(f"{case.name}: unreleased DRAFT must not contain or declare release history")
+            approval = package.get("approval", {})
+            if package.get("status") == "DRAFT" and (approval.get("status") != "OWNER_REVIEW_NOT_STARTED" or approval.get("printStatus") != "NOT_RUN"):
+                failures.append(f"{case.name}: DRAFT must remain OWNER_REVIEW_NOT_STARTED with printStatus NOT_RUN")
 
-        if len(records) == 1:
+        if released and len(records) == 1:
             try:
                 release = json.loads(records[0].read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError) as error:

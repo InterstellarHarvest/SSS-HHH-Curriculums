@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C1-CASE04",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "Hayes Orbital Station",
+  "subtitle": "Campaign 1 · Case 04 · Light stress and reactor control",
+  "location": "L2 Lagrange Point · Orbital Research Station",
+  "version": "0.1",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE04:v0.1:curriculum-editor-v2",
+  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-1/case-04-hayes-orbital-station/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-1/case-04-hayes-orbital-station/source/presentation.css",
+    "isolation": "shadow-dom"
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-04-hayes-orbital-station/source/task-registry.js",
+    "global": "SSS_CASE04_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "inline-text-mark",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case04-instructional-models",
+      "type": "html-css-diagrams",
+      "selector": "[data-timeline-contract], [data-process-contract], [data-systems-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {"documentRole": "Student Mission", "pageCount": 4},
+    "teacher": {"documentRole": "Teacher Guide", "pageCount": 7},
+    "answer": {"documentRole": "Answer Key", "pageCount": 4},
+    "accessible": {"documentRole": "Accessible Mission", "pageCount": 6}
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE04_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "SSS_C1_CASE04_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE04_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE04_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE04_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 Case 04 v0.1 — Hayes Orbital Station Curriculum Editor Draft",
+    "loadAnnouncement": "Hayes Orbital Station Case 04 v0.1 draft package loaded. Student Mission selected. Owner review has not started.",
+    "extendedDescriptionSelectors": [".alt-support", "[data-timeline-contract]", "[data-process-contract]", "[data-systems-contract]", "[data-cause-effect-contract]"],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "aaf26974be79b104da8222382eafb92a1810719116d63171432db712734bcd20",
+    "presentation": "812cbfd47ef4360e5e661ef9a31ecfe1a02987ff60ec7bb5f242e62ee8d76941",
+    "taskRegistry": "2f0c9c9c70d753f928240765dc16821345e8169766d7864911db420381b03b28"
+  }
+}

@@ -2,11 +2,11 @@
 
 Shared curriculum repository for **Space Sprout Sleuth (SSS)** and **Hunger, Harvest, & History (HHH)**.
 
-Canonical case-structure migration: `APPROVED · OWNER_REVIEW_PASS · READY_TO_MERGE · CASE04_NOT_STARTED`
+Canonical Cases 01–03: `APPROVED_STABLE` · Case 04: `DRAFT · OWNER_REVIEW_NOT_STARTED`
 
 ## Canonical production workflow
 
-The registered case package and its package-controlled files are the only active production source. For SSS Campaign 1 Cases 01–03, launch the central Curriculum Editor from the repository root:
+The registered case package and its package-controlled files are the only active source. For SSS Campaign 1 Cases 01–04, launch the central Curriculum Editor from the repository root:
 
 ```bash
 python3 apps/curriculum-editor/serve.py
@@ -32,11 +32,11 @@ case-XX-slug/
 │   ├── task-registry.js
 │   └── optional referenced source files
 ├── assets/                  optional and referenced only
-└── history/
+└── history/                 APPROVED_STABLE only
     └── release-vX.json
 ```
 
-This structure is mandatory for Case 04 onward. Case 04 is `NOT_STARTED`.
+Unreleased native cases require the README and canonical `source/` files but do not receive release history until `APPROVED_STABLE`. Case 04 is `DRAFT · OWNER_REVIEW_NOT_STARTED`.
 
 Key implementation records:
 

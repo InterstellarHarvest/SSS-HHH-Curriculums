@@ -22,10 +22,21 @@ REJECTED_SAA = (
     "Solar Agriculture Agency", "Space Agriculture Authority",
 )
 EXPECTED = {
-    "SSS-C1-CASE01": ("1.1", {"student": 3, "teacher": 7, "answer": 3, "accessible": 6}),
-    "SSS-C1-CASE02": ("1.0", {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}),
-    "SSS-C1-CASE03": ("1.1", {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}),
+    "SSS-C1-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 6}},
+    "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}},
+    "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
+    "SSS-C1-CASE04": {"version": "0.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6}},
 }
+CASE04_TASK_TITLES = [
+    "Initial Thinking — Identify the Variable",
+    "Build the Change-to-Crash Timeline",
+    "Isolate Variables and Test Alternatives",
+    "Diagnose the Reactor Failure",
+    "Model the Repeating Crash Cycle",
+    "Explain the Failure with CER",
+    "Design Independent Reactor Controls",
+    "Exit Ticket — Cause or Effect?",
+]
 
 
 class Results:
@@ -140,17 +151,34 @@ def main() -> int:
 
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
-    results.check("registry discovers exactly Cases 01–03 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
-    results.check("registry contains only operational case fields", all(set(entry) == {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval", "historyRecord"} for entry in entries))
+    results.check("registry discovers exactly Cases 01–04 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
+    results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
 
     for entry in entries:
         case_id = entry["id"]
-        expected_version, expected_counts = EXPECTED[case_id]
+        expected = EXPECTED[case_id]
+        expected_version = expected["version"]
+        expected_counts = expected["counts"]
+        expected_status = expected["status"]
         package_path = ROOT / entry["editorPackage"]
         package = load_json(package_path)
         errors = schema_errors(package, package_schema)
         results.check(f"{case_id} package validates against schema v2", not errors, errors)
-        results.check(f"{case_id} registry and package identity agree", package["id"] == case_id and package["version"] == entry["version"] == expected_version and package["status"] == entry["status"] == "APPROVED_STABLE")
+        results.check(f"{case_id} registry and package identity agree", package["id"] == case_id and package["version"] == entry["version"] == expected_version and package["status"] == entry["status"] == expected_status)
+        lifecycle_ok = (
+            expected_status == "APPROVED_STABLE"
+            and package.get("releaseHistory") == entry.get("historyRecord")
+            and package["approval"].get("status") == entry["approval"].get("status") == "APPROVED"
+            and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "PASS"
+        ) or (
+            expected_status == "DRAFT"
+            and "releaseHistory" not in package
+            and "historyRecord" not in entry
+            and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_NOT_STARTED"
+            and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
+        )
+        results.check(f"{case_id} lifecycle metadata matches release policy", lifecycle_ok)
         results.check(f"{case_id} has exactly four instructional roles", package["supportedRoles"] == ROLES and list(package["rolePageStructure"]) == ROLES)
         results.check(f"{case_id} has complete plus four normal output names", list(package["outputs"]) == ["complete", *ROLES] and all("GRAYSCALE" not in filename.upper() for filename in package["outputs"].values()))
         counts = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
@@ -180,7 +208,8 @@ def main() -> int:
         results.check(f"{case_id} page and persistence IDs are unique", len(page_ids) == len(set(page_ids)) and len(persist_ids) == len(set(persist_ids)) and None not in persist_ids)
         results.check(f"{case_id} response fields have accessible names", all(node.get("aria-label") or node.get("aria-labelledby") for node in soup.select("[data-response]")))
         registry_data = task_registry(paths["taskRegistry"])
-        results.check(f"{case_id} task registry owns Tasks 1–9 and four roles", [int(task["number"]) for task in registry_data["tasks"]] == list(range(1, 10)) and set(registry_data["roles"]) == set(ROLES))
+        expected_task_numbers = list(range(1, expected["tasks"] + 1))
+        results.check(f"{case_id} task registry owns its numbered tasks and four roles", [int(task["number"]) for task in registry_data["tasks"]] == expected_task_numbers and set(registry_data["roles"]) == set(ROLES))
         results.check(f"{case_id} CER components are page-atomic", all(all(child.find_parent(class_="page") is root.find_parent(class_="page") for child in root.select("*")) for root in soup.select("[data-cer-contract],.cer-stack")))
         results.check(f"{case_id} process models are page-atomic", all(all(child.find_parent(class_="page") is root.find_parent(class_="page") for child in root.select("*")) for root in soup.select("[data-process-contract],.process-figure,.linear-process")))
         results.check(f"{case_id} figures and tables retain structure", all(figure.select_one("figcaption") for figure in soup.select("figure")) and all(table.select_one("th") and len(table.select("tr")) >= 2 for table in soup.select("table")))
@@ -189,12 +218,35 @@ def main() -> int:
         whole_page_filter = re.search(r"(?:body|\.page)\.grayscale\s*\{[^}]*filter\s*:", presentation, re.I | re.S)
         results.check(f"{case_id} grayscale uses presentation tokens without whole-page filtering", "grayscale" in presentation.lower() and not whole_page_filter)
 
-        history_path = ROOT / package["releaseHistory"]
-        history = load_json(history_path)
-        history_errors = schema_errors(history, history_schema)
-        results.check(f"{case_id} release history validates against schema v1", not history_errors, history_errors)
-        former_roles = history.get("formerArtifacts", {}).get("roles", {})
-        results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and set(former_roles) == set(ROLES) and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
+        if expected_status == "APPROVED_STABLE":
+            history_path = ROOT / package["releaseHistory"]
+            history = load_json(history_path)
+            history_errors = schema_errors(history, history_schema)
+            results.check(f"{case_id} release history validates against schema v1", not history_errors, history_errors)
+            former_roles = history.get("formerArtifacts", {}).get("roles", {})
+            results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and set(former_roles) == set(ROLES) and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
+        else:
+            case_root = package_path.parents[1]
+            results.check(f"{case_id} unreleased DRAFT has no history release record", not (case_root / "history").exists() and "releaseHistory" not in package)
+
+        if case_id == "SSS-C1-CASE04":
+            task_titles = [task["title"] for task in registry_data["tasks"]]
+            results.check("Case 04 task registry uses the eight locked titles", task_titles == CASE04_TASK_TITLES, task_titles)
+            role_task_orders = {
+                role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]
+                for role in ["student", "answer", "accessible"]
+            }
+            results.check("Case 04 Student, Answer Key, and Accessible task order has exact parity", all(order == expected_task_numbers for order in role_task_orders.values()), role_task_orders)
+            results.check("Case 04 visual component contracts are complete", all(soup.select_one(selector) for selector in ["[data-timeline-contract]", "[data-evidence-summary]", "[data-process-contract]", "[data-cause-effect-contract]", "[data-systems-contract]", "[data-cer-contract]"]))
+            timeline_roots = soup.select("[data-timeline-contract]")
+            process_roots = soup.select("[data-process-contract]")
+            results.check("Case 04 timeline and process models are page-atomic", all(root.find_parent(class_="page") is child.find_parent(class_="page") for root in timeline_roots + process_roots for child in root.select("*")))
+            accessible_pages = soup.select('.page[data-role="accessible"]')
+            results.check("Case 04 Accessible pages preserve document and task reading order", [page.get("data-page-id") for page in accessible_pages] == [f"accessible-mission-{index:02d}" for index in range(1, 7)] and role_task_orders["accessible"] == expected_task_numbers)
+            required_sequence = ["Four months of stable operation", "Lighting changes from 16/8 to uncontrolled 24/0", "About one week later: first crash", "Every 6–8 days: another crash", "Between crashes: surviving cells rebuild"]
+            results.check("Case 04 uses all locked relative sequence labels", all(label in content for label in required_sequence))
+            results.check("Case 04 omits unsupported mission-day and precise-density data", not re.search(r"Day\s*12[18]|culture density\s*[:=]\s*\d", content, re.I))
+            results.check("Case 04 keeps reactor-specific continuous-cultivation qualification", "Continuous cultivation may work with appropriate independent intensity, mixing, density, and process controls." in content)
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable = (APP / "portable-runtime.js").read_text(encoding="utf-8")

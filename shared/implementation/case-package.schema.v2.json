@@ -8,7 +8,7 @@
     "version", "status", "approval", "institutionalIdentity", "documentKey",
     "supportedRoles", "defaultRole", "shell", "content", "presentation", "taskRegistry",
     "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility",
-    "sourceHashes", "releaseHistory"
+    "sourceHashes"
   ],
   "properties": {
     "schemaVersion": {"const": 2},
@@ -19,15 +19,15 @@
     "subtitle": {"type": "string", "minLength": 1},
     "location": {"type": "string", "minLength": 1},
     "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
-    "status": {"const": "APPROVED_STABLE"},
+    "status": {"enum": ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN", "APPROVED_STABLE"]},
     "approval": {
       "type": "object",
-      "required": ["date", "owner", "status", "printStatus"],
+      "required": ["owner", "status", "printStatus"],
       "properties": {
         "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
         "owner": {"type": "string", "minLength": 1},
-        "status": {"const": "APPROVED"},
-        "printStatus": {"const": "PASS"}
+        "status": {"enum": ["OWNER_REVIEW_NOT_STARTED", "OWNER_REVIEW_IN_PROGRESS", "OWNER_REVIEW_PASS", "APPROVED"]},
+        "printStatus": {"enum": ["NOT_RUN", "PASS", "FAIL"]}
       },
       "additionalProperties": false
     },
@@ -184,6 +184,31 @@
       "additionalProperties": false
     }
   },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "APPROVED_STABLE"}}},
+      "then": {
+        "required": ["releaseHistory"],
+        "properties": {
+          "approval": {
+            "required": ["date", "owner", "status", "printStatus"],
+            "properties": {"status": {"const": "APPROVED"}, "printStatus": {"const": "PASS"}}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "DRAFT"}}},
+      "then": {
+        "not": {"required": ["releaseHistory"]},
+        "properties": {"approval": {"properties": {"status": {"const": "OWNER_REVIEW_NOT_STARTED"}}}}
+      }
+    },
+    {
+      "if": {"properties": {"status": {"enum": ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"]}}},
+      "then": {"not": {"required": ["releaseHistory"]}}
+    }
+  ],
   "$defs": {
     "roleStructure": {
       "type": "object",

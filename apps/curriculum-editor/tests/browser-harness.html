@@ -351,22 +351,28 @@
       const canonicalCases = [
         { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
         { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" }
+        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "0.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 4, teacher: 7, answer: 4, accessible: 6 }, complete: "CASE04_CURRICULUM_EDITOR_v0.1", student: "CASE04_STUDENT_MISSION_v0.1" }
       ];
       check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(canonicalCases.map(item => item.id)));
-      check("case dropdown labels are exactly owner-approved and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat"]));
+      check("case dropdown labels are exactly owner-approved and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station"]));
       check("case dropdown option text contains no version, repository ID, or release status", Array.from(doc.querySelectorAll("#caseSelect option")).every(option => !/\bv\d|SSS-C1|APPROVED/.test(option.textContent)));
       check("multi-case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
       check("single-value selectors are disabled and non-interactive", ["curriculumSelect", "campaignSelect"].every(id => doc.querySelector(`#${id}`).disabled && doc.querySelector(`#${id}`).getAttribute("aria-disabled") === "true"));
 
       const caseMarkers = {};
+      const matrixStates = [];
       for (const item of canonicalCases) {
         await api.selectCase(item.id);
         api = win.__curriculumEditor;
         workspace = api.getWorkspace();
         worksheetDoc = api.getWorksheetDocument();
         check(`${item.id} loads from registry with current version`, api.getPackage().id === item.id && api.getPackage().version === item.version);
-        check(`${item.id} shows its version once in the low-prominence release status`, doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === `v${item.version} · ${item.status}` && !doc.querySelector("#workspaceTitle").textContent.includes(`v${item.version}`) && !doc.querySelector("#caseBreadcrumb").textContent.includes(`v${item.version}`) && !doc.querySelector("#loadStatus > span[aria-hidden=true]").textContent.includes(`v${item.version}`));
+        if (item.status === "APPROVED_STABLE") {
+          check(`${item.id} shows its version once in the low-prominence release status`, doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === `v${item.version} · ${item.status}` && !doc.querySelector("#workspaceTitle").textContent.includes(`v${item.version}`) && !doc.querySelector("#caseBreadcrumb").textContent.includes(`v${item.version}`) && !doc.querySelector("#loadStatus > span[aria-hidden=true]").textContent.includes(`v${item.version}`));
+        } else {
+          check(`${item.id} visibly shows development lifecycle without version selection`, doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === `${item.status} · ${item.reviewStatus}` && doc.querySelector(`#caseSelect option[value="${item.id}"]`).textContent === item.label && !doc.querySelector(`#caseSelect option[value="${item.id}"]`).textContent.includes(item.version));
+        }
         check(`${item.id} installs only its current Shadow DOM presentation`, doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("style[data-case-package-presentation]").length === 1 && doc.querySelector("#worksheetHost").shadowRoot.querySelector("style").dataset.casePackagePresentation === `${item.id}:v${item.version}`);
         for (const [role, expected] of Object.entries(item.counts)) {
           api.setRole(role);
@@ -396,9 +402,10 @@
           { name: `${role} grayscale presentation`, role, grayscale: true, expected }
         ]);
         for (const profile of printProfiles) {
+          const matrixStart = assertions.length;
           api.setRole(profile.role);
           api.saveState({ grayscale: profile.grayscale });
-          if (item.id === "SSS-C1-CASE03" && profile.grayscale) {
+          if (["SSS-C1-CASE03", "SSS-C1-CASE04"].includes(item.id) && profile.grayscale) {
             const palette = win.getComputedStyle(worksheetDoc);
             const grayscaleTokens = ["--panel", "--panel-light", "--neutral-field", "--institution", "--cyan-dark", "--slate", "--botanical", "--accent-dark", "--accent-pale", "--primary", "--secondary", "--soft", "--caution", "--caution-field"];
             const tintedSurfaces = Array.from(workspace.querySelectorAll(".callout,.data-table th,.teacher-card,.canonical-phrase-bank,.optional-extension"));
@@ -415,6 +422,7 @@
           check(`${item.id} ${profile.name} has no blank or hidden printable fragments`, printPages.every(page => !page.hidden && page.querySelector(".page-frame")?.textContent.trim()) && Array.from(printDoc.querySelector("#workspace").children).every(node => node.matches(".page")));
           check(`${item.id} ${profile.name} print document preserves role and grayscale state`, printDoc.body.dataset.role === profile.role && printDoc.body.classList.contains("grayscale") === profile.grayscale && printDoc.body.classList.contains("hide-boundaries"));
           check(`${item.id} ${profile.name} worksheet export preserves its role and normal filename`, (() => { const output = api.getCurrentRoleOutput(); const exported = new DOMParser().parseFromString(api.serializeRoleHTML(profile.role), "text/html"); return output.outputRole === profile.role && !output.filename.includes("GRAYSCALE") && exported.body.dataset.role === profile.role && exported.body.classList.contains("grayscale") === profile.grayscale && exported.querySelectorAll(`.page[data-role="${profile.role}"]`).length === profile.expected && !exported.querySelector(`.page:not([data-role="${profile.role}"])`); })());
+          matrixStates.push({ caseId: item.id, role: profile.role, grayscale: profile.grayscale, pass: assertions.slice(matrixStart).every(assertion => assertion.pass) });
         }
         api.setRole("student");
         api.saveState({ grayscale: false });
@@ -459,7 +467,21 @@
           check("Print / Save PDF calls only the isolated role window and removes its temporary iframe after afterprint", parentPrintCalls === 0 && isolatedWindowPrintCalls === 1 && !actualPrintFrame.isConnected);
         }
         win.print = parentPrint;
+        if (item.id === "SSS-C1-CASE04") {
+          const lockedTitles = ["Initial Thinking — Identify the Variable", "Build the Change-to-Crash Timeline", "Isolate Variables and Test Alternatives", "Diagnose the Reactor Failure", "Model the Repeating Crash Cycle", "Explain the Failure with CER", "Design Independent Reactor Controls", "Exit Ticket — Cause or Effect?"];
+          const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
+          check("Case 04 generated Student, Answer Key, and Accessible task titles have exact parity", ["student", "answer", "accessible"].every(role => JSON.stringify(roleTitles(role)) === JSON.stringify(lockedTitles)));
+          check("Case 04 has one atomic CER in each required learner role", ["student-v1.0", "answer-v1.0", "accessible-v1.0"].every(contract => { const root = workspace.querySelector(`[data-cer-contract="${contract}"]`); return root && Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page")); }));
+          check("Case 04 timeline and process models remain atomic", Array.from(workspace.querySelectorAll("[data-timeline-contract],[data-process-contract]")).every(root => Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page"))));
+          check("Case 04 Accessible pages retain ordered reading structure", JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="accessible"]')).map(page => page.dataset.pageId)) === JSON.stringify(["accessible-mission-01", "accessible-mission-02", "accessible-mission-03", "accessible-mission-04", "accessible-mission-05", "accessible-mission-06"]));
+        }
       }
+
+      const approvedMatrixStates = matrixStates.filter(state => state.caseId !== "SSS-C1-CASE04");
+      const case04MatrixStates = matrixStates.filter(state => state.caseId === "SSS-C1-CASE04");
+      check("existing Cases 01–03 presentation matrix remains 24/24", approvedMatrixStates.length === 24 && approvedMatrixStates.every(state => state.pass), JSON.stringify(approvedMatrixStates.filter(state => !state.pass)));
+      check("Case 04 presentation matrix passes 8/8", case04MatrixStates.length === 8 && case04MatrixStates.every(state => state.pass), JSON.stringify(case04MatrixStates.filter(state => !state.pass)));
+      check("all 32 case-role-presentation matrix states pass", matrixStates.length === 32 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
 
       for (const item of canonicalCases) {
         await api.selectCase(item.id);
