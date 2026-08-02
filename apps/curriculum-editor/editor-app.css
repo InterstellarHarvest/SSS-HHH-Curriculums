@@ -259,6 +259,7 @@ body.edit-mode .mode-indicator {
 }
 
 .layout-changes {
+  display: none;
   width: min(100%, 1180px);
   margin: 0 auto 18px;
   padding: 12px;
@@ -266,6 +267,7 @@ body.edit-mode .mode-indicator {
   border: 1px solid #7ea7a5;
   border-left: 5px solid #397b78;
 }
+body.layout-authoring-ready[data-role="accessible"].edit-mode .layout-changes:not([hidden]) { display: block; }
 body.case-loading .layout-changes { display: none !important; }
 .layout-changes-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .layout-panel-content[hidden] { display: none !important; }

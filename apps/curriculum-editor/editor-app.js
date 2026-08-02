@@ -982,6 +982,7 @@ function showError(error) {
   elements.worksheetHost.setAttribute("aria-busy", "false");
   caseLoading = false;
   document.body.classList.remove("case-loading");
+  document.body.classList.remove("layout-authoring-ready");
   elements.layoutPanel.hidden = true;
 }
 
@@ -1019,6 +1020,7 @@ async function loadCase(selected, initial = false) {
   elements.layoutPanel.hidden = true;
   caseLoading = true;
   document.body.classList.add("case-loading");
+  document.body.classList.remove("layout-authoring-ready");
   layoutController?.destroy();
   layoutController = null;
   elements.error.hidden = true;
@@ -1100,6 +1102,7 @@ async function loadCase(selected, initial = false) {
   caseLoading = false;
   document.body.classList.remove("case-loading");
   layoutController.syncVisibility(state.role, state.editMode, true);
+  document.body.classList.add("layout-authoring-ready");
   safeStorageSet(SELECTED_CASE_KEY, selected.caseEntry.id);
   window.__curriculumEditor = {
     getState: () => ({ ...state }),
