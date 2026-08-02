@@ -34,4 +34,4 @@ The current tree is intentionally lean. Previous complete documents, role files,
 
 ## Validation
 
-Shared static validation reads canonical sources directly. Browser validation assembles role/export/print documents in memory, uses temporary browser profiles and screenshots, validates all 32 case/role/presentation states, and discards outputs. Validation must leave the worktree unchanged.
+Shared static validation reads canonical sources directly. Browser validation assembles role/export/print documents in memory, uses temporary browser profiles and screenshots, validates all 40 case/role/presentation states, and discards outputs. Validation must leave the worktree unchanged.

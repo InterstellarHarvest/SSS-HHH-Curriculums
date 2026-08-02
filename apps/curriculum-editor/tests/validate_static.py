@@ -26,6 +26,7 @@ EXPECTED = {
     "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}},
     "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6}},
+    "SSS-C1-CASE05": {"version": "1.0", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -36,6 +37,16 @@ CASE04_TASK_TITLES = [
     "Explain the Failure with CER",
     "Design Independent Reactor Controls",
     "Exit Ticket — Cause or Effect?",
+]
+CASE05_TASK_TITLES = [
+    "Frame the Mission Problem",
+    "Separate Observation from Interpretation",
+    "Converge the Four Clue Routes",
+    "Compare the Competing Diagnoses",
+    "Model the Radiation-to-Growth Pathway",
+    "Explain the Diagnosis with CER",
+    "Define the Engineering Design Problem",
+    "Recommend Immediate and Durable Responses",
 ]
 LEGACY_SELF_STYLED_CASES = {"SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"}
 PROTECTED_SELECTOR_PATTERNS = {
@@ -220,7 +231,7 @@ def main() -> int:
     results.check("printable production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", {"status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"}.issubset(forbidden_probe_categories), sorted(forbidden_probe_categories))
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
-    results.check("registry discovers exactly Cases 01–04 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    results.check("registry discovers exactly Cases 01–05 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
     base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
     results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
 
@@ -391,6 +402,86 @@ def main() -> int:
             results.check("Case 04 Student page 1 contains complete Tasks 1 and 2 and does not split Task 3", student_distribution[0] == [1, 2] and student_distribution[1][0] == 3, student_distribution)
             task_two = soup.select_one('.page[data-page-id="student-mission-01"] .task-block [data-shell-task-heading="2"]')
             results.check("Case 04 Student Task 2 is atomic on page 1", bool(task_two and task_two.find_parent(class_="task-block") and task_two.find_parent(class_="task-block").find_parent(class_="page").get("data-page-id") == "student-mission-01"))
+
+        if case_id == "SSS-C1-CASE05":
+            task_titles = [task["title"] for task in registry_data["tasks"]]
+            results.check("Case 05 task registry records an unreleased native draft", registry_data.get("version") == "1.0" and registry_data.get("status") == "DRAFT" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_NOT_STARTED" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
+            results.check("Case 05 task registry uses the eight locked titles", task_titles == CASE05_TASK_TITLES, task_titles)
+            role_field_pattern = re.compile(r"\bRole\s*:|\bYour role\b", re.I)
+            case05_controlled_files = [path for path in package_path.parents[1].rglob("*") if path.is_file()]
+            role_field_findings = [str(path.relative_to(ROOT)) for path in case05_controlled_files if role_field_pattern.search(path.read_text(encoding="utf-8", errors="ignore"))]
+            results.check("Case 05 controlled sources contain no student Role field", not role_field_findings and not soup.select(".identity-strip"), role_field_findings)
+            role_task_orders = {
+                role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]
+                for role in ["student", "answer", "accessible"]
+            }
+            results.check("Case 05 Student, Answer Key, and Accessible task order has exact parity", all(order == expected_task_numbers for order in role_task_orders.values()), role_task_orders)
+            expected_page_ids = {
+                "student": [f"student-mission-{index:02d}" for index in range(1, 5)],
+                "teacher": [f"teacher-guide-{index:02d}" for index in range(1, 9)],
+                "answer": [f"answer-key-{index:02d}" for index in range(1, 5)],
+                "accessible": [f"accessible-mission-{index:02d}" for index in range(1, 8)],
+            }
+            actual_page_ids = {role: [page.get("data-page-id") for page in soup.select(f'.page[data-role="{role}"]')] for role in ROLES}
+            results.check("Case 05 page IDs preserve role and accessible reading order", actual_page_ids == expected_page_ids, actual_page_ids)
+
+            required_clues = ["CONSISTENT_FAILURE", "HIGH_RADIATION", "DNA_DAMAGE_PATTERN", "SHIELDING_INSUFFICIENT"]
+            results.check("Case 05 contains all four corrected formal clue routes", all(clue in content and clue in registry_data.get("formalClues", []) for clue in required_clues))
+            results.check("Case 05 preserves radiation and the three plausible alternatives", registry_data.get("correctDiagnosis") == "radiation" and registry_data.get("incorrectAlternatives") == ["gravity", "minerals", "light"] and all(term in content for term in ["Gravity", "Minerals", "Light", "Radiation"]))
+            required_science = [
+                "energetic particles", "Jupiter’s magnetosphere", "ionizing radiation", "modeled secondary radiation",
+                "dividing and nondividing cells", "meristem", "exposure alone does not", "best-supported diagnosis",
+                "Crew and crops need separate risk assessments", "Brown spots alone do not",
+            ]
+            results.check("Case 05 preserves corrected qualitative science distinctions", all(term in content for term in required_science), [term for term in required_science if term not in content])
+            prohibited_radiation = re.compile(
+                r"\b(?:\d+(?:\.\d+)?\s*(?:mSv|Sv|Gy)(?:/\w+)?|annual equivalent|annual eq|human occupational limit|"
+                r"rotation\s*:\s*\d|shielding (?:reduction|efficacy)\s*:\s*\d|required reduction|actual reduction|"
+                r"deficit\s*:\s*\d|strand breaks per cell|meristematic tissue\. Mature plants|verified warning level|"
+                r"randomness rules out|proportional to replication rate|DNA replication errors|secondary neutron cascade from Jupiter['’]s magnetosphere)\b",
+                re.I,
+            )
+            results.check("Case 05 contains no unsupported quantities or superseded GC-01 through GC-04 wording", not prohibited_radiation.search(content), prohibited_radiation.search(content).group(0) if prohibited_radiation.search(content) else "")
+            results.check("Case 05 uses no scene sprite or replacement artwork", not soup.select("figure,.scene,.hero-visual") and all(img.get("class") == ["saa-insignia"] for img in soup.select("img")))
+
+            student_bank = [node.get_text(" ", strip=True) for node in soup.select('.page[data-role="student"] .phrase-bank span')]
+            accessible_bank = [node.get_text(" ", strip=True) for node in soup.select('.page[data-role="accessible"] .phrase-bank span')]
+            answer_sequence = [node.get_text(" ", strip=True).lower() for node in soup.select('.page[data-role="answer"] [data-process-contract] [data-process-stage] strong')][1:]
+            results.check("Case 05 Task 5 word banks match and remain out of answer order", student_bank == accessible_bank and set(map(str.lower, student_bank)) == set(answer_sequence) and list(map(str.lower, student_bank)) != answer_sequence, {"student": student_bank, "answer": answer_sequence})
+            results.check("Case 05 word banks have visible exact labels", len(soup.select('.page[data-role="student"] .response-label')) > 0 and all("WORD BANK" in page.get_text(" ", strip=True) for page in [soup.select_one('.page[data-page-id="student-mission-03"]'), soup.select_one('.page[data-page-id="accessible-mission-05"]')]))
+
+            teacher_text = " ".join(page.get_text(" ", strip=True) for page in soup.select('.page[data-role="teacher"]'))
+            teacher_components = [
+                "Lesson overview", "Measurable objectives", "Success criteria", "Standards alignment and limitation",
+                "Academic vocabulary", "Materials and technology", "Preparation", "Facilitation guidance",
+                "Likely misconceptions", "Accessibility and differentiation", "Evidence analysis",
+                "Annotated answers and grading guidance", "Quick grading", "Formal grading dimensions",
+                "References", "Technical notes",
+            ]
+            results.check("Case 05 Teacher Guide includes all required production components", all(term in teacher_text for term in teacher_components), [term for term in teacher_components if term not in teacher_text])
+            results.check("Case 05 directly assesses MS-ETS1-1 and limits MS-ETS1-2 to supporting alignment", "Direct assessment: MS-ETS1-1" in teacher_text and "Supporting alignment: MS-ETS1-2" in teacher_text and "Do not claim direct assessment of MS-ETS1-2" in teacher_text)
+            results.check("Case 05 distinguishes immediate operations from durable engineering", all(term in content for term in ["Immediate operational response", "Durable engineering response", "criteria", "constraints", "verification"]))
+            results.check("Case 05 identifies the engineering work as classroom design rather than an in-game fix", "This is a classroom design task" in content and "does not show an in-game “apply the fix” step" in content)
+
+            learner_first_pages = {role: soup.select_one(f'.page[data-role="{role}"]') for role in ["student", "accessible"]}
+            expected_fields = {"student": ["student-name", "student-date", "student-class"], "accessible": ["a-name", "a-date", "a-class"]}
+            id_contracts = {}
+            for role, page in learner_first_pages.items():
+                row = page.select_one(".student-id") if page else None
+                fields = row.select(":scope > .id-field") if row else []
+                id_contracts[role] = bool(
+                    row and row.parent.select_one(":scope > :first-child") is row and len(fields) == 3
+                    and [field.select_one(":scope > strong").get_text(strip=True) for field in fields] == ["Name", "Date", "Period"]
+                    and [field.select_one(":scope > span").get("data-field") for field in fields] == expected_fields[role]
+                )
+            results.check("Case 05 Student and Accessible identification rows use the shared contract", all(id_contracts.values()), id_contracts)
+            first_pages = [soup.select_one(f'.page[data-role="{role}"]') for role in ROLES]
+            title_blocks = [page.select_one('.mission-title-block[data-header-contract="printable-v1.1"]') for page in first_pages]
+            results.check("Case 05 first-page title blocks separate title from location subtitle", all(title and title.select_one(".hero-title").get_text(strip=True) == "Sub Surface Bunker" and title.select_one(".mission-subtitle").get_text(strip=True) == "Campaign 1 · Case 05 · Europa, orbiting Jupiter" and "Sub Surface Bunker" not in title.select_one(".mission-subtitle").get_text(" ", strip=True) and title.select_one('img.saa-insignia[alt="Solar Agricultural Agency insignia"]') for title in title_blocks))
+            continuation_headers = soup.select('.continuation-header[data-header-contract="printable-v1.1"]')
+            results.check("Case 05 continuation identity count and structure are exact", len(continuation_headers) == sum(expected_counts.values()) - len(ROLES) and all(header.select_one(".continuation-copy > h1") and header.select_one(".continuation-identity > .institution") for header in continuation_headers), len(continuation_headers))
+            cer_contracts = {root.get("data-cer-contract"): [box.select_one(":scope > .canonical-cer-label").get_text(strip=True) for box in root.select(":scope > .canonical-cer-box")] for root in soup.select(".canonical-cer[data-cer-contract]")}
+            results.check("Case 05 CER uses the three shared atomic contracts", cer_contracts == {"student-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "answer-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "accessible-v1.0": ["CLAIM", "EVIDENCE", "REASONING"]}, cer_contracts)
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable = (APP / "portable-runtime.js").read_text(encoding="utf-8")

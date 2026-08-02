@@ -40,6 +40,6 @@ python3 apps/curriculum-editor/tests/validate_static.py
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 ```
 
-The browser suite covers all 32 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
+The browser suite covers all 40 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
 
 The server binds to `127.0.0.1` and serves repository files read-only. Packages are trusted repository content; downloaded editable HTML contains JavaScript and should be treated accordingly.

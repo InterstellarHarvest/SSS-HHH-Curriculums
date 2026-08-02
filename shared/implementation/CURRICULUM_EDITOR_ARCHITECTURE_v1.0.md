@@ -50,7 +50,7 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 
 - `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
 - `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, protected-selector isolation, release history, and runtime serialization rules.
-- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 32 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
+- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 40 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
 
 The browser runner uses only temporary directories for profiles and screenshots. A full run must leave the tracked tree unchanged.
 
