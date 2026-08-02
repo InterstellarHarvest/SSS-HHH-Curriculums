@@ -5,6 +5,9 @@
   "stepPx": 4,
   "areas": [
     { "id": "SSS-C1-CASE02:accessible:t2:accessible-task2", "persistId": "response-accessible-task2", "pageId": "accessible-01", "taskId": 2, "label": "Initial explanation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t4:accessible-task4-observation1", "persistId": "response-accessible-task4-observation1", "pageId": "accessible-03", "taskId": 4, "label": "Observation 1", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t4:accessible-task4-observation2", "persistId": "response-accessible-task4-observation2", "pageId": "accessible-03", "taskId": 4, "label": "Observation 2", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t4:accessible-task4-downstream", "persistId": "response-accessible-task4-downstream", "pageId": "accessible-03", "taskId": 4, "label": "Downstream result", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-regolith-reason", "persistId": "response-accessible-task5-regolith-reason", "pageId": "accessible-04", "taskId": 5, "label": "Regolith evidence reason", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-light-reason", "persistId": "response-accessible-task5-light-reason", "pageId": "accessible-04", "taskId": 5, "label": "Light evidence reason", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-pollination-reason", "persistId": "response-accessible-task5-pollination-reason", "pageId": "accessible-04", "taskId": 5, "label": "Pollination evidence reason", "minPx": 32, "maxPx": 900 },
