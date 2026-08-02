@@ -275,6 +275,15 @@
         const areas = api.layout.getAreas();
         const handles = Array.from(workspace.querySelectorAll('[data-layout-resize-ui="handle"]'));
         check(`${caseId} exposes exactly its explicit eligible Accessible resize areas`, areas.length === expectedEligible && handles.length === expectedEligible, JSON.stringify({ areas: areas.length, handles: handles.length }));
+        const invalidDefaults = areas.flatMap(area => {
+          const node = workspace.querySelector(`[data-layout-resizable="${CSS.escape(area.id)}"]`);
+          if (node?.dataset.layoutValidation !== "invalid") return [];
+          const page = node.closest(".page");
+          const pageFrame = page.querySelector(".page-frame");
+          const footer = page.querySelector("[data-publication-footer],.publication-footer,footer");
+          return [{ id: area.id, page: page.dataset.pageId, pageOverflow: page.classList.contains("has-overflow"), frame: [pageFrame.scrollHeight, pageFrame.clientHeight], nodeBottom: rounded(node.getBoundingClientRect().bottom), footerTop: rounded(footer?.getBoundingClientRect().top) }];
+        });
+        check(`${caseId} source-default resize areas do not start in an invalid state`, invalidDefaults.length === 0, JSON.stringify(invalidDefaults));
         check(`${caseId} gives CER no resize handle`, !workspace.querySelector('[class*="cer"] [data-layout-resize-ui],[data-cer-contract] [data-layout-resize-ui]'));
         check(`${caseId} resize handles are visible only in Accessible Edit Text mode`, handles.length > 0 && handles.every(handle => win.getComputedStyle(handle).display === "block"));
         api.setRole("student");

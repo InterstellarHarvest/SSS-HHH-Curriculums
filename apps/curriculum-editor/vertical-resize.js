@@ -137,6 +137,15 @@ export async function createVerticalResizeController(options) {
   function validateArea(area) {
     const proposed = currentHeight(area);
     const page = area.node.closest(".page");
+    const pageIsRendered = Boolean(page && !page.hidden && getComputedStyle(page).display !== "none" && page.getBoundingClientRect().height > 0);
+    if (!pageIsRendered) {
+      const saved = pending.get(area.id);
+      const result = saved
+        ? { status: saved.status, message: saved.message }
+        : { status: "valid", message: "Source height; validation resumes when the Accessible page is visible" };
+      area.node.dataset.layoutValidation = result.status;
+      return result;
+    }
     const frame = page?.querySelector(".page-frame");
     const footer = page?.querySelector("[data-publication-footer],.publication-footer,footer");
     const nodeRect = area.node.getBoundingClientRect();
@@ -153,7 +162,7 @@ export async function createVerticalResizeController(options) {
     );
     let status = "valid";
     let message = "Fits within the current page";
-    if (proposed < area.minPx || proposed > area.maxPx || proposed % SNAP_PX) {
+    if (proposed < area.minPx || proposed > area.maxPx || (pending.has(area.id) && proposed % SNAP_PX)) {
       status = "invalid";
       message = `Outside ${area.minPx}–${area.maxPx}px / 4px snap`;
     } else if (overflow) {
@@ -489,6 +498,10 @@ export async function createVerticalResizeController(options) {
     undo,
     redo,
     validateAll,
+    refreshValidation() {
+      validateAll();
+      render();
+    },
     exportValue: exportedDraft,
     sourcePixelsFromPointer,
     sanitizeClone(clone) {
