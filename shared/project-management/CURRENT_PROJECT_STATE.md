@@ -1,13 +1,13 @@
 # SSS/HHH Current Project State
 
-Verified against curriculum repository main at
+Project state content verified from curriculum repository baseline
 `cc784e74e4864c5a14c2892ddccb2f0e4521d133`
 
 Last updated: 2026-08-01
 
 ## Purpose and authority
 
-This document is the current operational handoff for project-management and production conversations. Repository sources, governing documents, schemas, and release records remain authoritative. Update this handoff only at meaningful merged milestones, and verify that the recorded main SHA still matches the curriculum repository before relying on it.
+This document is the current operational handoff for project-management and production conversations. Repository sources, governing documents, schemas, and release records remain authoritative. Update this handoff only at meaningful merged milestones. The recorded SHA identifies the repository state used to verify the handoff contents; it is not intended to identify the commit containing this document. Every new conversation must independently fetch the repository and verify live main before relying on this handoff.
 
 This document does not replace Git history, case release histories, governing curriculum documents, or other authoritative repository records. It is not a running development diary or a record of speculative plans and stale branches.
 
@@ -22,7 +22,10 @@ Related game repositories:
 - <https://github.com/InterstellarHarvest/Space-Sprout-Sleuth>
 - <https://github.com/InterstellarHarvest/Hunger-Harvest-History>
 
-Current curriculum main: `cc784e74e4864c5a14c2892ddccb2f0e4521d133`
+Verified project-state baseline:
+`cc784e74e4864c5a14c2892ddccb2f0e4521d133`
+
+The live main branch may be newer because this handoff is itself committed after the baseline it documents. Always fetch the repository and resolve the current main SHA before beginning work.
 
 Current Case 04 game baseline: `2bfdb0aadf6ce33b6664cd104b11a891cb55efaf`
 
@@ -207,7 +210,7 @@ Update `CURRENT_PROJECT_STATE.md` only when one of these occurs:
 
 Every update must:
 
-- record the verified main SHA;
+- record the verified repository baseline used to prepare the state update;
 - update the date;
 - remove completed branch information;
 - distinguish current facts from future work;
