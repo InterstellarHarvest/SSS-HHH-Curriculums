@@ -41,6 +41,7 @@ Unreleased native cases require the README and canonical `source/` files but do 
 
 Key implementation records:
 
+- Current project state: [`shared/project-management/CURRENT_PROJECT_STATE.md`](shared/project-management/CURRENT_PROJECT_STATE.md)
 - `shared/implementation/case-registry.v2.json`
 - `shared/implementation/case-package.schema.v2.json`
 - `shared/implementation/case-registry.schema.v2.json`
