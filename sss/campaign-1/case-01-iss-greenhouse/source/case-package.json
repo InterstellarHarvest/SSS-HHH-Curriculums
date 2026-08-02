@@ -99,10 +99,10 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "c496d463f4d5b4b67e96c70a43caff10d90b0f828da4b952fa962aa931f0b3af",
+    "content": "d06ec6089f1a1acda7919c9e26387cefa245ae7150bf037cf469c3dc7c717fd4",
     "presentation": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
     "taskRegistry": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
-    "layoutOverrides": "0e1d5e6f4b9d0a40d05946f6326a99aab7d85bfb1dd8895801f504562902f0f7",
+    "layoutOverrides": "07f4f9284160464eea01660ee2c8aaaef6f12a223854f266248c36abf82b44be",
     "icons": "a849e012e8ffec293643d083a778ba55d47b3ba4646246f92810d0226a40aef2"
   },
   "releaseHistory": "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.1.json"

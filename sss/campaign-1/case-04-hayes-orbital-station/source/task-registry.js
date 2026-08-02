@@ -13,7 +13,7 @@ window.SSS_CASE04_TASK_REGISTRY = {
     "student": 4,
     "teacher": 7,
     "answer": 4,
-    "accessible": 6
+    "accessible": 7
   },
   "tasks": [
     {

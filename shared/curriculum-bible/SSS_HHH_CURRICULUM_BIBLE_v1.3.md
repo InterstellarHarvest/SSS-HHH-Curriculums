@@ -83,6 +83,10 @@ Reasonable alternative wording and other defensible solutions may follow the com
 
 The same task expectation governs the Standard and Accessible editions. The Answer Key may use one shared exemplar when both editions assess the same task, but it must match the exact shared task identifier and answer all required fields.
 
+Accessible pagination is content-driven rather than tied to the Student page count. Pages normally contain one to three complete tasks, with substantially larger response areas than the Student edition. Complex tasks may stand alone, and intentional unused space is acceptable when the next task cannot fit without compression. Short labels and classifications remain compact; ordinary substantial writing may use approximately one-third of the writable page, and substantial models or multipart organizers may use approximately one-half.
+
+Every Accessible CER is a dedicated near-full page using the shared `accessible-v1.0` Claim/Evidence/Reasoning component, the Case 03 teal, and this exact subtitle: `You may write sentences or use bullet points. Use evidence from more than one source.` Case-specific reasoning guidance must preserve the assessment requirement without revealing an answer.
+
 ## 5. Release-candidate application
 
 SSS Campaign 1 Case 01 is the first implementation of this v1.3 requirement. Its controlled Answer Key includes completed exemplars for Tasks 3 through 9, while Tasks 1 and 2 remain non-keyable and are omitted without renumbering.
@@ -104,7 +108,7 @@ The central Curriculum Editor generates portable editable copies and selected-ro
 
 The shared editor shell preserves the browser **Print / Save PDF** action for optional owner or end-user use. Browser export is not evidence that a PDF is accessible. Any manually created PDF intended for distribution, publication, or archival requires separate verification of tags, reading order, headings, alt text, tables, field labels, selectable text, title/language metadata, and screen-reader usability.
 
-Release gates operate from canonical package sources and use temporary assembled documents: schema and source-hash validation, browser behavior, four-role isolation, color and Grayscale presentation states, portability/serialization, accessibility, page fit, exact page counts, clean isolated printing, and owner physical testing through the browser print dialog at 100% / Actual Size. Temporary generated output is discarded.
+Release gates operate from canonical package sources and use temporary assembled documents: schema and source-hash validation, browser behavior, four-role isolation, color and Grayscale presentation states, portability/serialization, accessibility, package-declared page counts, clean isolated printing, and owner physical testing through the browser print dialog at 100% / Actual Size. Accessible validation enforces usability and structure without imposing a cross-case page-count target. Temporary generated output is discarded.
 
 <!-- PRINTABLE_PAGE_IDENTITY_V1_0_4_START -->
 ## Printable Page Identity — v1.0.4

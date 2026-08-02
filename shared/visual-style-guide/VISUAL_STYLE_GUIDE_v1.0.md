@@ -1614,7 +1614,7 @@ Do not leave a large unused region below active student response components when
 
 ### Accessible Student Work Pages
 
-Accessible editions should be more generous with flexible response space than standard editions when handwriting, motor access, visual tracking, or alternate response modes benefit.
+Accessible editions use content-driven pagination and should be substantially more generous with flexible response space than standard editions when handwriting, motor access, visual tracking, or alternate response modes benefit. An Accessible page normally contains one to three complete tasks, based on task complexity and required response space. Accessibility and writing usability take priority over minimizing page count; there is no rigid Accessible page-count target.
 
 Use surplus vertical space in this order:
 
@@ -1624,9 +1624,14 @@ Use surplus vertical space in this order:
 4. spacing between prompt and response;
 5. enlarged figures that are directly used by the student.
 
-There is no general maximum-height rule for an accessible response box.
+Size response areas in proportion to the response expected:
 
-A response container may occupy most of the remaining printable body when:
+- short labels, classifications, criteria, constraints, and one-line answers remain compact;
+- an ordinary substantial written response may occupy up to approximately one-third of the writable page;
+- a substantial process model, diagram, or multipart organizer may occupy up to approximately half of the writable page;
+- do not create an absurdly large box merely to eliminate all white space.
+
+When a single non-CER task belongs on a page, grow its response areas, spacing, and padding to sensible maximum sizes. A response container may use a generous share of the remaining printable body when:
 
 - the page has no other required content that belongs there;
 - the prompt remains clearly associated with the box;
@@ -1638,7 +1643,7 @@ Accessible response areas should not be held to the ordinary page's minimum dime
 
 For a page with multiple accessible response areas, distribute surplus space according to expected response demand. When demand is comparable, divide the surplus evenly.
 
-Do not leave avoidable blank space beneath an accessible response area while constraining that area to a token minimum height.
+Do not force another task onto a page when doing so would compress the first task or create undersized response areas. Intentional lower-page space is acceptable after the active task reaches a sensible maximum, especially when the next task needs its own page. A dedicated Accessible CER is the explicit exception to the ordinary one-third/one-half response-area guidance.
 
 ### Teacher and Reference Pages
 
@@ -5692,7 +5697,9 @@ An advanced version may reduce guidance while preserving the same three-row comp
 
 ## 90.8 Accessible and Answer-Key Variants
 
-The Accessible edition uses the same component at larger type with proportionately larger response areas. The Answer Key uses the same component with completed responses. Compact Teacher references may summarize a CER in prose, but any rendered CER response scaffold must use the canonical component.
+The Accessible edition uses the same component at larger type on a dedicated page with near-full-page response geometry. Every Accessible CER uses the Case 03 teal (`#2e8484`) in color presentation and includes this exact subtitle: `You may write sentences or use bullet points. Use evidence from more than one source.` Claim, Evidence, and Reasoning remain separate, while case-specific reasoning requirements may appear as non-answer-revealing guidance. This dedicated treatment is an exception to ordinary response-area maximums.
+
+The Answer Key uses the same component with completed responses. Compact Teacher references may summarize a CER in prose, but any rendered CER response scaffold must use the canonical component.
 
 ## 90.9 Prohibited Treatments
 
@@ -5964,7 +5971,7 @@ The accessible edition may use:
 
 Accessible editions should use the remaining printable page area for student handwriting, drawing, annotation, graphing, or typed response before accepting unused space.
 
-Large response containers are permitted and often preferred.
+Large response containers are permitted and often preferred within the proportional guidance in Section 21.5. Accessible pages normally hold one to three complete tasks; complex tasks may stand alone, and page counts remain flexible and content-driven.
 
 The limiting factors are:
 
@@ -5974,7 +5981,7 @@ The limiting factors are:
 - page-flow integrity;
 - actual response need.
 
-Visual symmetry is not a reason to keep an accessible box unnecessarily small.
+Visual symmetry is not a reason to keep an accessible box unnecessarily small. Nor is unused space a reason to inflate a compact response or pull the next task backward when it cannot remain comfortably usable.
 
 ## 97.3 Large Print
 
@@ -6133,6 +6140,7 @@ No page depends on borderless printing.
 - [ ] Evidence receives more space than Claim.
 - [ ] Reasoning is the largest response area and explicitly asks for the connection or mechanism.
 - [ ] Student, Accessible, and Answer Key variants retain the same structure.
+- [ ] Every Accessible CER is the only task on its page, uses the exact canonical subtitle, and renders with the shared near-full-page teal treatment.
 - [ ] Supported and advanced variants preserve the sequence.
 
 ## 101.2 Vocabulary

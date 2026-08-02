@@ -12,7 +12,6 @@
     { "id": "SSS-C1-CASE01:accessible:t4:a-cause-micro", "persistId": "a-cause-micro", "pageId": "accessible-3", "taskId": 4, "label": "Microgravity hypothesis reason", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE01:accessible:t6:a-diagnosis", "persistId": "a-diagnosis", "pageId": "accessible-4", "taskId": 6, "label": "Diagnosis", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE01:accessible:t6:a-reject", "persistId": "a-reject", "pageId": "accessible-4", "taskId": 6, "label": "Alternative explanation", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE01:accessible:t6:a-diagnosis-notes", "persistId": "a-diagnosis-notes", "pageId": "accessible-4", "taskId": 6, "label": "Planning notes or drawing", "minPx": 64, "maxPx": 900 },
     { "id": "SSS-C1-CASE01:accessible:t8:a-design", "persistId": "a-design", "pageId": "accessible-6", "taskId": 8, "label": "Orientation-cue design", "minPx": 64, "maxPx": 900 },
     { "id": "SSS-C1-CASE01:accessible:t9:a-exit", "persistId": "a-exit", "pageId": "accessible-6", "taskId": 9, "label": "Exit ticket explanation", "minPx": 32, "maxPx": 900 }
   ],

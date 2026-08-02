@@ -68,7 +68,7 @@
     "student": {"documentRole": "Student Mission", "pageCount": 3},
     "teacher": {"documentRole": "Teacher Guide", "pageCount": 7},
     "answer": {"documentRole": "Answer Key", "pageCount": 3},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 5}
+    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
   },
   "outputs": {
     "complete": "SSS_C1_CASE02_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
@@ -98,10 +98,10 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "5f79f0853c312fec1291036afe7d8f864f38131e093fefceb905e3ca39fce541",
+    "content": "859a24eaad1926b0cb155add8999fccda700ceee83738bdd94e3e601eb6a313f",
     "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
     "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
-    "layoutOverrides": "b810389003af74f201af52b00914657eb6f5c4556cf851e277cc4c9b37835b0f",
+    "layoutOverrides": "a21de54fb91114592fd241ff572a4b21dd4cd0310b5f669af7d70f87f27dacff",
     "icons": "4893dd86224a349520e9ac1fa16a2a369a4e24099924280f65d49b629cf003dd"
   },
   "releaseHistory": "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json"

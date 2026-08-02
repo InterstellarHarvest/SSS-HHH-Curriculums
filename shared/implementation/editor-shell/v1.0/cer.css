@@ -36,14 +36,6 @@
   background: var(--paper, #fff);
 }
 
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box {
-  grid-template-columns: .95in minmax(0,1fr);
-}
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.claim { min-height: .78in; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.evidence,
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.reasoning { min-height: 1.18in; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-label { font-size: 8.5pt; }
-
 .canonical-cer-label {
   display: flex;
   align-items: center;

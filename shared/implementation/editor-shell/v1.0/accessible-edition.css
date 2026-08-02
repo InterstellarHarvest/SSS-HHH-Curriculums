@@ -1,0 +1,138 @@
+/* Canonical Accessible-edition layout primitives for SSS and HHH worksheets. */
+
+.page[data-role="accessible"] {
+  --accessible-cer-color: #2e8484;
+  --accessible-response-compact: .55in;
+  --accessible-response-substantial: 1.55in;
+  --accessible-response-extended: 2.15in;
+  --accessible-organizer-size: 3.4in;
+  width: 8.5in;
+  height: 11in;
+  overflow: hidden;
+}
+
+.page[data-role="accessible"] .page-frame {
+  position: absolute;
+  inset: var(--margin-top, .5in) var(--margin-right, .5in) var(--margin-bottom, .5in) var(--margin-left, .5in);
+  display: flex;
+  flex-direction: column;
+}
+
+.page[data-role="accessible"] [data-accessible-task] {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.page[data-role="accessible"] [data-accessible-response] {
+  padding: .08in;
+}
+
+.page[data-role="accessible"] [data-accessible-response="compact"] {
+  min-height: var(--accessible-response-compact);
+}
+
+.page[data-role="accessible"] [data-accessible-response="substantial"] {
+  min-height: var(--accessible-response-substantial);
+}
+
+.page[data-role="accessible"] [data-accessible-response="extended"] {
+  min-height: var(--accessible-response-extended);
+}
+
+.page[data-role="accessible"] [data-accessible-response="organizer"] {
+  min-height: var(--accessible-organizer-size);
+}
+
+.page[data-role="accessible"] [data-accessible-organizer="sequence"] .response-area,
+.page[data-role="accessible"] [data-accessible-organizer="sequence"] .stage-response {
+  min-height: .8in;
+  padding: .08in;
+}
+
+.page[data-role="accessible"][data-accessible-page-layout="comparison-reasons"] .accessible-option .response-area,
+.page[data-role="accessible"][data-accessible-page-layout="comparison-reasons"] .diagnosis-cards .response {
+  min-height: .92in;
+  padding: .08in;
+}
+
+.page[data-role="accessible"][data-accessible-page-layout="evidence-analysis"] .accessible-evidence .response {
+  min-height: 1.1in;
+  padding: .08in;
+}
+
+.page[data-role="accessible"][data-accessible-cer-page="canonical-v1.0"] .content-area {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.page[data-role="accessible"] [data-accessible-cer-subtitle="canonical-v1.0"] {
+  flex: 0 0 auto;
+  margin: .035in 0 .095in;
+  color: var(--ink, #18242c);
+  font-size: 10.5pt;
+  line-height: 1.35;
+}
+
+.page[data-role="accessible"] .accessible-cer-guidance {
+  flex: 0 0 auto;
+  margin: 0 0 .08in;
+  color: var(--muted, #4f5f69);
+  font-size: 9.5pt;
+  line-height: 1.3;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: .075in;
+  min-height: 6.75in;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box {
+  display: grid;
+  grid-template-columns: 1in minmax(0, 1fr);
+  gap: .075in;
+  min-height: 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.claim {
+  flex: 1.45 1 1.45in;
+  min-height: 1.45in;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.evidence {
+  flex: 2.55 1 2.55in;
+  min-height: 2.55in;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.reasoning {
+  flex: 2.7 1 2.7in;
+  min-height: 2.7in;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-label {
+  padding: .075in;
+  color: #fff;
+  background: var(--accessible-cer-color);
+  font-size: 8.5pt;
+}
+
+.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-response {
+  min-height: 0;
+  padding: .09in;
+}
+
+.worksheet-document.grayscale .page[data-role="accessible"] {
+  --accessible-cer-color: #4b4b4b;
+}
+
+@media print {
+  @page { size: Letter portrait; margin: 0; }
+}

@@ -692,7 +692,7 @@ h3 {
   min-height: 1.85in;
 }
 .page[data-page-id="accessible-mission-02"] .response.medium {
-  min-height: 2.1in;
+  min-height: .65in;
 }
 .page[data-page-id="accessible-mission-03"] .response.large {
   min-height: 1.65in;
@@ -703,14 +703,6 @@ h3 {
 .page[data-page-id="accessible-mission-04"] .response.large {
   min-height: 1.75in;
 }
-.page[data-page-id="accessible-mission-06"] .canonical-cer[data-cer-contract="accessible-v1.0"] {
-  min-height: 7.8in;
-  break-inside: avoid;
-  page-break-inside: avoid;
-}
-.page[data-page-id="accessible-mission-06"] .canonical-cer-box.claim { flex: 1 1 1.35in; }
-.page[data-page-id="accessible-mission-06"] .canonical-cer-box.evidence,
-.page[data-page-id="accessible-mission-06"] .canonical-cer-box.reasoning { flex: 2 1 2.45in; }
 .page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="8"],
 .page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="9"] {
   margin-top: .16in !important;
@@ -903,14 +895,6 @@ body.density-compact { --density: .94; }
   border-radius: var(--radius, 3px);
   background: var(--paper, #fff);
 }
-
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box {
-  grid-template-columns: .95in minmax(0,1fr);
-}
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.claim { min-height: .78in; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.evidence,
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.reasoning { min-height: 1.18in; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-label { font-size: 8.5pt; }
 
 .canonical-cer-label {
   display: flex;

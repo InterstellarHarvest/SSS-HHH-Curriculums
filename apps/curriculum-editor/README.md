@@ -18,6 +18,8 @@ The only document roles are Student, Teacher, Answer Key, and Accessible. The li
 
 Grayscale is an independent Boolean presentation toggle. It changes presentation tokens for the selected role without changing that role’s identity, page count, content, response geometry, semantic markup, or autosave namespace. Printing and worksheet export apply the current Grayscale state while retaining the role’s normal filename and identity.
 
+Accessible editions load the shared `accessible-edition.css` production layer after case presentation styles. That layer supplies content-driven one-to-three-task pagination primitives, Accessible-specific response sizing, and the dedicated canonical CER page used by the editor, editable copies, worksheet exports, and print output. Accessible page counts are intentionally flexible; the other three roles retain their package-locked counts and geometry.
+
 ## Editing and exports
 
 - **Download Editable Copy** creates a self-contained HTML copy with all four roles, the editing toolbar, current edits/responses, and the current Grayscale state.
@@ -50,6 +52,6 @@ python3 apps/curriculum-editor/tests/test_authoring_service.py
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 ```
 
-The browser suite covers all 40 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
+The browser suite covers all 40 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, Accessible task density and overlap checks, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
 
 The server binds to `127.0.0.1` by default. Static reads remain repository-root scoped; its authoring endpoints are loopback-only and the apply endpoint has the strict contract described above. Packages are trusted repository content; downloaded editable HTML contains JavaScript and should be treated accordingly.
