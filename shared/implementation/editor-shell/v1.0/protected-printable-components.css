@@ -1,0 +1,162 @@
+.student-id {
+  display: grid;
+  grid-template-columns: 2fr 1fr .7fr;
+  gap: 12px;
+  margin-bottom: .03in;
+  font: 700 9pt "JetBrains Mono", monospace;
+}
+
+.student-id > label,
+.student-id > .id-field {
+  display: flex;
+  gap: 7px;
+  align-items: end;
+}
+
+.student-id > .id-field,
+.student-id > label > .id-field {
+  min-height: 21px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.student-id > label > .id-field { display: inline-block; flex: 1; }
+.student-id > .id-field > span { flex: 1; }
+
+.mission-title-block[data-header-contract="printable-v1.1"] {
+  position: relative;
+  display: grid;
+  grid-template-columns: .08in minmax(0,1fr) 1.70in;
+  gap: .12in;
+  align-items: center;
+  margin-bottom: .055in;
+  padding: 0 0 .055in;
+  border-top: 0;
+  border-bottom: 1px solid var(--rule, var(--line, #65727b));
+}
+
+.mission-title-block[data-header-contract="printable-v1.1"] .mission-rail {
+  height: 100%;
+  min-height: .78in;
+  background: var(--institution, #2e8484);
+}
+
+.mission-title-block[data-header-contract="printable-v1.1"] .mission-title-copy {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.mission-title-block[data-header-contract="printable-v1.1"] .hero-title {
+  margin: 0 0 .01in;
+  color: var(--ink);
+  font: 700 26pt/29pt Inter, Arial, sans-serif;
+  letter-spacing: -.025em;
+}
+
+.mission-title-block[data-header-contract="printable-v1.1"] .mission-subtitle {
+  margin: 0;
+  color: var(--ink);
+  font: 400 9pt/11.5pt Inter, Arial, sans-serif;
+}
+
+.identity-mark,
+.continuation-identity {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: .09in;
+  min-width: 0;
+}
+
+.saa-insignia {
+  width: .58in;
+  height: .58in;
+  flex: 0 0 .58in;
+  object-fit: contain;
+}
+
+.grayscale .saa-insignia { filter: grayscale(1); }
+
+.identity-copy { min-width: 0; text-align: left; }
+.institution { color: var(--ink); font: 700 8.2pt/1.12 "JetBrains Mono", monospace; letter-spacing: .04em; text-align: left; text-transform: uppercase; }
+.institution span { display: block; }
+.document-role { margin-top: .025in; color: var(--muted); font: 400 8.5pt/11pt Inter, Arial, sans-serif; }
+
+.continuation-header[data-header-contract="printable-v1.1"] {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 1.58in;
+  gap: .14in;
+  align-items: center;
+  margin-bottom: .07in;
+  padding: 0 0 .055in;
+  border-top: 0;
+  border-bottom: 1px solid var(--rule, var(--line, #65727b));
+}
+
+.continuation-copy { min-width: 0; text-align: left; }
+.continuation-header[data-header-contract="printable-v1.1"] .continuation-copy h1 { margin: 0; color: var(--ink); font: 700 16pt/1.1 Inter, Arial, sans-serif; letter-spacing: -.012em; }
+.continuation-header[data-header-contract="printable-v1.1"] .continuation-role { margin-top: .01in; color: var(--muted); font: 400 9pt/11.5pt Inter, Arial, sans-serif; }
+.continuation-identity .saa-insignia { width: .34in; height: .34in; flex: 0 0 .34in; }
+.continuation-identity .institution { font: 700 7pt/1.12 "JetBrains Mono", monospace; letter-spacing: .045em; }
+
+[data-publication-footer],
+.publication-footer[data-footer-contract="printable-v1.1"] {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: .08in;
+  padding-top: .045in;
+  color: var(--muted);
+  border-top: 1px solid var(--rule, var(--line, #65727b));
+  font: 600 7pt/1.15 "JetBrains Mono", monospace;
+  text-align: right;
+}
+
+[data-publication-footer] span,
+.publication-footer[data-footer-contract="printable-v1.1"] span { margin-left: auto; text-align: right; }
+
+.canonical-cer[data-cer-contract] {
+  display: flex;
+  flex-direction: column;
+  gap: .055in;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.canonical-cer[data-cer-contract] .canonical-cer-box {
+  display: grid;
+  grid-template-columns: .72in minmax(0,1fr);
+  gap: .055in;
+  min-height: 0;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.canonical-cer[data-cer-contract="student-v1.0"] { flex: 1 1 auto; min-height: 2.55in; }
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.claim { flex: 1 1 .46in; }
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.evidence { flex: 1 1 .66in; }
+.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box.reasoning { flex: 1 1 .76in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box.claim { min-height: .46in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box.evidence { min-height: .66in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box.reasoning { min-height: .76in; }
+.canonical-cer[data-cer-contract="answer-v1.0"] .answer-block { min-height: 100%; margin: 0; padding: .055in; border: 1px solid var(--rule, #65727b); border-radius: var(--radius, 3px); background: var(--paper, #fff); }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box { grid-template-columns: .95in minmax(0,1fr); }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.claim { min-height: .78in; }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.evidence,
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box.reasoning { min-height: 1.18in; }
+.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-label { font-size: 8.5pt; }
+
+.canonical-cer-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: .05in;
+  color: #fff;
+  background: var(--institution, var(--primary, #2e8484));
+  border-radius: var(--radius, 3px);
+  font: 700 7pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .05em;
+}
+
+.canonical-cer-response { min-height: 0; padding: .055in; overflow: auto; border: 1px solid var(--rule, #65727b); border-radius: var(--radius, 3px); background: var(--paper, #fff); }

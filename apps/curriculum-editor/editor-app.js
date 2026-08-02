@@ -1,4 +1,5 @@
 const REGISTRY_PATH = "/shared/implementation/case-registry.v2.json";
+const PROTECTED_COMPONENT_STYLES_PATH = "shared/implementation/editor-shell/v1.0/protected-printable-components.css";
 const SELECTED_CASE_KEY = "curriculum-editor:selected-case:v1";
 const SUPPORTED_PACKAGE_SCHEMA = 2;
 const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"];
@@ -291,12 +292,12 @@ async function installPackageFontImports(presentationCss) {
   })));
 }
 
-function installWorksheet(presentationCss, iconsText) {
-  packageStyleText = [presentationCss];
+function installWorksheet(sharedStyles, presentationCss, protectedComponentStyles, iconsText) {
+  packageStyleText = [...sharedStyles, presentationCss, protectedComponentStyles];
   worksheetShadow = elements.worksheetHost.shadowRoot || elements.worksheetHost.attachShadow({ mode: "open" });
   const style = document.createElement("style");
   style.dataset.casePackagePresentation = `${casePackage.id}:v${casePackage.version}`;
-  style.textContent = `${scopePresentationCss(presentationCss)}\n.worksheet-document{padding:0;background:transparent}\n@media print{.worksheet-document .page{box-shadow:none!important}}`;
+  style.textContent = `${packageStyleText.map(scopePresentationCss).join("\n\n")}\n.worksheet-document{padding:0;background:transparent}\n@media print{.worksheet-document .page{box-shadow:none!important}}`;
   worksheetDocument = document.createElement("div");
   worksheetDocument.className = "worksheet-document";
   worksheetDocument.dataset.standalone = "true";
@@ -963,6 +964,7 @@ async function loadCase(selected, initial = false) {
     casePackage.taskRegistry.source,
     casePackage.content.source,
     casePackage.presentation.source,
+    PROTECTED_COMPONENT_STYLES_PATH,
     ...casePackage.assets.filter(item => item.source).map(item => item.source)
   ];
   const uniquePaths = [...new Set(sourcePaths)];
@@ -980,7 +982,10 @@ async function loadCase(selected, initial = false) {
   await installPackageFontImports(loaded.get(casePackage.presentation.source));
   installToolbar(loaded.get(casePackage.shell.toolbar));
   elements.icons.innerHTML = loaded.get(casePackage.shell.icons);
-  installWorksheet(loaded.get(casePackage.presentation.source), loaded.get(casePackage.shell.icons));
+  const sharedStyles = casePackage.presentation.sharedComponentStyles
+    ? casePackage.shell.styles.map(path => loaded.get(path))
+    : [];
+  installWorksheet(sharedStyles, loaded.get(casePackage.presentation.source), loaded.get(PROTECTED_COMPONENT_STYLES_PATH), loaded.get(casePackage.shell.icons));
   prepareContent(loaded.get(casePackage.content.source));
   currentSelection = selected;
   syncLibrarySelection(selected);

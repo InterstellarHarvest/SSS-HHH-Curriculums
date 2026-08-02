@@ -18,10 +18,10 @@ Packages never depend on stored complete documents or role outputs.
 1. Fetch and validate registry schema v2.
 2. Load the selected `source/case-package.json`.
 3. Require exactly Student, Teacher, Answer Key, and Accessible roles.
-4. Fetch declared shell, content, presentation, task, and asset paths.
+4. Fetch declared shell, content, presentation, task, and asset paths plus the central protected printable-component stylesheet.
 5. Verify package source hashes.
 6. Reject runtime/style/iframe elements in the worksheet fragment and validate stable persistence IDs.
-7. Mount the worksheet in an open Shadow DOM and restore case/version-scoped browser recovery state.
+7. Mount the worksheet in an open Shadow DOM, apply protected printable-component styles after case presentation, and restore case/version-scoped browser recovery state.
 8. Announce the case, version, role, and Grayscale state.
 
 ## Role and presentation state
@@ -49,8 +49,8 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 ## Validation model
 
 - `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
-- `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, release history, and runtime serialization rules.
-- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 32 case/role/presentation states plus switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
+- `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, protected-selector isolation, release history, and runtime serialization rules.
+- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 32 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
 
 The browser runner uses only temporary directories for profiles and screenshots. A full run must leave the tracked tree unchanged.
 

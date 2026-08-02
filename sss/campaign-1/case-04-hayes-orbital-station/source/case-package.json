@@ -5,7 +5,7 @@
   "campaign": "campaign-1",
   "title": "Hayes Orbital Station",
   "subtitle": "Campaign 1 · Case 04 · Light stress and reactor control",
-  "location": "L2 Lagrange Point · Orbital Research Station",
+  "location": "L2 Lagrange Point, Orbital Research Station",
   "version": "0.1",
   "status": "DRAFT",
   "approval": {
@@ -38,7 +38,8 @@
   },
   "presentation": {
     "source": "sss/campaign-1/case-04-hayes-orbital-station/source/presentation.css",
-    "isolation": "shadow-dom"
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
   },
   "taskRegistry": {
     "source": "sss/campaign-1/case-04-hayes-orbital-station/source/task-registry.js",
@@ -54,7 +55,8 @@
     },
     {
       "id": "saa-insignia",
-      "type": "inline-text-mark",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
       "selector": ".saa-insignia",
       "embed": true
     },
@@ -99,8 +101,8 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "8061203b03c3ff3cd10aa1458a033eee96838d91ee41465133483e4a7dbd8013",
-    "presentation": "812cbfd47ef4360e5e661ef9a31ecfe1a02987ff60ec7bb5f242e62ee8d76941",
+    "content": "1d483db700bc3a307043af2ab248b82ba2fe23f0c4bd3217efc3a831edc6e03b",
+    "presentation": "ac5786eaa96be02eb8fc49fa2357722438e16411c6d7dfbfee3d167856ec8b5c",
     "taskRegistry": "a529dc2f2cf6721fc0911ac8a81337350ed3d51280ec85428db92f0007277d8d"
   }
 }

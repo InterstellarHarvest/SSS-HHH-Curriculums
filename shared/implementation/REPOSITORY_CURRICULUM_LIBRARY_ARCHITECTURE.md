@@ -11,6 +11,7 @@ case-registry.v2.json
 → source/presentation.css
 → source/task-registry.js
 → referenced source/assets
+→ shared protected printable components
 → central Curriculum Editor
 → temporary editable/role/print documents
 ```

@@ -37,6 +37,35 @@ CASE04_TASK_TITLES = [
     "Design Independent Reactor Controls",
     "Exit Ticket — Cause or Effect?",
 ]
+LEGACY_SELF_STYLED_CASES = {"SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"}
+PROTECTED_SELECTOR_PATTERNS = {
+    ".student-id": r"(?<![\w-])\.student-id(?![\w-])",
+    ".id-field": r"(?<![\w-])\.id-field(?![\w-])",
+    ".mission-title-block": r"(?<![\w-])\.mission-title-block(?![\w-])",
+    ".mission-rail": r"(?<![\w-])\.mission-rail(?![\w-])",
+    ".hero-title": r"(?<![\w-])\.hero-title(?![\w-])",
+    ".mission-subtitle": r"(?<![\w-])\.mission-subtitle(?![\w-])",
+    ".identity-mark": r"(?<![\w-])\.identity-mark(?![\w-])",
+    ".identity-copy": r"(?<![\w-])\.identity-copy(?![\w-])",
+    ".saa-insignia": r"(?<![\w-])\.saa-insignia(?![\w-])",
+    ".institution": r"(?<![\w-])\.institution(?![\w-])",
+    ".document-role": r"(?<![\w-])\.document-role(?![\w-])",
+    ".continuation-header": r"(?<![\w-])\.continuation-header(?![\w-])",
+    ".continuation-copy": r"(?<![\w-])\.continuation-copy(?![\w-])",
+    ".continuation-role": r"(?<![\w-])\.continuation-role(?![\w-])",
+    ".continuation-identity": r"(?<![\w-])\.continuation-identity(?![\w-])",
+    "[data-publication-footer]": r"\[data-publication-footer(?:[^\]]*)\]",
+    ".canonical-cer": r"(?<![\w-])\.canonical-cer(?![\w-])",
+    ".canonical-cer-box": r"(?<![\w-])\.canonical-cer-box(?![\w-])",
+    ".canonical-cer-label": r"(?<![\w-])\.canonical-cer-label(?![\w-])",
+    ".canonical-cer-response": r"(?<![\w-])\.canonical-cer-response(?![\w-])",
+}
+
+
+def protected_css_definitions(css: str) -> list[str]:
+    clean = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    selectors = [match.group(1).strip() for match in re.finditer(r"(?:^|})\s*([^{}]+)\{", clean)]
+    return sorted({name for selector in selectors if not selector.startswith("@") for name, pattern in PROTECTED_SELECTOR_PATTERNS.items() if re.search(pattern, selector)})
 
 
 class Results:
@@ -149,6 +178,8 @@ def main() -> int:
     package_schema = load_json(package_schema_path)
     history_schema = load_json(history_schema_path)
 
+    detector_probe = protected_css_definitions(".student-id{display:grid}.canonical-cer-response:focus{outline:0}[data-publication-footer]{margin:0}")
+    results.check("protected case-CSS selector detector rejects direct invariant-component rules", detector_probe == [".canonical-cer-response", ".student-id", "[data-publication-footer]"], detector_probe)
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
     results.check("registry discovers exactly Cases 01–04 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
@@ -217,6 +248,12 @@ def main() -> int:
         presentation = paths["presentation"].read_text(encoding="utf-8")
         whole_page_filter = re.search(r"(?:body|\.page)\.grayscale\s*\{[^}]*filter\s*:", presentation, re.I | re.S)
         results.check(f"{case_id} grayscale uses presentation tokens without whole-page filtering", "grayscale" in presentation.lower() and not whole_page_filter)
+        uses_shared_components = package["presentation"].get("sharedComponentStyles") is True
+        if case_id not in LEGACY_SELF_STYLED_CASES:
+            results.check(f"{case_id} opts into shared protected-component styles", uses_shared_components)
+        if uses_shared_components:
+            protected_definitions = protected_css_definitions(presentation)
+            results.check(f"{case_id} case presentation defines no protected shared selectors", not protected_definitions, protected_definitions)
 
         if expected_status == "APPROVED_STABLE":
             history_path = ROOT / package["releaseHistory"]
@@ -247,10 +284,67 @@ def main() -> int:
             results.check("Case 04 uses all locked relative sequence labels", all(label in content for label in required_sequence))
             results.check("Case 04 omits unsupported mission-day and precise-density data", not re.search(r"Day\s*12[18]|culture density\s*[:=]\s*\d", content, re.I))
             results.check("Case 04 keeps reactor-specific continuous-cultivation qualification", "Continuous cultivation may work with appropriate independent intensity, mixing, density, and process controls." in content)
+            learner_first_pages = {role: soup.select_one(f'.page[data-role="{role}"]') for role in ["student", "accessible"]}
+            expected_fields = {
+                "student": ["student-name", "student-date", "student-class"],
+                "accessible": ["a-name", "a-date", "a-class"],
+            }
+            id_contracts = {}
+            for role, page in learner_first_pages.items():
+                row = page.select_one(".student-id") if page else None
+                fields = row.select(":scope > .id-field") if row else []
+                id_contracts[role] = bool(
+                    row
+                    and row.get("aria-label") == "Student identification"
+                    and row.parent.select_one(":scope > :first-child") is row
+                    and len(fields) == 3
+                    and [field.select_one(":scope > strong").get_text(strip=True) if field.select_one(":scope > strong") else None for field in fields] == ["Name", "Date", "Period"]
+                    and [field.select_one(":scope > span").get("data-field") if field.select_one(":scope > span") else None for field in fields] == expected_fields[role]
+                    and all(field.name == "div" and not field.select("label") for field in fields)
+                )
+            results.check("Case 04 Student and Accessible use the exact canonical identification-row structure", all(id_contracts.values()), id_contracts)
+
+            first_pages = [soup.select_one(f'.page[data-role="{role}"]') for role in ROLES]
+            title_blocks = [page.select_one('.mission-title-block[data-header-contract="printable-v1.1"]') if page else None for page in first_pages]
+            title_contract = all(
+                title
+                and [child.get("class", [None])[0] for child in title.find_all(recursive=False)] == ["mission-rail", "mission-title-copy", "identity-mark"]
+                and title.select_one(":scope > .mission-title-copy > .hero-title")
+                and title.select_one(":scope > .mission-title-copy > .mission-subtitle")
+                and title.select_one(':scope > .identity-mark > img.saa-insignia[alt="Solar Agricultural Agency insignia"][src="../../../../shared/assets/insignia/saa.svg"]')
+                and title.select_one(":scope > .identity-mark > .identity-copy > .institution")
+                and title.select_one(":scope > .identity-mark > .identity-copy > .document-role")
+                for title in title_blocks
+            )
+            results.check("Case 04 first-page title blocks use the exact shared child contract and SAA image", title_contract)
+            results.check("Case 04 mission subtitle uses the locked punctuation", all(title.select_one(".mission-subtitle").get_text(strip=True) == "Campaign 1 · Case 04 · L2 Lagrange Point, Orbital Research Station" for title in title_blocks if title))
+
+            continuation_headers = soup.select('.continuation-header[data-header-contract="printable-v1.1"]')
+            expected_continuations = sum(expected_counts.values()) - len(ROLES)
+            continuation_contract = len(continuation_headers) == expected_continuations and all(
+                [child.get("class", [None])[0] for child in header.find_all(recursive=False)] == ["continuation-copy", "continuation-identity"]
+                and header.select_one(":scope > .continuation-copy > h1")
+                and header.select_one(":scope > .continuation-copy > .continuation-role")
+                and header.select_one(':scope > .continuation-identity > img.saa-insignia[alt="Solar Agricultural Agency insignia"][src="../../../../shared/assets/insignia/saa.svg"]')
+                and header.select_one(":scope > .continuation-identity > .institution")
+                for header in continuation_headers
+            )
+            results.check("Case 04 continuation headers use the exact shared child contract and SAA image", continuation_contract, len(continuation_headers))
+            saa_asset = next((asset for asset in package["assets"] if asset["id"] == "saa-insignia"), None)
+            results.check("Case 04 package embeds the shared SAA SVG asset", saa_asset == {"id": "saa-insignia", "type": "image/svg+xml", "source": "shared/assets/insignia/saa.svg", "selector": ".saa-insignia", "embed": True}, saa_asset)
+
+            cer_contracts = {root.get("data-cer-contract"): [box.select_one(":scope > .canonical-cer-label").get_text(strip=True) if box.select_one(":scope > .canonical-cer-label") else None for box in root.select(":scope > .canonical-cer-box")] for root in soup.select(".canonical-cer[data-cer-contract]")}
+            results.check("Case 04 CER uses only the three approved atomic contracts", cer_contracts == {"student-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "answer-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "accessible-v1.0": ["CLAIM", "EVIDENCE", "REASONING"]}, cer_contracts)
+            student_distribution = [[int(node["data-shell-task-heading"]) for node in page.select("[data-shell-task-heading]")] for page in soup.select('.page[data-role="student"]')]
+            results.check("Case 04 Student page 1 contains complete Tasks 1 and 2 and does not split Task 3", student_distribution[0] == [1, 2] and student_distribution[1][0] == 3, student_distribution)
+            task_two = soup.select_one('.page[data-page-id="student-mission-01"] .task-block [data-shell-task-heading="2"]')
+            results.check("Case 04 Student Task 2 is atomic on page 1", bool(task_two and task_two.find_parent(class_="task-block") and task_two.find_parent(class_="task-block").find_parent(class_="page").get("data-page-id") == "student-mission-01"))
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable = (APP / "portable-runtime.js").read_text(encoding="utf-8")
+    protected_styles_path = ROOT / "shared/implementation/editor-shell/v1.0/protected-printable-components.css"
     results.check("central editor loads registry and package schema v2", "case-registry.v2.json" in runtime and "SUPPORTED_PACKAGE_SCHEMA = 2" in runtime)
+    results.check("central editor applies the shared protected-component stylesheet after case presentation", protected_styles_path.is_file() and "protected-printable-components.css" in runtime and "[...sharedStyles, presentationCss, protectedComponentStyles]" in runtime)
     results.check("central and portable exports never remap grayscale to an output role", 'outputRole: state.role' in runtime and 'outputRole: state.role' in portable and "GRAYSCALE_MISSION" not in runtime + portable)
     results.check("central and portable runtimes preserve grayscale as Boolean presentation state", "state.grayscale" in runtime and "state.grayscale" in portable and 'classList.toggle("grayscale", state.grayscale)' in runtime and 'classList.toggle("grayscale", state.grayscale)' in portable)
     results.check("isolated print paths exclude chrome and page shadow", all(token in runtime and token in portable for token in ["preparePrintFrame", "print-document", "box-shadow:none!important"]))

@@ -39,6 +39,14 @@
           : value.match(/[\d.]+/g)?.slice(0, 3).map(Number);
       return Boolean(channels?.length === 3 && channels[0] === channels[1] && channels[1] === channels[2]);
     };
+    const rounded = value => Math.round(Number(value) * 100) / 100;
+    const px = value => rounded(parseFloat(value));
+    const near = (value, expected, tolerance = .03) => Math.abs(value - expected) <= tolerance;
+    const dimensions = node => {
+      const rect = node.getBoundingClientRect();
+      return [rounded(rect.width), rounded(rect.height)];
+    };
+    const hasActualSaa = node => Boolean(node?.matches('img.saa-insignia[alt="Solar Agricultural Agency insignia"]') && /shared\/assets\/insignia\/saa\.svg(?:$|[%?#])/.test(node.getAttribute("src")) || node?.matches('svg.saa-insignia[role="img"][aria-label="Solar Agricultural Agency insignia"]') && node.querySelectorAll("path,circle").length >= 5);
     const layoutMetrics = frame => {
       const doc = frame.contentDocument;
       const toolbar = doc.querySelector(".toolbar").getBoundingClientRect();
@@ -362,6 +370,7 @@
 
       const caseMarkers = {};
       const matrixStates = [];
+      const protectedPresentation = {};
       for (const item of canonicalCases) {
         await api.selectCase(item.id);
         api = win.__curriculumEditor;
@@ -381,6 +390,54 @@
           const overflowCount = api.checkOverflow();
           const overflowDetail = Array.from(workspace.querySelectorAll(".page.has-overflow")).map(page => { const frame = page.querySelector(".page-frame"); const content = page.querySelector(".content-area"); return { page: page.dataset.pageId, frame: [frame?.scrollHeight, frame?.clientHeight, frame?.scrollWidth, frame?.clientWidth], content: [content?.scrollHeight, content?.clientHeight, content?.scrollWidth, content?.clientWidth] }; });
           check(`${item.id} ${role} Pages fit`, overflowCount === 0 && doc.querySelector("#overflowStatus").textContent === "Pages fit", JSON.stringify(overflowDetail));
+        }
+        const idRoleResults = {};
+        for (const role of ["student", "accessible"]) {
+          api.setRole(role);
+          await wait(20);
+          const firstPage = visiblePages(frame)[0];
+          const row = firstPage.querySelector(".student-id");
+          const title = firstPage.querySelector('.mission-title-block[data-header-contract="printable-v1.1"]');
+          const fields = row ? Array.from(row.children) : [];
+          const labels = fields.map(field => field.querySelector(":scope > strong")?.textContent.trim() || field.firstChild?.textContent.trim());
+          const style = row ? win.getComputedStyle(row) : null;
+          idRoleResults[role] = Boolean(row && title && labels.join("|") === "Name|Date|Period" && (row.compareDocumentPosition(title) & Node.DOCUMENT_POSITION_FOLLOWING) && style.display === "grid" && style.gridTemplateColumns !== "none");
+          if (item.id === "SSS-C1-CASE04") {
+            const expectedDataFields = role === "student" ? ["student-name", "student-date", "student-class"] : ["a-name", "a-date", "a-class"];
+            check(`Case 04 ${role} identification row has exact canonical rendered hierarchy`, fields.length === 3 && fields.every(field => field.matches("div.id-field") && field.querySelector(":scope > strong + span[data-field][data-persist-id][data-response]")) && JSON.stringify(fields.map(field => field.querySelector(":scope > span").dataset.field)) === JSON.stringify(expectedDataFields));
+          }
+        }
+        check(`${item.id} Student and Accessible identification rows preserve ordering, shared type, grid, and first-page placement`, Object.values(idRoleResults).every(Boolean), JSON.stringify(idRoleResults));
+
+        api.setRole("student");
+        await wait(20);
+        const studentPages = visiblePages(frame);
+        const firstHeader = studentPages[0].querySelector('.mission-title-block[data-header-contract="printable-v1.1"]');
+        const continuation = studentPages[1].querySelector('.continuation-header[data-header-contract="printable-v1.1"]');
+        const titleChildren = Array.from(firstHeader.children).map(node => node.className);
+        const continuationChildren = Array.from(continuation.children).map(node => node.className);
+        const firstInsignia = firstHeader.querySelector(".saa-insignia");
+        const continuationInsignia = continuation.querySelector(".saa-insignia");
+        check(`${item.id} first-page title block has canonical children and actual SAA artwork`, JSON.stringify(titleChildren) === JSON.stringify(["mission-rail", "mission-title-copy", "identity-mark"]) && hasActualSaa(firstInsignia) && firstHeader.querySelector(":scope > .mission-title-copy > .hero-title + .mission-subtitle") && firstHeader.querySelector(":scope > .identity-mark > .identity-copy > .institution + .document-role"));
+        check(`${item.id} continuation header has canonical children and actual SAA artwork`, JSON.stringify(continuationChildren) === JSON.stringify(["continuation-copy", "continuation-identity"]) && hasActualSaa(continuationInsignia) && continuation.querySelector(":scope > .continuation-copy > h1 + .continuation-role") && continuation.querySelector(":scope > .continuation-identity > .institution"));
+        const rowStyle = win.getComputedStyle(studentPages[0].querySelector(".student-id"));
+        const headerStyle = win.getComputedStyle(firstHeader);
+        const rail = firstHeader.querySelector(".mission-rail");
+        const heroStyle = win.getComputedStyle(firstHeader.querySelector(".hero-title"));
+        const subtitleStyle = win.getComputedStyle(firstHeader.querySelector(".mission-subtitle"));
+        const continuationStyle = win.getComputedStyle(continuation);
+        const continuationTitleStyle = win.getComputedStyle(continuation.querySelector("h1"));
+        protectedPresentation[item.id] = {
+          id: { fontFamily: rowStyle.fontFamily, fontSize: px(rowStyle.fontSize), columns: rowStyle.gridTemplateColumns, gap: px(rowStyle.columnGap) },
+          title: { columns: headerStyle.gridTemplateColumns, gap: px(headerStyle.columnGap), border: px(headerStyle.borderBottomWidth), rail: dimensions(rail), heroFamily: heroStyle.fontFamily, heroSize: px(heroStyle.fontSize), heroLine: px(heroStyle.lineHeight), subtitleFamily: subtitleStyle.fontFamily, subtitleSize: px(subtitleStyle.fontSize), insignia: dimensions(firstInsignia) },
+          continuation: { columns: continuationStyle.gridTemplateColumns, gap: px(continuationStyle.columnGap), border: px(continuationStyle.borderBottomWidth), titleFamily: continuationTitleStyle.fontFamily, titleSize: px(continuationTitleStyle.fontSize), insignia: dimensions(continuationInsignia) },
+          footer: (() => { const style = win.getComputedStyle(studentPages[0].querySelector("[data-publication-footer],.publication-footer")); return { fontFamily: style.fontFamily, fontSize: px(style.fontSize), border: px(style.borderTopWidth) }; })()
+        };
+        const protectedGeometry = protectedPresentation[item.id];
+        if (item.id === "SSS-C1-CASE04") {
+          check("Case 04 protected header and footer geometry matches shared printable-v1.1", protectedGeometry.id.fontFamily.includes("JetBrains Mono") && protectedGeometry.id.fontSize === 12 && protectedGeometry.id.gap === 12 && protectedGeometry.title.heroSize === 34.67 && protectedGeometry.title.heroLine === 38.67 && protectedGeometry.title.subtitleSize === 12 && protectedGeometry.title.insignia.every(value => Math.abs(value - 55.68) < .1) && protectedGeometry.continuation.titleSize === 21.33 && protectedGeometry.continuation.insignia.every(value => Math.abs(value - 32.64) < .1) && protectedGeometry.footer.fontSize === 9.33, JSON.stringify(protectedGeometry));
+        } else {
+          check(`${item.id} legacy protected components retain valid printable geometry`, protectedGeometry.title.border === 1 && protectedGeometry.continuation.border === 1 && protectedGeometry.title.insignia.every(value => value > 30) && protectedGeometry.continuation.insignia.every(value => value > 20) && protectedGeometry.footer.border === 1, JSON.stringify(protectedGeometry));
         }
         api.resetSource(true);
         const response = workspace.querySelector('[data-response][data-persist-id]');
@@ -412,6 +469,9 @@
             const tokenFailures = grayscaleTokens.filter(token => !isNeutralRgb(palette.getPropertyValue(token).trim()));
             const surfaceFailures = tintedSurfaces.filter(node => !isNeutralRgb(win.getComputedStyle(node).backgroundColor));
             check(`${item.id} ${profile.role} grayscale neutralizes colored textbox palette and rendered fills`, tintedSurfaces.length > 0 && tokenFailures.length === 0 && surfaceFailures.length === 0, JSON.stringify({ tokenFailures, surfaceFailures: surfaceFailures.slice(0, 8).map(node => node.className) }));
+            if (item.id === "SSS-C1-CASE04") {
+              check(`Case 04 ${profile.role} grayscale neutralizes the shared SAA insignia`, Array.from(workspace.querySelectorAll(".saa-insignia")).every(node => win.getComputedStyle(node).filter !== "none"));
+            }
           }
           const printHtml = api.buildPrintDocument(profile.role);
           const printDoc = new DOMParser().parseFromString(printHtml, "text/html");
@@ -474,6 +534,27 @@
           check("Case 04 has one atomic CER in each required learner role", ["student-v1.0", "answer-v1.0", "accessible-v1.0"].every(contract => { const root = workspace.querySelector(`[data-cer-contract="${contract}"]`); return root && Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page")); }));
           check("Case 04 timeline and process models remain atomic", Array.from(workspace.querySelectorAll("[data-timeline-contract],[data-process-contract]")).every(root => Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page"))));
           check("Case 04 Accessible pages retain ordered reading structure", JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="accessible"]')).map(page => page.dataset.pageId)) === JSON.stringify(["accessible-mission-01", "accessible-mission-02", "accessible-mission-03", "accessible-mission-04", "accessible-mission-05", "accessible-mission-06"]));
+          const studentDistribution = Array.from(workspace.querySelectorAll('.page[data-role="student"]')).map(page => Array.from(page.querySelectorAll(".task-heading")).map(node => Number(node.dataset.taskId)));
+          check("Case 04 Student page 1 contains complete Tasks 1 and 2 with Task 3 held intact for page 2", JSON.stringify(studentDistribution[0]) === JSON.stringify([1, 2]) && studentDistribution[1][0] === 3 && workspace.querySelector('.page[data-page-id="student-mission-01"] .task-block .task-heading[data-task-id="2"]'));
+          const pageReserves = Array.from(workspace.querySelectorAll('.page[data-role="student"]')).map(page => { const content = page.querySelector(".content-area"); const last = content.lastElementChild; return { page: page.dataset.pageId, pixels: rounded(content.getBoundingClientRect().bottom - last.getBoundingClientRect().bottom) }; });
+          check("Case 04 Student pages retain intentional bottom reserve without overflow", pageReserves.every(item => item.pixels >= 0), JSON.stringify(pageReserves));
+
+          const cerGeometry = {};
+          for (const [role, contract] of [["student", "student-v1.0"], ["answer", "answer-v1.0"], ["accessible", "accessible-v1.0"]]) {
+            api.setRole(role);
+            await wait(20);
+            const root = workspace.querySelector(`[data-cer-contract="${contract}"]`);
+            const boxes = Array.from(root.querySelectorAll(":scope > .canonical-cer-box"));
+            const rootStyle = win.getComputedStyle(root);
+            const firstBoxStyle = win.getComputedStyle(boxes[0]);
+            cerGeometry[role] = { contract, root: dimensions(root), minHeight: px(rootStyle.minHeight), boxHeights: boxes.map(box => dimensions(box)[1]), columns: firstBoxStyle.gridTemplateColumns, gap: px(firstBoxStyle.columnGap), label: dimensions(boxes[0].querySelector(".canonical-cer-label")), response: dimensions(boxes[0].querySelector(".canonical-cer-response,.answer-block")) };
+          }
+          const studentCer = cerGeometry.student;
+          const answerCer = cerGeometry.answer;
+          const accessibleCer = cerGeometry.accessible;
+          check("Case 04 canonical CER computed geometry matches shared Student, Answer, and Accessible contracts", near(studentCer.minHeight, 244.8) && studentCer.root[1] >= 244.77 && near(parseFloat(studentCer.columns), 69.12) && answerCer.boxHeights[0] >= 44.13 && answerCer.boxHeights[1] >= 63.33 && answerCer.boxHeights[2] >= 72.93 && accessibleCer.boxHeights[0] >= 74.85 && accessibleCer.boxHeights[1] >= 113.25 && accessibleCer.boxHeights[2] >= 113.25 && near(parseFloat(accessibleCer.columns), 91.2), JSON.stringify(cerGeometry));
+          api.setRole("student");
+          api.saveState({ grayscale: false });
         }
       }
 
@@ -482,6 +563,8 @@
       check("existing Cases 01–03 presentation matrix remains 24/24", approvedMatrixStates.length === 24 && approvedMatrixStates.every(state => state.pass), JSON.stringify(approvedMatrixStates.filter(state => !state.pass)));
       check("Case 04 presentation matrix passes 8/8", case04MatrixStates.length === 8 && case04MatrixStates.every(state => state.pass), JSON.stringify(case04MatrixStates.filter(state => !state.pass)));
       check("all 32 case-role-presentation matrix states pass", matrixStates.length === 32 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
+      const protectedGeometrySignatures = Object.fromEntries(Object.entries(protectedPresentation).map(([caseId, value]) => [caseId, JSON.stringify({ title: { columns: value.title.columns, gap: value.title.gap, border: value.title.border, rail: value.title.rail, heroSize: value.title.heroSize, heroLine: value.title.heroLine, subtitleSize: value.title.subtitleSize, insignia: value.title.insignia }, continuation: { columns: value.continuation.columns, gap: value.continuation.gap, border: value.continuation.border, titleSize: value.continuation.titleSize, insignia: value.continuation.insignia } })]));
+      check("Cases 01–04 share protected title and continuation geometry", new Set(Object.values(protectedGeometrySignatures)).size === 1, JSON.stringify(protectedPresentation));
 
       for (const item of canonicalCases) {
         await api.selectCase(item.id);

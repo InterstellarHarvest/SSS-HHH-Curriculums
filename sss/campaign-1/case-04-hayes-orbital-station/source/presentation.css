@@ -73,74 +73,6 @@ h2 { margin: 7px 0 5px; padding-bottom: 3px; border-bottom: 2px solid var(--prim
 h3 { margin: 5px 0 3px; font-size: 10pt; }
 em { font-family: Georgia, serif; }
 
-.student-id {
-  display: grid;
-  grid-template-columns: 2fr 1fr .7fr;
-  gap: 10px;
-  margin-bottom: .03in;
-  font: 700 8pt monospace;
-}
-
-.student-id label { display: flex; gap: 6px; align-items: end; }
-.id-field { display: inline-block; flex: 1; min-height: 18px; border-bottom: 1px solid var(--ink); }
-
-.mission-title-block[data-header-contract="printable-v1.1"] {
-  display: grid;
-  grid-template-columns: .08in minmax(0, 1fr) 1.55in;
-  gap: .11in;
-  align-items: center;
-  margin-bottom: .06in;
-  padding-bottom: .055in;
-  border-bottom: 1px solid var(--rule);
-}
-
-.mission-rail { min-height: .72in; height: 100%; background: var(--institution); }
-.hero-title { margin: 0; font-size: 23pt; line-height: 25pt; letter-spacing: -.025em; }
-.mission-subtitle { margin: 2px 0 0; font-size: 8.4pt; }
-.identity-mark,
-.continuation-identity { display: flex; gap: .07in; align-items: center; justify-self: end; }
-.saa-insignia {
-  display: grid;
-  place-items: center;
-  width: .5in;
-  height: .5in;
-  flex: 0 0 .5in;
-  color: #fff;
-  background: var(--institution);
-  border: 2px solid var(--accent-dark);
-  border-radius: 50%;
-  font: 800 8pt monospace;
-}
-.identity-copy { min-width: 0; }
-.institution { color: var(--ink); font: 700 7.2pt/1.08 monospace; letter-spacing: .04em; text-transform: uppercase; }
-.institution span { display: block; }
-.document-role { margin-top: 2px; color: var(--muted); font-size: 7.8pt; }
-
-.continuation-header[data-header-contract="printable-v1.1"] {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 1.45in;
-  gap: .12in;
-  align-items: center;
-  margin-bottom: .07in;
-  padding-bottom: .05in;
-  border-bottom: 1px solid var(--rule);
-}
-.continuation-copy h1 { margin: 0; font-size: 15pt; line-height: 1.1; }
-.continuation-role { color: var(--muted); font-size: 8.2pt; }
-.continuation-identity .saa-insignia { width: .34in; height: .34in; flex-basis: .34in; font-size: 6pt; }
-.continuation-identity .institution { font-size: 6.5pt; }
-
-[data-publication-footer] {
-  display: flex;
-  flex: 0 0 auto;
-  justify-content: flex-end;
-  margin-top: .06in;
-  padding-top: .04in;
-  color: var(--muted);
-  border-top: 1px solid var(--rule);
-  font: 600 6.8pt monospace;
-}
-
 .identity-strip { display: flex; gap: 8px; align-items: baseline; margin: 4px 0; }
 .label,
 .response-label { color: var(--muted); font: 800 7pt/1.1 monospace; letter-spacing: .06em; text-transform: uppercase; }
@@ -182,8 +114,7 @@ em { font-family: Georgia, serif; }
 .response,
 .table-response,
 .timeline-response,
-.stage-response,
-.canonical-cer-response {
+.stage-response {
   min-height: .38in;
   padding: 4px;
   border: 1px solid var(--ink);
@@ -195,14 +126,16 @@ em { font-family: Georgia, serif; }
 .response.medium { min-height: .58in; }
 .response.large { min-height: .95in; }
 .table-response { min-height: .3in; }
+.evidence-table .table-response { min-height: .62in; }
 .timeline-response { min-height: .4in; }
 .stage-response { flex: 1; min-height: .42in; }
+.diagnosis-response { min-height: 1.15in; }
+.control-response { min-height: 2.05in; }
+.exit-response { min-height: 2.55in; }
 .response:focus,
 .table-response:focus,
 .timeline-response:focus,
-.stage-response:focus,
-.canonical-cer-response:focus,
-.id-field:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+.stage-response:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
 
 .choice-list { display: grid; gap: 4px; }
 .choice { padding: 5px 7px; border: 1px solid var(--rule); background: var(--paper); font-size: 8.6pt; }
@@ -221,6 +154,9 @@ em { font-family: Georgia, serif; }
 .task-heading-copy { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .task-heading .technical-label { color: var(--institution); font: 700 6.7pt/1.05 monospace; letter-spacing: .07em; }
 .task-heading .section-title { font: 800 10.7pt/1.14 Arial, sans-serif; }
+.task-block { margin-top: .1in; break-inside: avoid; page-break-inside: avoid; }
+.page[data-page-id="student-mission-03"] .content-area { display: flex; flex-direction: column; }
+.student-cer-task { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
 
 .event-bank,
 .mechanism-bank { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 4px 0 6px; }
@@ -265,15 +201,8 @@ em { font-family: Georgia, serif; }
 .cycle-connector { align-self: center; font-size: 12pt; text-align: center; }
 .cycle-model.completed .cycle-stage { min-height: 1.2in; font-size: 7.4pt; }
 
-.canonical-cer[data-cer-contract] { display: flex; flex-direction: column; gap: .045in; margin: 4px 0; break-inside: avoid; page-break-inside: avoid; }
-.canonical-cer-box { display: grid; grid-template-columns: .68in minmax(0, 1fr); gap: .05in; min-height: 0; }
-.canonical-cer-label { display: flex; align-items: center; justify-content: center; padding: 4px; color: #fff; background: var(--institution); border-radius: var(--radius); font: 700 6.8pt monospace; letter-spacing: .04em; }
-.canonical-cer[data-cer-contract="student-v1.0"] { min-height: 1.68in; }
-.canonical-cer[data-cer-contract="student-v1.0"] .canonical-cer-box { flex: 1 1 .45in; }
-.canonical-cer[data-cer-contract="answer-v1.0"] .canonical-cer-box { min-height: .48in; }
 .answer-block { margin: 5px 0; padding: 6px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--paper); }
 .answer-block p { margin: 2px 0; }
-.canonical-cer .answer-block { min-height: 100%; margin: 0; border-left-width: 1px; font-size: 8.2pt; }
 .compact-cer { display: grid; grid-template-columns: 1fr 1.25fr 1.4fr; gap: 5px; }
 .compact-cer > div { padding: 5px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8pt; }
 .compact-cer p { margin: 2px 0; }
@@ -308,9 +237,6 @@ em { font-family: Georgia, serif; }
 .accessible-cycle .cycle-connector { justify-self: start; margin-left: .12in; font-size: 9pt; }
 .accessible-bank { grid-template-columns: 1fr 1fr; }
 .accessible-bank span { font-size: 8.8pt; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] { min-height: 2.05in; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-box { grid-template-columns: .86in minmax(0, 1fr); flex: 1 1 .62in; }
-.canonical-cer[data-cer-contract="accessible-v1.0"] .canonical-cer-label { font-size: 7.8pt; }
 .accessible-systems { font-size: 8pt; }
 
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }

@@ -72,7 +72,8 @@
       "required": ["source", "isolation"],
       "properties": {
         "source": {"type": "string", "pattern": "/source/presentation\\.css$"},
-        "isolation": {"const": "shadow-dom"}
+        "isolation": {"const": "shadow-dom"},
+        "sharedComponentStyles": {"type": "boolean"}
       },
       "additionalProperties": false
     },

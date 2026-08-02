@@ -30,7 +30,7 @@ Generated HTML and PDFs are not written into the repository. A browser-created P
 
 ## Source and recovery model
 
-The package’s `content.html`, `presentation.css`, `task-registry.js`, and referenced assets are canonical. Complete editable documents and role documents are assembled on demand. Old embedded documents and release outputs are absent from the current tree and recoverable through the commands in `history/release-vX.json`.
+The package’s `content.html`, `presentation.css`, `task-registry.js`, and referenced assets are canonical. The central shell applies `protected-printable-components.css` after case presentation so identification rows, title and continuation headers, institutional identity, footers, and CER keep one printable contract. New packages opt into the shared component layer and may not redefine protected selectors. Complete editable documents and role documents are assembled on demand. Old embedded documents and release outputs are absent from the current tree and recoverable through the commands in `history/release-vX.json`.
 
 ## Validation
 
@@ -40,6 +40,6 @@ python3 apps/curriculum-editor/tests/validate_static.py
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 ```
 
-The browser suite covers all 32 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, identities, and JavaScript errors. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
+The browser suite covers all 32 case/role/presentation states, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
 
 The server binds to `127.0.0.1` and serves repository files read-only. Packages are trusted repository content; downloaded editable HTML contains JavaScript and should be treated accordingly.
