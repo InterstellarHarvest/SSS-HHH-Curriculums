@@ -107,8 +107,10 @@ em { font-family: Georgia, serif; }
 .data-table td { padding: 3px 4px; border: 1px solid var(--rule); vertical-align: top; }
 .data-table th { background: var(--panel); text-align: left; }
 .vocabulary-table td:first-child { width: 1.25in; font-weight: 700; }
+.evidence-table { table-layout: fixed; }
 .evidence-table th:first-child { width: .78in; }
-.evidence-table td:last-child { width: 2.15in; }
+.evidence-table th:last-child,
+.evidence-table td:last-child { width: 3.35in; }
 .rubric { font-size: 7.7pt; }
 
 .response,
@@ -126,10 +128,11 @@ em { font-family: Georgia, serif; }
 .response.medium { min-height: .58in; }
 .response.large { min-height: .95in; }
 .table-response { min-height: .3in; }
-.evidence-table .table-response { min-height: .62in; }
+.evidence-table .table-response { min-height: .75in; }
 .timeline-response { min-height: .4in; }
 .page[data-page-id="student-mission-01"] .timeline-response { min-height: .8in; }
 .stage-response { flex: 1; min-height: .42in; }
+.page[data-page-id="student-mission-03"] .stage-response { min-height: 1.2in; }
 .diagnosis-response { min-height: 1.15in; }
 .control-response { min-height: 2.05in; }
 .exit-response { min-height: 2.55in; }

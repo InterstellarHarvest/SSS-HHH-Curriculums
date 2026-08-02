@@ -555,7 +555,15 @@
           check("Case 04 canonical CER computed geometry matches shared Student, Answer, and Accessible contracts", near(studentCer.minHeight, 244.8) && near(studentCer.root[1], 244.8) && near(parseFloat(studentCer.columns), 69.12) && answerCer.boxHeights[0] >= 44.13 && answerCer.boxHeights[1] >= 63.33 && answerCer.boxHeights[2] >= 72.93 && accessibleCer.boxHeights[0] >= 74.85 && accessibleCer.boxHeights[1] >= 113.25 && accessibleCer.boxHeights[2] >= 113.25 && near(parseFloat(accessibleCer.columns), 91.2), JSON.stringify(cerGeometry));
           api.setRole("student");
           await wait(20);
-          check("Case 04 Student Task 2 timeline response boxes receive additional page-one writing height", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-01"] .timeline-response')).every(node => dimensions(node)[1] >= 76.77));
+          check("Case 04 Student Task 2 timeline response boxes retain the approved page-one height", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-01"] .timeline-response')).every(node => dimensions(node)[1] >= 76.77));
+          check("Case 04 Student Task 3 evidence-analysis boxes provide expanded writing area", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-02"] .evidence-table .table-response')).every(node => { const [width, height] = dimensions(node); return width >= 310 && height >= 71.97; }));
+          check("Case 04 Student Task 5 cycle response boxes fit mechanism-bank phrases", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-03"] .stage-response')).every(node => dimensions(node)[1] >= 115.17));
+          check("Case 04 Student Task 7 distinguishes the two control responses", (() => {
+            const page = workspace.querySelector('.page[data-page-id="student-mission-04"]');
+            const labels = Array.from(page.querySelectorAll('.task-heading[data-task-id="7"] ~ .two-col .response-label')).map(node => node.textContent.trim());
+            const directions = page.querySelector('.task-heading[data-task-id="7"] ~ .directions')?.textContent || "";
+            return JSON.stringify(labels) === JSON.stringify(["Immediate recovery action", "Long-term independent control"]) && directions.includes("validated recovery schedule") && directions.includes("independently of corridor lighting");
+          })());
           const studentTaskGaps = [
             ["student-mission-01", "1", "2"],
             ["student-mission-02", "3", "4"],
