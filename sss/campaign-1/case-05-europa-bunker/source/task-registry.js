@@ -4,7 +4,7 @@ window.SSS_CASE05_TASK_REGISTRY = {
   "runtimeId": "europa",
   "title": "Sub Surface Bunker",
   "version": "1.0",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "ownerReviewStatus": "OWNER_REVIEW_PASS",
   "mergeStatus": "READY_TO_MERGE",
   "editorShell": "1.0",

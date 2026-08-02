@@ -1,9 +1,9 @@
 # SSS/HHH Current Project State
 
 Project state content verified from curriculum repository baseline
-`cc784e74e4864c5a14c2892ddccb2f0e4521d133`
+`c73140841559b1ef56f5088e759e41a253856723`
 
-Last updated: 2026-08-01
+Last updated: 2026-08-02
 
 ## Purpose and authority
 
@@ -23,11 +23,11 @@ Related game repositories:
 - <https://github.com/InterstellarHarvest/Hunger-Harvest-History>
 
 Verified project-state baseline:
-`cc784e74e4864c5a14c2892ddccb2f0e4521d133`
+`c73140841559b1ef56f5088e759e41a253856723`
 
 The live main branch may be newer because this handoff is itself committed after the baseline it documents. Always fetch the repository and resolve the current main SHA before beginning work.
 
-Current Case 04 game baseline: `2bfdb0aadf6ce33b6664cd104b11a891cb55efaf`
+Current Case 05 game-science baseline: `a7a725121f261373df32a5366c70e7df73ddf8f3`
 
 No production branches are intentionally active at this checkpoint.
 
@@ -36,11 +36,12 @@ No production branches are intentionally active at this checkpoint.
 | Curriculum | Campaign | Case | Title | Version | Student | Teacher | Answer Key | Accessible | Status |
 |---|---:|---:|---|---:|---:|---:|---:|---:|---|
 | SSS | 1 | 01 | ISS Greenhouse Module | 1.1 | 3 | 7 | 3 | 6 | APPROVED_STABLE |
-| SSS | 1 | 02 | Lunar Greenhouse | 1.0 | 3 | 7 | 3 | 5 | APPROVED_STABLE |
+| SSS | 1 | 02 | Lunar Greenhouse | 1.0 | 3 | 7 | 3 | 7 | APPROVED_STABLE |
 | SSS | 1 | 03 | Mars Habitat | 1.1 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
-| SSS | 1 | 04 | Hayes Orbital Station | 1.0 | 4 | 7 | 4 | 6 | APPROVED_STABLE |
+| SSS | 1 | 04 | Hayes Orbital Station | 1.0 | 4 | 7 | 4 | 7 | APPROVED_STABLE |
+| SSS | 1 | 05 | Sub Surface Bunker | 1.0 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
 
-Cases 01–04 are the approved production baseline. Case 05 has not started. Case 04 is the first case produced natively through the mature canonical workflow.
+Cases 01–05 are the approved production baseline, and SSS Campaign 1 is complete. Cases 04 and 05 were produced natively through the mature canonical workflow. All five Accessible editions use content-driven page counts, dedicated canonical CER pages, and the shared vertical-response authoring contract; Student, Teacher, and Answer Key page counts remain fixed.
 
 ## Canonical case structure
 
@@ -112,6 +113,9 @@ Example: `Campaign 1 · Case 04 · L2 Lagrange Point, Orbital Research Station`
 ## Editor and publishing rules
 
 - The central Curriculum Editor is the canonical production interface.
+- Accessible response-height authoring is constrained to explicit eligible areas; every other Accessible response area is explicitly locked.
+- Accessible page counts are content-driven, normally one to three complete tasks per page, with dedicated near-full-page CER treatment.
+- Student vertical resizing is not enabled.
 - Worksheet pages remain fixed at Letter geometry at all editor viewport widths.
 - Narrow screens use horizontal worksheet scrolling rather than page shrinkage.
 - Page size is 816 × 1056 CSS pixels.
@@ -141,9 +145,11 @@ Internal status remains in the package, registry, release history, owner-approva
 Accepted validation state at current main:
 
 - canonical structure: PASS
-- static validation: 134/134
-- browser validation: 529/529
-- role/presentation matrix: 32/32
+- static validation: 215/215
+- browser validation: 784/784 across all 40 case/role/presentation states
+- role/presentation matrix: 40/40
+- Accessible layout contracts: 54 eligible response areas, 86 explicitly locked areas, and five empty override maps
+- authoring/security validation: 9/9
 - JavaScript runtime errors: 0
 - all current page counts and page-fit checks: PASS
 - protected printable components: PASS
@@ -191,11 +197,11 @@ Conversational memory is helpful context but is not the authoritative project re
 
 ## Next phase
 
-Next production target: **SSS Campaign 1 · Case 05**
+SSS Campaign 1 is complete through Case 05.
 
-Immediate next action: Create a new PMO conversation and begin a read-only Case 05 discovery assignment.
+Next production target: **owner-directed Campaign 2 or HHH planning**
 
-Do not begin implementation until discovery findings and owner design decisions are complete.
+Do not begin a new curriculum case or Student vertical-resizing work until the owner selects and scopes the next phase.
 
 ## Update policy
 

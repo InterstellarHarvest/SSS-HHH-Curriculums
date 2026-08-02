@@ -29,7 +29,7 @@ EXPECTED = {
     "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3}},
     "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
-    "SSS-C1-CASE05": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
+    "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
@@ -472,7 +472,7 @@ def main() -> int:
 
         if case_id == "SSS-C1-CASE05":
             task_titles = [task["title"] for task in registry_data["tasks"]]
-            results.check("Case 05 task registry records owner-reviewed merge readiness without print acceptance", registry_data.get("version") == "1.0" and registry_data.get("status") == "OWNER_GATE_OPEN" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and package.get("approval", {}).get("printStatus") == "NOT_RUN" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
+            results.check("Case 05 task registry records the completed release lifecycle", registry_data.get("version") == "1.0" and registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and package.get("approval", {}).get("printStatus") == "PASS" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
             results.check("Case 05 task registry uses the eight locked titles", task_titles == CASE05_TASK_TITLES, task_titles)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]

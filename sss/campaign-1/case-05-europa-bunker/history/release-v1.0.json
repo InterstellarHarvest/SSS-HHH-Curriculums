@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE05",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-02",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+  "canonicalSourceApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+  "sourceHashes": {
+    "content": "fab4c0291dedb4cd284c017fbebd073dc7ef2723ef8b0f3f69362a4a7a1aa235",
+    "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
+    "taskRegistry": "e7d883f8d388fd3d94fd303c7b63b32d1e2f2ab9622de642373d076e492d745c"
+  },
+  "rolePageCounts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7},
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "5 cases; release-history schema, commit references, and source hashes PASS",
+    "static": "215/215",
+    "browser": "784/784 across all 40 case/role/presentation states",
+    "layoutContracts": "5 cases; 54 eligible Accessible areas; 86 explicit locked areas; all override maps empty",
+    "authoringSecurity": "9/9",
+    "fixedWorksheetGeometry": "816 × 1056 CSS-pixel Letter pages and 720 × 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS",
+    "accessibleDedicatedCER": "PASS for Cases 01–05",
+    "editableCopyExport": "PASS",
+    "worksheetExport": "PASS",
+    "isolatedPrinting": "PASS",
+    "javascriptErrors": "0",
+    "visualReview": "20/20 role editions across Cases 01–05"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Case 05 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "c73140841559b1ef56f5088e759e41a253856723",
+  "recovery": "NOT_APPLICABLE: Case 05 was produced natively under the canonical source model; no generated release artifacts exist.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "Corrected game-science baseline: a7a725121f261373df32a5366c70e7df73ddf8f3.",
+    "Combined owner-approved curriculum/editor baseline: c73140841559b1ef56f5088e759e41a253856723.",
+    "Case 05 was authored directly as canonical package sources and released after the Accessible consistency and vertical-rhythm pass; no migration from generated release documents occurred."
+  ],
+  "retiredArtifacts": []
+}

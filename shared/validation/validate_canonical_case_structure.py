@@ -34,6 +34,10 @@ COMMIT_FIELDS = {
         "originalReleaseApprovalCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
         "canonicalSourceApprovalCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
     },
+    "case-05": {
+        "originalReleaseApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+        "canonicalSourceApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+    },
 }
 EXPECTED_PRIOR = {
     "case-01": {
@@ -55,9 +59,13 @@ EXPECTED_PRIOR = {
         },
     },
     "case-04": None,
+    "case-05": None,
 }
 NATIVE_NO_ARTIFACTS_STATUS = "NO_FORMER_GENERATED_ARTIFACTS"
-NATIVE_NO_RECOVERY = "NOT_APPLICABLE: Case 04 was produced natively under the canonical source model; no generated release artifacts exist."
+NATIVE_NO_RECOVERY = {
+    "case-04": "NOT_APPLICABLE: Case 04 was produced natively under the canonical source model; no generated release artifacts exist.",
+    "case-05": "NOT_APPLICABLE: Case 05 was produced natively under the canonical source model; no generated release artifacts exist.",
+}
 
 
 def tracked_files() -> list[str]:
@@ -198,8 +206,12 @@ def main() -> int:
                 failures.append(f"{case.name}: APPROVED_STABLE requires exactly one history/release-vX.json")
             if package.get("releaseHistory") not in {path.relative_to(ROOT).as_posix() for path in records}:
                 failures.append(f"{case.name}: package releaseHistory does not name a retained record")
-            if case.name.startswith("case-04") and [path.name for path in approval_records] != ["CASE04_OWNER_APPROVAL_v1.0.md"]:
-                failures.append(f"{case.name}: approved v1.0 requires CASE04_OWNER_APPROVAL_v1.0.md")
+            expected_approval_record = {
+                "case-04": "CASE04_OWNER_APPROVAL_v1.0.md",
+                "case-05": "CASE05_OWNER_APPROVAL_v1.0.md",
+            }.get(case.name[:7])
+            if expected_approval_record and [path.name for path in approval_records] != [expected_approval_record]:
+                failures.append(f"{case.name}: approved v1.0 requires {expected_approval_record}")
         else:
             if package.get("status") not in {"DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"}:
                 failures.append(f"{case.name}: unsupported unreleased lifecycle status: {package.get('status')}")
@@ -227,12 +239,12 @@ def main() -> int:
             native_no_artifacts = former.get("status") == NATIVE_NO_ARTIFACTS_STATUS if isinstance(former, dict) else False
             recovery_commit = release.get("formerArtifactRecoveryCommit")
             verify_commit(f"{case.name} formerArtifactRecoveryCommit", recovery_commit, failures, totals)
-            expected_recovery = NATIVE_NO_RECOVERY if native_no_artifacts else f"git show {recovery_commit}:<former path> > <destination>"
+            expected_recovery = NATIVE_NO_RECOVERY.get(case_key) if native_no_artifacts else f"git show {recovery_commit}:<former path> > <destination>"
             if release.get("recovery") != expected_recovery:
                 failures.append(f"{case.name}: current recovery command does not name its recovery commit")
 
             if native_no_artifacts:
-                if case_key != "case-04" or set(former) != {"status", "reason"}:
+                if case_key not in NATIVE_NO_RECOVERY or set(former) != {"status", "reason"}:
                     failures.append(f"{case.name}: native no-artifact release marker is not valid for this case")
             else:
                 former_roles = former.get("roles", {})
