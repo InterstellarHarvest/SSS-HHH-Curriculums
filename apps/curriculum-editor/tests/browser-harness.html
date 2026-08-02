@@ -552,8 +552,24 @@
           const studentCer = cerGeometry.student;
           const answerCer = cerGeometry.answer;
           const accessibleCer = cerGeometry.accessible;
-          check("Case 04 canonical CER computed geometry matches shared Student, Answer, and Accessible contracts", near(studentCer.minHeight, 244.8) && studentCer.root[1] >= 244.77 && near(parseFloat(studentCer.columns), 69.12) && answerCer.boxHeights[0] >= 44.13 && answerCer.boxHeights[1] >= 63.33 && answerCer.boxHeights[2] >= 72.93 && accessibleCer.boxHeights[0] >= 74.85 && accessibleCer.boxHeights[1] >= 113.25 && accessibleCer.boxHeights[2] >= 113.25 && near(parseFloat(accessibleCer.columns), 91.2), JSON.stringify(cerGeometry));
+          check("Case 04 canonical CER computed geometry matches shared Student, Answer, and Accessible contracts", near(studentCer.minHeight, 244.8) && near(studentCer.root[1], 244.8) && near(parseFloat(studentCer.columns), 69.12) && answerCer.boxHeights[0] >= 44.13 && answerCer.boxHeights[1] >= 63.33 && answerCer.boxHeights[2] >= 72.93 && accessibleCer.boxHeights[0] >= 74.85 && accessibleCer.boxHeights[1] >= 113.25 && accessibleCer.boxHeights[2] >= 113.25 && near(parseFloat(accessibleCer.columns), 91.2), JSON.stringify(cerGeometry));
           api.setRole("student");
+          await wait(20);
+          check("Case 04 Student Task 2 timeline response boxes receive additional page-one writing height", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-01"] .timeline-response')).every(node => dimensions(node)[1] >= 76.77));
+          const studentTaskGaps = [
+            ["student-mission-01", "1", "2"],
+            ["student-mission-02", "3", "4"],
+            ["student-mission-04", "7", "8"]
+          ].map(([pageId, previousId, nextId]) => {
+            const page = workspace.querySelector(`.page[data-page-id="${pageId}"]`);
+            const next = page.querySelector(`.task-heading[data-task-id="${nextId}"]`);
+            const taskStart = next.closest(".task-block") || next;
+            const previousEnd = taskStart.previousElementSibling;
+            const priorHeading = page.querySelector(`.task-heading[data-task-id="${previousId}"]`);
+            const gap = next.getBoundingClientRect().top - previousEnd.getBoundingClientRect().bottom;
+            return { pair: `${previousId}-${nextId}`, gap: rounded(gap), pass: Boolean(priorHeading && previousEnd && gap >= 17.2) };
+          });
+          check("Case 04 Student task pairs preserve standard inter-task spacing", studentTaskGaps.every(item => item.pass), JSON.stringify(studentTaskGaps));
           api.saveState({ grayscale: false });
         }
       }

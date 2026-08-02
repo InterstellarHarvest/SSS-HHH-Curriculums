@@ -128,6 +128,7 @@ em { font-family: Georgia, serif; }
 .table-response { min-height: .3in; }
 .evidence-table .table-response { min-height: .62in; }
 .timeline-response { min-height: .4in; }
+.page[data-page-id="student-mission-01"] .timeline-response { min-height: .8in; }
 .stage-response { flex: 1; min-height: .42in; }
 .diagnosis-response { min-height: 1.15in; }
 .control-response { min-height: 2.05in; }
@@ -155,9 +156,9 @@ em { font-family: Georgia, serif; }
 .task-heading .technical-label { color: var(--institution); font: 700 6.7pt/1.05 monospace; letter-spacing: .07em; }
 .task-heading .section-title { font: 800 10.7pt/1.14 Arial, sans-serif; }
 .task-block { margin-top: .1in; break-inside: avoid; page-break-inside: avoid; }
-.page[data-page-id="student-mission-03"] .content-area { display: flex; flex-direction: column; }
-.student-cer-task { display: flex; flex: 1 1 auto; flex-direction: column; min-height: 0; }
-
+.page[data-page-id="student-mission-01"] .task-heading[data-task-id="2"],
+.page[data-page-id="student-mission-02"] .task-heading[data-task-id="4"],
+.page[data-page-id="student-mission-04"] .task-heading[data-task-id="8"] { margin-top: .18in !important; }
 .event-bank,
 .mechanism-bank { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 4px 0 6px; }
 .event-bank span,
