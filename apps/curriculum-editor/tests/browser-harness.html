@@ -303,6 +303,24 @@
       await api.selectCase("SSS-C1-CASE03");
       await wait(80);
       api = win.__curriculumEditor;
+      api.setRole("accessible");
+      api.saveState({ editMode: true });
+      await wait(50);
+      const transitionPanel = doc.querySelector("#layoutChangesPanel");
+      const transitionSnapshots = [];
+      let transitionFinished = false;
+      const transition = api.selectCase("SSS-C1-CASE02").finally(() => { transitionFinished = true; });
+      do {
+        transitionSnapshots.push({ loading: doc.body.classList.contains("case-loading"), panelHidden: transitionPanel.hidden });
+        if (!transitionFinished) await wait(5);
+      } while (!transitionFinished);
+      await transition;
+      const loadingSnapshots = transitionSnapshots.filter(snapshot => snapshot.loading);
+      check("case switching keeps the floating layout drawer hidden throughout the loading transition", loadingSnapshots.length > 0 && loadingSnapshots.every(snapshot => snapshot.panelHidden) && doc.querySelector("#layoutChangesPanel").hidden, JSON.stringify(transitionSnapshots));
+
+      await api.selectCase("SSS-C1-CASE03");
+      await wait(80);
+      api = win.__curriculumEditor;
       workspace = api.getWorkspace();
       worksheetDoc = api.getWorksheetDocument();
       api.setRole("accessible");

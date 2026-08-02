@@ -118,6 +118,7 @@ let globalEventsBound = false;
 let libraryBound = false;
 let layoutManifest;
 let layoutController;
+let caseLoading = false;
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -634,7 +635,7 @@ function applyState() {
   elements.breadcrumb.textContent = `${casePackage.curriculum} → ${casePackage.campaign} → ${casePackage.title} → ${roleName}${grayscaleLabel}`;
   elements.mode.textContent = `${roleName} · ${editLabel} · Grayscale ${state.grayscale ? "on" : "off"}`;
   applyEditable();
-  layoutController?.syncVisibility(renderedRole, state.editMode);
+  layoutController?.syncVisibility(renderedRole, state.editMode, !caseLoading);
   requestAnimationFrame(() => {
     if (layoutController) layoutController.refreshValidation();
     else checkOverflow();
@@ -979,6 +980,9 @@ function showError(error) {
   elements.error.textContent = error.message || String(error);
   setLoadStatus("LOAD FAILED");
   elements.worksheetHost.setAttribute("aria-busy", "false");
+  caseLoading = false;
+  document.body.classList.remove("case-loading");
+  elements.layoutPanel.hidden = true;
 }
 
 async function initialize() {
@@ -1012,6 +1016,9 @@ async function initialize() {
 }
 
 async function loadCase(selected, initial = false) {
+  elements.layoutPanel.hidden = true;
+  caseLoading = true;
+  document.body.classList.add("case-loading");
   layoutController?.destroy();
   layoutController = null;
   elements.error.hidden = true;
@@ -1090,6 +1097,9 @@ async function loadCase(selected, initial = false) {
     `${casePackage.title} · ${ROLE_LABELS[state.role]} ready`,
     `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`
   );
+  caseLoading = false;
+  document.body.classList.remove("case-loading");
+  layoutController.syncVisibility(state.role, state.editMode, true);
   safeStorageSet(SELECTED_CASE_KEY, selected.caseEntry.id);
   window.__curriculumEditor = {
     getState: () => ({ ...state }),

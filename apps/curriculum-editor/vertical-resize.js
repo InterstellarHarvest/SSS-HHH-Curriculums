@@ -514,8 +514,8 @@ export async function createVerticalResizeController(options) {
       validateAll();
       render();
     },
-    syncVisibility(role, editMode) {
-      panel.hidden = role !== "accessible" || !editMode;
+    syncVisibility(role, editMode, ready = true) {
+      panel.hidden = !ready || role !== "accessible" || !editMode;
     },
     exportValue: exportedDraft,
     sourcePixelsFromPointer,
