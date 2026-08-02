@@ -280,6 +280,7 @@ def main() -> int:
             "content": ROOT / package["content"]["source"],
             "presentation": ROOT / package["presentation"]["source"],
             "taskRegistry": ROOT / package["taskRegistry"]["source"],
+            "layoutOverrides": ROOT / package["layoutOverrides"]["source"],
         }
         if "icons" in package["sourceHashes"]:
             paths["icons"] = ROOT / package["shell"]["icons"]
@@ -519,9 +520,17 @@ def main() -> int:
     results.check("central and portable exports never remap grayscale to an output role", 'outputRole: state.role' in runtime and 'outputRole: state.role' in portable and "GRAYSCALE_MISSION" not in runtime + portable)
     results.check("central and portable runtimes preserve grayscale as Boolean presentation state", "state.grayscale" in runtime and "state.grayscale" in portable and 'classList.toggle("grayscale", state.grayscale)' in runtime and 'classList.toggle("grayscale", state.grayscale)' in portable)
     results.check("isolated print paths exclude chrome and page shadow", all(token in runtime and token in portable for token in ["preparePrintFrame", "print-document", "box-shadow:none!important"]))
+    resize_runtime = (APP / "vertical-resize.js").read_text(encoding="utf-8")
+    results.check("vertical resizing is restricted to explicit Accessible eligibility metadata", all(token in runtime + resize_runtime for token in ["layoutOverrides", 'manifest.edition !== "accessible"', 'page.dataset.role !== "accessible"']))
+    results.check("CER receives independent UI-level resize protection", 'node.closest(\'[class*="cer"],[data-cer-contract]\')' in resize_runtime)
+    results.check("ordinary exports omit authoring controls and unapproved draft heights", "sanitizeClone" in runtime + resize_runtime and "data-layout-resize-ui" in resize_runtime)
 
     structure = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_canonical_case_structure.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("canonical case-structure validator passes", structure.returncode == 0, (structure.stdout + structure.stderr).strip())
+    layout_validation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_layout_overrides.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
+    service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("source-persistence security and round-trip tests pass", service_tests.returncode == 0, (service_tests.stdout + service_tests.stderr).strip())
     tracked_candidates = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=ROOT, text=True, capture_output=True, check=True).stdout.splitlines()
     tracked_png = [path for path in tracked_candidates if (ROOT / path).is_file() and path.endswith(".png") and (path.startswith("apps/curriculum-editor/tests/screenshots/") or "/validation-artifacts/" in path)]
     results.check("no routine generated screenshots remain tracked", not tracked_png, tracked_png)
