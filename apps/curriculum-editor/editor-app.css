@@ -258,6 +258,43 @@ body.edit-mode .mode-indicator {
   border: 1px solid #b76868;
 }
 
+.layout-changes {
+  width: min(100%, 1180px);
+  margin: 0 auto 18px;
+  padding: 12px;
+  background: #f8fbfb;
+  border: 1px solid #7ea7a5;
+  border-left: 5px solid #397b78;
+}
+.layout-changes-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.layout-changes h3 { margin: 2px 0 0; font-size: 17px; }
+.layout-changes h3 small { color: var(--app-muted); font: 700 10px "JetBrains Mono", monospace; }
+.layout-actions, .dialog-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.layout-changes button, .layout-apply-dialog button {
+  padding: 6px 8px;
+  color: var(--app-ink);
+  background: #fff;
+  border: 1px solid #9aabb2;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.layout-changes button.primary, .layout-apply-dialog button.primary { color: #fff; background: #245f5d; border-color: #174847; }
+.layout-changes button:disabled, .layout-apply-dialog button:disabled { cursor: not-allowed; opacity: .45; }
+.layout-change-status { margin: 8px 0; color: var(--app-muted); font-size: 12px; }
+.layout-table-wrap { max-height: 230px; overflow: auto; }
+.layout-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.layout-table th, .layout-table td { padding: 5px 6px; text-align: left; border: 1px solid #c7d2d6; }
+.layout-table th { position: sticky; top: 0; background: #e8efef; }
+.layout-table tr[data-status="invalid"] { background: #fff0f0; color: #762626; }
+.layout-table tr[data-status="approaching"] { background: #fff7e5; color: #724600; }
+.stale-draft { margin-top: 10px; padding: 9px; background: #fff7e5; border: 1px solid #d6a955; }
+.stale-draft pre { max-height: 180px; overflow: auto; white-space: pre-wrap; font-size: 10px; }
+.layout-apply-dialog { width: min(680px, calc(100vw - 32px)); border: 1px solid #486e6d; border-radius: 5px; }
+.layout-apply-dialog::backdrop { background: #102126bb; }
+.layout-apply-dialog h2 { margin-top: 0; }
+.layout-apply-dialog li { margin-block: 7px; }
+.dialog-actions { justify-content: flex-end; margin-top: 18px; }
+
 #worksheetHost { display: block; min-height: 300px; }
 #worksheetHost[aria-busy="true"]::before {
   content: "Loading worksheet package…";
@@ -306,6 +343,8 @@ body.print-preview .editor-statuses { opacity: .55; }
   .library-rail,
   .workspace-header,
   .editor-statuses,
+  .layout-changes,
+  .layout-apply-dialog,
   .editor-error { display: none !important; }
   .editor-layout,
   .editor-main,

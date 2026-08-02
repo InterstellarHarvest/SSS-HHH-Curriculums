@@ -1,3 +1,5 @@
+import { createVerticalResizeController } from "./vertical-resize.js";
+
 const REGISTRY_PATH = "/shared/implementation/case-registry.v2.json";
 const PROTECTED_COMPONENT_STYLES_PATH = "shared/implementation/editor-shell/v1.0/protected-printable-components.css";
 const SELECTED_CASE_KEY = "curriculum-editor:selected-case:v1";
@@ -47,6 +49,28 @@ const EDITOR_WORKSHEET_LAYOUT_CSS = `
     min-height: var(--page-h);
     max-height: var(--page-h);
   }
+  .worksheet-document [data-layout-resizable] { position: relative; }
+  .worksheet-document .layout-resize-handle {
+    position: absolute;
+    z-index: 12;
+    right: 5px;
+    bottom: 3px;
+    display: none;
+    min-width: 72px;
+    min-height: 24px;
+    padding: 3px 6px;
+    color: #fff;
+    background: #245f5d;
+    border: 2px solid #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px #245f5d;
+    cursor: ns-resize;
+    font: 700 9px/1 "JetBrains Mono", monospace;
+  }
+  .worksheet-document.edit-mode[data-role="accessible"] .layout-resize-handle { display: block; }
+  .worksheet-document.edit-mode[data-role="accessible"] [data-layout-resizable] { outline: 2px dashed #397b78; outline-offset: 2px; }
+  .worksheet-document [data-layout-validation="approaching"] { outline-color: #ba7410!important; }
+  .worksheet-document [data-layout-validation="invalid"] { outline-color: #b12f2f!important; background-color: #fff5f5!important; }
 }`;
 
 const elements = {
@@ -67,7 +91,8 @@ const elements = {
   saveMirror: document.querySelector("#saveStatusMirror"),
   overflowMirror: document.querySelector("#overflowStatusMirror"),
   error: document.querySelector("#editorError"),
-  pdfNotice: document.querySelector("#pdfNotice")
+  pdfNotice: document.querySelector("#pdfNotice"),
+  layoutPanel: document.querySelector("#layoutChangesPanel")
 };
 
 let registry;
@@ -91,6 +116,8 @@ let toolbarResizeObserver;
 let exportSequence = 0;
 let globalEventsBound = false;
 let libraryBound = false;
+let layoutManifest;
+let layoutController;
 
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
@@ -145,7 +172,7 @@ function requireFields(object, fields, label) {
 function validatePackage(pkg) {
   requireFields(pkg, [
     "schemaVersion", "id", "curriculum", "campaign", "title", "version", "status", "approval",
-    "documentKey", "supportedRoles", "defaultRole", "shell", "taskRegistry", "content",
+    "documentKey", "supportedRoles", "defaultRole", "shell", "taskRegistry", "content", "layoutOverrides",
     "presentation", "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility",
     "sourceHashes"
   ], "Case package");
@@ -176,7 +203,9 @@ function validatePackage(pkg) {
   if (!Array.isArray(pkg.shell.styles) || !pkg.shell.styles.length) throw new Error("Shared shell styles are missing.");
   if (/master\//i.test(pkg.content.source)) throw new Error("A case package may not use an approved master as content.");
   requireFields(pkg.presentation, ["source", "isolation"], "Presentation package");
-  requireFields(pkg.sourceHashes, ["content", "presentation", "taskRegistry"], "Source hashes");
+  requireFields(pkg.layoutOverrides, ["source", "schemaVersion"], "Layout override contract");
+  requireFields(pkg.sourceHashes, ["content", "presentation", "taskRegistry", "layoutOverrides"], "Source hashes");
+  if (pkg.layoutOverrides.schemaVersion !== 1) throw new Error(`Unsupported layout override schema: ${pkg.layoutOverrides.schemaVersion}`);
   if (pkg.presentation.isolation !== "shadow-dom") throw new Error(`Unsupported worksheet isolation: ${pkg.presentation.isolation}`);
   if (pkg.phraseBank) {
     requireFields(pkg.phraseBank, ["contract", "taskId", "sourceRole", "sourceStages", "displayOrderSourceStages", "label", "instruction", "itemCount", "roles"], "Phrase-bank contract");
@@ -286,7 +315,7 @@ function prepareContent(contentText) {
 
 function baselineValue(node) {
   if (node.matches("input, textarea, select")) return { value: node.value, response: node.hasAttribute("data-response") };
-  return { html: node.innerHTML, response: node.hasAttribute("data-response") };
+  return { html: layoutController?.cleanInnerHTML(node) ?? node.innerHTML, response: node.hasAttribute("data-response") };
 }
 
 function restoreNode(node, saved) {
@@ -719,7 +748,7 @@ function syncCloneValues(clone) {
     if (node.matches("input, textarea, select")) {
       node.value = live.value;
       node.setAttribute("value", live.value);
-    } else node.innerHTML = live.innerHTML;
+    } else node.innerHTML = layoutController?.cleanInnerHTML(live) ?? live.innerHTML;
   }
   for (const node of $$("[contenteditable],[tabindex],[spellcheck]", clone)) {
     node.removeAttribute("contenteditable");
@@ -733,6 +762,7 @@ function syncCloneValues(clone) {
     page.classList.remove("has-overflow");
   }
   for (const warning of $$(".overflow-warning", clone)) warning.removeAttribute("aria-live");
+  layoutController?.sanitizeClone(clone);
 }
 
 function cloneWorksheet(role = null) {
@@ -969,7 +999,8 @@ async function initialize() {
   compatibleCases.sort((a, b) => a.caseEntry.displayOrder - b.caseEntry.displayOrder);
   if (!compatibleCases.length) throw new Error("No current editor-compatible case is discoverable.");
   populateLibrary(compatibleCases);
-  const selectedId = safeStorageGet(SELECTED_CASE_KEY);
+  const requestedCaseId = new URLSearchParams(location.search).get("case");
+  const selectedId = requestedCaseId || safeStorageGet(SELECTED_CASE_KEY);
   const selected = compatibleCases.find(item => item.caseEntry.id === selectedId)
     || compatibleCases.find(item => item.caseEntry.id === "SSS-C1-CASE03")
     || compatibleCases[0];
@@ -977,6 +1008,8 @@ async function initialize() {
 }
 
 async function loadCase(selected, initial = false) {
+  layoutController?.destroy();
+  layoutController = null;
   elements.error.hidden = true;
   elements.error.textContent = "";
   elements.worksheetHost.setAttribute("aria-busy", "true");
@@ -991,6 +1024,7 @@ async function loadCase(selected, initial = false) {
     ...casePackage.shell.styles,
     casePackage.shell.icons,
     casePackage.taskRegistry.source,
+    casePackage.layoutOverrides.source,
     casePackage.content.source,
     casePackage.presentation.source,
     PROTECTED_COMPONENT_STYLES_PATH,
@@ -1007,6 +1041,7 @@ async function loadCase(selected, initial = false) {
   await requireTextHash(loaded.get(casePackage.content.source), casePackage.sourceHashes.content, "Worksheet content");
   await requireTextHash(loaded.get(casePackage.presentation.source), casePackage.sourceHashes.presentation, "Presentation stylesheet");
   await requireTextHash(loaded.get(casePackage.taskRegistry.source), casePackage.sourceHashes.taskRegistry, "Task registry");
+  await requireTextHash(loaded.get(casePackage.layoutOverrides.source), casePackage.sourceHashes.layoutOverrides, "Layout override metadata");
   if (casePackage.sourceHashes.icons) await requireTextHash(loaded.get(casePackage.shell.icons), casePackage.sourceHashes.icons, "Case icon sprite");
   await installPackageFontImports(loaded.get(casePackage.presentation.source));
   installToolbar(loaded.get(casePackage.shell.toolbar));
@@ -1023,9 +1058,25 @@ async function loadCase(selected, initial = false) {
   defaultState = { ...casePackage.defaultToolbarState };
   const saved = storageState();
   state = { ...defaultState, ...saved };
+  const requestedRole = initial ? new URLSearchParams(location.search).get("role") : null;
+  if (requestedRole && NAVIGATION_ROLES.includes(requestedRole)) state.role = requestedRole;
   if (!NAVIGATION_ROLES.includes(state.role)) state.role = defaultState.role;
   loadPersistentContent();
   bindToolbar();
+  try {
+    layoutManifest = JSON.parse(loaded.get(casePackage.layoutOverrides.source));
+  } catch {
+    throw new Error("Layout override metadata is invalid JSON.");
+  }
+  layoutController = await createVerticalResizeController({
+    package: casePackage,
+    manifest: layoutManifest,
+    workspace: elements.workspace,
+    worksheetDocument,
+    checkOverflow,
+    panel: elements.layoutPanel,
+    reloadCase: () => loadCase(currentSelection)
+  });
   setSaveStatus(Object.keys(contentState).length ? "AUTOSAVE RESTORED" : "LOCAL SAVE READY");
   applyState();
   await document.fonts?.ready;
@@ -1064,6 +1115,7 @@ async function loadCase(selected, initial = false) {
     },
     syncToolbarOffset,
     persistElement,
+    layout: layoutController,
     keys: { stateKey, contentKey }
   };
   window.dispatchEvent(new CustomEvent(initial ? "curriculum-editor-ready" : "curriculum-editor-case-ready", { detail: { caseId: casePackage.id, version: casePackage.version } }));

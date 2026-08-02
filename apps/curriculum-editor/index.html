@@ -61,10 +61,49 @@
         <p><span>Page fit</span> <strong id="overflowStatusMirror" aria-describedby="pageFitMirrorDescription">Pages fit</strong><span class="visually-hidden" id="pageFitMirrorDescription">A page is too full when content extends beyond its printable page area.</span></p>
       </section>
 
+      <section id="layoutChangesPanel" class="layout-changes" aria-labelledby="layoutChangesHeading" hidden>
+        <div class="layout-changes-header">
+          <div><span class="workspace-kicker">Accessible authoring</span><h3 id="layoutChangesHeading">Pending Layout Changes <small id="layoutChangeCount">0 pending</small></h3></div>
+          <div class="layout-actions">
+            <button id="layoutUndo" type="button">Undo</button>
+            <button id="layoutRedo" type="button">Redo</button>
+            <button id="layoutResetPage" type="button">Reset active page</button>
+            <button id="layoutExport" type="button">Export Layout Changes</button>
+            <button id="layoutApply" type="button" class="primary">Apply to Source…</button>
+          </div>
+        </div>
+        <p id="layoutChangeStatus" class="layout-change-status" role="status" aria-live="polite">No pending layout changes.</p>
+        <div class="layout-table-wrap">
+          <table class="layout-table">
+            <thead><tr><th>Apply</th><th>Page</th><th>Task</th><th>Response area</th><th>Source</th><th>Pending</th><th>Validation</th><th>Action</th></tr></thead>
+            <tbody id="layoutChangesBody"></tbody>
+          </table>
+        </div>
+        <details id="layoutStaleDraft" class="stale-draft" hidden>
+          <summary id="layoutStaleSummary">Stale layout draft found</summary>
+          <p>This draft targets different source hashes. It will not be applied or rebased automatically.</p>
+          <pre id="layoutStaleInspect"></pre>
+          <button id="layoutStaleExport" type="button">Export stale draft</button>
+          <button id="layoutStaleDiscard" type="button">Discard stale draft</button>
+        </details>
+      </section>
+
       <div id="editorError" class="editor-error" role="alert" hidden></div>
       <div id="worksheetHost" aria-busy="true" aria-labelledby="workspaceTitle"></div>
     </main>
   </div>
+
+  <dialog id="layoutApplyDialog" class="layout-apply-dialog">
+    <form method="dialog">
+      <h2>Confirm exact source changes</h2>
+      <p>Only the selected sparse Accessible response-area heights will be written. Worksheet content and other editions are not targets.</p>
+      <ul id="layoutApplyPreview"></ul>
+      <div class="dialog-actions">
+        <button id="layoutApplyCancel" type="button">Cancel</button>
+        <button id="layoutApplyConfirm" type="button" class="primary">Confirm Apply to Source</button>
+      </div>
+    </form>
+  </dialog>
 
   <noscript>This local curriculum editor requires JavaScript.</noscript>
   <script type="module" src="editor-app.js"></script>
