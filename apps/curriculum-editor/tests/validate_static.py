@@ -60,12 +60,45 @@ PROTECTED_SELECTOR_PATTERNS = {
     ".canonical-cer-label": r"(?<![\w-])\.canonical-cer-label(?![\w-])",
     ".canonical-cer-response": r"(?<![\w-])\.canonical-cer-response(?![\w-])",
 }
+PRINTABLE_STATUS_SELECTORS = ".draft-banner,.validation-banner,.status-banner,[data-lifecycle-status],[data-validation-status]"
+PRINTABLE_HEADING_SELECTORS = "header,h1,h2,h3,h4,h5,h6,.continuation-role,.document-role,.technical-label,.label,[data-publication-footer]"
+PRODUCTION_METADATA_PATTERNS = {
+    "lifecycle-token": re.compile(r"\b(?:DRAFT|VALIDATION[_ -]?BUILD|OWNER[_ -]?GATE(?:[_ -]?OPEN)?|OWNER[_ -]?REVIEW(?:[_ -]?(?:NOT[_ -]?STARTED|PASS))?|READY[_ -]?TO[_ -]?MERGE|APPROVED[_ -]?STABLE)\b"),
+    "owner-review": re.compile(r"\bowner[ _-]+review\b", re.I),
+    "repository-workflow": re.compile(r"\bgit\s+(?:branch|switch|merge|push|pull|checkout|status|log)\b|\bgithub\s+(?:repository|repo|branch|pull request|workflow|actions)\b|\bworktree\b|\brepository\s+(?:branch|path|workflow|status|history)\b|\b(?:stored|committed|tracked)\s+in\s+the\s+repository\b", re.I),
+    "branch-name": re.compile(r"\b(?:feature|hotfix|bugfix|chore|fix)/[a-z0-9][a-z0-9._/-]*\b|\brelease/v?\d[a-z0-9._/-]*\b", re.I),
+    "commit-sha": re.compile(r"\b[0-9a-f]{40}\b|\b(?:commit|revision|sha(?:-?1|-?256)?)\s*(?::|#)?\s*[0-9a-f]{7,40}\b", re.I),
+    "merge-instruction": re.compile(r"\bgit\s+(?:merge|push|pull|switch|checkout)\b|\bmerge\s+(?:the\s+branch|into\s+(?:main|master))\b|\bpush\s+(?:the\s+)?branch\s+to\b|\bpull\s+from\s+origin\b|\bswitch\s+(?:to\s+)?(?:the\s+)?branch\b|\bcheckout\s+(?:the\s+)?branch\b|\bfast-forward\s+merge\b|\bdo\s+not\s+merge\b", re.I),
+    "validation-status": re.compile(r"\bvalidation\s+(?:status|build|pass(?:ed)?|fail(?:ed)?|complete|result)\b", re.I),
+}
 
 
 def protected_css_definitions(css: str) -> list[str]:
     clean = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
     selectors = [match.group(1).strip() for match in re.finditer(r"(?:^|})\s*([^{}]+)\{", clean)]
     return sorted({name for selector in selectors if not selector.startswith("@") for name, pattern in PROTECTED_SELECTOR_PATTERNS.items() if re.search(pattern, selector)})
+
+
+def printable_production_metadata_findings(root) -> list[str]:
+    findings: list[str] = []
+    for page in root.select(".page[data-role]"):
+        page_id = page.get("data-page-id", "unknown-page")
+        text = " ".join(page.stripped_strings)
+        for node in page.select(PRINTABLE_STATUS_SELECTORS):
+            findings.append(f"{page_id}:status-banner:{' '.join(node.stripped_strings)[:120]}")
+        for name, pattern in PRODUCTION_METADATA_PATTERNS.items():
+            match = pattern.search(text)
+            if match:
+                findings.append(f"{page_id}:{name}:{match.group(0)}")
+    return findings
+
+
+def printable_owner_review_headings(root) -> list[str]:
+    return [
+        f"{node.find_parent(class_='page').get('data-page-id', 'unknown-page')}:{' '.join(node.stripped_strings)}"
+        for node in root.select(f".page[data-role] {PRINTABLE_HEADING_SELECTORS}")
+        if re.search(r"\bowner[ _-]+review\b", " ".join(node.stripped_strings), re.I)
+    ]
 
 
 class Results:
@@ -180,6 +213,11 @@ def main() -> int:
 
     detector_probe = protected_css_definitions(".student-id{display:grid}.canonical-cer-response:focus{outline:0}[data-publication-footer]{margin:0}")
     results.check("protected case-CSS selector detector rejects direct invariant-component rules", detector_probe == [".canonical-cer-response", ".student-id", "[data-publication-footer]"], detector_probe)
+    ordinary_approved_probe = BeautifulSoup('<main><section class="page" data-role="teacher" data-page-id="probe"><h2>Approved classroom procedures</h2><p>Use the approved safety procedure.</p></section></main>', "html.parser")
+    results.check("printable production-metadata detector permits ordinary instructional uses of approved", not printable_production_metadata_findings(ordinary_approved_probe))
+    forbidden_metadata_probe = BeautifulSoup('<main><section class="page" data-role="teacher" data-page-id="probe"><header>Owner review</header><div class="draft-banner">APPROVED_STABLE · READY_TO_MERGE</div><p>VALIDATION_BUILD on hotfix/case04 at commit 0123456789abcdef0123456789abcdef01234567; validation status PASS; stored in the repository. Do not merge.</p></section></main>', "html.parser")
+    forbidden_probe_categories = {finding.split(":", 2)[1] for finding in printable_production_metadata_findings(forbidden_metadata_probe)}
+    results.check("printable production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", {"status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"}.issubset(forbidden_probe_categories), sorted(forbidden_probe_categories))
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
     results.check("registry discovers exactly Cases 01–04 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
@@ -238,6 +276,13 @@ def main() -> int:
         persist_ids = [node.get("data-persist-id") for node in soup.select("[data-persist-id]")]
         results.check(f"{case_id} page and persistence IDs are unique", len(page_ids) == len(set(page_ids)) and len(persist_ids) == len(set(persist_ids)) and None not in persist_ids)
         results.check(f"{case_id} response fields have accessible names", all(node.get("aria-label") or node.get("aria-labelledby") for node in soup.select("[data-response]")))
+        if expected_status == "APPROVED_STABLE":
+            draft_banners = [node.find_parent(class_="page").get("data-page-id", "unknown-page") for node in soup.select('.page[data-role] .draft-banner')]
+            production_metadata = printable_production_metadata_findings(soup)
+            owner_review_headings = printable_owner_review_headings(soup)
+            results.check(f"{case_id} approved printable roles contain no .draft-banner", not draft_banners, draft_banners)
+            results.check(f"{case_id} approved printable roles contain no visible production metadata", not production_metadata, production_metadata)
+            results.check(f"{case_id} printable headings and headers contain no owner-review wording", not owner_review_headings, owner_review_headings)
         registry_data = task_registry(paths["taskRegistry"])
         expected_task_numbers = list(range(1, expected["tasks"] + 1))
         results.check(f"{case_id} task registry owns its numbered tasks and four roles", [int(task["number"]) for task in registry_data["tasks"]] == expected_task_numbers and set(registry_data["roles"]) == set(ROLES))

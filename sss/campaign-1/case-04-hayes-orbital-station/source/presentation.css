@@ -82,8 +82,7 @@ em { font-family: Georgia, serif; }
 
 .callout,
 .science-note,
-.alt-support,
-.draft-banner {
+.alt-support {
   margin: 5px 0;
   padding: 6px 8px;
   border-left: 4px solid var(--primary);
@@ -92,7 +91,6 @@ em { font-family: Georgia, serif; }
 .callout.caution { border-color: var(--caution); background: var(--caution-field); }
 .science-note { border: 1px solid var(--rule); border-left: 4px solid var(--botanical); background: var(--panel-light); font-size: 8.3pt; }
 .alt-support { border: 1px dashed var(--rule); background: var(--neutral-field); font-size: 9pt; }
-.draft-banner { border: 1px solid var(--caution); background: var(--caution-field); color: #4c421f; font: 800 7.2pt monospace; letter-spacing: .04em; text-align: center; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }

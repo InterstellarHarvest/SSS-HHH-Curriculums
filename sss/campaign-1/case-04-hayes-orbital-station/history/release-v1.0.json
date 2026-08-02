@@ -8,8 +8,8 @@
   "originalReleaseApprovalCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
   "canonicalSourceApprovalCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
   "sourceHashes": {
-    "content": "1a6251e966ac0e2ac14ea1aab3fee71887401e42e9e9a2cd3ad46474ad84aecc",
-    "presentation": "38005b6aeff8ba77b79529e21f20da7a774cb45a821082f222810eec53e233e2",
+    "content": "bca354c519e09203dbeb8acf3343cdd6b8f18362728b091a78a7e6456025ae47",
+    "presentation": "f701da8c2abdfbc56d6a61561b2db51888a5b4cab1127c8305155805f0822f24",
     "taskRegistry": "8f5686ba3240017f877f8b4de833a50f68ca99661eba53d17adc4716bdbdd661"
   },
   "rolePageCounts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6},

@@ -47,6 +47,35 @@
       return [rounded(rect.width), rounded(rect.height)];
     };
     const hasActualSaa = node => Boolean(node?.matches('img.saa-insignia[alt="Solar Agricultural Agency insignia"]') && /shared\/assets\/insignia\/saa\.svg(?:$|[%?#])/.test(node.getAttribute("src")) || node?.matches('svg.saa-insignia[role="img"][aria-label="Solar Agricultural Agency insignia"]') && node.querySelectorAll("path,circle").length >= 5);
+    const printableStatusSelector = ".draft-banner,.validation-banner,.status-banner,[data-lifecycle-status],[data-validation-status]";
+    const printableHeadingSelector = "header,h1,h2,h3,h4,h5,h6,.continuation-role,.document-role,.technical-label,.label,[data-publication-footer]";
+    const productionMetadataPatterns = [
+      ["lifecycle-token", /\b(?:DRAFT|VALIDATION[_ -]?BUILD|OWNER[_ -]?GATE(?:[_ -]?OPEN)?|OWNER[_ -]?REVIEW(?:[_ -]?(?:NOT[_ -]?STARTED|PASS))?|READY[_ -]?TO[_ -]?MERGE|APPROVED[_ -]?STABLE)\b/],
+      ["owner-review", /\bowner[ _-]+review\b/i],
+      ["repository-workflow", /\bgit\s+(?:branch|switch|merge|push|pull|checkout|status|log)\b|\bgithub\s+(?:repository|repo|branch|pull request|workflow|actions)\b|\bworktree\b|\brepository\s+(?:branch|path|workflow|status|history)\b|\b(?:stored|committed|tracked)\s+in\s+the\s+repository\b/i],
+      ["branch-name", /\b(?:feature|hotfix|bugfix|chore|fix)\/[a-z0-9][a-z0-9._/-]*\b|\brelease\/v?\d[a-z0-9._/-]*\b/i],
+      ["commit-sha", /\b[0-9a-f]{40}\b|\b(?:commit|revision|sha(?:-?1|-?256)?)\s*(?::|#)?\s*[0-9a-f]{7,40}\b/i],
+      ["merge-instruction", /\bgit\s+(?:merge|push|pull|switch|checkout)\b|\bmerge\s+(?:the\s+branch|into\s+(?:main|master))\b|\bpush\s+(?:the\s+)?branch\s+to\b|\bpull\s+from\s+origin\b|\bswitch\s+(?:to\s+)?(?:the\s+)?branch\b|\bcheckout\s+(?:the\s+)?branch\b|\bfast-forward\s+merge\b|\bdo\s+not\s+merge\b/i],
+      ["validation-status", /\bvalidation\s+(?:status|build|pass(?:ed)?|fail(?:ed)?|complete|result)\b/i]
+    ];
+    const printableProductionMetadataFindings = root => Array.from(root.querySelectorAll(".page[data-role]")).flatMap(page => {
+      const pageId = page.dataset.pageId || "unknown-page";
+      const text = Array.from(page.querySelectorAll("*"))
+        .flatMap(node => Array.from(node.childNodes).filter(child => child.nodeType === 3).map(child => child.textContent))
+        .join(" ")
+        .replace(/\s+/g, " ")
+        .trim();
+      return [
+        ...Array.from(page.querySelectorAll(printableStatusSelector), node => `${pageId}:status-banner:${node.textContent.trim().slice(0, 120)}`),
+        ...productionMetadataPatterns.flatMap(([name, pattern]) => {
+          const match = text.match(pattern);
+          return match ? [`${pageId}:${name}:${match[0]}`] : [];
+        })
+      ];
+    });
+    const printableOwnerReviewHeadings = root => Array.from(root.querySelectorAll(`.page[data-role] ${printableHeadingSelector}`))
+      .filter(node => /\bowner[ _-]+review\b/i.test(node.textContent))
+      .map(node => `${node.closest(".page")?.dataset.pageId || "unknown-page"}:${node.textContent.trim()}`);
     const layoutMetrics = frame => {
       const doc = frame.contentDocument;
       const toolbar = doc.querySelector(".toolbar").getBoundingClientRect();
@@ -123,6 +152,11 @@
       let workspace = api.getWorkspace();
       let worksheetDoc = api.getWorksheetDocument();
       check("central app exposes its runtime API", Boolean(api));
+      const ordinaryApprovedProbe = new DOMParser().parseFromString('<main><section class="page" data-role="teacher" data-page-id="probe"><h2>Approved classroom procedures</h2><p>Use the approved safety procedure.</p></section></main>', "text/html");
+      check("browser production-metadata detector permits ordinary instructional uses of approved", printableProductionMetadataFindings(ordinaryApprovedProbe).length === 0);
+      const forbiddenMetadataProbe = new DOMParser().parseFromString('<main><section class="page" data-role="teacher" data-page-id="probe"><header>Owner review</header><div class="draft-banner">APPROVED_STABLE · READY_TO_MERGE</div><p>VALIDATION_BUILD on hotfix/case04 at commit 0123456789abcdef0123456789abcdef01234567; validation status PASS; stored in the repository. Do not merge.</p></section></main>', "text/html");
+      const forbiddenProbeCategories = new Set(printableProductionMetadataFindings(forbiddenMetadataProbe).map(finding => finding.split(":", 2)[1]));
+      check("browser production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", ["status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"].every(category => forbiddenProbeCategories.has(category)), JSON.stringify(Array.from(forbiddenProbeCategories).sort()));
       check("registry-loaded Case 03 package is current approved stable with owner PASS", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().schemaVersion === 2 && api.getPackage().version === "1.1" && api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval?.date === "2026-07-31" && api.getPackage().approval?.owner === "Nate / Owner" && api.getPackage().approval?.status === "APPROVED" && api.getPackage().approval?.printStatus === "PASS");
       check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
       check("worksheet presentation is isolated in open Shadow DOM", doc.querySelector("#worksheetHost").shadowRoot && workspace.getRootNode() === doc.querySelector("#worksheetHost").shadowRoot);
@@ -447,6 +481,11 @@
           check(`${item.id} visibly shows development lifecycle without version selection`, doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === `${item.status} · ${item.reviewStatus}` && doc.querySelector(`#caseSelect option[value="${item.id}"]`).textContent === item.label && !doc.querySelector(`#caseSelect option[value="${item.id}"]`).textContent.includes(item.version));
         }
         check(`${item.id} installs only its current Shadow DOM presentation`, doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("style[data-case-package-presentation]").length === 1 && doc.querySelector("#worksheetHost").shadowRoot.querySelector("style").dataset.casePackagePresentation === `${item.id}:v${item.version}`);
+        const printableProductionMetadata = printableProductionMetadataFindings(workspace);
+        const printableOwnerReview = printableOwnerReviewHeadings(workspace);
+        check(`${item.id} approved printable roles contain no .draft-banner`, !workspace.querySelector('.page[data-role] .draft-banner'));
+        check(`${item.id} approved printable roles contain no visible production metadata`, printableProductionMetadata.length === 0, JSON.stringify(printableProductionMetadata));
+        check(`${item.id} printable headings and headers contain no owner-review wording`, printableOwnerReview.length === 0, JSON.stringify(printableOwnerReview));
         for (const [role, expected] of Object.entries(item.counts)) {
           api.setRole(role);
           await wait(40);
@@ -514,6 +553,8 @@
         api.setRole(item.id === "SSS-C1-CASE01" ? "teacher" : item.id === "SSS-C1-CASE02" ? "accessible" : "answer");
         api.saveState({ grayscale: item.id === "SSS-C1-CASE01" });
         check(`${item.id} complete export uses correct identity`, api.getPackage().outputs.complete.includes(item.complete) && api.serializePortableHTML().includes(`sss-case-version" content="${item.version}`));
+        const completeExportDocument = new DOMParser().parseFromString(api.serializePortableHTML(), "text/html");
+        check(`${item.id} Download Editable Copy contains no printable production metadata`, printableProductionMetadataFindings(completeExportDocument).length === 0 && !completeExportDocument.querySelector('.page[data-role] .draft-banner') && printableOwnerReviewHeadings(completeExportDocument).length === 0);
         api.setRole("student");
         api.saveState({ grayscale: false });
         check(`${item.id} current-role export uses correct identity`, api.getCurrentRoleOutput().filename.includes(item.student) && new DOMParser().parseFromString(api.serializeRoleHTML("student"), "text/html").querySelectorAll('.page[data-role="student"]').length === item.counts.student);
@@ -545,7 +586,12 @@
           check(`${item.id} ${profile.name} print document excludes all editor chrome`, !printDoc.querySelector(".toolbar,#editorToolbarHost,.library-rail,.workspace-header,.editor-statuses,.skip-link,#portableConfig,script"));
           check(`${item.id} ${profile.name} has no blank or hidden printable fragments`, printPages.every(page => !page.hidden && page.querySelector(".page-frame")?.textContent.trim()) && Array.from(printDoc.querySelector("#workspace").children).every(node => node.matches(".page")));
           check(`${item.id} ${profile.name} print document preserves role and grayscale state`, printDoc.body.dataset.role === profile.role && printDoc.body.classList.contains("grayscale") === profile.grayscale && printDoc.body.classList.contains("hide-boundaries"));
-          check(`${item.id} ${profile.name} worksheet export preserves its role and normal filename`, (() => { const output = api.getCurrentRoleOutput(); const exported = new DOMParser().parseFromString(api.serializeRoleHTML(profile.role), "text/html"); return output.outputRole === profile.role && !output.filename.includes("GRAYSCALE") && exported.body.dataset.role === profile.role && exported.body.classList.contains("grayscale") === profile.grayscale && exported.querySelectorAll(`.page[data-role="${profile.role}"]`).length === profile.expected && !exported.querySelector(`.page:not([data-role="${profile.role}"])`); })());
+          const output = api.getCurrentRoleOutput();
+          const worksheetExportDocument = new DOMParser().parseFromString(api.serializeRoleHTML(profile.role), "text/html");
+          check(`${item.id} ${profile.name} worksheet export preserves its role and normal filename`, output.outputRole === profile.role && !output.filename.includes("GRAYSCALE") && worksheetExportDocument.body.dataset.role === profile.role && worksheetExportDocument.body.classList.contains("grayscale") === profile.grayscale && worksheetExportDocument.querySelectorAll(`.page[data-role="${profile.role}"]`).length === profile.expected && !worksheetExportDocument.querySelector(`.page:not([data-role="${profile.role}"])`));
+          const printProductionMetadata = printableProductionMetadataFindings(printDoc);
+          const exportProductionMetadata = printableProductionMetadataFindings(worksheetExportDocument);
+          check(`${item.id} ${profile.name} print and worksheet export contain no production metadata`, printProductionMetadata.length === 0 && exportProductionMetadata.length === 0 && !printDoc.querySelector('.page[data-role] .draft-banner') && !worksheetExportDocument.querySelector('.page[data-role] .draft-banner') && printableOwnerReviewHeadings(printDoc).length === 0 && printableOwnerReviewHeadings(worksheetExportDocument).length === 0, JSON.stringify({ printProductionMetadata, exportProductionMetadata }));
           matrixStates.push({ caseId: item.id, role: profile.role, grayscale: profile.grayscale, pass: assertions.slice(matrixStart).every(assertion => assertion.pass) });
         }
         api.setRole("student");
