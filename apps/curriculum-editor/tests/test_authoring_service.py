@@ -114,6 +114,19 @@ class AuthoringServiceTests(unittest.TestCase):
         with self.assertRaisesRegex(AuthoringError, "Only Accessible"):
             apply_layout_changes(self.root, payload, self.passing_validation)
 
+    def test_malformed_values_arbitrary_fields_and_repository_mismatch_are_rejected(self) -> None:
+        payload = self.payload(heightPx="120")
+        with self.assertRaisesRegex(AuthoringError, "Height violates"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+        payload = self.payload()
+        payload["path"] = "/tmp/arbitrary"
+        with self.assertRaisesRegex(AuthoringError, "unexpected or missing fields"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+        payload = self.payload()
+        payload["repositoryId"] = "different-worktree"
+        with self.assertRaisesRegex(AuthoringError, "different repository/worktree"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+
     def test_cer_is_rejected_even_if_manifest_is_accidentally_modified(self) -> None:
         self.layout["areas"][0].update({"id": "SSS-C1-CASE01:accessible:t2:cer", "persistId": "cer"})
         self.write_layout()

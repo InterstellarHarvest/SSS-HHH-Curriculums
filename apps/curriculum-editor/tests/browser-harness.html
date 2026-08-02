@@ -317,6 +317,9 @@
       layout.resizeByPointer(area.id, -30, .75);
       check("pointer resizing in a 75% scaled preview converts screen movement to snapped source pixels", layout.getPending()[area.id]?.heightPx === snapPxForTest(area.sourceHeightPx - 40), JSON.stringify(layout.getPending()[area.id]));
       layout.resetArea(area.id);
+      layout.setHeight(area.id, -100);
+      check("response-area minimum is enforced", layout.getPending()[area.id]?.heightPx === area.minPx, JSON.stringify(layout.getPending()[area.id]));
+      layout.resetArea(area.id);
 
       layout.setHeight(area.id, area.sourceHeightPx + 32);
       await wait(30);
@@ -332,7 +335,7 @@
       check("browser draft key isolates repository, worktree case edition and all source hashes", Boolean(context?.repositoryId && currentDraftKey?.includes(context.repositoryId) && currentDraftKey.includes(pkg.id) && currentDraftKey.includes(":accessible:") && [pkg.sourceHashes.content, pkg.sourceHashes.presentation, pkg.sourceHashes.layoutOverrides].every(hash => currentDraftKey.includes(hash))), currentDraftKey);
       layout.setHeight(area.id, area.maxPx);
       await wait(30);
-      check("page-overflow changes are marked invalid and blocked from Apply to Source", layout.getPending()[area.id]?.status === "invalid" && doc.querySelector("#layoutApply").disabled, JSON.stringify(layout.getPending()[area.id]));
+      check("page-overflow changes identify the area and approximate excess and are blocked from Apply to Source", layout.getPending()[area.id]?.status === "invalid" && layout.getPending()[area.id]?.message.includes(area.label) && /approximately \d+px/.test(layout.getPending()[area.id]?.message) && doc.querySelector("#layoutApply").disabled, JSON.stringify(layout.getPending()[area.id]));
       layout.resetPage(area.pageId);
       check("Reset Page clears all pending changes on the active page", !Object.values(layout.getPending()).some(item => item.id === area.id));
 

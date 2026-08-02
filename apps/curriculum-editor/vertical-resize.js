@@ -146,6 +146,11 @@ export async function createVerticalResizeController(options) {
       (frame && (frame.scrollHeight > frame.clientHeight + 2 || frame.scrollWidth > frame.clientWidth + 2)) ||
       (footerRect && nodeRect.bottom > footerRect.top - 2)
     ));
+    const overflowPx = Math.max(
+      0,
+      frame ? frame.scrollHeight - frame.clientHeight : 0,
+      footerRect ? Math.ceil(nodeRect.bottom - footerRect.top + 2) : 0
+    );
     let status = "valid";
     let message = "Fits within the current page";
     if (proposed < area.minPx || proposed > area.maxPx || proposed % SNAP_PX) {
@@ -153,7 +158,7 @@ export async function createVerticalResizeController(options) {
       message = `Outside ${area.minPx}–${area.maxPx}px / 4px snap`;
     } else if (overflow) {
       status = "invalid";
-      message = "Would overflow or overlap the page/footer";
+      message = `${area.label} exceeds the page/footer boundary by approximately ${overflowPx}px`;
     } else if (pageSpace(area) < 28) {
       status = "approaching";
       message = "Approaching the safe page boundary";
@@ -295,7 +300,7 @@ export async function createVerticalResizeController(options) {
       reset.type = "button";
       reset.textContent = "Reset area";
       reset.addEventListener("click", () => resetArea(area));
-      for (const value of [choose, area.pageId, `Task ${area.taskId}`, area.label, `${item.sourceHeightPx}px`, `${item.heightPx}px`, item.message, reset]) {
+      for (const value of [choose, casePackage.id, "Accessible", area.pageId, `Task ${area.taskId}`, area.label, `${item.sourceHeightPx}px`, `${item.heightPx}px`, item.message, reset]) {
         const cell = document.createElement("td");
         if (value instanceof Node) cell.append(value); else cell.textContent = value;
         row.append(cell);
@@ -311,7 +316,7 @@ export async function createVerticalResizeController(options) {
     const selectedItems = [...selected].map(id => pending.get(id)).filter(Boolean);
     controls.apply.disabled = applying || !repositoryContext || !selectedItems.length || selectedItems.some(item => item.status === "invalid");
     for (const area of areas.values()) {
-      area.handle.textContent = `↕ ${currentHeight(area)}px${pending.has(area.id) ? " •" : ""}`;
+      area.handle.textContent = `↕ ${currentHeight(area)}px · src ${area.sourceHeightPx}px${pending.has(area.id) ? " •" : ""}`;
       area.handle.setAttribute("aria-label", `Resize ${area.label} vertically. Current height ${currentHeight(area)} pixels. Arrow keys change by 4 pixels.`);
     }
   }
