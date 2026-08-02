@@ -557,7 +557,18 @@
           await wait(20);
           check("Case 04 Student Task 2 timeline response boxes retain the approved page-one height", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-01"] .timeline-response')).every(node => dimensions(node)[1] >= 76.77));
           check("Case 04 Student Task 3 evidence-analysis boxes provide expanded writing area", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-02"] .evidence-table .table-response')).every(node => { const [width, height] = dimensions(node); return width >= 310 && height >= 71.97; }));
-          check("Case 04 Student Task 5 cycle response boxes fit mechanism-bank phrases", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-03"] .stage-response')).every(node => dimensions(node)[1] >= 115.17));
+          check("Case 04 Student Task 5 cycle response boxes fit mechanism-bank phrases", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-03"] .stage-response')).every(node => { const [width, height] = dimensions(node); return width >= 200 && height >= 115.17; }));
+          check("Case 04 Student Task 5 follows the two-row snake sequence", (() => {
+            const model = workspace.querySelector('.page[data-page-id="student-mission-03"] .cycle-model');
+            const stages = Object.fromEntries(Array.from(model.querySelectorAll('[data-process-stage]')).map(node => [node.dataset.processStage, node.getBoundingClientRect()]));
+            const arrows = Array.from(model.querySelectorAll('[data-process-connector]')).map(node => node.textContent.trim());
+            return JSON.stringify(arrows) === JSON.stringify(["→", "→", "↓", "←", "←"])
+              && near(stages["1"].top, stages["2"].top) && near(stages["2"].top, stages["3"].top)
+              && stages["1"].left < stages["2"].left && stages["2"].left < stages["3"].left
+              && near(stages["4"].top, stages["5"].top) && near(stages["5"].top, stages["6"].top)
+              && stages["4"].left > stages["5"].left && stages["5"].left > stages["6"].left
+              && stages["4"].top > stages["3"].bottom;
+          })());
           check("Case 04 Student Task 7 distinguishes the two control responses", (() => {
             const page = workspace.querySelector('.page[data-page-id="student-mission-04"]');
             const labels = Array.from(page.querySelectorAll('.task-heading[data-task-id="7"] ~ .two-col .response-label')).map(node => node.textContent.trim());

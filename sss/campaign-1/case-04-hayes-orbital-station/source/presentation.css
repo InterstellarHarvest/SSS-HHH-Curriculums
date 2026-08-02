@@ -193,13 +193,31 @@ em { font-family: Georgia, serif; }
 
 .cycle-model[data-process-contract="six-stage-cycle-v1.0"] {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr) 12px) minmax(0, 1fr);
   gap: 3px;
   align-items: stretch;
   margin: 5px 0;
   break-inside: avoid;
   page-break-inside: avoid;
 }
+.cycle-model[data-process-contract="six-stage-cycle-v1.0"]:not(.accessible-cycle) {
+  grid-template-columns: minmax(0, 1fr) 16px minmax(0, 1fr) 16px minmax(0, 1fr);
+  grid-template-rows: auto 16px auto;
+  grid-template-areas:
+    "stage1 arrow1 stage2 arrow2 stage3"
+    ". . . . arrow3"
+    "stage6 arrow5 stage5 arrow4 stage4";
+}
+.cycle-model:not(.accessible-cycle) [data-process-stage="1"] { grid-area: stage1; }
+.cycle-model:not(.accessible-cycle) [data-process-stage="2"] { grid-area: stage2; }
+.cycle-model:not(.accessible-cycle) [data-process-stage="3"] { grid-area: stage3; }
+.cycle-model:not(.accessible-cycle) [data-process-stage="4"] { grid-area: stage4; }
+.cycle-model:not(.accessible-cycle) [data-process-stage="5"] { grid-area: stage5; }
+.cycle-model:not(.accessible-cycle) [data-process-stage="6"] { grid-area: stage6; }
+.cycle-model:not(.accessible-cycle) [data-process-connector="1"] { grid-area: arrow1; }
+.cycle-model:not(.accessible-cycle) [data-process-connector="2"] { grid-area: arrow2; }
+.cycle-model:not(.accessible-cycle) [data-process-connector="3"] { grid-area: arrow3; }
+.cycle-model:not(.accessible-cycle) [data-process-connector="4"] { grid-area: arrow4; }
+.cycle-model:not(.accessible-cycle) [data-process-connector="5"] { grid-area: arrow5; }
 .cycle-stage { display: flex; flex-direction: column; gap: 3px; min-width: 0; min-height: .8in; padding: 4px; border: 1.4px solid var(--ink); background: var(--paper); font-size: 7pt; line-height: 1.13; }
 .cycle-stage > span { display: grid; place-items: center; width: 18px; height: 18px; color: #fff; background: var(--accent-dark); border-radius: 50%; font: 800 7pt monospace; }
 .cycle-connector { align-self: center; font-size: 12pt; text-align: center; }
