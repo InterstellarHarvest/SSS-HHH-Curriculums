@@ -426,7 +426,7 @@
       boundaryControl.click();
       check("Page shadow can be restored without changing page fit", api.getState().boundaries === true && win.getComputedStyle(shadowPage).boxShadow === shadowBefore && api.checkOverflow() === 0);
 
-      const expectedCounts = { student: 4, teacher: 8, answer: 4, accessible: 7 };
+      const expectedCounts = Object.fromEntries(Object.entries(api.getPackage().rolePageStructure).map(([role, structure]) => [role, structure.pageCount]));
       for (const [role, expected] of Object.entries(expectedCounts)) {
         api.setRole(role);
         await wait(80);
@@ -614,11 +614,11 @@
       check("table semantics retain captions", Array.from(workspace.querySelectorAll("table")).every(table => table.querySelector("caption")));
 
       const canonicalCases = [
-        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 7, answer: 4, accessible: 6 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.0", status: "OWNER_GATE_OPEN", reviewStatus: "OWNER_REVIEW_PASS", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" }
+        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 7, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.0", status: "OWNER_GATE_OPEN", reviewStatus: "OWNER_REVIEW_PASS", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" }
       ];
       check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(canonicalCases.map(item => item.id)));
       check("case dropdown labels are exactly owner-approved and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker"]));
@@ -634,6 +634,7 @@
         api = win.__curriculumEditor;
         workspace = api.getWorkspace();
         worksheetDoc = api.getWorksheetDocument();
+        const declaredCounts = Object.fromEntries(Object.entries(api.getPackage().rolePageStructure).map(([role, structure]) => [role, structure.pageCount]));
         check(`${item.id} loads from registry with current version`, api.getPackage().id === item.id && api.getPackage().version === item.version);
         if (item.id === "SSS-C1-CASE04") check("Case 04 loads as the owner-approved v1.0 release", api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval.date === "2026-08-01" && api.getPackage().approval.owner === "Nate / Owner" && api.getPackage().approval.status === "APPROVED" && api.getPackage().approval.printStatus === "PASS");
         if (item.status === "APPROVED_STABLE") {
@@ -649,7 +650,7 @@
         check(`${item.id} printable headings and headers contain no owner-review wording`, printableOwnerReview.length === 0, JSON.stringify(printableOwnerReview));
         const liveIdentityFindings = formalStudentIdentityFindings(workspace);
         check(`${item.id} printable editions contain no formal student Role or Identity element`, liveIdentityFindings.length === 0, JSON.stringify(liveIdentityFindings));
-        for (const [role, expected] of Object.entries(item.counts)) {
+        for (const [role, expected] of Object.entries(declaredCounts)) {
           api.setRole(role);
           await wait(40);
           check(`${item.id} ${role} page count`, visiblePages(frame).length === expected, visiblePages(frame).length);
@@ -657,6 +658,42 @@
           const overflowDetail = Array.from(workspace.querySelectorAll(".page.has-overflow")).map(page => { const frame = page.querySelector(".page-frame"); const content = page.querySelector(".content-area"); return { page: page.dataset.pageId, frame: [frame?.scrollHeight, frame?.clientHeight, frame?.scrollWidth, frame?.clientWidth], content: [content?.scrollHeight, content?.clientHeight, content?.scrollWidth, content?.clientWidth] }; });
           check(`${item.id} ${role} Pages fit`, overflowCount === 0 && doc.querySelector("#overflowStatus").textContent === "Pages fit", JSON.stringify(overflowDetail));
         }
+        api.setRole("accessible");
+        await wait(40);
+        const accessiblePages = Array.from(workspace.querySelectorAll('.page[data-role="accessible"]'));
+        const accessibleTaskDistribution = accessiblePages.map(page => Array.from(page.querySelectorAll(".task-heading")).map(node => Number(node.dataset.taskId)));
+        const accessibleTaskNumbers = accessibleTaskDistribution.flat();
+        const accessibleCerRoots = Array.from(workspace.querySelectorAll('.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"]'));
+        const accessibleCerPage = accessibleCerRoots[0]?.closest(".page");
+        const accessibleCerSubtitle = accessibleCerPage?.querySelector('[data-accessible-cer-subtitle="canonical-v1.0"]')?.textContent.trim();
+        const accessibleCerLabels = accessibleCerRoots[0] ? Array.from(accessibleCerRoots[0].querySelectorAll(":scope > .canonical-cer-box > .canonical-cer-label")).map(node => node.textContent.trim()) : [];
+        const expectedTaskNumbers = Array.from(workspace.querySelectorAll('.page[data-role="student"] .task-heading')).map(node => Number(node.dataset.taskId));
+        check(`${item.id} Accessible pages use content-driven one-to-three-task density`, accessibleTaskDistribution.every(tasks => tasks.length >= 1 && tasks.length <= 3), JSON.stringify(accessibleTaskDistribution));
+        check(`${item.id} Accessible task headings are ordered and unique`, JSON.stringify(accessibleTaskNumbers) === JSON.stringify(expectedTaskNumbers) && new Set(accessibleTaskNumbers).size === accessibleTaskNumbers.length, JSON.stringify(accessibleTaskNumbers));
+        check(`${item.id} Accessible CER is one dedicated canonical page`, accessibleCerRoots.length === 1 && accessibleCerPage?.dataset.accessibleCerPage === "canonical-v1.0" && accessibleCerPage.querySelectorAll(".task-heading").length === 1 && accessibleCerSubtitle === "You may write sentences or use bullet points. Use evidence from more than one source." && JSON.stringify(accessibleCerLabels) === JSON.stringify(["CLAIM", "EVIDENCE", "REASONING"]));
+        const cerBoxes = accessibleCerRoots[0] ? Array.from(accessibleCerRoots[0].querySelectorAll(":scope > .canonical-cer-box")) : [];
+        const cerColor = cerBoxes[0] ? win.getComputedStyle(cerBoxes[0].querySelector(".canonical-cer-label")).backgroundColor : "";
+        check(`${item.id} Accessible CER uses shared near-full-page Case 03 geometry and color`, accessibleCerRoots[0]?.getBoundingClientRect().height >= 648 && cerBoxes.length === 3 && cerBoxes[0].getBoundingClientRect().height >= 139 && cerBoxes[1].getBoundingClientRect().height >= 244 && cerBoxes[2].getBoundingClientRect().height >= 259 && cerColor === "rgb(46, 132, 132)", JSON.stringify({ root: accessibleCerRoots[0]?.getBoundingClientRect().height, boxes: cerBoxes.map(node => node.getBoundingClientRect().height), cerColor }));
+        const accessibleAtomicRoots = Array.from(workspace.querySelectorAll('.page[data-role="accessible"] [data-cer-contract],.page[data-role="accessible"] [data-process-contract],.page[data-role="accessible"] [data-timeline-contract],.page[data-role="accessible"] [data-systems-contract]'));
+        const clippedAtomicRoots = accessibleAtomicRoots.filter(root => { const rect = root.getBoundingClientRect(); const content = root.closest(".content-area")?.getBoundingClientRect(); return !content || rect.left < content.left - 1 || rect.right > content.right + 1 || rect.top < content.top - 1 || rect.bottom > content.bottom + 1; }).map(root => root.closest(".page")?.dataset.pageId);
+        check(`${item.id} Accessible atomic components remain inside printable content geometry`, clippedAtomicRoots.length === 0, JSON.stringify(clippedAtomicRoots));
+        const accessibleOverlapFailures = accessiblePages.flatMap(page => {
+          const nodes = Array.from(page.querySelectorAll('.task-heading,[data-response],[data-cer-contract],[data-process-contract],[data-timeline-contract],[data-systems-contract]')).filter(node => {
+            const rect = node.getBoundingClientRect();
+            if (rect.width <= 1 || rect.height <= 1) return false;
+            if (node.matches('[data-cer-contract],[data-process-contract],[data-timeline-contract],[data-systems-contract]') && node.querySelector('[data-response]')) return false;
+            return true;
+          });
+          return nodes.flatMap((left, index) => nodes.slice(index + 1).flatMap(right => {
+            if (left.contains(right) || right.contains(left)) return [];
+            const a = left.getBoundingClientRect();
+            const b = right.getBoundingClientRect();
+            const horizontal = Math.min(a.right, b.right) - Math.max(a.left, b.left);
+            const vertical = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top);
+            return horizontal > 1 && vertical > 1 ? [`${page.dataset.pageId}:${left.className || left.dataset.response}:${right.className || right.dataset.response}`] : [];
+          }));
+        });
+        check(`${item.id} Accessible task headings and response components do not overlap`, accessibleOverlapFailures.length === 0, JSON.stringify(accessibleOverlapFailures));
         const idRoleResults = {};
         for (const role of ["student", "accessible"]) {
           api.setRole(role);
@@ -723,7 +760,7 @@
         api.saveState({ grayscale: false });
         check(`${item.id} current-role export uses correct identity`, api.getCurrentRoleOutput().filename.includes(item.student) && new DOMParser().parseFromString(api.serializeRoleHTML("student"), "text/html").querySelectorAll('.page[data-role="student"]').length === item.counts.student);
 
-        const printProfiles = Object.entries(item.counts).flatMap(([role, expected]) => [
+        const printProfiles = Object.entries(declaredCounts).flatMap(([role, expected]) => [
           { name: `${role} color presentation`, role, grayscale: false, expected },
           { name: `${role} grayscale presentation`, role, grayscale: true, expected }
         ]);
@@ -761,6 +798,27 @@
           check(`${item.id} ${profile.name} print and worksheet export omit formal student Role and Identity elements`, printIdentityFindings.length === 0 && exportIdentityFindings.length === 0, JSON.stringify({ printIdentityFindings, exportIdentityFindings }));
           matrixStates.push({ caseId: item.id, role: profile.role, grayscale: profile.grayscale, pass: assertions.slice(matrixStart).every(assertion => assertion.pass) });
         }
+        api.setRole("accessible");
+        api.saveState({ grayscale: false });
+        const accessibleExportFrame = document.createElement("iframe");
+        accessibleExportFrame.style.cssText = "position:fixed;left:-20000px;top:0;width:1440px;height:1200px;border:0";
+        const accessibleExportLoaded = new Promise((resolve, reject) => {
+          accessibleExportFrame.addEventListener("load", resolve, { once: true });
+          accessibleExportFrame.addEventListener("error", reject, { once: true });
+        });
+        accessibleExportFrame.srcdoc = api.serializeRoleHTML("accessible");
+        doc.body.append(accessibleExportFrame);
+        await accessibleExportLoaded;
+        await accessibleExportFrame.contentDocument.fonts?.ready;
+        const accessibleExportPages = Array.from(accessibleExportFrame.contentDocument.querySelectorAll('.page[data-role="accessible"]'));
+        const accessibleExportGeometry = accessibleExportPages.map(page => {
+          const pageRect = page.getBoundingClientRect();
+          const pageFrame = page.querySelector(".page-frame");
+          const frameRect = pageFrame.getBoundingClientRect();
+          return { pageId: page.dataset.pageId, page: [rounded(pageRect.width), rounded(pageRect.height)], frame: [rounded(frameRect.left - pageRect.left), rounded(frameRect.top - pageRect.top), rounded(frameRect.width), rounded(frameRect.height)], contentFits: Array.from(page.querySelectorAll(".content-area")).every(content => content.scrollWidth <= content.clientWidth + 1 && content.scrollHeight <= content.clientHeight + 1) };
+        });
+        check(`${item.id} rendered Accessible worksheet export retains fixed Letter frame geometry without clipping`, accessibleExportGeometry.length === declaredCounts.accessible && accessibleExportGeometry.every(item => near(item.page[0], 816, .1) && near(item.page[1], 1056, .1) && near(item.frame[0], 48, .1) && near(item.frame[1], 48, .1) && near(item.frame[2], 720, .1) && near(item.frame[3], 960, .1) && item.contentFits), JSON.stringify(accessibleExportGeometry));
+        accessibleExportFrame.remove();
         api.setRole("student");
         api.saveState({ grayscale: false });
         const parentPrint = win.print;
@@ -810,7 +868,7 @@
           check("Case 04 generated Student, Answer Key, and Accessible task titles have exact parity", ["student", "answer", "accessible"].every(role => JSON.stringify(roleTitles(role)) === JSON.stringify(lockedTitles)));
           check("Case 04 has one atomic CER in each required learner role", ["student-v1.0", "answer-v1.0", "accessible-v1.0"].every(contract => { const root = workspace.querySelector(`[data-cer-contract="${contract}"]`); return root && Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page")); }));
           check("Case 04 timeline and process models remain atomic", Array.from(workspace.querySelectorAll("[data-timeline-contract],[data-process-contract]")).every(root => Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page"))));
-          check("Case 04 Accessible pages retain ordered reading structure", JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="accessible"]')).map(page => page.dataset.pageId)) === JSON.stringify(["accessible-mission-01", "accessible-mission-02", "accessible-mission-03", "accessible-mission-04", "accessible-mission-05", "accessible-mission-06"]));
+          check("Case 04 Accessible pages retain ordered reading structure", JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="accessible"]')).map(page => page.dataset.pageId)) === JSON.stringify(["accessible-mission-01", "accessible-mission-02", "accessible-mission-03", "accessible-mission-04", "accessible-mission-05", "accessible-mission-06", "accessible-mission-07"]));
           const studentDistribution = Array.from(workspace.querySelectorAll('.page[data-role="student"]')).map(page => Array.from(page.querySelectorAll(".task-heading")).map(node => Number(node.dataset.taskId)));
           check("Case 04 Student page 1 contains complete Tasks 1 and 2 with Task 3 held intact for page 2", JSON.stringify(studentDistribution[0]) === JSON.stringify([1, 2]) && studentDistribution[1][0] === 3 && workspace.querySelector('.page[data-page-id="student-mission-01"] .task-block .task-heading[data-task-id="2"]'));
           const pageReserves = Array.from(workspace.querySelectorAll('.page[data-role="student"]')).map(page => { const content = page.querySelector(".content-area"); const last = content.lastElementChild; return { page: page.dataset.pageId, pixels: rounded(content.getBoundingClientRect().bottom - last.getBoundingClientRect().bottom) }; });
@@ -829,7 +887,7 @@
           const studentCer = cerGeometry.student;
           const answerCer = cerGeometry.answer;
           const accessibleCer = cerGeometry.accessible;
-          check("Case 04 canonical CER computed geometry matches shared Student, Answer, and Accessible contracts", near(studentCer.minHeight, 244.8) && near(studentCer.root[1], 244.8) && near(parseFloat(studentCer.columns), 69.12) && answerCer.boxHeights[0] >= 44.13 && answerCer.boxHeights[1] >= 63.33 && answerCer.boxHeights[2] >= 72.93 && accessibleCer.boxHeights[0] >= 74.85 && accessibleCer.boxHeights[1] >= 113.25 && accessibleCer.boxHeights[2] >= 113.25 && near(parseFloat(accessibleCer.columns), 91.2), JSON.stringify(cerGeometry));
+          check("Case 04 canonical CER computed geometry matches shared Student, Answer, and Accessible contracts", near(studentCer.minHeight, 244.8) && near(studentCer.root[1], 244.8) && near(parseFloat(studentCer.columns), 69.12) && answerCer.boxHeights[0] >= 44.13 && answerCer.boxHeights[1] >= 63.33 && answerCer.boxHeights[2] >= 72.93 && accessibleCer.root[1] >= 648 && accessibleCer.boxHeights[0] >= 139 && accessibleCer.boxHeights[1] >= 244 && accessibleCer.boxHeights[2] >= 259 && near(parseFloat(accessibleCer.columns), 96), JSON.stringify(cerGeometry));
           api.setRole("student");
           await wait(20);
           check("Case 04 Student Task 2 timeline response boxes retain the approved page-one height", Array.from(workspace.querySelectorAll('.page[data-page-id="student-mission-01"] .timeline-response')).every(node => dimensions(node)[1] >= 76.77));

@@ -10,7 +10,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, NavigableString
 
 
 APP = Path(__file__).resolve().parents[1]
@@ -25,11 +25,19 @@ FORMAL_STUDENT_IDENTITY_LABEL = re.compile(r"^(?:your\s+role|role|student\s+iden
 LEGACY_STUDENT_IDENTITY = re.compile(r"\b(?:pattern investigator|process modeler|data analyst|timeline analyst|risk assessor)\b", re.I)
 FORMAL_IDENTITY_MARKER_SELECTORS = ".label,.callout-label,.technical-label,.section-title,.response-label,label,h1,h2,h3,h4,h5,h6,.teacher-card > strong"
 EXPECTED = {
-    "SSS-C1-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 6}},
-    "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}},
-    "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
-    "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6}},
-    "SSS-C1-CASE05": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
+    "SSS-C1-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3}},
+    "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3}},
+    "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
+    "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
+    "SSS-C1-CASE05": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
+}
+ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
+NON_ACCESSIBLE_BASELINE_HASHES = {
+    "SSS-C1-CASE01": {"student": "35560b98c86466c46ce4e3e695aa75b9158def2b46541ca99f8827616b35ec91", "teacher": "a280497aa8ec49e0ddfb55f3de1681b05f00ff62d158985aa7dd1d62d980f62f", "answer": "7dbaefd95a824dd4529ee4ad547604c1f2e9eada01350224103cbc050bbc5da0"},
+    "SSS-C1-CASE02": {"student": "5b714dd328c7e99ae2064499015137aa5633a329d76bef36abe040c21528613a", "teacher": "7ccdfde07f70e5919a1585af7b7cf908a4668e74fed61ebfd11428d62a3faaad", "answer": "f8e9efdb1c5103cd07e52183f0f8736a4ee96a05c32901553637b3a70a4a117d"},
+    "SSS-C1-CASE03": {"student": "0690d461f44e50a5f9ce2b1fd600b89324e1d3931bcf20024a0d110d5510b646", "teacher": "175f1623d60f1243cd119086547e4e8cc866ce6d3e9fac620ad1e3377609aba9", "answer": "01b4fb194cdaeb29b2bdb0dda87b0edc869016b354e90876a1722b337a858ef2"},
+    "SSS-C1-CASE04": {"student": "8fec5960a5e193cc6cbe963a060061f0f87aae9fd4f153a34c5ba831400e8239", "teacher": "97ea94a7200cabc057c5df0e23c47dd9f0dbd2eb82cc5aa5e25f66deea67b648", "answer": "48f8a053a17fe1230477e121fdec67f8b6dbf0dc5d30aaa0575e4469757a5d8a"},
+    "SSS-C1-CASE05": {"student": "d17cf55212afb64e7425c217c352f7a8d0d60f385240cd3c865dda1e2a025b4a", "teacher": "40ce5700fe2d1126797a5035a6f5f0070b9ab19961bb31e53a34e71f7d0b0a23", "answer": "8adb307362cd6668db5a9f636c463789c416065bfff5ac1835ca35ca970843e1"},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -208,6 +216,14 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def role_dom_hash(soup: BeautifulSoup, role: str) -> str:
+    fragment = BeautifulSoup("".join(str(page) for page in soup.select(f'.page[data-role="{role}"]')), "html.parser")
+    for node in list(fragment.find_all(string=True)):
+        if isinstance(node, NavigableString) and not str(node).strip():
+            node.extract()
+    return hashlib.sha256(fragment.decode(formatter="minimal").encode("utf-8")).hexdigest()
+
+
 def task_registry(path: Path):
     text = path.read_text(encoding="utf-8")
     payload = re.sub(r"^\s*window\.[A-Z0-9_]+\s*=\s*", "", text).rstrip().removesuffix(";")
@@ -272,7 +288,7 @@ def main() -> int:
         results.check(f"{case_id} has exactly four instructional roles", package["supportedRoles"] == ROLES and list(package["rolePageStructure"]) == ROLES)
         results.check(f"{case_id} has complete plus four normal output names", list(package["outputs"]) == ["complete", *ROLES] and all("GRAYSCALE" not in filename.upper() for filename in package["outputs"].values()))
         counts = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
-        results.check(f"{case_id} package page counts are exact", counts == expected_counts, counts)
+        results.check(f"{case_id} fixed-role package page counts are exact and Accessible is content-driven", {role: counts[role] for role in expected_counts} == expected_counts and counts["accessible"] >= 1, counts)
         results.check(f"{case_id} package uses the canonical institutional identity", package["institutionalIdentity"]["name"] == CANONICAL_SAA and package["institutionalIdentity"]["lockupLines"] == ["Solar", "Agricultural", "Agency"])
         results.check(f"{case_id} package has no migration-era fields", not {"migrationSource", "phase2Authorization", "historicalMaster", "successorMaster", "goldenMaster", "reconciliationRecord"}.intersection(package))
 
@@ -292,7 +308,9 @@ def main() -> int:
         results.check(f"{case_id} active sources reject noncanonical SAA expansions", CANONICAL_SAA in identity_sources and not any(variant in identity_sources for variant in REJECTED_SAA))
         soup = BeautifulSoup(content, "html.parser")
         actual_counts = {role: len(soup.select(f'.page[data-role="{role}"]')) for role in ROLES}
-        results.check(f"{case_id} worksheet DOM page counts are exact", actual_counts == expected_counts, actual_counts)
+        results.check(f"{case_id} worksheet DOM page counts match package declarations", actual_counts == counts, actual_counts)
+        current_non_accessible_hashes = {role: role_dom_hash(soup, role) for role in ["student", "teacher", "answer"]}
+        results.check(f"{case_id} Student, Teacher, and Answer Key DOM remain at the authoritative baseline", current_non_accessible_hashes == NON_ACCESSIBLE_BASELINE_HASHES[case_id], current_non_accessible_hashes)
         results.check(f"{case_id} content is a worksheet-only fragment", bool(soup.select_one("main")) and not soup.select("script,style,link,iframe,.toolbar"))
         learner_pages = soup.select('.page[data-role="student"],.page[data-role="accessible"]')
         formal_identity_findings = []
@@ -330,6 +348,20 @@ def main() -> int:
         registry_data = task_registry(paths["taskRegistry"])
         expected_task_numbers = list(range(1, expected["tasks"] + 1))
         results.check(f"{case_id} task registry owns its numbered tasks and four roles", [int(task["number"]) for task in registry_data["tasks"]] == expected_task_numbers and set(registry_data["roles"]) == set(ROLES))
+        accessible_pages = soup.select('.page[data-role="accessible"]')
+        accessible_task_distribution = [
+            [int(node.get("data-task-id") or node.get("data-shell-task-heading")) for node in page.select(".task-heading,[data-shell-task-heading]") if node.get("data-task-id") or node.get("data-shell-task-heading")]
+            for page in accessible_pages
+        ]
+        accessible_task_numbers = [number for page_numbers in accessible_task_distribution for number in page_numbers]
+        results.check(f"{case_id} Accessible pages contain one to three complete tasks", all(1 <= len(page_numbers) <= 3 for page_numbers in accessible_task_distribution), accessible_task_distribution)
+        results.check(f"{case_id} Accessible task headings are ordered and never duplicated", accessible_task_numbers == expected_task_numbers and len(accessible_task_numbers) == len(set(accessible_task_numbers)), accessible_task_numbers)
+        accessible_cer_roots = soup.select('.page[data-role="accessible"] .canonical-cer[data-cer-contract="accessible-v1.0"]')
+        accessible_cer_pages = [root.find_parent(class_="page") for root in accessible_cer_roots]
+        accessible_cer_subtitles = [page.select_one('[data-accessible-cer-subtitle="canonical-v1.0"]') if page else None for page in accessible_cer_pages]
+        cer_labels = [[label.get_text(strip=True) for label in root.select(":scope > .canonical-cer-box > .canonical-cer-label")] for root in accessible_cer_roots]
+        results.check(f"{case_id} has one dedicated canonical Accessible CER page", len(accessible_cer_roots) == len(accessible_cer_pages) == 1 and accessible_cer_pages[0].get("data-accessible-cer-page") == "canonical-v1.0" and len(accessible_task_distribution[accessible_pages.index(accessible_cer_pages[0])]) == 1, [page.get("data-page-id") for page in accessible_cer_pages])
+        results.check(f"{case_id} Accessible CER has the exact subtitle and Claim/Evidence/Reasoning structure", len(accessible_cer_subtitles) == 1 and accessible_cer_subtitles[0] and accessible_cer_subtitles[0].get_text(" ", strip=True) == ACCESSIBLE_CER_SUBTITLE and cer_labels == [["CLAIM", "EVIDENCE", "REASONING"]], {"subtitles": [node.get_text(" ", strip=True) if node else None for node in accessible_cer_subtitles], "labels": cer_labels})
         results.check(f"{case_id} CER components are page-atomic", all(all(child.find_parent(class_="page") is root.find_parent(class_="page") for child in root.select("*")) for root in soup.select("[data-cer-contract],.cer-stack")))
         results.check(f"{case_id} process models are page-atomic", all(all(child.find_parent(class_="page") is root.find_parent(class_="page") for child in root.select("*")) for root in soup.select("[data-process-contract],.process-figure,.linear-process")))
         results.check(f"{case_id} figures and tables retain structure", all(figure.select_one("figcaption") for figure in soup.select("figure")) and all(table.select_one("th") and len(table.select("tr")) >= 2 for table in soup.select("table")))
@@ -352,7 +384,9 @@ def main() -> int:
             former_artifacts = history.get("formerArtifacts", {})
             former_roles = former_artifacts.get("roles", {})
             artifact_record_complete = set(former_roles) == set(ROLES) or former_artifacts.get("status") == "NO_FORMER_GENERATED_ARTIFACTS"
-            results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and artifact_record_complete and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
+            history_counts = history.get("rolePageCounts", {})
+            history_fixed_counts_match = all(history_counts.get(role) == expected_counts[role] for role in expected_counts)
+            results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and artifact_record_complete and history_fixed_counts_match and isinstance(history_counts.get("accessible"), int) and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
         else:
             case_root = package_path.parents[1]
             results.check(f"{case_id} unreleased package has no history release record", not (case_root / "history").exists() and "releaseHistory" not in package)
@@ -375,7 +409,7 @@ def main() -> int:
             process_roots = soup.select("[data-process-contract]")
             results.check("Case 04 timeline and process models are page-atomic", all(root.find_parent(class_="page") is child.find_parent(class_="page") for root in timeline_roots + process_roots for child in root.select("*")))
             accessible_pages = soup.select('.page[data-role="accessible"]')
-            results.check("Case 04 Accessible pages preserve document and task reading order", [page.get("data-page-id") for page in accessible_pages] == [f"accessible-mission-{index:02d}" for index in range(1, 7)] and role_task_orders["accessible"] == expected_task_numbers)
+            results.check("Case 04 Accessible pages preserve document and task reading order", [page.get("data-page-id") for page in accessible_pages] == [f"accessible-mission-{index:02d}" for index in range(1, counts["accessible"] + 1)] and role_task_orders["accessible"] == expected_task_numbers)
             required_sequence = ["Four months of stable operation", "Lighting changes from 16/8 to uncontrolled 24/0", "About one week later: first crash", "Every 6–8 days: another crash", "Between crashes: surviving cells rebuild"]
             results.check("Case 04 uses all locked relative sequence labels", all(label in content for label in required_sequence))
             results.check("Case 04 omits unsupported mission-day and precise-density data", not re.search(r"Day\s*12[18]|culture density\s*[:=]\s*\d", content, re.I))
@@ -416,7 +450,7 @@ def main() -> int:
             results.check("Case 04 mission subtitle uses the locked punctuation", all(title.select_one(".mission-subtitle").get_text(strip=True) == "Campaign 1 · Case 04 · L2 Lagrange Point, Orbital Research Station" for title in title_blocks if title))
 
             continuation_headers = soup.select('.continuation-header[data-header-contract="printable-v1.1"]')
-            expected_continuations = sum(expected_counts.values()) - len(ROLES)
+            expected_continuations = sum(counts.values()) - len(ROLES)
             continuation_contract = len(continuation_headers) == expected_continuations and all(
                 [child.get("class", [None])[0] for child in header.find_all(recursive=False)] == ["continuation-copy", "continuation-identity"]
                 and header.select_one(":scope > .continuation-copy > h1")
@@ -508,15 +542,16 @@ def main() -> int:
             title_blocks = [page.select_one('.mission-title-block[data-header-contract="printable-v1.1"]') for page in first_pages]
             results.check("Case 05 first-page title blocks separate title from location subtitle", all(title and title.select_one(".hero-title").get_text(strip=True) == "Sub Surface Bunker" and title.select_one(".mission-subtitle").get_text(strip=True) == "Campaign 1 · Case 05 · Europa, orbiting Jupiter" and "Sub Surface Bunker" not in title.select_one(".mission-subtitle").get_text(" ", strip=True) and title.select_one('img.saa-insignia[alt="Solar Agricultural Agency insignia"]') for title in title_blocks))
             continuation_headers = soup.select('.continuation-header[data-header-contract="printable-v1.1"]')
-            results.check("Case 05 continuation identity count and structure are exact", len(continuation_headers) == sum(expected_counts.values()) - len(ROLES) and all(header.select_one(".continuation-copy > h1") and header.select_one(".continuation-identity > .institution") for header in continuation_headers), len(continuation_headers))
+            results.check("Case 05 continuation identity count and structure are exact", len(continuation_headers) == sum(counts.values()) - len(ROLES) and all(header.select_one(".continuation-copy > h1") and header.select_one(".continuation-identity > .institution") for header in continuation_headers), len(continuation_headers))
             cer_contracts = {root.get("data-cer-contract"): [box.select_one(":scope > .canonical-cer-label").get_text(strip=True) for box in root.select(":scope > .canonical-cer-box")] for root in soup.select(".canonical-cer[data-cer-contract]")}
             results.check("Case 05 CER uses the three shared atomic contracts", cer_contracts == {"student-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "answer-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "accessible-v1.0": ["CLAIM", "EVIDENCE", "REASONING"]}, cer_contracts)
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable = (APP / "portable-runtime.js").read_text(encoding="utf-8")
     protected_styles_path = ROOT / "shared/implementation/editor-shell/v1.0/protected-printable-components.css"
+    accessible_styles_path = ROOT / "shared/implementation/editor-shell/v1.0/accessible-edition.css"
     results.check("central editor loads registry and package schema v2", "case-registry.v2.json" in runtime and "SUPPORTED_PACKAGE_SCHEMA = 2" in runtime)
-    results.check("central editor applies the shared protected-component stylesheet after case presentation", protected_styles_path.is_file() and "protected-printable-components.css" in runtime and "[...sharedStyles, presentationCss, protectedComponentStyles]" in runtime)
+    results.check("central editor applies shared protected and Accessible styles after case presentation", protected_styles_path.is_file() and accessible_styles_path.is_file() and "protected-printable-components.css" in runtime and "accessible-edition.css" in runtime and "[...sharedStyles, presentationCss, protectedComponentStyles, accessibleEditionStyles]" in runtime)
     results.check("central and portable exports never remap grayscale to an output role", 'outputRole: state.role' in runtime and 'outputRole: state.role' in portable and "GRAYSCALE_MISSION" not in runtime + portable)
     results.check("central and portable runtimes preserve grayscale as Boolean presentation state", "state.grayscale" in runtime and "state.grayscale" in portable and 'classList.toggle("grayscale", state.grayscale)' in runtime and 'classList.toggle("grayscale", state.grayscale)' in portable)
     results.check("isolated print paths exclude chrome and page shadow", all(token in runtime and token in portable for token in ["preparePrintFrame", "print-document", "box-shadow:none!important"]))
