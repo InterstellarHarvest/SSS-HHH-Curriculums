@@ -1,6 +1,6 @@
 # Curriculum Editor Architecture v1.0
 
-Status: Cases 01–03 `APPROVED_STABLE` · Case 04 `DRAFT · OWNER_REVIEW_NOT_STARTED`
+Status: Cases 01–04 `APPROVED_STABLE`
 
 Application: `apps/curriculum-editor/`
 
@@ -56,4 +56,4 @@ The browser runner uses only temporary directories for profiles and screenshots.
 
 ## Recovery boundary
 
-Previous complete documents, role outputs, PDFs, and parity evidence are not present in the current tree. Their former paths and hashes are preserved in case history and the canonical migration record, and their bytes remain recoverable with `git show <commit>:<path>`.
+Previous complete documents, role outputs, PDFs, and parity evidence are not present in the current tree. When such artifacts existed, their former paths and hashes are preserved in case history and remain recoverable with `git show <commit>:<path>`. A native-only release records that no former generated artifacts exist.

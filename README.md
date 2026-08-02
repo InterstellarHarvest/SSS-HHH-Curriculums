@@ -2,7 +2,7 @@
 
 Shared curriculum repository for **Space Sprout Sleuth (SSS)** and **Hunger, Harvest, & History (HHH)**.
 
-Canonical Cases 01–03: `APPROVED_STABLE` · Case 04: `DRAFT · OWNER_REVIEW_NOT_STARTED`
+Canonical Cases 01–04: `APPROVED_STABLE`
 
 ## Canonical production workflow
 
@@ -33,10 +33,11 @@ case-XX-slug/
 │   └── optional referenced source files
 ├── assets/                  optional and referenced only
 └── history/                 APPROVED_STABLE only
-    └── release-vX.json
+    ├── release-vX.json
+    └── optional owner-approval record
 ```
 
-Unreleased native cases require the README and canonical `source/` files but do not receive release history until `APPROVED_STABLE`. Case 04 is `DRAFT · OWNER_REVIEW_NOT_STARTED`.
+Unreleased native cases require the README and canonical `source/` files but do not receive release history until `APPROVED_STABLE`. Native releases explicitly record when no former generated artifacts ever existed.
 
 Key implementation records:
 

@@ -25,7 +25,7 @@ EXPECTED = {
     "SSS-C1-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 6}},
     "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}},
     "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
-    "SSS-C1-CASE04": {"version": "0.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6}},
+    "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6}},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -260,14 +260,21 @@ def main() -> int:
             history = load_json(history_path)
             history_errors = schema_errors(history, history_schema)
             results.check(f"{case_id} release history validates against schema v1", not history_errors, history_errors)
-            former_roles = history.get("formerArtifacts", {}).get("roles", {})
-            results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and set(former_roles) == set(ROLES) and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
+            former_artifacts = history.get("formerArtifacts", {})
+            former_roles = former_artifacts.get("roles", {})
+            artifact_record_complete = set(former_roles) == set(ROLES) or former_artifacts.get("status") == "NO_FORMER_GENERATED_ARTIFACTS"
+            results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and artifact_record_complete and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
         else:
             case_root = package_path.parents[1]
             results.check(f"{case_id} unreleased DRAFT has no history release record", not (case_root / "history").exists() and "releaseHistory" not in package)
 
         if case_id == "SSS-C1-CASE04":
             task_titles = [task["title"] for task in registry_data["tasks"]]
+            results.check("Case 04 task registry records the completed release lifecycle", registry_data.get("version") == "1.0" and registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE")
+            results.check("Case 04 release history records a native release with no former generated artifacts", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and history.get("priorApprovedReleases") == [] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size")
+            owner_approval_path = package_path.parents[1] / "history/CASE04_OWNER_APPROVAL_v1.0.md"
+            owner_approval = owner_approval_path.read_text(encoding="utf-8") if owner_approval_path.is_file() else ""
+            results.check("Case 04 owner approval record captures release, review, merge, and no-artifact decisions", all(token in owner_approval for token in ["Nate / Owner", "2026-08-01", "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", "NO_GENERATED_ARTIFACTS_COMMITTED"]))
             results.check("Case 04 task registry uses the eight locked titles", task_titles == CASE04_TASK_TITLES, task_titles)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]

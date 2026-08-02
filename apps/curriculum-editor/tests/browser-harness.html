@@ -423,7 +423,7 @@
         { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 6 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
         { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3, accessible: 5 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4, accessible: 7 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "0.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 4, teacher: 7, answer: 4, accessible: 6 }, complete: "CASE04_CURRICULUM_EDITOR_v0.1", student: "CASE04_STUDENT_MISSION_v0.1" }
+        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 7, answer: 4, accessible: 6 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" }
       ];
       check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(canonicalCases.map(item => item.id)));
       check("case dropdown labels are exactly owner-approved and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station"]));
@@ -440,6 +440,7 @@
         workspace = api.getWorkspace();
         worksheetDoc = api.getWorksheetDocument();
         check(`${item.id} loads from registry with current version`, api.getPackage().id === item.id && api.getPackage().version === item.version);
+        if (item.id === "SSS-C1-CASE04") check("Case 04 loads as the owner-approved v1.0 release", api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval.date === "2026-08-01" && api.getPackage().approval.owner === "Nate / Owner" && api.getPackage().approval.status === "APPROVED" && api.getPackage().approval.printStatus === "PASS");
         if (item.status === "APPROVED_STABLE") {
           check(`${item.id} shows its version once in the low-prominence release status`, doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === `v${item.version} · ${item.status}` && !doc.querySelector("#workspaceTitle").textContent.includes(`v${item.version}`) && !doc.querySelector("#caseBreadcrumb").textContent.includes(`v${item.version}`) && !doc.querySelector("#loadStatus > span[aria-hidden=true]").textContent.includes(`v${item.version}`));
         } else {

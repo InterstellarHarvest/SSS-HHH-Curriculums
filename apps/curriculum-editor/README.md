@@ -2,7 +2,7 @@
 
 The repository-local Curriculum Editor is the canonical interface for SSS Campaign 1 Cases 01–04. It discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-Status: Cases 01–03 `APPROVED_STABLE` · Case 04 `DRAFT · OWNER_REVIEW_NOT_STARTED`
+Status: Cases 01–04 `APPROVED_STABLE`
 
 ## Launch
 
@@ -30,7 +30,7 @@ Generated HTML and PDFs are not written into the repository. A browser-created P
 
 ## Source and recovery model
 
-The package’s `content.html`, `presentation.css`, `task-registry.js`, and referenced assets are canonical. The central shell applies `protected-printable-components.css` after case presentation so identification rows, title and continuation headers, institutional identity, footers, and CER keep one printable contract. New packages opt into the shared component layer and may not redefine protected selectors. Complete editable documents and role documents are assembled on demand. Old embedded documents and release outputs are absent from the current tree and recoverable through the commands in `history/release-vX.json`.
+The package’s `content.html`, `presentation.css`, `task-registry.js`, and referenced assets are canonical. The central shell applies `protected-printable-components.css` after case presentation so identification rows, title and continuation headers, institutional identity, footers, and CER keep one printable contract. New packages opt into the shared component layer and may not redefine protected selectors. Complete editable documents and role documents are assembled on demand. Historical generated artifacts, when they existed, remain recoverable through `history/release-vX.json`; native-only releases record that no former generated artifacts exist.
 
 ## Validation
 

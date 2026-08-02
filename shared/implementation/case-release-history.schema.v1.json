@@ -39,7 +39,12 @@
     "rolePageCounts": {"$ref": "#/$defs/roleCounts"},
     "acceptedValidation": {"type": "object"},
     "acceptedPrintStatus": {"type": "string", "minLength": 1},
-    "formerArtifacts": {"$ref": "#/$defs/currentArtifacts"},
+    "formerArtifacts": {
+      "oneOf": [
+        {"$ref": "#/$defs/currentArtifacts"},
+        {"$ref": "#/$defs/nativeSourceNoArtifacts"}
+      ]
+    },
     "formerArtifactRecoveryCommit": {
       "$ref": "#/$defs/commit",
       "description": "Commit whose tree contains every path in formerArtifacts and tracked retiredArtifacts."
@@ -93,6 +98,15 @@
       "properties": {
         "complete": {"$ref": "#/$defs/artifact"},
         "roles": {"$ref": "#/$defs/currentRoleArtifacts"}
+      },
+      "additionalProperties": false
+    },
+    "nativeSourceNoArtifacts": {
+      "type": "object",
+      "required": ["status", "reason"],
+      "properties": {
+        "status": {"const": "NO_FORMER_GENERATED_ARTIFACTS"},
+        "reason": {"type": "string", "minLength": 1}
       },
       "additionalProperties": false
     },

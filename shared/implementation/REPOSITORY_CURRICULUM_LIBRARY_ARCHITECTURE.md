@@ -1,6 +1,6 @@
 # Repository Curriculum Library Architecture
 
-Status: Cases 01–03 `APPROVED_STABLE` · Case 04 `DRAFT · OWNER_REVIEW_NOT_STARTED`
+Status: Cases 01–04 `APPROVED_STABLE`
 
 ## Discovery and production
 
@@ -16,7 +16,7 @@ case-registry.v2.json
 → temporary editable/role/print documents
 ```
 
-The registry contains only current operational discovery and lifecycle metadata. Historical artifact paths and hashes live in each approved case’s compact release record. An unreleased native case has no release record.
+The registry contains only current operational discovery and lifecycle metadata. Historical artifact paths and hashes live in each approved case’s compact release record when such artifacts existed. Native-only releases explicitly record that no former generated artifacts exist. An unreleased native case has no release record.
 
 The package-controlled sources are canonical. The central editor provides editing, response entry, display state, four-role switching, clean printing, editable-copy export, and selected-role worksheet export. Generated documents and rendered validation evidence are temporary and are not committed.
 
@@ -30,7 +30,7 @@ Every current and future case uses `README.md` and canonical files directly unde
 
 ## History and recovery
 
-The current tree is intentionally lean. Previous complete documents, role files, PDFs, reports, and validation evidence remain available through Git without rewriting history. Each release record supplies the approved commit or recovery commit, former paths, hashes, accepted counts/totals, and a `git show` recovery template.
+The current tree is intentionally lean. Previous complete documents, role files, PDFs, reports, and validation evidence remain available through Git without rewriting history. A release record either supplies the approved/recovery commit, former paths, hashes, accepted totals, and recovery template, or explicitly marks a native release with no former generated artifacts.
 
 ## Validation
 

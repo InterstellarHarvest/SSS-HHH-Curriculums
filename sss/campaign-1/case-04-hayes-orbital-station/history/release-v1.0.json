@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE04",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-01",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
+  "canonicalSourceApprovalCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
+  "sourceHashes": {
+    "content": "1a6251e966ac0e2ac14ea1aab3fee71887401e42e9e9a2cd3ad46474ad84aecc",
+    "presentation": "38005b6aeff8ba77b79529e21f20da7a774cb45a821082f222810eec53e233e2",
+    "taskRegistry": "8f5686ba3240017f877f8b4de833a50f68ca99661eba53d17adc4716bdbdd661"
+  },
+  "rolePageCounts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6},
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "4 cases; 16 commit references; 25 artifact recoveries and hashes; 2 prior approved releases; 0 failures",
+    "packageRegistryReleaseHistorySchema": "PASS",
+      "static": "120/120",
+    "browser": "479/479",
+    "rolePresentationMatrix": "32/32",
+    "fixedWorksheetGeometry": "PASS at 1440px and 640px for all four roles",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "32/32",
+    "taskTitleParity": "PASS",
+    "cerAtomicityAndGeometry": "3/3 role contracts PASS",
+    "timelineAndTask5Cycle": "PASS",
+    "accessibleReadingOrder": "PASS",
+    "editableCopyExport": "PASS",
+    "worksheetExport": "32/32",
+    "isolatedPrinting": "PASS",
+    "javascriptErrors": "0"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Case 04 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba",
+  "recovery": "NOT_APPLICABLE: Case 04 was produced natively under the canonical source model; no generated release artifacts exist.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "Game-science baseline: 2bfdb0aadf6ce33b6664cd104b11a891cb55efaf.",
+    "Curriculum implementation lineage: b799a118684f42dcd1805bd91d75d07f8fd64a0b -> 9b1f997dc3ab22b91dad3ea40d19f69973878003 -> 7b3a0ab682aa98364429b9cbe002304c128b946b -> a784ede59589329b15ffe51c977cb58060a1105d -> ba7b0b69bbffe7b808aad4a6fde3c81577528fd3 -> 4cbafc39530944a7784d5bcd1fe2bd36bd27ffaf.",
+    "Combined owner-reviewed editor baseline: 9d8c3dd9222f6b3a2954b8ba14eb1cee38eb69ba.",
+    "Case 04 was authored directly as canonical package sources; no migration from generated release documents occurred."
+  ],
+  "retiredArtifacts": []
+}
