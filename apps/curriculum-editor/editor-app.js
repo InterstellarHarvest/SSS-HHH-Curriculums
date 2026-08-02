@@ -22,6 +22,32 @@ body.print-document .overflow-warning{display:none!important}
   html,body,body.print-document,body.print-document #workspace{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
   body.print-document .page{box-shadow:none!important}
 }`;
+const EDITOR_WORKSHEET_LAYOUT_CSS = `
+@media screen {
+  .worksheet-document {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .worksheet-document .workspace {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    align-items: safe center;
+    padding-inline: 18px;
+  }
+  .worksheet-document .page {
+    flex-shrink: 0;
+    width: var(--page-w);
+    min-width: var(--page-w);
+    max-width: var(--page-w);
+    height: var(--page-h);
+    min-height: var(--page-h);
+    max-height: var(--page-h);
+  }
+}`;
 
 const elements = {
   toolbarHost: document.querySelector("#editorToolbarHost"),
@@ -298,6 +324,9 @@ function installWorksheet(sharedStyles, presentationCss, protectedComponentStyle
   const style = document.createElement("style");
   style.dataset.casePackagePresentation = `${casePackage.id}:v${casePackage.version}`;
   style.textContent = `${packageStyleText.map(scopePresentationCss).join("\n\n")}\n.worksheet-document{padding:0;background:transparent}\n@media print{.worksheet-document .page{box-shadow:none!important}}`;
+  const editorLayoutStyle = document.createElement("style");
+  editorLayoutStyle.dataset.editorWorkspaceLayout = "fixed-page-geometry";
+  editorLayoutStyle.textContent = EDITOR_WORKSHEET_LAYOUT_CSS;
   worksheetDocument = document.createElement("div");
   worksheetDocument.className = "worksheet-document";
   worksheetDocument.dataset.standalone = "true";
@@ -310,7 +339,7 @@ function installWorksheet(sharedStyles, presentationCss, protectedComponentStyle
   elements.workspace.className = "workspace";
   elements.workspace.setAttribute("aria-label", `${casePackage.title} worksheet pages`);
   worksheetDocument.append(icons, elements.workspace);
-  worksheetShadow.replaceChildren(style, worksheetDocument);
+  worksheetShadow.replaceChildren(style, editorLayoutStyle, worksheetDocument);
 }
 
 function syncToolbarOffset() {

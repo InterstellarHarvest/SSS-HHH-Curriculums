@@ -61,6 +61,30 @@
         mainTop: main.top
       };
     };
+    const worksheetGeometry = frame => {
+      const page = visiblePages(frame)[0];
+      const pageFrame = page.querySelector(".page-frame");
+      const representative = page.querySelector(".task-heading,.mission-title-block,.continuation-header,.student-id") || pageFrame;
+      const pageRect = page.getBoundingClientRect();
+      const relativeRect = node => {
+        const rect = node.getBoundingClientRect();
+        return {
+          left: rect.left - pageRect.left,
+          top: rect.top - pageRect.top,
+          width: rect.width,
+          height: rect.height
+        };
+      };
+      return {
+        page: { width: pageRect.width, height: pageRect.height },
+        pageFrame: relativeRect(pageFrame),
+        representative: relativeRect(representative)
+      };
+    };
+    const sameGeometry = (left, right, tolerance = .1) =>
+      Object.keys(left).every(key => typeof left[key] === "number"
+        ? Math.abs(left[key] - right[key]) <= tolerance
+        : sameGeometry(left[key], right[key], tolerance));
     const setHtml = (frame, selector, html) => {
       const node = worksheet(frame).querySelector(selector);
       node.innerHTML = html;
@@ -146,6 +170,45 @@
       frame.width = "1440";
       await wait(180);
       api.syncToolbarOffset();
+
+      const geometryRoles = ["student", "teacher", "answer", "accessible"];
+      const wideGeometry = {};
+      for (const role of geometryRoles) {
+        api.setRole(role);
+        await wait(40);
+        wideGeometry[role] = worksheetGeometry(frame);
+      }
+      const wideViewport = { width: frame.clientWidth, workspace: workspace.clientWidth, geometry: wideGeometry };
+      frame.width = "640";
+      await wait(180);
+      api.syncToolbarOffset();
+      const narrowGeometry = {};
+      for (const role of geometryRoles) {
+        api.setRole(role);
+        await wait(40);
+        narrowGeometry[role] = worksheetGeometry(frame);
+      }
+      const narrowPage = visiblePages(frame)[0];
+      const narrowWorkspaceRect = workspace.getBoundingClientRect();
+      const leftEdgeAtStart = (() => {
+        workspace.scrollLeft = 0;
+        return narrowPage.getBoundingClientRect().left >= narrowWorkspaceRect.left - 1;
+      })();
+      const rightEdgeAtEnd = (() => {
+        workspace.scrollLeft = workspace.scrollWidth - workspace.clientWidth;
+        return narrowPage.getBoundingClientRect().right <= narrowWorkspaceRect.right + 1;
+      })();
+      check("worksheet page and internal geometry are identical at 1440px and 640px in every role", geometryRoles.every(role => sameGeometry(wideGeometry[role], narrowGeometry[role])), JSON.stringify({ wideGeometry, narrowGeometry }));
+      check("narrow worksheet workspace scrolls horizontally without document-level overflow", workspace.scrollWidth > workspace.clientWidth && doc.documentElement.scrollWidth <= doc.documentElement.clientWidth + 1, JSON.stringify({ workspace: [workspace.clientWidth, workspace.scrollWidth], document: [doc.documentElement.clientWidth, doc.documentElement.scrollWidth] }));
+      check("horizontal worksheet scrolling exposes both page edges", leftEdgeAtStart && rightEdgeAtEnd, JSON.stringify({ leftEdgeAtStart, rightEdgeAtEnd, maxScrollLeft: workspace.scrollWidth - workspace.clientWidth }));
+      check("editor-only fixed-page rules stay screen-scoped and out of exports and print", worksheetDoc.getRootNode().querySelector('style[data-editor-workspace-layout="fixed-page-geometry"]')?.textContent.includes("@media screen") && !api.serializePortableHTML().includes("fixed-page-geometry") && !api.serializeRoleHTML("accessible").includes("fixed-page-geometry") && !api.buildPrintDocument("accessible").includes("fixed-page-geometry"));
+      check("canonical Letter page dimensions remain 816 by 1056 CSS pixels", geometryRoles.every(role => Math.abs(wideGeometry[role].page.width - 816) <= .1 && Math.abs(wideGeometry[role].page.height - 1056) <= .1), JSON.stringify({ wideViewport, narrowViewport: { width: frame.clientWidth, workspace: workspace.clientWidth } }));
+      check("canonical page frames remain 720 by 960 CSS pixels with 48-pixel insets", geometryRoles.every(role => [wideGeometry[role], narrowGeometry[role]].every(geometry => Math.abs(geometry.pageFrame.width - 720) <= .1 && Math.abs(geometry.pageFrame.height - 960) <= .1 && Math.abs(geometry.pageFrame.left - 48) <= .1 && Math.abs(geometry.pageFrame.top - 48) <= .1)), JSON.stringify({ wideGeometry, narrowGeometry }));
+      workspace.scrollLeft = 0;
+      frame.width = "1440";
+      await wait(180);
+      api.syncToolbarOffset();
+      api.setRole("student");
 
       const fitFrames = visiblePages(frame).slice(0, 2).map(page => page.querySelector(".page-frame"));
       const fitFrameStyles = fitFrames.map(node => node.getAttribute("style"));
