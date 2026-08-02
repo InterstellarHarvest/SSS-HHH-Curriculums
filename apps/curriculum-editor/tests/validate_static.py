@@ -21,6 +21,9 @@ REJECTED_SAA = (
     "Solar Agricultural Authority", "Space Agricultural Authority", "Space Agricultural Agency",
     "Solar Agriculture Agency", "Space Agriculture Authority",
 )
+FORMAL_STUDENT_IDENTITY_LABEL = re.compile(r"^(?:your\s+role|role|student\s+identity|student\s+role(?:\s+and\s+primary\s+practice)?|instructional\s+identity)$", re.I)
+LEGACY_STUDENT_IDENTITY = re.compile(r"\b(?:pattern investigator|process modeler|data analyst|timeline analyst|risk assessor)\b", re.I)
+FORMAL_IDENTITY_MARKER_SELECTORS = ".label,.callout-label,.technical-label,.section-title,.response-label,label,h1,h2,h3,h4,h5,h6,.teacher-card > strong"
 EXPECTED = {
     "SSS-C1-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 6}},
     "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}},
@@ -283,6 +286,28 @@ def main() -> int:
         actual_counts = {role: len(soup.select(f'.page[data-role="{role}"]')) for role in ROLES}
         results.check(f"{case_id} worksheet DOM page counts are exact", actual_counts == expected_counts, actual_counts)
         results.check(f"{case_id} content is a worksheet-only fragment", bool(soup.select_one("main")) and not soup.select("script,style,link,iframe,.toolbar"))
+        learner_pages = soup.select('.page[data-role="student"],.page[data-role="accessible"]')
+        formal_identity_findings = []
+        for page in learner_pages:
+            page_id = page.get("data-page-id", "unknown-page")
+            formal_identity_findings.extend(f"{page_id}:identity-strip" for _ in page.select(".identity-strip"))
+            formal_identity_findings.extend(f"{page_id}:role-field:{node.name}" for node in page.select('[data-field*="role" i],[data-persist-id*="role" i]'))
+            formal_identity_findings.extend(
+                f"{page_id}:formal-label:{node.get_text(' ', strip=True)}"
+                for node in page.select(FORMAL_IDENTITY_MARKER_SELECTORS)
+                if FORMAL_STUDENT_IDENTITY_LABEL.fullmatch(node.get_text(" ", strip=True))
+            )
+        for page in soup.select('.page[data-role="teacher"]'):
+            page_id = page.get("data-page-id", "unknown-page")
+            formal_identity_findings.extend(
+                f"{page_id}:dedicated-teacher-field:{node.get_text(' ', strip=True)}"
+                for node in page.select(FORMAL_IDENTITY_MARKER_SELECTORS)
+                if FORMAL_STUDENT_IDENTITY_LABEL.fullmatch(node.get_text(" ", strip=True))
+            )
+        formal_identity_findings.extend(
+            f"legacy-identity:{match.group(0)}" for match in LEGACY_STUDENT_IDENTITY.finditer(" ".join(soup.stripped_strings))
+        )
+        results.check(f"{case_id} has no formal student Role or Identity element in printable editions", not formal_identity_findings, formal_identity_findings)
         page_ids = [node.get("data-page-id") for node in soup.select(".page[data-page-id]")]
         persist_ids = [node.get("data-persist-id") for node in soup.select("[data-persist-id]")]
         results.check(f"{case_id} page and persistence IDs are unique", len(page_ids) == len(set(page_ids)) and len(persist_ids) == len(set(persist_ids)) and None not in persist_ids)
@@ -407,10 +432,6 @@ def main() -> int:
             task_titles = [task["title"] for task in registry_data["tasks"]]
             results.check("Case 05 task registry records an unreleased native draft", registry_data.get("version") == "1.0" and registry_data.get("status") == "DRAFT" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_NOT_STARTED" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
             results.check("Case 05 task registry uses the eight locked titles", task_titles == CASE05_TASK_TITLES, task_titles)
-            role_field_pattern = re.compile(r"\bRole\s*:|\bYour role\b", re.I)
-            case05_controlled_files = [path for path in package_path.parents[1].rglob("*") if path.is_file()]
-            role_field_findings = [str(path.relative_to(ROOT)) for path in case05_controlled_files if role_field_pattern.search(path.read_text(encoding="utf-8", errors="ignore"))]
-            results.check("Case 05 controlled sources contain no student Role field", not role_field_findings and not soup.select(".identity-strip"), role_field_findings)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]
                 for role in ["student", "answer", "accessible"]

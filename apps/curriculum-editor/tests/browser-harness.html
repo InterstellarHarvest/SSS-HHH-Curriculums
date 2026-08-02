@@ -76,6 +76,26 @@
     const printableOwnerReviewHeadings = root => Array.from(root.querySelectorAll(`.page[data-role] ${printableHeadingSelector}`))
       .filter(node => /\bowner[ _-]+review\b/i.test(node.textContent))
       .map(node => `${node.closest(".page")?.dataset.pageId || "unknown-page"}:${node.textContent.trim()}`);
+    const formalStudentIdentityFindings = root => {
+      const findings = [];
+      const formalLabel = /^(?:your\s+role|role|student\s+identity|student\s+role(?:\s+and\s+primary\s+practice)?|instructional\s+identity)$/i;
+      const legacyIdentity = /\b(?:pattern investigator|process modeler|data analyst|timeline analyst|risk assessor)\b/i;
+      const markerSelector = ".label,.callout-label,.technical-label,.section-title,.response-label,label,h1,h2,h3,h4,h5,h6,.teacher-card > strong";
+      for (const page of root.querySelectorAll('.page[data-role="student"],.page[data-role="accessible"]')) {
+        const pageId = page.dataset.pageId || "unknown-page";
+        findings.push(...Array.from(page.querySelectorAll(".identity-strip"), () => `${pageId}:identity-strip`));
+        findings.push(...Array.from(page.querySelectorAll('[data-field*="role" i],[data-persist-id*="role" i]'), node => `${pageId}:role-field:${node.tagName}`));
+        findings.push(...Array.from(page.querySelectorAll(markerSelector)).filter(node => formalLabel.test(node.textContent.trim())).map(node => `${pageId}:formal-label:${node.textContent.trim()}`));
+      }
+      for (const page of root.querySelectorAll('.page[data-role="teacher"]')) {
+        const pageId = page.dataset.pageId || "unknown-page";
+        findings.push(...Array.from(page.querySelectorAll(markerSelector)).filter(node => formalLabel.test(node.textContent.trim())).map(node => `${pageId}:dedicated-teacher-field:${node.textContent.trim()}`));
+      }
+      const printableText = root.querySelector(".workspace")?.textContent || root.querySelector("#workspace")?.textContent || root.body?.textContent || root.textContent || "";
+      const identityMatch = printableText.match(legacyIdentity);
+      if (identityMatch) findings.push(`legacy-identity:${identityMatch[0]}`);
+      return findings;
+    };
     const layoutMetrics = frame => {
       const doc = frame.contentDocument;
       const toolbar = doc.querySelector(".toolbar").getBoundingClientRect();
@@ -487,6 +507,8 @@
         check(`${item.id} approved printable roles contain no .draft-banner`, !workspace.querySelector('.page[data-role] .draft-banner'));
         check(`${item.id} approved printable roles contain no visible production metadata`, printableProductionMetadata.length === 0, JSON.stringify(printableProductionMetadata));
         check(`${item.id} printable headings and headers contain no owner-review wording`, printableOwnerReview.length === 0, JSON.stringify(printableOwnerReview));
+        const liveIdentityFindings = formalStudentIdentityFindings(workspace);
+        check(`${item.id} printable editions contain no formal student Role or Identity element`, liveIdentityFindings.length === 0, JSON.stringify(liveIdentityFindings));
         for (const [role, expected] of Object.entries(item.counts)) {
           api.setRole(role);
           await wait(40);
@@ -556,6 +578,7 @@
         check(`${item.id} complete export uses correct identity`, api.getPackage().outputs.complete.includes(item.complete) && api.serializePortableHTML().includes(`sss-case-version" content="${item.version}`));
         const completeExportDocument = new DOMParser().parseFromString(api.serializePortableHTML(), "text/html");
         check(`${item.id} Download Editable Copy contains no printable production metadata`, printableProductionMetadataFindings(completeExportDocument).length === 0 && !completeExportDocument.querySelector('.page[data-role] .draft-banner') && printableOwnerReviewHeadings(completeExportDocument).length === 0);
+        check(`${item.id} Download Editable Copy contains no formal student Role or Identity element`, formalStudentIdentityFindings(completeExportDocument).length === 0, JSON.stringify(formalStudentIdentityFindings(completeExportDocument)));
         api.setRole("student");
         api.saveState({ grayscale: false });
         check(`${item.id} current-role export uses correct identity`, api.getCurrentRoleOutput().filename.includes(item.student) && new DOMParser().parseFromString(api.serializeRoleHTML("student"), "text/html").querySelectorAll('.page[data-role="student"]').length === item.counts.student);
@@ -593,6 +616,9 @@
           const printProductionMetadata = printableProductionMetadataFindings(printDoc);
           const exportProductionMetadata = printableProductionMetadataFindings(worksheetExportDocument);
           check(`${item.id} ${profile.name} print and worksheet export contain no production metadata`, printProductionMetadata.length === 0 && exportProductionMetadata.length === 0 && !printDoc.querySelector('.page[data-role] .draft-banner') && !worksheetExportDocument.querySelector('.page[data-role] .draft-banner') && printableOwnerReviewHeadings(printDoc).length === 0 && printableOwnerReviewHeadings(worksheetExportDocument).length === 0, JSON.stringify({ printProductionMetadata, exportProductionMetadata }));
+          const printIdentityFindings = formalStudentIdentityFindings(printDoc);
+          const exportIdentityFindings = formalStudentIdentityFindings(worksheetExportDocument);
+          check(`${item.id} ${profile.name} print and worksheet export omit formal student Role and Identity elements`, printIdentityFindings.length === 0 && exportIdentityFindings.length === 0, JSON.stringify({ printIdentityFindings, exportIdentityFindings }));
           matrixStates.push({ caseId: item.id, role: profile.role, grayscale: profile.grayscale, pass: assertions.slice(matrixStart).every(assertion => assertion.pass) });
         }
         api.setRole("student");
@@ -707,10 +733,6 @@
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           const firstPageIdentities = Array.from(workspace.querySelectorAll(".mission-title-block"));
           check("Case 05 title and location subtitle are distinct and exact", firstPageIdentities.length === 4 && firstPageIdentities.every(block => block.querySelector(".hero-title")?.textContent.trim() === "Sub Surface Bunker" && block.querySelector(".mission-subtitle")?.textContent.trim() === "Campaign 1 · Case 05 · Europa, orbiting Jupiter" && !block.querySelector(".mission-subtitle")?.textContent.includes("Sub Surface Bunker")));
-          const roleFieldPattern = /\bRole\s*:|\bYour role\b/i;
-          const case05Representations = [api.serializePortableHTML(), ...["student", "teacher", "answer", "accessible"].flatMap(role => [api.serializeRoleHTML(role), api.buildPrintDocument(role)])];
-          const case05RepresentationWorkspaces = case05Representations.map(representation => new DOMParser().parseFromString(representation, "text/html").querySelector(".workspace"));
-          check("Case 05 rendered pages and editable/export representations contain no student Role field", !roleFieldPattern.test(workspace.textContent) && !workspace.querySelector(".identity-strip") && case05RepresentationWorkspaces.every(root => root && !roleFieldPattern.test(root.textContent) && !root.querySelector(".identity-strip")));
           check("Case 05 generated Student, Answer Key, and Accessible task titles have exact parity", ["student", "answer", "accessible"].every(role => JSON.stringify(roleTitles(role)) === JSON.stringify(lockedTitles)));
           check("Case 05 has one atomic CER in each required learner role", ["student-v1.0", "answer-v1.0", "accessible-v1.0"].every(contract => { const root = workspace.querySelector(`[data-cer-contract="${contract}"]`); return root && Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page")); }));
           check("Case 05 qualitative process models remain atomic", Array.from(workspace.querySelectorAll("[data-process-contract]")).every(root => Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page"))));

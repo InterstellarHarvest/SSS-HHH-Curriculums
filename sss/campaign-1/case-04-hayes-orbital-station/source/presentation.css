@@ -73,7 +73,6 @@ h2 { margin: 7px 0 5px; padding-bottom: 3px; border-bottom: 2px solid var(--prim
 h3 { margin: 5px 0 3px; font-size: 10pt; }
 em { font-family: Georgia, serif; }
 
-.identity-strip { display: flex; gap: 8px; align-items: baseline; margin: 4px 0; }
 .label,
 .response-label { color: var(--muted); font: 800 7pt/1.1 monospace; letter-spacing: .06em; text-transform: uppercase; }
 .response-label { display: block; margin: 4px 0 2px; }
