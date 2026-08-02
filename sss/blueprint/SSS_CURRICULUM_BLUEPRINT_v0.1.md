@@ -8,6 +8,8 @@
 **Standards anchor:** NGSS  
 **Status:** First complete curriculum architecture derived from the final SSS audit
 
+**Owner correction — 2026-08-02:** Named student identities are not a required case feature. Section 9 records the controlling teacher-planning interpretation; v1.0 remains the governing blueprint.
+
 ---
 
 # 1. Purpose
@@ -440,32 +442,41 @@ Student pages should use brief markers only where misunderstanding is likely. Te
 
 ---
 
-# 9. Case-by-case instructional identities
+# 9. Case-by-case instructional focus
 
-Every case uses a different primary thinking task so the curriculum does not become thirteen copies of the same clue log.
+Every case uses a different primary thinking task so the curriculum does not become thirteen copies of the same clue log. This progression is an optional teacher-facing instructional lens, not a set of assigned student identities.
+
+This lens:
+
+- is not printable student metadata;
+- is not required on Student or Accessible worksheets;
+- is not a compliance requirement;
+- does not require a dedicated Role or Identity field in the Teacher edition.
+
+Teacher materials may describe what students do when that language helps planning or facilitation. Student-facing materials should state the task directly and must not convert the planning lens into a title-block label, first-page callout, worksheet field, or other formal identity.
 
 ## Campaign 1 — Solar Agricultural Authority
 
-| Case | Core science | Student identity | Primary task |
-|---|---|---|---|
-| 1. ISS Greenhouse Module | Gravitropism in microgravity | Pattern investigator | Compare orientation evidence and design an alternative directional cue |
-| 2. Lunar Greenhouse | Pollination without animal pollinators | Process modeler | Model the pollination sequence and identify the failed step |
-| 3. Mars Habitat | Light spectrum versus total intensity | Data analyst | Compare spectral data and reject the “not enough total light” explanation |
-| 4. Hayes Orbital Station | Reactor-specific photoinhibition | Timeline analyst | Correlate schedule change, reactor behavior, and control-system failure |
-| 5. Europa Outpost | Radiation injury and shielding | Risk assessor | Weigh evidence, identify the damage pathway, and set shielding criteria |
-| 6. First Contact Protocol | Chemical signaling and symbiosis | Systems modeler | Map atmosphere, signal, organism, and partnership interactions |
-| 7. The Gift | Germination signal and missing environmental variable | Synthesis investigator | Combine prior evidence to identify a missing trigger and justify an intervention |
+| Case | Core science | Primary thinking task |
+|---|---|---|
+| 1. ISS Greenhouse Module | Gravitropism in microgravity | Compare orientation evidence and design an alternative directional cue |
+| 2. Lunar Greenhouse | Pollination without animal pollinators | Model the pollination sequence and identify the failed step |
+| 3. Mars Habitat | Light spectrum versus total intensity | Compare spectral data and reject the “not enough total light” explanation |
+| 4. Hayes Orbital Station | Reactor-specific photoinhibition | Correlate schedule change, reactor behavior, and control-system failure |
+| 5. Europa Outpost | Radiation injury and shielding | Weigh evidence, identify the damage pathway, and set shielding criteria |
+| 6. First Contact Protocol | Chemical signaling and symbiosis | Map atmosphere, signal, organism, and partnership interactions |
+| 7. The Gift | Germination signal and missing environmental variable | Combine prior evidence to identify a missing trigger and justify an intervention |
 
 ## Campaign 2 — Distant Soils: Federation Field Cases
 
-| Case | Core science | Student identity | Primary task |
-|---|---|---|---|
-| 1. Vressk Centrifuge Habitat | Radial gravity gradient | Scale-and-systems engineer | Model how position changes apparent gravity and revise design criteria |
-| 2. Ares Botanical Garden | Vibration-coupled pollination | Structure/function analyst | Match floral structure to the required pollen-release mechanism |
-| 3. Oolian Mariculture Dome | Pigment-spectrum match | Energy-flow analyst | Evaluate usable light rather than total brightness |
-| 4. Zhel’ii Diaspora Grove | Circadian timing and signaling | Pattern investigator | Build a schedule-to-signal timeline and distinguish correlation from mechanism |
-| 5. Concord Botanical Vault | Species-specific requirements and universal policy | Assumption auditor | Identify where a universal safety rule fails under unusual evidence |
-| 6. The First Garden | Mycorrhizal restoration and uncertainty | Restoration advisor | Develop a qualified systems model and recommend a monitored trial |
+| Case | Core science | Primary thinking task |
+|---|---|---|
+| 1. Vressk Centrifuge Habitat | Radial gravity gradient | Model how position changes apparent gravity and revise design criteria |
+| 2. Ares Botanical Garden | Vibration-coupled pollination | Match floral structure to the required pollen-release mechanism |
+| 3. Oolian Mariculture Dome | Pigment-spectrum match | Evaluate usable light rather than total brightness |
+| 4. Zhel’ii Diaspora Grove | Circadian timing and signaling | Build a schedule-to-signal timeline and distinguish correlation from mechanism |
+| 5. Concord Botanical Vault | Species-specific requirements and universal policy | Identify where a universal safety rule fails under unusual evidence |
+| 6. The First Garden | Mycorrhizal restoration and uncertainty | Develop a qualified systems model and recommend a monitored trial |
 
 ---
 
@@ -744,7 +755,7 @@ This blueprint is ready for approval when the owner agrees that it correctly def
 - the teacher package;
 - assessment and grading;
 - accessibility;
-- case identities;
+- case-by-case instructional focus;
 - campaign pacing;
 - culminations;
 - repository organization;
