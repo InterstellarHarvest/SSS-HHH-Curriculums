@@ -60,6 +60,8 @@ export async function createVerticalResizeController(options) {
     body: panel.querySelector("#layoutChangesBody"),
     count: panel.querySelector("#layoutChangeCount"),
     status: panel.querySelector("#layoutChangeStatus"),
+    content: panel.querySelector("#layoutPanelContent"),
+    toggle: panel.querySelector("#layoutPanelToggle"),
     undo: panel.querySelector("#layoutUndo"),
     redo: panel.querySelector("#layoutRedo"),
     resetPage: panel.querySelector("#layoutResetPage"),
@@ -85,9 +87,16 @@ export async function createVerticalResizeController(options) {
   let draftKey = null;
   let staleDrafts = [];
   let applying = false;
+  let panelExpanded = false;
 
-  panel.hidden = false;
   panel.dataset.caseId = casePackage.id;
+
+  function setPanelExpanded(expanded) {
+    panelExpanded = Boolean(expanded);
+    controls.content.hidden = !panelExpanded;
+    controls.toggle.setAttribute("aria-expanded", String(panelExpanded));
+    controls.toggle.textContent = panelExpanded ? "Hide layout changes" : "Show layout changes";
+  }
 
   function canonicalHeight(area) {
     return manifest.overrides[area.id]?.heightPx ?? area.sourceHeightPx;
@@ -201,6 +210,7 @@ export async function createVerticalResizeController(options) {
     setHeightStyle(area.node, pending.has(area.id) ? bounded : manifest.overrides[area.id]?.heightPx ?? null);
     if (pending.has(area.id)) selected.add(area.id); else selected.delete(area.id);
     validateAll();
+    setPanelExpanded(true);
     render();
     saveDraft();
     return true;
@@ -284,6 +294,7 @@ export async function createVerticalResizeController(options) {
     }
     const prefix = `layout-resize:v1:${repositoryContext.repositoryId}:${casePackage.id}:accessible:`;
     staleDrafts = safeStorageKeys().filter(key => key.startsWith(prefix) && key !== draftKey).map(key => ({ key, value: storedJson(key) })).filter(item => item.value);
+    if (current?.changes?.length || staleDrafts.length) setPanelExpanded(true);
     renderStale();
   }
 
@@ -462,6 +473,7 @@ export async function createVerticalResizeController(options) {
   }
 
   controls.undo.onclick = undo;
+  controls.toggle.onclick = () => setPanelExpanded(!panelExpanded);
   controls.redo.onclick = redo;
   controls.resetPage.onclick = () => resetPage(activePageId);
   controls.export.onclick = () => downloadJson(exportedDraft(), `${casePackage.id}_ACCESSIBLE_LAYOUT_CHANGES.json`);
@@ -501,6 +513,9 @@ export async function createVerticalResizeController(options) {
     refreshValidation() {
       validateAll();
       render();
+    },
+    syncVisibility(role, editMode) {
+      panel.hidden = role !== "accessible" || !editMode;
     },
     exportValue: exportedDraft,
     sourcePixelsFromPointer,

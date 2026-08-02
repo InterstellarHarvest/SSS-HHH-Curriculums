@@ -267,9 +267,11 @@ body.edit-mode .mode-indicator {
   border-left: 5px solid #397b78;
 }
 .layout-changes-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.layout-panel-content[hidden] { display: none !important; }
 .layout-changes h3 { margin: 2px 0 0; font-size: 17px; }
 .layout-changes h3 small { color: var(--app-muted); font: 700 10px "JetBrains Mono", monospace; }
-.layout-actions, .dialog-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.layout-actions, .dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+.layout-actions { margin-top: 10px; }
 .layout-changes button, .layout-apply-dialog button {
   padding: 6px 8px;
   color: var(--app-ink);

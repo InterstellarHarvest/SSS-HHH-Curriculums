@@ -270,6 +270,8 @@
         workspace = api.getWorkspace();
         worksheetDoc = api.getWorksheetDocument();
         api.setRole("accessible");
+        api.saveState({ editMode: false });
+        check(`${caseId} hides the layout panel when Edit Text is off`, doc.querySelector("#layoutChangesPanel").hidden);
         api.saveState({ editMode: true });
         await wait(50);
         const areas = api.layout.getAreas();
@@ -286,9 +288,10 @@
         check(`${caseId} source-default resize areas do not start in an invalid state`, invalidDefaults.length === 0, JSON.stringify(invalidDefaults));
         check(`${caseId} gives CER no resize handle`, !workspace.querySelector('[class*="cer"] [data-layout-resize-ui],[data-cer-contract] [data-layout-resize-ui]'));
         check(`${caseId} resize handles are visible only in Accessible Edit Text mode`, handles.length > 0 && handles.every(handle => win.getComputedStyle(handle).display === "block"));
+        check(`${caseId} shows only a compact collapsed layout bar in Accessible Edit Text mode with no pending changes`, !doc.querySelector("#layoutChangesPanel").hidden && doc.querySelector("#layoutPanelContent").hidden && doc.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "false");
         api.setRole("student");
         await wait(20);
-        check(`${caseId} Student edition cannot expose resize handles`, handles.every(handle => win.getComputedStyle(handle).display === "none"));
+        check(`${caseId} Student edition cannot expose resize handles or the Accessible layout panel`, handles.every(handle => win.getComputedStyle(handle).display === "none") && doc.querySelector("#layoutChangesPanel").hidden);
         api.setRole("teacher");
         await wait(20);
         check(`${caseId} Teacher edition cannot expose resize handles`, handles.every(handle => win.getComputedStyle(handle).display === "none"));
@@ -334,6 +337,10 @@
       await wait(30);
       pending = layout.getPending()[area.id];
       check("a generous ordinary enlargement remains usable when the page has room", pending?.heightPx === snapPxForTest(area.sourceHeightPx + 32) && pending?.status !== "invalid", JSON.stringify(pending));
+      check("the first pending resize automatically expands the layout panel", !doc.querySelector("#layoutPanelContent").hidden && doc.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "true");
+      doc.querySelector("#layoutPanelToggle").click();
+      check("the owner can collapse layout details while retaining a pending change", doc.querySelector("#layoutPanelContent").hidden && Boolean(layout.getPending()[area.id]));
+      doc.querySelector("#layoutPanelToggle").click();
       check("resizing never repaginates or changes fixed Letter geometry", workspace.querySelectorAll('.page[data-role="accessible"]').length === pageCountBeforeResize && dimensions(workspace.querySelector('.page[data-role="accessible"]')).every((value, index) => Math.abs(value - [816, 1056][index]) <= .1));
       const roleExportWithDraft = api.serializeRoleHTML("accessible");
       const editableExportWithDraft = api.serializePortableHTML();

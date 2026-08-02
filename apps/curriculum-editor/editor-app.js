@@ -634,6 +634,7 @@ function applyState() {
   elements.breadcrumb.textContent = `${casePackage.curriculum} → ${casePackage.campaign} → ${casePackage.title} → ${roleName}${grayscaleLabel}`;
   elements.mode.textContent = `${roleName} · ${editLabel} · Grayscale ${state.grayscale ? "on" : "off"}`;
   applyEditable();
+  layoutController?.syncVisibility(renderedRole, state.editMode);
   requestAnimationFrame(() => {
     if (layoutController) layoutController.refreshValidation();
     else checkOverflow();

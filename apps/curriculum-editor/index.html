@@ -64,6 +64,9 @@
       <section id="layoutChangesPanel" class="layout-changes" aria-labelledby="layoutChangesHeading" hidden>
         <div class="layout-changes-header">
           <div><span class="workspace-kicker">Accessible authoring</span><h3 id="layoutChangesHeading">Pending Layout Changes <small id="layoutChangeCount">0 pending</small></h3></div>
+          <button id="layoutPanelToggle" type="button" aria-expanded="false" aria-controls="layoutPanelContent">Show layout changes</button>
+        </div>
+        <div id="layoutPanelContent" class="layout-panel-content" hidden>
           <div class="layout-actions">
             <button id="layoutUndo" type="button">Undo</button>
             <button id="layoutRedo" type="button">Redo</button>
@@ -71,21 +74,21 @@
             <button id="layoutExport" type="button">Export Layout Changes</button>
             <button id="layoutApply" type="button" class="primary">Apply to Source…</button>
           </div>
+          <p id="layoutChangeStatus" class="layout-change-status" role="status" aria-live="polite">No pending layout changes.</p>
+          <div class="layout-table-wrap">
+            <table class="layout-table">
+              <thead><tr><th>Apply</th><th>Case</th><th>Edition</th><th>Page</th><th>Task</th><th>Response area</th><th>Source</th><th>Pending</th><th>Validation</th><th>Action</th></tr></thead>
+              <tbody id="layoutChangesBody"></tbody>
+            </table>
+          </div>
+          <details id="layoutStaleDraft" class="stale-draft" hidden>
+            <summary id="layoutStaleSummary">Stale layout draft found</summary>
+            <p>This draft targets different source hashes. It will not be applied or rebased automatically.</p>
+            <pre id="layoutStaleInspect"></pre>
+            <button id="layoutStaleExport" type="button">Export stale draft</button>
+            <button id="layoutStaleDiscard" type="button">Discard stale draft</button>
+          </details>
         </div>
-        <p id="layoutChangeStatus" class="layout-change-status" role="status" aria-live="polite">No pending layout changes.</p>
-        <div class="layout-table-wrap">
-          <table class="layout-table">
-            <thead><tr><th>Apply</th><th>Case</th><th>Edition</th><th>Page</th><th>Task</th><th>Response area</th><th>Source</th><th>Pending</th><th>Validation</th><th>Action</th></tr></thead>
-            <tbody id="layoutChangesBody"></tbody>
-          </table>
-        </div>
-        <details id="layoutStaleDraft" class="stale-draft" hidden>
-          <summary id="layoutStaleSummary">Stale layout draft found</summary>
-          <p>This draft targets different source hashes. It will not be applied or rebased automatically.</p>
-          <pre id="layoutStaleInspect"></pre>
-          <button id="layoutStaleExport" type="button">Export stale draft</button>
-          <button id="layoutStaleDiscard" type="button">Discard stale draft</button>
-        </details>
       </section>
 
       <div id="editorError" class="editor-error" role="alert" hidden></div>
