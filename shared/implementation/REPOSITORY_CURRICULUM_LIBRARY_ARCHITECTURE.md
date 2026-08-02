@@ -1,6 +1,6 @@
 # Repository Curriculum Library Architecture
 
-Status: Cases 01–04 `APPROVED_STABLE`
+Status: shared production architecture for current and future SSS/HHH cases.
 
 ## Discovery and production
 
@@ -10,6 +10,7 @@ case-registry.v2.json
 → source/content.html
 → source/presentation.css
 → source/task-registry.js
+→ source/layout-overrides.json
 → referenced source/assets
 → shared protected printable components
 → central Curriculum Editor
@@ -18,7 +19,7 @@ case-registry.v2.json
 
 The registry contains only current operational discovery and lifecycle metadata. Historical artifact paths and hashes live in each approved case’s compact release record when such artifacts existed. Native-only releases explicitly record that no former generated artifacts exist. An unreleased native case has no release record.
 
-The package-controlled sources are canonical. The central editor provides editing, response entry, display state, four-role switching, clean printing, editable-copy export, and selected-role worksheet export. Generated documents and rendered validation evidence are temporary and are not committed.
+The package-controlled sources are canonical. The central editor provides editing, response entry, allowlisted Accessible-only vertical response sizing, display state, four-role switching, clean printing, editable-copy export, and selected-role worksheet export. Generated documents and rendered validation evidence are temporary and are not committed.
 
 ## Role model
 
@@ -26,7 +27,7 @@ Student, Teacher, Answer Key, and Accessible are the only roles. Grayscale is a 
 
 ## Required case layout
 
-Every current and future case uses `README.md` and canonical files directly under `source/`. Compact records under `history/` are required only at `APPROVED_STABLE`. An `assets/` directory exists only when the active package references its files. Case folders do not contain publishing, master, report, review, or validation-output directories.
+Every current and future SSS or HHH case uses `README.md` and canonical files directly under `source/`, including a hashed `layout-overrides.json` eligibility/sparse-override contract. Compact records under `history/` are required only at `APPROVED_STABLE`. An `assets/` directory exists only when the active package references its files. Case folders do not contain publishing, master, report, review, or validation-output directories.
 
 ## History and recovery
 

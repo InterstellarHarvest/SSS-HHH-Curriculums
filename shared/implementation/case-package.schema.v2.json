@@ -6,7 +6,7 @@
   "required": [
     "schemaVersion", "id", "curriculum", "campaign", "title", "subtitle", "location",
     "version", "status", "approval", "institutionalIdentity", "documentKey",
-    "supportedRoles", "defaultRole", "shell", "content", "presentation", "taskRegistry",
+    "supportedRoles", "defaultRole", "shell", "content", "presentation", "taskRegistry", "layoutOverrides",
     "assets", "rolePageStructure", "outputs", "defaultToolbarState", "accessibility",
     "sourceHashes"
   ],
@@ -87,6 +87,15 @@
       },
       "additionalProperties": false
     },
+    "layoutOverrides": {
+      "type": "object",
+      "required": ["source", "schemaVersion"],
+      "properties": {
+        "source": {"type": "string", "pattern": "/source/layout-overrides\\.json$"},
+        "schemaVersion": {"const": 1}
+      },
+      "additionalProperties": false
+    },
     "assets": {
       "type": "array",
       "items": {
@@ -158,11 +167,12 @@
     },
     "sourceHashes": {
       "type": "object",
-      "required": ["content", "presentation", "taskRegistry"],
+      "required": ["content", "presentation", "taskRegistry", "layoutOverrides"],
       "properties": {
         "content": {"$ref": "#/$defs/sha256"},
         "presentation": {"$ref": "#/$defs/sha256"},
         "taskRegistry": {"$ref": "#/$defs/sha256"},
+        "layoutOverrides": {"$ref": "#/$defs/sha256"},
         "icons": {"$ref": "#/$defs/sha256"}
       },
       "additionalProperties": false

@@ -1,11 +1,12 @@
 # Curriculum Editor Architecture v1.0
 
-Status: Cases 01–04 `APPROVED_STABLE`
+Status: shared production architecture for SSS and HHH packages.
 
 Application: `apps/curriculum-editor/`
 
 Registry: `shared/implementation/case-registry.v2.json`
 Package schema: `shared/implementation/case-package.schema.v2.json`
+Accessible layout schema: `shared/implementation/layout-overrides.schema.v1.json`
 
 ## Runtime boundary
 
@@ -18,11 +19,21 @@ Packages never depend on stored complete documents or role outputs.
 1. Fetch and validate registry schema v2.
 2. Load the selected `source/case-package.json`.
 3. Require exactly Student, Teacher, Answer Key, and Accessible roles.
-4. Fetch declared shell, content, presentation, task, and asset paths plus the central protected printable-component stylesheet.
+4. Fetch declared shell, content, presentation, task, Accessible layout, and asset paths plus the central protected printable-component stylesheet.
 5. Verify package source hashes.
 6. Reject runtime/style/iframe elements in the worksheet fragment and validate stable persistence IDs.
 7. Mount the worksheet in an open Shadow DOM, apply protected printable-component styles after case presentation, and restore case/version-scoped browser recovery state.
 8. Announce the case, version, role, and Grayscale state.
+
+## Accessible layout authoring boundary
+
+Every future SSS and HHH case package declares a hashed `source/layout-overrides.json`. The file separates explicit eligibility metadata from a sparse map of approved pixel heights. Eligibility uses stable case/edition/task/response IDs and is restricted to substantial Accessible response fields. Student, Teacher, Answer Key, CER, compact label/classification/status, and criterion/constraint fields are never inferred as eligible.
+
+Vertical authoring controls exist only in the central editor and only while Accessible + Edit Text are active. They preserve width, snap to 4px, enforce declared bounds, and evaluate fixed-Letter page/frame/footer safety without repagination. Browser drafts are keyed by repository/worktree identity, case, edition, and all three source hashes. Hash changes make a draft stale; stale drafts may be inspected, exported, or discarded, but never silently rebased.
+
+Approved heights flow through the same source contract into the editor, editable copies, worksheet exports, isolated print documents, and browser PDF output. Pending browser heights do not. Authoring handles and metadata are stripped from every ordinary export.
+
+The smallest privileged boundary is the loopback service in `authoring_service.py`. It resolves case paths only from the canonical registry/package, rejects client paths and unexpected JSON fields, verifies source hashes and recognized allowlist IDs, parses the source HTML to reject CER/non-Accessible targets independently, atomically updates the sparse override and package hash, and runs focused validation with rollback on failure. It never commits, pushes, or changes lifecycle approval.
 
 ## Role and presentation state
 
@@ -51,6 +62,8 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 - `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
 - `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, protected-selector isolation, release history, and runtime serialization rules.
 - `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 40 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
+- `shared/validation/validate_layout_overrides.py` validates all eligibility locators, Accessible/page/task ownership, CER and compact-field exclusion, snap/bounds, sparse overrides, and package hashes.
+- `apps/curriculum-editor/tests/test_authoring_service.py` covers round-trip persistence, source conflicts, path/edition/ID/CER rejection, and validation rollback.
 
 The browser runner uses only temporary directories for profiles and screenshots. A full run must leave the tracked tree unchanged.
 

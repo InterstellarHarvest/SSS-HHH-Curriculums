@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE03",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    { "id": "SSS-C1-CASE03:accessible:t1:a1a", "persistId": "a1a", "pageId": "accessible-mission-01", "taskId": 1, "label": "Plants observation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t1:a1b", "persistId": "a1b", "pageId": "accessible-mission-01", "taskId": 1, "label": "Habitat observation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t3:a3a", "persistId": "a3a", "pageId": "accessible-mission-03", "taskId": 3, "label": "Important evidence", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t3:a3b", "persistId": "a3b", "pageId": "accessible-mission-03", "taskId": 3, "label": "Evidence interpretation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t4:a4", "persistId": "a4", "pageId": "accessible-mission-04", "taskId": 4, "label": "Diagnose the failure", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t5:a5", "persistId": "a5", "pageId": "accessible-mission-04", "taskId": 5, "label": "Reject an alternative", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t8:a8", "persistId": "a8", "pageId": "accessible-mission-07", "taskId": 8, "label": "Transfer analysis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE03:accessible:t9:a9", "persistId": "a9", "pageId": "accessible-mission-07", "taskId": 9, "label": "Exit ticket measurements", "minPx": 32, "maxPx": 900 }
+  ],
+  "overrides": {}
+}

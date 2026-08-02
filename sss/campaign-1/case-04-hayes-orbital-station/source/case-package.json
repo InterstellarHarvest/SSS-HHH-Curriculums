@@ -47,6 +47,10 @@
     "global": "SSS_CASE04_TASK_REGISTRY",
     "schemaVersion": 1
   },
+  "layoutOverrides": {
+    "source": "sss/campaign-1/case-04-hayes-orbital-station/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
   "assets": [
     {
       "id": "phosphor-icon-sprite",
@@ -104,7 +108,8 @@
   "sourceHashes": {
     "content": "ea5beea20925beb491b0273cf56f5d2243dccdb1d96b66d515137c745fb58065",
     "presentation": "be6192cd9401105d8978b59be3204432e5e095f58da2b2f349a8099a9cfb9d2f",
-    "taskRegistry": "8f5686ba3240017f877f8b4de833a50f68ca99661eba53d17adc4716bdbdd661"
+    "taskRegistry": "8f5686ba3240017f877f8b4de833a50f68ca99661eba53d17adc4716bdbdd661",
+    "layoutOverrides": "b8bb38dfe2ac5c2287277ddb904658a360d18844836573a1704ea7edf1bfbc26"
   },
   "releaseHistory": "sss/campaign-1/case-04-hayes-orbital-station/history/release-v1.0.json"
 }

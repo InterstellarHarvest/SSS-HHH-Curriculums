@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE01",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    { "id": "SSS-C1-CASE01:accessible:t2:a-initial", "persistId": "a-initial", "pageId": "accessible-1", "taskId": 2, "label": "Initial thinking", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t3:a-evidence-notes", "persistId": "a-evidence-notes", "pageId": "accessible-2", "taskId": 3, "label": "Additional evidence notes", "minPx": 64, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t4:a-cause-nutrient", "persistId": "a-cause-nutrient", "pageId": "accessible-3", "taskId": 4, "label": "Nutrient hypothesis reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t4:a-cause-light", "persistId": "a-cause-light", "pageId": "accessible-3", "taskId": 4, "label": "Light-cycle hypothesis reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t4:a-cause-seed", "persistId": "a-cause-seed", "pageId": "accessible-3", "taskId": 4, "label": "Seed-stock hypothesis reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t4:a-cause-micro", "persistId": "a-cause-micro", "pageId": "accessible-3", "taskId": 4, "label": "Microgravity hypothesis reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t6:a-diagnosis", "persistId": "a-diagnosis", "pageId": "accessible-4", "taskId": 6, "label": "Diagnosis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t6:a-reject", "persistId": "a-reject", "pageId": "accessible-4", "taskId": 6, "label": "Alternative explanation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t6:a-diagnosis-notes", "persistId": "a-diagnosis-notes", "pageId": "accessible-4", "taskId": 6, "label": "Planning notes or drawing", "minPx": 64, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t8:a-design", "persistId": "a-design", "pageId": "accessible-6", "taskId": 8, "label": "Orientation-cue design", "minPx": 64, "maxPx": 900 },
+    { "id": "SSS-C1-CASE01:accessible:t9:a-exit", "persistId": "a-exit", "pageId": "accessible-6", "taskId": 9, "label": "Exit ticket explanation", "minPx": 32, "maxPx": 900 }
+  ],
+  "overrides": {}
+}

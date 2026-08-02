@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE02",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    { "id": "SSS-C1-CASE02:accessible:t2:accessible-task2", "persistId": "response-accessible-task2", "pageId": "accessible-01", "taskId": 2, "label": "Initial explanation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-regolith-reason", "persistId": "response-accessible-task5-regolith-reason", "pageId": "accessible-03", "taskId": 5, "label": "Regolith evidence reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-light-reason", "persistId": "response-accessible-task5-light-reason", "pageId": "accessible-03", "taskId": 5, "label": "Light evidence reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-pollination-reason", "persistId": "response-accessible-task5-pollination-reason", "pageId": "accessible-03", "taskId": 5, "label": "Pollination evidence reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t5:accessible-task5-co2-reason", "persistId": "response-accessible-task5-co2-reason", "pageId": "accessible-03", "taskId": 5, "label": "Carbon-dioxide evidence reason", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t6:accessible-task6-diagnosis", "persistId": "response-accessible-task6-diagnosis", "pageId": "accessible-04", "taskId": 6, "label": "Diagnosis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t6:accessible-task6-alternative", "persistId": "response-accessible-task6-alternative", "pageId": "accessible-04", "taskId": 6, "label": "Alternative explanation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t8:accessible-task8-design", "persistId": "response-accessible-task8-design", "pageId": "accessible-05", "taskId": 8, "label": "Regolith-medium design", "minPx": 64, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t8:accessible-task8-check", "persistId": "response-accessible-task8-check", "pageId": "accessible-05", "taskId": 8, "label": "Design check", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE02:accessible:t9:accessible-task9", "persistId": "response-accessible-task9", "pageId": "accessible-05", "taskId": 9, "label": "Exit ticket explanation", "minPx": 32, "maxPx": 900 }
+  ],
+  "overrides": {}
+}

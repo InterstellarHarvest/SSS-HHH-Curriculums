@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE05",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    { "id": "SSS-C1-CASE05:accessible:t1:a1-problem", "persistId": "a1-problem", "pageId": "accessible-mission-01", "taskId": 1, "label": "Problem description", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t1:a1-information", "persistId": "a1-information", "pageId": "accessible-mission-01", "taskId": 1, "label": "Needed information", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t2:a2-why", "persistId": "a2-why", "pageId": "accessible-mission-02", "taskId": 2, "label": "Evidence interpretation", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t3:a3-crew", "persistId": "a3-crew", "pageId": "accessible-mission-03", "taskId": 3, "label": "Crew clue route", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t3:a3-sensors", "persistId": "a3-sensors", "pageId": "accessible-mission-03", "taskId": 3, "label": "Sensor clue route", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t3:a3-plants", "persistId": "a3-plants", "pageId": "accessible-mission-03", "taskId": 3, "label": "Plant clue route", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t3:a3-logs", "persistId": "a3-logs", "pageId": "accessible-mission-03", "taskId": 3, "label": "Log clue route", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t4:a4-gravity", "persistId": "a4-gravity", "pageId": "accessible-mission-04", "taskId": 4, "label": "Gravity diagnosis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t4:a4-minerals", "persistId": "a4-minerals", "pageId": "accessible-mission-04", "taskId": 4, "label": "Mineral diagnosis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t4:a4-light", "persistId": "a4-light", "pageId": "accessible-mission-04", "taskId": 4, "label": "Light diagnosis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t4:a4-radiation", "persistId": "a4-radiation", "pageId": "accessible-mission-04", "taskId": 4, "label": "Radiation diagnosis", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t4:a4-convergence", "persistId": "a4-convergence", "pageId": "accessible-mission-04", "taskId": 4, "label": "Evidence convergence", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t8:a8-immediate", "persistId": "a8-immediate", "pageId": "accessible-mission-07", "taskId": 8, "label": "Immediate action", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t8:a8-durable", "persistId": "a8-durable", "pageId": "accessible-mission-07", "taskId": 8, "label": "Durable action", "minPx": 32, "maxPx": 900 },
+    { "id": "SSS-C1-CASE05:accessible:t8:a8-test", "persistId": "a8-test", "pageId": "accessible-mission-07", "taskId": 8, "label": "Test or monitor", "minPx": 32, "maxPx": 900 }
+  ],
+  "overrides": {}
+}
