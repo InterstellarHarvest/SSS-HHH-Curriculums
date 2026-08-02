@@ -68,7 +68,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .vocabulary-table td:first-child { width: 1.45in; font-weight: 700; }
 .classify-table td:last-child, .classify-table th:last-child { width: .82in; }
 .evidence-table { table-layout: fixed; }
-.evidence-table th:first-child { width: 1.28in; }
+.evidence-table th:first-child { width: .76in; }
 .evidence-table th:last-child, .evidence-table td:last-child { width: 2.85in; }
 .diagnosis-table th:first-child { width: 1in; }
 .rubric { font-size: 7.65pt; }
@@ -79,7 +79,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .response.large { min-height: .88in; }
 .table-response { min-height: .46in; }
 .evidence-table .table-response { min-height: .7in; }
-.diagnosis-table .table-response { min-height: .4in; }
+.diagnosis-table .table-response { min-height: .8in; }
 .compact-response { min-height: .3in; text-align: center; }
 .stage-response { flex: 1; min-height: .58in; }
 .recommendation-response { min-height: 1.2in; }
@@ -97,7 +97,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 
 .phrase-bank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin: 4px 0 6px; }
 .phrase-bank span { padding: 4px; border: 1px solid var(--rule); background: var(--neutral-field); font-size: 7.25pt; line-height: 1.15; }
-.pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr) 15px) minmax(0, 1fr); grid-template-rows: auto 15px auto; grid-template-areas: "s1 a1 s2 a2 s3 . . . ." ". . . . a3 . . . ." "s7 a6 s6 a5 s5 a4 s4 . ."; gap: 3px; align-items: stretch; margin: 5px 0; break-inside: avoid; page-break-inside: avoid; }
+.pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr) 15px) minmax(0, 1fr); grid-template-rows: auto 15px auto; grid-template-areas: "s1 a1 s2 a2 s3 a3 s4" ". . . . . . a4" ". . s7 a6 s6 a5 s5"; gap: 3px; align-items: stretch; margin: 5px 0; break-inside: avoid; page-break-inside: avoid; }
 .pathway-model [data-process-stage="1"] { grid-area: s1; }
 .pathway-model [data-process-stage="2"] { grid-area: s2; }
 .pathway-model [data-process-stage="3"] { grid-area: s3; }
@@ -111,7 +111,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .pathway-model .path-arrow:nth-of-type(8) { grid-area: a4; }
 .pathway-model .path-arrow:nth-of-type(10) { grid-area: a5; }
 .pathway-model .path-arrow:nth-of-type(12) { grid-area: a6; }
-.path-stage { display: flex; flex-direction: column; gap: 3px; min-width: 0; min-height: .83in; padding: 4px; border: 1.4px solid var(--ink); background: var(--paper); font-size: 7pt; line-height: 1.13; }
+.path-stage { display: flex; flex-direction: column; gap: 3px; min-width: 0; min-height: 1.65in; padding: 4px; border: 1.4px solid var(--ink); background: var(--paper); font-size: 7pt; line-height: 1.13; }
 .path-stage > span { display: grid; place-items: center; width: 18px; height: 18px; color: #fff; background: var(--accent-dark); border-radius: 50%; font: 800 7pt monospace; }
 .path-stage.fixed { background: var(--panel-light); }
 .path-arrow { align-self: center; font-size: 12pt; text-align: center; }
@@ -121,6 +121,10 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .answer-block p { margin: 2px 0; }
 .design-grid > div, .accessible-design > div { min-width: 0; }
 .response-pair .response { min-height: 1.05in; }
+.task1-response-grid .response { min-height: .72in; }
+.task7-design-grid .response { min-height: 1.37in; }
+.task8-response-block .response-pair .response { min-height: 1.53in; }
+.task8-response-block .recommendation-response { min-height: 2.02in; }
 
 .accessible { font-size: 11.35pt; line-height: 1.31; }
 .accessible .directions { font-size: 10.4pt; }
@@ -146,6 +150,8 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .accessible-path .path-stage { display: grid; grid-template-columns: .34in 1fr; align-items: center; min-height: .5in; font-size: 9.1pt; }
 .accessible-path .path-arrow { justify-self: start; margin-left: .12in; font-size: 9pt; }
 .accessible-design { gap: 6px; }
+.accessible .accessible-task7-design .response.medium { min-height: 1.3in; }
+.accessible .accessible-task8-block .response.medium { min-height: 1.3in; }
 
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .overflow-warning { display: none; }

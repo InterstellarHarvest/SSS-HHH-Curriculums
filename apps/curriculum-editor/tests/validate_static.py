@@ -29,7 +29,7 @@ EXPECTED = {
     "SSS-C1-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3, "accessible": 5}},
     "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4, "accessible": 6}},
-    "SSS-C1-CASE05": {"version": "1.0", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
+    "SSS-C1-CASE05": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4, "accessible": 7}},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -260,6 +260,13 @@ def main() -> int:
             and "historyRecord" not in entry
             and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_NOT_STARTED"
             and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
+        ) or (
+            expected_status == "OWNER_GATE_OPEN"
+            and "releaseHistory" not in package
+            and "historyRecord" not in entry
+            and entry.get("packageStatus") == "OWNER_REVIEW"
+            and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_PASS"
+            and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
         )
         results.check(f"{case_id} lifecycle metadata matches release policy", lifecycle_ok)
         results.check(f"{case_id} has exactly four instructional roles", package["supportedRoles"] == ROLES and list(package["rolePageStructure"]) == ROLES)
@@ -347,7 +354,7 @@ def main() -> int:
             results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and artifact_record_complete and history.get("rolePageCounts") == expected_counts and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
         else:
             case_root = package_path.parents[1]
-            results.check(f"{case_id} unreleased DRAFT has no history release record", not (case_root / "history").exists() and "releaseHistory" not in package)
+            results.check(f"{case_id} unreleased package has no history release record", not (case_root / "history").exists() and "releaseHistory" not in package)
 
         if case_id == "SSS-C1-CASE04":
             task_titles = [task["title"] for task in registry_data["tasks"]]
@@ -430,7 +437,7 @@ def main() -> int:
 
         if case_id == "SSS-C1-CASE05":
             task_titles = [task["title"] for task in registry_data["tasks"]]
-            results.check("Case 05 task registry records an unreleased native draft", registry_data.get("version") == "1.0" and registry_data.get("status") == "DRAFT" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_NOT_STARTED" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
+            results.check("Case 05 task registry records owner-reviewed merge readiness without print acceptance", registry_data.get("version") == "1.0" and registry_data.get("status") == "OWNER_GATE_OPEN" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and package.get("approval", {}).get("printStatus") == "NOT_RUN" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
             results.check("Case 05 task registry uses the eight locked titles", task_titles == CASE05_TASK_TITLES, task_titles)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]
@@ -447,12 +454,12 @@ def main() -> int:
             results.check("Case 05 page IDs preserve role and accessible reading order", actual_page_ids == expected_page_ids, actual_page_ids)
 
             required_clues = ["CONSISTENT_FAILURE", "HIGH_RADIATION", "DNA_DAMAGE_PATTERN", "SHIELDING_INSUFFICIENT"]
-            results.check("Case 05 contains all four corrected formal clue routes", all(clue in content and clue in registry_data.get("formalClues", []) for clue in required_clues))
+            results.check("Case 05 retains all four formal clue tags internally and omits them from printable content", all(clue in registry_data.get("formalClues", []) and clue not in content for clue in required_clues))
             results.check("Case 05 preserves radiation and the three plausible alternatives", registry_data.get("correctDiagnosis") == "radiation" and registry_data.get("incorrectAlternatives") == ["gravity", "minerals", "light"] and all(term in content for term in ["Gravity", "Minerals", "Light", "Radiation"]))
             required_science = [
                 "energetic particles", "Jupiter’s magnetosphere", "ionizing radiation", "modeled secondary radiation",
                 "dividing and nondividing cells", "meristem", "exposure alone does not", "best-supported diagnosis",
-                "Crew and crops need separate risk assessments", "Brown spots alone do not",
+                "Crew and crop risk require separate assessment", "Brown spots alone do not",
             ]
             results.check("Case 05 preserves corrected qualitative science distinctions", all(term in content for term in required_science), [term for term in required_science if term not in content])
             prohibited_radiation = re.compile(
@@ -482,7 +489,7 @@ def main() -> int:
             results.check("Case 05 Teacher Guide includes all required production components", all(term in teacher_text for term in teacher_components), [term for term in teacher_components if term not in teacher_text])
             results.check("Case 05 directly assesses MS-ETS1-1 and limits MS-ETS1-2 to supporting alignment", "Direct assessment: MS-ETS1-1" in teacher_text and "Supporting alignment: MS-ETS1-2" in teacher_text and "Do not claim direct assessment of MS-ETS1-2" in teacher_text)
             results.check("Case 05 distinguishes immediate operations from durable engineering", all(term in content for term in ["Immediate operational response", "Durable engineering response", "criteria", "constraints", "verification"]))
-            results.check("Case 05 identifies the engineering work as classroom design rather than an in-game fix", "This is a classroom design task" in content and "does not show an in-game “apply the fix” step" in content)
+            results.check("Case 05 keeps the engineering scope in teacher guidance without an unnecessary student banner", "The class must design a proven shield" in teacher_text and "does not validate a radiation-transport solution" in teacher_text and "This is a classroom design task" not in content)
 
             learner_first_pages = {role: soup.select_one(f'.page[data-role="{role}"]') for role in ["student", "accessible"]}
             expected_fields = {"student": ["student-name", "student-date", "student-class"], "accessible": ["a-name", "a-date", "a-class"]}

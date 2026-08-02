@@ -7,10 +7,11 @@
   "subtitle": "Campaign 1 · Case 05 · Europa, orbiting Jupiter",
   "location": "Europa, orbiting Jupiter",
   "version": "1.0",
-  "status": "DRAFT",
+  "status": "OWNER_GATE_OPEN",
   "approval": {
+    "date": "2026-08-02",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
+    "status": "OWNER_REVIEW_PASS",
     "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
@@ -96,14 +97,14 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 05 v1.0 — Sub Surface Bunker Curriculum Editor",
-    "loadAnnouncement": "Sub Surface Bunker Case 05 v1.0 draft package loaded. Student Mission selected.",
+    "loadAnnouncement": "Sub Surface Bunker Case 05 v1.0 owner-reviewed package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [".alt-support", "[data-evidence-summary]", "[data-process-contract]", "[data-design-contract]"],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "01a7054721cd481a7d631cd3834823734fb4eed714cf2572f8e552165be28515",
-    "presentation": "f8708990879c3fd5aca0ecf4c3f02b5459050eb6756691f7ae564294d662014f",
-    "taskRegistry": "186fde8b232c3c30a8171c3711ded273b62999d0f58368fd1e9e912279a246c2"
+    "content": "dcaef34d8968e89830bd3deeeb41f78474e874afca73a9fb095201af0d48c6c8",
+    "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
+    "taskRegistry": "3d3b22b191b6a791f4d44bf3ef74e82f08ccaa7bdaa431f4d219d72342050a34"
   },
   "phraseBank": {
     "contract": "sequence-v1.0",

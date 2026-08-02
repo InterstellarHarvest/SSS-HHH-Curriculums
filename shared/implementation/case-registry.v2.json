@@ -77,12 +77,12 @@
               "displayLabel": "5 - Sub Surface Bunker",
               "title": "Sub Surface Bunker",
               "version": "1.0",
-              "status": "DRAFT",
+              "status": "OWNER_GATE_OPEN",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-05-europa-bunker/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "DRAFT",
-              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_NOT_STARTED", "printStatus": "NOT_RUN"}
+              "packageStatus": "OWNER_REVIEW",
+              "approval": {"date": "2026-08-02", "owner": "Nate / Owner", "status": "OWNER_REVIEW_PASS", "printStatus": "NOT_RUN"}
             }
           ]
         }

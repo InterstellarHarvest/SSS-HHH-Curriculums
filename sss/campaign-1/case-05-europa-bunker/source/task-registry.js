@@ -4,9 +4,9 @@ window.SSS_CASE05_TASK_REGISTRY = {
   "runtimeId": "europa",
   "title": "Sub Surface Bunker",
   "version": "1.0",
-  "status": "DRAFT",
-  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
-  "mergeStatus": "NOT_AUTHORIZED",
+  "status": "OWNER_GATE_OPEN",
+  "ownerReviewStatus": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
   "editorShell": "1.0",
   "gameCommit": "a7a725121f261373df32a5366c70e7df73ddf8f3",
   "roles": {
