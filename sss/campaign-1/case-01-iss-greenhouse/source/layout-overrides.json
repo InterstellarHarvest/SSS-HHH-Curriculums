@@ -15,5 +15,27 @@
     { "id": "SSS-C1-CASE01:accessible:t8:a-design", "persistId": "a-design", "pageId": "accessible-6", "taskId": 8, "label": "Orientation-cue design", "minPx": 64, "maxPx": 900 },
     { "id": "SSS-C1-CASE01:accessible:t9:a-exit", "persistId": "a-exit", "pageId": "accessible-6", "taskId": 9, "label": "Exit ticket explanation", "minPx": 32, "maxPx": 900 }
   ],
+  "lockedAreas": [
+    { "persistId": "a-name", "reason": "identity" },
+    { "persistId": "a-date", "reason": "identity" },
+    { "persistId": "a-class", "reason": "identity" },
+    { "persistId": "a-crew-evidence", "reason": "horizontal-reflow" },
+    { "persistId": "a-crew-meaning", "reason": "horizontal-reflow" },
+    { "persistId": "a-sensor-evidence", "reason": "horizontal-reflow" },
+    { "persistId": "a-sensor-meaning", "reason": "horizontal-reflow" },
+    { "persistId": "a-plant-evidence", "reason": "horizontal-reflow" },
+    { "persistId": "a-plant-meaning", "reason": "horizontal-reflow" },
+    { "persistId": "a-log-evidence", "reason": "horizontal-reflow" },
+    { "persistId": "a-log-meaning", "reason": "horizontal-reflow" },
+    { "persistId": "a-earth-settle", "reason": "fixed-organizer" },
+    { "persistId": "a-earth-root", "reason": "fixed-organizer" },
+    { "persistId": "a-micro-settle", "reason": "fixed-organizer" },
+    { "persistId": "a-micro-root", "reason": "fixed-organizer" },
+    { "persistId": "a-claim", "reason": "cer" },
+    { "persistId": "a-evidence", "reason": "cer" },
+    { "persistId": "a-reasoning", "reason": "cer" },
+    { "persistId": "a-criterion", "reason": "criterion" },
+    { "persistId": "a-constraint", "reason": "constraint" }
+  ],
   "overrides": {}
 }

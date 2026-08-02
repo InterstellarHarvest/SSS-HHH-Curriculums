@@ -16,6 +16,16 @@ ROOT = Path(__file__).resolve().parents[2]
 REGISTRY = ROOT / "shared/implementation/case-registry.v2.json"
 ID_PATTERN = re.compile(r"^[A-Z0-9-]+:accessible:t[0-9]+:[a-z0-9-]+$")
 PROTECTED_COMPACT_TOKENS = ("criterion", "constraint", "classification", "status")
+LOCK_REASONS = {
+    "cer",
+    "classification",
+    "compact-answer",
+    "constraint",
+    "criterion",
+    "fixed-organizer",
+    "horizontal-reflow",
+    "identity",
+}
 
 
 def digest(path: Path) -> str:
@@ -65,7 +75,7 @@ def validate_case(case_id: str, package_path: Path) -> list[str]:
     if package.get("sourceHashes", {}).get("layoutOverrides") != digest(layout_path):
         errors.append(f"{case_id}: layout override hash mismatch")
     data = json.loads(layout_path.read_text(encoding="utf-8"))
-    if set(data) != {"schemaVersion", "caseId", "edition", "stepPx", "areas", "overrides"}:
+    if set(data) != {"schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides"}:
         errors.append(f"{case_id}: layout override document has unexpected or missing top-level fields")
         return errors
     if (data["schemaVersion"], data["caseId"], data["edition"], data["stepPx"]) != (1, case_id, "accessible", 4):
@@ -109,6 +119,53 @@ def validate_case(case_id: str, package_path: Path) -> list[str]:
             errors.append(f"{case_id}: compact field is forbidden from resize eligibility: {area_id}")
         if not node.has_attr("data-response"):
             errors.append(f"{case_id}: eligible area is not a response field: {area_id}")
+    locked_persist_ids: set[str] = set()
+    for index, locked in enumerate(data.get("lockedAreas", [])):
+        if not isinstance(locked, dict) or set(locked) != {"persistId", "reason"}:
+            errors.append(f"{case_id}: locked area {index} has unexpected or missing fields")
+            continue
+        persist_id = locked["persistId"]
+        reason = locked["reason"]
+        if not isinstance(persist_id, str) or not re.fullmatch(r"[a-zA-Z0-9-]+", persist_id):
+            errors.append(f"{case_id}: malformed locked response locator {persist_id!r}")
+            continue
+        if reason not in LOCK_REASONS:
+            errors.append(f"{case_id}: unrecognized lock reason for {persist_id}: {reason!r}")
+        if persist_id in locked_persist_ids:
+            errors.append(f"{case_id}: duplicate locked response locator {persist_id}")
+        if persist_id in persist_ids:
+            errors.append(f"{case_id}: response is both eligible and locked: {persist_id}")
+        locked_persist_ids.add(persist_id)
+        matches = soup.select(f'[data-persist-id="{persist_id}"]')
+        if len(matches) != 1:
+            errors.append(f"{case_id}: locked response {persist_id} resolves to {len(matches)} source elements")
+            continue
+        node = matches[0]
+        page = node.find_parent(class_="page")
+        if not page or page.get("data-role") != "accessible" or not node.has_attr("data-response"):
+            errors.append(f"{case_id}: locked response {persist_id} is not an Accessible response field")
+        in_cer = bool(node.find_parent(class_=lambda value: value and ("cer" in value if isinstance(value, str) else any("cer" in item for item in value))))
+        if in_cer and reason != "cer":
+            errors.append(f"{case_id}: CER response must use the cer lock reason: {persist_id}")
+        if reason == "cer" and not in_cer:
+            errors.append(f"{case_id}: non-CER response uses the cer lock reason: {persist_id}")
+    response_nodes = soup.select('.page[data-role="accessible"] [data-response]')
+    source_persist_ids: list[str] = []
+    for node in response_nodes:
+        persist_id = node.get("data-persist-id")
+        if not persist_id:
+            errors.append(f"{case_id}: Accessible response is missing data-persist-id")
+            continue
+        source_persist_ids.append(persist_id)
+    duplicates = sorted({persist_id for persist_id in source_persist_ids if source_persist_ids.count(persist_id) > 1})
+    for persist_id in duplicates:
+        errors.append(f"{case_id}: duplicate Accessible response locator in source: {persist_id}")
+    source_set = set(source_persist_ids)
+    classified = persist_ids | locked_persist_ids
+    for persist_id in sorted(source_set - classified):
+        errors.append(f"{case_id}: Accessible response is not classified as eligible or locked: {persist_id}")
+    for persist_id in sorted(classified - source_set):
+        errors.append(f"{case_id}: classified response is absent from Accessible source: {persist_id}")
     overrides = data.get("overrides")
     if not isinstance(overrides, dict):
         errors.append(f"{case_id}: overrides must be an object")
@@ -147,11 +204,14 @@ def main() -> int:
         print(f"Layout override validation: {len(errors)} failure(s), {len(selected)} case(s)")
         return 1
     total = 0
+    locked_total = 0
     for case_id in selected:
         package = json.loads(packages[case_id].read_text(encoding="utf-8"))
         layout_path = safe_repo_path(package["layoutOverrides"]["source"], suffix="/source/layout-overrides.json")
-        total += len(json.loads(layout_path.read_text(encoding="utf-8"))["areas"])
-    print(f"Layout override validation: PASS ({len(selected)} cases, {total} eligible Accessible response areas)")
+        data = json.loads(layout_path.read_text(encoding="utf-8"))
+        total += len(data["areas"])
+        locked_total += len(data["lockedAreas"])
+    print(f"Layout override validation: PASS ({len(selected)} cases, {total} eligible and {locked_total} explicitly locked Accessible response areas)")
     return 0
 
 

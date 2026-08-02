@@ -13,5 +13,24 @@
     { "id": "SSS-C1-CASE04:accessible:t7:a7", "persistId": "a7", "pageId": "accessible-mission-07", "taskId": 7, "label": "Immediate and longer-term control", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE04:accessible:t8:a8", "persistId": "a8", "pageId": "accessible-mission-07", "taskId": 8, "label": "Cause-or-effect explanation", "minPx": 32, "maxPx": 900 }
   ],
+  "lockedAreas": [
+    { "persistId": "a-name", "reason": "identity" },
+    { "persistId": "a-date", "reason": "identity" },
+    { "persistId": "a-class", "reason": "identity" },
+    { "persistId": "a1a", "reason": "compact-answer" },
+    { "persistId": "a2-1", "reason": "fixed-organizer" },
+    { "persistId": "a2-2", "reason": "fixed-organizer" },
+    { "persistId": "a2-3", "reason": "fixed-organizer" },
+    { "persistId": "a2-4", "reason": "fixed-organizer" },
+    { "persistId": "a2-5", "reason": "fixed-organizer" },
+    { "persistId": "a5-2", "reason": "fixed-organizer" },
+    { "persistId": "a5-3", "reason": "fixed-organizer" },
+    { "persistId": "a5-4", "reason": "fixed-organizer" },
+    { "persistId": "a5-5", "reason": "fixed-organizer" },
+    { "persistId": "a5-6", "reason": "fixed-organizer" },
+    { "persistId": "a6c", "reason": "cer" },
+    { "persistId": "a6e", "reason": "cer" },
+    { "persistId": "a6r", "reason": "cer" }
+  ],
   "overrides": {}
 }

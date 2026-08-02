@@ -18,5 +18,26 @@
     { "id": "SSS-C1-CASE02:accessible:t8:accessible-task8-check", "persistId": "response-accessible-task8-check", "pageId": "accessible-07", "taskId": 8, "label": "Design check", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE02:accessible:t9:accessible-task9", "persistId": "response-accessible-task9", "pageId": "accessible-07", "taskId": 9, "label": "Exit ticket explanation", "minPx": 32, "maxPx": 900 }
   ],
+  "lockedAreas": [
+    { "persistId": "response-accessible-name", "reason": "identity" },
+    { "persistId": "response-accessible-date", "reason": "identity" },
+    { "persistId": "response-accessible-period", "reason": "identity" },
+    { "persistId": "response-accessible-task3-step1", "reason": "fixed-organizer" },
+    { "persistId": "response-accessible-task3-step2", "reason": "fixed-organizer" },
+    { "persistId": "response-accessible-task3-step3", "reason": "fixed-organizer" },
+    { "persistId": "response-accessible-task3-step4", "reason": "fixed-organizer" },
+    { "persistId": "response-accessible-task3-step5", "reason": "fixed-organizer" },
+    { "persistId": "response-accessible-task3-step6", "reason": "fixed-organizer" },
+    { "persistId": "response-accessible-task4-failed", "reason": "compact-answer" },
+    { "persistId": "response-accessible-task5-regolith-class", "reason": "classification" },
+    { "persistId": "response-accessible-task5-light-class", "reason": "classification" },
+    { "persistId": "response-accessible-task5-pollination-class", "reason": "classification" },
+    { "persistId": "response-accessible-task5-co2-class", "reason": "classification" },
+    { "persistId": "response-accessible-task7-claim", "reason": "cer" },
+    { "persistId": "response-accessible-task7-evidence", "reason": "cer" },
+    { "persistId": "response-accessible-task7-reasoning", "reason": "cer" },
+    { "persistId": "response-accessible-task8-criterion", "reason": "criterion" },
+    { "persistId": "response-accessible-task8-constraint", "reason": "constraint" }
+  ],
   "overrides": {}
 }

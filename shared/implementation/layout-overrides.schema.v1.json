@@ -4,7 +4,7 @@
   "title": "Accessible response-area layout overrides",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "caseId", "edition", "stepPx", "areas", "overrides"],
+  "required": ["schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides"],
   "properties": {
     "schemaVersion": { "const": 1 },
     "caseId": { "type": "string", "pattern": "^[A-Z0-9-]+$" },
@@ -24,6 +24,29 @@
           "label": { "type": "string", "minLength": 1 },
           "minPx": { "type": "integer", "minimum": 16, "multipleOf": 4 },
           "maxPx": { "type": "integer", "maximum": 2000, "multipleOf": 4 }
+        }
+      }
+    },
+    "lockedAreas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["persistId", "reason"],
+        "properties": {
+          "persistId": { "type": "string", "pattern": "^[a-zA-Z0-9-]+$" },
+          "reason": {
+            "enum": [
+              "cer",
+              "classification",
+              "compact-answer",
+              "constraint",
+              "criterion",
+              "fixed-organizer",
+              "horizontal-reflow",
+              "identity"
+            ]
+          }
         }
       }
     },

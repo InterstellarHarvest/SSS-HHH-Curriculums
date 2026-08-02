@@ -36,7 +36,7 @@ The package’s `content.html`, `presentation.css`, `task-registry.js`, `layout-
 
 ## Accessible vertical response-area authoring
 
-Each SSS or HHH package must declare `source/layout-overrides.json` using `layout-overrides.schema.v1.json`. Its `areas` list is an explicit allowlist of stable Accessible edition response IDs; compact labels, classifications, criteria/constraints, and CER fields do not belong in it. `overrides` remains a sorted sparse map containing only owner-applied heights. An empty map changes no worksheet geometry.
+Each SSS or HHH package must declare `source/layout-overrides.json` using `layout-overrides.schema.v1.json`. Its `areas` list is an explicit allowlist of stable Accessible edition response IDs. Every other Accessible response must appear in `lockedAreas` with a reason such as compact answer, classification, fixed organizer, criterion/constraint, identity, or CER. Validation rejects an unclassified response, so substantial boxes cannot silently lose editor controls while protected fields remain locked. `overrides` remains a sorted sparse map containing only owner-applied heights. An empty map changes no worksheet geometry.
 
 In Accessible Edit Text mode, eligible fields receive vertical-only pointer and keyboard handles. Values snap to 4px, respect declared bounds, and receive live page-fit/footer safety validation. Pending changes are browser drafts isolated by repository/worktree identity, case, edition, and the content/presentation/layout source hashes. Undo, redo, Reset Area, Reset Page, stale-draft inspect/export/discard, and **Export Layout Changes** do not write repository files. Normal editable-copy, worksheet, print, and PDF pathways omit authoring controls and unapproved draft heights.
 

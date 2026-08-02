@@ -20,5 +20,26 @@
     { "id": "SSS-C1-CASE05:accessible:t8:a8-durable", "persistId": "a8-durable", "pageId": "accessible-mission-07", "taskId": 8, "label": "Durable action", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE05:accessible:t8:a8-test", "persistId": "a8-test", "pageId": "accessible-mission-07", "taskId": 8, "label": "Test or monitor", "minPx": 32, "maxPx": 900 }
   ],
+  "lockedAreas": [
+    { "persistId": "a-name", "reason": "identity" },
+    { "persistId": "a-date", "reason": "identity" },
+    { "persistId": "a-class", "reason": "identity" },
+    { "persistId": "a2-1", "reason": "classification" },
+    { "persistId": "a2-2", "reason": "classification" },
+    { "persistId": "a2-3", "reason": "classification" },
+    { "persistId": "a5-2", "reason": "fixed-organizer" },
+    { "persistId": "a5-3", "reason": "fixed-organizer" },
+    { "persistId": "a5-4", "reason": "fixed-organizer" },
+    { "persistId": "a5-5", "reason": "fixed-organizer" },
+    { "persistId": "a5-6", "reason": "fixed-organizer" },
+    { "persistId": "a5-7", "reason": "fixed-organizer" },
+    { "persistId": "a6c", "reason": "cer" },
+    { "persistId": "a6e", "reason": "cer" },
+    { "persistId": "a6r", "reason": "cer" },
+    { "persistId": "a7-need", "reason": "compact-answer" },
+    { "persistId": "a7-criteria", "reason": "criterion" },
+    { "persistId": "a7-constraints", "reason": "constraint" },
+    { "persistId": "a7-verify", "reason": "compact-answer" }
+  ],
   "overrides": {}
 }

@@ -13,5 +13,18 @@
     { "id": "SSS-C1-CASE03:accessible:t8:a8", "persistId": "a8", "pageId": "accessible-mission-07", "taskId": 8, "label": "Transfer analysis", "minPx": 32, "maxPx": 900 },
     { "id": "SSS-C1-CASE03:accessible:t9:a9", "persistId": "a9", "pageId": "accessible-mission-07", "taskId": 9, "label": "Exit ticket measurements", "minPx": 32, "maxPx": 900 }
   ],
+  "lockedAreas": [
+    { "persistId": "accessible-name", "reason": "identity" },
+    { "persistId": "accessible-date", "reason": "identity" },
+    { "persistId": "accessible-period", "reason": "identity" },
+    { "persistId": "a2", "reason": "compact-answer" },
+    { "persistId": "a6-2", "reason": "fixed-organizer" },
+    { "persistId": "a6-3", "reason": "fixed-organizer" },
+    { "persistId": "a6-4", "reason": "fixed-organizer" },
+    { "persistId": "a6-5", "reason": "fixed-organizer" },
+    { "persistId": "a7c", "reason": "cer" },
+    { "persistId": "a7e", "reason": "cer" },
+    { "persistId": "a7r", "reason": "cer" }
+  ],
   "overrides": {}
 }

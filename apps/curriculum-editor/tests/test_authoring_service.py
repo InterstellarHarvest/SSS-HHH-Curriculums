@@ -31,7 +31,7 @@ class AuthoringServiceTests(unittest.TestCase):
         registry_path = self.root / "shared/implementation"
         registry_path.mkdir(parents=True)
         (registry_path / "case-registry.v2.json").write_text(json.dumps(registry), encoding="utf-8")
-        self.content = b'''<main><section class="page" data-page-id="accessible-1" data-role="accessible"><h2 data-task-id="2">Task 2</h2><div data-persist-id="eligible" data-response></div><div class="canonical-cer"><div data-persist-id="cer" data-response></div></div></section><section class="page" data-page-id="student-1" data-role="student"><h2 data-task-id="2">Task 2</h2><div data-persist-id="student" data-response></div></section></main>'''
+        self.content = b'''<main><section class="page" data-page-id="accessible-1" data-role="accessible"><h2 data-task-id="2">Task 2</h2><div data-persist-id="eligible" data-response></div><div data-persist-id="locked" data-response></div><div class="canonical-cer"><div data-persist-id="cer" data-response></div></div></section><section class="page" data-page-id="student-1" data-role="student"><h2 data-task-id="2">Task 2</h2><div data-persist-id="student" data-response></div></section></main>'''
         self.presentation = b".page{width:8.5in;height:11in}"
         (self.source / "content.html").write_bytes(self.content)
         (self.source / "presentation.css").write_bytes(self.presentation)
@@ -41,6 +41,10 @@ class AuthoringServiceTests(unittest.TestCase):
             "edition": "accessible",
             "stepPx": 4,
             "areas": [{"id": "SSS-C1-CASE01:accessible:t2:eligible", "persistId": "eligible", "pageId": "accessible-1", "taskId": 2, "label": "Eligible response", "minPx": 32, "maxPx": 400}],
+            "lockedAreas": [
+                {"persistId": "locked", "reason": "compact-answer"},
+                {"persistId": "cer", "reason": "cer"},
+            ],
             "overrides": {},
         }
         self.write_layout()
@@ -112,6 +116,12 @@ class AuthoringServiceTests(unittest.TestCase):
         payload = self.payload()
         payload["edition"] = "student"
         with self.assertRaisesRegex(AuthoringError, "Only Accessible"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+
+    def test_explicitly_locked_response_is_rejected(self) -> None:
+        payload = self.payload()
+        payload["changes"][0]["id"] = "SSS-C1-CASE01:accessible:t2:locked"
+        with self.assertRaisesRegex(AuthoringError, "Unknown or ineligible"):
             apply_layout_changes(self.root, payload, self.passing_validation)
 
     def test_malformed_values_arbitrary_fields_and_repository_mismatch_are_rejected(self) -> None:

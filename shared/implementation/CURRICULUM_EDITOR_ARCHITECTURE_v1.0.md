@@ -27,7 +27,7 @@ Packages never depend on stored complete documents or role outputs.
 
 ## Accessible layout authoring boundary
 
-Every future SSS and HHH case package declares a hashed `source/layout-overrides.json`. The file separates explicit eligibility metadata from a sparse map of approved pixel heights. Eligibility uses stable case/edition/task/response IDs and is restricted to substantial Accessible response fields. Student, Teacher, Answer Key, CER, compact label/classification/status, and criterion/constraint fields are never inferred as eligible.
+Every future SSS and HHH case package declares a hashed `source/layout-overrides.json`. The file separates explicit eligibility metadata, explicit protected-response classifications, and a sparse map of approved pixel heights. Eligibility uses stable case/edition/task/response IDs and is restricted to substantial Accessible response fields. Every Accessible response must be either eligible or locked with a reason; omissions fail validation. Student, Teacher, Answer Key, CER, compact label/classification/status, and criterion/constraint fields are never inferred as eligible.
 
 Vertical authoring controls exist only in the central editor and only while Accessible + Edit Text are active. They preserve width, snap to 4px, enforce declared bounds, and evaluate fixed-Letter page/frame/footer safety without repagination. Browser drafts are keyed by repository/worktree identity, case, edition, and all three source hashes. Hash changes make a draft stale; stale drafts may be inspected, exported, or discarded, but never silently rebased.
 
@@ -62,7 +62,7 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 - `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
 - `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, protected-selector isolation, release history, and runtime serialization rules.
 - `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 40 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
-- `shared/validation/validate_layout_overrides.py` validates all eligibility locators, Accessible/page/task ownership, CER and compact-field exclusion, snap/bounds, sparse overrides, and package hashes.
+- `shared/validation/validate_layout_overrides.py` validates complete eligible-or-locked coverage, all locators, Accessible/page/task ownership, CER and compact-field exclusion, snap/bounds, sparse overrides, and package hashes.
 - `apps/curriculum-editor/tests/test_authoring_service.py` covers round-trip persistence, source conflicts, path/edition/ID/CER rejection, and validation rollback.
 
 The browser runner uses only temporary directories for profiles and screenshots. A full run must leave the tracked tree unchanged.

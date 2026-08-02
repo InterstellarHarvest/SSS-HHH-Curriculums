@@ -141,7 +141,7 @@ def validate_manifest(package: dict, package_path: Path, root: Path) -> tuple[Pa
     layout_bytes = layout_path.read_bytes()
     content_bytes = content_path.read_bytes()
     data = json.loads(layout_bytes)
-    if set(data) != {"schemaVersion", "caseId", "edition", "stepPx", "areas", "overrides"}:
+    if set(data) != {"schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides"}:
         raise AuthoringError("The layout override source has an invalid shape.", 409, "invalid_contract")
     if data["schemaVersion"] != 1 or data["caseId"] != package["id"] or data["edition"] != "accessible" or data["stepPx"] != 4:
         raise AuthoringError("The layout override source identity is invalid.", 409, "invalid_contract")
