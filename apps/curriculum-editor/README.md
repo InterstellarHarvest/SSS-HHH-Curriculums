@@ -1,6 +1,6 @@
 # SSS/HHH Curriculum Editor
 
-The repository-local Curriculum Editor is the canonical interface for the currently registered SSS Campaign 1 Cases 01–06. Cases 01–05 are released; Case 06 is an unreleased owner-gate validation build. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
+The repository-local Curriculum Editor is the canonical interface for the currently registered and released SSS Campaign 1 Cases 01–06. Cases 01–05 are the five core cases; Case 06 is the first-contact bonus case **First Contact Protocol** (runtime `alien1`). The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
 SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`) and the Campaign 1 culmination. Case 06 entered the editor only with its canonical package through the approved production workflow. The editor must not receive a placeholder folder or registry entry for Case 07.
 

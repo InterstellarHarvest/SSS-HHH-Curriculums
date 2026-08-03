@@ -38,6 +38,10 @@ COMMIT_FIELDS = {
         "originalReleaseApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
         "canonicalSourceApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
     },
+    "case-06": {
+        "originalReleaseApprovalCommit": "a1a7308cdb6803e7567dfec6cc7346bed03310c1",
+        "canonicalSourceApprovalCommit": "a1a7308cdb6803e7567dfec6cc7346bed03310c1",
+    },
 }
 EXPECTED_PRIOR = {
     "case-01": {
@@ -60,11 +64,13 @@ EXPECTED_PRIOR = {
     },
     "case-04": None,
     "case-05": None,
+    "case-06": None,
 }
 NATIVE_NO_ARTIFACTS_STATUS = "NO_FORMER_GENERATED_ARTIFACTS"
 NATIVE_NO_RECOVERY = {
     "case-04": "NOT_APPLICABLE: Case 04 was produced natively under the canonical source model; no generated release artifacts exist.",
     "case-05": "NOT_APPLICABLE: Case 05 was produced natively under the canonical source model; no generated release artifacts exist.",
+    "case-06": "NOT_APPLICABLE: Case 06 was produced natively under the canonical source model; no generated release artifacts exist.",
 }
 
 
@@ -209,6 +215,7 @@ def main() -> int:
             expected_approval_record = {
                 "case-04": "CASE04_OWNER_APPROVAL_v1.0.md",
                 "case-05": "CASE05_OWNER_APPROVAL_v1.0.md",
+                "case-06": "CASE06_OWNER_APPROVAL_v1.0.md",
             }.get(case.name[:7])
             if expected_approval_record and [path.name for path in approval_records] != [expected_approval_record]:
                 failures.append(f"{case.name}: approved v1.0 requires {expected_approval_record}")

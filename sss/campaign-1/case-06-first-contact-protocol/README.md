@@ -1,9 +1,9 @@
 # SSS Campaign 1 · Case 06 · First Contact Protocol
 
-Canonical package-source implementation for the Case 06 curriculum owner-review build.
+Canonical package-source implementation for the approved Case 06 curriculum release.
 
-- Status: `OWNER_GATE_OPEN`
-- Print acceptance: `NOT_RUN — owner physical review required`
+- Status: `APPROVED_STABLE · OWNER_REVIEW_PASS · READY_TO_MERGE`
+- Print acceptance: `PASS at 100% / Actual Size`
 - Version: `1.0`
 - Runtime identifier: `alien1`
 - Location subtitle: `Zhel'ora Botanical Vessel`
@@ -13,4 +13,4 @@ Canonical package-source implementation for the Case 06 curriculum owner-review 
 
 Students distinguish observations from interpretations, map a fictional atmosphere–signal–organism–partnership system, compare four diagnoses, and recommend a monitored signal-safe intervention that preserves human life-support safeguards. The Zhel'ii biology and all case measurements are fictional game evidence. Earth plant–fungal network interpretations are qualified and are not used as proof of the alien mechanism.
 
-Canonical sources are under `source/`. Generated editable copies, role worksheets, PDFs, screenshots, and routine validation output are temporary and are not committed. This unreleased package has no release history. Owner approval and physical 100% / Actual Size print acceptance remain required before `APPROVED_STABLE`.
+Canonical sources are under `source/`. Generated editable copies, role worksheets, PDFs, screenshots, and routine validation output are temporary and are not committed. The compact release record under `history/` records the approved preview baseline, frozen game-source baseline, page counts, owner gates, and native `NO_FORMER_GENERATED_ARTIFACTS` status.

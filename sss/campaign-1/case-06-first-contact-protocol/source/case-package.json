@@ -7,11 +7,12 @@
   "subtitle": "Campaign 1 · Case 06 · Zhel'ora Botanical Vessel",
   "location": "Zhel'ora Botanical Vessel",
   "version": "1.0",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "approval": {
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_PASS",
-    "printStatus": "NOT_RUN"
+    "date": "2026-08-03",
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -100,14 +101,15 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 06 v1.0 — First Contact Protocol Curriculum Editor",
-    "loadAnnouncement": "First Contact Protocol Case 06 v1.0 owner gate package loaded. Student Mission selected.",
+    "loadAnnouncement": "First Contact Protocol Case 06 v1.0 approved package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": ["[data-evidence-summary]", "[data-timeline-contract]", "[data-process-contract]", "[data-design-contract]"],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
     "content": "e274de80f331a95004aa49b6b03ba7f78009358e878a893cd16b2a461d7342af",
     "presentation": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
-    "taskRegistry": "92a4bb1a0377c077d3d155d0383012950fee22d377b1425aaa0885f7cad29702",
+    "taskRegistry": "3ff9b0a5de05165a15063fa71b8ec74d360f7691357a40da22f4d765e34d37fe",
     "layoutOverrides": "5b3b21468632427d9c187785bc7567e81e54d841fac4fd2e5c7fc7980b7d08ec"
-  }
+  },
+  "releaseHistory": "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
 }

@@ -2,9 +2,9 @@
 
 Shared curriculum repository for **Space Sprout Sleuth (SSS)** and **Hunger, Harvest, & History (HHH)**.
 
-Canonical released core Cases 01–05: `APPROVED_STABLE`
+Canonical released Cases 01–06: `APPROVED_STABLE`
 
-SSS Campaign 1 contains seven curriculum-sequenced cases. Cases 01–05 are the released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is registered as an `OWNER_GATE_OPEN` validation build and is not released. Case 07, **The Gift** (runtime `alien2`; source-development label `Case 6b`), remains unimplemented and is the Campaign 1 culmination. Campaign 2 must not begin before Cases 06–07 are released unless the owner explicitly redirects the project.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Cases 01–05 are the five released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first released first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; source-development label `Case 6b`), remains unimplemented and is the Campaign 1 culmination. Campaign 2 must not begin before Case 07 is released unless the owner explicitly redirects the project.
 
 ## Canonical production workflow
 

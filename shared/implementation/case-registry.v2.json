@@ -91,12 +91,13 @@
               "displayLabel": "6 - First Contact Protocol",
               "title": "First Contact Protocol",
               "version": "1.0",
-              "status": "OWNER_GATE_OPEN",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-06-first-contact-protocol/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "OWNER_REVIEW",
-              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_PASS", "printStatus": "NOT_RUN"}
+              "packageStatus": "APPROVED",
+              "approval": {"date": "2026-08-03", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "historyRecord": "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
             }
           ]
         }

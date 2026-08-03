@@ -30,7 +30,7 @@ EXPECTED = {
     "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
     "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
-    "SSS-C1-CASE06": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
+    "SSS-C1-CASE06": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -603,7 +603,11 @@ def main() -> int:
 
         if case_id == "SSS-C1-CASE06":
             task_titles = [task["title"] for task in registry_data["tasks"]]
-            results.check("Case 06 registry records the owner gate and frozen game baseline", registry_data.get("status") == "OWNER_GATE_OPEN" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "NOT_READY_TO_MERGE" and registry_data.get("gameCommit") == "d723fb9b8085905a6048575a2cb3bb0fce1d312b" and package.get("approval", {}).get("printStatus") == "NOT_RUN")
+            results.check("Case 06 task registry records the completed release lifecycle and frozen game baseline", registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and registry_data.get("gameCommit") == "d723fb9b8085905a6048575a2cb3bb0fce1d312b" and package.get("approval", {}).get("printStatus") == "PASS")
+            results.check("Case 06 release history records a native release, approved print gate, and frozen game baseline", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and history.get("priorApprovedReleases") == [] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size" and any("d723fb9b8085905a6048575a2cb3bb0fce1d312b" in note for note in history.get("migrationNotes", [])))
+            owner_approval_path = package_path.parents[1] / "history/CASE06_OWNER_APPROVAL_v1.0.md"
+            owner_approval = owner_approval_path.read_text(encoding="utf-8") if owner_approval_path.is_file() else ""
+            results.check("Case 06 owner approval record captures all owner gates and no-artifact decision", all(token in owner_approval for token in ["Nate / Owner", "2026-08-03", "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", "On-screen content and visual review: **PASS**", "Generated PDF review: **PASS**", "Physical print at 100% / Actual Size: **PASS**", "NO_GENERATED_ARTIFACTS_COMMITTED"]))
             results.check("Case 06 task registry uses the eight design-locked titles", task_titles == CASE06_TASK_TITLES, task_titles)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]

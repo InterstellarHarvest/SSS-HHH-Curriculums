@@ -4,9 +4,9 @@ window.SSS_CASE06_TASK_REGISTRY = {
   "runtimeId": "alien1",
   "title": "First Contact Protocol",
   "version": "1.0",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "NOT_READY_TO_MERGE",
+  "mergeStatus": "READY_TO_MERGE",
   "editorShell": "1.0",
   "gameCommit": "d723fb9b8085905a6048575a2cb3bb0fce1d312b",
   "roles": {
