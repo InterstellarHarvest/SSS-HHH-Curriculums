@@ -50,7 +50,7 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     "SSS-C1-CASE04": {"student": "8fec5960a5e193cc6cbe963a060061f0f87aae9fd4f153a34c5ba831400e8239", "teacher": "97ea94a7200cabc057c5df0e23c47dd9f0dbd2eb82cc5aa5e25f66deea67b648", "answer": "48f8a053a17fe1230477e121fdec67f8b6dbf0dc5d30aaa0575e4469757a5d8a"},
     "SSS-C1-CASE05": {"student": "d17cf55212afb64e7425c217c352f7a8d0d60f385240cd3c865dda1e2a025b4a", "teacher": "40ce5700fe2d1126797a5035a6f5f0070b9ab19961bb31e53a34e71f7d0b0a23", "answer": "8adb307362cd6668db5a9f636c463789c416065bfff5ac1835ca35ca970843e1"},
     "SSS-C1-CASE06": {"student": "0bf75e4d4d43e343c83cc68350634f3345471365e99beef2b7e187b17d6cc868", "teacher": "5882a8c5860cf3f60a1a66d090b0e47eaf1a2371c19c5148e795db304d753509", "answer": "134b05fd099ac7d168dc033efb181db987d2ade3b9577c4e3f540aed2d22f996"},
-    "SSS-C1-CASE07": {"student": "a9ca2e553be6a948ca2d8493c5e79e332d4d5fad607c341d09ea7e9f42bd4f97", "teacher": "235dd3d8cd6d0336d25ad96d974db72c69b88e3a3727a3188d9a4cb41cae9b62", "answer": "41b2e4dde2540a3abe4071f26ecf0cfbdb5e6ad5ec29e2e570a2deaa1bf523f8"},
+    "SSS-C1-CASE07": {"student": "5bfa52c1a3474cfb4db3391282e0d7c1589260b0d0c1c10701b43a4519dadbcf", "teacher": "ac55945f722443b78094d9661c23dbf4201ee59d71ab7a44db344c4432e8a17c", "answer": "c5dde681451cb406ed6c26c14c498a433f10da404da2ecf91703bf505b501be9"},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -88,8 +88,8 @@ CASE07_TASK_TITLES = [
     "Distinguish Dormancy from Death",
     "Model the Trigger-to-Response System",
     "Compare and Reject Competing Diagnoses",
-    "Choose and Monitor a Safe Intervention",
     "Explain the Missing Trigger with CER",
+    "Choose and Monitor a Safe Intervention",
     "Synthesize Campaign 1 and Exit Independently",
 ]
 LEGACY_SELF_STYLED_CASES = {"SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"}
@@ -742,12 +742,14 @@ def main() -> int:
             student_cer_subtitle = student_cer_page.select_one('[data-student-cer-subtitle="canonical-v1.0"]') if student_cer_page else None
             cer_contracts = {root.get("data-cer-contract"): [box.select_one(":scope > .canonical-cer-label").get_text(strip=True) for box in root.select(":scope > .canonical-cer-box")] for root in soup.select(".canonical-cer[data-cer-contract]")}
             results.check("Case 07 CER uses three shared atomic contracts", cer_contracts == {"student-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "answer-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "accessible-v1.0": ["CLAIM", "EVIDENCE", "REASONING"]}, cer_contracts)
-            results.check("Case 07 Student CER is a dedicated full page with the exact subtitle", bool(student_cer_page and [node.get("data-shell-task-heading") for node in student_cer_page.select("[data-shell-task-heading]")] == ["7"] and student_cer_subtitle and student_cer_subtitle.get_text(" ", strip=True) == ACCESSIBLE_CER_SUBTITLE))
+            results.check("Case 07 Student CER follows Task 5 on page 4 with the exact subtitle", bool(student_cer_page and student_cer_page.get("data-page-id") == "student-mission-04" and student_cer_page.get("data-student-cer-page") == "combined-v1.0" and [node.get("data-shell-task-heading") for node in student_cer_page.select("[data-shell-task-heading]")] == ["5", "6"] and student_cer_subtitle and student_cer_subtitle.get_text(" ", strip=True) == ACCESSIBLE_CER_SUBTITLE))
+            accessible_cer_page = soup.select_one('.page[data-role="accessible"]:has([data-cer-contract="accessible-v1.0"])')
+            results.check("Case 07 Accessible CER remains a dedicated Task 6 page", bool(accessible_cer_page and accessible_cer_page.get("data-page-id") == "accessible-mission-06" and [node.get("data-shell-task-heading") for node in accessible_cer_page.select("[data-shell-task-heading]")] == ["6"]))
             results.check("Case 07 figures have captions, direct labels, extended descriptions, and accessible names", len(soup.select("figure")) >= 5 and all(figure.select_one("figcaption") and figure.select_one(".extended-description") and figure.select_one('[role="img"][aria-label]') for figure in soup.select("figure")))
             student_task4_bank = [node.get_text(" ", strip=True) for node in soup.select('.page[data-role="student"] [aria-label="Task 4 phrase bank"] span')]
             accessible_task4_bank = [node.get_text(" ", strip=True) for node in soup.select('.page[data-role="accessible"] [aria-label="Accessible Task 4 phrase bank"] span')]
             results.check("Case 07 Task 4 gives both learner editions one matching six-phrase completion bank", len(student_task4_bank) == 6 and student_task4_bank == accessible_task4_bank, {"student": student_task4_bank, "accessible": accessible_task4_bank})
-            results.check("Case 07 Tasks 4 and 6 give direct numbered completion steps and actionable response labels", all(term in learner_text for term in ["Step 1", "Step 2", "Step 3", "How the first missing stage stops the chain", "Chosen route + two supporting details", "What to monitor + when to stop", "result that would weaken the prediction"]))
+            results.check("Case 07 Tasks 4 and 7 give direct numbered completion steps and actionable response labels", all(term in learner_text for term in ["Step 1", "Step 2", "Step 3", "How the first missing stage stops the chain", "Chosen route + two supporting details", "What to monitor + when to stop", "result that would weaken the prediction"]))
             continued_labels = {"student": "Student Mission · Continued", "teacher": "Teacher Guide · Continued", "answer": "Answer Key · Continued", "accessible": "Accessible Mission · Continued"}
             results.check("Case 07 source uses the canonical Continued subtitle on every secondary-page banner", all(header.select_one(".continuation-role").get_text(" ", strip=True) == continued_labels[header.find_parent(class_="page").get("data-role")] for header in soup.select('[data-page-identity="continuation"]')))
 

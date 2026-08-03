@@ -22,9 +22,9 @@
     {"id": "SSS-C1-CASE07:accessible:t5:a5-microbes", "persistId": "a5-microbes", "pageId": "accessible-mission-05", "taskId": 5, "label": "Human microbes diagnosis analysis", "minPx": 44, "maxPx": 900},
     {"id": "SSS-C1-CASE07:accessible:t5:a5-cue", "persistId": "a5-cue", "pageId": "accessible-mission-05", "taskId": 5, "label": "Missing cue diagnosis analysis", "minPx": 44, "maxPx": 900},
     {"id": "SSS-C1-CASE07:accessible:t5:a5-convergence", "persistId": "a5-convergence", "pageId": "accessible-mission-05", "taskId": 5, "label": "Evidence convergence explanation", "minPx": 64, "maxPx": 900},
-    {"id": "SSS-C1-CASE07:accessible:t6:a6-recommend", "persistId": "a6-recommend", "pageId": "accessible-mission-06", "taskId": 6, "label": "Chosen route and supporting details", "minPx": 64, "maxPx": 900},
-    {"id": "SSS-C1-CASE07:accessible:t6:a6-monitor", "persistId": "a6-monitor", "pageId": "accessible-mission-06", "taskId": 6, "label": "Monitoring measure and stopping condition", "minPx": 64, "maxPx": 900},
-    {"id": "SSS-C1-CASE07:accessible:t6:a6-predict", "persistId": "a6-predict", "pageId": "accessible-mission-06", "taskId": 6, "label": "First predicted response and weakening result", "minPx": 64, "maxPx": 900},
+    {"id": "SSS-C1-CASE07:accessible:t7:a7-recommend", "persistId": "a7-recommend", "pageId": "accessible-mission-07", "taskId": 7, "label": "Chosen route and supporting details", "minPx": 64, "maxPx": 900},
+    {"id": "SSS-C1-CASE07:accessible:t7:a7-monitor", "persistId": "a7-monitor", "pageId": "accessible-mission-07", "taskId": 7, "label": "Monitoring measure and stopping condition", "minPx": 64, "maxPx": 900},
+    {"id": "SSS-C1-CASE07:accessible:t7:a7-predict", "persistId": "a7-predict", "pageId": "accessible-mission-07", "taskId": 7, "label": "First predicted response and weakening result", "minPx": 64, "maxPx": 900},
     {"id": "SSS-C1-CASE07:accessible:t8:a8-synthesis", "persistId": "a8-synthesis", "pageId": "accessible-mission-08", "taskId": 8, "label": "Case comparison and systems reasoning", "minPx": 96, "maxPx": 900},
     {"id": "SSS-C1-CASE07:accessible:t8:a8-exit", "persistId": "a8-exit", "pageId": "accessible-mission-08", "taskId": 8, "label": "Independent exit response", "minPx": 96, "maxPx": 900}
   ],
@@ -38,9 +38,9 @@
     {"persistId": "a4-receptor", "reason": "fixed-organizer"},
     {"persistId": "a4-commitment", "reason": "fixed-organizer"},
     {"persistId": "a4-outcome", "reason": "fixed-organizer"},
-    {"persistId": "a7c", "reason": "cer"},
-    {"persistId": "a7e", "reason": "cer"},
-    {"persistId": "a7r", "reason": "cer"}
+    {"persistId": "a6c", "reason": "cer"},
+    {"persistId": "a6e", "reason": "cer"},
+    {"persistId": "a6r", "reason": "cer"}
   ],
   "overrides": {},
   "student": {
@@ -52,9 +52,9 @@
       {"id": "SSS-C1-CASE07:student:t3:t3-state", "persistId": "t3-state", "pageId": "student-mission-03", "taskId": 3, "label": "Best-supported pod state", "minPx": 48, "maxPx": 900},
       {"id": "SSS-C1-CASE07:student:t4:t4-explain", "persistId": "t4-explain", "pageId": "student-mission-03", "taskId": 4, "label": "First missing stage explanation", "minPx": 48, "maxPx": 900},
       {"id": "SSS-C1-CASE07:student:t5:t5-convergence", "persistId": "t5-convergence", "pageId": "student-mission-04", "taskId": 5, "label": "Evidence convergence explanation", "minPx": 32, "maxPx": 900},
-      {"id": "SSS-C1-CASE07:student:t6:t6-recommend", "persistId": "t6-recommend", "pageId": "student-mission-04", "taskId": 6, "label": "Chosen route and supporting details", "minPx": 48, "maxPx": 900},
-      {"id": "SSS-C1-CASE07:student:t6:t6-monitor", "persistId": "t6-monitor", "pageId": "student-mission-04", "taskId": 6, "label": "Monitoring measure and stopping condition", "minPx": 48, "maxPx": 900},
-      {"id": "SSS-C1-CASE07:student:t6:t6-predict", "persistId": "t6-predict", "pageId": "student-mission-04", "taskId": 6, "label": "First predicted response and weakening result", "minPx": 32, "maxPx": 900},
+      {"id": "SSS-C1-CASE07:student:t7:t7-recommend", "persistId": "t7-recommend", "pageId": "student-mission-05", "taskId": 7, "label": "Chosen route and supporting details", "minPx": 64, "maxPx": 900},
+      {"id": "SSS-C1-CASE07:student:t7:t7-monitor", "persistId": "t7-monitor", "pageId": "student-mission-05", "taskId": 7, "label": "Monitoring measure and stopping condition", "minPx": 64, "maxPx": 900},
+      {"id": "SSS-C1-CASE07:student:t7:t7-predict", "persistId": "t7-predict", "pageId": "student-mission-05", "taskId": 7, "label": "First predicted response and weakening result", "minPx": 48, "maxPx": 900},
       {"id": "SSS-C1-CASE07:student:t8:t8-synthesis", "persistId": "t8-synthesis", "pageId": "student-mission-06", "taskId": 8, "label": "Case comparison and systems reasoning", "minPx": 96, "maxPx": 900},
       {"id": "SSS-C1-CASE07:student:t8:t8-exit", "persistId": "t8-exit", "pageId": "student-mission-06", "taskId": 8, "label": "Independent exit response", "minPx": 96, "maxPx": 900}
     ],
@@ -80,9 +80,9 @@
       {"persistId": "t5-damage", "reason": "table-cell"},
       {"persistId": "t5-microbes", "reason": "table-cell"},
       {"persistId": "t5-cue", "reason": "table-cell"},
-      {"persistId": "t7c", "reason": "cer"},
-      {"persistId": "t7e", "reason": "cer"},
-      {"persistId": "t7r", "reason": "cer"}
+      {"persistId": "t6c", "reason": "cer"},
+      {"persistId": "t6e", "reason": "cer"},
+      {"persistId": "t6r", "reason": "cer"}
     ],
     "overrides": {}
   }
