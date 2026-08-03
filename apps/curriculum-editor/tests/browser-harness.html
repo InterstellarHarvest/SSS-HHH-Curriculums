@@ -290,7 +290,7 @@
         check(`${caseId} source-default resize areas do not start in an invalid state`, invalidDefaults.length === 0, JSON.stringify(invalidDefaults));
         check(`${caseId} gives CER no resize handle`, !workspace.querySelector('[data-cer-contract] [data-layout-resize-ui],.canonical-cer [data-layout-resize-ui],.cer-stack [data-layout-resize-ui]'));
         check(`${caseId} Accessible resize handles are visible in Accessible Edit Text mode`, accessibleHandles.length > 0 && accessibleHandles.every(handle => win.getComputedStyle(handle).display === "block"));
-        check(`${caseId} shows only a compact collapsed layout bar in Accessible Edit Text mode with no pending changes`, !doc.querySelector("#layoutChangesPanel").hidden && doc.querySelector("#layoutPanelContent").hidden && doc.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "false");
+        check(`${caseId} shows only a compact collapsed layout bar in Accessible Edit Text mode with no pending changes`, !doc.querySelector("#layoutChangesPanel").hidden && win.getComputedStyle(doc.querySelector("#layoutChangesPanel")).display === "block" && doc.querySelector("#layoutPanelContent").hidden && doc.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "false");
         api.setRole("student");
         await wait(20);
         const studentAreas = api.layout.getAreas();
@@ -298,7 +298,7 @@
         check(`${caseId} exposes exactly its audited eligible Student resize areas`, studentAreas.length === studentEligibleCounts[caseId] && studentHandles.length === studentEligibleCounts[caseId], JSON.stringify({ areas: studentAreas.length, handles: studentHandles.length }));
         const invalidStudentDefaults = studentAreas.filter(area => workspace.querySelector(`[data-layout-resizable="${CSS.escape(area.id)}"]`)?.dataset.layoutValidation === "invalid").map(area => ({ id: area.id, sourceHeightPx: area.sourceHeightPx, minPx: area.minPx, maxPx: area.maxPx }));
         check(`${caseId} Student source-default resize areas start inside declared bounds and page safety`, invalidStudentDefaults.length === 0, JSON.stringify(invalidStudentDefaults));
-        check(`${caseId} Student handles appear only in Student Edit Text mode`, studentHandles.every(handle => win.getComputedStyle(handle).display === "block") && accessibleHandles.every(handle => win.getComputedStyle(handle).display === "none") && !doc.querySelector("#layoutChangesPanel").hidden);
+        check(`${caseId} Student handles and the collapsed layout bar appear only in Student Edit Text mode`, studentHandles.every(handle => win.getComputedStyle(handle).display === "block") && accessibleHandles.every(handle => win.getComputedStyle(handle).display === "none") && !doc.querySelector("#layoutChangesPanel").hidden && win.getComputedStyle(doc.querySelector("#layoutChangesPanel")).display === "block" && doc.querySelector("#layoutPanelContent").hidden);
         check(`${caseId} Student CER remains handle-free`, !workspace.querySelector('.page[data-role="student"] [data-cer-contract] [data-layout-resize-ui],.page[data-role="student"] .canonical-cer [data-layout-resize-ui],.page[data-role="student"] .cer-stack [data-layout-resize-ui]'));
         api.setRole("teacher");
         await wait(20);
