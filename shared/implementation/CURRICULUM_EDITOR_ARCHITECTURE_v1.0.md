@@ -6,7 +6,7 @@ Application: `apps/curriculum-editor/`
 
 Registry: `shared/implementation/case-registry.v2.json`
 Package schema: `shared/implementation/case-package.schema.v2.json`
-Accessible layout schema: `shared/implementation/layout-overrides.schema.v1.json`
+Student/Accessible layout schema: `shared/implementation/layout-overrides.schema.v1.json`
 
 ## Runtime boundary
 
@@ -19,21 +19,23 @@ Packages never depend on stored complete documents or role outputs.
 1. Fetch and validate registry schema v2.
 2. Load the selected `source/case-package.json`.
 3. Require exactly Student, Teacher, Answer Key, and Accessible roles.
-4. Fetch declared shell, content, presentation, task, Accessible layout, and asset paths plus the central protected printable-component stylesheet.
+4. Fetch declared shell, content, presentation, task, Student/Accessible layout, and asset paths plus the central protected printable-component stylesheet.
 5. Verify package source hashes.
 6. Reject runtime/style/iframe elements in the worksheet fragment and validate stable persistence IDs.
 7. Mount the worksheet in an open Shadow DOM, apply protected printable-component styles after case presentation, and restore case/version-scoped browser recovery state.
 8. Announce the case, version, role, and Grayscale state.
 
-## Accessible layout authoring boundary
+## Student and Accessible layout authoring boundary
 
-Every future SSS and HHH case package declares a hashed `source/layout-overrides.json`. The file separates explicit eligibility metadata, explicit protected-response classifications, and a sparse map of approved pixel heights. Eligibility uses stable case/edition/task/response IDs and is restricted to substantial Accessible response fields. Every Accessible response must be either eligible or locked with a reason; omissions fail validation. Student, Teacher, Answer Key, CER, compact label/classification/status, and criterion/constraint fields are never inferred as eligible.
+Every future SSS and HHH case package declares one hashed `source/layout-overrides.json`. The file keeps the released Accessible registry at the top level and adds a Student registry under `student`; each separates explicit eligibility metadata, explicit protected-response classifications, and a sparse map of approved pixel heights. Eligibility uses stable case/edition/task/response IDs and is restricted to substantial responses. Every Student and Accessible response must be either eligible or locked with a reason; omissions fail validation. Teacher, Answer Key, CER, compact table/label/classification/status, single-line, and criterion/constraint fields are never inferred as eligible.
 
-Vertical authoring controls exist only in the central editor and only while Accessible + Edit Text are active. They preserve width, snap to 4px, enforce declared bounds, and evaluate fixed-Letter page/frame/footer safety without repagination. Browser drafts are keyed by repository/worktree identity, case, edition, and all three source hashes. Hash changes make a draft stale; stale drafts may be inspected, exported, or discarded, but never silently rebased.
+Vertical authoring controls exist only in the central editor and only while Student + Edit Text or Accessible + Edit Text is active. Teacher and Answer Key never receive handles. Controls preserve width, page assignment, order, page count, and pagination; snap to 4px; enforce declared bounds; convert pointer movement through the rendered preview scale; and evaluate fixed-Letter page/frame/footer safety. Browser drafts, selections, Undo/Redo history, and pending lists are partitioned by repository/worktree identity, case, edition, and all three source hashes. Hash changes make a draft stale; stale drafts may be inspected, exported, or discarded, but never silently rebased.
 
 Approved heights flow through the same source contract into the editor, editable copies, worksheet exports, isolated print documents, and browser PDF output. Pending browser heights do not. Authoring handles and metadata are stripped from every ordinary export.
 
-The smallest privileged boundary is the loopback service in `authoring_service.py`. It resolves case paths only from the canonical registry/package, rejects client paths and unexpected JSON fields, verifies source hashes and recognized allowlist IDs, parses the source HTML to reject CER/non-Accessible targets independently, atomically updates the sparse override and package hash, and runs focused validation with rollback on failure. It never commits, pushes, or changes lifecycle approval.
+The smallest privileged boundary is the loopback service in `authoring_service.py`. It resolves case paths only from the canonical registry/package, rejects client paths and unexpected JSON fields, verifies source hashes and recognized Student/Accessible allowlist IDs, and parses source HTML to revalidate exact role/page/task/locator ownership and reject CER targets independently. It atomically updates only the selected edition's sparse override and package hash, then runs focused validation with rollback on failure. It never commits, pushes, or changes lifecycle approval.
+
+The owner workflow is intentionally source-controlled: resize; inspect the pending change and page validation; Apply to Source with exact confirmation; reload and confirm canonical persistence; inspect the exact two-file Git diff; run focused/full validation plus normal/75%-scale visual and export review; commit; then integrate and synchronize `main`. No implementation or fixture test may populate a real case override map.
 
 ## Role and presentation state
 
@@ -62,8 +64,8 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 - `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
 - `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, protected-selector isolation, release history, and runtime serialization rules.
 - `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 40 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
-- `shared/validation/validate_layout_overrides.py` validates complete eligible-or-locked coverage, all locators, Accessible/page/task ownership, CER and compact-field exclusion, snap/bounds, sparse overrides, and package hashes.
-- `apps/curriculum-editor/tests/test_authoring_service.py` covers round-trip persistence, source conflicts, path/edition/ID/CER rejection, and validation rollback.
+- `shared/validation/validate_layout_overrides.py` validates complete eligible-or-locked coverage, all locators, Student/Accessible page/task ownership, Student compact-table exclusion, CER and protected compact-field exclusion, snap/bounds, sparse overrides, and package hashes.
+- `apps/curriculum-editor/tests/test_authoring_service.py` uses disposable repositories for Student and Accessible round-trip persistence, exact two-file writes, package-hash synchronization, source conflicts, path/edition/role/ID/locked/CER/bounds rejection, and validation rollback.
 
 The browser runner uses only temporary directories for profiles and screenshots. A full run must leave the tracked tree unchanged.
 
