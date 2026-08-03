@@ -81,6 +81,27 @@
       { "persistId": "s2-criterion", "reason": "criterion" },
       { "persistId": "s2-constraint", "reason": "constraint" }
     ],
-    "overrides": {}
+    "overrides": {
+      "SSS-C1-CASE01:student:t4:s1-reason-light": {
+        "heightPx": 56,
+        "sourceHeightPx": 50
+      },
+      "SSS-C1-CASE01:student:t4:s1-reason-micro": {
+        "heightPx": 56,
+        "sourceHeightPx": 50
+      },
+      "SSS-C1-CASE01:student:t4:s1-reason-nutrient": {
+        "heightPx": 56,
+        "sourceHeightPx": 50
+      },
+      "SSS-C1-CASE01:student:t4:s1-reason-seed": {
+        "heightPx": 56,
+        "sourceHeightPx": 50
+      },
+      "SSS-C1-CASE01:student:t6:s2-diagnosis": {
+        "heightPx": 64,
+        "sourceHeightPx": 65
+      }
+    }
   }
 }
