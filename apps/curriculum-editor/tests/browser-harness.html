@@ -276,6 +276,7 @@
         check(`${caseId} hides the layout panel when Edit Text is off`, doc.querySelector("#layoutChangesPanel").hidden);
         api.saveState({ editMode: true });
         await wait(50);
+        check(`${caseId} shows a clear no-pending permanence label before resizing`, doc.querySelector("#layoutPermanenceStatus").dataset.state === "clean" && doc.querySelector("#layoutPermanenceStatus").textContent === "No pending layout changes.");
         const areas = api.layout.getAreas();
         const accessibleHandles = Array.from(workspace.querySelectorAll('.page[data-role="accessible"] [data-layout-resize-ui="handle"]'));
         check(`${caseId} exposes exactly its explicit eligible Accessible resize areas`, areas.length === expectedAccessible && accessibleHandles.length === expectedAccessible, JSON.stringify({ areas: areas.length, handles: accessibleHandles.length }));
@@ -377,14 +378,21 @@
       await wait(30);
       pending = layout.getPending()[area.id];
       check("a generous ordinary enlargement remains usable when the page has room", pending?.heightPx === snapPxForTest(area.sourceHeightPx + 32) && pending?.status !== "invalid", JSON.stringify(pending));
+      check("pending resizing is explicitly labeled as a browser draft that ordinary exports ignore", doc.querySelector("#layoutPermanenceStatus").dataset.state === "draft" && doc.querySelector("#layoutPermanenceStatus").textContent.includes("Browser draft") && doc.querySelector("#layoutPermanenceStatus").textContent.includes("ordinary exports ignore"));
+      const jumpControl = doc.querySelector("#layoutChangesBody .layout-jump");
+      jumpControl.click();
+      await wait(30);
+      check("pending rows jump to and briefly highlight their exact response area", jumpControl.getAttribute("aria-label").includes(area.pageId) && areaNode.classList.contains("layout-jump-highlight") && workspace.getRootNode().activeElement === handle);
       check("the first pending resize automatically expands the layout panel", !doc.querySelector("#layoutPanelContent").hidden && doc.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "true");
       doc.querySelector("#layoutPanelToggle").click();
       check("the owner can collapse layout details while retaining a pending change", doc.querySelector("#layoutPanelContent").hidden && Boolean(layout.getPending()[area.id]));
       doc.querySelector("#layoutPanelToggle").click();
+      const rememberedLayoutState = JSON.parse(localStorage.getItem(api.keys.stateKey));
+      check("layout-panel expansion is remembered while Edit Text is deliberately excluded from persistent state", rememberedLayoutState.layoutPanelExpanded.accessible === true && rememberedLayoutState.editMode === false && api.getState().editMode === true, JSON.stringify(rememberedLayoutState));
       check("resizing never repaginates or changes fixed Letter geometry", workspace.querySelectorAll('.page[data-role="accessible"]').length === pageCountBeforeResize && dimensions(workspace.querySelector('.page[data-role="accessible"]')).every((value, index) => Math.abs(value - [816, 1056][index]) <= .1));
       const roleExportWithDraft = api.serializeRoleHTML("accessible");
       const editableExportWithDraft = api.serializePortableHTML();
-      check("ordinary exports exclude authoring handles and unapproved draft heights", !roleExportWithDraft.includes("data-layout-resize-ui") && !editableExportWithDraft.includes("data-layout-resize-ui") && !roleExportWithDraft.includes(`data-layout-height-active=\"${pending.heightPx}\"`) && !editableExportWithDraft.includes(`data-layout-height-active=\"${pending.heightPx}\"`));
+      check("ordinary exports exclude authoring handles, jump highlights, and unapproved draft heights", !roleExportWithDraft.includes("data-layout-resize-ui") && !editableExportWithDraft.includes("data-layout-resize-ui") && !roleExportWithDraft.includes("layout-jump-highlight") && !editableExportWithDraft.includes("layout-jump-highlight") && !roleExportWithDraft.includes(`data-layout-height-active=\"${pending.heightPx}\"`) && !editableExportWithDraft.includes(`data-layout-height-active=\"${pending.heightPx}\"`));
       const currentDraftKey = layout.getDraftKey();
       const context = layout.getRepositoryContext();
       const pkg = api.getPackage();
@@ -473,9 +481,13 @@
         worksheetDocument: fixtureDocument,
         checkOverflow: () => 0,
         panel: fixturePanel,
+        panelExpandedByEdition: { student: true },
+        sourceAppliedNotice: { edition: "student", count: 2 },
         reloadCase: async () => {}
       });
       fixtureController.syncVisibility("student", true);
+      check("a successful source reload is explicitly labeled as written locally with Git still required", fixturePanel.querySelector("#layoutPermanenceStatus").dataset.state === "source" && fixturePanel.querySelector("#layoutPermanenceStatus").textContent.includes("Written to source") && fixturePanel.querySelector("#layoutPermanenceStatus").textContent.includes("Git commit and push are still required"));
+      check("a remembered expanded layout panel is restored independently for its edition", !fixturePanel.querySelector("#layoutPanelContent").hidden && fixturePanel.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "true");
       fixtureController.setHeight("FIXTURE-STUDENT:student:t2:fixture-student", 140);
       const fixtureExport = fixtureWorkspace.cloneNode(true);
       fixtureController.sanitizeClone(fixtureExport);
@@ -508,6 +520,9 @@
       const fitFrameStyles = fitFrames.map(node => node.getAttribute("style"));
       fitFrames[0].style.height = "1px";
       check("one affected page uses 1 page too full in both statuses", api.checkOverflow() === 1 && doc.querySelector("#overflowStatus").textContent === "1 page too full" && doc.querySelector("#overflowStatusMirror").textContent === "1 page too full" && doc.querySelector("#overflowStatus").classList.contains("toolbar-overflow") && doc.querySelector("#overflowStatusMirror").classList.contains("page-fit-warning"));
+      doc.querySelector("#overflowStatusMirror").click();
+      await wait(30);
+      check("page-fit warnings become keyboard-operable jump controls for the first affected page", doc.querySelector("#overflowStatusMirror").getAttribute("role") === "button" && doc.querySelector("#overflowStatusMirror").tabIndex === 0 && visiblePages(frame)[0].classList.contains("layout-jump-highlight"));
       fitFrames[1].style.height = "1px";
       check("multiple affected pages use N pages too full in both statuses", api.checkOverflow() === 2 && doc.querySelector("#overflowStatus").textContent === "2 pages too full" && doc.querySelector("#overflowStatusMirror").textContent === "2 pages too full");
       fitFrames.forEach((node, index) => fitFrameStyles[index] === null ? node.removeAttribute("style") : node.setAttribute("style", fitFrameStyles[index]));
@@ -630,6 +645,7 @@
       worksheetDoc = api.getWorksheetDocument();
       check("autosave survives a full application reload", workspace.querySelector(responseSelector).textContent.includes("persisted response") && workspace.querySelector(instructionSelector).textContent.includes("persisted instructional"));
       check("selected role survives reload", api.getState().role === "student");
+      check("Edit Text never silently reopens after a full application reload", api.getState().editMode === false && !doc.body.classList.contains("edit-mode") && !doc.querySelector("#editControl").checked);
       check("reload reports restored autosave", doc.querySelector("#stateStatus").textContent === "AUTOSAVE RESTORED");
 
       api.saveState({ grayscale: true });

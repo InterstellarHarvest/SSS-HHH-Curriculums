@@ -601,6 +601,9 @@ def main() -> int:
     results.check("vertical resizing is restricted to explicit Student/Accessible eligibility metadata", all(token in runtime + resize_runtime for token in ["layoutOverrides", 'activeEdition = "accessible"', "rootManifest.student", "page.dataset.role !== edition"]))
     results.check("CER receives independent UI-level resize protection", "const cerSelector" in resize_runtime and "node.closest(cerSelector)" in resize_runtime)
     results.check("ordinary exports omit authoring controls and unapproved draft heights", "sanitizeClone" in runtime + resize_runtime and "data-layout-resize-ui" in resize_runtime)
+    results.check("layout authoring exposes explicit browser-draft and written-source permanence states", all(token in resize_runtime for token in ["Browser draft", "Written to source", "Git commit and push are still required"]))
+    results.check("pending changes and page-fit warnings provide editor-only jump navigation", "jumpToArea" in resize_runtime and "jumpToFirstOverflow" in runtime and "layout-jump-highlight" in runtime + resize_runtime)
+    results.check("view recovery remembers layout panels without persisting Edit Text", all(token in runtime + resize_runtime for token in ["layoutPanelExpanded", "panelExpandedByEdition", "editMode: false", "preserveEditMode"]))
 
     structure = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_canonical_case_structure.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("canonical case-structure validator passes", structure.returncode == 0, (structure.stdout + structure.stderr).strip())

@@ -63,7 +63,11 @@
 
       <section id="layoutChangesPanel" class="layout-changes" aria-labelledby="layoutChangesHeading" hidden>
         <div class="layout-changes-header">
-          <div><span class="workspace-kicker">Layout authoring</span><h3 id="layoutChangesHeading">Pending Layout Changes <small id="layoutChangeCount">0 pending</small></h3></div>
+          <div>
+            <span class="workspace-kicker">Layout authoring</span>
+            <h3 id="layoutChangesHeading">Pending Layout Changes <small id="layoutChangeCount">0 pending</small></h3>
+            <p id="layoutPermanenceStatus" class="layout-permanence" data-state="clean">No pending layout changes.</p>
+          </div>
           <button id="layoutPanelToggle" type="button" aria-expanded="false" aria-controls="layoutPanelContent">Show layout changes</button>
         </div>
         <div id="layoutPanelContent" class="layout-panel-content" hidden>

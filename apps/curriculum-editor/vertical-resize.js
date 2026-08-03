@@ -52,7 +52,18 @@ function storedJson(key, fallback = null) {
 }
 
 export async function createVerticalResizeController(options) {
-  const { package: casePackage, manifest: rootManifest, workspace, worksheetDocument, checkOverflow, panel, reloadCase } = options;
+  const {
+    package: casePackage,
+    manifest: rootManifest,
+    workspace,
+    worksheetDocument,
+    checkOverflow,
+    panel,
+    reloadCase,
+    panelExpandedByEdition = {},
+    onPanelExpandedChange = () => {},
+    sourceAppliedNotice = null
+  } = options;
   if (!rootManifest || rootManifest.schemaVersion !== 1 || rootManifest.caseId !== casePackage.id || rootManifest.edition !== "accessible" || rootManifest.stepPx !== SNAP_PX) {
     throw new Error("Layout override metadata does not match the loaded package.");
   }
@@ -81,6 +92,7 @@ export async function createVerticalResizeController(options) {
   const controls = {
     body: panel.querySelector("#layoutChangesBody"),
     count: panel.querySelector("#layoutChangeCount"),
+    permanence: panel.querySelector("#layoutPermanenceStatus"),
     status: panel.querySelector("#layoutChangeStatus"),
     content: panel.querySelector("#layoutPanelContent"),
     toggle: panel.querySelector("#layoutPanelToggle"),
@@ -110,7 +122,8 @@ export async function createVerticalResizeController(options) {
     activePageId: definition.areas[0]?.pageId || null,
     draftKey: null,
     staleDrafts: [],
-    panelExpanded: false
+    panelExpanded: Boolean(panelExpandedByEdition[edition]),
+    sourceAppliedNotice: sourceAppliedNotice?.edition === edition ? sourceAppliedNotice : null
   }]));
   let activeEdition = "accessible";
   let manifest = manifests.get(activeEdition);
@@ -123,13 +136,14 @@ export async function createVerticalResizeController(options) {
   let draftKey = null;
   let staleDrafts = [];
   let applying = false;
-  let panelExpanded = false;
+  let panelExpanded = editionStates.get(activeEdition).panelExpanded;
+  let appliedNotice = editionStates.get(activeEdition).sourceAppliedNotice;
 
   panel.dataset.caseId = casePackage.id;
 
   function persistActiveState() {
     const state = editionStates.get(activeEdition);
-    Object.assign(state, { activePageId, draftKey, staleDrafts, panelExpanded });
+    Object.assign(state, { activePageId, draftKey, staleDrafts, panelExpanded, sourceAppliedNotice: appliedNotice });
   }
 
   function switchEdition(edition) {
@@ -146,14 +160,21 @@ export async function createVerticalResizeController(options) {
     draftKey = state.draftKey;
     staleDrafts = state.staleDrafts;
     panelExpanded = state.panelExpanded;
+    appliedNotice = state.sourceAppliedNotice;
     panel.dataset.edition = edition;
+    reflectPanelExpanded();
   }
 
-  function setPanelExpanded(expanded) {
-    panelExpanded = Boolean(expanded);
+  function reflectPanelExpanded() {
     controls.content.hidden = !panelExpanded;
     controls.toggle.setAttribute("aria-expanded", String(panelExpanded));
     controls.toggle.textContent = panelExpanded ? "Hide layout changes" : "Show layout changes";
+  }
+
+  function setPanelExpanded(expanded, remember = true) {
+    panelExpanded = Boolean(expanded);
+    reflectPanelExpanded();
+    if (remember) onPanelExpandedChange(activeEdition, panelExpanded);
   }
 
   function activeAreas() {
@@ -258,6 +279,7 @@ export async function createVerticalResizeController(options) {
     const bounded = Math.max(area.minPx, Math.min(area.maxPx, snapPx(requested)));
     const before = currentHeight(area);
     if (bounded === before) return false;
+    appliedNotice = null;
     recordHistory();
     activePageId = area.pageId;
     if (bounded === canonicalHeight(area)) pending.delete(area.id);
@@ -276,6 +298,18 @@ export async function createVerticalResizeController(options) {
     render();
     saveDraft();
     return true;
+  }
+
+  function jumpToArea(area) {
+    activePageId = area.pageId;
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    area.node.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center", inline: "center" });
+    area.node.classList.remove("layout-jump-highlight");
+    void area.node.offsetWidth;
+    area.node.classList.add("layout-jump-highlight");
+    window.setTimeout(() => area.node.classList.remove("layout-jump-highlight"), reducedMotion ? 900 : 1700);
+    area.handle.focus({ preventScroll: true });
+    controls.status.textContent = `Showing ${area.label} on ${area.pageId}, Task ${area.taskId}.`;
   }
 
   function resetArea(area) {
@@ -382,7 +416,13 @@ export async function createVerticalResizeController(options) {
       reset.type = "button";
       reset.textContent = "Reset area";
       reset.addEventListener("click", () => resetArea(area));
-      for (const value of [choose, casePackage.id, activeEdition === "accessible" ? "Accessible" : "Student", area.pageId, `Task ${area.taskId}`, area.label, `${item.sourceHeightPx}px`, `${item.heightPx}px`, item.message, reset]) {
+      const jump = document.createElement("button");
+      jump.type = "button";
+      jump.className = "layout-jump";
+      jump.textContent = area.label;
+      jump.setAttribute("aria-label", `Jump to ${area.label} on ${area.pageId}, Task ${area.taskId}`);
+      jump.addEventListener("click", () => jumpToArea(area));
+      for (const value of [choose, casePackage.id, activeEdition === "accessible" ? "Accessible" : "Student", area.pageId, `Task ${area.taskId}`, jump, `${item.sourceHeightPx}px`, `${item.heightPx}px`, item.message, reset]) {
         const cell = document.createElement("td");
         if (value instanceof Node) cell.append(value); else cell.textContent = value;
         row.append(cell);
@@ -390,6 +430,13 @@ export async function createVerticalResizeController(options) {
       controls.body.append(row);
     }
     controls.count.textContent = `${pending.size} pending`;
+    const appliedCount = appliedNotice?.count || 0;
+    controls.permanence.dataset.state = pending.size ? "draft" : (appliedCount ? "source" : "clean");
+    controls.permanence.textContent = pending.size
+      ? `Browser draft — ${pending.size} pending change${pending.size === 1 ? "" : "s"} ${pending.size === 1 ? "is" : "are"} not part of the curriculum; ordinary exports ignore ${pending.size === 1 ? "it" : "them"}.${appliedCount ? ` ${appliedCount} selected change${appliedCount === 1 ? " was" : "s were"} written to source; Git commit and push are still required.` : ""}`
+      : appliedCount
+        ? `Written to source — ${appliedCount} change${appliedCount === 1 ? " is" : "s are"} permanent in this checkout; Git commit and push are still required.`
+        : "No pending layout changes.";
     controls.status.textContent = !repositoryContext ? "Source service unavailable; export remains available." : pending.size ? "Draft stored locally; source unchanged." : "No pending layout changes.";
     controls.undo.disabled = !history.length;
     controls.redo.disabled = !future.length;
@@ -445,7 +492,7 @@ export async function createVerticalResizeController(options) {
       else localStorage.removeItem(draftKey);
       controls.dialog.close();
       controls.status.textContent = `Applied ${result.applied.length} change${result.applied.length === 1 ? "" : "s"}; focused validation passed. Reloading source…`;
-      await reloadCase();
+      await reloadCase({ edition: activeEdition, count: result.applied.length });
       reloaded = true;
     } catch (error) {
       controls.status.textContent = error.message;
@@ -605,6 +652,7 @@ export async function createVerticalResizeController(options) {
     sourcePixelsFromPointer,
     sanitizeClone(clone) {
       clone.querySelectorAll(AUTHORING_SELECTOR).forEach(node => node.remove());
+      clone.querySelectorAll(".layout-jump-highlight").forEach(node => node.classList.remove("layout-jump-highlight"));
       for (const area of areas.values()) {
         const node = clone.querySelector(`[data-persist-id="${CSS.escape(area.persistId)}"]`);
         if (!node) continue;
@@ -616,6 +664,8 @@ export async function createVerticalResizeController(options) {
     cleanInnerHTML(node) {
       const clone = node.cloneNode(true);
       clone.querySelectorAll(AUTHORING_SELECTOR).forEach(item => item.remove());
+      clone.querySelectorAll(".layout-jump-highlight").forEach(item => item.classList.remove("layout-jump-highlight"));
+      clone.classList?.remove("layout-jump-highlight");
       return clone.innerHTML;
     },
     destroy() {

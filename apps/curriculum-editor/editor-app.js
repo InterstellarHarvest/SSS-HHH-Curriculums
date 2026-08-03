@@ -74,6 +74,18 @@ const EDITOR_WORKSHEET_LAYOUT_CSS = `
   .worksheet-document.edit-mode[data-role="accessible"] .page[data-role="accessible"] [data-layout-resizable] { outline: 2px dashed #397b78; outline-offset: 2px; }
   .worksheet-document [data-layout-validation="approaching"] { outline-color: #ba7410!important; }
   .worksheet-document [data-layout-validation="invalid"] { outline-color: #b12f2f!important; background-color: #fff5f5!important; }
+  .worksheet-document .layout-jump-highlight {
+    animation: layout-jump-pulse 1.5s ease-out;
+    outline: 5px solid rgba(31, 133, 150, .42)!important;
+    outline-offset: 2px;
+  }
+  @keyframes layout-jump-pulse {
+    0%, 35% { outline-color: rgba(31, 133, 150, .58); }
+    100% { outline-color: rgba(31, 133, 150, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .worksheet-document .layout-jump-highlight { animation: none; }
+  }
 }`;
 
 const elements = {
@@ -539,17 +551,65 @@ function formatPageFitStatus(count) {
 function setOverflowStatus(count) {
   const text = formatPageFitStatus(count);
   const toolbarStatus = $("#overflowStatus");
-  if (toolbarStatus) {
-    toolbarStatus.textContent = text;
-    toolbarStatus.classList.toggle("toolbar-overflow", count > 0);
+  for (const control of [toolbarStatus, elements.overflowMirror].filter(Boolean)) {
+    control.textContent = text;
+    control.classList.toggle(control === toolbarStatus ? "toolbar-overflow" : "page-fit-warning", count > 0);
+    control.classList.toggle("overflow-jump", count > 0);
+    if (count > 0) {
+      control.tabIndex = 0;
+      control.setAttribute("role", "button");
+      control.setAttribute("aria-label", `${text}. Jump to the first affected page.`);
+      control.title = "Jump to the first affected page";
+    } else {
+      control.removeAttribute("tabindex");
+      control.removeAttribute("role");
+      control.removeAttribute("aria-label");
+      control.removeAttribute("title");
+    }
+    if (!control.dataset.overflowJumpBound) {
+      control.addEventListener("click", jumpToFirstOverflow);
+      control.addEventListener("keydown", event => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        jumpToFirstOverflow();
+      });
+      control.dataset.overflowJumpBound = "true";
+    }
   }
-  elements.overflowMirror.textContent = text;
-  elements.overflowMirror.classList.toggle("page-fit-warning", count > 0);
+}
+
+function highlightWorksheetTarget(target) {
+  if (!target) return false;
+  const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  target.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center", inline: "center" });
+  target.classList.remove("layout-jump-highlight");
+  void target.offsetWidth;
+  target.classList.add("layout-jump-highlight");
+  window.setTimeout(() => target.classList.remove("layout-jump-highlight"), reducedMotion ? 900 : 1700);
+  return true;
+}
+
+function jumpToFirstOverflow() {
+  const page = $$(".page.has-overflow", elements.workspace).find(node => !node.hidden && getComputedStyle(node).display !== "none");
+  highlightWorksheetTarget(page);
+}
+
+function savePersistentState() {
+  safeStorageSet(stateKey, JSON.stringify({ ...state, editMode: false }));
+}
+
+function rememberLayoutPanelState(edition, expanded) {
+  if (!NAVIGATION_ROLES.includes(edition)) return;
+  state = {
+    ...state,
+    layoutPanelExpanded: { ...(state.layoutPanelExpanded || {}), [edition]: Boolean(expanded) }
+  };
+  savePersistentState();
 }
 
 function saveState(patch = {}) {
   state = { ...state, ...patch };
-  safeStorageSet(stateKey, JSON.stringify(state));
+  savePersistentState();
   setSaveStatus("SAVED LOCALLY");
   applyState();
 }
@@ -1019,7 +1079,7 @@ async function initialize() {
   await loadCase(selected, true);
 }
 
-async function loadCase(selected, initial = false) {
+async function loadCase(selected, initial = false, options = {}) {
   elements.layoutPanel.hidden = true;
   caseLoading = true;
   document.body.classList.add("case-loading");
@@ -1078,6 +1138,7 @@ async function loadCase(selected, initial = false) {
   const requestedRole = initial ? new URLSearchParams(location.search).get("role") : null;
   if (requestedRole && NAVIGATION_ROLES.includes(requestedRole)) state.role = requestedRole;
   if (!NAVIGATION_ROLES.includes(state.role)) state.role = defaultState.role;
+  state.editMode = options.preserveEditMode === true;
   loadPersistentContent();
   bindToolbar();
   try {
@@ -1092,7 +1153,10 @@ async function loadCase(selected, initial = false) {
     worksheetDocument,
     checkOverflow,
     panel: elements.layoutPanel,
-    reloadCase: () => loadCase(currentSelection)
+    panelExpandedByEdition: state.layoutPanelExpanded || {},
+    onPanelExpandedChange: rememberLayoutPanelState,
+    sourceAppliedNotice: options.sourceAppliedNotice || null,
+    reloadCase: sourceAppliedNotice => loadCase(currentSelection, false, { preserveEditMode: true, sourceAppliedNotice })
   });
   setSaveStatus(Object.keys(contentState).length ? "AUTOSAVE RESTORED" : "LOCAL SAVE READY");
   applyState();
