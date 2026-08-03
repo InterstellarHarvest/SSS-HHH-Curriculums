@@ -22,8 +22,8 @@ This record implements the owner handoff for a pre-production audit only. It doe
 | Curriculum pre-audit origin/main | 7b41416b925bf78fb91cf30377e13421cb68650b |
 | Game pre-correction local main | d723fb9b8085905a6048575a2cb3bb0fce1d312b |
 | Game pre-correction origin/main | d723fb9b8085905a6048575a2cb3bb0fce1d312b |
-| Game post-correction commit | 530758235522ce110695a23feacea065ed370d08 |
-| Proposed frozen Case 07 game baseline | 530758235522ce110695a23feacea065ed370d08 |
+| Game post-correction commit | 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 |
+| Proposed frozen Case 07 game baseline | 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 |
 | Remote advancement beyond handoff | None in either repository |
 | Compatibility determination | Exact match; no baseline conflict |
 
@@ -250,6 +250,11 @@ All web sources below were accessed 2026-08-03. Earth sources qualify analogies;
 
 ## 10. Exact game corrections
 
+Focused game commits:
+
+- 530758235522ce110695a23feacea065ed370d08 — Audit and correct Campaign 1 Case 07.
+- 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 — Use canonical Case 07 telemetry label.
+
 ### space_sprout_sleuth_data.js
 
 - Corrected the source label to Case 07 while preserving “formerly Case 6b” traceability.
@@ -273,16 +278,17 @@ All web sources below were accessed 2026-08-03. Earth sources qualify analogies;
 - Rendered both authored Case 07 victory fields.
 - Added a final-case rank-up path to Xenobotanist before Campaign 1 results.
 - Preserved Campaign 1 completion and the existing game-side Campaign 2 unlock message.
+- Replaced stale 6a/6b play-log serialization with canonical Case 06/07 numbering; former Case 6b remains traceability history only.
 
 ## 11. Focused game tests and results
 
 | Command | Scope | Result |
 |---|---|---|
 | node tests/case07_content.test.js | Entire Case 07 node graph, four sources, clue routes and fallbacks, diagnoses, science boundaries, formula, percentage, units, distance, timing, interventions, unrelated-case count | PASS, 210 assertions, 0 failures, 0 skips, 0 warnings |
-| node tests/case07_runtime_flow.test.js | Case 06 prerequisite, all-clue diagnosis gate, correct-diagnosis integrity, intervention persistence, resume, authored victory, final rank, campaign unlock | PASS, 20 assertions, 0 failures, 0 skips, 0 warnings |
+| node tests/case07_runtime_flow.test.js | Case 06 prerequisite, all-clue diagnosis gate, correct-diagnosis integrity, intervention persistence, resume, authored victory, final rank, campaign unlock, canonical telemetry numbering | PASS, 22 assertions, 0 failures, 0 skips, 0 warnings |
 | node tests/case06_timing.test.js | Existing Case 06 timing regression | PASS, 7 assertions, 0 failures, 0 skips, 0 warnings |
-| for test_file in tests/*.test.js; do node "$test_file"; done | Full established game suite | PASS, 237 assertions, 0 failures, 0 skips, 0 warnings |
-| sed -n '2316,2683p' index.html \| node --check && sed -n '2689,6588p' index.html \| node --check && node --check space_sprout_sleuth_data.js | Both inline runtime scripts and data-source syntax | PASS, 3 syntax checks, 0 failures |
+| for test_file in tests/*.test.js; do node "$test_file"; done | Full established game suite | PASS, 239 assertions, 0 failures, 0 skips, 0 warnings |
+| sed -n '2316,2683p' index.html \| node --check && sed -n '2689,6586p' index.html \| node --check && node --check space_sprout_sleuth_data.js | Both inline runtime scripts and data-source syntax | PASS, 3 syntax checks, 0 failures |
 
 ## 12. Proposed worksheet crosswalk — planning only
 
@@ -369,4 +375,4 @@ Git path diff is the controlling preservation proof: it contains only this audit
 
 ## 15. Phase boundary
 
-**Curriculum production has not begun.** This phase creates no Case 07 directory, package manifest, worksheet content, presentation stylesheet, task registry, layout override, export, PDF, screenshot, release history, approval record, or registry entry. The next phase requires an explicit production start and should use game commit 530758235522ce110695a23feacea065ed370d08 unless the owner approves a newer compatible baseline.
+**Curriculum production has not begun.** This phase creates no Case 07 directory, package manifest, worksheet content, presentation stylesheet, task registry, layout override, export, PDF, screenshot, release history, approval record, or registry entry. The next phase requires an explicit production start and should use game commit 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 unless the owner approves a newer compatible baseline.
