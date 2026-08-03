@@ -76,7 +76,7 @@ em { font-family: Georgia, serif; }
 .rubric { font-size: 7pt; }
 
 .response, .table-response, .compact-response, .stage-response { min-height: .35in; padding: 3px 4px; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); outline: none; }
-.response.short { min-height: .28in; }
+.response.short { min-height: .34in; }
 .response.medium { min-height: .52in; }
 .response.large { min-height: .78in; }
 .table-response { min-height: .46in; }
@@ -94,6 +94,10 @@ em { font-family: Georgia, serif; }
 .task-heading .technical-label { color: var(--institution); font: 700 6.5pt/1.05 monospace; letter-spacing: .07em; }
 .task-heading .section-title { font: 800 10.3pt/1.12 Arial, sans-serif; }
 .task-block { margin-top: .1in; break-inside: avoid; page-break-inside: avoid; }
+
+.phrase-bank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin: 3px 0 5px; }
+.phrase-bank span { padding: 3px 4px; border: 1px solid var(--rule); background: var(--paper); font-size: 6.8pt; }
+.task6-bank span { font-size: 6.6pt; }
 
 .evidence-chain { display: grid; grid-template-columns: repeat(6, 1fr); gap: 13px; margin: 5px 0; counter-reset: stage; }
 .evidence-chain .model-stage { position: relative; min-width: 0; min-height: .86in; padding: 4px; border: 1.4px solid var(--ink); background: var(--panel-light); font-size: 6.8pt; }
@@ -121,6 +125,8 @@ figcaption { margin-top: 2px; color: var(--muted); font-size: 6.8pt; }
 .accessible .science-note { font-size: 9.1pt; }
 .accessible .source-card { font-size: 9.4pt; }
 .accessible .data-table { font-size: 9pt; }
+.accessible .phrase-bank { grid-template-columns: 1fr 1fr; }
+.accessible .phrase-bank span { font-size: 8.4pt; }
 .accessible-evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .accessible-model { grid-template-columns: 1fr !important; gap: 3px; }
 .accessible-model .model-stage { min-height: .68in; }
