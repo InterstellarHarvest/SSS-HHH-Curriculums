@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C1-CASE07",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "The Gift",
+  "subtitle": "Campaign 1 · Case 07 · L2 Station Hayes — Secure Cultivation Wing",
+  "location": "SAA Xenobiology Lab",
+  "version": "1.0",
+  "status": "OWNER_GATE_OPEN",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_IN_PROGRESS",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE07:v1.0:curriculum-editor-v2",
+  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-1/case-07-the-gift/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-1/case-07-the-gift/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-07-the-gift/source/task-registry.js",
+    "global": "SSS_CASE07_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-1/case-07-the-gift/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case07-instructional-models",
+      "type": "html-css-diagrams",
+      "selector": "[data-evidence-summary], [data-process-contract], [data-timeline-contract], [data-design-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {"documentRole": "Student Mission", "pageCount": 6},
+    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
+    "answer": {"documentRole": "Answer Key", "pageCount": 6},
+    "accessible": {"documentRole": "Accessible Mission", "pageCount": 8}
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE07_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C1_CASE07_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C1_CASE07_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C1_CASE07_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C1_CASE07_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 Case 07 v1.0 — The Gift Curriculum Editor",
+    "loadAnnouncement": "The Gift Case 07 v1.0 owner-gate package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": ["[data-evidence-summary]", "[data-process-contract]", "[data-timeline-contract]", "[data-design-contract]"],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "298430aa75323ec259279d27113260b824c7590e1156bed66f4d35fd14278413",
+    "presentation": "819bc95030098725103224eaceaedc43d048ff41ea90f43d5a3b9663625f0e35",
+    "taskRegistry": "15cf0e46533a82e57e129a6ad646b15e70e981c7251ff5e80b186e5b3dcdb776",
+    "layoutOverrides": "4cb933d023f797959abc2cce5012015497872c7d2065d63c3bbaa59a9adb1320"
+  }
+}
