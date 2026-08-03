@@ -28,3 +28,17 @@ Merge status: **READY_TO_MERGE**
 - `NO_GENERATED_ARTIFACTS_COMMITTED`: Case 05 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or generated release file was committed.
 
 The owner approves Case 05 v1.0 as the completion release for SSS Campaign 1. This record accompanies the focused release-state commit and does not itself publish generated artifacts.
+
+## Sequencing correction addendum — 2026-08-03
+
+The final sentence above is preserved as part of the original release record, but its description of Case 05 as the Campaign 1 completion release was incorrect. That statement entered the project records in commit `490bea25a6a4662896466ff81b09302182703677`; it did not change the approved Case 05 release and did not authorize the removal, relocation, or omission of either first-contact bonus case.
+
+The corrected release-control decision is:
+
+- Case 05 v1.0 completes the five released core cases of SSS Campaign 1.
+- Case 06 is **First Contact Protocol**, runtime `alien1`.
+- Case 07 is **The Gift**, runtime `alien2` and source-development label `Case 6b`.
+- Case 07 is the Campaign 1 culmination.
+- Campaign 2 must not begin before Cases 06 and 07 are released unless the owner explicitly redirects the project.
+
+This addendum corrects sequencing only. Every Case 05 approval, artifact, validation result, manifest, package source, and release-history fact above remains unchanged.

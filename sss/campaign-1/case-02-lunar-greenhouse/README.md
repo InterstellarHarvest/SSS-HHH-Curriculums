@@ -10,7 +10,7 @@ Roles and page counts:
 - Student: 3
 - Teacher: 7
 - Answer Key: 3
-- Accessible: 5
+- Accessible: 7
 
 Grayscale is an independent presentation toggle for every role and does not alter these counts or role filenames. Editable copies and role worksheets are generated on demand; PDFs and generated release documents are not stored.
 

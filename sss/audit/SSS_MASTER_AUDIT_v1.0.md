@@ -5,6 +5,10 @@
 **Audit date:** 2026-07-22  
 **Status:** Audit complete and reconciled. All approved implementation-integrity and science/history text corrections are present in the canonical game baseline. This document is ready to govern the Curriculum Blueprint phase.
 
+## Sequencing reconciliation addendum — 2026-08-03
+
+The owner reaffirmed that SSS Campaign 1 contains seven curriculum-sequenced cases: Cases 01–05 are the five core cases, Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`). Case 07 is the Campaign 1 culmination. The curriculum numbering is therefore locked to Cases 01–07, and Campaign 2 must not begin before Cases 06–07 are released unless the owner explicitly redirects the project. This addendum corrects two stale naming-decision statements in this document; it does not alter the audit's science findings or redesign `SSS_CURRICULUM_BLUEPRINT_v1.0.md`.
+
 ## Version 1.0 change log
 
 - Reconciled the audit against canonical SSS commit `2a6e8a7`.
@@ -500,7 +504,7 @@ The following dossiers describe the implemented case, not yet the final lesson p
 
 ---
 
-## C1-7 / design Case 6b — The Gift
+## C1-7 — The Gift (source-development label Case 6b)
 
 **Story problem:** An alien genesis pod remains dormant even after the human lab reproduces all measurable physical conditions.
 
@@ -535,7 +539,7 @@ The following dossiers describe the implemented case, not yet the final lesson p
 
 **Class-period fit:** Text-heavy. It is better suited as the Campaign 1 culmination than as an ordinary worksheet case, provided the task remains compact.
 
-**Canon decision needed later:** Design documentation says the player-facing label should be “Case 6b,” while the current runtime’s sequential label function displays it as Case 7. Curriculum files cannot be finalized until the owner chooses the classroom-facing label.
+**Resolved curriculum numbering:** The curriculum uses **Case 07**. Runtime `alien2` and the source-development label `Case 6b` remain traceability aliases, not alternate curriculum numbering.
 
 ---
 
@@ -870,7 +874,7 @@ These items remain in v0.1 as an historical discovery record. They are closed in
 ## 8.2 Deliberately not treated as bugs
 
 - Campaign 2 naming differences remain a future canonical/style decision.
-- Runtime Case 7 versus design-document Case 6b remains a curriculum naming decision.
+- Runtime `alien2` / Case 7 versus source-development label `Case 6b` is resolved: curriculum materials use **Case 07**, while `Case 6b` remains a traceability alias.
 - Completionist scoring remains game design; academic grading will ignore it.
 - No validator or expanded test framework is required for this curriculum project unless game development later creates a separate need.
 
@@ -1495,6 +1499,8 @@ The game uses several labels for narrative and organizational purposes. The curr
 | 7 | `alien2` | The Gift |
 
 The source comment “Case 6b” is a development-history label only. The runtime presents a distinct seventh playable case. Curriculum files should therefore use **Case 7**.
+
+Cases 01–05 are the five core cases. Cases 06–07 are the two first-contact bonus cases, and Case 07 is the Campaign 1 culmination. Campaign 2 production remains gated until both bonus-case curricula are released unless the owner explicitly redirects the project.
 
 ## Campaign 2
 

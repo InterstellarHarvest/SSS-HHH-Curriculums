@@ -1,9 +1,9 @@
 # SSS/HHH Current Project State
 
 Project state content verified from curriculum repository baseline
-`c73140841559b1ef56f5088e759e41a253856723`
+`b07b2f8e36871f15d14e6c012e0eb55398d43dc4`
 
-Last updated: 2026-08-02
+Last updated: 2026-08-03
 
 ## Purpose and authority
 
@@ -23,11 +23,11 @@ Related game repositories:
 - <https://github.com/InterstellarHarvest/Hunger-Harvest-History>
 
 Verified project-state baseline:
-`c73140841559b1ef56f5088e759e41a253856723`
+`b07b2f8e36871f15d14e6c012e0eb55398d43dc4`
 
 The live main branch may be newer because this handoff is itself committed after the baseline it documents. Always fetch the repository and resolve the current main SHA before beginning work.
 
-Current Case 05 game-science baseline: `a7a725121f261373df32a5366c70e7df73ddf8f3`
+Frozen Case 06 game-source baseline: `a7a725121f261373df32a5366c70e7df73ddf8f3`
 
 No production branches are intentionally active at this checkpoint.
 
@@ -41,7 +41,7 @@ No production branches are intentionally active at this checkpoint.
 | SSS | 1 | 04 | Hayes Orbital Station | 1.0 | 4 | 7 | 4 | 7 | APPROVED_STABLE |
 | SSS | 1 | 05 | Sub Surface Bunker | 1.0 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
 
-Cases 01–05 are the approved production baseline, and SSS Campaign 1 is complete. Cases 04 and 05 were produced natively through the mature canonical workflow. All five Accessible editions use content-driven page counts, dedicated canonical CER pages, and the shared vertical-response authoring contract; Student, Teacher, and Answer Key page counts remain fixed.
+Cases 01–05 are the five released core cases and the approved production baseline. SSS Campaign 1 contains seven curriculum-sequenced cases and is not complete: Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`). Case 07 is the Campaign 1 culmination. Cases 04 and 05 were produced natively through the mature canonical workflow. All five released Accessible editions use content-driven page counts and dedicated canonical CER pages; Student, Teacher, and Answer Key page counts remain fixed.
 
 ## Canonical case structure
 
@@ -113,9 +113,9 @@ Example: `Campaign 1 · Case 04 · L2 Lagrange Point, Orbital Research Station`
 ## Editor and publishing rules
 
 - The central Curriculum Editor is the canonical production interface.
-- Accessible response-height authoring is constrained to explicit eligible areas; every other Accessible response area is explicitly locked.
+- Student and Accessible response-height authoring is constrained to explicit eligible areas; every other Student and Accessible response area is explicitly locked.
 - Accessible page counts are content-driven, normally one to three complete tasks per page, with dedicated near-full-page CER treatment.
-- Student vertical resizing is not enabled.
+- Student and Accessible vertical resizing use the released source-controlled authoring workflow; no redesign is authorized.
 - Worksheet pages remain fixed at Letter geometry at all editor viewport widths.
 - Narrow screens use horizontal worksheet scrolling rather than page shrinkage.
 - Page size is 816 × 1056 CSS pixels.
@@ -145,11 +145,12 @@ Internal status remains in the package, registry, release history, owner-approva
 Accepted validation state at current main:
 
 - canonical structure: PASS
-- static validation: 215/215
-- browser validation: 784/784 across all 40 case/role/presentation states
+- static validation: 228/228
+- browser validation: 823/823 across all 40 case/role/presentation states
+- browser-PDF pagination validation: 122/122
 - role/presentation matrix: 40/40
-- Accessible layout contracts: 54 eligible response areas, 86 explicitly locked areas, and five empty override maps
-- authoring/security validation: 9/9
+- layout contracts: Accessible 54 eligible and 86 explicitly locked response areas; Student 37 eligible and 112 explicitly locked response areas
+- authoring/security validation: 13/13
 - JavaScript runtime errors: 0
 - all current page counts and page-fit checks: PASS
 - protected printable components: PASS
@@ -197,11 +198,11 @@ Conversational memory is helpful context but is not the authoritative project re
 
 ## Next phase
 
-SSS Campaign 1 is complete through Case 05.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Cases 01–05 are the released core cases. Cases 06–07 are the two first-contact bonus cases and remain unreleased.
 
-Next production target: **owner-directed Campaign 2 or HHH planning**
+Next production target: **SSS Campaign 1 · Case 06 — First Contact Protocol** (runtime `alien1`)
 
-Do not begin a new curriculum case or Student vertical-resizing work until the owner selects and scopes the next phase.
+Case 07 — **The Gift** (runtime `alien2`; source-development label `Case 6b`) follows Case 06 and is the Campaign 1 culmination. Do not begin Campaign 2 before Cases 06 and 07 are released unless the owner explicitly redirects the project. Case 06 implementation begins only in its authorized production workflow and remains governed by `SSS_CURRICULUM_BLUEPRINT_v1.0.md`; this sequencing correction does not redesign that plan.
 
 ## Update policy
 
