@@ -19,6 +19,25 @@ const CONTINUATION_ROLE_LABELS = {
   answer: "Answer Key · Continued",
   accessible: "Accessible Mission · Continued"
 };
+const EDITABLE_TEXT_CONTRACT = "instructional-text-v1";
+const EDITABLE_TEXT_RULES = [
+  { category: "task-prompt", selector: ".directions,.task-directions,.response-prompt,.response-guidance" },
+  { category: "science-note", selector: ".science-note" },
+  { category: "technical-figure", selector: "figcaption,p.extended-description" },
+  { category: "instructional-heading", selector: "h2,h3,h4" },
+  { category: "instructional-list", selector: "li" },
+  { category: "instructional-table", selector: "th,td,caption" },
+  { category: "model-answer", selector: ".answer-block" },
+  { category: "instructional-block", selector: "p" }
+];
+const EDITABLE_TEXT_PROTECTED_SELECTOR = [
+  ".student-id", ".mission-title-block", ".continuation-header", "[data-page-identity]",
+  "[data-publication-footer]", ".publication-footer", ".overflow-warning", ".task-heading",
+  ".response-label", ".canonical-cer-label", ".cer-label", "[data-response]",
+  ".technical-label", ".figure-title", ".source-url", ".references", ".visually-hidden",
+  "button", "input", "textarea", "select", "option", "[data-authoring-control]"
+].join(",");
+const SAFE_EDITABLE_ELEMENTS = new Set(["A", "B", "BR", "DIV", "EM", "I", "LI", "OL", "P", "S", "SPAN", "STRONG", "SUB", "SUP", "U", "UL"]);
 const PRINT_DOCUMENT_CSS = `
 html,body{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
 body.print-document{display:block!important;min-height:0!important;background:#fff!important}
@@ -316,6 +335,98 @@ function normalizeContinuationLabels(root) {
   }
 }
 
+function editableTextCategory(node) {
+  return EDITABLE_TEXT_RULES.find(rule => node.matches(rule.selector))?.category || "source-explicit";
+}
+
+function protectedEditableText(node) {
+  return Boolean(
+    node.closest(EDITABLE_TEXT_PROTECTED_SELECTOR) ||
+    node.querySelector("[data-response]") ||
+    !node.textContent.trim()
+  );
+}
+
+function registerEditableText(root) {
+  for (const node of $$('[data-editable]', root)) {
+    if (node.closest("[data-response]") || node.querySelector("[data-response]")) {
+      node.removeAttribute("data-editable");
+      continue;
+    }
+    node.dataset.editableCategory = editableTextCategory(node);
+    node.dataset.editableContract = EDITABLE_TEXT_CONTRACT;
+  }
+
+  const explicit = $$('[data-editable]', root);
+  const candidates = new Map();
+  for (const rule of EDITABLE_TEXT_RULES) {
+    for (const node of $$(rule.selector, root)) {
+      if (!node.closest(".content-area") || protectedEditableText(node)) continue;
+      if (explicit.some(item => item === node || item.contains(node) || node.contains(item))) continue;
+      if (!candidates.has(node)) candidates.set(node, rule.category);
+    }
+  }
+
+  const candidateNodes = [...candidates.keys()];
+  const eligible = candidateNodes.filter(node =>
+    !candidateNodes.some(other => other !== node && node.contains(other))
+  );
+  const pageSequences = new Map();
+  for (const node of eligible) {
+    const page = node.closest(".page[data-page-id][data-role]");
+    if (!page) continue;
+    const sequence = (pageSequences.get(page.dataset.pageId) || 0) + 1;
+    pageSequences.set(page.dataset.pageId, sequence);
+    node.dataset.editable = "";
+    node.dataset.editableCategory = candidates.get(node);
+    node.dataset.editableContract = EDITABLE_TEXT_CONTRACT;
+    if (!node.dataset.persistId) {
+      node.dataset.persistId = `${page.dataset.pageId}-authoring-${String(sequence).padStart(3, "0")}`;
+    }
+  }
+}
+
+function sanitizeEditableHTML(value) {
+  const template = document.createElement("template");
+  template.innerHTML = String(value ?? "");
+  for (const node of $$("script,style,iframe,object,embed,svg,math,img,video,audio,form,input,textarea,select,button,template", template.content)) node.remove();
+  for (const node of $$('*', template.content)) {
+    if (!SAFE_EDITABLE_ELEMENTS.has(node.tagName)) {
+      node.replaceWith(...node.childNodes);
+      continue;
+    }
+    const href = node.tagName === "A" ? node.getAttribute("href") : null;
+    for (const attribute of [...node.attributes]) node.removeAttribute(attribute.name);
+    if (href) {
+      try {
+        const url = new URL(href, location.href);
+        if (["http:", "https:", "mailto:"].includes(url.protocol)) node.setAttribute("href", href);
+      } catch { /* malformed links become plain anchors */ }
+    }
+  }
+  return template.innerHTML;
+}
+
+function sanitizePersistedNode(node) {
+  if (node.matches("input,textarea,select")) return;
+  const clean = sanitizeEditableHTML(node.innerHTML);
+  if (node.innerHTML !== clean) node.innerHTML = clean;
+}
+
+function insertPlainTextAtSelection(text) {
+  const selection = worksheetShadow?.getSelection?.() || document.getSelection();
+  if (!selection?.rangeCount) return false;
+  const range = selection.getRangeAt(0);
+  range.deleteContents();
+  const textNode = document.createTextNode(text);
+  range.insertNode(textNode);
+  range.setStartAfter(textNode);
+  range.collapse(true);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  return true;
+}
+
 function prepareContent(contentText) {
   const template = document.createElement("template");
   template.innerHTML = contentText.trim();
@@ -337,6 +448,7 @@ function prepareContent(contentText) {
   const packageMain = template.content.querySelector("main");
   if (!packageMain) throw new Error("Instructional content is missing its main worksheet landmark.");
   normalizeContinuationLabels(packageMain);
+  registerEditableText(packageMain);
   elements.workspace.innerHTML = packageMain.innerHTML;
   const persistNodes = $$("[data-persist-id]", elements.workspace);
   const ids = persistNodes.map(node => node.dataset.persistId);
@@ -349,9 +461,9 @@ function baselineValue(node) {
   return { html: layoutController?.cleanInnerHTML(node) ?? node.innerHTML, response: node.hasAttribute("data-response") };
 }
 
-function restoreNode(node, saved) {
+function restoreNode(node, saved, trustedSource = false) {
   if (node.matches("input, textarea, select")) node.value = saved.value ?? "";
-  else node.innerHTML = saved.html ?? "";
+  else node.innerHTML = trustedSource ? saved.html ?? "" : sanitizeEditableHTML(saved.html ?? "");
 }
 
 function scopePresentationCss(css) {
@@ -537,7 +649,7 @@ function loadPersistentContent() {
   contentState = safeJson(safeStorageGet(contentKey), {});
   for (const node of $$("[data-persist-id]", elements.workspace)) {
     const saved = contentState[node.dataset.persistId];
-    if (saved) restoreNode(node, saved);
+    if (saved && node.matches("[data-editable],[data-response],input,textarea,select")) restoreNode(node, saved);
   }
 }
 
@@ -632,6 +744,7 @@ function saveState(patch = {}) {
 function persistElement(node) {
   const id = node.dataset.persistId;
   if (!id) return;
+  sanitizePersistedNode(node);
   contentState[id] = baselineValue(node);
   safeStorageSet(contentKey, JSON.stringify(contentState));
   setSaveStatus("SAVED LOCALLY");
@@ -775,7 +888,7 @@ function resetSource(force = false) {
   if (!force && !confirm("Reset this case to its approved defaults?\n\nThis will remove all locally saved responses, instructional edits, and display settings for this case.")) return false;
   for (const node of $$("[data-persist-id]", elements.workspace)) {
     const baseline = sourceBaseline.get(node.dataset.persistId);
-    if (baseline) restoreNode(node, baseline);
+    if (baseline) restoreNode(node, baseline, true);
   }
   safeStorageRemove(stateKey);
   safeStorageRemove(contentKey);
@@ -812,6 +925,17 @@ function bindToolbar() {
     const node = event.target.closest("[data-persist-id]");
     if (node) persistElement(node);
   });
+  for (const type of ["paste", "drop"]) {
+    elements.workspace.addEventListener(type, event => {
+      const node = event.target.closest("[data-editable],[data-response]");
+      const transfer = event.clipboardData || event.dataTransfer;
+      if (!node || !transfer) return;
+      event.preventDefault();
+      node.focus();
+      insertPlainTextAtSelection(transfer.getData("text/plain"));
+      persistElement(node);
+    });
+  }
   if (!globalEventsBound) {
     window.addEventListener("resize", () => { syncToolbarOffset(); checkOverflow(); });
     window.addEventListener("beforeprint", () => { document.body.classList.add("print-preview"); checkOverflow(); });

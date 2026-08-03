@@ -637,6 +637,10 @@
       api.saveState({ editMode: true });
       setHtml(frame, instructionSelector, "BROWSER TEST · persisted instructional edit");
       setHtml(frame, responseSelector, "BROWSER TEST · persisted response");
+      const unsafeExecutionKey = "curriculum-editor-browser-test:unsafe-executed";
+      const storedContent = JSON.parse(win.localStorage.getItem(api.keys.contentKey));
+      storedContent[workspace.querySelector(instructionSelector).dataset.persistId].html = `<strong>BROWSER TEST · persisted instructional edit</strong><script>localStorage.setItem("${unsafeExecutionKey}","true")<\/script><a href="javascript:alert(1)" onclick="localStorage.setItem('${unsafeExecutionKey}','true')">unsafe link</a>`;
+      win.localStorage.setItem(api.keys.contentKey, JSON.stringify(storedContent));
       frame = await loadEditor("reload");
       win = frame.contentWindow;
       doc = frame.contentDocument;
@@ -644,6 +648,7 @@
       workspace = api.getWorkspace();
       worksheetDoc = api.getWorksheetDocument();
       check("autosave survives a full application reload", workspace.querySelector(responseSelector).textContent.includes("persisted response") && workspace.querySelector(instructionSelector).textContent.includes("persisted instructional"));
+      check("stored instructional HTML is allowlist-sanitized before restoration", workspace.querySelector(instructionSelector).querySelector("strong") && workspace.querySelector(instructionSelector).textContent.includes("unsafe link") && !workspace.querySelector(`${instructionSelector} script,${instructionSelector} [onclick],${instructionSelector} a[href]`) && win.localStorage.getItem(unsafeExecutionKey) === null);
       check("selected role survives reload", api.getState().role === "student");
       check("Edit Text never silently reopens after a full application reload", api.getState().editMode === false && !doc.body.classList.contains("edit-mode") && !doc.querySelector("#editControl").checked);
       check("reload reports restored autosave", doc.querySelector("#stateStatus").textContent === "AUTOSAVE RESTORED");
@@ -666,6 +671,10 @@
       const portableFrame = await loadExport(portable);
       check("portable file opens with its embedded instructional edit", portableFrame.contentDocument.querySelector(instructionSelector).textContent.includes("persisted instructional"));
       check("portable file opens with its embedded response", portableFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
+      const portableInstruction = portableFrame.contentDocument.querySelector(instructionSelector);
+      portableInstruction.innerHTML = `<strong>Portable safe text</strong><script>localStorage.setItem("${unsafeExecutionKey}","true")<\/script><a href="javascript:alert(1)" onmouseover="localStorage.setItem('${unsafeExecutionKey}','true')">unsafe portable link</a>`;
+      portableInstruction.dispatchEvent(new portableFrame.contentWindow.InputEvent("input", { bubbles: true }));
+      check("portable instructional editing applies the same HTML allowlist", portableInstruction.querySelector("strong") && portableInstruction.textContent.includes("unsafe portable link") && !portableInstruction.querySelector("script,[onmouseover],a[href]") && portableFrame.contentWindow.localStorage.getItem(unsafeExecutionKey) === null);
       let portableResetMessage = "";
       portableFrame.contentWindow.confirm = message => { portableResetMessage = message; return false; };
       check("portable Reset This Case requires explicit confirmation", portableFrame.contentWindow.__curriculumPortable.resetSource(false) === false && portableFrame.contentDocument.querySelector(responseSelector).textContent.includes("persisted response"));
@@ -746,6 +755,7 @@
 
       const caseMarkers = {};
       const matrixStates = [];
+      const editableTextMatrix = [];
       const protectedPresentation = {};
       for (const item of canonicalCases) {
         await api.selectCase(item.id);
@@ -863,6 +873,36 @@
         } else {
           check(`${item.id} legacy protected components retain valid printable geometry`, protectedGeometry.title.border === 1 && protectedGeometry.continuation.border === 1 && protectedGeometry.title.insignia.every(value => value > 30) && protectedGeometry.continuation.insignia.every(value => value > 20) && protectedGeometry.footer.border === 1, JSON.stringify(protectedGeometry));
         }
+        api.saveState({ editMode: true });
+        const caseEditableIdsBeforeGrayscale = {};
+        for (const role of ["student", "teacher", "answer", "accessible"]) {
+          api.setRole(role);
+          await wait(20);
+          const rolePageSelector = `.page[data-role="${role}"]`;
+          const editableTargets = Array.from(workspace.querySelectorAll(`${rolePageSelector} [data-editable][data-editable-contract="instructional-text-v1"]`));
+          const categories = [...new Set(editableTargets.map(node => node.dataset.editableCategory))].sort();
+          const ids = editableTargets.map(node => node.dataset.persistId);
+          const protectedTargets = Array.from(workspace.querySelectorAll(`${rolePageSelector} .student-id *,${rolePageSelector} .mission-title-block *,${rolePageSelector} .continuation-header *,${rolePageSelector} [data-publication-footer] *,${rolePageSelector} .publication-footer *,${rolePageSelector} .response-label,${rolePageSelector} .canonical-cer-label,${rolePageSelector} .cer-label`)).filter(node => !node.matches("[data-response]") && !node.closest("[data-response]"));
+          const responses = Array.from(workspace.querySelectorAll(`${rolePageSelector} [data-response]`));
+          const handles = Array.from(workspace.querySelectorAll(`${rolePageSelector} [data-layout-resize-ui="handle"]`));
+          caseEditableIdsBeforeGrayscale[role] = ids;
+          editableTargets[0]?.focus();
+          const focusWorks = workspace.getRootNode().activeElement === editableTargets[0];
+          const semanticContent = categories.some(category => category !== "source-explicit");
+          const expectedRoleCategory = role === "student" || role === "accessible"
+            ? categories.some(category => ["task-prompt", "instructional-block"].includes(category))
+            : categories.some(category => ["instructional-block", "instructional-heading", "instructional-list", "instructional-table", "model-answer"].includes(category));
+          check(`${item.id} ${role} Edit Text exposes registered semantic instructional wording`, editableTargets.length > 0 && semanticContent && expectedRoleCategory, JSON.stringify({ count: editableTargets.length, categories }));
+          check(`${item.id} ${role} editable targets have stable IDs, affordance, and keyboard focus`, new Set(ids).size === ids.length && ids.every(Boolean) && editableTargets.every(node => node.contentEditable === "true" && node.tabIndex === 0) && focusWorks, JSON.stringify({ duplicateIds: ids.filter((id, index) => ids.indexOf(id) !== index), focusWorks }));
+          check(`${item.id} ${role} protected identity, structure, pagination, and response labels stay locked`, protectedTargets.length > 0 && protectedTargets.every(node => node.contentEditable !== "true" && !node.hasAttribute("data-editable")));
+          check(`${item.id} ${role} response fields stay separate and functional`, responses.every(node => !node.hasAttribute("data-editable") && node.contentEditable === "true") && editableTargets.every(node => !node.matches("[data-response]") && !node.querySelector("[data-response]")));
+          check(`${item.id} ${role} response-height controls remain separate by role`, handles.every(handle => !handle.hasAttribute("data-editable") && handle.dataset.layoutResizeUi === "handle") && ((role === "student" || role === "accessible") ? handles.length > 0 : handles.length === 0), handles.length);
+          editableTextMatrix.push({ caseId: item.id, role, count: editableTargets.length, categories });
+        }
+        api.saveState({ grayscale: true });
+        const caseEditableIdsInGrayscale = Object.fromEntries(["student", "teacher", "answer", "accessible"].map(role => [role, Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-editable]`)).map(node => node.dataset.persistId)]));
+        check(`${item.id} Grayscale does not change editable-text discovery in any role`, JSON.stringify(caseEditableIdsInGrayscale) === JSON.stringify(caseEditableIdsBeforeGrayscale));
+        api.saveState({ grayscale: false });
         api.resetSource(true);
         const response = workspace.querySelector('[data-response][data-persist-id]');
         const editable = workspace.querySelector('[data-editable][data-persist-id]');
@@ -1140,6 +1180,7 @@
       check("Case 06 presentation matrix passes 8/8", case06MatrixStates.length === 8 && case06MatrixStates.every(state => state.pass), JSON.stringify(case06MatrixStates.filter(state => !state.pass)));
       check("Case 07 presentation matrix passes 8/8", case07MatrixStates.length === 8 && case07MatrixStates.every(state => state.pass), JSON.stringify(case07MatrixStates.filter(state => !state.pass)));
       check("all 56 case-role-presentation matrix states pass", matrixStates.length === 56 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
+      check("all 28 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 28 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
       const protectedGeometrySignatures = Object.fromEntries(Object.entries(protectedPresentation).map(([caseId, value]) => [caseId, JSON.stringify({ title: { columns: value.title.columns, gap: value.title.gap, border: value.title.border, rail: value.title.rail, heroSize: value.title.heroSize, heroLine: value.title.heroLine, subtitleSize: value.title.subtitleSize, insignia: value.title.insignia }, continuation: { columns: value.continuation.columns, gap: value.continuation.gap, border: value.continuation.border, titleSize: value.continuation.titleSize, insignia: value.continuation.insignia } })]));
       check("Cases 01–07 share protected title and continuation geometry", new Set(Object.values(protectedGeometrySignatures)).size === 1, JSON.stringify(protectedPresentation));
 

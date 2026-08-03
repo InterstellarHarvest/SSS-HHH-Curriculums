@@ -24,6 +24,7 @@ Accessible editions load the shared `accessible-edition.css` production layer af
 
 ## Editing and exports
 
+- **Edit Text** applies the central `instructional-text-v1` semantic contract to registered prompts, directions, instructional blocks, lists, headings, tables, model answers, and caption/description text in every role. Identity, pagination, response controls, response-height controls, source references, and structural/technical labels remain protected. Runtime-generated registrations are deterministic and travel with editable copies; approved package sources and hashes do not change.
 - **Download Editable Copy** creates a self-contained HTML copy with all four roles, the editing toolbar, current edits/responses, and the current Grayscale state.
 - **Download Worksheet** creates a self-contained HTML worksheet containing only the selected role, current edits/responses, and current Grayscale state. It has no toolbar or application chrome.
 - **Print / Save PDF** builds a temporary same-origin print document for the selected role, waits for fonts and images, removes application chrome and page shadows, and opens the browser print dialog.

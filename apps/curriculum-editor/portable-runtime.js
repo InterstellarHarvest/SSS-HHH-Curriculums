@@ -11,6 +11,28 @@
   const safeSet = (key, value) => { try { localStorage.setItem(key, value); return true; } catch { return false; } };
   const safeRemove = key => { try { localStorage.removeItem(key); } catch { /* recovery storage is optional */ } };
   const safeJson = (value, fallback) => { try { return value ? JSON.parse(value) : fallback; } catch { return fallback; } };
+  const safeEditableElements = new Set(["A", "B", "BR", "DIV", "EM", "I", "LI", "OL", "P", "S", "SPAN", "STRONG", "SUB", "SUP", "U", "UL"]);
+
+  function sanitizeEditableHTML(value) {
+    const template = document.createElement("template");
+    template.innerHTML = String(value ?? "");
+    for (const node of $$("script,style,iframe,object,embed,svg,math,img,video,audio,form,input,textarea,select,button,template", template.content)) node.remove();
+    for (const node of $$('*', template.content)) {
+      if (!safeEditableElements.has(node.tagName)) {
+        node.replaceWith(...node.childNodes);
+        continue;
+      }
+      const href = node.tagName === "A" ? node.getAttribute("href") : null;
+      for (const attribute of [...node.attributes]) node.removeAttribute(attribute.name);
+      if (href) {
+        try {
+          const url = new URL(href, location.href);
+          if (["http:", "https:", "mailto:"].includes(url.protocol)) node.setAttribute("href", href);
+        } catch { /* malformed links become plain anchors */ }
+      }
+    }
+    return template.innerHTML;
+  }
   const continuationRoleLabels = {
     student: "Student Mission · Continued",
     teacher: "Teacher Guide · Continued",
@@ -43,14 +65,14 @@
 
   function currentRoleIdentity(role = state.role) { return role; }
 
-  function restore(node, saved) {
+  function restore(node, saved, trustedSource = false) {
     if (node.matches("input,textarea,select")) node.value = saved.value ?? "";
-    else node.innerHTML = saved.html ?? "";
+    else node.innerHTML = trustedSource ? saved.html ?? "" : sanitizeEditableHTML(saved.html ?? "");
   }
 
   function loadContent() {
     for (const node of $$("[data-persist-id]")) {
-      if (contentState[node.dataset.persistId]) restore(node, contentState[node.dataset.persistId]);
+      if (contentState[node.dataset.persistId] && node.matches("[data-editable],[data-response],input,textarea,select")) restore(node, contentState[node.dataset.persistId]);
     }
   }
 
@@ -145,9 +167,27 @@
   }
 
   function persist(node) {
+    if (!node.matches("input,textarea,select")) {
+      const clean = sanitizeEditableHTML(node.innerHTML);
+      if (node.innerHTML !== clean) node.innerHTML = clean;
+    }
     contentState[node.dataset.persistId] = node.matches("input,textarea,select") ? { value: node.value } : { html: node.innerHTML };
     safeSet(contentKey, JSON.stringify(contentState));
     setStatus("SAVED LOCALLY");
+  }
+
+  function insertPlainTextAtSelection(text) {
+    const selection = document.getSelection();
+    if (!selection?.rangeCount) return false;
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    const textNode = document.createTextNode(text);
+    range.insertNode(textNode);
+    range.setStartAfter(textNode);
+    range.collapse(true);
+    selection.removeAllRanges();
+    selection.addRange(range);
+    return true;
   }
 
   function clearCurrentRole(force = false) {
@@ -174,7 +214,7 @@
       if (!saved) continue;
       if (config.responseReset === "clear" && node.hasAttribute("data-response")) {
         restore(node, node.matches("input,textarea,select") ? { value: "" } : { html: "" });
-      } else restore(node, saved);
+      } else restore(node, saved, true);
     }
     safeRemove(stateKey);
     safeRemove(contentKey);
@@ -365,6 +405,17 @@ body.print-document .overflow-warning{display:none!important}
       const node = event.target.closest?.("[data-persist-id]");
       if (node) persist(node);
     });
+    for (const type of ["paste", "drop"]) {
+      document.addEventListener(type, event => {
+        const node = event.target.closest?.("[data-editable],[data-response]");
+        const transfer = event.clipboardData || event.dataTransfer;
+        if (!node || !transfer) return;
+        event.preventDefault();
+        node.focus();
+        insertPlainTextAtSelection(transfer.getData("text/plain"));
+        persist(node);
+      });
+    }
     window.addEventListener("resize", checkOverflow);
     window.addEventListener("beforeprint", checkOverflow);
   }
