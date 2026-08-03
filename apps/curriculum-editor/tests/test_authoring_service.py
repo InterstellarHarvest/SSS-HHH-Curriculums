@@ -31,7 +31,7 @@ class AuthoringServiceTests(unittest.TestCase):
         registry_path = self.root / "shared/implementation"
         registry_path.mkdir(parents=True)
         (registry_path / "case-registry.v2.json").write_text(json.dumps(registry), encoding="utf-8")
-        self.content = b'''<main><section class="page" data-page-id="accessible-1" data-role="accessible"><h2 data-task-id="2">Task 2</h2><div data-persist-id="eligible" data-response></div><div data-persist-id="locked" data-response></div><div class="canonical-cer"><div data-persist-id="cer" data-response></div></div></section><section class="page" data-page-id="student-1" data-role="student"><h2 data-task-id="2">Task 2</h2><div data-persist-id="student" data-response></div></section></main>'''
+        self.content = b'''<main><section class="page" data-page-id="accessible-1" data-role="accessible"><h2 data-task-id="2">Task 2</h2><div data-persist-id="eligible" data-response></div><div data-persist-id="locked" data-response></div><div class="canonical-cer"><div data-persist-id="cer" data-response></div></div></section><section class="page" data-page-id="student-1" data-role="student"><h2 data-task-id="2">Task 2</h2><div data-persist-id="student" data-response></div><div data-persist-id="student-locked" data-response></div><div class="canonical-cer"><div data-persist-id="student-cer" data-response></div></div></section></main>'''
         self.presentation = b".page{width:8.5in;height:11in}"
         (self.source / "content.html").write_bytes(self.content)
         (self.source / "presentation.css").write_bytes(self.presentation)
@@ -46,6 +46,15 @@ class AuthoringServiceTests(unittest.TestCase):
                 {"persistId": "cer", "reason": "cer"},
             ],
             "overrides": {},
+            "student": {
+                "edition": "student",
+                "areas": [{"id": "SSS-C1-CASE01:student:t2:student", "persistId": "student", "pageId": "student-1", "taskId": 2, "label": "Student response", "minPx": 32, "maxPx": 400}],
+                "lockedAreas": [
+                    {"persistId": "student-locked", "reason": "compact-answer"},
+                    {"persistId": "student-cer", "reason": "cer"},
+                ],
+                "overrides": {},
+            },
         }
         self.write_layout()
 
@@ -64,18 +73,19 @@ class AuthoringServiceTests(unittest.TestCase):
         }
         (self.source / "case-package.json").write_text(json.dumps(package, indent=2) + "\n", encoding="utf-8")
 
-    def payload(self, **change) -> dict:
+    def payload(self, edition: str = "accessible", **change) -> dict:
+        area_id = f"SSS-C1-CASE01:{edition}:t2:{'eligible' if edition == 'accessible' else 'student'}"
         return {
             "schemaVersion": 1,
             "repositoryId": repository_id(self.root),
             "caseId": "SSS-C1-CASE01",
-            "edition": "accessible",
+            "edition": edition,
             "preconditions": {
                 "contentSha256": digest((self.source / "content.html").read_bytes()),
                 "presentationSha256": digest((self.source / "presentation.css").read_bytes()),
                 "layoutOverridesSha256": digest((self.source / "layout-overrides.json").read_bytes()),
             },
-            "changes": [{"id": "SSS-C1-CASE01:accessible:t2:eligible", "heightPx": 120, "sourceHeightPx": 80, **change}],
+            "changes": [{"id": area_id, "heightPx": 120, "sourceHeightPx": 80, **change}],
         }
 
     @staticmethod
@@ -94,6 +104,23 @@ class AuthoringServiceTests(unittest.TestCase):
         self.assertEqual((self.source / "presentation.css").read_bytes(), presentation_before)
         self.assertEqual(len(result["filesChanged"]), 2)
 
+    def test_student_round_trip_updates_only_student_sparse_map_and_reloads(self) -> None:
+        content_before = (self.source / "content.html").read_bytes()
+        presentation_before = (self.source / "presentation.css").read_bytes()
+        result = apply_layout_changes(self.root, self.payload("student"), self.passing_validation)
+        reloaded = json.loads((self.source / "layout-overrides.json").read_text())
+        package = json.loads((self.source / "case-package.json").read_text())
+        self.assertEqual(reloaded["student"]["overrides"]["SSS-C1-CASE01:student:t2:student"], {"heightPx": 120, "sourceHeightPx": 80})
+        self.assertEqual(reloaded["overrides"], {})
+        self.assertEqual(result["edition"], "student")
+        self.assertEqual(package["sourceHashes"]["layoutOverrides"], digest((self.source / "layout-overrides.json").read_bytes()))
+        self.assertEqual((self.source / "content.html").read_bytes(), content_before)
+        self.assertEqual((self.source / "presentation.css").read_bytes(), presentation_before)
+        self.assertEqual(result["filesChanged"], [
+            "sss/campaign-1/case-01/source/layout-overrides.json",
+            "sss/campaign-1/case-01/source/case-package.json",
+        ])
+
     def test_reset_to_original_height_removes_sparse_override(self) -> None:
         apply_layout_changes(self.root, self.payload(), self.passing_validation)
         reset_payload = self.payload(heightPx=80, sourceHeightPx=120)
@@ -108,19 +135,29 @@ class AuthoringServiceTests(unittest.TestCase):
             apply_layout_changes(self.root, payload, self.passing_validation)
         self.assertEqual((self.source / "layout-overrides.json").read_bytes(), before)
 
-    def test_unknown_and_non_accessible_requests_are_rejected(self) -> None:
+    def test_unknown_and_unauthorized_edition_requests_are_rejected(self) -> None:
         payload = self.payload()
         payload["changes"][0]["id"] = "SSS-C1-CASE01:accessible:t2:unknown"
         with self.assertRaisesRegex(AuthoringError, "Unknown or ineligible"):
             apply_layout_changes(self.root, payload, self.passing_validation)
         payload = self.payload()
-        payload["edition"] = "student"
-        with self.assertRaisesRegex(AuthoringError, "Only Accessible"):
+        payload["edition"] = "teacher"
+        with self.assertRaisesRegex(AuthoringError, "Only Student or Accessible"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+
+    def test_wrong_role_target_is_rejected(self) -> None:
+        payload = self.payload("student")
+        payload["changes"][0]["id"] = "SSS-C1-CASE01:accessible:t2:eligible"
+        with self.assertRaisesRegex(AuthoringError, "Unknown or ineligible"):
             apply_layout_changes(self.root, payload, self.passing_validation)
 
     def test_explicitly_locked_response_is_rejected(self) -> None:
         payload = self.payload()
         payload["changes"][0]["id"] = "SSS-C1-CASE01:accessible:t2:locked"
+        with self.assertRaisesRegex(AuthoringError, "Unknown or ineligible"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+        payload = self.payload("student")
+        payload["changes"][0]["id"] = "SSS-C1-CASE01:student:t2:student-locked"
         with self.assertRaisesRegex(AuthoringError, "Unknown or ineligible"):
             apply_layout_changes(self.root, payload, self.passing_validation)
 
@@ -137,10 +174,23 @@ class AuthoringServiceTests(unittest.TestCase):
         with self.assertRaisesRegex(AuthoringError, "different repository/worktree"):
             apply_layout_changes(self.root, payload, self.passing_validation)
 
+    def test_out_of_bounds_and_unsnapped_student_heights_are_rejected(self) -> None:
+        with self.assertRaisesRegex(AuthoringError, "snap or declared bounds"):
+            apply_layout_changes(self.root, self.payload("student", heightPx=404), self.passing_validation)
+        with self.assertRaisesRegex(AuthoringError, "snap or declared bounds"):
+            apply_layout_changes(self.root, self.payload("student", heightPx=122), self.passing_validation)
+
     def test_cer_is_rejected_even_if_manifest_is_accidentally_modified(self) -> None:
         self.layout["areas"][0].update({"id": "SSS-C1-CASE01:accessible:t2:cer", "persistId": "cer"})
         self.write_layout()
         payload = self.payload(id="SSS-C1-CASE01:accessible:t2:cer")
+        with self.assertRaisesRegex(AuthoringError, "CER response areas cannot be resized"):
+            apply_layout_changes(self.root, payload, self.passing_validation)
+
+    def test_student_cer_is_rejected_even_if_manifest_is_accidentally_modified(self) -> None:
+        self.layout["student"]["areas"][0].update({"id": "SSS-C1-CASE01:student:t2:student-cer", "persistId": "student-cer"})
+        self.write_layout()
+        payload = self.payload("student", id="SSS-C1-CASE01:student:t2:student-cer")
         with self.assertRaisesRegex(AuthoringError, "CER response areas cannot be resized"):
             apply_layout_changes(self.root, payload, self.passing_validation)
 
@@ -156,7 +206,7 @@ class AuthoringServiceTests(unittest.TestCase):
         layout_before = (self.source / "layout-overrides.json").read_bytes()
         package_before = (self.source / "case-package.json").read_bytes()
         with self.assertRaisesRegex(AuthoringError, "rolled back"):
-            apply_layout_changes(self.root, self.payload(), lambda _root, _case: (False, "forced failure"))
+            apply_layout_changes(self.root, self.payload("student"), lambda _root, _case: (False, "forced failure"))
         self.assertEqual((self.source / "layout-overrides.json").read_bytes(), layout_before)
         self.assertEqual((self.source / "case-package.json").read_bytes(), package_before)
 

@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "layout-overrides.schema.v1.json",
-  "title": "Accessible response-area layout overrides",
+  "title": "Student and Accessible response-area layout overrides",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides"],
+  "required": ["schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides", "student"],
   "properties": {
     "schemaVersion": { "const": 1 },
     "caseId": { "type": "string", "pattern": "^[A-Z0-9-]+$" },
@@ -44,7 +44,10 @@
               "criterion",
               "fixed-organizer",
               "horizontal-reflow",
-              "identity"
+              "identity",
+              "single-line",
+              "status",
+              "table-cell"
             ]
           }
         }
@@ -60,6 +63,70 @@
         "properties": {
           "heightPx": { "type": "integer", "minimum": 16, "maximum": 2000, "multipleOf": 4 },
           "sourceHeightPx": { "type": "integer", "minimum": 16, "maximum": 2000 }
+        }
+      }
+    },
+    "student": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["edition", "areas", "lockedAreas", "overrides"],
+      "properties": {
+        "edition": { "const": "student" },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "persistId", "pageId", "taskId", "label", "minPx", "maxPx"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[A-Z0-9-]+:student:t[0-9]+:[a-z0-9-]+$" },
+              "persistId": { "type": "string", "pattern": "^[a-zA-Z0-9-]+$" },
+              "pageId": { "type": "string", "pattern": "^student-[a-zA-Z0-9-]+$" },
+              "taskId": { "type": "integer", "minimum": 1 },
+              "label": { "type": "string", "minLength": 1 },
+              "minPx": { "type": "integer", "minimum": 16, "multipleOf": 4 },
+              "maxPx": { "type": "integer", "maximum": 2000, "multipleOf": 4 }
+            }
+          }
+        },
+        "lockedAreas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["persistId", "reason"],
+            "properties": {
+              "persistId": { "type": "string", "pattern": "^[a-zA-Z0-9-]+$" },
+              "reason": {
+                "enum": [
+                  "cer",
+                  "classification",
+                  "compact-answer",
+                  "constraint",
+                  "criterion",
+                  "fixed-organizer",
+                  "horizontal-reflow",
+                  "identity",
+                  "single-line",
+                  "status",
+                  "table-cell"
+                ]
+              }
+            }
+          }
+        },
+        "overrides": {
+          "type": "object",
+          "propertyNames": { "pattern": "^[A-Z0-9-]+:student:t[0-9]+:[a-z0-9-]+$" },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["heightPx", "sourceHeightPx"],
+            "properties": {
+              "heightPx": { "type": "integer", "minimum": 16, "maximum": 2000, "multipleOf": 4 },
+              "sourceHeightPx": { "type": "integer", "minimum": 16, "maximum": 2000 }
+            }
+          }
         }
       }
     }

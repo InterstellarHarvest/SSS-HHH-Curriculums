@@ -52,9 +52,31 @@ function storedJson(key, fallback = null) {
 }
 
 export async function createVerticalResizeController(options) {
-  const { package: casePackage, manifest, workspace, worksheetDocument, checkOverflow, panel, reloadCase } = options;
-  if (!manifest || manifest.schemaVersion !== 1 || manifest.caseId !== casePackage.id || manifest.edition !== "accessible" || manifest.stepPx !== SNAP_PX) {
-    throw new Error("Accessible layout override metadata does not match the loaded package.");
+  const { package: casePackage, manifest: rootManifest, workspace, worksheetDocument, checkOverflow, panel, reloadCase } = options;
+  if (!rootManifest || rootManifest.schemaVersion !== 1 || rootManifest.caseId !== casePackage.id || rootManifest.edition !== "accessible" || rootManifest.stepPx !== SNAP_PX) {
+    throw new Error("Layout override metadata does not match the loaded package.");
+  }
+  const manifests = new Map([
+    ["accessible", {
+      schemaVersion: rootManifest.schemaVersion,
+      caseId: rootManifest.caseId,
+      edition: rootManifest.edition,
+      stepPx: rootManifest.stepPx,
+      areas: rootManifest.areas,
+      lockedAreas: rootManifest.lockedAreas,
+      overrides: rootManifest.overrides
+    }],
+    ["student", {
+      schemaVersion: rootManifest.schemaVersion,
+      caseId: rootManifest.caseId,
+      stepPx: rootManifest.stepPx,
+      ...rootManifest.student
+    }]
+  ]);
+  for (const [edition, definition] of manifests) {
+    if (definition.edition !== edition || !Array.isArray(definition.areas) || !Array.isArray(definition.lockedAreas) || !definition.overrides) {
+      throw new Error(`${edition} layout override metadata is invalid.`);
+    }
   }
   const controls = {
     body: panel.querySelector("#layoutChangesBody"),
@@ -78,11 +100,25 @@ export async function createVerticalResizeController(options) {
     cancel: document.querySelector("#layoutApplyCancel")
   };
   const areas = new Map();
-  const pending = new Map();
-  const selected = new Set();
-  const history = [];
-  const future = [];
-  let activePageId = manifest.areas[0]?.pageId || null;
+  const editionStates = new Map([...manifests].map(([edition, definition]) => [edition, {
+    edition,
+    manifest: definition,
+    pending: new Map(),
+    selected: new Set(),
+    history: [],
+    future: [],
+    activePageId: definition.areas[0]?.pageId || null,
+    draftKey: null,
+    staleDrafts: [],
+    panelExpanded: false
+  }]));
+  let activeEdition = "accessible";
+  let manifest = manifests.get(activeEdition);
+  let pending = editionStates.get(activeEdition).pending;
+  let selected = editionStates.get(activeEdition).selected;
+  let history = editionStates.get(activeEdition).history;
+  let future = editionStates.get(activeEdition).future;
+  let activePageId = editionStates.get(activeEdition).activePageId;
   let repositoryContext = null;
   let draftKey = null;
   let staleDrafts = [];
@@ -91,11 +127,37 @@ export async function createVerticalResizeController(options) {
 
   panel.dataset.caseId = casePackage.id;
 
+  function persistActiveState() {
+    const state = editionStates.get(activeEdition);
+    Object.assign(state, { activePageId, draftKey, staleDrafts, panelExpanded });
+  }
+
+  function switchEdition(edition) {
+    if (!editionStates.has(edition) || edition === activeEdition) return;
+    persistActiveState();
+    activeEdition = edition;
+    const state = editionStates.get(edition);
+    manifest = state.manifest;
+    pending = state.pending;
+    selected = state.selected;
+    history = state.history;
+    future = state.future;
+    activePageId = state.activePageId;
+    draftKey = state.draftKey;
+    staleDrafts = state.staleDrafts;
+    panelExpanded = state.panelExpanded;
+    panel.dataset.edition = edition;
+  }
+
   function setPanelExpanded(expanded) {
     panelExpanded = Boolean(expanded);
     controls.content.hidden = !panelExpanded;
     controls.toggle.setAttribute("aria-expanded", String(panelExpanded));
     controls.toggle.textContent = panelExpanded ? "Hide layout changes" : "Show layout changes";
+  }
+
+  function activeAreas() {
+    return [...areas.values()].filter(area => area.edition === activeEdition);
   }
 
   function canonicalHeight(area) {
@@ -115,7 +177,7 @@ export async function createVerticalResizeController(options) {
     for (const [id, value] of Object.entries(snapshot || {})) if (areas.has(id)) pending.set(id, value);
     selected.clear();
     for (const id of pending.keys()) selected.add(id);
-    for (const area of areas.values()) {
+    for (const area of activeAreas()) {
       setHeightStyle(area.node, pending.get(area.id)?.heightPx ?? manifest.overrides[area.id]?.heightPx ?? null);
     }
     validateAll();
@@ -151,7 +213,7 @@ export async function createVerticalResizeController(options) {
       const saved = pending.get(area.id);
       const result = saved
         ? { status: saved.status, message: saved.message }
-        : { status: "valid", message: "Source height; validation resumes when the Accessible page is visible" };
+        : { status: "valid", message: `Source height; validation resumes when the ${activeEdition} page is visible` };
       area.node.dataset.layoutValidation = result.status;
       return result;
     }
@@ -189,7 +251,7 @@ export async function createVerticalResizeController(options) {
 
   function validateAll() {
     checkOverflow();
-    for (const area of areas.values()) validateArea(area);
+    for (const area of activeAreas()) validateArea(area);
   }
 
   function updateArea(area, requested, source = "editor") {
@@ -261,7 +323,7 @@ export async function createVerticalResizeController(options) {
       repositoryLabel: repositoryContext?.repositoryLabel || "unknown",
       revision: repositoryContext?.revision || "unknown",
       caseId: casePackage.id,
-      edition: "accessible",
+      edition: activeEdition,
       sourceHashes: {
         contentSha256: casePackage.sourceHashes.content,
         presentationSha256: casePackage.sourceHashes.presentation,
@@ -284,7 +346,7 @@ export async function createVerticalResizeController(options) {
   function loadDrafts() {
     if (!repositoryContext) return;
     draftKey = [
-      "layout-resize", "v1", repositoryContext.repositoryId, casePackage.id, "accessible",
+      "layout-resize", "v1", repositoryContext.repositoryId, casePackage.id, activeEdition,
       casePackage.sourceHashes.content, casePackage.sourceHashes.presentation, casePackage.sourceHashes.layoutOverrides
     ].join(":");
     const current = storedJson(draftKey);
@@ -292,7 +354,7 @@ export async function createVerticalResizeController(options) {
       const snapshot = Object.fromEntries(current.changes.filter(item => areas.has(item.id)).map(item => [item.id, item]));
       installPending(snapshot, false);
     }
-    const prefix = `layout-resize:v1:${repositoryContext.repositoryId}:${casePackage.id}:accessible:`;
+    const prefix = `layout-resize:v1:${repositoryContext.repositoryId}:${casePackage.id}:${activeEdition}:`;
     staleDrafts = safeStorageKeys().filter(key => key.startsWith(prefix) && key !== draftKey).map(key => ({ key, value: storedJson(key) })).filter(item => item.value);
     if (current?.changes?.length || staleDrafts.length) setPanelExpanded(true);
     renderStale();
@@ -320,7 +382,7 @@ export async function createVerticalResizeController(options) {
       reset.type = "button";
       reset.textContent = "Reset area";
       reset.addEventListener("click", () => resetArea(area));
-      for (const value of [choose, casePackage.id, "Accessible", area.pageId, `Task ${area.taskId}`, area.label, `${item.sourceHeightPx}px`, `${item.heightPx}px`, item.message, reset]) {
+      for (const value of [choose, casePackage.id, activeEdition === "accessible" ? "Accessible" : "Student", area.pageId, `Task ${area.taskId}`, area.label, `${item.sourceHeightPx}px`, `${item.heightPx}px`, item.message, reset]) {
         const cell = document.createElement("td");
         if (value instanceof Node) cell.append(value); else cell.textContent = value;
         row.append(cell);
@@ -335,7 +397,7 @@ export async function createVerticalResizeController(options) {
     controls.export.disabled = !pending.size;
     const selectedItems = [...selected].map(id => pending.get(id)).filter(Boolean);
     controls.apply.disabled = applying || !repositoryContext || !selectedItems.length || selectedItems.some(item => item.status === "invalid");
-    for (const area of areas.values()) {
+    for (const area of activeAreas()) {
       area.handle.textContent = `↕ ${currentHeight(area)}px · src ${area.sourceHeightPx}px${pending.has(area.id) ? " •" : ""}`;
       area.handle.setAttribute("aria-label", `Resize ${area.label} vertically. Current height ${currentHeight(area)} pixels. Arrow keys change by 4 pixels.`);
     }
@@ -371,7 +433,7 @@ export async function createVerticalResizeController(options) {
           schemaVersion: 1,
           repositoryId: repositoryContext.repositoryId,
           caseId: casePackage.id,
-          edition: "accessible",
+          edition: activeEdition,
           preconditions: draftValue().sourceHashes,
           changes: changes.map(({ id, heightPx, sourceHeightPx }) => ({ id, heightPx, sourceHeightPx }))
         })
@@ -404,7 +466,7 @@ export async function createVerticalResizeController(options) {
     handle.contentEditable = "false";
     let drag = null;
     handle.addEventListener("pointerdown", event => {
-      if (!worksheetDocument.classList.contains("edit-mode") || worksheetDocument.dataset.role !== "accessible") return;
+      if (!worksheetDocument.classList.contains("edit-mode") || worksheetDocument.dataset.role !== area.edition) return;
       event.preventDefault();
       activePageId = area.pageId;
       const page = area.node.closest(".page");
@@ -424,7 +486,7 @@ export async function createVerticalResizeController(options) {
     handle.addEventListener("pointerup", stop);
     handle.addEventListener("pointercancel", stop);
     handle.addEventListener("keydown", event => {
-      if (!worksheetDocument.classList.contains("edit-mode") || worksheetDocument.dataset.role !== "accessible") return;
+      if (!worksheetDocument.classList.contains("edit-mode") || worksheetDocument.dataset.role !== area.edition) return;
       if (!["ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) return;
       event.preventDefault();
       activePageId = area.pageId;
@@ -437,50 +499,52 @@ export async function createVerticalResizeController(options) {
     return handle;
   }
 
-  for (const definition of manifest.areas) {
-    const matches = workspace.querySelectorAll(`[data-persist-id="${CSS.escape(definition.persistId)}"]`);
-    if (matches.length !== 1) throw new Error(`Eligible response locator is missing or ambiguous: ${definition.id}`);
-    const node = matches[0];
-    const page = node.closest(".page[data-role]");
-    if (!page || page.dataset.role !== "accessible" || page.dataset.pageId !== definition.pageId || node.closest('[class*="cer"],[data-cer-contract]')) {
-      throw new Error(`Protected or mismatched response in layout registry: ${definition.id}`);
+  const cerSelector = '[data-cer-contract],.canonical-cer,.canonical-cer-box,.cer-stack,.cer-box,.compact-cer';
+  for (const [edition, editionManifest] of manifests) {
+    for (const definition of editionManifest.areas) {
+      const matches = workspace.querySelectorAll(`[data-persist-id="${CSS.escape(definition.persistId)}"]`);
+      if (matches.length !== 1) throw new Error(`Eligible response locator is missing or ambiguous: ${definition.id}`);
+      const node = matches[0];
+      const page = node.closest(".page[data-role]");
+      if (!page || page.dataset.role !== edition || page.dataset.pageId !== definition.pageId || node.closest(cerSelector)) {
+        throw new Error(`Protected or mismatched response in layout registry: ${definition.id}`);
+      }
+      const priorRole = worksheetDocument.dataset.role;
+      const hadHidden = page.hasAttribute("hidden");
+      const priorAriaHidden = page.getAttribute("aria-hidden");
+      const priorDisplay = page.style.getPropertyValue("display");
+      const priorDisplayPriority = page.style.getPropertyPriority("display");
+      worksheetDocument.dataset.role = edition;
+      page.removeAttribute("hidden");
+      page.setAttribute("aria-hidden", "false");
+      page.style.setProperty("display", "block", "important");
+      const measuredHeight = node.getBoundingClientRect().height;
+      if (hadHidden) page.setAttribute("hidden", "");
+      if (priorAriaHidden == null) page.removeAttribute("aria-hidden"); else page.setAttribute("aria-hidden", priorAriaHidden);
+      if (priorDisplay) page.style.setProperty("display", priorDisplay, priorDisplayPriority); else page.style.removeProperty("display");
+      if (priorRole == null) delete worksheetDocument.dataset.role; else worksheetDocument.dataset.role = priorRole;
+      const area = { ...definition, edition, node, sourceHeightPx: roundPx(measuredHeight) };
+      area.handle = createHandle(area);
+      node.dataset.layoutResizable = definition.id;
+      node.append(area.handle);
+      areas.set(area.id, area);
     }
-    const priorRole = worksheetDocument.dataset.role;
-    const hadHidden = page.hasAttribute("hidden");
-    const priorAriaHidden = page.getAttribute("aria-hidden");
-    const priorDisplay = page.style.getPropertyValue("display");
-    const priorDisplayPriority = page.style.getPropertyPriority("display");
-    worksheetDocument.dataset.role = "accessible";
-    page.removeAttribute("hidden");
-    page.setAttribute("aria-hidden", "false");
-    page.style.setProperty("display", "block", "important");
-    const measuredHeight = node.getBoundingClientRect().height;
-    if (hadHidden) page.setAttribute("hidden", "");
-    if (priorAriaHidden == null) page.removeAttribute("aria-hidden"); else page.setAttribute("aria-hidden", priorAriaHidden);
-    if (priorDisplay) page.style.setProperty("display", priorDisplay, priorDisplayPriority); else page.style.removeProperty("display");
-    if (priorRole == null) delete worksheetDocument.dataset.role; else worksheetDocument.dataset.role = priorRole;
-    const area = { ...definition, node, sourceHeightPx: roundPx(measuredHeight) };
-    area.handle = createHandle(area);
-    node.dataset.layoutResizable = definition.id;
-    node.append(area.handle);
-    areas.set(area.id, area);
-  }
-
-  for (const [id, override] of Object.entries(manifest.overrides)) {
-    const area = areas.get(id);
-    if (!area) throw new Error(`Sparse override has no eligible response: ${id}`);
-    setHeightStyle(area.node, override.heightPx);
+    for (const [id, override] of Object.entries(editionManifest.overrides)) {
+      const area = areas.get(id);
+      if (!area) throw new Error(`Sparse override has no eligible response: ${id}`);
+      setHeightStyle(area.node, override.heightPx);
+    }
   }
 
   controls.undo.onclick = undo;
   controls.toggle.onclick = () => setPanelExpanded(!panelExpanded);
   controls.redo.onclick = redo;
   controls.resetPage.onclick = () => resetPage(activePageId);
-  controls.export.onclick = () => downloadJson(exportedDraft(), `${casePackage.id}_ACCESSIBLE_LAYOUT_CHANGES.json`);
+  controls.export.onclick = () => downloadJson(exportedDraft(), `${casePackage.id}_${activeEdition.toUpperCase()}_LAYOUT_CHANGES.json`);
   controls.apply.onclick = openApplyPreview;
   controls.cancel.onclick = () => controls.dialog.close();
   controls.confirm.onclick = () => void applySelected().catch(error => console.error(error));
-  controls.staleExport.onclick = () => downloadJson({ schemaVersion: 1, staleDrafts: staleDrafts.map(item => item.value) }, `${casePackage.id}_STALE_ACCESSIBLE_LAYOUT_DRAFTS.json`);
+  controls.staleExport.onclick = () => downloadJson({ schemaVersion: 1, staleDrafts: staleDrafts.map(item => item.value) }, `${casePackage.id}_STALE_${activeEdition.toUpperCase()}_LAYOUT_DRAFTS.json`);
   controls.staleDiscard.onclick = () => {
     for (const item of staleDrafts) localStorage.removeItem(item.key);
     staleDrafts = [];
@@ -491,21 +555,35 @@ export async function createVerticalResizeController(options) {
     const response = await fetch("/__authoring/context", { cache: "no-store" });
     if (response.ok) repositoryContext = await response.json();
   } catch { /* read-only static hosting keeps preview/export available */ }
-  loadDrafts();
+  for (const edition of manifests.keys()) {
+    switchEdition(edition);
+    loadDrafts();
+  }
+  const initialEdition = manifests.has(worksheetDocument.dataset.role) ? worksheetDocument.dataset.role : "accessible";
+  switchEdition(initialEdition);
   validateAll();
   render();
 
   return {
-    getAreas: () => [...areas.values()].map(area => ({ ...definitionView(area), heightPx: currentHeight(area) })),
+    getAreas: () => activeAreas().map(area => ({ ...definitionView(area), heightPx: currentHeight(area) })),
     getPending: () => cloneRecord(capturePending()),
     getDraftKey: () => draftKey,
     getRepositoryContext: () => repositoryContext ? { ...repositoryContext } : null,
-    setHeight: (id, height) => updateArea(areas.get(id), height, "test"),
+    setHeight: (id, height) => {
+      const area = areas.get(id);
+      switchEdition(area.edition);
+      return updateArea(area, height, "test");
+    },
     resizeByPointer: (id, screenDelta, renderedScale) => {
       const area = areas.get(id);
+      switchEdition(area.edition);
       return updateArea(area, currentHeight(area) + sourcePixelsFromPointer(screenDelta, renderedScale), "pointer");
     },
-    resetArea: id => resetArea(areas.get(id)),
+    resetArea: id => {
+      const area = areas.get(id);
+      switchEdition(area.edition);
+      return resetArea(area);
+    },
     resetPage,
     undo,
     redo,
@@ -515,7 +593,13 @@ export async function createVerticalResizeController(options) {
       render();
     },
     syncVisibility(role, editMode, ready = true) {
-      panel.hidden = !ready || role !== "accessible" || !editMode;
+      if (manifests.has(role)) {
+        switchEdition(role);
+        renderStale();
+        validateAll();
+        render();
+      }
+      panel.hidden = !ready || !manifests.has(role) || !editMode;
     },
     exportValue: exportedDraft,
     sourcePixelsFromPointer,
@@ -524,7 +608,7 @@ export async function createVerticalResizeController(options) {
       for (const area of areas.values()) {
         const node = clone.querySelector(`[data-persist-id="${CSS.escape(area.persistId)}"]`);
         if (!node) continue;
-        setHeightStyle(node, manifest.overrides[area.id]?.heightPx ?? null);
+        setHeightStyle(node, manifests.get(area.edition).overrides[area.id]?.heightPx ?? null);
         node.removeAttribute("data-layout-resizable");
         node.removeAttribute("data-layout-validation");
       }

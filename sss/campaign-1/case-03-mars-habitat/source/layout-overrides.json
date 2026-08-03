@@ -26,5 +26,34 @@
     { "persistId": "a7e", "reason": "cer" },
     { "persistId": "a7r", "reason": "cer" }
   ],
-  "overrides": {}
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      { "id": "SSS-C1-CASE03:student:t1:t1", "persistId": "t1", "pageId": "student-mission-01", "taskId": 1, "label": "PPFD measurement explanation", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE03:student:t3:t3a", "persistId": "t3a", "pageId": "student-mission-02", "taskId": 3, "label": "Total-light alternative analysis", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE03:student:t3:t3b", "persistId": "t3b", "pageId": "student-mission-02", "taskId": 3, "label": "Spectrum-data conclusion", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE03:student:t4:t4d", "persistId": "t4d", "pageId": "student-mission-02", "taskId": 4, "label": "Symptom-pattern conclusion", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE03:student:t5:t5", "persistId": "t5", "pageId": "student-mission-03", "taskId": 5, "label": "Rejected diagnosis explanation", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE03:student:t8:t8", "persistId": "t8", "pageId": "student-mission-04", "taskId": 8, "label": "Brightness transfer analysis", "minPx": 32, "maxPx": 900 }
+    ],
+    "lockedAreas": [
+      { "persistId": "student-name", "reason": "identity" },
+      { "persistId": "student-date", "reason": "identity" },
+      { "persistId": "student-period", "reason": "identity" },
+      { "persistId": "t2", "reason": "single-line" },
+      { "persistId": "t4a", "reason": "table-cell" },
+      { "persistId": "t4b", "reason": "table-cell" },
+      { "persistId": "t4c", "reason": "table-cell" },
+      { "persistId": "m-2", "reason": "fixed-organizer" },
+      { "persistId": "m-3", "reason": "fixed-organizer" },
+      { "persistId": "m-4", "reason": "fixed-organizer" },
+      { "persistId": "m-5", "reason": "fixed-organizer" },
+      { "persistId": "t7c", "reason": "cer" },
+      { "persistId": "t7e", "reason": "cer" },
+      { "persistId": "t7r", "reason": "cer" },
+      { "persistId": "t9", "reason": "compact-answer" }
+    ],
+    "overrides": {}
+  }
 }

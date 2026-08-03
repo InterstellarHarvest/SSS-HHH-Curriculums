@@ -68,8 +68,10 @@ const EDITOR_WORKSHEET_LAYOUT_CSS = `
     cursor: ns-resize;
     font: 700 9px/1 "JetBrains Mono", monospace;
   }
-  .worksheet-document.edit-mode[data-role="accessible"] .layout-resize-handle { display: block; }
-  .worksheet-document.edit-mode[data-role="accessible"] [data-layout-resizable] { outline: 2px dashed #397b78; outline-offset: 2px; }
+  .worksheet-document.edit-mode[data-role="student"] .page[data-role="student"] .layout-resize-handle,
+  .worksheet-document.edit-mode[data-role="accessible"] .page[data-role="accessible"] .layout-resize-handle { display: block; }
+  .worksheet-document.edit-mode[data-role="student"] .page[data-role="student"] [data-layout-resizable],
+  .worksheet-document.edit-mode[data-role="accessible"] .page[data-role="accessible"] [data-layout-resizable] { outline: 2px dashed #397b78; outline-offset: 2px; }
   .worksheet-document [data-layout-validation="approaching"] { outline-color: #ba7410!important; }
   .worksheet-document [data-layout-validation="invalid"] { outline-color: #b12f2f!important; background-color: #fff5f5!important; }
 }`;

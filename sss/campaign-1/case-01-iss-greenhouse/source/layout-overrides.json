@@ -37,5 +37,50 @@
     { "persistId": "a-criterion", "reason": "criterion" },
     { "persistId": "a-constraint", "reason": "constraint" }
   ],
-  "overrides": {}
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      { "id": "SSS-C1-CASE01:student:t2:s1-initial", "persistId": "s1-initial", "pageId": "student-1", "taskId": 2, "label": "Initial evidence plan", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t4:s1-reason-nutrient", "persistId": "s1-reason-nutrient", "pageId": "student-2", "taskId": 4, "label": "Nutrient explanation reason", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t4:s1-reason-light", "persistId": "s1-reason-light", "pageId": "student-2", "taskId": 4, "label": "Light-cycle explanation reason", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t4:s1-reason-seed", "persistId": "s1-reason-seed", "pageId": "student-2", "taskId": 4, "label": "Seed-stock explanation reason", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t4:s1-reason-micro", "persistId": "s1-reason-micro", "pageId": "student-2", "taskId": 4, "label": "Microgravity explanation reason", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t6:s2-diagnosis", "persistId": "s2-diagnosis", "pageId": "student-3", "taskId": 6, "label": "Failure diagnosis", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t6:s2-reject", "persistId": "s2-reject", "pageId": "student-3", "taskId": 6, "label": "Alternative rejection", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t8:s2-design", "persistId": "s2-design", "pageId": "student-3", "taskId": 8, "label": "Orientation-cue design", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE01:student:t9:s2-exit", "persistId": "s2-exit", "pageId": "student-3", "taskId": 9, "label": "Exit ticket explanation", "minPx": 32, "maxPx": 900 }
+    ],
+    "lockedAreas": [
+      { "persistId": "student-name", "reason": "identity" },
+      { "persistId": "student-date", "reason": "identity" },
+      { "persistId": "student-class", "reason": "identity" },
+      { "persistId": "s1-evidence-crew", "reason": "table-cell" },
+      { "persistId": "s1-support-crew", "reason": "table-cell" },
+      { "persistId": "s1-oi-crew", "reason": "table-cell" },
+      { "persistId": "s1-evidence-sensors", "reason": "table-cell" },
+      { "persistId": "s1-support-sensors", "reason": "table-cell" },
+      { "persistId": "s1-oi-sensors", "reason": "table-cell" },
+      { "persistId": "s1-evidence-plants", "reason": "table-cell" },
+      { "persistId": "s1-support-plants", "reason": "table-cell" },
+      { "persistId": "s1-oi-plants", "reason": "table-cell" },
+      { "persistId": "s1-evidence-logs", "reason": "table-cell" },
+      { "persistId": "s1-support-logs", "reason": "table-cell" },
+      { "persistId": "s1-oi-logs", "reason": "table-cell" },
+      { "persistId": "s1-status-nutrient", "reason": "status" },
+      { "persistId": "s1-status-light", "reason": "status" },
+      { "persistId": "s1-status-seed", "reason": "status" },
+      { "persistId": "s1-status-micro", "reason": "status" },
+      { "persistId": "s2-earth-settle", "reason": "single-line" },
+      { "persistId": "s2-earth-root", "reason": "single-line" },
+      { "persistId": "s2-micro-settle", "reason": "single-line" },
+      { "persistId": "s2-micro-root", "reason": "single-line" },
+      { "persistId": "s2-claim", "reason": "cer" },
+      { "persistId": "s2-evidence", "reason": "cer" },
+      { "persistId": "s2-reasoning", "reason": "cer" },
+      { "persistId": "s2-criterion", "reason": "criterion" },
+      { "persistId": "s2-constraint", "reason": "constraint" }
+    ],
+    "overrides": {}
+  }
 }

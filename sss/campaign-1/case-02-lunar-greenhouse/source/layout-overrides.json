@@ -39,5 +39,45 @@
     { "persistId": "response-accessible-task8-criterion", "reason": "criterion" },
     { "persistId": "response-accessible-task8-constraint", "reason": "constraint" }
   ],
-  "overrides": {}
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      { "id": "SSS-C1-CASE02:student:t2:student-task2", "persistId": "response-student-task2", "pageId": "student-01", "taskId": 2, "label": "Initial reproductive-step explanation", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t4:student-task4-observation1", "persistId": "response-student-task4-observation1", "pageId": "student-02", "taskId": 4, "label": "Failure observation 1", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t4:student-task4-observation2", "persistId": "response-student-task4-observation2", "pageId": "student-02", "taskId": 4, "label": "Failure observation 2", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t4:student-task4-downstream", "persistId": "response-student-task4-downstream", "pageId": "student-02", "taskId": 4, "label": "Downstream result explanation", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t6:student-task6-diagnosis", "persistId": "response-student-task6-diagnosis", "pageId": "student-02", "taskId": 6, "label": "Failure diagnosis", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t6:student-task6-alternative", "persistId": "response-student-task6-alternative", "pageId": "student-02", "taskId": 6, "label": "Alternative rejection", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t8:student-task8-design", "persistId": "response-student-task8-design", "pageId": "student-03", "taskId": 8, "label": "Pollination-support design", "minPx": 64, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t8:student-task8-check", "persistId": "response-student-task8-check", "pageId": "student-03", "taskId": 8, "label": "Design mechanism check", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE02:student:t9:student-task9", "persistId": "response-student-task9", "pageId": "student-03", "taskId": 9, "label": "Exit ticket investigation", "minPx": 32, "maxPx": 900 }
+    ],
+    "lockedAreas": [
+      { "persistId": "response-student-name", "reason": "identity" },
+      { "persistId": "response-student-date", "reason": "identity" },
+      { "persistId": "response-student-period", "reason": "identity" },
+      { "persistId": "response-student-task3-step1", "reason": "fixed-organizer" },
+      { "persistId": "response-student-task3-step2", "reason": "fixed-organizer" },
+      { "persistId": "response-student-task3-step3", "reason": "fixed-organizer" },
+      { "persistId": "response-student-task3-step4", "reason": "fixed-organizer" },
+      { "persistId": "response-student-task3-step5", "reason": "fixed-organizer" },
+      { "persistId": "response-student-task3-step6", "reason": "fixed-organizer" },
+      { "persistId": "response-student-task4-failed", "reason": "compact-answer" },
+      { "persistId": "response-student-task5-regolith-class", "reason": "classification" },
+      { "persistId": "response-student-task5-regolith-reason", "reason": "table-cell" },
+      { "persistId": "response-student-task5-light-class", "reason": "classification" },
+      { "persistId": "response-student-task5-light-reason", "reason": "table-cell" },
+      { "persistId": "response-student-task5-pollination-class", "reason": "classification" },
+      { "persistId": "response-student-task5-pollination-reason", "reason": "table-cell" },
+      { "persistId": "response-student-task5-co2-class", "reason": "classification" },
+      { "persistId": "response-student-task5-co2-reason", "reason": "table-cell" },
+      { "persistId": "response-student-task7-claim", "reason": "cer" },
+      { "persistId": "response-student-task7-evidence", "reason": "cer" },
+      { "persistId": "response-student-task7-reasoning", "reason": "cer" },
+      { "persistId": "response-student-task8-criterion", "reason": "criterion" },
+      { "persistId": "response-student-task8-constraint", "reason": "constraint" }
+    ],
+    "overrides": {}
+  }
 }

@@ -1,4 +1,4 @@
-"""Strict repository-local persistence for approved Accessible layout changes."""
+"""Strict repository-local persistence for approved Student/Accessible layout changes."""
 from __future__ import annotations
 
 import hashlib
@@ -78,20 +78,49 @@ def context_payload(root: Path) -> dict[str, object]:
     }
 
 
-def serialize_sparse_layout(original: bytes, overrides: dict[str, dict[str, int]]) -> bytes:
-    marker = b'  "overrides": '
+def serialize_sparse_layout(original: bytes, edition: str, overrides: dict[str, dict[str, int]]) -> bytes:
+    indent = b"  " if edition == "accessible" else b"    "
+    marker = b"\n" + indent + b'"overrides": '
     if original.count(marker) != 1:
-        raise AuthoringError("The sparse override source cannot be updated safely.", 409, "invalid_contract")
-    prefix = original.split(marker, 1)[0]
+        raise AuthoringError("The selected sparse override source cannot be updated safely.", 409, "invalid_contract")
+    value_start = original.index(marker) + len(marker)
+    if original[value_start:value_start + 1] != b"{":
+        raise AuthoringError("The selected sparse override map is malformed.", 409, "invalid_contract")
+    depth = 0
+    in_string = False
+    escaped = False
+    value_end = None
+    for index in range(value_start, len(original)):
+        character = original[index]
+        if in_string:
+            if escaped:
+                escaped = False
+            elif character == ord("\\"):
+                escaped = True
+            elif character == ord('"'):
+                in_string = False
+            continue
+        if character == ord('"'):
+            in_string = True
+        elif character == ord("{"):
+            depth += 1
+        elif character == ord("}"):
+            depth -= 1
+            if depth == 0:
+                value_end = index + 1
+                break
+    if value_end is None:
+        raise AuthoringError("The selected sparse override map is unterminated.", 409, "invalid_contract")
     override_text = json.dumps(overrides, indent=2, ensure_ascii=False)
-    indented = "\n".join(line if index == 0 else f"  {line}" for index, line in enumerate(override_text.splitlines()))
-    return prefix + marker + indented.encode("utf-8") + b"\n}\n"
+    replacement = "\n".join(line if index == 0 else f"{indent.decode()}{line}" for index, line in enumerate(override_text.splitlines())).encode("utf-8")
+    return original[:value_start] + replacement + original[value_end:]
 
 
 class SourceResponseIndex(HTMLParser):
     """Resolve persist IDs to source role/page/task and protected CER ancestry."""
 
     VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "param", "source", "track", "wbr"}
+    CER_CLASSES = {"canonical-cer", "canonical-cer-box", "cer-stack", "cer-box", "compact-cer"}
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
@@ -112,7 +141,7 @@ class SourceResponseIndex(HTMLParser):
             frame["task"] = values["data-task-id"]
         if values.get("data-shell-task-heading"):
             frame["task"] = values["data-shell-task-heading"]
-        frame["cer"] = bool(frame["cer"] or any("cer" in name.lower() for name in classes) or values.get("data-cer-contract"))
+        frame["cer"] = bool(frame["cer"] or self.CER_CLASSES.intersection(classes) or values.get("data-cer-contract"))
         persist_id = values.get("data-persist-id")
         if persist_id:
             if persist_id in self.responses:
@@ -141,10 +170,12 @@ def validate_manifest(package: dict, package_path: Path, root: Path) -> tuple[Pa
     layout_bytes = layout_path.read_bytes()
     content_bytes = content_path.read_bytes()
     data = json.loads(layout_bytes)
-    if set(data) != {"schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides"}:
+    if set(data) != {"schemaVersion", "caseId", "edition", "stepPx", "areas", "lockedAreas", "overrides", "student"}:
         raise AuthoringError("The layout override source has an invalid shape.", 409, "invalid_contract")
     if data["schemaVersion"] != 1 or data["caseId"] != package["id"] or data["edition"] != "accessible" or data["stepPx"] != 4:
         raise AuthoringError("The layout override source identity is invalid.", 409, "invalid_contract")
+    if not isinstance(data["student"], dict) or set(data["student"]) != {"edition", "areas", "lockedAreas", "overrides"} or data["student"]["edition"] != "student":
+        raise AuthoringError("The Student layout override registry is invalid.", 409, "invalid_contract")
     if package.get("sourceHashes", {}).get("layoutOverrides") != sha256_bytes(layout_bytes):
         raise AuthoringError("The package layout hash is not synchronized.", 409, "source_conflict")
     return layout_path, content_path, presentation_path, data, layout_bytes, content_bytes
@@ -156,11 +187,16 @@ def exact_object(value: object, fields: set[str], label: str) -> dict:
     return value
 
 
-def validate_changes(data: dict, content_bytes: bytes, changes: object) -> list[dict]:
+def edition_registry(data: dict, edition: str) -> dict:
+    return data if edition == "accessible" else data["student"]
+
+
+def validate_changes(data: dict, edition: str, content_bytes: bytes, changes: object) -> list[dict]:
     if not isinstance(changes, list) or not 1 <= len(changes) <= 100:
         raise AuthoringError("Select between 1 and 100 layout changes.")
-    areas = {area["id"]: area for area in data["areas"]}
-    if len(areas) != len(data["areas"]):
+    registry = edition_registry(data, edition)
+    areas = {area["id"]: area for area in registry["areas"]}
+    if len(areas) != len(registry["areas"]):
         raise AuthoringError("The eligibility registry contains duplicate IDs.", 409, "invalid_contract")
     parser = SourceResponseIndex()
     parser.feed(content_bytes.decode("utf-8"))
@@ -184,7 +220,7 @@ def validate_changes(data: dict, content_bytes: bytes, changes: object) -> list[
         source = parser.responses.get(area["persistId"])
         if not source or source.get("duplicate"):
             raise AuthoringError(f"Eligible response locator is missing or ambiguous: {area_id}", 409, "source_conflict")
-        if source.get("role") != "accessible" or source.get("page") != area["pageId"] or str(source.get("task")) != str(area["taskId"]):
+        if source.get("role") != edition or source.get("page") != area["pageId"] or str(source.get("task")) != str(area["taskId"]):
             raise AuthoringError(f"Eligible response locator no longer matches its declared page/task: {area_id}", 409, "source_conflict")
         if source.get("cer"):
             raise AuthoringError(f"CER response areas cannot be resized: {area_id}", 403, "cer_protected")
@@ -220,8 +256,8 @@ def apply_layout_changes(
     validate: Callable[[Path, str], tuple[bool, str]] = default_validation,
 ) -> dict[str, object]:
     request = exact_object(payload, PAYLOAD_FIELDS, "The authoring request")
-    if request["schemaVersion"] != 1 or request["edition"] != "accessible":
-        raise AuthoringError("Only Accessible edition layout schema v1 may be persisted.", 403, "edition_protected")
+    if request["schemaVersion"] != 1 or request["edition"] not in {"student", "accessible"}:
+        raise AuthoringError("Only Student or Accessible edition layout schema v1 may be persisted.", 403, "edition_protected")
     if request["repositoryId"] != repository_id(root):
         raise AuthoringError("The draft belongs to a different repository/worktree.", 409, "repository_conflict")
     packages = registered_packages(root)
@@ -241,8 +277,10 @@ def apply_layout_changes(
         raise AuthoringError("Source files changed after this draft was created. Inspect or discard the stale draft.", 409, "source_conflict")
     if package["sourceHashes"]["content"] != actual["contentSha256"] or package["sourceHashes"]["presentation"] != actual["presentationSha256"]:
         raise AuthoringError("Package source hashes are not synchronized.", 409, "source_conflict")
-    validated = validate_changes(data, content_bytes, request["changes"])
-    overrides = dict(data["overrides"])
+    edition = request["edition"]
+    registry = edition_registry(data, edition)
+    validated = validate_changes(data, edition, content_bytes, request["changes"])
+    overrides = dict(registry["overrides"])
     applied: list[dict[str, object]] = []
     for change in validated:
         area_id = change["id"]
@@ -260,8 +298,8 @@ def apply_layout_changes(
             "fromPx": previous["heightPx"] if previous else change["sourceHeightPx"],
             "toPx": change["heightPx"],
         })
-    data["overrides"] = {key: overrides[key] for key in sorted(overrides)}
-    new_layout = serialize_sparse_layout(layout_bytes, data["overrides"])
+    registry["overrides"] = {key: overrides[key] for key in sorted(overrides)}
+    new_layout = serialize_sparse_layout(layout_bytes, edition, registry["overrides"])
     old_layout_hash = package["sourceHashes"]["layoutOverrides"]
     new_layout_hash = sha256_bytes(new_layout)
     if package_bytes.count(old_layout_hash.encode("ascii")) != 1:
@@ -280,7 +318,7 @@ def apply_layout_changes(
     return {
         "schemaVersion": 1,
         "caseId": request["caseId"],
-        "edition": "accessible",
+        "edition": edition,
         "applied": applied,
         "filesChanged": [str(layout_path.relative_to(root.resolve())), str(package_path.resolve().relative_to(root.resolve()))],
         "sourceHashes": {**actual, "layoutOverridesSha256": new_layout_hash},

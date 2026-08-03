@@ -41,5 +41,46 @@
     { "persistId": "a7-constraints", "reason": "constraint" },
     { "persistId": "a7-verify", "reason": "compact-answer" }
   ],
-  "overrides": {}
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      { "id": "SSS-C1-CASE05:student:t1:t1-problem", "persistId": "t1-problem", "pageId": "student-mission-01", "taskId": 1, "label": "Crop-system problem", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t1:t1-information", "persistId": "t1-information", "pageId": "student-mission-01", "taskId": 1, "label": "Needed engineering information", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t2:t2-why", "persistId": "t2-why", "pageId": "student-mission-01", "taskId": 2, "label": "Observation-versus-interpretation explanation", "minPx": 28, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t7:t7-need", "persistId": "t7-need", "pageId": "student-mission-04", "taskId": 7, "label": "Engineering problem statement", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t7:t7-verify", "persistId": "t7-verify", "pageId": "student-mission-04", "taskId": 7, "label": "Success-verification evidence", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t8:t8-immediate", "persistId": "t8-immediate", "pageId": "student-mission-04", "taskId": 8, "label": "Immediate operational response", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t8:t8-durable", "persistId": "t8-durable", "pageId": "student-mission-04", "taskId": 8, "label": "Durable engineering response", "minPx": 32, "maxPx": 900 },
+      { "id": "SSS-C1-CASE05:student:t8:t8-justify", "persistId": "t8-justify", "pageId": "student-mission-04", "taskId": 8, "label": "Evidence-based verification plan", "minPx": 64, "maxPx": 900 }
+    ],
+    "lockedAreas": [
+      { "persistId": "student-name", "reason": "identity" },
+      { "persistId": "student-date", "reason": "identity" },
+      { "persistId": "student-class", "reason": "identity" },
+      { "persistId": "t2-1", "reason": "classification" },
+      { "persistId": "t2-2", "reason": "classification" },
+      { "persistId": "t2-3", "reason": "classification" },
+      { "persistId": "t3-crew", "reason": "table-cell" },
+      { "persistId": "t3-sensors", "reason": "table-cell" },
+      { "persistId": "t3-plants", "reason": "table-cell" },
+      { "persistId": "t3-logs", "reason": "table-cell" },
+      { "persistId": "t4-gravity", "reason": "table-cell" },
+      { "persistId": "t4-minerals", "reason": "table-cell" },
+      { "persistId": "t4-light", "reason": "table-cell" },
+      { "persistId": "t4-radiation", "reason": "table-cell" },
+      { "persistId": "t5-2", "reason": "fixed-organizer" },
+      { "persistId": "t5-3", "reason": "fixed-organizer" },
+      { "persistId": "t5-4", "reason": "fixed-organizer" },
+      { "persistId": "t5-5", "reason": "fixed-organizer" },
+      { "persistId": "t5-6", "reason": "fixed-organizer" },
+      { "persistId": "t5-7", "reason": "fixed-organizer" },
+      { "persistId": "t6c", "reason": "cer" },
+      { "persistId": "t6e", "reason": "cer" },
+      { "persistId": "t6r", "reason": "cer" },
+      { "persistId": "t7-criteria", "reason": "criterion" },
+      { "persistId": "t7-constraints", "reason": "constraint" }
+    ],
+    "overrides": {}
+  }
 }

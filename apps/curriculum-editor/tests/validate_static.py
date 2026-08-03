@@ -31,6 +31,13 @@ EXPECTED = {
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
     "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
 }
+STUDENT_LAYOUT_COUNTS = {
+    "SSS-C1-CASE01": (9, 28),
+    "SSS-C1-CASE02": (9, 23),
+    "SSS-C1-CASE03": (6, 15),
+    "SSS-C1-CASE04": (5, 21),
+    "SSS-C1-CASE05": (8, 25),
+}
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
     "SSS-C1-CASE01": {"student": "35560b98c86466c46ce4e3e695aa75b9158def2b46541ca99f8827616b35ec91", "teacher": "a280497aa8ec49e0ddfb55f3de1681b05f00ff62d158985aa7dd1d62d980f62f", "answer": "7dbaefd95a824dd4529ee4ad547604c1f2e9eada01350224103cbc050bbc5da0"},
@@ -302,6 +309,9 @@ def main() -> int:
             paths["icons"] = ROOT / package["shell"]["icons"]
         results.check(f"{case_id} all package-controlled sources exist", all(path.is_file() for path in paths.values()), paths)
         results.check(f"{case_id} source hashes verify", all(sha256(path) == package["sourceHashes"][name] for name, path in paths.items()))
+        layout_data = load_json(paths["layoutOverrides"])
+        results.check(f"{case_id} Student response-area audit has exact eligible/locked coverage", (len(layout_data["student"]["areas"]), len(layout_data["student"]["lockedAreas"])) == STUDENT_LAYOUT_COUNTS[case_id])
+        results.check(f"{case_id} real Student and Accessible override maps remain empty", layout_data["student"]["overrides"] == layout_data["overrides"] == {})
 
         content = paths["content"].read_text(encoding="utf-8")
         identity_sources = "\n".join(path.read_text(encoding="utf-8", errors="ignore") for path in paths.values())
@@ -556,14 +566,14 @@ def main() -> int:
     results.check("central and portable runtimes preserve grayscale as Boolean presentation state", "state.grayscale" in runtime and "state.grayscale" in portable and 'classList.toggle("grayscale", state.grayscale)' in runtime and 'classList.toggle("grayscale", state.grayscale)' in portable)
     results.check("isolated print paths exclude chrome and page shadow", all(token in runtime and token in portable for token in ["preparePrintFrame", "print-document", "box-shadow:none!important"]))
     resize_runtime = (APP / "vertical-resize.js").read_text(encoding="utf-8")
-    results.check("vertical resizing is restricted to explicit Accessible eligibility metadata", all(token in runtime + resize_runtime for token in ["layoutOverrides", 'manifest.edition !== "accessible"', 'page.dataset.role !== "accessible"']))
-    results.check("CER receives independent UI-level resize protection", 'node.closest(\'[class*="cer"],[data-cer-contract]\')' in resize_runtime)
+    results.check("vertical resizing is restricted to explicit Student/Accessible eligibility metadata", all(token in runtime + resize_runtime for token in ["layoutOverrides", 'activeEdition = "accessible"', "rootManifest.student", "page.dataset.role !== edition"]))
+    results.check("CER receives independent UI-level resize protection", "const cerSelector" in resize_runtime and "node.closest(cerSelector)" in resize_runtime)
     results.check("ordinary exports omit authoring controls and unapproved draft heights", "sanitizeClone" in runtime + resize_runtime and "data-layout-resize-ui" in resize_runtime)
 
     structure = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_canonical_case_structure.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("canonical case-structure validator passes", structure.returncode == 0, (structure.stdout + structure.stderr).strip())
     layout_validation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_layout_overrides.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
+    results.check("Student/Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
     service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("source-persistence security and round-trip tests pass", service_tests.returncode == 0, (service_tests.stdout + service_tests.stderr).strip())
     tracked_candidates = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=ROOT, text=True, capture_output=True, check=True).stdout.splitlines()

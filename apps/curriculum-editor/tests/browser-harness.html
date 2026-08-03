@@ -6,6 +6,7 @@
   <pre id="results">RUNNING</pre>
   <iframe id="editorFrame" title="Curriculum editor under test" width="1440" height="1200"></iframe>
   <script type="module">
+    import { createVerticalResizeController } from "../vertical-resize.js";
     const assertions = [];
     const javascriptErrors = [];
     const check = (name, condition, detail = "") => assertions.push({ name, pass: Boolean(condition), detail: String(detail) });
@@ -262,8 +263,9 @@
 
       frame.width = "1440";
       await wait(120);
-      const eligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15 };
-      for (const [caseId, expectedEligible] of Object.entries(eligibleCounts)) {
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8 };
+      for (const [caseId, expectedAccessible] of Object.entries(accessibleEligibleCounts)) {
         await api.selectCase(caseId);
         await wait(80);
         api = win.__curriculumEditor;
@@ -275,8 +277,8 @@
         api.saveState({ editMode: true });
         await wait(50);
         const areas = api.layout.getAreas();
-        const handles = Array.from(workspace.querySelectorAll('[data-layout-resize-ui="handle"]'));
-        check(`${caseId} exposes exactly its explicit eligible Accessible resize areas`, areas.length === expectedEligible && handles.length === expectedEligible, JSON.stringify({ areas: areas.length, handles: handles.length }));
+        const accessibleHandles = Array.from(workspace.querySelectorAll('.page[data-role="accessible"] [data-layout-resize-ui="handle"]'));
+        check(`${caseId} exposes exactly its explicit eligible Accessible resize areas`, areas.length === expectedAccessible && accessibleHandles.length === expectedAccessible, JSON.stringify({ areas: areas.length, handles: accessibleHandles.length }));
         const invalidDefaults = areas.flatMap(area => {
           const node = workspace.querySelector(`[data-layout-resizable="${CSS.escape(area.id)}"]`);
           if (node?.dataset.layoutValidation !== "invalid") return [];
@@ -286,18 +288,24 @@
           return [{ id: area.id, page: page.dataset.pageId, pageOverflow: page.classList.contains("has-overflow"), frame: [pageFrame.scrollHeight, pageFrame.clientHeight], nodeBottom: rounded(node.getBoundingClientRect().bottom), footerTop: rounded(footer?.getBoundingClientRect().top) }];
         });
         check(`${caseId} source-default resize areas do not start in an invalid state`, invalidDefaults.length === 0, JSON.stringify(invalidDefaults));
-        check(`${caseId} gives CER no resize handle`, !workspace.querySelector('[class*="cer"] [data-layout-resize-ui],[data-cer-contract] [data-layout-resize-ui]'));
-        check(`${caseId} resize handles are visible only in Accessible Edit Text mode`, handles.length > 0 && handles.every(handle => win.getComputedStyle(handle).display === "block"));
+        check(`${caseId} gives CER no resize handle`, !workspace.querySelector('[data-cer-contract] [data-layout-resize-ui],.canonical-cer [data-layout-resize-ui],.cer-stack [data-layout-resize-ui]'));
+        check(`${caseId} Accessible resize handles are visible in Accessible Edit Text mode`, accessibleHandles.length > 0 && accessibleHandles.every(handle => win.getComputedStyle(handle).display === "block"));
         check(`${caseId} shows only a compact collapsed layout bar in Accessible Edit Text mode with no pending changes`, !doc.querySelector("#layoutChangesPanel").hidden && doc.querySelector("#layoutPanelContent").hidden && doc.querySelector("#layoutPanelToggle").getAttribute("aria-expanded") === "false");
         api.setRole("student");
         await wait(20);
-        check(`${caseId} Student edition cannot expose resize handles or the Accessible layout panel`, handles.every(handle => win.getComputedStyle(handle).display === "none") && doc.querySelector("#layoutChangesPanel").hidden);
+        const studentAreas = api.layout.getAreas();
+        const studentHandles = Array.from(workspace.querySelectorAll('.page[data-role="student"] [data-layout-resize-ui="handle"]'));
+        check(`${caseId} exposes exactly its audited eligible Student resize areas`, studentAreas.length === studentEligibleCounts[caseId] && studentHandles.length === studentEligibleCounts[caseId], JSON.stringify({ areas: studentAreas.length, handles: studentHandles.length }));
+        const invalidStudentDefaults = studentAreas.filter(area => workspace.querySelector(`[data-layout-resizable="${CSS.escape(area.id)}"]`)?.dataset.layoutValidation === "invalid").map(area => ({ id: area.id, sourceHeightPx: area.sourceHeightPx, minPx: area.minPx, maxPx: area.maxPx }));
+        check(`${caseId} Student source-default resize areas start inside declared bounds and page safety`, invalidStudentDefaults.length === 0, JSON.stringify(invalidStudentDefaults));
+        check(`${caseId} Student handles appear only in Student Edit Text mode`, studentHandles.every(handle => win.getComputedStyle(handle).display === "block") && accessibleHandles.every(handle => win.getComputedStyle(handle).display === "none") && !doc.querySelector("#layoutChangesPanel").hidden);
+        check(`${caseId} Student CER remains handle-free`, !workspace.querySelector('.page[data-role="student"] [data-cer-contract] [data-layout-resize-ui],.page[data-role="student"] .canonical-cer [data-layout-resize-ui],.page[data-role="student"] .cer-stack [data-layout-resize-ui]'));
         api.setRole("teacher");
         await wait(20);
-        check(`${caseId} Teacher edition cannot expose resize handles`, handles.every(handle => win.getComputedStyle(handle).display === "none"));
+        check(`${caseId} Teacher edition cannot expose resize handles`, [...accessibleHandles, ...studentHandles].every(handle => win.getComputedStyle(handle).display === "none") && doc.querySelector("#layoutChangesPanel").hidden);
         api.setRole("answer");
         await wait(20);
-        check(`${caseId} Answer Key cannot expose resize handles`, handles.every(handle => win.getComputedStyle(handle).display === "none"));
+        check(`${caseId} Answer Key cannot expose resize handles`, [...accessibleHandles, ...studentHandles].every(handle => win.getComputedStyle(handle).display === "none") && doc.querySelector("#layoutChangesPanel").hidden);
       }
 
       await api.selectCase("SSS-C1-CASE03");
@@ -386,6 +394,98 @@
       check("page-overflow changes identify the area and approximate excess and are blocked from Apply to Source", layout.getPending()[area.id]?.status === "invalid" && layout.getPending()[area.id]?.message.includes(area.label) && /approximately \d+px/.test(layout.getPending()[area.id]?.message) && doc.querySelector("#layoutApply").disabled, JSON.stringify(layout.getPending()[area.id]));
       layout.resetPage(area.pageId);
       check("Reset Page clears all pending changes on the active page", !Object.values(layout.getPending()).some(item => item.id === area.id));
+
+      api.setRole("student");
+      await wait(40);
+      const studentArea = layout.getAreas().find(item => item.sourceHeightPx >= item.minPx + 12) || layout.getAreas()[0];
+      const studentNode = workspace.querySelector(`[data-layout-resizable="${CSS.escape(studentArea.id)}"]`);
+      const studentHandle = studentNode.querySelector('[data-layout-resize-ui="handle"]');
+      const studentPageCount = workspace.querySelectorAll('.page[data-role="student"]').length;
+      const studentWidth = studentNode.getBoundingClientRect().width;
+      studentHandle.dispatchEvent(new win.KeyboardEvent("keydown", { key: "ArrowUp", bubbles: true }));
+      await wait(30);
+      let studentPending = layout.getPending()[studentArea.id];
+      check("Student keyboard resizing changes only vertical height on the 4px grid", studentPending?.heightPx === snapPxForTest(studentArea.sourceHeightPx - 4) && Math.abs(studentNode.getBoundingClientRect().width - studentWidth) <= .1 && studentPending.heightPx % 4 === 0, JSON.stringify(studentPending));
+      layout.undo();
+      check("Student layout Undo restores its canonical height", !layout.getPending()[studentArea.id]);
+      layout.redo();
+      check("Student layout Redo restores its pending height", Boolean(layout.getPending()[studentArea.id]));
+      layout.resetArea(studentArea.id);
+      layout.resizeByPointer(studentArea.id, -24, .75);
+      check("Student pointer resizing at 75% converts screen movement to snapped source pixels", layout.getPending()[studentArea.id]?.heightPx === snapPxForTest(studentArea.sourceHeightPx - 32), JSON.stringify(layout.getPending()[studentArea.id]));
+      layout.resetArea(studentArea.id);
+      layout.setHeight(studentArea.id, studentArea.sourceHeightPx + 16);
+      await wait(30);
+      studentPending = layout.getPending()[studentArea.id];
+      const studentRoleExport = api.serializeRoleHTML("student");
+      const studentEditableExport = api.serializePortableHTML();
+      check("Student pending heights and authoring controls stay out of ordinary exports", !studentRoleExport.includes("data-layout-resize-ui") && !studentEditableExport.includes("data-layout-resize-ui") && !studentRoleExport.includes(`data-layout-height-active=\"${studentPending.heightPx}\"`) && !studentEditableExport.includes(`data-layout-height-active=\"${studentPending.heightPx}\"`));
+      check("Student resizing preserves fixed geometry, page assignment, and pagination", workspace.querySelectorAll('.page[data-role="student"]').length === studentPageCount && dimensions(workspace.querySelector('.page[data-role="student"]')).every((value, index) => Math.abs(value - [816, 1056][index]) <= .1) && studentNode.closest(".page").dataset.pageId === studentArea.pageId);
+      const studentDraftKey = layout.getDraftKey();
+      check("Student browser drafts are isolated by repository, case, edition, and source hashes", Boolean(studentDraftKey?.includes(context.repositoryId) && studentDraftKey.includes(pkg.id) && studentDraftKey.includes(":student:") && [pkg.sourceHashes.content, pkg.sourceHashes.presentation, pkg.sourceHashes.layoutOverrides].every(hash => studentDraftKey.includes(hash))), studentDraftKey);
+      api.setRole("accessible");
+      await wait(20);
+      check("Student pending changes do not enter the Accessible draft", !layout.getPending()[studentArea.id] && layout.getDraftKey().includes(":accessible:"));
+      api.setRole("student");
+      await wait(20);
+      check("Student pending changes return only with the Student edition", layout.getPending()[studentArea.id]?.heightPx === studentPending.heightPx);
+      layout.setHeight(studentArea.id, studentArea.maxPx);
+      await wait(30);
+      check("Student page overflow identifies the responsible area and blocks source apply", layout.getPending()[studentArea.id]?.status === "invalid" && layout.getPending()[studentArea.id]?.message.includes(studentArea.label) && /approximately \d+px/.test(layout.getPending()[studentArea.id]?.message) && doc.querySelector("#layoutApply").disabled, JSON.stringify(layout.getPending()[studentArea.id]));
+      layout.resetPage(studentArea.pageId);
+      check("Student Reset Page clears pending changes only on its active page", !Object.values(layout.getPending()).some(item => item.pageId === studentArea.pageId));
+      api.setRole("accessible");
+      await wait(20);
+
+      const fixturePanel = document.importNode(doc.querySelector("#layoutChangesPanel"), true);
+      fixturePanel.removeAttribute("id");
+      document.body.append(fixturePanel);
+      const fixtureDialog = document.createElement("dialog");
+      fixtureDialog.id = "layoutApplyDialog";
+      fixtureDialog.innerHTML = '<ol id="layoutApplyPreview"></ol><button id="layoutApplyConfirm"></button><button id="layoutApplyCancel"></button>';
+      document.body.append(fixtureDialog);
+      const fixtureDocument = document.createElement("div");
+      fixtureDocument.className = "worksheet-document edit-mode";
+      fixtureDocument.dataset.role = "student";
+      const fixtureWorkspace = document.createElement("main");
+      fixtureWorkspace.innerHTML = '<section class="page" data-page-id="student-1" data-role="student" style="display:block;width:816px;height:1056px"><div class="page-frame" style="height:960px"><h2 data-task-id="2">Task 2</h2><div data-persist-id="fixture-student" data-response style="height:80px"></div><footer style="position:absolute;top:900px">Footer</footer></div></section>';
+      fixtureDocument.append(fixtureWorkspace);
+      document.body.append(fixtureDocument);
+      const fixtureManifest = {
+        schemaVersion: 1,
+        caseId: "FIXTURE-STUDENT",
+        edition: "accessible",
+        stepPx: 4,
+        areas: [],
+        lockedAreas: [],
+        overrides: {},
+        student: {
+          edition: "student",
+          areas: [{ id: "FIXTURE-STUDENT:student:t2:fixture-student", persistId: "fixture-student", pageId: "student-1", taskId: 2, label: "Fixture Student response", minPx: 32, maxPx: 400 }],
+          lockedAreas: [],
+          overrides: { "FIXTURE-STUDENT:student:t2:fixture-student": { heightPx: 120, sourceHeightPx: 80 } }
+        }
+      };
+      const fixtureController = await createVerticalResizeController({
+        package: { id: "FIXTURE-STUDENT", sourceHashes: { content: "a".repeat(64), presentation: "b".repeat(64), layoutOverrides: "c".repeat(64) } },
+        manifest: fixtureManifest,
+        workspace: fixtureWorkspace,
+        worksheetDocument: fixtureDocument,
+        checkOverflow: () => 0,
+        panel: fixturePanel,
+        reloadCase: async () => {}
+      });
+      fixtureController.syncVisibility("student", true);
+      fixtureController.setHeight("FIXTURE-STUDENT:student:t2:fixture-student", 140);
+      const fixtureExport = fixtureWorkspace.cloneNode(true);
+      fixtureController.sanitizeClone(fixtureExport);
+      const fixtureExportResponse = fixtureExport.querySelector('[data-persist-id="fixture-student"]');
+      check("disposable Student fixture exports the approved canonical height after reload and excludes its draft-only height and authoring UI", fixtureExportResponse.dataset.layoutHeightActive === "120" && fixtureExportResponse.style.height === "120px" && !fixtureExport.querySelector('[data-layout-resize-ui]') && !fixtureExport.innerHTML.includes('data-layout-height-active="140"'), fixtureExportResponse.outerHTML);
+      localStorage.removeItem(fixtureController.getDraftKey());
+      fixtureController.destroy();
+      fixtureDocument.remove();
+      fixturePanel.remove();
+      fixtureDialog.remove();
 
       const staleKey = `layout-resize:v1:${context.repositoryId}:${pkg.id}:accessible:${"a".repeat(64)}:${"b".repeat(64)}:${"c".repeat(64)}`;
       localStorage.setItem(staleKey, JSON.stringify({ schemaVersion: 1, repositoryId: context.repositoryId, caseId: pkg.id, edition: "accessible", sourceHashes: { contentSha256: "a".repeat(64), presentationSha256: "b".repeat(64), layoutOverridesSha256: "c".repeat(64) }, changes: [] }));
