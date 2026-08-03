@@ -11,6 +11,17 @@
   const safeSet = (key, value) => { try { localStorage.setItem(key, value); return true; } catch { return false; } };
   const safeRemove = key => { try { localStorage.removeItem(key); } catch { /* recovery storage is optional */ } };
   const safeJson = (value, fallback) => { try { return value ? JSON.parse(value) : fallback; } catch { return fallback; } };
+  const continuationRoleLabels = {
+    student: "Student Mission · Continued",
+    teacher: "Teacher Guide · Continued",
+    answer: "Answer Key · Continued",
+    accessible: "Accessible Mission · Continued"
+  };
+  for (const page of $$('.page[data-role] [data-page-identity="continuation"]')) {
+    const role = page.closest('.page[data-role]')?.dataset.role;
+    const label = page.querySelector('.continuation-role');
+    if (label && continuationRoleLabels[role]) label.textContent = continuationRoleLabels[role];
+  }
   const baseline = new Map($$("[data-persist-id]").map(node => [node.dataset.persistId, node.matches("input,textarea,select") ? { value: node.value } : { html: node.innerHTML }]));
   let contentState = safeJson(safeGet(contentKey), {});
   let state = {

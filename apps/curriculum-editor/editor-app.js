@@ -13,6 +13,12 @@ const ROLE_LABELS = {
   accessible: "Accessible",
   all: "All Pages"
 };
+const CONTINUATION_ROLE_LABELS = {
+  student: "Student Mission · Continued",
+  teacher: "Teacher Guide · Continued",
+  answer: "Answer Key · Continued",
+  accessible: "Accessible Mission · Continued"
+};
 const PRINT_DOCUMENT_CSS = `
 html,body{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
 body.print-document{display:block!important;min-height:0!important;background:#fff!important}
@@ -302,6 +308,14 @@ function createTaskHeading(task) {
   return heading;
 }
 
+function normalizeContinuationLabels(root) {
+  for (const page of $$('.page[data-role] [data-page-identity="continuation"]', root)) {
+    const role = page.closest('.page[data-role]')?.dataset.role;
+    const label = page.querySelector('.continuation-role');
+    if (label && CONTINUATION_ROLE_LABELS[role]) label.textContent = CONTINUATION_ROLE_LABELS[role];
+  }
+}
+
 function prepareContent(contentText) {
   const template = document.createElement("template");
   template.innerHTML = contentText.trim();
@@ -322,6 +336,7 @@ function prepareContent(contentText) {
   }
   const packageMain = template.content.querySelector("main");
   if (!packageMain) throw new Error("Instructional content is missing its main worksheet landmark.");
+  normalizeContinuationLabels(packageMain);
   elements.workspace.innerHTML = packageMain.innerHTML;
   const persistNodes = $$("[data-persist-id]", elements.workspace);
   const ids = persistNodes.map(node => node.dataset.persistId);
