@@ -30,6 +30,7 @@ EXPECTED = {
     "SSS-C1-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
     "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
+    "SSS-C1-CASE06": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -37,6 +38,7 @@ STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE03": (6, 15),
     "SSS-C1-CASE04": (5, 21),
     "SSS-C1-CASE05": (8, 25),
+    "SSS-C1-CASE06": (8, 25),
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
@@ -45,6 +47,7 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     "SSS-C1-CASE03": {"student": "0690d461f44e50a5f9ce2b1fd600b89324e1d3931bcf20024a0d110d5510b646", "teacher": "175f1623d60f1243cd119086547e4e8cc866ce6d3e9fac620ad1e3377609aba9", "answer": "01b4fb194cdaeb29b2bdb0dda87b0edc869016b354e90876a1722b337a858ef2"},
     "SSS-C1-CASE04": {"student": "8fec5960a5e193cc6cbe963a060061f0f87aae9fd4f153a34c5ba831400e8239", "teacher": "97ea94a7200cabc057c5df0e23c47dd9f0dbd2eb82cc5aa5e25f66deea67b648", "answer": "48f8a053a17fe1230477e121fdec67f8b6dbf0dc5d30aaa0575e4469757a5d8a"},
     "SSS-C1-CASE05": {"student": "d17cf55212afb64e7425c217c352f7a8d0d60f385240cd3c865dda1e2a025b4a", "teacher": "40ce5700fe2d1126797a5035a6f5f0070b9ab19961bb31e53a34e71f7d0b0a23", "answer": "8adb307362cd6668db5a9f636c463789c416065bfff5ac1835ca35ca970843e1"},
+    "SSS-C1-CASE06": {"student": "7e61519aed65b680e9ee4046d2751b1aa4f81f1268a620adb226602f15e55e3e", "teacher": "5882a8c5860cf3f60a1a66d090b0e47eaf1a2371c19c5148e795db304d753509", "answer": "8f1dd12b54269b26f38a10b3113e76c90e9f68e0d9db8b6ac2c248b02f207fa2"},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -65,6 +68,16 @@ CASE05_TASK_TITLES = [
     "Explain the Diagnosis with CER",
     "Define the Engineering Design Problem",
     "Recommend Immediate and Durable Responses",
+]
+CASE06_TASK_TITLES = [
+    "Predict What Changed at Docking",
+    "Separate Observation from Interpretation",
+    "Connect the Four Evidence Sources",
+    "Model the Broken Coordination System",
+    "Compare and Reject Competing Diagnoses",
+    "Recommend a Monitored Signal-Safe Response",
+    "Explain the Diagnosis with CER",
+    "Transfer the Systems Reasoning",
 ]
 LEGACY_SELF_STYLED_CASES = {"SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"}
 PROTECTED_SELECTOR_PATTERNS = {
@@ -288,7 +301,7 @@ def main() -> int:
     results.check("printable production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", {"status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"}.issubset(forbidden_probe_categories), sorted(forbidden_probe_categories))
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
-    results.check("registry discovers exactly Cases 01–05 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    results.check("registry discovers exactly Cases 01–06 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
     base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
     results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
 
@@ -587,6 +600,63 @@ def main() -> int:
             results.check("Case 05 continuation identity count and structure are exact", len(continuation_headers) == sum(counts.values()) - len(ROLES) and all(header.select_one(".continuation-copy > h1") and header.select_one(".continuation-identity > .institution") for header in continuation_headers), len(continuation_headers))
             cer_contracts = {root.get("data-cer-contract"): [box.select_one(":scope > .canonical-cer-label").get_text(strip=True) for box in root.select(":scope > .canonical-cer-box")] for root in soup.select(".canonical-cer[data-cer-contract]")}
             results.check("Case 05 CER uses the three shared atomic contracts", cer_contracts == {"student-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "answer-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "accessible-v1.0": ["CLAIM", "EVIDENCE", "REASONING"]}, cer_contracts)
+
+        if case_id == "SSS-C1-CASE06":
+            task_titles = [task["title"] for task in registry_data["tasks"]]
+            results.check("Case 06 registry records the owner gate and frozen game baseline", registry_data.get("status") == "OWNER_GATE_OPEN" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "NOT_READY_TO_MERGE" and registry_data.get("gameCommit") == "d723fb9b8085905a6048575a2cb3bb0fce1d312b" and package.get("approval", {}).get("printStatus") == "NOT_RUN")
+            results.check("Case 06 task registry uses the eight design-locked titles", task_titles == CASE06_TASK_TITLES, task_titles)
+            role_task_orders = {
+                role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]
+                for role in ["student", "answer", "accessible"]
+            }
+            results.check("Case 06 Student, Answer Key, and Accessible task order has exact parity", all(order == expected_task_numbers for order in role_task_orders.values()), role_task_orders)
+            expected_page_ids = {
+                "student": [f"student-mission-{index:02d}" for index in range(1, 6)],
+                "teacher": [f"teacher-guide-{index:02d}" for index in range(1, 9)],
+                "answer": [f"answer-key-{index:02d}" for index in range(1, 6)],
+                "accessible": [f"accessible-mission-{index:02d}" for index in range(1, 8)],
+            }
+            actual_page_ids = {role: [page.get("data-page-id") for page in soup.select(f'.page[data-role="{role}"]')] for role in ROLES}
+            results.check("Case 06 page IDs preserve role and Accessible reading order", actual_page_ids == expected_page_ids, actual_page_ids)
+
+            required_clues = ["SYMBIOSIS_BROKEN", "HUMAN_SCRUBBERS_ACTIVE", "NETWORK_DORMANT", "VOC_SIGNALING"]
+            required_routes = ["crew.start->symbiosis_detail", "sensors.start->atmosphere", "plants.start->network", "logs.start->network_comm"]
+            results.check("Case 06 retains the four audited clues internally and omits clue IDs from printable content", registry_data.get("formalClues") == required_clues and all(clue not in content for clue in required_clues))
+            results.check("Case 06 retains exactly the four audited evidence routes", registry_data.get("requiredRoutes") == required_routes, registry_data.get("requiredRoutes"))
+            alternatives = ["physical docking damage", "atmospheric drift during the journey", "incompatibility among the three organisms"]
+            results.check("Case 06 preserves one correct diagnosis and the three audited distractors", registry_data.get("correctDiagnosis") == "human atmospheric processing filtered the volatile signal compounds, triggering network dormancy and loss of symbiosis coordination" and registry_data.get("incorrectAlternatives") == alternatives)
+            timing = registry_data.get("timingLedger", {})
+            results.check("Case 06 timing ledger proves docking precedes the last signal by 0.3 hours or 18 minutes", timing.get("dockingHoursAgo") > timing.get("lastSignalHoursAgo") and round(timing.get("dockingHoursAgo") - timing.get("lastSignalHoursAgo"), 1) == timing.get("differenceHours") == 0.3 and timing.get("differenceMinutes") == 18)
+            results.check("Case 06 printable evidence preserves the corrected timing and causation qualification", all(term in content for term in ["72.4 hours ago", "72.1 hours ago", "18 minutes", "correlation alone does not prove", "Timing supports this sequence but does not prove the cause"]))
+
+            learner_text = " ".join(page.get_text(" ", strip=True) for page in soup.select('.page[data-role="student"],.page[data-role="accessible"]'))
+            teacher_text = " ".join(page.get_text(" ", strip=True) for page in soup.select('.page[data-role="teacher"]'))
+            results.check("Case 06 learner pages keep the Earth analogy and audit vocabulary out of the assessed evidence", not re.search(r"mother trees?|wood wide web|forest-wide|superorganism|biological networks? as an internet|source classification|audit terminology", learner_text, re.I))
+            results.check("Case 06 Teacher Guide preserves qualified science and fiction categories", all(term in teacher_text for term in ["Established Earth science", "Debated or context-dependent Earth interpretation", "Plausible engineering extrapolation", "Fictional alien biology and measurement", "Curriculum-created model", "Alien evidence cannot serve as empirical proof about Earth ecosystems"]))
+            results.check("Case 06 uses the corrected NASA system source and EPA adsorption qualification", "https://ntrs.nasa.gov/citations/20170005170" in teacher_text and "NASA/TP-2017-218235" in teacher_text and "https://www.epa.gov/air-emissions-monitoring-knowledge-base/monitoring-control-technique-activated-carbon-adsorber" in teacher_text and all(term in teacher_text for term in ["finite capacity", "breakthrough", "compound properties", "flow", "temperature", "moisture"]))
+            results.check("Case 06 rejects blanket life-support disablement and requires monitored selective treatment", all(term in content for term in ["Do not accept blanket disablement", "pressure, breathable gas, and contaminant control", "monitored", "reversible", "selectively preserve"]))
+            results.check("Case 06 keeps Case 07 evidence and resolution outside learner tasks", "GERMINATION-CASCADE" not in content and "alien2" not in content and not re.search(r"germination[- ]pod|network-derived germination|germination compound", learner_text, re.I) and "Do not introduce germination-pod evidence" in teacher_text)
+
+            first_pages = [soup.select_one(f'.page[data-role="{role}"]') for role in ROLES]
+            title_blocks = [page.select_one('.mission-title-block[data-header-contract="printable-v1.1"]') for page in first_pages]
+            results.check("Case 06 title blocks use the audited location and canonical SAA identity", all(title and title.select_one(".hero-title").get_text(strip=True) == "First Contact Protocol" and title.select_one(".mission-subtitle").get_text(strip=True) == "Campaign 1 · Case 06 · Zhel'ora Botanical Vessel" and title.select_one('img.saa-insignia[alt="Solar Agricultural Agency insignia"]') for title in title_blocks))
+            learner_first_pages = {role: soup.select_one(f'.page[data-role="{role}"]') for role in ["student", "accessible"]}
+            expected_fields = {"student": ["student-name", "student-date", "student-class"], "accessible": ["a-name", "a-date", "a-class"]}
+            id_contracts = {}
+            for role, page in learner_first_pages.items():
+                row = page.select_one(".student-id") if page else None
+                fields = row.select(":scope > .id-field") if row else []
+                id_contracts[role] = bool(row and row.parent.select_one(":scope > :first-child") is row and [field.select_one(":scope > strong").get_text(strip=True) for field in fields] == ["Name", "Date", "Period"] and [field.select_one(":scope > span").get("data-field") for field in fields] == expected_fields[role])
+            results.check("Case 06 Student and Accessible identification rows use the shared contract", all(id_contracts.values()), id_contracts)
+            cer_contracts = {root.get("data-cer-contract"): [box.select_one(":scope > .canonical-cer-label").get_text(strip=True) for box in root.select(":scope > .canonical-cer-box")] for root in soup.select(".canonical-cer[data-cer-contract]")}
+            results.check("Case 06 CER uses the three shared atomic contracts", cer_contracts == {"student-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "answer-v1.0": ["CLAIM", "EVIDENCE", "REASONING"], "accessible-v1.0": ["CLAIM", "EVIDENCE", "REASONING"]}, cer_contracts)
+            student_cer_page = soup.select_one('.page[data-role="student"]:has([data-cer-contract="student-v1.0"])')
+            student_cer_subtitle = student_cer_page.select_one('[data-student-cer-subtitle="canonical-v1.0"]') if student_cer_page else None
+            results.check("Case 06 Student CER occupies a dedicated page with the exact subtitle", bool(student_cer_page and [node.get("data-shell-task-heading") for node in student_cer_page.select("[data-shell-task-heading]")] == ["7"] and student_cer_subtitle and student_cer_subtitle.get_text(" ", strip=True) == ACCESSIBLE_CER_SUBTITLE))
+            teacher_components = ["Learning target", "Standards alignment and limitation", "Materials and preparation", "Suggested pacing", "Evidence checkpoints", "Discussion guidance", "Likely misconceptions", "Accessibility and differentiation guidance", "Science and fiction distinctions", "Intervention caution", "Independent assessment guidance", "Science-source ledger"]
+            results.check("Case 06 Teacher Guide includes all required instructional metadata", all(term in teacher_text for term in teacher_components), [term for term in teacher_components if term not in teacher_text])
+            answer_pages = soup.select('.page[data-role="answer"]')
+            results.check("Case 06 Answer Key provides a completed exemplar for every task", all(page.get_text(" ", strip=True) for page in answer_pages) and role_task_orders["answer"] == expected_task_numbers and all(term in " ".join(page.get_text(" ", strip=True) for page in answer_pages) for term in ["Initial prediction", "Why the distinction matters", "Completed exemplar", "Best supported", "Recommendation", "CLAIM", "EVIDENCE", "REASONING", "Independent exit response"]))
 
     runtime = (APP / "editor-app.js").read_text(encoding="utf-8")
     portable = (APP / "portable-runtime.js").read_text(encoding="utf-8")

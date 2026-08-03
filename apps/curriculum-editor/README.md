@@ -1,8 +1,8 @@
 # SSS/HHH Curriculum Editor
 
-The repository-local Curriculum Editor is the canonical interface for the currently registered and released SSS Campaign 1 Cases 01–05. It discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
+The repository-local Curriculum Editor is the canonical interface for the currently registered SSS Campaign 1 Cases 01–06. Cases 01–05 are released; Case 06 is an unreleased owner-gate validation build. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`) and the Campaign 1 culmination. The editor must not receive placeholder folders or registry entries for Cases 06–07; each is added only when its canonical package is implemented through the approved production workflow.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`) and the Campaign 1 culmination. Case 06 entered the editor only with its canonical package through the approved production workflow. The editor must not receive a placeholder folder or registry entry for Case 07.
 
 Status: mixed lifecycle; read each package/registry entry for current approval state.
 
@@ -67,6 +67,7 @@ python3 shared/validation/validate_layout_overrides.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 apps/curriculum-editor/tests/test_authoring_service.py
 python3 apps/curriculum-editor/tests/run_browser_tests.py
+python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
 
 The browser suite covers all 40 case/role/presentation states, Student and Accessible resize controls and draft isolation, 75%-scale pointer conversion, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, Accessible task density and overlap checks, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.

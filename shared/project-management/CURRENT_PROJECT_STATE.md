@@ -1,7 +1,7 @@
 # SSS/HHH Current Project State
 
 Project state content verified from curriculum repository baseline
-`b07b2f8e36871f15d14e6c012e0eb55398d43dc4`
+`2e48534b7f4be22d7cb95bc8483ad29a226a3f69`
 
 Last updated: 2026-08-03
 
@@ -23,13 +23,13 @@ Related game repositories:
 - <https://github.com/InterstellarHarvest/Hunger-Harvest-History>
 
 Verified project-state baseline:
-`b07b2f8e36871f15d14e6c012e0eb55398d43dc4`
+`2e48534b7f4be22d7cb95bc8483ad29a226a3f69`
 
 The live main branch may be newer because this handoff is itself committed after the baseline it documents. Always fetch the repository and resolve the current main SHA before beginning work.
 
-Frozen Case 06 game-source baseline: `a7a725121f261373df32a5366c70e7df73ddf8f3`
+Frozen Case 06 game-source baseline: `d723fb9b8085905a6048575a2cb3bb0fce1d312b`
 
-No production branches are intentionally active at this checkpoint.
+Active curriculum validation branch: `feat/sss-c1-case-06-first-contact-protocol`
 
 ## Approved curriculum releases
 
@@ -42,6 +42,14 @@ No production branches are intentionally active at this checkpoint.
 | SSS | 1 | 05 | Sub Surface Bunker | 1.0 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
 
 Cases 01–05 are the five released core cases and the approved production baseline. SSS Campaign 1 contains seven curriculum-sequenced cases and is not complete: Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`). Case 07 is the Campaign 1 culmination. Cases 04 and 05 were produced natively through the mature canonical workflow. All five released Accessible editions use content-driven page counts and dedicated canonical CER pages; Student, Teacher, and Answer Key page counts remain fixed.
+
+## Current validation build
+
+| Curriculum | Campaign | Case | Title | Version | Student | Teacher | Answer Key | Accessible | Status |
+|---|---:|---:|---|---:|---:|---:|---:|---:|---|
+| SSS | 1 | 06 | First Contact Protocol | 1.0 | 5 | 8 | 5 | 7 | OWNER_GATE_OPEN |
+
+Case 06 is an unreleased curriculum validation build. It has no release history and does not become `APPROVED_STABLE` until owner review and physical print acceptance are complete. The package is locked to the frozen game-source baseline above; Case 07 content and progression remain outside the build.
 
 ## Canonical case structure
 
@@ -142,17 +150,18 @@ Internal status remains in the package, registry, release history, owner-approva
 
 ## Current validation baseline
 
-Accepted validation state at current main:
+Case 06 validation-branch state:
 
 - canonical structure: PASS
-- static validation: 228/228
-- browser validation: 823/823 across all 40 case/role/presentation states
-- browser-PDF pagination validation: 122/122
-- role/presentation matrix: 40/40
-- layout contracts: Accessible 54 eligible and 86 explicitly locked response areas; Student 37 eligible and 112 explicitly locked response areas
+- static validation: 279/279
+- browser validation: 952/952 across all 48 case/role/presentation states
+- browser-PDF pagination validation: 146/146
+- role/presentation matrix: 48/48
+- layout contracts: Accessible 71 eligible and 103 explicitly locked response areas; Student 45 eligible and 137 explicitly locked response areas
 - authoring/security validation: 13/13
 - JavaScript runtime errors: 0
 - all current page counts and page-fit checks: PASS
+- Case 06 manual print-media visual inspection: 25/25 pages
 - protected printable components: PASS
 - fixed editor geometry at wide and narrow widths: PASS
 - exports and isolated printing: PASS
@@ -200,9 +209,9 @@ Conversational memory is helpful context but is not the authoritative project re
 
 SSS Campaign 1 contains seven curriculum-sequenced cases. Cases 01–05 are the released core cases. Cases 06–07 are the two first-contact bonus cases and remain unreleased.
 
-Next production target: **SSS Campaign 1 · Case 06 — First Contact Protocol** (runtime `alien1`)
+Current owner-review target: **SSS Campaign 1 · Case 06 — First Contact Protocol** (runtime `alien1`)
 
-Case 07 — **The Gift** (runtime `alien2`; source-development label `Case 6b`) follows Case 06 and is the Campaign 1 culmination. Do not begin Campaign 2 before Cases 06 and 07 are released unless the owner explicitly redirects the project. Case 06 implementation begins only in its authorized production workflow and remains governed by `SSS_CURRICULUM_BLUEPRINT_v1.0.md`; this sequencing correction does not redesign that plan.
+The Case 06 validation build is ready for owner instructional review and physical print acceptance. It is not ready to merge or release until those gates pass. Case 07 — **The Gift** (runtime `alien2`; source-development label `Case 6b`) follows Case 06 and is the Campaign 1 culmination. Do not begin Case 07 or Campaign 2 from this branch. Case 06 remains governed by `SSS_CURRICULUM_BLUEPRINT_v1.0.md`; the validation build does not redesign that plan.
 
 ## Update policy
 

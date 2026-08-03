@@ -4,11 +4,11 @@ Shared curriculum repository for **Space Sprout Sleuth (SSS)** and **Hunger, Har
 
 Canonical released core Cases 01–05: `APPROVED_STABLE`
 
-SSS Campaign 1 contains seven curriculum-sequenced cases. Cases 01–05 are the released core cases; Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`). Case 07 is the Campaign 1 culmination. Cases 06–07 are not yet implemented or registered in this repository, and Campaign 2 must not begin before both are released unless the owner explicitly redirects the project.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Cases 01–05 are the released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is registered as an `OWNER_GATE_OPEN` validation build and is not released. Case 07, **The Gift** (runtime `alien2`; source-development label `Case 6b`), remains unimplemented and is the Campaign 1 culmination. Campaign 2 must not begin before Cases 06–07 are released unless the owner explicitly redirects the project.
 
 ## Canonical production workflow
 
-The registered case package and its package-controlled files are the only active source. For the currently registered SSS Campaign 1 Cases 01–05, launch the central Curriculum Editor from the repository root:
+The registered case package and its package-controlled files are the only active source. For the currently registered SSS Campaign 1 Cases 01–06, launch the central Curriculum Editor from the repository root:
 
 ```bash
 python3 apps/curriculum-editor/serve.py

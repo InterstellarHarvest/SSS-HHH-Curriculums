@@ -126,8 +126,8 @@ def main() -> int:
         "localUntrackedArtifactsExcluded": 0,
     }
     cases = sorted(path for path in CAMPAIGN.glob("case-*") if path.is_dir())
-    if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03", "case-04", "case-05"]:
-        failures.append(f"expected exactly Cases 01–05; found {[path.name for path in cases]}")
+    if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03", "case-04", "case-05", "case-06"]:
+        failures.append(f"expected exactly Cases 01–06; found {[path.name for path in cases]}")
 
     tracked = tracked_files()
     pdfs = [path for path in tracked if path.lower().endswith(".pdf")]

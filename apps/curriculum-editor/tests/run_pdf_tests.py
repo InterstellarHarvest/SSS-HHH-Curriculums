@@ -161,7 +161,7 @@ def main() -> int:
             if server.document_error:  # type: ignore[attr-defined]
                 raise RuntimeError(server.document_error)  # type: ignore[attr-defined]
             documents = server.documents  # type: ignore[attr-defined]
-            check("PDF harness generated all 20 case-edition print documents", len(documents) == 20, len(documents))
+            check("PDF harness generated all 24 case-edition print documents", len(documents) == 24, len(documents))
 
             def render(index: int) -> Path:
                 document = documents[index]

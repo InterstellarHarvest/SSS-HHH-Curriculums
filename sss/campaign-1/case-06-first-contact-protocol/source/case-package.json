@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C1-CASE06",
+  "curriculum": "SSS",
+  "campaign": "campaign-1",
+  "title": "First Contact Protocol",
+  "subtitle": "Campaign 1 · Case 06 · Zhel'ora Botanical Vessel",
+  "location": "Zhel'ora Botanical Vessel",
+  "version": "1.0",
+  "status": "OWNER_GATE_OPEN",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_PASS",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C1-CASE06:v1.0:curriculum-editor-v2",
+  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-1/case-06-first-contact-protocol/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-1/case-06-first-contact-protocol/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-1/case-06-first-contact-protocol/source/task-registry.js",
+    "global": "SSS_CASE06_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-1/case-06-first-contact-protocol/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case06-instructional-models",
+      "type": "html-css-diagrams",
+      "selector": "[data-evidence-summary], [data-timeline-contract], [data-process-contract], [data-design-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {"documentRole": "Student Mission", "pageCount": 5},
+    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
+    "answer": {"documentRole": "Answer Key", "pageCount": 5},
+    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
+  },
+  "outputs": {
+    "complete": "SSS_C1_CASE06_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C1_CASE06_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C1_CASE06_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C1_CASE06_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C1_CASE06_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 1 Case 06 v1.0 — First Contact Protocol Curriculum Editor",
+    "loadAnnouncement": "First Contact Protocol Case 06 v1.0 owner gate package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": ["[data-evidence-summary]", "[data-timeline-contract]", "[data-process-contract]", "[data-design-contract]"],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "6f44091926e46a6b96a8924317cd0e094654d283833ee94b8071a6c9d308236d",
+    "presentation": "0ca9f75bc7a847a36fa0fa435d0c9defb827e4456df8c865883877d8f6736406",
+    "taskRegistry": "92a4bb1a0377c077d3d155d0383012950fee22d377b1425aaa0885f7cad29702",
+    "layoutOverrides": "5b3b21468632427d9c187785bc7567e81e54d841fac4fd2e5c7fc7980b7d08ec"
+  }
+}
