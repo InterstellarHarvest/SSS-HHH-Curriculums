@@ -22,8 +22,8 @@ This record implements the owner handoff for a pre-production audit only. It doe
 | Curriculum pre-audit origin/main | 7b41416b925bf78fb91cf30377e13421cb68650b |
 | Game pre-correction local main | d723fb9b8085905a6048575a2cb3bb0fce1d312b |
 | Game pre-correction origin/main | d723fb9b8085905a6048575a2cb3bb0fce1d312b |
-| Game post-correction commit | 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 |
-| Proposed frozen Case 07 game baseline | 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 |
+| Game post-correction commit | a813c209dfde00634103f74d6673e7d4433e0e63 |
+| Proposed frozen Case 07 game baseline | a813c209dfde00634103f74d6673e7d4433e0e63 |
 | Remote advancement beyond handoff | None in either repository |
 | Compatibility determination | Exact match; no baseline conflict |
 
@@ -52,6 +52,7 @@ The governing blueprint locks the Case 07 task identity as a compact Campaign 1 
 |---|---|
 | Space-Sprout-Sleuth/space_sprout_sleuth_data.js | Case 07 identity, location, briefing, four evidence sources, dialogue graph, flags, clue tags and summaries, diagnoses, hints, intervention options and scores, rank-up text, explanation, and authored victory text |
 | Space-Sprout-Sleuth/index.html | clue acquisition and prerequisite evaluation, diagnosis gate and scoring, solution-choice persistence, resume behavior, unlock rules, rank progression, final-case narrative handoff, Campaign 1 completion, and Campaign 2 unlock messaging |
+| Space-Sprout-Sleuth/campaign_2_data.js | Player-facing Campaign 2 narrative references to the Case 06–07 predecessor sequence |
 | Space-Sprout-Sleuth/tests/case07_content.test.js | deterministic content graph, reachability, science-language, arithmetic, timing, and intervention regression coverage |
 | Space-Sprout-Sleuth/tests/case07_runtime_flow.test.js | deterministic unlock, diagnosis, resume, solution persistence, victory, rank, and campaign-transition regression coverage |
 
@@ -254,6 +255,7 @@ Focused game commits:
 
 - 530758235522ce110695a23feacea065ed370d08 — Audit and correct Campaign 1 Case 07.
 - 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 — Use canonical Case 07 telemetry label.
+- a813c209dfde00634103f74d6673e7d4433e0e63 — Align Campaign 2 references with Case 07.
 
 ### space_sprout_sleuth_data.js
 
@@ -280,15 +282,19 @@ Focused game commits:
 - Preserved Campaign 1 completion and the existing game-side Campaign 2 unlock message.
 - Replaced stale 6a/6b play-log serialization with canonical Case 06/07 numbering; former Case 6b remains traceability history only.
 
+### campaign_2_data.js
+
+- Replaced three player-facing 6/6b continuity references with canonical Cases 06–07 numbering while retaining internal Case 07 node/flag aliases needed for save compatibility.
+
 ## 11. Focused game tests and results
 
 | Command | Scope | Result |
 |---|---|---|
 | node tests/case07_content.test.js | Entire Case 07 node graph, four sources, clue routes and fallbacks, diagnoses, science boundaries, formula, percentage, units, distance, timing, interventions, unrelated-case count | PASS, 210 assertions, 0 failures, 0 skips, 0 warnings |
-| node tests/case07_runtime_flow.test.js | Case 06 prerequisite, all-clue diagnosis gate, correct-diagnosis integrity, intervention persistence, resume, authored victory, final rank, campaign unlock, canonical telemetry numbering | PASS, 22 assertions, 0 failures, 0 skips, 0 warnings |
+| node tests/case07_runtime_flow.test.js | Case 06 prerequisite, all-clue diagnosis gate, correct-diagnosis integrity, intervention persistence, resume, authored victory, final rank, campaign unlock, canonical telemetry and Campaign 2 continuity numbering | PASS, 24 assertions, 0 failures, 0 skips, 0 warnings |
 | node tests/case06_timing.test.js | Existing Case 06 timing regression | PASS, 7 assertions, 0 failures, 0 skips, 0 warnings |
-| for test_file in tests/*.test.js; do node "$test_file"; done | Full established game suite | PASS, 239 assertions, 0 failures, 0 skips, 0 warnings |
-| sed -n '2316,2683p' index.html \| node --check && sed -n '2689,6586p' index.html \| node --check && node --check space_sprout_sleuth_data.js | Both inline runtime scripts and data-source syntax | PASS, 3 syntax checks, 0 failures |
+| for test_file in tests/*.test.js; do node "$test_file"; done | Full established game suite | PASS, 241 assertions, 0 failures, 0 skips, 0 warnings |
+| sed -n '2316,2683p' index.html \| node --check && sed -n '2689,6586p' index.html \| node --check && node --check space_sprout_sleuth_data.js && node --check campaign_2_data.js | Both inline runtime scripts plus Campaign 1 and Campaign 2 data-source syntax | PASS, 4 syntax checks, 0 failures |
 
 ## 12. Proposed worksheet crosswalk — planning only
 
@@ -375,4 +381,4 @@ Git path diff is the controlling preservation proof: it contains only this audit
 
 ## 15. Phase boundary
 
-**Curriculum production has not begun.** This phase creates no Case 07 directory, package manifest, worksheet content, presentation stylesheet, task registry, layout override, export, PDF, screenshot, release history, approval record, or registry entry. The next phase requires an explicit production start and should use game commit 1051ab7465831fe7f78ad0b6ac64146fd44e2c89 unless the owner approves a newer compatible baseline.
+**Curriculum production has not begun.** This phase creates no Case 07 directory, package manifest, worksheet content, presentation stylesheet, task registry, layout override, export, PDF, screenshot, release history, approval record, or registry entry. The next phase requires an explicit production start and should use game commit a813c209dfde00634103f74d6673e7d4433e0e63 unless the owner approves a newer compatible baseline.
