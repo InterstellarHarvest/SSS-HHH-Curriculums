@@ -98,6 +98,19 @@
               "packageStatus": "APPROVED",
               "approval": {"date": "2026-08-03", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
               "historyRecord": "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
+            },
+            {
+              "id": "SSS-C1-CASE07",
+              "displayOrder": 7,
+              "displayLabel": "7 - The Gift",
+              "title": "The Gift",
+              "version": "1.0",
+              "status": "OWNER_GATE_OPEN",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-1/case-07-the-gift/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "OWNER_REVIEW",
+              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_IN_PROGRESS", "printStatus": "NOT_RUN"}
             }
           ]
         }

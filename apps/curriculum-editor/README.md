@@ -1,8 +1,8 @@
 # SSS/HHH Curriculum Editor
 
-The repository-local Curriculum Editor is the canonical interface for the currently registered and released SSS Campaign 1 Cases 01–06. Cases 01–05 are the five core cases; Case 06 is the first-contact bonus case **First Contact Protocol** (runtime `alien1`). The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
+The repository-local Curriculum Editor is the canonical interface for registered SSS Campaign 1 Cases 01–07. Cases 01–06 are released; Case 07 is an unreleased owner-review build. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; source-development label `Case 6b`) and the Campaign 1 culmination. Case 06 entered the editor only with its canonical package through the approved production workflow. The editor must not receive a placeholder folder or registry entry for Case 07.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; former source-development label `Case 6b`) and the Campaign 1 culmination. Case 07 entered the editor only as a complete canonical package and remains `OWNER_GATE_OPEN` pending owner classroom-material and 100%-scale physical-print acceptance.
 
 Status: mixed lifecycle; read each package/registry entry for current approval state.
 
@@ -70,6 +70,6 @@ python3 apps/curriculum-editor/tests/run_browser_tests.py
 python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
 
-The browser suite covers all 40 case/role/presentation states, Student and Accessible resize controls and draft isolation, 75%-scale pointer conversion, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, Accessible task density and overlap checks, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
+The browser suite covers all registered case/role/presentation states, Student and Accessible resize controls and draft isolation, 75%-scale pointer conversion, role and case switching, Grayscale persistence, response/edit isolation, editable-copy and worksheet exports, isolated print documents, keyboard access, announcements, page fit, protected-component and CER geometry, Accessible task density and overlap checks, identities, and JavaScript errors. Static validation rejects protected selectors in new case presentation stylesheets. Screenshots are temporary; reproduce visual evidence with `run_browser_tests.py`.
 
 The server binds to `127.0.0.1` by default. Static reads remain repository-root scoped; its authoring endpoints are loopback-only and the apply endpoint has the strict contract described above. Packages are trusted repository content; downloaded editable HTML contains JavaScript and should be treated accordingly.
