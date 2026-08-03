@@ -223,6 +223,37 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def stored_layout_override_findings(case_id: str, layout_data: dict) -> list[str]:
+    findings = []
+    editions = {
+        "accessible": {key: layout_data[key] for key in ("edition", "areas", "lockedAreas", "overrides")},
+        "student": layout_data["student"],
+    }
+    for edition, definition in editions.items():
+        areas = {area["id"]: area for area in definition["areas"]}
+        locked = {item["persistId"] for item in definition["lockedAreas"]}
+        for area_id, override in definition["overrides"].items():
+            area = areas.get(area_id)
+            if area is None:
+                findings.append(f"{edition}:{area_id}:not-eligible")
+                continue
+            expected_id = f'{case_id}:{edition}:t{area["taskId"]}:{area["persistId"]}'
+            if area_id != expected_id or not area["pageId"].startswith(edition):
+                findings.append(f"{edition}:{area_id}:metadata")
+            if area["persistId"] in locked:
+                findings.append(f"{edition}:{area_id}:locked")
+            if set(override) != {"heightPx", "sourceHeightPx"}:
+                findings.append(f"{edition}:{area_id}:fields")
+                continue
+            height = override["heightPx"]
+            source = override["sourceHeightPx"]
+            if not isinstance(height, int) or isinstance(height, bool) or height % 4 or not area["minPx"] <= height <= area["maxPx"]:
+                findings.append(f"{edition}:{area_id}:height")
+            if not isinstance(source, int) or isinstance(source, bool) or not 16 <= source <= 2000 or source == height:
+                findings.append(f"{edition}:{area_id}:source")
+    return findings
+
+
 def role_dom_hash(soup: BeautifulSoup, role: str) -> str:
     fragment = BeautifulSoup("".join(str(page) for page in soup.select(f'.page[data-role="{role}"]')), "html.parser")
     for node in list(fragment.find_all(string=True)):
@@ -311,7 +342,8 @@ def main() -> int:
         results.check(f"{case_id} source hashes verify", all(sha256(path) == package["sourceHashes"][name] for name, path in paths.items()))
         layout_data = load_json(paths["layoutOverrides"])
         results.check(f"{case_id} Student response-area audit has exact eligible/locked coverage", (len(layout_data["student"]["areas"]), len(layout_data["student"]["lockedAreas"])) == STUDENT_LAYOUT_COUNTS[case_id])
-        results.check(f"{case_id} real Student and Accessible override maps remain empty", layout_data["student"]["overrides"] == layout_data["overrides"] == {})
+        override_findings = stored_layout_override_findings(case_id, layout_data)
+        results.check(f"{case_id} stored Student/Accessible overrides satisfy production eligibility, metadata, snap, and bounds contracts", not override_findings, override_findings)
 
         content = paths["content"].read_text(encoding="utf-8")
         identity_sources = "\n".join(path.read_text(encoding="utf-8", errors="ignore") for path in paths.values())

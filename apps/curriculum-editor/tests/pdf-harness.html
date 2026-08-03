@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Curriculum Editor PDF Harness</title></head>
+<body>
+  <iframe id="editorFrame" title="Curriculum editor PDF source" width="1440" height="1200"></iframe>
+  <script>
+    const wait = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
+    const until = async (callback, timeout = 12000) => {
+      const started = Date.now();
+      while (Date.now() - started < timeout) {
+        const value = callback();
+        if (value) return value;
+        await wait(40);
+      }
+      throw new Error("Timed out waiting for PDF source documents.");
+    };
+    (async () => {
+      try {
+        localStorage.clear();
+        const frame = document.querySelector("#editorFrame");
+        frame.src = `../index.html?pdf-test=${Date.now()}`;
+        await until(() => frame.contentWindow?.__curriculumEditor);
+        await wait(180);
+        const api = frame.contentWindow.__curriculumEditor;
+        const documents = [];
+        for (const item of api.getCompatibleCases()) {
+          await api.selectCase(item.id);
+          await wait(80);
+          const pkg = api.getPackage();
+          for (const role of ["student", "teacher", "answer", "accessible"]) {
+            api.setRole(role);
+            api.saveState({ editMode: false, grayscale: false, density: "normal", guides: false, boundaries: false });
+            await wait(20);
+            const expectedPageIds = Array.from(
+              api.getWorkspace().querySelectorAll(`.page[data-role="${role}"]`),
+              page => page.dataset.pageId
+            );
+            documents.push({
+              caseId: pkg.id,
+              role,
+              expectedPageCount: pkg.rolePageStructure[role].pageCount,
+              expectedPageIds,
+              html: api.buildPrintDocument(role)
+            });
+          }
+        }
+        await fetch("/__pdf_test_documents", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ documents })
+        });
+        document.title = `READY ${documents.length}`;
+      } catch (error) {
+        await fetch("/__pdf_test_documents", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ error: String(error.stack || error), documents: [] })
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -17,7 +17,7 @@ const PRINT_DOCUMENT_CSS = `
 html,body{min-height:0!important;margin:0!important;padding:0!important;background:#fff!important}
 body.print-document{display:block!important;min-height:0!important;background:#fff!important}
 body.print-document .print-assets{position:absolute!important;width:0!important;height:0!important;overflow:hidden!important}
-body.print-document #workspace{display:block!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important}
+body.print-document #workspace{display:block!important;width:8.5in!important;min-height:0!important;margin:0!important;padding:0!important;background:transparent!important}
 body.print-document .page{display:block!important;margin:0 auto!important;box-shadow:none!important;break-after:page!important;page-break-after:always!important}
 body.print-document .page:last-child{break-after:auto!important;page-break-after:auto!important}
 body.print-document .overflow-warning{display:none!important}
