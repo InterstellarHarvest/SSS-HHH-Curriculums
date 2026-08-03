@@ -47,7 +47,7 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     "SSS-C1-CASE03": {"student": "0690d461f44e50a5f9ce2b1fd600b89324e1d3931bcf20024a0d110d5510b646", "teacher": "175f1623d60f1243cd119086547e4e8cc866ce6d3e9fac620ad1e3377609aba9", "answer": "01b4fb194cdaeb29b2bdb0dda87b0edc869016b354e90876a1722b337a858ef2"},
     "SSS-C1-CASE04": {"student": "8fec5960a5e193cc6cbe963a060061f0f87aae9fd4f153a34c5ba831400e8239", "teacher": "97ea94a7200cabc057c5df0e23c47dd9f0dbd2eb82cc5aa5e25f66deea67b648", "answer": "48f8a053a17fe1230477e121fdec67f8b6dbf0dc5d30aaa0575e4469757a5d8a"},
     "SSS-C1-CASE05": {"student": "d17cf55212afb64e7425c217c352f7a8d0d60f385240cd3c865dda1e2a025b4a", "teacher": "40ce5700fe2d1126797a5035a6f5f0070b9ab19961bb31e53a34e71f7d0b0a23", "answer": "8adb307362cd6668db5a9f636c463789c416065bfff5ac1835ca35ca970843e1"},
-    "SSS-C1-CASE06": {"student": "7e61519aed65b680e9ee4046d2751b1aa4f81f1268a620adb226602f15e55e3e", "teacher": "5882a8c5860cf3f60a1a66d090b0e47eaf1a2371c19c5148e795db304d753509", "answer": "8f1dd12b54269b26f38a10b3113e76c90e9f68e0d9db8b6ac2c248b02f207fa2"},
+    "SSS-C1-CASE06": {"student": "0bf75e4d4d43e343c83cc68350634f3345471365e99beef2b7e187b17d6cc868", "teacher": "5882a8c5860cf3f60a1a66d090b0e47eaf1a2371c19c5148e795db304d753509", "answer": "134b05fd099ac7d168dc033efb181db987d2ade3b9577c4e3f540aed2d22f996"},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -627,7 +627,18 @@ def main() -> int:
             results.check("Case 06 preserves one correct diagnosis and the three audited distractors", registry_data.get("correctDiagnosis") == "human atmospheric processing filtered the volatile signal compounds, triggering network dormancy and loss of symbiosis coordination" and registry_data.get("incorrectAlternatives") == alternatives)
             timing = registry_data.get("timingLedger", {})
             results.check("Case 06 timing ledger proves docking precedes the last signal by 0.3 hours or 18 minutes", timing.get("dockingHoursAgo") > timing.get("lastSignalHoursAgo") and round(timing.get("dockingHoursAgo") - timing.get("lastSignalHoursAgo"), 1) == timing.get("differenceHours") == 0.3 and timing.get("differenceMinutes") == 18)
-            results.check("Case 06 printable evidence preserves the corrected timing and causation qualification", all(term in content for term in ["72.4 hours ago", "72.1 hours ago", "18 minutes", "correlation alone does not prove", "Timing supports this sequence but does not prove the cause"]))
+            results.check("Case 06 printable evidence preserves the corrected timing and causation qualification", all(term in content for term in ["72.4 hours ago", "72.1 hours ago", "18 minutes", "correlation alone does not prove it", "It remains correlation, not proof"]))
+            student_bank = [node.get_text(" ", strip=True) for node in soup.select('.page[data-page-id="student-mission-02"] .phrase-bank span')]
+            accessible_bank = [node.get_text(" ", strip=True) for node in soup.select('.page[data-page-id="accessible-mission-03"] .phrase-bank span')]
+            ordered_bank = [
+                "human-standard filtration removes unfamiliar signaling compounds",
+                "network signals fall to zero and cannot persist",
+                "the fictional network enters reversible dormancy when signals do not persist",
+                "nutrient transfer and coordination stop",
+            ]
+            results.check("Case 06 Task 4 phrase banks match across learner roles and remain out of answer order", student_bank == accessible_bank and set(student_bank) == set(ordered_bank) and student_bank != ordered_bank, student_bank)
+            model_arrow_contracts = [model.select(":scope > .path-arrow") for model in soup.select('[data-process-contract="atmosphere-signal-partnership-v1.0"]')]
+            results.check("Case 06 Task 4 models use three standardized path arrows in every role", len(model_arrow_contracts) == 3 and all(len(arrows) == 3 for arrows in model_arrow_contracts), [len(arrows) for arrows in model_arrow_contracts])
 
             learner_text = " ".join(page.get_text(" ", strip=True) for page in soup.select('.page[data-role="student"],.page[data-role="accessible"]'))
             teacher_text = " ".join(page.get_text(" ", strip=True) for page in soup.select('.page[data-role="teacher"]'))
