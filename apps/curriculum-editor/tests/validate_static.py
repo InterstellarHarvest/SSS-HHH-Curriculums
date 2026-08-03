@@ -31,7 +31,7 @@ EXPECTED = {
     "SSS-C1-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
     "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE06": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
-    "SSS-C1-CASE07": {"version": "1.0", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
+    "SSS-C1-CASE07": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -688,7 +688,11 @@ def main() -> int:
 
         if case_id == "SSS-C1-CASE07":
             task_titles = [task["title"] for task in registry_data["tasks"]]
-            results.check("Case 07 remains an unreleased owner-gate package on the exact frozen baselines", registry_data.get("status") == "OWNER_GATE_OPEN" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_IN_PROGRESS" and registry_data.get("mergeStatus") == "NOT_READY_TO_MERGE" and registry_data.get("gameCommit") == "a813c209dfde00634103f74d6673e7d4433e0e63" and registry_data.get("auditCommit") == "76a908400eb53c1c81fe91ce52337f414ae2c591" and package.get("approval") == {"owner": "Nate / Owner", "status": "OWNER_REVIEW_IN_PROGRESS", "printStatus": "NOT_RUN"})
+            results.check("Case 07 task registry records the completed release lifecycle and exact frozen baselines", registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and registry_data.get("gameCommit") == "a813c209dfde00634103f74d6673e7d4433e0e63" and registry_data.get("auditCommit") == "76a908400eb53c1c81fe91ce52337f414ae2c591" and package.get("approval") == {"owner": "Nate / Owner", "date": "2026-08-03", "status": "APPROVED", "printStatus": "PASS"})
+            results.check("Case 07 release history records a native release, approved print gate, and frozen game/audit baselines", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and history.get("priorApprovedReleases") == [] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size" and any("a813c209dfde00634103f74d6673e7d4433e0e63" in note for note in history.get("migrationNotes", [])) and any("76a908400eb53c1c81fe91ce52337f414ae2c591" in note for note in history.get("migrationNotes", [])))
+            owner_approval_path = package_path.parents[1] / "history/CASE07_OWNER_APPROVAL_v1.0.md"
+            owner_approval = owner_approval_path.read_text(encoding="utf-8") if owner_approval_path.is_file() else ""
+            results.check("Case 07 owner approval record captures all owner gates and no-artifact decision", all(token in owner_approval for token in ["Nate / Owner", "2026-08-03", "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", "On-screen content and visual review: **PASS**", "Generated PDF review: **PASS**", "Physical print at 100% / Actual Size: **PASS**", "NO_GENERATED_ARTIFACTS_COMMITTED"]))
             results.check("Case 07 task registry uses the eight production-locked titles", task_titles == CASE07_TASK_TITLES, task_titles)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]

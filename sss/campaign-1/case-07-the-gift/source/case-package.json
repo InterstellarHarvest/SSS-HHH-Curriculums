@@ -7,11 +7,12 @@
   "subtitle": "Campaign 1 · Case 07 · L2 Station Hayes — Secure Cultivation Wing",
   "location": "SAA Xenobiology Lab",
   "version": "1.0",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "approval": {
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_IN_PROGRESS",
-    "printStatus": "NOT_RUN"
+    "date": "2026-08-03",
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -100,14 +101,15 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 07 v1.0 — The Gift Curriculum Editor",
-    "loadAnnouncement": "The Gift Case 07 v1.0 owner-gate package loaded. Student Mission selected.",
+    "loadAnnouncement": "The Gift Case 07 v1.0 approved package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": ["[data-evidence-summary]", "[data-process-contract]", "[data-timeline-contract]", "[data-design-contract]"],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
     "content": "892ae6ce8e23486a7400ab02e9bb62a3e3ee590bc53c1b905441bec745b52963",
     "presentation": "533e9848052fa6be90c258ce855a3874da922b1a09365b380a60eb46cbad0b53",
-    "taskRegistry": "9bd49b8228527f5e40689e95d66f646df3f25221a5fbc53092afe47b9bd8f74f",
+    "taskRegistry": "cf1fc8abbac1b604346572a310456e15fa5e000c42c7e9f1b97f67790a622602",
     "layoutOverrides": "e606bb3697018c362e8d6fb891edf17d6e3d7d8fc66dabd81b118bae4d8812ea"
-  }
+  },
+  "releaseHistory": "sss/campaign-1/case-07-the-gift/history/release-v1.0.json"
 }

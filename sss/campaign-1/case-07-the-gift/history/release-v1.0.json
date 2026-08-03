@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE07",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-03",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+  "canonicalSourceApprovalCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+  "sourceHashes": {
+    "content": "892ae6ce8e23486a7400ab02e9bb62a3e3ee590bc53c1b905441bec745b52963",
+    "presentation": "533e9848052fa6be90c258ce855a3874da922b1a09365b380a60eb46cbad0b53",
+    "taskRegistry": "cf1fc8abbac1b604346572a310456e15fa5e000c42c7e9f1b97f67790a622602"
+  },
+  "rolePageCounts": {"student": 6, "teacher": 8, "answer": 6, "accessible": 8},
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "7 cases; release-history schema, commit references, source hashes, and native no-artifact controls PASS",
+    "static": "358/358",
+    "browser": "1090/1090 across all 56 case/role/presentation states",
+    "pdf": "170/170",
+    "layoutContracts": "Accessible 94 eligible and 115 explicitly locked response areas; Student 56 eligible and 161 explicitly locked response areas",
+    "authoringSecurity": "13/13",
+    "fixedWorksheetGeometry": "816 × 1056 CSS-pixel Letter pages and 720 × 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS",
+    "studentDiagnosisThenCERAndExpandedIntervention": "PASS",
+    "accessibleDedicatedCER": "PASS",
+    "editableCopyExport": "PASS",
+    "worksheetExport": "PASS",
+    "isolatedPrinting": "PASS",
+    "javascriptErrors": "0",
+    "visualReview": "28/28 pages for Case 07"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Case 07 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+  "recovery": "NOT_APPLICABLE: Case 07 was produced natively under the canonical source model; no generated release artifacts exist.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "Accepted curriculum audit baseline: 76a908400eb53c1c81fe91ce52337f414ae2c591.",
+    "Frozen game-source baseline: a813c209dfde00634103f74d6673e7d4433e0e63.",
+    "Complete owner-approved curriculum preview baseline: f08066c15c161c5961cc88adad86282329cd7609.",
+    "Case 07 was authored directly as canonical package sources and released after on-screen, generated-PDF, and owner-confirmed physical-print review; no migration from generated release documents occurred."
+  ],
+  "retiredArtifacts": []
+}

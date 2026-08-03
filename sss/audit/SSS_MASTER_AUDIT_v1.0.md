@@ -13,6 +13,10 @@ The owner reaffirmed that SSS Campaign 1 contains seven curriculum-sequenced cas
 
 Case 06, **First Contact Protocol**, is released as curriculum v1.0 with lifecycle status `APPROVED_STABLE`, locked to the frozen game-source baseline `d723fb9b8085905a6048575a2cb3bb0fce1d312b`. The owner approved the on-screen presentation, generated PDF, and physical print at 100% / Actual Size. Cases 01–05 remain the five core cases; Case 06 is the first released first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; source-development label `Case 6b`), remains the Campaign 1 culmination, and Campaign 2 remains gated until Case 07 is released unless the owner explicitly redirects the project. This release addendum does not alter the audit findings or redesign `SSS_CURRICULUM_BLUEPRINT_v1.0.md`.
 
+## Case 07 stable-release addendum — 2026-08-03
+
+Case 07, **The Gift**, is released as curriculum v1.0 with lifecycle status `APPROVED_STABLE`, locked to the accepted audit baseline `76a908400eb53c1c81fe91ce52337f414ae2c591` and frozen game-source baseline `a813c209dfde00634103f74d6673e7d4433e0e63`. The owner approved the current on-screen presentation, generated PDF, and physical print at 100% / Actual Size. Case 07 is the Campaign 1 culmination, completing the seven-case approved curriculum sequence. Campaign 2 curriculum production remains unstarted and requires separate owner authorization. This release addendum does not alter the audit findings or redesign `SSS_CURRICULUM_BLUEPRINT_v1.0.md`.
+
 ## Version 1.0 change log
 
 - Reconciled the audit against canonical SSS commit `2a6e8a7`.

@@ -1,10 +1,10 @@
 # SSS/HHH Curriculum Editor
 
-The repository-local Curriculum Editor is the canonical interface for registered SSS Campaign 1 Cases 01–07. Cases 01–06 are released; Case 07 is an unreleased owner-review build. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
+The repository-local Curriculum Editor is the canonical interface for the seven released SSS Campaign 1 Cases 01–07. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; former source-development label `Case 6b`) and the Campaign 1 culmination. Case 07 entered the editor only as a complete canonical package and remains `OWNER_GATE_OPEN` pending owner classroom-material and 100%-scale physical-print acceptance.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; former source-development label `Case 6b`) and the approved Campaign 1 culmination. Both first-contact cases entered the editor only as complete canonical packages. Campaign 2 curriculum production remains unstarted.
 
-Status: mixed lifecycle; read each package/registry entry for current approval state.
+Status: all seven registered SSS Campaign 1 cases are `APPROVED_STABLE`.
 
 ## Launch
 
