@@ -132,8 +132,8 @@ def main() -> int:
         "localUntrackedArtifactsExcluded": 0,
     }
     cases = sorted(path for path in CAMPAIGN.glob("case-*") if path.is_dir())
-    if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03", "case-04", "case-05", "case-06"]:
-        failures.append(f"expected exactly Cases 01–06; found {[path.name for path in cases]}")
+    if [path.name[:7] for path in cases] != ["case-01", "case-02", "case-03", "case-04", "case-05", "case-06", "case-07"]:
+        failures.append(f"expected exactly Cases 01–07; found {[path.name for path in cases]}")
 
     tracked = tracked_files()
     pdfs = [path for path in tracked if path.lower().endswith(".pdf")]
@@ -223,7 +223,7 @@ def main() -> int:
             if package.get("status") not in {"DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"}:
                 failures.append(f"{case.name}: unsupported unreleased lifecycle status: {package.get('status')}")
             if records or "releaseHistory" in package:
-                failures.append(f"{case.name}: unreleased DRAFT must not contain or declare release history")
+                failures.append(f"{case.name}: unreleased package must not contain or declare release history")
             approval = package.get("approval", {})
             if package.get("status") == "DRAFT" and (approval.get("status") != "OWNER_REVIEW_NOT_STARTED" or approval.get("printStatus") != "NOT_RUN"):
                 failures.append(f"{case.name}: DRAFT must remain OWNER_REVIEW_NOT_STARTED with printStatus NOT_RUN")
