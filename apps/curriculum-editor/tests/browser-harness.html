@@ -263,8 +263,8 @@
 
       frame.width = "1440";
       await wait(120);
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE03": 20 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE03": 8 };
       for (const [caseId, expectedAccessible] of Object.entries(accessibleEligibleCounts)) {
         await api.selectCase(caseId);
         await wait(80);
@@ -745,13 +745,15 @@
         { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 7, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE06", label: "6 - First Contact Protocol", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.0", student: "CASE06_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.0", student: "CASE07_STUDENT_MISSION_v1.0" }
+        { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.0", student: "CASE07_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "0.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v0.1", student: "CASE03_STUDENT_MISSION_v0.1" }
       ];
       check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(canonicalCases.map(item => item.id)));
-      check("case dropdown labels are exactly registered and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker", "6 - First Contact Protocol", "7 - The Gift"]));
+      check("case dropdown labels are exactly registered and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker", "6 - First Contact Protocol", "7 - The Gift", "3 - The Wrong Color of Light"]));
       check("case dropdown option text contains no version, repository ID, or release status", Array.from(doc.querySelectorAll("#caseSelect option")).every(option => !/\bv\d|SSS-C1|APPROVED/.test(option.textContent)));
       check("multi-case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
-      check("single-value selectors are disabled and non-interactive", ["curriculumSelect", "campaignSelect"].every(id => doc.querySelector(`#${id}`).disabled && doc.querySelector(`#${id}`).getAttribute("aria-disabled") === "true"));
+      check("the single-curriculum selector stays disabled and non-interactive", doc.querySelector("#curriculumSelect").disabled && doc.querySelector("#curriculumSelect").getAttribute("aria-disabled") === "true");
+      check("the multi-campaign selector is enabled and keyboard-operable", !doc.querySelector("#campaignSelect").disabled && doc.querySelector("#campaignSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#campaignSelect").tabIndex >= 0);
 
       const caseMarkers = {};
       const matrixStates = [];
@@ -868,7 +870,7 @@
           footer: (() => { const style = win.getComputedStyle(studentPages[0].querySelector("[data-publication-footer],.publication-footer")); return { fontFamily: style.fontFamily, fontSize: px(style.fontSize), border: px(style.borderTopWidth) }; })()
         };
         const protectedGeometry = protectedPresentation[item.id];
-        if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07"].includes(item.id)) {
+        if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07", "SSS-C2-CASE03"].includes(item.id)) {
           check(`${item.id} protected header and footer geometry matches shared printable-v1.1`, protectedGeometry.id.fontFamily.includes("JetBrains Mono") && protectedGeometry.id.fontSize === 12 && protectedGeometry.id.gap === 12 && protectedGeometry.title.heroSize === 34.67 && protectedGeometry.title.heroLine === 38.67 && protectedGeometry.title.subtitleSize === 12 && protectedGeometry.title.insignia.every(value => Math.abs(value - 55.68) < .1) && protectedGeometry.continuation.titleSize === 21.33 && protectedGeometry.continuation.insignia.every(value => Math.abs(value - 32.64) < .1) && protectedGeometry.footer.fontSize === 9.33, JSON.stringify(protectedGeometry));
         } else {
           check(`${item.id} legacy protected components retain valid printable geometry`, protectedGeometry.title.border === 1 && protectedGeometry.continuation.border === 1 && protectedGeometry.title.insignia.every(value => value > 30) && protectedGeometry.continuation.insignia.every(value => value > 20) && protectedGeometry.footer.border === 1, JSON.stringify(protectedGeometry));
@@ -929,14 +931,14 @@
           const matrixStart = assertions.length;
           api.setRole(profile.role);
           api.saveState({ grayscale: profile.grayscale });
-          if (["SSS-C1-CASE03", "SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE07"].includes(item.id) && profile.grayscale) {
+          if (["SSS-C1-CASE03", "SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE07", "SSS-C2-CASE03"].includes(item.id) && profile.grayscale) {
             const palette = win.getComputedStyle(worksheetDoc);
             const grayscaleTokens = ["--panel", "--panel-light", "--neutral-field", "--institution", "--cyan-dark", "--slate", "--botanical", "--accent-dark", "--accent-pale", "--primary", "--secondary", "--soft", "--caution", "--caution-field"];
             const tintedSurfaces = Array.from(workspace.querySelectorAll(".callout,.data-table th,.teacher-card,.canonical-phrase-bank,.optional-extension"));
             const tokenFailures = grayscaleTokens.filter(token => !isNeutralRgb(palette.getPropertyValue(token).trim()));
             const surfaceFailures = tintedSurfaces.filter(node => !isNeutralRgb(win.getComputedStyle(node).backgroundColor));
             check(`${item.id} ${profile.role} grayscale neutralizes colored textbox palette and rendered fills`, tintedSurfaces.length > 0 && tokenFailures.length === 0 && surfaceFailures.length === 0, JSON.stringify({ tokenFailures, surfaceFailures: surfaceFailures.slice(0, 8).map(node => node.className) }));
-            if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07"].includes(item.id)) {
+            if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07", "SSS-C2-CASE03"].includes(item.id)) {
               check(`${item.id} ${profile.role} grayscale neutralizes the shared SAA insignia`, Array.from(workspace.querySelectorAll(".saa-insignia")).every(node => win.getComputedStyle(node).filter !== "none"));
             }
           }
@@ -1179,8 +1181,8 @@
       check("Case 05 presentation matrix passes 8/8", case05MatrixStates.length === 8 && case05MatrixStates.every(state => state.pass), JSON.stringify(case05MatrixStates.filter(state => !state.pass)));
       check("Case 06 presentation matrix passes 8/8", case06MatrixStates.length === 8 && case06MatrixStates.every(state => state.pass), JSON.stringify(case06MatrixStates.filter(state => !state.pass)));
       check("Case 07 presentation matrix passes 8/8", case07MatrixStates.length === 8 && case07MatrixStates.every(state => state.pass), JSON.stringify(case07MatrixStates.filter(state => !state.pass)));
-      check("all 56 case-role-presentation matrix states pass", matrixStates.length === 56 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
-      check("all 28 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 28 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
+      check("all 64 case-role-presentation matrix states pass", matrixStates.length === 64 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
+      check("all 32 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 32 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
       const protectedGeometrySignatures = Object.fromEntries(Object.entries(protectedPresentation).map(([caseId, value]) => [caseId, JSON.stringify({ title: { columns: value.title.columns, gap: value.title.gap, border: value.title.border, rail: value.title.rail, heroSize: value.title.heroSize, heroLine: value.title.heroLine, subtitleSize: value.title.subtitleSize, insignia: value.title.insignia }, continuation: { columns: value.continuation.columns, gap: value.continuation.gap, border: value.continuation.border, titleSize: value.continuation.titleSize, insignia: value.continuation.insignia } })]));
       check("Cases 01–07 share protected title and continuation geometry", new Set(Object.values(protectedGeometrySignatures)).size === 1, JSON.stringify(protectedPresentation));
 

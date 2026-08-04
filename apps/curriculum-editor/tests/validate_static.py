@@ -32,6 +32,7 @@ EXPECTED = {
     "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE06": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
     "SSS-C1-CASE07": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
+    "SSS-C2-CASE03": {"version": "0.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -41,6 +42,7 @@ STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE05": (8, 25),
     "SSS-C1-CASE06": (8, 25),
     "SSS-C1-CASE07": (11, 24),
+    "SSS-C2-CASE03": (8, 34),
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
@@ -314,7 +316,8 @@ def main() -> int:
     results.check("printable production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", {"status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"}.issubset(forbidden_probe_categories), sorted(forbidden_probe_categories))
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
-    results.check("registry discovers exactly Cases 01–07 in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    results.check("registry discovers exactly the approved Campaign 1 cases plus the unreleased Campaign 2 case in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    results.check("every approved case retains a frozen non-Accessible DOM baseline", {entry["id"] for entry in entries if entry["status"] == "APPROVED_STABLE"} <= set(NON_ACCESSIBLE_BASELINE_HASHES))
     base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
     results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
 
@@ -378,7 +381,10 @@ def main() -> int:
         actual_counts = {role: len(soup.select(f'.page[data-role="{role}"]')) for role in ROLES}
         results.check(f"{case_id} worksheet DOM page counts match package declarations", actual_counts == counts, actual_counts)
         current_non_accessible_hashes = {role: role_dom_hash(soup, role) for role in ["student", "teacher", "answer"]}
-        results.check(f"{case_id} Student, Teacher, and Answer Key DOM remain at the authoritative baseline", current_non_accessible_hashes == NON_ACCESSIBLE_BASELINE_HASHES[case_id], current_non_accessible_hashes)
+        if case_id in NON_ACCESSIBLE_BASELINE_HASHES:
+            results.check(f"{case_id} Student, Teacher, and Answer Key DOM remain at the authoritative baseline", current_non_accessible_hashes == NON_ACCESSIBLE_BASELINE_HASHES[case_id], current_non_accessible_hashes)
+        else:
+            results.check(f"{case_id} carries no frozen DOM baseline only because it is unreleased", expected_status != "APPROVED_STABLE", expected_status)
         results.check(f"{case_id} content is a worksheet-only fragment", bool(soup.select_one("main")) and not soup.select("script,style,link,iframe,.toolbar"))
         learner_pages = soup.select('.page[data-role="student"],.page[data-role="accessible"]')
         formal_identity_findings = []
@@ -786,6 +792,8 @@ def main() -> int:
     results.check("canonical case-structure validator passes", structure.returncode == 0, (structure.stdout + structure.stderr).strip())
     layout_validation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_layout_overrides.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("Student/Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
+    case03_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case03_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("SSS Campaign 2 Case 03 case-scoped source, clue, figure, and prohibited-claim checks pass", case03_campaign2.returncode == 0, (case03_campaign2.stdout + case03_campaign2.stderr).strip()[-2000:])
     service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("source-persistence security and round-trip tests pass", service_tests.returncode == 0, (service_tests.stdout + service_tests.stderr).strip())
     tracked_candidates = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=ROOT, text=True, capture_output=True, check=True).stdout.splitlines()
