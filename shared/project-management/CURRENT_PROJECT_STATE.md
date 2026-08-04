@@ -50,7 +50,7 @@ Cases 01–05 are the five released core cases. Case 06, **First Contact Protoco
 
 Campaign 2 curriculum production has begun. Campaign 2 Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), is the first produced Campaign 2 package and is released at v1.0 `APPROVED_STABLE`. It remains Campaign 2 Case 03 and is not renumbered as Campaign 2 Case 01. It was produced against the frozen Campaign 2 game-source baseline `46b9387bca95736f164f905596e3dd8b13968661`. The remaining Campaign 2 cases are unproduced.
 
-Accepted curriculum release commit for Campaign 2 Case 03: `RELEASE_COMMIT_PENDING`.
+Accepted curriculum release commit for Campaign 2 Case 03: `69e75b1b9a574ddd90ab7b6e385c2454f9bd0505`.
 
 The central editor library is campaign-scoped: the Curriculum selector controls the available campaigns and the Campaign selector controls the Case menu, which lists exactly the cases registered under the selected campaign.
 
