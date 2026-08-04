@@ -1,0 +1,495 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE03",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "SSS-C2-CASE03:accessible:t1:a1-why",
+      "persistId": "a1-why",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Timing-alone reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t2:a2-total",
+      "persistId": "a2-total",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Total PAR interpretation",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t3:a3-match",
+      "persistId": "a3-match",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Qualified spectral comparison",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t3:a3-limit",
+      "persistId": "a3-limit",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Comparison limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t4:a4-water",
+      "persistId": "a4-water",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Evidence against a seawater change",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t4:a4-intensity",
+      "persistId": "a4-intensity",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Evidence against low total light",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t4:a4-timing",
+      "persistId": "a4-timing",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Timeline reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-c1",
+      "persistId": "a5-c1",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 1 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-c2",
+      "persistId": "a5-c2",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 2 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-c3",
+      "persistId": "a5-c3",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 3 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-c4",
+      "persistId": "a5-c4",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 4 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-c5",
+      "persistId": "a5-c5",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 5 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-l1",
+      "persistId": "a5-l1",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 1 limit if used alone",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-l2",
+      "persistId": "a5-l2",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 2 limit if used alone",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-l3",
+      "persistId": "a5-l3",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 3 limit if used alone",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-l4",
+      "persistId": "a5-l4",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 4 limit if used alone",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-l5",
+      "persistId": "a5-l5",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Source 5 limit if used alone",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t5:a5-synthesis",
+      "persistId": "a5-synthesis",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Five-source synthesis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t6:a6-reject",
+      "persistId": "a6-reject",
+      "pageId": "accessible-mission-06",
+      "taskId": 6,
+      "label": "Rejected-alternative evidence",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE03:accessible:t8:a8-test",
+      "persistId": "a8-test",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "Monitored trial and stop rule",
+      "minPx": 32,
+      "maxPx": 900
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a2-largest",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a2-bluegreen",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a6-d1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a6-d2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a6-d3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a6-d4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a6-m2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-m3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-m4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a7c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a8-criterion-1",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a8-criterion-2",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a8-constraint",
+      "reason": "constraint"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "SSS-C2-CASE03:student:t1:t1-why",
+        "persistId": "t1-why",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Timing-alone reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t2:t2-total",
+        "persistId": "t2-total",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Total PAR interpretation",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t3:t3-match",
+        "persistId": "t3-match",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Qualified spectral comparison",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t3:t3-limit",
+        "persistId": "t3-limit",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Comparison limit",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t4:t4-timing",
+        "persistId": "t4-timing",
+        "pageId": "student-mission-03",
+        "taskId": 4,
+        "label": "Timeline reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t5:t5-synthesis",
+        "persistId": "t5-synthesis",
+        "pageId": "student-mission-04",
+        "taskId": 5,
+        "label": "Five-source synthesis",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t6:t6-reject",
+        "persistId": "t6-reject",
+        "pageId": "student-mission-04",
+        "taskId": 6,
+        "label": "Rejected-alternative evidence",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE03:student:t8:t8-test",
+        "persistId": "t8-test",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Monitored trial and stop rule",
+        "minPx": 32,
+        "maxPx": 900
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t2-largest",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t2-bluegreen",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t4-water",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-intensity",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t6-d2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t6-d3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t6-d4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t6-m2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6-m3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6-m4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t7c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t8-criterion-1",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t8-criterion-2",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t8-constraint",
+        "reason": "constraint"
+      }
+    ],
+    "overrides": {}
+  }
+}

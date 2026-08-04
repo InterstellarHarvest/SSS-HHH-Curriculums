@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C2-CASE03",
+  "curriculum": "SSS",
+  "campaign": "campaign-2",
+  "title": "The Wrong Color of Light",
+  "subtitle": "Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean)",
+  "location": "Oolian Mariculture Dome",
+  "version": "0.1",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C2-CASE03:v0.1:curriculum-editor-v2",
+  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-2/case-03-wrong-color-light/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-2/case-03-wrong-color-light/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-2/case-03-wrong-color-light/source/task-registry.js",
+    "global": "SSS_C2_CASE03_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-2/case-03-wrong-color-light/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case03-spectrum-figures",
+      "type": "html-css-diagrams",
+      "selector": "[data-figure-id], [data-process-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {"documentRole": "Student Mission", "pageCount": 5},
+    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
+    "answer": {"documentRole": "Answer Key", "pageCount": 4},
+    "accessible": {"documentRole": "Accessible Mission", "pageCount": 8}
+  },
+  "outputs": {
+    "complete": "SSS_C2_CASE03_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "SSS_C2_CASE03_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "SSS_C2_CASE03_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "SSS_C2_CASE03_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "SSS_C2_CASE03_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 2 Case 03 v0.1 — The Wrong Color of Light Curriculum Editor",
+    "loadAnnouncement": "The Wrong Color of Light Campaign 2 Case 03 v0.1 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [".alt-support", ".extended-description", "figure figcaption"],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "1230c8c0ed737c0506c4b8db2578875728deb4e620685b5a80fb1ee623b60539",
+    "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
+    "taskRegistry": "d09cd5dfaf2ffdef75653603b56236e63f3ae92106356b863a366766e12c6374",
+    "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
+  }
+}

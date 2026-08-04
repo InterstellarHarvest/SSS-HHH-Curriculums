@@ -114,6 +114,25 @@
               "historyRecord": "sss/campaign-1/case-07-the-gift/history/release-v1.0.json"
             }
           ]
+        },
+        {
+          "id": "campaign-2",
+          "title": "Campaign 2",
+          "cases": [
+            {
+              "id": "SSS-C2-CASE03",
+              "displayOrder": 8,
+              "displayLabel": "3 - The Wrong Color of Light",
+              "title": "The Wrong Color of Light",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-2/case-03-wrong-color-light/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_NOT_STARTED", "printStatus": "NOT_RUN"}
+            }
+          ]
         }
       ]
     },
