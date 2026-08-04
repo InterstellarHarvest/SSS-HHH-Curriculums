@@ -41,7 +41,7 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
       "semanticLabel": "DATA ANALYSIS",
       "icon": "ph-scales",
       "title": "Compare Lamp Output with Zhal-Kelp Response",
-      "description": "Compare the installed lamp output with the fictional strongest measured response band and write a qualified mismatch statement without inventing a curve or an overlap figure.",
+      "description": "Compare the installed lamp output with the recorded strongest-response band and write a qualified mismatch statement without inventing a curve or an overlap figure.",
       "keyed": true
     },
     {
@@ -77,7 +77,7 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
       "semanticLabel": "EXPLANATION",
       "icon": "ph-cer",
       "title": "Explain the Diagnosis with CER",
-      "description": "Write a Claim-Evidence-Reasoning explanation using evidence from more than one source and preserving the boundary between Earth science and fictional case data.",
+      "description": "Write a Claim-Evidence-Reasoning explanation using evidence from more than one source and preserving the boundary between established Earth science and case-specific evidence.",
       "keyed": true
     },
     {
@@ -121,13 +121,13 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
     {
       "source": "Dome Sensor Array",
       "clue": "LIGHT_SPECTRUM_RED_HEAVY",
-      "establishes": "GRO-9 is red-heavy, total PAR is adequate, and reported output in the fictional strongest-response band is under 5%.",
+      "establishes": "GRO-9 is red-heavy, total PAR is adequate, and reported output in the recorded strongest-response band is under 5%.",
       "cannotEstablishAlone": "Does not prove that all other wavelengths are unused or that plant and water evidence is irrelevant."
     },
     {
       "source": "Zhal-Kelp Specimen",
       "clue": "PIGMENT_MISMATCH",
-      "establishes": "Photosynthetic structures are present and intact; the fictional pigment profile is measured to harvest blue-green wavelengths efficiently.",
+      "establishes": "Photosynthetic structures are present and intact; the pigment profile is measured to harvest blue-green wavelengths efficiently.",
       "cannotEstablishAlone": "Does not independently prove that light is the only causal variable."
     },
     {
@@ -140,7 +140,7 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
       "source": "Federation Database",
       "clue": "CHLOROPHYLL_C_BLUE_GREEN",
       "establishes": "Brown algae use chlorophyll a and c with accessory pigments such as fucoxanthin; total PAR alone does not establish an effective spectrum.",
-      "cannotEstablishAlone": "Does not turn the fictional alien measurements into established Earth biology."
+      "cannotEstablishAlone": "Does not turn the alien measurements into established Earth biology."
     }
   ],
   "numericalLedger": {
@@ -193,12 +193,12 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
     }
   },
   "sourceStatus": {
-    "establishedEarthScience": "Brown algae use chlorophyll a and c with accessory pigments such as fucoxanthin; photosynthetic systems differ in wavelength response; water and dissolved or suspended material filter spectra.",
-    "fictionalCaseMeasurement": "Zhal-kelp accessory pigments, the 460-540 nm strongest measured response band, the site habitat profile, and the comparative efficiency values.",
-    "numbers": "game-specific",
+    "establishedEarthScienceComparison": "Brown algae use chlorophyll a and c with accessory pigments such as fucoxanthin; photosynthetic systems differ in wavelength response; water and dissolved or suspended material filter spectra.",
+    "caseSpecificEvidence": "Zhal-kelp accessory pigments, the 460-540 nm strongest measured response band, the site habitat profile, and the comparative efficiency values.",
+    "numbers": "game-provided measurements",
     "figures": "curriculum-original"
   },
-  "correctDiagnosis": "The installed red-heavy lamps are a poor match for the fictional zhal-kelp response measured at this site, so captured energy is much lower than the total brightness suggests.",
+  "correctDiagnosis": "The installed red-heavy lamps are a poor match for the zhal-kelp response measured at this site, so captured energy is much lower than the total brightness suggests.",
   "incorrectAlternatives": [
     "the Earth-manufactured lights are defective",
     "total intensity is too low",

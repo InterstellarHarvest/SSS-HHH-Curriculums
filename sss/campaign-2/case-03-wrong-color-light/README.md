@@ -46,7 +46,7 @@ Role page counts: Student 5, Teacher 8, Answer Key 4, Accessible 8.
 
 `source/task-registry.js` is the ledger of record. It carries the five formal clues and their task
 coverage, the exact numerical ledger, the source-status split between established Earth science and
-fictional case measurement, the correct diagnosis and its three rejected alternatives, the prohibited
+case-specific evidence, the correct diagnosis and its three rejected alternatives, the prohibited
 claims, and the figure provenance. Case-scoped assertions in
 `apps/curriculum-editor/tests/validate_case03_campaign2.py` enforce that ledger against the printable
 content.

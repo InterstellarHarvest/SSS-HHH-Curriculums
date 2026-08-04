@@ -85,6 +85,17 @@ PROHIBITED = [
 ]
 # Curve-drawing SVG constructs are forbidden inside case figures.
 CURVE_COMMANDS = re.compile(r"[CcSsQqTtAa]")
+# Every zhal-kelp value must be attributed to a measurement made in this case rather than
+# presented as established biology. The attribution is enforced semantically: any of these
+# provenance phrases satisfies it, and no particular disclaimer wording is required.
+PROVENANCE = re.compile(
+    r"case data|case sensor data|case-specific|dome sensor data|dome record|sensor readings|"
+    r"site measurement|measured at this (?:site|dome)|recorded (?:at this site|for this case|habitat)|"
+    r"measured for this case|reported by the case|strongest measured|strongest-response range recorded",
+    re.I,
+)
+# Wording whose only function is to remind the reader that the scenario is invented.
+INVENTED_SCENARIO_REMINDER = re.compile(r"\bfictional\b|\bfiction\b", re.I)
 
 
 class Results:
@@ -217,20 +228,34 @@ def main() -> int:
                   all(node.find_parent(class_="page").get("data-role") == "teacher"
                       for node in soup.select("[data-quoted-claim]"))
                   and bool(soup.select("[data-quoted-claim]")))
+    results.check("the source-status ledger names an Earth-science comparison and case-specific evidence",
+                  set(registry["sourceStatus"]) >= {"establishedEarthScienceComparison", "caseSpecificEvidence"}
+                  and not INVENTED_SCENARIO_REMINDER.search(json.dumps(registry)),
+                  sorted(registry["sourceStatus"]))
     results.check("the numerical ledger records the excluded effective-PAR estimate and its reason",
                   registry["numericalLedger"]["excludedFromStudentWork"]["approximateEffectivePar"] == 14
                   and bool(registry["numericalLedger"]["excludedFromStudentWork"]["reason"]))
 
     # ── Earth science versus fictional case data ─────────────────────
-    results.check("fictional case data is labelled wherever the alien measurements are presented",
-                  visible_text(soup, ["student"]).count("fictional case") >= 2
-                  and visible_text(soup, ["accessible"]).count("fictional case") >= 2
-                  and "Established Earth science" in visible_text(soup, ["teacher"])
-                  and "Fictional case measurement" in visible_text(soup, ["teacher"]))
-    results.check("the Teacher Guide separates established science, fiction, inference, and engineering layers",
+    results.check("both learner editions attribute the zhal-kelp values to measurements made in this case",
+                  len(PROVENANCE.findall(visible_text(soup, ["student"]))) >= 3
+                  and len(PROVENANCE.findall(visible_text(soup, ["accessible"]))) >= 3,
+                  {"student": len(PROVENANCE.findall(visible_text(soup, ["student"]))),
+                   "accessible": len(PROVENANCE.findall(visible_text(soup, ["accessible"])))})
+    results.check("the Teacher Guide separates established science, case evidence, inference, and engineering layers",
                   all(term in visible_text(soup, ["teacher"]) for term in
-                      ["Established Earth science", "Fictional case measurement", "Case inference",
+                      ["Established Earth science", "Case-specific evidence", "Case inference",
                        "Engineering extrapolation"]))
+    results.check("the source boundary keeps the Earth-science comparison distinct from the case evidence",
+                  all(term in visible_text(soup, ["teacher"]) for term in
+                      ["chlorophyll a and c", "fucoxanthin", "Earth analogy", "460–540 nm"]))
+    reminder_findings = [
+        f"{page.get('data-page-id')}:{match.group(0)}"
+        for page in soup.select(".page[data-role]")
+        for match in INVENTED_SCENARIO_REMINDER.finditer(" ".join(page.stripped_strings))
+    ]
+    results.check("printable pages carry no repeated reminder that the scenario is invented",
+                  not reminder_findings, reminder_findings)
 
     # ── Figure contract ──────────────────────────────────────────────
     figures = soup.select("figure")
@@ -245,9 +270,14 @@ def main() -> int:
                       or figure.select("polyline,polygon,ellipse,circle[r]:not(pattern circle)")
                       and figure.select("polyline,polygon")]
     results.check("no figure draws a continuous action-spectrum curve", not curve_findings, curve_findings)
-    results.check("every figure states that it reports discrete fictional case data",
-                  all("Fictional case" in figure.select_one("figcaption").get_text(" ", strip=True)
-                      or "fictional case" in figure.select_one("figcaption").get_text(" ", strip=True)
+    results.check("every figure caption attributes its data to a measurement made in this case",
+                  all(PROVENANCE.search(figure.select_one("figcaption").get_text(" ", strip=True))
+                      for figure in figures),
+                  [figure.get("data-figure-id") for figure in figures
+                   if not PROVENANCE.search(figure.select_one("figcaption").get_text(" ", strip=True))])
+    results.check("every figure caption states the limit of what it reports",
+                  all(re.search(r"no intermediate values|not identical between fixtures|is not zero|discrete",
+                                figure.select_one("figcaption").get_text(" ", strip=True), re.I)
                       for figure in figures))
     band_figures = [figure for figure in figures if "band" in (figure.get("data-figure-id") or "")]
     results.check("the response-band figure states that response outside the band is not zero",
@@ -311,7 +341,7 @@ def main() -> int:
                        "CLAIM", "EVIDENCE", "REASONING", "Monitored trial and stop rule"]))
     results.check("Answer Key exemplars preserve the required qualifiers",
                   all(term in answer_text for term in
-                      ["poor match", "strongest measured", "fictional case", "best-supported"]))
+                      ["poor match", "strongest measured", "at this site", "best-supported"]))
 
     # ── Response eligibility coverage ────────────────────────────────
     layout = json.loads((SOURCE / "layout-overrides.json").read_text(encoding="utf-8"))
