@@ -345,6 +345,107 @@
       const loadingSnapshots = transitionSnapshots.filter(snapshot => snapshot.loading);
       check("case switching keeps the floating layout drawer unpainted throughout a delayed loading transition", loadingSnapshots.length >= 2 && loadingSnapshots.every(snapshot => !snapshot.authoringReady && snapshot.panelHidden && snapshot.panelDisplay === "none") && doc.querySelector("#layoutChangesPanel").hidden && win.getComputedStyle(doc.querySelector("#layoutChangesPanel")).display === "none", JSON.stringify(transitionSnapshots));
 
+      // --- Worksheet loading placeholder: announced immediately, painted only when slow -------
+      // "Loading worksheet package…" is a ::before on #worksheetHost. It must stay ungenerated
+      // during ordinary fast case and campaign changes; a pseudo-element whose content computes
+      // to "none" produces no box at all, so that is the geometry assertion.
+      const worksheetHost = doc.querySelector("#worksheetHost");
+      const authoringBanner = doc.querySelector("#layoutChangesPanel");
+      const placeholderState = () => {
+        const before = win.getComputedStyle(worksheetHost, "::before");
+        return {
+          content: before.content,
+          display: before.display,
+          show: worksheetHost.dataset.showLoading ?? null,
+          ariaBusy: worksheetHost.getAttribute("aria-busy"),
+          bannerHidden: authoringBanner.hidden
+        };
+      };
+      const placeholderPainted = sample => sample.show === "true" || (sample.content !== "none" && sample.content !== "normal");
+
+      // Sample from the synchronous instant the change event is handled until the case is ready.
+      async function samplePlaceholder(act) {
+        let settled = false;
+        const ready = new Promise(resolve => win.addEventListener("curriculum-editor-case-ready", resolve, { once: true }));
+        ready.then(() => { settled = true; });
+        act();
+        const samples = [placeholderState()];
+        for (let guard = 0; !settled && guard < 400; guard += 1) { samples.push(placeholderState()); await wait(16); }
+        samples.push(placeholderState());
+        return samples;
+      }
+      const fireChange = (selectorId, value) => () => {
+        const selector = doc.querySelector(selectorId);
+        selector.value = value;
+        selector.dispatchEvent(new win.Event("change", { bubbles: true }));
+      };
+      const delayPackage = (fragment, ms) => {
+        const native = win.fetch.bind(win);
+        win.fetch = async (input, options) => {
+          const url = typeof input === "string" ? input : input.url;
+          if (url.includes(fragment)) await wait(ms);
+          return native(input, options);
+        };
+        return () => { win.fetch = native; };
+      };
+
+      api = win.__curriculumEditor;
+      await api.selectCase("SSS-C1-CASE01");
+      await wait(60);
+      const fastCase = await samplePlaceholder(fireChange("#caseSelect", "SSS-C1-CASE02"));
+      check("a fast Case switch never paints the worksheet loading placeholder", fastCase.every(sample => !placeholderPainted(sample)), JSON.stringify(fastCase.slice(0, 3)));
+      check("a fast Case switch generates no loading-placeholder box at any point", fastCase.every(sample => sample.content === "none"), JSON.stringify(fastCase.slice(0, 3)));
+      check("a fast Case switch marks the worksheet busy immediately", fastCase[0].ariaBusy === "true", JSON.stringify(fastCase[0]));
+
+      const fastCampaign = await samplePlaceholder(fireChange("#campaignSelect", "campaign-2"));
+      check("a fast Campaign switch never paints the worksheet loading placeholder", fastCampaign.every(sample => !placeholderPainted(sample)), JSON.stringify(fastCampaign.slice(0, 3)));
+      check("a fast Campaign switch generates no loading-placeholder box at any point", fastCampaign.every(sample => sample.content === "none"), JSON.stringify(fastCampaign.slice(0, 3)));
+      check("a fast Campaign switch marks the worksheet busy immediately", fastCampaign[0].ariaBusy === "true", JSON.stringify(fastCampaign[0]));
+      check("a fast switch settles with the worksheet no longer busy", fastCampaign[fastCampaign.length - 1].ariaBusy === "false");
+
+      // A load that finishes just under the threshold must still never paint.
+      await api.selectCase("SSS-C1-CASE01");
+      await wait(60);
+      let restoreFetch = delayPackage("case-02-lunar-greenhouse/source/case-package.json", 250);
+      const justUnder = await samplePlaceholder(fireChange("#caseSelect", "SSS-C1-CASE02"));
+      restoreFetch();
+      check("a load completing just before the delay threshold never paints the placeholder", justUnder.every(sample => !placeholderPainted(sample)), JSON.stringify(justUnder.filter(placeholderPainted).slice(0, 3)));
+
+      // A load slower than the threshold must show it, then drop it as soon as it completes.
+      await api.selectCase("SSS-C1-CASE01");
+      await wait(60);
+      restoreFetch = delayPackage("case-03-mars-habitat/source/case-package.json", 1100);
+      const slowLoad = await samplePlaceholder(fireChange("#caseSelect", "SSS-C1-CASE03"));
+      restoreFetch();
+      check("a load slower than the delay threshold does paint the loading placeholder", slowLoad.some(placeholderPainted), JSON.stringify(slowLoad.map(sample => sample.show)));
+      check("the loading placeholder disappears immediately once the delayed load completes", !placeholderPainted(slowLoad[slowLoad.length - 1]) && !placeholderPainted(placeholderState()), JSON.stringify(slowLoad[slowLoad.length - 1]));
+
+      // Repeated switching must not leave a stale timer or a stuck placeholder behind.
+      await api.selectCase("SSS-C1-CASE01");
+      await wait(60);
+      const rapidReady = new Promise(resolve => win.addEventListener("curriculum-editor-case-ready", resolve, { once: true }));
+      fireChange("#caseSelect", "SSS-C1-CASE02")();
+      fireChange("#campaignSelect", "campaign-2")();
+      fireChange("#campaignSelect", "campaign-1")();
+      await rapidReady;
+      await wait(900);
+      check("repeated switching leaves no stale loading timer or placeholder behind", !placeholderPainted(placeholderState()) && worksheetHost.getAttribute("aria-busy") === "false", JSON.stringify(placeholderState()));
+
+      // The Layout authoring banner keeps its existing behavior exactly.
+      api = win.__curriculumEditor;
+      await api.selectCase("SSS-C1-CASE01");
+      await wait(80);
+      api = win.__curriculumEditor;
+      api.setRole("student");
+      await wait(30);
+      check("switching cases still leaves Edit Text off with the Layout authoring banner hidden", api.getState().editMode === false && authoringBanner.hidden && win.getComputedStyle(authoringBanner).display === "none");
+      api.saveState({ editMode: true });
+      await wait(30);
+      check("checking Edit Text still reveals the Layout authoring banner", !authoringBanner.hidden && win.getComputedStyle(authoringBanner).display === "block");
+      api.saveState({ editMode: false });
+      await wait(30);
+      check("clearing Edit Text still hides the Layout authoring banner", authoringBanner.hidden && win.getComputedStyle(authoringBanner).display === "none");
+
       await api.selectCase("SSS-C1-CASE03");
       await wait(80);
       api = win.__curriculumEditor;

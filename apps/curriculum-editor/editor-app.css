@@ -322,7 +322,12 @@ body.case-loading .layout-changes { display: none !important; }
 .dialog-actions { justify-content: flex-end; margin-top: 18px; }
 
 #worksheetHost { display: block; min-height: 300px; }
-#worksheetHost[aria-busy="true"]::before {
+/*
+ * The placeholder is painted only for loads slow enough to be worth showing. aria-busy is set
+ * immediately for assistive technology, but it does not drive the visual state, so ordinary
+ * fast case and campaign changes never flash this box.
+ */
+#worksheetHost[data-show-loading="true"]::before {
   content: "Loading worksheet package…";
   display: block;
   padding: 28px;

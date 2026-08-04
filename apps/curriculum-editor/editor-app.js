@@ -168,6 +168,36 @@ let caseLoading = false;
 const $ = selector => document.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
+/**
+ * How long a worksheet load may run before the visual placeholder is worth showing. Ordinary
+ * case and campaign changes finish well inside this window, so they never flash the box.
+ */
+const LOADING_PLACEHOLDER_DELAY_MS = 450;
+let loadingPlaceholderTimer = 0;
+
+/**
+ * Announce the load immediately, but defer the visual placeholder. aria-busy is accurate from
+ * the first instant; only the delayed data attribute paints anything. The worksheet already on
+ * screen is left in place until its replacement is installed.
+ */
+function beginWorksheetLoading() {
+  window.clearTimeout(loadingPlaceholderTimer);
+  elements.worksheetHost.setAttribute("aria-busy", "true");
+  delete elements.worksheetHost.dataset.showLoading;
+  loadingPlaceholderTimer = window.setTimeout(() => {
+    loadingPlaceholderTimer = 0;
+    elements.worksheetHost.dataset.showLoading = "true";
+  }, LOADING_PLACEHOLDER_DELAY_MS);
+}
+
+/** Settle the load: cancel any pending placeholder and drop the visual state at once. */
+function endWorksheetLoading() {
+  window.clearTimeout(loadingPlaceholderTimer);
+  loadingPlaceholderTimer = 0;
+  delete elements.worksheetHost.dataset.showLoading;
+  elements.worksheetHost.setAttribute("aria-busy", "false");
+}
+
 function repoUrl(path) {
   if (!path || path.startsWith("/") || path.includes("..")) {
     throw new Error(`Unsafe repository path: ${path || "(empty)"}`);
@@ -1219,7 +1249,7 @@ function showError(error) {
   elements.error.hidden = false;
   elements.error.textContent = error.message || String(error);
   setLoadStatus("LOAD FAILED");
-  elements.worksheetHost.setAttribute("aria-busy", "false");
+  endWorksheetLoading();
   caseLoading = false;
   document.body.classList.remove("case-loading");
   document.body.classList.remove("layout-authoring-ready");
@@ -1249,7 +1279,7 @@ async function loadCase(selected, initial = false, options = {}) {
   layoutController = null;
   elements.error.hidden = true;
   elements.error.textContent = "";
-  elements.worksheetHost.setAttribute("aria-busy", "true");
+  beginWorksheetLoading();
   setLoadStatus(`Loading ${selected.caseEntry.title}…`, `Loading ${selected.caseEntry.title} v${selected.caseEntry.version}…`);
   casePackage = await fetchJson(selected.caseEntry.editorPackage);
   validatePackage(casePackage);
@@ -1323,7 +1353,7 @@ async function loadCase(selected, initial = false, options = {}) {
   applyState();
   await document.fonts?.ready;
   checkOverflow();
-  elements.worksheetHost.setAttribute("aria-busy", "false");
+  endWorksheetLoading();
   setLoadStatus(
     `${casePackage.title} · ${ROLE_LABELS[state.role]} ready`,
     `${casePackage.accessibility.loadAnnouncement} Grayscale ${state.grayscale ? "on" : "off"}.`
