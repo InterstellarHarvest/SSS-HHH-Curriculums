@@ -1,0 +1,477 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE01",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "SSS-C2-CASE01:accessible:t1:a1-why",
+      "persistId": "a1-why",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Why the midpoint reading is not enough",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t2:a2-direction",
+      "persistId": "a2-direction",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Direction across all three radii",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t3:a3-why",
+      "persistId": "a3-why",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Why the two ends cannot match",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t3:a3-precision",
+      "persistId": "a3-precision",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Reported precision reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t4:a4-span",
+      "persistId": "a4-span",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Radial span reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t4:a4-rules-out",
+      "persistId": "a4-rules-out",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Alternative weakened by the size pattern",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t8:a8-choice",
+      "persistId": "a8-choice",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "Proposal chosen for trial",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t8:a8-trial",
+      "persistId": "a8-trial",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "Monitored trial plan",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t8:a8-stop",
+      "persistId": "a8-stop",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "Stop and revise rule",
+      "minPx": 32,
+      "maxPx": 900
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a2-base",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a2-diff",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-subtract",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-c1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-m3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-m4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a7c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a8-criterion",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a8-constraint",
+      "reason": "constraint"
+    },
+    {
+      "persistId": "a8-o1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a8-o2",
+      "reason": "table-cell"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "SSS-C2-CASE01:student:t1:t1-why",
+        "persistId": "t1-why",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Why the midpoint reading is not enough",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t2:t2-direction",
+        "persistId": "t2-direction",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Direction across all three radii",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t3:t3-why",
+        "persistId": "t3-why",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Why the two ends cannot match",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t3:t3-precision",
+        "persistId": "t3-precision",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Reported precision reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t4:t4-span",
+        "persistId": "t4-span",
+        "pageId": "student-mission-03",
+        "taskId": 4,
+        "label": "Radial span reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t4:t4-rules-out",
+        "persistId": "t4-rules-out",
+        "pageId": "student-mission-03",
+        "taskId": 4,
+        "label": "Alternative weakened by the size pattern",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t8:t8-choice",
+        "persistId": "t8-choice",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Proposal chosen for trial",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t8:t8-trial",
+        "persistId": "t8-trial",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Monitored trial plan",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t8:t8-stop",
+        "persistId": "t8-stop",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Stop and revise rule",
+        "minPx": 32,
+        "maxPx": 900
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t2-base",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t2-diff",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t3-subtract",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-m3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6-m4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t7c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t8-criterion",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t8-constraint",
+        "reason": "constraint"
+      },
+      {
+        "persistId": "t8-o1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t8-o2",
+        "reason": "table-cell"
+      }
+    ],
+    "overrides": {}
+  }
+}

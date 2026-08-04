@@ -1,0 +1,93 @@
+# SSS Campaign 2 · Case 01 — Heavy Hands
+
+Draft native curriculum package. Package ID `SSS-C2-CASE01`, runtime ID `heavy_hands`.
+
+| Field | Value |
+|---|---|
+| Title | Heavy Hands |
+| Runtime investigation | Vressk Centrifuge Habitat |
+| Location | Kepler-442b Orbit |
+| Subtitle | Campaign 2 · Case 01 · Kepler-442b Orbit, Vressk Territory |
+| Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
+| Version | 1.0 |
+| Lifecycle | `DRAFT` — owner review not started, print gate not run |
+| Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
+
+Case 03 was produced first as the Campaign 2 pilot. This case keeps its canonical runtime
+number and is registered as Case 01, ahead of Case 03 in the Campaign 2 case list.
+
+## Contents
+
+```text
+case-01-heavy-hands/
+├── README.md
+└── source/
+    ├── case-package.json
+    ├── content.html
+    ├── layout-overrides.json
+    ├── presentation.css
+    └── task-registry.js
+```
+
+No `history/` directory exists while the case is `DRAFT`, and no generated PDF, role document,
+or screenshot is committed for this case.
+
+## Instructional shape
+
+Eight tasks, in this order and with these identifiers across all four roles:
+
+1. Frame What Has Already Been Tested
+2. Read the Gravity Profile
+3. Use a = ω²r Across the Bed
+4. Explain the Size Pattern
+5. Connect the Five Evidence Sources
+6. Diagnose and Reject Alternatives
+7. Explain the Diagnosis with CER
+8. Write the Missing Habitat Specification
+
+Role page counts: Student 5, Teacher 8, Answer Key 4, Accessible 8. The Accessible edition runs
+one task per page, which puts the Claim-Evidence-Reasoning frame on a page of its own.
+
+## Science boundary
+
+`source/task-registry.js` is the ledger of record. It carries the five formal clues and their task
+coverage, the exact numerical ledger, the source-status split between established physics and
+case-specific evidence, the correct diagnosis and its three rejected alternatives, the prohibited
+claims, and the figure provenance. Case-scoped assertions in
+`apps/curriculum-editor/tests/validate_case01_campaign2.py` enforce that ledger against the
+printable content.
+
+Three rules dominate the case and are enforced mechanically:
+
+- the reported direction is radially outward at every sampled radius, so no role may describe the
+  apparent gravity as tilting, rotating or reversing across the bed — the difference is one of
+  magnitude only;
+- no role may assert that the habitat is calibrated too strong, that Earth crops detect a
+  difference of this size, or that a larger ring is guaranteed to fix the crop;
+- the two reported difference values must be treated as consistent. `0.0018 g` is the difference of
+  two endpoint values already rounded to four decimals; `0.00187 g` is reported directly by the
+  sensor array. Task 3 is built on that distinction, so no role may present them as conflicting.
+
+Alternatives the packet lists in order to reject them are marked `data-candidate-claim`, and
+misconceptions quoted in the Teacher Guide so they can be corrected are marked `data-quoted-claim`.
+Both are excluded from the prohibited-claim scan, which therefore measures what the packet asserts
+rather than what it corrects.
+
+## Working on this case
+
+Serve the repository root and open the central editor:
+
+```bash
+python3 apps/curriculum-editor/serve.py
+```
+
+Then open <http://127.0.0.1:8000/apps/curriculum-editor/?case=SSS-C2-CASE01>.
+
+Validation:
+
+```bash
+python3 apps/curriculum-editor/tests/validate_case01_campaign2.py
+python3 apps/curriculum-editor/tests/validate_static.py
+python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE01
+python3 apps/curriculum-editor/tests/run_browser_tests.py
+```

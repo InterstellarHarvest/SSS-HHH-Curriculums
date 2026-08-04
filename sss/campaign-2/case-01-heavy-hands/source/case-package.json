@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C2-CASE01",
+  "curriculum": "SSS",
+  "campaign": "campaign-2",
+  "title": "Heavy Hands",
+  "subtitle": "Campaign 2 · Case 01 · Kepler-442b Orbit, Vressk Territory",
+  "location": "Vressk Centrifuge Habitat",
+  "version": "1.0",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C2-CASE01:v1.0:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-2/case-01-heavy-hands/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-2/case-01-heavy-hands/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-2/case-01-heavy-hands/source/task-registry.js",
+    "global": "SSS_C2_CASE01_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-2/case-01-heavy-hands/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case01-gradient-figures",
+      "type": "html-css-diagrams",
+      "selector": "[data-figure-id], [data-process-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 5
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 8
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C2_CASE01_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C2_CASE01_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C2_CASE01_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C2_CASE01_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C2_CASE01_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 2 Case 01 v1.0 — Heavy Hands Curriculum Editor",
+    "loadAnnouncement": "Heavy Hands Campaign 2 Case 01 v1.0 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      ".extended-description",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "a519dfb3e9eba929db4df55d5a792f44327803e9920636d1b885c51100dee895",
+    "presentation": "2f885b27fe7ccca573b847d9488f38ddcae7287159d27dc0ce227efb766142c2",
+    "taskRegistry": "564d510d647b96ca5cf2b3aa9013db91960568e5035cb293aa3b94adcb1f5414",
+    "layoutOverrides": "30c781b0613d1bdb7ead5e646b1a74d8752625bfee06872b0b55d8c69bc64901"
+  }
+}
