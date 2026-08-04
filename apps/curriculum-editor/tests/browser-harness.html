@@ -7,6 +7,10 @@
   <iframe id="editorFrame" title="Curriculum editor under test" width="1440" height="1200"></iframe>
   <script type="module">
     import { createVerticalResizeController } from "../vertical-resize.js";
+    import {
+      libraryCasesFromRegistry, curriculaWithCases, campaignsForCurriculum, casesForCampaign,
+      preferredCaseForCampaign, scopeForCase
+    } from "../library-scope.js";
     const assertions = [];
     const javascriptErrors = [];
     const check = (name, condition, detail = "") => assertions.push({ name, pass: Boolean(condition), detail: String(detail) });
@@ -748,12 +752,117 @@
         { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.0", student: "CASE07_STUDENT_MISSION_v1.0" },
         { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "0.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v0.1", student: "CASE03_STUDENT_MISSION_v0.1" }
       ];
-      check("case selector lists all current cases in case-number order", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value)) === JSON.stringify(canonicalCases.map(item => item.id)));
-      check("case dropdown labels are exactly registered and ordered", JSON.stringify(Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent)) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker", "6 - First Contact Protocol", "7 - The Gift", "3 - The Wrong Color of Light"]));
-      check("case dropdown option text contains no version, repository ID, or release status", Array.from(doc.querySelectorAll("#caseSelect option")).every(option => !/\bv\d|SSS-C1|APPROVED/.test(option.textContent)));
-      check("multi-case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
+      // The Case menu is campaign-scoped, so the registered cases are asserted one campaign at a
+      // time. Every registered case is still exercised in full by the matrix loop below, which
+      // loads each package directly.
+      const campaign1Cases = canonicalCases.filter(item => item.id.startsWith("SSS-C1-"));
+      const campaign2Cases = canonicalCases.filter(item => item.id.startsWith("SSS-C2-"));
+      const caseOptionValues = () => Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value);
+      const caseOptionLabels = () => Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent);
+      check("the registry registers exactly seven Campaign 1 cases and one Campaign 2 case", campaign1Cases.length === 7 && campaign2Cases.length === 1 && campaign2Cases[0].id === "SSS-C2-CASE03");
+      check("Campaign 1 lists exactly its seven registered cases in case-number order", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)), JSON.stringify(caseOptionValues()));
+      check("Campaign 1 Case dropdown labels are exactly registered and ordered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker", "6 - First Contact Protocol", "7 - The Gift"]), JSON.stringify(caseOptionLabels()));
+      check("no Campaign 2 case appears while Campaign 1 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C2-")));
+      check("case dropdown option text contains no version, repository ID, or release status", caseOptionLabels().every(label => !/\bv\d|SSS-C\d|APPROVED|DRAFT/.test(label)));
+      check("multi-case selector is enabled and keyboard-operable while Campaign 1 is selected", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
+
+      const campaign1CaseBeforeSwitch = doc.querySelector("#caseSelect").value;
+      await api.selectCampaign("SSS", "campaign-2");
+      api = win.__curriculumEditor;
+      check("Campaign 2 lists exactly its one registered case", JSON.stringify(caseOptionValues()) === JSON.stringify(["SSS-C2-CASE03"]), JSON.stringify(caseOptionValues()));
+      check("Campaign 2 Case dropdown label is exactly registered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["3 - The Wrong Color of Light"]), JSON.stringify(caseOptionLabels()));
+      check("no Campaign 1 case appears while Campaign 2 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C1-")));
+      check("switching to Campaign 2 loads its registered case and moves the worksheet with it", api.getPackage().id === "SSS-C2-CASE03" && doc.querySelector("#caseSelect").value === "SSS-C2-CASE03" && api.getWorkspace().querySelector(".hero-title")?.textContent.trim() === "The Wrong Color of Light");
+      check("the single-option Campaign 2 Case selector is disabled like every other single-value selector", doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "true");
+      check("the unreleased Campaign 2 case shows development lifecycle rather than a release version", doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === "DRAFT · OWNER_REVIEW_NOT_STARTED");
+      await api.selectCampaign("SSS", "campaign-1");
+      api = win.__curriculumEditor;
+      check("switching back to Campaign 1 restores its seven options and reloads a Campaign 1 case", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)) && api.getPackage().id.startsWith("SSS-C1-") && doc.querySelector("#caseSelect").value === api.getPackage().id, JSON.stringify(caseOptionValues()));
+      check("returning to Campaign 1 preserves the case that was selected there", doc.querySelector("#caseSelect").value === campaign1CaseBeforeSwitch, JSON.stringify({ before: campaign1CaseBeforeSwitch, after: doc.querySelector("#caseSelect").value }));
       check("the single-curriculum selector stays disabled and non-interactive", doc.querySelector("#curriculumSelect").disabled && doc.querySelector("#curriculumSelect").getAttribute("aria-disabled") === "true");
       check("the multi-campaign selector is enabled and keyboard-operable", !doc.querySelector("#campaignSelect").disabled && doc.querySelector("#campaignSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#campaignSelect").tabIndex >= 0);
+
+      // ── Campaign-scoped Case selector ────────────────────────────────────────
+      // The Case selector must contain exactly the cases registered under the selected
+      // curriculum and campaign. The scoping rules are asserted directly against a registry
+      // document so the contract holds independently of how many campaigns happen to be
+      // registered, and against the live registry immediately below.
+      const twoCampaignRegistry = {
+        schemaVersion: 2,
+        curricula: [
+          {
+            id: "SSS",
+            title: "Space Sprout Sleuth",
+            campaigns: [
+              { id: "campaign-1", title: "Campaign 1", cases: Array.from({ length: 7 }, (unused, index) => ({
+                id: `SSS-C1-CASE0${index + 1}`, displayOrder: index + 1, displayLabel: `${index + 1} - C1 case`,
+                editorPackage: `sss/campaign-1/case-0${index + 1}/source/case-package.json` })) },
+              { id: "campaign-2", title: "Campaign 2", cases: [{
+                id: "SSS-C2-CASE03", displayOrder: 8, displayLabel: "3 - The Wrong Color of Light",
+                editorPackage: "sss/campaign-2/case-03-wrong-color-light/source/case-package.json" }] }
+            ]
+          },
+          { id: "HHH", title: "History's Harvest", campaigns: [] }
+        ]
+      };
+      const fixtureCases = libraryCasesFromRegistry(twoCampaignRegistry);
+      const fixtureCampaign1 = casesForCampaign(fixtureCases, "SSS", "campaign-1");
+      const fixtureCampaign2 = casesForCampaign(fixtureCases, "SSS", "campaign-2");
+      check("registry flattening keeps only registered editor-compatible cases in display order", fixtureCases.length === 8 && JSON.stringify(fixtureCases.map(item => item.caseEntry.displayOrder)) === JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8]));
+      check("a curriculum with no registered case is never offered", JSON.stringify(curriculaWithCases(fixtureCases).map(item => item.id)) === JSON.stringify(["SSS"]));
+      check("both registered campaigns are offered for the curriculum", JSON.stringify(campaignsForCurriculum(fixtureCases, "SSS").map(item => item.id)) === JSON.stringify(["campaign-1", "campaign-2"]));
+      check("Campaign 1 scope exposes exactly its seven registered cases", fixtureCampaign1.length === 7 && fixtureCampaign1.every(item => item.campaign.id === "campaign-1"), JSON.stringify(fixtureCampaign1.map(item => item.caseEntry.id)));
+      check("Campaign 2 scope exposes exactly one registered case", fixtureCampaign2.length === 1 && fixtureCampaign2[0].caseEntry.id === "SSS-C2-CASE03", JSON.stringify(fixtureCampaign2.map(item => item.caseEntry.id)));
+      check("no Campaign 2 case is visible while Campaign 1 is the scope", !fixtureCampaign1.some(item => item.caseEntry.id.includes("-C2-")));
+      check("no Campaign 1 case is visible while Campaign 2 is the scope", !fixtureCampaign2.some(item => item.caseEntry.id.includes("-C1-")));
+      check("switching to Campaign 2 selects its first registered case", preferredCaseForCampaign(fixtureCases, "SSS", "campaign-2", undefined)?.caseEntry.id === "SSS-C2-CASE03");
+      check("switching back to Campaign 1 selects its first registered case when nothing is remembered", preferredCaseForCampaign(fixtureCases, "SSS", "campaign-1", undefined)?.caseEntry.id === "SSS-C1-CASE01");
+      check("switching back to Campaign 1 restores a still-registered remembered case", preferredCaseForCampaign(fixtureCases, "SSS", "campaign-1", "SSS-C1-CASE05")?.caseEntry.id === "SSS-C1-CASE05");
+      check("a remembered case from another campaign never leaks into the scope", preferredCaseForCampaign(fixtureCases, "SSS", "campaign-1", "SSS-C2-CASE03")?.caseEntry.id === "SSS-C1-CASE01");
+      check("a Campaign 2 case id resolves to the Campaign 2 scope", scopeForCase(fixtureCases, "SSS-C2-CASE03")?.campaign.id === "campaign-2" && scopeForCase(fixtureCases, "SSS-C2-CASE03")?.curriculum.id === "SSS");
+      check("a Campaign 1 case id resolves to the Campaign 1 scope", scopeForCase(fixtureCases, "SSS-C1-CASE04")?.campaign.id === "campaign-1");
+      check("an unregistered case id resolves to no scope", scopeForCase(fixtureCases, "SSS-C2-CASE99") === undefined);
+
+      const registryDocument = await (await fetch("/shared/implementation/case-registry.v2.json")).json();
+      const registeredCases = libraryCasesFromRegistry(registryDocument);
+      const scope = api.getLibraryScope();
+      const selectedScopeCases = casesForCampaign(registeredCases, scope.curriculum, scope.campaign);
+      check("the live Case selector contains exactly the cases registered under the selected campaign", JSON.stringify(scope.caseOptions) === JSON.stringify(selectedScopeCases.map(item => item.caseEntry.id)), JSON.stringify({ options: scope.caseOptions, scope }));
+      check("every live Case option belongs to the selected curriculum and campaign", scope.caseOptions.every(id => scopeForCase(registeredCases, id)?.campaign.id === scope.campaign && scopeForCase(registeredCases, id)?.curriculum.id === scope.curriculum));
+      check("the live Case selector offers no unregistered case", scope.caseOptions.every(id => Boolean(scopeForCase(registeredCases, id))));
+      check("the live Campaign selector offers exactly the campaigns registered under the selected curriculum", JSON.stringify(scope.campaignOptions) === JSON.stringify(campaignsForCurriculum(registeredCases, scope.curriculum).map(item => item.id)));
+      check("the live Curriculum selector offers exactly the curricula holding registered cases", JSON.stringify(scope.curriculumOptions) === JSON.stringify(curriculaWithCases(registeredCases).map(item => item.id)));
+      check("the loaded package matches the selected Case option", scope.case === api.getPackage().id && scope.case === doc.querySelector("#caseSelect").value);
+      check("the default selection is internally consistent across all three selectors", scopeForCase(registeredCases, scope.case)?.campaign.id === scope.campaign && scopeForCase(registeredCases, scope.case)?.curriculum.id === scope.curriculum);
+
+      for (const registered of casesForCampaign(registeredCases, scope.curriculum, scope.campaign)) {
+        await api.selectCase(registered.caseEntry.id);
+        const moved = api.getLibraryScope();
+        check(`selecting ${registered.caseEntry.id} synchronizes all three selectors`, moved.case === registered.caseEntry.id && moved.campaign === registered.campaign.id && moved.curriculum === registered.curriculum.id && api.getPackage().id === registered.caseEntry.id, JSON.stringify(moved));
+      }
+      await api.selectCase("SSS-C1-CASE03");
+      api = win.__curriculumEditor;
+      const scopeBeforePresentation = api.getLibraryScope();
+      for (const role of ["teacher", "accessible", "answer", "student"]) {
+        api.setRole(role);
+        await wait(20);
+        check(`switching to the ${role} role does not desynchronize the selectors`, JSON.stringify(api.getLibraryScope()) === JSON.stringify(scopeBeforePresentation), JSON.stringify(api.getLibraryScope()));
+      }
+      api.saveState({ grayscale: true });
+      await wait(20);
+      check("enabling Grayscale does not desynchronize the selectors", JSON.stringify(api.getLibraryScope()) === JSON.stringify(scopeBeforePresentation));
+      api.saveState({ grayscale: false });
+      api.saveState({ editMode: true });
+      await wait(20);
+      check("entering Edit Text does not desynchronize the selectors", JSON.stringify(api.getLibraryScope()) === JSON.stringify(scopeBeforePresentation));
+      api.saveState({ editMode: false });
+      api.buildPrintDocument("student");
+      api.serializePortableHTML();
+      api.serializeRoleHTML("student");
+      check("printing and export do not desynchronize the selectors", JSON.stringify(api.getLibraryScope()) === JSON.stringify(scopeBeforePresentation) && api.getPackage().id === scopeBeforePresentation.case);
+      const sameScopeReturn = await api.selectCampaign(scopeBeforePresentation.curriculum, scopeBeforePresentation.campaign);
+      check("re-selecting the current campaign keeps the loaded case and the selectors in step", sameScopeReturn === scopeBeforePresentation.case && JSON.stringify(api.getLibraryScope()) === JSON.stringify(scopeBeforePresentation));
+      check("an unregistered campaign is a no-op rather than an unscoped Case list", await api.selectCampaign("SSS", "campaign-99").then(() => JSON.stringify(api.getLibraryScope()) === JSON.stringify(scopeBeforePresentation)));
 
       const caseMarkers = {};
       const matrixStates = [];
