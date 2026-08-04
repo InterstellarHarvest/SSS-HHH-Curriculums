@@ -769,6 +769,11 @@ def main() -> int:
     protected_styles_path = ROOT / "shared/implementation/editor-shell/v1.0/protected-printable-components.css"
     accessible_styles_path = ROOT / "shared/implementation/editor-shell/v1.0/accessible-edition.css"
     results.check("central editor loads registry and package schema v2", "case-registry.v2.json" in runtime and "SUPPORTED_PACKAGE_SCHEMA = 2" in runtime)
+    scope_module_path = APP / "library-scope.js"
+    scope_module = scope_module_path.read_text(encoding="utf-8") if scope_module_path.is_file() else ""
+    results.check("central editor derives the Case selector from the selected curriculum and campaign rather than a flat case list", scope_module_path.is_file() and "library-scope.js" in runtime and "casesForCampaign(compatibleCases, curriculumId, campaignId)" in runtime and "renderLibraryOptions(selection.curriculum.id, selection.campaign.id)" in runtime)
+    results.check("central editor binds the Curriculum and Campaign selectors to scope changes", all(token in runtime for token in ['elements.curriculum.addEventListener("change"', 'elements.campaign.addEventListener("change"', "selectLibraryScope("]))
+    results.check("campaign scoping rules read the canonical registry and invent no placeholder cases", all(token in scope_module for token in ["caseEntry.editorPackage", "item.campaign.id === campaignId", "item.curriculum.id === curriculumId"]) and "placeholder" not in scope_module.lower())
     results.check("central editor applies shared protected and Accessible styles after case presentation", protected_styles_path.is_file() and accessible_styles_path.is_file() and "protected-printable-components.css" in runtime and "accessible-edition.css" in runtime and "[...sharedStyles, presentationCss, protectedComponentStyles, accessibleEditionStyles]" in runtime)
     results.check("central and portable exports never remap grayscale to an output role", 'outputRole: state.role' in runtime and 'outputRole: state.role' in portable and "GRAYSCALE_MISSION" not in runtime + portable)
     results.check("central and portable runtimes preserve grayscale as Boolean presentation state", "state.grayscale" in runtime and "state.grayscale" in portable and 'classList.toggle("grayscale", state.grayscale)' in runtime and 'classList.toggle("grayscale", state.grayscale)' in portable)

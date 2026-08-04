@@ -1,4 +1,8 @@
 import { createVerticalResizeController } from "./vertical-resize.js";
+import {
+  libraryCasesFromRegistry, curriculaWithCases, campaignsForCurriculum, casesForCampaign,
+  preferredCaseForCampaign, scopeForCase, scopeKey
+} from "./library-scope.js";
 
 const REGISTRY_PATH = "/shared/implementation/case-registry.v2.json";
 const PROTECTED_COMPONENT_STYLES_PATH = "shared/implementation/editor-shell/v1.0/protected-printable-components.css";
@@ -138,6 +142,7 @@ const elements = {
 let registry;
 let compatibleCases = [];
 let currentSelection;
+const lastCaseByCampaign = new Map();
 let casePackage;
 let taskRegistry;
 let state;
@@ -587,24 +592,47 @@ function installToolbar(toolbarText) {
   observeToolbar(toolbar);
 }
 
-function populateLibrary(selections) {
-  const option = (value, text) => {
-    const node = document.createElement("option");
-    node.value = value;
-    node.textContent = text;
-    return node;
-  };
-  const curricula = [...new Map(selections.map(item => [item.curriculum.id, item.curriculum])).values()];
-  const campaigns = [...new Map(selections.map(item => [`${item.curriculum.id}:${item.campaign.id}`, item.campaign])).values()];
-  elements.curriculum.replaceChildren(...curricula.map(item => option(item.id, item.title)));
-  elements.campaign.replaceChildren(...campaigns.map(item => option(item.id, item.title)));
-  elements.caseSelect.replaceChildren(...selections.map(item => option(item.caseEntry.id, item.caseEntry.displayLabel)));
+function libraryOption(value, text) {
+  const node = document.createElement("option");
+  node.value = value;
+  node.textContent = text;
+  return node;
+}
+
+/**
+ * Render the three library selectors for one curriculum + campaign scope. The Case selector
+ * always contains exactly the cases registered under the selected campaign and nothing else.
+ */
+function renderLibraryOptions(curriculumId, campaignId) {
+  const curricula = curriculaWithCases(compatibleCases);
+  const campaigns = campaignsForCurriculum(compatibleCases, curriculumId);
+  const scopedCases = casesForCampaign(compatibleCases, curriculumId, campaignId);
+  elements.curriculum.replaceChildren(...curricula.map(item => libraryOption(item.id, item.title)));
+  elements.campaign.replaceChildren(...campaigns.map(item => libraryOption(item.id, item.title)));
+  elements.caseSelect.replaceChildren(...scopedCases.map(item => libraryOption(item.caseEntry.id, item.caseEntry.displayLabel)));
   elements.curriculum.disabled = curricula.length < 2;
   elements.campaign.disabled = campaigns.length < 2;
-  elements.caseSelect.disabled = selections.length < 2;
+  elements.caseSelect.disabled = scopedCases.length < 2;
   for (const selector of [elements.curriculum, elements.campaign, elements.caseSelect]) {
     selector.setAttribute("aria-disabled", String(selector.disabled));
   }
+}
+
+/** Move the library to a curriculum + campaign scope and load that scope's case. */
+async function selectLibraryScope(curriculumId, campaignId) {
+  const target = preferredCaseForCampaign(
+    compatibleCases, curriculumId, campaignId, lastCaseByCampaign.get(scopeKey(curriculumId, campaignId))
+  );
+  if (!target) return;
+  if (target === currentSelection) {
+    syncLibrarySelection(currentSelection);
+    return;
+  }
+  await loadCase(target);
+}
+
+function populateLibrary(selection) {
+  renderLibraryOptions(selection.curriculum.id, selection.campaign.id);
   if (!libraryBound) {
     for (const role of NAVIGATION_ROLES) {
       const label = document.createElement("label");
@@ -617,6 +645,14 @@ function populateLibrary(selections) {
       label.append(input, document.createTextNode(ROLE_LABELS[role]));
       elements.roleLibrary.append(label);
     }
+    elements.curriculum.addEventListener("change", async event => {
+      const campaigns = campaignsForCurriculum(compatibleCases, event.target.value);
+      if (!campaigns.length) return;
+      try { await selectLibraryScope(event.target.value, campaigns[0].id); } catch (error) { showError(error); }
+    });
+    elements.campaign.addEventListener("change", async event => {
+      try { await selectLibraryScope(elements.curriculum.value, event.target.value); } catch (error) { showError(error); }
+    });
     elements.caseSelect.addEventListener("change", async event => {
       const selection = compatibleCases.find(item => item.caseEntry.id === event.target.value);
       if (!selection || selection === currentSelection) return;
@@ -627,9 +663,11 @@ function populateLibrary(selections) {
 }
 
 function syncLibrarySelection(selection) {
+  renderLibraryOptions(selection.curriculum.id, selection.campaign.id);
   elements.curriculum.value = selection.curriculum.id;
   elements.campaign.value = selection.campaign.id;
   elements.caseSelect.value = selection.caseEntry.id;
+  lastCaseByCampaign.set(scopeKey(selection.curriculum.id, selection.campaign.id), selection.caseEntry.id);
   const isReleased = casePackage.status === "APPROVED_STABLE";
   elements.caseStatusLabel.textContent = isReleased ? "Current release" : "Development status";
   elements.caseStatus.textContent = isReleased
@@ -1191,30 +1229,14 @@ function showError(error) {
 async function initialize() {
   registry = await fetchJson(REGISTRY_PATH);
   if (registry.schemaVersion !== 2) throw new Error(`Unsupported registry schema: ${registry.schemaVersion}`);
-  compatibleCases = [];
-  for (const curriculum of registry.curricula) {
-    for (const campaign of curriculum.campaigns) {
-      for (const caseEntry of campaign.cases) {
-        if (caseEntry.editorPackage) compatibleCases.push({ curriculum, campaign, caseEntry });
-      }
-    }
-  }
-  for (const { caseEntry } of compatibleCases) {
-    if (!Number.isInteger(caseEntry.displayOrder) || !caseEntry.displayLabel) {
-      throw new Error(`Case registry display metadata is missing: ${caseEntry.id}`);
-    }
-  }
-  if (new Set(compatibleCases.map(item => item.caseEntry.displayOrder)).size !== compatibleCases.length) {
-    throw new Error("Case registry display order values must be unique.");
-  }
-  compatibleCases.sort((a, b) => a.caseEntry.displayOrder - b.caseEntry.displayOrder);
+  compatibleCases = libraryCasesFromRegistry(registry);
   if (!compatibleCases.length) throw new Error("No current editor-compatible case is discoverable.");
-  populateLibrary(compatibleCases);
   const requestedCaseId = new URLSearchParams(location.search).get("case");
   const selectedId = requestedCaseId || safeStorageGet(SELECTED_CASE_KEY);
-  const selected = compatibleCases.find(item => item.caseEntry.id === selectedId)
-    || compatibleCases.find(item => item.caseEntry.id === "SSS-C1-CASE03")
+  const selected = scopeForCase(compatibleCases, selectedId)
+    || scopeForCase(compatibleCases, "SSS-C1-CASE03")
     || compatibleCases[0];
+  populateLibrary(selected);
   await loadCase(selected, true);
 }
 
@@ -1331,6 +1353,19 @@ async function loadCase(selected, initial = false, options = {}) {
     getWorkspace: () => elements.workspace,
     getWorksheetDocument: () => worksheetDocument,
     getCompatibleCases: () => compatibleCases.map(item => ({ id: item.caseEntry.id, displayOrder: item.caseEntry.displayOrder, displayLabel: item.caseEntry.displayLabel, title: item.caseEntry.title, version: item.caseEntry.version })),
+    getLibraryScope: () => ({
+      curriculum: elements.curriculum.value,
+      campaign: elements.campaign.value,
+      case: elements.caseSelect.value,
+      curriculumOptions: [...elements.curriculum.options].map(node => node.value),
+      campaignOptions: [...elements.campaign.options].map(node => node.value),
+      caseOptions: [...elements.caseSelect.options].map(node => node.value),
+      caseLabels: [...elements.caseSelect.options].map(node => node.textContent)
+    }),
+    selectCampaign: async (curriculumId, campaignId) => {
+      await selectLibraryScope(curriculumId, campaignId);
+      return casePackage.id;
+    },
     selectCase: async id => {
       const selection = compatibleCases.find(item => item.caseEntry.id === id);
       if (!selection) throw new Error(`Unknown editor-compatible case: ${id}`);
