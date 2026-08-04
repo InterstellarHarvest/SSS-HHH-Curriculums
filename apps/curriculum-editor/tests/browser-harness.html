@@ -267,8 +267,8 @@
 
       frame.width = "1440";
       await wait(120);
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE03": 20 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE03": 8 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE01": 9, "SSS-C2-CASE03": 20 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE01": 9, "SSS-C2-CASE03": 8 };
       for (const [caseId, expectedAccessible] of Object.entries(accessibleEligibleCounts)) {
         await api.selectCase(caseId);
         await wait(80);
@@ -851,6 +851,7 @@
         { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE06", label: "6 - First Contact Protocol", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.0", student: "CASE06_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.0", student: "CASE07_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C2-CASE01", label: "1 - Heavy Hands", version: "1.0", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE01_CURRICULUM_EDITOR_v1.0", student: "CASE01_STUDENT_MISSION_v1.0" },
         { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.0", student: "CASE03_STUDENT_MISSION_v1.0" }
       ];
       // The Case menu is campaign-scoped, so the registered cases are asserted one campaign at a
@@ -860,7 +861,7 @@
       const campaign2Cases = canonicalCases.filter(item => item.id.startsWith("SSS-C2-"));
       const caseOptionValues = () => Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value);
       const caseOptionLabels = () => Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent);
-      check("the registry registers exactly seven Campaign 1 cases and one Campaign 2 case", campaign1Cases.length === 7 && campaign2Cases.length === 1 && campaign2Cases[0].id === "SSS-C2-CASE03");
+      check("the registry registers exactly seven Campaign 1 cases and two Campaign 2 cases", campaign1Cases.length === 7 && campaign2Cases.length === 2 && JSON.stringify(campaign2Cases.map(item => item.id)) === JSON.stringify(["SSS-C2-CASE01", "SSS-C2-CASE03"]));
       check("Campaign 1 lists exactly its seven registered cases in case-number order", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)), JSON.stringify(caseOptionValues()));
       check("Campaign 1 Case dropdown labels are exactly registered and ordered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker", "6 - First Contact Protocol", "7 - The Gift"]), JSON.stringify(caseOptionLabels()));
       check("no Campaign 2 case appears while Campaign 1 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C2-")));
@@ -870,11 +871,14 @@
       const campaign1CaseBeforeSwitch = doc.querySelector("#caseSelect").value;
       await api.selectCampaign("SSS", "campaign-2");
       api = win.__curriculumEditor;
-      check("Campaign 2 lists exactly its one registered case", JSON.stringify(caseOptionValues()) === JSON.stringify(["SSS-C2-CASE03"]), JSON.stringify(caseOptionValues()));
-      check("Campaign 2 Case dropdown label is exactly registered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["3 - The Wrong Color of Light"]), JSON.stringify(caseOptionLabels()));
+      check("Campaign 2 lists exactly its two registered cases in case-number order", JSON.stringify(caseOptionValues()) === JSON.stringify(["SSS-C2-CASE01", "SSS-C2-CASE03"]), JSON.stringify(caseOptionValues()));
+      check("Campaign 2 Case dropdown labels are exactly registered and ordered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["1 - Heavy Hands", "3 - The Wrong Color of Light"]), JSON.stringify(caseOptionLabels()));
       check("no Campaign 1 case appears while Campaign 2 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C1-")));
-      check("switching to Campaign 2 loads its registered case and moves the worksheet with it", api.getPackage().id === "SSS-C2-CASE03" && doc.querySelector("#caseSelect").value === "SSS-C2-CASE03" && api.getWorkspace().querySelector(".hero-title")?.textContent.trim() === "The Wrong Color of Light");
-      check("the single-option Campaign 2 Case selector is disabled like every other single-value selector", doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "true");
+      check("switching to Campaign 2 loads its first registered case and moves the worksheet with it", api.getPackage().id === "SSS-C2-CASE01" && doc.querySelector("#caseSelect").value === "SSS-C2-CASE01" && api.getWorkspace().querySelector(".hero-title")?.textContent.trim() === "Heavy Hands");
+      check("the multi-case Campaign 2 Case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
+      check("the draft Campaign 2 case reports its development status rather than a release", doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === "DRAFT · OWNER_REVIEW_NOT_STARTED" && !doc.querySelector("#workspaceTitle").textContent.includes("v1.0"));
+      await api.selectCase("SSS-C2-CASE03");
+      api = win.__curriculumEditor;
       check("the approved Campaign 2 case reports its release once in the low-prominence status", doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === "v1.0 · APPROVED_STABLE" && !doc.querySelector("#workspaceTitle").textContent.includes("v1.0") && !doc.querySelector("#caseBreadcrumb").textContent.includes("v1.0"));
       await api.selectCampaign("SSS", "campaign-1");
       api = win.__curriculumEditor;
@@ -1080,7 +1084,7 @@
           footer: (() => { const style = win.getComputedStyle(studentPages[0].querySelector("[data-publication-footer],.publication-footer")); return { fontFamily: style.fontFamily, fontSize: px(style.fontSize), border: px(style.borderTopWidth) }; })()
         };
         const protectedGeometry = protectedPresentation[item.id];
-        if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07", "SSS-C2-CASE03"].includes(item.id)) {
+        if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07", "SSS-C2-CASE01", "SSS-C2-CASE03"].includes(item.id)) {
           check(`${item.id} protected header and footer geometry matches shared printable-v1.1`, protectedGeometry.id.fontFamily.includes("JetBrains Mono") && protectedGeometry.id.fontSize === 12 && protectedGeometry.id.gap === 12 && protectedGeometry.title.heroSize === 34.67 && protectedGeometry.title.heroLine === 38.67 && protectedGeometry.title.subtitleSize === 12 && protectedGeometry.title.insignia.every(value => Math.abs(value - 55.68) < .1) && protectedGeometry.continuation.titleSize === 21.33 && protectedGeometry.continuation.insignia.every(value => Math.abs(value - 32.64) < .1) && protectedGeometry.footer.fontSize === 9.33, JSON.stringify(protectedGeometry));
         } else {
           check(`${item.id} legacy protected components retain valid printable geometry`, protectedGeometry.title.border === 1 && protectedGeometry.continuation.border === 1 && protectedGeometry.title.insignia.every(value => value > 30) && protectedGeometry.continuation.insignia.every(value => value > 20) && protectedGeometry.footer.border === 1, JSON.stringify(protectedGeometry));
@@ -1141,14 +1145,14 @@
           const matrixStart = assertions.length;
           api.setRole(profile.role);
           api.saveState({ grayscale: profile.grayscale });
-          if (["SSS-C1-CASE03", "SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE07", "SSS-C2-CASE03"].includes(item.id) && profile.grayscale) {
+          if (["SSS-C1-CASE03", "SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE07", "SSS-C2-CASE01", "SSS-C2-CASE03"].includes(item.id) && profile.grayscale) {
             const palette = win.getComputedStyle(worksheetDoc);
             const grayscaleTokens = ["--panel", "--panel-light", "--neutral-field", "--institution", "--cyan-dark", "--slate", "--botanical", "--accent-dark", "--accent-pale", "--primary", "--secondary", "--soft", "--caution", "--caution-field"];
             const tintedSurfaces = Array.from(workspace.querySelectorAll(".callout,.data-table th,.teacher-card,.canonical-phrase-bank,.optional-extension"));
             const tokenFailures = grayscaleTokens.filter(token => !isNeutralRgb(palette.getPropertyValue(token).trim()));
             const surfaceFailures = tintedSurfaces.filter(node => !isNeutralRgb(win.getComputedStyle(node).backgroundColor));
             check(`${item.id} ${profile.role} grayscale neutralizes colored textbox palette and rendered fills`, tintedSurfaces.length > 0 && tokenFailures.length === 0 && surfaceFailures.length === 0, JSON.stringify({ tokenFailures, surfaceFailures: surfaceFailures.slice(0, 8).map(node => node.className) }));
-            if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07", "SSS-C2-CASE03"].includes(item.id)) {
+            if (["SSS-C1-CASE04", "SSS-C1-CASE05", "SSS-C1-CASE06", "SSS-C1-CASE07", "SSS-C2-CASE01", "SSS-C2-CASE03"].includes(item.id)) {
               check(`${item.id} ${profile.role} grayscale neutralizes the shared SAA insignia`, Array.from(workspace.querySelectorAll(".saa-insignia")).every(node => win.getComputedStyle(node).filter !== "none"));
             }
           }
@@ -1391,10 +1395,10 @@
       check("Case 05 presentation matrix passes 8/8", case05MatrixStates.length === 8 && case05MatrixStates.every(state => state.pass), JSON.stringify(case05MatrixStates.filter(state => !state.pass)));
       check("Case 06 presentation matrix passes 8/8", case06MatrixStates.length === 8 && case06MatrixStates.every(state => state.pass), JSON.stringify(case06MatrixStates.filter(state => !state.pass)));
       check("Case 07 presentation matrix passes 8/8", case07MatrixStates.length === 8 && case07MatrixStates.every(state => state.pass), JSON.stringify(case07MatrixStates.filter(state => !state.pass)));
-      check("all 64 case-role-presentation matrix states pass", matrixStates.length === 64 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
-      check("all 32 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 32 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
+      check("all 72 case-role-presentation matrix states pass", matrixStates.length === 72 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
+      check("all 36 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 36 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
       const protectedGeometrySignatures = Object.fromEntries(Object.entries(protectedPresentation).map(([caseId, value]) => [caseId, JSON.stringify({ title: { columns: value.title.columns, gap: value.title.gap, border: value.title.border, rail: value.title.rail, heroSize: value.title.heroSize, heroLine: value.title.heroLine, subtitleSize: value.title.subtitleSize, insignia: value.title.insignia }, continuation: { columns: value.continuation.columns, gap: value.continuation.gap, border: value.continuation.border, titleSize: value.continuation.titleSize, insignia: value.continuation.insignia } })]));
-      check("Cases 01–07 share protected title and continuation geometry", new Set(Object.values(protectedGeometrySignatures)).size === 1, JSON.stringify(protectedPresentation));
+      check("every shared printable-v1.1 case shares protected title and continuation geometry", new Set(Object.values(protectedGeometrySignatures)).size === 1, JSON.stringify(protectedPresentation));
 
       for (const item of canonicalCases) {
         await api.selectCase(item.id);

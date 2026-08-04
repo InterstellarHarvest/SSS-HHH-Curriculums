@@ -120,8 +120,21 @@
           "title": "Campaign 2",
           "cases": [
             {
-              "id": "SSS-C2-CASE03",
+              "id": "SSS-C2-CASE01",
               "displayOrder": 8,
+              "displayLabel": "1 - Heavy Hands",
+              "title": "Heavy Hands",
+              "version": "1.0",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-2/case-01-heavy-hands/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_NOT_STARTED", "printStatus": "NOT_RUN"}
+            },
+            {
+              "id": "SSS-C2-CASE03",
+              "displayOrder": 9,
               "displayLabel": "3 - The Wrong Color of Light",
               "title": "The Wrong Color of Light",
               "version": "1.0",
