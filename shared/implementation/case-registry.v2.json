@@ -124,13 +124,14 @@
               "displayOrder": 8,
               "displayLabel": "3 - The Wrong Color of Light",
               "title": "The Wrong Color of Light",
-              "version": "0.1",
-              "status": "DRAFT",
+              "version": "1.0",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-03-wrong-color-light/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "DRAFT",
-              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_NOT_STARTED", "printStatus": "NOT_RUN"}
+              "packageStatus": "APPROVED",
+              "approval": {"date": "2026-08-04", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "historyRecord": "sss/campaign-2/case-03-wrong-color-light/history/release-v1.0.json"
             }
           ]
         }

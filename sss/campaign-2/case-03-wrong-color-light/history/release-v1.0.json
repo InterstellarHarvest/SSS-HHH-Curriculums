@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE03",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-04",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+  "canonicalSourceApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+  "sourceHashes": {
+    "content": "1684e64b9496965d053f7ffc033fbbb858d784d504792f7a7ea14bbe88fa464d",
+    "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
+    "taskRegistry": "637cc593c6da9fa4b6ccf362651e8f6df4f5227efa90174ddac2e1b3abc5cd94"
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "7 Campaign 1 cases; release-history schema, commit references, source hashes, and native no-artifact controls PASS",
+    "case03Scoped": "54/54",
+    "static": "398/398",
+    "browser": "1435/1435 across all 64 case/role/presentation states",
+    "layoutContracts": "Accessible 114 eligible and 137 explicitly locked response areas; Student 64 eligible and 195 explicitly locked response areas across 8 registered cases",
+    "authoringSecurity": "13/13",
+    "fixedWorksheetGeometry": "816 × 1056 CSS-pixel Letter pages and 720 × 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS",
+    "campaignScopedNavigation": "PASS",
+    "studentFiveTaskPagesAndCombinedCERPage": "PASS",
+    "accessibleDedicatedCER": "PASS",
+    "sourceBoundaryAndProhibitedClaims": "PASS; seven prohibited-claim negative fixtures each demonstrated failure capability",
+    "editableCopyExport": "PASS",
+    "worksheetExport": "PASS",
+    "isolatedPrinting": "PASS",
+    "javascriptErrors": "0",
+    "visualReview": "25/25 pages for Campaign 2 Case 03"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Campaign 2 Case 03 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+  "recovery": "NOT_APPLICABLE: Campaign 2 Case 03 was produced natively under the canonical source model; no generated release artifacts exist.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "Frozen game-source baseline: 46b9387bca95736f164f905596e3dd8b13968661.",
+    "Complete owner-approved curriculum preview baseline: 571c491ac54aa61788c7af991756b6da534fd506.",
+    "Campaign 2 Case 03 is the first produced Campaign 2 curriculum package. It keeps its runtime case number and is not renumbered as Campaign 2 Case 01.",
+    "Runtime case identity: wrong_color_light, Oolian Mariculture Dome, Trench Shelf IV, Kepler-186f (Ocean).",
+    "The campaign-scoped Case selector correction was integrated into curriculum main at f0ac5e05cae435e5b5356037204ab6ada945beba before this release.",
+    "Case 03 was authored directly as canonical package sources and released after on-screen, generated-PDF, and owner-confirmed physical-print review; no migration from generated release documents occurred."
+  ],
+  "retiredArtifacts": []
+}

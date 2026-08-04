@@ -3,7 +3,7 @@
 Project state content verified from curriculum repository baseline
 `f08066c15c161c5961cc88adad86282329cd7609`
 
-Last updated: 2026-08-03
+Last updated: 2026-08-04
 
 ## Purpose and authority
 
@@ -31,6 +31,8 @@ Frozen Case 06 game-source baseline: `d723fb9b8085905a6048575a2cb3bb0fce1d312b`
 
 Frozen Case 07 game-source baseline: `a813c209dfde00634103f74d6673e7d4433e0e63`
 
+Frozen Campaign 2 game-source baseline: `46b9387bca95736f164f905596e3dd8b13968661`
+
 ## Approved curriculum releases
 
 | Curriculum | Campaign | Case | Title | Version | Student | Teacher | Answer Key | Accessible | Status |
@@ -42,8 +44,15 @@ Frozen Case 07 game-source baseline: `a813c209dfde00634103f74d6673e7d4433e0e63`
 | SSS | 1 | 05 | Sub Surface Bunker | 1.0 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
 | SSS | 1 | 06 | First Contact Protocol | 1.0 | 5 | 8 | 5 | 7 | APPROVED_STABLE |
 | SSS | 1 | 07 | The Gift | 1.0 | 6 | 8 | 6 | 8 | APPROVED_STABLE |
+| SSS | 2 | 03 | The Wrong Color of Light | 1.0 | 5 | 8 | 4 | 8 | APPROVED_STABLE |
 
-Cases 01–05 are the five released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first released first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the released Campaign 1 culmination. Cases 04–07 were produced natively through the mature canonical workflow. All registered Accessible editions use content-driven page counts and dedicated canonical CER pages; Student, Teacher, and Answer Key page counts remain fixed. The seven-case Campaign 1 curriculum sequence is approved and released; Campaign 2 curriculum production remains unstarted.
+Cases 01–05 are the five released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first released first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the released Campaign 1 culmination. Cases 04–07 were produced natively through the mature canonical workflow. All registered Accessible editions use content-driven page counts and dedicated canonical CER pages; Student, Teacher, and Answer Key page counts remain fixed. The seven-case Campaign 1 curriculum sequence is approved and released.
+
+Campaign 2 curriculum production has begun. Campaign 2 Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), is the first produced Campaign 2 package and is released at v1.0 `APPROVED_STABLE`. It remains Campaign 2 Case 03 and is not renumbered as Campaign 2 Case 01. It was produced against the frozen Campaign 2 game-source baseline `46b9387bca95736f164f905596e3dd8b13968661`. The remaining Campaign 2 cases are unproduced.
+
+Accepted curriculum release commit for Campaign 2 Case 03: `RELEASE_COMMIT_PENDING`.
+
+The central editor library is campaign-scoped: the Curriculum selector controls the available campaigns and the Campaign selector controls the Case menu, which lists exactly the cases registered under the selected campaign.
 
 ## Canonical case structure
 
@@ -205,7 +214,7 @@ SSS Campaign 1 contains seven released curriculum-sequenced cases. Cases 01–05
 
 Next authorized production target: **None recorded**
 
-Campaign 2 curriculum production remains unstarted and requires separate owner authorization. Approval of Case 07 does not by itself authorize a Campaign 2 or HHH production branch.
+Campaign 2 curriculum production has begun with Case 03 released at v1.0. Producing any further Campaign 2 case, or any HHH case, still requires separate owner authorization.
 
 ## Update policy
 

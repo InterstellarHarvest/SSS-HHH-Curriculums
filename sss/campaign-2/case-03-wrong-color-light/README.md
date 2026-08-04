@@ -1,6 +1,6 @@
 # SSS Campaign 2 · Case 03 — The Wrong Color of Light
 
-Unreleased native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wrong_color_light`.
+Released native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wrong_color_light`.
 
 | Field | Value |
 |---|---|
@@ -9,7 +9,8 @@ Unreleased native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wr
 | Location | Trench Shelf IV |
 | Subtitle | Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean) |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Lifecycle | `DRAFT` — no approval, no release record, no generated artifacts |
+| Version | 1.0 |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-04, print gate PASS at 100% / Actual Size |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -17,6 +18,9 @@ Unreleased native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wr
 ```text
 case-03-wrong-color-light/
 ├── README.md
+├── history/
+│   ├── CASE03_OWNER_APPROVAL_v1.0.md
+│   └── release-v1.0.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -25,7 +29,7 @@ case-03-wrong-color-light/
     └── task-registry.js
 ```
 
-No `history/` record exists and none may be created until the case is approved.
+No generated PDF, role document, or screenshot is committed for this case.
 
 ## Instructional shape
 

@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -22,6 +23,8 @@ CASE_ID = "SSS-C2-CASE03"
 CASE_ROOT = ROOT / "sss/campaign-2/case-03-wrong-color-light"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "46b9387bca95736f164f905596e3dd8b13968661"
+RELEASE_VERSION = "1.0"
+APPROVAL_DATE = "2026-08-04"
 RUNTIME_ID = "wrong_color_light"
 ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
@@ -151,12 +154,57 @@ def main() -> int:
     results.check("package declares the routine SSS/SAA printable identity",
                   package["institutionalIdentity"]["name"] == "Solar Agricultural Agency"
                   and package["subtitle"] == "Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean)")
-    results.check("unreleased package declares no approval or release history",
-                  package["status"] == "DRAFT"
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN"
-                  and "releaseHistory" not in package
-                  and not (CASE_ROOT / "history").exists())
+    results.check("the package records the approved release lifecycle",
+                  package["status"] == "APPROVED_STABLE"
+                  and package["version"] == RELEASE_VERSION
+                  and package["approval"] == {"date": APPROVAL_DATE, "owner": "Nate / Owner",
+                                              "status": "APPROVED", "printStatus": "PASS"},
+                  package["approval"])
+    results.check("the task registry records the same approved release lifecycle",
+                  (registry.get("version"), registry.get("status"), registry.get("approvalDate"),
+                   registry.get("approvedBy"), registry.get("ownerReviewStatus"), registry.get("mergeStatus"))
+                  == (RELEASE_VERSION, "APPROVED_STABLE", APPROVAL_DATE, "Nate / Owner",
+                      "OWNER_REVIEW_PASS", "READY_TO_MERGE"))
+    history_path = CASE_ROOT / "history/release-v1.0.json"
+    approval_path = CASE_ROOT / "history/CASE03_OWNER_APPROVAL_v1.0.md"
+    results.check("the approved package names exactly one retained release-history record",
+                  package.get("releaseHistory") == history_path.relative_to(ROOT).as_posix()
+                  and sorted(path.name for path in (CASE_ROOT / "history").iterdir())
+                  == ["CASE03_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"])
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+    results.check("the release history records a native release with no former generated artifacts",
+                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RELEASE_VERSION
+                  and history["status"] == "APPROVED_STABLE" and history["approvalDate"] == APPROVAL_DATE
+                  and history["owner"] == "Nate / Owner"
+                  and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
+                  and history["priorApprovedReleases"] == []
+                  and history["retiredArtifacts"] == []
+                  and history["acceptedPrintStatus"] == "PASS at 100% / Actual Size")
+    results.check("the release history page counts match the approved release",
+                  history["rolePageCounts"] == {"student": 5, "teacher": 8, "answer": 4, "accessible": 8})
+    results.check("the release history pins the source hashes it was approved at",
+                  all(history["sourceHashes"][name] == package["sourceHashes"][name]
+                      for name in ("content", "presentation", "taskRegistry")))
+    results.check("every commit reference in the release history exists",
+                  all(subprocess.run(["git", "cat-file", "-e", f"{history[field]}^{{commit}}"],
+                                     cwd=ROOT, capture_output=True).returncode == 0
+                      for field in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                    "formerArtifactRecoveryCommit")))
+    results.check("the release history records the frozen game baseline",
+                  any(GAME_COMMIT in note for note in history["migrationNotes"]))
+    results.check("the release history keeps the case at its runtime case number",
+                  any("not renumbered as Campaign 2 Case 01" in note for note in history["migrationNotes"]))
+    owner_approval = approval_path.read_text(encoding="utf-8")
+    results.check("the owner approval record captures every release gate and the no-artifact decision",
+                  all(token in owner_approval for token in
+                      ["Nate / Owner", APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE",
+                       "On-screen content and visual review: **PASS**", "Generated PDF review: **PASS**",
+                       "Physical print at 100% / Actual Size: **PASS**", "NO_GENERATED_ARTIFACTS_COMMITTED",
+                       GAME_COMMIT]))
+    results.check("no generated release artifact is stored beside the approved case",
+                  not [path.name for path in CASE_ROOT.rglob("*")
+                       if path.is_file() and path.suffix.lower() in {".pdf", ".png", ".jpg", ".jpeg", ".html"}
+                       and path.name != "content.html"])
     hash_targets = {
         "content": content_path,
         "presentation": SOURCE / "presentation.css",
@@ -171,7 +219,7 @@ def main() -> int:
     top_level = {path.name for path in CASE_ROOT.iterdir() if path.name != ".DS_Store"}
     source_files = {path.name for path in SOURCE.iterdir() if path.is_file() and path.name != ".DS_Store"}
     results.check("Campaign 2 case folder uses the canonical lean layout",
-                  top_level == {"README.md", "source"}
+                  top_level == {"README.md", "source", "history"}
                   and source_files == {"case-package.json", "content.html", "layout-overrides.json",
                                        "presentation.css", "task-registry.js"},
                   {"top": sorted(top_level), "source": sorted(source_files)})

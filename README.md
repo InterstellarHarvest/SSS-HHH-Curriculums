@@ -2,19 +2,21 @@
 
 Shared curriculum repository for **Space Sprout Sleuth (SSS)** and **Hunger, Harvest, & History (HHH)**.
 
-Canonical released Cases 01–07: `APPROVED_STABLE`
+Canonical released SSS Campaign 1 Cases 01–07 and Campaign 2 Case 03: `APPROVED_STABLE`
 
-SSS Campaign 1 contains seven released curriculum-sequenced cases. Cases 01–05 are the five core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the approved Campaign 1 culmination. Campaign 2 curriculum production remains unstarted and requires separate owner authorization.
+SSS Campaign 1 contains seven released curriculum-sequenced cases. Cases 01–05 are the five core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the approved Campaign 1 culmination.
+
+SSS Campaign 2 curriculum production has begun. Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), is the first produced Campaign 2 package and is released at v1.0. It keeps its runtime case number and is not renumbered as Campaign 2 Case 01. The remaining Campaign 2 cases are unproduced and require separate owner authorization.
 
 ## Canonical production workflow
 
-The registered case package and its package-controlled files are the only active source. For the currently registered SSS Campaign 1 Cases 01–07, launch the central Curriculum Editor from the repository root:
+The registered case package and its package-controlled files are the only active source. For the currently registered SSS cases, launch the central Curriculum Editor from the repository root:
 
 ```bash
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/>. The editor owns instructional editing, response entry, display settings, role switching, clean browser printing, editable-copy export, and worksheet export.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. The Curriculum, Campaign, and Case selectors are scoped: the Case menu lists exactly the cases registered under the selected campaign. The editor owns instructional editing, response entry, display settings, role switching, clean browser printing, editable-copy export, and worksheet export.
 
 The four document roles are Student, Teacher, Answer Key, and Accessible. Grayscale is a Boolean display/print/export presentation toggle available for every role. It never changes role identity, page count, autosave scope, or the normal role filename.
 

@@ -750,7 +750,7 @@
         { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE06", label: "6 - First Contact Protocol", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.0", student: "CASE06_STUDENT_MISSION_v1.0" },
         { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.0", student: "CASE07_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "0.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v0.1", student: "CASE03_STUDENT_MISSION_v0.1" }
+        { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.0", student: "CASE03_STUDENT_MISSION_v1.0" }
       ];
       // The Case menu is campaign-scoped, so the registered cases are asserted one campaign at a
       // time. Every registered case is still exercised in full by the matrix loop below, which
@@ -774,7 +774,7 @@
       check("no Campaign 1 case appears while Campaign 2 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C1-")));
       check("switching to Campaign 2 loads its registered case and moves the worksheet with it", api.getPackage().id === "SSS-C2-CASE03" && doc.querySelector("#caseSelect").value === "SSS-C2-CASE03" && api.getWorkspace().querySelector(".hero-title")?.textContent.trim() === "The Wrong Color of Light");
       check("the single-option Campaign 2 Case selector is disabled like every other single-value selector", doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "true");
-      check("the unreleased Campaign 2 case shows development lifecycle rather than a release version", doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === "DRAFT · OWNER_REVIEW_NOT_STARTED");
+      check("the approved Campaign 2 case reports its release once in the low-prominence status", doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === "v1.0 · APPROVED_STABLE" && !doc.querySelector("#workspaceTitle").textContent.includes("v1.0") && !doc.querySelector("#caseBreadcrumb").textContent.includes("v1.0"));
       await api.selectCampaign("SSS", "campaign-1");
       api = win.__curriculumEditor;
       check("switching back to Campaign 1 restores its seven options and reloads a Campaign 1 case", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)) && api.getPackage().id.startsWith("SSS-C1-") && doc.querySelector("#caseSelect").value === api.getPackage().id, JSON.stringify(caseOptionValues()));
