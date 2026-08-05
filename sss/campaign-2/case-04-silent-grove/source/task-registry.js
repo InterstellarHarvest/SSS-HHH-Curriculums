@@ -35,17 +35,17 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
       "number": "2",
       "semanticLabel": "DATA ANALYSIS",
       "icon": "ph-scales",
-      "title": "Read the Change Record and the Signalling Readings",
-      "description": "Read the schedule record, the signalling readings, and the two change logs exactly, preserving the reported range and the reporting-threshold status of the 0.0 ppb reading.",
+      "title": "What a Reading Can and Cannot Tell You",
+      "description": "Use two everyday examples — a scale that reads zero and two witnesses who disagree — to judge what a threshold reading, a reported range, and two differing records can and cannot support, then apply all three to the grove.",
       "keyed": true
     },
     {
       "id": "C2-C04-T3",
       "number": "3",
-      "semanticLabel": "DATA ANALYSIS",
-      "icon": "ph-scales",
-      "title": "Read the Daily Signalling Profile",
-      "description": "Read the within-cycle record, explain what a daily total cannot show, and identify the hour blocks the records do not report and may not be filled in.",
+      "semanticLabel": "PATTERN ANALYSIS",
+      "icon": "ph-nodes",
+      "title": "Find the Pattern a Total Hides",
+      "description": "Use a same-total, different-pattern sleep example to explain why a daily total can hide timing, then apply it to the grove's two-year signalling cycle and the loss of its dark hours.",
       "keyed": true
     },
     {
@@ -252,7 +252,8 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
     "establishedEarthScienceComparison": "Biological clocks can be entrained by recurring environmental cycles including light-dark transitions, and responses to continuous light differ among species, with both injury and tolerance reported.",
     "caseSpecificEvidence": "This grove's two-year cycling record and its peak and minimum hour blocks, the 40-80 ppb healthy range, the recorded five-hour minimum dark interval, the 7-10 day suppression window, and the six-month reversibility figure.",
     "numbers": "game-provided measurements",
-    "figures": "curriculum-original"
+    "figures": "curriculum-original",
+    "teachingAnalogy": "Task 2 uses a kitchen scale that reads 0 kg for an envelope and two witnesses, Rosa and Theo, who record a rain shower stopping at 4:00 and 4:10. Task 3 uses Mia and Sam, who each sleep 8 hours a day in different patterns. Those examples teach the ideas only. They are labelled in the printable content as not being grove measurements, they carry lettered table numbers rather than the numbered case tables, and their values never appear as case evidence."
   },
   "correctDiagnosis": "Removing the recurring dark interval removed the timing cue that this grove's recorded signalling cycle is entrained to, so measured output fell to the reporting threshold while the three organisms stayed structurally healthy.",
   "incorrectAlternatives": [

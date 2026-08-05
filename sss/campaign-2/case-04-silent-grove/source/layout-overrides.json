@@ -23,6 +23,15 @@
       "maxPx": 900
     },
     {
+      "id": "SSS-C2-CASE04:accessible:t2:a2-range",
+      "persistId": "a2-range",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Reported range versus a single value",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
       "id": "SSS-C2-CASE04:accessible:t2:a2-logs",
       "persistId": "a2-logs",
       "pageId": "accessible-mission-02",
@@ -32,20 +41,29 @@
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE04:accessible:t3:a3-profile",
-      "persistId": "a3-profile",
+      "id": "SSS-C2-CASE04:accessible:t3:a3-total",
+      "persistId": "a3-total",
       "pageId": "accessible-mission-03",
       "taskId": 3,
-      "label": "Within-cycle reasoning",
+      "label": "What a daily total omits",
       "minPx": 32,
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE04:accessible:t3:a3-gaps",
-      "persistId": "a3-gaps",
+      "id": "SSS-C2-CASE04:accessible:t3:a3-why",
+      "persistId": "a3-why",
       "pageId": "accessible-mission-03",
       "taskId": 3,
-      "label": "Unreported hour blocks",
+      "label": "Why a pattern can matter",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE04:accessible:t3:a3-grove",
+      "persistId": "a3-grove",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Applying the pattern idea to the grove",
       "minPx": 32,
       "maxPx": 900
     },
@@ -228,14 +246,6 @@
       "reason": "table-cell"
     },
     {
-      "persistId": "a2-dark",
-      "reason": "single-line"
-    },
-    {
-      "persistId": "a2-expected",
-      "reason": "single-line"
-    },
-    {
       "persistId": "a6-d1",
       "reason": "single-line"
     },
@@ -311,6 +321,15 @@
         "maxPx": 900
       },
       {
+        "id": "SSS-C2-CASE04:student:t2:t2-range",
+        "persistId": "t2-range",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Reported range versus a single value",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
         "id": "SSS-C2-CASE04:student:t2:t2-logs",
         "persistId": "t2-logs",
         "pageId": "student-mission-02",
@@ -320,20 +339,29 @@
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE04:student:t3:t3-profile",
-        "persistId": "t3-profile",
+        "id": "SSS-C2-CASE04:student:t3:t3-total",
+        "persistId": "t3-total",
         "pageId": "student-mission-03",
         "taskId": 3,
-        "label": "Within-cycle reasoning",
+        "label": "What a daily total omits",
         "minPx": 32,
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE04:student:t3:t3-gaps",
-        "persistId": "t3-gaps",
+        "id": "SSS-C2-CASE04:student:t3:t3-why",
+        "persistId": "t3-why",
         "pageId": "student-mission-03",
         "taskId": 3,
-        "label": "Unreported hour blocks",
+        "label": "Why a pattern can matter",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE04:student:t3:t3-grove",
+        "persistId": "t3-grove",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Applying the pattern idea to the grove",
         "minPx": 32,
         "maxPx": 900
       },
@@ -397,14 +425,6 @@
       {
         "persistId": "t1-5",
         "reason": "table-cell"
-      },
-      {
-        "persistId": "t2-dark",
-        "reason": "single-line"
-      },
-      {
-        "persistId": "t2-expected",
-        "reason": "single-line"
       },
       {
         "persistId": "t4-scrubbers",

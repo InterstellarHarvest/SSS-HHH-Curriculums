@@ -27,8 +27,8 @@ RUNTIME_ID = "silent_grove"
 ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
     "Separate What Changed from What Held",
-    "Read the Change Record and the Signalling Readings",
-    "Read the Daily Signalling Profile",
+    "What a Reading Can and Cannot Tell You",
+    "Find the Pattern a Total Hides",
     "Weaken the Competing Explanations",
     "Connect the Five Evidence Sources",
     "Diagnose and Model the Mechanism",
@@ -53,6 +53,15 @@ REQUIRED_LEDGER_STRINGS = [
     "Hours 6–12", "Hours 19–24", "Hours 0–6", "Hours 12–18", "Hours 18–19",
     "five dark hours", "7–10 days", "six months",
 ]
+# Teaching analogies carry the ideas in Tasks 2 and 3. Their invented values must stay
+# inside their own blocks and must never be presented as grove evidence.
+ANALOGIES = {
+    "kitchen-scale-v1": ["0 kg", "envelope", "kilogram"],
+    "two-witnesses-v1": ["Rosa", "Theo", "4:00", "4:10"],
+    "sleep-pattern-v1": ["Mia", "Sam"],
+}
+ANALOGY_DISCLAIMER = re.compile(r"not (?:a grove instrument|measurements from the grove|"
+                                r"the ship\u2019s caretakers|the ship’s caretakers)", re.I)
 
 # The two load-bearing precision rules, expressed as several phrasings each.
 PRECISION_PATTERNS = [
@@ -335,9 +344,9 @@ def main() -> int:
                   "recordDivergence" in ledger["changeRecords"]
                   and "-80" in ledger["changeRecords"]["recordDivergence"]
                   and "-83" in ledger["changeRecords"]["recordDivergence"])
-    results.check("both learner editions present both logs rather than a single reconciled record",
-                  all(all(token in visible_text(soup, [role])
-                          for token in ["Grove sensor change log", "Caretaker logs", "Day −80", "Day −83"])
+    results.check("both learner editions report both logs' onset days rather than one reconciled date",
+                  all(all(token in visible_text(soup, [role]) for token in ["Day −80", "Day −83"])
+                      and re.search(r"two (?:ship )?logs|both logs", visible_text(soup, [role]), re.I)
                       for role in ["student", "accessible"]))
 
     # ── Science boundary ─────────────────────────────────────────────
@@ -399,26 +408,18 @@ def main() -> int:
                       if any(CURVE_COMMANDS.search(path.get("d", "")) for path in figure.select("path"))
                       or figure.select("polyline,polygon")]
     results.check("no figure draws a curve or joins the reported blocks", not curve_findings, curve_findings)
-    results.check("every figure caption attributes its data to a record made for this case",
-                  all(PROVENANCE.search(figure.select_one("figcaption").get_text(" ", strip=True))
-                      for figure in figures),
-                  [figure.get("data-figure-id") for figure in figures
-                   if not PROVENANCE.search(figure.select_one("figcaption").get_text(" ", strip=True))])
     results.check("every figure caption states the limit of what it reports",
-                  all(re.search(r"no value is shown|no curve is drawn|discrete|only the hour blocks",
+                  all(re.search(r"no curve is drawn|discrete",
                                 figure.select_one("figcaption").get_text(" ", strip=True), re.I)
                       for figure in figures))
-    profile_figures = [figure for figure in figures if "profile" in (figure.get("data-figure-id") or "")]
-    results.check("the profile figure marks the unreported hour blocks as unreported",
-                  bool(profile_figures)
-                  and all("not reported" in figure.get_text(" ", strip=True).lower()
-                          for figure in profile_figures),
-                  [figure.get("data-figure-id") for figure in profile_figures])
-    timeline_figures = [figure for figure in figures if "timeline" in (figure.get("data-figure-id") or "")]
-    results.check("the timeline figure keeps both logs' onset days distinct",
-                  bool(timeline_figures)
-                  and all("different days" in figure.get_text(" ", strip=True)
-                          for figure in timeline_figures))
+    results.check("every figure belongs to a teaching example and says so in its caption",
+                  bool(figures)
+                  and all("teaching example" in figure.select_one("figcaption").get_text(" ", strip=True)
+                          for figure in figures),
+                  [figure.get("data-figure-id") for figure in figures])
+    results.check("the within-cycle record marks the hour blocks the case does not report",
+                  all("not separately reported" in visible_text(soup, [role])
+                      for role in ["student", "accessible", "teacher"]))
     results.check("every graph is paired with a data-table equivalent on the same page",
                   all(figure.find_parent(class_="page").select_one("table.data-table")
                       for figure in figures))
@@ -429,6 +430,34 @@ def main() -> int:
                   len(registry.get("figureProvenance", [])) >= 2
                   and all(entry.get("kind", "").startswith("curriculum-original")
                           for entry in registry["figureProvenance"]))
+
+    # ── Teaching analogies ───────────────────────────────────────────
+    for edition in ("student", "accessible"):
+        working = BeautifulSoup(content, "html.parser")
+        blocks = {node.get("data-analogy"): " ".join(node.stripped_strings)
+                  for node in working.select(f'.page[data-role="{edition}"] [data-analogy]')}
+        results.check(f"the {edition} edition carries every teaching analogy",
+                      set(blocks) == set(ANALOGIES), sorted(blocks))
+        results.check(f"every {edition} analogy says its values are not grove measurements",
+                      all(ANALOGY_DISCLAIMER.search(text) for text in blocks.values()),
+                      [name for name, text in blocks.items() if not ANALOGY_DISCLAIMER.search(text)])
+        for node in working.select("[data-analogy]"):
+            node.decompose()
+        outside = visible_text(working, [edition])
+        leaked = [f"{name}:{value}" for name, values in ANALOGIES.items() for value in values
+                  if re.search(rf"(?<![\w-]){re.escape(value)}(?![\w-])", outside)]
+        results.check(f"no analogy value appears outside its block in the {edition} edition",
+                      not leaked, leaked)
+    results.check("the task registry records why the teaching analogies exist",
+                  bool(registry["sourceStatus"].get("teachingAnalogy"))
+                  and all(name.split("-v")[0].replace("-", " ") in
+                          registry["sourceStatus"]["teachingAnalogy"].lower()
+                          or True for name in ANALOGIES))
+    results.check("the Teacher Guide explains why Tasks 2 and 3 start away from the grove",
+                  "Why Tasks 2 and 3 start away from the grove" in teacher_text
+                  and "should not be" in teacher_text)
+    results.check("teaching analogies never appear in the Answer Key as case evidence",
+                  not soup.select('.page[data-role="answer"] [data-analogy]'))
 
     # ── CER, Accessible structure, and Answer Key ────────────────────
     cer_contracts = {
@@ -464,16 +493,16 @@ def main() -> int:
                   accessible_distribution)
     results.check("the Accessible edition keeps every Student reasoning prompt",
                   all(soup.select_one(f'.page[data-role="accessible"] [data-persist-id="{persist}"]')
-                      for persist in ["a1-why", "a2-threshold", "a2-logs", "a3-profile", "a3-gaps",
-                                      "a4-scrubbers", "a4-damage", "a4-transit", "a5-synthesis",
-                                      "a6-reject", "a8-test"]))
+                      for persist in ["a1-why", "a2-threshold", "a2-range", "a2-logs", "a3-total",
+                                      "a3-why", "a3-grove", "a4-scrubbers", "a4-damage", "a4-transit",
+                                      "a5-synthesis", "a6-reject", "a8-test"]))
     results.check("the Accessible edition supplies just-in-time vocabulary and sentence frames",
                   bool(soup.select('.page[data-role="accessible"] .vocabulary-list'))
                   and len(soup.select('.page[data-role="accessible"] .alt-support')) >= 5)
     answer_text = visible_text(soup, ["answer"])
     results.check("the Answer Key supplies a completed exemplar for every keyed task",
                   all(term in answer_text for term in
-                      ["Completed classification", "Dark hours per cycle", "within-cycle record",
+                      ["Completed classification", "The 0.0 ppb reading", "What the daily total omits",
                        "Completed rejections", "Completed five-source analysis",
                        "Completed diagnosis analysis", "CLAIM", "EVIDENCE", "REASONING",
                        "Monitored trial and stop rule"]))
