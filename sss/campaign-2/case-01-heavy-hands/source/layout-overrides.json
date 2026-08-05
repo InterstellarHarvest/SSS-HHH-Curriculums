@@ -27,7 +27,7 @@
       "persistId": "a2-dev",
       "pageId": "accessible-mission-02",
       "taskId": 2,
-      "label": "How Dev's ride differs from Ana's",
+      "label": "How Cara lying down differs from Ana sitting",
       "minPx": 32,
       "maxPx": 900
     },
@@ -273,7 +273,7 @@
         "persistId": "t2-dev",
         "pageId": "student-mission-02",
         "taskId": 2,
-        "label": "How Dev's ride differs from Ana's",
+        "label": "How Cara lying down differs from Ana sitting",
         "minPx": 32,
         "maxPx": 900
       },

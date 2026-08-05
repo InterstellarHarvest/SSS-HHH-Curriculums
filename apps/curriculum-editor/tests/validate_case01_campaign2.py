@@ -262,10 +262,12 @@ def main() -> int:
     precision_findings = [reason for pattern, reason in PRECISION_PATTERNS if pattern.search(asserted)]
     results.check("reported precision is preserved in both directions", not precision_findings,
                   precision_findings)
-    results.check("the profile is reported as outward at all three radii in every learner edition",
-                  all(visible_text(soup, [role]).count("outward") >= 3
-                      for role in ["student", "accessible"]),
-                  {role: visible_text(soup, [role]).count("outward") for role in ["student", "accessible"]})
+    results.check("both learner editions state in plain language that only the strength changes",
+                  all("pulled the same way — outward, away from the middle" in visible_text(soup, [role])
+                      for role in ["student", "accessible"]))
+    results.check("the raw gravity profile stays out of the learner editions",
+                  not any(value in visible_text(soup, ["student", "accessible"])
+                          for value in ["2.0991 g", "2.1009 g", "0.00187 g", "2.88966 RPM", "224.8 m"]))
     results.check("the numerical ledger records both difference values and why they differ",
                   registry["numericalLedger"]["reportedDifferenceG"] == "0.00187"
                   and registry["numericalLedger"]["differenceOfRoundedEndpointsG"] == "0.0018"
@@ -422,18 +424,21 @@ def main() -> int:
     answer_text = visible_text(soup, ["answer"])
     results.check("the Answer Key supplies a completed exemplar for every keyed task",
                   all(term in answer_text for term in
-                      ["Completed classification", "Radius and reported magnitude at the bed base",
-                       "Where the accelerometer was placed", "What one reading could not show",
+                      ["Completed classification", "Who feels the strongest pull",
+                       "Cara lying down compared with Ana sitting",
+                       "The question to ask the botanist next", "What the habitat rule forgot to say",
                        "Why a thick tuber feels more of a difference",
                        "Completed five-source analysis", "Completed diagnosis analysis",
                        "Completed rejections", "CLAIM", "EVIDENCE", "REASONING",
                        "Monitored trial and stop rule"]))
     results.check("Answer Key exemplars preserve the required qualifiers",
                   all(term in answer_text for term in
-                      ["only the magnitude differs", "best-supported", "in this habitat",
+                      ["only the strength differs", "best-supported", "in this habitat",
                        "does not establish", "a monitored trial"]))
     results.check("the Answer Key separates a measurement being correct from being sufficient",
                   "measurement being correct from a measurement being sufficient" in answer_text)
+    results.check("the Answer Key uses only riders introduced in the analogy",
+                  not re.search(r"\bDev\b", visible_text(soup, ROLES)))
     results.check("the Teacher Guide keeps the rounding explanation as an optional extension",
                   "cannot recover precision" in visible_text(soup, ["teacher"]))
     results.check("the completed mechanism model is a five-stage process contract",
