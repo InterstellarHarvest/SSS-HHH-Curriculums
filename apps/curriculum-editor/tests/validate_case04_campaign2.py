@@ -294,16 +294,11 @@ def main() -> int:
                   == "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    # Every case registered at the time Case 04 was approved must stay approved. Cases registered
-    # afterwards are allowed to be unreleased drafts; naming them here keeps this assertion a
-    # regression guard on the eleven approved packages rather than a bar on new work.
-    unreleased = {"SSS-C2-CASE05"}
-    results.check("every case approved at this release remains APPROVED_STABLE",
+    results.check("every registered case is APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases
-                      if case["id"] not in unreleased),
+                      for cases in campaigns.values() for case in cases),
                   [case["id"] for cases in campaigns.values() for case in cases
-                   if case["id"] not in unreleased and case["status"] != "APPROVED_STABLE"])
+                   if case["status"] != "APPROVED_STABLE"])
 
     # ── Source hashes and canonical folder shape ─────────────────────
     hash_targets = {

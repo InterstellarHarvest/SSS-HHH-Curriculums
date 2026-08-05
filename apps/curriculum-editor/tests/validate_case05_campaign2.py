@@ -18,6 +18,7 @@ import difflib
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -29,8 +30,10 @@ CASE_ID = "SSS-C2-CASE05"
 CASE_ROOT = ROOT / "sss/campaign-2/case-05-too-clean-room"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-DRAFT_VERSION = "1.0"
+RELEASE_VERSION = "1.0"
+APPROVAL_DATE = "2026-08-05"
 OWNER = "Nate / Owner"
+PREVIEW_BASELINE = "5c1453328ac40a7f7a653efa18ef70bf73759f69"
 RUNTIME_ID = "too_clean_room"
 RUNTIME_NAME = "Concord Botanical Vault"
 RUNTIME_LOCATION = "Lagrange Point 5"
@@ -256,26 +259,57 @@ def main() -> int:
                   CASE_ROOT.name == "case-05-too-clean-room"
                   and package["content"]["source"].startswith("sss/campaign-2/case-05-too-clean-room/"))
 
-    # ── Draft lifecycle: no release, no approval, no artifacts ───────
-    results.check("the package records the unstarted draft lifecycle",
-                  package["status"] == "DRAFT" and package["version"] == DRAFT_VERSION
-                  and package["approval"] == {"owner": OWNER, "status": "OWNER_REVIEW_NOT_STARTED",
-                                              "printStatus": "NOT_RUN"},
+    # ── Approved lifecycle, release history, no artifacts ───────────
+    results.check("the package records the approved release lifecycle",
+                  package["status"] == "APPROVED_STABLE" and package["version"] == RELEASE_VERSION
+                  and package["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
+                                              "status": "APPROVED", "printStatus": "PASS"},
                   package["approval"])
-    results.check("the task registry records the same unstarted draft lifecycle",
-                  (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
-                   registry.get("printStatus"))
-                  == (DRAFT_VERSION, "DRAFT", "OWNER_REVIEW_NOT_STARTED", "NOT_RUN"),
-                  [registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
-                   registry.get("printStatus")])
-    results.check("the draft declares no release history",
-                  "releaseHistory" not in package and "releaseHistory" not in registry)
-    results.check("the draft has no history directory and no owner-approval record",
-                  not (CASE_ROOT / "history").exists()
-                  and not list(CASE_ROOT.rglob("*OWNER_APPROVAL*")))
-    results.check("the draft records no approval date and no merge status",
-                  "date" not in package["approval"]
-                  and "approvalDate" not in registry and "mergeStatus" not in registry)
+    results.check("the task registry records the same approved release lifecycle",
+                  (registry.get("version"), registry.get("status"), registry.get("approvalDate"),
+                   registry.get("approvedBy"), registry.get("ownerReviewStatus"),
+                   registry.get("mergeStatus"))
+                  == (RELEASE_VERSION, "APPROVED_STABLE", APPROVAL_DATE, OWNER,
+                      "OWNER_REVIEW_PASS", "READY_TO_MERGE"),
+                  [registry.get("status"), registry.get("ownerReviewStatus"), registry.get("mergeStatus")])
+    results.check("the approved package names exactly one retained release-history record",
+                  package.get("releaseHistory")
+                  == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
+                  and sorted(path.name for path in (CASE_ROOT / "history").iterdir())
+                  == ["CASE05_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"],
+                  sorted(path.name for path in (CASE_ROOT / "history").iterdir()))
+    history = json.loads((CASE_ROOT / "history/release-v1.0.json").read_text(encoding="utf-8"))
+    results.check("the release history records a native release with no former generated artifacts",
+                  history["caseId"] == CASE_ID and history["status"] == "APPROVED_STABLE"
+                  and history["approvalDate"] == APPROVAL_DATE and history["owner"] == OWNER
+                  and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
+                  and history["priorApprovedReleases"] == []
+                  and history["retiredArtifacts"] == [])
+    results.check("the release history page counts match the approved release",
+                  history["rolePageCounts"] == ROLE_PAGES, history["rolePageCounts"])
+    results.check("the release history pins the source hashes it was approved at",
+                  all(history["sourceHashes"][name] == package["sourceHashes"][name]
+                      for name in ("content", "presentation", "taskRegistry")),
+                  history["sourceHashes"])
+    results.check("every commit reference in the release history exists",
+                  all(subprocess.run(["git", "cat-file", "-e", f"{history[field]}^{{commit}}"],
+                                     cwd=ROOT, capture_output=True).returncode == 0
+                      for field in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                    "formerArtifactRecoveryCommit")))
+    results.check("the release history records the frozen game baseline and the preview baseline",
+                  any(GAME_COMMIT in note for note in history["migrationNotes"])
+                  and any(PREVIEW_BASELINE in note for note in history["migrationNotes"]))
+    results.check("the release history explains the seven-page Student edition",
+                  any("seven pages" in note for note in history["migrationNotes"]))
+    results.check("the release history records the accepted print gate",
+                  history["acceptedPrintStatus"].startswith("PASS")
+                  and history["acceptedValidation"]["status"] == "PASS")
+    approval_record = (CASE_ROOT / "history/CASE05_OWNER_APPROVAL_v1.0.md").read_text(encoding="utf-8")
+    results.check("the owner approval record captures every release gate and the no-artifact decision",
+                  all(token in approval_record for token in
+                      ["**APPROVED_STABLE**", "**OWNER_REVIEW_PASS**", "**READY_TO_MERGE**",
+                       "Physical print at 100% / Actual Size: **PASS**",
+                       "NO_GENERATED_ARTIFACTS_COMMITTED", GAME_COMMIT, PREVIEW_BASELINE]))
     results.check("the case stores no PDFs or screenshots",
                   not [path.name for suffix in ("*.pdf", "*.png", "*.jpg", "*.jpeg")
                        for path in CASE_ROOT.rglob(suffix)])
@@ -283,7 +317,8 @@ def main() -> int:
                   sorted(path.name for path in CASE_ROOT.rglob("*.html")) == ["content.html"],
                   sorted(path.name for path in CASE_ROOT.rglob("*.html")))
     results.check("the case folder uses the canonical lean layout",
-                  sorted(path.name for path in CASE_ROOT.iterdir()) == ["README.md", "source"]
+                  sorted(path.name for path in CASE_ROOT.iterdir())
+                  == ["README.md", "history", "source"]
                   and sorted(path.name for path in SOURCE.iterdir())
                   == ["case-package.json", "content.html", "layout-overrides.json",
                       "presentation.css", "task-registry.js"],
@@ -304,16 +339,18 @@ def main() -> int:
                   campaigns["campaign-2"][4]["id"] == CASE_ID
                   and campaigns["campaign-2"][4]["displayLabel"] == "5 - Too Clean a Room")
     entry = campaigns["campaign-2"][4]
-    results.check("the Case 05 registry entry is an unreleased draft with no history record",
-                  entry["status"] == "DRAFT" and entry["packageStatus"] == "DRAFT"
-                  and "historyRecord" not in entry
-                  and entry["approval"] == {"owner": OWNER, "status": "OWNER_REVIEW_NOT_STARTED",
-                                            "printStatus": "NOT_RUN"})
-    results.check("the eleven previously approved cases all remain APPROVED_STABLE",
+    results.check("the Case 05 registry entry is an approved release with a history record",
+                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
+                  and entry.get("historyRecord")
+                  == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
+                  and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
+                                            "status": "APPROVED", "printStatus": "PASS"})
+    results.check("all twelve registered cases are APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases if case["id"] != CASE_ID),
+                      for cases in campaigns.values() for case in cases)
+                  and sum(len(cases) for cases in campaigns.values()) == 12,
                   [case["id"] for cases in campaigns.values() for case in cases
-                   if case["id"] != CASE_ID and case["status"] != "APPROVED_STABLE"])
+                   if case["status"] != "APPROVED_STABLE"])
 
     # ── Source hashes ────────────────────────────────────────────────
     hash_targets = {
