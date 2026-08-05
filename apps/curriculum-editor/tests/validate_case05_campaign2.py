@@ -14,6 +14,7 @@ regex that silently stops matching fails this suite rather than passing it.
 
 from __future__ import annotations
 
+import difflib
 import hashlib
 import json
 import re
@@ -593,6 +594,24 @@ def main() -> int:
     results.check("the Accessible edition keeps every Student reasoning prompt",
                   student_prompts == accessible_prompts,
                   sorted(student_prompts ^ accessible_prompts))
+    similarity = difflib.SequenceMatcher(
+        None, visible_text(soup, ["student"]).split(), visible_text(soup, ["accessible"]).split()
+    ).ratio()
+    results.check("the Accessible edition is rewritten rather than reflowed",
+                  similarity <= 0.70, f"{similarity * 100:.1f}% similar to the Student edition")
+    results.check("the Accessible edition carries a lighter reading load than the Student edition",
+                  len(visible_text(soup, ["accessible"]).split())
+                  < len(visible_text(soup, ["student"]).split()),
+                  {"student": len(visible_text(soup, ["student"]).split()),
+                   "accessible": len(visible_text(soup, ["accessible"]).split())})
+    results.check("the Accessible edition restates every evidence table in its own words",
+                  all(phrase in visible_text(soup, ["accessible"]) for phrase in
+                      ["no rule was written", "A modeled number", "What it cannot prove alone",
+                       "Who says yes first"]))
+    results.check("the Answer Key covers the Accessible mechanism wording as well as the Student wording",
+                  all(phrase in visible_text(soup, ["answer"]) for phrase in
+                      ["the repair pathway stays switched off",
+                       "the repair-linked pathway stays quiescent instead of running"]))
     results.check("the Accessible edition carries vocabulary support and scaffolds",
                   bool(soup.select('.page[data-role="accessible"] .vocabulary-list'))
                   and len(soup.select('.page[data-role="accessible"] .alt-support')) >= 5,

@@ -67,6 +67,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .diagnosis-table td:last-child, .diagnosis-table th:last-child { width: .62in; }
 .timeline-table td:first-child, .timeline-table th:first-child { width: 1.05in; }
 .conditions-table td:first-child, .conditions-table th:first-child { width: 1.35in; }
+.paired-table td:first-child, .paired-table th:first-child { width: 3.2in; }
 .evidence-table { table-layout: fixed; }
 .rubric { font-size: 7.65pt; }
 
