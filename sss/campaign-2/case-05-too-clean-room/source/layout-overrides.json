@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE05",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "SSS-C2-CASE05:accessible:t1:a1-why",
+      "persistId": "a1-why",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Clean-report reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t2:a2-threshold",
+      "persistId": "a2-threshold",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Detection-limit reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t2:a2-units",
+      "persistId": "a2-units",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Dose-unit reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t2:a2-modeled",
+      "persistId": "a2-modeled",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Measured versus modeled reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t3:a3-onset",
+      "persistId": "a3-onset",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Decline onset reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t3:a3-timing",
+      "persistId": "a3-timing",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Constant-condition reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t3:a3-nulls",
+      "persistId": "a3-nulls",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Null-result reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-c1",
+      "persistId": "a4-c1",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 1 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-l1",
+      "persistId": "a4-l1",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 1 limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-c2",
+      "persistId": "a4-c2",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 2 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-l2",
+      "persistId": "a4-l2",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 2 limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-c3",
+      "persistId": "a4-c3",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 3 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-l3",
+      "persistId": "a4-l3",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 3 limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-c4",
+      "persistId": "a4-c4",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 4 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-l4",
+      "persistId": "a4-l4",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 4 limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-c5",
+      "persistId": "a4-c5",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 5 contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-l5",
+      "persistId": "a4-l5",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source 5 limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t4:a4-synthesis",
+      "persistId": "a4-synthesis",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Five-source synthesis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t5:a5-nutrient",
+      "persistId": "a5-nutrient",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Nutrient alternative rejection",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t5:a5-climate",
+      "persistId": "a5-climate",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Climate alternative rejection",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t5:a5-shock",
+      "persistId": "a5-shock",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "Transplant-shock rejection",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t7:a7-minimum",
+      "persistId": "a7-minimum",
+      "pageId": "accessible-mission-07",
+      "taskId": 7,
+      "label": "Minimum-exposure reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE05:accessible:t7:a7-recommendation",
+      "persistId": "a7-recommendation",
+      "pageId": "accessible-mission-07",
+      "taskId": 7,
+      "label": "Recommendation and reason",
+      "minPx": 32,
+      "maxPx": 900
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-6",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-d1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-d2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-d3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-d4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-m2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-m3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-m4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7-criterion-1",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a7-criterion-2",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a7-constraint",
+      "reason": "constraint"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "SSS-C2-CASE05:student:t1:t1-why",
+        "persistId": "t1-why",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Clean-report reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t2:t2-threshold",
+        "persistId": "t2-threshold",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Detection-limit reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t2:t2-units",
+        "persistId": "t2-units",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Dose-unit reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t2:t2-modeled",
+        "persistId": "t2-modeled",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Measured versus modeled reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t3:t3-onset",
+        "persistId": "t3-onset",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Decline onset reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t3:t3-timing",
+        "persistId": "t3-timing",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Constant-condition reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t3:t3-nulls",
+        "persistId": "t3-nulls",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Null-result reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t4:t4-synthesis",
+        "persistId": "t4-synthesis",
+        "pageId": "student-mission-04",
+        "taskId": 4,
+        "label": "Five-source synthesis",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t5:t5-nutrient",
+        "persistId": "t5-nutrient",
+        "pageId": "student-mission-05",
+        "taskId": 5,
+        "label": "Nutrient alternative rejection",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t5:t5-climate",
+        "persistId": "t5-climate",
+        "pageId": "student-mission-05",
+        "taskId": 5,
+        "label": "Climate alternative rejection",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t5:t5-shock",
+        "persistId": "t5-shock",
+        "pageId": "student-mission-05",
+        "taskId": 5,
+        "label": "Transplant-shock rejection",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t7:t7-minimum",
+        "persistId": "t7-minimum",
+        "pageId": "student-mission-07",
+        "taskId": 7,
+        "label": "Minimum-exposure reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE05:student:t7:t7-recommendation",
+        "persistId": "t7-recommendation",
+        "pageId": "student-mission-07",
+        "taskId": 7,
+        "label": "Recommendation and reason",
+        "minPx": 32,
+        "maxPx": 900
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-6",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-d1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-d2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-d3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-d4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-m2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-m3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-m4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7-criterion-1",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t7-criterion-2",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t7-constraint",
+        "reason": "constraint"
+      }
+    ],
+    "overrides": {}
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C2-CASE05",
+  "curriculum": "SSS",
+  "campaign": "campaign-2",
+  "title": "Too Clean a Room",
+  "subtitle": "Campaign 2 · Case 05 · Lagrange Point 5, Concord Neutral Zone",
+  "location": "Concord Botanical Vault",
+  "version": "1.0",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C2-CASE05:v1.0:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-2/case-05-too-clean-room/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-2/case-05-too-clean-room/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-2/case-05-too-clean-room/source/task-registry.js",
+    "global": "SSS_C2_CASE05_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-2/case-05-too-clean-room/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case05-dose-and-production-figures",
+      "type": "html-css-diagrams",
+      "selector": "[data-figure-id], [data-process-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 7
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 9
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 5
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 7
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C2_CASE05_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C2_CASE05_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C2_CASE05_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C2_CASE05_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C2_CASE05_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 2 Case 05 v1.0 — Too Clean a Room Curriculum Editor",
+    "loadAnnouncement": "Too Clean a Room Campaign 2 Case 05 v1.0 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      ".extended-description",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "6d44345187fb249fee5451a4a655e7cbf7316ecf7a62880a5e0b1c7b86ffcb14",
+    "presentation": "14543c2d613ee2664522727fb86b65faecdcfd1f579224989a96c8f892c201e8",
+    "taskRegistry": "9e95a3f0d2724ebb5da799a3cf7fd98e9460561bb8e6378d602529ea707b29aa",
+    "layoutOverrides": "81ef2a25198424d29637e3946bb431c4a605021fc95dd178d9a98571142eccbd"
+  }
+}
