@@ -134,8 +134,21 @@
               "historyRecord": "sss/campaign-2/case-01-heavy-hands/history/release-v1.0.json"
             },
             {
-              "id": "SSS-C2-CASE03",
+              "id": "SSS-C2-CASE02",
               "displayOrder": 9,
+              "displayLabel": "2 - The Missing Dance",
+              "title": "The Missing Dance",
+              "version": "1.0",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-2/case-02-missing-dance/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {"owner": "Nate / Owner", "status": "OWNER_REVIEW_NOT_STARTED", "printStatus": "NOT_RUN"}
+            },
+            {
+              "id": "SSS-C2-CASE03",
+              "displayOrder": 10,
               "displayLabel": "3 - The Wrong Color of Light",
               "title": "The Wrong Color of Light",
               "version": "1.0",

@@ -33,6 +33,7 @@ EXPECTED = {
     "SSS-C1-CASE06": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
     "SSS-C1-CASE07": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
     "SSS-C2-CASE01": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE02": {"version": "1.0", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
 }
 STUDENT_LAYOUT_COUNTS = {
@@ -44,6 +45,7 @@ STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE06": (8, 25),
     "SSS-C1-CASE07": (11, 24),
     "SSS-C2-CASE01": (11, 35),
+    "SSS-C2-CASE02": (10, 28),
     "SSS-C2-CASE03": (8, 34),
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
@@ -806,6 +808,8 @@ def main() -> int:
     results.check("Student/Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
     case03_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case03_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 03 case-scoped source, clue, figure, and prohibited-claim checks pass", case03_campaign2.returncode == 0, (case03_campaign2.stdout + case03_campaign2.stderr).strip()[-2000:])
+    case02_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case02_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("SSS Campaign 2 Case 02 case-scoped source, clue, figure, and prohibited-claim checks pass", case02_campaign2.returncode == 0, (case02_campaign2.stdout + case02_campaign2.stderr).strip()[-2000:])
     case01_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case01_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 01 case-scoped source, clue, figure, and prohibited-claim checks pass", case01_campaign2.returncode == 0, (case01_campaign2.stdout + case01_campaign2.stderr).strip()[-2000:])
     service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)
