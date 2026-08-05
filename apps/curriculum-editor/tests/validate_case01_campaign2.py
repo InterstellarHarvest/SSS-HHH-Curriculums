@@ -12,6 +12,7 @@ patterns below exist to keep that distinction intact in every role.
 
 from __future__ import annotations
 
+import difflib
 import hashlib
 import json
 import re
@@ -318,6 +319,17 @@ def main() -> int:
     results.check("the task registry records the analogy and why the real spread is unteachable",
                   "teachingAnalogy" in registry["sourceStatus"]
                   and any("30 RPM" in note for note in registry["productionCautions"]))
+    # The Accessible edition must be genuinely rewritten, not the Student edition reflowed.
+    # Every approved case sits between 43% and 68% word-sequence similarity; a refactor that
+    # shares task blocks verbatim between editions pushes this above 90%.
+    similarity = difflib.SequenceMatcher(
+        None, visible_text(soup, ["student"]).split(), visible_text(soup, ["accessible"]).split()
+    ).ratio()
+    results.check("the Accessible edition is rewritten rather than reflowed",
+                  similarity <= 0.80, f"{similarity * 100:.1f}% similar to the Student edition")
+    results.check("the Accessible edition carries its own vocabulary support",
+                  bool(soup.select('.page[data-role="accessible"] .word-bank'))
+                  and bool(soup.select('.page[data-role="accessible"] .vocabulary-list')))
     results.check("both learner editions close by naming what solving the case taught",
                   all("Case closed — what it means" in visible_text(soup, [role])
                       for role in ["student", "accessible"]))
