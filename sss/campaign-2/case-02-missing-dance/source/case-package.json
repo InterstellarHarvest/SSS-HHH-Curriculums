@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C2-CASE02",
+  "curriculum": "SSS",
+  "campaign": "campaign-2",
+  "title": "The Missing Dance",
+  "subtitle": "Campaign 2 · Case 02 · Olympia District, Mars",
+  "location": "Ares Botanical Garden",
+  "version": "1.0",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C2-CASE02:v1.0:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-2/case-02-missing-dance/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-2/case-02-missing-dance/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-2/case-02-missing-dance/source/task-registry.js",
+    "global": "SSS_C2_CASE02_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-2/case-02-missing-dance/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case02-pollination-figures",
+      "type": "html-css-diagrams",
+      "selector": "[data-figure-id], [data-process-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 5
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 8
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C2_CASE02_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C2_CASE02_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C2_CASE02_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C2_CASE02_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C2_CASE02_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 2 Case 02 v1.0 — The Missing Dance Curriculum Editor",
+    "loadAnnouncement": "The Missing Dance Campaign 2 Case 02 v1.0 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      ".extended-description",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "9d9bfb70ef16feae1d112d3ab30176769d216397a12d05cfd206472d797e8b43",
+    "presentation": "18afdc2c393af4f5fffa22c7a226724ab454c121a028a264f88e94fdb1eaaa6d",
+    "taskRegistry": "be69ff5937a25a0f652199578c76bfab6a5ae6c1b33ae02ff6623098b2d5b0ea",
+    "layoutOverrides": "9ce6bc63c44e40d0ae80bb8115e283ce5112636070b8987d31a3fd68f5d182d8"
+  }
+}

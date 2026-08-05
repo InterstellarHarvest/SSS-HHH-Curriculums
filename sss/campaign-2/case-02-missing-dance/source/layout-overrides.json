@@ -1,0 +1,423 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE02",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "SSS-C2-CASE02:accessible:t1:a1-trials",
+      "persistId": "a1-trials",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Why failed trials are evidence",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t2:a2-waiting",
+      "persistId": "a2-waiting",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "What the salt was waiting for",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t3:a3-healthy",
+      "persistId": "a3-healthy",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Two things working normally",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t3:a3-missing",
+      "persistId": "a3-missing",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "What the pollen is missing",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t4:a4-source",
+      "persistId": "a4-source",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Source that can establish it independently",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t4:a4-question",
+      "persistId": "a4-question",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Question to bring back",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t4:a4-respect",
+      "persistId": "a4-respect",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Why this respects the boundary",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t8:a8-first",
+      "persistId": "a8-first",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "Setting to vary first",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t8:a8-measure",
+      "persistId": "a8-measure",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "What to measure",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE02:accessible:t8:a8-why",
+      "persistId": "a8-why",
+      "pageId": "accessible-mission-08",
+      "taskId": 8,
+      "label": "Why one frequency is not a plan",
+      "minPx": 32,
+      "maxPx": 900
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a2-most",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-c1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-c5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-l5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-d4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-m3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-m4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a7c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a8-limit",
+      "reason": "constraint"
+    },
+    {
+      "persistId": "a8-stop",
+      "reason": "constraint"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "SSS-C2-CASE02:student:t1:t1-trials",
+        "persistId": "t1-trials",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Why failed trials are evidence",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t2:t2-waiting",
+        "persistId": "t2-waiting",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "What the salt was waiting for",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t3:t3-healthy",
+        "persistId": "t3-healthy",
+        "pageId": "student-mission-02",
+        "taskId": 3,
+        "label": "Two things working normally",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t3:t3-missing",
+        "persistId": "t3-missing",
+        "pageId": "student-mission-02",
+        "taskId": 3,
+        "label": "What the pollen is missing",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t4:t4-source",
+        "persistId": "t4-source",
+        "pageId": "student-mission-03",
+        "taskId": 4,
+        "label": "Source that can establish it independently",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t4:t4-question",
+        "persistId": "t4-question",
+        "pageId": "student-mission-03",
+        "taskId": 4,
+        "label": "Question to bring back",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t4:t4-respect",
+        "persistId": "t4-respect",
+        "pageId": "student-mission-03",
+        "taskId": 4,
+        "label": "Why this respects the boundary",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t8:t8-first",
+        "persistId": "t8-first",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Setting to vary first",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t8:t8-measure",
+        "persistId": "t8-measure",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "What to measure",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE02:student:t8:t8-why",
+        "persistId": "t8-why",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Why one frequency is not a plan",
+        "minPx": 32,
+        "maxPx": 900
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t2-most",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-l5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-d4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-m3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6-m4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t7c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t8-limit",
+        "reason": "constraint"
+      },
+      {
+        "persistId": "t8-stop",
+        "reason": "constraint"
+      }
+    ],
+    "overrides": {}
+  }
+}
