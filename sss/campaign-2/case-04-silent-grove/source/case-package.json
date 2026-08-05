@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "id": "SSS-C2-CASE04",
+  "curriculum": "SSS",
+  "campaign": "campaign-2",
+  "title": "The Silent Grove",
+  "subtitle": "Campaign 2 · Case 04 · Drift Vessel Thal-Oren, Inter-system Transit",
+  "location": "Zhel'ii Diaspora Grove",
+  "version": "1.0",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "SAA",
+    "name": "Solar Agricultural Agency",
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
+    "insigniaSelector": ".saa-insignia"
+  },
+  "documentKey": "SSS-C2-CASE04:v1.0:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "sss/campaign-2/case-04-silent-grove/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "sss/campaign-2/case-04-silent-grove/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "sss/campaign-2/case-04-silent-grove/source/task-registry.js",
+    "global": "SSS_C2_CASE04_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "sss/campaign-2/case-04-silent-grove/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "saa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/saa.svg",
+      "selector": ".saa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case04-circadian-figures",
+      "type": "html-css-diagrams",
+      "selector": "[data-figure-id], [data-process-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 6
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 8
+    }
+  },
+  "outputs": {
+    "complete": "SSS_C2_CASE04_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
+    "student": "SSS_C2_CASE04_STUDENT_MISSION_v1.0_CUSTOM.html",
+    "teacher": "SSS_C2_CASE04_TEACHER_GUIDE_v1.0_CUSTOM.html",
+    "answer": "SSS_C2_CASE04_ANSWER_KEY_v1.0_CUSTOM.html",
+    "accessible": "SSS_C2_CASE04_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "SSS Campaign 2 Case 04 v1.0 — The Silent Grove Curriculum Editor",
+    "loadAnnouncement": "The Silent Grove Campaign 2 Case 04 v1.0 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      ".extended-description",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "b7c0e2e4e350e56bfd72a07cb3eeeea7cdfad9c3c86b86b2eee57bd04e9fb3f9",
+    "presentation": "c494f96d96b25409c7d3ad837dfa4afc74f5fe53ff4edcc9f9d75131515714d1",
+    "taskRegistry": "aa4939ca56d143ce9ad4d968d7a0c1e6593be86e35d768e1b0de8bb15edd8304",
+    "layoutOverrides": "a89c2c0cc2a32ce7275802e4b412c9dd786670ffd44c396109e4d5aa06decd6d"
+  }
+}
