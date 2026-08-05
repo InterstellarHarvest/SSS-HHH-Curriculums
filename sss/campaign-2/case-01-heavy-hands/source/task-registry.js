@@ -42,10 +42,10 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     {
       "id": "C2-C01-T3",
       "number": "3",
-      "semanticLabel": "MATHEMATICAL REASONING",
-      "icon": "ph-scales",
-      "title": "Use a = ω²r Across the Bed",
-      "description": "Apply the given relationship at one fixed rotation rate to show the two ends of the bed cannot share one magnitude, then compare a difference of rounded endpoints with the directly reported difference.",
+      "semanticLabel": "EVIDENCE ANALYSIS",
+      "icon": "ph-nodes",
+      "title": "What One Measurement Could Not Show",
+      "description": "Compare what the botanist measured at a single point with what the sensor array found across three, and explain how a measurement can be correct and still miss the cause.",
       "keyed": true
     },
     {
@@ -53,8 +53,8 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "number": "4",
       "semanticLabel": "PATTERN ANALYSIS",
       "icon": "ph-nodes",
-      "title": "Explain the Size Pattern",
-      "description": "Use the observation that larger tubers deform more to connect radial span to the magnitude difference a single organ samples, and state why that pattern discriminates among the candidate causes.",
+      "title": "Why the Biggest Tubers Bend Most",
+      "description": "Use the observation that larger tubers deform more to connect how much of the bed an organ spans to how much difference it feels, and state why that pattern discriminates among the candidate causes.",
       "keyed": true
     },
     {
@@ -249,7 +249,8 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     "Preserve the reported precision: 2.0991 g and 2.1009 g at four decimals, 0.00187 g at five, 2.88966 RPM at five.",
     "Do not present 0.0018 g and 0.00187 g as conflicting; the first is a difference of rounded endpoints and the second is reported directly.",
     "Do not convert the archive's 'negligible' bed-scale difference on a planet into a number; none is reported.",
-    "Do not require any student calculation that needs the angular speed in radians per second; the runtime reports the rotation rate in RPM only.",
+    "The packet requires no calculation. a = ω²r is named once so students know the relationship exists; it is never evaluated, and no task asks for arithmetic with the reported values.",
+    "The rounding relationship between 0.0018 g and 0.00187 g is Teacher-facing only, offered as an optional extension. Do not promote it into a student task; it is interesting enough to displace the biology.",
     "Do not invent a deformation quantity. The specimen record reports only that deformation increases with tuber diameter.",
     "Keep the gorlroot growth-control response as case evidence rather than established Earth plant biology."
   ]

@@ -38,8 +38,8 @@ Eight tasks, in this order and with these identifiers across all four roles:
 
 1. Frame What Has Already Been Tested
 2. Read the Gravity Profile
-3. Use a = ω²r Across the Bed
-4. Explain the Size Pattern
+3. What One Measurement Could Not Show
+4. Why the Biggest Tubers Bend Most
 5. Connect the Five Evidence Sources
 6. Diagnose and Reject Alternatives
 7. Explain the Diagnosis with CER
@@ -64,9 +64,10 @@ Three rules dominate the case and are enforced mechanically:
   magnitude only;
 - no role may assert that the habitat is calibrated too strong, that Earth crops detect a
   difference of this size, or that a larger ring is guaranteed to fix the crop;
-- the two reported difference values must be treated as consistent. `0.0018 g` is the difference of
-  two endpoint values already rounded to four decimals; `0.00187 g` is reported directly by the
-  sensor array. Task 3 is built on that distinction, so no role may present them as conflicting.
+- the packet requires no calculation. `a = ω²r` is named once so learners know the relationship
+  exists, but it is never evaluated and no task asks for arithmetic with the reported values. The
+  rounding relationship between `0.0018 g` and `0.00187 g` is Teacher-facing only, offered as an
+  optional extension, and must not be promoted into a student task.
 
 Alternatives the packet lists in order to reject them are marked `data-candidate-claim`, and
 misconceptions quoted in the Teacher Guide so they can be corrected are marked `data-quoted-claim`.

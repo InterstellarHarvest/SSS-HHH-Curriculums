@@ -23,20 +23,20 @@
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE01:accessible:t3:a3-why",
-      "persistId": "a3-why",
+      "id": "SSS-C2-CASE01:accessible:t3:a3-missed",
+      "persistId": "a3-missed",
       "pageId": "accessible-mission-03",
       "taskId": 3,
-      "label": "Why the two ends cannot match",
+      "label": "What one reading could not show",
       "minPx": 32,
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE01:accessible:t3:a3-precision",
-      "persistId": "a3-precision",
+      "id": "SSS-C2-CASE01:accessible:t3:a3-fair",
+      "persistId": "a3-fair",
       "pageId": "accessible-mission-03",
       "taskId": 3,
-      "label": "Reported precision reasoning",
+      "label": "Correct but not sufficient",
       "minPx": 32,
       "maxPx": 900
     },
@@ -45,7 +45,7 @@
       "persistId": "a4-span",
       "pageId": "accessible-mission-04",
       "taskId": 4,
-      "label": "Radial span reasoning",
+      "label": "Why a thick tuber feels more",
       "minPx": 32,
       "maxPx": 900
     },
@@ -128,7 +128,7 @@
       "reason": "single-line"
     },
     {
-      "persistId": "a3-subtract",
+      "persistId": "a3-where",
       "reason": "single-line"
     },
     {
@@ -259,20 +259,20 @@
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE01:student:t3:t3-why",
-        "persistId": "t3-why",
+        "id": "SSS-C2-CASE01:student:t3:t3-missed",
+        "persistId": "t3-missed",
         "pageId": "student-mission-03",
         "taskId": 3,
-        "label": "Why the two ends cannot match",
+        "label": "What one reading could not show",
         "minPx": 32,
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE01:student:t3:t3-precision",
-        "persistId": "t3-precision",
+        "id": "SSS-C2-CASE01:student:t3:t3-fair",
+        "persistId": "t3-fair",
         "pageId": "student-mission-03",
         "taskId": 3,
-        "label": "Reported precision reasoning",
+        "label": "Correct but not sufficient",
         "minPx": 32,
         "maxPx": 900
       },
@@ -281,7 +281,7 @@
         "persistId": "t4-span",
         "pageId": "student-mission-03",
         "taskId": 4,
-        "label": "Radial span reasoning",
+        "label": "Why a thick tuber feels more",
         "minPx": 32,
         "maxPx": 900
       },
@@ -364,7 +364,7 @@
         "reason": "single-line"
       },
       {
-        "persistId": "t3-subtract",
+        "persistId": "t3-where",
         "reason": "single-line"
       },
       {

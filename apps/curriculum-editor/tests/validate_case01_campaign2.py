@@ -32,8 +32,8 @@ ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
     "Frame What Has Already Been Tested",
     "Read the Gravity Profile",
-    "Use a = ω²r Across the Bed",
-    "Explain the Size Pattern",
+    "What One Measurement Could Not Show",
+    "Why the Biggest Tubers Bend Most",
     "Connect the Five Evidence Sources",
     "Diagnose and Reject Alternatives",
     "Explain the Diagnosis with CER",
@@ -289,11 +289,21 @@ def main() -> int:
                   all(term in visible_text(soup, ["teacher"]) for term in
                       ["Established Earth science", "Case-specific evidence", "Case inference",
                        "Engineering extrapolation"]))
-    results.check("the source boundary states the supplied relationship and its assessment limit",
+    results.check("the source boundary states the named relationship and its assessment limit",
                   all(term in visible_text(soup, ["teacher"]) for term in
-                      ["a = ω²r", "Assessment boundary", "supplied to students"]))
-    results.check("the relationship is presented to learners as established rather than case-specific",
+                      ["a = ω²r", "Assessment boundary", "requires no calculation"]))
+    results.check("the relationship is named to learners as established rather than case-specific",
                   all("established physics" in visible_text(soup, [role])
+                      for role in ["student", "accessible"]))
+    results.check("no mathematics standard is claimed once the arithmetic is removed",
+                  "No mathematics standard is claimed" in visible_text(soup, ["teacher"])
+                  and not re.search(r"CCSS|6\.EE|6\.RP", visible_text(soup, ROLES)))
+    results.check("the rounding relationship is Teacher-facing only",
+                  "0.0018 g" in visible_text(soup, ["teacher"])
+                  and "0.0018 g" not in visible_text(soup, ["student", "accessible"])
+                  and "Optional extension" in visible_text(soup, ["teacher"]))
+    results.check("both learner editions close by naming what solving the case taught",
+                  all("Case closed — what it means" in visible_text(soup, [role])
                       for role in ["student", "accessible"]))
     reminder_findings = [
         f"{page.get('data-page-id')}:{match.group(0)}"
@@ -404,7 +414,8 @@ def main() -> int:
     results.check("the Answer Key supplies a completed exemplar for every keyed task",
                   all(term in answer_text for term in
                       ["Completed classification", "Radius and reported magnitude at the bed base",
-                       "Worked difference", "Why a thicker tuber spans a wider range",
+                       "Where the accelerometer was placed", "What one reading could not show",
+                       "Why a thick tuber feels more of a difference",
                        "Completed five-source analysis", "Completed diagnosis analysis",
                        "Completed rejections", "CLAIM", "EVIDENCE", "REASONING",
                        "Monitored trial and stop rule"]))
@@ -412,8 +423,10 @@ def main() -> int:
                   all(term in answer_text for term in
                       ["only the magnitude differs", "best-supported", "in this habitat",
                        "does not establish", "a monitored trial"]))
-    results.check("the Answer Key states the rounding explanation the case turns on",
-                  "cannot recover precision" in answer_text and "0.0018 g" in answer_text)
+    results.check("the Answer Key separates a measurement being correct from being sufficient",
+                  "measurement being correct from a measurement being sufficient" in answer_text)
+    results.check("the Teacher Guide keeps the rounding explanation as an optional extension",
+                  "cannot recover precision" in visible_text(soup, ["teacher"]))
     results.check("the completed mechanism model is a five-stage process contract",
                   len(soup.select('.page[data-role="answer"] '
                                   '[data-process-contract="gradient-response-five-stage-v1.0"] '
