@@ -35,6 +35,7 @@ EXPECTED = {
     "SSS-C2-CASE01": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE02": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE04": {"version": "1.0", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -47,6 +48,7 @@ STUDENT_LAYOUT_COUNTS = {
     "SSS-C2-CASE01": (11, 35),
     "SSS-C2-CASE02": (10, 28),
     "SSS-C2-CASE03": (8, 34),
+    "SSS-C2-CASE04": (8, 36),
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
