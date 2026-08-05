@@ -33,19 +33,19 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     {
       "id": "C2-C01-T2",
       "number": "2",
-      "semanticLabel": "DATA ANALYSIS",
-      "icon": "ph-scales",
-      "title": "Read the Gravity Profile",
-      "description": "Read the three reported radii and their acceleration magnitudes exactly, record the reported difference at full precision, and state what the profile reports about direction.",
+      "semanticLabel": "WARM-UP",
+      "icon": "ph-book",
+      "title": "Ride the Merry-Go-Round",
+      "description": "Use a merry-go-round with invented, friendly values to establish that the pull grows with distance from the centre, and that anything long enough to span several positions feels more than one value at once.",
       "keyed": true
     },
     {
       "id": "C2-C01-T3",
       "number": "3",
-      "semanticLabel": "EVIDENCE ANALYSIS",
+      "semanticLabel": "INVESTIGATION",
       "icon": "ph-nodes",
-      "title": "What One Measurement Could Not Show",
-      "description": "Compare what the botanist measured at a single point with what the sensor array found across three, and explain how a measurement can be correct and still miss the cause.",
+      "title": "Think Like the Investigator",
+      "description": "Take the botanist's correct single-point reading and decide what to ask next, where else to measure, and what the habitat rule failed to say.",
       "keyed": true
     },
     {
@@ -197,7 +197,8 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     "establishedEarthScienceComparison": "In a rotating frame the apparent acceleration follows a = ω²r, so at one rotation rate the magnitude grows with distance from the axis; for a chosen target magnitude a larger radius allows a lower rotation rate. Earth plants orient growth using gravity-sensing tissue, including statolith-bearing cells.",
     "caseSpecificEvidence": "The habitat radius, rotation rate, bed depth, the three reported acceleration magnitudes and their difference, the gorlroot growth-control response, the Vressk cultivation records, and the two Concord centrifuge precedents.",
     "numbers": "game-provided measurements",
-    "figures": "curriculum-original"
+    "figures": "curriculum-original",
+    "teachingAnalogy": "Task 2 uses a merry-go-round with three riders and invented pull values of 2, 5 and 8. Those values teach the relationship only. They are labelled in the printable content as not being measurements from the habitat, and they never appear as case evidence."
   },
   "correctDiagnosis": "At one rotation rate the outward acceleration magnitude increases across the radial depth of the bed, and the gorlroot growth-control system responds to that difference across a swelling tuber by growing its two sides unequally, which curves the tuber sideways.",
   "incorrectAlternatives": [
@@ -232,12 +233,6 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "prohibited": "No arrow may point in a different direction from the others, no continuous field is drawn, and no unreported radius is labelled."
     },
     {
-      "id": "fig-scale",
-      "kind": "curriculum-original inline SVG",
-      "shows": "The three reported magnitudes as discrete marked points on an expanded scale that does not start at zero, with the expansion stated in the caption.",
-      "prohibited": "No connecting curve, no interpolated values between the marked points, and no implication that the scale begins at zero."
-    },
-    {
       "id": "fig-span",
       "kind": "curriculum-original inline SVG",
       "shows": "Three tuber outlines of increasing diameter against the same radial depth scale, showing how much of the bed depth each one spans.",
@@ -251,6 +246,7 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     "Do not convert the archive's 'negligible' bed-scale difference on a planet into a number; none is reported.",
     "The packet requires no calculation. a = ω²r is named once so students know the relationship exists; it is never evaluated, and no task asks for arithmetic with the reported values.",
     "The rounding relationship between 0.0018 g and 0.00187 g is Teacher-facing only, offered as an optional extension. Do not promote it into a student task; it is interesting enough to displace the biology.",
+    "The habitat's reported magnitudes differ by less than a tenth of one percent because a 0.2 m bed sits in a 224.9 m radius. That is unavoidable: a ring with a classroom-friendly spread would be about 2 m across and would have to spin near 30 RPM. Learners therefore meet the relationship through the labelled merry-go-round analogy, and the reported values appear as reference evidence rather than as arithmetic.",
     "Do not invent a deformation quantity. The specimen record reports only that deformation increases with tuber diameter.",
     "Keep the gorlroot growth-control response as case evidence rather than established Earth plant biology."
   ]

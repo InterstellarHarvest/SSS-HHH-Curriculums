@@ -43,7 +43,7 @@ STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE05": (8, 25),
     "SSS-C1-CASE06": (8, 25),
     "SSS-C1-CASE07": (11, 24),
-    "SSS-C2-CASE01": (9, 37),
+    "SSS-C2-CASE01": (11, 35),
     "SSS-C2-CASE03": (8, 34),
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."

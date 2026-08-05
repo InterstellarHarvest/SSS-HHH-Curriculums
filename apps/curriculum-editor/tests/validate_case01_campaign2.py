@@ -31,8 +31,8 @@ RUNTIME_ID = "heavy_hands"
 ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
     "Frame What Has Already Been Tested",
-    "Read the Gravity Profile",
-    "What One Measurement Could Not Show",
+    "Ride the Merry-Go-Round",
+    "Think Like the Investigator",
     "Why the Biggest Tubers Bend Most",
     "Connect the Five Evidence Sources",
     "Diagnose and Reject Alternatives",
@@ -292,9 +292,6 @@ def main() -> int:
     results.check("the source boundary states the named relationship and its assessment limit",
                   all(term in visible_text(soup, ["teacher"]) for term in
                       ["a = ω²r", "Assessment boundary", "requires no calculation"]))
-    results.check("the relationship is named to learners as established rather than case-specific",
-                  all("established physics" in visible_text(soup, [role])
-                      for role in ["student", "accessible"]))
     results.check("no mathematics standard is claimed once the arithmetic is removed",
                   "No mathematics standard is claimed" in visible_text(soup, ["teacher"])
                   and not re.search(r"CCSS|6\.EE|6\.RP", visible_text(soup, ROLES)))
@@ -302,6 +299,23 @@ def main() -> int:
                   "0.0018 g" in visible_text(soup, ["teacher"])
                   and "0.0018 g" not in visible_text(soup, ["student", "accessible"])
                   and "Optional extension" in visible_text(soup, ["teacher"]))
+    analogy_blocks = soup.select("[data-analogy]")
+    results.check("the teaching analogy is present in both learner editions and marked as an analogy",
+                  {node.find_parent(class_="page").get("data-role") for node in analogy_blocks}
+                  == {"student", "accessible"},
+                  [node.find_parent(class_="page").get("data-page-id") for node in analogy_blocks])
+    results.check("the analogy states plainly that its values are not habitat measurements",
+                  bool(analogy_blocks) and all(
+                      "not measurements from the habitat" in node.get_text(" ", strip=True)
+                      for node in analogy_blocks))
+    analogy_free = BeautifulSoup(content, "html.parser")
+    for node in analogy_free.select("[data-analogy]"):
+        node.decompose()
+    results.check("the invented ride values never appear outside the analogy block",
+                  not re.search(r"pull of (?:2|5|8)\b", visible_text(analogy_free, ROLES)))
+    results.check("the task registry records the analogy and why the real spread is unteachable",
+                  "teachingAnalogy" in registry["sourceStatus"]
+                  and any("30 RPM" in note for note in registry["productionCautions"]))
     results.check("both learner editions close by naming what solving the case taught",
                   all("Case closed — what it means" in visible_text(soup, [role])
                       for role in ["student", "accessible"]))
@@ -332,22 +346,17 @@ def main() -> int:
                   [figure.get("data-figure-id") for figure in figures
                    if not PROVENANCE.search(figure.select_one("figcaption").get_text(" ", strip=True))])
     results.check("every figure caption states the limit of what it reports",
-                  all(re.search(r"no intermediate values|does not start at zero|no deformation quantity|"
+                  all(re.search(r"no intermediate values|no deformation quantity|"
                                 r"discrete|qualitative",
                                 figure.select_one("figcaption").get_text(" ", strip=True), re.I)
                       for figure in figures))
     profile_figures = [f for f in figures if "profile" in (f.get("data-figure-id") or "")]
     results.check("the radial-section figure states that the direction is identical at every radius",
                   bool(profile_figures)
-                  and all(re.search(r"outward at every sampled radius|arrows are drawn\s+identically|"
-                                    r"same way: radially outward",
+                  and all(re.search(r"same way — outward|same way: radially outward|"
+                                    r"direction is the same at all three",
                                     f.get_text(" ", strip=True), re.I) for f in profile_figures),
                   [f.get("data-figure-id") for f in profile_figures])
-    scale_figures = [f for f in figures if "scale" in (f.get("data-figure-id") or "")]
-    results.check("the expanded-scale figure declares that its axis does not start at zero",
-                  bool(scale_figures)
-                  and all("does not start at zero" in f.get_text(" ", strip=True) for f in scale_figures),
-                  [f.get("data-figure-id") for f in scale_figures])
     span_figures = [f for f in figures if "span" in (f.get("data-figure-id") or "")]
     results.check("the tuber-span figure attaches no deformation quantity",
                   bool(span_figures)
@@ -359,7 +368,7 @@ def main() -> int:
     results.check("figure marks use patterns or shared markers rather than colour alone",
                   all(figure.select("pattern") or figure.select("marker") for figure in figures))
     results.check("figure provenance is recorded in the task registry",
-                  len(registry.get("figureProvenance", [])) >= 3
+                  len(registry.get("figureProvenance", [])) >= 2
                   and all(entry.get("kind", "").startswith("curriculum-original")
                           for entry in registry["figureProvenance"]))
 

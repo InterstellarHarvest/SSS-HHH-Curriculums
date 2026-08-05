@@ -37,8 +37,8 @@ or screenshot is committed for this case.
 Eight tasks, in this order and with these identifiers across all four roles:
 
 1. Frame What Has Already Been Tested
-2. Read the Gravity Profile
-3. What One Measurement Could Not Show
+2. Ride the Merry-Go-Round
+3. Think Like the Investigator
 4. Why the Biggest Tubers Bend Most
 5. Connect the Five Evidence Sources
 6. Diagnose and Reject Alternatives
@@ -64,10 +64,16 @@ Three rules dominate the case and are enforced mechanically:
   magnitude only;
 - no role may assert that the habitat is calibrated too strong, that Earth crops detect a
   difference of this size, or that a larger ring is guaranteed to fix the crop;
-- the packet requires no calculation. `a = ω²r` is named once so learners know the relationship
-  exists, but it is never evaluated and no task asks for arithmetic with the reported values. The
-  rounding relationship between `0.0018 g` and `0.00187 g` is Teacher-facing only, offered as an
-  optional extension, and must not be promoted into a student task.
+- the packet requires no calculation anywhere, and learners never meet `a = ω²r`. The habitat's own
+  readings differ by less than a tenth of one percent, because a 20 cm bed sits inside a 224.9 m
+  radius; a ring with a classroom-friendly spread would be about two metres across and would have to
+  spin near 30 RPM. Task 2 therefore teaches the relationship with a merry-go-round and three
+  invented values, and the reported readings appear as reference evidence in a case file rather than
+  as arithmetic. The `0.0018 g` / `0.00187 g` rounding relationship is Teacher-facing only.
+
+The Task 2 analogy is marked `data-analogy` and states on the page that its values are not
+measurements from the habitat. Validation enforces both that marking and that the invented values
+never appear outside the block.
 
 Alternatives the packet lists in order to reject them are marked `data-candidate-claim`, and
 misconceptions quoted in the Teacher Guide so they can be corrected are marked `data-quoted-claim`.

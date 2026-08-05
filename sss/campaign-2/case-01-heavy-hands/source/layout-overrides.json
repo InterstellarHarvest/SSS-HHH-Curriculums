@@ -14,29 +14,47 @@
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE01:accessible:t2:a2-direction",
-      "persistId": "a2-direction",
+      "id": "SSS-C2-CASE01:accessible:t2:a2-pattern",
+      "persistId": "a2-pattern",
       "pageId": "accessible-mission-02",
       "taskId": 2,
-      "label": "Direction across all three radii",
+      "label": "Pull and distance from the middle",
       "minPx": 32,
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE01:accessible:t3:a3-missed",
-      "persistId": "a3-missed",
-      "pageId": "accessible-mission-03",
-      "taskId": 3,
-      "label": "What one reading could not show",
+      "id": "SSS-C2-CASE01:accessible:t2:a2-dev",
+      "persistId": "a2-dev",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "How Dev's ride differs from Ana's",
       "minPx": 32,
       "maxPx": 900
     },
     {
-      "id": "SSS-C2-CASE01:accessible:t3:a3-fair",
-      "persistId": "a3-fair",
+      "id": "SSS-C2-CASE01:accessible:t3:a3-ask",
+      "persistId": "a3-ask",
       "pageId": "accessible-mission-03",
       "taskId": 3,
-      "label": "Correct but not sufficient",
+      "label": "The next question for the botanist",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t3:a3-where",
+      "persistId": "a3-where",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Where else to measure, and why",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE01:accessible:t3:a3-forgot",
+      "persistId": "a3-forgot",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "What the habitat rule left out",
       "minPx": 32,
       "maxPx": 900
     },
@@ -120,15 +138,7 @@
       "reason": "table-cell"
     },
     {
-      "persistId": "a2-base",
-      "reason": "single-line"
-    },
-    {
-      "persistId": "a2-diff",
-      "reason": "single-line"
-    },
-    {
-      "persistId": "a3-where",
+      "persistId": "a2-strongest",
       "reason": "single-line"
     },
     {
@@ -250,29 +260,47 @@
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE01:student:t2:t2-direction",
-        "persistId": "t2-direction",
+        "id": "SSS-C2-CASE01:student:t2:t2-pattern",
+        "persistId": "t2-pattern",
         "pageId": "student-mission-02",
         "taskId": 2,
-        "label": "Direction across all three radii",
+        "label": "Pull and distance from the middle",
         "minPx": 32,
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE01:student:t3:t3-missed",
-        "persistId": "t3-missed",
-        "pageId": "student-mission-03",
-        "taskId": 3,
-        "label": "What one reading could not show",
+        "id": "SSS-C2-CASE01:student:t2:t2-dev",
+        "persistId": "t2-dev",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "How Dev's ride differs from Ana's",
         "minPx": 32,
         "maxPx": 900
       },
       {
-        "id": "SSS-C2-CASE01:student:t3:t3-fair",
-        "persistId": "t3-fair",
-        "pageId": "student-mission-03",
+        "id": "SSS-C2-CASE01:student:t3:t3-ask",
+        "persistId": "t3-ask",
+        "pageId": "student-mission-02",
         "taskId": 3,
-        "label": "Correct but not sufficient",
+        "label": "The next question for the botanist",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t3:t3-where",
+        "persistId": "t3-where",
+        "pageId": "student-mission-02",
+        "taskId": 3,
+        "label": "Where else to measure, and why",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE01:student:t3:t3-forgot",
+        "persistId": "t3-forgot",
+        "pageId": "student-mission-02",
+        "taskId": 3,
+        "label": "What the habitat rule left out",
         "minPx": 32,
         "maxPx": 900
       },
@@ -356,15 +384,7 @@
         "reason": "table-cell"
       },
       {
-        "persistId": "t2-base",
-        "reason": "single-line"
-      },
-      {
-        "persistId": "t2-diff",
-        "reason": "single-line"
-      },
-      {
-        "persistId": "t3-where",
+        "persistId": "t2-strongest",
         "reason": "single-line"
       },
       {

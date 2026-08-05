@@ -118,6 +118,15 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .path-arrow { align-self: center; font-size: 11pt; text-align: center; }
 .mechanism-model.completed .path-stage { min-height: .78in; }
 
+.analogy { margin: 5px 0; padding: 6px 9px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--panel-light); }
+.analogy ul { margin: 4px 0; padding-left: 18px; }
+.analogy-note { margin: 4px 0 0; color: var(--muted); font-size: 7.4pt; font-style: italic; }
+.testimony { margin: 5px 0; padding: 5px 10px; border-left: 4px solid var(--accent-dark); background: var(--paper); }
+.testimony p { margin: 0; font-style: italic; }
+.case-file { margin: 5px 0; padding: 5px 7px; border: 1px dashed var(--rule); background: var(--paper); }
+.case-file > .label { display: block; margin-bottom: 3px; }
+.accessible .analogy-note { font-size: 9pt; }
+.accessible .analogy ul { padding-left: 22px; }
 .answer-block { margin: 5px 0; padding: 6px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--paper); }
 .answer-block p { margin: 2px 0; }
 .intro-grid > div { min-width: 0; }
