@@ -27,7 +27,7 @@
           await api.selectCase(item.id);
           await wait(80);
           const pkg = api.getPackage();
-          for (const role of ["student", "teacher", "answer", "accessible"]) {
+          for (const role of pkg.supportedRoles) {
             api.setRole(role);
             api.saveState({ editMode: false, grayscale: false, density: "normal", guides: false, boundaries: false });
             await wait(20);

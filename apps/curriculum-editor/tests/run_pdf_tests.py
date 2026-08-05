@@ -33,6 +33,76 @@ CASE01_APPROVED = {
 }
 
 
+REGISTRY_PATH = ROOT / "shared/implementation/case-registry.v2.json"
+
+
+def read_package(relative_path: str) -> dict:
+    return json.loads((ROOT / relative_path).read_text(encoding="utf-8"))
+
+
+def registered_case_editions(registry: dict, package_reader=read_package) -> list[dict[str, object]]:
+    """Every case-edition print document the registry and package contracts require.
+
+    The roster is derived, never hard-coded: a case counts only when it declares an
+    editorPackage (the same editor-compatibility rule the library uses), and it
+    contributes exactly the roles that package declares as supported. Adding a case, or
+    changing a package's supported roles, changes this total automatically.
+    """
+    if registry.get("schemaVersion") != 2:
+        raise RuntimeError(f"Unsupported registry schema: {registry.get('schemaVersion')}")
+    editions: list[dict[str, object]] = []
+    for curriculum in registry.get("curricula", []):
+        for campaign in curriculum.get("campaigns", []):
+            for case in campaign.get("cases", []):
+                package_path = case.get("editorPackage")
+                if not package_path:
+                    continue
+                package = package_reader(package_path)
+                structure = package["rolePageStructure"]
+                for role in package["supportedRoles"]:
+                    editions.append({
+                        "caseId": case["id"],
+                        "role": role,
+                        "expectedPageCount": structure[role]["pageCount"],
+                    })
+    return editions
+
+
+def derivation_guard() -> tuple[bool, str]:
+    """Prove the roster tracks the registry instead of a constant.
+
+    Uses controlled fixtures rather than the live registry, so the guard keeps its
+    meaning as real cases are added.
+    """
+    four_roles = ["student", "teacher", "answer", "accessible"]
+
+    def reader(path: str) -> dict:
+        roles = ["student", "teacher"] if path == "two-role" else four_roles
+        return {"supportedRoles": roles, "rolePageStructure": {role: {"pageCount": 1} for role in roles}}
+
+    def registry(cases: list[dict]) -> dict:
+        return {"schemaVersion": 2, "curricula": [{"campaigns": [{"cases": cases}]}]}
+
+    a = {"id": "FIX-CASE01", "editorPackage": "four-role"}
+    b = {"id": "FIX-CASE02", "editorPackage": "four-role"}
+    unregistered = {"id": "FIX-CASE03"}
+    two_role = {"id": "FIX-CASE04", "editorPackage": "two-role"}
+
+    observed = {
+        "two cases": len(registered_case_editions(registry([a, b]), reader)),
+        "three cases": len(registered_case_editions(registry([a, b, dict(b, id="FIX-CASE05")]), reader)),
+        "editor-incompatible case excluded": len(registered_case_editions(registry([a, unregistered]), reader)),
+        "roles come from the package": len(registered_case_editions(registry([two_role]), reader)),
+    }
+    expected = {
+        "two cases": 8,
+        "three cases": 12,
+        "editor-incompatible case excluded": 4,
+        "roles come from the package": 2,
+    }
+    return observed == expected, json.dumps({"observed": observed, "expected": expected}, sort_keys=True)
+
+
 class PdfTestHandler(CurriculumEditorHandler):
     def do_GET(self) -> None:  # noqa: N802
         match = re.fullmatch(r"/__pdf_test/(\d+)\.html", urlsplit(self.path).path)
@@ -144,6 +214,10 @@ def main() -> int:
     def check(name: str, passed: bool, detail: object = "") -> None:
         assertions.append({"name": name, "pass": bool(passed), "detail": detail if isinstance(detail, str) else json.dumps(detail, sort_keys=True)})
 
+    guard_passed, guard_detail = derivation_guard()
+    check("expected print-document roster is derived from the registry rather than hard-coded",
+          guard_passed, guard_detail)
+
     try:
         with tempfile.TemporaryDirectory(prefix="curriculum-editor-pdf-") as temporary:
             temp = Path(temporary)
@@ -161,7 +235,29 @@ def main() -> int:
             if server.document_error:  # type: ignore[attr-defined]
                 raise RuntimeError(server.document_error)  # type: ignore[attr-defined]
             documents = server.documents  # type: ignore[attr-defined]
-            check("PDF harness generated all 28 case-edition print documents", len(documents) == 28, len(documents))
+            expected_editions = registered_case_editions(json.loads(REGISTRY_PATH.read_text(encoding="utf-8")))
+            expected_keys = [(item["caseId"], item["role"]) for item in expected_editions]
+            actual_keys = [(document["caseId"], document["role"]) for document in documents]
+            missing = [key for key in expected_keys if key not in actual_keys]
+            unexpected = [key for key in actual_keys if key not in expected_keys]
+            check(
+                f"PDF harness generated every registered case-edition print document "
+                f"({len(expected_editions)} derived from the canonical registry)",
+                actual_keys == expected_keys,
+                {"derived": len(expected_editions), "generated": len(documents),
+                 "missing": [list(key) for key in missing],
+                 "unexpected": [list(key) for key in unexpected]},
+            )
+            declared_counts = {(item["caseId"], item["role"]): item["expectedPageCount"] for item in expected_editions}
+            mismatched = [
+                {"case": document["caseId"], "role": document["role"],
+                 "package": declared_counts.get((document["caseId"], document["role"])),
+                 "harness": document["expectedPageCount"]}
+                for document in documents
+                if declared_counts.get((document["caseId"], document["role"])) != document["expectedPageCount"]
+            ]
+            check("every generated document carries the page count its package declares",
+                  not mismatched, mismatched)
 
             def render(index: int) -> Path:
                 document = documents[index]
