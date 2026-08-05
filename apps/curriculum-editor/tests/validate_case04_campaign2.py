@@ -431,6 +431,49 @@ def main() -> int:
                   and all(entry.get("kind", "").startswith("curriculum-original")
                           for entry in registry["figureProvenance"]))
 
+    # ── Cross-role reference integrity ───────────────────────────────
+    # Every "Table N" or "Figure X" a role names in prose must exist somewhere a reader
+    # of that role can reach: on its own pages, or — for the Teacher Guide, which
+    # discusses the learner editions — on a learner page.
+    def captions(role, selector, pattern):
+        return {match.group(1)
+                for page in soup.select(f'.page[data-role="{role}"]')
+                for node in page.select(selector)
+                for match in [re.match(pattern, node.get_text(" ", strip=True))] if match}
+
+    def prose(role):
+        text = " ".join(" ".join(page.stripped_strings)
+                        for page in soup.select(f'.page[data-role="{role}"]'))
+        for page in soup.select(f'.page[data-role="{role}"]'):
+            for node in page.select("caption, figcaption"):
+                text = text.replace(" ".join(node.stripped_strings), " ")
+        return text
+
+    learner_figures = captions("student", "figcaption", r"Figure ([0-9A-Z]+)") | captions(
+        "accessible", "figcaption", r"Figure ([0-9A-Z]+)")
+    dangling = {}
+    for role in ROLES:
+        text = prose(role)
+        tables = captions(role, "caption", r"Table ([0-9A-Z]+)")
+        figures = captions(role, "figcaption", r"Figure ([0-9A-Z]+)")
+        if role == "teacher":
+            figures |= learner_figures
+        referenced_tables = set(re.findall(r"Table ([0-9A-Z]+)", text))
+        referenced_tables |= {str(number)
+                              for first, last in re.findall(r"Tables (\d+)[–-](\d+)", text)
+                              for number in range(int(first), int(last) + 1)}
+        missing = sorted(referenced_tables - tables) + sorted(
+            f"Figure {name}" for name in set(re.findall(r"Figure ([0-9A-Z]+)", text)) - figures)
+        if missing:
+            dangling[role] = missing
+    results.check("every table and figure a role names in prose exists for that reader",
+                  not dangling, dangling)
+    results.check("teaching figures are lettered so they never read as case records",
+                  learner_figures and all(not name.isdigit() for name in learner_figures),
+                  sorted(learner_figures))
+    results.check("no Answer Key exemplar is stranded under a task that no longer asks it",
+                  "The two logs — completed exemplar" not in visible_text(soup, ["answer"]))
+
     # ── Teaching analogies ───────────────────────────────────────────
     for edition in ("student", "accessible"):
         working = BeautifulSoup(content, "html.parser")
