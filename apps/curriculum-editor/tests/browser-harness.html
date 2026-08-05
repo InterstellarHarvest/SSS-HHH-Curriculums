@@ -267,8 +267,8 @@
 
       frame.width = "1440";
       await wait(120);
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13 };
       for (const [caseId, expectedAccessible] of Object.entries(accessibleEligibleCounts)) {
         await api.selectCase(caseId);
         await wait(80);
@@ -854,7 +854,8 @@
         { id: "SSS-C2-CASE01", label: "1 - Heavy Hands", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE01_CURRICULUM_EDITOR_v1.0", student: "CASE01_STUDENT_MISSION_v1.0" },
         { id: "SSS-C2-CASE02", label: "2 - The Missing Dance", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
         { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.0", student: "CASE03_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" }
+        { id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" },
+        { id: "SSS-C2-CASE05", label: "5 - Too Clean a Room", version: "1.0", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 7, teacher: 9, answer: 5 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" }
       ];
       // The Case menu is campaign-scoped, so the registered cases are asserted one campaign at a
       // time. Every registered case is still exercised in full by the matrix loop below, which
@@ -863,7 +864,7 @@
       const campaign2Cases = canonicalCases.filter(item => item.id.startsWith("SSS-C2-"));
       const caseOptionValues = () => Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.value);
       const caseOptionLabels = () => Array.from(doc.querySelectorAll("#caseSelect option")).map(option => option.textContent);
-      check("the registry registers exactly seven Campaign 1 cases and four Campaign 2 cases", campaign1Cases.length === 7 && campaign2Cases.length === 4 && JSON.stringify(campaign2Cases.map(item => item.id)) === JSON.stringify(["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04"]));
+      check("the registry registers exactly seven Campaign 1 cases and five Campaign 2 cases", campaign1Cases.length === 7 && campaign2Cases.length === 5 && JSON.stringify(campaign2Cases.map(item => item.id)) === JSON.stringify(["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04", "SSS-C2-CASE05"]));
       check("Campaign 1 lists exactly its seven registered cases in case-number order", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)), JSON.stringify(caseOptionValues()));
       check("Campaign 1 Case dropdown labels are exactly registered and ordered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["1 - ISS Greenhouse", "2 - Lunar Greenhouse", "3 - Mars Habitat", "4 - Hayes Orbital Station", "5 - Sub Surface Bunker", "6 - First Contact Protocol", "7 - The Gift"]), JSON.stringify(caseOptionLabels()));
       check("no Campaign 2 case appears while Campaign 1 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C2-")));
@@ -873,8 +874,8 @@
       const campaign1CaseBeforeSwitch = doc.querySelector("#caseSelect").value;
       await api.selectCampaign("SSS", "campaign-2");
       api = win.__curriculumEditor;
-      check("Campaign 2 lists exactly its four registered cases in case-number order", JSON.stringify(caseOptionValues()) === JSON.stringify(["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04"]), JSON.stringify(caseOptionValues()));
-      check("Campaign 2 Case dropdown labels are exactly registered and ordered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["1 - Heavy Hands", "2 - The Missing Dance", "3 - The Wrong Color of Light", "4 - The Silent Grove"]), JSON.stringify(caseOptionLabels()));
+      check("Campaign 2 lists exactly its five registered cases in case-number order", JSON.stringify(caseOptionValues()) === JSON.stringify(["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04", "SSS-C2-CASE05"]), JSON.stringify(caseOptionValues()));
+      check("Campaign 2 Case dropdown labels are exactly registered and ordered", JSON.stringify(caseOptionLabels()) === JSON.stringify(["1 - Heavy Hands", "2 - The Missing Dance", "3 - The Wrong Color of Light", "4 - The Silent Grove", "5 - Too Clean a Room"]), JSON.stringify(caseOptionLabels()));
       check("no Campaign 1 case appears while Campaign 2 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C1-")));
       check("switching to Campaign 2 loads its first registered case and moves the worksheet with it", api.getPackage().id === "SSS-C2-CASE01" && doc.querySelector("#caseSelect").value === "SSS-C2-CASE01" && api.getWorkspace().querySelector(".hero-title")?.textContent.trim() === "Heavy Hands");
       check("the multi-case Campaign 2 Case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
@@ -1397,8 +1398,8 @@
       check("Case 05 presentation matrix passes 8/8", case05MatrixStates.length === 8 && case05MatrixStates.every(state => state.pass), JSON.stringify(case05MatrixStates.filter(state => !state.pass)));
       check("Case 06 presentation matrix passes 8/8", case06MatrixStates.length === 8 && case06MatrixStates.every(state => state.pass), JSON.stringify(case06MatrixStates.filter(state => !state.pass)));
       check("Case 07 presentation matrix passes 8/8", case07MatrixStates.length === 8 && case07MatrixStates.every(state => state.pass), JSON.stringify(case07MatrixStates.filter(state => !state.pass)));
-      check("all 88 case-role-presentation matrix states pass", matrixStates.length === 88 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
-      check("all 44 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 44 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
+      check("all 96 case-role-presentation matrix states pass", matrixStates.length === 96 && matrixStates.every(state => state.pass), JSON.stringify(matrixStates.filter(state => !state.pass)));
+      check("all 48 case-role editable-text contract states pass with explicit semantic categories", editableTextMatrix.length === 48 && editableTextMatrix.every(state => state.count > 0 && state.categories.some(category => category !== "source-explicit")), JSON.stringify(editableTextMatrix));
       const protectedGeometrySignatures = Object.fromEntries(Object.entries(protectedPresentation).map(([caseId, value]) => [caseId, JSON.stringify({ title: { columns: value.title.columns, gap: value.title.gap, border: value.title.border, rail: value.title.rail, heroSize: value.title.heroSize, heroLine: value.title.heroLine, subtitleSize: value.title.subtitleSize, insignia: value.title.insignia }, continuation: { columns: value.continuation.columns, gap: value.continuation.gap, border: value.continuation.border, titleSize: value.continuation.titleSize, insignia: value.continuation.insignia } })]));
       check("every shared printable-v1.1 case shares protected title and continuation geometry", new Set(Object.values(protectedGeometrySignatures)).size === 1, JSON.stringify(protectedPresentation));
 

@@ -284,19 +284,26 @@ def main() -> int:
                  for curriculum in case_registry["curricula"] for campaign in curriculum["campaigns"]}
     results.check("Campaign 1 still registers exactly seven cases", len(campaigns["campaign-1"]) == 7)
     results.check("Campaign 2 registers Cases 01 to 04 in numerical display order",
-                  [case["id"] for case in campaigns["campaign-2"]]
+                  [case["id"] for case in campaigns["campaign-2"]][:4]
                   == ["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04"]
-                  and [case["displayOrder"] for case in campaigns["campaign-2"]] == [8, 9, 10, 11])
-    entry = campaigns["campaign-2"][-1]
+                  and [case["displayOrder"] for case in campaigns["campaign-2"]][:4] == [8, 9, 10, 11])
+    entry = next(case for case in campaigns["campaign-2"] if case["id"] == CASE_ID)
     results.check("the Case 04 registry entry is an approved release with a history record",
                   entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
                   and entry.get("historyRecord")
                   == "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    results.check("every registered case is APPROVED_STABLE",
+    # Every case registered at the time Case 04 was approved must stay approved. Cases registered
+    # afterwards are allowed to be unreleased drafts; naming them here keeps this assertion a
+    # regression guard on the eleven approved packages rather than a bar on new work.
+    unreleased = {"SSS-C2-CASE05"}
+    results.check("every case approved at this release remains APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases))
+                      for cases in campaigns.values() for case in cases
+                      if case["id"] not in unreleased),
+                  [case["id"] for cases in campaigns.values() for case in cases
+                   if case["id"] not in unreleased and case["status"] != "APPROVED_STABLE"])
 
     # ── Source hashes and canonical folder shape ─────────────────────
     hash_targets = {
