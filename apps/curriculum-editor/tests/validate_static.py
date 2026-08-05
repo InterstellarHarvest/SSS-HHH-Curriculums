@@ -32,7 +32,7 @@ EXPECTED = {
     "SSS-C1-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE06": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
     "SSS-C1-CASE07": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
-    "SSS-C2-CASE01": {"version": "1.0", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE01": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
 }
 STUDENT_LAYOUT_COUNTS = {
@@ -55,6 +55,7 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     "SSS-C1-CASE05": {"student": "d17cf55212afb64e7425c217c352f7a8d0d60f385240cd3c865dda1e2a025b4a", "teacher": "40ce5700fe2d1126797a5035a6f5f0070b9ab19961bb31e53a34e71f7d0b0a23", "answer": "8adb307362cd6668db5a9f636c463789c416065bfff5ac1835ca35ca970843e1"},
     "SSS-C1-CASE06": {"student": "0bf75e4d4d43e343c83cc68350634f3345471365e99beef2b7e187b17d6cc868", "teacher": "5882a8c5860cf3f60a1a66d090b0e47eaf1a2371c19c5148e795db304d753509", "answer": "134b05fd099ac7d168dc033efb181db987d2ade3b9577c4e3f540aed2d22f996"},
     "SSS-C1-CASE07": {"student": "5bfa52c1a3474cfb4db3391282e0d7c1589260b0d0c1c10701b43a4519dadbcf", "teacher": "ac55945f722443b78094d9661c23dbf4201ee59d71ab7a44db344c4432e8a17c", "answer": "c5dde681451cb406ed6c26c14c498a433f10da404da2ecf91703bf505b501be9"},
+    "SSS-C2-CASE01": {"student": "d423e389da2a3907a042430505aee6127a064d0c1231889a73a035d47000c425", "teacher": "b717bbc1b39df84b7006a5972d51a87057d35492f0add63c58676db941bed3b8", "answer": "52fe5e018b612d871193cdb9615af29303a86ea10552f745cf5ab38e85278afa"},
     "SSS-C2-CASE03": {"student": "a981da87937897727a145bd3fde8eb596c8ae48d9f9031a9e7df8d687b44b8dc", "teacher": "45e99b00b705edb6160fe02172cb12ea8b7b1a7ce40fd2a2b1a616f90de670a0", "answer": "2f629cdcc4f1606d56c236c2e42ac0e5482d182c423796e2cba03c721782024a"},
 }
 CASE04_TASK_TITLES = [

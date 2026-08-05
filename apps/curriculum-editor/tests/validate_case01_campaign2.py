@@ -16,6 +16,7 @@ import difflib
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -27,7 +28,8 @@ CASE_ID = "SSS-C2-CASE01"
 CASE_ROOT = ROOT / "sss/campaign-2/case-01-heavy-hands"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-DRAFT_VERSION = "1.0"
+RELEASE_VERSION = "1.0"
+APPROVAL_DATE = "2026-08-04"
 RUNTIME_ID = "heavy_hands"
 ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
@@ -175,21 +177,52 @@ def main() -> int:
                   package["subtitle"].startswith("Campaign 2 · Case 01 ·")
                   and CASE_ID.endswith("CASE01"))
 
-    # ── DRAFT lifecycle: no release history, no approval, no artifacts ──
-    results.check("the package records an unstarted draft lifecycle",
-                  package["status"] == "DRAFT"
-                  and package["version"] == DRAFT_VERSION
-                  and package["approval"] == {"owner": "Nate / Owner",
-                                              "status": "OWNER_REVIEW_NOT_STARTED",
-                                              "printStatus": "NOT_RUN"},
+    # ── Approved lifecycle: one retained release record, no artifacts ──
+    results.check("the package records the approved release lifecycle",
+                  package["status"] == "APPROVED_STABLE"
+                  and package["version"] == RELEASE_VERSION
+                  and package["approval"] == {"date": APPROVAL_DATE, "owner": "Nate / Owner",
+                                              "status": "APPROVED", "printStatus": "PASS"},
                   package["approval"])
-    results.check("the task registry records the same unstarted draft lifecycle",
+    results.check("the task registry records the same approved release lifecycle",
                   (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
                    registry.get("mergeStatus"), registry.get("approvalDate"), registry.get("approvedBy"))
-                  == (DRAFT_VERSION, "DRAFT", "OWNER_REVIEW_NOT_STARTED", "NOT_READY", None, None))
-    results.check("the draft declares no release history and stores no history directory",
-                  "releaseHistory" not in package and not (CASE_ROOT / "history").exists())
-    results.check("no generated release artifact is stored beside the draft case",
+                  == (RELEASE_VERSION, "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE",
+                      APPROVAL_DATE, "Nate / Owner"))
+    history_path = CASE_ROOT / "history/release-v1.0.json"
+    approval_path = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.0.md"
+    results.check("the approved package names exactly one retained release-history record",
+                  package.get("releaseHistory") == history_path.relative_to(ROOT).as_posix()
+                  and sorted(path.name for path in (CASE_ROOT / "history").iterdir())
+                  == ["CASE01_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"])
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+    results.check("the release history records a native release with no former generated artifacts",
+                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RELEASE_VERSION
+                  and history["status"] == "APPROVED_STABLE" and history["approvalDate"] == APPROVAL_DATE
+                  and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
+                  and history["priorApprovedReleases"] == [] and history["retiredArtifacts"] == []
+                  and history["acceptedPrintStatus"] == "PASS at 100% / Actual Size")
+    results.check("the release history page counts and source hashes match the approved package",
+                  history["rolePageCounts"] == {"student": 5, "teacher": 8, "answer": 4, "accessible": 8}
+                  and all(history["sourceHashes"][n] == package["sourceHashes"][n]
+                          for n in ("content", "presentation", "taskRegistry")))
+    results.check("every commit reference in the release history exists",
+                  all(subprocess.run(["git", "cat-file", "-e", f"{history[field]}^{{commit}}"],
+                                     cwd=ROOT, capture_output=True).returncode == 0
+                      for field in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                    "formerArtifactRecoveryCommit")))
+    results.check("the release history records the frozen game baseline and the retained case number",
+                  any(GAME_COMMIT in note for note in history["migrationNotes"])
+                  and any("keeps its runtime case number" in note for note in history["migrationNotes"]))
+    owner_approval = approval_path.read_text(encoding="utf-8")
+    results.check("the owner approval record captures every release gate and the no-artifact decision",
+                  all(token in owner_approval for token in
+                      ["Nate / Owner", APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
+                       "READY_TO_MERGE", "On-screen content and visual review: **PASS**",
+                       "Generated PDF review: **PASS**",
+                       "Physical print at 100% / Actual Size: **PASS**",
+                       "NO_GENERATED_ARTIFACTS_COMMITTED", GAME_COMMIT]))
+    results.check("no generated release artifact is stored beside the approved case",
                   not [path.name for path in CASE_ROOT.rglob("*")
                        if path.is_file() and path.suffix.lower() in {".pdf", ".png", ".jpg", ".jpeg", ".html"}
                        and path.name != "content.html"])
@@ -206,8 +239,8 @@ def main() -> int:
     # ── Canonical Campaign 2 case-folder structure ───────────────────
     top_level = {path.name for path in CASE_ROOT.iterdir() if path.name != ".DS_Store"}
     source_files = {path.name for path in SOURCE.iterdir() if path.is_file() and path.name != ".DS_Store"}
-    results.check("Campaign 2 draft case folder uses the canonical lean layout",
-                  top_level == {"README.md", "source"}
+    results.check("Campaign 2 case folder uses the canonical lean layout",
+                  top_level == {"README.md", "source", "history"}
                   and source_files == {"case-package.json", "content.html", "layout-overrides.json",
                                        "presentation.css", "task-registry.js"},
                   {"top": sorted(top_level), "source": sorted(source_files)})

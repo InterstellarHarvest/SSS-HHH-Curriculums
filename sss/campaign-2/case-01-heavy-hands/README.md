@@ -1,6 +1,6 @@
 # SSS Campaign 2 · Case 01 — Heavy Hands
 
-Draft native curriculum package. Package ID `SSS-C2-CASE01`, runtime ID `heavy_hands`.
+Released native curriculum package. Package ID `SSS-C2-CASE01`, runtime ID `heavy_hands`.
 
 | Field | Value |
 |---|---|
@@ -10,7 +10,7 @@ Draft native curriculum package. Package ID `SSS-C2-CASE01`, runtime ID `heavy_h
 | Subtitle | Campaign 2 · Case 01 · Kepler-442b Orbit, Vressk Territory |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
 | Version | 1.0 |
-| Lifecycle | `DRAFT` — owner review not started, print gate not run |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-04, print gate PASS at 100% / Actual Size |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 Case 03 was produced first as the Campaign 2 pilot. This case keeps its canonical runtime
@@ -21,6 +21,9 @@ number and is registered as Case 01, ahead of Case 03 in the Campaign 2 case lis
 ```text
 case-01-heavy-hands/
 ├── README.md
+├── history/
+│   ├── CASE01_OWNER_APPROVAL_v1.0.md
+│   └── release-v1.0.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -29,8 +32,7 @@ case-01-heavy-hands/
     └── task-registry.js
 ```
 
-No `history/` directory exists while the case is `DRAFT`, and no generated PDF, role document,
-or screenshot is committed for this case.
+No generated PDF, role document, or screenshot is committed for this case.
 
 ## Instructional shape
 
