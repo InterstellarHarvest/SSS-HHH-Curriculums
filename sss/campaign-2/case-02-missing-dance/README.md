@@ -1,6 +1,6 @@
 # SSS Campaign 2 · Case 02 — The Missing Dance
 
-Draft native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `missing_dance`.
+Released native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `missing_dance`.
 
 | Field | Value |
 |---|---|
@@ -10,7 +10,7 @@ Draft native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `missing
 | Subtitle | Campaign 2 · Case 02 · Olympia District, Mars |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
 | Version | 1.0 |
-| Lifecycle | `DRAFT` — owner review not started, print gate not run |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -18,6 +18,9 @@ Draft native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `missing
 ```text
 case-02-missing-dance/
 ├── README.md
+├── history/
+│   ├── CASE02_OWNER_APPROVAL_v1.0.md
+│   └── release-v1.0.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -26,8 +29,7 @@ case-02-missing-dance/
     └── task-registry.js
 ```
 
-No `history/` directory exists while the case is `DRAFT`, and no generated PDF, role document,
-or screenshot is committed for this case.
+No generated PDF, role document, or screenshot is committed for this case.
 
 ## Instructional shape
 

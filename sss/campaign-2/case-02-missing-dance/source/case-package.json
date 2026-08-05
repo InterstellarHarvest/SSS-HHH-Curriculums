@@ -7,11 +7,12 @@
   "subtitle": "Campaign 2 · Case 02 · Olympia District, Mars",
   "location": "Ares Botanical Garden",
   "version": "1.0",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-05",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -129,10 +130,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "sss/campaign-2/case-02-missing-dance/history/release-v1.0.json",
   "sourceHashes": {
     "content": "9d9bfb70ef16feae1d112d3ab30176769d216397a12d05cfd206472d797e8b43",
     "presentation": "18afdc2c393af4f5fffa22c7a226724ab454c121a028a264f88e94fdb1eaaa6d",
-    "taskRegistry": "be69ff5937a25a0f652199578c76bfab6a5ae6c1b33ae02ff6623098b2d5b0ea",
+    "taskRegistry": "949beba1ff0074b1fa8d902b714100b325cd754c99d0da8e87852ae82d8439a1",
     "layoutOverrides": "9ce6bc63c44e40d0ae80bb8115e283ce5112636070b8987d31a3fd68f5d182d8"
   }
 }

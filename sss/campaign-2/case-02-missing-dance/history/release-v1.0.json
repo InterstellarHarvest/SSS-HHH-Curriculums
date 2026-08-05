@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE02",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-05",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
+  "canonicalSourceApprovalCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
+  "sourceHashes": {
+    "content": "9d9bfb70ef16feae1d112d3ab30176769d216397a12d05cfd206472d797e8b43",
+    "presentation": "18afdc2c393af4f5fffa22c7a226724ab454c121a028a264f88e94fdb1eaaa6d",
+    "taskRegistry": "949beba1ff0074b1fa8d902b714100b325cd754c99d0da8e87852ae82d8439a1"
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "case02Scoped": "63/63",
+    "case01Scoped": "74/74 (unchanged, byte-identical)",
+    "case03Scoped": "54/54 (unchanged, byte-identical)",
+    "static": "468/468",
+    "browser": "1744/1744 across all 80 case/role/presentation states",
+    "pdf": "244/244 across 40 registry-derived case-edition print documents",
+    "canonicalStructure": "PASS",
+    "layoutContracts": "Accessible 10 eligible and 28 explicitly locked response areas; Student 10 and 28, across 10 registered cases",
+    "authoringSecurity": "13/13",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS; no page overflows in any role",
+    "taskSeparation": "PASS; stacked Student tasks wrapped in task-block",
+    "campaignScopedNavigation": "PASS; Campaign 2 lists Case 01, Case 02 and Case 03 in case-number order",
+    "accessibleDedicatedCER": "PASS",
+    "accessibleDifferentiation": "inside the 43-68% band set by the approved cases",
+    "sourceBoundaryAndProhibitedClaims": "PASS; pore-opening, magic-frequency, Earth-generalisation, honeybee, bumblebee-only, guaranteed-remedy and secrecy claims all mechanically blocked",
+    "teachingAnalogyContainment": "PASS; salt-shaker counts confined to the marked data-analogy block",
+    "javascriptErrors": "0",
+    "gitDiffCheck": "clean"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked for this case."
+  },
+  "formerArtifactRecoveryCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "First release of Campaign 2 Case 02, runtime case missing_dance, the Ares Botanical Garden in Olympia District, Mars.",
+    "Frozen game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490.",
+    "Registered between Case 01 and Case 03. Every case keeps its runtime case number and none was renumbered; only Case 03's registry displayOrder moved from 9 to 10 so the Case menu lists all three in case-number order.",
+    "The task sequence is derived from this case rather than reused: a repeated negative result is its sharpest evidence, the missing element is an event rather than an object, and a knowledgeable source is bound by a cultural constraint the investigation works with rather than around.",
+    "Learners meet the release mechanism through a labelled salt-shaker analogy. The reported garden values remain case evidence throughout.",
+    "No mathematics standard is claimed: the packet requires no calculation."
+  ],
+  "retiredArtifacts": []
+}
