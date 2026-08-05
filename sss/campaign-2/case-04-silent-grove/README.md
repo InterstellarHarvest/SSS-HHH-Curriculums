@@ -1,6 +1,6 @@
 # SSS Campaign 2 · Case 04 — The Silent Grove
 
-Unreleased native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `silent_grove`.
+Released native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `silent_grove`.
 
 | Field | Value |
 |---|---|
@@ -10,7 +10,7 @@ Unreleased native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `si
 | Subtitle | Campaign 2 · Case 04 · Drift Vessel Thal-Oren, Inter-system Transit |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
 | Version | 1.0 |
-| Lifecycle | `DRAFT` — `OWNER_REVIEW_NOT_STARTED`, print gate `NOT_RUN` |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -18,6 +18,9 @@ Unreleased native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `si
 ```text
 case-04-silent-grove/
 ├── README.md
+├── history/
+│   ├── CASE04_OWNER_APPROVAL_v1.0.md
+│   └── release-v1.0.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -26,8 +29,7 @@ case-04-silent-grove/
     └── task-registry.js
 ```
 
-No release history, owner-approval record, generated PDF, role document, or screenshot exists for this
-case. It is a draft awaiting owner review.
+No generated PDF, role document, or screenshot is committed for this case.
 
 ## Instructional shape
 

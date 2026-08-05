@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE04",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-05",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
+  "canonicalSourceApprovalCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
+  "sourceHashes": {
+    "content": "22c986ea1af9bc12d5dc37b8796350de1962233c8a928706aa102cd1b5c587da",
+    "presentation": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
+    "taskRegistry": "258411ae3e6bad6d4c7298c43a8172021d120ca1797345962024a2dc3f3770cf"
+  },
+  "rolePageCounts": {
+    "student": 6,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "11 registered cases; release-history schema, commit references, source hashes, and native no-artifact controls PASS",
+    "case04Scoped": "75/75",
+    "case01Case02Case03Scoped": "74/74, 68/68, 54/54",
+    "static": "503/503",
+    "browser": "1883/1883 across all 88 case/role/presentation states",
+    "pdf": "268/268 on the registry-derived roster",
+    "layoutContracts": "Accessible 158 eligible and 221 explicitly locked response areas; Student 95 eligible and 292 explicitly locked response areas across 11 registered cases",
+    "authoringSecurity": "13/13",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS for all 26 pages; tightest page carries 25 px of slack",
+    "campaignScopedNavigation": "PASS; Campaign 1 lists seven cases and Campaign 2 lists Cases 01-04 in order",
+    "accessibleDedicatedCER": "PASS",
+    "teachingAnalogyContract": "PASS; both learner editions carry all three analogies with disclaimers and no analogy value appears outside its block",
+    "crossRoleReferenceIntegrity": "PASS; no dangling table or figure reference in any role and no stranded Answer Key exemplar",
+    "sourceBoundaryAndProhibitedClaims": "PASS; 29 misconception probes each demonstrated failure capability with no false positives on approved wording",
+    "editableCopyExport": "PASS",
+    "worksheetExport": "PASS",
+    "isolatedPrinting": "PASS",
+    "javascriptErrors": "0",
+    "visualReview": "26/26 pages for Campaign 2 Case 04, including grayscale"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Campaign 2 Case 04 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
+  "recovery": "NOT_APPLICABLE: Campaign 2 Case 04 was produced natively under the canonical source model; no generated release artifacts exist.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490.",
+    "Complete owner-approved curriculum preview baseline: cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00.",
+    "Campaign 2 Case 04 keeps its runtime case number and is not renumbered as Campaign 2 Case 01.",
+    "Runtime case identity: silent_grove, Zhel'ii Diaspora Grove, Drift Vessel Thal-Oren, Inter-system Transit.",
+    "Tasks 2 and 3 teach by labelled everyday analogy rather than by transcribing case records, following the convention Campaign 2 Case 01 established. Teaching figures are lettered and the grove's records are numbered tables.",
+    "The Student edition uses six pages because tasks are page-atomic and Tasks 6, 7 and 8 together exceed a single content frame; measured page-fit evidence is recorded in the accepted validation above.",
+    "Case 04 was authored directly as canonical package sources and released after on-screen, generated-PDF, and owner-confirmed physical-print review; no migration from generated release documents occurred."
+  ],
+  "retiredArtifacts": []
+}
