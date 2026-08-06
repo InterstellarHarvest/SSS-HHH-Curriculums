@@ -68,6 +68,11 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .numeric-cell { font-family: "Courier New", monospace; white-space: nowrap; }
 .vocabulary-table td:first-child { width: 1.45in; font-weight: 700; }
 .classify-table td:last-child, .classify-table th:last-child { width: .78in; }
+/* The Answer Key completes this table with a mark and the record that supports it, so its
+   final column carries a sentence rather than a single letter. The learner editions keep the
+   narrow response cell. */
+.page[data-role="answer"] .classify-table td:last-child,
+.page[data-role="answer"] .classify-table th:last-child { width: 3.1in; }
 .diagnosis-table td:last-child, .diagnosis-table th:last-child { width: .62in; }
 .profile-table td:first-child, .crops-table td:first-child, .precedent-table td:first-child { font-weight: 700; }
 .profile-table td:first-child, .profile-table th:first-child { width: 1.85in; }
