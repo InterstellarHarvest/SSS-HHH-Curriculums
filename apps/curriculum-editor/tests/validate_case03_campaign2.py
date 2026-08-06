@@ -27,6 +27,9 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[3]
+# Importing the shared lifecycle module must not leave a __pycache__ directory behind:
+# no generated artifact is tracked anywhere in this repository.
+sys.dont_write_bytecode = True
 sys.path.insert(0, str(ROOT / "shared/validation"))
 from corrective_release_lifecycle import history_findings as lifecycle_findings  # noqa: E402
 
