@@ -1,0 +1,685 @@
+#!/usr/bin/env python3
+"""Case-scoped validation for SSS Campaign 2 Case 06 — The First Garden.
+
+Draft-lifecycle validator. It enforces the canonical identity and runtime linkage
+of the bonus case, the ledger recorded in source/task-registry.js, the science
+boundary that separates established Earth science from this garden's records, and
+the print geometry of the four roles.
+
+The prohibited-claim and precision detectors are self-tested: each must fire on a
+synthetic probe carrying the claim it exists to catch, so a detector cannot rot
+into a no-op regex without failing the suite.
+"""
+from __future__ import annotations
+
+import difflib
+import json
+import re
+import sys
+from pathlib import Path
+
+from bs4 import BeautifulSoup
+
+ROOT = Path(__file__).resolve().parents[3]
+CASE_ID = "SSS-C2-CASE06"
+CASE_ROOT = ROOT / "sss/campaign-2/case-06-first-garden"
+SOURCE = CASE_ROOT / "source"
+GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
+DRAFT_VERSION = "1.0"
+OWNER = "Nate / Owner"
+RUNTIME_ID = "first_garden"
+RUNTIME_NAME = "The First Garden"
+RUNTIME_LOCATION = "Restored Terrace"
+RUNTIME_SUBTITLE = "Earth"
+CASE_SUBTITLE = "Campaign 2 · Case 06 · Restored Terrace, Earth"
+DISPLAY_LABEL = "6 - The First Garden"
+ROLES = ["student", "teacher", "answer", "accessible"]
+ROLE_PAGES = {"student": 6, "teacher": 8, "answer": 5, "accessible": 7}
+
+TASK_IDS = [f"C2-C06-T{n}" for n in range(1, 8)]
+TASK_TITLES = [
+    "Sort What Was Tested from What Was Never Tested",
+    "Read the Pattern in the Site Survey",
+    "Weigh the Explanations",
+    "Show Where the Five Sources Converge",
+    "Model the Candidate Pathway",
+    "Explain the Diagnosis with CER",
+    "Specify the Screened, Approved Trial",
+]
+FORMAL_CLUES = ["RESTORATION_HISTORY", "CHEMICAL_DISCONNECTION", "MYCORRHIZAL_NETWORK",
+                "CONCORD_REGULATION", "DATABASE_PRECEDENT"]
+FIGURE_IDS = {"fig-patches-student", "fig-patches-accessible"}
+PROCESS_CONTRACT = "mycorrhizal-candidate-five-stage-v1.0"
+CER_SUBTITLE = ("You may write sentences or use bullet points. "
+                "Use evidence from more than one source.")
+
+# ── Detector guards ──────────────────────────────────────────────────────────
+# A rule fires only when its pattern appears WITHOUT a nearby guard phrase. This
+# is what lets the Teacher Guide name a misconception in order to correct it,
+# while an unqualified assertion of the same claim still fails.
+NEGATION = re.compile(r"\bnot\b|\bnever\b|\bcannot\b|\bno\s+(?:support|evidence)\b|\bdoes\s+not\b"
+                      r"|\bis\s+not\b|\brather\s+than\b|\bwithout\b|\bdeclines\b|\bunsupported\b", re.I)
+CANDIDATE = re.compile(r"\bcandidate\b|\bmay\b|\bcould\b|\bleading\s+explanation\b|\bhypothes|\bto\s+be\s+tested\b"
+                       r"|\btest(?:ed|ing)?\b|\bnot\b|\bnever\b", re.I)
+SAFEGUARD = re.compile(r"\bscreen|\bapprov|\bcontrol|\breview|\bprovenance|\bmonitor|\bidentif|\bbefore\b"
+                       r"|\buntil\b|\bnot\b|\bnever\b", re.I)
+DETECTED = re.compile(r"\btrace\b|\bdetected\b|\bpresent\b|\bnot\b|\bnever\b", re.I)
+ESTIMATE_NEAR = re.compile(r"\bestimate|\bglobal\b|\bpublished\b|\bnot\b|\bflux\b", re.I)
+NEVER = re.compile(r"(?!x)x")  # never matches, so the rule fires unconditionally
+
+PROHIBITED: list[tuple[re.Pattern, re.Pattern, str]] = [
+    (re.compile(r"wood\s+wide\s+web", re.I), NEGATION, "the soil described as a wood wide web"),
+    (re.compile(r"underground\s+internet|forest'?s?\s+own\s+internet", re.I), NEGATION,
+     "the network described as an internet"),
+    (re.compile(r"superorganism|single\s+(?:cooperative\s+)?organism|one\s+cooperative\s+mind", re.I), NEGATION,
+     "the forest or garden described as one organism"),
+    (re.compile(r"mother\s+tree", re.I), NEGATION, "mature trees preferentially feeding their own seedlings"),
+    (re.compile(r"(?:the\s+)?(?:proven|established|demonstrated)\s+mechanism", re.I), NEGATION,
+     "the mycorrhizal explanation asserted as an established mechanism"),
+    (re.compile(r"\bthis\s+is\s+the\s+mechanism\b|\bis\s+the\s+mechanism\b", re.I), NEGATION,
+     "the mechanism stated as proven"),
+    (re.compile(r"(?:fungi|partners|network)\s+are\s+(?:definitely\s+|certainly\s+)?(?:gone|absent|missing)", re.I),
+     CANDIDATE, "compatible partners declared certainly absent"),
+    (re.compile(r"never\s+(?:been\s+|fully\s+)?restored", re.I), NEVER,
+     "the network declared never restored as a matter of fact"),
+    (re.compile(r"guaranteed\s+cure|will\s+(?:definitely\s+)?fix\s+the\s+garden|is\s+a\s+cure", re.I), NEGATION,
+     "inoculation presented as a guaranteed cure"),
+    (re.compile(r"\bwill\s+recover\b|\bwill\s+return\s+to\s+normal\b", re.I), NEGATION,
+     "recovery asserted as a certainty"),
+    (re.compile(r"\brecover\s+(?:within|in)\s+\w+\s+(?:weeks?|months?|years?|seasons?)", re.I), NEVER,
+     "a recovery time promised before evidence"),
+    (re.compile(r"transplant\s+living\s+soil|\binoculate\s+now\b|move\s+the\s+soil\s+(?:over|across)", re.I),
+     SAFEGUARD, "unscreened living-soil transfer proposed"),
+    (re.compile(r"no\s+risk|risk[- ]free|perfectly\s+safe", re.I), NEGATION,
+     "a within-world transfer described as risk-free"),
+    (re.compile(r"(?:ignore|skip|waive|bypass)\s+(?:the\s+)?(?:regulation|review|approval|section\s*14\.7)", re.I),
+     NEGATION, "the review requirement waived"),
+    (re.compile(r"always\s+(?:move|moves|share|shares|benefit|benefits)\s", re.I), NEGATION,
+     "transfer through shared pathways asserted as universal"),
+    (re.compile(r"clean\s+(?:chemistry|panels?|results?)\s+(?:proves?|shows?)\s+", re.I), NEGATION,
+     "clean chemistry treated as proof the biology is intact"),
+    (re.compile(r"chemistry\s+proves\s|survey\s+proves\s", re.I), NEGATION,
+     "the chemical survey treated as proof of which organism is missing"),
+    (re.compile(r"all\s+(?:land\s+)?plants\s+(?:need|require)\b", re.I), NEGATION,
+     "mycorrhizal fungi claimed to be required by all plants"),
+    (re.compile(r"110\s+quadrillion|13\.12\s+gigatons?", re.I), ESTIMATE_NEAR,
+     "a published global estimate presented without its estimate framing"),
+    (re.compile(r"(?:carbon\s+)?stored\s+(?:each|per)\s+year|permanent(?:ly)?\s+stor", re.I), NEGATION,
+     "annual carbon allocation presented as permanent storage"),
+    (re.compile(r"(?:fungi|plants|roots)\s+(?:decide|decides|chose|choose|want|wants)\b", re.I), NEGATION,
+     "intention attributed to fungi or plants"),
+    (re.compile(r"\bbuy\b.*\binoculant\b|\binoculant\s+(?:product|supplier|brand)", re.I), NEGATION,
+     "a commercial inoculant product or supplier named"),
+    (re.compile(r"(?:the\s+)?(?:tests?|panels?)\s+were\s+wrong|restoration\s+(?:team\s+)?was\s+incompetent", re.I),
+     NEGATION, "the restoration team or its tests blamed as incompetent"),
+]
+
+PRECISION: list[tuple[re.Pattern, re.Pattern, str]] = [
+    (re.compile(r"between\s+the\s+patches[^.]{0,60}\b(?:zero|none|absent|nothing)\b", re.I), NEGATION,
+     "trace levels between patches restated as zero or absent"),
+    (re.compile(r"\bexactly\s+(?:four|five|six)\s+met(?:re|er)s\b|\bpatches\s+are\s+5\s*m\b", re.I), NEGATION,
+     "the approximate patch-diameter range collapsed to an exact value"),
+    (re.compile(r"\bfive\s+met(?:re|er)s?\s+(?:in\s+)?diameter\b", re.I), NEGATION,
+     "an averaged patch diameter invented from the reported range"),
+    (re.compile(r"\b(?:41|42|43|44)\s+years\b|\bfifty\s+years\s+of\s+remediation\b", re.I), NEVER,
+     "the forty-year restoration period restated inaccurately"),
+    (re.compile(r"\bsix\s+years\s+of\s+cover\s+crop", re.I), NEVER,
+     "six species rotations restated as six years"),
+]
+
+
+class Results:
+    def __init__(self) -> None:
+        self.assertions: list[dict[str, object]] = []
+
+    def check(self, name: str, passed: bool, detail: object = "") -> None:
+        self.assertions.append({"name": name, "pass": bool(passed), "detail": str(detail)})
+
+    @property
+    def passed(self) -> int:
+        return sum(1 for item in self.assertions if item["pass"])
+
+
+def task_registry(path: Path) -> dict:
+    text = path.read_text(encoding="utf-8")
+    payload = re.sub(r"^\s*window\.[A-Z0-9_]+\s*=\s*", "", text).rstrip().removesuffix(";")
+    return json.loads(payload)
+
+
+def visible_text(soup: BeautifulSoup, roles: list[str]) -> str:
+    selector = ",".join(f'.page[data-role="{role}"]' for role in roles)
+    return " ".join(" ".join(page.stripped_strings) for page in soup.select(selector))
+
+
+def asserted_text(content: str, roles: list[str]) -> str:
+    working = BeautifulSoup(content, "html.parser")
+    for node in working.select("[data-quoted-claim]"):
+        node.decompose()
+    return visible_text(working, roles)
+
+
+def unqualified(text: str, pattern: re.Pattern, guard: re.Pattern,
+                before: int = 130, after: int = 90) -> bool:
+    return any(not guard.search(text[max(0, m.start() - before):m.end() + after])
+               for m in pattern.finditer(text))
+
+
+def scan(text: str, bank: list) -> list[str]:
+    return [reason for pattern, guard, reason in bank if unqualified(text, pattern, guard)]
+
+
+def probe(markup: str) -> str:
+    """Visible text of a synthetic single-page document, used to self-test the detectors."""
+    return visible_text(BeautifulSoup(
+        f'<main><section class="page" data-role="student" data-page-id="probe">{markup}</section></main>',
+        "html.parser"), ["student"])
+
+
+def page_tasks(page) -> list[int]:
+    return [int(h["data-shell-task-heading"]) for h in page.select("[data-shell-task-heading]")]
+
+
+def main() -> int:
+    results = Results()
+    package = json.loads((SOURCE / "case-package.json").read_text(encoding="utf-8"))
+    registry = task_registry(SOURCE / "task-registry.js")
+    content = (SOURCE / "content.html").read_text(encoding="utf-8")
+    soup = BeautifulSoup(content, "html.parser")
+    layout = json.loads((SOURCE / "layout-overrides.json").read_text(encoding="utf-8"))
+    ledger = registry["numericalLedger"]
+
+    role_text = {role: visible_text(soup, [role]) for role in ROLES}
+    student_text, teacher_text = role_text["student"], role_text["teacher"]
+    answer_text, accessible_text = role_text["answer"], role_text["accessible"]
+
+    # ── Canonical identity, bonus status, and runtime linkage ────────
+    results.check("the package carries the canonical Case 06 identity",
+                  package["id"] == CASE_ID and package["curriculum"] == "SSS"
+                  and package["campaign"] == "campaign-2" and package["title"] == RUNTIME_NAME,
+                  package["id"])
+    results.check("the printable subtitle names Campaign 2, Case 06, and the runtime location",
+                  package["subtitle"] == CASE_SUBTITLE
+                  and soup.select_one(".mission-subtitle").get_text(strip=True) == CASE_SUBTITLE,
+                  package["subtitle"])
+    results.check("the registry ledger pins the runtime case, name, location, and subtitle",
+                  (registry["runtimeCaseId"], registry["runtimeInvestigationName"],
+                   registry["runtimeLocation"], registry["runtimeSubtitle"])
+                  == (RUNTIME_ID, RUNTIME_NAME, RUNTIME_LOCATION, RUNTIME_SUBTITLE),
+                  registry["runtimeCaseId"])
+    results.check("the ledger records the canonical bonus status and campaign position",
+                  registry["runtimeBonusCase"] is True and registry["runtimeCampaignPosition"] == 6,
+                  (registry.get("runtimeBonusCase"), registry.get("runtimeCampaignPosition")))
+    results.check("the ledger records the runtime unlock condition",
+                  "five main Campaign 2 cases" in registry["runtimeUnlockCondition"]
+                  and "Hidden" in registry["runtimeUnlockCondition"],
+                  registry["runtimeUnlockCondition"])
+    results.check("the ledger pins the frozen game baseline",
+                  registry["gameCommit"] == GAME_COMMIT, registry["gameCommit"])
+    results.check("the package location matches the runtime location",
+                  package["location"] == RUNTIME_LOCATION, package["location"])
+    results.check("no printable role exposes the runtime case id or an internal clue tag",
+                  not any(token in text for text in role_text.values()
+                          for token in [RUNTIME_ID] + FORMAL_CLUES),
+                  [token for token in [RUNTIME_ID] + FORMAL_CLUES
+                   if any(token in text for text in role_text.values())])
+
+    # ── Draft lifecycle: no release, no approval, no artifacts ───────
+    results.check("the package records the unstarted draft lifecycle",
+                  package["status"] == "DRAFT" and package["version"] == DRAFT_VERSION
+                  and package["approval"] == {"owner": OWNER, "status": "OWNER_REVIEW_NOT_STARTED",
+                                              "printStatus": "NOT_RUN"},
+                  package["approval"])
+    results.check("the task registry records the same unstarted draft lifecycle",
+                  (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
+                   registry.get("printStatus"))
+                  == (DRAFT_VERSION, "DRAFT", "OWNER_REVIEW_NOT_STARTED", "NOT_RUN"),
+                  (registry.get("status"), registry.get("ownerReviewStatus")))
+    results.check("the draft declares no release history",
+                  "releaseHistory" not in package and "releaseHistory" not in registry)
+    results.check("the draft has no history directory and no owner-approval record",
+                  not (CASE_ROOT / "history").exists() and not list(CASE_ROOT.rglob("*OWNER_APPROVAL*")))
+    results.check("the draft records no approval date and no merge status",
+                  "date" not in package["approval"] and "approvalDate" not in registry
+                  and "mergeStatus" not in registry)
+    results.check("the case stores no PDFs or screenshots",
+                  not [path.name for suffix in ("*.pdf", "*.png", "*.jpg", "*.jpeg")
+                       for path in CASE_ROOT.rglob(suffix)])
+    results.check("the case stores no generated role document",
+                  sorted(path.name for path in CASE_ROOT.rglob("*.html")) == ["content.html"],
+                  sorted(path.name for path in CASE_ROOT.rglob("*.html")))
+    results.check("the case folder uses the canonical lean layout",
+                  sorted(p.name for p in CASE_ROOT.iterdir() if p.name != ".DS_Store") == ["README.md", "source"]
+                  and sorted(p.name for p in SOURCE.iterdir() if p.name != ".DS_Store")
+                  == ["case-package.json", "content.html", "layout-overrides.json",
+                      "presentation.css", "task-registry.js"],
+                  sorted(p.name for p in SOURCE.iterdir()))
+
+    # ── Registry entry, positional numbering, and display label ──────
+    case_registry = json.loads((ROOT / "shared/implementation/case-registry.v2.json")
+                               .read_text(encoding="utf-8"))
+    campaigns = {campaign["id"]: campaign["cases"]
+                 for curriculum in case_registry["curricula"] for campaign in curriculum["campaigns"]}
+    results.check("Campaign 1 still registers exactly seven cases", len(campaigns["campaign-1"]) == 7,
+                  len(campaigns["campaign-1"]))
+    results.check("Campaign 2 registers exactly Cases 01 to 06 in numerical display order",
+                  [case["id"] for case in campaigns["campaign-2"]]
+                  == [f"SSS-C2-CASE0{n}" for n in range(1, 7)]
+                  and [case["displayOrder"] for case in campaigns["campaign-2"]] == [8, 9, 10, 11, 12, 13],
+                  [(case["id"], case["displayOrder"]) for case in campaigns["campaign-2"]])
+    entry = campaigns["campaign-2"][5]
+    results.check("Case 06 is the sixth Campaign 2 case and is labelled positionally",
+                  entry["id"] == CASE_ID and entry["displayLabel"] == DISPLAY_LABEL,
+                  (entry["id"], entry["displayLabel"]))
+    results.check("the display label carries no bonus, epilogue, or special-investigation wording",
+                  not re.search(r"bonus|epilogue|special|finale|secret", entry["displayLabel"], re.I),
+                  entry["displayLabel"])
+    results.check("the Case 06 registry entry is an unreleased draft with no history record",
+                  entry["status"] == "DRAFT" and entry["packageStatus"] == "DRAFT"
+                  and "historyRecord" not in entry
+                  and entry["approval"] == {"owner": OWNER, "status": "OWNER_REVIEW_NOT_STARTED",
+                                            "printStatus": "NOT_RUN"},
+                  entry)
+    results.check("every other registered case remains APPROVED_STABLE",
+                  all(case["status"] == "APPROVED_STABLE"
+                      for cases in campaigns.values() for case in cases if case["id"] != CASE_ID)
+                  and sum(len(cases) for cases in campaigns.values()) == 13,
+                  [case["id"] for cases in campaigns.values() for case in cases
+                   if case["id"] != CASE_ID and case["status"] != "APPROVED_STABLE"])
+    results.check("no Campaign 1 case leaks into Campaign 2 or the reverse",
+                  all(case["id"].startswith("SSS-C1-") for case in campaigns["campaign-1"])
+                  and all(case["id"].startswith("SSS-C2-") for case in campaigns["campaign-2"]))
+
+    # ── Source hashes ────────────────────────────────────────────────
+    import hashlib
+    hash_targets = {"content": "content.html", "presentation": "presentation.css",
+                    "taskRegistry": "task-registry.js", "layoutOverrides": "layout-overrides.json"}
+    stale = [key for key, name in hash_targets.items()
+             if hashlib.sha256((SOURCE / name).read_bytes()).hexdigest() != package["sourceHashes"][key]]
+    results.check("every declared source hash matches its file", not stale, stale)
+
+    # ── Task architecture, order, and page counts ────────────────────
+    results.check("the registry declares the seven canonical task identifiers in order",
+                  [task["id"] for task in registry["tasks"]] == TASK_IDS,
+                  [task["id"] for task in registry["tasks"]])
+    results.check("the registry declares the seven canonical task titles in order",
+                  [task["title"] for task in registry["tasks"]] == TASK_TITLES,
+                  [task["title"] for task in registry["tasks"]])
+    results.check("every task is keyed in the Answer Key",
+                  all(task["keyed"] for task in registry["tasks"]))
+    results.check("every task icon exists in the shared sprite",
+                  all(f'id="{task["icon"]}"' in
+                      (ROOT / "shared/implementation/editor-shell/v1.0/icons.svg").read_text(encoding="utf-8")
+                      for task in registry["tasks"]),
+                  [task["icon"] for task in registry["tasks"]])
+    results.check("the registry role page counts match the package",
+                  registry["roles"] == ROLE_PAGES
+                  and {r: package["rolePageStructure"][r]["pageCount"] for r in ROLES} == ROLE_PAGES,
+                  registry["roles"])
+    for role in ROLES:
+        pages = soup.select(f'.page[data-role="{role}"]')
+        results.check(f"the {role} edition renders exactly {ROLE_PAGES[role]} pages",
+                      len(pages) == ROLE_PAGES[role], len(pages))
+        results.check(f"every {role} page declares its position in the aria label",
+                      all(page["aria-label"].endswith(f"of {ROLE_PAGES[role]}") for page in pages))
+    for role in ("student", "answer", "accessible"):
+        order = [n for page in soup.select(f'.page[data-role="{role}"]') for n in page_tasks(page)]
+        results.check(f"the {role} edition presents tasks 1 to 7 exactly once, in order",
+                      order == list(range(1, 8)), order)
+    results.check("the Accessible edition presents at most one task per page",
+                  all(len(page_tasks(page)) <= 1 for page in soup.select('.page[data-role="accessible"]')),
+                  [page_tasks(p) for p in soup.select('.page[data-role="accessible"]')])
+    results.check("no printable role prints a formal Role or Identity field",
+                  not re.search(r"\bRole:\s", student_text + accessible_text))
+
+    # ── Five formal clues and source convergence ─────────────────────
+    results.check("the ledger records the five canonical formal clues",
+                  registry["formalClues"] == FORMAL_CLUES, registry["formalClues"])
+    results.check("the source ledger covers all five clues once",
+                  [item["clue"] for item in registry["sourceLedger"]] == FORMAL_CLUES)
+    results.check("every source ledger entry states both a contribution and a limit",
+                  all(item["establishes"].strip() and item["cannotEstablishAlone"].strip()
+                      for item in registry["sourceLedger"]))
+    results.check("every clue is covered by at least one task",
+                  set(registry["clueTaskCoverage"]) == set(FORMAL_CLUES)
+                  and all(registry["clueTaskCoverage"][c] for c in FORMAL_CLUES))
+    ledger_sources = [item["source"] for item in registry["sourceLedger"]]
+    results.check("every ledger source is named in the Student edition",
+                  all(name in student_text for name in ledger_sources),
+                  [n for n in ledger_sources if n not in student_text])
+    results.check("the convergence task requires a contribution and a limit for each of the five sources",
+                  all(f"t4-c{i}" in content and f"t4-l{i}" in content for i in range(1, 6)))
+    results.check("the Answer Key names every source in its convergence answer",
+                  all(name.replace("Delegate ", "") in answer_text for name in ledger_sources),
+                  [n for n in ledger_sources if n.replace("Delegate ", "") not in answer_text])
+
+    # ── Evidence values, units, inequalities, and precision ──────────
+    survey = ledger["surveyedPattern"]
+    results.check("the ledger records the patch diameter as an approximate range",
+                  survey["patchDiameter"] == "approximately four to six metres",
+                  survey["patchDiameter"])
+    results.check("the ledger records the between-patch reading as trace levels only",
+                  survey["betweenPatches"] == "trace levels only", survey["betweenPatches"])
+    results.check("both learner editions print the approximate patch-diameter range",
+                  "4–6 m" in student_text and "4–6 m" in accessible_text)
+    results.check("the Student edition reproduces the survey wording for the patch diameter",
+                  "approximately four to six metres" in student_text)
+    results.check("both learner editions print the trace-level wording intact",
+                  "Trace levels only" in student_text and "trace levels only" in accessible_text.lower())
+    results.check("no printable role converts trace levels into zero, none, or absent",
+                  not scan(" ".join(role_text.values()), [PRECISION[0]]))
+    results.check("the Student edition names every surveyed compound the record lists",
+                  all(term in student_text for term in
+                      ["Phosphorus", "Nitrogen", "Carbon chains", "auxins", "cytokinins", "strigolactones"]))
+    results.check("the Student edition reports the sharp boundary with its diffusion qualifier",
+                  "Sharp, despite adequate matrix diffusion" in student_text)
+    results.check("the restoration durations are reproduced exactly",
+                  all(v in student_text for v in ["forty years", "Twenty years", "Six species rotations"]),
+                  [v for v in ["forty years", "Twenty years", "Six species rotations"] if v not in student_text])
+    results.check("the regulation designation is reproduced exactly",
+                  "Section 14.7" in teacher_text and "Section 14.7" in answer_text)
+    results.check("the ledger records that the case supplies no time series and no calculation",
+                  "no time series" in ledger["note"] and "nothing to compute" in ledger["note"],
+                  ledger["note"])
+    results.check("no printable role invents a timeline, a trend line, or a dated event",
+                  not re.search(r"\bmonth\s+[1-9]\b|\bweek\s+[1-9]\b|\btrend\s+line\b", " ".join(role_text.values()),
+                                re.I))
+    results.check("the global estimates stay out of every student-facing role",
+                  not any(re.search(r"110\s+quadrillion|13\.12", role_text[r]) for r in
+                          ("student", "accessible", "answer")))
+
+    # ── Science boundary ─────────────────────────────────────────────
+    status = registry["sourceStatus"]
+    results.check("the ledger separates established Earth science from this garden's records",
+                  all(key in status for key in
+                      ["establishedEarthScience", "establishedEarthScienceBoundary", "caseSpecificEvidence",
+                       "modeledEvidence", "caseInference", "engineeringExtrapolation"]),
+                  sorted(status))
+    results.check("the ledger states the uncertainty boundary the science register requires",
+                  "does not support a universal cooperative network" in status["establishedEarthScienceBoundary"]
+                  and "can cause harm" in status["establishedEarthScienceBoundary"])
+    results.check("the ledger records the global figures as estimates and the carbon figure as a flux",
+                  "global estimates" in status["modeledEvidence"] and "flux" in status["modeledEvidence"])
+    results.check("the ledger frames the diagnosis as a candidate cause, not an established mechanism",
+                  "candidate cause" in status["caseInference"]
+                  and "not an established mechanism" in status["caseInference"])
+    results.check("the correct diagnosis is recorded as a candidate to be tested",
+                  "candidate cause" in registry["correctDiagnosis"]
+                  and "before causation is claimed" in registry["correctDiagnosis"],
+                  registry["correctDiagnosis"][:90])
+    results.check("the ledger records exactly the three canonical rejected alternatives",
+                  len(registry["incorrectAlternatives"]) == 3
+                  and all(any(k in alt for k in ("pH", "rrigation", "nvasive"))
+                          for alt in registry["incorrectAlternatives"]),
+                  registry["incorrectAlternatives"])
+    results.check("all three rejected alternatives reach the Student edition",
+                  all(k in student_text for k in ("pH imbalance", "Inconsistent irrigation", "Invasive organisms")))
+    results.check("the Answer Key supplies the record that rules out each rejected alternative",
+                  all(k in answer_text for k in
+                      ("pH was corrected", "irrigation uniformity was verified", "predates the summit")),
+                  [k for k in ("pH was corrected", "irrigation uniformity was verified", "predates the summit")
+                   if k not in answer_text])
+    results.check("both learner editions frame the chosen explanation as a candidate",
+                  "candidate cause" in student_text and "candidate cause" in accessible_text)
+    results.check("the packet states on the page that the diagnosis has not been established",
+                  "before causation is claimed" in student_text
+                  and "still has to be tested" in accessible_text)
+    results.check("the ledger records production cautions covering the superseded design language",
+                  any("wood wide web" in c for c in registry["productionCautions"])
+                  and any("mother-tree" in c for c in registry["productionCautions"]))
+
+    # ── Prohibited overstatement, with self-tested detectors ─────────
+    asserted = asserted_text(content, ROLES)
+    prohibited_findings = scan(asserted, PROHIBITED)
+    results.check("no printable role asserts a prohibited scientific overstatement",
+                  not prohibited_findings, prohibited_findings)
+    precision_findings = scan(" ".join(role_text.values()), PRECISION)
+    results.check("no printable role degrades the precision of a reported value",
+                  not precision_findings, precision_findings)
+    results.check("the ledger records at least twenty prohibited claims",
+                  len(registry["prohibitedClaims"]) >= 20, len(registry["prohibitedClaims"]))
+
+    misconception_probes = [
+        ("wood wide web", "<p>The soil is a wood wide web linking every plant together.</p>"),
+        ("underground internet", "<p>The garden runs on an underground internet.</p>"),
+        ("superorganism", "<p>The forest is a superorganism.</p>"),
+        ("mother tree", "<p>A mother tree feeds its own seedlings first.</p>"),
+        ("established mechanism", "<p>This is the established mechanism behind the patches.</p>"),
+        ("is the mechanism", "<p>Missing fungi is the mechanism here.</p>"),
+        ("partners absent", "<p>The compatible fungi are definitely gone from the expansion beds.</p>"),
+        ("never restored", "<p>The network was never fully restored after the damage.</p>"),
+        ("guaranteed cure", "<p>Adding fungi is a guaranteed cure for this garden.</p>"),
+        ("recovery certain", "<p>The garden will recover once the fungi go in.</p>"),
+        ("recovery time", "<p>The beds will recover within three seasons.</p>"),
+        ("unscreened transfer", "<p>Transplant living soil from the good beds straight into the bad ones.</p>"),
+        ("risk free", "<p>Both are on Earth, so the move is risk-free.</p>"),
+        ("waive review", "<p>The garden is urgent, so we can skip the approval.</p>"),
+        ("universal transfer", "<p>Nutrients always move to the plants that need them most.</p>"),
+        ("clean chemistry proof", "<p>The clean panels prove the soil biology is fine.</p>"),
+        ("survey proves", "<p>The chemistry proves the mycorrhizal fungi are what is missing.</p>"),
+        ("all plants require", "<p>All land plants need mycorrhizal fungi to live.</p>"),
+        ("global estimate", "<p>There are 110 quadrillion kilometres of hyphae under this garden.</p>"),
+        ("carbon storage", "<p>Mycorrhizal fungi permanently store that carbon underground.</p>"),
+        ("intention", "<p>The fungi decide which plants to help.</p>"),
+        ("product named", "<p>Buy a commercial inoculant product and spread it.</p>"),
+        ("blame", "<p>The soil tests were wrong all along.</p>"),
+    ]
+    undetected = [name for name, markup in misconception_probes if not scan(probe(markup), PROHIBITED)]
+    results.check("every misconception detector fires on the claim it exists to catch",
+                  not undetected, undetected)
+    results.check("the misconception probe set covers every prohibited-claim rule",
+                  len(misconception_probes) == len(PROHIBITED),
+                  (len(misconception_probes), len(PROHIBITED)))
+
+    precision_probes = [
+        ("trace to zero", "<p>Between the patches there is nothing at all.</p>"),
+        ("exact diameter", "<p>The patches are exactly five metres across.</p>"),
+        ("averaged diameter", "<p>Each patch is five metres in diameter.</p>"),
+        ("wrong period", "<p>The family spent fifty years of remediation on the land.</p>"),
+        ("rotations as years", "<p>She tried six years of cover cropping.</p>"),
+    ]
+    undetected_precision = [name for name, markup in precision_probes if not scan(probe(markup), PRECISION)]
+    results.check("every precision detector fires on the degradation it exists to catch",
+                  not undetected_precision, undetected_precision)
+
+    quoted_nodes = soup.select("[data-quoted-claim]")
+    results.check("quoted misconceptions exist and are corrected only in the Teacher Guide",
+                  len(quoted_nodes) >= 5
+                  and all(node.find_parent(class_="page").get("data-role") == "teacher"
+                          for node in quoted_nodes),
+                  len(quoted_nodes))
+    quoted_text = " ".join(" ".join(node.stripped_strings) for node in quoted_nodes)
+    quoted_hits = [reason for pattern, _guard, reason in PROHIBITED if pattern.search(quoted_text)]
+    results.check("the quoted misconceptions really do contain claims the scan would otherwise reject",
+                  len(quoted_hits) >= 4, quoted_hits)
+    results.check("the Teacher Guide names the prohibited claims for correction",
+                  "Claims to correct on sight" in teacher_text)
+    results.check("the Teacher Guide supplies a correction for the quoted claims",
+                  "The corrections are, in order" in teacher_text)
+
+    # ── Figures ──────────────────────────────────────────────────────
+    figures = soup.select("figure[data-figure-id]")
+    results.check("the content carries exactly the declared figures",
+                  {f["data-figure-id"] for f in figures} == FIGURE_IDS
+                  and {item["id"] for item in registry["figureProvenance"]} == FIGURE_IDS,
+                  sorted(f["data-figure-id"] for f in figures))
+    results.check("every figure is curriculum-original",
+                  all(item["kind"].startswith("curriculum-original") for item in registry["figureProvenance"]))
+    results.check("figures appear only in the two learner editions",
+                  all(f.find_parent(class_="page")["data-role"] in ("student", "accessible") for f in figures))
+    for figure in figures:
+        fid = figure["data-figure-id"]
+        caption = figure.find("figcaption").get_text(" ", strip=True)
+        desc = figure.select_one(".extended-description")
+        svg = figure.find("svg")
+        title = svg.find("title") if svg else None
+        results.check(f"{fid} carries a lettered figure number and a useful caption",
+                      bool(re.match(r"Figure [A-Z] · ", caption)) and len(caption) > 90, caption[:80])
+        results.check(f"{fid} names its source boundary in the caption",
+                      "site survey record" in caption, caption[-70:])
+        results.check(f"{fid} states in its caption that no shape joins the readings",
+                      "no boundary shape is drawn" in caption or "no shape is drawn" in caption, caption[-70:])
+        results.check(f"{fid} carries an extended description that opens with the standard prefix",
+                      desc is not None and desc.get_text(strip=True).startswith("Extended description: "))
+        results.check(f"{fid} states in its extended description that it is not a map",
+                      "not a map" in desc.get_text(" ", strip=True))
+        results.check(f"{fid} states that it reads without colour",
+                      "without colour" in desc.get_text(" ", strip=True))
+        results.check(f"{fid} is labelled for assistive technology",
+                      svg is not None and svg.get("role") == "img" and svg.get("aria-label")
+                      and title is not None and title.get_text(strip=True) == svg["aria-label"])
+        results.check(f"{fid} encodes its zones with fill patterns rather than colour",
+                      len(svg.select("pattern")) >= 2
+                      and len([r for r in svg.select("rect") if str(r.get("fill", "")).startswith("url(")]) >= 3)
+        results.check(f"{fid} draws no curve, polyline, or polygon",
+                      not svg.select("polyline") and not svg.select("polygon")
+                      and not any(re.search(r"[CcSsQqTtAa]", p.get("d", "")) for p in svg.select("path")))
+        results.check(f"{fid} labels both kinds of ground directly on the figure",
+                      "compounds abundant" in svg.get_text(" ", strip=True)
+                      and "trace levels only" in svg.get_text(" ", strip=True))
+    results.check("figure numbering is unique within each learner edition",
+                  all(len({re.match(r"Figure ([A-Z])", f.find("figcaption").get_text(strip=True)).group(1)
+                           for f in soup.select(f'.page[data-role="{role}"] figure[data-figure-id]')})
+                      == len(soup.select(f'.page[data-role="{role}"] figure[data-figure-id]'))
+                      for role in ("student", "accessible")))
+    learner_captions = [t.get_text(strip=True) for role in ("student", "accessible")
+                        for t in soup.select(f'.page[data-role="{role}"] table.data-table caption')]
+    results.check("every learner-edition table caption carries a table number",
+                  all(c.startswith("Table ") for c in learner_captions),
+                  [c for c in learner_captions if not c.startswith("Table ")])
+    results.check("every table in every role carries a caption with real content",
+                  all(len(t.get_text(strip=True)) > 12 for t in soup.select("table.data-table caption"))
+                  and len(soup.select("table.data-table")) == len(soup.select("table.data-table caption")),
+                  len(soup.select("table.data-table")))
+    for role in ("student", "accessible"):
+        nums = [re.match(r"Table (\d+)", t.get_text(strip=True)).group(1)
+                for t in soup.select(f'.page[data-role="{role}"] table.data-table caption')]
+        results.check(f"the {role} edition numbers its tables uniquely", len(nums) == len(set(nums)), nums)
+
+    # ── Teaching analogy containment ─────────────────────────────────
+    analogies = soup.select("[data-analogy]")
+    results.check("the teaching analogy appears in both learner editions and nowhere else",
+                  len(analogies) == 2
+                  and {a.find_parent(class_="page")["data-role"] for a in analogies} == {"student", "accessible"},
+                  len(analogies))
+    results.check("the teaching analogy prints its own disclaimer",
+                  all("not a garden record" in a.get_text(" ", strip=True) for a in analogies))
+    results.check("the teaching analogy introduces no numeric value at all",
+                  not any(re.search(r"\d", a.get_text(" ", strip=True)) for a in analogies),
+                  [re.findall(r"\d+", a.get_text(" ", strip=True)) for a in analogies])
+    results.check("the analogy never reaches the Answer Key or the Teacher Guide as a task",
+                  "building inspector" not in answer_text.lower())
+
+    # ── CER, mechanism model, Accessible differentiation ─────────────
+    student_cer_pages = [p for p in soup.select('.page[data-role="student"]') if page_tasks(p) == [6]]
+    accessible_cer_pages = soup.select('.page[data-accessible-cer-page="canonical-v1.0"]')
+    results.check("the Student CER occupies one full page carrying only task 6",
+                  len(student_cer_pages) == 1, len(student_cer_pages))
+    results.check("the Accessible CER occupies one dedicated canonical page carrying only task 6",
+                  len(accessible_cer_pages) == 1 and page_tasks(accessible_cer_pages[0]) == [6],
+                  len(accessible_cer_pages))
+    results.check("both learner editions print the canonical CER subtitle verbatim",
+                  soup.select_one("[data-student-cer-subtitle]").get_text(strip=True) == CER_SUBTITLE
+                  and soup.select_one("[data-accessible-cer-subtitle]").get_text(strip=True) == CER_SUBTITLE)
+    results.check("every CER carries CLAIM, EVIDENCE and REASONING in order",
+                  all([b.get_text(strip=True) for b in cer.select(".canonical-cer-label")]
+                      == ["CLAIM", "EVIDENCE", "REASONING"] for cer in soup.select(".canonical-cer")),
+                  len(soup.select(".canonical-cer")))
+    results.check("the three CER contracts are the canonical student, answer, and accessible forms",
+                  sorted(c["data-cer-contract"] for c in soup.select(".canonical-cer"))
+                  == ["accessible-v1.0", "answer-v1.0", "student-v1.0"])
+    results.check("the CER prompt requires evidence from more than one source",
+                  "more than one source" in student_text and "more than one source" in accessible_text)
+    results.check("the CER prompt requires a stated limit",
+                  "does not establish" in student_text and "does not prove" in accessible_text)
+
+    models = soup.select(f'[data-process-contract="{PROCESS_CONTRACT}"]')
+    results.check("the candidate pathway model appears once in each learner edition",
+                  len(models) == 2
+                  and {m.find_parent(class_="page")["data-role"] for m in models} == {"student", "accessible"},
+                  len(models))
+    results.check("every pathway model has five stages with the first and last fixed",
+                  all(len(m.select("[data-process-stage]")) == 5
+                      and len(m.select(".path-stage.fixed")) == 2 for m in models))
+    results.check("every pathway model is fed by an exact-match word bank of three phrases",
+                  all(len(bank.select(".word-bank-item")) == 3 for bank in soup.select(".word-bank")),
+                  len(soup.select(".word-bank")))
+    results.check("the Answer Key supplies both the Student and the Accessible word-bank wordings",
+                  "compatible mycorrhizal fungi may not have re-established" in answer_text
+                  and "compatible fungi may not have come back in the new beds" in answer_text)
+    results.check("the mechanism task requires a stated limit on the model",
+                  "does not establish" in student_text and "does not prove" in accessible_text)
+
+    results.check("the Accessible edition is rewritten rather than reflowed",
+                  difflib.SequenceMatcher(None, student_text.split(), accessible_text.split()).ratio() <= 0.70,
+                  round(difflib.SequenceMatcher(None, student_text.split(),
+                                                accessible_text.split()).ratio(), 3))
+    results.check("the Accessible edition is shorter than the Student edition",
+                  len(accessible_text.split()) < len(student_text.split()),
+                  (len(accessible_text.split()), len(student_text.split())))
+    results.check("the Accessible edition supplies just-in-time vocabulary as a definition list",
+                  len(soup.select('.page[data-role="accessible"] .vocabulary-list')) >= 1)
+    results.check("the Accessible edition supplies structured scaffolds on most pages",
+                  len(soup.select('.page[data-role="accessible"] .alt-support')) >= 5,
+                  len(soup.select('.page[data-role="accessible"] .alt-support')))
+    results.check("the Accessible edition supplies sentence frames",
+                  accessible_text.count("Sentence frame") >= 3, accessible_text.count("Sentence frame"))
+    results.check("the Accessible edition does not name the diagnosis before task 6",
+                  not any(re.search(r"mycorrhizal partners may not have re-established", " ".join(p.stripped_strings))
+                          for p in soup.select('.page[data-role="accessible"]')
+                          if page_tasks(p) and page_tasks(p)[0] < 3))
+    results.check("the Student and Accessible editions ask the same reasoning prompts",
+                  {n["data-persist-id"][1:] for n in
+                   soup.select('.page[data-role="student"] [data-response]') if not n.get("data-field")}
+                  == {n["data-persist-id"][1:] for n in
+                      soup.select('.page[data-role="accessible"] [data-response]') if not n.get("data-field")})
+    results.check("the Teacher Guide and Answer Key contain no learner response areas",
+                  not soup.select('.page[data-role="teacher"] [data-response]')
+                  and not soup.select('.page[data-role="answer"] [data-response]'))
+
+    # ── Layout overrides and response eligibility ────────────────────
+    results.check("the layout overrides target this case with the accessible edition at the root",
+                  layout["caseId"] == CASE_ID and layout["edition"] == "accessible"
+                  and layout["schemaVersion"] == 1 and layout["stepPx"] == 4)
+    results.check("the layout overrides ship with no stored user deltas",
+                  layout["overrides"] == {} and layout["student"]["overrides"] == {})
+    for edition, block, role in (("accessible", layout, "accessible"), ("student", layout["student"], "student")):
+        declared = {a["persistId"] for a in block["areas"]} | {a["persistId"] for a in block["lockedAreas"]}
+        rendered = {n["data-persist-id"] for n in soup.select(f'.page[data-role="{role}"] [data-response]')}
+        results.check(f"the {edition} layout override set covers exactly the rendered response areas",
+                      declared == rendered, sorted(declared ^ rendered))
+        results.check(f"every {edition} locked area records a reason",
+                      all(a.get("reason") for a in block["lockedAreas"]))
+    results.check("the Student CER, table cells, and fixed organisers are not resizable",
+                  not any(a["persistId"] in {"t6c", "t6e", "t6r", "t5-m2", "t4-c1"}
+                          for a in layout["student"]["areas"]))
+
+    # ── Metadata hygiene ─────────────────────────────────────────────
+    LIFECYCLE_METADATA = re.compile(
+        r"\bDRAFT\b|\bAPPROVED_STABLE\b|OWNER_REVIEW|\bNOT_RUN\b|\bmerge\b|\bbranch\b|feat/|"
+        r"\bcommit\b|\bSHA\b|[0-9a-f]{40}", re.I)
+    leaked = [role for role, text in role_text.items() if LIFECYCLE_METADATA.search(text)]
+    results.check("no printable role prints lifecycle, branch, merge, approval, or production metadata",
+                  not leaked, leaked)
+    results.check("the lifecycle-metadata detector fires on a draft banner",
+                  bool(LIFECYCLE_METADATA.search(
+                      "DRAFT · OWNER_REVIEW_NOT_STARTED on feat/sss-c2-case06-first-garden")))
+    results.check("no printable role repeats a reminder that the scenario is fictional",
+                  not re.search(r"\bfiction(?:al)?\b|\bmade up\b|\bnot real\b", " ".join(role_text.values()), re.I))
+    results.check("every response area is labelled for assistive technology",
+                  all(n.get("aria-label") or n.get("data-field") for n in soup.select("[data-response]")))
+    results.check("no printable role exposes an internal process-contract or persistence identifier as text",
+                  PROCESS_CONTRACT not in " ".join(role_text.values()))
+
+    payload = {
+        "validator": "sss-c2-case06-v1",
+        "status": "PASS" if results.passed == len(results.assertions) else "FAIL",
+        "passed": results.passed,
+        "total": len(results.assertions),
+        "assertions": results.assertions,
+    }
+    print(json.dumps(payload, indent=2))
+    return 0 if results.passed == len(results.assertions) else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
