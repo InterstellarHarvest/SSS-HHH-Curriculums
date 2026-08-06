@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE03",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-06",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+  "canonicalSourceApprovalCommit": "f8b016f3230b0e513479aaf43aeb668a5df46e88",
+  "correctiveReviewCommits": [
+    {
+      "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
+      "role": "The Campaign 2 completion audit that identified the defects corrected here."
+    },
+    {
+      "commit": "45bf4ecf0ce857121ee9437dfcdd6d3156966dcf",
+      "role": "Shared validation support distinguishing a first release from a corrective-release candidate, which made this reissue representable without disturbing v1.0."
+    },
+    {
+      "commit": "cb4bd3dea757464485a231c90afb63a9a8310a50",
+      "role": "Task 5 reasoning-rule correction, Task 1 evidence order, Task 4 and Task 8 Answer Key evidence, approximate-value provenance, the MS-PS4-2 withdrawal, and four printable text errors."
+    },
+    {
+      "commit": "8f80c065f148b7a73e9d81bbef6bdec0c2cbafce",
+      "role": "Opened the v1.1 corrective candidate for owner review and repinned the game baseline to 29c3b222."
+    },
+    {
+      "commit": "28b16643245e785e390b48cd1a2adee6db6ce033",
+      "role": "Cross-role parity, evidence-timing, provenance, standards, revision-propagation and mutation coverage."
+    },
+    {
+      "commit": "f8b016f3230b0e513479aaf43aeb668a5df46e88",
+      "role": "Stopped the shared lifecycle import from tracking bytecode; the last commit carrying the approved content, presentation and layout-override sources unchanged."
+    }
+  ],
+  "sourceHashes": {
+    "content": "1c860001db12dc47911885c4f9bc10c03b737c25b8f78bd3990851ec90591a9d",
+    "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
+    "taskRegistry": "0622cafbcd3a16f26c06e03dd9fdfde24175cd495935e46de419752de72e416e",
+    "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493",
+    "teacher": "c087aa117f87d991bd7b8039f6a189713833042720318007503b29792a1fd3a5",
+    "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090",
+    "note": "Regenerated for v1.1. All three differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "case03Scoped": "107/107 (84/84 at the candidate tip; the release conversion added 23 assertions covering the v1.1 lifecycle, the v1.1 release and owner-approval records, prior-release representation, and the certified-source-commit check)",
+    "case01Scoped": "74/74 (unchanged, byte-identical)",
+    "case02Scoped": "108/108 (unchanged, byte-identical)",
+    "case04Scoped": "82/82",
+    "case05Scoped": "101/101",
+    "case06Scoped": "153/153",
+    "static": "592/592",
+    "browser": "2161/2161 across all 96 case/role/presentation states",
+    "pdf": "316/316 across the registry-derived case-edition print documents",
+    "canonicalStructure": "PASS",
+    "layoutContracts": "PASS across 13 registered cases; Accessible 201 eligible/274 locked, Student 118 eligible/365 locked",
+    "authoringSecurity": "13/13",
+    "correctiveReleaseLifecycle": "25/25",
+    "case03Mutations": "17/17; every mutation names and trips the specific protection it targets rather than a hash or baseline check",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "pageCountsAndFit": "PASS; no page overflows in any role at Student 5, Teacher 8, Answer Key 4, Accessible 8",
+    "figureIntegrity": "PASS; discrete GRO-9 output bars, the separate measured 460-540 nm response band, pattern fills, direct labels and grayscale legibility are unchanged from v1.0",
+    "javascriptErrors": "0",
+    "gitDiffCheck": "clean"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "f8b016f3230b0e513479aaf43aeb668a5df46e88",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-04",
+      "approvalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+      "recoveryCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+      "canonicalSourceApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+      "gameCommit": "46b9387bca95736f164f905596e3dd8b13968661",
+      "retainedRecords": [
+        "sss/campaign-2/case-03-wrong-color-light/history/release-v1.0.json",
+        "sss/campaign-2/case-03-wrong-color-light/history/CASE03_OWNER_APPROVAL_v1.0.md"
+      ],
+      "sourceHashes": {
+        "content": "1684e64b9496965d053f7ffc033fbbb858d784d504792f7a7ea14bbe88fa464d",
+        "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
+        "taskRegistry": "637cc593c6da9fa4b6ccf362651e8f6df4f5227efa90174ddac2e1b3abc5cd94"
+      },
+      "frozenNonAccessibleDomBaselines": {
+        "student": "a981da87937897727a145bd3fde8eb596c8ae48d9f9031a9e7df8d687b44b8dc",
+        "teacher": "45e99b00b705edb6160fe02172cb12ea8b7b1a7ce40fd2a2b1a616f90de670a0",
+        "answer": "2f629cdcc4f1606d56c236c2e42ac0e5482d182c423796e2cba03c721782024a"
+      },
+      "rolePageCounts": {
+        "student": 5,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 8
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked."
+      },
+      "recoveryCommand": "git show 571c491ac54aa61788c7af991756b6da534fd506:sss/campaign-2/case-03-wrong-color-light/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review, PDF review and physical print pass at 100% / Actual Size. It is superseded, not withdrawn.",
+        "Its release record and owner-approval record are retained unchanged. Neither was edited to describe v1.1.",
+        "v1.0 pinned game baseline 46b9387bca95736f164f905596e3dd8b13968661. That pin is preserved as the historical record of what v1.0 was approved against and is deliberately not rewritten. The Campaign 2 completion audit verified campaign_2_data.js and docs/campaign_2_science_sources.md are byte-identical between 46b9387 and 29c3b222, so v1.1's repin changes no evidence.",
+        "The v1.0 source hashes and DOM baselines above are the historical evidence of what was approved on 2026-08-04, and none of them matches v1.1."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "The Campaign 2 completion audit found that the released v1.0 packet printed the inverse of its own reasoning rule to learners, graded a Task 1 classification before the Student edition supplied the record that settles it, reasoned in the Answer Key from facts no printable role carries, attached an invented provenance to an approximate value, and claimed a standard no task assesses. v1.1 corrects those defects. No investigation, diagnosis, task sequence, figure, page geometry or case fiction changed.",
+    "corrections": [
+      "Task 5 reasoning inversion. The Student and Accessible editions printed 'total PAR alone proves no effective spectrum' while the Teacher Guide and Answer Key printed 'total PAR alone does not establish an effective spectrum', so the learner sentence inverted the packet's own reasoning rule and the Answer Key graded against the other wording. Both learner occurrences now carry the canonical sentence, and the rule is stated in full in a marked data-reasoning-rule block in each learner edition: total PAR counts every photon in the reported range, that total alone does not establish whether the spectrum matches the measured zhal-kelp response, and lamp-output evidence and biological-response evidence are compared separately. All four roles now express one rule.",
+      "Task 1 evidence timing. Task 1 asked learners to classify what changed and what was held constant before the Student edition printed the controlling record; the Accessible edition supplied it and the Student edition did not, leaving the differentiated edition better evidenced than the base edition for the same task. Both editions now carry a marked Week 0 change record naming all four classified conditions, on the page of the task that grades them. The records stay differentiated: one compact sentence in the Student edition, one short sentence per held condition in the Accessible edition.",
+      "Task 4 and Task 8 Answer Key evidence availability. The Answer Key's Task 4 rejection reasoned from a 30 percent higher installed photon flux that appears in no printable role; it is Tei-sal's wrong_guess_intensity runtime dialogue. The clause was unnecessary and is removed: the rejection stands on the 280 umol/m2/s total reported adequate in Table 1 and the old-dome control at 100 percent in Table 3, both printed in both learner editions. Task 8's intensity criterion likewise graded against 'the level the old dome delivered', a figure the packet never prints, and now names the 280 umol/m2/s learners actually hold.",
+      "Approximate-value provenance. The curriculum described the approximate 14 umol/m2/s effective-PAR value as 'an approximation from an incomplete weighting model'. The canonical game source states the value and says nothing about how it was obtained. The invented provenance is removed from the Teacher Guide and the task registry. The value remains Teacher-facing and approximate, is never presented as an exact or complete action-spectrum calculation, and is never used in student work.",
+      "Standards correction. MS-PS4-2 is withdrawn as a direct standard and is not replaced: no task develops or uses a model of light reflected, absorbed or transmitted through a material, and wavelength vocabulary and figure reading alone do not assess that performance expectation. The Teacher Guide records the withdrawal and its reason so the claim cannot silently return. MS-LS1-6 remains direct and now names Tasks 6 and 7 as the assessing tasks. MS-ETS1-1 remains supporting and records why it is not direct. MS-ETS1-2 remains conditional, keeps its existing limitation, and now names Task 8.",
+      "Printable text errors. Four errors were repaired: a doubled 'and and' in the Teacher success criteria, a truncated Answer Key rubric clause, 'responds most strongly in at this site' in an Accessible direction, and a doubled superlative in both extended descriptions."
+    ],
+    "unchanged": [
+      "The eight-task sequence, its identifiers and its order in every role.",
+      "The correct diagnosis, the three rejected alternatives, the five formal clues and the clue routes.",
+      "Figure 1's discrete GRO-9 output bars and Figure 2's separate measured 460-540 nm response band, with their captions, extended descriptions, pattern fills, direct labels and category-boundary cautions.",
+      "Role page counts at Student 5, Teacher 8, Answer Key 4, Accessible 8, and every response area and page geometry.",
+      "The Accessible edition's scaffolding, register and one-task-per-page structure.",
+      "The case's approved science protections, including the prohibitions on a universal red-light claim, on equating red light with darkness, on treating the under-5-percent figure as proof, on any zero-response claim outside the measured band, on a universal brown-algae action spectrum, on a smooth response curve, and on any exact effective-PAR calculation from the packet's category data.",
+      "The runtime case wrong_color_light and its case registration order and runtime case number."
+    ]
+  },
+  "migrationNotes": [
+    "Corrective release of Campaign 2 Case 03, runtime case wrong_color_light, the Oolian Mariculture Dome at Trench Shelf IV, Kepler-186f (Ocean).",
+    "Frozen game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490. v1.0 pinned 46b9387bca95736f164f905596e3dd8b13968661, and the audit verified the Campaign 2 evidence data and science-source register are byte-identical between the two, so the repin removes a provenance inconsistency without changing any evidence. The game repository was not modified during this remediation.",
+    "Campaign 2 Case 03 keeps its runtime case number and is not renumbered as Campaign 2 Case 01.",
+    "The prior approved v1.0 release is preserved in priorApprovedReleases and its two history records are retained byte-identical. Git history remains authoritative for recovery.",
+    "Frozen Student, Teacher and Answer Key DOM baselines were regenerated for v1.1 and all three differ from v1.0's.",
+    "No generated artifact was produced or committed at either version.",
+    "No mathematics standard is claimed: the packet requires no calculation anywhere."
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED",
+  "retiredArtifacts": []
+}

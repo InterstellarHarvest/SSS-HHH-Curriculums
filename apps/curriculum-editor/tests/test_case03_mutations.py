@@ -31,8 +31,10 @@ CONTENT = SOURCE / "content.html"
 REGISTRY = SOURCE / "task-registry.js"
 PACKAGE = SOURCE / "case-package.json"
 README = CASE_ROOT / "README.md"
+RELEASE = CASE_ROOT / "history/release-v1.1.json"
+RETAINED = CASE_ROOT / "history/release-v1.0.json"
 VALIDATOR = ROOT / "apps/curriculum-editor/tests/validate_case03_campaign2.py"
-TRACKED = (CONTENT, REGISTRY, PACKAGE, README)
+TRACKED = (CONTENT, REGISTRY, PACKAGE, README, RELEASE)
 
 INVERTED = "total PAR alone proves no effective spectrum"
 CANONICAL = "total PAR alone does not establish an effective spectrum"
@@ -63,12 +65,38 @@ class Case03Mutations(unittest.TestCase):
             path.write_bytes(body)
 
     def rehash(self):
-        """Re-pin the package hashes so a mutation is judged on content, not on drift."""
+        """Re-pin every hash and baseline a mutation would otherwise trip incidentally.
+
+        Case 03 is now a frozen release, so a content edit is caught by the package hash,
+        the release-record hash and the release-record DOM baseline before any content
+        detector runs. Re-pinning all three is what makes these tests prove the content
+        protections rather than the integrity plumbing.
+        """
+        from bs4 import BeautifulSoup, NavigableString
+
+        def role_dom_hash(soup, role):
+            fragment = BeautifulSoup(
+                "".join(str(page) for page in soup.select(f'.page[data-role="{role}"]')),
+                "html.parser")
+            for node in list(fragment.find_all(string=True)):
+                if isinstance(node, NavigableString) and not str(node).strip():
+                    node.extract()
+            return hashlib.sha256(fragment.decode(formatter="minimal").encode("utf-8")).hexdigest()
+
+        digests = {key: hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
+                   for key, name in (("content", "content.html"),
+                                     ("taskRegistry", "task-registry.js"))}
         text = PACKAGE.read_text(encoding="utf-8")
-        for key, name in (("content", "content.html"), ("taskRegistry", "task-registry.js")):
-            digest = hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
+        for key, digest in digests.items():
             text = re.sub(rf'("{key}": ")[0-9a-f]{{64}}(")', rf"\g<1>{digest}\g<2>", text, count=1)
         PACKAGE.write_text(text, encoding="utf-8")
+
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["sourceHashes"].update(digests)
+        soup = BeautifulSoup(CONTENT.read_text(encoding="utf-8"), "html.parser")
+        for role in ("student", "teacher", "answer"):
+            release["frozenNonAccessibleDomBaselines"][role] = role_dom_hash(soup, role)
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     def mutate_content(self, old: str, new: str, count: int = 1):
         text = CONTENT.read_text(encoding="utf-8")
@@ -232,22 +260,66 @@ class Case03Mutations(unittest.TestCase):
         self.assertCaught("a content editor key left at the superseded version",
                           "agree on the version")
 
-    def test_candidate_claiming_a_release_record_of_its_own(self):
+    def test_release_without_its_own_release_record(self):
+        """An approved package must name the release record that documents it."""
         package = json.loads(PACKAGE.read_text(encoding="utf-8"))
-        package["releaseHistory"] = "sss/campaign-2/case-03-wrong-color-light/history/release-v1.1.json"
+        del package["releaseHistory"]
         PACKAGE.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        self.assertCaught("a corrective candidate claiming a release record of its own",
-                          "the candidate claims no release or approval record of its own")
+        self.assertCaught("an approved package naming no release record",
+                          "the approved package names its own v1.1 release record")
 
-    def test_print_gate_marked_pass_before_the_print_test(self):
+    def test_print_gate_downgraded_after_approval(self):
+        """The print gate is the whole point of the release; it cannot quietly regress."""
         package = json.loads(PACKAGE.read_text(encoding="utf-8"))
-        package["approval"]["printStatus"] = "PASS"
+        package["approval"]["printStatus"] = "NOT_RUN"
         PACKAGE.write_text(json.dumps(package, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        self.assertCaught("a candidate recording a print PASS it has not earned",
-                          "the package records the v1.1 corrective candidate lifecycle")
+        self.assertCaught("an approved package with the print gate downgraded",
+                          "the package records the approved corrective-release lifecycle")
+
+    def test_prior_release_dropped_from_the_release_record(self):
+        """Forgetting v1.0 in the v1.1 record would erase the only canonical index of it."""
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["priorApprovedReleases"] = []
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        self.assertCaught("the v1.0 prior release dropped from the v1.1 record",
+                          "carries v1.0 as a canonical prior release")
+
+    def test_v11_baseline_reverted_to_the_superseded_v10_markup(self):
+        """The v1.1 baselines must not be satisfiable by the markup v1.1 replaced."""
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["frozenNonAccessibleDomBaselines"].update(
+            release["priorApprovedReleases"][0]["frozenNonAccessibleDomBaselines"])
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        self.assertCaught("v1.1 baselines reverted to the superseded v1.0 markup",
+                          "pins the live Student, Teacher and Answer Key DOM baselines")
+
+    def test_certified_source_commit_does_not_contain_the_certified_registry(self):
+        """The audit's M-10/M-18 defect: a pin that does not contain what it certifies."""
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["canonicalSourceApprovalCommit"] = release["originalReleaseApprovalCommit"]
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        self.assertCaught("a certified-source pin that does not contain the certified sources",
+                          "the certified source commit actually contains the sources the record pins")
+
+    def test_v10_game_pin_rewritten_in_the_prior_release_entry(self):
+        """v1.0's baseline is historical evidence and must not be normalised to v1.1's."""
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["priorApprovedReleases"][0]["gameCommit"] = release["sourceHashes"] and \
+            "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        self.assertCaught("v1.0's game pin rewritten to v1.1's",
+                          "preserves v1.0's own game pin rather than rewriting it")
+
+    def test_retained_v10_record_deleted(self):
+        """v1.0 is superseded, not withdrawn; its records stay."""
+        original = RETAINED.read_bytes()
+        self.addCleanup(lambda: RETAINED.write_bytes(original))
+        RETAINED.unlink()
+        self.assertCaught("the retained v1.0 release record deleted",
+                          "retains exactly the v1.0 and v1.1 history records")
 
     def test_retained_v10_record_rewritten_to_describe_v11(self):
-        retained = CASE_ROOT / "history/release-v1.0.json"
+        retained = RETAINED
         original = retained.read_bytes()
         self.addCleanup(lambda: retained.write_bytes(original))
         record = json.loads(retained.read_text(encoding="utf-8"))

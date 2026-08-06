@@ -1,8 +1,8 @@
 # SSS Campaign 2 · Case 03 — The Wrong Color of Light
 
-Native curriculum package reopened for correction. Package ID `SSS-C2-CASE03`, runtime ID
-`wrong_color_light`. The current version is the v1.1 corrective candidate; v1.0 remains the last
-approved release and its history records are retained unchanged.
+Released native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wrong_color_light`.
+The current release is the v1.1 corrective release; v1.0 is superseded, not withdrawn, and its
+history records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -11,9 +11,9 @@ approved release and its history records are retained unchanged.
 | Location | Trench Shelf IV |
 | Subtitle | Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean) |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective candidate) |
-| Lifecycle | `OWNER_GATE_OPEN` — owner review in progress, print gate `NOT_RUN` |
-| Last approved release | 1.0, owner approved 2026-08-04, print gate PASS at 100% / Actual Size |
+| Version | 1.1 (corrective release of 1.0) |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-06, print gate PASS at 100% / Actual Size |
+| Prior approved release | 1.0, owner approved 2026-08-04, print gate PASS at 100% / Actual Size |
 | Retained history | `history/release-v1.0.json` and `history/CASE03_OWNER_APPROVAL_v1.0.md`, unchanged |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
@@ -24,7 +24,9 @@ case-03-wrong-color-light/
 ├── README.md
 ├── history/
 │   ├── CASE03_OWNER_APPROVAL_v1.0.md
-│   └── release-v1.0.json
+│   ├── CASE03_OWNER_APPROVAL_v1.1.md
+│   ├── release-v1.0.json
+│   └── release-v1.1.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -33,9 +35,9 @@ case-03-wrong-color-light/
     └── task-registry.js
 ```
 
-No generated PDF, role document, or screenshot is committed for this case. No v1.1 release or
-owner-approval record exists yet; those are written only when the new owner and physical-print
-gates pass.
+No generated PDF, role document, or screenshot is committed for this case, at either version.
+`history/` holds one release record and one owner-approval record per approved version. The v1.0
+records are retained byte-identical and were not edited to describe v1.1.
 
 ## Instructional shape
 
@@ -52,7 +54,7 @@ Eight tasks, in this order and with these identifiers across all four roles:
 
 Role page counts: Student 5, Teacher 8, Answer Key 4, Accessible 8 — unchanged from v1.0.
 
-## What v1.1 corrects
+## What v1.1 corrected
 
 - Task 5 printed `total PAR alone proves no effective spectrum` in both learner editions, inverting
   the reasoning rule the Teacher Guide and Answer Key state and grade against. All four roles now
