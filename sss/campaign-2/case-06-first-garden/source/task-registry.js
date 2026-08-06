@@ -184,7 +184,7 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
     "caseInference": "That failed or incomplete re-establishment of compatible mycorrhizal partners caused the patch pattern is the best-supported candidate cause from a construction-history contrast, a surveyed distribution, and a set of eliminated alternatives. It is not an established mechanism, which is why the packet ends in a screened, approved, controlled trial rather than a treatment.",
     "engineeringExtrapolation": "The trial requirements in Task 7 — approval, organism identification, provenance and pathogen screening, host-compatibility checks, replicated untreated controls, monitoring for spread, and staged expansion — follow the runtime's own decision boundary and ordinary practice for introducing living material, not from any measurement in the case.",
     "numbers": "Every printed value is reproduced exactly as its record reports it. The patch diameter keeps 'approximately' and stays a range, the separation keeps 'about', 'trace levels only' is never written as zero or absent, and no value is calculated from another.",
-    "figures": "Figure A is curriculum-original. It draws the surveyed pattern along a twelve-metre strip using the survey's own distances, with hatched ground where the compounds are abundant and dotted ground where they fall to trace levels. Its caption and extended description both state that it shows the reported pattern and is not a map of the garden.",
+    "figures": "Figure A is curriculum-original. It is a plan view: hatched circular patches where the surveyed compounds are abundant, drawn inside dotted ground where the same compounds fall to trace levels. The only quantity it carries is the survey's reported patch-diameter range; it is not to scale and states no distance between patches. Its caption and extended description both state that it shows the reported pattern and is not a map of the garden.",
     "teachingAnalogy": "The building-inspection example carries the scope-of-testing idea without using any garden value, contains no numbers at all, and prints a visible line stating that it is not a garden record."
   },
   "correctDiagnosis": "Failed or incomplete re-establishment of compatible mycorrhizal partners in the beds built from clean remediated substrate is the best-supported candidate cause of the garden's patch pattern. The organisms present in both kinds of bed must still be identified and tested against untreated controls before causation is claimed.",
@@ -215,17 +215,43 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
     "Generalising this garden's result to any other restoration site as a certainty.",
     "Claiming that the restoration team was incompetent or that the soil tests were wrong."
   ],
+  "standards": [
+    {
+      "code": "MS-ETS1-1",
+      "alignment": "direct",
+      "assessedAt": 7,
+      "taskEvidence": "Task 7 collects two written success criteria (what the trial must compare, and why untreated control plots are necessary even though the treated plots are the ones being tested) and one constraint the trial must work within, against a printed record specifying organism identification, pathogen and invasion screening, prior approval under Section 14.7, replicated untreated control plots, and scheduled monitoring."
+    },
+    {
+      "code": "MS-LS2-3",
+      "alignment": "supporting",
+      "assessedAt": 5,
+      "taskEvidence": "Task 5 orders a five-stage pathway in which fungi colonise compatible roots, receive plant carbon, and can improve a host's acquisition of phosphorus, nitrogen or water. It is supporting and not direct because the case supplies no cycling or energy-flow measurement of any kind; the model orders a candidate mechanism rather than describing a quantified flow."
+    }
+  ],
+  "standardsWithdrawn": [
+    {
+      "code": "MS-LS2-2",
+      "wasClaimed": "direct",
+      "reason": "The performance expectation predicts patterns of interactions among organisms across multiple ecosystems. This packet holds one restored terrace with two bed histories, and the task named to carry it, Task 4, is a source contribution-and-limit matrix rather than the construction of an explanation, which happens at Task 6. No bounded supporting connection survives, so the standard is removed rather than downgraded, and no life-science standard is substituted for it."
+    },
+    {
+      "code": "MS-ETS1-2",
+      "wasClaimed": "supporting",
+      "reason": "It was mapped to Task 3, which evaluates competing explanations, not competing design solutions against shared criteria. Task 3 was not expanded into a design comparison in order to keep the standard."
+    }
+  ],
   "figureProvenance": [
     {
       "id": "fig-patches-student",
       "kind": "curriculum-original case record figure",
-      "shows": "One twelve-metre strip on which the surveyed compounds are abundant from 0 to 5 metres, fall to trace levels only from 5 to 8 metres, and are abundant again from 8 metres, with the survey's reported patch diameter of about 4-6 metres and separation of about 3 metres labelled directly.",
-      "prohibited": "It must never be read as a map of the garden or used to infer where any particular bed sits, and the trace-level ground must never be described as empty or as containing none of the compounds."
+      "shows": "A plan view of the surveyed ground, seen from above: circular patches where the surveyed compounds are abundant, drawn inside a larger area where the same compounds fall to trace levels only. The patches carry the survey's reported diameter range of about 4-6 metres and are drawn at different sizes within it. Every patch edge is drawn hard, because the survey reports the change at each edge as sharp rather than gradual.",
+      "prohibited": "It must never be read as a map of the garden or used to infer where any particular bed sits, and the trace-level ground must never be described as empty or as containing none of the compounds. It is not to scale: no distance between patches is drawn, and no individual patch is given a measurement of its own."
     },
     {
       "id": "fig-patches-accessible",
       "kind": "curriculum-original case record figure",
-      "shows": "The Accessible edition of the same surveyed strip, with identical distances, identical zones and identical fill patterns.",
+      "shows": "The Accessible edition of the same plan view, with the same circular patches, the same zones and the same fill patterns, described in plainer register. It is not to scale and draws no distance between patches.",
       "prohibited": "It must never be read as a map of the garden or used to infer where any particular bed sits, and the trace-level ground must never be described as empty or as containing none of the compounds."
     }
   ],
@@ -236,6 +262,8 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
     "The phrase 'trace levels only' must always travel intact. Reducing it to zero or to absent converts a detection into an absence and is the central misconception of the case.",
     "This case reports no time series and no dated events, so the packet contains no timeline and no trend figure. Adding either would require inventing data the runtime does not supply.",
     "This case contains no calculation. No mathematics standard is claimed, and none should be added on the strength of the patch dimensions.",
-    "MS-LS2-3 is recorded as supporting rather than direct. The performance expectation names cycling of matter and flow of energy, and this case supplies no cycling or energy-flow measurements; the evidence is a spatial distribution and a construction history."
+    "MS-LS2-3 is recorded as supporting rather than direct. The performance expectation names cycling of matter and flow of energy, and this case supplies no cycling or energy-flow measurements; the evidence is a spatial distribution and a construction history.",
+    "MS-LS2-2 and MS-ETS1-2 were claimed in v1.0 and are withdrawn in v1.1. Neither may be restored without the task that would assess it: MS-LS2-2 needs breadth across ecosystems and an explanation-construction task named to carry it, and MS-ETS1-2 needs a learner task that evaluates more than one design solution against shared criteria. Comparing explanations is not comparing designs.",
+    "Task 4 grades five sources, so all five report on the learner page. Dr. Nova and Delegate Vorn-Shael are summarised and cross-referenced to records printed earlier in the same edition; Delegate Kess, Delegate Ilreth-Mar and the Federation Database print their statements at the task, because no learner edition carried them in v1.0. Section 14.7 and GC-2201 must never be required by the Answer Key before the learner editions print them."
   ]
 };

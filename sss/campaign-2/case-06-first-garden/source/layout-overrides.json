@@ -124,7 +124,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t4:a4-c4",
       "persistId": "a4-c4",
-      "pageId": "accessible-mission-04",
+      "pageId": "accessible-mission-05",
       "taskId": 4,
       "label": "Ilreth-Mar contribution",
       "minPx": 32,
@@ -133,7 +133,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t4:a4-l4",
       "persistId": "a4-l4",
-      "pageId": "accessible-mission-04",
+      "pageId": "accessible-mission-05",
       "taskId": 4,
       "label": "Ilreth-Mar limit",
       "minPx": 32,
@@ -142,7 +142,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t4:a4-c5",
       "persistId": "a4-c5",
-      "pageId": "accessible-mission-04",
+      "pageId": "accessible-mission-05",
       "taskId": 4,
       "label": "Database contribution",
       "minPx": 32,
@@ -151,7 +151,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t4:a4-l5",
       "persistId": "a4-l5",
-      "pageId": "accessible-mission-04",
+      "pageId": "accessible-mission-05",
       "taskId": 4,
       "label": "Database limit",
       "minPx": 32,
@@ -160,7 +160,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t4:a4-synthesis",
       "persistId": "a4-synthesis",
-      "pageId": "accessible-mission-04",
+      "pageId": "accessible-mission-05",
       "taskId": 4,
       "label": "What the five together support",
       "minPx": 32,
@@ -169,7 +169,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t5:a5-limit",
       "persistId": "a5-limit",
-      "pageId": "accessible-mission-05",
+      "pageId": "accessible-mission-06",
       "taskId": 5,
       "label": "What the model does not establish",
       "minPx": 32,
@@ -178,7 +178,7 @@
     {
       "id": "SSS-C2-CASE06:accessible:t7:a7-approval",
       "persistId": "a7-approval",
-      "pageId": "accessible-mission-07",
+      "pageId": "accessible-mission-08",
       "taskId": 7,
       "label": "Why approval still applies",
       "minPx": 32,
@@ -366,7 +366,7 @@
       {
         "id": "SSS-C2-CASE06:student:t5:t5-limit",
         "persistId": "t5-limit",
-        "pageId": "student-mission-04",
+        "pageId": "student-mission-05",
         "taskId": 5,
         "label": "What the model does not establish",
         "minPx": 32,
@@ -375,7 +375,7 @@
       {
         "id": "SSS-C2-CASE06:student:t7:t7-approval",
         "persistId": "t7-approval",
-        "pageId": "student-mission-05",
+        "pageId": "student-mission-06",
         "taskId": 7,
         "label": "Why approval still applies",
         "minPx": 32,
