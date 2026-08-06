@@ -1,6 +1,8 @@
 # SSS Campaign 2 · Case 04 — The Silent Grove
 
-Released native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `silent_grove`.
+Native curriculum package reopened for correction. Package ID `SSS-C2-CASE04`, runtime ID
+`silent_grove`. The current version is the v1.1 corrective candidate; v1.0 remains the last
+approved release and its history records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -9,8 +11,8 @@ Released native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `sile
 | Location | Drift Vessel Thal-Oren |
 | Subtitle | Campaign 2 · Case 04 · Drift Vessel Thal-Oren, Inter-system Transit |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.0 |
-| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
+| Version | 1.1 (corrective candidate, unreleased) |
+| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN`. The retained v1.0 release was owner approved 2026-08-05 with print PASS at 100% / Actual Size |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -18,7 +20,7 @@ Released native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `sile
 ```text
 case-04-silent-grove/
 ├── README.md
-├── history/
+├── history/                 v1.0 records only, retained byte-identical
 │   ├── CASE04_OWNER_APPROVAL_v1.0.md
 │   └── release-v1.0.json
 └── source/
@@ -67,6 +69,11 @@ claims, and the figure provenance. Case-scoped assertions in
 `apps/curriculum-editor/tests/validate_case04_campaign2.py` enforce that ledger against the printable
 content.
 
+It also carries the ledgers added by the v1.1 correction: `standards` with the exact assessed practice
+and learner evidence behind each retained claim, `withdrawnStandards`, `learnerEvidencePolicy` (which
+facts are supplied to learners, which are withheld, and which are Teacher-only), and
+`alternativeSourceFidelity` (the runtime wording each rejected alternative must keep).
+
 Five rules dominate the case and are enforced mechanically:
 
 - no printable role may generalise this grove's dark-interval requirement into a rule for plants;
@@ -92,7 +99,9 @@ Validation:
 
 ```bash
 python3 apps/curriculum-editor/tests/validate_case04_campaign2.py
+python3 apps/curriculum-editor/tests/test_case04_mutations.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE04
 python3 apps/curriculum-editor/tests/run_browser_tests.py
+python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
