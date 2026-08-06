@@ -39,7 +39,7 @@ EXPECTED = {
     "SSS-C2-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 9, "answer": 4}},
     "SSS-C2-CASE02": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE04": {"version": "1.1", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
     "SSS-C2-CASE06": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
 }
@@ -74,7 +74,8 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE02": {"student": "6b1f309da4ee40ff780d93914458b75c430cded815bbef110db1f27bb792df65", "teacher": "d09818e93df75949a5d93fe1a1dfb89fe9a23732a1a844299cac933d21f5fc9f", "answer": "3bbd39fb4bbc1e9432eb130d770c5a6378037ffb2142823b65b04fc5132564fc"},
     "SSS-C2-CASE03": {"student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493", "teacher": "c087aa117f87d991bd7b8039f6a189713833042720318007503b29792a1fd3a5", "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090"},
-    "SSS-C2-CASE04": {"student": "78bd75e06a07acede806062efd4e5383ff618d42ecb6a668633f822cf1575186", "teacher": "27179d6b828914cce0d27280562bdd1b37d6cdf3a373b4a48e704c91e5f528b6", "answer": "a7c3566b867660f5614d8c078bc6306058e9afec721bfcb7758b4224dca720f1"},
+    # Case 04 was reopened as the v1.1 corrective candidate; an unreleased package has no
+    # frozen DOM baseline. The baseline is re-established at approval.
     "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571", "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60"},
     # Case 06 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
@@ -849,6 +850,8 @@ def main() -> int:
     results.check("SSS Campaign 2 Case 01 mutation tests prove each protection fires", case01_mutations.returncode == 0, (case01_mutations.stdout + case01_mutations.stderr).strip()[-2000:])
     case02_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case02_mutations.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 02 mutation tests prove each protection fires", case02_mutations.returncode == 0, (case02_mutations.stdout + case02_mutations.stderr).strip()[-2000:])
+    case04_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case04_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("SSS Campaign 2 Case 04 mutation tests prove each protection fires", case04_mutations.returncode == 0, (case04_mutations.stdout + case04_mutations.stderr).strip()[-2000:])
     case03_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case03_mutations.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 03 mutation tests prove each protection fires", case03_mutations.returncode == 0, (case03_mutations.stdout + case03_mutations.stderr).strip()[-2000:])
     case06_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case06_mutations.py")], cwd=ROOT, text=True, capture_output=True)
