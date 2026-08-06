@@ -1,0 +1,547 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE06",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "SSS-C2-CASE06:accessible:t1:a1-why",
+      "persistId": "a1-why",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Clean-panel reasoning",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t2:a2-inside",
+      "persistId": "a2-inside",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Inside a patch",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t2:a2-between",
+      "persistId": "a2-between",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Between the patches",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t2:a2-limit",
+      "persistId": "a2-limit",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Limit of a chemical survey",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t3:a3-ph",
+      "persistId": "a3-ph",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Evidence against pH",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t3:a3-water",
+      "persistId": "a3-water",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Evidence against irrigation",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t3:a3-invasive",
+      "persistId": "a3-invasive",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Evidence against invasive organisms",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-c1",
+      "persistId": "a4-c1",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Dr. Nova contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-l1",
+      "persistId": "a4-l1",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Dr. Nova limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-c2",
+      "persistId": "a4-c2",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Vorn-Shael contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-l2",
+      "persistId": "a4-l2",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Vorn-Shael limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-c3",
+      "persistId": "a4-c3",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Kess contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-l3",
+      "persistId": "a4-l3",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Kess limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-c4",
+      "persistId": "a4-c4",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Ilreth-Mar contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-l4",
+      "persistId": "a4-l4",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Ilreth-Mar limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-c5",
+      "persistId": "a4-c5",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Database contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-l5",
+      "persistId": "a4-l5",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Database limit",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t4:a4-synthesis",
+      "persistId": "a4-synthesis",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "What the five together support",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t5:a5-limit",
+      "persistId": "a5-limit",
+      "pageId": "accessible-mission-05",
+      "taskId": 5,
+      "label": "What the model does not establish",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t7:a7-approval",
+      "persistId": "a7-approval",
+      "pageId": "accessible-mission-07",
+      "taskId": 7,
+      "label": "Why approval still applies",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C2-CASE06:accessible:t7:a7-recommendation",
+      "persistId": "a7-recommendation",
+      "pageId": "accessible-mission-07",
+      "taskId": 7,
+      "label": "Recommendation and reason",
+      "minPx": 32,
+      "maxPx": 900
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-c1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c6",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c7",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c8",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c9",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-d1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-d2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-d3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-d4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-m2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-m3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-m4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7-criterion-1",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a7-criterion-2",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a7-constraint",
+      "reason": "constraint"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "SSS-C2-CASE06:student:t1:t1-why",
+        "persistId": "t1-why",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Clean-panel reasoning",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t2:t2-inside",
+        "persistId": "t2-inside",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Inside a patch",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t2:t2-between",
+        "persistId": "t2-between",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Between the patches",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t2:t2-limit",
+        "persistId": "t2-limit",
+        "pageId": "student-mission-02",
+        "taskId": 2,
+        "label": "Limit of a chemical survey",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t3:t3-ph",
+        "persistId": "t3-ph",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Evidence against pH",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t3:t3-water",
+        "persistId": "t3-water",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Evidence against irrigation",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t3:t3-invasive",
+        "persistId": "t3-invasive",
+        "pageId": "student-mission-03",
+        "taskId": 3,
+        "label": "Evidence against invasive organisms",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t4:t4-synthesis",
+        "persistId": "t4-synthesis",
+        "pageId": "student-mission-04",
+        "taskId": 4,
+        "label": "What the five together support",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t5:t5-limit",
+        "persistId": "t5-limit",
+        "pageId": "student-mission-04",
+        "taskId": 5,
+        "label": "What the model does not establish",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t7:t7-approval",
+        "persistId": "t7-approval",
+        "pageId": "student-mission-06",
+        "taskId": 7,
+        "label": "Why approval still applies",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C2-CASE06:student:t7:t7-recommendation",
+        "persistId": "t7-recommendation",
+        "pageId": "student-mission-06",
+        "taskId": 7,
+        "label": "Recommendation and reason",
+        "minPx": 32,
+        "maxPx": 900
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c6",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c7",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c8",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c9",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-d1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-d2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-d3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-d4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-l5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-m2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-m3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-m4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7-criterion-1",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t7-criterion-2",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t7-constraint",
+        "reason": "constraint"
+      }
+    ],
+    "overrides": {}
+  }
+}
