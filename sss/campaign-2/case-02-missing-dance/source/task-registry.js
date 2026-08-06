@@ -2,12 +2,11 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE02",
   "title": "The Missing Dance",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "approvalDate": "2026-08-05",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
+  "ownerReviewStatus": "OWNER_REVIEW_IN_PROGRESS",
+  "printStatus": "NOT_RUN",
+  "correctiveOf": "1.0",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "missing_dance",
@@ -15,7 +14,7 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
   "runtimeLocation": "Olympia District",
   "runtimeSubtitle": "Mars",
   "roles": {
-    "student": 5,
+    "student": 6,
     "teacher": 8,
     "answer": 4,
     "accessible": 8
@@ -90,7 +89,7 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
       "semanticLabel": "ENGINEERING DESIGN",
       "icon": "ph-wrench",
       "title": "Specify a Safe Trial",
-      "description": "Name the four settings a vibration trial must vary rather than assuming one number, define what to measure, set a damage limit, and write a stop-and-revise rule.",
+      "description": "Choose one of the four supplied settings to vary, define what the trial measures, set a damage limit, and write a stop rule.",
       "keyed": true
     }
   ],
@@ -102,11 +101,30 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
     "BUZZ_POLLINATION_ACOUSTIC"
   ],
   "clueTaskCoverage": {
-    "LYREFLOWER_BUDS_ABORT": [1, 4],
-    "NO_ACOUSTIC_TRIGGER": [1, 5, 6],
-    "POLLEN_RETAINED": [3, 5, 6],
-    "HAND_POLLINATION_FAILED": [1, 5, 6],
-    "BUZZ_POLLINATION_ACOUSTIC": [4, 5, 8]
+    "LYREFLOWER_BUDS_ABORT": [
+      1,
+      4
+    ],
+    "NO_ACOUSTIC_TRIGGER": [
+      1,
+      5,
+      6
+    ],
+    "POLLEN_RETAINED": [
+      3,
+      5,
+      6
+    ],
+    "HAND_POLLINATION_FAILED": [
+      1,
+      5,
+      6
+    ],
+    "BUZZ_POLLINATION_ACOUSTIC": [
+      4,
+      5,
+      8
+    ]
   },
   "requiredRoutes": [
     "crew.start->cultural_barrier",
@@ -152,10 +170,16 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
       "ambientNoiseDb": 28,
       "ambientNoiseSource": "HVAC hum only",
       "periodicSignals": "none detected",
-      "scanRangeHz": [20, 200],
+      "scanRangeHz": [
+        20,
+        200
+      ],
       "scanResult": "flat, no peaks",
       "soilLevelVibration": "below threshold",
-      "telluvianGardenReferenceHz": [100, 150]
+      "telluvianGardenReferenceHz": [
+        100,
+        150
+      ]
     },
     "pollination": {
       "pollinatorsPresent": "none, sealed facility",
@@ -177,16 +201,39 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
       "substrate": "imported Telluvian mineral substrate"
     },
     "timeline": [
-      {"period": "Month 1", "observation": "Continuous bloom, vigorous growth"},
-      {"period": "Week 3", "observation": "Hand-pollination trial 1, brush applicator, no fruit set"},
-      {"period": "Week 4", "observation": "Hand-pollination trial 2, calibrated applicator, no fruit set"},
-      {"period": "Week 5", "observation": "Hand-pollination trial 3, viability confirmed, no fruit set"},
-      {"period": "Month 2", "observation": "Buds abort before opening, bloom rate declining"},
-      {"period": "Month 3", "observation": "No successful bloom since week 5"}
+      {
+        "period": "Month 1",
+        "observation": "Continuous bloom, vigorous growth"
+      },
+      {
+        "period": "Week 3",
+        "observation": "Hand-pollination trial 1, brush applicator, no fruit set"
+      },
+      {
+        "period": "Week 4",
+        "observation": "Hand-pollination trial 2, calibrated applicator, no fruit set"
+      },
+      {
+        "period": "Week 5",
+        "observation": "Hand-pollination trial 3, viability confirmed, no fruit set"
+      },
+      {
+        "period": "Month 2",
+        "observation": "Buds abort before opening, bloom rate declining"
+      },
+      {
+        "period": "Month 3",
+        "observation": "No successful bloom since week 5"
+      }
     ],
     "strongestResponseHz": 124,
     "strongestResponseQualifier": "strongest response near this value, and only when amplitude and duration are also sufficient",
-    "trialVariables": ["frequency", "amplitude", "duration", "coupling and placement"]
+    "trialVariables": [
+      "frequency",
+      "amplitude",
+      "duration",
+      "coupling and placement"
+    ]
   },
   "sourceStatus": {
     "establishedEarthScienceComparison": "Poricidal anthers have pores that are already present. In buzz pollination a bee grasps the flower and vibrates it mechanically, so pollen is expelled through those existing pores. Release depends on frequency, amplitude, duration and coupling rather than one universal frequency. Floral buzzing occurs across several bee taxa and honeybees do not perform it. Growers can assist tomato pollination with commercial vibrating tools, and managed bumblebee colonies are another greenhouse option.",
@@ -220,16 +267,16 @@ window.SSS_C2_CASE02_TASK_REGISTRY = {
   ],
   "figureProvenance": [
     {
-      "id": "fig-cone",
+      "id": "fig-cone-s3",
       "kind": "curriculum-original inline SVG",
       "shows": "A cut-away of the anther cone with the pores already present along its surface and mature pollen retained inside.",
       "prohibited": "No pore may be drawn as closed, sealed or opening; nothing may imply the pollen is blocked rather than retained."
     },
     {
-      "id": "fig-factors",
+      "id": "fig-cone-a3",
       "kind": "curriculum-original inline SVG",
-      "shows": "The four settings that together determine release - frequency, amplitude, duration, and coupling - as four equally weighted labelled panels.",
-      "prohibited": "No response curve, no frequency axis, and no visual that singles out one setting as sufficient on its own."
+      "shows": "The Accessible edition of the same anther-cone cross-section, with identical labels and the same pores-already-open reading.",
+      "prohibited": "No pore may be drawn as closed, sealed or opening; nothing may imply the pollen is blocked rather than retained."
     }
   ],
   "productionCautions": [

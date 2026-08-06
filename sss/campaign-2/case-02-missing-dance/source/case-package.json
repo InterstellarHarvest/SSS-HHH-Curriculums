@@ -4,15 +4,14 @@
   "curriculum": "SSS",
   "campaign": "campaign-2",
   "title": "The Missing Dance",
-  "subtitle": "Campaign 2 · Case 02 · Olympia District, Mars",
+  "subtitle": "Campaign 2 \u00b7 Case 02 \u00b7 Olympia District, Mars",
   "location": "Ares Botanical Garden",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
   "approval": {
-    "date": "2026-08-05",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_IN_PROGRESS",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE02:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE02:v1.1:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -84,7 +83,7 @@
   "rolePageStructure": {
     "student": {
       "documentRole": "Student Mission",
-      "pageCount": 5
+      "pageCount": 6
     },
     "teacher": {
       "documentRole": "Teacher Guide",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE02_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C2_CASE02_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C2_CASE02_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C2_CASE02_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C2_CASE02_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C2_CASE02_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C2_CASE02_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C2_CASE02_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C2_CASE02_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C2_CASE02_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 02 v1.0 — The Missing Dance Curriculum Editor",
-    "loadAnnouncement": "The Missing Dance Campaign 2 Case 02 v1.0 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 02 v1.1 \u2014 The Missing Dance Curriculum Editor",
+    "loadAnnouncement": "The Missing Dance Campaign 2 Case 02 v1.1 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       ".extended-description",
@@ -130,11 +129,10 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-02-missing-dance/history/release-v1.0.json",
   "sourceHashes": {
-    "content": "9d9bfb70ef16feae1d112d3ab30176769d216397a12d05cfd206472d797e8b43",
+    "content": "71c41f236de25e09aee157aab417236b5a63b3fb754a7aa11b858372d8384350",
     "presentation": "18afdc2c393af4f5fffa22c7a226724ab454c121a028a264f88e94fdb1eaaa6d",
-    "taskRegistry": "949beba1ff0074b1fa8d902b714100b325cd754c99d0da8e87852ae82d8439a1",
-    "layoutOverrides": "9ce6bc63c44e40d0ae80bb8115e283ce5112636070b8987d31a3fd68f5d182d8"
+    "taskRegistry": "8f5595c9a45056d750eba0d4e696132b8906feb5a8bf99c29e31b908cf292c77",
+    "layoutOverrides": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d"
   }
 }

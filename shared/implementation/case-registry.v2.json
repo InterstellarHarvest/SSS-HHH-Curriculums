@@ -26,7 +26,12 @@
               "editorPackage": "sss/campaign-1/case-01-iss-greenhouse/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-01", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-01",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.1.json"
             },
             {
@@ -40,7 +45,12 @@
               "editorPackage": "sss/campaign-1/case-02-lunar-greenhouse/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-01", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-01",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json"
             },
             {
@@ -54,7 +64,12 @@
               "editorPackage": "sss/campaign-1/case-03-mars-habitat/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-07-31", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-07-31",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json"
             },
             {
@@ -68,7 +83,12 @@
               "editorPackage": "sss/campaign-1/case-04-hayes-orbital-station/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-01", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-01",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-04-hayes-orbital-station/history/release-v1.0.json"
             },
             {
@@ -82,7 +102,12 @@
               "editorPackage": "sss/campaign-1/case-05-europa-bunker/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-02", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-02",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-05-europa-bunker/history/release-v1.0.json"
             },
             {
@@ -96,7 +121,12 @@
               "editorPackage": "sss/campaign-1/case-06-first-contact-protocol/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-03", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-03",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
             },
             {
@@ -110,7 +140,12 @@
               "editorPackage": "sss/campaign-1/case-07-the-gift/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-03", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-03",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-1/case-07-the-gift/history/release-v1.0.json"
             }
           ]
@@ -130,7 +165,12 @@
               "editorPackage": "sss/campaign-2/case-01-heavy-hands/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-04", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-04",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-2/case-01-heavy-hands/history/release-v1.0.json"
             },
             {
@@ -138,14 +178,17 @@
               "displayOrder": 9,
               "displayLabel": "2 - The Missing Dance",
               "title": "The Missing Dance",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "OWNER_GATE_OPEN",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-02-missing-dance/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-05", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
-              "historyRecord": "sss/campaign-2/case-02-missing-dance/history/release-v1.0.json"
+              "packageStatus": "OWNER_REVIEW",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_IN_PROGRESS",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE03",
@@ -158,7 +201,12 @@
               "editorPackage": "sss/campaign-2/case-03-wrong-color-light/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-04", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-04",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-2/case-03-wrong-color-light/history/release-v1.0.json"
             },
             {
@@ -172,7 +220,12 @@
               "editorPackage": "sss/campaign-2/case-04-silent-grove/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-05", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-05",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"
             },
             {
@@ -186,7 +239,12 @@
               "editorPackage": "sss/campaign-2/case-05-too-clean-room/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "APPROVED",
-              "approval": {"date": "2026-08-05", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
+              "approval": {
+                "date": "2026-08-05",
+                "owner": "Nate / Owner",
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
               "historyRecord": "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
             },
             {
@@ -212,6 +270,10 @@
         }
       ]
     },
-    {"id": "HHH", "title": "History's Harvest", "campaigns": []}
+    {
+      "id": "HHH",
+      "title": "History's Harvest",
+      "campaigns": []
+    }
   ]
 }

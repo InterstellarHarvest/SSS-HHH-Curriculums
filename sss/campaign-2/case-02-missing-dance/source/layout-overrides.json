@@ -207,6 +207,30 @@
     {
       "persistId": "a8-stop",
       "reason": "constraint"
+    },
+    {
+      "persistId": "a1-c1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c3",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c4",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c5",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a1-c6",
+      "reason": "table-cell"
     }
   ],
   "overrides": {},
@@ -216,7 +240,7 @@
       {
         "id": "SSS-C2-CASE02:student:t1:t1-trials",
         "persistId": "t1-trials",
-        "pageId": "student-mission-01",
+        "pageId": "student-mission-02",
         "taskId": 1,
         "label": "Why failed trials are evidence",
         "minPx": 32,
@@ -225,7 +249,7 @@
       {
         "id": "SSS-C2-CASE02:student:t2:t2-waiting",
         "persistId": "t2-waiting",
-        "pageId": "student-mission-02",
+        "pageId": "student-mission-03",
         "taskId": 2,
         "label": "What the salt was waiting for",
         "minPx": 32,
@@ -234,7 +258,7 @@
       {
         "id": "SSS-C2-CASE02:student:t3:t3-healthy",
         "persistId": "t3-healthy",
-        "pageId": "student-mission-02",
+        "pageId": "student-mission-03",
         "taskId": 3,
         "label": "Two things working normally",
         "minPx": 32,
@@ -243,7 +267,7 @@
       {
         "id": "SSS-C2-CASE02:student:t3:t3-missing",
         "persistId": "t3-missing",
-        "pageId": "student-mission-02",
+        "pageId": "student-mission-03",
         "taskId": 3,
         "label": "What the pollen is missing",
         "minPx": 32,
@@ -252,7 +276,7 @@
       {
         "id": "SSS-C2-CASE02:student:t4:t4-source",
         "persistId": "t4-source",
-        "pageId": "student-mission-03",
+        "pageId": "student-mission-04",
         "taskId": 4,
         "label": "Source that can establish it independently",
         "minPx": 32,
@@ -261,7 +285,7 @@
       {
         "id": "SSS-C2-CASE02:student:t4:t4-question",
         "persistId": "t4-question",
-        "pageId": "student-mission-03",
+        "pageId": "student-mission-04",
         "taskId": 4,
         "label": "Question to bring back",
         "minPx": 32,
@@ -270,7 +294,7 @@
       {
         "id": "SSS-C2-CASE02:student:t4:t4-respect",
         "persistId": "t4-respect",
-        "pageId": "student-mission-03",
+        "pageId": "student-mission-04",
         "taskId": 4,
         "label": "Why this respects the boundary",
         "minPx": 32,
@@ -279,7 +303,7 @@
       {
         "id": "SSS-C2-CASE02:student:t8:t8-first",
         "persistId": "t8-first",
-        "pageId": "student-mission-05",
+        "pageId": "student-mission-06",
         "taskId": 8,
         "label": "Setting to vary first",
         "minPx": 32,
@@ -288,7 +312,7 @@
       {
         "id": "SSS-C2-CASE02:student:t8:t8-measure",
         "persistId": "t8-measure",
-        "pageId": "student-mission-05",
+        "pageId": "student-mission-06",
         "taskId": 8,
         "label": "What to measure",
         "minPx": 32,
@@ -297,7 +321,7 @@
       {
         "id": "SSS-C2-CASE02:student:t8:t8-why",
         "persistId": "t8-why",
-        "pageId": "student-mission-05",
+        "pageId": "student-mission-06",
         "taskId": 8,
         "label": "Why one frequency is not a plan",
         "minPx": 32,
@@ -416,6 +440,30 @@
       {
         "persistId": "t8-stop",
         "reason": "constraint"
+      },
+      {
+        "persistId": "t1-c1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c3",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c4",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c5",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t1-c6",
+        "reason": "table-cell"
       }
     ],
     "overrides": {}
