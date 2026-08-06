@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Case-scoped validation for SSS Campaign 2 Case 06 — The First Garden.
 
-Released-lifecycle validator. It enforces the canonical identity and runtime linkage
-of the bonus case, the ledger recorded in source/task-registry.js, the science
-boundary that separates established Earth science from this garden's records, and
-the print geometry of the four roles.
+Corrective-candidate validator. Case 06 is reopened at v1.1 and is unreleased: it
+carries no release or owner-approval record of its own, no releaseHistory pointer
+and no frozen DOM baseline, while the approved v1.0 records stay in history/
+byte-identical. It enforces the canonical identity and runtime linkage of the
+bonus case, the ledger recorded in source/task-registry.js, the science boundary
+that separates established Earth science from this garden's records, and the
+print geometry of the four roles.
 
 The prohibited-claim and precision detectors are self-tested: each must fire on a
 synthetic probe carrying the claim it exists to catch, so a detector cannot rot
@@ -22,14 +25,18 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "shared/validation"))
+from corrective_release_lifecycle import history_findings as lifecycle_findings  # noqa: E402
+
 CASE_ID = "SSS-C2-CASE06"
 CASE_ROOT = ROOT / "sss/campaign-2/case-06-first-garden"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-RELEASE_VERSION = "1.0"
-APPROVAL_DATE = "2026-08-05"
+CANDIDATE_VERSION = "1.1"
+RETAINED_VERSION = "1.0"
+RETAINED_APPROVAL_DATE = "2026-08-05"
 OWNER = "Nate / Owner"
-RELEASE_COMMIT = "59005a86cbaf858fe68684aedb2607dd773e3f2c"
+RETAINED_RELEASE_COMMIT = "59005a86cbaf858fe68684aedb2607dd773e3f2c"
 RUNTIME_ID = "first_garden"
 RUNTIME_NAME = "The First Garden"
 RUNTIME_LOCATION = "Restored Terrace"
@@ -37,7 +44,7 @@ RUNTIME_SUBTITLE = "Earth"
 CASE_SUBTITLE = "Campaign 2 · Case 06 · Restored Terrace, Earth"
 DISPLAY_LABEL = "6 - The First Garden"
 ROLES = ["student", "teacher", "answer", "accessible"]
-ROLE_PAGES = {"student": 5, "teacher": 8, "answer": 5, "accessible": 7}
+ROLE_PAGES = {"student": 6, "teacher": 8, "answer": 5, "accessible": 7}
 
 TASK_IDS = [f"C2-C06-T{n}" for n in range(1, 8)]
 TASK_TITLES = [
@@ -252,52 +259,72 @@ def main() -> int:
                   [token for token in [RUNTIME_ID] + FORMAL_CLUES
                    if any(token in text for text in role_text.values())])
 
-    # ── Approved lifecycle, release history, no artifacts ────────────
-    results.check("the package records the approved release lifecycle",
-                  package["status"] == "APPROVED_STABLE" and package["version"] == RELEASE_VERSION
-                  and package["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
-                                              "status": "APPROVED", "printStatus": "PASS"},
+    # ── Corrective-candidate lifecycle, retained v1.0 history, no artifacts ──
+    results.check("the package records the unreleased corrective-candidate lifecycle",
+                  package["status"] == "OWNER_GATE_OPEN" and package["version"] == CANDIDATE_VERSION
+                  and package["approval"] == {"owner": OWNER,
+                                              "status": "OWNER_REVIEW_IN_PROGRESS",
+                                              "printStatus": "NOT_RUN"},
                   package["approval"])
-    results.check("the task registry records the same approved lifecycle",
-                  (registry.get("version"), registry.get("status"), registry.get("approvalDate"),
-                   registry.get("approvedBy"), registry.get("ownerReviewStatus"), registry.get("mergeStatus"))
-                  == (RELEASE_VERSION, "APPROVED_STABLE", APPROVAL_DATE, OWNER,
-                      "OWNER_REVIEW_PASS", "READY_TO_MERGE"),
-                  (registry.get("status"), registry.get("ownerReviewStatus")))
-    history_path = CASE_ROOT / "history/release-v1.0.json"
-    history = json.loads(history_path.read_text(encoding="utf-8"))
-    results.check("the package points at exactly one release history record",
-                  package["releaseHistory"] == "sss/campaign-2/case-06-first-garden/history/release-v1.0.json"
-                  and sorted(p.name for p in (CASE_ROOT / "history").iterdir())
-                  == ["CASE06_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"],
+    results.check("the candidate declares no release-history pointer of its own",
+                  "releaseHistory" not in package and "releaseHistory" not in registry)
+    results.check("the task registry records the same corrective candidate",
+                  (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
+                   registry.get("printStatus"), registry.get("correctiveOf"))
+                  == (CANDIDATE_VERSION, "OWNER_GATE_OPEN", "OWNER_REVIEW_IN_PROGRESS",
+                      "NOT_RUN", RETAINED_VERSION)
+                  and "approvalDate" not in registry and "mergeStatus" not in registry,
+                  (registry.get("status"), registry.get("correctiveOf")))
+    results.check("the shared corrective-release lifecycle rules are satisfied",
+                  not lifecycle_findings(CASE_ROOT, CASE_ID, package, registry),
+                  lifecycle_findings(CASE_ROOT, CASE_ID, package, registry))
+    results.check("history retains exactly the two approved v1.0 records and nothing for v1.1",
+                  sorted(p.name for p in (CASE_ROOT / "history").iterdir())
+                  == [f"CASE06_OWNER_APPROVAL_v{RETAINED_VERSION}.md",
+                      f"release-v{RETAINED_VERSION}.json"],
                   sorted(p.name for p in (CASE_ROOT / "history").iterdir()))
-    results.check("the release record agrees with the package on identity, version and page counts",
-                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RELEASE_VERSION
-                  and history["status"] == "APPROVED_STABLE" and history["approvalDate"] == APPROVAL_DATE
-                  and history["owner"] == OWNER and history["rolePageCounts"] == ROLE_PAGES,
+    history_path = CASE_ROOT / f"history/release-v{RETAINED_VERSION}.json"
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+    results.check("the retained v1.0 record still describes the v1.0 release, not the candidate",
+                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RETAINED_VERSION
+                  and history["status"] == "APPROVED_STABLE"
+                  and history["approvalDate"] == RETAINED_APPROVAL_DATE
+                  and history["owner"] == OWNER
+                  and history["rolePageCounts"] == {"student": 5, "teacher": 8,
+                                                    "answer": 5, "accessible": 7},
                   history["rolePageCounts"])
-    results.check("the release record pins the frozen game baseline and declares no former artifacts",
+    results.check("the retained v1.0 record keeps its own approved source hashes",
+                  history["sourceHashes"]["content"]
+                  == "e74cce67548158c5ae43d9635e285839ca9c790f3d6492ed11719f7012fcc2fb"
+                  and history["sourceHashes"]["taskRegistry"]
+                  == "6a32cbbeb1b615db5f662f230c3e8fbbacfeb6b6ece3c4c3a19b61e8bc2ea1a0",
+                  history["sourceHashes"]["content"][:16])
+    results.check("the retained v1.0 record pins the frozen game baseline and declares no former artifacts",
                   any(GAME_COMMIT in note for note in history["migrationNotes"])
                   and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
                   and history["priorApprovedReleases"] == [] and history["retiredArtifacts"] == [])
-    results.check("the release record reproduces the approved source hashes",
-                  all(history["sourceHashes"][k] == package["sourceHashes"][k]
-                      for k in ("content", "presentation", "taskRegistry")))
-    results.check("the release record records the accepted physical print status",
+    results.check("the retained v1.0 record still records its own accepted print status",
                   history["acceptedPrintStatus"].startswith("PASS")
                   and history["acceptedValidation"]["status"] == "PASS")
-    results.check("every commit the release record pins exists",
+    results.check("every commit the retained v1.0 record pins exists",
                   all(subprocess.run(["git", "cat-file", "-e", history[key]], cwd=ROOT,
                                      capture_output=True).returncode == 0
                       for key in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
                                   "formerArtifactRecoveryCommit")),
                   history["canonicalSourceApprovalCommit"])
-    approval = (CASE_ROOT / "history/CASE06_OWNER_APPROVAL_v1.0.md").read_text(encoding="utf-8")
-    results.check("the owner-approval record states the approved release, review and merge status",
+    results.check("the retained v1.0 record pins the commit that contains the sources it certifies",
+                  history["canonicalSourceApprovalCommit"] == RETAINED_RELEASE_COMMIT
+                  and subprocess.run(
+                      ["git", "cat-file", "-e",
+                       f"{RETAINED_RELEASE_COMMIT}:sss/campaign-2/case-06-first-garden/source/content.html"],
+                      cwd=ROOT, capture_output=True).returncode == 0)
+    approval = (CASE_ROOT / f"history/CASE06_OWNER_APPROVAL_v{RETAINED_VERSION}.md").read_text(encoding="utf-8")
+    results.check("the retained v1.0 owner-approval record is unchanged and still describes v1.0",
                   all(token in approval for token in
                       ["APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", RUNTIME_ID,
-                       "Physical print at 100% / Actual Size: **PASS**"]))
-    results.check("the owner-approval record carries the deferred campaign-level work",
+                       "Physical print at 100% / Actual Size: **PASS**"])
+                  and "1.1" not in approval)
+    results.check("the retained v1.0 record carries the deferred campaign-level work",
                   "Campaign-level work deferred" in approval
                   and "CURRENT_PROJECT_STATE.md" in approval)
     results.check("the case stores no PDFs or screenshots",
@@ -333,12 +360,13 @@ def main() -> int:
     results.check("the display label carries no bonus, epilogue, or special-investigation wording",
                   not re.search(r"bonus|epilogue|special|finale|secret", entry["displayLabel"], re.I),
                   entry["displayLabel"])
-    results.check("the Case 06 registry entry is an approved release with a history record",
-                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
-                  and entry.get("historyRecord")
-                  == "sss/campaign-2/case-06-first-garden/history/release-v1.0.json"
-                  and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
-                                            "status": "APPROVED", "printStatus": "PASS"},
+    results.check("the Case 06 registry entry is an unreleased corrective candidate",
+                  entry["status"] == "OWNER_GATE_OPEN" and entry["packageStatus"] == "OWNER_REVIEW"
+                  and "historyRecord" not in entry
+                  and entry["version"] == CANDIDATE_VERSION
+                  and entry["approval"] == {"owner": OWNER,
+                                            "status": "OWNER_REVIEW_IN_PROGRESS",
+                                            "printStatus": "NOT_RUN"},
                   entry)
     results.check("all thirteen registered cases are approved or valid corrective candidates",
                   not unexpected_lifecycle(campaigns)

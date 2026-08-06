@@ -6,13 +6,12 @@
   "title": "The First Garden",
   "subtitle": "Campaign 2 \u00b7 Case 06 \u00b7 Restored Terrace, Earth",
   "location": "Restored Terrace",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
   "approval": {
-    "date": "2026-08-05",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_IN_PROGRESS",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE06:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE06:v1.1:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -84,7 +83,7 @@
   "rolePageStructure": {
     "student": {
       "documentRole": "Student Mission",
-      "pageCount": 5
+      "pageCount": 6
     },
     "teacher": {
       "documentRole": "Teacher Guide",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE06_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C2_CASE06_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C2_CASE06_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C2_CASE06_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C2_CASE06_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C2_CASE06_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C2_CASE06_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C2_CASE06_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C2_CASE06_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C2_CASE06_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 06 v1.0 \u2014 The First Garden Curriculum Editor",
-    "loadAnnouncement": "The First Garden Campaign 2 Case 06 v1.0 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 06 v1.1 \u2014 The First Garden Curriculum Editor",
+    "loadAnnouncement": "The First Garden Campaign 2 Case 06 v1.1 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       ".extended-description",
@@ -130,11 +129,10 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-06-first-garden/history/release-v1.0.json",
   "sourceHashes": {
-    "content": "01fbb3787357b1f3afa7507d609779ad1b1602737de52c184deda492e00d7f81",
+    "content": "8e66f5700268c295c0d2d1d397d4951addc1c676b0d5ae6284e5240a1e44abb9",
     "presentation": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
-    "taskRegistry": "b8258bef88682b168d33c21d3478e5c32c2d20a41ae7d163c8ac7ff1a25d676e",
-    "layoutOverrides": "6b1771ed88d17c7e47ef1e93f816ac022bd25a9218cf08410461eb3261fe838a"
+    "taskRegistry": "8710a8350c4fe3985b2157318c1c35065a00fdc4a1ad40566442df1ee3325b9f",
+    "layoutOverrides": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481"
   }
 }

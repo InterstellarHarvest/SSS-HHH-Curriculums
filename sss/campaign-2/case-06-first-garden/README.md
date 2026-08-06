@@ -1,6 +1,8 @@
 # SSS Campaign 2 · Case 06 — The First Garden
 
-Released native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `first_garden`.
+Native curriculum package reopened for correction. Package ID `SSS-C2-CASE06`, runtime ID
+`first_garden`. The current version is the v1.1 corrective candidate; v1.0 remains the last
+approved release and its history records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -10,8 +12,10 @@ Released native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `firs
 | Subtitle | Earth |
 | Campaign position | Campaign 2, case 6 of 6 — bonus finale, hidden until the five main cases are complete |
 | Institutional identity | Solar Agricultural Agency (SAA) |
-| Version | 1.0 |
-| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` |
+| Version | 1.1 (corrective candidate) |
+| Lifecycle | `OWNER_GATE_OPEN` — owner review in progress, print gate `NOT_RUN` |
+| Last approved release | 1.0, owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
+| Retained history | `history/release-v1.0.json` and `history/CASE06_OWNER_APPROVAL_v1.0.md`, unchanged |
 | Frozen game baseline | `29c3b222c53f51de11a3aa83e896a6d0ef6fb490` |
 
 ## Contents
@@ -30,7 +34,9 @@ case-06-first-garden/
     └── task-registry.js
 ```
 
-No generated PDF, role document, or screenshot is committed for this case.
+No generated PDF, role document, or screenshot is committed for this case. No v1.1 release or
+owner-approval record exists yet; those are written only when the new owner and physical-print
+gates pass.
 
 ## Instructional shape
 
@@ -48,30 +54,61 @@ Task 7 asks what the trial must include and why, and stops there. The runtime's 
 proposing risk-tiered biosafety standards — turns on Concord politics rather than the garden's evidence, so it is
 carried as Teacher-facing discussion rather than a written student prompt.
 
-Role page counts: Student 5, Teacher 8, Answer Key 5, Accessible 7. The Accessible CER is a dedicated page
-carrying `data-accessible-cer-page="canonical-v1.0"`. In the Student edition the CER shares its page with Task 7
-under `data-student-cer-page="combined-v1.0"`, the same combined form Campaign 1 Case 07 uses: on its own the CER
-left roughly half a page empty, and the trial specification reads naturally straight after the explanation it
-constrains.
+Role page counts: Student 6, Teacher 8, Answer Key 5, Accessible 7. Only Student changed, from 5, to carry
+the evidence Task 4 is graded on (see "What v1.1 corrects"). The Accessible CER is
+a dedicated page carrying `data-accessible-cer-page="canonical-v1.0"`. In the Student edition the CER shares its
+page with Task 7 under `data-student-cer-page="combined-v1.0"`, the same combined form Campaign 1 Case 07 uses:
+on its own the CER left roughly half a page empty, and the trial specification reads naturally straight after the
+explanation it constrains. That page is unchanged and still fits.
 
-This case is shorter than Campaign 2 Cases 01–05 on the Student side because its evidence is different in kind,
-not smaller in quantity. Cases 01–05 each turn on a measured value checked against a written specification, and
-each therefore needs page area for a quantitative record, a unit-discipline task and a precision ledger. Case 06
-reports almost no quantities: the surveyed patch diameter of approximately four to six metres, the roughly three
-metres between thriving and failing ground, and a set of durations. Its reasoning is about scope, elimination and
-convergence, and it contains no calculation at all. A precision task and a quantitative comparison figure would
-both have been decorative here, so neither exists.
+This case carries fewer quantities than Campaign 2 Cases 01–05, because its evidence is different in kind.
+Cases 01–05 each turn on a measured value checked against a written specification, and each therefore needs page
+area for a quantitative record, a unit-discipline task and a precision ledger. Case 06 reports almost no
+quantities: the surveyed patch diameter of approximately four to six metres, the roughly three metres between
+thriving and failing ground, and a set of durations. Its reasoning is about scope, elimination and convergence,
+and it contains no calculation at all. A precision task and a quantitative comparison figure would both have been
+decorative here, so neither exists.
 
 For the same reason the packet carries one figure rather than two, no timeline, and no trend graph. The case
 reports no time series and no dated events; there is nothing to plot. Figure A is a plan view: circular patches
 where the surveyed compounds are abundant, drawn inside ground where the same compounds fall to trace levels,
 because "circular patches of approximately four to six metres in diameter" is what the survey actually reports.
-Both its caption and its extended description state that it shows the reported pattern rather than mapping the
-garden.
+It is not to scale, and it draws no distance between patches, because the survey reports none. Both its caption
+and its extended description state that it shows the reported pattern rather than mapping the garden.
 
 What the case does need, and gets, is space for triangulation. No source resolves the investigation alone — this
 is the only Campaign 2 case in which every source is a person or an archive, with no sensor panel and no specimen
-examination — so Task 4 is the packet's spine and receives a full five-source contribution-and-limit matrix.
+examination — so Task 4 is the packet's spine. Each of its five sources reports on the learner page, and each
+learner then writes that source's contribution and its limit.
+
+## What v1.1 corrects
+
+- **Task 4 graded evidence no learner held.** Three of the five sources had no printed statement in any learner
+  edition, and the Answer Key graded against Kess's mechanism, `Section 14.7` and `GC-2201` — the last of which
+  appeared nowhere a learner could read. Student Table 5 gains a `Source and what it reports` column; the
+  Accessible edition gains the matching Table 5 in plainer register, on the Case 05 model.
+- **Accessible Task 1 was unanswerable.** Its table dropped the Student's record column, so no Accessible learner
+  could tell which of the nine rows was never tested. The column is restored in shorter register.
+- **Task 3's third rejection had no record.** Neither learner edition dated the patchiness, which the
+  invasive-organism rejection needs. Both now print that it predates the summit by decades.
+- **Figure A carried an unsupported offset.** The plan view kept a dimension line labelled `about 3 m` spanning
+  the gap between two patches — Dr. Nova's described bed separation repurposed as a surveyed boundary offset,
+  against the packet's own precision ledger. It is removed, along with per-patch metre assignments.
+- **The ledger of record described a superseded figure.** `figureProvenance` and `sourceStatus.figures` described
+  a twelve-metre strip; they now describe the rendered plan view.
+- **Table numbering diverged between learner editions.** The Student vocabulary table was numbered while the
+  Accessible equivalent was not, so four Teacher and Answer Key references misresolved for Accessible readers.
+  Vocabulary is now an unnumbered aid in both, and every remaining number is an evidence table meaning the same
+  record in both editions.
+- **The Teacher Guide had not received the owner-review revision.** It described a twelve-metre strip, a full-page
+  Student CER, an Accessible edition with identical evidence, and an analogy on Student page 2. All four are
+  corrected, and the guide now describes the actual Accessible adaptation.
+- **The analogy printed after the task it teaches.** It now prints inside Task 1 in both learner editions,
+  as Case 05 places its rain-gauge analogy.
+- **Standards overclaimed.** `MS-LS2-2` is withdrawn: its performance expectation predicts patterns across
+  multiple ecosystems and this packet holds one restored terrace with two bed histories. `MS-ETS1-2` is withdrawn:
+  Task 3 compares explanations, not design solutions. No standard is substituted for either. `MS-ETS1-1` remains
+  direct and `MS-LS2-3` supporting, each with its assessed task evidence recorded in `source/task-registry.js`.
 
 ## Science boundary
 
@@ -113,6 +150,7 @@ Validation:
 
 ```bash
 python3 apps/curriculum-editor/tests/validate_case06_campaign2.py
+python3 apps/curriculum-editor/tests/test_case06_mutations.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE06
 python3 apps/curriculum-editor/tests/run_browser_tests.py
