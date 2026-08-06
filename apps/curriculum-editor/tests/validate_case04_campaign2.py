@@ -294,11 +294,13 @@ def main() -> int:
                   == "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    results.check("every registered case is APPROVED_STABLE",
+    unreleased = {"SSS-C2-CASE06"}  # draft package under owner review; not yet released
+    results.check("every released registered case is APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases),
+                      for cases in campaigns.values() for case in cases
+                      if case["id"] not in unreleased),
                   [case["id"] for cases in campaigns.values() for case in cases
-                   if case["status"] != "APPROVED_STABLE"])
+                   if case["id"] not in unreleased and case["status"] != "APPROVED_STABLE"])
 
     # ── Source hashes and canonical folder shape ─────────────────────
     hash_targets = {

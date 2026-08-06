@@ -331,9 +331,9 @@ def main() -> int:
                  for curriculum in case_registry["curricula"] for campaign in curriculum["campaigns"]}
     results.check("Campaign 1 still registers exactly seven cases", len(campaigns["campaign-1"]) == 7)
     results.check("Campaign 2 registers Cases 01 to 05 in numerical display order",
-                  [case["id"] for case in campaigns["campaign-2"]]
+                  [case["id"] for case in campaigns["campaign-2"]][:5]
                   == ["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04", CASE_ID]
-                  and [case["displayOrder"] for case in campaigns["campaign-2"]] == [8, 9, 10, 11, 12],
+                  and [case["displayOrder"] for case in campaigns["campaign-2"]][:5] == [8, 9, 10, 11, 12],
                   [(case["id"], case["displayOrder"]) for case in campaigns["campaign-2"]])
     results.check("Case 05 is the fifth Campaign 2 case and is labelled positionally",
                   campaigns["campaign-2"][4]["id"] == CASE_ID
@@ -345,12 +345,13 @@ def main() -> int:
                   == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    results.check("all twelve registered cases are APPROVED_STABLE",
+    unreleased = {"SSS-C2-CASE06"}  # draft package under owner review; not yet released
+    results.check("every released registered case is APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases)
-                  and sum(len(cases) for cases in campaigns.values()) == 12,
+                      for cases in campaigns.values() for case in cases
+                      if case["id"] not in unreleased),
                   [case["id"] for cases in campaigns.values() for case in cases
-                   if case["status"] != "APPROVED_STABLE"])
+                   if case["id"] not in unreleased and case["status"] != "APPROVED_STABLE"])
 
     # ── Source hashes ────────────────────────────────────────────────
     hash_targets = {

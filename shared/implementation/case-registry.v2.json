@@ -188,6 +188,23 @@
               "packageStatus": "APPROVED",
               "approval": {"date": "2026-08-05", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"},
               "historyRecord": "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
+            },
+            {
+              "id": "SSS-C2-CASE06",
+              "displayOrder": 13,
+              "displayLabel": "6 - The First Garden",
+              "title": "The First Garden",
+              "version": "1.0",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "editorPackage": "sss/campaign-2/case-06-first-garden/source/case-package.json",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             }
           ]
         }

@@ -37,6 +37,7 @@ EXPECTED = {
     "SSS-C2-CASE03": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
+    "SSS-C2-CASE06": {"version": "1.0", "status": "DRAFT", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -51,6 +52,7 @@ STUDENT_LAYOUT_COUNTS = {
     "SSS-C2-CASE03": (8, 34),
     "SSS-C2-CASE04": (10, 34),
     "SSS-C2-CASE05": (13, 32),
+    "SSS-C2-CASE06": (11, 35),
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
@@ -813,6 +815,8 @@ def main() -> int:
     results.check("canonical case-structure validator passes", structure.returncode == 0, (structure.stdout + structure.stderr).strip())
     layout_validation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_layout_overrides.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("Student/Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
+    case06_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case06_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("SSS Campaign 2 Case 06 case-scoped validation passes", case06_campaign2.returncode == 0, (case06_campaign2.stdout + case06_campaign2.stderr).strip()[-2000:])
     case05_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case05_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 05 case-scoped source, clue, figure, dose-precision, and prohibited-claim checks pass", case05_campaign2.returncode == 0, (case05_campaign2.stdout + case05_campaign2.stderr).strip()[-2000:])
     case04_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case04_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
