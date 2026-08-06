@@ -41,7 +41,7 @@ EXPECTED = {
     "SSS-C2-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
-    "SSS-C2-CASE06": {"version": "1.1", "status": "OWNER_GATE_OPEN", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
+    "SSS-C2-CASE06": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
 }
 STUDENT_LAYOUT_COUNTS = {
     "SSS-C1-CASE01": (9, 28),
@@ -74,6 +74,9 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     "SSS-C2-CASE03": {"student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493", "teacher": "c087aa117f87d991bd7b8039f6a189713833042720318007503b29792a1fd3a5", "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090"},
     "SSS-C2-CASE04": {"student": "78bd75e06a07acede806062efd4e5383ff618d42ecb6a668633f822cf1575186", "teacher": "27179d6b828914cce0d27280562bdd1b37d6cdf3a373b4a48e704c91e5f528b6", "answer": "a7c3566b867660f5614d8c078bc6306058e9afec721bfcb7758b4224dca720f1"},
     "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571", "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60"},
+    # Case 06 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
+    # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
+    "SSS-C2-CASE06": {"student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2", "teacher": "2720249b480c71e29b2dee472feaa90ddd990b51922459612a8f53e190b61bb3", "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516"},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",

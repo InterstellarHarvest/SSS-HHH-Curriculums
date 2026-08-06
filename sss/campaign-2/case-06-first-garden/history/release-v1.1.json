@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE06",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-06",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+  "canonicalSourceApprovalCommit": "506f3e1fab7c7ff0c7bf6b7e8699188a5f1d91a6",
+  "correctiveReviewCommits": [
+    {
+      "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
+      "role": "The Campaign 2 completion audit that identified the defects corrected here."
+    },
+    {
+      "commit": "45bf4ecf0ce857121ee9437dfcdd6d3156966dcf",
+      "role": "Shared validation support distinguishing a first release from a corrective-release candidate, which made this reissue representable without disturbing v1.0."
+    },
+    {
+      "commit": "31e10f6d7b1194291a4a39207d0ec294c2308f10",
+      "role": "Figure A geometry and provenance, Task 4 five-source evidence availability, Accessible Task 1 and Task 3 evidence, cross-role table numbering, the Task 1 analogy placement, the Teacher Guide revision propagation, and the standards corrections."
+    },
+    {
+      "commit": "98fe927a8423029de88ac8ab48604b089a75a035",
+      "role": "Opened the v1.1 corrective candidate for owner review and carried the Student page-count increase from 5 to 6."
+    },
+    {
+      "commit": "a1fbaa8719c527d02c52e046d4113da83728cd85",
+      "role": "Figure, evidence-availability, cross-role parity, revision-propagation, standards and mutation coverage."
+    },
+    {
+      "commit": "506f3e1fab7c7ff0c7bf6b7e8699188a5f1d91a6",
+      "role": "Declared the candidate's review status to the browser harness; the last candidate commit, carrying the approved content, presentation and layout-override sources unchanged."
+    }
+  ],
+  "sourceHashes": {
+    "content": "8e66f5700268c295c0d2d1d397d4951addc1c676b0d5ae6284e5240a1e44abb9",
+    "presentation": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
+    "taskRegistry": "959b0f082f53ca430edf17c8167d679b764a096b47c99c71ab5bf3877aa1f8a8",
+    "layoutOverrides": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2",
+    "teacher": "2720249b480c71e29b2dee472feaa90ddd990b51922459612a8f53e190b61bb3",
+    "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516",
+    "note": "Regenerated for v1.1. All three differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+  },
+  "rolePageCounts": {
+    "student": 6,
+    "teacher": 8,
+    "answer": 5,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "case06Scoped": "230/230 (196/196 at the candidate tip; the release conversion added 34 assertions covering the approved v1.1 lifecycle, the v1.1 release and owner-approval records, prior-release representation, the retained v1.0 records, and the certified-source-commit check)",
+    "case01Scoped": "74/74 (unchanged, byte-identical)",
+    "case02Scoped": "108/108 (unchanged, byte-identical)",
+    "case03Scoped": "107/107 (unchanged, byte-identical)",
+    "case04Scoped": "82/82 (unchanged, byte-identical)",
+    "case05Scoped": "101/101 (unchanged, byte-identical)",
+    "static": "597/597 (593/593 at the candidate tip; the v1.1 release record adds four release-history schema and record assertions)",
+    "browser": "2161/2161 across all 104 case/role/presentation states",
+    "pdf": "316/316 across the registry-derived case-edition print documents",
+    "canonicalStructure": "PASS",
+    "layoutContracts": "PASS across 13 registered cases; Accessible 201 eligible/274 locked, Student 118 eligible/365 locked. Case 06 is unchanged at Accessible 20/25 and Student 10/35: v1.1 added no response area and removed none.",
+    "authoringSecurity": "13/13",
+    "correctiveReleaseLifecycle": "25/25",
+    "case06Mutations": "28/28; every mutation names and trips the specific protection it targets rather than a hash or baseline check. 20 at the candidate tip, plus eight release-mode lifecycle mutations covering the missing release record, the downgraded print gate, a dropped prior release, baselines reverted to v1.0 markup, a certified-source pin that does not contain what it certifies, the retained v1.0 record deleted, the retained v1.0 record rewritten to describe v1.1, and v1.0's understated figures silently corrected in place",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "pageCountsAndFit": "PASS for all 26 pages; no page overflows in any role at Student 6, Teacher 8, Answer Key 5, Accessible 7",
+    "figureIntegrity": "PASS; Figure A renders three pattern-filled circular patches inside pattern-filled trace-level ground, carries no distance between patches and no per-patch measurement, and stays legible in grayscale from fill patterns and direct labels alone",
+    "crossRoleReferenceIntegrity": "PASS; every Table and Figure named by the Teacher Guide or the Answer Key resolves in both the Student and the Accessible edition, and the six numbered evidence tables hold the same record in both",
+    "evidenceAvailability": "PASS; all five Task 4 sources report on the learner page at or before Task 4 in both learner editions, and every GC-nnnn and Section n.n designation the Answer Key relies on is printed in both",
+    "javascriptErrors": "0",
+    "gitDiffCheck": "clean",
+    "visualReview": "PASS; owner review of the rendered pages, including grayscale"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "506f3e1fab7c7ff0c7bf6b7e8699188a5f1d91a6",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-05",
+      "approvalCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+      "recoveryCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+      "canonicalSourceApprovalCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+      "retainedRecords": [
+        "sss/campaign-2/case-06-first-garden/history/CASE06_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-2/case-06-first-garden/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "e74cce67548158c5ae43d9635e285839ca9c790f3d6492ed11719f7012fcc2fb",
+        "presentation": "4dbab005dd0af44cad86b7be2bff71fda4955d66a8dc9437e895df818ff91f77",
+        "taskRegistry": "6a32cbbeb1b615db5f662f230c3e8fbbacfeb6b6ece3c4c3a19b61e8bc2ea1a0"
+      },
+      "frozenNonAccessibleDomBaselines": {
+        "student": "4229be58154cbb7a3f33567dc33da4a5669a3ffeb6b17fd137a7e8da986319f4",
+        "teacher": "b25197b36325e307cffb90ed5fa92e73793768d8083bfea7e3ed1b2ee9c8d262",
+        "answer": "6086c9ab72be8180b123447298c2f26b2ea9472790244b907d92ae2da1689587"
+      },
+      "rolePageCounts": {
+        "student": 5,
+        "teacher": 8,
+        "answer": 5,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked."
+      },
+      "recoveryCommand": "git show 59005a86cbaf858fe68684aedb2607dd773e3f2c:sss/campaign-2/case-06-first-garden/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review and physical print pass at 100% / Actual Size. It is superseded, not withdrawn.",
+        "Its release record and owner-approval record are retained unchanged. Neither was edited to describe v1.1.",
+        "v1.0 pinned game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490, which is the same baseline v1.1 pins. Unlike Case 03, no repin was needed and none was made.",
+        "The v1.0 source hashes, DOM baselines and page counts above are the historical evidence of what was approved on 2026-08-05. None of them matches v1.1: v1.0 was Student 5 and Accessible 7, and v1.1 is Student 6 and Accessible 7.",
+        "The v1.0 record's own accepted-validation figures (case06Scoped 148/148, static 576/576) were understated at the commit they describe, which the Campaign 2 completion audit recorded as a minor finding. They are deliberately not corrected: v1.0's records are immutable historical evidence, and the accurate figures for the current tree are recorded in this v1.1 record instead.",
+        "The v1.0 record omits layoutOverrides from sourceHashes, as all six Campaign 2 v1.0 records do. That omission is also left uncorrected in v1.0 and is repaired going forward: this v1.1 record pins all four source hashes."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "The Campaign 2 completion audit found the largest cluster of defects in the campaign in this released package, four of them tracing to a single cause: the owner-review revision 59005a8 was applied to the learner pages, the README and the release record, but not to the Teacher Guide or the task registry, leaving both describing a superseded figure and a superseded page structure. The audit also found that Task 4 graded five sources while three of them had no printed statement in any learner edition, that the Accessible edition had removed evidence its own tasks are graded on, that table numbering diverged between the learner editions, and that two standards claimed tasks that do not assess them. v1.1 corrects all of it. The investigation, the diagnosis, the seven-task sequence, the five clue routes and the case fiction are unchanged.",
+    "corrections": [
+      "Figure A geometry and provenance. The approved revision turned Figure A into a plan view of circular patches, but the drawing kept a dimension line spanning the gap between the first two circles, labelled 'about 3 m'. That is Dr. Nova's described separation between thriving and failing ground repurposed as a surveyed patch-edge offset, which the packet's own precision ledger already forbids: 'a described separation, not a surveyed boundary offset'. The dimension line and its tick are removed from both learner editions. figureProvenance and sourceStatus.figures described a twelve-metre strip with abundance from 0 to 5 metres and trace levels from 5 to 8; both now describe the rendered plan view and record that the figure is not to scale.",
+      "Unsupported spatial precision. Beyond the three-metre offset, the extended descriptions assigned individual measurements to the drawn circles ('the three drawn here are about five, six and four metres'), inventing three measured patches from a reported range. Those clauses are removed. The figure now carries exactly one quantity: the survey's reported patch-diameter range of approximately four to six metres.",
+      "Task 1 analogy placement. The building-inspection analogy that the v1.0 approval record binds to Task 1 was printed on page 2, after Task 1, in both learner editions. It now prints inside Task 1, after the task heading and before the record the task is graded on, as Case 05 places its rain-gauge analogy. Both learner editions' Task 1 directions now send the reader to the example first.",
+      "Restored learner evidence. The Accessible edition had dropped the Student table's record column, leaving no Accessible learner able to tell which of the nine rows was never tested except from the directions. The record column is restored in shorter register. The Accessible survey table gains the reduced-transport row the Answer Key credits. Both learner editions gain the record that dates the patchy growth to decades before the summit, which Task 3's invasive-organism rejection needs and which neither edition printed, in the Student edition either.",
+      "Task 4 five-source evidence availability. Student Table 5 carried only bare source labels. The Answer Key nonetheless graded against Kess's mechanism, stated in no learner edition, Section 14.7, printed one task later, and GC-2201, printed nowhere a learner could read. Table 5 now carries a 'Source and what it reports' column on the Case 05 model: Dr. Nova and Delegate Vorn-Shael are summarised and cross-referenced to records printed earlier in the same edition, while Delegate Kess, Delegate Ilreth-Mar and the Federation Database print their statements at the task. The Accessible edition carries the matching Table 5 in plainer register.",
+      "Cross-role table numbering. The Student vocabulary table was numbered Table 1 while the Accessible equivalent was unnumbered, so every Student evidence table sat one number above its Accessible counterpart and four Teacher and Answer Key references misresolved for Accessible readers. Vocabulary is now an unnumbered aid in both editions, and every remaining number is an evidence table meaning the same record in both. 'Figure A and Table 2 report the same survey', 'Table 3 supplies the piece students need' and 'Tables 1-6 are the case records' now resolve in either hand.",
+      "Teacher Guide revision propagation. Four statements the owner-review revision left behind are corrected: Figure A described as drawn along a twelve-metre strip and as 'the strip', the claim that the CER occupies a full page in both learner editions when the Student CER uses the approved combined Task 6/7 contract, the claim that the Accessible edition's evidence is identical when its presentation is not, and the analogy located on Student page 2. The guide now describes the adaptation the case actually ships.",
+      "Standards corrections. MS-LS2-2 is withdrawn as a direct standard and not downgraded: its performance expectation predicts patterns of interactions among organisms across multiple ecosystems, this packet holds one restored terrace with two bed histories, and the task named to carry it was a source contribution-and-limit matrix rather than the construction of an explanation, which happens at Task 6. No life-science standard is substituted for it. MS-ETS1-2 is withdrawn because Task 3 weighs competing explanations, not competing design solutions against shared criteria, and Task 3 was not expanded into a design comparison in order to keep the standard. MS-ETS1-1 remains direct with its assessed Task 7 evidence recorded, and MS-LS2-3 remains supporting with its boundary stated. A machine-checkable standards and standardsWithdrawn ledger is added to the task registry.",
+      "Student page count, 5 to 6. Forced by the restored evidence and measured, not estimated: with the five source reports present, student-mission-04 overflowed its printable area by 106 pixels, so Task 5 moved to a page of its own. The approved combined Student CER and Task 7 page is unchanged and still fits with 11 pixels of reserve. Accessible was briefly taken to 8 pages while Task 4's reports were carried in one-source-at-a-time blocks; that layout left a continuation page with no complete task on it, which the shared Accessible page contract forbids, so Task 4 was rebuilt as Table 5 on the Case 05 model instead. Accessible therefore stays at 7, and both learner editions now number the same six evidence tables."
+    ],
+    "unchanged": [
+      "The seven-task sequence, its identifiers and its order in every role.",
+      "The correct diagnosis as a candidate cause, the three rejected alternatives, the five formal clues and the required clue routes.",
+      "The Student combined CER and Task 7 page under data-student-cer-page=combined-v1.0, and the dedicated Accessible CER page under data-accessible-cer-page=canonical-v1.0.",
+      "Teacher Guide 8 pages and Answer Key 5 pages, and the Accessible edition at 7 pages.",
+      "Figure A as the packet's only figure, its pattern fills, its direct labels and its grayscale legibility, and the absence of any timeline or trend figure in a case that reports no time series.",
+      "The case's approved science protections: no wood wide web as settled science, no mother-tree claim, no forest or garden superorganism, no collective fungal intention, no claim the network was never restored, no claim that particular partners are confirmed absent, no guaranteed cure, no promised recovery time, no unscreened transfer, no claim that Earth origin makes transfer risk-free, no waiver of Section 14.7, no universal fungal benefit, no named commercial product, no blame assigned to the restoration team, and no global hyphal-length or carbon-flux figures in any learner role.",
+      "The runtime case first_garden, its bonus status, its campaign position 6 of 6 and its positional display label."
+    ]
+  },
+  "migrationNotes": [
+    "Corrective release of Campaign 2 Case 06, runtime case first_garden, the Restored Terrace on Earth.",
+    "Frozen game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490, the same baseline v1.0 pinned. The game repository was not modified during this remediation and remains at that commit.",
+    "Case 06 is the Campaign 2 bonus finale. The runtime hides it from level select until the five main cases are complete and then numbers it case 6 of 6, applying no bonus, epilogue, or special-investigation wording, so the package registers positionally as 6 - The First Garden. It keeps its runtime case number and is not renumbered.",
+    "The prior approved v1.0 release is preserved in priorApprovedReleases and its two history records are retained byte-identical. Git history remains authoritative for recovery.",
+    "Frozen Student, Teacher and Answer Key DOM baselines were regenerated for v1.1 and all three differ from v1.0's.",
+    "Figure A is a plan view of circular patches where the surveyed compounds are abundant, drawn inside ground where the same compounds fall to trace levels. It is not to scale, it draws no distance between patches, and it assigns no measurement to any individual patch. Its caption and extended description both state that it shows the reported pattern rather than mapping the garden.",
+    "The Student CER shares its page with Task 7 under data-student-cer-page=combined-v1.0, the form Campaign 1 Case 07 established. On a page of its own the CER left roughly half the page empty. The Accessible CER remains a dedicated page under data-accessible-cer-page=canonical-v1.0.",
+    "The Accessible edition carries the same evidence as the Student edition and presents it differently: one task per page, every record rewritten in plainer register and shortened, sentence frames or a word bank on each page, and a dedicated CER page. Its evidence tables carry the same numbers as the Student edition's wherever they hold the same record, so a Teacher or Answer Key direction naming a table resolves in either hand.",
+    "No generated artifact was produced or committed at either version.",
+    "No mathematics standard is claimed: the case contains no calculation."
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED",
+  "retiredArtifacts": []
+}

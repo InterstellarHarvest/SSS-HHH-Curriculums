@@ -1,8 +1,8 @@
 # SSS Campaign 2 · Case 06 — The First Garden
 
-Native curriculum package reopened for correction. Package ID `SSS-C2-CASE06`, runtime ID
-`first_garden`. The current version is the v1.1 corrective candidate; v1.0 remains the last
-approved release and its history records are retained unchanged.
+Released native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `first_garden`.
+v1.1 is a corrective release; v1.0 is preserved as the prior approved release and its history
+records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -12,9 +12,9 @@ approved release and its history records are retained unchanged.
 | Subtitle | Earth |
 | Campaign position | Campaign 2, case 6 of 6 — bonus finale, hidden until the five main cases are complete |
 | Institutional identity | Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective candidate) |
-| Lifecycle | `OWNER_GATE_OPEN` — owner review in progress, print gate `NOT_RUN` |
-| Last approved release | 1.0, owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
+| Version | 1.1 (corrective release) |
+| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` — owner approved 2026-08-06 |
+| Prior approved release | 1.0, owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
 | Retained history | `history/release-v1.0.json` and `history/CASE06_OWNER_APPROVAL_v1.0.md`, unchanged |
 | Frozen game baseline | `29c3b222c53f51de11a3aa83e896a6d0ef6fb490` |
 
@@ -25,7 +25,9 @@ case-06-first-garden/
 ├── README.md
 ├── history/
 │   ├── CASE06_OWNER_APPROVAL_v1.0.md
-│   └── release-v1.0.json
+│   ├── CASE06_OWNER_APPROVAL_v1.1.md
+│   ├── release-v1.0.json
+│   └── release-v1.1.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -34,9 +36,7 @@ case-06-first-garden/
     └── task-registry.js
 ```
 
-No generated PDF, role document, or screenshot is committed for this case. No v1.1 release or
-owner-approval record exists yet; those are written only when the new owner and physical-print
-gates pass.
+No generated PDF, role document, or screenshot is committed for this case at either version.
 
 ## Instructional shape
 
