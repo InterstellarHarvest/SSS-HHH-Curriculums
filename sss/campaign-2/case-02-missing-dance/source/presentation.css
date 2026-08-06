@@ -71,6 +71,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .diagnosis-table td:last-child, .diagnosis-table th:last-child { width: .62in; }
 .status-table td:first-child, .trials-table td:first-child, .timeline-table td:first-child { font-weight: 700; }
 .status-table td:first-child, .status-table th:first-child { width: 1.75in; }
+.status-table td:nth-child(4), .status-table th:nth-child(4) { width: .6in; }
 .trials-table td:first-child, .trials-table th:first-child { width: .82in; }
 .timeline-table td:first-child, .timeline-table th:first-child { width: 1.05in; }
 .conditions-table td:first-child, .conditions-table th:first-child { width: 1.6in; }
