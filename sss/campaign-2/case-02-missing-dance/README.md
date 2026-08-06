@@ -1,10 +1,11 @@
 # SSS Campaign 2 · Case 02 — The Missing Dance
 
-Corrective-release candidate under owner review. Package ID `SSS-C2-CASE02`, runtime ID `missing_dance`.
+Approved corrective release. Package ID `SSS-C2-CASE02`, runtime ID `missing_dance`.
 
 Version **1.1** corrects the defects the Campaign 2 completion audit recorded against v1.0. The approved v1.0
 release remains in `history/` and is not rewritten: `release-v1.0.json` and `CASE02_OWNER_APPROVAL_v1.0.md`
-continue to describe the v1.0 content that passed its own owner and print gates.
+continue to describe the v1.0 content that passed its own owner and print gates. v1.0 is superseded, not
+withdrawn.
 
 | Field | Value |
 |---|---|
@@ -13,18 +14,33 @@ continue to describe the v1.0 content that passed its own owner and print gates.
 | Location | Olympia District |
 | Subtitle | Campaign 2 · Case 02 · Olympia District, Mars |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective candidate; 1.0 retained in `history/`) |
-| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN` |
+| Version | 1.1 (corrective release; 1.0 retained in `history/`) |
+| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` · approved 2026-08-06 |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
+
+## What v1.1 corrects
+
+- **Task 1 usability.** Both learner editions now carry a writable `OK or ?` mark cell on every row,
+  and the directions name the table the packet actually prints. The Answer Key mirrors that table
+  row for row, and the Teacher Guide describes the same six rows.
+- **Evidence availability.** The 100–150 Hz comparison band and the Telluvian lyre-moth wingbeat,
+  which the Answer Key graded against but no learner edition carried, are now in both learner
+  editions. `Poricidal anther` and `buzz pollination` are defined for learners.
+- **Standards.** MS-LS2-2 and MS-ETS1-3 withdrawn; neither is met by what the packet asks.
+- **Pagination.** Student went 5 → 6 pages so Task 1 has its own page. Accessible held 8.
+
+Nothing about the investigation, diagnosis, task sequence or case fiction changed.
 
 ## Contents
 
 ```text
 case-02-missing-dance/
 ├── README.md
-├── history/            retained v1.0 records; no v1.1 record until approval
+├── history/            the current v1.1 release, and the retained v1.0 it supersedes
 │   ├── CASE02_OWNER_APPROVAL_v1.0.md
-│   └── release-v1.0.json
+│   ├── CASE02_OWNER_APPROVAL_v1.1.md
+│   ├── release-v1.0.json
+│   └── release-v1.1.json
 └── source/
     ├── case-package.json
     ├── content.html

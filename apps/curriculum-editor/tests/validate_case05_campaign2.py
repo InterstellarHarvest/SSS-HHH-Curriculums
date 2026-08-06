@@ -345,14 +345,12 @@ def main() -> int:
                   == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    unreleased = {"SSS-C2-CASE02"}  # corrective v1.1 candidate under owner review
-    results.check("every released registered case is APPROVED_STABLE",
+    results.check("all thirteen registered cases are APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases
-                      if case["id"] not in unreleased)
+                      for cases in campaigns.values() for case in cases)
                   and sum(len(cases) for cases in campaigns.values()) == 13,
                   [case["id"] for cases in campaigns.values() for case in cases
-                   if case["id"] not in unreleased and case["status"] != "APPROVED_STABLE"])
+                   if case["status"] != "APPROVED_STABLE"])
 
     # ── Source hashes ────────────────────────────────────────────────
     hash_targets = {

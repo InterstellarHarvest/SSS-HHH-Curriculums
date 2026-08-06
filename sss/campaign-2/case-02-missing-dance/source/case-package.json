@@ -4,14 +4,15 @@
   "curriculum": "SSS",
   "campaign": "campaign-2",
   "title": "The Missing Dance",
-  "subtitle": "Campaign 2 \u00b7 Case 02 \u00b7 Olympia District, Mars",
+  "subtitle": "Campaign 2 · Case 02 · Olympia District, Mars",
   "location": "Ares Botanical Garden",
   "version": "1.1",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_IN_PROGRESS",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -120,7 +121,7 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 02 v1.1 \u2014 The Missing Dance Curriculum Editor",
+    "documentTitle": "SSS Campaign 2 Case 02 v1.1 — The Missing Dance Curriculum Editor",
     "loadAnnouncement": "The Missing Dance Campaign 2 Case 02 v1.1 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
@@ -129,10 +130,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "sss/campaign-2/case-02-missing-dance/history/release-v1.1.json",
   "sourceHashes": {
     "content": "71c41f236de25e09aee157aab417236b5a63b3fb754a7aa11b858372d8384350",
     "presentation": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
-    "taskRegistry": "8f5595c9a45056d750eba0d4e696132b8906feb5a8bf99c29e31b908cf292c77",
+    "taskRegistry": "061473c6848678e7069324a6459eb68b549a20a4a902de65806774124049523e",
     "layoutOverrides": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d"
   }
 }

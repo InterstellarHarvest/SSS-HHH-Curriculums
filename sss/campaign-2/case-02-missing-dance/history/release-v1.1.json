@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE02",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-06",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
+  "canonicalSourceApprovalCommit": "a3b7881932d93afb4c13cc72ba4b4e77786fd245",
+  "correctiveReviewCommits": [
+    {
+      "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
+      "role": "The Campaign 2 completion audit that identified the defects corrected here."
+    },
+    {
+      "commit": "45bf4ecf0ce857121ee9437dfcdd6d3156966dcf",
+      "role": "Shared validation support distinguishing a first release from a corrective-release candidate, which made this reissue representable without disturbing v1.0."
+    },
+    {
+      "commit": "c171ff7aeb107aad10b32240fe2df28875641428",
+      "role": "Task 1 correction, learner evidence availability, and cross-role reference repair."
+    },
+    {
+      "commit": "a28e8dc8094b09336eb4cc3bd8df705a0faa1d8a",
+      "role": "Opened the v1.1 corrective candidate for owner review."
+    },
+    {
+      "commit": "2eb32748705bd2cb338e87a99cbf4a67bbf96f02",
+      "role": "Parity, evidence-availability, revision-propagation, and mutation coverage."
+    },
+    {
+      "commit": "a3b7881932d93afb4c13cc72ba4b4e77786fd245",
+      "role": "Final owner-review correction widening the Task 1 response column so the OK or ? heading sets on one line."
+    }
+  ],
+  "sourceHashes": {
+    "content": "71c41f236de25e09aee157aab417236b5a63b3fb754a7aa11b858372d8384350",
+    "presentation": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
+    "taskRegistry": "061473c6848678e7069324a6459eb68b549a20a4a902de65806774124049523e",
+    "layoutOverrides": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "6b1f309da4ee40ff780d93914458b75c430cded815bbef110db1f27bb792df65",
+    "teacher": "d09818e93df75949a5d93fe1a1dfb89fe9a23732a1a844299cac933d21f5fc9f",
+    "answer": "3bbd39fb4bbc1e9432eb130d770c5a6378037ffb2142823b65b04fc5132564fc",
+    "note": "Regenerated for v1.1. All three differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+  },
+  "rolePageCounts": {
+    "student": 6,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "case02Scoped": "108/108",
+    "case01Scoped": "74/74 (unchanged, byte-identical)",
+    "case03Scoped": "54/54 (unchanged, byte-identical)",
+    "case04Scoped": "82/82 (unchanged, byte-identical)",
+    "case05Scoped": "101/101 (unchanged, byte-identical)",
+    "case06Scoped": "153/153 (unchanged, byte-identical)",
+    "static": "595/595",
+    "browser": "2161/2161 across all 96 case/role/presentation states",
+    "pdf": "316/316 across the registry-derived case-edition print documents",
+    "canonicalStructure": "PASS",
+    "layoutContracts": "PASS across 13 registered cases; Accessible 201 eligible/274 locked, Student 118 eligible/365 locked",
+    "authoringSecurity": "13/13",
+    "correctiveReleaseLifecycle": "25/25",
+    "case02Mutations": "19/19; every mutation names and trips the specific protection it targets",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "pageCountsAndFit": "PASS; no page overflows in any role at Student 6, Teacher 8, Answer Key 4, Accessible 8",
+    "task1ResponseColumn": "PASS; the OK or ? heading sets on one line in Student and Accessible print output",
+    "javascriptErrors": "0",
+    "gitDiffCheck": "clean"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "a3b7881932d93afb4c13cc72ba4b4e77786fd245",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-05",
+      "approvalCommit": "b4534579eab9f97195e55ef49aaa245a7fbb74f0",
+      "recoveryCommit": "b4534579eab9f97195e55ef49aaa245a7fbb74f0",
+      "canonicalSourceApprovalCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
+      "retainedRecords": [
+        "sss/campaign-2/case-02-missing-dance/history/release-v1.0.json",
+        "sss/campaign-2/case-02-missing-dance/history/CASE02_OWNER_APPROVAL_v1.0.md"
+      ],
+      "sourceHashes": {
+        "content": "9d9bfb70ef16feae1d112d3ab30176769d216397a12d05cfd206472d797e8b43",
+        "presentation": "18afdc2c393af4f5fffa22c7a226724ab454c121a028a264f88e94fdb1eaaa6d",
+        "taskRegistry": "949beba1ff0074b1fa8d902b714100b325cd754c99d0da8e87852ae82d8439a1"
+      },
+      "frozenNonAccessibleDomBaselines": {
+        "student": "26ff53c18d93327dd80b409fd73c0deb4fdd588795adeb9eea635cb15ca850de",
+        "teacher": "f9b7387aeaf971ca273bbc1c729bb6e50fe3608ed1169e4caf8539c71992e2df",
+        "answer": "a8a3a75bad3c75c11e7bc8ee95b6628962d7153bf6cf05e689647a45883c4894"
+      },
+      "rolePageCounts": {
+        "student": 5,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 8
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked."
+      },
+      "recoveryCommand": "git show b4534579eab9f97195e55ef49aaa245a7fbb74f0:sss/campaign-2/case-02-missing-dance/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review, PDF review and physical print pass at 100% / Actual Size. It is superseded, not withdrawn.",
+        "Its release record and owner-approval record are retained unchanged. Neither was edited to describe v1.1.",
+        "The v1.0 source hashes and DOM baselines above are the historical evidence of what was approved on 2026-08-05, and none of them matches v1.1."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "The Campaign 2 completion audit found that the released v1.0 packet graded learners against a table they could not complete and against evidence their editions never carried. v1.1 corrects those defects and the synchronization failures around them. No investigation, diagnosis, task sequence or case fiction changed.",
+    "corrections": [
+      "Task 1 cross-role usability. The learner editions printed a status table with no writable column, while the directions told learners to mark OK or ? in a last column that did not exist, and the Accessible directions named a Table 1a the packet never rendered. Both learner editions now carry a writable OK or ? mark cell on every row, and the directions name the table that is actually printed.",
+      "Task 1 table shape parity. The Answer Key completed a differently shaped table from the one learners hold. The learner table was consolidated from seven rows to six by merging the rows that all report normal, and the Answer Key was rebuilt as an exact six-row mirror of the table the learner editions print.",
+      "Learner evidence availability. The Answer Key reasoned from a 100-150 Hz comparison band and from the Telluvian lyre-moth wingbeat that appeared in no learner edition. Both are now present in the Student and Accessible editions, so every graded claim is answerable from what learners hold.",
+      "Specialist vocabulary. Poricidal anther and buzz pollination are now defined just in time for learners in both learner editions rather than being assumed.",
+      "Teacher Guide accuracy. The Teacher Guide described a row split the learner table no longer has, and referenced a Figure 2 that does not exist. Both were corrected against the rendered packet.",
+      "Standards conservatism. MS-LS2-2 and MS-ETS1-3 were withdrawn. Neither is met by what this packet actually asks learners to do. Direct MS-LS1-4 and MS-ETS1-1 and conditional MS-PS4-1 are unchanged.",
+      "Accessible differentiation and pagination. Student Task 1 moved to its own page, taking the Student edition from 5 pages to 6. The Accessible edition kept 8 pages by consolidating table rows and moving glossary entries to the point of use, since it cannot carry a task-free page.",
+      "Task 1 response column width. The final owner-review correction widened the OK or ? response column from a 28.9 px inner box, which wrapped the heading, to a 47.6 px inner box, which sets it on one line in both learner editions. The evidence column, row wording, row order, table semantics and response boxes were unchanged, and the change is grayscale-neutral."
+    ],
+    "unchanged": [
+      "The eight-task sequence, its identifiers and its order in every role.",
+      "The correct diagnosis, the rejected alternatives and the clue routes.",
+      "The salt-shaker teaching analogy and its containment.",
+      "The runtime case missing_dance and the frozen game baseline.",
+      "Case registration order and every case's runtime case number."
+    ]
+  },
+  "migrationNotes": [
+    "Corrective release of Campaign 2 Case 02, runtime case missing_dance, the Ares Botanical Garden in Olympia District, Mars.",
+    "Frozen game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490, unchanged from v1.0. The game repository was not modified during this remediation.",
+    "The prior approved v1.0 release is preserved in priorApprovedReleases and its two history records are retained byte-identical. Git history remains authoritative for recovery.",
+    "Frozen Student, Teacher and Answer Key DOM baselines were regenerated for v1.1 and all three differ from v1.0's.",
+    "No generated artifact was produced or committed at either version.",
+    "No mathematics standard is claimed: the packet requires no calculation."
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED",
+  "retiredArtifacts": []
+}

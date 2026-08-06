@@ -14,6 +14,10 @@
     "schemaVersion": {"const": 1},
     "caseId": {"type": "string", "pattern": "^SSS-C[0-9]+-CASE[0-9]{2}$"},
     "curriculumVersion": {"$ref": "#/$defs/version"},
+    "correctiveOf": {
+      "$ref": "#/$defs/version",
+      "description": "Set only on a corrective reissue: the approved version this release supersedes. That version's own records stay retained and unrewritten, and it is indexed in priorApprovedReleases."
+    },
     "status": {"const": "APPROVED_STABLE"},
     "approvalDate": {"$ref": "#/$defs/date"},
     "owner": {"type": "string", "minLength": 1},
@@ -25,17 +29,22 @@
       "$ref": "#/$defs/commit",
       "description": "Commit that approved the maintained package-source baseline used by the canonical editor."
     },
-    "sourceHashes": {
-      "type": "object",
-      "required": ["content", "presentation", "taskRegistry"],
-      "properties": {
-        "content": {"$ref": "#/$defs/sha256"},
-        "presentation": {"$ref": "#/$defs/sha256"},
-        "taskRegistry": {"$ref": "#/$defs/sha256"},
-        "icons": {"$ref": "#/$defs/sha256"}
+    "correctiveReviewCommits": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["commit", "role"],
+        "properties": {
+          "commit": {"$ref": "#/$defs/commit"},
+          "role": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": false
       },
-      "additionalProperties": false
+      "description": "The commits that carried a corrective reissue, each with what it contributed. Pinning the whole review rather than only its last commit is what makes the correction auditable."
     },
+    "sourceHashes": {"$ref": "#/$defs/sourceHashes"},
+    "frozenNonAccessibleDomBaselines": {"$ref": "#/$defs/domBaselines"},
     "rolePageCounts": {"$ref": "#/$defs/roleCounts"},
     "acceptedValidation": {"type": "object"},
     "acceptedPrintStatus": {"type": "string", "minLength": 1},
@@ -54,11 +63,47 @@
       "type": "array",
       "items": {"$ref": "#/$defs/priorRelease"}
     },
+    "correctionSummary": {
+      "type": "object",
+      "required": ["reason", "corrections"],
+      "properties": {
+        "reason": {"type": "string", "minLength": 1},
+        "corrections": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+        "unchanged": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      },
+      "additionalProperties": false,
+      "description": "Set only on a corrective reissue: what the release corrects and, as importantly, what it deliberately leaves alone."
+    },
+    "artifactPolicy": {"type": "string", "minLength": 1},
     "migrationNotes": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "retiredArtifacts": {"type": "array", "items": {"$ref": "#/$defs/legacyArtifact"}}
   },
   "$defs": {
     "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
+    "sourceHashes": {
+      "type": "object",
+      "required": ["content", "presentation", "taskRegistry"],
+      "properties": {
+        "content": {"$ref": "#/$defs/sha256"},
+        "presentation": {"$ref": "#/$defs/sha256"},
+        "taskRegistry": {"$ref": "#/$defs/sha256"},
+        "layoutOverrides": {"$ref": "#/$defs/sha256"},
+        "icons": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "domBaselines": {
+      "type": "object",
+      "required": ["student", "teacher", "answer"],
+      "properties": {
+        "student": {"$ref": "#/$defs/sha256"},
+        "teacher": {"$ref": "#/$defs/sha256"},
+        "answer": {"$ref": "#/$defs/sha256"},
+        "note": {"type": "string", "minLength": 1}
+      },
+      "additionalProperties": false,
+      "description": "Frozen non-Accessible DOM baselines for this version. On a corrective reissue these must differ from the superseded version's, so approved-baseline enforcement cannot be satisfied by the markup the reissue replaced."
+    },
     "date": {"type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
     "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
     "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
@@ -164,8 +209,23 @@
         "approvalDate": {"$ref": "#/$defs/date"},
         "approvalCommit": {"$ref": "#/$defs/commit"},
         "recoveryCommit": {"$ref": "#/$defs/commit"},
-        "formerArtifacts": {"$ref": "#/$defs/priorArtifacts"},
+        "canonicalSourceApprovalCommit": {"$ref": "#/$defs/commit"},
+        "formerArtifacts": {
+          "oneOf": [
+            {"$ref": "#/$defs/priorArtifacts"},
+            {"$ref": "#/$defs/nativeSourceNoArtifacts"}
+          ]
+        },
         "roleHtmlAvailability": {"$ref": "#/$defs/roleHtmlAvailability"},
+        "retainedRecords": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1},
+          "description": "Paths to this superseded version's own records, retained unchanged."
+        },
+        "sourceHashes": {"$ref": "#/$defs/sourceHashes"},
+        "frozenNonAccessibleDomBaselines": {"$ref": "#/$defs/domBaselines"},
+        "rolePageCounts": {"$ref": "#/$defs/roleCounts"},
         "recoveryCommand": {"type": "string", "minLength": 1},
         "notes": {"type": "array", "items": {"type": "string", "minLength": 1}},
         "legacyArtifacts": {"type": "array", "items": {"$ref": "#/$defs/legacyArtifact"}}
