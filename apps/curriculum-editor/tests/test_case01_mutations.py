@@ -135,7 +135,10 @@ class Case01Mutations(unittest.TestCase):
         self.assertFalse(passed, "the mutation must not validate")
         self.assertIn(assertion, failures,
                       f"expected {assertion!r} to fail; actual failures: {failures}")
-        self.assertTrue(set(failures) - PLUMBING,
+        # The guard exists so a mutation is never scored as caught when it merely disturbed
+        # integrity plumbing it was not aiming at. A mutation that deliberately targets one of
+        # those checks — the certified-source pin is one — is exempted by name.
+        self.assertTrue(set(failures) - (PLUMBING - {assertion}),
                         "the mutation was caught only by hash or lifecycle plumbing")
 
     # ── 1-3 · unsupported historical controls ────────────────────────────────
@@ -420,9 +423,9 @@ class Case01Mutations(unittest.TestCase):
     def test_retained_v1_0_approval_rewritten_to_describe_v1_1(self):
         """The v1.0 approval record may not be edited to describe the corrective release."""
         body = RETAINED_APPROVAL.read_text(encoding="utf-8")
-        RETAINED_APPROVAL.write_text(body.replace("Release status: **APPROVED_STABLE**",
-                                                  "Release status: **APPROVED_STABLE** (superseded by v1.1)"),
-                                     encoding="utf-8")
+        mutated = body.replace("| Version | 1.0 |", "| Version | 1.0, superseded by v1.1 |")
+        self.assertNotEqual(mutated, body, "mutation anchor not found in the v1.0 approval record")
+        RETAINED_APPROVAL.write_text(mutated, encoding="utf-8")
         self.assert_trips("both retained v1.0 records are byte-identical to synchronised main")
 
 

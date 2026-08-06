@@ -7,7 +7,7 @@
   "approvalDate": "2026-08-06",
   "owner": "Nate / Owner",
   "originalReleaseApprovalCommit": "864156f068cf89b595e1a394f1a4294c839f2876",
-  "canonicalSourceApprovalCommit": "1991817eecbda895970307c817aa46ffdc5a9eb8",
+  "canonicalSourceApprovalCommit": "8ab60f3ad29d84bdc72e4197503315bba477f750",
   "correctiveReviewCommits": [
     {
       "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
@@ -32,6 +32,10 @@
     {
       "commit": "1991817eecbda895970307c817aa46ffdc5a9eb8",
       "role": "The narrow layout correction found by rendering the corrected packet: the Answer Key classification column widened from .78in to 3.1in. The last candidate commit, carrying the approved content and layout-override sources unchanged."
+    },
+    {
+      "commit": "8ab60f3ad29d84bdc72e4197503315bba477f750",
+      "role": "The v1.1 corrective release: lifecycle promotion, the v1.1 release and owner-approval records, regenerated DOM baselines, and the release-mode validator and mutations. This is the commit canonicalSourceApprovalCommit certifies, because the approved task registry exists only here."
     }
   ],
   "sourceHashes": {
@@ -54,27 +58,27 @@
   },
   "acceptedValidation": {
     "status": "PASS",
-    "case01Scoped": "PENDING",
+    "case01Scoped": "135/135 (74/74 at the approved v1.0; the correction added 43 assertions covering evidence availability, supported controls, Teacher-task synchronisation, source attribution, standards and revision propagation, and the release conversion added a further 18 covering the approved v1.1 lifecycle, the v1.1 release and owner-approval records, prior-release representation, the regenerated DOM baselines and the certified-source-commit check)",
     "case02Scoped": "108/108 (unchanged, byte-identical)",
     "case03Scoped": "107/107 (unchanged, byte-identical)",
     "case04Scoped": "82/82 (unchanged, byte-identical)",
     "case05Scoped": "101/101 (unchanged, byte-identical)",
     "case06Scoped": "230/230 (unchanged, byte-identical)",
-    "static": "PENDING",
-    "browser": "PENDING",
-    "pdf": "PENDING",
+    "static": "598/598 (597/597 at the approved v1.0; the Case 01 mutation suite joins the chain)",
+    "browser": "2161/2161 across all 104 case/role/presentation states",
+    "pdf": "316/316 across the registry-derived case-edition print documents",
     "canonicalStructure": "PASS",
-    "layoutContracts": "PENDING",
+    "layoutContracts": "PASS across 13 registered cases; Accessible 201 eligible/274 locked, Student 118 eligible/365 locked. Case 01 is unchanged at Accessible 11/35 and Student 11/35: v1.1 added no response area and removed none.",
     "authoringSecurity": "13/13",
     "correctiveReleaseLifecycle": "25/25",
-    "case01Mutations": "PENDING",
+    "case01Mutations": "33/33; every mutation names and trips the specific protection it targets rather than a hash or baseline check. 25 at the candidate tip, plus eight release-mode lifecycle mutations covering the missing v1.1 record, the downgraded print gate, a dropped prior release, a prior release rewritten to describe v1.1, baselines reverted to v1.0 markup, a certified-source pin that does not contain what it certifies, a deleted v1.0 record, and a v1.0 approval record rewritten to describe v1.1",
     "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
-    "pageCountsAndFit": "PENDING",
-    "evidenceAvailability": "PENDING",
-    "supportedControls": "PENDING",
+    "pageCountsAndFit": "PASS for all 26 pages; no page overflows in any role at Student 5, Teacher 9, Answer Key 4, Accessible 8. Measured slack in CSS pixels of a 936-pixel content area: Student 30/143/76/362/39; Teacher 252/42/275/281/337/152/216/403/61; Answer Key 147/471/49/185; Accessible 8/432/391/354/521/332/0/211.",
+    "evidenceAvailability": "PASS; every graded Answer Key expectation and every clause of the CER exemplar is producible from the Student edition alone and, independently, from the Accessible edition alone, on or before the page carrying the task that assesses it. Checked two ways: against a declared list of graded expectations, and by deriving requirements from the Answer Key's own reported values and record identifiers. Every value the learner editions withhold occurs 0 times in the Answer Key.",
+    "supportedControls": "PASS; only soil mineral formulation and seed stock are recorded as changed between plantings, which is what the canonical runtime reports. No role presents nutrients, light or water as changed, verified, tested or ruled out, no condition is recorded as ruled out, and Ring Status: NOMINAL is never expanded into an unreported absence.",
     "sourceBoundaryAndProhibitedClaims": "PASS; direction/magnitude, over-calibration, Earth-generalisation and guaranteed-remedy claims all mechanically blocked, and the universal gradient-sensitivity claim is now blocked with them",
     "teachingAnalogyContainment": "PASS; merry-go-round values confined to the marked data-analogy block",
-    "accessibleDifferentiation": "PENDING",
+    "accessibleDifferentiation": "67.0% word-sequence similarity to the Student edition, against 67.7% at v1.0 and inside the 80% ceiling. The edition keeps its shorter directions, smaller evidence chunks, just-in-time vocabulary, word bank, structured prompts and dedicated CER page.",
     "javascriptErrors": "0",
     "gitDiffCheck": "clean",
     "visualReview": "PASS; owner review of the rendered pages, including grayscale"
@@ -84,7 +88,7 @@
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
   },
-  "formerArtifactRecoveryCommit": "1991817eecbda895970307c817aa46ffdc5a9eb8",
+  "formerArtifactRecoveryCommit": "8ab60f3ad29d84bdc72e4197503315bba477f750",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [
     {
