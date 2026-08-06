@@ -193,7 +193,7 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
     },
     "excludedFromStudentWork": {
       "approximateEffectivePar": 14,
-      "reason": "The runtime reports this as an estimate from an incomplete weighting model. It is not an exact organism-level action-spectrum result and is never used in student calculations."
+      "reason": "The runtime reports this value as approximate and does not report how it was obtained. It is not an exact organism-level action-spectrum result and is never used in student calculations."
     }
   },
   "sourceStatus": {
