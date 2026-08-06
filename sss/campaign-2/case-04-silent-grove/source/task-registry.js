@@ -2,12 +2,12 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE04",
   "title": "The Silent Grove",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "approvalDate": "2026-08-05",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
+  "correctiveOf": "1.0",
+  "owner": "Nate / Owner",
+  "ownerReviewStatus": "OWNER_REVIEW_IN_PROGRESS",
+  "printStatus": "NOT_RUN",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "silent_grove",
@@ -54,7 +54,7 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
       "semanticLabel": "PATTERN ANALYSIS",
       "icon": "ph-nodes",
       "title": "Weaken the Competing Explanations",
-      "description": "Use the grove readings, the examination record, and the habitat record to weaken the filtration, light-damage, and transit-stress explanations with evidence.",
+      "description": "Use the grove readings, the examination record, and the recorded transit history to weaken the filtration-drift, light-damage, and transit-stress explanations with evidence.",
       "keyed": true
     },
     {
@@ -255,9 +255,90 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
     "figures": "curriculum-original",
     "teachingAnalogy": "Task 2 uses a kitchen scale that reads 0 kg for an envelope and two witnesses, Rosa and Theo, who record a rain shower stopping at 4:00 and 4:10. Task 3 uses Mia and Sam, who each sleep 8 hours a day in different patterns. Those examples teach the ideas only. They are labelled in the printable content as not being grove measurements, they carry lettered table numbers rather than the numbered case tables, and their values never appear as case evidence."
   },
+  "alternativeSourceFidelity": {
+    "rule": "A rejected alternative must keep the causal direction the runtime states. A claim that a system has drifted out of its calibrated range is not the same claim as a system operating as set, and the packet's rejection evidence answers the former.",
+    "runtimeLabel": "The atmospheric chemical filtering has drifted out of range despite the crew's monitoring.",
+    "curriculumWording": "The chemical scrubbers have drifted out of their target range and are removing the signalling compounds from the air.",
+    "rejectionEvidence": "Table 3 reports the chemical scrubbers active and within the Zhel'ii target range and compound filtration set to preserve; Table 6 reports the compounds not produced rather than removed."
+  },
+  "standards": [
+    {
+      "code": "MS-LS1-5",
+      "claim": "supporting",
+      "bounded": true,
+      "assessingTasks": [7],
+      "assessedPractice": "Constructing a written evidence-based explanation of how a local environmental condition influences an organism. The practice half only.",
+      "learnerEvidence": [
+        "Table 5 — the two-year within-cycle record, peak in hours 19–24 and minimum in hours 6–12 (Student page 3, Accessible page 3)",
+        "Table 4 — the Day −90 schedule change and no other environmental variable changed (Student page 2, Accessible page 2)",
+        "Table 6 — the examination record showing the organisms structurally intact (Student page 4, Accessible page 4)"
+      ],
+      "limitation": "The performance expectation names growth and genetic factors. This case holds growth constant deliberately, the affected output is a signalling compound, and no genetic factor is investigated. Claim the explanation practice, not the performance expectation."
+    },
+    {
+      "code": "MS-ETS1-1",
+      "claim": "supporting",
+      "assessingTasks": [8],
+      "assessedPractice": "Writing two criteria for a schedule specification and naming one constraint reported in the case.",
+      "learnerEvidence": [
+        "Task 8 response — Criterion 1, dark hours per cycle, justified against the recorded five-hour minimum",
+        "Task 8 response — Criterion 2, cycle stability",
+        "Table 7 — the validated dark interval, the schedule with a two-year record, and the six-month reversibility window (Student page 6, Accessible page 8)",
+        "Table 4 — the Day −93 power fluctuation, available as a reported constraint (Student page 2, Accessible page 2)"
+      ],
+      "limitation": "Supporting, not direct. The Student task does not ask students to account for impacts on people, and the runtime's cultural-significance record appears in no learner edition. Campaign 2 Case 03 rates its structurally similar final specification task as supporting."
+    },
+    {
+      "code": "MS-ETS1-2",
+      "claim": "supporting",
+      "conditional": true,
+      "assessingTasks": [8],
+      "limitation": "Claim only if the class systematically compares restoring the six-hour schedule against adopting the five-hour recorded minimum using the same criteria and constraints. The packet as written asks for one specification with a justification, which is not a systematic comparison."
+    }
+  ],
+  "withdrawnStandards": [
+    {
+      "code": "MS-LS1-5",
+      "claimedIn": "1.0",
+      "claimedAs": "direct",
+      "withdrawnIn": "1.1",
+      "retainedAs": "supporting",
+      "reason": "The performance expectation concerns environmental and genetic factors affecting organism growth. This case deliberately holds growth constant and uses a signalling and function outcome instead, and the packet's own assessment boundary instructs teachers not to report growth evidence from it. A boundary note cannot turn a mismatched performance expectation into a direct standard. No standard replaces the direct claim."
+    },
+    {
+      "code": "MS-ETS1-1",
+      "claimedIn": "1.0",
+      "claimedAs": "direct",
+      "withdrawnIn": "1.1",
+      "retainedAs": "supporting",
+      "reason": "The v1.0 justification rested partly on Task 8 accounting for impacts on the people who live with the grove. The Student task sets no such expectation, and the cultural-significance record that would support it is runtime-only. Task 8 was not enlarged in order to preserve the direct rating."
+    },
+    {
+      "code": "mathematics",
+      "reason": "The packet requires no calculation anywhere; the reasoning is comparative and temporal."
+    }
+  ],
+  "learnerEvidencePolicy": {
+    "rule": "Every graded Answer Key expectation and every clause of the CER exemplar must be producible from the Student edition alone and, independently, from the Accessible edition alone, using evidence printed on or before the page of the task that assesses it.",
+    "suppliedToLearners": [
+      "Day −93", "Day −90", "Day −83", "Day −80",
+      "power fluctuation", "no other", "no structural decline", "measurable threshold",
+      "24.0 h on / 0.0 h off", "18 h on / 6 h off", "0.0 ppb", "40–80 ppb",
+      "five dark hours", "six dark hours", "six months", "Hours 19–24", "Hours 6–12",
+      "target range", "set to preserve", "structurally sound", "entrained"
+    ],
+    "withheldFromLearners": [
+      "culturally significant", "sacred", "the grove's historical light intensity before Day −90"
+    ],
+    "teacherOnly": [
+      "The runtime record that the grove is culturally significant to the Thal-Oren community — discussion context only, never a graded requirement",
+      "The 7–10 day suppression window, which is printed at Task 8 and therefore may not be required by the Task 7 CER exemplar"
+    ],
+    "note": "Task 1 classification evidence is repeated as a compact change record on the page of Task 1 in both learner editions. The Accessible edition carries a condensed Table 4 on the Task 2 page rather than the Student's five-row day-by-day table."
+  },
   "correctDiagnosis": "Removing the recurring dark interval removed the timing cue that this grove's recorded signalling cycle is entrained to, so measured output fell to the reporting threshold while the three organisms stayed structurally healthy.",
   "incorrectAlternatives": [
-    "the chemical scrubbers are filtering the signalling compounds out of the air",
+    "the chemical scrubbers have drifted out of their target range and are filtering the signalling compounds out of the air",
     "the light intensity is high enough to damage the grove's photosynthetic tissue",
     "the ship's transit environment is stressing the grove"
   ],
@@ -276,6 +357,8 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
     "five dark hours is the requirement for this or any grove",
     "the caretakers damaged the grove",
     "the average healthy output is 60 ppb",
+    "intensity has stayed at 100% throughout",
+    "the light intensity did not change",
     "the grove was singing as an acoustic measurement",
     "correlation alone proves causation"
   ],
@@ -299,6 +382,8 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
     "Do not read or draw a value for any hour block the records mark as not separately reported.",
     "Do not average or reconcile the two logs' different silence-onset days.",
     "Do not convert the recorded five-hour minimum into the specification value; the schedule with a two-year record used six dark hours.",
-    "Do not generalise this grove's dark-interval requirement to plants as a whole."
+    "Do not generalise this grove's dark-interval requirement to plants as a whole.",
+    "Report the 100% intensity reading as a current value only. The records do not report the intensity before Day -90, so no role may state that intensity stayed the same or never changed.",
+    "Keep the filtration alternative's causal direction: the runtime states that chemical filtering has drifted out of range, not that a correctly set system is removing the compounds."
   ]
 };
