@@ -6,13 +6,12 @@
   "title": "Heavy Hands",
   "subtitle": "Campaign 2 · Case 01 · Kepler-442b Orbit, Vressk Territory",
   "location": "Vressk Centrifuge Habitat",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
   "approval": {
-    "date": "2026-08-04",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_IN_PROGRESS",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE01:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE01:v1.1:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -88,7 +87,7 @@
     },
     "teacher": {
       "documentRole": "Teacher Guide",
-      "pageCount": 8
+      "pageCount": 9
     },
     "answer": {
       "documentRole": "Answer Key",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE01_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C2_CASE01_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C2_CASE01_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C2_CASE01_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C2_CASE01_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C2_CASE01_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C2_CASE01_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C2_CASE01_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C2_CASE01_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C2_CASE01_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 01 v1.0 — Heavy Hands Curriculum Editor",
-    "loadAnnouncement": "Heavy Hands Campaign 2 Case 01 v1.0 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 01 v1.1 — Heavy Hands Curriculum Editor",
+    "loadAnnouncement": "Heavy Hands Campaign 2 Case 01 v1.1 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       ".extended-description",
@@ -130,11 +129,10 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-01-heavy-hands/history/release-v1.0.json",
   "sourceHashes": {
-    "content": "af6143c46bc166be3420ce0d6243e615f49caaca7d679e587633a0e66e975e4c",
-    "presentation": "9ba4fc5dffc501126032f8a06d1c21e17f5ea8fe914b0a0a885c377d0ccc3d05",
-    "taskRegistry": "7d92bac95a3661a8ae4eaa2843e91b2ec4c59541b07234e8b4a8d888131788d1",
+    "content": "1b0e5550e37faa1842ae7ee6838e37b900b9d5a1bf687ab2cfb8461c4e1301b0",
+    "presentation": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
+    "taskRegistry": "94cc2ba76d87479cd9267fe9ee6d8b3f24a12818f428eea0417db54124227d54",
     "layoutOverrides": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605"
   }
 }
