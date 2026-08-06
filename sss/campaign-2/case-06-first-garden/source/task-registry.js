@@ -250,8 +250,8 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
     {
       "id": "fig-patches-accessible",
       "kind": "curriculum-original case record figure",
-      "shows": "The Accessible edition of the same plan view, with the same circular patches, the same zones and the same fill patterns, described in plainer register. It is not to scale and draws no distance between patches.",
-      "prohibited": "It must never be read as a map of the garden or used to infer where any particular bed sits, and the trace-level ground must never be described as empty or as containing none of the compounds."
+      "shows": "The Accessible edition of the same plan view, with the same circular patches, the same zones and the same fill patterns, described in plainer register.",
+      "prohibited": "It must never be read as a map of the garden or used to infer where any particular bed sits, and the trace-level ground must never be described as empty or as containing none of the compounds. It is not to scale: no distance between patches is drawn, and no individual patch is given a measurement of its own."
     }
   ],
   "productionCautions": [

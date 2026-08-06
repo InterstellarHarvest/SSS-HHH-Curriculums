@@ -750,6 +750,248 @@ def main() -> int:
                   not any(a["persistId"] in {"t6c", "t6e", "t6r", "t5-m2", "t4-c1"}
                           for a in layout["student"]["areas"]))
 
+    # ── Figure geometry, and the ledger that describes it ────────────────
+    # The v1.0 defect: an owner-review revision turned Figure A into a plan view
+    # of circular patches, but the Teacher Guide, the README and figureProvenance
+    # went on describing a twelve-metre strip, and the drawing kept a dimension
+    # line asserting a distance the survey never reports.
+    readme = (CASE_ROOT / "README.md").read_text(encoding="utf-8")
+    # The corrective-release section exists to name the defect it repaired, so it
+    # is read for agreement with the rendered figure but exempt from the scan for
+    # surviving strip language.
+    readme_current = readme.split("## What v1.1 corrects")[0] + readme.split("## Science boundary")[-1]
+    registry_text = (SOURCE / "task-registry.js").read_text(encoding="utf-8")
+    STRIP = re.compile(r"twelve[- ]met(?:re|er)|\bthe strip\b|\balong a strip\b", re.I)
+    strip_survivors = [name for name, body in
+                       (("student", student_text), ("teacher", teacher_text),
+                        ("answer", answer_text), ("accessible", accessible_text),
+                        ("task-registry.js", registry_text), ("README.md", readme_current))
+                       if STRIP.search(body)]
+    results.check("no role, ledger or README still describes Figure A as a strip",
+                  not strip_survivors, strip_survivors)
+    results.check("the strip detector fires on the wording it exists to catch",
+                  bool(STRIP.search("drawn along a twelve-metre strip"))
+                  and bool(STRIP.search("The strip is drawn to show the pattern")))
+    for figure in figures:
+        fid = figure["data-figure-id"]
+        svg = figure.find("svg")
+        desc_text = figure.select_one(".extended-description").get_text(" ", strip=True)
+        svg_text = svg.get_text(" ", strip=True)
+        patches = [c for c in svg.select("circle") if str(c.get("fill", "")).startswith("url(")]
+        results.check(f"{fid} renders the plan view its description claims",
+                      len(patches) >= 3 and "plan view" in svg["aria-label"].lower()
+                      and "plan view" in desc_text.lower(), len(patches))
+        # The only quantity the survey reports about the drawing is the diameter range.
+        stray = [m.group(0) for m in
+                 re.finditer(r"\b\d+(?:[.,]\d+)?\s*m\b", svg_text.replace("4–6 m", ""))]
+        results.check(f"{fid} carries no measurement beyond the reported diameter range",
+                      not stray, stray)
+        results.check(f"{fid} draws no distance between patches",
+                      not re.search(r"(?:apart|between (?:the )?(?:circles|patches))[^.]{0,40}"
+                                    r"\b(?:met(?:re|er)s?|m)\b", desc_text, re.I)
+                      and not re.search(r"\b(?:three|3)\s*(?:met(?:re|er)s|m)\b", svg_text, re.I),
+                      desc_text[:120])
+        results.check(f"{fid} assigns no measurement to an individual patch",
+                      not re.search(r"(?:each|the three drawn here|first|second|third)[^.]{0,60}"
+                                    r"\b(?:five|six|four|\d)\s*met(?:re|er)s\b", desc_text, re.I),
+                      desc_text[:120])
+    provenance = {item["id"]: item for item in registry["figureProvenance"]}
+    results.check("figureProvenance describes the rendered plan view, not a superseded figure",
+                  all("plan view" in item["shows"].lower() and not STRIP.search(item["shows"])
+                      for item in provenance.values()),
+                  [i["shows"][:70] for i in provenance.values()])
+    results.check("figureProvenance records that the figure is not to scale",
+                  all("not to scale" in item["prohibited"].lower() for item in provenance.values()))
+    results.check("the figure ledger, the README and the Teacher Guide agree on the plan view",
+                  "plan view" in registry["sourceStatus"]["figures"].lower()
+                  and "plan view" in readme.lower() and "plan view" in teacher_text.lower())
+
+    # ── Evidence availability: an Answer Key must be producible ──────────────
+    # The v1.0 defect: Task 4 graded five sources, and three of them had no
+    # printed statement in any learner edition. GC-2201 appeared nowhere a
+    # learner could read, and Section 14.7 first appeared a task too late.
+    def page_index(role: str, needle: str) -> int:
+        """First page (1-based) of that role whose visible text contains needle, else 0."""
+        for n, page in enumerate(soup.select(f'.page[data-role="{role}"]'), 1):
+            if needle.lower() in " ".join(page.stripped_strings).lower():
+                return n
+        return 0
+
+    def task_page(role: str, task: int) -> int:
+        for n, page in enumerate(soup.select(f'.page[data-role="{role}"]'), 1):
+            if task in page_tasks(page):
+                return n
+        return 0
+
+    SOURCE_EVIDENCE = {
+        "Dr. Nova": ["forty years"],
+        "Delegate Vorn-Shael": ["trace levels"],
+        "Delegate Kess": ["compatible roots", "carbon"],
+        "Delegate Ilreth-Mar": ["Section 14.7"],
+        "Federation Database": ["GC-2201"],
+    }
+    results.check("the source-evidence roster covers exactly the five ledger sources",
+                  list(SOURCE_EVIDENCE) == [item["source"] for item in registry["sourceLedger"]])
+    unavailable = []
+    for role in ("student", "accessible"):
+        deadline = task_page(role, 4)
+        for source, tokens in SOURCE_EVIDENCE.items():
+            for token in tokens:
+                found = page_index(role, token)
+                if not found or found > deadline:
+                    unavailable.append(f"{role}: {source} — {token!r} "
+                                       f"{'absent' if not found else f'first on page {found}, after Task 4 on {deadline}'}")
+    results.check("every source Task 4 grades reports on the learner page, at or before Task 4",
+                  not unavailable, unavailable)
+
+    # Nothing the Answer Key names by designation may be invisible to a learner.
+    designations = set(re.findall(r"\bGC-\d+\b|\bSection \d+\.\d+\b", answer_text))
+    ungrounded = [d for d in sorted(designations)
+                  if d.lower() not in student_text.lower() or d.lower() not in accessible_text.lower()]
+    results.check("every designation the Answer Key relies on is printed in both learner editions",
+                  not ungrounded, ungrounded)
+
+    # ── Accessible answerability ────────────────────────────────────────────
+    # The v1.0 defect: the Accessible Task 1 table dropped the record column, so
+    # no learner could tell which row was never tested, and Task 3's rejections
+    # for pH and for invasive organisms had no record behind them.
+    a_task1 = soup.select_one('.page[data-role="accessible"] table.checked-table')
+    a_headers = [th.get_text(strip=True) for th in a_task1.select("thead th")]
+    results.check("the Accessible Task 1 table carries the record the task is graded on",
+                  len(a_headers) == 3 and "record" in a_headers[1].lower(), a_headers)
+    a_rows = {tr.find("td").get_text(strip=True):
+              [td.get_text(" ", strip=True) for td in tr.select("td")]
+              for tr in a_task1.select("tbody tr")}
+    results.check("the Accessible Task 1 record identifies the untested category",
+                  "never tested" in a_rows["The soil fungal community"][1].lower()
+                  and all("never tested" not in cells[1].lower()
+                          for row, cells in a_rows.items() if row != "The soil fungal community"),
+                  a_rows["The soil fungal community"][1])
+    TASK3_EVIDENCE = {
+        "pH rejection": "corrected years ago",
+        "irrigation rejection": "same water",
+        "toxicology record": "toxicology",
+        "invasive-organism rejection": "decades",
+        "the pattern predates the summit": "before the",
+    }
+    missing_task3 = [f"{role}: {label}" for role in ("student", "accessible")
+                     for label, token in TASK3_EVIDENCE.items()
+                     if token not in {"student": student_text, "accessible": accessible_text}[role].lower()]
+    results.check("both learner editions carry the record behind every Task 3 rejection",
+                  not missing_task3, missing_task3)
+
+    # ── Cross-role references resolve in the role the reader holds ───────────
+    # The v1.0 defect: the Student vocabulary table was numbered and the
+    # Accessible equivalent was not, so four Teacher and Answer Key references
+    # named a table that meant something else in the differentiated edition.
+    def numbered_tables(role: str) -> dict[str, str]:
+        found = {}
+        for cap in soup.select(f'.page[data-role="{role}"] table.data-table caption'):
+            match = re.match(r"Table (\d+) · (.+)", cap.get_text(strip=True))
+            if match:
+                found[match.group(1)] = match.group(2)
+        return found
+
+    student_tables, accessible_tables = numbered_tables("student"), numbered_tables("accessible")
+    results.check("both learner editions number the same evidence tables",
+                  set(student_tables) == set(accessible_tables),
+                  sorted(set(student_tables) ^ set(accessible_tables)))
+
+    def topic(caption: str) -> set[str]:
+        return {w for w in re.findall(r"[a-z]{4,}", caption.lower())
+                if w not in {"what", "that", "have", "does", "must", "will", "each", "they", "this"}}
+
+    divergent = [f"Table {n}: student {student_tables[n]!r} vs accessible {accessible_tables.get(n)!r}"
+                 for n in sorted(student_tables)
+                 if n in accessible_tables and not (topic(student_tables[n]) & topic(accessible_tables[n]))]
+    results.check("a table number means the same record in both learner editions",
+                  not divergent, divergent)
+    referenced = set(re.findall(r"Table (\d+)", teacher_text + " " + answer_text))
+    referenced |= {str(n) for a, b in re.findall(r"Tables (\d+)[–-](\d+)", teacher_text + " " + answer_text)
+                   for n in range(int(a), int(b) + 1)}
+    unresolved = [f"Table {n}" for n in sorted(referenced, key=int)
+                  if n not in student_tables or n not in accessible_tables]
+    results.check("every table the Teacher Guide or Answer Key names resolves in both learner editions",
+                  not unresolved, unresolved)
+    VOCABULARY = re.compile(r"vocabulary|words you will need|working meanings", re.I)
+    numbered_vocabulary = [c.get_text(strip=True)
+                           for c in soup.select("table.data-table caption")
+                           if c.get_text(strip=True).startswith("Table ")
+                           and VOCABULARY.search(c.get_text(strip=True))]
+    results.check("no vocabulary aid takes an evidence-table number",
+                  not numbered_vocabulary, numbered_vocabulary)
+    results.check("both learner editions still carry a vocabulary aid, unnumbered",
+                  all(any(VOCABULARY.search(node.get_text(" ", strip=True))
+                          for node in soup.select(f'.page[data-role="{role}"] '
+                                                  '.vocabulary-list, .page[data-role="'
+                                                  f'{role}"] .support-heading, .page[data-role="'
+                                                  f'{role}"] table.vocabulary-table caption'))
+                      for role in ("student", "accessible")))
+    results.check("the numbered evidence tables run 1 to N with no gap in either edition",
+                  sorted(map(int, student_tables)) == list(range(1, len(student_tables) + 1))
+                  and sorted(map(int, accessible_tables)) == list(range(1, len(accessible_tables) + 1)),
+                  (sorted(student_tables, key=int), sorted(accessible_tables, key=int)))
+    figure_letters = {role: {re.match(r"Figure ([A-Z])", f.find("figcaption").get_text(strip=True)).group(1)
+                             for f in soup.select(f'.page[data-role="{role}"] figure[data-figure-id]')}
+                      for role in ("student", "accessible")}
+    results.check("every figure the Teacher Guide or Answer Key names resolves in both learner editions",
+                  set(re.findall(r"Figure ([A-Z])\b", teacher_text + " " + answer_text))
+                  <= (figure_letters["student"] & figure_letters["accessible"]),
+                  figure_letters)
+
+    # ── Revision propagation: the guide describes the case that shipped ─────
+    # The v1.0 defect: four Teacher Guide statements survived a revision that
+    # changed the figure, the Student page contract and the Accessible edition.
+    for page in soup.select("[data-analogy]"):
+        holder = page.find_parent(class_="page")
+        role = holder["data-role"]
+        results.check(f"the {role} analogy prints inside the task it teaches",
+                      page_tasks(holder) and page_tasks(holder)[0] == 1, page_tasks(holder))
+        heading = holder.select_one("[data-shell-task-heading]")
+        body = holder.decode()
+        results.check(f"the {role} analogy prints after the Task 1 heading and before its record",
+                      body.index(str(heading)) < body.index(page.decode())
+                      < body.index(str(holder.select_one("table.checked-table"))))
+    results.check("the Teacher Guide does not claim a full-page CER in both learner editions",
+                  not re.search(r"CER occupies a full page in both", teacher_text, re.I)
+                  and "combined" in teacher_text.lower())
+    results.check("the Student CER page contract the Teacher Guide describes is the one rendered",
+                  bool(soup.select_one('[data-student-cer-page="combined-v1.0"]'))
+                  and bool(soup.select_one('[data-accessible-cer-page="canonical-v1.0"]')))
+    results.check("the Teacher Guide does not claim the Accessible evidence is identical",
+                  not re.search(r"the evidence(?:\s+available)?[^.]{0,40}\bare identical\b"
+                                r"|evidence and the diagnosis are identical", teacher_text, re.I),
+                  [m.group(0) for m in re.finditer(r"[^.]*identical[^.]*\.", teacher_text)])
+    results.check("the Teacher Guide describes the Accessible adaptation the case ships",
+                  "plainer register" in teacher_text and "sentence frame" in teacher_text.lower())
+
+    # ── Standards claim only what a task assesses ───────────────────────────
+    standards = {item["code"]: item for item in registry["standards"]}
+    withdrawn = {item["code"]: item for item in registry["standardsWithdrawn"]}
+    task_numbers = {int(task["number"]) for task in registry["tasks"]}
+    results.check("every retained standard names an alignment, an assessing task, and its evidence",
+                  all(item["alignment"] in {"direct", "supporting"}
+                      and item["assessedAt"] in task_numbers
+                      and len(item["taskEvidence"]) > 120 for item in standards.values()),
+                  sorted(standards))
+    results.check("every retained standard is named in the Teacher Guide beside its task",
+                  all(code in teacher_text for code in standards), sorted(standards))
+    results.check("MS-LS2-2 and MS-ETS1-2 are withdrawn and not claimed anywhere",
+                  {"MS-LS2-2", "MS-ETS1-2"} <= set(withdrawn)
+                  and not ({"MS-LS2-2", "MS-ETS1-2"} & set(standards))
+                  and not re.search(r"MS-LS2-2 is (?:the )?direct|MS-LS2-2 is the direct alignment",
+                                    teacher_text)
+                  and not re.search(r"[Ss]upporting[^.]{0,80}MS-ETS1-2", teacher_text),
+                  sorted(withdrawn))
+    results.check("each withdrawal records why the task cannot carry the standard",
+                  all(len(item["reason"]) > 120 and item["wasClaimed"] in {"direct", "supporting"}
+                      for item in withdrawn.values()))
+    results.check("no life-science standard was substituted for the withdrawn MS-LS2-2",
+                  {c for c in standards if c.startswith("MS-LS")} == {"MS-LS2-3"}, sorted(standards))
+    results.check("the ledger records that the withdrawn standards need a task before they return",
+                  any("MS-LS2-2" in caution and "MS-ETS1-2" in caution
+                      for caution in registry["productionCautions"]))
+
     # ── Metadata hygiene ─────────────────────────────────────────────
     LIFECYCLE_METADATA = re.compile(
         r"\bDRAFT\b|\bAPPROVED_STABLE\b|OWNER_REVIEW|\bNOT_RUN\b|\bmerge\b|\bbranch\b|feat/|"
