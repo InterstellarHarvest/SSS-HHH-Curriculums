@@ -28,8 +28,9 @@ CASE_ID = "SSS-C2-CASE02"
 CASE_ROOT = ROOT / "sss/campaign-2/case-02-missing-dance"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-RELEASE_VERSION = "1.0"
-APPROVAL_DATE = "2026-08-05"
+CANDIDATE_VERSION = "1.1"
+RETAINED_VERSION = "1.0"
+RETAINED_APPROVAL_DATE = "2026-08-05"
 RUNTIME_ID = "missing_dance"
 ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
@@ -151,34 +152,41 @@ def main() -> int:
                   and package["subtitle"] == "Campaign 2 · Case 02 · Olympia District, Mars")
 
     # ── Approved lifecycle ───────────────────────────────────────────
-    results.check("the package records the approved release lifecycle",
-                  package["status"] == "APPROVED_STABLE"
-                  and package["version"] == RELEASE_VERSION
-                  and package["approval"] == {"date": APPROVAL_DATE, "owner": "Nate / Owner",
-                                              "status": "APPROVED", "printStatus": "PASS"},
+    results.check("the package records the corrective candidate lifecycle",
+                  package["status"] in {"DRAFT", "OWNER_GATE_OPEN"}
+                  and package["version"] == CANDIDATE_VERSION
+                  and package["approval"].get("printStatus") == "NOT_RUN"
+                  and package["approval"].get("status") in {"OWNER_REVIEW_NOT_STARTED",
+                                                            "OWNER_REVIEW_IN_PROGRESS"}
+                  and "date" not in package["approval"],
                   package["approval"])
-    results.check("the task registry records the same approved release lifecycle",
+    results.check("the candidate claims no release record of its own",
+                  "releaseHistory" not in package and "releaseHistory" not in registry
+                  and not (CASE_ROOT / f"history/release-v{CANDIDATE_VERSION}.json").exists()
+                  and not (CASE_ROOT / f"history/CASE02_OWNER_APPROVAL_v{CANDIDATE_VERSION}.md").exists())
+    results.check("the task registry records the same corrective candidate lifecycle",
                   (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
-                   registry.get("mergeStatus"), registry.get("approvalDate"), registry.get("approvedBy"))
-                  == (RELEASE_VERSION, "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE",
-                      APPROVAL_DATE, "Nate / Owner"))
-    history_path = CASE_ROOT / "history/release-v1.0.json"
-    approval_path = CASE_ROOT / "history/CASE02_OWNER_APPROVAL_v1.0.md"
-    results.check("the approved package names exactly one retained release-history record",
-                  package.get("releaseHistory") == history_path.relative_to(ROOT).as_posix()
-                  and sorted(path.name for path in (CASE_ROOT / "history").iterdir())
-                  == ["CASE02_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"])
+                   registry.get("printStatus"), registry.get("correctiveOf"))
+                  == (CANDIDATE_VERSION, package["status"], package["approval"]["status"],
+                      "NOT_RUN", RETAINED_VERSION)
+                  and "approvalDate" not in registry and "mergeStatus" not in registry,
+                  (registry.get("status"), registry.get("correctiveOf")))
+    history_path = CASE_ROOT / f"history/release-v{RETAINED_VERSION}.json"
+    approval_path = CASE_ROOT / f"history/CASE02_OWNER_APPROVAL_v{RETAINED_VERSION}.md"
+    results.check("the approved v1.0 history is retained intact beside the candidate",
+                  sorted(path.name for path in (CASE_ROOT / "history").iterdir())
+                  == [f"CASE02_OWNER_APPROVAL_v{RETAINED_VERSION}.md",
+                      f"release-v{RETAINED_VERSION}.json"])
     history = json.loads(history_path.read_text(encoding="utf-8"))
-    results.check("the release history records a native release with no former generated artifacts",
-                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RELEASE_VERSION
-                  and history["status"] == "APPROVED_STABLE" and history["approvalDate"] == APPROVAL_DATE
-                  and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
-                  and history["priorApprovedReleases"] == [] and history["retiredArtifacts"] == []
-                  and history["acceptedPrintStatus"] == "PASS at 100% / Actual Size")
-    results.check("the release history page counts and source hashes match the approved package",
-                  history["rolePageCounts"] == {"student": 5, "teacher": 8, "answer": 4, "accessible": 8}
-                  and all(history["sourceHashes"][n] == package["sourceHashes"][n]
-                          for n in ("content", "presentation", "taskRegistry")))
+    results.check("the retained v1.0 record still describes the v1.0 release",
+                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RETAINED_VERSION
+                  and history["status"] == "APPROVED_STABLE"
+                  and history["approvalDate"] == RETAINED_APPROVAL_DATE
+                  and history["rolePageCounts"] == {"student": 5, "teacher": 8, "answer": 4,
+                                                    "accessible": 8})
+    results.check("the retained v1.0 record was not rewritten to describe v1.1 content",
+                  all(history["sourceHashes"][n] != package["sourceHashes"][n]
+                      for n in ("content", "taskRegistry")))
     results.check("every commit reference in the release history exists",
                   all(subprocess.run(["git", "cat-file", "-e", f"{history[field]}^{{commit}}"],
                                      cwd=ROOT, capture_output=True).returncode == 0
@@ -188,14 +196,14 @@ def main() -> int:
                   any(GAME_COMMIT in note for note in history["migrationNotes"])
                   and any("keeps its runtime case number" in note for note in history["migrationNotes"]))
     owner_approval = approval_path.read_text(encoding="utf-8")
-    results.check("the owner approval record captures every release gate and the no-artifact decision",
+    results.check("the retained v1.0 owner approval still records the gates it passed",
                   all(token in owner_approval for token in
-                      ["Nate / Owner", APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
+                      ["Nate / Owner", RETAINED_APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
                        "READY_TO_MERGE", "On-screen content and visual review: **PASS**",
                        "Generated PDF review: **PASS**",
                        "Physical print at 100% / Actual Size: **PASS**",
                        "NO_GENERATED_ARTIFACTS_COMMITTED", GAME_COMMIT]))
-    results.check("no generated release artifact is stored beside the approved case",
+    results.check("no generated release artifact is stored beside the case",
                   not [path.name for path in CASE_ROOT.rglob("*")
                        if path.is_file() and path.suffix.lower() in {".pdf", ".png", ".jpg", ".jpeg", ".html"}
                        and path.name != "content.html"])
@@ -368,10 +376,12 @@ def main() -> int:
     results.check("the four settings appear together so no single one reads as sufficient",
                   len(soup.select(".factor-grid .factor-card")) >= 8
                   and all(term in printable for term in ["Frequency", "Amplitude", "Duration", "Coupling"]))
-    results.check("figure provenance is recorded in the task registry",
-                  len(registry.get("figureProvenance", [])) >= 2
+    rendered_figure_ids = {node["data-figure-id"] for node in soup.select("figure[data-figure-id]")}
+    results.check("figure provenance names exactly the figures the packet renders",
+                  {entry["id"] for entry in registry.get("figureProvenance", [])} == rendered_figure_ids
                   and all(entry.get("kind", "").startswith("curriculum-original")
-                          for entry in registry["figureProvenance"]))
+                          for entry in registry["figureProvenance"]),
+                  sorted(rendered_figure_ids))
 
     # ── Prohibited scientific overstatement ──────────────────────────
     prohibited_findings = [reason for pattern, reason in PROHIBITED if pattern.search(affirmed)]
@@ -420,7 +430,7 @@ def main() -> int:
     answer_text = visible_text(soup, ["answer"])
     results.check("the Answer Key supplies a completed exemplar for every keyed task",
                   all(term in answer_text for term in
-                      ["Completed rule-out", "Why three failed trials are useful evidence",
+                      ["Completed Table 1", "Why three failed trials are useful evidence",
                        "What the salt was waiting for", "Two things working normally",
                        "Which source could establish the mechanism independently",
                        "Completed five-source analysis", "Completed diagnosis analysis",
@@ -469,6 +479,122 @@ def main() -> int:
                           for definition in editions.values() for area in definition["areas"]))
     results.check("the draft ships no owner-applied layout overrides",
                   layout["overrides"] == {} and layout["student"]["overrides"] == {})
+
+    role_text = {role: visible_text(soup, [role]) for role in ROLES}
+    student_text = role_text["student"]
+    teacher_text = role_text["teacher"]
+    accessible_text = role_text["accessible"]
+
+    # ── A. Cross-role task-structure parity ──────────────────────────
+    # Every table a role names in its directions must exist for that reader, and
+    # every direction that tells a learner to write in a column must find one.
+    def tables_named(text):
+        return {int(n) for n in re.findall(r"Table (\d+)", text)}
+    def tables_present(role):
+        return {int(m.group(1)) for node in soup.select(f'.page[data-role="{role}"] table.data-table caption')
+                for m in [re.match(r"Table (\d+)", node.get_text(strip=True))] if m}
+    dangling = {}
+    for role in ROLES:
+        reader = role if role in ("student", "accessible") else "student"
+        missing = tables_named(role_text[role]) - tables_present(reader)
+        if missing:
+            dangling[role] = sorted(missing)
+    results.check("every table a role names resolves for the reader who holds it", not dangling, dangling)
+    results.check("no role names a table suffix that was never rendered",
+                  not re.search(r"Table \d+[a-z]\b", " ".join(role_text.values())),
+                  re.findall(r"Table \d+[a-z]\b", " ".join(role_text.values())))
+
+    def page_with_task(role, number):
+        for page in soup.select(f'.page[data-role="{role}"]'):
+            if any(h["data-shell-task-heading"] == str(number)
+                   for h in page.select("[data-shell-task-heading]")):
+                return page
+        raise AssertionError(f"{role} has no page carrying task {number}")
+
+    task1 = {role: page_with_task(role, 1) for role in ("student", "accessible")}
+    for role, page in task1.items():
+        status_table = next(tbl for tbl in page.select("table.data-table")
+                            if tbl.find("caption").get_text(strip=True).startswith("Table 1"))
+        headers = [th.get_text(strip=True) for th in status_table.select("th")]
+        rows = status_table.select("tbody tr")
+        cells = status_table.select("[data-response]")
+        results.check(f"the {role} Task 1 table gives every row a writable mark cell",
+                      headers[-1] == "OK or ?" and len(rows) == 6 and len(cells) == 6,
+                      (headers[-1], len(rows), len(cells)))
+        results.check(f"the {role} Task 1 directions define both mark categories",
+                      "OK" in role_text[role] and "?" in role_text[role]
+                      and "still worth a second look" in role_text[role])
+    results.check("the Answer Key completes the same seven-row Task 1 table the learners hold",
+                  "Completed Table 1" in answer_text
+                  and all(term in answer_text for term in
+                          ["Air, humidity, light, soil and atmosphere", "Pollen", "Stigma",
+                           "Pollinators in the garden", "Airflow", "Periodic vibration"]))
+    results.check("no role still describes the retired two-column rule-out table",
+                  "Completed rule-out" not in " ".join(role_text.values()))
+    results.check("the Teacher Guide describes the seven-row Task 1 that learners actually hold",
+                  "the first three rows are" in teacher_text and "The last three are" in teacher_text
+                  and "except the last two" not in teacher_text)
+
+    # ── B. Evidence availability ─────────────────────────────────────
+    # Anything the Answer Key or a graded task relies on must be readable in the
+    # learner edition that student holds. Specialist terms must also be defined.
+    learner_text = student_text + " " + accessible_text
+    required_evidence = {
+        "100–150 Hz Telluvian comparison": "100–150 Hz",
+        "the lyre-moth pollinator": "lyre-moth",
+        "its wingbeat": "wingbeat",
+        "buzz pollination": "buzz pollination",
+        "the poricidal anther": "poricidal",
+        "the 124 Hz response": "124 Hz",
+    }
+    unavailable = [name for name, token in required_evidence.items()
+                   if token.lower() not in learner_text.lower()]
+    results.check("every item the Answer Key reasons from is present in the learner editions",
+                  not unavailable, unavailable)
+    per_role_missing = {role: [n for n, tok in required_evidence.items()
+                               if tok.lower() not in role_text[role].lower()]
+                        for role in ("student", "accessible")}
+    results.check("both learner editions carry that evidence, not just one of them",
+                  not any(per_role_missing.values()), per_role_missing)
+    def vocabulary_text(role):
+        """Only the glossary structures count as a definition, not any prose mention."""
+        blocks = []
+        for table in soup.select(f'.page[data-role="{role}"] table.data-table'):
+            caption = table.find("caption")
+            if caption and "vocabulary" in caption.get_text(strip=True).lower():
+                blocks.append(" ".join(table.stripped_strings))
+        for glossary in soup.select(f'.page[data-role="{role}"] dl.vocabulary-list'):
+            blocks.append(" ".join(glossary.stripped_strings))
+        return " ".join(blocks).lower()
+
+    vocabulary = {role: vocabulary_text(role) for role in ("student", "accessible")}
+    for term in ("Poricidal anther", "Buzz pollination"):
+        undefined = [role for role in ("student", "accessible") if term.lower() not in vocabulary[role]]
+        results.check(f"{term.lower()} is defined in the glossary of both learner editions",
+                      not undefined, undefined)
+    results.check("Teacher-only enrichment stays out of the graded requirements",
+                  "28 dB" not in learner_text and "28 dB" not in answer_text)
+
+    # ── C. Revision propagation ──────────────────────────────────────
+    results.check("declared role page counts match the rendered document",
+                  {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
+                  == {role: len(soup.select(f'.page[data-role="{role}"]')) for role in ROLES})
+    results.check("the task registry, package and content agree on the candidate version",
+                  registry["version"] == package["version"] == CANDIDATE_VERSION
+                  and soup.select_one("[data-editor-content]")["data-editor-content"]
+                  == f"sss-c2-case02-v{CANDIDATE_VERSION}")
+    readme = (CASE_ROOT / "README.md").read_text(encoding="utf-8")
+    results.check("the README describes the candidate version and its retained history",
+                  f"`SSS-C2-CASE02`" in readme and CANDIDATE_VERSION in readme
+                  and "1.0" in readme)
+    results.check("the README page counts match the package",
+                  all(f"{role.title() if role != 'answer' else 'Answer Key'} "
+                      f"{package['rolePageStructure'][role]['pageCount']}" in readme
+                      or str(package["rolePageStructure"][role]["pageCount"]) in readme
+                      for role in ROLES))
+    results.check("no role advertises a standard the packet no longer claims",
+                  "MS-LS2-2" not in " ".join(role_text.values())
+                  and "MS-ETS1-3" not in " ".join(role_text.values()))
 
     payload = {
         "validator": "sss-c2-case02-v1",
