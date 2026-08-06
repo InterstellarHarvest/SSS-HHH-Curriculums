@@ -12,6 +12,10 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString
 
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "shared/validation"))
+import corrective_release_lifecycle  # noqa: E402
+
 
 APP = Path(__file__).resolve().parents[1]
 ROOT = APP.parents[1]
@@ -466,6 +470,13 @@ def main() -> int:
             protected_definitions = protected_css_definitions(presentation)
             results.check(f"{case_id} case presentation defines no protected shared selectors", not protected_definitions, protected_definitions)
 
+        lifecycle_findings = corrective_release_lifecycle.history_findings(
+            package_path.parents[1], case_id, package, registry_data)
+        results.check(f"{case_id} history holds only canonical records at or below its version",
+                      not [f for f in lifecycle_findings if "above the package version" in f
+                           or "not a canonical" in f or "disagree" in f or "not readable" in f],
+                      lifecycle_findings)
+
         if expected_status == "APPROVED_STABLE":
             history_path = ROOT / package["releaseHistory"]
             history = load_json(history_path)
@@ -479,7 +490,7 @@ def main() -> int:
             results.check(f"{case_id} compact release history is complete", history.get("caseId") == case_id and history.get("curriculumVersion") == expected_version and artifact_record_complete and history_fixed_counts_match and isinstance(history_counts.get("accessible"), int) and history.get("formerArtifactRecoveryCommit") and history.get("recovery") and isinstance(history.get("priorApprovedReleases"), list))
         else:
             case_root = package_path.parents[1]
-            results.check(f"{case_id} unreleased package has no history release record", not (case_root / "history").exists() and "releaseHistory" not in package)
+            results.check(f"{case_id} unreleased package declares no release record for its own version", not lifecycle_findings, lifecycle_findings)
 
         if case_id == "SSS-C1-CASE04":
             task_titles = [task["title"] for task in registry_data["tasks"]]
@@ -828,6 +839,8 @@ def main() -> int:
     results.check("SSS Campaign 2 Case 02 case-scoped source, clue, figure, and prohibited-claim checks pass", case02_campaign2.returncode == 0, (case02_campaign2.stdout + case02_campaign2.stderr).strip()[-2000:])
     case01_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case01_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 01 case-scoped source, clue, figure, and prohibited-claim checks pass", case01_campaign2.returncode == 0, (case01_campaign2.stdout + case01_campaign2.stderr).strip()[-2000:])
+    corrective_lifecycle = subprocess.run([sys.executable, str(APP / "tests/test_corrective_release_lifecycle.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("corrective-release lifecycle tests pass", corrective_lifecycle.returncode == 0, (corrective_lifecycle.stdout + corrective_lifecycle.stderr).strip()[-2000:])
     service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("source-persistence security and round-trip tests pass", service_tests.returncode == 0, (service_tests.stdout + service_tests.stderr).strip())
     tracked_candidates = subprocess.run(["git", "ls-files", "--cached", "--others", "--exclude-standard"], cwd=ROOT, text=True, capture_output=True, check=True).stdout.splitlines()
