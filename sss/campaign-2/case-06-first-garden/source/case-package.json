@@ -7,11 +7,12 @@
   "subtitle": "Campaign 2 \u00b7 Case 06 \u00b7 Restored Terrace, Earth",
   "location": "Restored Terrace",
   "version": "1.0",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-05",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -129,10 +130,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "sss/campaign-2/case-06-first-garden/history/release-v1.0.json",
   "sourceHashes": {
     "content": "e74cce67548158c5ae43d9635e285839ca9c790f3d6492ed11719f7012fcc2fb",
     "presentation": "4dbab005dd0af44cad86b7be2bff71fda4955d66a8dc9437e895df818ff91f77",
-    "taskRegistry": "28a61f9d525941821d6cb287bc0795872e284a8012d44f4bcd57ef32740fead8",
+    "taskRegistry": "6a32cbbeb1b615db5f662f230c3e8fbbacfeb6b6ece3c4c3a19b61e8bc2ea1a0",
     "layoutOverrides": "358faa572aea0b8405cbfea1e8372076b5ef2dbe1310ee202433c4d3642f2f0d"
   }
 }

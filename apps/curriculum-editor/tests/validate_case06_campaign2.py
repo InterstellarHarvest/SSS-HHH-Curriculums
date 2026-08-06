@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Case-scoped validation for SSS Campaign 2 Case 06 — The First Garden.
 
-Draft-lifecycle validator. It enforces the canonical identity and runtime linkage
+Released-lifecycle validator. It enforces the canonical identity and runtime linkage
 of the bonus case, the ledger recorded in source/task-registry.js, the science
 boundary that separates established Earth science from this garden's records, and
 the print geometry of the four roles.
@@ -15,6 +15,7 @@ from __future__ import annotations
 import difflib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -25,8 +26,10 @@ CASE_ID = "SSS-C2-CASE06"
 CASE_ROOT = ROOT / "sss/campaign-2/case-06-first-garden"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-DRAFT_VERSION = "1.0"
+RELEASE_VERSION = "1.0"
+APPROVAL_DATE = "2026-08-05"
 OWNER = "Nate / Owner"
+RELEASE_COMMIT = "59005a86cbaf858fe68684aedb2607dd773e3f2c"
 RUNTIME_ID = "first_garden"
 RUNTIME_NAME = "The First Garden"
 RUNTIME_LOCATION = "Restored Terrace"
@@ -223,32 +226,63 @@ def main() -> int:
                   [token for token in [RUNTIME_ID] + FORMAL_CLUES
                    if any(token in text for text in role_text.values())])
 
-    # ── Draft lifecycle: no release, no approval, no artifacts ───────
-    results.check("the package records the unstarted draft lifecycle",
-                  package["status"] == "DRAFT" and package["version"] == DRAFT_VERSION
-                  and package["approval"] == {"owner": OWNER, "status": "OWNER_REVIEW_NOT_STARTED",
-                                              "printStatus": "NOT_RUN"},
+    # ── Approved lifecycle, release history, no artifacts ────────────
+    results.check("the package records the approved release lifecycle",
+                  package["status"] == "APPROVED_STABLE" and package["version"] == RELEASE_VERSION
+                  and package["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
+                                              "status": "APPROVED", "printStatus": "PASS"},
                   package["approval"])
-    results.check("the task registry records the same unstarted draft lifecycle",
-                  (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
-                   registry.get("printStatus"))
-                  == (DRAFT_VERSION, "DRAFT", "OWNER_REVIEW_NOT_STARTED", "NOT_RUN"),
+    results.check("the task registry records the same approved lifecycle",
+                  (registry.get("version"), registry.get("status"), registry.get("approvalDate"),
+                   registry.get("approvedBy"), registry.get("ownerReviewStatus"), registry.get("mergeStatus"))
+                  == (RELEASE_VERSION, "APPROVED_STABLE", APPROVAL_DATE, OWNER,
+                      "OWNER_REVIEW_PASS", "READY_TO_MERGE"),
                   (registry.get("status"), registry.get("ownerReviewStatus")))
-    results.check("the draft declares no release history",
-                  "releaseHistory" not in package and "releaseHistory" not in registry)
-    results.check("the draft has no history directory and no owner-approval record",
-                  not (CASE_ROOT / "history").exists() and not list(CASE_ROOT.rglob("*OWNER_APPROVAL*")))
-    results.check("the draft records no approval date and no merge status",
-                  "date" not in package["approval"] and "approvalDate" not in registry
-                  and "mergeStatus" not in registry)
+    history_path = CASE_ROOT / "history/release-v1.0.json"
+    history = json.loads(history_path.read_text(encoding="utf-8"))
+    results.check("the package points at exactly one release history record",
+                  package["releaseHistory"] == "sss/campaign-2/case-06-first-garden/history/release-v1.0.json"
+                  and sorted(p.name for p in (CASE_ROOT / "history").iterdir())
+                  == ["CASE06_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"],
+                  sorted(p.name for p in (CASE_ROOT / "history").iterdir()))
+    results.check("the release record agrees with the package on identity, version and page counts",
+                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RELEASE_VERSION
+                  and history["status"] == "APPROVED_STABLE" and history["approvalDate"] == APPROVAL_DATE
+                  and history["owner"] == OWNER and history["rolePageCounts"] == ROLE_PAGES,
+                  history["rolePageCounts"])
+    results.check("the release record pins the frozen game baseline and declares no former artifacts",
+                  any(GAME_COMMIT in note for note in history["migrationNotes"])
+                  and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
+                  and history["priorApprovedReleases"] == [] and history["retiredArtifacts"] == [])
+    results.check("the release record reproduces the approved source hashes",
+                  all(history["sourceHashes"][k] == package["sourceHashes"][k]
+                      for k in ("content", "presentation", "taskRegistry")))
+    results.check("the release record records the accepted physical print status",
+                  history["acceptedPrintStatus"].startswith("PASS")
+                  and history["acceptedValidation"]["status"] == "PASS")
+    results.check("every commit the release record pins exists",
+                  all(subprocess.run(["git", "cat-file", "-e", history[key]], cwd=ROOT,
+                                     capture_output=True).returncode == 0
+                      for key in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                  "formerArtifactRecoveryCommit")),
+                  history["canonicalSourceApprovalCommit"])
+    approval = (CASE_ROOT / "history/CASE06_OWNER_APPROVAL_v1.0.md").read_text(encoding="utf-8")
+    results.check("the owner-approval record states the approved release, review and merge status",
+                  all(token in approval for token in
+                      ["APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", RUNTIME_ID,
+                       "Physical print at 100% / Actual Size: **PASS**"]))
+    results.check("the owner-approval record carries the deferred campaign-level work",
+                  "Campaign-level work deferred" in approval
+                  and "CURRENT_PROJECT_STATE.md" in approval)
     results.check("the case stores no PDFs or screenshots",
                   not [path.name for suffix in ("*.pdf", "*.png", "*.jpg", "*.jpeg")
                        for path in CASE_ROOT.rglob(suffix)])
     results.check("the case stores no generated role document",
                   sorted(path.name for path in CASE_ROOT.rglob("*.html")) == ["content.html"],
                   sorted(path.name for path in CASE_ROOT.rglob("*.html")))
-    results.check("the case folder uses the canonical lean layout",
-                  sorted(p.name for p in CASE_ROOT.iterdir() if p.name != ".DS_Store") == ["README.md", "source"]
+    results.check("the case folder uses the canonical released layout",
+                  sorted(p.name for p in CASE_ROOT.iterdir() if p.name != ".DS_Store")
+                  == ["README.md", "history", "source"]
                   and sorted(p.name for p in SOURCE.iterdir() if p.name != ".DS_Store")
                   == ["case-package.json", "content.html", "layout-overrides.json",
                       "presentation.css", "task-registry.js"],
@@ -273,18 +307,19 @@ def main() -> int:
     results.check("the display label carries no bonus, epilogue, or special-investigation wording",
                   not re.search(r"bonus|epilogue|special|finale|secret", entry["displayLabel"], re.I),
                   entry["displayLabel"])
-    results.check("the Case 06 registry entry is an unreleased draft with no history record",
-                  entry["status"] == "DRAFT" and entry["packageStatus"] == "DRAFT"
-                  and "historyRecord" not in entry
-                  and entry["approval"] == {"owner": OWNER, "status": "OWNER_REVIEW_NOT_STARTED",
-                                            "printStatus": "NOT_RUN"},
+    results.check("the Case 06 registry entry is an approved release with a history record",
+                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
+                  and entry.get("historyRecord")
+                  == "sss/campaign-2/case-06-first-garden/history/release-v1.0.json"
+                  and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
+                                            "status": "APPROVED", "printStatus": "PASS"},
                   entry)
-    results.check("every other registered case remains APPROVED_STABLE",
+    results.check("all thirteen registered cases are APPROVED_STABLE",
                   all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases if case["id"] != CASE_ID)
+                      for cases in campaigns.values() for case in cases)
                   and sum(len(cases) for cases in campaigns.values()) == 13,
                   [case["id"] for cases in campaigns.values() for case in cases
-                   if case["id"] != CASE_ID and case["status"] != "APPROVED_STABLE"])
+                   if case["status"] != "APPROVED_STABLE"])
     results.check("no Campaign 1 case leaks into Campaign 2 or the reverse",
                   all(case["id"].startswith("SSS-C1-") for case in campaigns["campaign-1"])
                   and all(case["id"].startswith("SSS-C2-") for case in campaigns["campaign-2"]))

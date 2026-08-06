@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE06",
+  "curriculumVersion": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-05",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+  "canonicalSourceApprovalCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+  "sourceHashes": {
+    "content": "e74cce67548158c5ae43d9635e285839ca9c790f3d6492ed11719f7012fcc2fb",
+    "presentation": "4dbab005dd0af44cad86b7be2bff71fda4955d66a8dc9437e895df818ff91f77",
+    "taskRegistry": "6a32cbbeb1b615db5f662f230c3e8fbbacfeb6b6ece3c4c3a19b61e8bc2ea1a0"
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 8,
+    "answer": 5,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "13 registered cases; release-history schema, commit references, source hashes, and native no-artifact controls PASS",
+    "case06Scoped": "148/148",
+    "case01Case02Case03Case04Case05Scoped": "74/74, 68/68, 54/54, 82/82, 101/101",
+    "static": "576/576",
+    "browser": "2161/2161 across all 104 case/role/presentation states",
+    "pdf": "316/316 on the registry-derived roster",
+    "layoutContracts": "Accessible 201 eligible and 268 explicitly locked response areas; Student 118 eligible and 359 explicitly locked response areas across 13 registered cases",
+    "authoringSecurity": "13/13",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS for all 25 pages",
+    "campaignScopedNavigation": "PASS; Campaign 1 lists seven cases and Campaign 2 lists Cases 01-06 in order",
+    "accessibleDedicatedCER": "PASS",
+    "studentCombinedCER": "PASS; the Student CER shares its page with Task 7 under the combined-v1.0 contract, as Campaign 1 Case 07 does",
+    "accessibleDifferentiation": "PASS",
+    "teachingAnalogyContract": "PASS; both learner editions carry the building-inspection analogy with its disclaimer, and the analogy introduces no numeric value at all",
+    "sourceBoundaryAndProhibitedClaims": "PASS; 23 misconception probes and 5 precision probes each demonstrated failure capability, and the Teacher-quotation exception is attribute-scoped, Teacher-page-only, and required to trip at least four detectors",
+    "javascriptErrors": "0",
+    "visualReview": "PASS; owner review of the rendered pages, including grayscale"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Campaign 2 Case 06 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+  "recovery": "NOT_APPLICABLE: Campaign 2 Case 06 was produced natively under the canonical source model; no generated release artifacts exist.",
+  "priorApprovedReleases": [],
+  "migrationNotes": [
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490.",
+    "Runtime case identity: first_garden, The First Garden, Restored Terrace, Earth.",
+    "Case 06 is the Campaign 2 bonus finale. The runtime hides it from level select until the five main cases are complete and then numbers it case 6 of 6, applying no bonus, epilogue, or special-investigation wording, so the package registers positionally as 6 - The First Garden, following the Campaign 1 precedent for its two bonus cases.",
+    "Seven tasks over five Student pages. The case reports no time series, no dated events and no calculation, so the packet carries no timeline, no trend figure and no precision task; its reasoning is scope, elimination and convergence rather than measurement.",
+    "One figure. Figure A is a plan view of circular patches where the surveyed compounds are abundant inside ground where the same compounds fall to trace levels, because circular patches of approximately four to six metres in diameter is what the survey reports. It states in both caption and extended description that it shows the reported pattern rather than mapping the garden.",
+    "The Student CER shares its page with Task 7 under data-student-cer-page=combined-v1.0, the form Campaign 1 Case 07 established. On a page of its own the CER left roughly half the page empty. The Accessible CER remains a dedicated canonical page.",
+    "The packet follows the shipped runtime and the approved science-source register over the design document, which frames the mechanism as the wood wide web and states as fact that the connections were never fully restored. The mycorrhizal explanation stays a candidate cause, compatible partners are never declared certainly absent, trace levels are never restated as zero, and no printable role proposes moving living material without identification, provenance and pathogen screening, host-compatibility checks, approval, untreated controls and monitoring.",
+    "Task 7 specifies the trial and stops there. The runtime reform-recommendation thread turns on Concord politics rather than the garden evidence and is carried as Teacher-facing discussion rather than a written student prompt.",
+    "Case 06 was authored directly as canonical package sources and released after on-screen review and owner-confirmed physical print review; no migration from generated release documents occurred."
+  ],
+  "retiredArtifacts": []
+}

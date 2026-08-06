@@ -1,6 +1,6 @@
 # SSS Campaign 2 · Case 06 — The First Garden
 
-Draft native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `first_garden`.
+Released native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `first_garden`.
 
 | Field | Value |
 |---|---|
@@ -11,7 +11,7 @@ Draft native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `first_g
 | Campaign position | Campaign 2, case 6 of 6 — bonus finale, hidden until the five main cases are complete |
 | Institutional identity | Solar Agricultural Agency (SAA) |
 | Version | 1.0 |
-| Lifecycle | `DRAFT` · `OWNER_REVIEW_NOT_STARTED` · print `NOT_RUN` |
+| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` |
 | Frozen game baseline | `29c3b222c53f51de11a3aa83e896a6d0ef6fb490` |
 
 ## Contents
@@ -19,6 +19,9 @@ Draft native curriculum package. Package ID `SSS-C2-CASE06`, runtime ID `first_g
 ```text
 case-06-first-garden/
 ├── README.md
+├── history/
+│   ├── CASE06_OWNER_APPROVAL_v1.0.md
+│   └── release-v1.0.json
 └── source/
     ├── case-package.json
     ├── content.html
