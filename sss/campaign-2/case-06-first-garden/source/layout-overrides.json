@@ -183,15 +183,6 @@
       "label": "Why approval still applies",
       "minPx": 32,
       "maxPx": 900
-    },
-    {
-      "id": "SSS-C2-CASE06:accessible:t7:a7-recommendation",
-      "persistId": "a7-recommendation",
-      "pageId": "accessible-mission-07",
-      "taskId": 7,
-      "label": "Recommendation and reason",
-      "minPx": 32,
-      "maxPx": 900
     }
   ],
   "lockedAreas": [
@@ -384,18 +375,9 @@
       {
         "id": "SSS-C2-CASE06:student:t7:t7-approval",
         "persistId": "t7-approval",
-        "pageId": "student-mission-06",
+        "pageId": "student-mission-05",
         "taskId": 7,
         "label": "Why approval still applies",
-        "minPx": 32,
-        "maxPx": 900
-      },
-      {
-        "id": "SSS-C2-CASE06:student:t7:t7-recommendation",
-        "persistId": "t7-recommendation",
-        "pageId": "student-mission-06",
-        "taskId": 7,
-        "label": "Recommendation and reason",
         "minPx": 32,
         "maxPx": 900
       }

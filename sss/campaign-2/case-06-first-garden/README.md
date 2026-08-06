@@ -41,9 +41,15 @@ Seven tasks, in this order and with these identifiers across all four roles:
 6. `C2-C06-T6` — Explain the Diagnosis with CER
 7. `C2-C06-T7` — Specify the Screened, Approved Trial
 
-Role page counts: Student 6, Teacher 8, Answer Key 5, Accessible 7. The CER occupies one full page in the
-Student and Accessible editions, and the Accessible CER page is the dedicated canonical page carrying
-`data-accessible-cer-page="canonical-v1.0"`.
+Task 7 asks what the trial must include and why, and stops there. The runtime's reform-recommendation thread —
+proposing risk-tiered biosafety standards — turns on Concord politics rather than the garden's evidence, so it is
+carried as Teacher-facing discussion rather than a written student prompt.
+
+Role page counts: Student 5, Teacher 8, Answer Key 5, Accessible 7. The Accessible CER is a dedicated page
+carrying `data-accessible-cer-page="canonical-v1.0"`. In the Student edition the CER shares its page with Task 7
+under `data-student-cer-page="combined-v1.0"`, the same combined form Campaign 1 Case 07 uses: on its own the CER
+left roughly half a page empty, and the trial specification reads naturally straight after the explanation it
+constrains.
 
 This case is shorter than Campaign 2 Cases 01–05 on the Student side because its evidence is different in kind,
 not smaller in quantity. Cases 01–05 each turn on a measured value checked against a written specification, and
@@ -54,9 +60,11 @@ convergence, and it contains no calculation at all. A precision task and a quant
 both have been decorative here, so neither exists.
 
 For the same reason the packet carries one figure rather than two, no timeline, and no trend graph. The case
-reports no time series and no dated events; there is nothing to plot. Figure A draws the surveyed distribution
-along a twelve-metre strip using the survey's own distances and states in both its caption and its extended
-description that it shows the reported pattern rather than mapping the garden.
+reports no time series and no dated events; there is nothing to plot. Figure A is a plan view: circular patches
+where the surveyed compounds are abundant, drawn inside ground where the same compounds fall to trace levels,
+because "circular patches of approximately four to six metres in diameter" is what the survey actually reports.
+Both its caption and its extended description state that it shows the reported pattern rather than mapping the
+garden.
 
 What the case does need, and gets, is space for triangulation. No source resolves the investigation alone — this
 is the only Campaign 2 case in which every source is a person or an archive, with no sensor panel and no specimen

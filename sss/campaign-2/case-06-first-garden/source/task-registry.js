@@ -16,7 +16,7 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
   "runtimeCampaignPosition": 6,
   "runtimeUnlockCondition": "Hidden from level select until all five main Campaign 2 cases are complete; the runtime then labels it case 6 of 6.",
   "roles": {
-    "student": 6,
+    "student": 5,
     "teacher": 8,
     "answer": 5,
     "accessible": 7
@@ -82,7 +82,7 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
       "semanticLabel": "ENGINEERING DESIGN",
       "icon": "ph-wrench",
       "title": "Specify the Screened, Approved Trial",
-      "description": "Define what the trial must compare and why it needs untreated control plots, name one constraint, justify why approval and screening still apply to a within-world transfer, and recommend a response with a reason.",
+      "description": "Define what the trial must compare and why it needs untreated control plots, name one constraint, and justify why approval and screening still apply to a transfer in which the fungi and the soil both come from Earth.",
       "keyed": true
     }
   ],

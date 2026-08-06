@@ -267,8 +267,8 @@
 
       frame.width = "1440";
       await wait(120);
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 21 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 11 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10 };
       for (const [caseId, expectedAccessible] of Object.entries(accessibleEligibleCounts)) {
         await api.selectCase(caseId);
         await wait(80);
@@ -856,7 +856,7 @@
         { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.0", student: "CASE03_STUDENT_MISSION_v1.0" },
         { id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" },
         { id: "SSS-C2-CASE05", label: "5 - Too Clean a Room", version: "1.0", status: "APPROVED_STABLE", counts: { student: 7, teacher: 9, answer: 5 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C2-CASE06", label: "6 - The First Garden", version: "1.0", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 6, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.0", student: "CASE06_STUDENT_MISSION_v1.0" }
+        { id: "SSS-C2-CASE06", label: "6 - The First Garden", version: "1.0", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.0", student: "CASE06_STUDENT_MISSION_v1.0" }
       ];
       // The Case menu is campaign-scoped, so the registered cases are asserted one campaign at a
       // time. Every registered case is still exercised in full by the matrix loop below, which

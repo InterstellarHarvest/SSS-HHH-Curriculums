@@ -34,7 +34,7 @@ RUNTIME_SUBTITLE = "Earth"
 CASE_SUBTITLE = "Campaign 2 · Case 06 · Restored Terrace, Earth"
 DISPLAY_LABEL = "6 - The First Garden"
 ROLES = ["student", "teacher", "answer", "accessible"]
-ROLE_PAGES = {"student": 6, "teacher": 8, "answer": 5, "accessible": 7}
+ROLE_PAGES = {"student": 5, "teacher": 8, "answer": 5, "accessible": 7}
 
 TASK_IDS = [f"C2-C06-T{n}" for n in range(1, 8)]
 TASK_TITLES = [
@@ -367,9 +367,10 @@ def main() -> int:
                   "Trace levels only" in student_text and "trace levels only" in accessible_text.lower())
     results.check("no printable role converts trace levels into zero, none, or absent",
                   not scan(" ".join(role_text.values()), [PRECISION[0]]))
+    compounds = ["phosphorus", "nitrogen", "carbon chains", "auxins", "cytokinins", "strigolactones"]
     results.check("the Student edition names every surveyed compound the record lists",
-                  all(term in student_text for term in
-                      ["Phosphorus", "Nitrogen", "Carbon chains", "auxins", "cytokinins", "strigolactones"]))
+                  all(term in student_text.lower() for term in compounds),
+                  [c for c in compounds if c not in student_text.lower()])
     results.check("the Student edition reports the sharp boundary with its diffusion qualifier",
                   "Sharp, despite adequate matrix diffusion" in student_text)
     results.check("the restoration durations are reproduced exactly",
@@ -527,9 +528,10 @@ def main() -> int:
         results.check(f"{fid} is labelled for assistive technology",
                       svg is not None and svg.get("role") == "img" and svg.get("aria-label")
                       and title is not None and title.get_text(strip=True) == svg["aria-label"])
+        patterned = [n for n in svg.select("rect, circle")
+                     if str(n.get("fill", "")).startswith("url(")]
         results.check(f"{fid} encodes its zones with fill patterns rather than colour",
-                      len(svg.select("pattern")) >= 2
-                      and len([r for r in svg.select("rect") if str(r.get("fill", "")).startswith("url(")]) >= 3)
+                      len(svg.select("pattern")) >= 2 and len(patterned) >= 4, len(patterned))
         results.check(f"{fid} draws no curve, polyline, or polygon",
                       not svg.select("polyline") and not svg.select("polygon")
                       and not any(re.search(r"[CcSsQqTtAa]", p.get("d", "")) for p in svg.select("path")))
@@ -570,10 +572,12 @@ def main() -> int:
                   "building inspector" not in answer_text.lower())
 
     # ── CER, mechanism model, Accessible differentiation ─────────────
-    student_cer_pages = [p for p in soup.select('.page[data-role="student"]') if page_tasks(p) == [6]]
+    student_cer_pages = [p for p in soup.select('.page[data-role="student"]') if page_tasks(p) == [6, 7]]
     accessible_cer_pages = soup.select('.page[data-accessible-cer-page="canonical-v1.0"]')
-    results.check("the Student CER occupies one full page carrying only task 6",
-                  len(student_cer_pages) == 1, len(student_cer_pages))
+    results.check("the Student CER shares one page with task 7 under the combined contract",
+                  len(student_cer_pages) == 1
+                  and student_cer_pages[0].get("data-student-cer-page") == "combined-v1.0",
+                  [p.get("data-page-id") for p in student_cer_pages])
     results.check("the Accessible CER occupies one dedicated canonical page carrying only task 6",
                   len(accessible_cer_pages) == 1 and page_tasks(accessible_cer_pages[0]) == [6],
                   len(accessible_cer_pages))
@@ -591,6 +595,11 @@ def main() -> int:
                   "more than one source" in student_text and "more than one source" in accessible_text)
     results.check("the CER prompt requires a stated limit",
                   "does not establish" in student_text and "does not prove" in accessible_text)
+    results.check("the packet asks for no recommendation the evidence cannot settle",
+                  "recommendation" not in student_text.lower()
+                  and "recommendation" not in accessible_text.lower(),
+                  [w for w in ("recommendation",)
+                   if w in student_text.lower() or w in accessible_text.lower()])
 
     models = soup.select(f'[data-process-contract="{PROCESS_CONTRACT}"]')
     results.check("the candidate pathway model appears once in each learner edition",
