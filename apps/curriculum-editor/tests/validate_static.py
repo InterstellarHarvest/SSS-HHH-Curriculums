@@ -842,6 +842,8 @@ def main() -> int:
     results.check("SSS Campaign 2 Case 01 case-scoped source, clue, figure, and prohibited-claim checks pass", case01_campaign2.returncode == 0, (case01_campaign2.stdout + case01_campaign2.stderr).strip()[-2000:])
     case02_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case02_mutations.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 02 mutation tests prove each protection fires", case02_mutations.returncode == 0, (case02_mutations.stdout + case02_mutations.stderr).strip()[-2000:])
+    case03_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case03_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("SSS Campaign 2 Case 03 mutation tests prove each protection fires", case03_mutations.returncode == 0, (case03_mutations.stdout + case03_mutations.stderr).strip()[-2000:])
     corrective_lifecycle = subprocess.run([sys.executable, str(APP / "tests/test_corrective_release_lifecycle.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("corrective-release lifecycle tests pass", corrective_lifecycle.returncode == 0, (corrective_lifecycle.stdout + corrective_lifecycle.stderr).strip()[-2000:])
     service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)

@@ -4,6 +4,15 @@
 Enforces the frozen source ledger, the five-clue instructional coverage, the figure
 contract, the Earth-science/fiction labels, and the prohibited scientific
 overstatements against the printable content of every role.
+
+Case 03 is currently a v1.1 corrective candidate. The lifecycle assertions therefore
+require an unreleased package that retains its approved v1.0 records unchanged, and
+the sections after the figure contract enforce the four defect classes the Campaign 2
+completion audit found inside the released v1.0 package: a learner edition that
+inverted the packet's own total-PAR reasoning rule, a Task 1 classification asked
+before its controlling evidence, an Answer Key reasoning from runtime-only facts, an
+invented provenance for the approximate effective-PAR value, and a standards
+overclaim that no task assesses.
 """
 
 from __future__ import annotations
@@ -17,14 +26,19 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "shared/validation"))
+from corrective_release_lifecycle import history_findings as lifecycle_findings  # noqa: E402
+
+
 CASE_ID = "SSS-C2-CASE03"
 CASE_ROOT = ROOT / "sss/campaign-2/case-03-wrong-color-light"
 SOURCE = CASE_ROOT / "source"
-GAME_COMMIT = "46b9387bca95736f164f905596e3dd8b13968661"
-RELEASE_VERSION = "1.0"
-APPROVAL_DATE = "2026-08-04"
+GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
+RETAINED_GAME_COMMIT = "46b9387bca95736f164f905596e3dd8b13968661"
+CANDIDATE_VERSION = "1.1"
+RETAINED_VERSION = "1.0"
+RETAINED_APPROVAL_DATE = "2026-08-04"
 RUNTIME_ID = "wrong_color_light"
 ROLES = ["student", "teacher", "answer", "accessible"]
 TASK_TITLES = [
@@ -45,6 +59,45 @@ FORMAL_CLUES = [
     "CHLOROPHYLL_C_BLUE_GREEN",
 ]
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
+
+# The reasoning rule the whole case turns on. Every role must state it the same way,
+# and no role may state its inverse. The released v1.1.0 learner editions printed the
+# inverse, which is the defect this pair of patterns exists to make impossible.
+TOTAL_PAR_RULE = re.compile(
+    r"total PAR alone does not establish an effective spectrum", re.I)
+TOTAL_PAR_RULE_INVERTED = re.compile(
+    r"total PAR alone\s+(?:proves|establishes|shows|demonstrates|confirms|means)\b"
+    r"|total PAR alone\s+proves no\b"
+    r"|total PAR\s+(?:proves|establishes)\s+(?:an?\s+|no\s+)?effective spectrum", re.I)
+# The four conditions Task 1 asks learners to classify. The controlling record must
+# reach both learner editions on or before the task that grades them.
+TASK1_CONDITIONS = {
+    "light fixture": re.compile(r"fixture", re.I),
+    "water and salinity": re.compile(r"water and salinity|water\b.*\bsalinity", re.I),
+    "kelp species": re.compile(r"kelp species", re.I),
+    "nutrient supply and feed line": re.compile(r"nutrient supply and feed line|feed line", re.I),
+}
+# Facts the Answer Key reasons from that the learner editions must therefore print.
+ANSWER_KEY_EVIDENCE = {
+    "the total PAR reading": "280 µmol/m²/s",
+    "the old-dome control": "100%",
+    "the reported blue-green share": "<5%",
+    "the retired fixture's blue-green share": "78%",
+    "the strongest measured response band": "460–540 nm",
+}
+# Runtime-only or Teacher-only enrichment that must never become a graded requirement.
+RUNTIME_ONLY_FACTS = {
+    "the 30%-higher photon flux": re.compile(r"30\s*%|photon flux", re.I),
+    "the approximate effective-PAR value": re.compile(r"14\s*(?:µmol|umol)", re.I),
+}
+# Provenance the canonical game source does not establish for the approximate value.
+UNSUPPORTED_PROVENANCE = re.compile(
+    r"incomplete weighting model|weighting model|weighted (?:action )?spectrum model"
+    r"|derived from (?:a|an|the) [^.]{0,40}model", re.I)
+# A standard is claimed here, in this shape, or it is not claimed at all.
+STANDARD_CLAIM = re.compile(
+    r"^(Direct assessment|Supporting alignment):\s*(MS-[A-Z0-9-]+)[.,]?\s*(.*)$", re.S)
+WITHDRAWN_STANDARDS = ["MS-PS4-2"]
 
 # Values that must appear verbatim wherever the case reports them.
 REQUIRED_LEDGER_STRINGS = [
@@ -85,6 +138,9 @@ PROHIBITED = [
     (re.compile(r"\b(?:proves|proving|proof\s+of)\s+(?:the\s+)?(?:diagnosis|cause)\b", re.I),
      "single-source proof language"),
     (re.compile(r"\bzero\s+response\s+outside\b", re.I), "zero response outside the measured band"),
+    (re.compile(r"total PAR alone\s+proves\b", re.I), "inverted total-PAR reasoning rule"),
+    (re.compile(r"(?:calculate|compute|work out|multiply)[^.]{0,60}effective PAR", re.I),
+     "an exact effective-PAR calculation asked of students"),
 ]
 # Curve-drawing SVG constructs are forbidden inside case figures.
 CURVE_COMMANDS = re.compile(r"[CcSsQqTtAa]")
@@ -111,6 +167,19 @@ class Results:
     @property
     def passed(self) -> int:
         return sum(1 for item in self.assertions if item["pass"])
+
+
+def _walk_entries(node) -> list:
+    """Every dict in the registry tree, so the Case 03 entry is found wherever it lives."""
+    found = []
+    if isinstance(node, dict):
+        found.append(node)
+        for value in node.values():
+            found.extend(_walk_entries(value))
+    elif isinstance(node, list):
+        for value in node:
+            found.extend(_walk_entries(value))
+    return found
 
 
 def task_registry(path: Path) -> dict:
@@ -154,53 +223,67 @@ def main() -> int:
     results.check("package declares the routine SSS/SAA printable identity",
                   package["institutionalIdentity"]["name"] == "Solar Agricultural Agency"
                   and package["subtitle"] == "Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean)")
-    results.check("the package records the approved release lifecycle",
-                  package["status"] == "APPROVED_STABLE"
-                  and package["version"] == RELEASE_VERSION
-                  and package["approval"] == {"date": APPROVAL_DATE, "owner": "Nate / Owner",
-                                              "status": "APPROVED", "printStatus": "PASS"},
+    results.check("the package records the v1.1 corrective candidate lifecycle",
+                  package["status"] in {"DRAFT", "OWNER_GATE_OPEN"}
+                  and package["version"] == CANDIDATE_VERSION
+                  and package["approval"].get("owner") == "Nate / Owner"
+                  and package["approval"].get("printStatus") == "NOT_RUN"
+                  and package["approval"].get("status") in {"OWNER_REVIEW_NOT_STARTED",
+                                                            "OWNER_REVIEW_IN_PROGRESS"}
+                  and "date" not in package["approval"],
                   package["approval"])
-    results.check("the task registry records the same approved release lifecycle",
-                  (registry.get("version"), registry.get("status"), registry.get("approvalDate"),
-                   registry.get("approvedBy"), registry.get("ownerReviewStatus"), registry.get("mergeStatus"))
-                  == (RELEASE_VERSION, "APPROVED_STABLE", APPROVAL_DATE, "Nate / Owner",
-                      "OWNER_REVIEW_PASS", "READY_TO_MERGE"))
-    history_path = CASE_ROOT / "history/release-v1.0.json"
-    approval_path = CASE_ROOT / "history/CASE03_OWNER_APPROVAL_v1.0.md"
-    results.check("the approved package names exactly one retained release-history record",
-                  package.get("releaseHistory") == history_path.relative_to(ROOT).as_posix()
-                  and sorted(path.name for path in (CASE_ROOT / "history").iterdir())
-                  == ["CASE03_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"])
+    results.check("the candidate claims no release or approval record of its own",
+                  "releaseHistory" not in package and "releaseHistory" not in registry
+                  and not (CASE_ROOT / f"history/release-v{CANDIDATE_VERSION}.json").exists()
+                  and not (CASE_ROOT / f"history/CASE03_OWNER_APPROVAL_v{CANDIDATE_VERSION}.md").exists())
+    results.check("the task registry records the same corrective candidate lifecycle",
+                  (registry.get("version"), registry.get("status"), registry.get("ownerReviewStatus"),
+                   registry.get("printStatus"), registry.get("correctiveOf"))
+                  == (CANDIDATE_VERSION, package["status"], package["approval"]["status"],
+                      "NOT_RUN", RETAINED_VERSION)
+                  and "approvalDate" not in registry and "mergeStatus" not in registry,
+                  (registry.get("status"), registry.get("correctiveOf")))
+    results.check("the shared corrective-release lifecycle rules are satisfied",
+                  not lifecycle_findings(CASE_ROOT, CASE_ID, package, registry),
+                  lifecycle_findings(CASE_ROOT, CASE_ID, package, registry))
+    history_path = CASE_ROOT / f"history/release-v{RETAINED_VERSION}.json"
+    approval_path = CASE_ROOT / f"history/CASE03_OWNER_APPROVAL_v{RETAINED_VERSION}.md"
+    results.check("the approved v1.0 history is retained intact beside the candidate",
+                  sorted(path.name for path in (CASE_ROOT / "history").iterdir())
+                  == [f"CASE03_OWNER_APPROVAL_v{RETAINED_VERSION}.md",
+                      f"release-v{RETAINED_VERSION}.json"])
     history = json.loads(history_path.read_text(encoding="utf-8"))
-    results.check("the release history records a native release with no former generated artifacts",
-                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RELEASE_VERSION
-                  and history["status"] == "APPROVED_STABLE" and history["approvalDate"] == APPROVAL_DATE
+    results.check("the retained v1.0 record still describes the v1.0 release",
+                  history["caseId"] == CASE_ID and history["curriculumVersion"] == RETAINED_VERSION
+                  and history["status"] == "APPROVED_STABLE"
+                  and history["approvalDate"] == RETAINED_APPROVAL_DATE
                   and history["owner"] == "Nate / Owner"
                   and history["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
                   and history["priorApprovedReleases"] == []
                   and history["retiredArtifacts"] == []
                   and history["acceptedPrintStatus"] == "PASS at 100% / Actual Size")
-    results.check("the release history page counts match the approved release",
+    results.check("the retained v1.0 record keeps the page counts it was approved with",
                   history["rolePageCounts"] == {"student": 5, "teacher": 8, "answer": 4, "accessible": 8})
-    results.check("the release history pins the source hashes it was approved at",
-                  all(history["sourceHashes"][name] == package["sourceHashes"][name]
-                      for name in ("content", "presentation", "taskRegistry")))
-    results.check("every commit reference in the release history exists",
+    results.check("the retained v1.0 record was not rewritten to describe v1.1 content",
+                  all(history["sourceHashes"][name] != package["sourceHashes"][name]
+                      for name in ("content", "taskRegistry")))
+    results.check("every commit reference in the retained v1.0 record exists",
                   all(subprocess.run(["git", "cat-file", "-e", f"{history[field]}^{{commit}}"],
                                      cwd=ROOT, capture_output=True).returncode == 0
                       for field in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
                                     "formerArtifactRecoveryCommit")))
-    results.check("the release history records the frozen game baseline",
-                  any(GAME_COMMIT in note for note in history["migrationNotes"]))
-    results.check("the release history keeps the case at its runtime case number",
+    results.check("the retained v1.0 record still records the baseline it was approved against",
+                  any(RETAINED_GAME_COMMIT in note for note in history["migrationNotes"]))
+    results.check("the retained v1.0 record keeps the case at its runtime case number",
                   any("not renumbered as Campaign 2 Case 01" in note for note in history["migrationNotes"]))
     owner_approval = approval_path.read_text(encoding="utf-8")
-    results.check("the owner approval record captures every release gate and the no-artifact decision",
+    results.check("the retained v1.0 owner approval still records the gates it passed",
                   all(token in owner_approval for token in
-                      ["Nate / Owner", APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE",
+                      ["Nate / Owner", RETAINED_APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
+                       "READY_TO_MERGE",
                        "On-screen content and visual review: **PASS**", "Generated PDF review: **PASS**",
                        "Physical print at 100% / Actual Size: **PASS**", "NO_GENERATED_ARTIFACTS_COMMITTED",
-                       GAME_COMMIT]))
+                       RETAINED_GAME_COMMIT]))
     results.check("no generated release artifact is stored beside the approved case",
                   not [path.name for path in CASE_ROOT.rglob("*")
                        if path.is_file() and path.suffix.lower() in {".pdf", ".png", ".jpg", ".jpeg", ".html"}
@@ -409,6 +492,181 @@ def main() -> int:
                           or any(token in area["label"].lower() for token in
                                  ("criterion", "constraint", "classification", "status"))
                           for definition in editions.values() for area in definition["areas"]))
+
+    role_text = {role: visible_text(soup, [role]) for role in ROLES}
+    learner_text = role_text["student"] + " " + role_text["accessible"]
+
+    def pages(role):
+        return soup.select(f'.page[data-role="{role}"]')
+
+    def page_index_of_task(role, number):
+        for index, page in enumerate(pages(role)):
+            if any(node["data-shell-task-heading"] == str(number)
+                   for node in page.select("[data-shell-task-heading]")):
+                return index
+        return None
+
+    def page_index_of(role, selector):
+        for index, page in enumerate(pages(role)):
+            if page.select_one(selector):
+                return index
+        return None
+
+    # ── A. Cross-role reasoning parity ───────────────────────────────
+    # The released v1.0 learner editions printed the inverse of the rule the Teacher
+    # Guide and Answer Key state, and the Answer Key graded against the other wording.
+    # Parity is asserted in both directions: every role states the rule, and no role
+    # states its inverse.
+    rule_missing = [role for role in ROLES if not TOTAL_PAR_RULE.search(role_text[role])]
+    results.check("every role states the same total-PAR reasoning rule", not rule_missing, rule_missing)
+    learner_rule_missing = [role for role in ("student", "accessible")
+                            if not TOTAL_PAR_RULE.search(role_text[role])]
+    results.check("both learner editions state that rule, not just one of them",
+                  not learner_rule_missing, learner_rule_missing)
+    inverted = {role: TOTAL_PAR_RULE_INVERTED.findall(re.sub(r"\s+", " ", role_text[role]))
+                for role in ROLES}
+    inverted = {role: found for role, found in inverted.items() if found}
+    results.check("no role inverts the total-PAR reasoning rule", not inverted, inverted)
+    # The rule is not only present but stated in full where learners meet it: the total
+    # is a photon count, the total alone settles nothing about spectrum, and the two
+    # kinds of evidence are compared separately.
+    rule_blocks = {role: [" ".join(node.stripped_strings)
+                          for node in soup.select(f'.page[data-role="{role}"] [data-reasoning-rule]')]
+                   for role in ("student", "accessible")}
+    incomplete = {role: blocks for role, blocks in rule_blocks.items()
+                  if not blocks or not any(
+                      re.search(r"counts every photon", text, re.I)
+                      and TOTAL_PAR_RULE.search(text)
+                      and re.search(r"separately", text, re.I) for text in blocks)}
+    results.check("each learner edition carries the rule in full in a marked reasoning block",
+                  not incomplete, sorted(incomplete))
+    results.check("the Answer Key's five-source row states the rule the learner table states",
+                  TOTAL_PAR_RULE.search(role_text["answer"]) is not None
+                  and TOTAL_PAR_RULE.search(registry["sourceLedger"][-1]["establishes"]) is not None)
+
+    # ── B. Evidence timing and availability ──────────────────────────
+    # Task 1 grades a changed/kept classification. The record that settles it must be
+    # printed for that reader, on or before the page that asks for it.
+    for role in ("student", "accessible"):
+        record_nodes = soup.select(f'.page[data-role="{role}"] [data-change-record]')
+        record_text = " ".join(" ".join(node.stripped_strings) for node in record_nodes)
+        record_page = page_index_of(role, "[data-change-record]")
+        task_page = page_index_of_task(role, 1)
+        uncovered = [name for name, pattern in TASK1_CONDITIONS.items()
+                     if not pattern.search(record_text)]
+        results.check(
+            f"the {role} edition prints the Week 0 change record on or before Task 1",
+            bool(record_nodes) and record_page is not None and task_page is not None
+            and record_page <= task_page and not uncovered,
+            {"recordPage": record_page, "taskPage": task_page, "uncovered": uncovered})
+    # Every fact the Answer Key reasons from must be readable in both learner editions.
+    unavailable = {name: [role for role in ("student", "accessible") if token not in role_text[role]]
+                   for name, token in ANSWER_KEY_EVIDENCE.items()}
+    unavailable = {name: roles for name, roles in unavailable.items() if roles}
+    results.check("every fact the Answer Key reasons from is printed in both learner editions",
+                  not unavailable, unavailable)
+    # Runtime-only and Teacher-only enrichment must never become a graded requirement.
+    graded_text = role_text["answer"] + " " + learner_text
+    promoted = [name for name, pattern in RUNTIME_ONLY_FACTS.items() if pattern.search(graded_text)]
+    results.check("runtime-only and Teacher-only enrichment stays out of the graded requirements",
+                  not promoted, promoted)
+
+    # ── C. Provenance of the approximate effective-PAR value ─────────
+    # The canonical source states the value and says nothing about how it was obtained.
+    provenance_findings = {
+        "printable content": bool(UNSUPPORTED_PROVENANCE.search(printable)),
+        "task registry": bool(UNSUPPORTED_PROVENANCE.search(json.dumps(registry, ensure_ascii=False))),
+        # Backtick spans in the README quote the strings v1.1 removed, so they record the
+        # defect rather than asserting it — the same reason Teacher misconceptions are
+        # marked data-quoted-claim and excluded from the prohibited-claim scan.
+        "README": bool(UNSUPPORTED_PROVENANCE.search(
+            re.sub(r"`[^`]*`", " ", (CASE_ROOT / "README.md").read_text(encoding="utf-8")))),
+    }
+    results.check("the approximate effective-PAR value carries no unsupported model provenance",
+                  not any(provenance_findings.values()),
+                  [where for where, found in provenance_findings.items() if found])
+    excluded = registry["numericalLedger"]["excludedFromStudentWork"]
+    results.check("the ledger labels that value approximate and keeps it out of student work",
+                  excluded["approximateEffectivePar"] == 14
+                  and re.search(r"approximate", excluded["reason"], re.I)
+                  and re.search(r"not an exact", excluded["reason"], re.I)
+                  and re.search(r"never used in student calculations", excluded["reason"], re.I),
+                  excluded["reason"])
+    results.check("the Teacher Guide keeps the value approximate rather than exact or calculated",
+                  "approximate" in role_text["teacher"].lower()
+                  and not re.search(r"exact(?:ly)? 14|effective PAR (?:is|=) 14 µmol/m²/s\.", role_text["teacher"]))
+    results.check("measured, reported and approximate values keep their distinct labels",
+                  "strongest measured" in learner_text
+                  and "reported adequate" in learner_text
+                  and "reported category" in learner_text.lower())
+
+    # ── D. Standards ─────────────────────────────────────────────────
+    # A claimed standard names the task that assesses it, or it is not claimed.
+    # One claim per paragraph: a standard is claimed by the paragraph that justifies it.
+    claims = [match.groups()
+              for node in soup.select('.page[data-role="teacher"] p')
+              for match in [STANDARD_CLAIM.match(" ".join(node.stripped_strings))] if match]
+    unassessed = [f"{kind}: {code}" for kind, code, rest in claims
+                  if not re.search(r"\bTasks? \d", rest)]
+    results.check("every claimed standard names at least one assessing task", not unassessed, unassessed)
+    results.check("at least one standard is claimed and its kinds are recognised",
+                  bool(claims) and all(kind in ("Direct assessment", "Supporting alignment")
+                                       for kind, _, _ in claims),
+                  [f"{kind}: {code}" for kind, code, _ in claims])
+    returned = [code for _, code, _ in claims if code in WITHDRAWN_STANDARDS]
+    results.check("no withdrawn standard returns as a direct or supporting claim", not returned, returned)
+    results.check("the Teacher Guide records why MS-PS4-2 is not claimed",
+                  "MS-PS4-2 is not claimed" in role_text["teacher"]
+                  and re.search(r"reflected, absorbed,? or transmitted through a material",
+                                role_text["teacher"]) is not None)
+    results.check("no printable role advertises a withdrawn standard as claimed",
+                  not any(re.search(rf"(?:Direct assessment|Supporting alignment):\s*{code}", text)
+                          for code in WITHDRAWN_STANDARDS for text in role_text.values()))
+    bounded = [f"{kind}: {code}" for kind, code, rest in claims
+               if kind == "Supporting alignment"
+               and not re.search(r"only if|conditional|rather than direct|supporting rather than", rest, re.I)]
+    results.check("every supporting or conditional standard states its bound", not bounded, bounded)
+    results.check("no mathematics standard is claimed",
+                  not re.search(r"\bCCSS[.\s]|\bMath(?:ematics)? standard\b", " ".join(role_text.values())))
+
+    # ── E. Revision propagation ──────────────────────────────────────
+    registry_file = json.loads((ROOT / "shared/implementation/case-registry.v2.json").read_text(encoding="utf-8"))
+    entries = [node for node in json.dumps(registry_file) and _walk_entries(registry_file)
+               if node.get("id") == CASE_ID]
+    results.check("the shared case registry carries exactly one Case 03 entry", len(entries) == 1)
+    entry = entries[0] if entries else {}
+    results.check("the registry entry agrees with the candidate package",
+                  entry.get("version") == package["version"] == CANDIDATE_VERSION
+                  and entry.get("status") == package["status"]
+                  and entry.get("packageStatus") == "OWNER_REVIEW"
+                  and entry.get("approval") == package["approval"]
+                  and "historyRecord" not in entry,
+                  {"version": entry.get("version"), "status": entry.get("status")})
+    results.check("declared role page counts match the rendered document",
+                  {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
+                  == {role: len(pages(role)) for role in ROLES}
+                  == registry["roles"],
+                  {role: len(pages(role)) for role in ROLES})
+    results.check("the task registry, package, registry entry and content agree on the version",
+                  registry["version"] == package["version"] == entry.get("version") == CANDIDATE_VERSION
+                  and soup.select_one("[data-editor-content]")["data-editor-content"]
+                  == f"sss-c2-case03-v{CANDIDATE_VERSION}")
+    results.check("the package output names carry the candidate version",
+                  all(f"_v{CANDIDATE_VERSION}_CUSTOM.html" in name for name in package["outputs"].values())
+                  and package["documentKey"] == f"{CASE_ID}:v{CANDIDATE_VERSION}:curriculum-editor-v2")
+    readme = (CASE_ROOT / "README.md").read_text(encoding="utf-8")
+    results.check("the README describes the candidate and the release it retains",
+                  f"`{CASE_ID}`" in readme and CANDIDATE_VERSION in readme
+                  and RETAINED_VERSION in readme and "OWNER_GATE_OPEN" in readme
+                  and "NOT_RUN" in readme)
+    results.check("the README page counts match the package",
+                  all(f"{label} {package['rolePageStructure'][role]['pageCount']}" in readme
+                      for role, label in (("student", "Student"), ("teacher", "Teacher"),
+                                          ("answer", "Answer Key"), ("accessible", "Accessible"))))
+    results.check("no role still prints the wording the corrective release removed",
+                  not any(token in " ".join(role_text.values()) for token in
+                          ["proves no effective spectrum", "incomplete weighting model",
+                           "in at this site", "and and name"]))
 
     payload = {
         "validator": "sss-c2-case03-v1",

@@ -160,6 +160,32 @@ PROVENANCE = re.compile(
 INVENTED_SCENARIO_REMINDER = re.compile(r"\bfictional\b|\bfiction\b|\bmade[- ]up\b|\bimaginary\b", re.I)
 
 
+def unexpected_lifecycle(campaigns: dict) -> list[str]:
+    """Registered cases whose lifecycle is neither approved nor a valid corrective candidate.
+
+    Reopening an approved case for correction is a state the repository now supports
+    (``shared/validation/corrective_release_lifecycle``), so a registry that carries one
+    is not a defect. What would be a defect is a case in a state nobody declared: an
+    approved entry without its history record, or a candidate that keeps an approval
+    date, a print PASS, or a history pointer it has not earned.
+    """
+    findings = []
+    for cases in campaigns.values():
+        for case in cases:
+            approval = case.get("approval", {})
+            if case["status"] == "APPROVED_STABLE":
+                if case.get("packageStatus") != "APPROVED" or not case.get("historyRecord"):
+                    findings.append(f"{case['id']}: approved without a history record")
+            elif case["status"] in {"DRAFT", "OWNER_GATE_OPEN"}:
+                if (case.get("packageStatus") != "OWNER_REVIEW"
+                        or case.get("historyRecord")
+                        or approval.get("printStatus") != "NOT_RUN"
+                        or "date" in approval):
+                    findings.append(f"{case['id']}: corrective candidate in an unearned state")
+            else:
+                findings.append(f"{case['id']}: unrecognised lifecycle {case['status']}")
+    return findings
+
 class Results:
     def __init__(self) -> None:
         self.assertions: list[dict[str, object]] = []
@@ -294,11 +320,8 @@ def main() -> int:
                   == "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    results.check("every registered case is APPROVED_STABLE",
-                  all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases),
-                  [case["id"] for cases in campaigns.values() for case in cases
-                   if case["status"] != "APPROVED_STABLE"])
+    results.check("every registered case is approved or a valid corrective candidate",
+                  not unexpected_lifecycle(campaigns), unexpected_lifecycle(campaigns))
 
     # ── Source hashes and canonical folder shape ─────────────────────
     hash_targets = {

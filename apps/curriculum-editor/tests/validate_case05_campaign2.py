@@ -165,6 +165,32 @@ LIFECYCLE_METADATA = re.compile(
     r"|\bfeat/[\w-]+|\b[0-9a-f]{40}\b")
 
 
+def unexpected_lifecycle(campaigns: dict) -> list[str]:
+    """Registered cases whose lifecycle is neither approved nor a valid corrective candidate.
+
+    Reopening an approved case for correction is a state the repository now supports
+    (``shared/validation/corrective_release_lifecycle``), so a registry that carries one
+    is not a defect. What would be a defect is a case in a state nobody declared: an
+    approved entry without its history record, or a candidate that keeps an approval
+    date, a print PASS, or a history pointer it has not earned.
+    """
+    findings = []
+    for cases in campaigns.values():
+        for case in cases:
+            approval = case.get("approval", {})
+            if case["status"] == "APPROVED_STABLE":
+                if case.get("packageStatus") != "APPROVED" or not case.get("historyRecord"):
+                    findings.append(f"{case['id']}: approved without a history record")
+            elif case["status"] in {"DRAFT", "OWNER_GATE_OPEN"}:
+                if (case.get("packageStatus") != "OWNER_REVIEW"
+                        or case.get("historyRecord")
+                        or approval.get("printStatus") != "NOT_RUN"
+                        or "date" in approval):
+                    findings.append(f"{case['id']}: corrective candidate in an unearned state")
+            else:
+                findings.append(f"{case['id']}: unrecognised lifecycle {case['status']}")
+    return findings
+
 class Results:
     def __init__(self) -> None:
         self.assertions: list[dict[str, object]] = []
@@ -345,12 +371,11 @@ def main() -> int:
                   == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
                   and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"})
-    results.check("all thirteen registered cases are APPROVED_STABLE",
-                  all(case["status"] == "APPROVED_STABLE"
-                      for cases in campaigns.values() for case in cases)
+    results.check("all thirteen registered cases are approved or valid corrective candidates",
+                  not unexpected_lifecycle(campaigns)
                   and sum(len(cases) for cases in campaigns.values()) == 13,
-                  [case["id"] for cases in campaigns.values() for case in cases
-                   if case["status"] != "APPROVED_STABLE"])
+                  unexpected_lifecycle(campaigns)
+                  or sum(len(cases) for cases in campaigns.values()))
 
     # ── Source hashes ────────────────────────────────────────────────
     hash_targets = {
