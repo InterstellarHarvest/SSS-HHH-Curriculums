@@ -39,7 +39,7 @@ EXPECTED = {
     "SSS-C2-CASE01": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 9, "answer": 4}},
     "SSS-C2-CASE02": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE04": {"version": "1.1", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE04": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
     "SSS-C2-CASE06": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
 }
@@ -74,8 +74,9 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE02": {"student": "6b1f309da4ee40ff780d93914458b75c430cded815bbef110db1f27bb792df65", "teacher": "d09818e93df75949a5d93fe1a1dfb89fe9a23732a1a844299cac933d21f5fc9f", "answer": "3bbd39fb4bbc1e9432eb130d770c5a6378037ffb2142823b65b04fc5132564fc"},
     "SSS-C2-CASE03": {"student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493", "teacher": "c087aa117f87d991bd7b8039f6a189713833042720318007503b29792a1fd3a5", "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090"},
-    # Case 04 was reopened as the v1.1 corrective candidate; an unreleased package has no
-    # frozen DOM baseline. The baseline is re-established at approval.
+    # Case 04 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
+    # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
+    "SSS-C2-CASE04": {"student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e", "teacher": "2996592b0846b12db62b1d6ee5c4d2e8844be4ceb72a70db5276a6733daccfdf", "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6"},
     "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571", "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60"},
     # Case 06 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.

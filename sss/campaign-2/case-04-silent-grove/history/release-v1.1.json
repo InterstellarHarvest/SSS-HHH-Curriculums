@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE04",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-06",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
+  "canonicalSourceApprovalCommit": "556cbf843a284835e23d3341ff356d5453db341f",
+  "correctiveReviewCommits": [
+    {
+      "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
+      "role": "The Campaign 2 completion audit that identified the defects corrected here."
+    },
+    {
+      "commit": "45bf4ecf0ce857121ee9437dfcdd6d3156966dcf",
+      "role": "Shared validation support distinguishing a first release from a corrective-release candidate, which made this reissue representable without disturbing v1.0."
+    },
+    {
+      "commit": "55f5707a88264592a2cec868f6bb5358d57d4bdd",
+      "role": "The content correction: the restored Accessible Task 2 log evidence, the Task 1 change record in both learner editions, the removal of the unsupported historical-intensity control from the Task 4 and Task 6 Answer Key rejections, the removal of the runtime-only cultural-significance fact from the graded Task 8 exemplar, the Task 7 CER evidence-timing corrections, the restored drift-out-of-range direction of the filtration alternative in all four roles, and the standards corrections."
+    },
+    {
+      "commit": "acdf92c716fc8a2ba93715a4de089947752de353",
+      "role": "Opened the v1.1 corrective candidate for owner review and carried the version through the package, the registry entry and the README."
+    },
+    {
+      "commit": "556cbf843a284835e23d3341ff356d5453db341f",
+      "role": "Evidence-availability, evidence-timing, historical-versus-current reading, source-fidelity, cross-role parity, standards, revision-propagation and mutation coverage. The last candidate commit, carrying the approved content, presentation and layout-override sources unchanged."
+    },
+    {
+      "commit": "556cbf843a284835e23d3341ff356d5453db341f",
+      "role": "The v1.1 corrective release: lifecycle promotion, the v1.1 release and owner-approval records, the newly frozen DOM baselines, and the release-mode validator and mutations. This is the commit canonicalSourceApprovalCommit certifies, because the approved task registry exists only here."
+    }
+  ],
+  "sourceHashes": {
+    "content": "f45c048afa8d96e218aabc542c0b07bd3455a604e8bdf0ac75ad4e6c90a6f506",
+    "presentation": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
+    "taskRegistry": "e407f29452215612d2b0364fa9146d152cc3c92d2c56103e393bff7d17522142",
+    "layoutOverrides": "7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e",
+    "teacher": "2996592b0846b12db62b1d6ee5c4d2e8844be4ceb72a70db5276a6733daccfdf",
+    "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6",
+    "note": "Regenerated for v1.1. All three differ from the v1.0 baselines recorded under priorApprovedReleases, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+  },
+  "rolePageCounts": {
+    "student": 6,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "case04Scoped": "PENDING",
+    "case01Scoped": "PENDING",
+    "case02Scoped": "PENDING",
+    "case03Scoped": "PENDING",
+    "case05Scoped": "PENDING",
+    "case06Scoped": "PENDING",
+    "static": "PENDING",
+    "browser": "PENDING",
+    "pdf": "PENDING",
+    "canonicalStructure": "PENDING",
+    "layoutContracts": "PENDING",
+    "authoringSecurity": "PENDING",
+    "correctiveReleaseLifecycle": "PENDING",
+    "case04Mutations": "PENDING",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "pageCountsAndFit": "PENDING",
+    "evidenceAvailability": "PASS; every graded Answer Key expectation and every clause of the CER exemplar is producible from the Student edition alone and, independently, from the Accessible edition alone, on or before the page carrying the task that assesses it. Checked two ways: against a declared list of graded expectations, and by deriving requirements from the Answer Key's own reported values, day stamps and hour blocks. The runtime-only facts the learner editions withhold occur 0 times in the Answer Key.",
+    "historicalVersusCurrentReadings": "PASS; the 100% intensity reading is labelled Current wherever it is printed, and no role states or implies that intensity stayed the same, remained constant, never changed, or held at 100% throughout. The Teacher Guide states explicitly that the records do not report the intensity before Day -90.",
+    "hiddenEvidence": "PASS; the grove's cultural significance is a runtime grove-origin record printed in no learner edition, and it is required by no graded expectation. It survives only as Teacher discussion context, marked ungradeable.",
+    "sourceFidelity": "PASS; the filtration alternative keeps the runtime's drift-out-of-range direction in all four roles, and the rejection evidence that answers it - the scrubbers within the Zhel'ii target range and filtration set to preserve - is printed in both learner editions.",
+    "recordDivergenceHandling": "PASS; both learner editions print Day -80 and Day -83 as the two logs' own onset days, no role reconciles, averages or interpolates between them, and no compromise date is derivable from any printed record.",
+    "sourceBoundaryAndProhibitedClaims": "PASS; the universal dark-requirement, darkness-as-nutrient, absolute-absence, guaranteed-recovery, organism-intention and correlation-as-proof claims all remain mechanically blocked, and the fabricated intensity control now joins them.",
+    "teachingAnalogyContainment": "PASS; the kitchen-scale, two-witness and sleep-pattern values stay inside their marked data-analogy blocks and appear nowhere as grove evidence.",
+    "crossRoleReferenceIntegrity": "PENDING",
+    "accessibleDifferentiation": "PENDING",
+    "javascriptErrors": "0",
+    "gitDiffCheck": "clean",
+    "visualReview": "PASS; owner review of the rendered pages, including grayscale"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "556cbf843a284835e23d3341ff356d5453db341f",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-05",
+      "approvalCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
+      "recoveryCommit": "91c7a3f6615b8a33a37d34ba0146965cfa81bf8c",
+      "canonicalSourceApprovalCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
+      "retainedRecords": [
+        "sss/campaign-2/case-04-silent-grove/history/CASE04_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "22c986ea1af9bc12d5dc37b8796350de1962233c8a928706aa102cd1b5c587da",
+        "presentation": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
+        "taskRegistry": "258411ae3e6bad6d4c7298c43a8172021d120ca1797345962024a2dc3f3770cf"
+      },
+      "frozenNonAccessibleDomBaselines": {
+        "student": "78bd75e06a07acede806062efd4e5383ff618d42ecb6a668633f822cf1575186",
+        "teacher": "27179d6b828914cce0d27280562bdd1b37d6cdf3a373b4a48e704c91e5f528b6",
+        "answer": "a7c3566b867660f5614d8c078bc6306058e9afec721bfcb7758b4224dca720f1"
+      },
+      "rolePageCounts": {
+        "student": 6,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 8
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked."
+      },
+      "recoveryCommand": "git show 91c7a3f6615b8a33a37d34ba0146965cfa81bf8c:sss/campaign-2/case-04-silent-grove/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review and physical print pass at 100% / Actual Size. It is superseded, not withdrawn.",
+        "Its release record and owner-approval record are retained unchanged. Neither was edited to describe v1.1.",
+        "v1.0 pinned game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490, which is the same baseline v1.1 pins. No repin was needed and none was made.",
+        "The v1.0 source hashes, DOM baselines and page counts above are the historical evidence of what was approved on 2026-08-05. All three DOM baselines differ from v1.1's. The page counts are identical at Student 6, Teacher 8, Answer Key 4, Accessible 8: the corrected Accessible evidence was packed into the existing eight pages rather than split onto a ninth, which its one-task-per-page contract requires.",
+        "v1.0's canonicalSourceApprovalCommit cec58ccf is historically inaccurate and is deliberately NOT corrected in place. That commit carries a pre-lifecycle task-registry.js hashing db82aa141e17eec147ca3d11be642d57f55af580646e243a950860ca33eab19c rather than the 258411ae... the record certifies. The Campaign 2 completion audit recorded this defect class for Cases 01 and 02 as M-10 and M-18 but did not report it for Case 04; the v1.1 remediation found it by independent verification. The commit that actually contains all four certified v1.0 sources is 91c7a3f6615b8a33a37d34ba0146965cfa81bf8c, which is recorded above as recoveryCommit and recoveryCommand so recovery is possible without relying on the inaccurate pin. The Case 04 validator asserts both facts, so neither the inaccurate pin nor the true source-bearing commit can change unnoticed.",
+        "The v1.0 record's own accepted-validation figure, case04Scoped 75/75, was stale at the commit it describes: the Case 04 validator committed alongside it reports 82/82. The Campaign 2 completion audit recorded this as a minor finding. It is deliberately not corrected: v1.0's records are immutable historical evidence, and the accurate figures for the current tree are recorded in this v1.1 record instead.",
+        "The v1.0 record omits layoutOverrides from sourceHashes, as all six Campaign 2 v1.0 records do. That omission is also left uncorrected in v1.0 and is repaired going forward: this v1.1 record pins all four source hashes.",
+        "The v1.0 record's migrationNotes carry a Case 03 copy-paste, 'Campaign 2 Case 04 keeps its runtime case number and is not renumbered as Campaign 2 Case 01', which is not a statement about Case 04. The Campaign 2 completion audit recorded this as documentation-only. It is left uncorrected in v1.0 and is not repeated in this record."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "The Campaign 2 completion audit found two major and four minor defects inside this released package, and the remediation found three more by independent verification. The Accessible edition asked what both ship logs agree on while carrying no log evidence at all, so the Answer Key graded four agreements no Accessible student could see. The Answer Key rejected light damage with an intensity control that no printed record establishes and that the canonical runtime contradicts. Both learner editions asked for a change-or-keep classification before the controlling change record was printed. The graded Task 8 constraint exemplar offered a runtime-only fact about the grove's cultural significance. A rejected alternative had been reworded from the runtime's calibration drift into a materially different causal claim. And two standards were claimed as direct assessment that the tasks do not carry. v1.1 corrects all of it. The investigation, the diagnosis, the eight-task sequence, the five clue routes, the 18/6-to-24/0 quantitative core, the within-cycle signalling profile, the Day -80 versus Day -83 treatment, both figures and the case fiction are unchanged.",
+    "corrections": [
+      "Accessible Task 2 evidence. The edition's table set was 2, 3, 5, 6, 7 against the Student's 1-7: Table 4 was absent, while the prompt asking what both logs agree on and what their three-day difference does not mean was retained. The Accessible Task 2 page now carries a condensed Table 4 organised by record rather than by day - what both logs record, and what each log adds alone - placed above the prompts that need it. It supplies the power fluctuation, the schedule change, the loss of signalling that followed, the measurable-threshold day, the sensor log's no-other-change statement and the caretaker log's no-structural-decline statement. It is not a Student reflow: the day-by-day five-row table stays Student-only, and the Accessible edition keeps its shorter directions, chunked evidence, just-in-time vocabulary and one-task-per-page structure.",
+      "Task 1 evidence timing. Both learner editions asked learners to classify five conditions as changed or kept before any record establishing what was kept had been printed; the Student edition never printed the no-other-change statement at all. Each edition now carries a compact change record on the page of Task 1, in its own register: the Day -93 power fluctuation, the Day -90 schedule change, the sensor change log's no other environmental variable changing, and the caretaker log's no structural decline. No later diagnostic evidence was moved forward.",
+      "Unsupported historical intensity. The Answer Key stated 'Intensity has stayed at 100% of the standard grow setting throughout' at Task 4 and 'intensity did not change' at Task 6. No printed record establishes either - the record reports a current 100% and never reports the earlier value - and the canonical runtime contradicts both, because the caretaker says the lights were set to maximum, 24 hours at full intensity, when the schedule changed. Both sentences are removed and the light-damage rejection is rebuilt on the examination record, which was already carrying it. The current reading keeps its Current intensity label, and the Teacher Guide now states that the earlier value is unreported.",
+      "Task 8 hidden evidence. The graded constraint exemplar offered the grove being a culturally significant space, which is a runtime grove-origin record printed in no learner edition. It is removed from the exemplar and retained as Teacher discussion context, marked explicitly as ungradeable. Two supported constraints remain, both printed in both editions: the Day -93 power fluctuation and the six-month reversibility window.",
+      "Task 7 CER evidence timing. The exemplar required the 7-10 day suppression window, which learners first meet at Task 8 in both editions, and the 18.0 h schedule form, which the Accessible edition does not print. Both are corrected to evidence held at Task 7. The Task 2 agreement exemplar is also re-attributed: the two logs agree on three things, and the no-other-change and no-structural-decline records belong to one log each rather than to both.",
+      "Distractor and source fidelity. The runtime's rejected alternative is that the atmospheric chemical filtering has drifted out of range despite the crew's monitoring. The curriculum had reworded it as a correctly-set system removing the compounds, which is a materially different causal claim, and which the packet's own rejection evidence - the scrubbers within the Zhel'ii target range - does not actually answer. The drift direction is restored in all four roles at the classroom register each already uses, and the task registry records the runtime label beside the curriculum wording.",
+      "Standards. MS-LS1-5 is withdrawn as direct assessment: the performance expectation concerns environmental and genetic factors affecting organism growth, and this case holds growth constant deliberately - the packet's own assessment boundary instructs teachers not to report growth evidence from it. A boundary note cannot turn a mismatched performance expectation into a direct standard. It is retained as supporting and bounded at Task 7, on the Case 05 model, because that task genuinely carries the explanation practice. MS-ETS1-1 is demoted from direct to supporting: its direct rating rested partly on Task 8 accounting for impacts on people, which the Student task never asks and whose supporting fact is runtime-only, and Campaign 2 Case 03 rates its structurally identical final specification task as supporting. Task 8 was not enlarged in order to preserve the rating. MS-ETS1-2 remains supporting and conditional with its limitation intact. No standard replaces either withdrawn direct claim.",
+      "Release integrity. This record pins all four source hashes including layoutOverrides, which the v1.0 record omits; records the validation totals the release tree actually produces rather than the stale 75/75 the v1.0 record carries; carries no Case 03 copy-paste migration note; and pins a canonicalSourceApprovalCommit that demonstrably contains all four source blobs it certifies, which the v1.0 pin does not."
+    ],
+    "standardsOutcome": {
+      "directlyAssessedPerformanceExpectations": [],
+      "statement": "Case 04 v1.1 claims no NGSS performance expectation as directly assessed. Both v1.0 direct claims were withdrawn on owner review and no standard replaces either. What the packet assesses directly is the science and engineering practices and crosscutting concepts listed in the Teacher Guide: Analyzing and Interpreting Data, Engaging in Argument from Evidence, Developing and Using Models, Constructing Explanations and Designing Solutions, Asking Questions and Defining Problems; and Patterns, Cause and Effect, Stability and Change, Systems and System Models.",
+      "reason": "The owner accepted that conservative alignment is preferable to retaining an unsupported direct claim. MS-LS1-5 names growth and genetic factors, and this case is built on holding growth constant while a timed signalling function stops, so the performance expectation is mismatched by design rather than by omission; extending the packet to assess it would destroy the case's central distinction. MS-ETS1-1's direct rating depended on an impacts-on-people expectation the Student task does not set, and enlarging Task 8 to manufacture that expectation was explicitly rejected. Both are retained as supporting alignments with their assessed practice, learner evidence and limitation recorded in the task registry under standards, and both withdrawals are recorded under withdrawnStandards with the version that claimed them.",
+      "retained": [
+        "MS-LS1-5 - supporting, bounded, Task 7. The explanation practice only; the performance expectation is not claimed.",
+        "MS-ETS1-1 - supporting, Task 8. Two written criteria and one reported constraint; impacts on people are not assessed.",
+        "MS-ETS1-2 - supporting, conditional, Task 8. Claimable only if the class systematically compares the six-hour schedule against the five-hour recorded minimum against shared criteria."
+      ],
+      "withdrawn": [
+        "MS-LS1-5 as direct, claimed in 1.0, withdrawn in 1.1.",
+        "MS-ETS1-1 as direct, claimed in 1.0, withdrawn in 1.1.",
+        "Mathematics, never claimed; the packet requires no calculation anywhere."
+      ]
+    }
+  },
+  "migrationNotes": [
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490. Unchanged from v1.0; no repin was needed and none was made.",
+    "Runtime case identity: silent_grove, Zhel'ii Diaspora Grove, Drift Vessel Thal-Oren, Inter-system Transit.",
+    "The Student edition uses six pages because tasks are page-atomic and Tasks 6, 7 and 8 together exceed a single content frame. That is unchanged from v1.0.",
+    "The Accessible edition stays at eight pages. It runs one task per page across eight tasks, so a ninth page would leave a continuation page carrying no complete task, which the shared Accessible page contract forbids. The restored Task 2 log evidence was packed into the existing page instead: the condensed Table 4 uses row headers rather than a column header row, and the Task 1 record it would otherwise duplicate stays on the Task 1 page.",
+    "Tasks 2 and 3 teach by labelled everyday analogy rather than by transcribing case records, following the convention Campaign 2 Case 01 established. Teaching figures are lettered and the grove's records are numbered tables. That is unchanged from v1.0.",
+    "Three pages overflowed during the correction and were packed rather than split, at Student page 2 by 21 CSS pixels, Teacher page 7 by 27, and Accessible page 2 by 83. All are resolved; the browser matrix reports Pages fit for all four roles.",
+    "v1.1 was released after owner on-screen review, generated-PDF review, and a completed physical-print inspection at 100% / Actual Size. No generated artifact was created or committed at either version."
+  ],
+  "retiredArtifacts": []
+}

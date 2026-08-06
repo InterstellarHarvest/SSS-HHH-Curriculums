@@ -1,8 +1,8 @@
 # SSS Campaign 2 · Case 04 — The Silent Grove
 
-Native curriculum package reopened for correction. Package ID `SSS-C2-CASE04`, runtime ID
-`silent_grove`. The current version is the v1.1 corrective candidate; v1.0 remains the last
-approved release and its history records are retained unchanged.
+Released native curriculum package. Package ID `SSS-C2-CASE04`, runtime ID `silent_grove`.
+The current version is the v1.1 corrective release; the superseded v1.0 records are retained
+unchanged in `history/`.
 
 | Field | Value |
 |---|---|
@@ -11,8 +11,8 @@ approved release and its history records are retained unchanged.
 | Location | Drift Vessel Thal-Oren |
 | Subtitle | Campaign 2 · Case 04 · Drift Vessel Thal-Oren, Inter-system Transit |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective candidate, unreleased) |
-| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN`. The retained v1.0 release was owner approved 2026-08-05 with print PASS at 100% / Actual Size |
+| Version | 1.1 (corrective release of 1.0) |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-06, print gate PASS at 100% / Actual Size. The superseded v1.0 was approved 2026-08-05 and its records are retained unchanged |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -20,9 +20,11 @@ approved release and its history records are retained unchanged.
 ```text
 case-04-silent-grove/
 ├── README.md
-├── history/                 v1.0 records only, retained byte-identical
+├── history/                 v1.0 retained byte-identical; v1.1 is the current release
 │   ├── CASE04_OWNER_APPROVAL_v1.0.md
-│   └── release-v1.0.json
+│   ├── CASE04_OWNER_APPROVAL_v1.1.md
+│   ├── release-v1.0.json
+│   └── release-v1.1.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -68,6 +70,18 @@ records made for this grove, the correct diagnosis and its three rejected altern
 claims, and the figure provenance. Case-scoped assertions in
 `apps/curriculum-editor/tests/validate_case04_campaign2.py` enforce that ledger against the printable
 content.
+
+## Standards
+
+Case 04 v1.1 claims **no NGSS performance expectation as directly assessed**. `MS-LS1-5` and
+`MS-ETS1-1` were both claimed as direct in v1.0 and are **withdrawn as direct**; no standard
+replaces either. MS-LS1-5 is retained as supporting and bounded at Task 7 — the case holds
+growth constant deliberately, so the packet carries the explanation practice, not the
+performance expectation. MS-ETS1-1 is retained as supporting at Task 8, because the Student
+task does not ask students to account for impacts on people. MS-ETS1-2 remains supporting and
+conditional. What the packet does assess directly is the science and engineering practices and
+crosscutting concepts listed in the Teacher Guide. The exact assessed practice and learner
+evidence behind each retained claim are recorded in `source/task-registry.js` under `standards`.
 
 It also carries the ledgers added by the v1.1 correction: `standards` with the exact assessed practice
 and learner evidence behind each retained claim, `withdrawnStandards`, `learnerEvidencePolicy` (which

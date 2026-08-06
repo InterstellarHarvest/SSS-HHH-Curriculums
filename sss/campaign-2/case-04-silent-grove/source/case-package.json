@@ -7,11 +7,12 @@
   "subtitle": "Campaign 2 \u00b7 Case 04 \u00b7 Drift Vessel Thal-Oren, Inter-system Transit",
   "location": "Zhel'ii Diaspora Grove",
   "version": "1.1",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_IN_PROGRESS",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -129,10 +130,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "sss/campaign-2/case-04-silent-grove/history/release-v1.1.json",
   "sourceHashes": {
     "content": "f45c048afa8d96e218aabc542c0b07bd3455a604e8bdf0ac75ad4e6c90a6f506",
     "presentation": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
-    "taskRegistry": "2d9550a4826671cb7c34a00f913ba4b170ba24dc5a4460384d32713dd6f32d4f",
+    "taskRegistry": "e407f29452215612d2b0364fa9146d152cc3c92d2c56103e393bff7d17522142",
     "layoutOverrides": "7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c"
   }
 }
