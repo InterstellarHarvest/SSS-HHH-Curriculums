@@ -160,16 +160,18 @@
               "displayLabel": "1 - Heavy Hands",
               "title": "Heavy Hands",
               "version": "1.1",
-              "status": "OWNER_GATE_OPEN",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-01-heavy-hands/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "OWNER_REVIEW",
+              "packageStatus": "APPROVED",
               "approval": {
+                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "OWNER_REVIEW_IN_PROGRESS",
-                "printStatus": "NOT_RUN"
-              }
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
+              "historyRecord": "sss/campaign-2/case-01-heavy-hands/history/release-v1.1.json"
             },
             {
               "id": "SSS-C2-CASE02",

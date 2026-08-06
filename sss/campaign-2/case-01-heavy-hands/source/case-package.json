@@ -7,11 +7,12 @@
   "subtitle": "Campaign 2 · Case 01 · Kepler-442b Orbit, Vressk Territory",
   "location": "Vressk Centrifuge Habitat",
   "version": "1.1",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_IN_PROGRESS",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -129,10 +130,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "sss/campaign-2/case-01-heavy-hands/history/release-v1.1.json",
   "sourceHashes": {
     "content": "1b0e5550e37faa1842ae7ee6838e37b900b9d5a1bf687ab2cfb8461c4e1301b0",
     "presentation": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
-    "taskRegistry": "94cc2ba76d87479cd9267fe9ee6d8b3f24a12818f428eea0417db54124227d54",
+    "taskRegistry": "5c6c44fad4d5eb2731842900bae953d6e20fa3efd3bf32b30a73ea30d64df931",
     "layoutOverrides": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605"
   }
 }

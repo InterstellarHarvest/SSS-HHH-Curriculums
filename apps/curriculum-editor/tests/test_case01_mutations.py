@@ -12,8 +12,10 @@ therefore re-pins the package hashes before validating, and names the single ass
 it must trip. ``assert_trips`` additionally rejects a run whose only failures are the
 hash or lifecycle plumbing, so a mutation can never be scored as caught by drift.
 
-Case 01 is an unreleased v1.1 corrective candidate, so there is no release record and no
-frozen DOM baseline to re-pin — only the four package source hashes.
+Case 01 is now the approved v1.1 corrective release, so a content edit is caught by the
+package hash, the release-record hash and the release-record DOM baseline before any content
+detector runs. Re-pinning all three is what makes these tests prove the content protections
+rather than the integrity plumbing.
 """
 from __future__ import annotations
 
@@ -34,16 +36,22 @@ CONTENT = SOURCE / "content.html"
 REGISTRY = SOURCE / "task-registry.js"
 PACKAGE = SOURCE / "case-package.json"
 README = CASE_ROOT / "README.md"
+RELEASE = CASE_ROOT / "history/release-v1.1.json"
+RELEASE_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.1.md"
 RETAINED_RELEASE = CASE_ROOT / "history/release-v1.0.json"
 RETAINED_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.0.md"
 VALIDATOR = ROOT / "apps/curriculum-editor/tests/validate_case01_campaign2.py"
-TRACKED = (CONTENT, REGISTRY, PACKAGE, README, RETAINED_RELEASE, RETAINED_APPROVAL)
+TRACKED = (CONTENT, REGISTRY, PACKAGE, README, RELEASE, RELEASE_APPROVAL,
+           RETAINED_RELEASE, RETAINED_APPROVAL)
 
 # Failures that mean "something moved", not "the protection fired". A mutation whose only
 # effect is one of these has not proved anything.
 PLUMBING = {
     "package source hashes verify",
     "the shared corrective-release lifecycle rules are satisfied",
+    "the v1.1 release record certifies all four sources and they match the package",
+    "the v1.1 frozen DOM baselines match the released markup",
+    "canonicalSourceApprovalCommit contains all four source blobs the record certifies",
 }
 
 
@@ -70,8 +78,25 @@ class Case01Mutations(unittest.TestCase):
         for path, body in self.original.items():
             path.write_bytes(body)
 
+    def restore_missing(self):
+        """Recreate any record a mutation deleted."""
+        for path, body in self.original.items():
+            if not path.exists():
+                path.write_bytes(body)
+
     def rehash(self):
-        """Re-pin the four package source hashes so no mutation is caught by drift alone."""
+        """Re-pin every hash and baseline a mutation would otherwise trip incidentally."""
+        from bs4 import BeautifulSoup, NavigableString
+
+        def role_dom_hash(soup, role):
+            fragment = BeautifulSoup(
+                "".join(str(page) for page in soup.select(f'.page[data-role="{role}"]')),
+                "html.parser")
+            for node in list(fragment.find_all(string=True)):
+                if isinstance(node, NavigableString) and not str(node).strip():
+                    node.extract()
+            return hashlib.sha256(fragment.decode(formatter="minimal").encode("utf-8")).hexdigest()
+
         digests = {key: hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
                    for key, name in (("content", "content.html"),
                                      ("presentation", "presentation.css"),
@@ -81,6 +106,20 @@ class Case01Mutations(unittest.TestCase):
         for key, digest in digests.items():
             text = re.sub(rf'("{key}": ")[0-9a-f]{{64}}(")', rf"\g<1>{digest}\g<2>", text, count=1)
         PACKAGE.write_text(text, encoding="utf-8")
+        if not RELEASE.exists():
+            return
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["sourceHashes"].update(digests)
+        soup = BeautifulSoup(CONTENT.read_text(encoding="utf-8"), "html.parser")
+        for role in ("student", "teacher", "answer"):
+            release["frozenNonAccessibleDomBaselines"][role] = role_dom_hash(soup, role)
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+    def edit_record(self, path: Path, mutate):
+        """Mutate a JSON history record in place, leaving source hashes alone."""
+        record = json.loads(path.read_text(encoding="utf-8"))
+        mutate(record)
+        path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     # ── helpers ──────────────────────────────────────────────────────────────
 
@@ -301,14 +340,14 @@ class Case01Mutations(unittest.TestCase):
         self.assert_trips("the corrected merry-go-round geometry propagated to every file "
                           "that states it")
 
-    def test_v1_1_release_record_written_before_approval(self):
-        """The candidate may carry no release record of its own."""
-        record = json.loads(RETAINED_RELEASE.read_text(encoding="utf-8"))
-        record["curriculumVersion"] = "1.1"
-        (CASE_ROOT / "history/release-v1.1.json").write_text(
-            json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-        self.addCleanup(lambda: (CASE_ROOT / "history/release-v1.1.json").unlink(missing_ok=True))
-        self.assert_trips("no v1.1 release or owner-approval record has been written")
+    def test_stray_history_record_added(self):
+        """history/ holds exactly the canonical records for the two approved versions."""
+        stray = CASE_ROOT / "history/release-v1.2.json"
+        record = json.loads(RELEASE.read_text(encoding="utf-8"))
+        record["curriculumVersion"] = "1.2"
+        stray.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        self.addCleanup(lambda: stray.unlink(missing_ok=True))
+        self.assert_trips("history holds exactly the four canonical records, two per approved version")
 
     def test_retained_v1_0_record_rewritten(self):
         """v1.0 history is frozen, including its historically inaccurate commit pin."""
@@ -325,10 +364,66 @@ class Case01Mutations(unittest.TestCase):
         PACKAGE.write_text(text, encoding="utf-8")
         self.assert_trips("the package certifies all four sources, including layoutOverrides")
 
-    def test_candidate_promoted_to_approved_without_a_release(self):
-        """An approved status with no release record must not validate."""
-        self.edit(PACKAGE, '"status": "OWNER_GATE_OPEN",', '"status": "APPROVED_STABLE",')
-        self.assert_trips("the package records the unreleased corrective-candidate lifecycle")
+    def test_release_downgraded_to_an_unapproved_candidate(self):
+        """A released package must carry the approved lifecycle it claims."""
+        self.edit(PACKAGE, '"status": "APPROVED_STABLE",', '"status": "OWNER_GATE_OPEN",')
+        self.assert_trips("the package records the approved corrective-release lifecycle")
+
+    # ── 23-28 · release-mode protections ─────────────────────────────────────
+
+    def test_v1_1_release_record_missing(self):
+        """A released package must carry a release record for its own version."""
+        RELEASE.unlink()
+        self.addCleanup(self.restore_missing)
+        self.assert_trips("history holds exactly the four canonical records, two per approved version")
+
+    def test_print_gate_downgraded(self):
+        """The physical-print attestation may not be weakened after approval."""
+        self.edit_record(RELEASE, lambda r: r.__setitem__("acceptedPrintStatus", "NOT_RUN"))
+        self.assert_trips("the v1.1 release record records the physical print gate")
+
+    def test_prior_v1_0_release_dropped(self):
+        """v1.0 must stay represented as the prior approved release."""
+        self.edit_record(RELEASE, lambda r: r.__setitem__("priorApprovedReleases", []))
+        self.assert_trips("the v1.1 record represents exactly one prior approved release, v1.0")
+
+    def test_prior_release_rewritten_to_describe_v1_1(self):
+        """The prior-release block must keep v1.0's own page counts, not v1.1's."""
+        self.edit_record(RELEASE, lambda r: r["priorApprovedReleases"][0]["rolePageCounts"]
+                         .__setitem__("teacher", 9))
+        self.assert_trips("the prior release carries v1.0's own hashes, baselines and page counts")
+
+    def test_v1_1_baselines_reverted_to_v1_0(self):
+        """v1.0 markup must never be able to satisfy the v1.1 baselines."""
+        text = (ROOT / "apps/curriculum-editor/tests/validate_static.py").read_text(encoding="utf-8")
+        static_path = ROOT / "apps/curriculum-editor/tests/validate_static.py"
+        self.addCleanup(lambda: static_path.write_text(text, encoding="utf-8"))
+        static_path.write_text(text.replace(
+            '"SSS-C2-CASE01": {"student": "6f02de8a1f56bada6ef119061ebe0c47335aaefd2a3fd6943f639409421aff4c", "teacher": "12df1cfccead45cb0c37441b433ff13feefc5b335defe1b6046b7f9235976e14", "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1"}',
+            '"SSS-C2-CASE01": {"student": "d423e389da2a3907a042430505aee6127a064d0c1231889a73a035d47000c425", "teacher": "b717bbc1b39df84b7006a5972d51a87057d35492f0add63c58676db941bed3b8", "answer": "52fe5e018b612d871193cdb9615af29303a86ea10552f745cf5ab38e85278afa"}'),
+            encoding="utf-8")
+        self.assert_trips("the shared approved-baseline map holds the v1.1 baselines, not v1.0's")
+
+    def test_false_certified_source_pin(self):
+        """A pin must contain the sources it certifies — the exact v1.0 defect."""
+        self.edit_record(RELEASE, lambda r: r.__setitem__(
+            "canonicalSourceApprovalCommit", "864156f068cf89b595e1a394f1a4294c839f2876"))
+        self.assert_trips("canonicalSourceApprovalCommit contains all four source blobs "
+                          "the record certifies")
+
+    def test_retained_v1_0_record_deleted(self):
+        """v1.0 history is frozen evidence and may not be removed."""
+        RETAINED_RELEASE.unlink()
+        self.addCleanup(self.restore_missing)
+        self.assert_trips("history holds exactly the four canonical records, two per approved version")
+
+    def test_retained_v1_0_approval_rewritten_to_describe_v1_1(self):
+        """The v1.0 approval record may not be edited to describe the corrective release."""
+        body = RETAINED_APPROVAL.read_text(encoding="utf-8")
+        RETAINED_APPROVAL.write_text(body.replace("Release status: **APPROVED_STABLE**",
+                                                  "Release status: **APPROVED_STABLE** (superseded by v1.1)"),
+                                     encoding="utf-8")
+        self.assert_trips("both retained v1.0 records are byte-identical to synchronised main")
 
 
 if __name__ == "__main__":

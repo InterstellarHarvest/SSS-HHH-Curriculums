@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE01",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-06",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "864156f068cf89b595e1a394f1a4294c839f2876",
+  "canonicalSourceApprovalCommit": "1991817eecbda895970307c817aa46ffdc5a9eb8",
+  "correctiveReviewCommits": [
+    {
+      "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
+      "role": "The Campaign 2 completion audit that identified the defects corrected here."
+    },
+    {
+      "commit": "45bf4ecf0ce857121ee9437dfcdd6d3156966dcf",
+      "role": "Shared validation support distinguishing a first release from a corrective-release candidate, which made this reissue representable without disturbing v1.0."
+    },
+    {
+      "commit": "823930fbc5c017a40aaf6564362df3c4455dde53",
+      "role": "The content correction: unsupported historical controls, Task 1 expectations, learner-evidence availability across Tasks 5, 6 and 7, the stale Task 3 Teacher instructions, the unscorable rubric dimension, objective and success criterion, the GC-1445 qualifier and evidentiary role, the attribution corrections, Teacher guidance for Tasks 2, 5, 6 and 7, the MS-ETS1-3 withdrawal, the Accessible corrections, and the Teacher page split from 8 to 9."
+    },
+    {
+      "commit": "f7ce864291275bf0942a0dadd9fbbd9eef8fccc9",
+      "role": "Opened the v1.1 corrective candidate for owner review and carried the version through the package, the registry entry and the README."
+    },
+    {
+      "commit": "9befaa244de1b5262796949d95e1963d8a04ad20",
+      "role": "Evidence-availability, supported-control, Teacher-task synchronisation, source-attribution, standards, revision-propagation and mutation coverage."
+    },
+    {
+      "commit": "1991817eecbda895970307c817aa46ffdc5a9eb8",
+      "role": "The narrow layout correction found by rendering the corrected packet: the Answer Key classification column widened from .78in to 3.1in. The last candidate commit, carrying the approved content and layout-override sources unchanged."
+    }
+  ],
+  "sourceHashes": {
+    "content": "1b0e5550e37faa1842ae7ee6838e37b900b9d5a1bf687ab2cfb8461c4e1301b0",
+    "presentation": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
+    "taskRegistry": "5c6c44fad4d5eb2731842900bae953d6e20fa3efd3bf32b30a73ea30d64df931",
+    "layoutOverrides": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "6f02de8a1f56bada6ef119061ebe0c47335aaefd2a3fd6943f639409421aff4c",
+    "teacher": "12df1cfccead45cb0c37441b433ff13feefc5b335defe1b6046b7f9235976e14",
+    "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1",
+    "note": "Regenerated for v1.1. All three differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 9,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "case01Scoped": "PENDING",
+    "case02Scoped": "108/108 (unchanged, byte-identical)",
+    "case03Scoped": "107/107 (unchanged, byte-identical)",
+    "case04Scoped": "82/82 (unchanged, byte-identical)",
+    "case05Scoped": "101/101 (unchanged, byte-identical)",
+    "case06Scoped": "230/230 (unchanged, byte-identical)",
+    "static": "PENDING",
+    "browser": "PENDING",
+    "pdf": "PENDING",
+    "canonicalStructure": "PASS",
+    "layoutContracts": "PENDING",
+    "authoringSecurity": "13/13",
+    "correctiveReleaseLifecycle": "25/25",
+    "case01Mutations": "PENDING",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "pageCountsAndFit": "PENDING",
+    "evidenceAvailability": "PENDING",
+    "supportedControls": "PENDING",
+    "sourceBoundaryAndProhibitedClaims": "PASS; direction/magnitude, over-calibration, Earth-generalisation and guaranteed-remedy claims all mechanically blocked, and the universal gradient-sensitivity claim is now blocked with them",
+    "teachingAnalogyContainment": "PASS; merry-go-round values confined to the marked data-analogy block",
+    "accessibleDifferentiation": "PENDING",
+    "javascriptErrors": "0",
+    "gitDiffCheck": "clean",
+    "visualReview": "PASS; owner review of the rendered pages, including grayscale"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "1991817eecbda895970307c817aa46ffdc5a9eb8",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-04",
+      "approvalCommit": "864156f068cf89b595e1a394f1a4294c839f2876",
+      "recoveryCommit": "a4195913e7c2d98bd2174f2034a609d8e20f264c",
+      "canonicalSourceApprovalCommit": "864156f068cf89b595e1a394f1a4294c839f2876",
+      "retainedRecords": [
+        "sss/campaign-2/case-01-heavy-hands/history/CASE01_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-2/case-01-heavy-hands/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "af6143c46bc166be3420ce0d6243e615f49caaca7d679e587633a0e66e975e4c",
+        "presentation": "9ba4fc5dffc501126032f8a06d1c21e17f5ea8fe914b0a0a885c377d0ccc3d05",
+        "taskRegistry": "7d92bac95a3661a8ae4eaa2843e91b2ec4c59541b07234e8b4a8d888131788d1"
+      },
+      "frozenNonAccessibleDomBaselines": {
+        "student": "d423e389da2a3907a042430505aee6127a064d0c1231889a73a035d47000c425",
+        "teacher": "b717bbc1b39df84b7006a5972d51a87057d35492f0add63c58676db941bed3b8",
+        "answer": "52fe5e018b612d871193cdb9615af29303a86ea10552f745cf5ab38e85278afa"
+      },
+      "rolePageCounts": {
+        "student": 5,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 8
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked."
+      },
+      "recoveryCommand": "git show a4195913e7c2d98bd2174f2034a609d8e20f264c:sss/campaign-2/case-01-heavy-hands/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review and physical print pass at 100% / Actual Size. It is superseded, not withdrawn.",
+        "Its release record and owner-approval record are retained unchanged. Neither was edited to describe v1.1.",
+        "v1.0 pinned game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490, which is the same baseline v1.1 pins. No repin was needed and none was made.",
+        "The v1.0 source hashes, DOM baselines and page counts above are the historical evidence of what was approved on 2026-08-04. The DOM baselines do not match v1.1's, and the page counts differ: v1.0 was Teacher 8, and v1.1 is Teacher 9.",
+        "v1.0's canonicalSourceApprovalCommit 864156f0 is historically inaccurate and is deliberately NOT corrected in place. That commit carries a pre-lifecycle task-registry.js hashing 485076fa5f8eb96eed20e3fdaae32cf42541ca21328dc7b5220fa14d07509ab2 rather than the 7d92bac9… the record certifies. The Campaign 2 completion audit recorded this as M-10. The commit that actually contains all four certified v1.0 sources is a4195913e7c2d98bd2174f2034a609d8e20f264c, which is recorded above as recoveryCommand and recoveryCommit so recovery is possible without relying on the inaccurate pin. The Case 01 validator asserts both facts, so neither the inaccurate pin nor the true source-bearing commit can change unnoticed.",
+        "The v1.0 record's own accepted-validation figures (case01Scoped 69/69, static 432/432) were stale at the commit they describe, which the audit recorded as a minor finding. They are deliberately not corrected: v1.0's records are immutable historical evidence, and the accurate figures for the current tree are recorded in this v1.1 record instead.",
+        "The v1.0 record omits layoutOverrides from sourceHashes, as all six Campaign 2 v1.0 records do. That omission is also left uncorrected in v1.0 and is repaired going forward: this v1.1 record pins all four source hashes."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "The Campaign 2 completion audit found ten major defects inside this released package. Two answer-key rows taught controls the canonical game source does not support; six Answer Key expectations required values printed in no learner edition; the Teacher Guide described a Task 3 calculation that commit bf0ad45 had removed; a rubric dimension, an objective and a success criterion graded values learners never receive; a standard was claimed that no task assesses; and the release record certified a commit that does not contain the task registry it names. v1.1 corrects all of it. The investigation, the diagnosis, the eight-task sequence, the five clue routes, the quantitative gravity profile and the case fiction are unchanged.",
+    "corrections": [
+      "Unsupported historical controls. The packet taught that soil, nutrients, light and water were each changed or verified across three plantings without effect. The runtime records two interventions only: Crop 2 reformulated the soil, Crop 3 used new seed stock. Nutrients, light and water are reported by the botanist as present conditions — 'Nutrients: precise. Light: calibrated to Vress-standard grow spectrum. Water: clean.' — and were never varied. The completion audit states that water is never mentioned in the case; it is, but only as a present reading, so the audit's conclusion holds and the correction is written to the runtime text rather than to the summary. Every affected location is corrected: the registry source ledger, the Teacher lesson overview, the Teacher evidence ledger, both learner editions' Task 1, and Answer Key Tasks 1 and 5. No invented replacement control was introduced.",
+      "Reported versus tested. The packet now draws the distinction explicitly rather than leaving it implicit. Both learner editions print the botanist's present-condition report beside Table 1, Table 2 asks whether a condition was changed between plantings rather than 'changed or verified', and both editions state on the page that N marks an untested condition and not an eliminated one. The Teacher evidence ledger gains a 'Reported by' column and a 'Reported is not tested' note. A machine-checkable historicalControls ledger and a controlsPolicy statement are added to the task registry.",
+      "Task 1 correctness. The v1.0 Answer Key marked nutrient supply 'Y — verified against the cultivation standard' and grow-light spectrum 'Y — calibrated to the homeworld standard'. Both are unsupported by the packet and by the game. Task 1 now marks soil and seed stock Y and the other three rows N, each with the printed evidence that supports it, and its marking note names reading a present value as a completed test as the error the task exists to catch. Every required response is answerable from the page, and Teacher, Answer Key, Student and Accessible use the same categories. The task id C2-C01-T1 and the task order are unchanged.",
+      "Learner evidence availability. Answer Key exemplars required evidence learners do not hold: the three radii and magnitudes, the directly reported 0.00187 g difference, the rotation rate, 0.3%, 80 m, 300 m, GC-1445, and — at Task 6 — the specification band and endpoint values that learners first meet at Task 8. Each item was classified and resolved. The raw gravity profile, the precedent radii, the soil-match percentage and GC-1445 are Teacher-only enrichment and are withdrawn from every graded expectation. The specification band stays at Task 8 and is removed from the Task 6 and Task 7 exemplars. The botanist's present-condition report was essential and missing, and is now printed in both learner editions. Task 5 is regraded against the summaries in learner Table 4 with gameplay detail accepted as a bonus rather than required; Task 6 rejects over-calibration from the three-place result printed on Student page 2 and Accessible page 3; and the Task 7 CER exemplar is rebuilt so that every clause is producible from the Student edition alone and, independently, from the Accessible edition alone. The exemplar also drops 'a = ω²r', which the guide's own assessment boundary says learners never meet, and reasons from the merry-go-round relationship instead.",
+      "Stale Task 3 Teacher guidance. Commit bf0ad45 removed all arithmetic from Task 3, but the guide still described it in three places: 'Task 3 needs one subtraction of four-decimal values', a preparation note keyed to the rounding idea, and a numerical-ledger row reading 'What Task 3 produces. Accept it, and require the explanation.' All three now describe the Task 3 that exists. No arithmetic was restored in order to make the stale text true. The precision explanation is retained where it is instructionally supported — as a Teacher-facing optional extension, which now states that no student can be asked to produce the subtraction because neither endpoint is printed in any learner edition.",
+      "Rubric, objectives and success criteria. The formal 'Precision' rubric dimension graded copying 2.0991 g, 2.1009 g and 0.00187 g and treating the two difference values as consistent; one measurable objective and one success criterion did the same. None of those values reaches a learner. The dimension is reframed as 'Reported values only', scored on the values the packet prints — 2.10 g, ±0.05 g, 20 cm, 600 m and the recorded onset days — and on inventing no quantity the case does not report, which is visible in Tasks 6, 7 and 8. The objective and the success criterion are reframed to the same evidence, and a new objective covers the reported-versus-tested distinction assessed at Task 1. Every rubric dimension and success criterion now maps to a visible student product.",
+      "GC-1445 qualification and evidentiary role. The packet dropped the qualifier the record carries and reused the record as radius evidence. The Concord table now reads 'No misalignment reported — with the qualifier the record attaches: low gravitropic precision', a Teacher note records that the same database concludes gradient sensitivity is species-dependent and that the record therefore establishes nothing about a safe radius and nothing about gorlroot, and a claims-to-correct entry blocks the misuse. The Answer Key no longer cites it. Both Concord records stay Teacher-facing: neither identifier appears in a learner edition and no task requires them, while Table 7 gives learners the one figure they need — GC-1208 resolved by extending the radius to 600 m. The precedent ledger records the qualifier, the conclusion and the evidentiary limit.",
+      "Attribution. Two claims were attributed to the wrong source. 'The archive says the bed-scale difference is negligible' is corrected: it is the botanist who says it, twice, and it is a person's assessment rather than an archived measurement. 'Nominal; no vibration and no wobble reported' conflated two sources: the sensor array reports only 'Ring Status: NOMINAL', and it is the botanist who separately reports steady RPM with no vibration and no wobble. The claim is retained with the correct source rather than withdrawn, since the game does support it. The Teacher evidence ledger now names the reporting source for every row, and two claims-to-correct entries block both misattributions.",
+      "Teacher completeness. Annotated answers covered Tasks 1, 3, 4 and 8 only. Tasks 2, 5, 6 and 7 now carry purpose, the evidence students should use, expected reasoning, acceptable alternatives, misconceptions and a scoring or success indicator, without duplicating the Answer Key. Every entry corresponds to the actual Student and Accessible prompts.",
+      "Standards. MS-ETS1-3 is withdrawn and no standard replaces it: it was justified by Concord records GC-1208 and GC-1445, which are Teacher-facing and appear in no learner edition, and no task asks students to analyse data from several design solutions or to combine the best characteristics into a new one. No task was redesigned in order to preserve it. MS-LS1-5 is retained as direct with its learner evidence recorded — Table 1's Crop 3 seed-stock change and Table 2's unchanged ring at Task 1, and the Task 7 CER that uses both — so the environmental attribution is assessed rather than assumed. MS-ETS1-1 is retained as direct at Task 8, where students write the missing across-bed criterion and name a reported constraint. MS-ETS1-2 remains supporting and conditional with its limitation intact and strengthened. No mathematics standard is claimed, and the previously withdrawn mathematics claim does not return for incidental arithmetic. A machine-checkable standards and withdrawnStandards ledger is added to the task registry.",
+      "Teacher page count, 8 to 9. Forced by the correction and measured, not estimated: with the attributed conditions table, the 'Reported is not tested' note and the GC-1445 limits note present, teacher-guide-04 overflowed its printable area by 245 pixels and teacher-guide-08 by 54. The essential evidence ledger now spans two pages — the reference figure, the gravity profile and the crop history on page 4, the reported conditions and the Concord records on page 5 — and the quick-grading guidance moved onto the discussion page. Student 5, Answer Key 4 and Accessible 8 are unchanged. Accessible was held at 8 deliberately: it runs one task per page across eight tasks, so a ninth page would leave a continuation page carrying no complete task, which the shared Accessible page contract forbids.",
+      "Accessible corrections. The edition regains 'neither toward the axis nor away from it', the clause that rules out a listed prohibited claim and that the Answer Key CER exemplar quotes back. Its CER page gains sentence starters and a pointer to the pages holding the evidence, on the hardest task in the packet. It carries the botanist's present-condition report and the reported-versus-tested rule in its own register. Every Answer Key expectation is independently producible from the Accessible edition. Differentiation is preserved rather than flattened: measured similarity is 67.4%, against 67.7% at v1.0.",
+      "Release certification. The v1.0 record's canonicalSourceApprovalCommit does not contain the task registry it certifies. That record is immutable and is not corrected in place; the true source-bearing commit a4195913 is recorded in priorApprovedReleases instead. This v1.1 record pins all four source hashes including layoutOverrides, records the totals its own suites actually produce, and names a canonicalSourceApprovalCommit whose four source blobs the Case 01 validator hashes and compares directly, so the defect class cannot ship again for this case.",
+      "A propagated arithmetic error, recorded by the audit as a minor finding, is also corrected in the three live files that state it: a ring with a classroom-friendly spread needs a radius of about two metres, roughly four metres across, not 'about two metres across'. At 2.1 g and 30 RPM the radius is about 2.09 m."
+    ],
+    "unchanged": [
+      "The eight-task sequence, its identifiers and its order in every role.",
+      "The correct diagnosis, the three rejected alternatives, the five formal clues and the required clue routes.",
+      "The quantitative gravity profile at its authored precision: rotation rate 2.88966 RPM, radii 224.8, 224.9 and 225.0 m, magnitudes 2.0991 g, 2.10 g and 2.1009 g, the directly reported 0.00187 g across-bed difference, the 0.0018 g difference of the rounded endpoints and the deliberate distinction between them, and the 2.10 g ±0.05 g specification band. The completion audit re-derived the whole profile from a = ω²r and confirmed it correct; it is Teacher-facing by design and remains so.",
+      "The conclusion that the reported direction stays outward at every sampled radius while only the magnitude changes with radius, and the prohibition on describing the difference as a tilt, a rotation or a reversal.",
+      "The qualitative mechanism boundary: the gorlroot growth-control response is case evidence, not established Earth plant biology, and no rotating-reference-frame derivation, Newton's-law derivation or other advanced physics was introduced.",
+      "The merry-go-round teaching analogy, its invented values and their containment in the marked data-analogy block.",
+      "Both figures, their pattern fills, direct labels and grayscale legibility, and the absence of any deformation quantity.",
+      "The Student CER contract, the dedicated Accessible CER page under data-accessible-cer-page=canonical-v1.0, and the shared CER subtitle in both learner editions.",
+      "Student 5 pages, Answer Key 4 pages and Accessible 8 pages, and the fixed Letter geometry.",
+      "The case's approved science protections: no change of direction across the bed, no over-calibration claim, no assertion that the midpoint calibration is wrong, no tubers growing upward or toward the axis, no Earth-crop generalisation, no universal claim that plants sense gravity gradients, no Coriolis attribution, no detection-threshold reading of the reported difference, no guaranteed remedy, no negligible-means-zero reading, and no single-source proof language.",
+      "The runtime case heavy_hands, its campaign position 1 of 6 and its positional display label."
+    ]
+  },
+  "migrationNotes": [
+    "Corrective release of Campaign 2 Case 01, runtime case heavy_hands, the Vressk centrifuge habitat at Kepler-442b orbit.",
+    "Frozen game baseline 29c3b222c53f51de11a3aa83e896a6d0ef6fb490, the same baseline v1.0 pinned. The game repository was not modified during this remediation and remains at that commit.",
+    "Registered as Campaign 2 Case 01 ahead of Case 03, which was produced first as the pilot. Case 03 keeps its runtime case number and is not renumbered.",
+    "The prior approved v1.0 release is preserved in priorApprovedReleases and its two history records are retained byte-identical. Git history remains authoritative for recovery.",
+    "Frozen Student, Teacher and Answer Key DOM baselines were regenerated for v1.1 and all three differ from v1.0's.",
+    "Learners meet the acceleration relationship through a labelled merry-go-round analogy and through the qualitative three-place result the sensor array reports, rather than through the habitat's own readings, which differ by less than a tenth of one percent across a 20 cm bed and cannot carry the idea at this reading level. The reported values are retained in the Teacher Guide. That design is unchanged from v1.0 and is the reason the v1.1 evidence-availability check exists: an Answer Key must be producible from the evidence a learner actually holds.",
+    "No generated artifact was produced or committed at either version.",
+    "No mathematics standard is claimed: the packet requires no calculation, and no task asks for arithmetic with any reported value."
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED",
+  "retiredArtifacts": []
+}

@@ -1,8 +1,8 @@
 # SSS Campaign 2 · Case 01 — Heavy Hands
 
-Native curriculum package reopened for correction. Package ID `SSS-C2-CASE01`, runtime ID
-`heavy_hands`. The current version is the v1.1 corrective candidate; v1.0 remains the last
-approved release and its history records are retained unchanged.
+Released native curriculum package. Package ID `SSS-C2-CASE01`, runtime ID `heavy_hands`.
+The current release is the v1.1 corrective release; v1.0 is the prior approved release and its
+history records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -11,8 +11,8 @@ approved release and its history records are retained unchanged.
 | Location | Kepler-442b Orbit |
 | Subtitle | Campaign 2 · Case 01 · Kepler-442b Orbit, Vressk Territory |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective candidate, unreleased) |
-| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN`. The retained v1.0 release was owner approved 2026-08-04 with print PASS at 100% / Actual Size |
+| Version | 1.1 (corrective release of 1.0) |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-06, print gate PASS at 100% / Actual Size. The prior v1.0 release was approved 2026-08-04 and its records are retained unchanged |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 Case 03 was produced first as the Campaign 2 pilot. This case keeps its canonical runtime
@@ -23,9 +23,11 @@ number and is registered as Case 01, ahead of Case 03 in the Campaign 2 case lis
 ```text
 case-01-heavy-hands/
 ├── README.md
-├── history/                 v1.0 records only, retained byte-identical
-│   ├── CASE01_OWNER_APPROVAL_v1.0.md
-│   └── release-v1.0.json
+├── history/
+│   ├── CASE01_OWNER_APPROVAL_v1.0.md   retained byte-identical
+│   ├── CASE01_OWNER_APPROVAL_v1.1.md
+│   ├── release-v1.0.json               retained byte-identical
+│   └── release-v1.1.json
 └── source/
     ├── case-package.json
     ├── content.html
