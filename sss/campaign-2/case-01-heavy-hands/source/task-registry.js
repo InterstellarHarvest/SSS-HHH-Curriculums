@@ -2,12 +2,11 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE01",
   "title": "Heavy Hands",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "approvalDate": "2026-08-04",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
+  "correctiveOf": "1.0",
+  "ownerReviewStatus": "OWNER_REVIEW_IN_PROGRESS",
+  "printStatus": "NOT_RUN",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "heavy_hands",
@@ -16,7 +15,7 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
   "runtimeSubtitle": "Vressk Territory",
   "roles": {
     "student": 5,
-    "teacher": 8,
+    "teacher": 9,
     "answer": 4,
     "accessible": 8
   },
@@ -27,7 +26,7 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "semanticLabel": "REFERENCE",
       "icon": "ph-book",
       "title": "Frame What Has Already Been Tested",
-      "description": "Separate the variables the botanist already changed across three crops from the one condition never changed, and state why a correct midpoint reading still leaves the problem open.",
+      "description": "Separate the two conditions the botanist actually changed across three plantings from the conditions merely reported at a present value, record that a present reading is not a completed test, and state why a correct midpoint reading still leaves the problem open.",
       "keyed": true
     },
     {
@@ -119,8 +118,8 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     {
       "source": "Vressk Botanist",
       "clue": "GORLROOT_UPWARD",
-      "establishes": "Primary roots point outward toward the ring wall, the correct down direction, while swelling tubers buckle sideways and break the soil surface; soil, nutrients, light, water, and seed stock were each changed without effect across three crops.",
-      "cannotEstablishAlone": "Does not identify the acceleration gradient, because the botanist measured only the midpoint."
+      "establishes": "Primary roots point outward toward the ring wall, the correct down direction, while swelling tubers buckle sideways and break the soil surface; soil was reformulated for Crop 2 and new seed stock used for Crop 3, each without effect; nutrients, light and water are reported at present values that were never varied between plantings.",
+      "cannotEstablishAlone": "Does not identify the acceleration gradient, because the botanist measured only the midpoint. A condition reported at a present value has not been tested and is not ruled out."
     },
     {
       "source": "Centrifuge Sensor Array",
@@ -147,6 +146,120 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "cannotEstablishAlone": "Does not establish that this habitat and this crop reproduce the recorded precedent without site measurements."
     }
   ],
+  "historicalControls": [
+    {
+      "condition": "Soil mineral formulation",
+      "changedBetweenPlantings": true,
+      "canonicalSource": "Centrifuge Sensor Array historical log; Vressk Botanist",
+      "canonicalEvidence": "Crop 2 (day 46–90): soil reformulated to the Vress mineral profile. Same result, day 10.",
+      "learnerVisible": true,
+      "answerKeyMark": "Y",
+      "ruledOut": false
+    },
+    {
+      "condition": "Seed stock",
+      "changedBetweenPlantings": true,
+      "canonicalSource": "Centrifuge Sensor Array historical log; Vressk Botanist",
+      "canonicalEvidence": "Crop 3 (day 91–now): new seed stock. Misalignment day 11.",
+      "learnerVisible": true,
+      "answerKeyMark": "Y",
+      "ruledOut": false
+    },
+    {
+      "condition": "Nutrient supply",
+      "changedBetweenPlantings": false,
+      "reportedAsPresentCondition": true,
+      "canonicalSource": "Vressk Botanist",
+      "canonicalEvidence": "\"Nutrients: precise.\" A present condition, not an intervention in any planting.",
+      "learnerVisible": true,
+      "answerKeyMark": "N",
+      "ruledOut": false
+    },
+    {
+      "condition": "Grow-light spectrum",
+      "changedBetweenPlantings": false,
+      "reportedAsPresentCondition": true,
+      "canonicalSource": "Vressk Botanist",
+      "canonicalEvidence": "\"Light: calibrated to Vress-standard grow spectrum.\" A present condition, not an intervention in any planting.",
+      "learnerVisible": true,
+      "answerKeyMark": "N",
+      "ruledOut": false
+    },
+    {
+      "condition": "Water supply",
+      "changedBetweenPlantings": false,
+      "reportedAsPresentCondition": true,
+      "canonicalSource": "Vressk Botanist",
+      "canonicalEvidence": "\"Water: clean.\" A present condition. It is not a tested historical variable and no Table 2 row asks about it.",
+      "learnerVisible": true,
+      "answerKeyMark": null,
+      "ruledOut": false
+    },
+    {
+      "condition": "Ring radius and rotation rate",
+      "changedBetweenPlantings": false,
+      "reportedAsPresentCondition": true,
+      "canonicalSource": "Centrifuge Sensor Array; Vressk Botanical Archive",
+      "canonicalEvidence": "Rotation reported stable and the midpoint calibrated once. Never changed across the three plantings, and only ever measured at the midpoint.",
+      "learnerVisible": true,
+      "answerKeyMark": "N",
+      "ruledOut": false
+    }
+  ],
+  "controlsPolicy": "No role may state or imply that nutrients, light, water, vibration or wobble were changed, tested, verified or ruled out. The game reports nutrients, light and water as present conditions only, and reports no vibration or wobble from the botanist rather than from the sensor array's Ring Status: NOMINAL. A present reading is never evidence that a condition did not contribute.",
+  "standards": [
+    {
+      "code": "MS-LS1-5",
+      "claim": "direct",
+      "assessingTasks": [1, 7],
+      "learnerEvidence": [
+        "Table 1 — Crop 3 planted from new seed stock, deformation returning on day 11 (the varied genetic factor)",
+        "Table 2 — ring radius and rotation rate recorded as never changed (the unvaried environmental factor)",
+        "Task 7 CER — an evidence-based explanation of the growth outcome that uses both"
+      ]
+    },
+    {
+      "code": "MS-ETS1-1",
+      "claim": "direct",
+      "assessingTasks": [8],
+      "learnerEvidence": [
+        "Task 8 response — the across-bed criterion the specification left out",
+        "Task 8 response — one constraint reported in this case",
+        "Table 7 — the reported constraints on each proposal"
+      ]
+    },
+    {
+      "code": "MS-ETS1-2",
+      "claim": "supporting",
+      "conditional": true,
+      "assessingTasks": [8],
+      "limitation": "Claim only if the class systematically compares the larger ring against the thinner bed using the same criterion and the same constraint. Table 7 sets the comparison up; the packet as written does not force it."
+    }
+  ],
+  "withdrawnStandards": [
+    {
+      "code": "MS-ETS1-3",
+      "claimedIn": "1.0",
+      "withdrawnIn": "1.1",
+      "reason": "Justified by Concord records GC-1208 and GC-1445, which are Teacher-facing and appear in no learner edition. No task asks students to analyse data from several design solutions or to combine the best characteristics into a new solution. No standard replaces it."
+    },
+    {
+      "code": "mathematics",
+      "reason": "The packet requires no calculation anywhere, and no task asks for arithmetic with any reported value."
+    }
+  ],
+  "learnerEvidencePolicy": {
+    "rule": "Every graded Answer Key expectation and every clause of the CER exemplar must be producible from the Student edition alone and, independently, from the Accessible edition alone. A value first printed at a later task may not be required to answer an earlier one.",
+    "suppliedToLearners": ["2.10 g", "±0.05 g", "20 cm", "600 m", "GC-1208", "Day 10", "Day 11", "Day 12"],
+    "withheldFromLearners": ["0.00187", "2.0991", "2.1009", "224.8", "224.9", "225.0", "2.88966", "0.3%", "80 m", "300 m", "GC-1445", "0.0018", "a = ω²r"],
+    "teacherOnly": [
+      "The three sampled radii and their magnitudes, the directly reported across-bed difference, and the rotation rate",
+      "The rounded-endpoint subtraction and the reason the directly reported difference keeps a fifth digit",
+      "The two Concord centrifuge records GC-1208 and GC-1445 and their radii",
+      "The 0.3% soil match and the tabulated atmosphere, temperature and humidity readings"
+    ],
+    "note": "Learners meet the acceleration relationship through the labelled merry-go-round and through the qualitative three-place result on Student page 2 and Accessible page 3. That is deliberate and is the reason the raw profile stays in the Teacher Guide."
+  },
   "numericalLedger": {
     "relationship": "a = ω²r",
     "standardGravityMps2": 9.80665,
@@ -174,7 +287,7 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "carbonDioxidePpm": 800,
       "nitrogenPercent": 78.2,
       "pressureAtm": 1.08,
-      "ringStatus": "nominal, no vibration and no wobble reported"
+      "ringStatus": "Ring Status: NOMINAL (sensor array). The botanist separately reports the RPM steady with no vibration and no wobble; the array reports no such absence."
     },
     "cultivationStandard": {
       "gravity": "2.1 g uniform planetary field",
@@ -190,7 +303,7 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     ],
     "precedents": [
       {"record": "GC-1208", "crop": "Telluvian root-vine", "radiusM": 80, "outcome": "misalignment matching this case", "resolution": "radius extended to 600 m"},
-      {"record": "GC-1445", "crop": "Oolian kelp", "radiusM": 300, "outcome": "no misalignment reported", "resolution": "none required"}
+      {"record": "GC-1445", "crop": "Oolian kelp", "radiusM": 300, "outcome": "no misalignment reported, with the record's qualifier: low gravitropic precision", "qualifier": "low gravitropic precision", "conclusion": "gradient sensitivity is species-dependent", "resolution": "none required", "role": "Teacher-facing counter-example only. Not evidence that a 300 m radius prevents misalignment, and not evidence about gorlroot."}
     ]
   },
   "sourceStatus": {
@@ -243,10 +356,10 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     "Direction is reported as outward at every sampled radius. Never describe the difference as a change of direction, a tilt of the field, or a rotation of down.",
     "Preserve the reported precision: 2.0991 g and 2.1009 g at four decimals, 0.00187 g at five, 2.88966 RPM at five.",
     "Do not present 0.0018 g and 0.00187 g as conflicting; the first is a difference of rounded endpoints and the second is reported directly.",
-    "Do not convert the archive's 'negligible' bed-scale difference on a planet into a number; none is reported.",
+    "The 'negligible' bed-scale judgement belongs to the botanist, not to the archive. Attribute it to the botanist, and do not convert it into a number; none is reported.",
     "The packet requires no calculation. a = ω²r is named once so students know the relationship exists; it is never evaluated, and no task asks for arithmetic with the reported values.",
     "The rounding relationship between 0.0018 g and 0.00187 g is Teacher-facing only, offered as an optional extension. Do not promote it into a student task; it is interesting enough to displace the biology.",
-    "The habitat's reported magnitudes differ by less than a tenth of one percent because a 0.2 m bed sits in a 224.9 m radius. That is unavoidable: a ring with a classroom-friendly spread would be about 2 m across and would have to spin near 30 RPM. Learners therefore meet the relationship through the labelled merry-go-round analogy, and the reported values appear as reference evidence rather than as arithmetic.",
+    "The habitat's reported magnitudes differ by less than a tenth of one percent because a 0.2 m bed sits in a 224.9 m radius. That is unavoidable: a ring with a classroom-friendly spread would need a radius of about 2 m, roughly 4 m across, and would have to spin near 30 RPM. Learners therefore meet the relationship through the labelled merry-go-round analogy, and the reported values appear as reference evidence rather than as arithmetic.",
     "Do not invent a deformation quantity. The specimen record reports only that deformation increases with tuber diameter.",
     "Keep the gorlroot growth-control response as case evidence rather than established Earth plant biology."
   ]
