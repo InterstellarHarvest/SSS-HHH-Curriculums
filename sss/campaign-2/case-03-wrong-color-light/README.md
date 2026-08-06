@@ -1,6 +1,8 @@
 # SSS Campaign 2 · Case 03 — The Wrong Color of Light
 
-Released native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wrong_color_light`.
+Native curriculum package reopened for correction. Package ID `SSS-C2-CASE03`, runtime ID
+`wrong_color_light`. The current version is the v1.1 corrective candidate; v1.0 remains the last
+approved release and its history records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -9,8 +11,10 @@ Released native curriculum package. Package ID `SSS-C2-CASE03`, runtime ID `wron
 | Location | Trench Shelf IV |
 | Subtitle | Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean) |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.0 |
-| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-04, print gate PASS at 100% / Actual Size |
+| Version | 1.1 (corrective candidate) |
+| Lifecycle | `OWNER_GATE_OPEN` — owner review in progress, print gate `NOT_RUN` |
+| Last approved release | 1.0, owner approved 2026-08-04, print gate PASS at 100% / Actual Size |
+| Retained history | `history/release-v1.0.json` and `history/CASE03_OWNER_APPROVAL_v1.0.md`, unchanged |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -29,7 +33,9 @@ case-03-wrong-color-light/
     └── task-registry.js
 ```
 
-No generated PDF, role document, or screenshot is committed for this case.
+No generated PDF, role document, or screenshot is committed for this case. No v1.1 release or
+owner-approval record exists yet; those are written only when the new owner and physical-print
+gates pass.
 
 ## Instructional shape
 
@@ -44,7 +50,24 @@ Eight tasks, in this order and with these identifiers across all four roles:
 7. Explain the Diagnosis with CER
 8. Write a Better Lighting Specification
 
-Role page counts: Student 5, Teacher 8, Answer Key 4, Accessible 8.
+Role page counts: Student 5, Teacher 8, Answer Key 4, Accessible 8 — unchanged from v1.0.
+
+## What v1.1 corrects
+
+- Task 5 printed `total PAR alone proves no effective spectrum` in both learner editions, inverting
+  the reasoning rule the Teacher Guide and Answer Key state and grade against. All four roles now
+  carry one rule, stated in full in a marked `data-reasoning-rule` block in each learner edition.
+- Task 1 asked for a changed/kept classification before the Student edition printed the controlling
+  record. Both learner editions now carry a marked `data-change-record` naming all four conditions,
+  on the page of the task that needs it, and stay differentiated in register.
+- The Answer Key reasoned at Task 4 from a runtime-only 30%-higher photon flux, and graded Task 8's
+  intensity criterion against an unprinted old-dome level. Both now rest on printed evidence.
+- The approximate `~14 µmol/m²/s` value carried an invented provenance (`an approximation from an
+  incomplete weighting model`) the canonical game source does not establish. It is removed; the
+  value stays Teacher-facing, approximate, and outside student calculation.
+- `MS-PS4-2` is withdrawn as a direct standard and not replaced. No task develops or uses a model of
+  light reflected, absorbed or transmitted through a material.
+- Four printable text errors are repaired, one of them in an Accessible direction.
 
 ## Science boundary
 
@@ -75,6 +98,7 @@ Validation:
 
 ```bash
 python3 apps/curriculum-editor/tests/validate_case03_campaign2.py
+python3 apps/curriculum-editor/tests/test_case03_mutations.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE03
 python3 apps/curriculum-editor/tests/run_browser_tests.py

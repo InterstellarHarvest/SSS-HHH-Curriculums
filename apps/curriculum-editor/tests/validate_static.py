@@ -38,7 +38,7 @@ EXPECTED = {
     "SSS-C1-CASE07": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
     "SSS-C2-CASE01": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE02": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE03": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE03": {"version": "1.1", "status": "OWNER_GATE_OPEN", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE04": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
     "SSS-C2-CASE06": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 5, "teacher": 8, "answer": 5}},
@@ -71,7 +71,6 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     # Case 02 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE02": {"student": "6b1f309da4ee40ff780d93914458b75c430cded815bbef110db1f27bb792df65", "teacher": "d09818e93df75949a5d93fe1a1dfb89fe9a23732a1a844299cac933d21f5fc9f", "answer": "3bbd39fb4bbc1e9432eb130d770c5a6378037ffb2142823b65b04fc5132564fc"},
-    "SSS-C2-CASE03": {"student": "a981da87937897727a145bd3fde8eb596c8ae48d9f9031a9e7df8d687b44b8dc", "teacher": "45e99b00b705edb6160fe02172cb12ea8b7b1a7ce40fd2a2b1a616f90de670a0", "answer": "2f629cdcc4f1606d56c236c2e42ac0e5482d182c423796e2cba03c721782024a"},
     "SSS-C2-CASE04": {"student": "78bd75e06a07acede806062efd4e5383ff618d42ecb6a668633f822cf1575186", "teacher": "27179d6b828914cce0d27280562bdd1b37d6cdf3a373b4a48e704c91e5f528b6", "answer": "a7c3566b867660f5614d8c078bc6306058e9afec721bfcb7758b4224dca720f1"},
     "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571", "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60"},
     "SSS-C2-CASE06": {"student": "4229be58154cbb7a3f33567dc33da4a5669a3ffeb6b17fd137a7e8da986319f4", "teacher": "b25197b36325e307cffb90ed5fa92e73793768d8083bfea7e3ed1b2ee9c8d262", "answer": "6086c9ab72be8180b123447298c2f26b2ea9472790244b907d92ae2da1689587"},

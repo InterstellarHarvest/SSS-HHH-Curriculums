@@ -6,13 +6,12 @@
   "title": "The Wrong Color of Light",
   "subtitle": "Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean)",
   "location": "Oolian Mariculture Dome",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "OWNER_GATE_OPEN",
   "approval": {
-    "date": "2026-08-04",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_IN_PROGRESS",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -20,7 +19,7 @@
     "lockupLines": ["Solar", "Agricultural", "Agency"],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE03:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE03:v1.1:curriculum-editor-v2",
   "supportedRoles": ["student", "teacher", "answer", "accessible"],
   "defaultRole": "student",
   "shell": {
@@ -79,11 +78,11 @@
     "accessible": {"documentRole": "Accessible Mission", "pageCount": 8}
   },
   "outputs": {
-    "complete": "SSS_C2_CASE03_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C2_CASE03_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C2_CASE03_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C2_CASE03_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C2_CASE03_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C2_CASE03_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C2_CASE03_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C2_CASE03_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C2_CASE03_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C2_CASE03_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -100,16 +99,15 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 03 v1.0 — The Wrong Color of Light Curriculum Editor",
-    "loadAnnouncement": "The Wrong Color of Light Campaign 2 Case 03 v1.0 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 03 v1.1 — The Wrong Color of Light Curriculum Editor",
+    "loadAnnouncement": "The Wrong Color of Light Campaign 2 Case 03 v1.1 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [".alt-support", ".extended-description", "figure figcaption"],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-03-wrong-color-light/history/release-v1.0.json",
   "sourceHashes": {
-    "content": "7ce6b0ab9c1ea2fcce6dc8b39cd6979b698eb7c4b0b61057fb225914c2ac561b",
+    "content": "4e02d1e1ff5343fcf00c3cc72f9a4c605b83658f67511fb9b7698a54a7fa0607",
     "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
-    "taskRegistry": "226c719f64dda58483264234aae9ab19815c632e1cf6500f395c2973d4a679c4",
+    "taskRegistry": "d20b70ff7d04fe238a0f2cc9262d194fec89f751b71fb3c3e890554b5e412ab6",
     "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
   }
 }
