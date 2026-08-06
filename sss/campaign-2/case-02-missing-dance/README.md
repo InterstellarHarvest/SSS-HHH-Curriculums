@@ -1,6 +1,10 @@
 # SSS Campaign 2 · Case 02 — The Missing Dance
 
-Released native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `missing_dance`.
+Corrective-release candidate under owner review. Package ID `SSS-C2-CASE02`, runtime ID `missing_dance`.
+
+Version **1.1** corrects the defects the Campaign 2 completion audit recorded against v1.0. The approved v1.0
+release remains in `history/` and is not rewritten: `release-v1.0.json` and `CASE02_OWNER_APPROVAL_v1.0.md`
+continue to describe the v1.0 content that passed its own owner and print gates.
 
 | Field | Value |
 |---|---|
@@ -9,8 +13,8 @@ Released native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `miss
 | Location | Olympia District |
 | Subtitle | Campaign 2 · Case 02 · Olympia District, Mars |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.0 |
-| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
+| Version | 1.1 (corrective candidate; 1.0 retained in `history/`) |
+| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN` |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -18,7 +22,7 @@ Released native curriculum package. Package ID `SSS-C2-CASE02`, runtime ID `miss
 ```text
 case-02-missing-dance/
 ├── README.md
-├── history/
+├── history/            retained v1.0 records; no v1.1 record until approval
 │   ├── CASE02_OWNER_APPROVAL_v1.0.md
 │   └── release-v1.0.json
 └── source/
@@ -44,7 +48,7 @@ Eight tasks, in this order and with these identifiers across all four roles:
 7. Explain the Diagnosis with CER
 8. Specify a Safe Trial
 
-Role page counts: Student 5, Teacher 8, Answer Key 4, Accessible 8. The Accessible edition runs
+Role page counts: Student 6, Teacher 8, Answer Key 4, Accessible 8. The Accessible edition runs
 one task per page, which puts the Claim-Evidence-Reasoning frame on a page of its own.
 
 The sequence is derived from this case's own reasoning demands rather than reused. Tasks 1 to 4
