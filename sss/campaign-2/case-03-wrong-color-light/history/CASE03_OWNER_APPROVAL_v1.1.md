@@ -133,13 +133,13 @@ the approved v1.0 package. All five are corrected here.
 
 ## Accepted validation
 
-- Case 03 scoped: **84/84**
-- Case 03 mutations: **17/17** — each mutation names and trips the specific
+- Case 03 scoped: **107/107**
+- Case 03 mutations: **22/22** — each mutation names and trips the specific
   protection it targets rather than a hash or frozen-baseline check
 - Corrective-release lifecycle: **25/25**
 - Campaign 2 Case 01 **74/74**, Case 02 **108/108**, Case 04 **82/82**,
   Case 05 **101/101**, Case 06 **153/153**
-- Full static validation: **592/592**
+- Full static validation: **596/596**
 - Browser matrix: **2161/2161**, zero JavaScript errors
 - PDF validation: **316/316**
 - Layout overrides: **PASS** across 13 registered cases

@@ -304,8 +304,10 @@ class Case03Mutations(unittest.TestCase):
     def test_v10_game_pin_rewritten_in_the_prior_release_entry(self):
         """v1.0's baseline is historical evidence and must not be normalised to v1.1's."""
         release = json.loads(RELEASE.read_text(encoding="utf-8"))
-        release["priorApprovedReleases"][0]["gameCommit"] = release["sourceHashes"] and \
-            "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
+        prior = release["priorApprovedReleases"][0]
+        prior["notes"] = [note.replace("46b9387bca95736f164f905596e3dd8b13968661",
+                                       "29c3b222c53f51de11a3aa83e896a6d0ef6fb490")
+                          for note in prior["notes"]]
         RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         self.assertCaught("v1.0's game pin rewritten to v1.1's",
                           "preserves v1.0's own game pin rather than rewriting it")

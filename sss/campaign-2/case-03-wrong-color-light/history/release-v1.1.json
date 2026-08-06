@@ -7,7 +7,7 @@
   "approvalDate": "2026-08-06",
   "owner": "Nate / Owner",
   "originalReleaseApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
-  "canonicalSourceApprovalCommit": "f8b016f3230b0e513479aaf43aeb668a5df46e88",
+  "canonicalSourceApprovalCommit": "2d4a62eaf39458755b4ee0751bb8225bd219f105",
   "correctiveReviewCommits": [
     {
       "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
@@ -31,7 +31,11 @@
     },
     {
       "commit": "f8b016f3230b0e513479aaf43aeb668a5df46e88",
-      "role": "Stopped the shared lifecycle import from tracking bytecode; the last commit carrying the approved content, presentation and layout-override sources unchanged."
+      "role": "Stopped the shared lifecycle import from tracking bytecode; the last candidate commit, carrying the approved content, presentation and layout-override sources unchanged."
+    },
+    {
+      "commit": "2d4a62eaf39458755b4ee0751bb8225bd219f105",
+      "role": "The v1.1 corrective release: lifecycle promotion, the v1.1 release and owner-approval records, regenerated DOM baselines, and the release-mode validator. This is the commit canonicalSourceApprovalCommit certifies, because the approved task registry exists only here."
     }
   ],
   "sourceHashes": {
@@ -60,14 +64,14 @@
     "case04Scoped": "82/82",
     "case05Scoped": "101/101",
     "case06Scoped": "153/153",
-    "static": "592/592",
+    "static": "596/596 (592/592 at the candidate tip; the v1.1 release record adds four release-history schema and record assertions)",
     "browser": "2161/2161 across all 96 case/role/presentation states",
     "pdf": "316/316 across the registry-derived case-edition print documents",
     "canonicalStructure": "PASS",
     "layoutContracts": "PASS across 13 registered cases; Accessible 201 eligible/274 locked, Student 118 eligible/365 locked",
     "authoringSecurity": "13/13",
     "correctiveReleaseLifecycle": "25/25",
-    "case03Mutations": "17/17; every mutation names and trips the specific protection it targets rather than a hash or baseline check",
+    "case03Mutations": "22/22; every mutation names and trips the specific protection it targets rather than a hash or baseline check. 17 at the candidate tip, plus five release-mode lifecycle mutations covering the missing release record, the downgraded print gate, a dropped prior release, baselines reverted to v1.0 markup, and a certified-source pin that does not contain what it certifies",
     "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
     "pageCountsAndFit": "PASS; no page overflows in any role at Student 5, Teacher 8, Answer Key 4, Accessible 8",
     "figureIntegrity": "PASS; discrete GRO-9 output bars, the separate measured 460-540 nm response band, pattern fills, direct labels and grayscale legibility are unchanged from v1.0",
@@ -79,7 +83,7 @@
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
   },
-  "formerArtifactRecoveryCommit": "f8b016f3230b0e513479aaf43aeb668a5df46e88",
+  "formerArtifactRecoveryCommit": "2d4a62eaf39458755b4ee0751bb8225bd219f105",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [
     {
@@ -89,7 +93,6 @@
       "approvalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
       "recoveryCommit": "571c491ac54aa61788c7af991756b6da534fd506",
       "canonicalSourceApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
-      "gameCommit": "46b9387bca95736f164f905596e3dd8b13968661",
       "retainedRecords": [
         "sss/campaign-2/case-03-wrong-color-light/history/release-v1.0.json",
         "sss/campaign-2/case-03-wrong-color-light/history/CASE03_OWNER_APPROVAL_v1.0.md"
