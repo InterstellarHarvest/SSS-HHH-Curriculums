@@ -1,6 +1,8 @@
 # SSS Campaign 2 · Case 05 — Too Clean a Room
 
-Released native curriculum package. Package ID `SSS-C2-CASE05`, runtime ID `too_clean_room`.
+Native curriculum package reopened for correction. Package ID `SSS-C2-CASE05`, runtime ID
+`too_clean_room`. The current version is the v1.1 corrective candidate; v1.0 remains the last
+approved release and its history records are retained unchanged.
 
 | Field | Value |
 |---|---|
@@ -9,8 +11,8 @@ Released native curriculum package. Package ID `SSS-C2-CASE05`, runtime ID `too_
 | Location | Lagrange Point 5 |
 | Subtitle | Campaign 2 · Case 05 · Lagrange Point 5, Concord Neutral Zone |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.0 |
-| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
+| Version | 1.1 (corrective candidate, unreleased) |
+| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN`. The retained v1.0 release was owner approved 2026-08-05 with print PASS at 100% / Actual Size |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -18,7 +20,7 @@ Released native curriculum package. Package ID `SSS-C2-CASE05`, runtime ID `too_
 ```text
 case-05-too-clean-room/
 ├── README.md
-├── history/
+├── history/                 v1.0 records only, retained byte-identical
 │   ├── CASE05_OWNER_APPROVAL_v1.0.md
 │   └── release-v1.0.json
 └── source/
@@ -45,6 +47,18 @@ Seven tasks, in this order and with these identifiers across all four roles:
 
 Role page counts: Student 7, Teacher 9, Answer Key 5, Accessible 7. Task 6 occupies a full page of its
 own in the Student and Accessible editions, so the explanation is written in one sitting.
+
+## The v1.1 correction
+
+Four printable defects, all narrow. `teacher-guide-09` shipped a bare `X` in place of the clause
+naming the full-page CER; it is restored to the page-structure statement this README and the v1.0
+owner approval both already made. The Accessible edition regained the briefing sentence naming the
+patients and the shortage — the packet's only printed impacts-on-people evidence, which the direct
+MS-ETS1-1 claim rests on — and the nutrient-uptake statement its own Task 5 word bank offers as
+evidence. The Answer Key stopped accepting two Task 7 constraints printed in no learner edition.
+
+No standard was added, removed or re-rated. No Student task, figure or table changed. Page counts
+are unchanged at Student 7, Teacher 9, Answer Key 5, Accessible 7.
 
 The Student edition is one page above the 4–6 planning range, and that is a measured result rather than
 a drafting habit. With the CER on a page of its own, the browser matrix measured every pairing of the
@@ -76,8 +90,12 @@ radiological-engineering team.
 coverage, the numerical ledger, the source-status split across established Earth science, case-specific
 evidence, modeled evidence, case inference and engineering extrapolation, the correct diagnosis and its
 three rejected alternatives, eighteen prohibited claims, the figure provenance, and the production
-cautions. Case-scoped assertions in `apps/curriculum-editor/tests/validate_case05_campaign2.py` enforce
-that ledger against the printable content.
+cautions. It also carries the ledgers added by the v1.1 correction: `standards`, recording the
+assessed practice, assessing task, learner evidence and limitation behind each of the three current
+claims, and `learnerEvidencePolicy`, recording which facts reach both learner editions, which are
+Teacher-only, and which are withheld from every role. Case-scoped assertions in
+`apps/curriculum-editor/tests/validate_case05_campaign2.py` enforce that ledger against the printable
+content, and `apps/curriculum-editor/tests/test_case05_mutations.py` proves each protection fires.
 
 Five rules dominate the case and are enforced mechanically:
 
@@ -112,6 +130,7 @@ Validation:
 
 ```bash
 python3 apps/curriculum-editor/tests/validate_case05_campaign2.py
+python3 apps/curriculum-editor/tests/test_case05_mutations.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE05
 python3 apps/curriculum-editor/tests/run_browser_tests.py

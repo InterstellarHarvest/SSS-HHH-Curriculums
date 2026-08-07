@@ -40,7 +40,7 @@ EXPECTED = {
     "SSS-C2-CASE02": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE04": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE05": {"version": "1.0", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
+    "SSS-C2-CASE05": {"version": "1.1", "status": "OWNER_GATE_OPEN", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
     "SSS-C2-CASE06": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
 }
 STUDENT_LAYOUT_COUNTS = {
@@ -77,7 +77,8 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     # Case 04 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE04": {"student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e", "teacher": "2996592b0846b12db62b1d6ee5c4d2e8844be4ceb72a70db5276a6733daccfdf", "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6"},
-    "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571", "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60"},
+    # Case 05 was reopened as the v1.1 corrective candidate; an unreleased package has no
+    # frozen DOM baseline. The baseline is re-established at approval.
     # Case 06 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE06": {"student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2", "teacher": "2720249b480c71e29b2dee472feaa90ddd990b51922459612a8f53e190b61bb3", "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516"},

@@ -235,19 +235,17 @@
               "displayOrder": 12,
               "displayLabel": "5 - Too Clean a Room",
               "title": "Too Clean a Room",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "OWNER_GATE_OPEN",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-05-too-clean-room/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "OWNER_REVIEW",
               "approval": {
-                "date": "2026-08-05",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
+                "status": "OWNER_REVIEW_IN_PROGRESS",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE06",
