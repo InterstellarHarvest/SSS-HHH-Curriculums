@@ -41,10 +41,10 @@ DOM-geometry contract, independent of PDF rendering.
 | Generic release integrity | PASS 40/40 |
 | Corrective-aware canonical case structure | PASS |
 | Layout overrides | PASS, 13 cases |
-| **Curriculum-editor browser harness (Chromium)** | **PASS 2279/2279, 0 JavaScript errors** |
+| **Curriculum-editor browser harness (Chromium)** | **PASS 2292/2292, 0 JavaScript errors** |
 | Legacy static suite (CI diagnostic, continue-on-error) | 516/545 — see §4 |
 
-The browser harness result matches the frozen baseline's 2279/2279 exactly.
+The harness gained 13 assertions in the cleanup wave (load-announcement lifecycle neutrality), so the total moved 2279 -> 2292. Every assertion passes.
 
 ---
 
@@ -93,7 +93,9 @@ merely a fixed page count" — so every block was preserved and each Guide gaine
 Split points were measured in Chromium and all fall on section headings, so no block is
 separated from its heading and no table or list breaks across a seam.
 
-Teacher page counts: C1-01 7→8, C1-02 7→8, C2-01 9→10, C2-06 8→9.
+That first pass gave each Guide one extra page (C1-01 7→8, C1-02 7→8, C2-01 9→10,
+C2-06 8→9). It has since been superseded by the reflow in section 5, which balances
+content across each whole edition instead; see section 5.1 for the final counts.
 
 **3.5 Case 05 location subtitle.** The browser harness and the static suite both still
 expected `Europa, orbiting Jupiter`. Audit finding `C1C5-ID01` replaced it with the approved
@@ -135,15 +137,82 @@ quirk. The transformer writes byte-identical output, so the idempotency gate is 
 
 ---
 
-## 5. Needs an owner decision
+## 5. Final cleanup wave (2026-08-07)
 
-- **Approve or reject the four added Teacher pages** (§3.4). The alternative would be
-  cutting Teacher content, which the audit's own `C2C6-SYS01` argues against.
-- **Campaign 1 Cases 04–07 announce themselves as "approved package loaded"** in
-  `accessibility.loadAnnouncement` while their packages are corrective DRAFT candidates.
-  Campaign 1 Cases 01–03 do not use that wording. This is screen-reader-only text and no
-  contract asserts it, so it was left alone rather than reworded silently.
-- **Grayscale token/fill gaps in Campaign 1 Cases 01, 02 and 06** remain recorded exactly
-  in the browser harness rather than corrected. Case 01 is the only case where tinted fills
-  reach the printed page. Correcting approved Campaign 1 presentation was assigned to this
-  whole-SSS audit, and it is a visual decision rather than a mechanical one.
+**5.1 Teacher editions reflowed toward the common seven-page architecture.** The first
+pass had simply given each over-full Guide one more page. Content is now reflowed across
+the whole edition with balanced page loads. Nothing was cut; every block is preserved in
+document order and only the page breaks moved.
+
+Teacher blocks are atomic and their order is instructional, so the minimum page count is
+an exact quantity. Measured in Chromium with an exact dynamic-programming page-break
+search over real rendered block heights:
+
+| Case | Movable blocks | Exact minimum | Outcome |
+| --- | --- | --- | --- |
+| SSS-C1-CASE02 | 37 | 7 | **7 pages**, worst page 82.4% full |
+| SSS-C2-CASE06 | 60 | 6 | **7 pages**, worst page 76.1% full |
+| SSS-C2-CASE01 | 68 | 8 | **9 pages** — cannot reach seven |
+| SSS-C1-CASE01 | 51 | 8 | **8 pages, untouched** — cannot reach seven |
+
+**5.2 Load announcements are lifecycle-neutral.** Campaign 1 Cases 04–07 announced an
+"approved package loaded" while reopened as corrective DRAFT candidates. Now "curriculum
+package loaded". The browser harness asserts this for all thirteen cases rather than
+leaving it to convention.
+
+**5.3 Grayscale gaps carried to the visual backlog.** The recorded token/fill gaps in
+Campaign 1 Cases 01, 02 and 06 are **not** remediated here, by owner decision. They are
+classified `DEFERRED-VISUAL` in the register and belong to the visual-modernisation
+branch. They remain asserted exactly in the browser harness, so they cannot grow or
+spread to another case in the meantime.
+
+---
+
+## 6. The two seven-page conflicts, exactly
+
+Both are the same shape: the Teacher Edition contract requires more content than seven
+pages can physically hold, given that tables, lists and callouts cannot be split across a
+page break and the block order is instructional.
+
+**SSS-C1-CASE01 — exact minimum 8 pages, currently 8.**
+The case was 7 pages before remediation. Audit finding `C1C1-T01` (and governing decision
+1, "Case 01 ... corrected for its identified Task 5 omission") required adding the missing
+Task 5 procedure step, which renders as a single 493px atomic teacher-note block. Seven
+pages hold 6188px of content; the edition now needs 6494px. It is over by 306px — more
+than a third of a page — so no arrangement of page breaks fits it into seven. Every
+possible eight-page split additionally leaves a page ~99.9% full, so the case is left
+exactly as it is rather than re-cut into a tighter fit than it already holds.
+
+*The only ways to reach seven are to delete the Task 5 procedure step the audit required,
+or to reduce Teacher body density globally. Both are owner decisions, and the second is a
+visual-phase change.*
+
+**SSS-C2-CASE01 — exact minimum 8 pages, set to 9.**
+Nine pages before remediation. It gained the four-level analytic rubric (`C2C1-T03`), the
+declared 105-minute route (`C2C1-T04`) and the science-source ledger. Eight pages is
+physically the minimum but leaves the worst page 99.7% full — about three pixels of
+slack. A page tuned that tightly on macOS has already been shown in this branch to clip on
+the Linux CI runner, where font metrics run taller. Nine pages leaves the worst page 86.5%
+full and restores the pre-remediation count.
+
+*Reaching seven would require removing roughly two pages of required Teacher function —
+rubric, route, or source ledger. That is a content-scope decision, not a layout one.*
+
+---
+
+## 7. Needs an owner decision
+
+- **Accept the two seven-page conflicts** in section 6, or choose one of the named
+  alternatives (both involve removing required Teacher content or a global density change).
+- **Accept the Teacher page counts**: SSS-C1-CASE01 at 8, SSS-C2-CASE01 at 9. The other
+  eleven cases are unchanged this wave; three of thirteen now sit at seven pages.
+- **PDF and print testing** is yours. Nothing automated covers it. The reflowed Teacher
+  Guides (C1-02, C2-01, C2-06) and Case 07's Accessible page 4 are where geometry changed.
+- **Approve the candidate for release**, which is what closes the 29
+  `RELEASE-BASELINE-PENDING` assertions; they are re-pinned at that point, not before.
+
+## 8. Out of scope, by decision
+
+- 35 `VIS` findings and the grayscale token/fill gaps — `DEFERRED-VISUAL`, next branch.
+- PDF/print — `OWNER-MANUAL`.
+- Frozen-release static assertions — `RELEASE-BASELINE-PENDING`.

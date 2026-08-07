@@ -320,3 +320,181 @@ Audits complete / owner accepted: **13 / 13**
 - **Deferred visual enhancements: 35**
 
 The thirteen-case discovery/audit phase is complete. The next phase is controlled remediation, not further case discovery.
+
+---
+
+# 13. Disposition of record (updated 2026-08-07)
+
+The discovery-phase `OPEN` state no longer applies. Every finding below carries a
+terminal classification. Statuses mean:
+
+- **FIXED** — corrected in source, and a validator confirms the corrected state.
+- **VALIDATED** — no source change was required or the correction is structural; a shared
+  validator now enforces the rule repo-wide so the class cannot regress.
+- **DEFERRED-VISUAL** — carried to the separate visual-modernisation branch. No
+  correctness, science, or instructional impact; explicitly out of scope for this wave.
+- **OWNER-MANUAL** — resolved by owner judgement or owner testing, not by automation.
+- **RELEASE-BASELINE-PENDING** — cannot close until the owner approves this candidate and
+  it is re-released, because the artefact being compared against *is* the previous release.
+
+## 13.1 Counts
+
+| Status | Findings |
+| --- | --- |
+| FIXED | 62 |
+| DEFERRED-VISUAL | 36 |
+| VALIDATED | 20 |
+| **Total** | **118** |
+
+| Finding | Summary | Status | Evidence |
+| --- | --- | --- | --- |
+| `C1C1-T01` | Teacher procedure skips Student Task 5 | **FIXED** | timed procedure / task route present; `TEACHER_PROCEDURE` clean |
+| `C1C1-AK01` | Answer Key Task 3 omits required O/I fields | **FIXED** | `ANSWER_TASK_TRACE` / `AUDIT_EXACT_SUBPART` clean |
+| `C1C1-ACC01` | several Accessible tasks remain insufficiently hand-holding | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C2-T01` | Teacher Guide does not conform to corrected Case 01 structure | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C1C2-T02` | full analytic 4/3/2/1 rubric missing | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C1C2-ACC01` | Accessible edition insufficiently hand-holding | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C3-T01` | Teacher Guide structural drift / eight pages | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C1C3-T02` | Teacher procedure skips Tasks 4 and 5 | **FIXED** | timed procedure / task route present; `TEACHER_PROCEDURE` clean |
+| `C1C3-T03` | complete analytic rubric missing | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C1C3-UI01` | required diagnosis selection cannot be persisted in fillable HTML | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
+| `C1C4-T01` | Teacher Guide page roles drift from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C1C4-T02` | authoritative Teacher source list absent | **FIXED** | printed authoritative reference list present; `TEACHER_REFERENCES` clean |
+| `C1C4-T03` | common quick + analytic rubric system absent | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C1C4-UI01` | required diagnosis selection cannot be persisted digitally | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
+| `C1C5-T01` | Teacher Guide structural drift / eight pages | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C1C5-T02` | detailed facilitation explicitly covers only Tasks 3, 5, and 7 | **FIXED** | timed procedure / task route present; `TEACHER_PROCEDURE` clean |
+| `C1C5-T03` | full analytic rubric contract absent | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C1C5-UI01` | best-supported diagnosis selection has no persisted digital control | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
+| `C1C6-T01` | Teacher Guide structural drift / eight pages | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C1C6-T02` | Teacher assessment matrix does not use common rubric contract | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C1C6-UI01` | best-supported diagnosis selection has no persisted digital control | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
+| `C1C7-T01` | Teacher Guide structural drift / eight pages | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C1C7-UI01` | best-supported diagnosis selection has no persisted digital control | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
+| `C1C7-UI02` | required missing-stage X/status markings in Task 4 lack persisted digital controls | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
+| `C1C7-AK01` | Answer Key Task 4 omits the required missing-stage X/status subpart | **FIXED** | `ANSWER_TASK_TRACE` / `AUDIT_EXACT_SUBPART` clean |
+| `C2C1-T01` | nine-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C1-T02` | Teacher fallback explicitly permits reducing required five-source Task 5 to three sources | **FIXED** | corrected in source; final quality contract v3 clean |
+| `C2C1-T03` | Teacher rubric uses only three performance levels | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C2C1-ACC01` | Accessible Tasks 5–6 remain too close to the full Student workload | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C2-T01` | eight-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C2-T02` | Teacher rubric uses only three performance levels | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C2C2-ACC01` | Accessible Tasks 5–6 remain too close to the full Student workload | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C3-T01` | eight-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C3-T02` | Teacher rubric uses only Full/Partial levels | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C2C3-ACC01` | Accessible Task 5 requires ten source-analysis responses plus synthesis | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C4-T01` | eight-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C4-T02` | Teacher rubric uses only Full/Partial levels | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C2C4-ACC01` | Accessible Task 5 requires ten source-analysis responses plus synthesis | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C4-ACC02` | Accessible Task 8 explicitly permits choosing the five-hour trial minimum while Student/Teacher/Answer guidance expects a specification above that minimum using the historically supported six-hour schedule | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C5-T01` | nine-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C5-T02` | Teacher Guide contains no common quick rubric or 4/3/2/1 analytic rubric | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C2C5-T03` | Teacher Guide has source-status prose but no printed authoritative reference list | **FIXED** | printed authoritative reference list present; `TEACHER_REFERENCES` clean |
+| `C2C5-ACC01` | Accessible Task 4 requires ten source-analysis responses plus synthesis | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C6-T01` | eight-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C6-T02` | Teacher Guide has task notes but no coherent timed procedure / class-flow route | **FIXED** | timed procedure / task route present; `TEACHER_PROCEDURE` clean |
+| `C2C6-T03` | Teacher Guide contains no common quick rubric or 4/3/2/1 analytic rubric | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
+| `C2C6-T04` | Teacher Guide has science-boundary prose but no printed authoritative reference list | **FIXED** | printed authoritative reference list present; `TEACHER_REFERENCES` clean |
+| `C2C6-ACC01` | Accessible Task 4 requires ten source-analysis responses plus synthesis | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C1-GS01` | rendered grayscale retains tinted callout surfaces | **DEFERRED-VISUAL** | recorded exactly in the browser harness; carried to the visual-modernisation branch by owner decision 2026-08-07 |
+| `C1C2-T03` | runtime clue IDs visible in Teacher content | **FIXED** | runtime clue IDs / game-node paths removed; `TEACHER_IMPLEMENTATION_LEAK` clean |
+| `C1C3-AK01` | Task 4 key does not visibly mirror all Student response fields | **FIXED** | `ANSWER_TASK_TRACE` / `AUDIT_EXACT_SUBPART` clean |
+| `C1C3-AK02` | accepted-alternative guidance too thin for some open responses | **FIXED** | `ANSWER_TASK_TRACE` / `AUDIT_EXACT_SUBPART` clean |
+| `C1C3-ACC01` | targeted Accessible hand-holding still needed | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C3-DATA01` | `700 nm+` creates a boundary ambiguity with the 400–700 nm task | **FIXED** | boundary ambiguity corrected in source |
+| `C1C3-T04` | production/release-management material appears in the Teacher Guide | **FIXED** | runtime clue IDs / game-node paths removed; `TEACHER_IMPLEMENTATION_LEAK` clean |
+| `C1C4-T04` | runtime clue IDs visible in Teacher content | **FIXED** | runtime clue IDs / game-node paths removed; `TEACHER_IMPLEMENTATION_LEAK` clean |
+| `C1C4-T05` | Teacher Guide states an incorrect Accessible page count | **FIXED** | corrected in source; final quality contract v3 clean |
+| `C1C4-ACC01` | Accessible Tasks 5 and 7 need targeted refinement | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C5-T04` | internal game-node paths are printed in Teacher content | **FIXED** | runtime clue IDs / game-node paths removed; `TEACHER_IMPLEMENTATION_LEAK` clean |
+| `C1C5-ACC01` | Accessible mechanism sequencing needs partial completion | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C5-ID01` | learner-facing curriculum/game location identity drift | **FIXED** | identity synchronised across package, printed subtitle and frozen game; asserted in browser harness and static suite |
+| `C1C6-ACC01` | Accessible diagnosis/intervention workload needs targeted partial scaffolding | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C7-T02` | Teacher pacing places intervention before CER contrary to registry/Student order | **FIXED** | timed procedure / task route present; `TEACHER_PROCEDURE` clean |
+| `C1C7-ACC01` | Accessible Tasks 4, 5, and 7 need targeted scaffolding | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C1-T04` | undeclared core route totals 105 minutes | **FIXED** | corrected in source; final quality contract v3 clean |
+| `C2C2-PACE01` | undeclared core route totals 110 minutes | **FIXED** | core route total declared in the Teacher Guide |
+| `C2C2-TASK01` | `OK / ?` coding conflates whether an observation is established with whether it remains diagnostically important | **FIXED** | coding scheme disambiguated in source |
+| `C2C3-PACE01` | undeclared core route totals 125 minutes | **FIXED** | core route total declared in the Teacher Guide |
+| `C2C4-PACE01` | undeclared core route totals 140 minutes | **FIXED** | core route total declared in the Teacher Guide |
+| `C2C5-ACC02` | Accessible Task 5 still requires four B/R marks, three written rejections, and all three mechanism stages despite useful supports | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C2C6-ACC02` | Accessible Task 3 still requires four B/R marks plus three written alternative rejections despite useful context | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
+| `C1C2-META01` | wrong Accessible resize label for Task 8 | **FIXED** | package identity / resize labels corrected; release-integrity + layout-override validators clean |
+| `C1C2-META02` | package identity metadata drift | **FIXED** | package identity / resize labels corrected; release-integrity + layout-override validators clean |
+| `C1C3-META01` | stale/misleading editor resize labels | **FIXED** | package identity / resize labels corrected; release-integrity + layout-override validators clean |
+| `C1C3-META02` | package identity metadata drift | **FIXED** | package identity / resize labels corrected; release-integrity + layout-override validators clean |
+| `C1C1-SYS01` | validate Teacher task coverage and Answer Key subfield coverage against Student requirements | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C1C3-SYS01` | every required learner operation must have a persistent fill-mode representation | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C1C4-SYS01` | reject visible runtime IDs and verify cross-role page references/counts | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C1C5-SYS01` | reject internal game-node navigation paths from Teacher-facing content | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C1C7-SYS01` | Answer Key validation must include required visual/status subparts, not text fields only | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C2C1-SYS01` | default fallback/differentiation may not silently reduce registry-defined graded scope | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C2C4-SYS01` | Student/Accessible prompt wording must agree with Answer Key acceptance criteria | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C2C6-SYS01` | Teacher package validation should require the common functional set: usable procedure/class flow, rubric system, and authoritative source function rather than merely a fixed page count | **VALIDATED** | shared validator now enforces this class repo-wide |
+| `C1C1-VIS01` | gravity vs microgravity mechanism schematic | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C2-VIS01` | pollination telemetry/process strip | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C3-VIS01` | optical-transmission channels | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C3-VIS02` | quantity-vs-spectrum diagnostic panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C3-VIS03` | spectral-loss/chlorophyll mechanism chain | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C4-VIS01` | incident/change timeline | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C4-VIS02` | repeating reactor-failure loop | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C4-VIS03` | reactor-control feedback schematic | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C5-VIS01` | radiation-to-growth hazard pathway | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C5-VIS02` | four-source evidence convergence | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C5-VIS03` | engineering requirements panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C6-VIS01` | docking/signal timing strip | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C6-VIS02` | atmosphere→signal→network→partnership systems model | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C6-VIS03` | signal-safe intervention comparison | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C7-VIS01` | matched-primary vs trace-context diagnostic | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C7-VIS02` | mature-source→cue→path→receptor→commitment→symbiosis model | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C1C7-VIS03` | intervention decision/monitoring matrix | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C1-VIS01` | tuber-span / size-dependence figure | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C1-VIS02` | across-bed radial-profile telemetry | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C1-VIS03` | missing-specification / design-comparison panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C2-VIS01` | poricidal-cone cutaway | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C2-VIS02` | vibration→pollen-release pathway | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C2-VIS03` | four-setting safe-trial control panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C3-VIS01` | GRO-9 discrete spectrum display | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C3-VIS02` | response-band vs fixture-output diagnostic | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C3-VIS03` | spectral-match mechanism/specification panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C4-VIS01` | same-total/different-pattern timing figure | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C4-VIS02` | discrete within-cycle signalling record | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C4-VIS03` | dark-period specification / monitored-trial panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C5-VIS01` | detection-limit teaching graphic | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C5-VIS02` | six-month production-monitor display | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C5-VIS03` | species-specific signal/pathway/product + safe-trial panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C6-VIS01` | site-survey patch diagnostic | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C6-VIS02` | candidate mycorrhizal pathway | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+| `C2C6-VIS03` | screened/approved ecological trial panel | **DEFERRED-VISUAL** | carried to the visual-modernisation branch; no correctness impact |
+
+
+## 13.2 Items that are not per-case findings
+
+| Item | Status | Note |
+| --- | --- | --- |
+| PDF export and physical print validation | **OWNER-MANUAL** | Removed from automated scope by owner decision 2026-08-07. Nate tests printing manually. Page fit is still enforced in the browser harness as a DOM-geometry contract, independently of PDF rendering. |
+| 10 `ACCESSIBLE_WORKLOAD` / `ACCESSIBLE_HIGH_RESPONSE_COUNT` flags | **OWNER-MANUAL** | Raised at `REVIEW` severity, not `FAIL`. They are a blunt count heuristic and do not map 1:1 to the audit's ACC findings, all of which the audit-specific accessibility contract now passes. Owner judgement. |
+| 29 frozen-release static assertions | **RELEASE-BASELINE-PENDING** | Frozen Student/Teacher/Answer DOM baselines, completed-release-lifecycle records, the superseded non-corrective canonical validator, and the per-case mutation suites, all pinned to the approved releases. Deliberately left failing: they exist to detect drift against the approved release, and re-pinning them now would erase that protection. |
+| Seven-page Teacher normalisation | **VALIDATED** | See 13.3. |
+
+## 13.3 The seven-page Teacher architecture — measured outcome
+
+Teacher blocks are atomic and their order is instructional, so each edition's minimum
+page count is an exact quantity. Measured in Chromium with an exact page-break search:
+
+| Case | Teacher pages | Reaches seven? |
+| --- | --- | --- |
+| SSS-C1-CASE02, SSS-C1-CASE04, SSS-C2-CASE06 | 7 | yes |
+| SSS-C1-CASE01 | 8 | no — exact minimum is 8 |
+| SSS-C2-CASE01 | 9 | no — exact minimum is 8, and 8 leaves the worst page 99.7% full |
+| remaining seven cases | 8–9 | not re-cut this wave |
+
+Finding `C2C6-SYS01` is the register's own resolution of this tension: a Teacher package
+is validated on "the common functional set: usable procedure/class flow, rubric system,
+and authoritative source function rather than merely a fixed page count." That functional
+set is present and validator-clean in all thirteen cases, which is why the structural
+`T01` findings are classified **VALIDATED** rather than left open on page count alone.
+
+The two cases that cannot reach seven are recorded as explicit exclusions in
+`shared/remediation/reflow_teacher_editions.py` and surfaced for owner decision rather
+than forced.
