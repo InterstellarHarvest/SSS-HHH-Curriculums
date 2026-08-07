@@ -64,7 +64,6 @@ def main() -> int:
     entries = flatten(registry)
     check(errors, {e["id"] for e in entries} == set(VERSION_MAP), "central registry contains exactly the 13 final-audit SSS cases")
 
-    # Historical records are immutable across the entire remediation branch.
     diff = subprocess.run(
         ["git", "diff", "--name-only", FROZEN_MAIN, "HEAD", "--", "sss/campaign-1/*/history", "sss/campaign-2/*/history"],
         cwd=ROOT, text=True, capture_output=True,
@@ -94,9 +93,8 @@ def main() -> int:
         check(errors, "date" not in entry["approval"] and "date" not in package["approval"],
               f"{case_id} candidate has no unearned approval date")
 
-        # Every name/string exposed by the package that embeds a curriculum version
-        # should now identify the candidate, not the superseded release.
-        check(errors, f":{new}:" in package["documentKey"], f"{case_id} documentKey names candidate version", package["documentKey"])
+        check(errors, f":v{new}:" in package["documentKey"],
+              f"{case_id} documentKey names candidate version", package["documentKey"])
         check(errors, all(f"v{new}" in value for value in package["outputs"].values()),
               f"{case_id} output names identify candidate version", package["outputs"])
         check(errors, f"v{new}" in package["accessibility"]["documentTitle"]
