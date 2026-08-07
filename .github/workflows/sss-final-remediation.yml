@@ -9,6 +9,8 @@ on:
       - 'shared/remediation/**'
       - 'shared/validation/validate_final_quality_contract*.py'
       - 'shared/validation/validate_final_accessibility_contract*.py'
+      - 'shared/validation/validate_sss_final_corrective_candidates.py'
+      - 'shared/implementation/case-registry.v2.json'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
       - '.github/workflows/sss-final-remediation.yml'
   pull_request:
@@ -20,6 +22,8 @@ on:
       - 'shared/remediation/**'
       - 'shared/validation/validate_final_quality_contract*.py'
       - 'shared/validation/validate_final_accessibility_contract*.py'
+      - 'shared/validation/validate_sss_final_corrective_candidates.py'
+      - 'shared/implementation/case-registry.v2.json'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
       - '.github/workflows/sss-final-remediation.yml'
 
@@ -28,7 +32,7 @@ permissions:
 
 concurrency:
   group: sss-final-remediation-${{ github.event_name }}
-  cancel-in-progress: false
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   remediate:
@@ -57,10 +61,13 @@ jobs:
       - name: Apply deterministic source remediations
         run: python shared/remediation/apply_sss_final_remediation_v5.py --apply
 
+      - name: Transition remediated packages to corrective DRAFT candidates
+        run: python shared/remediation/transition_sss_final_corrective_candidates.py
+
       - name: Check patch whitespace
         run: git diff --check
 
-      - name: Record generated source remediation
+      - name: Record corrective-candidate transition
         id: commit
         shell: bash
         run: |
@@ -70,8 +77,8 @@ jobs:
           fi
           git config user.name "sss-remediation-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sss/campaign-1 sss/campaign-2
-          git commit -m "[auto-remediation] Apply final SSS source corrections"
+          git add sss/campaign-1 sss/campaign-2 shared/implementation/case-registry.v2.json
+          git commit -m "[auto-remediation] Open final SSS corrective candidates"
           git push origin HEAD:remediate/sss-final-system
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
@@ -83,12 +90,17 @@ jobs:
         continue-on-error: true
         run: python shared/validation/validate_final_accessibility_contract_v2.py | tee /tmp/final-accessibility-contract.txt
 
+      - name: Run candidate lifecycle diagnostic
+        continue-on-error: true
+        run: python shared/validation/validate_sss_final_corrective_candidates.py | tee /tmp/final-candidate-lifecycle.txt
+
       - name: Preserve diagnostic summary
         if: always()
         shell: bash
         run: |
-          if test -f /tmp/final-quality-contract.txt; then cat /tmp/final-quality-contract.txt >> "$GITHUB_STEP_SUMMARY"; fi
-          if test -f /tmp/final-accessibility-contract.txt; then cat /tmp/final-accessibility-contract.txt >> "$GITHUB_STEP_SUMMARY"; fi
+          for file in /tmp/final-quality-contract.txt /tmp/final-accessibility-contract.txt /tmp/final-candidate-lifecycle.txt; do
+            if test -f "$file"; then cat "$file" >> "$GITHUB_STEP_SUMMARY"; fi
+          done
 
   validate-pr:
     if: github.event_name == 'pull_request'
@@ -108,11 +120,12 @@ jobs:
           python-version: '3.12'
 
       - name: Install validation dependencies
-        run: python -m pip install --disable-pip-version-check beautifulsoup4
+        run: python -m pip install --disable-pip-version-check beautifulsoup4 jsonschema
 
-      - name: Verify remediation is idempotent
+      - name: Verify remediation and lifecycle transition are idempotent
         run: |
           python shared/remediation/apply_sss_final_remediation_v5.py --apply
+          python shared/remediation/transition_sss_final_corrective_candidates.py
           git diff --check
           git diff --exit-code
 
@@ -122,9 +135,21 @@ jobs:
       - name: Final audit-specific accessibility contract
         run: python shared/validation/validate_final_accessibility_contract_v2.py
 
+      - name: Final corrective-candidate lifecycle contract
+        run: python shared/validation/validate_sss_final_corrective_candidates.py
+
+      - name: Generic release-integrity validator
+        run: python shared/validation/validate_release_integrity.py
+
+      - name: Canonical package and layout validators
+        run: |
+          python shared/validation/validate_canonical_case_structure.py
+          python shared/validation/validate_layout_overrides.py
+
       - name: Legacy static suite diagnostic
         id: legacy_static
         continue-on-error: true
+        timeout-minutes: 15
         shell: bash
         run: |
           set -o pipefail
