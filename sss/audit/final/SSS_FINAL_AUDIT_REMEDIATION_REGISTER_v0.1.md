@@ -59,21 +59,7 @@ Case-specific variation is permitted when the task or case genuinely requires it
 
 Accessible editions are hand-holding versions of the Student sheets, not separate lessons and not merely large-print reflows.
 
-Task-specific adaptations may include:
-
-- shorter chunks
-- explicit directions
-- reduced writing
-- sentence starters
-- word banks
-- partially completed models
-- prefilled evidence or classifications
-- worked examples
-- fewer simultaneous evidence demands
-- selected-response or labeled-diagram options
-- broader acceptable answers
-- direct evidence cues
-- more response space where justified
+Task-specific adaptations may include shorter chunks, explicit directions, reduced writing, sentence starters, word banks, partially completed models, prefilled evidence/classifications, worked examples, fewer simultaneous evidence demands, selected response, broader acceptable answers, direct evidence cues, and more response space where justified.
 
 The essential learning goal should remain intact.
 
@@ -100,7 +86,7 @@ Do not repeat a broad external science-verification campaign. Check internal con
 ### Severity
 
 - **Blocker** — wrong science/answer, missing essential task, game/curriculum contradiction, unusable or unreachable essential content
-- **Major** — Teacher/Student mismatch, incomplete Answer Key, inadequate Accessible adaptation, missing rubric/template contract, serious print/layout problem
+- **Major** — Teacher/Student mismatch, incomplete Answer Key, inadequate Accessible adaptation, missing rubric/template contract, serious functional/print/layout problem
 - **Moderate** — meaningful ambiguity, visible implementation leakage, grayscale defect, meaningful consistency/accessibility barrier
 - **Minor** — metadata, wording, copy/paste, low-risk implementation or consistency issue
 - **Enhancement** — worthwhile improvement that is not a release-quality defect
@@ -122,7 +108,7 @@ Do not repeat a broad external science-verification campaign. Check internal con
 |---:|---|---|---|---|
 | 1 | C1 Case 01 — ISS Greenhouse | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C1_CASE01_v0.1.md` |
 | 2 | C1 Case 02 — Lunar Greenhouse | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C1_CASE02_v0.1.md` |
-| 3 | C1 Case 03 — Mars Habitat | `NOT_STARTED` | — | — |
+| 3 | C1 Case 03 — Mars Habitat | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C1_CASE03_v0.1.md` |
 | 4 | C1 Case 04 — Hayes Orbital Station | `NOT_STARTED` | — | — |
 | 5 | C1 Case 05 — Sub Surface Bunker | `NOT_STARTED` | — | — |
 | 6 | C1 Case 06 — First Contact Protocol | `NOT_STARTED` | — | — |
@@ -146,6 +132,10 @@ Do not repeat a broad external science-verification campaign. Check internal con
 | C1C2-T01 | C1 Case 02 | Teacher | Seven-page Teacher Guide does not conform to corrected Case 01 structural template | `OPEN` |
 | C1C2-T02 | C1 Case 02 | Teacher rubric | Formal analytic rubric is only a list of dimensions, with no 4/3/2/1 descriptors | `OPEN` |
 | C1C2-ACC01 | C1 Case 02 | Accessible | Accessible edition mostly spreads the same tasks out rather than providing enough hand-holding | `OPEN` |
+| C1C3-T01 | C1 Case 03 | Teacher | Eight-page Teacher Guide substantially diverges from corrected Case 01 structural template | `OPEN` |
+| C1C3-T02 | C1 Case 03 | Teacher | Detailed procedure skips Student Tasks 4 and 5 | `OPEN` |
+| C1C3-T03 | C1 Case 03 | Teacher rubric | Formal rubric section lists dimensions without complete 4/3/2/1 descriptors | `OPEN` |
+| C1C3-UI01 | C1 Case 03 | Fillable HTML | Task 5 diagnosis choices are decorative boxes and cannot store a digital selection | `OPEN` |
 
 ### Moderate
 
@@ -153,6 +143,11 @@ Do not repeat a broad external science-verification campaign. Check internal con
 |---|---|---|---|---|
 | C1C1-GS01 | C1 Case 01 | Grayscale | Rendered grayscale retains tinted neutral/optional/success callout surfaces | `OPEN` |
 | C1C2-T03 | C1 Case 02 | Teacher | Visible runtime clue IDs appear in Teacher evidence table | `OPEN` |
+| C1C3-AK01 | C1 Case 03 | Answer Key | Task 4 exemplar does not visibly mirror all four Student response components | `OPEN` |
+| C1C3-AK02 | C1 Case 03 | Answer Key | Concise acceptable-alternative guidance is too thin for some open responses | `OPEN` |
+| C1C3-ACC01 | C1 Case 03 | Accessible | Strong overall adaptation still needs targeted hand-holding, especially Task 6 | `OPEN` |
+| C1C3-DATA01 | C1 Case 03 | Data presentation | `700 nm+` Deep Red label creates a boundary ambiguity with the 400–700 nm prompt | `OPEN` |
+| C1C3-T04 | C1 Case 03 | Teacher | Teacher page 8 contains production/release-management material | `OPEN` |
 
 ### Minor
 
@@ -160,12 +155,15 @@ Do not repeat a broad external science-verification campaign. Check internal con
 |---|---|---|---|---|
 | C1C2-META01 | C1 Case 02 | Editor metadata | Accessible Task 8 design resize label incorrectly says `Regolith-medium design` | `OPEN` |
 | C1C2-META02 | C1 Case 02 | Package metadata | Package subtitle/location disagree with displayed worksheet/game identity | `OPEN` |
+| C1C3-META01 | C1 Case 03 | Editor metadata | Accessible resize metadata has stale/misleading response labels | `OPEN` |
+| C1C3-META02 | C1 Case 03 | Package metadata | Package subtitle/location disagree with displayed worksheet/game identity | `OPEN` |
 
 ### Shared-system gaps
 
 | ID | Origin | Finding | Status |
 |---|---|---|---|
 | C1C1-SYS01 | C1 Case 01 | Existing validation did not catch a numbered Student task missing from Teacher procedure or a required Student subfield missing from the Answer Key | `OPEN` |
+| C1C3-SYS01 | C1 Case 03 | Validation should ensure every required Student/Accessible response operation has a persistent interactive or writable fill-mode representation | `OPEN` |
 
 ### Visual enhancements
 
@@ -173,6 +171,9 @@ Do not repeat a broad external science-verification campaign. Check internal con
 |---|---|---|---|
 | C1C1-VIS01 | C1 Case 01 | Redesign Earth-gravity vs microgravity mechanism organizer as a same-footprint SAA technical schematic | `DEFERRED_VISUAL_PHASE` |
 | C1C2-VIS01 | C1 Case 02 | Redesign six-stage pollination process as a same-footprint reproductive telemetry strip | `DEFERRED_VISUAL_PHASE` |
+| C1C3-VIS01 | C1 Case 03 | Redesign spectral-transmission chart as exact SAA optical-transmission channels | `DEFERRED_VISUAL_PHASE` |
+| C1C3-VIS02 | C1 Case 03 | Redesign quantity-versus-spectrum comparison as a dual-channel diagnostic panel | `DEFERRED_VISUAL_PHASE` |
+| C1C3-VIS03 | C1 Case 03 | Redesign collector/filter/spectral-loss/chlorophyll mechanism as a same-footprint technical chain | `DEFERRED_VISUAL_PHASE` |
 
 ## 7. Confirmed passes / no-action findings
 
@@ -197,32 +198,51 @@ These are recorded to prevent unnecessary later reopening.
 - dormant tinted CSS tokens are not automatically a defect
 - page-count change not required for currently identified defects
 
+### C1 Case 03
+
+- core diagnosis and evidence chain: PASS
+- game/curriculum parity: PASS
+- graph numeric accuracy: PASS
+- grayscale distinguishability: PASS
+- figure captions/descriptions: PASS
+- Accessible graph/table support: PASS
+- Accessible canonical CER: PASS / preserve
+- central Answer Key answers: PASS
+
 ## 8. Cross-case patterns observed so far
 
 ### Teacher standardization
 
-The first two cases already show that Teacher Guides can contain good instructional information while still drifting from a common production template.
+All three audited cases contain useful instructional content, but Cases 02–03 visibly drift from Case 01 architecture, and Cases 01 and 03 omit numbered Student tasks from the detailed Teacher procedure.
 
 The final remediation should prioritize **content-preserving normalization into corrected Case 01 architecture**, not wholesale Teacher rewrites.
 
+The repeated missing formal analytic rubric in Cases 02–03 is now a clear systemic Teacher-standardization defect.
+
 ### Accessible differentiation
 
-Both audited cases demonstrate a recurring distinction:
+Cases 01–02 demonstrate that physical accessibility / larger layout may be good while cognitive and instructional hand-holding remains insufficient.
 
-- physical accessibility / larger layout may be good
-- cognitive and instructional hand-holding may still be insufficient
+Case 03 demonstrates the preferred direction: split prompts, supplied facts/tables, reduced task breadth, and direct evidence cues, with targeted partial completion still useful for mechanism tasks.
 
-The likely shared adaptation standard will need to explicitly encourage partial completion, worked examples, reduced repeated writing, direct evidence cues, and sentence frames.
+The likely shared adaptation standard should explicitly encourage partial completion, worked examples, reduced repeated writing, direct evidence cues, and sentence frames.
 
 ### Answer Key validation
 
-Case 01 demonstrates that a key can look complete while still omit a required Student subfield. Case 02 demonstrates the desired completed-exemplar pattern.
+Case 01 demonstrates that a key can look complete while omitting a required Student subfield. Case 02 demonstrates the desired completed-exemplar pattern. Case 03 adds a second failure mode: a multi-part Student task can be compressed into a generally correct paragraph while losing visible field-by-field correspondence.
 
 Future shared validation should mechanically compare keyable Student task fields/subparts to Answer Key coverage where feasible.
 
+### Fillable-response validation
+
+Case 03 demonstrates that a worksheet can visually show a required response control while still provide no digital response mechanism. Future validation should verify persistent fillable affordances, not merely visible boxes.
+
 ### Visual modernization
 
-The first two candidates are both process/mechanism models that can be improved substantially without changing page footprints.
+The first three cases now show two major candidate families:
+
+- process/mechanism diagrams
+- scientific data displays / diagnostic comparisons
 
 The target direction remains modern-retro scientific / SAA mission-document information design, not decorative illustration.
 
@@ -258,18 +278,18 @@ After each case audit is owner accepted:
 
 ## 11. Current register summary
 
-Audits completed: **2 / 13**  
-Owner accepted: **2 / 13**
+Audits completed: **3 / 13**  
+Owner accepted: **3 / 13**
 
 Open findings currently recorded:
 
-- Major: **6**
-- Moderate: **2**
-- Minor: **2**
-- Shared-system gaps: **1**
-- Deferred visual enhancements: **2**
+- Major: **10**
+- Moderate: **7**
+- Minor: **4**
+- Shared-system gaps: **2**
+- Deferred visual enhancements: **5**
 - Blockers: **0**
 
 Next audit target:
 
-**C1 Case 03 — Mars Habitat**
+**C1 Case 04 — Hayes Orbital Station**
