@@ -80,7 +80,7 @@
     },
     "teacher": {
       "documentRole": "Teacher Guide",
-      "pageCount": 7
+      "pageCount": 8
     },
     "answer": {
       "documentRole": "Answer Key",
@@ -122,7 +122,7 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "015a4b63dad815f38991ce11ddba445611119d1f491a841dc9eb9fbda741961f",
+    "content": "ab4aece5aea687efa477148af920c96aa24208d9e428100b6f2c80d40fd774a1",
     "presentation": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
     "taskRegistry": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
     "layoutOverrides": "2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781",
