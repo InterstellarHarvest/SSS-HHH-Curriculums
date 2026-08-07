@@ -198,6 +198,60 @@ window.SSS_C2_CASE05_TASK_REGISTRY = {
     "figures": "Both figures are curriculum-original. Figure A is a teaching example and says so in its caption; Figure B is the vault production record drawn as six discrete bars with nothing between them.",
     "teachingAnalogy": "The rain-gauge example carries the detection-limit idea without using any vault value, and prints a visible line stating that it is not a vault instrument."
   },
+  "standards": [
+    {
+      "code": "MS-ETS1-1",
+      "claim": "direct",
+      "assessingTask": 7,
+      "assessedPractice": "Asking Questions and Defining Problems — defining the criteria and constraints of a design problem with sufficient precision to guide a solution.",
+      "learnerEvidence": "Table 7 prints the six requirements of the approved trial in both learner editions. Task 7 asks for two criteria, one constraint, the reason a staged trial must find a minimum rather than copy the homeworld value, and a recommendation with a reason.",
+      "impactsOnPeople": "The briefing states in both learner editions that the compound treats a disease affecting several Concord species and that supplies are running out; Table 7 prints the authorization and retained-containment requirements that protect the people who would work near any exposure.",
+      "limitation": "Students specify the trial. They do not build, run, or optimise a solution, and they never name a radiation source, device, or operating setting."
+    },
+    {
+      "code": "MS-LS1-5",
+      "claim": "supporting",
+      "assessingTask": 6,
+      "assessedPractice": "Constructing Explanations — an evidence-based explanation of how an environmental condition influences an organism.",
+      "learnerEvidence": "Task 6 is a full-page Claim-Evidence-Reasoning explanation in both learner editions, drawing on the dose values in Table 2, the production record in Table 3 and Figure B, the null results in Table 4, and the five sources in Table 5.",
+      "limitation": "The performance expectation names growth. The records here hold growth and tissue health unaffected; the affected output is a compound produced by a regulated biosynthetic pathway, which falls outside this standard's assessment boundary. The practice half is claimed; the performance expectation is not, and this claim is never reported as direct assessment."
+    },
+    {
+      "code": "MS-ETS1-2",
+      "claim": "conditional",
+      "assessingTask": 7,
+      "assessedPractice": "Evaluating competing design solutions against a shared set of criteria.",
+      "learnerEvidence": "Task 7 names two real solutions — repair this vault only, or also add a species-specific validation step to Protocol v3.2 — so a class that compares them systematically has two genuine design solutions to evaluate.",
+      "limitation": "Claim this only if the class systematically compares the two solutions using one shared set of criteria. The packet as written asks for a recommendation with a reason, which is not a systematic comparison, so the claim is conditional and is stated as conditional in the Teacher Guide."
+    }
+  ],
+  "standardsPolicy": "Exactly three performance expectations are claimed, one as direct assessment and two with their limitations stated. No mathematics standard is claimed. No printable role reports a supporting or conditional claim as direct assessment.",
+  "learnerEvidencePolicy": {
+    "principle": "Every fact the Answer Key or the CER exemplar grades against, or accepts, must be printed in both learner editions on or before the page of the task that requires it.",
+    "suppliedToBothLearnerEditions": [
+      "The six vault conditions, their readings and their karreth specifications, and that Protocol v3.2 states no specification for ionizing radiation (Table 1, Task 1).",
+      "The three dose values with their status — a reading at the detection limit, a surveyed site record, and a modeled average for a different species (Table 2, Task 2).",
+      "The six reported monthly production values (Figure B and Table 3, Task 3).",
+      "The five adjustments and their recorded null outcomes (Table 4, Task 3).",
+      "The five sources and the observation each reports, including that cell structure and nutrient uptake are normal and the pathway is present but quiescent (Table 5, Task 4).",
+      "The four diagnosis options in the same order (Table 6, Task 5).",
+      "The six requirements of the approved trial (Table 7, Task 7).",
+      "That the compound treats a disease affecting several Concord species and that supplies are running out (briefing, page 1)."
+    ],
+    "teacherOnly": [
+      "Equivalent and effective dose, and the sievert quantities.",
+      "Dose rate as a named term.",
+      "The word 'control' before Task 7 introduces the idea.",
+      "The melanin and 2007 melanized-fungi laboratory comparison.",
+      "The internal hormesis clue tag."
+    ],
+    "withheldFromEveryRole": [
+      "Any isotope, radiation source, device, or operating setting.",
+      "Any absorbed dose restated in sievert, and any human risk figure.",
+      "Any production value for a month the record does not report.",
+      "Any staff exposure limit, specimen count, or other constraint no learner edition prints."
+    ]
+  },
   "correctDiagnosis": "The vault's shielding reduced absorbed dose at plant tissue below the level the species record associates with activity in the karreth repair-linked pathway, and that pathway — which produces the medicinal compounds downstream — became quiescent while the plant itself stayed healthy.",
   "incorrectAlternatives": [
     "The bloom is missing a trace element from its native soil that the vault's nutrient mix does not include.",
