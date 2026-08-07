@@ -18,6 +18,7 @@ Audit branch remains documentation-only until the unified audit is complete.
 - Every keyable field/subpart and required visual/status action needs a completed Answer Key exemplar.
 - Every required learner action needs a persistent fill-mode representation.
 - Default fallback/differentiation must not silently reduce registry-defined graded scope.
+- Cross-edition prompt wording and Answer Key acceptance criteria must agree.
 - Visual modernization is separate; exact scientific/data graphics remain deterministic.
 
 ## Case status
@@ -34,11 +35,11 @@ Audit branch remains documentation-only until the unified audit is complete.
 | 9 | C2 Case 02 — The Missing Dance | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C2_CASE02_v0.1.md` |
 | 10 | C2 Case 03 — The Wrong Color of Light | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C2_CASE03_v0.1.md` |
 | 11 | C2 Case 04 — The Silent Grove | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C2_CASE04_v0.1.md` |
-| 12 | C2 Case 05 — Too Clean a Room | `NOT_STARTED` | — |
+| 12 | C2 Case 05 — Too Clean a Room | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C2_CASE05_v0.1.md` |
 | 13 | C2 Case 06 — The First Garden | `NOT_STARTED` | — |
 
 ## Major findings
-Existing C1 findings remain unchanged and `OPEN`.
+Existing accepted C1 findings remain unchanged and `OPEN` in their per-case audit records.
 
 Campaign 2 Major findings:
 - `C2C1-T01` nine-page Teacher template drift
@@ -54,24 +55,31 @@ Campaign 2 Major findings:
 - `C2C4-T01` eight-page Teacher template drift
 - `C2C4-T02` two-level Full/Partial rubric instead of common system
 - `C2C4-ACC01` Accessible Task 5 requires ten source responses plus synthesis
-- `C2C4-ACC02` Accessible Task 8 permits the 5-hour minimum while Student/Teacher/Answer contract expects the historically supported 6-hour specification rather than the minimum
+- `C2C4-ACC02` Accessible Task 8 permits the five-hour trial minimum while the shared assessment contract expects a specification above that minimum, using the historically supported six-hour schedule
+- `C2C5-T01` nine-page Teacher template drift
+- `C2C5-T02` Teacher Guide contains no common quick rubric or full 4/3/2/1 analytic rubric
+- `C2C5-T03` Teacher Guide contains source-status prose but no printed authoritative reference list
+- `C2C5-ACC01` Accessible Task 4 requires ten source-analysis responses plus synthesis
 
 All: `OPEN`.
 
 ## Moderate findings
-Existing C1 Moderate findings remain unchanged and `OPEN`.
+Existing accepted C1 Moderate findings remain unchanged and `OPEN` in their per-case audit records.
 
 Campaign 2 Moderate findings:
-- `C2C1-T04` pacing 105 minutes
-- `C2C2-PACE01` pacing 110 minutes
+- `C2C1-T04` hidden one-route pacing totals 105 minutes
+- `C2C2-PACE01` hidden one-route pacing totals 110 minutes
 - `C2C2-TASK01` `OK/?` conflates observation certainty with diagnostic priority
-- `C2C3-PACE01` pacing 125 minutes
-- `C2C4-PACE01` pacing 140 minutes
+- `C2C3-PACE01` hidden one-route pacing totals 125 minutes
+- `C2C4-PACE01` hidden one-route pacing totals 140 minutes
+- `C2C5-ACC02` Accessible Task 5 still requires four B/R marks, three written rejections, and all three mechanism stages despite useful supports
 
 All: `OPEN`.
 
+C2 Case 05's explicit two-class-period route is **not** recorded as a pacing defect; it is a declared case-specific instructional variation.
+
 ## Minor findings
-C1 minor findings remain unchanged: `C1C2-META01`, `C1C2-META02`, `C1C3-META01`, `C1C3-META02` — all `OPEN`.
+Accepted C1 minor findings remain unchanged in the per-case records: `C1C2-META01`, `C1C2-META02`, `C1C3-META01`, `C1C3-META02` — all `OPEN`.
 
 ## Shared-system gaps
 - `C1C1-SYS01` cross-role task/key completeness validation
@@ -80,45 +88,49 @@ C1 minor findings remain unchanged: `C1C2-META01`, `C1C2-META02`, `C1C3-META01`,
 - `C1C5-SYS01` reject internal game-node paths from Teacher content
 - `C1C7-SYS01` Answer Key validation must include visual/status subparts
 - `C2C1-SYS01` fallback/differentiation may not silently reduce graded scope
-- `C2C4-SYS01` cross-edition assessment prompts and Answer Key acceptance criteria must agree, including Accessible-specific wording
+- `C2C4-SYS01` cross-edition prompt wording and Answer Key acceptance criteria must agree
 
 All: `OPEN`.
 
 ## Visual enhancements
-C1 total: 17. C2C1–C2C4: 12 more. All `DEFERRED_VISUAL_PHASE`.
+C1 total: 17. C2 Cases 01–05: 15 more. All `DEFERRED_VISUAL_PHASE`.
 
 ## Confirmed passes / preserve
-- All prior confirmed C1 passes remain.
+- All prior accepted C1 passes remain.
 - C2C1: Answer Key, runtime model, numerical/learner-data discipline, digital diagnosis marking, Accessible CER
 - C2C2: Answer Key, digital diagnosis marking, runtime parity, pore/124-Hz/source discipline, Accessible CER
 - C2C3: Answer Key, digital diagnosis marking, runtime parity, exact inequalities, no interpolation/overlap inference, figure accessibility, source boundary, Accessible CER
 - C2C4: Answer Key except Accessible Task 8 contract mismatch, digital diagnosis marking, runtime parity, threshold/range/log-disagreement discipline, source boundary, Accessible CER
+- C2C5: Answer Key, complete digital response coverage, runtime identity, detection-limit/unit/site-record/model distinctions, species-specific safety boundary, high-level non-operational engineering trial, Accessible CER
 
 ## Cross-case patterns
 
 ### Teacher
-Template drift persists. C2 pacing rises from 105 → 110 → 125 → 140 minutes with no normalized common-period core. Rubric inconsistency remains systemic.
+Teacher-template drift persists. Rubric inconsistency is systemic. C2 Cases 01–04 also have hidden 105–140 minute routes; Case 05 demonstrates that a longer case can instead declare a legitimate two-period implementation explicitly.
 
 ### Accessible
-Five-source contribution/limit synthesis is consistently overlong in C2. Model rows/partial completion should be shared policy. C2C4 also shows that simplification must not change the accepted answer space.
+Five-source contribution/limit synthesis is consistently overlong in C2. Model rows and partial completion should be shared policy. Diagnosis tasks should also model at least one rejected alternative when multiple repeated written rejections remain.
 
 ### Fillable response
-C1C3–C1C7 expose print-only action defects. C2 cases use persisted status cells and pass digital representation so far.
+C1C3–C1C7 expose print-only action defects. C2 Cases 01–05 use persisted status/control cells and pass digital representation.
 
 ### Answer Key / assessment contract
-Validation must compare learner prompt wording against key acceptance criteria across Student and Accessible editions, not just confirm the key contains an answer.
+Validation must compare Student and Accessible wording against key acceptance criteria, and must include visual/status subparts.
+
+### Teacher source function
+C2C5 shows that a strong source-status ledger is not a substitute for the Teacher template's authoritative reference list.
 
 ### Science/numerical discipline
-C2C2–C2C4 are strong models for inequalities, thresholds, ranges, missing values, conflicting records, and case-specific versus established-science boundaries.
+C2C2–C2C5 are strong models for inequalities, thresholds, ranges, modeled-vs-measured values, unit discipline, missing values, and scenario-specific versus established-science boundaries.
 
 ## Current summary
-Audits complete / owner accepted: **11 / 13**
+Audits complete / owner accepted: **12 / 13**
 
 - Blockers: **0**
-- Major: **39**
-- Moderate: **21**
+- Major: **43**
+- Moderate: **22**
 - Minor: **4**
 - Shared-system gaps: **7**
-- Visual enhancements: **29**
+- Visual enhancements: **32**
 
-Next: **C2 Case 05 — Too Clean a Room**
+Next: **C2 Case 06 — The First Garden**
