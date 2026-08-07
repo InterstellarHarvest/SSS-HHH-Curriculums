@@ -36,8 +36,9 @@ an exact dynamic-programming page-break search over the real rendered block heig
   minimum; no reflow can improve it and every eight-page split leaves a page ~99.9% full,
   so re-cutting it would only risk the fit it currently holds.
 
-The two cases that cannot reach seven are reported as conflicts rather than forced. See
-the status document for the exact conflict.
+The two cases that cannot reach seven were reported as conflicts rather than forced, and
+the owner accepted both page counts as final on 2026-08-07. See register section 13.4 and
+status document section 6.
 
 Idempotent: a case whose Teacher pages already match its recorded distribution is skipped.
 """
@@ -64,11 +65,18 @@ PLAN: dict[str, tuple[str, list[int]]] = {
     "SSS-C2-CASE01": ("sss/campaign-2/case-01-heavy-hands", [11, 9, 9, 8, 7, 5, 7, 8, 4]),
 }
 
-# Recorded, deliberately not reflowed. Kept here so the exclusion is explicit rather than
-# an omission someone later "fixes".
+# OWNER-ACCEPTED PAGE-COUNT EXCEPTIONS, accepted as final on 2026-08-07.
+#
+# The owner reviewed the rendered-height analysis and accepted these two Teacher page
+# counts, on the grounds that reducing them further would require deleting required
+# Teacher content or creating fragile/overfilled layouts, and that functional compliance
+# with the Teacher Edition contract takes precedence over fixed page-count uniformity.
+#
+# These are closed decisions, not open items. Do not re-cut either edition's pagination
+# on the basis of the seven-page target; that would need a fresh owner decision.
 CANNOT_REACH_SEVEN = {
-    "SSS-C1-CASE01": "exact minimum is 8 pages; already there, and every 8-page split is ~99.9% full",
-    "SSS-C2-CASE01": "exact minimum is 8 pages; 8 is 99.7% full so the plan targets a safe 9",
+    "SSS-C1-CASE01": "8 pages OWNER-ACCEPTED 2026-08-07; exact minimum is 8, and every 8-page split is ~99.9% full",
+    "SSS-C2-CASE01": "9 pages OWNER-ACCEPTED 2026-08-07; exact minimum is 8 but 8 is 99.7% full, so 9 is the safe count",
 }
 
 

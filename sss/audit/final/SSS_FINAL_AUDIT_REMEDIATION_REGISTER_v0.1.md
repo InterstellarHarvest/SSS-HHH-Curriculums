@@ -336,6 +336,8 @@ terminal classification. Statuses mean:
 - **OWNER-MANUAL** — resolved by owner judgement or owner testing, not by automation.
 - **RELEASE-BASELINE-PENDING** — cannot close until the owner approves this candidate and
   it is re-released, because the artefact being compared against *is* the previous release.
+- **OWNER-ACCEPTED-EXCEPTION** — the owner has reviewed the measured evidence and accepted
+  the deviation as final. Closed. Not open, not deferred, and not to be revisited.
 
 ## 13.1 Counts
 
@@ -373,7 +375,7 @@ terminal classification. Statuses mean:
 | `C1C7-UI01` | best-supported diagnosis selection has no persisted digital control | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
 | `C1C7-UI02` | required missing-stage X/status markings in Task 4 lack persisted digital controls | **FIXED** | persisted fill-mode control added and classified; browser harness response-persistence assertions pass |
 | `C1C7-AK01` | Answer Key Task 4 omits the required missing-stage X/status subpart | **FIXED** | `ANSWER_TASK_TRACE` / `AUDIT_EXACT_SUBPART` clean |
-| `C2C1-T01` | nine-page Teacher Guide diverges from common template | **VALIDATED** | `PAGE_COUNT` clean and the full Teacher component set is present; seven-page normalisation superseded by C2C6-SYS01 |
+| `C2C1-T01` | nine-page Teacher Guide diverges from common template | **VALIDATED / OWNER-ACCEPTED-EXCEPTION** | `PAGE_COUNT` clean and the full Teacher component set is present. Nine Teacher pages accepted as final by the owner on 2026-08-07; see 13.4 |
 | `C2C1-T02` | Teacher fallback explicitly permits reducing required five-source Task 5 to three sources | **FIXED** | corrected in source; final quality contract v3 clean |
 | `C2C1-T03` | Teacher rubric uses only three performance levels | **FIXED** | common quick + 4/3/2/1 analytic rubric present; `TEACHER_QUICK_RUBRIC` / `TEACHER_ANALYTIC_RUBRIC` clean |
 | `C2C1-ACC01` | Accessible Tasks 5–6 remain too close to the full Student workload | **FIXED** | audit-specific accessibility contract v2 clean (0 failures) |
@@ -476,6 +478,32 @@ terminal classification. Statuses mean:
 | 10 `ACCESSIBLE_WORKLOAD` / `ACCESSIBLE_HIGH_RESPONSE_COUNT` flags | **OWNER-MANUAL** | Raised at `REVIEW` severity, not `FAIL`. They are a blunt count heuristic and do not map 1:1 to the audit's ACC findings, all of which the audit-specific accessibility contract now passes. Owner judgement. |
 | 29 frozen-release static assertions | **RELEASE-BASELINE-PENDING** | Frozen Student/Teacher/Answer DOM baselines, completed-release-lifecycle records, the superseded non-corrective canonical validator, and the per-case mutation suites, all pinned to the approved releases. Deliberately left failing: they exist to detect drift against the approved release, and re-pinning them now would erase that protection. |
 | Seven-page Teacher normalisation | **VALIDATED** | See 13.3. |
+
+## 13.4 OWNER-ACCEPTED PAGE-COUNT EXCEPTIONS (2026-08-07)
+
+The owner reviewed the rendered-height analysis in 13.3 and accepted the following Teacher
+Edition page counts as **final**:
+
+| Case | Teacher pages | Status |
+| --- | --- | --- |
+| SSS-C1-CASE01 — ISS Greenhouse | **8** | OWNER-ACCEPTED-EXCEPTION |
+| SSS-C2-CASE01 — Heavy Hands | **9** | OWNER-ACCEPTED-EXCEPTION |
+
+**Owner rationale, recorded verbatim in effect:** these are approved exceptions to the
+nominal seven-page Teacher target because the rendered-height analysis demonstrated that
+reducing them further would require deleting required Teacher content or creating
+fragile/overfilled layouts. Functional compliance with the Teacher Edition contract takes
+precedence over fixed page-count uniformity.
+
+Consequences:
+
+- Both cases' page-count questions are **closed**. They are not OPEN and not DEFERRED.
+- `C2C1-T01` carries VALIDATED / OWNER-ACCEPTED-EXCEPTION. Campaign 1 Case 01 has no
+  page-count finding of its own — it was the reference architecture, and its eighth page
+  is a consequence of fixing `C1C1-T01`, the missing Task 5 procedure step — so its
+  exception is recorded here at document level rather than against a finding ID.
+- **Their content and page geometry must not be altered further** on this basis. Any future
+  change to either edition's pagination needs a fresh owner decision, not this one.
 
 ## 13.3 The seven-page Teacher architecture — measured outcome
 

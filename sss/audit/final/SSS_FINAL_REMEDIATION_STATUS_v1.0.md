@@ -3,6 +3,7 @@
 **Branch:** `remediate/sss-final-system`
 **Baseline:** `f7a24423f802a095aa149f923d05475ba2837599` (curriculum), `29c3b222c53f51de11a3aa83e896a6d0ef6fb490` (game)
 **Status:** ready for owner review. Not merged. All thirteen packages are corrective DRAFT candidates.
+**Owner acceptances recorded:** Teacher page-count exceptions for SSS-C1-CASE01 (8 pages) and SSS-C2-CASE01 (9 pages), 2026-08-07.
 
 This records what the automated validation covers, what it deliberately does not, and
 which findings were dispositioned rather than changed. It supersedes any earlier
@@ -168,7 +169,23 @@ spread to another case in the meantime.
 
 ---
 
-## 6. The two seven-page conflicts, exactly
+## 6. The two seven-page conflicts — OWNER-ACCEPTED PAGE-COUNT EXCEPTIONS
+
+> **OWNER DECISION, 2026-08-07 — ACCEPTED AS FINAL.**
+> **SSS-C1-CASE01 — ISS Greenhouse: 8 Teacher pages accepted.**
+> **SSS-C2-CASE01 — Heavy Hands: 9 Teacher pages accepted.**
+>
+> Approved exceptions to the nominal seven-page Teacher target, because the rendered-height
+> analysis below demonstrated that reducing them further would require deleting required
+> Teacher content or creating fragile/overfilled layouts. Functional compliance with the
+> Teacher Edition contract takes precedence over fixed page-count uniformity.
+>
+> Both page-count questions are **closed** — not open, not deferred. `C2C1-T01` is
+> VALIDATED / OWNER-ACCEPTED-EXCEPTION; Campaign 1 Case 01 has no page-count finding of its
+> own, so its exception is recorded at document level. **Neither edition's content or page
+> geometry is to be altered further on this basis.** See register section 13.4.
+
+The measured evidence the owner accepted:
 
 Both are the same shape: the Teacher Edition contract requires more content than seven
 pages can physically hold, given that tables, lists and callouts cannot be split across a
@@ -183,9 +200,9 @@ than a third of a page — so no arrangement of page breaks fits it into seven. 
 possible eight-page split additionally leaves a page ~99.9% full, so the case is left
 exactly as it is rather than re-cut into a tighter fit than it already holds.
 
-*The only ways to reach seven are to delete the Task 5 procedure step the audit required,
-or to reduce Teacher body density globally. Both are owner decisions, and the second is a
-visual-phase change.*
+*Reaching seven would have required deleting the Task 5 procedure step the audit
+required, or a global Teacher density reduction. The owner accepted 8 pages instead on
+2026-08-07; this is closed.*
 
 **SSS-C2-CASE01 — exact minimum 8 pages, set to 9.**
 Nine pages before remediation. It gained the four-level analytic rubric (`C2C1-T03`), the
@@ -195,17 +212,17 @@ slack. A page tuned that tightly on macOS has already been shown in this branch 
 the Linux CI runner, where font metrics run taller. Nine pages leaves the worst page 86.5%
 full and restores the pre-remediation count.
 
-*Reaching seven would require removing roughly two pages of required Teacher function —
-rubric, route, or source ledger. That is a content-scope decision, not a layout one.*
+*Reaching seven would have required removing roughly two pages of required Teacher
+function — rubric, route, or source ledger. The owner accepted 9 pages instead on
+2026-08-07; this is closed.*
 
 ---
 
 ## 7. Needs an owner decision
 
-- **Accept the two seven-page conflicts** in section 6, or choose one of the named
-  alternatives (both involve removing required Teacher content or a global density change).
-- **Accept the Teacher page counts**: SSS-C1-CASE01 at 8, SSS-C2-CASE01 at 9. The other
-  eleven cases are unchanged this wave; three of thirteen now sit at seven pages.
+- ~~Accept the two seven-page conflicts and their page counts.~~ **DONE — accepted as
+  final by the owner on 2026-08-07 (section 6, register 13.4).** The other eleven cases are
+  unchanged this wave; three of thirteen sit at seven pages.
 - **PDF and print testing** is yours. Nothing automated covers it. The reflowed Teacher
   Guides (C1-02, C2-01, C2-06) and Case 07's Accessible page 4 are where geometry changed.
 - **Approve the candidate for release**, which is what closes the 29
