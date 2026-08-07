@@ -1,0 +1,80 @@
+name: SSS Final Remediation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - remediate/sss-final-system
+    paths:
+      - 'shared/remediation/**'
+      - 'shared/validation/validate_final_quality_contract.py'
+      - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
+      - '.github/workflows/sss-final-remediation.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sss-final-remediation
+  cancel-in-progress: false
+
+jobs:
+  remediate:
+    if: github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[auto-remediation]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify protected branch scope
+        shell: bash
+        run: |
+          test "${GITHUB_REF_NAME}" = "remediate/sss-final-system"
+
+      - name: Check out remediation branch
+        uses: actions/checkout@v4
+        with:
+          ref: remediate/sss-final-system
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install remediation dependencies
+        run: python -m pip install --disable-pip-version-check beautifulsoup4
+
+      - name: Apply deterministic source remediations
+        run: python shared/remediation/apply_sss_final_remediation.py --apply
+
+      - name: Check patch whitespace
+        run: git diff --check
+
+      - name: Record generated source remediation
+        id: commit
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "sss-remediation-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            sss/campaign-1 \
+            sss/campaign-2
+          git commit -m "[auto-remediation] Apply final SSS source corrections"
+          git push origin HEAD:remediate/sss-final-system
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Run final quality contract (diagnostic during remediation)
+        continue-on-error: true
+        run: |
+          python shared/validation/validate_final_quality_contract.py | tee /tmp/final-quality-contract.txt
+
+      - name: Preserve diagnostic summary
+        if: always()
+        shell: bash
+        run: |
+          if test -f /tmp/final-quality-contract.txt; then
+            cat /tmp/final-quality-contract.txt >> "$GITHUB_STEP_SUMMARY"
+          fi
