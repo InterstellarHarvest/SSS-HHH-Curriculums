@@ -15,7 +15,7 @@ on:
       - 'shared/validation/validate_canonical_case_structure_corrective.py'
       - 'shared/validation/run_curriculum_browser_harness.py'
       - 'shared/remediation/repair_misplaced_page_frame_blocks.py'
-      - 'shared/remediation/repaginate_overflowing_teacher_pages.py'
+      - 'shared/remediation/reflow_teacher_editions.py'
       - 'apps/curriculum-editor/tests/validate_static.py'
       - 'apps/curriculum-editor/tests/browser-harness.html'
       - 'apps/curriculum-editor/tests/pdf-harness.html'
@@ -53,8 +53,8 @@ jobs:
         run: python shared/remediation/apply_sss_final_remediation_v5.py --apply
       - name: Move inserted printable blocks back inside their content area
         run: python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
-      - name: Give over-full Teacher pages the page their content needs
-        run: python shared/remediation/repaginate_overflowing_teacher_pages.py --apply
+      - name: Reflow Teacher editions toward the common seven-page architecture
+        run: python shared/remediation/reflow_teacher_editions.py --apply
       - name: Reconcile browser harness with corrective candidates
         run: python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
       - name: Classify final response controls in layout contracts
@@ -96,7 +96,7 @@ jobs:
         run: |
           python shared/remediation/apply_sss_final_remediation_v5.py --apply
           python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
-          python shared/remediation/repaginate_overflowing_teacher_pages.py --apply
+          python shared/remediation/reflow_teacher_editions.py --apply
           python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
           python shared/remediation/classify_sss_final_response_controls.py
           python shared/remediation/transition_sss_final_corrective_candidates.py

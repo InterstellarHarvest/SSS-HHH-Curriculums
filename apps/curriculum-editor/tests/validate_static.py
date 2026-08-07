@@ -30,18 +30,18 @@ LEGACY_STUDENT_IDENTITY = re.compile(r"\b(?:pattern investigator|process modeler
 FORMAL_IDENTITY_MARKER_SELECTORS = ".label,.callout-label,.technical-label,.section-title,.response-label,label,h1,h2,h3,h4,h5,h6,.teacher-card > strong"
 EXPECTED = {
     "SSS-C1-CASE01": {"version": "1.2", "status": "DRAFT", "tasks": 9, "counts": {"student": 3, "teacher": 8, "answer": 3}},
-    "SSS-C1-CASE02": {"version": "1.1", "status": "DRAFT", "tasks": 9, "counts": {"student": 3, "teacher": 8, "answer": 3}},
+    "SSS-C1-CASE02": {"version": "1.1", "status": "DRAFT", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3}},
     "SSS-C1-CASE03": {"version": "1.2", "status": "DRAFT", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE04": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
     "SSS-C1-CASE05": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
     "SSS-C1-CASE06": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
     "SSS-C1-CASE07": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
-    "SSS-C2-CASE01": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 10, "answer": 4}},
+    "SSS-C2-CASE01": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 9, "answer": 4}},
     "SSS-C2-CASE02": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE04": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE05": {"version": "1.2", "status": "DRAFT", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
-    "SSS-C2-CASE06": {"version": "1.2", "status": "DRAFT", "tasks": 7, "counts": {"student": 6, "teacher": 9, "answer": 5}},
+    "SSS-C2-CASE06": {"version": "1.2", "status": "DRAFT", "tasks": 7, "counts": {"student": 6, "teacher": 7, "answer": 5}},
 }
 # (eligible resize areas, locked areas) per Student edition. The final remediation added
 # response controls, and classify_sss_final_response_controls.py registered each new one as
