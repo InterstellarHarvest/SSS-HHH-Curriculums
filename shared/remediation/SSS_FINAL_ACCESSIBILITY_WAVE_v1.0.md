@@ -4,7 +4,7 @@
 **Branch:** `remediate/sss-final-system`  
 **Authority:** accepted final SSS Campaign 1 + Campaign 2 case audits
 
-This record documents the post-audit accessibility and digital-response wave implemented by `apply_sss_final_remediation_v4.py`.
+This record documents the post-audit accessibility and digital-response wave implemented by `apply_sss_final_remediation_v5.py`.
 
 ## Scope
 
@@ -18,7 +18,7 @@ Implemented patterns include:
 - partially complete one mechanism stage where sequencing burden was excessive;
 - preserve canonical CER fields as learner-owned;
 - restore separate immediate-action and long-term-control fields where the Accessible edition had collapsed distinct Student requirements;
-- add independent persisted final-diagnosis controls where late Campaign 1 pages previously relied on print-only “circle” wording;
+- add independent persisted final-diagnosis controls where late Campaign 1 pages previously relied on print-only “circle” wording, including The Gift's source-card diagnosis page;
 - add persisted per-stage status controls for The Gift Task 4 so required X marks have a digital representation.
 
 ## Cases directly adapted
@@ -52,6 +52,6 @@ The wave is guarded by:
 
 1. transformer idempotency (`git diff --exit-code` after a second full pass),
 2. `validate_final_quality_contract_v3.py`, and
-3. `validate_final_accessibility_contract.py`, which checks the exact audit-backed scaffolds and confirms protected learner-owned responses remain blank.
+3. `validate_final_accessibility_contract_v2.py`, which checks the exact audit-backed scaffolds and confirms protected learner-owned responses remain blank.
 
 This is an intermediate remediation record, not a release declaration. Static, browser, PDF/print, generated-output, lifecycle, and final preservation validation still follow.
