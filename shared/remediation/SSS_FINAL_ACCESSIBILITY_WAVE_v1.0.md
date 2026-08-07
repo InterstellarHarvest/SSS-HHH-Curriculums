@@ -37,6 +37,18 @@ Implemented patterns include:
 
 C1 Case 01 had already received its targeted final-audit scaffolds in the earlier source wave. C1 Case 03 required only targeted refinement already addressed by the earlier remediation wave and is not broadened here.
 
+## Response-layout classification
+
+`classify_sss_final_response_controls.py` reconciles every persistent control introduced by the remediation with the existing editor layout contract.
+
+- C1 Case 03 Task 5 print/digital mark controls: locked as `status`.
+- C1 Case 04 Task 4 mark controls: locked as `status`.
+- C1 Cases 05–07 final best-diagnosis controls: locked as `classification` because they are compact choice/status fields, not expandable writing areas.
+- C1 Case 07 Task 4 per-stage X/status controls: locked as `status`.
+- C1 Case 04 Accessible `a7-longterm`: resize-eligible at 32–900 px, matching the approved immediate-action field rather than being treated as a compact status control.
+
+Existing response areas, overrides, and bounds are not altered. The package `layoutOverrides` hashes are refreshed after classification.
+
 ## Preservation rules
 
 - Approved page counts remain unchanged.
@@ -44,14 +56,15 @@ C1 Case 01 had already received its targeted final-audit scaffolds in the earlie
 - Numerical qualifiers, inequalities, ranges, measured/modeled distinctions, and case-vs-established-science boundaries remain unchanged.
 - Final synthesis and CER responses remain learner-owned.
 - No game source is changed by this wave.
-- Every canonical content change updates the package content hash.
+- Every canonical content/layout change updates the corresponding package source hash.
 
 ## Validation
 
 The wave is guarded by:
 
-1. transformer idempotency (`git diff --exit-code` after a second full pass),
-2. `validate_final_quality_contract_v3.py`, and
-3. `validate_final_accessibility_contract_v2.py`, which checks the exact audit-backed scaffolds and confirms protected learner-owned responses remain blank.
+1. source/layout/lifecycle idempotency (`git diff --exit-code` after a second full pass),
+2. `validate_final_quality_contract_v3.py`,
+3. `validate_final_accessibility_contract_v2.py`, and
+4. the existing strict `validate_layout_overrides.py` classification/bounds validator.
 
 This is an intermediate remediation record, not a release declaration. Static, browser, PDF/print, generated-output, lifecycle, and final preservation validation still follow.
