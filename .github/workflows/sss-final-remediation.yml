@@ -87,12 +87,8 @@ jobs:
         if: always()
         shell: bash
         run: |
-          if test -f /tmp/final-quality-contract.txt; then
-            cat /tmp/final-quality-contract.txt >> "$GITHUB_STEP_SUMMARY"
-          fi
-          if test -f /tmp/final-accessibility-contract.txt; then
-            cat /tmp/final-accessibility-contract.txt >> "$GITHUB_STEP_SUMMARY"
-          fi
+          if test -f /tmp/final-quality-contract.txt; then cat /tmp/final-quality-contract.txt >> "$GITHUB_STEP_SUMMARY"; fi
+          if test -f /tmp/final-accessibility-contract.txt; then cat /tmp/final-accessibility-contract.txt >> "$GITHUB_STEP_SUMMARY"; fi
 
   validate-pr:
     if: github.event_name == 'pull_request'
@@ -125,3 +121,22 @@ jobs:
 
       - name: Final audit-specific accessibility contract
         run: python shared/validation/validate_final_accessibility_contract_v2.py
+
+      - name: Legacy static suite diagnostic
+        id: legacy_static
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          python apps/curriculum-editor/tests/validate_static.py 2>&1 | tee /tmp/legacy-static.txt
+
+      - name: Summarize legacy static diagnostic
+        if: always()
+        shell: bash
+        run: |
+          echo '## Legacy static suite diagnostic' >> "$GITHUB_STEP_SUMMARY"
+          if test -f /tmp/legacy-static.txt; then
+            tail -n 250 /tmp/legacy-static.txt >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Static diagnostic did not produce output.' >> "$GITHUB_STEP_SUMMARY"
+          fi
