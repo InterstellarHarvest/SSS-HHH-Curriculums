@@ -121,7 +121,7 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 05 v1.1 — Sub Surface Bunker Curriculum Editor",
-    "loadAnnouncement": "Sub Surface Bunker Case 05 v1.1 approved package loaded. Student Mission selected.",
+    "loadAnnouncement": "Sub Surface Bunker Case 05 v1.1 curriculum package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       "[data-evidence-summary]",

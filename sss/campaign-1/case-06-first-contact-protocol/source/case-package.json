@@ -121,7 +121,7 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 06 v1.1 — First Contact Protocol Curriculum Editor",
-    "loadAnnouncement": "First Contact Protocol Case 06 v1.1 approved package loaded. Student Mission selected.",
+    "loadAnnouncement": "First Contact Protocol Case 06 v1.1 curriculum package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       "[data-evidence-summary]",
       "[data-timeline-contract]",

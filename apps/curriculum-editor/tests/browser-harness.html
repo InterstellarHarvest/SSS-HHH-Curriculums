@@ -1476,6 +1476,12 @@
         check(`${item.id} instructional autosave is isolated across case switches`, workspace.querySelector(`[data-persist-id="${marker.editable}"]`)?.textContent === marker.editText);
         check(`${item.id} role state is isolated across case switches`, api.getState().role === "student");
         check(`${item.id} announcement identifies case version role and grayscale`, doc.querySelector("#loadStatus").textContent.includes(api.getPackage().title) && doc.querySelector("#loadStatus").textContent.includes(`v${item.version}`) && doc.querySelector("#loadStatus").textContent.includes("Student Mission") && doc.querySelector("#loadStatus").textContent.includes("Grayscale"));
+        // The announcement is read aloud on every case load, so it must not assert a
+        // lifecycle the package does not hold. Campaign 1 Cases 04-07 announced an
+        // "approved package loaded" while reopened as corrective DRAFT candidates. The
+        // wording is now lifecycle-neutral, which also stays correct through approval and
+        // re-release rather than needing to be revised again at each transition.
+        check(`${item.id} announcement claims no package lifecycle it does not hold`, !/\b(approved|draft|unreleased|release[ds]?)\b/i.test(doc.querySelector("#loadStatus").textContent), doc.querySelector("#loadStatus").textContent);
       }
       const documentIds = Array.from(doc.querySelectorAll("[id]")).map(node => node.id);
       check("case cycling leaves no duplicate IDs in the application document", documentIds.length === new Set(documentIds).size);

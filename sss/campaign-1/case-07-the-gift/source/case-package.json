@@ -121,7 +121,7 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 07 v1.1 — The Gift Curriculum Editor",
-    "loadAnnouncement": "The Gift Case 07 v1.1 approved package loaded. Student Mission selected.",
+    "loadAnnouncement": "The Gift Case 07 v1.1 curriculum package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       "[data-evidence-summary]",
       "[data-process-contract]",

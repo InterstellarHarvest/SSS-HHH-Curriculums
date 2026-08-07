@@ -121,7 +121,7 @@
   "accessibility": {
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 04 v1.1 — Hayes Orbital Station Curriculum Editor",
-    "loadAnnouncement": "Hayes Orbital Station Case 04 v1.1 approved package loaded. Student Mission selected.",
+    "loadAnnouncement": "Hayes Orbital Station Case 04 v1.1 curriculum package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       "[data-timeline-contract]",
