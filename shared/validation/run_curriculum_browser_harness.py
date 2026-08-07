@@ -5,6 +5,8 @@ The harness itself owns the browser assertions. This runner supplies a local HTT
 origin plus the read-only authoring-context endpoint the editor normally receives from
 its repository-aware preview server, waits for the harness's explicit completion marker,
 prints the returned JSON, and fails CI if any browser assertion or JavaScript error fails.
+The repository-context fixture is intentionally deterministic and read-only so repeated
+PR validation exercises the same browser contract without mutating candidate sources.
 
 No screenshot or generated artifact is written into the repository.
 """
