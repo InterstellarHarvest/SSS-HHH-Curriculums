@@ -10,6 +10,8 @@ on:
       - 'shared/validation/validate_final_quality_contract*.py'
       - 'shared/validation/validate_final_accessibility_contract*.py'
       - 'shared/validation/validate_sss_final_corrective_candidates.py'
+      - 'shared/validation/validate_canonical_case_structure_corrective.py'
+      - 'apps/curriculum-editor/tests/test_corrective_release_lifecycle.py'
       - 'shared/implementation/case-registry.v2.json'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
       - '.github/workflows/sss-final-remediation.yml'
@@ -23,6 +25,8 @@ on:
       - 'shared/validation/validate_final_quality_contract*.py'
       - 'shared/validation/validate_final_accessibility_contract*.py'
       - 'shared/validation/validate_sss_final_corrective_candidates.py'
+      - 'shared/validation/validate_canonical_case_structure_corrective.py'
+      - 'apps/curriculum-editor/tests/test_corrective_release_lifecycle.py'
       - 'shared/implementation/case-registry.v2.json'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
       - '.github/workflows/sss-final-remediation.yml'
@@ -135,15 +139,18 @@ jobs:
       - name: Final audit-specific accessibility contract
         run: python shared/validation/validate_final_accessibility_contract_v2.py
 
+      - name: Corrective-release lifecycle unit tests
+        run: python apps/curriculum-editor/tests/test_corrective_release_lifecycle.py
+
       - name: Final corrective-candidate lifecycle contract
         run: python shared/validation/validate_sss_final_corrective_candidates.py
 
       - name: Generic release-integrity validator
         run: python shared/validation/validate_release_integrity.py
 
-      - name: Canonical package and layout validators
+      - name: Corrective-aware canonical package and layout validators
         run: |
-          python shared/validation/validate_canonical_case_structure.py
+          python shared/validation/validate_canonical_case_structure_corrective.py
           python shared/validation/validate_layout_overrides.py
 
       - name: Legacy static suite diagnostic
