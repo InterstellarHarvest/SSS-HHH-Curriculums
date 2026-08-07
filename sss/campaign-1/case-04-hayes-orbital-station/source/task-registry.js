@@ -3,10 +3,9 @@ window.SSS_CASE04_TASK_REGISTRY = {
   "case": "SSS-C1-CASE04",
   "runtimeId": "orbital",
   "title": "Hayes Orbital Station",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "DRAFT",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
   "editorShell": "1.0",
   "gameCommit": "2bfdb0aadf6ce33b6664cd104b11a891cb55efaf",
   "roles": {
@@ -108,5 +107,7 @@ window.SSS_CASE04_TASK_REGISTRY = {
     "science": "qualified reactor-specific mechanism",
     "sequence": "game-verified relative timeline",
     "figures": "curriculum-original qualitative models"
-  }
+  },
+  "correctiveOf": "1.0",
+  "printStatus": "NOT_RUN"
 };

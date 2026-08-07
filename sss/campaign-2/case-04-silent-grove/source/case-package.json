@@ -6,13 +6,12 @@
   "title": "The Silent Grove",
   "subtitle": "Campaign 2 · Case 04 · Drift Vessel Thal-Oren, Inter-system Transit",
   "location": "Zhel'ii Diaspora Grove",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
+  "version": "1.2",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE04:v1.1:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE04:v1.2:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE04_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
-    "student": "SSS_C2_CASE04_STUDENT_MISSION_v1.1_CUSTOM.html",
-    "teacher": "SSS_C2_CASE04_TEACHER_GUIDE_v1.1_CUSTOM.html",
-    "answer": "SSS_C2_CASE04_ANSWER_KEY_v1.1_CUSTOM.html",
-    "accessible": "SSS_C2_CASE04_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
+    "complete": "SSS_C2_CASE04_CURRICULUM_EDITOR_v1.2_CUSTOM.html",
+    "student": "SSS_C2_CASE04_STUDENT_MISSION_v1.2_CUSTOM.html",
+    "teacher": "SSS_C2_CASE04_TEACHER_GUIDE_v1.2_CUSTOM.html",
+    "answer": "SSS_C2_CASE04_ANSWER_KEY_v1.2_CUSTOM.html",
+    "accessible": "SSS_C2_CASE04_ACCESSIBLE_MISSION_v1.2_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 04 v1.1 — The Silent Grove Curriculum Editor",
-    "loadAnnouncement": "The Silent Grove Campaign 2 Case 04 v1.1 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 04 v1.2 — The Silent Grove Curriculum Editor",
+    "loadAnnouncement": "The Silent Grove Campaign 2 Case 04 v1.2 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       ".extended-description",
@@ -130,11 +129,10 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-04-silent-grove/history/release-v1.1.json",
   "sourceHashes": {
     "content": "38937cf5734185d820d597fdcb14fce41e29305f087d47b4a6b94f63a19c3c56",
     "presentation": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
-    "taskRegistry": "e407f29452215612d2b0364fa9146d152cc3c92d2c56103e393bff7d17522142",
+    "taskRegistry": "d7f4f09af87f0a3bd7895c320fb530d25d7925aa8a59e2bd2bfd6556b6cf0860",
     "layoutOverrides": "7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c"
   }
 }

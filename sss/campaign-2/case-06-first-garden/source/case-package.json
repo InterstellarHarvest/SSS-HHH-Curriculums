@@ -6,13 +6,12 @@
   "title": "The First Garden",
   "subtitle": "Campaign 2 · Case 06 · Restored Terrace, Earth",
   "location": "Restored Terrace",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
+  "version": "1.2",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE06:v1.1:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE06:v1.2:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE06_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
-    "student": "SSS_C2_CASE06_STUDENT_MISSION_v1.1_CUSTOM.html",
-    "teacher": "SSS_C2_CASE06_TEACHER_GUIDE_v1.1_CUSTOM.html",
-    "answer": "SSS_C2_CASE06_ANSWER_KEY_v1.1_CUSTOM.html",
-    "accessible": "SSS_C2_CASE06_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
+    "complete": "SSS_C2_CASE06_CURRICULUM_EDITOR_v1.2_CUSTOM.html",
+    "student": "SSS_C2_CASE06_STUDENT_MISSION_v1.2_CUSTOM.html",
+    "teacher": "SSS_C2_CASE06_TEACHER_GUIDE_v1.2_CUSTOM.html",
+    "answer": "SSS_C2_CASE06_ANSWER_KEY_v1.2_CUSTOM.html",
+    "accessible": "SSS_C2_CASE06_ACCESSIBLE_MISSION_v1.2_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 06 v1.1 — The First Garden Curriculum Editor",
-    "loadAnnouncement": "The First Garden Campaign 2 Case 06 v1.1 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 06 v1.2 — The First Garden Curriculum Editor",
+    "loadAnnouncement": "The First Garden Campaign 2 Case 06 v1.2 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       ".extended-description",
@@ -130,11 +129,10 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-06-first-garden/history/release-v1.1.json",
   "sourceHashes": {
     "content": "e705cb41a60887a16930960d2ffa557dfc0f6e6b8fa96c65f648e0fd96c5e7df",
     "presentation": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
-    "taskRegistry": "959b0f082f53ca430edf17c8167d679b764a096b47c99c71ab5bf3877aa1f8a8",
+    "taskRegistry": "baeb1c6c91806fd148d1160500570e44c1a3a5b9f8695090fe42b37e88e24cbe",
     "layoutOverrides": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481"
   }
 }

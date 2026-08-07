@@ -20,133 +20,119 @@
               "displayOrder": 1,
               "displayLabel": "1 - ISS Greenhouse",
               "title": "ISS Greenhouse",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-01-iss-greenhouse/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-01",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C1-CASE02",
               "displayOrder": 2,
               "displayLabel": "2 - Lunar Greenhouse",
               "title": "Lunar Greenhouse",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-02-lunar-greenhouse/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-01",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C1-CASE03",
               "displayOrder": 3,
               "displayLabel": "3 - Mars Habitat",
               "title": "Mars Habitat",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-03-mars-habitat/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-07-31",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C1-CASE04",
               "displayOrder": 4,
               "displayLabel": "4 - Hayes Orbital Station",
               "title": "Hayes Orbital Station",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-04-hayes-orbital-station/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-01",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-04-hayes-orbital-station/history/release-v1.0.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C1-CASE05",
               "displayOrder": 5,
               "displayLabel": "5 - Sub Surface Bunker",
               "title": "Sub Surface Bunker",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-05-europa-bunker/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-02",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-05-europa-bunker/history/release-v1.0.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C1-CASE06",
               "displayOrder": 6,
               "displayLabel": "6 - First Contact Protocol",
               "title": "First Contact Protocol",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-06-first-contact-protocol/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-03",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C1-CASE07",
               "displayOrder": 7,
               "displayLabel": "7 - The Gift",
               "title": "The Gift",
-              "version": "1.0",
-              "status": "APPROVED_STABLE",
+              "version": "1.1",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-1/case-07-the-gift/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-03",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-1/case-07-the-gift/history/release-v1.0.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             }
           ]
         },
@@ -159,114 +145,102 @@
               "displayOrder": 8,
               "displayLabel": "1 - Heavy Hands",
               "title": "Heavy Hands",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-01-heavy-hands/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-01-heavy-hands/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE02",
               "displayOrder": 9,
               "displayLabel": "2 - The Missing Dance",
               "title": "The Missing Dance",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-02-missing-dance/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-02-missing-dance/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE03",
               "displayOrder": 10,
               "displayLabel": "3 - The Wrong Color of Light",
               "title": "The Wrong Color of Light",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-03-wrong-color-light/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-03-wrong-color-light/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE04",
               "displayOrder": 11,
               "displayLabel": "4 - The Silent Grove",
               "title": "The Silent Grove",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-04-silent-grove/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-04-silent-grove/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE05",
               "displayOrder": 12,
               "displayLabel": "5 - Too Clean a Room",
               "title": "Too Clean a Room",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-05-too-clean-room/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-05-too-clean-room/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             },
             {
               "id": "SSS-C2-CASE06",
               "displayOrder": 13,
               "displayLabel": "6 - The First Garden",
               "title": "The First Garden",
-              "version": "1.1",
-              "status": "APPROVED_STABLE",
+              "version": "1.2",
+              "status": "DRAFT",
               "editorShell": "1.0",
               "editorPackage": "sss/campaign-2/case-06-first-garden/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "APPROVED",
+              "packageStatus": "DRAFT",
               "approval": {
-                "date": "2026-08-06",
                 "owner": "Nate / Owner",
-                "status": "APPROVED",
-                "printStatus": "PASS"
-              },
-              "historyRecord": "sss/campaign-2/case-06-first-garden/history/release-v1.1.json"
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
             }
           ]
         }

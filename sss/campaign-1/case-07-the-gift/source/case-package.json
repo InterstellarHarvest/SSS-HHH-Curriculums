@@ -6,13 +6,12 @@
   "title": "The Gift",
   "subtitle": "Campaign 1 · Case 07 · L2 Station Hayes — Secure Cultivation Wing",
   "location": "SAA Xenobiology Lab",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "DRAFT",
   "approval": {
     "owner": "Nate / Owner",
-    "date": "2026-08-03",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C1-CASE07:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C1-CASE07:v1.1:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C1_CASE07_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C1_CASE07_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C1_CASE07_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C1_CASE07_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C1_CASE07_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C1_CASE07_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C1_CASE07_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE07_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE07_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE07_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 1 Case 07 v1.0 — The Gift Curriculum Editor",
-    "loadAnnouncement": "The Gift Case 07 v1.0 approved package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 1 Case 07 v1.1 — The Gift Curriculum Editor",
+    "loadAnnouncement": "The Gift Case 07 v1.1 approved package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       "[data-evidence-summary]",
       "[data-process-contract]",
@@ -134,8 +133,7 @@
   "sourceHashes": {
     "content": "45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11",
     "presentation": "533e9848052fa6be90c258ce855a3874da922b1a09365b380a60eb46cbad0b53",
-    "taskRegistry": "cf1fc8abbac1b604346572a310456e15fa5e000c42c7e9f1b97f67790a622602",
+    "taskRegistry": "5d6e5fe1223b4faee4e5f49c41e0bd4e1ae7e92767027ee15dce5adc268eeaff",
     "layoutOverrides": "e606bb3697018c362e8d6fb891edf17d6e3d7d8fc66dabd81b118bae4d8812ea"
-  },
-  "releaseHistory": "sss/campaign-1/case-07-the-gift/history/release-v1.0.json"
+  }
 }

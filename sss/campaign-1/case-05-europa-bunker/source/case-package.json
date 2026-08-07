@@ -6,13 +6,12 @@
   "title": "Sub Surface Bunker",
   "subtitle": "Campaign 1 · Case 05 · Europa, Sub-Surface Bunker",
   "location": "Europa, Sub-Surface Bunker",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-08-02",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C1-CASE05:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C1-CASE05:v1.1:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C1_CASE05_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C1_CASE05_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C1_CASE05_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C1_CASE05_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C1_CASE05_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C1_CASE05_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C1_CASE05_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE05_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE05_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE05_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 1 Case 05 v1.0 — Sub Surface Bunker Curriculum Editor",
-    "loadAnnouncement": "Sub Surface Bunker Case 05 v1.0 approved package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 1 Case 05 v1.1 — Sub Surface Bunker Curriculum Editor",
+    "loadAnnouncement": "Sub Surface Bunker Case 05 v1.1 approved package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       "[data-evidence-summary]",
@@ -134,10 +133,9 @@
   "sourceHashes": {
     "content": "8f41ea0e8d620fc656d3eb8a58f1bc0eda26ed62a51522f21271e85c807f5a05",
     "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
-    "taskRegistry": "e7d883f8d388fd3d94fd303c7b63b32d1e2f2ab9622de642373d076e492d745c",
+    "taskRegistry": "402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc",
     "layoutOverrides": "c1c0d8d0e3dfb545e1453fd473e43b26168bce74ac4aede0f5c43a0fb9056eb9"
   },
-  "releaseHistory": "sss/campaign-1/case-05-europa-bunker/history/release-v1.0.json",
   "phraseBank": {
     "contract": "sequence-v1.0",
     "taskId": 5,

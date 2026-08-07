@@ -6,13 +6,12 @@
   "title": "First Contact Protocol",
   "subtitle": "Campaign 1 · Case 06 · Zhel'ora Botanical Vessel",
   "location": "Zhel'ora Botanical Vessel",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "DRAFT",
   "approval": {
     "owner": "Nate / Owner",
-    "date": "2026-08-03",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C1-CASE06:v1.0:curriculum-editor-v2",
+  "documentKey": "SSS-C1-CASE06:v1.1:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C1_CASE06_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C1_CASE06_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C1_CASE06_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C1_CASE06_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C1_CASE06_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C1_CASE06_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C1_CASE06_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE06_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE06_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE06_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 1 Case 06 v1.0 — First Contact Protocol Curriculum Editor",
-    "loadAnnouncement": "First Contact Protocol Case 06 v1.0 approved package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 1 Case 06 v1.1 — First Contact Protocol Curriculum Editor",
+    "loadAnnouncement": "First Contact Protocol Case 06 v1.1 approved package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       "[data-evidence-summary]",
       "[data-timeline-contract]",
@@ -134,8 +133,7 @@
   "sourceHashes": {
     "content": "657bc7a3833c7585a2a6caf52e1ab19730fe114b9443370e21f0c39cb4eefb6c",
     "presentation": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
-    "taskRegistry": "3ff9b0a5de05165a15063fa71b8ec74d360f7691357a40da22f4d765e34d37fe",
+    "taskRegistry": "5afe3f4b35e4b80ef544c86898ec0314787e831c37ac8e5396d58753f95ef774",
     "layoutOverrides": "5b3b21468632427d9c187785bc7567e81e54d841fac4fd2e5c7fc7980b7d08ec"
-  },
-  "releaseHistory": "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
+  }
 }

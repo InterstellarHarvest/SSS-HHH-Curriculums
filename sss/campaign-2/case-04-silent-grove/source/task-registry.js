@@ -2,14 +2,11 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE04",
   "title": "The Silent Grove",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
-  "correctiveOf": "1.0",
-  "approvalDate": "2026-08-06",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "printStatus": "PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.2",
+  "status": "DRAFT",
+  "correctiveOf": "1.1",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "printStatus": "NOT_RUN",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "silent_grove",
@@ -268,7 +265,9 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
       "code": "MS-LS1-5",
       "claim": "supporting",
       "bounded": true,
-      "assessingTasks": [7],
+      "assessingTasks": [
+        7
+      ],
       "assessedPractice": "Constructing a written evidence-based explanation of how a local environmental condition influences an organism. The practice half only.",
       "learnerEvidence": [
         "Table 5 — the two-year within-cycle record, peak in hours 19–24 and minimum in hours 6–12 (Student page 3, Accessible page 3)",
@@ -280,7 +279,9 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
     {
       "code": "MS-ETS1-1",
       "claim": "supporting",
-      "assessingTasks": [8],
+      "assessingTasks": [
+        8
+      ],
       "assessedPractice": "Writing two criteria for a schedule specification and naming one constraint reported in the case.",
       "learnerEvidence": [
         "Task 8 response — Criterion 1, dark hours per cycle, justified against the recorded five-hour minimum",
@@ -294,7 +295,9 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
       "code": "MS-ETS1-2",
       "claim": "supporting",
       "conditional": true,
-      "assessingTasks": [8],
+      "assessingTasks": [
+        8
+      ],
       "limitation": "Claim only if the class systematically compares restoring the six-hour schedule against adopting the five-hour recorded minimum using the same criteria and constraints. The packet as written asks for one specification with a justification, which is not a systematic comparison."
     }
   ],
@@ -323,14 +326,32 @@ window.SSS_C2_CASE04_TASK_REGISTRY = {
   "learnerEvidencePolicy": {
     "rule": "Every graded Answer Key expectation and every clause of the CER exemplar must be producible from the Student edition alone and, independently, from the Accessible edition alone, using evidence printed on or before the page of the task that assesses it.",
     "suppliedToLearners": [
-      "Day −93", "Day −90", "Day −83", "Day −80",
-      "power fluctuation", "no other", "no structural decline", "measurable threshold",
-      "24.0 h on / 0.0 h off", "18 h on / 6 h off", "0.0 ppb", "40–80 ppb",
-      "five dark hours", "six dark hours", "six months", "Hours 19–24", "Hours 6–12",
-      "target range", "set to preserve", "structurally sound", "entrained"
+      "Day −93",
+      "Day −90",
+      "Day −83",
+      "Day −80",
+      "power fluctuation",
+      "no other",
+      "no structural decline",
+      "measurable threshold",
+      "24.0 h on / 0.0 h off",
+      "18 h on / 6 h off",
+      "0.0 ppb",
+      "40–80 ppb",
+      "five dark hours",
+      "six dark hours",
+      "six months",
+      "Hours 19–24",
+      "Hours 6–12",
+      "target range",
+      "set to preserve",
+      "structurally sound",
+      "entrained"
     ],
     "withheldFromLearners": [
-      "culturally significant", "sacred", "the grove's historical light intensity before Day −90"
+      "culturally significant",
+      "sacred",
+      "the grove's historical light intensity before Day −90"
     ],
     "teacherOnly": [
       "The runtime record that the grove is culturally significant to the Thal-Oren community — discussion context only, never a graded requirement",

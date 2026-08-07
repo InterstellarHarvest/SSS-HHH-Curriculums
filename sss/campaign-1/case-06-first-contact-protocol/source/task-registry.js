@@ -3,10 +3,9 @@ window.SSS_CASE06_TASK_REGISTRY = {
   "case": "SSS-C1-CASE06",
   "runtimeId": "alien1",
   "title": "First Contact Protocol",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "DRAFT",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
   "editorShell": "1.0",
   "gameCommit": "d723fb9b8085905a6048575a2cb3bb0fce1d312b",
   "roles": {
@@ -140,5 +139,7 @@ window.SSS_CASE06_TASK_REGISTRY = {
     "earthScience": "qualified context for chemical signaling and symbiosis",
     "engineering": "plausible selective-control extrapolation",
     "figures": "curriculum-original explanatory models"
-  }
+  },
+  "correctiveOf": "1.0",
+  "printStatus": "NOT_RUN"
 };
