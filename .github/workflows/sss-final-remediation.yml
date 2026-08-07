@@ -2,21 +2,6 @@ name: SSS Final Remediation
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - remediate/sss-final-system
-    paths:
-      - 'shared/remediation/**'
-      - 'shared/validation/validate_final_quality_contract*.py'
-      - 'shared/validation/validate_final_accessibility_contract*.py'
-      - 'shared/validation/validate_sss_final_corrective_candidates.py'
-      - 'shared/validation/validate_canonical_case_structure_corrective.py'
-      - 'shared/validation/run_curriculum_browser_harness.py'
-      - 'apps/curriculum-editor/tests/browser-harness.html'
-      - 'apps/curriculum-editor/tests/test_corrective_release_lifecycle.py'
-      - 'shared/implementation/case-registry.v2.json'
-      - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
-      - '.github/workflows/sss-final-remediation.yml'
   pull_request:
     branches:
       - main
@@ -44,7 +29,7 @@ concurrency:
 
 jobs:
   remediate:
-    if: github.event_name != 'pull_request' && (github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[auto-remediation]'))
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - name: Verify protected branch scope
