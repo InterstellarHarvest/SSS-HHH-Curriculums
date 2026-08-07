@@ -854,6 +854,8 @@ def main() -> int:
     results.check("SSS Campaign 2 Case 02 mutation tests prove each protection fires", case02_mutations.returncode == 0, (case02_mutations.stdout + case02_mutations.stderr).strip()[-2000:])
     case04_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case04_mutations.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 04 mutation tests prove each protection fires", case04_mutations.returncode == 0, (case04_mutations.stdout + case04_mutations.stderr).strip()[-2000:])
+    case05_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case05_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("SSS Campaign 2 Case 05 mutation tests prove each protection fires", case05_mutations.returncode == 0, (case05_mutations.stdout + case05_mutations.stderr).strip()[-2000:])
     case03_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case03_mutations.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 03 mutation tests prove each protection fires", case03_mutations.returncode == 0, (case03_mutations.stdout + case03_mutations.stderr).strip()[-2000:])
     case06_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case06_mutations.py")], cwd=ROOT, text=True, capture_output=True)

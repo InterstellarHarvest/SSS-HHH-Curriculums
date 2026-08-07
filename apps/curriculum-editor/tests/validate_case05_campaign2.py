@@ -26,14 +26,65 @@ from bs4 import BeautifulSoup
 
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / "shared/validation"))
+from corrective_release_lifecycle import history_findings as corrective_history_findings  # noqa: E402
+
 CASE_ID = "SSS-C2-CASE05"
 CASE_ROOT = ROOT / "sss/campaign-2/case-05-too-clean-room"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-RELEASE_VERSION = "1.0"
+CANDIDATE_VERSION = "1.1"
+CORRECTIVE_OF = "1.0"
+RETAINED_VERSION = "1.0"
 APPROVAL_DATE = "2026-08-05"
 OWNER = "Nate / Owner"
 PREVIEW_BASELINE = "5c1453328ac40a7f7a653efa18ef70bf73759f69"
+SYNCHRONISED_MAIN = "f5eb8885be4ae8f49c745c8e5e1c38ffd2067c0d"
+# The v1.0 release record certifies four source blobs against a commit that does not contain
+# one of them. The pin is frozen history and is not rewritten; both commits are pinned here so
+# the discrepancy is a recorded fact and the eventual v1.1 record cannot inherit it.
+V10_INACCURATE_PIN = "5c1453328ac40a7f7a653efa18ef70bf73759f69"
+V10_PINNED_TASK_REGISTRY_HASH = "baf82900f32480bb522bf0f5ef47c86e5539789afd0ab8b8f0ec0e050142deae"
+V10_ACTUAL_TASK_REGISTRY_AT_PIN = "9e95a3f0d2724ebb5da799a3cf7fd98e9460561bb8e6378d602529ea707b29aa"
+SOURCE_BEARING_COMMIT = "7f07ccb37c6ece9dace3ffe4487cff21a2f8030a"
+
+# The repaired Teacher clause. `teacher-guide-09` shipped a bare `X` in its place from the
+# original draft onward; the wording is the package README's own statement of the page
+# structure, and the assertion below exists so it can never silently revert.
+REPAIRED_TEACHER_CLAUSE = ("Tasks 4\u20137 in the second. Task 6 occupies a full page of its own in "
+                           "both learner editions, so the explanation is written in one sitting "
+                           "rather than assembled in margins.")
+
+# Placeholder tokens that are prose corruption wherever they stand alone as a word in a
+# Teacher paragraph. Scoped to standalone tokens inside prose so a legitimate scientific `x`,
+# an axis label, a variable, or an answer marker elsewhere in the packet is never matched.
+PROSE_PLACEHOLDER = re.compile(
+    r"(?:(?<=^)|(?<=[\s(\u2014\u2013]))(?:X|XX|XXX|TK|TKTK|TODO|FIXME|LOREM|\?\?\?|\[\.\.\.\]|\.\.\.\.)"
+    r"(?=[\s.,;:!?)\u2014\u2013]|$)")
+# A prose sentence that stops without terminal punctuation, or that repeats a word.
+DUPLICATED_WORD = re.compile(r"\b(\w{3,})\s+\1\b", re.I)
+
+# Constraints and facts no learner edition prints. The v1.0 Answer Key accepted the first two
+# at Task 7; nothing in either learner edition supplies them.
+UNREACHABLE_CONSTRAINTS = ["staff exposure limit", "specimens exist", "small number of specimens"]
+
+# The nine Accessible scaffold blocks are the contract, not a floor.
+ACCESSIBLE_SCAFFOLDS = 9
+ACCESSIBLE_WORD_BANK_PHRASES = ["reformulated four times", "uptake is normal",
+                                "inside the karreth range", "two months at 100%",
+                                "tissue is healthy"]
+# Each Task 5 rejection scaffold, paired with the record that has to be printed elsewhere in
+# the same edition for a learner to use it. In v1.0 "uptake is normal" had no such record: the
+# word "uptake" occurred exactly once in the Accessible edition, inside the word bank itself.
+ACCESSIBLE_WORD_BANK_EVIDENCE = [
+    ("reformulated four times", "remade four times"),
+    ("uptake is normal", "nutrient uptake is normal"),
+    ("inside the karreth range", "20\u201325 \u00b0C"),
+    ("two months at 100%", "100%"),
+    ("tissue is healthy", "cells are healthy"),
+]
+STANDARDS = {"MS-ETS1-1": ("direct", 7), "MS-LS1-5": ("supporting", 6),
+             "MS-ETS1-2": ("conditional", 7)}
 RUNTIME_ID = "too_clean_room"
 RUNTIME_NAME = "Concord Botanical Vault"
 RUNTIME_LOCATION = "Lagrange Point 5"
@@ -244,6 +295,41 @@ def scan(text: str, bank: list) -> list[str]:
     return [reason for pattern, guard, reason in bank if unqualified(text, pattern, guard)]
 
 
+def blob_hash(commit: str, name: str) -> str:
+    """SHA-256 of a Case 05 source blob as it stands at a commit, or "" if absent.
+
+    Used to test the release record against the commit it certifies. The validators have
+    always compared record to package and package to disk; nothing compared record to commit,
+    which is why four of the campaign's six false source pins shipped.
+    """
+    run = subprocess.run(
+        ["git", "show", f"{commit}:sss/campaign-2/case-05-too-clean-room/source/{name}"],
+        cwd=ROOT, capture_output=True)
+    return hashlib.sha256(run.stdout).hexdigest() if run.returncode == 0 else ""
+
+
+def prose_paragraphs(soup: BeautifulSoup, role: str) -> list[tuple[str, str]]:
+    """(page id, text) for every prose paragraph of a role, overflow warnings excluded.
+
+    The overflow warning is a live layout affordance whose text would otherwise read as a
+    production marker, and table cells and figure labels are excluded because a bare token is
+    legitimate notation there and corruption only in running prose.
+    """
+    out = []
+    for page in soup.select(f'.page[data-role="{role}"]'):
+        for node in page.select("p, li, dd"):
+            if node.find_parent(class_="overflow-warning") or node.find_parent("table"):
+                continue
+            if node.find_parent("figure") or node.find_parent(class_="extended-description"):
+                continue
+            if node.find_parent("header") or node.find_parent("footer"):
+                continue
+            text = " ".join(node.stripped_strings)
+            if text:
+                out.append((page.get("data-page-id", ""), text))
+    return out
+
+
 def probe(markup: str) -> str:
     """Visible text of a synthetic single-page document, used to self-test the detectors."""
     return visible_text(BeautifulSoup(
@@ -285,25 +371,44 @@ def main() -> int:
                   CASE_ROOT.name == "case-05-too-clean-room"
                   and package["content"]["source"].startswith("sss/campaign-2/case-05-too-clean-room/"))
 
-    # ── Approved lifecycle, release history, no artifacts ───────────
-    results.check("the package records the approved release lifecycle",
-                  package["status"] == "APPROVED_STABLE" and package["version"] == RELEASE_VERSION
-                  and package["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
-                                              "status": "APPROVED", "printStatus": "PASS"},
+    # ── Corrective v1.1 candidate lifecycle, retained v1.0 history ───
+    results.check("the package records the corrective v1.1 candidate lifecycle",
+                  package["status"] == "OWNER_GATE_OPEN"
+                  and package["version"] == CANDIDATE_VERSION
+                  and package["approval"] == {"owner": OWNER,
+                                              "status": "OWNER_REVIEW_IN_PROGRESS",
+                                              "printStatus": "NOT_RUN"},
                   package["approval"])
-    results.check("the task registry records the same approved release lifecycle",
-                  (registry.get("version"), registry.get("status"), registry.get("approvalDate"),
+    results.check("the task registry records the same corrective candidate lifecycle",
+                  (registry.get("version"), registry.get("status"), registry.get("correctiveOf"),
                    registry.get("approvedBy"), registry.get("ownerReviewStatus"),
                    registry.get("mergeStatus"))
-                  == (RELEASE_VERSION, "APPROVED_STABLE", APPROVAL_DATE, OWNER,
-                      "OWNER_REVIEW_PASS", "READY_TO_MERGE"),
-                  [registry.get("status"), registry.get("ownerReviewStatus"), registry.get("mergeStatus")])
-    results.check("the approved package names exactly one retained release-history record",
-                  package.get("releaseHistory")
-                  == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
-                  and sorted(path.name for path in (CASE_ROOT / "history").iterdir())
+                  == (CANDIDATE_VERSION, "OWNER_GATE_OPEN", CORRECTIVE_OF, OWNER,
+                      "OWNER_REVIEW_IN_PROGRESS", "NOT_READY")
+                  and "approvalDate" not in registry,
+                  [registry.get("status"), registry.get("correctiveOf"),
+                   registry.get("ownerReviewStatus"), registry.get("mergeStatus")])
+    results.check("every version-bearing field carries the candidate version",
+                  package["documentKey"] == f"{CASE_ID}:v{CANDIDATE_VERSION}:curriculum-editor-v2"
+                  and all(name.endswith(f"_v{CANDIDATE_VERSION}_CUSTOM.html")
+                          for name in package["outputs"].values())
+                  and f"v{CANDIDATE_VERSION}" in package["accessibility"]["documentTitle"]
+                  and f"v{CANDIDATE_VERSION}" in package["accessibility"]["loadAnnouncement"],
+                  [package["documentKey"], sorted(package["outputs"].values())])
+    results.check("the unreleased candidate declares no release-history pointer",
+                  "releaseHistory" not in package, package.get("releaseHistory"))
+    results.check("history holds the retained v1.0 records only and no v1.1 record",
+                  sorted(path.name for path in (CASE_ROOT / "history").iterdir())
                   == ["CASE05_OWNER_APPROVAL_v1.0.md", "release-v1.0.json"],
                   sorted(path.name for path in (CASE_ROOT / "history").iterdir()))
+    retained = subprocess.run(
+        ["git", "diff", "--quiet", SYNCHRONISED_MAIN, "--",
+         "sss/campaign-2/case-05-too-clean-room/history"], cwd=ROOT, capture_output=True)
+    results.check("both retained v1.0 records are byte-identical to synchronised main",
+                  retained.returncode == 0, SYNCHRONISED_MAIN)
+    lifecycle_issues = corrective_history_findings(CASE_ROOT, CASE_ID, package, None)
+    results.check("the shared corrective-release lifecycle rules are satisfied",
+                  not lifecycle_issues, lifecycle_issues)
     history = json.loads((CASE_ROOT / "history/release-v1.0.json").read_text(encoding="utf-8"))
     results.check("the release history records a native release with no former generated artifacts",
                   history["caseId"] == CASE_ID and history["status"] == "APPROVED_STABLE"
@@ -313,10 +418,28 @@ def main() -> int:
                   and history["retiredArtifacts"] == [])
     results.check("the release history page counts match the approved release",
                   history["rolePageCounts"] == ROLE_PAGES, history["rolePageCounts"])
-    results.check("the release history pins the source hashes it was approved at",
-                  all(history["sourceHashes"][name] == package["sourceHashes"][name]
-                      for name in ("content", "presentation", "taskRegistry")),
+    results.check("the retained v1.0 release record still pins the v1.0 source hashes",
+                  history["sourceHashes"]["taskRegistry"] == V10_PINNED_TASK_REGISTRY_HASH,
                   history["sourceHashes"])
+    results.check("the retained v1.0 release record still omits the layoutOverrides hash",
+                  "layoutOverrides" not in history["sourceHashes"],
+                  sorted(history["sourceHashes"]))
+    results.check("the package certifies all four sources, including layoutOverrides",
+                  sorted(package["sourceHashes"]) == ["content", "layoutOverrides",
+                                                      "presentation", "taskRegistry"],
+                  sorted(package["sourceHashes"]))
+    results.check("the v1.0 canonicalSourceApprovalCommit is still the known-inaccurate pin",
+                  history["canonicalSourceApprovalCommit"] == V10_INACCURATE_PIN
+                  and blob_hash(V10_INACCURATE_PIN, "task-registry.js")
+                  == V10_ACTUAL_TASK_REGISTRY_AT_PIN,
+                  blob_hash(V10_INACCURATE_PIN, "task-registry.js"))
+    results.check("the real source-bearing commit still contains all four certified v1.0 blobs",
+                  blob_hash(SOURCE_BEARING_COMMIT, "task-registry.js")
+                  == V10_PINNED_TASK_REGISTRY_HASH
+                  and all(blob_hash(SOURCE_BEARING_COMMIT, name) == history["sourceHashes"][key]
+                          for key, name in (("content", "content.html"),
+                                            ("presentation", "presentation.css"))),
+                  SOURCE_BEARING_COMMIT)
     results.check("every commit reference in the release history exists",
                   all(subprocess.run(["git", "cat-file", "-e", f"{history[field]}^{{commit}}"],
                                      cwd=ROOT, capture_output=True).returncode == 0
@@ -365,12 +488,14 @@ def main() -> int:
                   campaigns["campaign-2"][4]["id"] == CASE_ID
                   and campaigns["campaign-2"][4]["displayLabel"] == "5 - Too Clean a Room")
     entry = campaigns["campaign-2"][4]
-    results.check("the Case 05 registry entry is an approved release with a history record",
-                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
-                  and entry.get("historyRecord")
-                  == "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
-                  and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
-                                            "status": "APPROVED", "printStatus": "PASS"})
+    results.check("the Case 05 registry entry is an unreleased corrective candidate",
+                  entry["status"] == "OWNER_GATE_OPEN" and entry["version"] == CANDIDATE_VERSION
+                  and entry["packageStatus"] == "OWNER_REVIEW"
+                  and "historyRecord" not in entry
+                  and entry["approval"] == {"owner": OWNER,
+                                            "status": "OWNER_REVIEW_IN_PROGRESS",
+                                            "printStatus": "NOT_RUN"},
+                  [entry["status"], entry.get("historyRecord"), entry["approval"]])
     results.check("all thirteen registered cases are approved or valid corrective candidates",
                   not unexpected_lifecycle(campaigns)
                   and sum(len(cases) for cases in campaigns.values()) == 13,
@@ -392,7 +517,7 @@ def main() -> int:
 
     # ── Task architecture, order, and page counts ────────────────────
     task_titles = [item["title"] for item in registry["tasks"]]
-    results.check("task registry uses the eight design-locked titles", task_titles == TASK_TITLES, task_titles)
+    results.check("task registry uses the seven design-locked titles", task_titles == TASK_TITLES, task_titles)
     task_ids = [item["id"] for item in registry["tasks"]]
     results.check("task identifiers are stable and unique",
                   task_ids == [f"C2-C05-T{n}" for n in range(1, TASK_COUNT + 1)]
@@ -733,6 +858,224 @@ def main() -> int:
                       sorted(eligible & cer_ids))
     results.check("the draft ships no owner-applied layout overrides",
                   layout["overrides"] == {} and layout["student"]["overrides"] == {})
+
+    # ── Printable prose corruption ───────────────────────────────────
+    # `teacher-guide-09` shipped a bare `X` where a clause belongs. It survived the original
+    # draft, owner review, a 101/101 validator, a 28-page visual review and a physical print
+    # gate, because nothing in the estate read Teacher prose as prose.
+    teacher_prose = prose_paragraphs(soup, "teacher")
+    placeholder_findings = [f"{page_id}:{m.group(0)}"
+                            for page_id, text in teacher_prose
+                            for m in PROSE_PLACEHOLDER.finditer(text)]
+    results.check("no Teacher paragraph carries a bare placeholder token where prose belongs",
+                  not placeholder_findings, placeholder_findings)
+    all_prose = [(pid, txt) for role in ROLES for pid, txt in prose_paragraphs(soup, role)]
+    results.check("no printable paragraph in any role carries a bare placeholder token",
+                  not [f"{pid}:{m.group(0)}" for pid, txt in all_prose
+                       for m in PROSE_PLACEHOLDER.finditer(txt)],
+                  [f"{pid}:{m.group(0)}" for pid, txt in all_prose
+                   for m in PROSE_PLACEHOLDER.finditer(txt)][:8])
+    results.check("the placeholder detector fires on the exact sentence Case 05 shipped",
+                  bool(PROSE_PLACEHOLDER.search(
+                      "Tasks 1\u20133 sit naturally in the first, Tasks 4\u20137 in the second. X so "
+                      "the explanation is written in one sitting rather than assembled in margins."))
+                  and bool(PROSE_PLACEHOLDER.search("Run the example aloud. TODO before the table."))
+                  and bool(PROSE_PLACEHOLDER.search("Accept any answer of this kind \u2014 XXX.")))
+    results.check("the placeholder detector does not fire on legitimate notation or prose",
+                  not PROSE_PLACEHOLDER.search(
+                      "Plot dose on the x axis and production on the y axis, and mark each "
+                      "rejected option R and the best-supported option B.")
+                  and not PROSE_PLACEHOLDER.search(
+                      "The X-ray comparison is teacher-only, and a student who writes Xe or "
+                      "marks a box with an x has not written a placeholder."))
+    truncated = [f"{pid}:{txt[-40:]}" for pid, txt in teacher_prose
+                 if not txt.rstrip().endswith((".", "?", "!", ":", "\u201d", ")"))]
+    results.check("every Teacher paragraph ends in terminal punctuation",
+                  not truncated, truncated)
+    duplicated = [f"{pid}:{m.group(0)}" for pid, txt in teacher_prose
+                  for m in DUPLICATED_WORD.finditer(txt)]
+    results.check("no Teacher paragraph repeats a word as a duplication fragment",
+                  not duplicated, duplicated)
+    repeated_sentences = []
+    for pid, txt in teacher_prose:
+        parts = [s.strip() for s in re.split(r"(?<=[.?!])\s+", txt) if len(s.strip()) > 25]
+        repeated_sentences += [f"{pid}:{s[:50]}" for s in set(parts) if parts.count(s) > 1]
+    results.check("no Teacher paragraph repeats a whole sentence",
+                  not repeated_sentences, repeated_sentences)
+    results.check("the repaired Teacher pacing clause is present and unmodified",
+                  REPAIRED_TEACHER_CLAUSE in " ".join(
+                      " ".join(page.stripped_strings)
+                      for page in soup.select('.page[data-page-id="teacher-guide-09"]')),
+                  REPAIRED_TEACHER_CLAUSE)
+
+    # ── Teacher completeness ─────────────────────────────────────────
+    teacher_text = visible_text(soup, ["teacher"])
+    guided = [n for n in range(1, TASK_COUNT + 1)
+              if re.search(rf"Task {n} \u00b7", teacher_text)]
+    results.check("every task receives a named Teacher guidance block",
+                  guided == list(range(1, TASK_COUNT + 1)), guided)
+    stale_tasks = sorted({int(m.group(1)) for m in re.finditer(r"Tasks? (\d+)", teacher_text)}
+                         | {int(n) for m in re.finditer(r"Tasks (\d+)\u2013(\d+)", teacher_text)
+                            for n in m.groups()})
+    results.check("no Teacher task reference points past the seven tasks the case has",
+                  all(n <= TASK_COUNT for n in stale_tasks), stale_tasks)
+    results.check("the Teacher pacing note matches the real task sequence",
+                  re.search(r"Tasks 1\u20133 sit naturally in the first, "
+                            r"Tasks 4\u20137 in the second", teacher_text)
+                  and "Tasks 1\u20138" not in teacher_text)
+    results.check("every Teacher success criterion names something learners produce",
+                  all(phrase in visible_text(soup, ["student", "accessible"]) or
+                      phrase in teacher_text for phrase in
+                      ["detection limit", "milligray", "species-specific", "stop"]))
+    results.check("the Teacher rubric and objectives stay scorable from the printed packet",
+                  all(re.search(pattern, teacher_text, re.I) for pattern in
+                      [r"Measurable objectives", r"Success criteria",
+                       r"no student converts or restates it in sievert",
+                       r"five adjustments that produced no change are used as evidence"]))
+
+    # ── Evidence availability, task level ────────────────────────────
+    # Every fact the Answer Key grades against or accepts must be printed in both learner
+    # editions. The audit's own sweep found Case 05 clean on values and proper nouns; the
+    # Answer Key's Task 7 accept-list was not swept, and it accepted two constraints printed
+    # in neither edition.
+    policy = registry["learnerEvidencePolicy"]
+    learner_editions = {role: visible_text(soup, [role]) for role in ("student", "accessible")}
+    answer_text = visible_text(soup, ["answer"])
+    unreachable = [f"{role}:{phrase}"
+                   for phrase in UNREACHABLE_CONSTRAINTS
+                   for role, text in learner_editions.items()
+                   if phrase.lower() not in text.lower()
+                   and phrase.lower() in answer_text.lower()]
+    results.check("the Answer Key accepts no constraint absent from a learner edition",
+                  not unreachable, unreachable)
+    results.check("the withheld-evidence policy names the constraints that produced that defect",
+                  any("staff exposure limit" in item.lower()
+                      for item in policy["withheldFromEveryRole"]),
+                  policy["withheldFromEveryRole"])
+    graded_facts = [
+        ("nutrient uptake", "uptake"),
+        ("the shortage that makes the trial urgent", "supplies are running out"),
+        ("the detection-limit reading", "<0.01 mGy/day"),
+        ("the homeworld site record", "about 8.4 mGy/day"),
+        ("the modeled comparison", "about 12 mGy/day"),
+        ("the four-times nutrient reformulation", "four times"),
+        ("the two baseline months", "100%"),
+        ("the month-6 production value", "6%"),
+        ("the quiescent pathway", "quiescent"),
+        ("the species-specific limit", "species-specific"),
+    ]
+    missing_evidence = [f"{label} ({needle}) missing from {role}"
+                        for label, needle in graded_facts
+                        for role, text in learner_editions.items()
+                        if needle.lower() not in text.lower()]
+    results.check("every fact the Answer Key grades on is printed in both learner editions",
+                  not missing_evidence, missing_evidence)
+    answer_quantities = set(re.findall(r"\b(?:about )?\d+(?:\.\d+)?\s*(?:%|mGy/day)", answer_text))
+    unprinted_quantities = [f"{role}:{value}" for value in sorted(answer_quantities)
+                            for role, text in learner_editions.items() if value not in text]
+    results.check("every quantity the Answer Key reports is printed in both learner editions",
+                  not unprinted_quantities, unprinted_quantities)
+    results.check("the evidence policy lists the facts both learner editions must supply",
+                  len(policy["suppliedToBothLearnerEditions"]) >= 8
+                  and policy["teacherOnly"] and policy["principle"],
+                  len(policy["suppliedToBothLearnerEditions"]))
+
+    # ── Cross-role reference integrity ───────────────────────────────
+    # Case 06's M-26 was four Teacher and Answer Key references that misresolve for Accessible
+    # readers. Case 05 numbers its tables identically in both editions; this holds it there.
+    def captions(role: str) -> set[str]:
+        """Numbered tables and lettered figures a reader of this role can resolve."""
+        found = set()
+        for selector in ("caption", "figcaption"):
+            for node in soup.select(f'.page[data-role="{role}"] {selector}'):
+                text = " ".join(node.stripped_strings)
+                found |= {f"Table {n}" for n in re.findall(r"^Table (\d+)", text)}
+                found |= {f"Figure {n}" for n in re.findall(r"^Figure ([A-Z])\b", text)}
+        return found
+    referenced = set()
+    for role in ("teacher", "answer"):
+        for _pid, text in prose_paragraphs(soup, role):
+            referenced |= {f"Table {n}" for n in re.findall(r"Table (\d+)", text)}
+            referenced |= {f"Figure {n}" for n in re.findall(r"Figure ([A-Z])\b", text)}
+    for _pid, text in prose_paragraphs(soup, "teacher"):
+        for lo, hi in re.findall(r"Tables (\d+)\u2013(\d+)", text):
+            referenced |= {f"Table {n}" for n in range(int(lo), int(hi) + 1)}
+    dangling = [f"{ref} unresolvable in {role}" for ref in sorted(referenced)
+                for role in ("student", "accessible") if ref not in captions(role)]
+    results.check("every table and figure a Teacher or Answer Key prose reference names "
+                  "resolves in both learner editions", not dangling, dangling)
+    results.check("the two learner editions number the same tables and figures",
+                  captions("student") == captions("accessible"),
+                  sorted(captions("student") ^ captions("accessible")))
+
+    # ── Accessible integrity ─────────────────────────────────────────
+    accessible_text = learner_editions["accessible"]
+    results.check("the Accessible edition carries exactly its nine scaffold blocks",
+                  len(soup.select('.page[data-role="accessible"] .alt-support'))
+                  == ACCESSIBLE_SCAFFOLDS,
+                  len(soup.select('.page[data-role="accessible"] .alt-support')))
+    word_banks = " ".join(" ".join(node.stripped_strings)
+                          for node in soup.select('.page[data-role="accessible"] .alt-support'))
+    accessible_records = accessible_text
+    for bank in [" ".join(node.stripped_strings)
+                 for node in soup.select('.page[data-role="accessible"] .alt-support')]:
+        accessible_records = accessible_records.replace(bank, " ")
+    unsupported_bank = [f"{phrase} -> {token}"
+                        for phrase, token in ACCESSIBLE_WORD_BANK_EVIDENCE
+                        if token.lower() not in accessible_records.lower()]
+    results.check("every Accessible word-bank phrase has its evidence printed outside the bank",
+                  not unsupported_bank, unsupported_bank)
+    results.check("every Accessible word-bank phrase is offered to learners",
+                  all(phrase in word_banks for phrase in ACCESSIBLE_WORD_BANK_PHRASES),
+                  [p for p in ACCESSIBLE_WORD_BANK_PHRASES if p not in word_banks])
+    results.check("the Accessible briefing carries the stakes the direct standard rests on",
+                  all(re.search(r"supplies are running out", learner_editions[role], re.I)
+                      and re.search(r"several Concord species", learner_editions[role], re.I)
+                      for role in ("student", "accessible")))
+    results.check("the Accessible specimen record keeps the nutrient-uptake evidence",
+                  re.search(r"cells are healthy and nutrient uptake is normal",
+                            accessible_text, re.I))
+
+    # ── Standards ────────────────────────────────────────────────────
+    declared = {item["code"]: (item["claim"], item["assessingTask"])
+                for item in registry["standards"]}
+    results.check("the registry claims exactly the three current standards at their current strength",
+                  declared == STANDARDS, declared)
+    results.check("every standards claim names a practice, a real task, and a limitation",
+                  all(item.get("assessedPractice") and item.get("limitation")
+                      and item.get("learnerEvidence")
+                      and 1 <= item["assessingTask"] <= TASK_COUNT
+                      for item in registry["standards"]),
+                  [item["code"] for item in registry["standards"]
+                   if not (item.get("assessedPractice") and item.get("limitation"))])
+    results.check("the direct claim records the impacts-on-people evidence it rests on",
+                  any(item["code"] == "MS-ETS1-1" and item.get("impactsOnPeople")
+                      for item in registry["standards"]))
+    overclaimed = [item["code"] for item in registry["standards"] if item["claim"] != "direct"
+                   and re.search(rf"{re.escape(item['code'])}[^.]{{0,60}}[Dd]irect assessment",
+                                 teacher_text)]
+    results.check("no printable role reports a supporting or conditional claim as direct assessment",
+                  not overclaimed, overclaimed)
+    results.check("the Teacher Guide keeps the limitation on every hedged claim",
+                  re.search(r"MS-LS1-5, bounded", teacher_text)
+                  and re.search(r"Do not report it as direct assessment", teacher_text)
+                  and re.search(r"MS-ETS1-2, conditional", teacher_text)
+                  and re.search(r"Claim this only if", teacher_text))
+    results.check("no mathematics standard is claimed anywhere",
+                  not re.search(r"\bCCSS\.MATH|\bMP\.\d|\b6\.(?:RP|NS|EE|SP)\b",
+                                visible_text(soup, ROLES) + json.dumps(registry)))
+
+    # ── Revision propagation ─────────────────────────────────────────
+    readme = (CASE_ROOT / "README.md").read_text(encoding="utf-8")
+    results.check("the README records the candidate version and the retained release",
+                  "1.1 (corrective candidate, unreleased)" in readme
+                  and "OWNER_GATE_OPEN" in readme and "NOT_RUN" in readme
+                  and "retained byte-identical" in readme)
+    results.check("the README page counts still agree with the package and the DOM",
+                  "Student 7, Teacher 9, Answer Key 5, Accessible 7" in readme)
+    results.check("no repository document restates the campaign superlative for this case",
+                  "most differentiated" not in readme
+                  and "most differentiated" not in json.dumps(registry))
 
     payload = {
         "validator": "sss-c2-case05-v1",
