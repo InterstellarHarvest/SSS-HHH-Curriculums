@@ -17,11 +17,20 @@
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
   "documentKey": "SSS-C1-CASE06:v1.0:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -73,10 +82,22 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 5},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
-    "answer": {"documentRole": "Answer Key", "pageCount": 5},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 5
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 5
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 7
+    }
   },
   "outputs": {
     "complete": "SSS_C1_CASE06_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
@@ -102,11 +123,16 @@
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 06 v1.0 — First Contact Protocol Curriculum Editor",
     "loadAnnouncement": "First Contact Protocol Case 06 v1.0 approved package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": ["[data-evidence-summary]", "[data-timeline-contract]", "[data-process-contract]", "[data-design-contract]"],
+    "extendedDescriptionSelectors": [
+      "[data-evidence-summary]",
+      "[data-timeline-contract]",
+      "[data-process-contract]",
+      "[data-design-contract]"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "e274de80f331a95004aa49b6b03ba7f78009358e878a893cd16b2a461d7342af",
+    "content": "d0aa22c6bfe8feed75222a724069bef64475d5416c7d4e1a1a9cb309b40f6965",
     "presentation": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
     "taskRegistry": "3ff9b0a5de05165a15063fa71b8ec74d360f7691357a40da22f4d765e34d37fe",
     "layoutOverrides": "5b3b21468632427d9c187785bc7567e81e54d841fac4fd2e5c7fc7980b7d08ec"

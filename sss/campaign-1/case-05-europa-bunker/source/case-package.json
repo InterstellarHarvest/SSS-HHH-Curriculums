@@ -4,8 +4,8 @@
   "curriculum": "SSS",
   "campaign": "campaign-1",
   "title": "Sub Surface Bunker",
-  "subtitle": "Campaign 1 · Case 05 · Europa, orbiting Jupiter",
-  "location": "Europa, orbiting Jupiter",
+  "subtitle": "Campaign 1 · Case 05 · Europa, Sub-Surface Bunker",
+  "location": "Europa, Sub-Surface Bunker",
   "version": "1.0",
   "status": "APPROVED_STABLE",
   "approval": {
@@ -17,11 +17,20 @@
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
   "documentKey": "SSS-C1-CASE05:v1.0:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -73,10 +82,22 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 4},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
-    "answer": {"documentRole": "Answer Key", "pageCount": 4},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 4
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 7
+    }
   },
   "outputs": {
     "complete": "SSS_C1_CASE05_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
@@ -102,11 +123,16 @@
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 05 v1.0 — Sub Surface Bunker Curriculum Editor",
     "loadAnnouncement": "Sub Surface Bunker Case 05 v1.0 approved package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": [".alt-support", "[data-evidence-summary]", "[data-process-contract]", "[data-design-contract]"],
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      "[data-evidence-summary]",
+      "[data-process-contract]",
+      "[data-design-contract]"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "fab4c0291dedb4cd284c017fbebd073dc7ef2723ef8b0f3f69362a4a7a1aa235",
+    "content": "3b562264587582d2f8d714da3b7d3aab4854a841a281584057faf626d825f871",
     "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
     "taskRegistry": "e7d883f8d388fd3d94fd303c7b63b32d1e2f2ab9622de642373d076e492d745c",
     "layoutOverrides": "c1c0d8d0e3dfb545e1453fd473e43b26168bce74ac4aede0f5c43a0fb9056eb9"
@@ -116,11 +142,29 @@
     "contract": "sequence-v1.0",
     "taskId": 5,
     "sourceRole": "answer",
-    "sourceStages": [2, 3, 4, 5, 6, 7],
-    "displayOrderSourceStages": [6, 3, 7, 2, 5, 4],
+    "sourceStages": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "displayOrderSourceStages": [
+      6,
+      3,
+      7,
+      2,
+      5,
+      4
+    ],
     "label": "WORD BANK",
     "instruction": "Use each phrase once to complete the qualitative pathway.",
     "itemCount": 6,
-    "roles": ["student", "answer", "accessible"]
+    "roles": [
+      "student",
+      "answer",
+      "accessible"
+    ]
   }
 }

@@ -17,11 +17,20 @@
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
   "documentKey": "SSS-C1-CASE07:v1.0:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -73,10 +82,22 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 6},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
-    "answer": {"documentRole": "Answer Key", "pageCount": 6},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 8}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 6
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 6
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 8
+    }
   },
   "outputs": {
     "complete": "SSS_C1_CASE07_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
@@ -102,11 +123,16 @@
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 07 v1.0 — The Gift Curriculum Editor",
     "loadAnnouncement": "The Gift Case 07 v1.0 approved package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": ["[data-evidence-summary]", "[data-process-contract]", "[data-timeline-contract]", "[data-design-contract]"],
+    "extendedDescriptionSelectors": [
+      "[data-evidence-summary]",
+      "[data-process-contract]",
+      "[data-timeline-contract]",
+      "[data-design-contract]"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "892ae6ce8e23486a7400ab02e9bb62a3e3ee590bc53c1b905441bec745b52963",
+    "content": "781a4139bd936347505d6b0dfeebfbeb63c634c04b872be6f324c5aa62638b85",
     "presentation": "533e9848052fa6be90c258ce855a3874da922b1a09365b380a60eb46cbad0b53",
     "taskRegistry": "cf1fc8abbac1b604346572a310456e15fa5e000c42c7e9f1b97f67790a622602",
     "layoutOverrides": "e606bb3697018c362e8d6fb891edf17d6e3d7d8fc66dabd81b118bae4d8812ea"

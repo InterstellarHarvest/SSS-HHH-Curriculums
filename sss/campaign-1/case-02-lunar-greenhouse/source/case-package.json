@@ -17,11 +17,20 @@
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
   "documentKey": "SSS-C1-CASE02:v1.0:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -65,10 +74,22 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 3},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 7},
-    "answer": {"documentRole": "Answer Key", "pageCount": 3},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 3
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 3
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 7
+    }
   },
   "outputs": {
     "complete": "SSS_C1_CASE02_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
@@ -94,11 +115,14 @@
     "language": "en",
     "documentTitle": "SSS Campaign 1 Case 02 v1.0 — Lunar Greenhouse Curriculum Editor",
     "loadAnnouncement": "Lunar Greenhouse Case 02 v1.0 package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": ["figure figcaption", "[aria-label]"],
+    "extendedDescriptionSelectors": [
+      "figure figcaption",
+      "[aria-label]"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "859a24eaad1926b0cb155add8999fccda700ceee83738bdd94e3e601eb6a313f",
+    "content": "4ec0ccfea64299635a26c4f752d953939cc163d6c61ec6ea9fbee436d55ff2a9",
     "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
     "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
     "layoutOverrides": "9dc762f6b9ff68e0b9dd3def161f53aeb4941ec4d05938a1c128c2a8dcc67420",
