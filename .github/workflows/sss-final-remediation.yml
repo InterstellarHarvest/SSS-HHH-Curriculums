@@ -11,6 +11,7 @@ on:
       - 'shared/validation/validate_final_accessibility_contract*.py'
       - 'shared/validation/validate_sss_final_corrective_candidates.py'
       - 'shared/validation/validate_canonical_case_structure_corrective.py'
+      - 'shared/validation/run_curriculum_browser_harness.py'
       - 'apps/curriculum-editor/tests/test_corrective_release_lifecycle.py'
       - 'shared/implementation/case-registry.v2.json'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
@@ -26,6 +27,7 @@ on:
       - 'shared/validation/validate_final_accessibility_contract*.py'
       - 'shared/validation/validate_sss_final_corrective_candidates.py'
       - 'shared/validation/validate_canonical_case_structure_corrective.py'
+      - 'shared/validation/run_curriculum_browser_harness.py'
       - 'apps/curriculum-editor/tests/test_corrective_release_lifecycle.py'
       - 'shared/implementation/case-registry.v2.json'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
@@ -46,68 +48,37 @@ jobs:
       - name: Verify protected branch scope
         shell: bash
         run: test "${GITHUB_REF_NAME}" = "remediate/sss-final-system"
-
-      - name: Check out remediation branch
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: remediate/sss-final-system
           fetch-depth: 0
           persist-credentials: true
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Install remediation dependencies
-        run: python -m pip install --disable-pip-version-check beautifulsoup4
-
+      - run: python -m pip install --disable-pip-version-check beautifulsoup4
       - name: Apply deterministic source remediations
         run: python shared/remediation/apply_sss_final_remediation_v5.py --apply
-
       - name: Classify final response controls in layout contracts
         run: python shared/remediation/classify_sss_final_response_controls.py
-
       - name: Transition remediated packages to corrective DRAFT candidates
         run: python shared/remediation/transition_sss_final_corrective_candidates.py
-
-      - name: Check patch whitespace
-        run: git diff --check
-
+      - run: git diff --check
       - name: Record corrective-candidate source and layout transition
-        id: commit
         shell: bash
         run: |
-          if git diff --quiet; then
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
+          if git diff --quiet; then exit 0; fi
           git config user.name "sss-remediation-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add sss/campaign-1 sss/campaign-2 shared/implementation/case-registry.v2.json
           git commit -m "[auto-remediation] Reconcile final SSS response layout contracts"
           git push origin HEAD:remediate/sss-final-system
-          echo "changed=true" >> "$GITHUB_OUTPUT"
-
-      - name: Run final quality contract diagnostic
+      - name: Candidate diagnostics
         continue-on-error: true
-        run: python shared/validation/validate_final_quality_contract_v3.py | tee /tmp/final-quality-contract.txt
-
-      - name: Run audit-specific accessibility diagnostic
-        continue-on-error: true
-        run: python shared/validation/validate_final_accessibility_contract_v2.py | tee /tmp/final-accessibility-contract.txt
-
-      - name: Run candidate lifecycle diagnostic
-        continue-on-error: true
-        run: python shared/validation/validate_sss_final_corrective_candidates.py | tee /tmp/final-candidate-lifecycle.txt
-
-      - name: Preserve diagnostic summary
-        if: always()
-        shell: bash
         run: |
-          for file in /tmp/final-quality-contract.txt /tmp/final-accessibility-contract.txt /tmp/final-candidate-lifecycle.txt; do
-            if test -f "$file"; then cat "$file" >> "$GITHUB_STEP_SUMMARY"; fi
-          done
+          python shared/validation/validate_final_quality_contract_v3.py
+          python shared/validation/validate_final_accessibility_contract_v2.py
+          python shared/validation/validate_sss_final_corrective_candidates.py
 
   validate-pr:
     if: github.event_name == 'pull_request'
@@ -115,20 +86,14 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - name: Check out PR head
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Install validation dependencies
-        run: python -m pip install --disable-pip-version-check beautifulsoup4 jsonschema
-
+      - run: python -m pip install --disable-pip-version-check beautifulsoup4 jsonschema
       - name: Verify source, layout, and lifecycle remediation are idempotent
         run: |
           python shared/remediation/apply_sss_final_remediation_v5.py --apply
@@ -136,43 +101,42 @@ jobs:
           python shared/remediation/transition_sss_final_corrective_candidates.py
           git diff --check
           git diff --exit-code
-
       - name: Final cross-edition quality contract
         run: python shared/validation/validate_final_quality_contract_v3.py
-
       - name: Final audit-specific accessibility contract
         run: python shared/validation/validate_final_accessibility_contract_v2.py
-
       - name: Corrective-release lifecycle unit tests
         run: python apps/curriculum-editor/tests/test_corrective_release_lifecycle.py
-
       - name: Final corrective-candidate lifecycle contract
         run: python shared/validation/validate_sss_final_corrective_candidates.py
-
       - name: Generic release-integrity validator
         run: python shared/validation/validate_release_integrity.py
-
       - name: Corrective-aware canonical package and layout validators
         run: |
           python shared/validation/validate_canonical_case_structure_corrective.py
           python shared/validation/validate_layout_overrides.py
-
       - name: Legacy static suite diagnostic
-        id: legacy_static
         continue-on-error: true
         timeout-minutes: 15
-        shell: bash
-        run: |
-          set -o pipefail
-          python apps/curriculum-editor/tests/validate_static.py 2>&1 | tee /tmp/legacy-static.txt
+        run: python apps/curriculum-editor/tests/validate_static.py
 
-      - name: Summarize legacy static diagnostic
-        if: always()
-        shell: bash
+  browser-pr:
+    if: github.event_name == 'pull_request'
+    needs: validate-pr
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright
         run: |
-          echo '## Legacy static suite diagnostic' >> "$GITHUB_STEP_SUMMARY"
-          if test -f /tmp/legacy-static.txt; then
-            tail -n 250 /tmp/legacy-static.txt >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo 'Static diagnostic did not produce output.' >> "$GITHUB_STEP_SUMMARY"
-          fi
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Existing curriculum-editor browser harness
+        timeout-minutes: 8
+        run: python shared/validation/run_curriculum_browser_harness.py
