@@ -13,9 +13,10 @@ the package hashes before validating, and names the single assertion it must tri
 ``assert_trips`` additionally rejects a run whose only failures are the hash or lifecycle
 plumbing, so a mutation can never be scored as caught by drift.
 
-Case 05 is the unreleased v1.1 corrective candidate, so it carries no release record and no
-frozen DOM baseline; re-pinning the four package hashes is enough to isolate the content
-protections from the integrity plumbing.
+Case 05 is now the approved v1.1 corrective release, so a content edit is caught by the package
+hash, the release-record hash and the release-record DOM baseline before any content detector
+runs. Re-pinning all three is what makes these tests prove the content protections rather than
+the integrity plumbing.
 """
 from __future__ import annotations
 
@@ -36,10 +37,18 @@ CONTENT = SOURCE / "content.html"
 REGISTRY = SOURCE / "task-registry.js"
 PACKAGE = SOURCE / "case-package.json"
 README = CASE_ROOT / "README.md"
+RELEASE = CASE_ROOT / "history/release-v1.1.json"
+RELEASE_APPROVAL = CASE_ROOT / "history/CASE05_OWNER_APPROVAL_v1.1.md"
 RETAINED_RELEASE = CASE_ROOT / "history/release-v1.0.json"
 RETAINED_APPROVAL = CASE_ROOT / "history/CASE05_OWNER_APPROVAL_v1.0.md"
 VALIDATOR = ROOT / "apps/curriculum-editor/tests/validate_case05_campaign2.py"
-TRACKED = (CONTENT, REGISTRY, PACKAGE, README, RETAINED_RELEASE, RETAINED_APPROVAL)
+TRACKED = (CONTENT, REGISTRY, PACKAGE, README, RELEASE, RELEASE_APPROVAL,
+           RETAINED_RELEASE, RETAINED_APPROVAL)
+V10_DOM_BASELINES = {
+    "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+    "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571",
+    "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60",
+}
 
 # Failures that mean "something moved", not "the protection fired". A mutation whose only
 # effect is one of these has not proved anything.
@@ -48,6 +57,10 @@ PLUMBING = {
     "the shared corrective-release lifecycle rules are satisfied",
     "the package certifies all four sources, including layoutOverrides",
     "both retained v1.0 records are byte-identical to synchronised main",
+    "the v1.1 release record certifies all four sources and they match the package",
+    "the v1.1 frozen DOM baselines match the released markup",
+    "the release record carries the same v1.1 baselines the validator pins",
+    "the v1.1 canonicalSourceApprovalCommit contains the exact four blobs the record certifies",
 }
 
 
@@ -75,10 +88,27 @@ class Case05Mutations(unittest.TestCase):
         for path, body in self.original.items():
             path.write_bytes(body)
 
+    def restore_missing(self):
+        """Recreate any record a mutation deleted."""
+        for path, body in self.original.items():
+            if not path.exists():
+                path.write_bytes(body)
+
     # ── helpers ──────────────────────────────────────────────────────────────
 
     def rehash(self):
-        """Re-pin the four package hashes a mutation would otherwise trip incidentally."""
+        """Re-pin every hash and baseline a mutation would otherwise trip incidentally."""
+        from bs4 import BeautifulSoup, NavigableString
+
+        def role_dom_hash(soup, role):
+            fragment = BeautifulSoup(
+                "".join(str(page) for page in soup.select(f'.page[data-role="{role}"]')),
+                "html.parser")
+            for node in list(fragment.find_all(string=True)):
+                if isinstance(node, NavigableString) and not str(node).strip():
+                    node.extract()
+            return hashlib.sha256(fragment.decode(formatter="minimal").encode("utf-8")).hexdigest()
+
         digests = {key: hashlib.sha256((SOURCE / name).read_bytes()).hexdigest()
                    for key, name in (("content", "content.html"),
                                      ("presentation", "presentation.css"),
@@ -88,6 +118,21 @@ class Case05Mutations(unittest.TestCase):
         for key, digest in digests.items():
             text = re.sub(rf'("{key}": ")[0-9a-f]{{64}}(")', rf"\g<1>{digest}\g<2>", text, count=1)
         PACKAGE.write_text(text, encoding="utf-8")
+        if not RELEASE.exists():
+            return
+        release = json.loads(RELEASE.read_text(encoding="utf-8"))
+        release["sourceHashes"].update(digests)
+        soup = BeautifulSoup(CONTENT.read_text(encoding="utf-8"), "html.parser")
+        for role in ("student", "teacher", "answer"):
+            release["frozenNonAccessibleDomBaselines"][role] = role_dom_hash(soup, role)
+        RELEASE.write_text(json.dumps(release, indent=2, ensure_ascii=False) + "\n",
+                           encoding="utf-8")
+
+    def edit_record(self, path: Path, mutate):
+        """Mutate a JSON history record in place, leaving source hashes alone."""
+        record = json.loads(path.read_text(encoding="utf-8"))
+        mutate(record)
+        path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     def edit(self, path: Path, old: str, new: str, count: int = 1):
         body = path.read_text(encoding="utf-8")
@@ -263,16 +308,72 @@ class Case05Mutations(unittest.TestCase):
 
     # ── 14 · candidate lifecycle ─────────────────────────────────────────────
 
-    def test_a_v11_release_record_is_created_before_approval(self):
-        """An unreleased candidate may never carry a record for its own version."""
-        (CASE_ROOT / "history/release-v1.1.json").write_text(
-            json.dumps({"schemaVersion": 1, "caseId": "SSS-C2-CASE05",
-                        "curriculumVersion": "1.1", "status": "APPROVED_STABLE"}, indent=2) + "\n",
-            encoding="utf-8")
-        self.addCleanup(lambda: (CASE_ROOT / "history/release-v1.1.json").unlink(missing_ok=True))
+    # ── 15-21 · release-mode protections ─────────────────────────────────────
+
+    def test_the_v11_release_record_is_missing(self):
+        """An approved release must be backed by a record for its own version."""
+        self.addCleanup(self.restore_missing)
+        RELEASE.unlink()
         passed, failures = validator_result()
-        self.assertFalse(passed, "an unapproved v1.1 record must not validate")
-        self.assertIn("history holds the retained v1.0 records only and no v1.1 record",
+        self.assertFalse(passed, "an approved release with no record must not validate")
+        self.assertIn("history holds exactly the four canonical records for v1.0 and v1.1",
+                      failures, f"actual failures: {failures}")
+
+    def test_the_print_gate_is_downgraded_after_approval(self):
+        """The physical print gate is the point of the release; it cannot quietly regress."""
+        self.edit_record(RELEASE, lambda r: r.update(
+            {"acceptedPrintStatus": "NOT_RUN"}))
+        self.assert_trips("the v1.1 release record keeps the physical print gate at PASS")
+
+    def test_the_prior_release_representation_is_lost(self):
+        """Dropping v1.0 from the v1.1 record erases the only canonical index of it."""
+        self.edit_record(RELEASE, lambda r: r.update({"priorApprovedReleases": []}))
+        self.assert_trips("the v1.1 record represents v1.0 as a genuine superseded "
+                          "approved release")
+
+    def test_the_v11_baselines_are_reverted_to_v10(self):
+        """The v1.1 baselines must not be satisfiable by the markup v1.1 replaced."""
+        self.edit_record(RELEASE, lambda r: r["frozenNonAccessibleDomBaselines"].update(
+            {"teacher": V10_DOM_BASELINES["teacher"],
+             "answer": V10_DOM_BASELINES["answer"]}))
+        self.assert_trips("the release record carries the same v1.1 baselines the "
+                          "validator pins")
+
+    def test_the_certified_source_pin_is_falsified(self):
+        """A pin naming a commit that lacks the certified blobs is the v1.0 defect returning."""
+        self.edit_record(RELEASE, lambda r: r.update(
+            {"canonicalSourceApprovalCommit":
+             "5c1453328ac40a7f7a653efa18ef70bf73759f69"}))
+        self.assert_trips("the v1.1 canonicalSourceApprovalCommit contains the exact four "
+                          "blobs the record certifies")
+
+    def test_the_retained_v10_record_is_deleted(self):
+        """v1.0 is superseded, not withdrawn; its records stay."""
+        self.addCleanup(self.restore_missing)
+        RETAINED_RELEASE.unlink()
+        passed, failures = validator_result()
+        self.assertFalse(passed, "deleting frozen history must not validate")
+        self.assertIn("history holds exactly the four canonical records for v1.0 and v1.1",
+                      failures, f"actual failures: {failures}")
+
+    def test_known_historical_v10_metadata_is_silently_rewritten(self):
+        """The stale v1.0 validation figure is historical evidence, not errata to fix."""
+        self.edit_record(RETAINED_RELEASE, lambda r: r["acceptedValidation"].update(
+            {"case05Scoped": "165/165"}))
+        passed, failures = validator_result()
+        self.assertFalse(passed, "rewriting frozen history must not validate")
+        self.assertIn("the stale v1.0 accepted-validation figure is preserved as written",
+                      failures, f"actual failures: {failures}")
+
+    def test_the_v10_superlative_is_scrubbed_from_frozen_history(self):
+        """A retired comparative is removed going forward, never edited out of the record."""
+        body = RETAINED_RELEASE.read_text(encoding="utf-8")
+        RETAINED_RELEASE.write_text(
+            body.replace(", the most differentiated Accessible edition in Campaign 2", ""),
+            encoding="utf-8")
+        passed, failures = validator_result()
+        self.assertFalse(passed, "scrubbing frozen history must not validate")
+        self.assertIn("the v1.0 records still carry the superlative that has since been retired",
                       failures, f"actual failures: {failures}")
 
 

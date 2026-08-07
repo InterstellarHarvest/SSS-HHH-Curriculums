@@ -40,7 +40,7 @@ EXPECTED = {
     "SSS-C2-CASE02": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE03": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
     "SSS-C2-CASE04": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE05": {"version": "1.1", "status": "OWNER_GATE_OPEN", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
+    "SSS-C2-CASE05": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
     "SSS-C2-CASE06": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 6, "teacher": 8, "answer": 5}},
 }
 STUDENT_LAYOUT_COUNTS = {

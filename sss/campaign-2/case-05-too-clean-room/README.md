@@ -1,8 +1,8 @@
 # SSS Campaign 2 · Case 05 — Too Clean a Room
 
-Native curriculum package reopened for correction. Package ID `SSS-C2-CASE05`, runtime ID
-`too_clean_room`. The current version is the v1.1 corrective candidate; v1.0 remains the last
-approved release and its history records are retained unchanged.
+Released native curriculum package. Package ID `SSS-C2-CASE05`, runtime ID `too_clean_room`.
+The current release is the v1.1 corrective release; the superseded v1.0 records are retained
+unchanged in `history/`.
 
 | Field | Value |
 |---|---|
@@ -11,8 +11,8 @@ approved release and its history records are retained unchanged.
 | Location | Lagrange Point 5 |
 | Subtitle | Campaign 2 · Case 05 · Lagrange Point 5, Concord Neutral Zone |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective candidate, unreleased) |
-| Lifecycle | `OWNER_GATE_OPEN` · `OWNER_REVIEW_IN_PROGRESS` · print `NOT_RUN`. The retained v1.0 release was owner approved 2026-08-05 with print PASS at 100% / Actual Size |
+| Version | 1.1 (corrective release) |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-06, print gate PASS at 100% / Actual Size. Supersedes v1.0, approved 2026-08-05 |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -20,9 +20,11 @@ approved release and its history records are retained unchanged.
 ```text
 case-05-too-clean-room/
 ├── README.md
-├── history/                 v1.0 records only, retained byte-identical
+├── history/                 v1.0 records retained byte-identical
 │   ├── CASE05_OWNER_APPROVAL_v1.0.md
-│   └── release-v1.0.json
+│   ├── CASE05_OWNER_APPROVAL_v1.1.md
+│   ├── release-v1.0.json
+│   └── release-v1.1.json
 └── source/
     ├── case-package.json
     ├── content.html
@@ -48,7 +50,7 @@ Seven tasks, in this order and with these identifiers across all four roles:
 Role page counts: Student 7, Teacher 9, Answer Key 5, Accessible 7. Task 6 occupies a full page of its
 own in the Student and Accessible editions, so the explanation is written in one sitting.
 
-## The v1.1 correction
+## The v1.1 corrective release
 
 Four printable defects, all narrow. `teacher-guide-09` shipped a bare `X` in place of the clause
 naming the full-page CER; it is restored to the page-structure statement this README and the v1.0

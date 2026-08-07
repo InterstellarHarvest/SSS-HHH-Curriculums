@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE05",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-06",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "7f07ccb37c6ece9dace3ffe4487cff21a2f8030a",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
+      "role": "The Campaign 2 completion audit that identified the Teacher page 9 printable-text corruption (M-24) corrected here."
+    },
+    {
+      "commit": "45bf4ecf0ce857121ee9437dfcdd6d3156966dcf",
+      "role": "Shared validation support distinguishing a first release from a corrective-release candidate, which made this reissue representable without disturbing v1.0."
+    },
+    {
+      "commit": "427c5ec3168d0c0dab4dff13f7a758899016192a",
+      "role": "The content correction: the repaired Teacher page 9 pacing clause, the restored Accessible briefing stakes, the restored Accessible nutrient-uptake record, and the corrected Answer Key Task 7 constraint list, plus the standards and learner-evidence ledgers added to the task registry."
+    },
+    {
+      "commit": "2ef7ade014ccd9ba8ee742ea0be6f2427931f5b4",
+      "role": "The corrective-candidate lifecycle: version, status, document key, output names, accessibility strings, case registry, README, static roster and browser harness moved to the unreleased v1.1 candidate, and the false v1.0 source pin recorded."
+    },
+    {
+      "commit": "b15ddc26fad4307e7919127ee6651434487faaa5",
+      "role": "The validation estate: prose-corruption, Teacher-completeness, evidence-availability, cross-role reference, Accessible-integrity, standards and record-to-commit protections, with 18 mutations proving each one fires."
+    }
+  ],
+  "sourceHashes": {
+    "content": "32c12425e25a23e1a57aa2472e0dd7c90ada22f5d5167f7b2d5f10295e7b11c9",
+    "presentation": "9f0485afcd377792aeb676f3e4ca1afa169c291c04399295d8defbab3cc1195b",
+    "taskRegistry": "911c63f51a772bd1727e404c84a85be0d12624d77bb727df161c8dd7a10c51b3",
+    "layoutOverrides": "81ef2a25198424d29637e3946bb431c4a605021fc95dd178d9a98571142eccbd"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+    "teacher": "05d797d8d47eee5e177f54bad6e5ffc7476b72caf04a58366536db2a14cda770",
+    "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d",
+    "note": "Regenerated for v1.1. The Teacher and Answer Key baselines both differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup for those roles. The Student baseline is deliberately unchanged and identical to v1.0: no v1.1 correction touched the Student edition. The four corrections landed in the Teacher Guide, the Accessible edition twice, and the Answer Key, and the Accessible edition carries no frozen baseline. An unchanged Student baseline is the correct record of an unchanged Student edition, not a missed regeneration."
+  },
+  "rolePageCounts": {
+    "student": 7,
+    "teacher": 9,
+    "answer": 5,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "canonicalStructure": "13 registered cases; release-history schema, commit references, source hashes, and native no-artifact controls PASS",
+    "case05Scoped": "PENDING_RELEASE_TREE",
+    "case05Mutations": "PENDING_RELEASE_TREE",
+    "case01Case02Case03Case04Case06Scoped": "PENDING_RELEASE_TREE",
+    "static": "PENDING_RELEASE_TREE",
+    "browser": "PENDING_RELEASE_TREE",
+    "pdf": "PENDING_RELEASE_TREE",
+    "correctiveReleaseLifecycle": "PENDING_RELEASE_TREE",
+    "authoringSecurity": "PENDING_RELEASE_TREE",
+    "layoutContracts": "PENDING_RELEASE_TREE",
+    "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
+    "protectedPrintableComponents": "PASS",
+    "pageCountsAndFit": "PASS for all 28 pages, in colour and grayscale",
+    "campaignScopedNavigation": "PASS; Campaign 1 lists seven cases and Campaign 2 lists Cases 01-06 in order",
+    "accessibleDedicatedCER": "PASS",
+    "accessibleDifferentiation": "PASS; 55.4% similar to the Student edition at 1788 words against 2108, measured by the repository's difflib method. The v1.0 records carry a campaign-wide comparative about this edition; it was true when written, went false when Case 06 shipped at 51.0%, and is true again at Case 06 v1.1's 56.0%. It is not restated here. A comparative that has already flipped twice is not a quality contract, and the measured figure carries the same information without rotting.",
+    "teachingAnalogyContract": "PASS; both learner editions carry the rain-gauge analogy with its disclaimer and no analogy value appears outside its block",
+    "crossRoleReferenceIntegrity": "PASS; Tables 1-7 and Figures A and B are numbered identically in both learner editions, every Teacher and Answer Key prose reference resolves in both, and no Answer Key exemplar is stranded",
+    "evidenceAvailability": "PASS; every value, proper noun and accepted constraint the Answer Key grades on or accepts is printed in both learner editions on or before the page of the task that requires it",
+    "printableProseIntegrity": "PASS; no bare placeholder token, truncated sentence, duplicated word or repeated sentence in the controlled Teacher prose of any page",
+    "sourceBoundaryAndProhibitedClaims": "PASS; 15 misconception probes and 5 precision probes each demonstrated failure capability, and 18 mutations injected into live sources each failed the build for its named assertion, with no false positives on approved wording",
+    "editableCopyExport": "PASS",
+    "worksheetExport": "PASS",
+    "isolatedPrinting": "PASS",
+    "javascriptErrors": "0",
+    "visualReview": "28/28 pages for Campaign 2 Case 05, including grayscale"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Campaign 2 Case 05 was produced natively under the canonical source model at v1.0 and corrected in place at v1.1; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed at either version."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-05",
+      "approvalCommit": "7f07ccb37c6ece9dace3ffe4487cff21a2f8030a",
+      "recoveryCommit": "7f07ccb37c6ece9dace3ffe4487cff21a2f8030a",
+      "canonicalSourceApprovalCommit": "5c1453328ac40a7f7a653efa18ef70bf73759f69",
+      "retainedRecords": [
+        "sss/campaign-2/case-05-too-clean-room/history/CASE05_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "240df3c95419bbbbce394b0e0bea7feb2e1c8c96786a96f7e90e47625d293f32",
+        "presentation": "9f0485afcd377792aeb676f3e4ca1afa169c291c04399295d8defbab3cc1195b",
+        "taskRegistry": "baf82900f32480bb522bf0f5ef47c86e5539789afd0ab8b8f0ec0e050142deae"
+      },
+      "frozenNonAccessibleDomBaselines": {
+        "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+        "teacher": "cd57af4a199afd1286c9c747bbb4e057e9f1fb1528eb5678965082b254a5f571",
+        "answer": "7afa382266189038e95ff819c55ca8d91ffffa85fc66f2156b1139a90aa3bb60"
+      },
+      "rolePageCounts": {
+        "student": 7,
+        "teacher": 9,
+        "answer": 5,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package. No PDF, role document or screenshot was ever generated or tracked."
+      },
+      "recoveryCommand": "git show 7f07ccb37c6ece9dace3ffe4487cff21a2f8030a:sss/campaign-2/case-05-too-clean-room/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review and physical print pass at 100% / Actual Size. It is superseded, not withdrawn.",
+        "Its release record and owner-approval record are retained byte-identical. Neither was edited to describe v1.1 content, and neither had its known defects corrected in place.",
+        "Its canonicalSourceApprovalCommit, 5c1453328ac40a7f7a653efa18ef70bf73759f69, does not contain the task registry it certifies: that file hashes 9e95a3f0d2724ebb5da799a3cf7fd98e9460561bb8e6378d602529ea707b29aa at that commit, not the baf82900f32480bb522bf0f5ef47c86e5539789afd0ab8b8f0ec0e050142deae the record names. Content, presentation and layout-overrides do match there. The pin is preserved unchanged as historical evidence; recoveryCommit above names 7f07ccb37c6ece9dace3ffe4487cff21a2f8030a, the release commit that does contain all four v1.0 sources, so v1.0 remains recoverable despite the false pin.",
+        "This is the same defect class the completion audit found in the Cases 01 and 02 v1.0 records as M-10 and M-18, and that the Case 04 remediation found in its own. Four of the campaign's six cases carry it. The audit recorded Case 05 release integrity as clean; independent record-to-commit verification during this remediation found otherwise.",
+        "Its sourceHashes omit layoutOverrides, which the package did pin, so a layout-overrides edit would have broken the package hash while leaving the release record silently valid. The v1.1 record certifies all four.",
+        "Its acceptedValidation records case05Scoped 101/101, which was accurate for the validation estate as it stood on 2026-08-05 and is not corrected here.",
+        "Its accessibleDifferentiation, and the matching line in its owner-approval record, make a campaign-wide comparative claim about this edition. That comparative was true when written. It is not repeated in v1.1."
+      ]
+    }
+  ],
+  "correctionSummary": {
+    "reason": "The Campaign 2 completion audit found one major defect in this released package: a bare X standing where a clause belongs in printable Teacher text. Independent verification during remediation found three more, none of them enumerated in the audit, whose Case 05 minors are scored in its matrix but written up nowhere. All four are corrected. The investigation, the diagnosis, the seven-task sequence, the five clue routes, the dose ledger, both figures, every table, the standards alignment, the Accessible one-task-per-page and full-page-CER contracts, the science boundary and the page counts are unchanged.",
+    "corrections": [
+      "Teacher page 9 printable-text corruption. `teacher-guide-09` printed 'Tasks 1-3 sit naturally in the first, Tasks 4-7 in the second. X so the explanation is written in one sitting rather than assembled in margins.' The corruption is present in the original draft commit e1a8ff5 and in every commit since, so no earlier clean revision exists to restore from. The intended clause is recoverable from the package README, which states that Task 6 occupies a full page of its own in the Student and Accessible editions so the explanation is written in one sitting; from the same Teacher page, which says the Accessible Task 6 keeps the full Claim-Evidence-Reasoning structure on a single page; and from the v1.0 owner approval, which records that Task 6 holds the CER on a full page of its own in both learner editions. The sentence now reads 'Tasks 4-7 in the second. Task 6 occupies a full page of its own in both learner editions, so the explanation is written in one sitting rather than assembled in margins.' It states page structure the case already has and introduces no teaching procedure. Verified against the markup: Student page 6 and Accessible page 6 each carry Task 6 and nothing else.",
+      "Accessible briefing stakes. The Accessible edition dropped the sentence the Student briefing carries, so 'several Concord species' and 'supplies are running out' occurred zero times in that edition. It is the packet's only printed impacts-on-people evidence, and the Teacher Guide names exactly that - the patients across several species who depend on the compound - as part of the task evidence for the direct MS-ETS1-1 alignment. It is also one of the constraints the Answer Key accepts at Task 7. Accessible page 1 now reads 'The medicine treats a disease that affects several Concord species, and supplies are running out.'",
+      "Accessible Task 5 rejection evidence. The Accessible word bank offers 'uptake is normal' as evidence against the missing-mineral rejection, but the word 'uptake' occurred exactly once in that edition, inside the word bank itself: the specimen record read only 'The cells are healthy.' The Student edition carries 'Cell structure, membranes, organelles and nutrient uptake are normal' and the Answer Key grades on 'nutrient uptake is recorded as normal'. The Accessible specimen row now reads 'The cells are healthy and nutrient uptake is normal.' This is the same defect class as Case 04's M-21 and Case 06's M-28, caught at word-bank scale.",
+      "Answer Key Task 7 constraint list. The key accepted two constraints printed in no learner edition - 'staff exposure limits apply' and 'only a small number of specimens exist', both zero occurrences in both editions - and a third, the compound shortage, that only the Student edition carried until this release restored it to the Accessible briefing. The two unreachable options are replaced by two requirements Table 7 prints in both editions, the staged-exposure sequence and the written stop criteria, so the marking latitude is preserved without accepting a constraint no student could have produced. The list now closes by naming where each item is printed."
+    ],
+    "notCorrected": [
+      "Standards. MS-ETS1-1 direct at Task 7, MS-LS1-5 supporting and bounded at Task 6, and MS-ETS1-2 conditional at Task 7 are all independently re-verified against the learner-visible task evidence and retained unchanged. Nothing was added, removed or re-rated. The task registry now records the assessed practice, the assessing task, the learner evidence and the limitation behind each claim so the alignment cannot drift into an overclaim.",
+      "Page counts. Student 7, Teacher 9, Answer Key 5, Accessible 7, unchanged and re-measured after the corrections in the browser matrix and in generated PDFs, in colour and grayscale.",
+      "The package location field, which stores the runtime investigation name here as in Cases 01 to 04 and unlike Case 06. That divergence is campaign-wide documentation, not a Case 05 defect, and is deliberately untouched."
+    ]
+  },
+  "migrationNotes": [
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490. Unchanged from v1.0; the game repository was not modified by this corrective release.",
+    "Campaign 2 Case 05 keeps its runtime case number and is not renumbered.",
+    "Runtime case identity: too_clean_room, Concord Botanical Vault, Lagrange Point 5, Concord Neutral Zone.",
+    "Seven tasks rather than eight: eliminating the alternatives is part of diagnosing here, and the measured page evidence showed no two of the middle tasks can share a Letter page.",
+    "The Student edition uses seven pages, one above the 4-6 planning range. With the CER on a page of its own, every pairing of Tasks 3, 4 and 5 measured roughly 1140-1200 px against a 936 px content frame, so no pairing fits without cutting an evidence table or a response area.",
+    "The packet follows the shipped runtime over the design document, which describes the mechanism as radiation as nutrient and proposes installing calibrated radiation sources. The pathway stays species-specific, the vault reading stays a bound rather than a zero, absorbed dose stays out of sievert, and no isotope, device or operating setting is named.",
+    "The Accessible edition was rewritten rather than reflowed at v1.0 and is not redesigned at v1.1; the two corrections restore evidence its own prompts and word bank already required.",
+    "The v1.1 validation estate adds the protection class that let the Teacher corruption ship: controlled Teacher prose is now read as prose and scanned for bare placeholder tokens, truncated sentences and duplicated fragments, with the detector self-tested to fire on the exact sentence that shipped and self-tested not to fire on legitimate variable notation, axis labels or answer markers.",
+    "The v1.1 record certifies its sources against the commit that contains them, verified by direct blob hashing rather than by comparing the record to the package. That check did not exist when v1.0 shipped, which is why the false v1.0 pin survived its own release."
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED",
+  "retiredArtifacts": []
+}

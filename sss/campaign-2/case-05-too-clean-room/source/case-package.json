@@ -7,11 +7,12 @@
   "subtitle": "Campaign 2 · Case 05 · Lagrange Point 5, Concord Neutral Zone",
   "location": "Concord Botanical Vault",
   "version": "1.1",
-  "status": "OWNER_GATE_OPEN",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_IN_PROGRESS",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -129,10 +130,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "sss/campaign-2/case-05-too-clean-room/history/release-v1.1.json",
   "sourceHashes": {
     "content": "32c12425e25a23e1a57aa2472e0dd7c90ada22f5d5167f7b2d5f10295e7b11c9",
     "presentation": "9f0485afcd377792aeb676f3e4ca1afa169c291c04399295d8defbab3cc1195b",
-    "taskRegistry": "5621189a9c946e79e85a97106c184da6adc1646ead96b2391d677f5551092386",
+    "taskRegistry": "911c63f51a772bd1727e404c84a85be0d12624d77bb727df161c8dd7a10c51b3",
     "layoutOverrides": "81ef2a25198424d29637e3946bb431c4a605021fc95dd178d9a98571142eccbd"
   }
 }
