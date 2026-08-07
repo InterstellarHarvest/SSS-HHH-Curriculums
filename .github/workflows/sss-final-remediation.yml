@@ -53,7 +53,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check beautifulsoup4
 
       - name: Apply deterministic source remediations
-        run: python shared/remediation/apply_sss_final_remediation_v2.py --apply
+        run: python shared/remediation/apply_sss_final_remediation_v3.py --apply
 
       - name: Check patch whitespace
         run: git diff --check
@@ -75,7 +75,7 @@ jobs:
 
       - name: Run final quality contract diagnostic
         continue-on-error: true
-        run: python shared/validation/validate_final_quality_contract_v2.py | tee /tmp/final-quality-contract.txt
+        run: python shared/validation/validate_final_quality_contract_v3.py | tee /tmp/final-quality-contract.txt
 
       - name: Preserve diagnostic summary
         if: always()
@@ -107,9 +107,9 @@ jobs:
 
       - name: Verify remediation is idempotent
         run: |
-          python shared/remediation/apply_sss_final_remediation_v2.py --apply
+          python shared/remediation/apply_sss_final_remediation_v3.py --apply
           git diff --check
           git diff --exit-code
 
       - name: Final cross-edition quality contract
-        run: python shared/validation/validate_final_quality_contract_v2.py
+        run: python shared/validation/validate_final_quality_contract_v3.py
