@@ -4,82 +4,416 @@
   "edition": "accessible",
   "stepPx": 4,
   "areas": [
-    { "id": "SSS-C1-CASE06:accessible:t1:a1-prediction", "persistId": "a1-prediction", "pageId": "accessible-mission-01", "taskId": 1, "label": "Initial prediction", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t1:a1-needed", "persistId": "a1-needed", "pageId": "accessible-mission-01", "taskId": 1, "label": "Observation needed", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t2:a2-why", "persistId": "a2-why", "pageId": "accessible-mission-01", "taskId": 2, "label": "Observation and interpretation explanation", "minPx": 28, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t3:a3-crew", "persistId": "a3-crew", "pageId": "accessible-mission-02", "taskId": 3, "label": "Liaison evidence contribution", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t3:a3-sensors", "persistId": "a3-sensors", "pageId": "accessible-mission-02", "taskId": 3, "label": "Interface evidence contribution", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t3:a3-plants", "persistId": "a3-plants", "pageId": "accessible-mission-02", "taskId": 3, "label": "Cultivar evidence contribution", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t3:a3-logs", "persistId": "a3-logs", "pageId": "accessible-mission-02", "taskId": 3, "label": "Archive evidence contribution", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t5:a5-damage", "persistId": "a5-damage", "pageId": "accessible-mission-04", "taskId": 5, "label": "Physical damage diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t5:a5-drift", "persistId": "a5-drift", "pageId": "accessible-mission-04", "taskId": 5, "label": "Journey drift diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t5:a5-incompatibility", "persistId": "a5-incompatibility", "pageId": "accessible-mission-04", "taskId": 5, "label": "Organism incompatibility diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t5:a5-filtration", "persistId": "a5-filtration", "pageId": "accessible-mission-04", "taskId": 5, "label": "Atmospheric filtration diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t5:a5-convergence", "persistId": "a5-convergence", "pageId": "accessible-mission-04", "taskId": 5, "label": "Evidence convergence", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t6:a6-recommend", "persistId": "a6-recommend", "pageId": "accessible-mission-05", "taskId": 6, "label": "Recommended signal-safe response", "minPx": 64, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t6:a6-monitor", "persistId": "a6-monitor", "pageId": "accessible-mission-05", "taskId": 6, "label": "Monitoring plan", "minPx": 64, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t8:a8-transfer", "persistId": "a8-transfer", "pageId": "accessible-mission-07", "taskId": 8, "label": "Transfer prediction and mechanism", "minPx": 64, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t8:a8-evidence", "persistId": "a8-evidence", "pageId": "accessible-mission-07", "taskId": 8, "label": "Transfer evidence plan", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE06:accessible:t8:a8-exit", "persistId": "a8-exit", "pageId": "accessible-mission-07", "taskId": 8, "label": "Independent exit response", "minPx": 64, "maxPx": 900 }
+    {
+      "id": "SSS-C1-CASE06:accessible:t1:a1-prediction",
+      "persistId": "a1-prediction",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Initial prediction",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t1:a1-needed",
+      "persistId": "a1-needed",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Observation needed",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t2:a2-why",
+      "persistId": "a2-why",
+      "pageId": "accessible-mission-01",
+      "taskId": 2,
+      "label": "Observation and interpretation explanation",
+      "minPx": 28,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t3:a3-crew",
+      "persistId": "a3-crew",
+      "pageId": "accessible-mission-02",
+      "taskId": 3,
+      "label": "Liaison evidence contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t3:a3-sensors",
+      "persistId": "a3-sensors",
+      "pageId": "accessible-mission-02",
+      "taskId": 3,
+      "label": "Interface evidence contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t3:a3-plants",
+      "persistId": "a3-plants",
+      "pageId": "accessible-mission-02",
+      "taskId": 3,
+      "label": "Cultivar evidence contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t3:a3-logs",
+      "persistId": "a3-logs",
+      "pageId": "accessible-mission-02",
+      "taskId": 3,
+      "label": "Archive evidence contribution",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t5:a5-damage",
+      "persistId": "a5-damage",
+      "pageId": "accessible-mission-04",
+      "taskId": 5,
+      "label": "Physical damage diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t5:a5-drift",
+      "persistId": "a5-drift",
+      "pageId": "accessible-mission-04",
+      "taskId": 5,
+      "label": "Journey drift diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t5:a5-incompatibility",
+      "persistId": "a5-incompatibility",
+      "pageId": "accessible-mission-04",
+      "taskId": 5,
+      "label": "Organism incompatibility diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t5:a5-filtration",
+      "persistId": "a5-filtration",
+      "pageId": "accessible-mission-04",
+      "taskId": 5,
+      "label": "Atmospheric filtration diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t5:a5-convergence",
+      "persistId": "a5-convergence",
+      "pageId": "accessible-mission-04",
+      "taskId": 5,
+      "label": "Evidence convergence",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t6:a6-recommend",
+      "persistId": "a6-recommend",
+      "pageId": "accessible-mission-05",
+      "taskId": 6,
+      "label": "Recommended signal-safe response",
+      "minPx": 64,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t6:a6-monitor",
+      "persistId": "a6-monitor",
+      "pageId": "accessible-mission-05",
+      "taskId": 6,
+      "label": "Monitoring plan",
+      "minPx": 64,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t8:a8-transfer",
+      "persistId": "a8-transfer",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Transfer prediction and mechanism",
+      "minPx": 64,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t8:a8-evidence",
+      "persistId": "a8-evidence",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Transfer evidence plan",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE06:accessible:t8:a8-exit",
+      "persistId": "a8-exit",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Independent exit response",
+      "minPx": 64,
+      "maxPx": 900
+    }
   ],
   "lockedAreas": [
-    { "persistId": "a-name", "reason": "identity" },
-    { "persistId": "a-date", "reason": "identity" },
-    { "persistId": "a-class", "reason": "identity" },
-    { "persistId": "a2-1", "reason": "classification" },
-    { "persistId": "a2-2", "reason": "classification" },
-    { "persistId": "a2-3", "reason": "classification" },
-    { "persistId": "a4-atmosphere", "reason": "fixed-organizer" },
-    { "persistId": "a4-signal", "reason": "fixed-organizer" },
-    { "persistId": "a4-network", "reason": "fixed-organizer" },
-    { "persistId": "a4-partnership", "reason": "fixed-organizer" },
-    { "persistId": "a6-disable", "reason": "table-cell" },
-    { "persistId": "a6-unchanged", "reason": "table-cell" },
-    { "persistId": "a6-selective", "reason": "table-cell" },
-    { "persistId": "a7c", "reason": "cer" },
-    { "persistId": "a7e", "reason": "cer" },
-    { "persistId": "a7r", "reason": "cer" },
-    { "persistId": "a8-control", "reason": "constraint" }
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a2-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a2-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a2-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-atmosphere",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-signal",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-network",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-partnership",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-disable",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-unchanged",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-selective",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a8-control",
+      "reason": "constraint"
+    },
+    {
+      "persistId": "a5-best",
+      "reason": "classification"
+    }
   ],
   "overrides": {},
   "student": {
     "edition": "student",
     "areas": [
-      { "id": "SSS-C1-CASE06:student:t1:t1-prediction", "persistId": "t1-prediction", "pageId": "student-mission-01", "taskId": 1, "label": "Initial prediction", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t1:t1-needed", "persistId": "t1-needed", "pageId": "student-mission-01", "taskId": 1, "label": "Observation needed", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t2:t2-why", "persistId": "t2-why", "pageId": "student-mission-01", "taskId": 2, "label": "Observation and interpretation explanation", "minPx": 28, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t6:t6-recommend", "persistId": "t6-recommend", "pageId": "student-mission-03", "taskId": 6, "label": "Recommended signal-safe response", "minPx": 64, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t6:t6-monitor", "persistId": "t6-monitor", "pageId": "student-mission-03", "taskId": 6, "label": "Monitoring plan", "minPx": 64, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t8:t8-transfer", "persistId": "t8-transfer", "pageId": "student-mission-05", "taskId": 8, "label": "Transfer prediction and mechanism", "minPx": 64, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t8:t8-evidence", "persistId": "t8-evidence", "pageId": "student-mission-05", "taskId": 8, "label": "Transfer evidence plan", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE06:student:t8:t8-exit", "persistId": "t8-exit", "pageId": "student-mission-05", "taskId": 8, "label": "Independent exit response", "minPx": 64, "maxPx": 900 }
+      {
+        "id": "SSS-C1-CASE06:student:t1:t1-prediction",
+        "persistId": "t1-prediction",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Initial prediction",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t1:t1-needed",
+        "persistId": "t1-needed",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Observation needed",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t2:t2-why",
+        "persistId": "t2-why",
+        "pageId": "student-mission-01",
+        "taskId": 2,
+        "label": "Observation and interpretation explanation",
+        "minPx": 28,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t6:t6-recommend",
+        "persistId": "t6-recommend",
+        "pageId": "student-mission-03",
+        "taskId": 6,
+        "label": "Recommended signal-safe response",
+        "minPx": 64,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t6:t6-monitor",
+        "persistId": "t6-monitor",
+        "pageId": "student-mission-03",
+        "taskId": 6,
+        "label": "Monitoring plan",
+        "minPx": 64,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t8:t8-transfer",
+        "persistId": "t8-transfer",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Transfer prediction and mechanism",
+        "minPx": 64,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t8:t8-evidence",
+        "persistId": "t8-evidence",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Transfer evidence plan",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE06:student:t8:t8-exit",
+        "persistId": "t8-exit",
+        "pageId": "student-mission-05",
+        "taskId": 8,
+        "label": "Independent exit response",
+        "minPx": 64,
+        "maxPx": 900
+      }
     ],
     "lockedAreas": [
-      { "persistId": "student-name", "reason": "identity" },
-      { "persistId": "student-date", "reason": "identity" },
-      { "persistId": "student-class", "reason": "identity" },
-      { "persistId": "t2-1", "reason": "classification" },
-      { "persistId": "t2-2", "reason": "classification" },
-      { "persistId": "t2-3", "reason": "classification" },
-      { "persistId": "t3-crew", "reason": "table-cell" },
-      { "persistId": "t3-sensors", "reason": "table-cell" },
-      { "persistId": "t3-plants", "reason": "table-cell" },
-      { "persistId": "t3-logs", "reason": "table-cell" },
-      { "persistId": "t4-atmosphere", "reason": "fixed-organizer" },
-      { "persistId": "t4-signal", "reason": "fixed-organizer" },
-      { "persistId": "t4-network", "reason": "fixed-organizer" },
-      { "persistId": "t4-partnership", "reason": "fixed-organizer" },
-      { "persistId": "t5-damage", "reason": "table-cell" },
-      { "persistId": "t5-drift", "reason": "table-cell" },
-      { "persistId": "t5-incompatibility", "reason": "table-cell" },
-      { "persistId": "t5-filtration", "reason": "table-cell" },
-      { "persistId": "t6-disable", "reason": "table-cell" },
-      { "persistId": "t6-unchanged", "reason": "table-cell" },
-      { "persistId": "t6-selective", "reason": "table-cell" },
-      { "persistId": "t7c", "reason": "cer" },
-      { "persistId": "t7e", "reason": "cer" },
-      { "persistId": "t7r", "reason": "cer" },
-      { "persistId": "t8-control", "reason": "constraint" }
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t2-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t2-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t2-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t3-crew",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-sensors",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-plants",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-logs",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-atmosphere",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-signal",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-network",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-partnership",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-damage",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-drift",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-incompatibility",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-filtration",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-disable",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-unchanged",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-selective",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t8-control",
+        "reason": "constraint"
+      },
+      {
+        "persistId": "t5-best",
+        "reason": "classification"
+      }
     ],
     "overrides": {}
   }
