@@ -14,6 +14,9 @@ on:
       - 'shared/validation/validate_sss_final_corrective_candidates.py'
       - 'shared/validation/validate_canonical_case_structure_corrective.py'
       - 'shared/validation/run_curriculum_browser_harness.py'
+      - 'shared/remediation/repair_misplaced_page_frame_blocks.py'
+      - 'shared/remediation/repaginate_overflowing_teacher_pages.py'
+      - 'apps/curriculum-editor/tests/validate_static.py'
       - 'apps/curriculum-editor/tests/browser-harness.html'
       - 'apps/curriculum-editor/tests/pdf-harness.html'
       - 'apps/curriculum-editor/tests/run_pdf_tests.py'
@@ -48,6 +51,10 @@ jobs:
       - run: python -m pip install --disable-pip-version-check beautifulsoup4
       - name: Apply deterministic source remediations
         run: python shared/remediation/apply_sss_final_remediation_v5.py --apply
+      - name: Move inserted printable blocks back inside their content area
+        run: python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
+      - name: Give over-full Teacher pages the page their content needs
+        run: python shared/remediation/repaginate_overflowing_teacher_pages.py --apply
       - name: Reconcile browser harness with corrective candidates
         run: python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
       - name: Classify final response controls in layout contracts
@@ -88,6 +95,8 @@ jobs:
       - name: Verify source, layout, lifecycle, and browser remediation are idempotent
         run: |
           python shared/remediation/apply_sss_final_remediation_v5.py --apply
+          python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
+          python shared/remediation/repaginate_overflowing_teacher_pages.py --apply
           python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
           python shared/remediation/classify_sss_final_response_controls.py
           python shared/remediation/transition_sss_final_corrective_candidates.py
@@ -133,28 +142,12 @@ jobs:
         timeout-minutes: 8
         run: python shared/validation/run_curriculum_browser_harness.py
 
-  pdf-pr:
-    if: github.event_name == 'pull_request'
-    needs: browser-pr
-    permissions:
-      contents: read
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Install Chromium and PDF-test dependencies
-        run: |
-          python -m pip install --disable-pip-version-check beautifulsoup4 playwright
-          python -m playwright install --with-deps chromium
-          python - <<'PY' >> "$GITHUB_ENV"
-          from playwright.sync_api import sync_playwright
-          with sync_playwright() as p:
-              print(f"CHROME={p.chromium.executable_path}")
-          PY
-      - name: Canonical curriculum PDF regression
-        timeout-minutes: 20
-        run: python apps/curriculum-editor/tests/run_pdf_tests.py --chrome "$CHROME"
+  # PDF/PRINT VALIDATION: OWNER-MANUAL-VALIDATION.
+  #
+  # Removed from automated final-remediation scope by owner decision on 2026-08-07.
+  # Nate tests PDF export and physical printing manually. The canonical PDF regression
+  # (apps/curriculum-editor/tests/run_pdf_tests.py) and the PDF harness are retained in
+  # the repository and can still be run on demand; they are simply no longer a gate on
+  # this pull request, and a PDF-specific failure is not a remediation blocker.
+  #
+  # Curriculum must not be altered to satisfy a PDF-specific automated test.
