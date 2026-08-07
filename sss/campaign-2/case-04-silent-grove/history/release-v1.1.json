@@ -7,7 +7,7 @@
   "approvalDate": "2026-08-06",
   "owner": "Nate / Owner",
   "originalReleaseApprovalCommit": "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00",
-  "canonicalSourceApprovalCommit": "556cbf843a284835e23d3341ff356d5453db341f",
+  "canonicalSourceApprovalCommit": "3fe64b9c9854d7f357fe0f89410f77a1d00c8177",
   "correctiveReviewCommits": [
     {
       "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
@@ -30,7 +30,7 @@
       "role": "Evidence-availability, evidence-timing, historical-versus-current reading, source-fidelity, cross-role parity, standards, revision-propagation and mutation coverage. The last candidate commit, carrying the approved content, presentation and layout-override sources unchanged."
     },
     {
-      "commit": "556cbf843a284835e23d3341ff356d5453db341f",
+      "commit": "3fe64b9c9854d7f357fe0f89410f77a1d00c8177",
       "role": "The v1.1 corrective release: lifecycle promotion, the v1.1 release and owner-approval records, the newly frozen DOM baselines, and the release-mode validator and mutations. This is the commit canonicalSourceApprovalCommit certifies, because the approved task registry exists only here."
     }
   ],
@@ -54,22 +54,22 @@
   },
   "acceptedValidation": {
     "status": "PASS",
-    "case04Scoped": "PENDING",
-    "case01Scoped": "PENDING",
-    "case02Scoped": "PENDING",
-    "case03Scoped": "PENDING",
-    "case05Scoped": "PENDING",
-    "case06Scoped": "PENDING",
-    "static": "PENDING",
-    "browser": "PENDING",
-    "pdf": "PENDING",
-    "canonicalStructure": "PENDING",
-    "layoutContracts": "PENDING",
-    "authoringSecurity": "PENDING",
-    "correctiveReleaseLifecycle": "PENDING",
-    "case04Mutations": "PENDING",
+    "case04Scoped": "139/139 (82/82 at the approved v1.0; the correction added 38 assertions covering Accessible evidence availability, Task 1 evidence timing, historical-versus-current readings, hidden graded evidence, source fidelity, cross-role parity, standards and revision propagation, and the release conversion added a further 19 covering the approved v1.1 lifecycle, both v1.1 records, byte-identical v1.0 history, prior-release representation, the regenerated DOM baselines, the four certified source hashes and the record-to-commit certification)",
+    "case01Scoped": "135/135 (unchanged, byte-identical)",
+    "case02Scoped": "108/108 (unchanged, byte-identical)",
+    "case03Scoped": "107/107 (unchanged, byte-identical)",
+    "case05Scoped": "101/101 (unchanged, byte-identical)",
+    "case06Scoped": "230/230 (unchanged, byte-identical)",
+    "static": "599/599 (598/598 at synchronised main; the Case 04 mutation suite joins the chain and the release-mode lifecycle checks return)",
+    "browser": "2161/2161 across all 104 case/role/presentation states",
+    "pdf": "316/316 across the registry-derived case-edition print documents",
+    "canonicalStructure": "PASS; 7 Campaign 1 cases, 0 failures",
+    "layoutContracts": "PASS across 13 registered cases; Accessible 201 eligible/274 locked, Student 118 eligible/365 locked. Case 04 is unchanged at Accessible 23/21 and Student 10/34: v1.1 added no response area and removed none.",
+    "authoringSecurity": "13/13",
+    "correctiveReleaseLifecycle": "25/25",
+    "case04Mutations": "26/26; every mutation names and trips the specific protection it targets rather than a hash, baseline or lifecycle check. 12 at the candidate tip covering the audited and independently-found content defects, plus 14 release-mode mutations covering the missing v1.1 record, the downgraded print gate, a dropped prior release, baselines reverted to v1.0 markup, a certified-source pin that does not contain what it certifies, a deleted v1.0 release record, a deleted v1.0 approval record, both v1.0 records rewritten to describe v1.1, three silent 'corrections' of v1.0's known historical defects, the stale figure repeated in v1.1, and a direct performance expectation reclaimed in the release record",
     "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
-    "pageCountsAndFit": "PENDING",
+    "pageCountsAndFit": "PASS for all 26 pages at Student 6, Teacher 8, Answer Key 4, Accessible 8. No role overflows: the browser matrix reports Pages fit for student, teacher, answer and accessible. Three pages overflowed during correction and were packed rather than split - Student page 2 by 21 CSS pixels, Teacher page 7 by 27, Accessible page 2 by 83 - and all three now fit.",
     "evidenceAvailability": "PASS; every graded Answer Key expectation and every clause of the CER exemplar is producible from the Student edition alone and, independently, from the Accessible edition alone, on or before the page carrying the task that assesses it. Checked two ways: against a declared list of graded expectations, and by deriving requirements from the Answer Key's own reported values, day stamps and hour blocks. The runtime-only facts the learner editions withhold occur 0 times in the Answer Key.",
     "historicalVersusCurrentReadings": "PASS; the 100% intensity reading is labelled Current wherever it is printed, and no role states or implies that intensity stayed the same, remained constant, never changed, or held at 100% throughout. The Teacher Guide states explicitly that the records do not report the intensity before Day -90.",
     "hiddenEvidence": "PASS; the grove's cultural significance is a runtime grove-origin record printed in no learner edition, and it is required by no graded expectation. It survives only as Teacher discussion context, marked ungradeable.",
@@ -77,8 +77,8 @@
     "recordDivergenceHandling": "PASS; both learner editions print Day -80 and Day -83 as the two logs' own onset days, no role reconciles, averages or interpolates between them, and no compromise date is derivable from any printed record.",
     "sourceBoundaryAndProhibitedClaims": "PASS; the universal dark-requirement, darkness-as-nutrient, absolute-absence, guaranteed-recovery, organism-intention and correlation-as-proof claims all remain mechanically blocked, and the fabricated intensity control now joins them.",
     "teachingAnalogyContainment": "PASS; the kitchen-scale, two-witness and sleep-pattern values stay inside their marked data-analogy blocks and appear nowhere as grove evidence.",
-    "crossRoleReferenceIntegrity": "PENDING",
-    "accessibleDifferentiation": "PENDING",
+    "crossRoleReferenceIntegrity": "PASS; every Table and Figure named in Teacher or Answer Key prose resolves in both learner editions independently, and no Answer Key exemplar is stranded under a task that no longer asks it. The Accessible Task 2 log evidence is a named Table 4, so an omission can no longer pass by going unlabelled.",
+    "accessibleDifferentiation": "53.0% word-sequence similarity to the Student edition, against 52.8% for the v1.0 markup measured the same way - essentially unchanged, and far inside the 80% ceiling. The edition keeps its shorter directions, chunked evidence, just-in-time vocabulary, sentence frames, one-task-per-page structure and dedicated CER page. The restored Table 4 is condensed by record rather than copied from the Student's day-by-day table.",
     "javascriptErrors": "0",
     "gitDiffCheck": "clean",
     "visualReview": "PASS; owner review of the rendered pages, including grayscale"
@@ -88,7 +88,7 @@
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
   },
-  "formerArtifactRecoveryCommit": "556cbf843a284835e23d3341ff356d5453db341f",
+  "formerArtifactRecoveryCommit": "3fe64b9c9854d7f357fe0f89410f77a1d00c8177",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [
     {
