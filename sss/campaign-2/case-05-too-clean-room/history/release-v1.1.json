@@ -7,7 +7,7 @@
   "approvalDate": "2026-08-06",
   "owner": "Nate / Owner",
   "originalReleaseApprovalCommit": "7f07ccb37c6ece9dace3ffe4487cff21a2f8030a",
-  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "canonicalSourceApprovalCommit": "7c69585eff2bb2f40f8d307b45472bcc225260f1",
   "correctiveReviewCommits": [
     {
       "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
@@ -28,6 +28,10 @@
     {
       "commit": "b15ddc26fad4307e7919127ee6651434487faaa5",
       "role": "The validation estate: prose-corruption, Teacher-completeness, evidence-availability, cross-role reference, Accessible-integrity, standards and record-to-commit protections, with 18 mutations proving each one fires."
+    },
+    {
+      "commit": "7c69585eff2bb2f40f8d307b45472bcc225260f1",
+      "role": "The release commit: lifecycle promotion to APPROVED_STABLE, the v1.1 release and owner-approval records, the frozen v1.1 DOM baselines, and the conversion of the Case 05 validation estate from candidate mode to release mode."
     }
   ],
   "sourceHashes": {
@@ -50,16 +54,16 @@
   },
   "acceptedValidation": {
     "status": "PASS",
-    "canonicalStructure": "13 registered cases; release-history schema, commit references, source hashes, and native no-artifact controls PASS",
-    "case05Scoped": "PENDING_RELEASE_TREE",
-    "case05Mutations": "PENDING_RELEASE_TREE",
-    "case01Case02Case03Case04Case06Scoped": "PENDING_RELEASE_TREE",
-    "static": "PENDING_RELEASE_TREE",
-    "browser": "PENDING_RELEASE_TREE",
-    "pdf": "PENDING_RELEASE_TREE",
-    "correctiveReleaseLifecycle": "PENDING_RELEASE_TREE",
-    "authoringSecurity": "PENDING_RELEASE_TREE",
-    "layoutContracts": "PENDING_RELEASE_TREE",
+    "canonicalStructure": "PASS; release-history schema, commit references, source hashes, and native no-artifact controls, 0 failures",
+    "case05Scoped": "165/165",
+    "case05Mutations": "25/25; every mutation trips its named assertion, and assert_trips rejects a run whose only failures are hash or lifecycle plumbing",
+    "case01Case02Case03Case04Case06Scoped": "135/135, 108/108, 107/107, 139/139, 230/230",
+    "static": "600/600",
+    "browser": "2161/2161 across all 104 case/role/presentation states, 0 JavaScript errors",
+    "pdf": "316/316 on the registry-derived roster",
+    "correctiveReleaseLifecycle": "25/25",
+    "authoringSecurity": "13/13",
+    "layoutContracts": "PASS; 13 registered cases, Accessible 201 eligible and 274 explicitly locked response areas, Student 118 eligible and 365 explicitly locked",
     "fixedWorksheetGeometry": "816 x 1056 CSS-pixel Letter pages and 720 x 960 CSS-pixel frames PASS",
     "protectedPrintableComponents": "PASS",
     "pageCountsAndFit": "PASS for all 28 pages, in colour and grayscale",
@@ -82,7 +86,7 @@
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Campaign 2 Case 05 was produced natively under the canonical source model at v1.0 and corrected in place at v1.1; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed at either version."
   },
-  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "formerArtifactRecoveryCommit": "7c69585eff2bb2f40f8d307b45472bcc225260f1",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [
     {
@@ -125,7 +129,8 @@
         "Its sourceHashes omit layoutOverrides, which the package did pin, so a layout-overrides edit would have broken the package hash while leaving the release record silently valid. The v1.1 record certifies all four.",
         "Its acceptedValidation records case05Scoped 101/101, which was accurate for the validation estate as it stood on 2026-08-05 and is not corrected here.",
         "Its accessibleDifferentiation, and the matching line in its owner-approval record, make a campaign-wide comparative claim about this edition. That comparative was true when written. It is not repeated in v1.1."
-      ]
+      ],
+      "legacyArtifacts": []
     }
   ],
   "correctionSummary": {
@@ -136,7 +141,7 @@
       "Accessible Task 5 rejection evidence. The Accessible word bank offers 'uptake is normal' as evidence against the missing-mineral rejection, but the word 'uptake' occurred exactly once in that edition, inside the word bank itself: the specimen record read only 'The cells are healthy.' The Student edition carries 'Cell structure, membranes, organelles and nutrient uptake are normal' and the Answer Key grades on 'nutrient uptake is recorded as normal'. The Accessible specimen row now reads 'The cells are healthy and nutrient uptake is normal.' This is the same defect class as Case 04's M-21 and Case 06's M-28, caught at word-bank scale.",
       "Answer Key Task 7 constraint list. The key accepted two constraints printed in no learner edition - 'staff exposure limits apply' and 'only a small number of specimens exist', both zero occurrences in both editions - and a third, the compound shortage, that only the Student edition carried until this release restored it to the Accessible briefing. The two unreachable options are replaced by two requirements Table 7 prints in both editions, the staged-exposure sequence and the written stop criteria, so the marking latitude is preserved without accepting a constraint no student could have produced. The list now closes by naming where each item is printed."
     ],
-    "notCorrected": [
+    "unchanged": [
       "Standards. MS-ETS1-1 direct at Task 7, MS-LS1-5 supporting and bounded at Task 6, and MS-ETS1-2 conditional at Task 7 are all independently re-verified against the learner-visible task evidence and retained unchanged. Nothing was added, removed or re-rated. The task registry now records the assessed practice, the assessing task, the learner evidence and the limitation behind each claim so the alignment cannot drift into an overclaim.",
       "Page counts. Student 7, Teacher 9, Answer Key 5, Accessible 7, unchanged and re-measured after the corrections in the browser matrix and in generated PDFs, in colour and grayscale.",
       "The package location field, which stores the runtime investigation name here as in Cases 01 to 04 and unlike Case 06. That divergence is campaign-wide documentation, not a Case 05 defect, and is deliberately untouched."

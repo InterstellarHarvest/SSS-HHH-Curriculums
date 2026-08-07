@@ -77,8 +77,11 @@ NON_ACCESSIBLE_BASELINE_HASHES = {
     # Case 04 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE04": {"student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e", "teacher": "2996592b0846b12db62b1d6ee5c4d2e8844be4ceb72a70db5276a6733daccfdf", "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6"},
-    # Case 05 was reopened as the v1.1 corrective candidate; an unreleased package has no
-    # frozen DOM baseline. The baseline is re-established at approval.
+    # Case 05 was reissued as v1.1; the Teacher and Answer baselines differ from the v1.0
+    # baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
+    # The Student baseline is deliberately identical to v1.0: no v1.1 correction touched the
+    # Student edition.
+    "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "05d797d8d47eee5e177f54bad6e5ffc7476b72caf04a58366536db2a14cda770", "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d"},
     # Case 06 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
     # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
     "SSS-C2-CASE06": {"student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2", "teacher": "2720249b480c71e29b2dee472feaa90ddd990b51922459612a8f53e190b61bb3", "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516"},
