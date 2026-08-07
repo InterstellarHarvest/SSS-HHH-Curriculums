@@ -30,7 +30,7 @@ This branch remains documentation-only during case auditing.
 | 5 | C1 Case 05 — Sub Surface Bunker | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C1_CASE05_v0.1.md` |
 | 6 | C1 Case 06 — First Contact Protocol | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C1_CASE06_v0.1.md` |
 | 7 | C1 Case 07 — The Gift | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C1_CASE07_v0.1.md` |
-| 8 | C2 Case 01 — Heavy Hands | `NOT_STARTED` | — | — |
+| 8 | C2 Case 01 — Heavy Hands | `AUDIT_COMPLETE — REMEDIATION_REQUIRED` | `OWNER_ACCEPTED` | `SSS_FINAL_AUDIT_C2_CASE01_v0.1.md` |
 | 9 | C2 Case 02 — The Missing Dance | `NOT_STARTED` | — | — |
 | 10 | C2 Case 03 — The Wrong Color of Light | `NOT_STARTED` | — | — |
 | 11 | C2 Case 04 — The Silent Grove | `NOT_STARTED` | — | — |
@@ -63,6 +63,10 @@ This branch remains documentation-only during case auditing.
 - `C1C7-UI01` best diagnosis not digitally persisted — `OPEN`
 - `C1C7-UI02` Task 4 missing-stage X marks not digitally persisted — `OPEN`
 - `C1C7-AK01` Answer Key Task 4 omits required X/status subpart — `OPEN`
+- `C2C1-T01` nine-page Teacher Guide diverges from corrected seven-page template — `OPEN`
+- `C2C1-T02` Teacher fallback permits reducing required five-source Task 5 to three sources — `OPEN`
+- `C2C1-T03` Teacher rubric uses only Secure/Developing/Not yet — `OPEN`
+- `C2C1-ACC01` Accessible Tasks 5–6 remain too close to full Student workload — `OPEN`
 
 ## Moderate findings
 - `C1C1-GS01` rendered grayscale tint remains — `OPEN`
@@ -81,6 +85,7 @@ This branch remains documentation-only during case auditing.
 - `C1C6-ACC01` diagnosis/intervention workload needs partial scaffolding — `OPEN`
 - `C1C7-T02` Teacher pacing places intervention before CER contrary to Student/registry order — `OPEN`
 - `C1C7-ACC01` Accessible Tasks 4/5/7 need targeted scaffolding — `OPEN`
+- `C2C1-T04` suggested Teacher pacing totals 105 minutes rather than a normalized core one-period route — `OPEN`
 
 ## Minor findings
 - `C1C2-META01` wrong Accessible resize label — `OPEN`
@@ -94,9 +99,10 @@ This branch remains documentation-only during case auditing.
 - `C1C4-SYS01` reject runtime IDs and verify cross-role page references — `OPEN`
 - `C1C5-SYS01` reject internal game-node paths from Teacher content — `OPEN`
 - `C1C7-SYS01` Answer Key validation must include required visual/status subparts, not text fields only — `OPEN`
+- `C2C1-SYS01` Teacher fallback/differentiation should not silently reduce a registry-defined graded task — `OPEN`
 
 ## Visual enhancements
-`C1C1-VIS01`, `C1C2-VIS01`, `C1C3-VIS01–03`, `C1C4-VIS01–03`, `C1C5-VIS01–03`, `C1C6-VIS01–03`, `C1C7-VIS01–03` — all `DEFERRED_VISUAL_PHASE`.
+`C1C1-VIS01`, `C1C2-VIS01`, `C1C3-VIS01–03`, `C1C4-VIS01–03`, `C1C5-VIS01–03`, `C1C6-VIS01–03`, `C1C7-VIS01–03`, `C2C1-VIS01–03` — all `DEFERRED_VISUAL_PHASE`.
 
 ## Confirmed passes / preserve
 - C1C1: core diagnosis/evidence, game parity, Accessible CER
@@ -106,35 +112,36 @@ This branch remains documentation-only during case auditing.
 - C1C5: Answer Key, radiation qualification, science/evidence parity, Accessible CER
 - C1C6: complete Teacher task coverage, Answer Key, 72.4→72.1 timing ledger, game parity, source-status discipline, Accessible CER
 - C1C7: complete Teacher task coverage, full quick + four-level rubric, strong source ledger, game identity/evidence parity, numerical controls, approved Case 07 CER contract
+- C2C1: Answer Key completeness, runtime identity, canonical quantitative model, reported-vs-tested discipline, learner/Teacher data boundary, digital diagnosis marking, Accessible CER
 
 ## Cross-case patterns
 
 ### Teacher
-C1C2–C1C7 all drift from the definitive page architecture. Rubric absence/mismatch is common through C1C6; C1C7 demonstrates the desired complete rubric content. Procedure traceability fails C1C1/C1C3/C1C5 but passes C1C2/C1C4/C1C6/C1C7.
+C1C2–C2C1 all drift from the definitive page architecture. Rubric absence/mismatch remains widespread. Heavy Hands adds a new problem: default fallback guidance must not silently reduce registry-defined graded scope.
 
 ### Accessible
-Later cases show stronger chunking and evidence cues, but mechanism sequencing and repeated comparison remain recurring high-load areas. Partial completion should become explicit policy.
+Later cases show stronger chunking and evidence cues, but repeated source-comparison and diagnosis workloads remain recurring high-load areas. Partial completion/model rows should become explicit policy.
 
 ### Fillable response
-C1C3–C1C7 confirm that print-oriented circle/mark tasks can lack persisted digital controls. C1C7 expands this beyond diagnosis selection to status/X marking.
+C1C3–C1C7 confirm that print-oriented circle/mark tasks can lack persisted digital controls. C2C1 demonstrates a workable if plain alternative: persisted `Best?` response cells.
 
 ### Answer Key
-Validation must cover every required subpart, including visual/status actions. A generally complete model is not enough when a required learner marking is absent.
+Validation must cover every required subpart, including visual/status actions. C2C1 is a strong completed-exemplar model.
 
 ### Implementation leakage
 Runtime clue IDs/node paths remain a recurring Teacher-facing cleanliness issue.
 
-### Science/status discipline
-C1C5–C1C7 provide strong models for qualified inference, fictional-vs-Earth boundaries, and numerical caution.
+### Science/status and numerical discipline
+C1C5–C2C1 provide strong models for qualified inference, scenario-vs-Earth boundaries, exact precision, and learner-visible-data controls.
 
 ## Current summary
-Audits complete / owner accepted: **7 / 13**
+Audits complete / owner accepted: **8 / 13**
 
 - Blockers: **0**
-- Major: **25**
-- Moderate: **16**
+- Major: **29**
+- Moderate: **17**
 - Minor: **4**
-- Shared-system gaps: **5**
-- Visual enhancements: **17**
+- Shared-system gaps: **6**
+- Visual enhancements: **20**
 
-Next: **C2 Case 01 — Heavy Hands**
+Next: **C2 Case 02 — The Missing Dance**
