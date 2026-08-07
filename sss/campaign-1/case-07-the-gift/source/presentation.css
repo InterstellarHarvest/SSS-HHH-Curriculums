@@ -84,6 +84,17 @@ em { font-family: Georgia, serif; }
 .diagnosis-table .table-response, .intervention-table .table-response { min-height: .42in; }
 .compact-response { min-height: .25in; text-align: center; }
 .stage-response { min-height: .55in; }
+/* Task 4 stage-status rows. The status control is a bordered, padded field that was left
+   as a plain inline span: an inline non-replaced box ignores min-height and paints its
+   border and vertical padding outside the line box, so each status field bled about 4px
+   up over the stage response above it, on all six stages in both roles. inline-block
+   makes the field reserve its own height instead. The height is scoped back to the row's
+   own line so fixing the overlap does not cost the page any vertical space -- the field
+   holds a short token (AVAILABLE / X - MISSING), not a line of writing, so it does not
+   need the .25in writing-line minimum the general .compact-response rule grants. */
+.final-stage-status { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+.final-stage-status .small { flex: none; }
+.final-stage-status .compact-response { display: inline-block; vertical-align: middle; min-height: 0; padding: 0 4px; }
 .synthesis-response { min-height: 1.65in; }
 .exit-response { min-height: 1.65in; }
 .response:focus, .table-response:focus, .compact-response:focus, .stage-response:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
@@ -136,8 +147,14 @@ figcaption { margin-top: 2px; color: var(--muted); font-size: 6.8pt; }
 .accessible .phrase-bank { grid-template-columns: 1fr 1fr; }
 .accessible .phrase-bank span { font-size: 8.4pt; }
 .accessible-evidence { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.accessible-model { grid-template-columns: 1fr !important; gap: 3px; }
-.accessible-model .model-stage { min-height: .68in; }
+/* Accessible Task 4 organizer. Once the stage-status fields stopped overlapping the
+   stage responses above them (see .final-stage-status) the six rows reserved their true
+   height and accessible-mission-04 ran 13px past its frame -- the overlap had been
+   concealing exactly that much. The space is taken back from the organizer's own chrome,
+   two pixels of vertical cell padding and one pixel of row gap per stage, so every
+   response field on the page keeps its full writing height. */
+.accessible-model { grid-template-columns: 1fr !important; gap: 2px; }
+.accessible-model .model-stage { min-height: .68in; padding: 3px 4px; }
 .accessible-model .model-stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -14px; }
 
 .visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
