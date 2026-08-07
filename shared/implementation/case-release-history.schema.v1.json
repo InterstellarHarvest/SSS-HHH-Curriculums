@@ -69,7 +69,24 @@
       "properties": {
         "reason": {"type": "string", "minLength": 1},
         "corrections": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
-        "unchanged": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        "unchanged": {"type": "array", "items": {"type": "string", "minLength": 1}},
+        "standardsOutcome": {
+          "type": "object",
+          "required": ["directlyAssessedPerformanceExpectations", "statement", "reason"],
+          "properties": {
+            "directlyAssessedPerformanceExpectations": {
+              "type": "array",
+              "items": {"type": "string", "minLength": 1},
+              "description": "The NGSS performance expectations this release claims as directly assessed. An empty array is a deliberate, owner-accepted outcome and must be accompanied by a reason."
+            },
+            "statement": {"type": "string", "minLength": 1},
+            "reason": {"type": "string", "minLength": 1},
+            "retained": {"type": "array", "items": {"type": "string", "minLength": 1}},
+            "withdrawn": {"type": "array", "items": {"type": "string", "minLength": 1}}
+          },
+          "additionalProperties": false,
+          "description": "Set when a corrective reissue changes standards alignment: which performance expectations remain directly assessed, which are retained as supporting, and which are withdrawn with the reason."
+        }
       },
       "additionalProperties": false,
       "description": "Set only on a corrective reissue: what the release corrects and, as importantly, what it deliberately leaves alone."

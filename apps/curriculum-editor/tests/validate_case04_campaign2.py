@@ -639,15 +639,18 @@ def main() -> int:
 
     source_names = {"content": "content.html", "presentation": "presentation.css",
                     "taskRegistry": "task-registry.js", "layoutOverrides": "layout-overrides.json"}
+    # A deleted or malformed v1.0 record must fail by name, not by traceback, so every read
+    # of the retained record goes through .get() from here down.
     results.check("the retained v1.0 record still pins the historically inaccurate commit, unrewritten",
-                  history["canonicalSourceApprovalCommit"] == RETAINED_PINNED_COMMIT
+                  history.get("canonicalSourceApprovalCommit") == RETAINED_PINNED_COMMIT
                   and blob_hash(RETAINED_PINNED_COMMIT, "task-registry.js")
-                  != history["sourceHashes"]["taskRegistry"],
+                  != history.get("sourceHashes", {}).get("taskRegistry"),
                   blob_hash(RETAINED_PINNED_COMMIT, "task-registry.js")[:16])
     results.check("the commit that actually contains every certified v1.0 source is recorded",
-                  all(blob_hash(RETAINED_SOURCE_BEARING_COMMIT, source_names[key])
-                      == history["sourceHashes"][key]
-                      for key in ("content", "presentation", "taskRegistry")),
+                  bool(history.get("sourceHashes"))
+                  and all(blob_hash(RETAINED_SOURCE_BEARING_COMMIT, source_names[key])
+                          == history["sourceHashes"].get(key)
+                          for key in ("content", "presentation", "taskRegistry")),
                   RETAINED_SOURCE_BEARING_COMMIT)
     results.check("the retained v1.0 record omits the layoutOverrides hash the package pins",
                   "layoutOverrides" not in history.get("sourceHashes", {})
