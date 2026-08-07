@@ -53,7 +53,7 @@ jobs:
         run: python -m pip install --disable-pip-version-check beautifulsoup4
 
       - name: Apply deterministic source remediations
-        run: python shared/remediation/apply_sss_final_remediation.py --apply
+        run: python shared/remediation/apply_sss_final_remediation_v2.py --apply
 
       - name: Check patch whitespace
         run: git diff --check
@@ -107,7 +107,7 @@ jobs:
 
       - name: Verify remediation is idempotent
         run: |
-          python shared/remediation/apply_sss_final_remediation.py --apply
+          python shared/remediation/apply_sss_final_remediation_v2.py --apply
           git diff --check
           git diff --exit-code
 
