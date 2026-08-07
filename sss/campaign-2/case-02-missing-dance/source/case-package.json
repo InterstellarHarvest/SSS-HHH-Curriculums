@@ -132,7 +132,7 @@
   },
   "releaseHistory": "sss/campaign-2/case-02-missing-dance/history/release-v1.1.json",
   "sourceHashes": {
-    "content": "e297d98eb6bd15dd2bdd18632dfa12d0e832addd0dfada4858037b5e191f47a7",
+    "content": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
     "presentation": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
     "taskRegistry": "061473c6848678e7069324a6459eb68b549a20a4a902de65806774124049523e",
     "layoutOverrides": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d"

@@ -132,7 +132,7 @@
   },
   "releaseHistory": "sss/campaign-2/case-06-first-garden/history/release-v1.1.json",
   "sourceHashes": {
-    "content": "6bf0b68096f98a8f11b25c966619b9823132e80a90e385b0d9736d1dec30c40b",
+    "content": "e705cb41a60887a16930960d2ffa557dfc0f6e6b8fa96c65f648e0fd96c5e7df",
     "presentation": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
     "taskRegistry": "959b0f082f53ca430edf17c8167d679b764a096b47c99c71ab5bf3877aa1f8a8",
     "layoutOverrides": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481"
