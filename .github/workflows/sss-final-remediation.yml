@@ -7,7 +7,7 @@ on:
       - remediate/sss-final-system
     paths:
       - 'shared/remediation/**'
-      - 'shared/validation/validate_final_quality_contract.py'
+      - 'shared/validation/validate_final_quality_contract*.py'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
       - '.github/workflows/sss-final-remediation.yml'
   pull_request:
@@ -17,7 +17,7 @@ on:
       - 'sss/campaign-1/**'
       - 'sss/campaign-2/**'
       - 'shared/remediation/**'
-      - 'shared/validation/validate_final_quality_contract.py'
+      - 'shared/validation/validate_final_quality_contract*.py'
       - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
       - '.github/workflows/sss-final-remediation.yml'
 
@@ -75,7 +75,7 @@ jobs:
 
       - name: Run final quality contract diagnostic
         continue-on-error: true
-        run: python shared/validation/validate_final_quality_contract.py | tee /tmp/final-quality-contract.txt
+        run: python shared/validation/validate_final_quality_contract_v2.py | tee /tmp/final-quality-contract.txt
 
       - name: Preserve diagnostic summary
         if: always()
@@ -112,4 +112,4 @@ jobs:
           git diff --exit-code
 
       - name: Final cross-edition quality contract
-        run: python shared/validation/validate_final_quality_contract.py
+        run: python shared/validation/validate_final_quality_contract_v2.py
