@@ -6,7 +6,8 @@ Adds two legacy recognizers established by the accepted audits:
 - C1 Cases 01–02 contain valid Task 1 Teacher support that predates numbered
   task-reference markup, so that single legacy trace omission is not a defect.
 
-All other v2 checks remain unchanged.
+This version is the remediation PR's structural gate after the Mars/Hayes Teacher
+wave. All other v2 checks remain unchanged.
 """
 
 from __future__ import annotations
