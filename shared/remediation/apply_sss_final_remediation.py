@@ -116,14 +116,24 @@ def page_content(page: Tag) -> Tag:
     return page.select_one(".content-area") or page.select_one(".content") or page
 
 
-def insert_before_footer(page: Tag, html: str) -> None:
-    footer = page.find("footer")
-    parent = footer.parent if footer else page
+def append_to_content(page: Tag, html: str) -> None:
+    """Append printable blocks to the end of a page's content area.
+
+    The publication footer is a sibling of .content-area inside .page-frame, not a
+    child of it, so inserting "before the footer" placed printable material outside
+    the content area entirely. Everything downstream -- the page-fit overflow
+    contract, the layout-override resize system, and the flex sizing of the frame --
+    is defined against .content-area, so misplaced blocks both escaped the overflow
+    check and squeezed the real content area until its text overlapped them.
+    """
+    content = page_content(page)
     for node in soup_fragment(html):
-        if footer:
-            footer.insert_before(node)
-        else:
-            parent.append(node)
+        content.append(node)
+
+
+# Retained under the historical name so any external caller keeps working; the
+# behavior is now the corrected content-area append.
+insert_before_footer = append_to_content
 
 
 def text_of_role(soup: BeautifulSoup, role: str) -> str:
@@ -312,12 +322,8 @@ def ensure_common_rubric(soup: BeautifulSoup, case_id: str) -> int:
         anchor.insert_after(table)
     else:
         content = page_content(target_page)
-        footer = target_page.find("footer")
         for node in nodes:
-            if footer:
-                footer.insert_before(node)
-            else:
-                content.append(node)
+            content.append(node)
 
     teacher_text = text_of_role(soup, "teacher")
     if not re.search(r"quick\s+(?:grading|rubric)", teacher_text, re.I):

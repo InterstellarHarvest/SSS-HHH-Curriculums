@@ -105,15 +105,12 @@ def remediate_case04_teacher(case_dir: Path, apply: bool) -> bool:
         if not teacher_pages:
             raise RuntimeError("C1 Case 04 Teacher pages not found")
         target = teacher_pages[-1]
-        footer = target.find("footer")
         block = BeautifulSoup(
             '''<section data-final-reference-list="c1c4-v1.0"><h2 class="support-heading">Authoritative science references</h2><ol class="references final-reference-list"><li><strong>Dynamics of long-term continuous culture of <em>Limnospira indica</em> in an air-lift photobioreactor.</strong> <span class="source-url">https://pmc.ncbi.nlm.nih.gov/articles/PMC8913870/</span><br/><span class="small">Primary long-duration photobioreactor evidence. Continuous cultivation can be maintained under controlled conditions, while excessive photon flux can produce photoinhibition depending on culture conditions.</span></li><li><strong>Spiral breakage and photoinhibition of <em>Arthrospira platensis</em> caused by accumulation of reactive oxygen species under solar radiation.</strong> <span class="source-url">https://doi.org/10.1016/j.envexpbot.2009.11.010</span><br/><span class="small">Primary evidence connecting excessive irradiance and reactive oxygen stress with photosystem damage, photoinhibition, and reduced growth in <em>Arthrospira</em>.</span></li></ol><p class="small">These sources support the established photosynthetic-stress mechanism only. The Hayes schedule, crash timing, reactor readings, and diagnosis remain case-specific evidence.</p></section>''',
             "html.parser",
         ).section
-        if footer:
-            footer.insert_before(block)
-        else:
-            target.append(block)
+        # Append inside .content-area, not before the sibling publication footer.
+        v1.page_content(target).append(block)
         changed = True
 
     if changed and apply:
