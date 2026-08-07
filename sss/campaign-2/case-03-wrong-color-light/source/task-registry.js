@@ -2,14 +2,11 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE03",
   "title": "The Wrong Color of Light",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
-  "approvalDate": "2026-08-06",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "printStatus": "PASS",
-  "mergeStatus": "READY_TO_MERGE",
-  "correctiveOf": "1.0",
+  "version": "1.2",
+  "status": "DRAFT",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "printStatus": "NOT_RUN",
+  "correctiveOf": "1.1",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "wrong_color_light",
@@ -104,11 +101,28 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
     "CHLOROPHYLL_C_BLUE_GREEN"
   ],
   "clueTaskCoverage": {
-    "KELP_DYING_NEW_DOME": [1, 4, 5],
-    "LIGHT_SPECTRUM_RED_HEAVY": [2, 3, 5],
-    "PIGMENT_MISMATCH": [5, 6],
-    "KELP_EVOLVED_DEEP_OCEAN_LIGHT": [3, 5],
-    "CHLOROPHYLL_C_BLUE_GREEN": [5, 6]
+    "KELP_DYING_NEW_DOME": [
+      1,
+      4,
+      5
+    ],
+    "LIGHT_SPECTRUM_RED_HEAVY": [
+      2,
+      3,
+      5
+    ],
+    "PIGMENT_MISMATCH": [
+      5,
+      6
+    ],
+    "KELP_EVOLVED_DEEP_OCEAN_LIGHT": [
+      3,
+      5
+    ],
+    "CHLOROPHYLL_C_BLUE_GREEN": [
+      5,
+      6
+    ]
   },
   "requiredRoutes": [
     "crew.start->problem_main",
@@ -155,25 +169,46 @@ window.SSS_C2_CASE03_TASK_REGISTRY = {
     "totalParStatus": "reported adequate",
     "gro9": {
       "redPercent": 62,
-      "redBandNm": [620, 680],
+      "redBandNm": [
+        620,
+        680
+      ],
       "bluePercent": 18,
-      "blueBandNm": [440, 490],
+      "blueBandNm": [
+        440,
+        490
+      ],
       "broadPercent": 15,
       "blueGreenPercent": "<5",
-      "blueGreenBandNm": [490, 560],
+      "blueGreenBandNm": [
+        490,
+        560
+      ],
       "reportedOutputInResponseBand": "<5%"
     },
     "oms4": {
       "blueGreenPercent": 78,
-      "blueGreenBandNm": [460, 540],
+      "blueGreenBandNm": [
+        460,
+        540
+      ],
       "bluePercent": 12,
-      "blueBandNm": [440, 460],
+      "blueBandNm": [
+        440,
+        460
+      ],
       "broadPercent": 10,
       "redPercent": "<1"
     },
     "zhalKelp": {
-      "strongestMeasuredResponseNm": [460, 540],
-      "recordedHabitatDepthM": [40, 120],
+      "strongestMeasuredResponseNm": [
+        460,
+        540
+      ],
+      "recordedHabitatDepthM": [
+        40,
+        120
+      ],
       "habitatSpectrum": "predominantly blue-green with little red at the recorded beds"
     },
     "domeConditions": {

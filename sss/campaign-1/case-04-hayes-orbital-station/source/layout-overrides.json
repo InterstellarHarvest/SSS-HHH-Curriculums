@@ -4,66 +4,325 @@
   "edition": "accessible",
   "stepPx": 4,
   "areas": [
-    { "id": "SSS-C1-CASE04:accessible:t1:a1b", "persistId": "a1b", "pageId": "accessible-mission-01", "taskId": 1, "label": "Timing observation", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t3:a3-changed", "persistId": "a3-changed", "pageId": "accessible-mission-03", "taskId": 3, "label": "Changed evidence", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t3:a3-stable", "persistId": "a3-stable", "pageId": "accessible-mission-03", "taskId": 3, "label": "Stable evidence", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t3:a3-symptom", "persistId": "a3-symptom", "pageId": "accessible-mission-03", "taskId": 3, "label": "Symptoms", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t3:a3-mechanism", "persistId": "a3-mechanism", "pageId": "accessible-mission-03", "taskId": 3, "label": "Mechanism", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t4:a4", "persistId": "a4", "pageId": "accessible-mission-04", "taskId": 4, "label": "Diagnose the station failure", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t7:a7", "persistId": "a7", "pageId": "accessible-mission-07", "taskId": 7, "label": "Immediate and longer-term control", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE04:accessible:t8:a8", "persistId": "a8", "pageId": "accessible-mission-07", "taskId": 8, "label": "Cause-or-effect explanation", "minPx": 32, "maxPx": 900 }
+    {
+      "id": "SSS-C1-CASE04:accessible:t1:a1b",
+      "persistId": "a1b",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Timing observation",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t3:a3-changed",
+      "persistId": "a3-changed",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Changed evidence",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t3:a3-stable",
+      "persistId": "a3-stable",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Stable evidence",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t3:a3-symptom",
+      "persistId": "a3-symptom",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Symptoms",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t3:a3-mechanism",
+      "persistId": "a3-mechanism",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Mechanism",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t4:a4",
+      "persistId": "a4",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Diagnose the station failure",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t7:a7",
+      "persistId": "a7",
+      "pageId": "accessible-mission-07",
+      "taskId": 7,
+      "label": "Immediate and longer-term control",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t8:a8",
+      "persistId": "a8",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Cause-or-effect explanation",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE04:accessible:t7:a7-longterm",
+      "persistId": "a7-longterm",
+      "pageId": "accessible-mission-07",
+      "taskId": 7,
+      "label": "Long-term independent control",
+      "minPx": 32,
+      "maxPx": 900
+    }
   ],
   "lockedAreas": [
-    { "persistId": "a-name", "reason": "identity" },
-    { "persistId": "a-date", "reason": "identity" },
-    { "persistId": "a-class", "reason": "identity" },
-    { "persistId": "a1a", "reason": "compact-answer" },
-    { "persistId": "a2-1", "reason": "fixed-organizer" },
-    { "persistId": "a2-2", "reason": "fixed-organizer" },
-    { "persistId": "a2-3", "reason": "fixed-organizer" },
-    { "persistId": "a2-4", "reason": "fixed-organizer" },
-    { "persistId": "a2-5", "reason": "fixed-organizer" },
-    { "persistId": "a5-2", "reason": "fixed-organizer" },
-    { "persistId": "a5-3", "reason": "fixed-organizer" },
-    { "persistId": "a5-4", "reason": "fixed-organizer" },
-    { "persistId": "a5-5", "reason": "fixed-organizer" },
-    { "persistId": "a5-6", "reason": "fixed-organizer" },
-    { "persistId": "a6c", "reason": "cer" },
-    { "persistId": "a6e", "reason": "cer" },
-    { "persistId": "a6r", "reason": "cer" }
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1a",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a2-1",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a2-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a2-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a2-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a2-5",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-5",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-6",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a-t4-mark-1",
+      "reason": "status"
+    },
+    {
+      "persistId": "a-t4-mark-2",
+      "reason": "status"
+    },
+    {
+      "persistId": "a-t4-mark-3",
+      "reason": "status"
+    },
+    {
+      "persistId": "a-t4-mark-4",
+      "reason": "status"
+    }
   ],
   "overrides": {},
   "student": {
     "edition": "student",
     "areas": [
-      { "id": "SSS-C1-CASE04:student:t1:t1b", "persistId": "t1b", "pageId": "student-mission-01", "taskId": 1, "label": "Supporting timeline observation", "minPx": 28, "maxPx": 900 },
-      { "id": "SSS-C1-CASE04:student:t4:t4", "persistId": "t4", "pageId": "student-mission-02", "taskId": 4, "label": "Reactor failure diagnosis", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE04:student:t7:t7a", "persistId": "t7a", "pageId": "student-mission-04", "taskId": 7, "label": "Immediate recovery action", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE04:student:t7:t7b", "persistId": "t7b", "pageId": "student-mission-04", "taskId": 7, "label": "Long-term independent control", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE04:student:t8:t8", "persistId": "t8", "pageId": "student-mission-04", "taskId": 8, "label": "Cause-or-effect justification", "minPx": 32, "maxPx": 900 }
+      {
+        "id": "SSS-C1-CASE04:student:t1:t1b",
+        "persistId": "t1b",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Supporting timeline observation",
+        "minPx": 28,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE04:student:t4:t4",
+        "persistId": "t4",
+        "pageId": "student-mission-02",
+        "taskId": 4,
+        "label": "Reactor failure diagnosis",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE04:student:t7:t7a",
+        "persistId": "t7a",
+        "pageId": "student-mission-04",
+        "taskId": 7,
+        "label": "Immediate recovery action",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE04:student:t7:t7b",
+        "persistId": "t7b",
+        "pageId": "student-mission-04",
+        "taskId": 7,
+        "label": "Long-term independent control",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE04:student:t8:t8",
+        "persistId": "t8",
+        "pageId": "student-mission-04",
+        "taskId": 8,
+        "label": "Cause-or-effect justification",
+        "minPx": 32,
+        "maxPx": 900
+      }
     ],
     "lockedAreas": [
-      { "persistId": "student-name", "reason": "identity" },
-      { "persistId": "student-date", "reason": "identity" },
-      { "persistId": "student-class", "reason": "identity" },
-      { "persistId": "t1a", "reason": "single-line" },
-      { "persistId": "t2-1", "reason": "fixed-organizer" },
-      { "persistId": "t2-2", "reason": "fixed-organizer" },
-      { "persistId": "t2-3", "reason": "fixed-organizer" },
-      { "persistId": "t2-4", "reason": "fixed-organizer" },
-      { "persistId": "t2-5", "reason": "fixed-organizer" },
-      { "persistId": "t3-changed", "reason": "table-cell" },
-      { "persistId": "t3-stable", "reason": "table-cell" },
-      { "persistId": "t3-symptom", "reason": "table-cell" },
-      { "persistId": "t3-mechanism", "reason": "table-cell" },
-      { "persistId": "t5-2", "reason": "fixed-organizer" },
-      { "persistId": "t5-3", "reason": "fixed-organizer" },
-      { "persistId": "t5-4", "reason": "fixed-organizer" },
-      { "persistId": "t5-5", "reason": "fixed-organizer" },
-      { "persistId": "t5-6", "reason": "fixed-organizer" },
-      { "persistId": "t6c", "reason": "cer" },
-      { "persistId": "t6e", "reason": "cer" },
-      { "persistId": "t6r", "reason": "cer" }
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1a",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t2-1",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t2-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t2-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t2-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t2-5",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t3-changed",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-stable",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-symptom",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-mechanism",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-5",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-6",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "s-t4-mark-1",
+        "reason": "status"
+      },
+      {
+        "persistId": "s-t4-mark-2",
+        "reason": "status"
+      },
+      {
+        "persistId": "s-t4-mark-3",
+        "reason": "status"
+      },
+      {
+        "persistId": "s-t4-mark-4",
+        "reason": "status"
+      }
     ],
     "overrides": {}
   }

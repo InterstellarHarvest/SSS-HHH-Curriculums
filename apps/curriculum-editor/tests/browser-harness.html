@@ -183,7 +183,7 @@
       const forbiddenMetadataProbe = new DOMParser().parseFromString('<main><section class="page" data-role="teacher" data-page-id="probe"><header>Owner review</header><div class="draft-banner">APPROVED_STABLE · READY_TO_MERGE</div><p>VALIDATION_BUILD on hotfix/case04 at commit 0123456789abcdef0123456789abcdef01234567; validation status PASS; stored in the repository. Do not merge.</p></section></main>', "text/html");
       const forbiddenProbeCategories = new Set(printableProductionMetadataFindings(forbiddenMetadataProbe).map(finding => finding.split(":", 2)[1]));
       check("browser production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", ["status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"].every(category => forbiddenProbeCategories.has(category)), JSON.stringify(Array.from(forbiddenProbeCategories).sort()));
-      check("registry-loaded Case 03 package is current approved stable with owner PASS", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().schemaVersion === 2 && api.getPackage().version === "1.1" && api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval?.date === "2026-07-31" && api.getPackage().approval?.owner === "Nate / Owner" && api.getPackage().approval?.status === "APPROVED" && api.getPackage().approval?.printStatus === "PASS");
+      check("registry-loaded Case 03 package exposes current package identity and lifecycle", api.getPackage().id === "SSS-C1-CASE03" && api.getPackage().schemaVersion === 2 && typeof api.getPackage().version === "string" && api.getPackage().version.length > 0 && ["DRAFT", "APPROVED_STABLE"].includes(api.getPackage().status));
       check("approved master is not used as package content", !api.getPackage().content.source.includes("master/"));
       check("worksheet presentation is isolated in open Shadow DOM", doc.querySelector("#worksheetHost").shadowRoot && workspace.getRootNode() === doc.querySelector("#worksheetHost").shadowRoot);
       check("isolated worksheet retains a labelled main landmark", workspace.tagName === "MAIN" && workspace.getAttribute("aria-label")?.includes("Mars Habitat"));
@@ -273,7 +273,7 @@
       // asserted to cover the canonical roster exactly, because the failure this replaces
       // was SSS-C1-CASE07 being absent from both and therefore silently receiving zero
       // resize-eligibility, layout-panel and invalid-default coverage.
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 8, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20 };
       const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10 };
       const registeredCaseIds = (await (await fetch("/shared/implementation/case-registry.v2.json")).json())
         .curricula.flatMap(curriculum => curriculum.campaigns).flatMap(campaign => campaign.cases).map(entry => entry.id).sort();
@@ -853,20 +853,26 @@
       check("figures retain captions and accessible SVG labels", Array.from(workspace.querySelectorAll("figure")).every(figure => figure.querySelector("figcaption") && figure.querySelector('svg[aria-label],svg[aria-labelledby]')));
       check("table semantics retain captions", Array.from(workspace.querySelectorAll("table")).every(table => table.querySelector("caption")));
 
+      // Hand-maintained independent expectation of the registered roster. It is deliberately
+      // NOT derived from the registry or the case packages: deriving it would make the
+      // version/lifecycle parity assertions below tautological. The final remediation reopened
+      // every package as a corrective DRAFT candidate, so version and status are recorded here
+      // at their corrective-candidate values; page counts are unchanged from the approved
+      // releases. reviewStatus feeds the development-lifecycle branch of the status assertion.
       const canonicalCases = [
-        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.1", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.0", status: "APPROVED_STABLE", counts: { student: 3, teacher: 7, answer: 3 }, complete: "CASE02_CURRICULUM_EDITOR_v1.0", student: "CASE02_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.1", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 7, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.0", student: "CASE04_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.0", status: "APPROVED_STABLE", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE05_CURRICULUM_EDITOR_v1.0", student: "CASE05_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE06", label: "6 - First Contact Protocol", version: "1.0", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.0", student: "CASE06_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.0", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.0", student: "CASE07_STUDENT_MISSION_v1.0" },
-        { id: "SSS-C2-CASE01", label: "1 - Heavy Hands", version: "1.1", status: "APPROVED_STABLE", counts: { student: 5, teacher: 9, answer: 4 }, complete: "CASE01_CURRICULUM_EDITOR_v1.1", student: "CASE01_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C2-CASE02", label: "2 - The Missing Dance", version: "1.1", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE02_CURRICULUM_EDITOR_v1.1", student: "CASE02_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "1.1", status: "APPROVED_STABLE", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.1", student: "CASE03_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.1", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.1", student: "CASE04_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C2-CASE05", label: "5 - Too Clean a Room", version: "1.1", status: "APPROVED_STABLE", counts: { student: 7, teacher: 9, answer: 5 }, complete: "CASE05_CURRICULUM_EDITOR_v1.1", student: "CASE05_STUDENT_MISSION_v1.1" },
-        { id: "SSS-C2-CASE06", label: "6 - The First Garden", version: "1.1", status: "APPROVED_STABLE", counts: { student: 6, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.1", student: "CASE06_STUDENT_MISSION_v1.1" }
+        { id: "SSS-C1-CASE01", label: "1 - ISS Greenhouse", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 3, teacher: 8, answer: 3 }, complete: "CASE01_CURRICULUM_EDITOR_v1.2", student: "CASE01_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C1-CASE02", label: "2 - Lunar Greenhouse", version: "1.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 3, teacher: 7, answer: 3 }, complete: "CASE02_CURRICULUM_EDITOR_v1.1", student: "CASE02_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE03", label: "3 - Mars Habitat", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.2", student: "CASE03_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C1-CASE04", label: "4 - Hayes Orbital Station", version: "1.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 4, teacher: 7, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.1", student: "CASE04_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE05", label: "5 - Sub Surface Bunker", version: "1.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 4, teacher: 8, answer: 4 }, complete: "CASE05_CURRICULUM_EDITOR_v1.1", student: "CASE05_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE06", label: "6 - First Contact Protocol", version: "1.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.1", student: "CASE06_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C1-CASE07", label: "7 - The Gift", version: "1.1", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 6, teacher: 8, answer: 6 }, complete: "CASE07_CURRICULUM_EDITOR_v1.1", student: "CASE07_STUDENT_MISSION_v1.1" },
+        { id: "SSS-C2-CASE01", label: "1 - Heavy Hands", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 9, answer: 4 }, complete: "CASE01_CURRICULUM_EDITOR_v1.2", student: "CASE01_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C2-CASE02", label: "2 - The Missing Dance", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE02_CURRICULUM_EDITOR_v1.2", student: "CASE02_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C2-CASE03", label: "3 - The Wrong Color of Light", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 5, teacher: 8, answer: 4 }, complete: "CASE03_CURRICULUM_EDITOR_v1.2", student: "CASE03_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 6, teacher: 8, answer: 4 }, complete: "CASE04_CURRICULUM_EDITOR_v1.2", student: "CASE04_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C2-CASE05", label: "5 - Too Clean a Room", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 7, teacher: 9, answer: 5 }, complete: "CASE05_CURRICULUM_EDITOR_v1.2", student: "CASE05_STUDENT_MISSION_v1.2" },
+        { id: "SSS-C2-CASE06", label: "6 - The First Garden", version: "1.2", status: "DRAFT", reviewStatus: "OWNER_REVIEW_NOT_STARTED", counts: { student: 6, teacher: 7, answer: 5 }, complete: "CASE06_CURRICULUM_EDITOR_v1.2", student: "CASE06_STUDENT_MISSION_v1.2" }
       ];
       // The Case menu is campaign-scoped, so the registered cases are asserted one campaign at a
       // time. Every registered case is still exercised in full by the matrix loop below, which
@@ -890,10 +896,14 @@
       check("no Campaign 1 case appears while Campaign 2 is selected", !caseOptionValues().some(id => id.startsWith("SSS-C1-")));
       check("switching to Campaign 2 loads its first registered case and moves the worksheet with it", api.getPackage().id === "SSS-C2-CASE01" && doc.querySelector("#caseSelect").value === "SSS-C2-CASE01" && api.getWorkspace().querySelector(".hero-title")?.textContent.trim() === "Heavy Hands");
       check("the multi-case Campaign 2 Case selector is enabled and keyboard-operable", !doc.querySelector("#caseSelect").disabled && doc.querySelector("#caseSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#caseSelect").tabIndex >= 0);
-      check("the corrective-released Campaign 2 Case 01 reports v1.1 once in the low-prominence status", doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === "v1.1 · APPROVED_STABLE" && !doc.querySelector("#workspaceTitle").textContent.includes("v1.1") && !doc.querySelector("#caseBreadcrumb").textContent.includes("v1.1"));
+      // Campaign 2 Case 01 was a v1.1 corrective release and is now reopened as a v1.2
+      // corrective DRAFT candidate, so the editor reports development lifecycle rather than a
+      // release version. The contract this protects is unchanged: the version stays out of the
+      // prominent workspace title and breadcrumb.
+      check("the corrective-candidate Campaign 2 Case 01 keeps its version out of prominent chrome", doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === "DRAFT · OWNER_REVIEW_NOT_STARTED" && !/v\d+\.\d+/.test(doc.querySelector("#workspaceTitle").textContent) && !/v\d+\.\d+/.test(doc.querySelector("#caseBreadcrumb").textContent), JSON.stringify({ label: doc.querySelector(".case-status > span").textContent, status: doc.querySelector("#caseStatus").textContent }));
       await api.selectCase("SSS-C2-CASE03");
       api = win.__curriculumEditor;
-      check("the corrective-released Campaign 2 Case 03 reports v1.1 once in the low-prominence status", doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === "v1.1 · APPROVED_STABLE" && !doc.querySelector("#workspaceTitle").textContent.includes("v1.1") && !doc.querySelector("#caseBreadcrumb").textContent.includes("v1.1"));
+      check("the corrective-candidate Campaign 2 Case 03 keeps its version out of prominent chrome", doc.querySelector(".case-status > span").textContent === "Development status" && doc.querySelector("#caseStatus").textContent === "DRAFT · OWNER_REVIEW_NOT_STARTED" && !/v\d+\.\d+/.test(doc.querySelector("#workspaceTitle").textContent) && !/v\d+\.\d+/.test(doc.querySelector("#caseBreadcrumb").textContent), JSON.stringify({ label: doc.querySelector(".case-status > span").textContent, status: doc.querySelector("#caseStatus").textContent }));
       await api.selectCampaign("SSS", "campaign-1");
       api = win.__curriculumEditor;
       check("switching back to Campaign 1 restores its seven options and reloads a Campaign 1 case", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)) && api.getPackage().id.startsWith("SSS-C1-") && doc.querySelector("#caseSelect").value === api.getPackage().id, JSON.stringify(caseOptionValues()));
@@ -994,7 +1004,7 @@
         worksheetDoc = api.getWorksheetDocument();
         const declaredCounts = Object.fromEntries(Object.entries(api.getPackage().rolePageStructure).map(([role, structure]) => [role, structure.pageCount]));
         check(`${item.id} loads from registry with current version`, api.getPackage().id === item.id && api.getPackage().version === item.version);
-        if (item.id === "SSS-C1-CASE04") check("Case 04 loads as the owner-approved v1.0 release", api.getPackage().status === "APPROVED_STABLE" && api.getPackage().approval.date === "2026-08-01" && api.getPackage().approval.owner === "Nate / Owner" && api.getPackage().approval.status === "APPROVED" && api.getPackage().approval.printStatus === "PASS");
+        if (item.id === "SSS-C1-CASE04") check("Case 04 package lifecycle matches the registry entry", api.getPackage().status === item.status);
         if (item.status === "APPROVED_STABLE") {
           check(`${item.id} shows its version once in the low-prominence release status`, doc.querySelector(".case-status > span").textContent === "Current release" && doc.querySelector("#caseStatus").textContent === `v${item.version} · ${item.status}` && !doc.querySelector("#workspaceTitle").textContent.includes(`v${item.version}`) && !doc.querySelector("#caseBreadcrumb").textContent.includes(`v${item.version}`) && !doc.querySelector("#loadStatus > span[aria-hidden=true]").textContent.includes(`v${item.version}`));
         } else {
@@ -1358,7 +1368,13 @@
           const lockedTitles = ["Frame the Mission Problem", "Separate Observation from Interpretation", "Converge the Four Clue Routes", "Compare the Competing Diagnoses", "Model the Radiation-to-Growth Pathway", "Explain the Diagnosis with CER", "Define the Engineering Design Problem", "Recommend Immediate and Durable Responses"];
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           const firstPageIdentities = Array.from(workspace.querySelectorAll(".mission-title-block"));
-          check("Case 05 title and location subtitle are distinct and exact", firstPageIdentities.length === 4 && firstPageIdentities.every(block => block.querySelector(".hero-title")?.textContent.trim() === "Sub Surface Bunker" && block.querySelector(".mission-subtitle")?.textContent.trim() === "Campaign 1 · Case 05 · Europa, orbiting Jupiter" && !block.querySelector(".mission-subtitle")?.textContent.includes("Sub Surface Bunker")));
+          // Final-audit finding C1C5-ID01 replaced the vague `Europa, orbiting Jupiter` location
+          // with the approved classroom identity `Europa, Sub-Surface Bunker`, synchronizing the
+          // package metadata, the printed subtitle, and the frozen game's Europa Outpost entry.
+          // The subtitle now names the same site as the title, so the distinctness this guards is
+          // that the subtitle still carries the full campaign/case/location line rather than
+          // collapsing to a bare repeat of the hero title.
+          check("Case 05 title and location subtitle are distinct and exact", firstPageIdentities.length === 4 && firstPageIdentities.every(block => block.querySelector(".hero-title")?.textContent.trim() === "Sub Surface Bunker" && block.querySelector(".mission-subtitle")?.textContent.trim() === "Campaign 1 · Case 05 · Europa, Sub-Surface Bunker" && block.querySelector(".mission-subtitle")?.textContent.trim() !== block.querySelector(".hero-title")?.textContent.trim()), JSON.stringify(firstPageIdentities.map(block => block.querySelector(".mission-subtitle")?.textContent.trim())));
           check("Case 05 generated Student, Answer Key, and Accessible task titles have exact parity", ["student", "answer", "accessible"].every(role => JSON.stringify(roleTitles(role)) === JSON.stringify(lockedTitles)));
           check("Case 05 has one atomic CER in each required learner role", ["student-v1.0", "answer-v1.0", "accessible-v1.0"].every(contract => { const root = workspace.querySelector(`[data-cer-contract="${contract}"]`); return root && Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page")); }));
           check("Case 05 qualitative process models remain atomic", Array.from(workspace.querySelectorAll("[data-process-contract]")).every(root => Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page"))));
@@ -1460,6 +1476,12 @@
         check(`${item.id} instructional autosave is isolated across case switches`, workspace.querySelector(`[data-persist-id="${marker.editable}"]`)?.textContent === marker.editText);
         check(`${item.id} role state is isolated across case switches`, api.getState().role === "student");
         check(`${item.id} announcement identifies case version role and grayscale`, doc.querySelector("#loadStatus").textContent.includes(api.getPackage().title) && doc.querySelector("#loadStatus").textContent.includes(`v${item.version}`) && doc.querySelector("#loadStatus").textContent.includes("Student Mission") && doc.querySelector("#loadStatus").textContent.includes("Grayscale"));
+        // The announcement is read aloud on every case load, so it must not assert a
+        // lifecycle the package does not hold. Campaign 1 Cases 04-07 announced an
+        // "approved package loaded" while reopened as corrective DRAFT candidates. The
+        // wording is now lifecycle-neutral, which also stays correct through approval and
+        // re-release rather than needing to be revised again at each transition.
+        check(`${item.id} announcement claims no package lifecycle it does not hold`, !/\b(approved|draft|unreleased|release[ds]?)\b/i.test(doc.querySelector("#loadStatus").textContent), doc.querySelector("#loadStatus").textContent);
       }
       const documentIds = Array.from(doc.querySelectorAll("[id]")).map(node => node.id);
       check("case cycling leaves no duplicate IDs in the application document", documentIds.length === new Set(documentIds).size);

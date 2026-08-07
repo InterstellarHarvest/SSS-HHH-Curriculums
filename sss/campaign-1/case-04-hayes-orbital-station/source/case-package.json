@@ -6,22 +6,30 @@
   "title": "Hayes Orbital Station",
   "subtitle": "Campaign 1 · Case 04 · Light stress and reactor control",
   "location": "L2 Lagrange Point, Orbital Research Station",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
+  "version": "1.1",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-08-01",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C1-CASE04:v1.0:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "documentKey": "SSS-C1-CASE04:v1.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -73,17 +81,29 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 4},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 7},
-    "answer": {"documentRole": "Answer Key", "pageCount": 4},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 4
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 7
+    }
   },
   "outputs": {
-    "complete": "SSS_C1_CASE04_CURRICULUM_EDITOR_v1.0_CUSTOM.html",
-    "student": "SSS_C1_CASE04_STUDENT_MISSION_v1.0_CUSTOM.html",
-    "teacher": "SSS_C1_CASE04_TEACHER_GUIDE_v1.0_CUSTOM.html",
-    "answer": "SSS_C1_CASE04_ANSWER_KEY_v1.0_CUSTOM.html",
-    "accessible": "SSS_C1_CASE04_ACCESSIBLE_MISSION_v1.0_CUSTOM.html"
+    "complete": "SSS_C1_CASE04_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
+    "student": "SSS_C1_CASE04_STUDENT_MISSION_v1.1_CUSTOM.html",
+    "teacher": "SSS_C1_CASE04_TEACHER_GUIDE_v1.1_CUSTOM.html",
+    "answer": "SSS_C1_CASE04_ANSWER_KEY_v1.1_CUSTOM.html",
+    "accessible": "SSS_C1_CASE04_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -100,16 +120,21 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 1 Case 04 v1.0 — Hayes Orbital Station Curriculum Editor",
-    "loadAnnouncement": "Hayes Orbital Station Case 04 v1.0 approved package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": [".alt-support", "[data-timeline-contract]", "[data-process-contract]", "[data-systems-contract]", "[data-cause-effect-contract]"],
+    "documentTitle": "SSS Campaign 1 Case 04 v1.1 — Hayes Orbital Station Curriculum Editor",
+    "loadAnnouncement": "Hayes Orbital Station Case 04 v1.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      "[data-timeline-contract]",
+      "[data-process-contract]",
+      "[data-systems-contract]",
+      "[data-cause-effect-contract]"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "3d2355f4b7c4e2b5ab81984726fead628b906bdd07252b7bb55c8f05f28410c2",
+    "content": "7725f9b5cd204171eae9d3a77158307ed4e9f6f66691cdd8dd27c0132d0bc061",
     "presentation": "be6192cd9401105d8978b59be3204432e5e095f58da2b2f349a8099a9cfb9d2f",
-    "taskRegistry": "23a8844b008693d1da13dcfcb67a2ddd9b16014c4ea66a6ef8ccbc714b2fd094",
-    "layoutOverrides": "f75815f7afe91e3a2aa151d3d69bbfc66edbc64f9181267ae63bd92b594e887d"
-  },
-  "releaseHistory": "sss/campaign-1/case-04-hayes-orbital-station/history/release-v1.0.json"
+    "taskRegistry": "afb3e989647a2eb03e354800ee8413c0783f4f1f2ce723cd802bd0e5c9c6dfd7",
+    "layoutOverrides": "11653245ad346f9ccb67c938dbd4b021c8278601b154403bf25ded97d7ab754f"
+  }
 }

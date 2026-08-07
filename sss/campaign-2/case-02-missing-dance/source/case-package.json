@@ -6,13 +6,12 @@
   "title": "The Missing Dance",
   "subtitle": "Campaign 2 · Case 02 · Olympia District, Mars",
   "location": "Ares Botanical Garden",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
+  "version": "1.2",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -24,7 +23,7 @@
     ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE02:v1.1:curriculum-editor-v2",
+  "documentKey": "SSS-C2-CASE02:v1.2:curriculum-editor-v2",
   "supportedRoles": [
     "student",
     "teacher",
@@ -100,11 +99,11 @@
     }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE02_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
-    "student": "SSS_C2_CASE02_STUDENT_MISSION_v1.1_CUSTOM.html",
-    "teacher": "SSS_C2_CASE02_TEACHER_GUIDE_v1.1_CUSTOM.html",
-    "answer": "SSS_C2_CASE02_ANSWER_KEY_v1.1_CUSTOM.html",
-    "accessible": "SSS_C2_CASE02_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
+    "complete": "SSS_C2_CASE02_CURRICULUM_EDITOR_v1.2_CUSTOM.html",
+    "student": "SSS_C2_CASE02_STUDENT_MISSION_v1.2_CUSTOM.html",
+    "teacher": "SSS_C2_CASE02_TEACHER_GUIDE_v1.2_CUSTOM.html",
+    "answer": "SSS_C2_CASE02_ANSWER_KEY_v1.2_CUSTOM.html",
+    "accessible": "SSS_C2_CASE02_ACCESSIBLE_MISSION_v1.2_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -121,8 +120,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 02 v1.1 — The Missing Dance Curriculum Editor",
-    "loadAnnouncement": "The Missing Dance Campaign 2 Case 02 v1.1 package loaded. Student Mission selected.",
+    "documentTitle": "SSS Campaign 2 Case 02 v1.2 — The Missing Dance Curriculum Editor",
+    "loadAnnouncement": "The Missing Dance Campaign 2 Case 02 v1.2 package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".alt-support",
       ".extended-description",
@@ -130,11 +129,10 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-02-missing-dance/history/release-v1.1.json",
   "sourceHashes": {
-    "content": "71c41f236de25e09aee157aab417236b5a63b3fb754a7aa11b858372d8384350",
+    "content": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
     "presentation": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
-    "taskRegistry": "061473c6848678e7069324a6459eb68b549a20a4a902de65806774124049523e",
+    "taskRegistry": "8aaa2854d946f67e5c59261d314bf05764f4f4b21ccaa81009daa6ca4d51eda8",
     "layoutOverrides": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d"
   }
 }

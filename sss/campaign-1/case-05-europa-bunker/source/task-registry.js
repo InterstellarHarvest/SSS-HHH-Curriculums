@@ -3,10 +3,9 @@ window.SSS_CASE05_TASK_REGISTRY = {
   "case": "SSS-C1-CASE05",
   "runtimeId": "europa",
   "title": "Sub Surface Bunker",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "DRAFT",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
   "editorShell": "1.0",
   "gameCommit": "a7a725121f261373df32a5366c70e7df73ddf8f3",
   "roles": {
@@ -95,7 +94,11 @@ window.SSS_CASE05_TASK_REGISTRY = {
     "SHIELDING_INSUFFICIENT"
   ],
   "correctDiagnosis": "radiation",
-  "incorrectAlternatives": ["gravity", "minerals", "light"],
+  "incorrectAlternatives": [
+    "gravity",
+    "minerals",
+    "light"
+  ],
   "mechanism": [
     "energetic particles trapped in Jupiter's magnetosphere",
     "material interactions may produce modeled secondary radiation",
@@ -118,5 +121,7 @@ window.SSS_CASE05_TASK_REGISTRY = {
     "science": "qualified qualitative evidence model",
     "scenario": "corrected Case 05 game content",
     "figures": "curriculum-original qualitative process model"
-  }
+  },
+  "correctiveOf": "1.0",
+  "printStatus": "NOT_RUN"
 };

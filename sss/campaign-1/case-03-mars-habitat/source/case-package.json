@@ -4,24 +4,32 @@
   "curriculum": "SSS",
   "campaign": "campaign-1",
   "title": "Mars Habitat",
-  "subtitle": "Campaign 1 · Case 03 · Light spectrum versus total intensity",
-  "location": "Mars Habitat",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
+  "subtitle": "Campaign 1 · Case 03 · Arcadia Planitia, Mars",
+  "location": "Arcadia Planitia, Mars",
+  "version": "1.2",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-07-31",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C1-CASE03:v1.1:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "documentKey": "SSS-C1-CASE03:v1.2:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -71,17 +79,29 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 4},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
-    "answer": {"documentRole": "Answer Key", "pageCount": 4},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 7}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 4
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 7
+    }
   },
   "outputs": {
-    "complete": "SSS_C1_CASE03_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
-    "student": "SSS_C1_CASE03_STUDENT_MISSION_v1.1_CUSTOM.html",
-    "teacher": "SSS_C1_CASE03_TEACHER_GUIDE_v1.1_CUSTOM.html",
-    "answer": "SSS_C1_CASE03_ANSWER_KEY_v1.1_CUSTOM.html",
-    "accessible": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
+    "complete": "SSS_C1_CASE03_CURRICULUM_EDITOR_v1.2_CUSTOM.html",
+    "student": "SSS_C1_CASE03_STUDENT_MISSION_v1.2_CUSTOM.html",
+    "teacher": "SSS_C1_CASE03_TEACHER_GUIDE_v1.2_CUSTOM.html",
+    "answer": "SSS_C1_CASE03_ANSWER_KEY_v1.2_CUSTOM.html",
+    "accessible": "SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.2_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -98,27 +118,44 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 1 Case 03 v1.1 — Mars Habitat Curriculum Editor",
-    "loadAnnouncement": "Mars Habitat Case 03 v1.1 package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": [".alt-support", "[aria-label*=\"description\"]", "figure figcaption"],
+    "documentTitle": "SSS Campaign 1 Case 03 v1.2 — Mars Habitat Curriculum Editor",
+    "loadAnnouncement": "Mars Habitat Case 03 v1.2 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      "[aria-label*=\"description\"]",
+      "figure figcaption"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "994ea5d4c60cb734468e34e51ae1283198b0ad5c7a3fdef7653e794c000026bd",
+    "content": "431e3d193979e52876fd5f167789b68f76cbc914688db120d3f3086190f4eb70",
     "presentation": "e684848f8a0271617d2ed740ad0682f428c5debfd2554cc3e03a5186b4b9d9ed",
-    "taskRegistry": "b2bb31ff09359e6436e98ddb920df25141cb3e580407967373586e80920020e3",
-    "layoutOverrides": "28b3856c06cf0cd15e95bac90e7294c2fb6a3dd5fce4736593598d3ceda2196d"
+    "taskRegistry": "305e9db06ab4589172785a1c229700bca91800fcec704a30347263ea445fbdaa",
+    "layoutOverrides": "4a032aa92937daa9a5dec271dc3d4d2ffc07c4e2260ba7abea553f6858f8e49e"
   },
-  "releaseHistory": "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json",
   "phraseBank": {
     "contract": "sequence-v1.0",
     "taskId": 6,
     "sourceRole": "answer",
-    "sourceStages": [2, 3, 4, 5],
-    "displayOrderSourceStages": [4, 2, 5, 3],
+    "sourceStages": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "displayOrderSourceStages": [
+      4,
+      2,
+      5,
+      3
+    ],
     "label": "PHRASE BANK",
     "instruction": "Use each phrase once.",
     "itemCount": 4,
-    "roles": ["student", "answer", "accessible"]
+    "roles": [
+      "student",
+      "answer",
+      "accessible"
+    ]
   }
 }

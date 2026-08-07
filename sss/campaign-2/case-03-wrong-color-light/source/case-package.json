@@ -6,22 +6,30 @@
   "title": "The Wrong Color of Light",
   "subtitle": "Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean)",
   "location": "Oolian Mariculture Dome",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
+  "version": "1.2",
+  "status": "DRAFT",
   "approval": {
-    "date": "2026-08-06",
     "owner": "Nate / Owner",
-    "status": "APPROVED",
-    "printStatus": "PASS"
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
   },
   "institutionalIdentity": {
     "id": "SAA",
     "name": "Solar Agricultural Agency",
-    "lockupLines": ["Solar", "Agricultural", "Agency"],
+    "lockupLines": [
+      "Solar",
+      "Agricultural",
+      "Agency"
+    ],
     "insigniaSelector": ".saa-insignia"
   },
-  "documentKey": "SSS-C2-CASE03:v1.1:curriculum-editor-v2",
-  "supportedRoles": ["student", "teacher", "answer", "accessible"],
+  "documentKey": "SSS-C2-CASE03:v1.2:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
   "defaultRole": "student",
   "shell": {
     "version": "1.0",
@@ -73,17 +81,29 @@
     }
   ],
   "rolePageStructure": {
-    "student": {"documentRole": "Student Mission", "pageCount": 5},
-    "teacher": {"documentRole": "Teacher Guide", "pageCount": 8},
-    "answer": {"documentRole": "Answer Key", "pageCount": 4},
-    "accessible": {"documentRole": "Accessible Mission", "pageCount": 8}
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 5
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 8
+    }
   },
   "outputs": {
-    "complete": "SSS_C2_CASE03_CURRICULUM_EDITOR_v1.1_CUSTOM.html",
-    "student": "SSS_C2_CASE03_STUDENT_MISSION_v1.1_CUSTOM.html",
-    "teacher": "SSS_C2_CASE03_TEACHER_GUIDE_v1.1_CUSTOM.html",
-    "answer": "SSS_C2_CASE03_ANSWER_KEY_v1.1_CUSTOM.html",
-    "accessible": "SSS_C2_CASE03_ACCESSIBLE_MISSION_v1.1_CUSTOM.html"
+    "complete": "SSS_C2_CASE03_CURRICULUM_EDITOR_v1.2_CUSTOM.html",
+    "student": "SSS_C2_CASE03_STUDENT_MISSION_v1.2_CUSTOM.html",
+    "teacher": "SSS_C2_CASE03_TEACHER_GUIDE_v1.2_CUSTOM.html",
+    "answer": "SSS_C2_CASE03_ANSWER_KEY_v1.2_CUSTOM.html",
+    "accessible": "SSS_C2_CASE03_ACCESSIBLE_MISSION_v1.2_CUSTOM.html"
   },
   "defaultToolbarState": {
     "role": "student",
@@ -100,16 +120,19 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "SSS Campaign 2 Case 03 v1.1 — The Wrong Color of Light Curriculum Editor",
-    "loadAnnouncement": "The Wrong Color of Light Campaign 2 Case 03 v1.1 package loaded. Student Mission selected.",
-    "extendedDescriptionSelectors": [".alt-support", ".extended-description", "figure figcaption"],
+    "documentTitle": "SSS Campaign 2 Case 03 v1.2 — The Wrong Color of Light Curriculum Editor",
+    "loadAnnouncement": "The Wrong Color of Light Campaign 2 Case 03 v1.2 package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".alt-support",
+      ".extended-description",
+      "figure figcaption"
+    ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
-  "releaseHistory": "sss/campaign-2/case-03-wrong-color-light/history/release-v1.1.json",
   "sourceHashes": {
-    "content": "1c860001db12dc47911885c4f9bc10c03b737c25b8f78bd3990851ec90591a9d",
+    "content": "9855b3b2e3c02e8e819119a68c4270cbd051614fa5fabce14ce211bf3949bc3e",
     "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
-    "taskRegistry": "0622cafbcd3a16f26c06e03dd9fdfde24175cd495935e46de419752de72e416e",
+    "taskRegistry": "4f963b3b1269157d9684ffa98e5285ddadbecfeecf338a1482785e24e70d78f9",
     "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
   }
 }

@@ -2,14 +2,11 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE06",
   "title": "The First Garden",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
-  "approvalDate": "2026-08-06",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "printStatus": "PASS",
-  "mergeStatus": "READY_TO_MERGE",
-  "correctiveOf": "1.0",
+  "version": "1.2",
+  "status": "DRAFT",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "printStatus": "NOT_RUN",
+  "correctiveOf": "1.1",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "first_garden",
@@ -98,11 +95,30 @@ window.SSS_C2_CASE06_TASK_REGISTRY = {
     "DATABASE_PRECEDENT"
   ],
   "clueTaskCoverage": {
-    "RESTORATION_HISTORY": [1, 3, 4],
-    "CHEMICAL_DISCONNECTION": [2, 3, 4, 5],
-    "MYCORRHIZAL_NETWORK": [4, 5, 6],
-    "CONCORD_REGULATION": [4, 7],
-    "DATABASE_PRECEDENT": [4, 7]
+    "RESTORATION_HISTORY": [
+      1,
+      3,
+      4
+    ],
+    "CHEMICAL_DISCONNECTION": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "MYCORRHIZAL_NETWORK": [
+      4,
+      5,
+      6
+    ],
+    "CONCORD_REGULATION": [
+      4,
+      7
+    ],
+    "DATABASE_PRECEDENT": [
+      4,
+      7
+    ]
   },
   "requiredRoutes": [
     "nova.start->problem",

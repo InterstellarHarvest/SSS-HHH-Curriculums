@@ -2,14 +2,11 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
   "schemaVersion": 1,
   "case": "SSS-C2-CASE01",
   "title": "Heavy Hands",
-  "version": "1.1",
-  "status": "APPROVED_STABLE",
-  "correctiveOf": "1.0",
-  "approvalDate": "2026-08-06",
-  "approvedBy": "Nate / Owner",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "printStatus": "PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.2",
+  "status": "DRAFT",
+  "correctiveOf": "1.1",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "printStatus": "NOT_RUN",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "heavy_hands",
@@ -104,11 +101,29 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     "CENTRIFUGAL_GRADIENT_KNOWN"
   ],
   "clueTaskCoverage": {
-    "GORLROOT_UPWARD": [1, 5],
-    "GRAVITY_GRADIENT": [2, 3, 5],
-    "TUBERS_MISALIGNED": [4, 5, 6],
-    "GORLROOT_NEEDS_UNIFORM_G": [1, 5, 6],
-    "CENTRIFUGAL_GRADIENT_KNOWN": [5, 8]
+    "GORLROOT_UPWARD": [
+      1,
+      5
+    ],
+    "GRAVITY_GRADIENT": [
+      2,
+      3,
+      5
+    ],
+    "TUBERS_MISALIGNED": [
+      4,
+      5,
+      6
+    ],
+    "GORLROOT_NEEDS_UNIFORM_G": [
+      1,
+      5,
+      6
+    ],
+    "CENTRIFUGAL_GRADIENT_KNOWN": [
+      5,
+      8
+    ]
   },
   "requiredRoutes": [
     "crew.start->problem_main",
@@ -214,7 +229,10 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     {
       "code": "MS-LS1-5",
       "claim": "direct",
-      "assessingTasks": [1, 7],
+      "assessingTasks": [
+        1,
+        7
+      ],
       "learnerEvidence": [
         "Table 1 — Crop 3 planted from new seed stock, deformation returning on day 11 (the varied genetic factor)",
         "Table 2 — ring radius and rotation rate recorded as never changed (the unvaried environmental factor)",
@@ -224,7 +242,9 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     {
       "code": "MS-ETS1-1",
       "claim": "direct",
-      "assessingTasks": [8],
+      "assessingTasks": [
+        8
+      ],
       "learnerEvidence": [
         "Task 8 response — the across-bed criterion the specification left out",
         "Task 8 response — one constraint reported in this case",
@@ -235,7 +255,9 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "code": "MS-ETS1-2",
       "claim": "supporting",
       "conditional": true,
-      "assessingTasks": [8],
+      "assessingTasks": [
+        8
+      ],
       "limitation": "Claim only if the class systematically compares the larger ring against the thinner bed using the same criterion and the same constraint. Table 7 sets the comparison up; the packet as written does not force it."
     }
   ],
@@ -253,8 +275,31 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
   ],
   "learnerEvidencePolicy": {
     "rule": "Every graded Answer Key expectation and every clause of the CER exemplar must be producible from the Student edition alone and, independently, from the Accessible edition alone. A value first printed at a later task may not be required to answer an earlier one.",
-    "suppliedToLearners": ["2.10 g", "±0.05 g", "20 cm", "600 m", "GC-1208", "Day 10", "Day 11", "Day 12"],
-    "withheldFromLearners": ["0.00187", "2.0991", "2.1009", "224.8", "224.9", "225.0", "2.88966", "0.3%", "80 m", "300 m", "GC-1445", "0.0018", "a = ω²r"],
+    "suppliedToLearners": [
+      "2.10 g",
+      "±0.05 g",
+      "20 cm",
+      "600 m",
+      "GC-1208",
+      "Day 10",
+      "Day 11",
+      "Day 12"
+    ],
+    "withheldFromLearners": [
+      "0.00187",
+      "2.0991",
+      "2.1009",
+      "224.8",
+      "224.9",
+      "225.0",
+      "2.88966",
+      "0.3%",
+      "80 m",
+      "300 m",
+      "GC-1445",
+      "0.0018",
+      "a = ω²r"
+    ],
     "teacherOnly": [
       "The three sampled radii and their magnitudes, the directly reported across-bed difference, and the rotation rate",
       "The rounded-endpoint subtraction and the reason the directly reported difference keeps a fifth digit",
@@ -271,9 +316,24 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
     "bedDepthM": 0.2,
     "bedDepthCm": 20,
     "profile": [
-      {"position": "Bed top (surface side)", "radiusM": "224.8", "accelerationG": "2.0991", "direction": "outward"},
-      {"position": "Bed midpoint (calibration point)", "radiusM": "224.9", "accelerationG": "2.10", "direction": "outward"},
-      {"position": "Bed base (ring-wall side)", "radiusM": "225.0", "accelerationG": "2.1009", "direction": "outward"}
+      {
+        "position": "Bed top (surface side)",
+        "radiusM": "224.8",
+        "accelerationG": "2.0991",
+        "direction": "outward"
+      },
+      {
+        "position": "Bed midpoint (calibration point)",
+        "radiusM": "224.9",
+        "accelerationG": "2.10",
+        "direction": "outward"
+      },
+      {
+        "position": "Bed base (ring-wall side)",
+        "radiusM": "225.0",
+        "accelerationG": "2.1009",
+        "direction": "outward"
+      }
     ],
     "reportedDifferenceG": "0.00187",
     "differenceOfRoundedEndpointsG": "0.0018",
@@ -300,13 +360,43 @@ window.SSS_C2_CASE01_TASK_REGISTRY = {
       "soilMatch": "within 0.3% of Vress surface regolith"
     },
     "crops": [
-      {"crop": "Crop 1", "days": "0–45", "changed": "none (baseline planting)", "onsetDay": 12},
-      {"crop": "Crop 2", "days": "46–90", "changed": "soil reformulated", "onsetDay": 10},
-      {"crop": "Crop 3", "days": "91–now", "changed": "new seed stock", "onsetDay": 11}
+      {
+        "crop": "Crop 1",
+        "days": "0–45",
+        "changed": "none (baseline planting)",
+        "onsetDay": 12
+      },
+      {
+        "crop": "Crop 2",
+        "days": "46–90",
+        "changed": "soil reformulated",
+        "onsetDay": 10
+      },
+      {
+        "crop": "Crop 3",
+        "days": "91–now",
+        "changed": "new seed stock",
+        "onsetDay": 11
+      }
     ],
     "precedents": [
-      {"record": "GC-1208", "crop": "Telluvian root-vine", "radiusM": 80, "outcome": "misalignment matching this case", "resolution": "radius extended to 600 m"},
-      {"record": "GC-1445", "crop": "Oolian kelp", "radiusM": 300, "outcome": "no misalignment reported, with the record's qualifier: low gravitropic precision", "qualifier": "low gravitropic precision", "conclusion": "gradient sensitivity is species-dependent", "resolution": "none required", "role": "Teacher-facing counter-example only. Not evidence that a 300 m radius prevents misalignment, and not evidence about gorlroot."}
+      {
+        "record": "GC-1208",
+        "crop": "Telluvian root-vine",
+        "radiusM": 80,
+        "outcome": "misalignment matching this case",
+        "resolution": "radius extended to 600 m"
+      },
+      {
+        "record": "GC-1445",
+        "crop": "Oolian kelp",
+        "radiusM": 300,
+        "outcome": "no misalignment reported, with the record's qualifier: low gravitropic precision",
+        "qualifier": "low gravitropic precision",
+        "conclusion": "gradient sensitivity is species-dependent",
+        "resolution": "none required",
+        "role": "Teacher-facing counter-example only. Not evidence that a 300 m radius prevents misalignment, and not evidence about gorlroot."
+      }
     ]
   },
   "sourceStatus": {

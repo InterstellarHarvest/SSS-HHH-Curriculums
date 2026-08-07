@@ -1,0 +1,157 @@
+name: SSS Final Remediation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'sss/campaign-1/**'
+      - 'sss/campaign-2/**'
+      - 'shared/remediation/**'
+      - 'shared/validation/validate_final_quality_contract*.py'
+      - 'shared/validation/validate_final_accessibility_contract*.py'
+      - 'shared/validation/validate_sss_final_corrective_candidates.py'
+      - 'shared/validation/validate_canonical_case_structure_corrective.py'
+      - 'shared/validation/run_curriculum_browser_harness.py'
+      - 'shared/remediation/repair_misplaced_page_frame_blocks.py'
+      - 'shared/remediation/reflow_teacher_editions.py'
+      - 'shared/remediation/normalize_load_announcements.py'
+      - 'apps/curriculum-editor/tests/validate_static.py'
+      - 'apps/curriculum-editor/tests/browser-harness.html'
+      - 'apps/curriculum-editor/tests/pdf-harness.html'
+      - 'apps/curriculum-editor/tests/run_pdf_tests.py'
+      - 'apps/curriculum-editor/tests/test_corrective_release_lifecycle.py'
+      - 'shared/implementation/case-registry.v2.json'
+      - 'shared/implementation/SSS_HHH_*_CONTRACT_v1.0.md'
+      - '.github/workflows/sss-final-remediation.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sss-final-remediation-${{ github.event_name }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  remediate:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify protected branch scope
+        shell: bash
+        run: test "${GITHUB_REF_NAME}" = "remediate/sss-final-system"
+      - uses: actions/checkout@v4
+        with:
+          ref: remediate/sss-final-system
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check beautifulsoup4
+      - name: Apply deterministic source remediations
+        run: python shared/remediation/apply_sss_final_remediation_v5.py --apply
+      - name: Move inserted printable blocks back inside their content area
+        run: python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
+      - name: Reflow Teacher editions toward the common seven-page architecture
+        run: python shared/remediation/reflow_teacher_editions.py --apply
+      - name: Keep load announcements lifecycle-neutral
+        run: python shared/remediation/normalize_load_announcements.py --apply
+      - name: Reconcile browser harness with corrective candidates
+        run: python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
+      - name: Classify final response controls in layout contracts
+        run: python shared/remediation/classify_sss_final_response_controls.py
+      - name: Transition remediated packages to corrective DRAFT candidates
+        run: python shared/remediation/transition_sss_final_corrective_candidates.py
+      - run: git diff --check
+      - name: Record corrective-candidate source and layout transition
+        shell: bash
+        run: |
+          if git diff --quiet; then exit 0; fi
+          git config user.name "sss-remediation-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sss/campaign-1 sss/campaign-2 shared/implementation/case-registry.v2.json apps/curriculum-editor/tests/browser-harness.html
+          git commit -m "[auto-remediation] Reconcile final SSS candidate contracts"
+          git push origin HEAD:remediate/sss-final-system
+      - name: Candidate diagnostics
+        continue-on-error: true
+        run: |
+          python shared/validation/validate_final_quality_contract_v3.py
+          python shared/validation/validate_final_accessibility_contract_v2.py
+          python shared/validation/validate_sss_final_corrective_candidates.py
+
+  validate-pr:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check beautifulsoup4 jsonschema
+      - name: Verify source, layout, lifecycle, and browser remediation are idempotent
+        run: |
+          python shared/remediation/apply_sss_final_remediation_v5.py --apply
+          python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
+          python shared/remediation/reflow_teacher_editions.py --apply
+          python shared/remediation/normalize_load_announcements.py --apply
+          python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
+          python shared/remediation/classify_sss_final_response_controls.py
+          python shared/remediation/transition_sss_final_corrective_candidates.py
+          git diff --check
+          git diff --exit-code
+      - name: Final cross-edition quality contract
+        run: python shared/validation/validate_final_quality_contract_v3.py
+      - name: Final audit-specific accessibility contract
+        run: python shared/validation/validate_final_accessibility_contract_v2.py
+      - name: Corrective-release lifecycle unit tests
+        run: python apps/curriculum-editor/tests/test_corrective_release_lifecycle.py
+      - name: Final corrective-candidate lifecycle contract
+        run: python shared/validation/validate_sss_final_corrective_candidates.py
+      - name: Generic release-integrity validator
+        run: python shared/validation/validate_release_integrity.py
+      - name: Corrective-aware canonical package and layout validators
+        run: |
+          python shared/validation/validate_canonical_case_structure_corrective.py
+          python shared/validation/validate_layout_overrides.py
+      - name: Legacy static suite diagnostic
+        continue-on-error: true
+        timeout-minutes: 15
+        run: python apps/curriculum-editor/tests/validate_static.py
+
+  browser-pr:
+    if: github.event_name == 'pull_request'
+    needs: validate-pr
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Playwright
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+      - name: Existing curriculum-editor browser harness
+        timeout-minutes: 8
+        run: python shared/validation/run_curriculum_browser_harness.py
+
+  # PDF/PRINT VALIDATION: OWNER-MANUAL-VALIDATION.
+  #
+  # Removed from automated final-remediation scope by owner decision on 2026-08-07.
+  # Nate tests PDF export and physical printing manually. The canonical PDF regression
+  # (apps/curriculum-editor/tests/run_pdf_tests.py) and the PDF harness are retained in
+  # the repository and can still be run on demand; they are simply no longer a gate on
+  # this pull request, and a PDF-specific failure is not a remediation blocker.
+  #
+  # Curriculum must not be altered to satisfy a PDF-specific automated test.

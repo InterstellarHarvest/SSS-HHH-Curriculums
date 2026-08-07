@@ -4,10 +4,9 @@ window.SSS_CASE07_TASK_REGISTRY = {
   "runtimeId": "alien2",
   "traceabilityAlias": "Case6b",
   "title": "The Gift",
-  "version": "1.0",
-  "status": "APPROVED_STABLE",
-  "ownerReviewStatus": "OWNER_REVIEW_PASS",
-  "mergeStatus": "READY_TO_MERGE",
+  "version": "1.1",
+  "status": "DRAFT",
+  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
   "editorShell": "1.0",
   "gameCommit": "a813c209dfde00634103f74d6673e7d4433e0e63",
   "auditCommit": "76a908400eb53c1c81fe91ce52337f414ae2c591",
@@ -26,11 +25,25 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Frame the Missing-Variable Problem",
       "description": "Form a testable hypothesis while distinguishing matched primary targets from an unmeasured living context.",
       "instructionalPurpose": "Mission launch, initial hypothesis, prior known conditions, and explicit Case 06 connection.",
-      "provenance": ["C07 reachable", "C06 labeled", "Fictional inference"],
+      "provenance": [
+        "C07 reachable",
+        "C06 labeled",
+        "Fictional inference"
+      ],
       "responseType": "two short constructed responses",
       "answerScope": "A provisional missing-variable hypothesis and one discriminating measurement; no diagnosis is required yet.",
-      "pagePlacement": {"student": "student-mission-01", "teacher": "teacher-guide-03", "answer": "answer-key-01", "accessible": "accessible-mission-01"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-01",
+        "teacher": "teacher-guide-03",
+        "answer": "answer-key-01",
+        "accessible": "accessible-mission-01"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -41,11 +54,24 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Connect the Four Evidence Channels",
       "description": "State what each essential clue establishes and what it cannot establish alone.",
       "instructionalPurpose": "Four essential clues, eight reveal routes, matched-versus-missing comparison, and provenance control.",
-      "provenance": ["C07 reachable", "Curriculum-created model"],
+      "provenance": [
+        "C07 reachable",
+        "Curriculum-created model"
+      ],
       "responseType": "four source-contribution responses plus one comparison explanation",
       "answerScope": "Liaison, Biomonitors, Specimen, and Archives must converge; 12 versus 847+ establishes a broad trace-context difference, not cue identity or percentage coverage because the identifier sets differ.",
-      "pagePlacement": {"student": "student-mission-02", "teacher": "teacher-guide-03", "answer": "answer-key-02", "accessible": "accessible-mission-02"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-02",
+        "teacher": "teacher-guide-03",
+        "answer": "answer-key-02",
+        "accessible": "accessible-mission-02"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -56,11 +82,24 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Distinguish Dormancy from Death",
       "description": "Use integrity, primed chambers, and selective receptor response to evaluate the pod's state.",
       "instructionalPurpose": "Viability-versus-death reasoning and the boundary that viability alone does not identify a trigger.",
-      "provenance": ["C07 reachable", "Curriculum background"],
+      "provenance": [
+        "C07 reachable",
+        "Curriculum background"
+      ],
       "responseType": "evidence table and qualified explanation",
       "answerScope": "Dormancy is better supported than death; receptor response supports a gated mechanism but does not identify ligand, dose, structure, or safety.",
-      "pagePlacement": {"student": "student-mission-03", "teacher": "teacher-guide-05", "answer": "answer-key-03", "accessible": "accessible-mission-03"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-03",
+        "teacher": "teacher-guide-05",
+        "answer": "answer-key-03",
+        "accessible": "accessible-mission-03"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -71,11 +110,26 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Model the Trigger-to-Response System",
       "description": "Connect a mature biological source, transported cue, selective receptor, and germination response.",
       "instructionalPurpose": "Receptor-response reasoning, mature-network source, causal model, broken laboratory link, and predicted pathway.",
-      "provenance": ["C07 reachable", "C06 labeled", "Fictional inference", "Curriculum-created model"],
+      "provenance": [
+        "C07 reachable",
+        "C06 labeled",
+        "Fictional inference",
+        "Curriculum-created model"
+      ],
       "responseType": "six-stage phrase-bank organizer plus first-broken-link explanation",
       "answerScope": "Mature network to incidental cue/carrier to controlled path to receptors to commitment/chamber opening to young symbiosis; isolated lab breaks the source/path link.",
-      "pagePlacement": {"student": "student-mission-03", "teacher": "teacher-guide-04", "answer": "answer-key-03", "accessible": "accessible-mission-04"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-03",
+        "teacher": "teacher-guide-04",
+        "answer": "answer-key-03",
+        "accessible": "accessible-mission-04"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -86,11 +140,24 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Compare and Reject Competing Diagnoses",
       "description": "Test the cue diagnosis and three plausible distractors against all four evidence channels.",
       "instructionalPurpose": "Correct diagnosis and evidence-based rejection of light, damage/death, and human-microbe distractors.",
-      "provenance": ["C07 reachable", "Fictional inference"],
+      "provenance": [
+        "C07 reachable",
+        "Fictional inference"
+      ],
       "responseType": "four-row comparison and convergence statement",
       "answerScope": "The viable pod is dormant because the lab lacks the short-lived cue produced by the mature Zhel'ii network; every distractor must be rejected with supplied evidence.",
-      "pagePlacement": {"student": "student-mission-04", "teacher": "teacher-guide-05", "answer": "answer-key-04", "accessible": "accessible-mission-05"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-04",
+        "teacher": "teacher-guide-05",
+        "answer": "answer-key-04",
+        "accessible": "accessible-mission-05"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -101,11 +168,25 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Explain the Missing Trigger with CER",
       "description": "Make a diagnosis claim, cite more than one source, and explain the complete causal chain.",
       "instructionalPurpose": "Canonical Claim-Evidence-Reasoning assessment immediately following the diagnosis comparison.",
-      "provenance": ["C07 reachable", "C06 labeled", "Curriculum-created model"],
+      "provenance": [
+        "C07 reachable",
+        "C06 labeled",
+        "Curriculum-created model"
+      ],
       "responseType": "canonical CER",
       "answerScope": "A full exemplar must join matched targets, viable dormancy, trace gap, receptors, and mature source while preserving uncertainty.",
-      "pagePlacement": {"student": "student-mission-04", "teacher": "teacher-guide-06", "answer": "answer-key-04", "accessible": "accessible-mission-06"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-04",
+        "teacher": "teacher-guide-06",
+        "answer": "answer-key-04",
+        "accessible": "accessible-mission-06"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -116,11 +197,25 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Choose and Monitor a Safe Intervention",
       "description": "Compare three routes with common criteria and constraints, then predict observable response.",
       "instructionalPurpose": "Intervention comparison, safe decision, stopping rule, consent, monitoring, uncertainty, and predicted response.",
-      "provenance": ["C07 reachable", "Fictional inference", "Curriculum-created model"],
+      "provenance": [
+        "C07 reachable",
+        "Fictional inference",
+        "Curriculum-created model"
+      ],
       "responseType": "three-option decision matrix, evidence-based selection, monitoring and stopping plan, and challengeable prediction",
       "answerScope": "Sealed plume is best supported; extraction is defensible with added controls; synthesis is least certain. No numerical safe dose may be invented.",
-      "pagePlacement": {"student": "student-mission-05", "teacher": "teacher-guide-06", "answer": "answer-key-05", "accessible": "accessible-mission-07"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-05",
+        "teacher": "teacher-guide-06",
+        "answer": "answer-key-05",
+        "accessible": "accessible-mission-07"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     },
     {
@@ -131,41 +226,117 @@ window.SSS_CASE07_TASK_REGISTRY = {
       "title": "Synthesize Campaign 1 and Exit Independently",
       "description": "Compare the investigation with an earlier case and independently explain why viability evidence is necessary but insufficient.",
       "instructionalPurpose": "Campaign 1 case comparison, systems reasoning, and independent exit ticket.",
-      "provenance": ["C07 reachable", "C06 labeled", "Curriculum-created model"],
+      "provenance": [
+        "C07 reachable",
+        "C06 labeled",
+        "Curriculum-created model"
+      ],
       "responseType": "case comparison with systems reasoning and an independent constructed response",
       "answerScope": "Students identify a shift from checking a single condition to testing interacting system parts, then distinguish evidence of waiting from evidence identifying the trigger.",
-      "pagePlacement": {"student": "student-mission-06", "teacher": "teacher-guide-07", "answer": "answer-key-06", "accessible": "accessible-mission-08"},
-      "editions": ["student", "teacher", "answer", "accessible"],
+      "pagePlacement": {
+        "student": "student-mission-06",
+        "teacher": "teacher-guide-07",
+        "answer": "answer-key-06",
+        "accessible": "accessible-mission-08"
+      },
+      "editions": [
+        "student",
+        "teacher",
+        "answer",
+        "accessible"
+      ],
       "keyed": true
     }
   ],
-  "vocabulary": ["Chemical cue", "Dormancy", "Germination", "Ligand", "Receptor", "Symbiosis", "Trace identifier", "Viable"],
-  "formalClues": ["PROXIMITY_REQUIRED", "MISSING_VOCS", "WAITING_FOR_TRIGGER", "GERMINATION_COMPOUND"],
+  "vocabulary": [
+    "Chemical cue",
+    "Dormancy",
+    "Germination",
+    "Ligand",
+    "Receptor",
+    "Symbiosis",
+    "Trace identifier",
+    "Viable"
+  ],
+  "formalClues": [
+    "PROXIMITY_REQUIRED",
+    "MISSING_VOCS",
+    "WAITING_FOR_TRIGGER",
+    "GERMINATION_COMPOUND"
+  ],
   "requiredRoutes": [
-    "crew.proximity_detail", "crew.isolated_germination",
-    "sensors.atmosphere", "sensors.comparison",
-    "plants.receptors", "plants.what_signal",
-    "logs.germination", "logs.signal_chemistry"
+    "crew.proximity_detail",
+    "crew.isolated_germination",
+    "sensors.atmosphere",
+    "sensors.comparison",
+    "plants.receptors",
+    "plants.what_signal",
+    "logs.germination",
+    "logs.signal_chemistry"
   ],
   "correctDiagnosis": "the viable pod is dormant because the isolated lab lacks the short-lived germination cue produced by the mature Zhel'ii biological network",
-  "incorrectAlternatives": ["artificial light lacks a critical wavelength", "transfer damaged or killed the pod", "human microbes inhibit germination"],
+  "incorrectAlternatives": [
+    "artificial light lacks a critical wavelength",
+    "transfer damaged or killed the pod",
+    "human microbes inhibit germination"
+  ],
   "conditionLedger": {
     "similarityIndex": "99.7% composite of primary measured targets; weighting formula not supplied; trace compounds excluded",
-    "temperature": {"livingAreaC": 18.4, "labC": 18.2, "differenceC": 0.2},
-    "humidity": {"livingAreaPercent": 71, "labPercent": 72, "differencePercentagePoints": -1},
-    "traceIdentifiers": {"lab": 12, "livingAreaMinimum": 847, "setsMatch": false, "ratioIsCoverage": false},
+    "temperature": {
+      "livingAreaC": 18.4,
+      "labC": 18.2,
+      "differenceC": 0.2
+    },
+    "humidity": {
+      "livingAreaPercent": 71,
+      "labPercent": 72,
+      "differencePercentagePoints": -1
+    },
+    "traceIdentifiers": {
+      "lab": 12,
+      "livingAreaMinimum": 847,
+      "setsMatch": false,
+      "ratioIsCoverage": false
+    },
     "formula": "C47H63N5O8S2",
     "formulaMassDa": 890.17,
-    "range": {"aboveThresholdThroughM": 3, "currentSeparationM": 40, "currentPath": "closed corridors", "supportedTransferLine": "sealed and shorter than 3 m"},
+    "range": {
+      "aboveThresholdThroughM": 3,
+      "currentSeparationM": 40,
+      "currentPath": "closed corridors",
+      "supportedTransferLine": "sealed and shorter than 3 m"
+    },
     "cycleEarthHours": 6,
-    "firstResponseHours": [12, 18, 24],
-    "stabilizationHours": [24, 36],
+    "firstResponseHours": [
+      12,
+      18,
+      24
+    ],
+    "stabilizationHours": [
+      24,
+      36
+    ],
     "safeNumericalDose": null
   },
   "interventions": [
-    {"id": "proximity", "label": "Sealed natural-plume transfer", "score": 10, "rank": "best-supported immediate route"},
-    {"id": "extract", "label": "Verified authentic extraction", "score": 5, "rank": "defensible with additional controls"},
-    {"id": "synthesize", "label": "Validated synthetic candidate", "score": 0, "rank": "most uncertain immediate route"}
+    {
+      "id": "proximity",
+      "label": "Sealed natural-plume transfer",
+      "score": 10,
+      "rank": "best-supported immediate route"
+    },
+    {
+      "id": "extract",
+      "label": "Verified authentic extraction",
+      "score": 5,
+      "rank": "defensible with additional controls"
+    },
+    {
+      "id": "synthesize",
+      "label": "Validated synthetic candidate",
+      "score": 0,
+      "rank": "most uncertain immediate route"
+    }
   ],
   "sourceStatus": {
     "runtimeEvidence": "fictional in-game measurement and narrative evidence at the frozen game commit",
@@ -192,5 +363,7 @@ window.SSS_CASE07_TASK_REGISTRY = {
     "an intervention score is a science result or student grade",
     "the narrated outcome is a replicated trial",
     "Campaign 1 or Campaign 2 curriculum is complete"
-  ]
+  ],
+  "correctiveOf": "1.0",
+  "printStatus": "NOT_RUN"
 };

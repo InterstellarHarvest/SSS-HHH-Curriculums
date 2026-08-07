@@ -4,82 +4,406 @@
   "edition": "accessible",
   "stepPx": 4,
   "areas": [
-    { "id": "SSS-C1-CASE05:accessible:t1:a1-problem", "persistId": "a1-problem", "pageId": "accessible-mission-01", "taskId": 1, "label": "Problem description", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t1:a1-information", "persistId": "a1-information", "pageId": "accessible-mission-01", "taskId": 1, "label": "Needed information", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t2:a2-why", "persistId": "a2-why", "pageId": "accessible-mission-02", "taskId": 2, "label": "Evidence interpretation", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t3:a3-crew", "persistId": "a3-crew", "pageId": "accessible-mission-03", "taskId": 3, "label": "Crew clue route", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t3:a3-sensors", "persistId": "a3-sensors", "pageId": "accessible-mission-03", "taskId": 3, "label": "Sensor clue route", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t3:a3-plants", "persistId": "a3-plants", "pageId": "accessible-mission-03", "taskId": 3, "label": "Plant clue route", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t3:a3-logs", "persistId": "a3-logs", "pageId": "accessible-mission-03", "taskId": 3, "label": "Log clue route", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t4:a4-gravity", "persistId": "a4-gravity", "pageId": "accessible-mission-04", "taskId": 4, "label": "Gravity diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t4:a4-minerals", "persistId": "a4-minerals", "pageId": "accessible-mission-04", "taskId": 4, "label": "Mineral diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t4:a4-light", "persistId": "a4-light", "pageId": "accessible-mission-04", "taskId": 4, "label": "Light diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t4:a4-radiation", "persistId": "a4-radiation", "pageId": "accessible-mission-04", "taskId": 4, "label": "Radiation diagnosis", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t4:a4-convergence", "persistId": "a4-convergence", "pageId": "accessible-mission-04", "taskId": 4, "label": "Evidence convergence", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t8:a8-immediate", "persistId": "a8-immediate", "pageId": "accessible-mission-07", "taskId": 8, "label": "Immediate action", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t8:a8-durable", "persistId": "a8-durable", "pageId": "accessible-mission-07", "taskId": 8, "label": "Durable action", "minPx": 32, "maxPx": 900 },
-    { "id": "SSS-C1-CASE05:accessible:t8:a8-test", "persistId": "a8-test", "pageId": "accessible-mission-07", "taskId": 8, "label": "Test or monitor", "minPx": 32, "maxPx": 900 }
+    {
+      "id": "SSS-C1-CASE05:accessible:t1:a1-problem",
+      "persistId": "a1-problem",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Problem description",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t1:a1-information",
+      "persistId": "a1-information",
+      "pageId": "accessible-mission-01",
+      "taskId": 1,
+      "label": "Needed information",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t2:a2-why",
+      "persistId": "a2-why",
+      "pageId": "accessible-mission-02",
+      "taskId": 2,
+      "label": "Evidence interpretation",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t3:a3-crew",
+      "persistId": "a3-crew",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Crew clue route",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t3:a3-sensors",
+      "persistId": "a3-sensors",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Sensor clue route",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t3:a3-plants",
+      "persistId": "a3-plants",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Plant clue route",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t3:a3-logs",
+      "persistId": "a3-logs",
+      "pageId": "accessible-mission-03",
+      "taskId": 3,
+      "label": "Log clue route",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t4:a4-gravity",
+      "persistId": "a4-gravity",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Gravity diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t4:a4-minerals",
+      "persistId": "a4-minerals",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Mineral diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t4:a4-light",
+      "persistId": "a4-light",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Light diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t4:a4-radiation",
+      "persistId": "a4-radiation",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Radiation diagnosis",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t4:a4-convergence",
+      "persistId": "a4-convergence",
+      "pageId": "accessible-mission-04",
+      "taskId": 4,
+      "label": "Evidence convergence",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t8:a8-immediate",
+      "persistId": "a8-immediate",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Immediate action",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t8:a8-durable",
+      "persistId": "a8-durable",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Durable action",
+      "minPx": 32,
+      "maxPx": 900
+    },
+    {
+      "id": "SSS-C1-CASE05:accessible:t8:a8-test",
+      "persistId": "a8-test",
+      "pageId": "accessible-mission-07",
+      "taskId": 8,
+      "label": "Test or monitor",
+      "minPx": 32,
+      "maxPx": 900
+    }
   ],
   "lockedAreas": [
-    { "persistId": "a-name", "reason": "identity" },
-    { "persistId": "a-date", "reason": "identity" },
-    { "persistId": "a-class", "reason": "identity" },
-    { "persistId": "a2-1", "reason": "classification" },
-    { "persistId": "a2-2", "reason": "classification" },
-    { "persistId": "a2-3", "reason": "classification" },
-    { "persistId": "a5-2", "reason": "fixed-organizer" },
-    { "persistId": "a5-3", "reason": "fixed-organizer" },
-    { "persistId": "a5-4", "reason": "fixed-organizer" },
-    { "persistId": "a5-5", "reason": "fixed-organizer" },
-    { "persistId": "a5-6", "reason": "fixed-organizer" },
-    { "persistId": "a5-7", "reason": "fixed-organizer" },
-    { "persistId": "a6c", "reason": "cer" },
-    { "persistId": "a6e", "reason": "cer" },
-    { "persistId": "a6r", "reason": "cer" },
-    { "persistId": "a7-need", "reason": "compact-answer" },
-    { "persistId": "a7-criteria", "reason": "criterion" },
-    { "persistId": "a7-constraints", "reason": "constraint" },
-    { "persistId": "a7-verify", "reason": "compact-answer" }
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a2-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a2-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a2-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a5-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-5",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-6",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-7",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6c",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6e",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a6r",
+      "reason": "cer"
+    },
+    {
+      "persistId": "a7-need",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a7-criteria",
+      "reason": "criterion"
+    },
+    {
+      "persistId": "a7-constraints",
+      "reason": "constraint"
+    },
+    {
+      "persistId": "a7-verify",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a4-best",
+      "reason": "classification"
+    }
   ],
   "overrides": {},
   "student": {
     "edition": "student",
     "areas": [
-      { "id": "SSS-C1-CASE05:student:t1:t1-problem", "persistId": "t1-problem", "pageId": "student-mission-01", "taskId": 1, "label": "Crop-system problem", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t1:t1-information", "persistId": "t1-information", "pageId": "student-mission-01", "taskId": 1, "label": "Needed engineering information", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t2:t2-why", "persistId": "t2-why", "pageId": "student-mission-01", "taskId": 2, "label": "Observation-versus-interpretation explanation", "minPx": 28, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t7:t7-need", "persistId": "t7-need", "pageId": "student-mission-04", "taskId": 7, "label": "Engineering problem statement", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t7:t7-verify", "persistId": "t7-verify", "pageId": "student-mission-04", "taskId": 7, "label": "Success-verification evidence", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t8:t8-immediate", "persistId": "t8-immediate", "pageId": "student-mission-04", "taskId": 8, "label": "Immediate operational response", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t8:t8-durable", "persistId": "t8-durable", "pageId": "student-mission-04", "taskId": 8, "label": "Durable engineering response", "minPx": 32, "maxPx": 900 },
-      { "id": "SSS-C1-CASE05:student:t8:t8-justify", "persistId": "t8-justify", "pageId": "student-mission-04", "taskId": 8, "label": "Evidence-based verification plan", "minPx": 64, "maxPx": 900 }
+      {
+        "id": "SSS-C1-CASE05:student:t1:t1-problem",
+        "persistId": "t1-problem",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Crop-system problem",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t1:t1-information",
+        "persistId": "t1-information",
+        "pageId": "student-mission-01",
+        "taskId": 1,
+        "label": "Needed engineering information",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t2:t2-why",
+        "persistId": "t2-why",
+        "pageId": "student-mission-01",
+        "taskId": 2,
+        "label": "Observation-versus-interpretation explanation",
+        "minPx": 28,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t7:t7-need",
+        "persistId": "t7-need",
+        "pageId": "student-mission-04",
+        "taskId": 7,
+        "label": "Engineering problem statement",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t7:t7-verify",
+        "persistId": "t7-verify",
+        "pageId": "student-mission-04",
+        "taskId": 7,
+        "label": "Success-verification evidence",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t8:t8-immediate",
+        "persistId": "t8-immediate",
+        "pageId": "student-mission-04",
+        "taskId": 8,
+        "label": "Immediate operational response",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t8:t8-durable",
+        "persistId": "t8-durable",
+        "pageId": "student-mission-04",
+        "taskId": 8,
+        "label": "Durable engineering response",
+        "minPx": 32,
+        "maxPx": 900
+      },
+      {
+        "id": "SSS-C1-CASE05:student:t8:t8-justify",
+        "persistId": "t8-justify",
+        "pageId": "student-mission-04",
+        "taskId": 8,
+        "label": "Evidence-based verification plan",
+        "minPx": 64,
+        "maxPx": 900
+      }
     ],
     "lockedAreas": [
-      { "persistId": "student-name", "reason": "identity" },
-      { "persistId": "student-date", "reason": "identity" },
-      { "persistId": "student-class", "reason": "identity" },
-      { "persistId": "t2-1", "reason": "classification" },
-      { "persistId": "t2-2", "reason": "classification" },
-      { "persistId": "t2-3", "reason": "classification" },
-      { "persistId": "t3-crew", "reason": "table-cell" },
-      { "persistId": "t3-sensors", "reason": "table-cell" },
-      { "persistId": "t3-plants", "reason": "table-cell" },
-      { "persistId": "t3-logs", "reason": "table-cell" },
-      { "persistId": "t4-gravity", "reason": "table-cell" },
-      { "persistId": "t4-minerals", "reason": "table-cell" },
-      { "persistId": "t4-light", "reason": "table-cell" },
-      { "persistId": "t4-radiation", "reason": "table-cell" },
-      { "persistId": "t5-2", "reason": "fixed-organizer" },
-      { "persistId": "t5-3", "reason": "fixed-organizer" },
-      { "persistId": "t5-4", "reason": "fixed-organizer" },
-      { "persistId": "t5-5", "reason": "fixed-organizer" },
-      { "persistId": "t5-6", "reason": "fixed-organizer" },
-      { "persistId": "t5-7", "reason": "fixed-organizer" },
-      { "persistId": "t6c", "reason": "cer" },
-      { "persistId": "t6e", "reason": "cer" },
-      { "persistId": "t6r", "reason": "cer" },
-      { "persistId": "t7-criteria", "reason": "criterion" },
-      { "persistId": "t7-constraints", "reason": "constraint" }
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t2-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t2-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t2-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t3-crew",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-sensors",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-plants",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-logs",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-gravity",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-minerals",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-light",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-radiation",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-5",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-6",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-7",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6c",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6e",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t6r",
+        "reason": "cer"
+      },
+      {
+        "persistId": "t7-criteria",
+        "reason": "criterion"
+      },
+      {
+        "persistId": "t7-constraints",
+        "reason": "constraint"
+      },
+      {
+        "persistId": "t4-best",
+        "reason": "classification"
+      }
     ],
     "overrides": {}
   }
