@@ -61,9 +61,11 @@ Hidden roles leave the accessibility tree. Response fields retain accessible nam
 
 ## Validation model
 
-- `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs.
+- `shared/validation/validate_canonical_case_structure.py` enforces the lean case layout, referenced assets, four-role model, and absence of stored outputs, for every registered case in every campaign.
+- `shared/validation/validate_release_integrity.py` proves that every approved release's `canonicalSourceApprovalCommit` contains the exact source blobs its record certifies, and that a corrective release's retained prior records are unmodified since the commit that wrote them.
 - `apps/curriculum-editor/tests/validate_static.py` validates both schemas, package/source hashes, page counts, task/CER/process/figure/table contracts, protected-selector isolation, release history, and runtime serialization rules.
-- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all 40 case/role/presentation states plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
+- `apps/curriculum-editor/tests/run_pdf_tests.py` generates the registry-derived case-edition print documents and validates them. It is a real regression suite and part of the canonical validation workflow; like the browser suite it is run manually because it requires installed Google Chrome.
+- `apps/curriculum-editor/tests/run_browser_tests.py` runs the browser harness against all registry-derived case/role/presentation states -- 104 across the thirteen registered cases -- plus protected-component geometry, switching, persistence, exports, printing, keyboard access, announcements, and zero JavaScript errors.
 - `shared/validation/validate_layout_overrides.py` validates complete eligible-or-locked coverage, all locators, Student/Accessible page/task ownership, Student compact-table exclusion, CER and protected compact-field exclusion, snap/bounds, sparse overrides, and package hashes.
 - `apps/curriculum-editor/tests/test_authoring_service.py` uses disposable repositories for Student and Accessible round-trip persistence, exact two-file writes, package-hash synchronization, source conflicts, path/edition/role/ID/locked/CER/bounds rejection, and validation rollback.
 

@@ -348,7 +348,7 @@ def main() -> int:
     results.check("printable production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", {"status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"}.issubset(forbidden_probe_categories), sorted(forbidden_probe_categories))
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
     entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
-    results.check("registry discovers exactly the approved Campaign 1 cases plus the unreleased Campaign 2 case in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    results.check("registry discovers exactly the approved Campaign 1 and Campaign 2 cases in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
     results.check("every approved case retains a frozen non-Accessible DOM baseline", {entry["id"] for entry in entries if entry["status"] == "APPROVED_STABLE"} <= set(NON_ACCESSIBLE_BASELINE_HASHES))
     base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
     results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
@@ -837,6 +837,8 @@ def main() -> int:
 
     structure = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_canonical_case_structure.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("canonical case-structure validator passes", structure.returncode == 0, (structure.stdout + structure.stderr).strip())
+    release_integrity = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_release_integrity.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("every approved release certifies source its pinned commit actually contains", release_integrity.returncode == 0, (release_integrity.stdout + release_integrity.stderr).strip())
     layout_validation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_layout_overrides.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("Student/Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
     case06_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case06_campaign2.py")], cwd=ROOT, text=True, capture_output=True)

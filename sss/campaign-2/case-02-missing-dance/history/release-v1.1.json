@@ -7,7 +7,7 @@
   "approvalDate": "2026-08-06",
   "owner": "Nate / Owner",
   "originalReleaseApprovalCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
-  "canonicalSourceApprovalCommit": "a3b7881932d93afb4c13cc72ba4b4e77786fd245",
+  "canonicalSourceApprovalCommit": "43858eaad10bd5e5645624d46e851cf6f56dd57d",
   "correctiveReviewCommits": [
     {
       "commit": "d7fd4fa5efcbb279d79966240f1d2b2a474d29cb",
@@ -32,6 +32,10 @@
     {
       "commit": "a3b7881932d93afb4c13cc72ba4b4e77786fd245",
       "role": "Final owner-review correction widening the Task 1 response column so the OK or ? heading sets on one line."
+    },
+    {
+      "commit": "43858eaad10bd5e5645624d46e851cf6f56dd57d",
+      "role": "The release commit: lifecycle promotion to APPROVED_STABLE, the v1.1 release and owner-approval records, and the frozen v1.1 DOM baselines. The task registry the record certifies exists only from here onward, which is why the pin names this commit and not the last candidate commit before it."
     }
   ],
   "sourceHashes": {
@@ -79,7 +83,7 @@
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
   },
-  "formerArtifactRecoveryCommit": "a3b7881932d93afb4c13cc72ba4b4e77786fd245",
+  "formerArtifactRecoveryCommit": "43858eaad10bd5e5645624d46e851cf6f56dd57d",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [
     {

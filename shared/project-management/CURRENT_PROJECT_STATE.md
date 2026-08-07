@@ -1,9 +1,9 @@
 # SSS/HHH Current Project State
 
 Project state content verified from curriculum repository baseline
-`f08066c15c161c5961cc88adad86282329cd7609`
+`81eef7067268865fec368f50db2d363e0354ae1a`
 
-Last updated: 2026-08-04
+Last updated: 2026-08-06
 
 ## Purpose and authority
 
@@ -23,7 +23,7 @@ Related game repositories:
 - <https://github.com/InterstellarHarvest/Hunger-Harvest-History>
 
 Verified project-state baseline:
-`f08066c15c161c5961cc88adad86282329cd7609`
+`81eef7067268865fec368f50db2d363e0354ae1a`
 
 The live main branch may be newer because this handoff is itself committed after the baseline it documents. Always fetch the repository and resolve the current main SHA before beginning work.
 
@@ -44,13 +44,33 @@ Frozen Campaign 2 game-source baseline: `46b9387bca95736f164f905596e3dd8b1396866
 | SSS | 1 | 05 | Sub Surface Bunker | 1.0 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
 | SSS | 1 | 06 | First Contact Protocol | 1.0 | 5 | 8 | 5 | 7 | APPROVED_STABLE |
 | SSS | 1 | 07 | The Gift | 1.0 | 6 | 8 | 6 | 8 | APPROVED_STABLE |
-| SSS | 2 | 03 | The Wrong Color of Light | 1.0 | 5 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 01 | Heavy Hands | 1.1 | 5 | 9 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 02 | The Missing Dance | 1.1 | 6 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 03 | The Wrong Color of Light | 1.1 | 5 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 04 | The Silent Grove | 1.1 | 6 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 05 | Too Clean a Room | 1.1 | 7 | 9 | 5 | 7 | APPROVED_STABLE |
+| SSS | 2 | 06 | The First Garden | 1.1 | 6 | 8 | 5 | 7 | APPROVED_STABLE |
 
 Cases 01–05 are the five released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first released first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the released Campaign 1 culmination. Cases 04–07 were produced natively through the mature canonical workflow. All registered Accessible editions use content-driven page counts and dedicated canonical CER pages; Student, Teacher, and Answer Key page counts remain fixed. The seven-case Campaign 1 curriculum sequence is approved and released.
 
-Campaign 2 curriculum production has begun. Campaign 2 Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), is the first produced Campaign 2 package and is released at v1.0 `APPROVED_STABLE`. It remains Campaign 2 Case 03 and is not renumbered as Campaign 2 Case 01. It was produced against the frozen Campaign 2 game-source baseline `46b9387bca95736f164f905596e3dd8b13968661`. The remaining Campaign 2 cases are unproduced.
+Campaign 2 curriculum production is complete. All six cases are produced, owner-approved, print-approved and released, and were produced against the frozen Campaign 2 game-source baseline `46b9387bca95736f164f905596e3dd8b13968661`. Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), was produced first; it remains Campaign 2 Case 03 and is not renumbered as Campaign 2 Case 01.
 
-Accepted curriculum release commit for Campaign 2 Case 03: `69e75b1b9a574ddd90ab7b6e385c2454f9bd0505`.
+Every Campaign 2 case was reissued as a corrective v1.1 following the Campaign 2 completion audit. Each package retains both its v1.0 and v1.1 release and owner-approval records; the v1.0 records are unmodified and are indexed inside the v1.1 record as prior approved releases.
+
+Accepted curriculum release commits for the current Campaign 2 v1.1 releases:
+
+| Case | Release commit |
+|---:|---|
+| 01 | `8ab60f3ad29d84bdc72e4197503315bba477f750` |
+| 02 | `43858eaad10bd5e5645624d46e851cf6f56dd57d` |
+| 03 | `2d4a62eaf39458755b4ee0751bb8225bd219f105` |
+| 04 | `3fe64b9c9854d7f357fe0f89410f77a1d00c8177` |
+| 05 | `7c69585eff2bb2f40f8d307b45472bcc225260f1` |
+| 06 | `f3e3ed7fefb375a97594be99d9744fff4d8f6f0b` |
+
+The thirteen registered cases are 104 case/role/presentation states.
+
+**Package `location` convention.** Campaign 2 Cases 01–05 record the runtime *investigation* name in `location`; Case 06 records the runtime *location*. Both readings are internally consistent, each case validator encodes its own, and no active contract depends on the distinction. The divergence is documented rather than normalized.
 
 The central editor library is campaign-scoped: the Curriculum selector controls the available campaigns and the Campaign selector controls the Case menu, which lists exactly the cases registered under the selected campaign.
 
@@ -214,7 +234,9 @@ SSS Campaign 1 contains seven released curriculum-sequenced cases. Cases 01–05
 
 Next authorized production target: **None recorded**
 
-Campaign 2 curriculum production has begun with Case 03 released at v1.0. Producing any further Campaign 2 case, or any HHH case, still requires separate owner authorization.
+Campaign 2 is complete and frozen at six released cases. Producing any further SSS case, or any HHH case, requires separate owner authorization.
+
+The outstanding curriculum work of record is the unified SSS Campaign 1 + Campaign 2 post-finalization quality audit. No broad curriculum-quality, Accessible-differentiation, Teacher Edition, Answer Key, standards or visual review has been performed since the Campaign 2 completion audit; the Campaign 2 finalization pass was mechanical maintenance only. Issues it deferred to that audit are listed in `sss/audit/SSS_C2_MAINTENANCE_CLOSURE_v1.0.md`.
 
 ## Update policy
 

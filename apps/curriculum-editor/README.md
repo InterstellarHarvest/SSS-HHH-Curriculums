@@ -1,10 +1,12 @@
 # SSS/HHH Curriculum Editor
 
-The repository-local Curriculum Editor is the canonical interface for the seven released SSS Campaign 1 Cases 01–07. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
+The repository-local Curriculum Editor is the canonical interface for the thirteen released SSS cases: Campaign 1 Cases 01–07 and Campaign 2 Cases 01–06. The editor discovers each case through the v2 registry, loads the native `source/case-package.json`, verifies package-controlled source hashes, and mounts worksheet-only content in an open Shadow DOM.
 
-SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; former source-development label `Case 6b`) and the approved Campaign 1 culmination. Both first-contact cases entered the editor only as complete canonical packages. Campaign 2 curriculum production remains unstarted.
+SSS Campaign 1 contains seven curriculum-sequenced cases. Case 06 is **First Contact Protocol** (runtime `alien1`), and Case 07 is **The Gift** (runtime `alien2`; former source-development label `Case 6b`) and the approved Campaign 1 culmination. Both first-contact cases entered the editor only as complete canonical packages.
 
-Status: all seven registered SSS Campaign 1 cases are `APPROVED_STABLE`.
+SSS Campaign 2 contains six cases, all released at v1.1 as corrective reissues of their approved v1.0 releases. Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), was produced first and keeps its runtime case number.
+
+Status: all thirteen registered SSS cases are `APPROVED_STABLE`. The library is campaign-scoped, so the Case menu lists exactly the cases registered under the selected campaign.
 
 ## Launch
 
@@ -64,6 +66,7 @@ The editor remembers the selected case, edition, existing presentation controls,
 
 ```bash
 python3 shared/validation/validate_canonical_case_structure.py
+python3 shared/validation/validate_release_integrity.py
 python3 shared/validation/validate_layout_overrides.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 apps/curriculum-editor/tests/test_authoring_service.py
