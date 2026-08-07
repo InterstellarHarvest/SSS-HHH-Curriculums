@@ -3,8 +3,10 @@
 
 The v1 transformer performs the substantive source remediations. This wrapper
 normalizes the one legacy insertion whose text guard was not structural, so a
-second remediation pass produces no repository diff. It is intentionally small
-and can be retired once the underlying v1 helper is consolidated.
+second remediation pass produces no repository diff. Normalization is
+content-preserving: it removes only duplicate blocks carrying the same explicit
+remediation marker. The wrapper can be retired once the underlying v1 helper is
+consolidated.
 """
 
 from __future__ import annotations
