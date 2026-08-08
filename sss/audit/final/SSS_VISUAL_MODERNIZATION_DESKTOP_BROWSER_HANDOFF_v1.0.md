@@ -20,13 +20,17 @@ You are validating the isolated `visual/sss-final-modernization` branch of
      --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
    ```
 
-   The current executable browser target is **2302/2302 PASS with 0 JavaScript errors**. The
+   The current executable browser target is **2303/2303 PASS with 0 JavaScript errors**. The
    accepted mechanism-family pilot `a9dfecf` produces 2300/2300. This expansion adds two
    computed-style assertions, one for normal and one for grayscale presentation, covering the
    C1C3 five-stage spectral-loss chain in Student, Teacher, Answer Key and Accessible roles.
    Candidate `7ec465e` was rejected at 2295/2302 solely because C1C3 Student page 3 exceeded its
    content area by 7 px. This successor compacts only the added Student-page mechanism chrome;
    it does not reduce the approved Task 5 response or 2.25 in process-stage writing height.
+   Candidate `7ed27eb` subsequently passed 2302/2302 and reported `Pages fit`, but was held because
+   the target content area still rounded to `scrollHeight 937 > clientHeight 936` and had no usable
+   reserve. The new assertion requires strict integer fit and at least 3 px of geometric bottom
+   reserve on that exact Student page.
    Confirm that the default editor, C1C2 and C1C3 load before reporting case results. Report any
    drop by assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
@@ -69,15 +73,16 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused results: **23/23 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
+Expected focused results: **24/24 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
 run report with the exact branch SHA, commands, totals, and any failing page/state. Do not produce
 or inspect PDFs.
 
 ## Acceptance rule
 
 The C1C3 expansion may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
-2302/2302 with zero JavaScript errors and every listed page has no overflow, clipping or connector/
+2303/2303 with zero JavaScript errors and every listed page has no overflow, clipping or connector/
 status collision in normal and grayscale presentation. The two new assertions must confirm the
 computed five-stage chain, direct labels, border states, response identity/content and horizontal/
 vertical variants. The accepted C1C2 mechanism and telemetry computed-style assertions must remain
-green.
+green. C1C3 Student page 3 must also satisfy strict `scrollHeight <= clientHeight` and retain at
+least 3 px of real geometric bottom reserve.

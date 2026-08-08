@@ -53,8 +53,9 @@ def main() -> int:
         "the accepted pilot and Mars expansion have explicit lifecycle states",
         bool(re.search(r"\| `C1C2-VIS01` .*`VERIFIED-FAMILY-PILOT .*2300/2300 BROWSER PASS", plan))
         and bool(re.search(
-            r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 23/23 FAMILY STATIC PASS "
-            r"· 7ec465e REJECTED 2295/2302 · SUCCESSOR 2302/2302 BROWSER GATE PENDING`",
+            r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 24/24 FAMILY STATIC PASS "
+            r"· 7ec465e REJECTED 2295/2302 · 7ed27eb HELD 2302/2302, 937>936 "
+            r"· SUCCESSOR 2303/2303 BROWSER GATE PENDING`",
             plan,
         )),
     )
@@ -134,9 +135,15 @@ def main() -> int:
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
         '.page[data-role="student"][data-page-id="student-mission-03"]' in mechanism_css
         and '.canonical-process[data-process-layout="horizontal"]' in mechanism_css
-        and "margin-block: 3px" in mechanism_css
+        and "margin-block: 1px" in mechanism_css
         and "padding-top: .2in" in mechanism_css
         and "min-height: 2.25in" not in mechanism_css,
+    )
+    check(
+        "the browser gate requires strict Mars Student page fit with real bottom reserve",
+        harness.count("C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve") == 1
+        and "marsStudentContent.scrollHeight <= marsStudentContent.clientHeight" in harness
+        and "marsStudentReserve >= 3" in harness,
     )
 
     expected_phrases = [

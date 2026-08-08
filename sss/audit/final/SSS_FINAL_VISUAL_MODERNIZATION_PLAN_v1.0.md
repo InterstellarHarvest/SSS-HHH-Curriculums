@@ -46,8 +46,12 @@ browser acceptance target remains 2298/2298. The accepted mechanism pilot `a9dfe
 passed 2300/2300. The first Mars expansion candidate, `7ec465e`, was rejected at 2295/2302 because
 its visual chain enlarged C1C3 Student page 3 by 7 px; all new mechanism assertions passed, but the
 page-fit failure cascaded into seven harness failures. Its successor preserves the approved 2.25 in
-stage-writing height and compacts only the new Student-page status rail and vertical margins. A green
-source-token validator alone cannot promote a visual candidate.
+stage-writing height and compacts only the new Student-page status rail and vertical margins. That
+successor passed 2302/2302 and the application tolerance but was held because its sole target page
+still rounded to `scrollHeight 937 > clientHeight 936`, with only 0.531 px of geometric overflow.
+The next successor removes four more pixels of external figure margin and adds an executable strict-
+fit assertion requiring both integer fit and at least 3 px of real bottom reserve. A green source-token
+validator alone cannot promote a visual candidate.
 
 ## 3. Exact inventory reconciliation
 
@@ -86,12 +90,13 @@ Common validation for every row: focused package validation; no overflow/clippin
 logical DOM order and alt/extended description where applicable; grayscale-independent meaning;
 unchanged response IDs/fill persistence; synchronized keyed exemplar where the learner completes
 the visual; zero JavaScript errors; `git diff --check`. Family completion additionally requires
-the full non-PDF browser regression against the current executable baseline of **2302/2302 PASS
+the full non-PDF browser regression against the current executable baseline of **2303/2303 PASS
 and 0 JavaScript errors**. The accepted correctness commit produces 2293/2293; five telemetry
 assertions verify computed visual delivery, pseudo-content, table patterns/state borders and the
 dense telemetry cascade, two accepted mechanism-pilot assertions verify the horizontal dependency
-rail, Answer Key interruption state and Accessible vertical rail, and two expansion assertions
-verify the C1C3 spectral-loss chain in normal and grayscale.
+rail, Answer Key interruption state and Accessible vertical rail, two expansion assertions verify
+the C1C3 spectral-loss chain in normal and grayscale, and one strict-fit assertion requires real
+bottom reserve on the dense C1C3 Student mechanism page.
 
 ## 5. Grayscale-system work
 
@@ -109,7 +114,7 @@ verify the C1C3 spectral-loss chain in normal and grayscale.
 | `C1C2-VIS01` | Lunar Greenhouse; S T3 p1, A T3 p2, AK T3 p1 | Conventional six-box flow; A uses a separate plain vertical list. | 2 · Causal mechanism/pathway | Reproductive telemetry rail: anther/pollen → physical agitation → stigma → pollen tube → fertilization → fruit, with numbered nodes and failure/interruption status; deterministic HTML/CSS/SVG. | Preserve six exact bank entries and fields; horizontal S/AK and vertical A remain one grammar. | Pores/structures downstream may remain capable; failed Step 2 interrupts rather than destroys them. | P1–P6; exact-bank parity; AK failure-state check | `VERIFIED-FAMILY-PILOT · 14/14 PILOT STATIC PASS · 2300/2300 BROWSER PASS · 0 JS ERRORS` |
 | `C1C3-VIS01` | Mars Habitat; S T2 p1, A T2 p2, T reference p4, AK T2 p1 | Accurate ordinary four-bar transmission graph repeated across roles. | 1 · Technical telemetry/data | Four-channel optical-transmission scan with direct percentages, patterned rails, and low-transmission flags; deterministic SVG. | Preserve current figure height and table backup; synchronize all existing instances. | Four discrete bands only; no continuous spectrum or interpolated values; retain 92%, 88%, 31%, 12%. | P1–P5, D1; numeric DOM assertions and extended description | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C1C3-VIS02` | Mars Habitat; S T3 p2, A T3 p3, AK T3 p1 | Boxed “280 adequate” plus repeated mini bars; comparison is correct but visually ordinary. | 1 · Technical telemetry/data | Dual-channel diagnostic: photon quantity 280 PPFD `ADEQUATE` vs four-rail spectrum `UNEVEN`, with `Quantity ≠ Distribution`; deterministic HTML/SVG. | Same footprint; synchronize S/A and concise AK treatment. | PPFD quantity must not be presented as spectral adequacy; preserve units and exact discrete values. | C1C3-VIS01 rail primitive; numeric/parity checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C1C3-VIS03` | Mars Habitat; S T6 p3, A T6 p5, AK T6 p3 | Generic five-stage rectangles. | 2 · Causal mechanism/pathway | Technical glyph chain: collector → wrong BP-4 filter → selective loss → disrupted new chlorophyll production → pale new growth; deterministic HTML/SVG. | Preserve five-stage exact-match bank, blank stages and vertical A variant. | Do not claim an unsupported universal chlorophyll mechanism; retain case wording and corrected 700 nm boundary. | mechanism primitive; bank/order/persistence checks | `IMPLEMENTED-CANDIDATE · 23/23 FAMILY STATIC PASS · 7ec465e REJECTED 2295/2302 · SUCCESSOR 2302/2302 BROWSER GATE PENDING` |
+| `C1C3-VIS03` | Mars Habitat; S T6 p3, A T6 p5, AK T6 p3 | Generic five-stage rectangles. | 2 · Causal mechanism/pathway | Technical glyph chain: collector → wrong BP-4 filter → selective loss → disrupted new chlorophyll production → pale new growth; deterministic HTML/SVG. | Preserve five-stage exact-match bank, blank stages and vertical A variant. | Do not claim an unsupported universal chlorophyll mechanism; retain case wording and corrected 700 nm boundary. | mechanism primitive; bank/order/persistence checks | `IMPLEMENTED-CANDIDATE · 24/24 FAMILY STATIC PASS · 7ec465e REJECTED 2295/2302 · 7ed27eb HELD 2302/2302, 937>936 · SUCCESSOR 2303/2303 BROWSER GATE PENDING` |
 | `C1C4-VIS01` | Hayes Orbital Station; S T2 p1, A T2 p2, AK T2 p1 | Five numbered blanks connected by plain arrows. | 3 · Timeline/event log | SAA incident log with verified relative-event slots and event-type markers; deterministic HTML/CSS. | Same five writable positions; A stays vertical; AK completes identical log. | Relative timing only; do not invent mission days or proportional spacing. | P1–P5, TL1; exact event-bank/parity checks | `PLANNED` |
 | `C1C4-VIS02` | Hayes Orbital Station; S T5 p3, A T5 p5, AK T5 p3 | Six-stage snake layout; reading direction requires prose. | 2 · Causal mechanism/pathway | Immediate closed fault loop with directional connectors and explicit repeat link. | Preserve six exact stages/fields and A vertical reading order. | Qualitative recurrence; no invented light dose, density or crash interval beyond reported 6–8 days. | loop variant of mechanism primitive; connector/read-order tests | `PLANNED` |
 | `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `PLANNED` |
@@ -242,7 +247,7 @@ Periodic/final system gate:
 - quality contract v3;
 - accessibility contract v2;
 - lifecycle tests and corrective-candidate contract;
-- full browser harness: current executable baseline **2302/2302 PASS, 0 JavaScript errors**;
+- full browser harness: current executable baseline **2303/2303 PASS, 0 JavaScript errors**;
 - `git diff --check`.
 
 Frozen-release assertions remain `RELEASE-BASELINE-PENDING`; they are not re-pinned here.

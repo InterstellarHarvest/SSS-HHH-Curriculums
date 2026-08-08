@@ -1339,6 +1339,22 @@
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);
+          const marsStudentPage = workspace.querySelector('.page[data-role="student"][data-page-id="student-mission-03"]');
+          const marsStudentContent = marsStudentPage?.querySelector(".content-area");
+          const marsStudentReserve = marsStudentContent?.lastElementChild
+            ? marsStudentContent.getBoundingClientRect().bottom - marsStudentContent.lastElementChild.getBoundingClientRect().bottom
+            : -Infinity;
+          check(
+            "C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve",
+            Boolean(marsStudentContent)
+              && marsStudentContent.scrollHeight <= marsStudentContent.clientHeight
+              && marsStudentReserve >= 3,
+            JSON.stringify({
+              scrollHeight: marsStudentContent?.scrollHeight,
+              clientHeight: marsStudentContent?.clientHeight,
+              reserve: rounded(marsStudentReserve)
+            })
+          );
         }
         if (item.id === "SSS-C1-CASE03") {
           for (const grayscale of [false, true]) {
