@@ -47,6 +47,7 @@
   },
   "presentation": {
     "source": "sss/campaign-1/case-01-iss-greenhouse/source/presentation.css",
+    "sharedVisualStyles": true,
     "isolation": "shadow-dom"
   },
   "taskRegistry": {

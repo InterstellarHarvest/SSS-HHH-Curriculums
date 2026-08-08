@@ -17,6 +17,10 @@ HANDOFF = ROOT / "sss/audit/final/SSS_VISUAL_MODERNIZATION_DESKTOP_BROWSER_HANDO
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 EDITOR = ROOT / "apps/curriculum-editor/editor-app.js"
 HARNESS = ROOT / "apps/curriculum-editor/tests/browser-harness.html"
+ISS_SOURCE = ROOT / "sss/campaign-1/case-01-iss-greenhouse/source"
+ISS_PACKAGE = ISS_SOURCE / "case-package.json"
+ISS_CONTENT = ISS_SOURCE / "content.html"
+ISS_PRESENTATION = ISS_SOURCE / "presentation.css"
 SOURCE = ROOT / "sss/campaign-1/case-02-lunar-greenhouse/source"
 PACKAGE = SOURCE / "case-package.json"
 CONTENT = SOURCE / "content.html"
@@ -42,6 +46,8 @@ def main() -> int:
     css = COMPONENTS.read_text(encoding="utf-8")
     editor = EDITOR.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")
+    iss_package = json.loads(ISS_PACKAGE.read_text(encoding="utf-8"))
+    iss_content = BeautifulSoup(ISS_CONTENT.read_text(encoding="utf-8"), "html.parser")
     package = json.loads(PACKAGE.read_text(encoding="utf-8"))
     content = BeautifulSoup(CONTENT.read_text(encoding="utf-8"), "html.parser")
     mars_package = json.loads(MARS_PACKAGE.read_text(encoding="utf-8"))
@@ -50,6 +56,17 @@ def main() -> int:
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
+    )
+    check(
+        "the production plan advances the ISS gravity comparison as the next Family 2 candidate",
+        bool(re.search(
+            r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
+            plan,
+        ))
+        and "Current validation target — C1C1 gravity-sensing cutaways" in handoff
+        and "2306/2306 PASS with 0 application JavaScript errors" in handoff
+        and "35/35 PASS" in handoff,
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -70,6 +87,21 @@ def main() -> int:
         package.get("presentation", {}).get("sharedVisualStyles") is True
         and package.get("presentation", {}).get("sharedComponentStyles") is not True,
         package.get("presentation"),
+    )
+    check(
+        "ISS Greenhouse opts into extracted shared visuals without the full component layer",
+        iss_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and iss_package.get("presentation", {}).get("sharedComponentStyles") is not True,
+        iss_package.get("presentation"),
+    )
+    check(
+        "the ISS package-controlled worksheet sources remain byte-identical to their declared hashes",
+        iss_package["sourceHashes"]["content"] == sha256(ISS_CONTENT)
+        and iss_package["sourceHashes"]["presentation"] == sha256(ISS_PRESENTATION),
+        {
+            "content": [iss_package["sourceHashes"]["content"], sha256(ISS_CONTENT)],
+            "presentation": [iss_package["sourceHashes"]["presentation"], sha256(ISS_PRESENTATION)],
+        },
     )
     check(
         "the package-controlled worksheet sources remain byte-identical to their declared hashes",
@@ -106,6 +138,10 @@ def main() -> int:
     end_index = css.find(end_marker, content_start) if end_marker else -1
     extracted = css[content_start:end_index] if start_index >= 0 and end_index > content_start else ""
     required_css = (
+        '.worksheet-document[data-case-id="SSS-C1-CASE01"]',
+        "SETTLED · CUE ↓",
+        "NO STABLE CUE",
+        "data:image/svg+xml,%3Csvg",
         '.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure',
         "DEPENDENCY RAIL · EARLIER EVENT ENABLES NEXT",
         "TRACE RESULT · FIRST INTERRUPTION AT STEP 2",
@@ -130,6 +166,17 @@ def main() -> int:
         },
     )
     mechanism_css = extracted[extracted.index("Mechanism/pathway pilot.") :]
+    iss_css = extracted[extracted.index("Mechanism/pathway family expansion: ISS") : extracted.index("Mechanism/pathway pilot.")]
+    check(
+        "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
+        iss_css.count("data:image/svg+xml,%3Csvg") == 2
+        and "SETTLED · CUE ↓" in iss_css
+        and "NO STABLE CUE" in iss_css
+        and "border-left-style: solid" in iss_css
+        and "border-left-style: double" in iss_css
+        and "border-top-style: dashed" in iss_css
+        and "filter:" not in iss_css,
+    )
     check(
         "the mechanism grammar uses border and pattern states without a whole-figure filter",
         "repeating-linear-gradient" in mechanism_css
@@ -172,6 +219,69 @@ def main() -> int:
         and "C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve" in case03_visual_block
         and "marsStudentContent.scrollHeight <= marsStudentContent.clientHeight" in case03_visual_block
         and "marsStudentReserve >= 3" in case03_visual_block,
+    )
+
+    iss_student_page = iss_content.select_one('section[data-role="student"][data-page-id="student-2"]')
+    iss_student_cards = iss_student_page.select(".compare-card") if iss_student_page else []
+    iss_student_fields = [field for card in iss_student_cards for field in card.select(".mini-blank")]
+    iss_expected_bank = "curve or grow without consistent orientation · downward · settle · settle in one direction"
+    check(
+        "the ISS Student comparison retains two pathways and four blank response identities",
+        len(iss_student_cards) == 2
+        and [field.get("data-persist-id") for field in iss_student_fields]
+        == ["s2-earth-settle", "s2-earth-root", "s2-micro-settle", "s2-micro-root"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in iss_student_fields),
+        [field.get("data-persist-id") for field in iss_student_fields],
+    )
+    check(
+        "the ISS Student exact-match word bank remains unchanged",
+        " ".join(iss_student_page.select_one(".word-bank-terms").stripped_strings) == iss_expected_bank,
+    )
+
+    iss_accessible_page = iss_content.select_one('section[data-role="accessible"][data-page-id="accessible-3"]')
+    iss_accessible_cards = iss_accessible_page.select(".compare-card") if iss_accessible_page else []
+    iss_accessible_fields = [field for card in iss_accessible_cards for field in card.select(".mini-blank")]
+    check(
+        "the ISS Accessible comparison preserves the approved Earth exemplar and two Microgravity blanks",
+        len(iss_accessible_cards) == 2
+        and [field.get("data-persist-id") for field in iss_accessible_fields]
+        == ["a-earth-settle", "a-earth-root", "a-micro-settle", "a-micro-root"]
+        and [field.get_text(strip=True) for field in iss_accessible_fields] == ["settle", "downward", "", ""]
+        and all(field.has_attr("data-response") for field in iss_accessible_fields),
+    )
+
+    iss_answer_page = iss_content.select_one('section[data-role="answer"][data-page-id="answer-2"]')
+    iss_answer_paths = iss_answer_page.select('.task-heading[data-task-id="5"] + .answer-block > p') if iss_answer_page else []
+    iss_answer_text = [" ".join(path.stripped_strings) for path in iss_answer_paths]
+    iss_accuracy_note = " ".join(iss_answer_page.select_one(".callout-caution").stripped_strings) if iss_answer_page else ""
+    check(
+        "the ISS Answer Key retains both complete qualified pathways",
+        len(iss_answer_paths) == 2
+        and all(
+            phrase in "|".join(iss_answer_text)
+            for phrase in (
+                "statoliths settle",
+                "roots grow downward",
+                "do not settle in one direction",
+                "curve or grow without consistent orientation",
+            )
+        )
+        and "Avoid requiring “random.”" in iss_accuracy_note
+        and "moisture, light, touch, chemicals, and internal growth programs" in iss_accuracy_note,
+        {"paths": iss_answer_text, "accuracy_note": iss_accuracy_note},
+    )
+    check(
+        "the ISS mechanism expansion adds no duplicate organizer to Teacher pages",
+        not iss_content.select_one('section[data-role="teacher"] .compare-card'),
+    )
+    check(
+        "the browser harness measures ISS cutaways, exact fields and strict page fit in normal and grayscale",
+        harness.count("gravity-sensing cutaways distinguish settled and unsettled pathways") == 1
+        and harness.count("gravity-sensing comparison pages retain strict integer fit") == 1
+        and "SETTLED · CUE ↓" in harness
+        and "NO STABLE CUE" in harness
+        and "s2-earth-settle|s2-earth-root|s2-micro-settle|s2-micro-root" in harness
+        and "a-earth-settle|a-earth-root|a-micro-settle|a-micro-root" in harness,
     )
 
     expected_phrases = [

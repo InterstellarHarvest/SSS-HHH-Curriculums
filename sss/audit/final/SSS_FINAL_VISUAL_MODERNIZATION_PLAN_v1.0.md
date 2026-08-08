@@ -63,7 +63,13 @@ harness twice with zero application JavaScript errors, retained strict `936 <= 9
 3.47 px of geometric bottom reserve, passed the 25/25 mechanism and 36/36 telemetry focused
 validators, and was accepted and pushed at
 `c532ac5246a72ef4b9f06d985b3d5c60be92cfde`. The Mars expansion is therefore promoted to
-`VERIFIED-FAMILY`. A green source-token validator alone cannot promote a visual candidate.
+`VERIFIED-FAMILY`. The next Family 2 candidate applies the same case-scoped delivery contract to
+`C1C1-VIS01`: narrow deterministic statocyte/root cutaway rails expose settled versus dispersed
+statolith state, stable versus unreliable direction cue, and downward versus curved root outcome
+inside the existing Student/Accessible comparison cards and Answer Key pathways. It changes no
+package-controlled content or presentation source and remains `IMPLEMENTED-CANDIDATE` until the
+2306-assertion rendered gate confirms both presentation modes and strict page fit. A green
+source-token validator alone cannot promote a visual candidate.
 
 ## 3. Exact inventory reconciliation
 
@@ -122,7 +128,7 @@ bottom reserve on the dense C1C3 Student mechanism page.
 
 | Finding | Case; editions; task/page | Current visual and problem | Family | Proposed modernization and method | Footprint / synchronization | Science/data constraints | Dependency and validation | Status |
 |---|---|---|---|---|---|---|---|---|
-| `C1C1-VIS01` | ISS Greenhouse; S T5 p2, A T5 p3, AK T5 p2 | Two plain comparison cards; the gravity-sensing relationship is text-heavy and visually basic. | 2 · Causal mechanism/pathway | Matched statocyte/root cutaways with settled/unsettled statolith states, direction cue, and root outcome; deterministic SVG + existing writable phrase fields. | Same footprint; synchronize S/A/AK blanks and completed exemplar; T wording only. | Do not imply roots become random or respond only to gravity; fictional case context vs established gravitropism remains explicit. | primitives P1–P6; mechanism and fill-persistence tests | `PLANNED` |
+| `C1C1-VIS01` | ISS Greenhouse; S T5 p2, A T5 p3, AK T5 p2 | Two plain comparison cards; the gravity-sensing relationship is text-heavy and visually basic. | 2 · Causal mechanism/pathway | Matched statocyte/root cutaways with settled/unsettled statolith states, direction cue, and root outcome; deterministic SVG + existing writable phrase fields. | Same footprint; synchronize S/A/AK blanks and completed exemplar; T wording only. | Do not imply roots become random or respond only to gravity; fictional case context vs established gravitropism remains explicit. | primitives P1–P6; mechanism and fill-persistence tests | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
 | `C1C2-VIS01` | Lunar Greenhouse; S T3 p1, A T3 p2, AK T3 p1 | Conventional six-box flow; A uses a separate plain vertical list. | 2 · Causal mechanism/pathway | Reproductive telemetry rail: anther/pollen → physical agitation → stigma → pollen tube → fertilization → fruit, with numbered nodes and failure/interruption status; deterministic HTML/CSS/SVG. | Preserve six exact bank entries and fields; horizontal S/AK and vertical A remain one grammar. | Pores/structures downstream may remain capable; failed Step 2 interrupts rather than destroys them. | P1–P6; exact-bank parity; AK failure-state check | `VERIFIED-FAMILY-PILOT · 14/14 PILOT STATIC PASS · 2300/2300 BROWSER PASS · 0 JS ERRORS` |
 | `C1C3-VIS01` | Mars Habitat; S T2 p1, A T2 p2, T reference p4, AK T2 p1 | Accurate ordinary four-bar transmission graph repeated across roles. | 1 · Technical telemetry/data | Four-channel optical-transmission scan with direct percentages, patterned rails, and low-transmission flags; deterministic SVG. | Preserve current figure height and table backup; synchronize all existing instances. | Four discrete bands only; no continuous spectrum or interpolated values; retain 92%, 88%, 31%, 12%. | P1–P5, D1; numeric DOM assertions and extended description | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C1C3-VIS02` | Mars Habitat; S T3 p2, A T3 p3, AK T3 p1 | Boxed “280 adequate” plus repeated mini bars; comparison is correct but visually ordinary. | 1 · Technical telemetry/data | Dual-channel diagnostic: photon quantity 280 PPFD `ADEQUATE` vs four-rail spectrum `UNEVEN`, with `Quantity ≠ Distribution`; deterministic HTML/SVG. | Same footprint; synchronize S/A and concise AK treatment. | PPFD quantity must not be presented as spectral adequacy; preserve units and exact discrete values. | C1C3-VIS01 rail primitive; numeric/parity checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |

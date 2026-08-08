@@ -698,6 +698,127 @@ body.grayscale .figure:where(
 }
 
 /*
+ * Mechanism/pathway family expansion: ISS gravity-sensing comparison.
+ *
+ * The released Student and Accessible organizers already contain the exact
+ * four response identities, approved Accessible prefills and word-bank terms;
+ * the Answer Key already contains both completed pathways. These narrow
+ * deterministic SVG cutaway rails add settled/dispersed statolith state,
+ * cue direction and root outcome without inserting learner text or changing
+ * the two-card instructional footprint.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card,
+  .page[data-page-id="accessible-3"] .compare-card,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p
+) {
+  --gravity-line: var(--ink, #18212b);
+  --gravity-muted: var(--rule, #8c9aa8);
+  --gravity-panel: var(--paper, #fff);
+  position: relative;
+  min-height: .78in;
+  margin-block: 0;
+  padding: .055in .055in .055in .82in;
+  overflow: hidden;
+  border: 1pt solid var(--gravity-muted);
+  border-left: 4pt solid var(--gravity-line);
+  border-radius: var(--radius, 3px);
+  background-color: var(--gravity-panel);
+  background-repeat: no-repeat;
+  background-position: .065in .19in;
+  background-size: .66in .48in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card,
+  .page[data-page-id="accessible-3"] .compare-card,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p
+)::after {
+  position: absolute;
+  left: .065in;
+  bottom: .04in;
+  width: .66in;
+  padding-top: 2px;
+  border-top: .75pt solid var(--gravity-line);
+  font: 700 5.1pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card:first-child,
+  .page[data-page-id="accessible-3"] .compare-card:first-child,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p:first-child
+) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 96'%3E%3Cg fill='none' stroke='%2318212b' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='5' width='62' height='64' rx='9' fill='%23fff'/%3E%3Cpath d='M35 69v20m0 0-10-10m10 10 10-10'/%3E%3Cpath d='M91 7v26c0 8 5 12 13 16 8 4 13 10 13 23v17'/%3E%3Cpath d='M117 89l-9-10m9 10 9-10'/%3E%3C/g%3E%3Cg fill='%2318212b'%3E%3Ccircle cx='18' cy='56' r='5'/%3E%3Ccircle cx='30' cy='58' r='5'/%3E%3Ccircle cx='42' cy='57' r='5'/%3E%3Ccircle cx='54' cy='56' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  border-left-style: solid;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card:first-child,
+  .page[data-page-id="accessible-3"] .compare-card:first-child,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p:first-child
+)::after {
+  content: "SETTLED · CUE ↓";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card:last-child,
+  .page[data-page-id="accessible-3"] .compare-card:last-child,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p:last-child
+) {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 132 96'%3E%3Cg fill='none' stroke='%2318212b' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='4' y='5' width='62' height='64' rx='9' fill='%23fff'/%3E%3Cpath d='M20 78l-9 8m9-8-9-1M51 78l9 8m-9-8 9-1' stroke-dasharray='6 6'/%3E%3Cpath d='M91 7c0 16 27 12 27 31S91 59 91 76s27 8 27 13'/%3E%3C/g%3E%3Cg fill='%23fff' stroke='%2318212b' stroke-width='3'%3E%3Ccircle cx='18' cy='20' r='5'/%3E%3Ccircle cx='48' cy='17' r='5'/%3E%3Ccircle cx='30' cy='40' r='5'/%3E%3Ccircle cx='54' cy='55' r='5'/%3E%3C/g%3E%3C/svg%3E");
+  border-left-style: double;
+  background-color: var(--panel-light, #f7f9fa);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card:last-child,
+  .page[data-page-id="accessible-3"] .compare-card:last-child,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p:last-child
+)::after {
+  content: "NO STABLE CUE";
+  border-top-style: dashed;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"],
+  .page[data-page-id="accessible-3"]
+) .compare-card h3 {
+  margin: 0 0 2px;
+  padding-bottom: 2px;
+  border-bottom: .75pt solid var(--gravity-muted);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"],
+  .page[data-page-id="accessible-3"]
+) .compare-card p {
+  margin-block: 2px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE01"]
+  .page[data-page-id="answer-2"]
+  .task-heading[data-task-id="5"] + .answer-block {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  padding: 5px;
+  border-left-width: 1px;
+  background: var(--paper, #fff);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE01"] :is(
+  .page[data-page-id="student-2"] .compare-card,
+  .page[data-page-id="accessible-3"] .compare-card,
+  .page[data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block > p
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
+/*
  * Mechanism/pathway pilot.
  *
  * Lunar Greenhouse already contains the exact six response fields, the

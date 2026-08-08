@@ -1276,6 +1276,108 @@
         const printAuthoringState = isolatedDoc.querySelector('[contenteditable="true"],.page.has-overflow');
         check(`${item.id} print document embeds print CSS/assets and has no authoring state`, printMeta && printAtPage && !printAuthoringState, JSON.stringify({ printMeta, printAtPage, printAuthoringState: printAuthoringState?.outerHTML.slice(0, 160) || null }));
         isolatedFrame.remove();
+        if (item.id === "SSS-C1-CASE01") {
+          const gravityPageFit = [];
+          for (const [role, pageId] of [["student", "student-2"], ["answer", "answer-2"], ["accessible", "accessible-3"]]) {
+            api.setRole(role);
+            api.saveState({ grayscale: false });
+            await wait(20);
+            const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+            const content = page?.querySelector(".content-area");
+            gravityPageFit.push({
+              role,
+              pageId,
+              page: Boolean(page),
+              overflow: page?.classList.contains("has-overflow") || false,
+              scrollHeight: content?.scrollHeight ?? null,
+              clientHeight: content?.clientHeight ?? null,
+              fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+            });
+          }
+          check(
+            "C1 Case 01 gravity-sensing comparison pages retain strict integer fit",
+            gravityPageFit.length === 3
+              && gravityPageFit.every(state => state.page && !state.overflow && state.fits),
+            JSON.stringify(gravityPageFit)
+          );
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-2"], ["accessible", "accessible-3"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const grid = page?.querySelector(".task-heading[data-task-id=\"5\"] + .word-bank + .grid-12");
+              const cards = Array.from(grid?.querySelectorAll(":scope > .compare-card") || []);
+              const fields = cards.flatMap(card => Array.from(card.querySelectorAll(".mini-blank"))).map(field => ({
+                id: field.dataset.persistId,
+                text: field.textContent.trim(),
+                response: field.hasAttribute("data-response")
+              }));
+              rendered.push({
+                role,
+                pageId,
+                grid: Boolean(grid),
+                gridDisplay: grid ? win.getComputedStyle(grid).display : "",
+                cards: cards.length,
+                svgRails: cards.map(card => win.getComputedStyle(card).backgroundImage.includes("data:image/svg+xml")),
+                statuses: cards.map(card => win.getComputedStyle(card, "::after").content),
+                borderStates: cards.map(card => win.getComputedStyle(card).borderLeftStyle),
+                minHeights: cards.map(card => px(win.getComputedStyle(card).minHeight)),
+                fits: cards.map(card => card.scrollWidth <= card.clientWidth + 1 && card.scrollHeight <= card.clientHeight + 1),
+                fields
+              });
+            }
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerPanel = workspace.querySelector('.page[data-role="answer"][data-page-id="answer-2"] .task-heading[data-task-id="5"] + .answer-block');
+            const answerPaths = Array.from(answerPanel?.querySelectorAll(":scope > p") || []);
+            rendered.push({
+              role: "answer",
+              pageId: "answer-2",
+              grid: Boolean(answerPanel),
+              gridDisplay: answerPanel ? win.getComputedStyle(answerPanel).display : "",
+              cards: answerPaths.length,
+              svgRails: answerPaths.map(path => win.getComputedStyle(path).backgroundImage.includes("data:image/svg+xml")),
+              statuses: answerPaths.map(path => win.getComputedStyle(path, "::after").content),
+              borderStates: answerPaths.map(path => win.getComputedStyle(path).borderLeftStyle),
+              minHeights: answerPaths.map(path => px(win.getComputedStyle(path).minHeight)),
+              fits: answerPaths.map(path => path.scrollWidth <= path.clientWidth + 1 && path.scrollHeight <= path.clientHeight + 1),
+              text: answerPaths.map(path => path.textContent.trim().replace(/\s+/g, " ")),
+              accuracyNote: workspace.querySelector('.page[data-role="answer"][data-page-id="answer-2"] .callout-caution')?.textContent.trim().replace(/\s+/g, " ") || ""
+            });
+            const studentState = rendered.find(state => state.role === "student");
+            const accessibleState = rendered.find(state => state.role === "accessible");
+            const answerState = rendered.find(state => state.role === "answer");
+            check(
+              `C1 Case 01 ${grayscale ? "grayscale" : "normal"} gravity-sensing cutaways distinguish settled and unsettled pathways`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.grid && state.gridDisplay === "grid" && state.cards === 2)
+                && rendered.every(state => state.svgRails.every(Boolean) && state.fits.every(Boolean))
+                && rendered.every(state => state.statuses[0].includes("SETTLED · CUE ↓") && state.statuses[1].includes("NO STABLE CUE"))
+                && rendered.every(state => state.borderStates.join("|") === "solid|double")
+                && rendered.every(state => state.minHeights.every(height => height >= 74))
+                && studentState.fields.map(field => field.id).join("|") === "s2-earth-settle|s2-earth-root|s2-micro-settle|s2-micro-root"
+                && studentState.fields.every(field => field.text === "" && field.response)
+                && accessibleState.fields.map(field => field.id).join("|") === "a-earth-settle|a-earth-root|a-micro-settle|a-micro-root"
+                && accessibleState.fields.map(field => field.text).join("|") === "settle|downward||"
+                && accessibleState.fields.every(field => field.response)
+                && answerState.text.join("|").includes("statoliths settle")
+                && answerState.text.join("|").includes("roots grow downward")
+                && answerState.text.join("|").includes("do not settle in one direction")
+                && answerState.text.join("|").includes("curve or grow without consistent orientation")
+                && answerState.accuracyNote.includes("Avoid requiring “random.”")
+                && answerState.accuracyNote.includes("moisture, light, touch, chemicals, and internal growth programs"),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C1-CASE02") {
           for (const grayscale of [false, true]) {
             const horizontal = [];
