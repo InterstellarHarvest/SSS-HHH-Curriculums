@@ -33,6 +33,10 @@ HAYES_SOURCE = ROOT / "sss/campaign-1/case-04-hayes-orbital-station/source"
 HAYES_PACKAGE = HAYES_SOURCE / "case-package.json"
 HAYES_CONTENT = HAYES_SOURCE / "content.html"
 HAYES_PRESENTATION = HAYES_SOURCE / "presentation.css"
+EUROPA_SOURCE = ROOT / "sss/campaign-1/case-05-europa-bunker/source"
+EUROPA_PACKAGE = EUROPA_SOURCE / "case-package.json"
+EUROPA_CONTENT = EUROPA_SOURCE / "content.html"
+EUROPA_PRESENTATION = EUROPA_SOURCE / "presentation.css"
 
 
 def sha256(path: Path) -> str:
@@ -58,13 +62,15 @@ def main() -> int:
     mars_content = BeautifulSoup(MARS_CONTENT.read_text(encoding="utf-8"), "html.parser")
     hayes_package = json.loads(HAYES_PACKAGE.read_text(encoding="utf-8"))
     hayes_content = BeautifulSoup(HAYES_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    europa_package = json.loads(EUROPA_PACKAGE.read_text(encoding="utf-8"))
+    europa_content = BeautifulSoup(EUROPA_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
     )
     check(
-        "the production plan records the accepted ISS comparison and advances the Hayes fault loop",
+        "the production plan records accepted Hayes and advances Europa's radiation pathway",
         bool(re.search(
             r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 "
@@ -73,12 +79,18 @@ def main() -> int:
         ))
         and bool(re.search(
             r"\| `C1C4-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`VERIFIED-FAMILY · 44/44 FAMILY STATIC PASS · 2309/2309 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · d5b6c02 ACCEPTED`",
+            plan,
+        ))
+        and bool(re.search(
+            r"\| `C1C5-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
             plan,
         ))
-        and "Current validation target — C1C4 closed reactor fault loop" in handoff
-        and "2309/2309 PASS with 0 application JavaScript errors" in handoff
-        and "44/44 PASS" in handoff,
+        and "Current validation target — C1C5 radiation-to-growth pathway" in handoff
+        and "2312/2312 PASS with 0 application JavaScript errors" in handoff
+        and "52/52 PASS" in handoff,
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -147,6 +159,18 @@ def main() -> int:
             "stylesheet": [hayes_package["sourceHashes"]["presentation"], sha256(HAYES_PRESENTATION)],
         },
     )
+    check(
+        "Europa Bunker opts into shared visuals with byte-identical worksheet sources",
+        europa_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and europa_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and europa_package["sourceHashes"]["content"] == sha256(EUROPA_CONTENT)
+        and europa_package["sourceHashes"]["presentation"] == sha256(EUROPA_PRESENTATION),
+        {
+            "presentation": europa_package.get("presentation"),
+            "content": [europa_package["sourceHashes"]["content"], sha256(EUROPA_CONTENT)],
+            "stylesheet": [europa_package["sourceHashes"]["presentation"], sha256(EUROPA_PRESENTATION)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -180,6 +204,10 @@ def main() -> int:
         'content: "↺ REPEAT TO STAGE 1"',
         'content: "RECURRENCE"',
         '.accessible-cycle::after',
+        '.worksheet-document[data-case-id="SSS-C1-CASE05"]',
+        'content: "LIMIT ≠ DAMAGE"',
+        'content: "CONVERGENCE"',
+        '.accessible-path > .path-stage:nth-child(7)',
         ".worksheet-document.grayscale",
     )
     check(
@@ -195,7 +223,8 @@ def main() -> int:
     )
     mechanism_css = extracted[extracted.index("Mechanism/pathway pilot.") :]
     iss_css = extracted[extracted.index("Mechanism/pathway family expansion: ISS") : extracted.index("Mechanism/pathway pilot.")]
-    hayes_css = extracted[extracted.index("Mechanism/pathway family expansion: Hayes") :]
+    hayes_css = extracted[extracted.index("Mechanism/pathway family expansion: Hayes") : extracted.index("Mechanism/pathway family expansion: Europa")]
+    europa_css = extracted[extracted.index("Mechanism/pathway family expansion: Europa") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -227,6 +256,21 @@ def main() -> int:
         and "padding-inline: 4px" in hayes_css
         and "border-radius: 3px" in hayes_css
         and "filter:" not in hayes_css,
+    )
+    check(
+        "the Europa pathway exposes seven qualified evidence states without a color-only filter",
+        all(f'content: "{label}"' in europa_css for label in (
+            "ENVIRONMENT", "MODELED", "EXPOSURE", "LIMIT ≠ DAMAGE",
+            "BIO EVIDENCE", "GROWTH", "CONVERGENCE",
+        ))
+        and "border-top-style: dotted" in europa_css
+        and "border-top-style: double" in europa_css
+        and "border-top-style: dashed" in europa_css
+        and "border-left-style: dotted" in europa_css
+        and "border-left-style: double" in europa_css
+        and "border-left-style: dashed" in europa_css
+        and "repeating-linear-gradient" in europa_css
+        and "filter:" not in europa_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -602,6 +646,98 @@ def main() -> int:
         and "accessibleRepeatConnector.paddingRight >= 4" in harness
         and "accessibleRepeatConnector.fits" in harness
         and "value === expectedFaultStages[index]" in harness
+        and 'for (const grayscale of [false, true])' in harness,
+    )
+
+    europa_expected = [
+        "Energetic particles are trapped in Jupiter’s magnetosphere",
+        "Interactions may produce modeled secondary radiation",
+        "Grow-chamber monitor flags elevated ionizing radiation",
+        "Exposure is possible, but exposure alone does not prove damage",
+        "Abnormalities consistent with DNA damage appear in meristems",
+        "Continued root and shoot growth can be disrupted",
+        "Sensor, plant, crew, and log evidence converge on radiation",
+    ]
+    europa_bank = [
+        "continued root and shoot growth can be disrupted",
+        "grow-chamber monitor flags elevated ionizing radiation",
+        "sensor, plant, crew, and log evidence converge on radiation",
+        "interactions may produce modeled secondary radiation",
+        "abnormalities consistent with DNA damage appear in meristems",
+        "exposure is possible, but exposure alone does not prove damage",
+    ]
+    europa_student_page = europa_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-03"]'
+    )
+    europa_student_model = europa_student_page.select_one(
+        '.pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"]'
+    ) if europa_student_page else None
+    europa_student_stages = europa_student_model.select(":scope > .path-stage") if europa_student_model else []
+    europa_student_fields = [stage.select_one("[data-response]") for stage in europa_student_stages[1:]]
+    check(
+        "the Europa Student pathway preserves seven stages, six blank fields, six connectors and its exact bank",
+        [stage.get("data-process-stage") for stage in europa_student_stages] == [str(index) for index in range(1, 8)]
+        and [arrow.get_text(strip=True) for arrow in europa_student_model.select(":scope > .path-arrow")]
+        == ["→", "→", "→", "↓", "←", "←"]
+        and [field.get("data-persist-id") for field in europa_student_fields]
+        == [f"t5-{index}" for index in range(2, 8)]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in europa_student_fields)
+        and [" ".join(item.stripped_strings) for item in europa_student_page.select(".phrase-bank > span")]
+        == europa_bank,
+    )
+
+    europa_accessible_page = europa_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-05"]'
+    )
+    europa_accessible_model = europa_accessible_page.select_one(
+        '.pathway-model.accessible-path[data-process-contract="radiation-growth-seven-stage-v1.0"]'
+    ) if europa_accessible_page else None
+    europa_accessible_stages = europa_accessible_model.select(":scope > .path-stage") if europa_accessible_model else []
+    europa_accessible_fields = [stage.select_one("[data-response]") for stage in europa_accessible_stages[1:]]
+    check(
+        "the Europa Accessible pathway stays vertical with only the approved Stage 2 and Stage 4 prefills",
+        len(europa_accessible_stages) == 7
+        and [arrow.get_text(strip=True) for arrow in europa_accessible_model.select(":scope > .path-arrow")]
+        == ["↓"] * 6
+        and [field.get("data-persist-id") for field in europa_accessible_fields]
+        == [f"a5-{index}" for index in range(2, 8)]
+        and [field.get_text(strip=True) for field in europa_accessible_fields]
+        == [europa_bank[3], "", europa_bank[5], "", "", ""]
+        and all(field.has_attr("data-response") for field in europa_accessible_fields),
+    )
+
+    europa_answer_page = europa_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-03"]'
+    )
+    europa_answer_model = europa_answer_page.select_one(
+        '.pathway-model.completed[data-process-contract="radiation-growth-seven-stage-v1.0"]'
+    ) if europa_answer_page else None
+    europa_answer_stages = europa_answer_model.select(":scope > .path-stage") if europa_answer_model else []
+    check(
+        "the Europa Answer Key completes the identical seven-stage pathway",
+        [" ".join(stage.select_one("strong").stripped_strings) for stage in europa_answer_stages]
+        == europa_expected,
+    )
+    europa_source_text = EUROPA_CONTENT.read_text(encoding="utf-8")
+    check(
+        "the Europa pathway retains modeled, exposure and biological-evidence limits without exact quantities",
+        "Interactions may produce modeled secondary radiation" in europa_source_text
+        and "Exposure is possible, but exposure alone does not prove damage" in europa_source_text
+        and "Abnormalities consistent with DNA damage appear in meristems" in europa_source_text
+        and not re.search(r"\b\d+(?:\.\d+)?\s*(?:mGy|Gy|Sv|sievert|percent|%)\b", "|".join(europa_expected), re.I),
+    )
+    check(
+        "the Europa mechanism expansion adds no duplicate organizer to Teacher pages",
+        not europa_content.select_one('section[data-role="teacher"] .pathway-model'),
+    )
+    check(
+        "the browser harness measures Europa evidence states, exact fields and strict fit in both modes",
+        harness.count("radiation pathway preserves qualified evidence states") == 1
+        and harness.count("radiation-pathway pages retain strict fit, page counts and geometry") == 1
+        and "ENVIRONMENT|MODELED|EXPOSURE|LIMIT ≠ DAMAGE|BIO EVIDENCE|GROWTH|CONVERGENCE" in harness
+        and "t5-2|t5-3|t5-4|t5-5|t5-6|t5-7" in harness
+        and "a5-2|a5-3|a5-4|a5-5|a5-6|a5-7" in harness
+        and 'state.pageSize === "816x1056"' in harness
         and 'for (const grayscale of [false, true])' in harness,
     )
 

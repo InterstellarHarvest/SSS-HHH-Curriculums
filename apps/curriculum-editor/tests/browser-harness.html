@@ -1844,6 +1844,116 @@
           api.saveState({ grayscale: false });
         }
         if (item.id === "SSS-C1-CASE05") {
+          const europaPathwayPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-03", 4], ["answer", "answer-key-03", 4], ["accessible", "accessible-mission-05", 7]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              europaPathwayPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 05 radiation-pathway pages retain strict fit, page counts and geometry in normal and grayscale",
+            europaPathwayPageFit.length === 6
+              && europaPathwayPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(europaPathwayPageFit)
+          );
+          const expectedRadiationStages = [
+            "Energetic particles are trapped in Jupiter’s magnetosphere",
+            "Interactions may produce modeled secondary radiation",
+            "Grow-chamber monitor flags elevated ionizing radiation",
+            "Exposure is possible, but exposure alone does not prove damage",
+            "Abnormalities consistent with DNA damage appear in meristems",
+            "Continued root and shoot growth can be disrupted",
+            "Sensor, plant, crew, and log evidence converge on radiation"
+          ];
+          const expectedRadiationStatuses = "ENVIRONMENT|MODELED|EXPOSURE|LIMIT ≠ DAMAGE|BIO EVIDENCE|GROWTH|CONVERGENCE";
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-mission-03"], ["answer", "answer-key-03"], ["accessible", "accessible-mission-05"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"]');
+              const stages = Array.from(model?.querySelectorAll(":scope > .path-stage") || []);
+              const connectors = Array.from(model?.querySelectorAll(":scope > .path-arrow") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && [...stages, ...connectors].every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = stages.map(stage => stage.querySelector("[data-response]"))
+                .filter(Boolean)
+                .map(field => ({ id: field.dataset.persistId, text: field.textContent.trim().replace(/\s+/g, " "), response: field.hasAttribute("data-response") }));
+              rendered.push({
+                role,
+                pageId,
+                model: Boolean(model),
+                vertical: model?.classList.contains("accessible-path") || false,
+                stages: stages.length,
+                stageNumbers: stages.map(stage => stage.dataset.processStage || stage.querySelector(":scope > span")?.textContent.trim()).join("|"),
+                stageText: stages.map(stage => stage.querySelector("strong, .stage-response")?.textContent.trim().replace(/\s+/g, " ") || ""),
+                connectors: connectors.map(node => node.textContent.trim()).join("|"),
+                connectorShapes: connectors.map(node => win.getComputedStyle(node).borderRadius),
+                statusLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision,
+                fields
+              });
+            }
+            const studentPath = rendered.find(state => state.role === "student");
+            const answerPath = rendered.find(state => state.role === "answer");
+            const accessiblePath = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 05 ${grayscale ? "grayscale" : "normal"} radiation pathway preserves qualified evidence states`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.model && state.stages === 7 && state.stageNumbers === "1|2|3|4|5|6|7" && state.modelFits && state.contained && !state.stageCollision)
+                && rendered.every(state => state.statusLabels === expectedRadiationStatuses)
+                && rendered.every(state => state.borderStates === "solid|dotted|double|dashed|double|solid|double")
+                && rendered.every(state => state.patternStates.every(Boolean) && state.connectorShapes.every(value => value !== "0px"))
+                && studentPath.connectors === "→|→|→|↓|←|←"
+                && answerPath.connectors === "→|→|→|↓|←|←"
+                && accessiblePath.connectors === "↓|↓|↓|↓|↓|↓"
+                && !studentPath.vertical && !answerPath.vertical && accessiblePath.vertical
+                && studentPath.fields.map(field => field.id).join("|") === "t5-2|t5-3|t5-4|t5-5|t5-6|t5-7"
+                && studentPath.fields.every(field => field.text === "" && field.response)
+                && accessiblePath.fields.map(field => field.id).join("|") === "a5-2|a5-3|a5-4|a5-5|a5-6|a5-7"
+                && accessiblePath.fields.map(field => field.text).join("|") === "interactions may produce modeled secondary radiation||exposure is possible, but exposure alone does not prove damage|||"
+                && accessiblePath.fields.every(field => field.response)
+                && answerPath.stageText.every((value, index) => value === expectedRadiationStages[index]),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
           const lockedTitles = ["Frame the Mission Problem", "Separate Observation from Interpretation", "Converge the Four Clue Routes", "Compare the Competing Diagnoses", "Model the Radiation-to-Growth Pathway", "Explain the Diagnosis with CER", "Define the Engineering Design Problem", "Recommend Immediate and Durable Responses"];
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           const firstPageIdentities = Array.from(workspace.querySelectorAll(".mission-title-block"));

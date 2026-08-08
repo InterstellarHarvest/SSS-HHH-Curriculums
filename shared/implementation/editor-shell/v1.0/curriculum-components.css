@@ -1305,6 +1305,132 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/pathway family expansion: Europa radiation-to-growth pathway.
+ *
+ * The released organizers already preserve the seven exact stages, six
+ * Student fields, two approved Accessible prefills and completed Answer Key.
+ * This case-scoped layer distinguishes environmental context, modeled
+ * interaction, exposure evidence, the exposure/damage limit, biological
+ * evidence, growth consequence and multi-source convergence without adding
+ * response text or implying measured secondary radiation or proven damage.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] {
+  --hazard-line: var(--ink, #18212b);
+  --hazard-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 4px 0 0 var(--hazard-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] .path-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--hazard-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--hazard-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"]:not(.accessible-path)
+  .path-stage {
+  padding-top: .27in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"]:not(.accessible-path)
+  .path-stage > span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] .path-stage::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-width: calc(100% - .32in);
+  font: 700 5.1pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .015em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(1)::after { content: "ENVIRONMENT"; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(3)::after { content: "MODELED"; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(5)::after { content: "EXPOSURE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(7)::after { content: "LIMIT ≠ DAMAGE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(9)::after { content: "BIO EVIDENCE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(11)::after { content: "GROWTH"; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(13)::after { content: "CONVERGENCE"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(3) {
+  border-top-style: dotted;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .11) 7px 8px),
+    var(--hazard-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(5),
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(9),
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(13) {
+  border-top-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(7) {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .07) 6px 7px),
+    var(--hazard-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .pathway-model > .path-stage:nth-child(11) {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px),
+    var(--hazard-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] .path-arrow {
+  display: grid;
+  place-items: center;
+  min-width: 15px;
+  min-height: 15px;
+  border: .75pt solid var(--hazard-line);
+  border-radius: 50%;
+  background: var(--hazard-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"].accessible-path
+  .path-stage {
+  padding-right: 1.08in;
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .accessible-path > .path-stage:nth-child(3) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .accessible-path > .path-stage:nth-child(5),
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .accessible-path > .path-stage:nth-child(9),
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .accessible-path > .path-stage:nth-child(13) { border-left-style: double; }
+.worksheet-document[data-case-id="SSS-C1-CASE05"] .accessible-path > .path-stage:nth-child(7) { border-left-style: dashed; }
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE05"]
+  .pathway-model[data-process-contract="radiation-growth-seven-stage-v1.0"] .path-stage {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
