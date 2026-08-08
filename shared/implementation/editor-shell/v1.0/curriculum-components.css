@@ -317,6 +317,141 @@ h3 {
   font-size: 7.5pt;
 }
 
+/*
+ * SSS/HHH explanatory-visual primitives.
+ *
+ * New figures opt in with data-visual-family. The GRO-9 output and response-
+ * band figures plus the Case 03 optical-link figures are the first telemetry
+ * pilot and retain their stable release-era selectors.
+ * Exact data and labels stay in case SVG/HTML; this layer supplies only the
+ * shared frame, status, type and grayscale grammar.
+ */
+.figure:is(
+  [data-visual-family],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) {
+  --visual-line-primary: 1.5pt;
+  --visual-line-secondary: .75pt;
+  --visual-line-accent: 1.75pt;
+  --visual-caption-fill: var(--panel-light, #f7f9fa);
+  position: relative;
+  overflow: hidden;
+  border: 1pt solid var(--rule, #8c9aa8);
+  border-radius: var(--radius, 3px);
+  background: var(--paper, #fff);
+}
+
+.figure[data-visual-family][data-visual-status]::before,
+.figure[data-figure-id^="fig-gro9-"]::before,
+.figure[data-figure-id^="fig-band-"]::before,
+.figure.spectrum-figure::before {
+  position: absolute;
+  z-index: 1;
+  top: .045in;
+  right: .055in;
+  max-width: 45%;
+  padding: .025in .045in;
+  content: attr(data-visual-status);
+  color: var(--ink, #18212b);
+  border: .75pt solid var(--rule, #8c9aa8);
+  border-radius: 2px;
+  background: var(--paper, #fff);
+  font: 700 6.3pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .045em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.figure[data-figure-id^="fig-gro9-"]::before {
+  content: "DOME SENSOR · DISCRETE CATEGORIES";
+}
+
+.figure[data-figure-id^="fig-band-"]::before {
+  content: "SITE RESPONSE · DISCRETE BAND";
+}
+
+.figure.spectrum-figure::before {
+  content: "OPTICAL LINK · DISCRETE BANDS";
+}
+
+.figure:is(
+  [data-visual-family],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) figcaption {
+  margin-top: 4px;
+  padding: 4px 5px;
+  border-top: .75pt solid var(--rule, #8c9aa8);
+  background: var(--visual-caption-fill);
+}
+
+.figure:is(
+  [data-visual-family],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) .extended-description {
+  margin: 4px 0 0;
+  padding-top: 3px;
+  border-top: .5pt solid var(--rule, #8c9aa8);
+}
+
+.figure:is(
+  [data-visual-family="telemetry"],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) .fig-axis {
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.figure:is(
+  [data-visual-family="telemetry"],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) .fig-value,
+.figure:is(
+  [data-visual-family="telemetry"],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) .fig-tick {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.figure:is(
+  [data-visual-family="telemetry"],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) svg rect[fill^="url("] {
+  stroke: var(--ink, #18212b);
+  stroke-width: var(--visual-line-primary);
+  shape-rendering: crispEdges;
+}
+
+body.grayscale .figure:is(
+  [data-visual-family][data-visual-status],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+)::before,
+body.grayscale .figure:is(
+  [data-visual-family],
+  [data-figure-id^="fig-gro9-"],
+  [data-figure-id^="fig-band-"],
+  .spectrum-figure
+) figcaption {
+  color: var(--ink, #18212b);
+  background: var(--panel-light, #f7f9fa);
+}
+
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
   letter-spacing: .05em;
