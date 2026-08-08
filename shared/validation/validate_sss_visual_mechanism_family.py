@@ -29,6 +29,10 @@ MARS_SOURCE = ROOT / "sss/campaign-1/case-03-mars-habitat/source"
 MARS_PACKAGE = MARS_SOURCE / "case-package.json"
 MARS_CONTENT = MARS_SOURCE / "content.html"
 MARS_PRESENTATION = MARS_SOURCE / "presentation.css"
+HAYES_SOURCE = ROOT / "sss/campaign-1/case-04-hayes-orbital-station/source"
+HAYES_PACKAGE = HAYES_SOURCE / "case-package.json"
+HAYES_CONTENT = HAYES_SOURCE / "content.html"
+HAYES_PRESENTATION = HAYES_SOURCE / "presentation.css"
 
 
 def sha256(path: Path) -> str:
@@ -52,21 +56,29 @@ def main() -> int:
     content = BeautifulSoup(CONTENT.read_text(encoding="utf-8"), "html.parser")
     mars_package = json.loads(MARS_PACKAGE.read_text(encoding="utf-8"))
     mars_content = BeautifulSoup(MARS_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    hayes_package = json.loads(HAYES_PACKAGE.read_text(encoding="utf-8"))
+    hayes_content = BeautifulSoup(HAYES_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
     )
     check(
-        "the production plan advances the ISS gravity comparison as the next Family 2 candidate",
+        "the production plan records the accepted ISS comparison and advances the Hayes fault loop",
         bool(re.search(
             r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 884/884 · ceb632d ACCEPTED`",
+            plan,
+        ))
+        and bool(re.search(
+            r"\| `C1C4-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
             plan,
         ))
-        and "Current validation target — C1C1 gravity-sensing cutaways" in handoff
-        and "2306/2306 PASS with 0 application JavaScript errors" in handoff
-        and "35/35 PASS" in handoff,
+        and "Current validation target — C1C4 closed reactor fault loop" in handoff
+        and "2309/2309 PASS with 0 application JavaScript errors" in handoff
+        and "44/44 PASS" in handoff,
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -77,10 +89,10 @@ def main() -> int:
             r"· 3\.47px RESERVE · c532ac5 ACCEPTED`",
             plan,
         ))
-        and "The C1C3 Mars mechanism expansion is `VERIFIED-FAMILY`" in handoff
-        and "`c532ac5246a72ef4b9f06d985b3d5c60be92cfde`" in handoff
-        and "browser harness passed 2303/2303 twice" in handoff
-        and "outcome satisfies the acceptance rule" in handoff,
+        and "The earlier C1C3 expansion could advance from `IMPLEMENTED-CANDIDATE`" in handoff
+        and "2303/2303 with zero JavaScript errors" in handoff
+        and "3.47 px reserve" in handoff
+        and "The recorded outcome above satisfies every condition." in handoff,
     )
     check(
         "Lunar Greenhouse opts into extracted shared visuals without the full component layer",
@@ -123,6 +135,18 @@ def main() -> int:
             "stylesheet": [mars_package["sourceHashes"]["presentation"], sha256(MARS_PRESENTATION)],
         },
     )
+    check(
+        "Hayes Orbital Station opts into shared visuals with byte-identical worksheet sources",
+        hayes_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and hayes_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and hayes_package["sourceHashes"]["content"] == sha256(HAYES_CONTENT)
+        and hayes_package["sourceHashes"]["presentation"] == sha256(HAYES_PRESENTATION),
+        {
+            "presentation": hayes_package.get("presentation"),
+            "content": [hayes_package["sourceHashes"]["content"], sha256(HAYES_CONTENT)],
+            "stylesheet": [hayes_package["sourceHashes"]["presentation"], sha256(HAYES_PRESENTATION)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -152,6 +176,10 @@ def main() -> int:
         "SPECTRAL-LOSS PATHWAY · CASE-SPECIFIC MODEL",
         'data-process-stage="3"',
         'content: "BAND LOSS"',
+        '.worksheet-document[data-case-id="SSS-C1-CASE04"]',
+        'content: "↺ REPEAT TO STAGE 1"',
+        'content: "RECURRENCE"',
+        '.accessible-cycle::after',
         ".worksheet-document.grayscale",
     )
     check(
@@ -167,6 +195,7 @@ def main() -> int:
     )
     mechanism_css = extracted[extracted.index("Mechanism/pathway pilot.") :]
     iss_css = extracted[extracted.index("Mechanism/pathway family expansion: ISS") : extracted.index("Mechanism/pathway pilot.")]
+    hayes_css = extracted[extracted.index("Mechanism/pathway family expansion: Hayes") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -183,6 +212,18 @@ def main() -> int:
         and "border-top-style: double" in mechanism_css
         and "border-top-style: dashed" in mechanism_css
         and "filter:" not in mechanism_css,
+    )
+    check(
+        "the Hayes fault loop uses a direct repeat rail plus grayscale-independent stage states",
+        hayes_css.count('content: "↺ REPEAT TO STAGE 1"') == 2
+        and all(f'content: "{label}"' in hayes_css for label in (
+            "EXPOSURE", "LOAD", "DAMAGE", "DECLINE", "REBUILD", "RECURRENCE"
+        ))
+        and "border-top-style: double" in hayes_css
+        and "border-top-style: dashed" in hayes_css
+        and "repeating-linear-gradient" in hayes_css
+        and ".accessible-cycle::after" in hayes_css
+        and "filter:" not in hayes_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -441,6 +482,118 @@ def main() -> int:
         and "New chlorophyll production is disrupted" in mars_source_text
         and "Red and deep-red transmission drops" in mars_source_text
         and "universal chlorophyll mechanism" not in mars_source_text,
+    )
+
+    hayes_student_page = hayes_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-03"]'
+    )
+    hayes_student_model = hayes_student_page.select_one(
+        '.cycle-model[data-process-contract="six-stage-cycle-v1.0"]'
+    ) if hayes_student_page else None
+    hayes_student_stages = hayes_student_model.select(":scope > .cycle-stage") if hayes_student_model else []
+    hayes_student_connectors = [
+        connector.get_text(strip=True)
+        for connector in hayes_student_model.select(":scope > .cycle-connector")
+    ] if hayes_student_model else []
+    hayes_student_fields = [stage.select_one("[data-response]") for stage in hayes_student_stages[1:]]
+    hayes_student_bank = [
+        " ".join(item.stripped_strings) for item in hayes_student_page.select(".mechanism-bank > span")
+    ] if hayes_student_page else []
+    check(
+        "the Hayes Student loop preserves six stages, five blank fields and the exact snake order",
+        [stage.get("data-process-stage") for stage in hayes_student_stages] == ["1", "2", "3", "4", "5", "6"]
+        and hayes_student_connectors == ["→", "→", "↓", "←", "←"]
+        and [field.get("data-persist-id") for field in hayes_student_fields]
+        == ["t5-2", "t5-3", "t5-4", "t5-5", "t5-6"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in hayes_student_fields),
+        {
+            "stages": [stage.get("data-process-stage") for stage in hayes_student_stages],
+            "connectors": hayes_student_connectors,
+            "fields": [field.get("data-persist-id") for field in hayes_student_fields],
+        },
+    )
+    check(
+        "the Hayes Student mechanism bank remains exact and unexpanded",
+        hayes_student_bank == [
+            "excessive daily light dose under current conditions",
+            "photodamage outpaces repair",
+            "productivity and gas exchange fall",
+            "survivors rebuild",
+            "unchanged exposure causes another crash",
+        ],
+        hayes_student_bank,
+    )
+
+    hayes_accessible_page = hayes_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-05"]'
+    )
+    hayes_accessible_model = hayes_accessible_page.select_one(
+        '.cycle-model.accessible-cycle[data-process-contract="six-stage-cycle-v1.0"]'
+    ) if hayes_accessible_page else None
+    hayes_accessible_stages = hayes_accessible_model.select(":scope > .cycle-stage") if hayes_accessible_model else []
+    hayes_accessible_fields = [stage.select_one("[data-response]") for stage in hayes_accessible_stages[1:]]
+    hayes_accessible_connectors = [
+        connector.get_text(strip=True)
+        for connector in hayes_accessible_model.select(":scope > .cycle-connector")
+    ] if hayes_accessible_model else []
+    check(
+        "the Hayes Accessible loop stays vertical with one approved prefill and four blanks",
+        [stage.get("data-process-stage") for stage in hayes_accessible_stages] == ["1", "2", "3", "4", "5", "6"]
+        and hayes_accessible_connectors == ["↓", "↓", "↓", "↓", "↓ then repeat"]
+        and [field.get("data-persist-id") for field in hayes_accessible_fields]
+        == ["a5-2", "a5-3", "a5-4", "a5-5", "a5-6"]
+        and [field.get_text(strip=True) for field in hayes_accessible_fields]
+        == ["excessive daily light dose under current operating conditions", "", "", "", ""]
+        and all(field.has_attr("data-response") for field in hayes_accessible_fields),
+        {
+            "connectors": hayes_accessible_connectors,
+            "fields": [field.get("data-persist-id") for field in hayes_accessible_fields],
+            "contents": [field.get_text(strip=True) for field in hayes_accessible_fields],
+        },
+    )
+
+    hayes_answer_page = hayes_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-03"]'
+    )
+    hayes_answer_model = hayes_answer_page.select_one(
+        '.cycle-model.completed[data-process-contract="six-stage-cycle-v1.0"]'
+    ) if hayes_answer_page else None
+    hayes_answer_stages = hayes_answer_model.select(":scope > .cycle-stage") if hayes_answer_model else []
+    hayes_expected = [
+        "Uncontrolled 24/0 exposure",
+        "Excessive daily light dose under current operating conditions",
+        "Photodamage outpaces repair",
+        "Culture productivity and gas exchange fall",
+        "Surviving cells rebuild",
+        "Unchanged exposure causes another crash",
+    ]
+    check(
+        "the Hayes Answer Key completes the identical six-stage recurrence without invented quantities",
+        [" ".join(stage.strong.stripped_strings) for stage in hayes_answer_stages] == hayes_expected
+        and "Every 6–8 days" not in "|".join(hayes_expected),
+        [" ".join(stage.strong.stripped_strings) for stage in hayes_answer_stages],
+    )
+    hayes_answer_text = " ".join(hayes_answer_page.stripped_strings) if hayes_answer_page else ""
+    check(
+        "the Hayes keyed commentary preserves the qualitative boundary and reactor-specific recurrence",
+        "Qualitative only:" in hayes_answer_text
+        and "Students should not invent density curves, exact photon totals, or mission-day timestamps." in hayes_answer_text
+        and "Because the external lighting remains unchanged" in hayes_answer_text
+        and "safe processing capacity" in hayes_answer_text,
+    )
+    check(
+        "the Hayes fault-loop expansion adds no duplicate organizer to Teacher pages",
+        not hayes_content.select_one('section[data-role="teacher"] .cycle-model'),
+    )
+    check(
+        "the browser harness measures the closed loop, exact fields and strict fit in both modes",
+        harness.count("fault cycle renders a direct closed repeat loop") == 1
+        and harness.count("fault-loop pages retain strict integer fit in normal and grayscale") == 1
+        and "REPEAT TO STAGE 1" in harness
+        and "EXPOSURE|LOAD|DAMAGE|DECLINE|REBUILD|RECURRENCE" in harness
+        and "t5-2|t5-3|t5-4|t5-5|t5-6" in harness
+        and "a5-2|a5-3|a5-4|a5-5|a5-6" in harness
+        and 'for (const grayscale of [false, true])' in harness,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]

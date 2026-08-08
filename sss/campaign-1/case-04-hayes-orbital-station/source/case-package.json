@@ -48,7 +48,8 @@
   "presentation": {
     "source": "sss/campaign-1/case-04-hayes-orbital-station/source/presentation.css",
     "isolation": "shadow-dom",
-    "sharedComponentStyles": true
+    "sharedComponentStyles": true,
+    "sharedVisualStyles": true
   },
   "taskRegistry": {
     "source": "sss/campaign-1/case-04-hayes-orbital-station/source/task-registry.js",

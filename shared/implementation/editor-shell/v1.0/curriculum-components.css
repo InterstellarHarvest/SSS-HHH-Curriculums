@@ -1145,6 +1145,159 @@ body.grayscale .figure:where(
   background: rgba(255, 255, 255, .94);
 }
 
+/*
+ * Mechanism/pathway family expansion: Hayes reactor fault loop.
+ *
+ * The released Student, Accessible and Answer Key organizers already contain
+ * the six exact stages, writable fields and approved vertical reading order.
+ * This case-scoped layer makes the recurrence explicit at a glance: numbered
+ * stage states run through the existing snake/vertical sequence, while a
+ * direct repeat rail returns Stage 6 to Stage 1. Border and hatch changes keep
+ * the states legible without color and do not insert learner response text.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"] {
+  --fault-line: var(--ink, #18212b);
+  --fault-muted: var(--rule, #8c9aa8);
+  --fault-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1pt solid var(--fault-muted);
+  border-left: 4pt solid var(--fault-line);
+  border-radius: var(--radius, 3px);
+  background: var(--fault-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"]:not(.accessible-cycle)::before {
+  z-index: 3;
+  grid-row: 2;
+  grid-column: 1;
+  align-self: center;
+  justify-self: stretch;
+  padding: 2px 4px;
+  border-left: 3px double var(--fault-line);
+  border-bottom: 1px dashed var(--fault-line);
+  content: "↺ REPEAT TO STAGE 1";
+  background: var(--fault-panel);
+  font: 700 5.6pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"] .cycle-stage {
+  position: relative;
+  border-color: var(--fault-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--fault-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"]:not(.accessible-cycle)
+  .cycle-stage::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-width: calc(100% - .34in);
+  font: 700 5.2pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-model:not(.accessible-cycle) .cycle-stage[data-process-stage="1"]::after { content: "EXPOSURE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-model:not(.accessible-cycle) .cycle-stage[data-process-stage="2"]::after { content: "LOAD"; }
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-model:not(.accessible-cycle) .cycle-stage[data-process-stage="3"]::after { content: "DAMAGE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-model:not(.accessible-cycle) .cycle-stage[data-process-stage="4"]::after { content: "DECLINE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-model:not(.accessible-cycle) .cycle-stage[data-process-stage="5"]::after { content: "REBUILD"; }
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-model:not(.accessible-cycle) .cycle-stage[data-process-stage="6"]::after { content: "RECURRENCE"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"] :is(
+  .cycle-stage[data-process-stage="2"],
+  .cycle-stage[data-process-stage="4"],
+  .cycle-stage[data-process-stage="6"]
+) {
+  border-top-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-stage[data-process-stage="3"] {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .07) 6px 7px),
+    var(--fault-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"] .cycle-stage[data-process-stage="5"] {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px),
+    var(--fault-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"] .cycle-connector {
+  display: grid;
+  place-items: center;
+  min-width: 16px;
+  min-height: 16px;
+  border: .75pt solid var(--fault-line);
+  border-radius: 50%;
+  background: var(--fault-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"].accessible-cycle {
+  padding-right: .82in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"].accessible-cycle::before {
+  position: absolute;
+  z-index: 3;
+  top: 4px;
+  right: 4px;
+  width: .68in;
+  padding: 3px;
+  border: 1px dashed var(--fault-line);
+  border-left: 3px double var(--fault-line);
+  content: "↺ REPEAT TO STAGE 1";
+  background: var(--fault-panel);
+  font: 700 5.7pt/1.15 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"].accessible-cycle::after {
+  position: absolute;
+  z-index: 2;
+  top: .34in;
+  right: .18in;
+  bottom: .12in;
+  width: .4in;
+  border-top: 2px solid var(--fault-line);
+  border-right: 2px solid var(--fault-line);
+  border-bottom: 2px solid var(--fault-line);
+  border-radius: 0 5px 5px 0;
+  content: "";
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"] .cycle-stage {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

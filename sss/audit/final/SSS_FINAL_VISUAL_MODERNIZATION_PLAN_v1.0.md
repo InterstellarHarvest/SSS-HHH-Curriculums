@@ -63,13 +63,18 @@ harness twice with zero application JavaScript errors, retained strict `936 <= 9
 3.47 px of geometric bottom reserve, passed the 25/25 mechanism and 36/36 telemetry focused
 validators, and was accepted and pushed at
 `c532ac5246a72ef4b9f06d985b3d5c60be92cfde`. The Mars expansion is therefore promoted to
-`VERIFIED-FAMILY`. The next Family 2 candidate applies the same case-scoped delivery contract to
-`C1C1-VIS01`: narrow deterministic statocyte/root cutaway rails expose settled versus dispersed
-statolith state, stable versus unreliable direction cue, and downward versus curved root outcome
-inside the existing Student/Accessible comparison cards and Answer Key pathways. It changes no
-package-controlled content or presentation source and remains `IMPLEMENTED-CANDIDATE` until the
-2306-assertion rendered gate confirms both presentation modes and strict page fit. A green
-source-token validator alone cannot promote a visual candidate.
+`VERIFIED-FAMILY`. The ISS Family 2 expansion at `ceb632d` subsequently passed the complete
+2306/2306 browser harness twice with zero application JavaScript errors, retained strict 884/884
+fit on Student page 2, Accessible page 3 and Answer Key page 2, and passed the 35/35 mechanism and
+36/36 telemetry validators. Normal and grayscale manual inspection found no overflow, clipping or
+collision. The Earth status arrow wraps beneath `SETTLED · CUE` in the narrow rail but remains fully
+visible and exact; this accepted cosmetic line break does not reopen the candidate. `C1C1-VIS01`
+is therefore `VERIFIED-FAMILY`. The next Family 2 candidate is `C1C4-VIS02`: the existing Hayes
+six-stage snake and Accessible vertical sequence receive direct `REPEAT TO STAGE 1` closure rails,
+stage-state labels and grayscale-independent border/pattern states without changing worksheet
+content, response identities, phrase banks or package-controlled source hashes. It remains
+`IMPLEMENTED-CANDIDATE` until the 2309-assertion rendered gate confirms both presentation modes and
+strict page fit. A green source-token validator alone cannot promote a visual candidate.
 
 ## 3. Exact inventory reconciliation
 
@@ -108,13 +113,14 @@ Common validation for every row: focused package validation; no overflow/clippin
 logical DOM order and alt/extended description where applicable; grayscale-independent meaning;
 unchanged response IDs/fill persistence; synchronized keyed exemplar where the learner completes
 the visual; zero JavaScript errors; `git diff --check`. Family completion additionally requires
-the full non-PDF browser regression against the current executable baseline of **2303/2303 PASS
+the full non-PDF browser regression against the current executable baseline of **2306/2306 PASS
 and 0 JavaScript errors**. The accepted correctness commit produces 2293/2293; five telemetry
 assertions verify computed visual delivery, pseudo-content, table patterns/state borders and the
 dense telemetry cascade, two accepted mechanism-pilot assertions verify the horizontal dependency
-rail, Answer Key interruption state and Accessible vertical rail, two expansion assertions verify
-the C1C3 spectral-loss chain in normal and grayscale, and one strict-fit assertion requires real
-bottom reserve on the dense C1C3 Student mechanism page.
+rail, Answer Key interruption state and Accessible vertical rail, two Mars expansion assertions
+verify the C1C3 spectral-loss chain in normal and grayscale, one strict-fit assertion requires real
+bottom reserve on the dense C1C3 Student mechanism page, and three accepted ISS assertions verify
+the gravity cutaways in both modes plus strict fit across the three synchronized editions.
 
 ## 5. Grayscale-system work
 
@@ -128,13 +134,13 @@ bottom reserve on the dense C1C3 Student mechanism page.
 
 | Finding | Case; editions; task/page | Current visual and problem | Family | Proposed modernization and method | Footprint / synchronization | Science/data constraints | Dependency and validation | Status |
 |---|---|---|---|---|---|---|---|---|
-| `C1C1-VIS01` | ISS Greenhouse; S T5 p2, A T5 p3, AK T5 p2 | Two plain comparison cards; the gravity-sensing relationship is text-heavy and visually basic. | 2 · Causal mechanism/pathway | Matched statocyte/root cutaways with settled/unsettled statolith states, direction cue, and root outcome; deterministic SVG + existing writable phrase fields. | Same footprint; synchronize S/A/AK blanks and completed exemplar; T wording only. | Do not imply roots become random or respond only to gravity; fictional case context vs established gravitropism remains explicit. | primitives P1–P6; mechanism and fill-persistence tests | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
+| `C1C1-VIS01` | ISS Greenhouse; S T5 p2, A T5 p3, AK T5 p2 | Two plain comparison cards; the gravity-sensing relationship is text-heavy and visually basic. | 2 · Causal mechanism/pathway | Matched statocyte/root cutaways with settled/unsettled statolith states, direction cue, and root outcome; deterministic SVG + existing writable phrase fields. | Same footprint; synchronize S/A/AK blanks and completed exemplar; T wording only. | Do not imply roots become random or respond only to gravity; fictional case context vs established gravitropism remains explicit. | primitives P1–P6; mechanism and fill-persistence tests | `VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 884/884 · ceb632d ACCEPTED` |
 | `C1C2-VIS01` | Lunar Greenhouse; S T3 p1, A T3 p2, AK T3 p1 | Conventional six-box flow; A uses a separate plain vertical list. | 2 · Causal mechanism/pathway | Reproductive telemetry rail: anther/pollen → physical agitation → stigma → pollen tube → fertilization → fruit, with numbered nodes and failure/interruption status; deterministic HTML/CSS/SVG. | Preserve six exact bank entries and fields; horizontal S/AK and vertical A remain one grammar. | Pores/structures downstream may remain capable; failed Step 2 interrupts rather than destroys them. | P1–P6; exact-bank parity; AK failure-state check | `VERIFIED-FAMILY-PILOT · 14/14 PILOT STATIC PASS · 2300/2300 BROWSER PASS · 0 JS ERRORS` |
 | `C1C3-VIS01` | Mars Habitat; S T2 p1, A T2 p2, T reference p4, AK T2 p1 | Accurate ordinary four-bar transmission graph repeated across roles. | 1 · Technical telemetry/data | Four-channel optical-transmission scan with direct percentages, patterned rails, and low-transmission flags; deterministic SVG. | Preserve current figure height and table backup; synchronize all existing instances. | Four discrete bands only; no continuous spectrum or interpolated values; retain 92%, 88%, 31%, 12%. | P1–P5, D1; numeric DOM assertions and extended description | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C1C3-VIS02` | Mars Habitat; S T3 p2, A T3 p3, AK T3 p1 | Boxed “280 adequate” plus repeated mini bars; comparison is correct but visually ordinary. | 1 · Technical telemetry/data | Dual-channel diagnostic: photon quantity 280 PPFD `ADEQUATE` vs four-rail spectrum `UNEVEN`, with `Quantity ≠ Distribution`; deterministic HTML/SVG. | Same footprint; synchronize S/A and concise AK treatment. | PPFD quantity must not be presented as spectral adequacy; preserve units and exact discrete values. | C1C3-VIS01 rail primitive; numeric/parity checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C1C3-VIS03` | Mars Habitat; S T6 p3, A T6 p5, AK T6 p3 | Generic five-stage rectangles. | 2 · Causal mechanism/pathway | Technical glyph chain: collector → wrong BP-4 filter → selective loss → disrupted new chlorophyll production → pale new growth; deterministic HTML/SVG. | Preserve five-stage exact-match bank, blank stages and vertical A variant. | Do not claim an unsupported universal chlorophyll mechanism; retain case wording and corrected 700 nm boundary. | mechanism primitive; bank/order/persistence checks | `VERIFIED-FAMILY · 25/25 FAMILY STATIC PASS · 2303/2303 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 3.47px RESERVE · c532ac5 ACCEPTED` |
 | `C1C4-VIS01` | Hayes Orbital Station; S T2 p1, A T2 p2, AK T2 p1 | Five numbered blanks connected by plain arrows. | 3 · Timeline/event log | SAA incident log with verified relative-event slots and event-type markers; deterministic HTML/CSS. | Same five writable positions; A stays vertical; AK completes identical log. | Relative timing only; do not invent mission days or proportional spacing. | P1–P5, TL1; exact event-bank/parity checks | `PLANNED` |
-| `C1C4-VIS02` | Hayes Orbital Station; S T5 p3, A T5 p5, AK T5 p3 | Six-stage snake layout; reading direction requires prose. | 2 · Causal mechanism/pathway | Immediate closed fault loop with directional connectors and explicit repeat link. | Preserve six exact stages/fields and A vertical reading order. | Qualitative recurrence; no invented light dose, density or crash interval beyond reported 6–8 days. | loop variant of mechanism primitive; connector/read-order tests | `PLANNED` |
+| `C1C4-VIS02` | Hayes Orbital Station; S T5 p3, A T5 p5, AK T5 p3 | Six-stage snake layout; reading direction requires prose. | 2 · Causal mechanism/pathway | Immediate closed fault loop with directional connectors and explicit repeat link. | Preserve six exact stages/fields and A vertical reading order. | Qualitative recurrence; no invented light dose, density or crash interval beyond reported 6–8 days. | loop variant of mechanism primitive; connector/read-order tests | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
 | `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `PLANNED` |
 | `C1C5-VIS01` | Europa Bunker; S T5 p3, A T5 p5, AK T5 p3 | Seven-stage snake of text boxes. | 2 · Causal mechanism/pathway | Qualified hazard pathway visually separating environment, modeled interaction, exposure evidence, evidence limit, biological evidence, growth consequence and convergence; deterministic HTML/SVG. | Preserve seven exact bank entries and current blanks; A vertical; AK complete. | Modeled secondary radiation ≠ measured; exposure ≠ damage; abnormalities are consistent with damage; no exact quantities. | mechanism/status primitives; phrase, qualifier and persistence tests | `PLANNED` |
 | `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `PLANNED` |

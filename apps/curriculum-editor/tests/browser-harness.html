@@ -1659,6 +1659,113 @@
           const lockedTitles = ["Initial Thinking — Identify the Variable", "Build the Change-to-Crash Timeline", "Isolate Variables and Test Alternatives", "Diagnose the Reactor Failure", "Model the Repeating Crash Cycle", "Explain the Failure with CER", "Design Independent Reactor Controls", "Exit Ticket — Cause or Effect?"];
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           check("Case 04 generated Student, Answer Key, and Accessible task titles have exact parity", ["student", "answer", "accessible"].every(role => JSON.stringify(roleTitles(role)) === JSON.stringify(lockedTitles)));
+          const faultLoopPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId] of [["student", "student-mission-03"], ["answer", "answer-key-03"], ["accessible", "accessible-mission-05"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              faultLoopPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 04 fault-loop pages retain strict integer fit in normal and grayscale",
+            faultLoopPageFit.length === 6
+              && faultLoopPageFit.every(state => state.page && !state.overflow && state.fits),
+            JSON.stringify(faultLoopPageFit)
+          );
+          const expectedFaultStages = [
+            "Uncontrolled 24/0 exposure",
+            "Excessive daily light dose under current operating conditions",
+            "Photodamage outpaces repair",
+            "Culture productivity and gas exchange fall",
+            "Surviving cells rebuild",
+            "Unchanged exposure causes another crash"
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-mission-03"], ["answer", "answer-key-03"], ["accessible", "accessible-mission-05"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.cycle-model[data-process-contract="six-stage-cycle-v1.0"]');
+              const stages = Array.from(model?.querySelectorAll(":scope > .cycle-stage") || []);
+              const connectors = Array.from(model?.querySelectorAll(":scope > .cycle-connector") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && [...stages, ...connectors].every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = stages.map(stage => stage.querySelector("[data-response]"))
+                .filter(Boolean)
+                .map(field => ({ id: field.dataset.persistId, text: field.textContent.trim(), response: field.hasAttribute("data-response") }));
+              rendered.push({
+                role,
+                pageId,
+                model: Boolean(model),
+                stages: stages.length,
+                stageNumbers: stages.map(stage => stage.dataset.processStage).join("|"),
+                stageText: stages.map(stage => stage.textContent.trim().replace(/\s+/g, " ")),
+                connectors: connectors.map(node => node.textContent.trim()).join("|"),
+                connectorShapes: connectors.map(node => win.getComputedStyle(node).borderRadius),
+                loopLabel: model ? win.getComputedStyle(model, "::before").content : "",
+                stageLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content),
+                borderStates: stages.map(stage => win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision,
+                fields
+              });
+            }
+            const studentLoop = rendered.find(state => state.role === "student");
+            const answerLoop = rendered.find(state => state.role === "answer");
+            const accessibleLoop = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 04 ${grayscale ? "grayscale" : "normal"} fault cycle renders a direct closed repeat loop`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.model && state.stages === 6 && state.stageNumbers === "1|2|3|4|5|6" && state.modelFits && state.contained && !state.stageCollision)
+                && rendered.every(state => state.loopLabel.includes("REPEAT TO STAGE 1"))
+                && rendered.every(state => state.borderStates === "solid|double|dashed|double|solid|double")
+                && rendered.every(state => state.patternStates.every(Boolean))
+                && rendered.every(state => state.connectorShapes.every(value => value !== "0px"))
+                && studentLoop.connectors === "→|→|↓|←|←"
+                && answerLoop.connectors === "→|→|↓|←|←"
+                && accessibleLoop.connectors === "↓|↓|↓|↓|↓ then repeat"
+                && studentLoop.stageLabels.map(value => value.replaceAll('"', "")).join("|") === "EXPOSURE|LOAD|DAMAGE|DECLINE|REBUILD|RECURRENCE"
+                && answerLoop.stageLabels.map(value => value.replaceAll('"', "")).join("|") === "EXPOSURE|LOAD|DAMAGE|DECLINE|REBUILD|RECURRENCE"
+                && studentLoop.fields.map(field => field.id).join("|") === "t5-2|t5-3|t5-4|t5-5|t5-6"
+                && studentLoop.fields.every(field => field.text === "" && field.response)
+                && accessibleLoop.fields.map(field => field.id).join("|") === "a5-2|a5-3|a5-4|a5-5|a5-6"
+                && accessibleLoop.fields.map(field => field.text).join("|") === "excessive daily light dose under current operating conditions||||"
+                && accessibleLoop.fields.every(field => field.response)
+                && answerLoop.stageText.every((value, index) => value === `${index + 1} ${expectedFaultStages[index]}`),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
           check("Case 04 has one atomic CER in each required learner role", ["student-v1.0", "answer-v1.0", "accessible-v1.0"].every(contract => { const root = workspace.querySelector(`[data-cer-contract="${contract}"]`); return root && Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page")); }));
           check("Case 04 timeline and process models remain atomic", Array.from(workspace.querySelectorAll("[data-timeline-contract],[data-process-contract]")).every(root => Array.from(root.querySelectorAll("*")).every(child => child.closest(".page") === root.closest(".page"))));
           check("Case 04 Accessible pages retain ordered reading structure", JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="accessible"]')).map(page => page.dataset.pageId)) === JSON.stringify(["accessible-mission-01", "accessible-mission-02", "accessible-mission-03", "accessible-mission-04", "accessible-mission-05", "accessible-mission-06", "accessible-mission-07"]));
