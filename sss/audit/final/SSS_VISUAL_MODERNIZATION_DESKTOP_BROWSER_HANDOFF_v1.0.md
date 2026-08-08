@@ -20,12 +20,15 @@ You are validating the isolated `visual/sss-final-modernization` branch of
      --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
    ```
 
-   The accepted browser baseline is **2292/2292 PASS with 0 JavaScript errors**. Report any drop
-   by assertion name and case/role/presentation state. Do not change expected values.
+   The current executable browser baseline is **2293/2293 PASS with 0 JavaScript errors**, as
+   verified on the accepted correctness commit `5844b56fd10e4be068dc9049f6a743cd473de805`
+   during the first desktop run. The historical correctness handoff recorded 2292/2292 before the
+   additional assertion was present. Report any drop by assertion name and case/role/presentation
+   state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
    in Chrome, and inspect these telemetry-family candidates in both normal and grayscale modes:
 
-   - C1 Case 03: Student p1, Teacher p4, Answer Key p1, Accessible p2;
+   - C1 Case 03: Student p1, Teacher p4, Answer Key p2, Accessible p2;
    - C2 Case 01: Teacher p4;
    - C2 Case 03: Student pp2–3 and Accessible pp2–3;
    - C2 Case 05: Student pp2–3 and Accessible pp2–3;
@@ -54,5 +57,5 @@ commands, totals, and any failing page/state. Do not produce or inspect PDFs.
 ## Acceptance rule
 
 The family pilot may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness remains
-2292/2292 with zero JavaScript errors and every listed page has no overflow, clipping, or status
+2293/2293 with zero JavaScript errors and every listed page has no overflow, clipping, or status
 collision in normal and grayscale presentation.

@@ -412,6 +412,30 @@ h3 {
   border-top: .5pt solid var(--rule, #8c9aa8);
 }
 
+/*
+ * Compact telemetry footprint.
+ *
+ * C2 Case 03 Student page 3 already uses the full accepted content height.
+ * Preserve the shared frame/status/type treatment without adding flow height or
+ * narrowing the caption/description enough to create a new wrapped line.
+ * The Accessible instance has its own page geometry and does not need this
+ * exception. Scientific SVG geometry and learner response areas are untouched.
+ */
+.figure[data-figure-id="fig-band-student"] {
+  border-width: 1px;
+}
+
+.figure[data-figure-id="fig-band-student"] figcaption {
+  margin-top: 3px;
+  padding: 3px 0 0;
+}
+
+.figure[data-figure-id="fig-band-student"] .extended-description {
+  margin: 3px 0 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .figure:is(
   [data-visual-family="telemetry"],
   [data-figure-id^="fig-gro9-"],

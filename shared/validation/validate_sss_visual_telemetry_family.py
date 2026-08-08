@@ -63,6 +63,21 @@ def main() -> int:
     missing_css = [token for token in required_css if token not in css]
     check("the shared component layer declares the telemetry frame, status, type, and line grammar", not missing_css, missing_css)
     check("the shared telemetry grammar never applies a whole-figure grayscale filter", "filter:" not in css[css.index("SSS/HHH explanatory-visual primitives."):css.index(".source-status")])
+    compact_band_rules = css[css.index("Compact telemetry footprint."):css.index('.figure:is(\n  [data-visual-family="telemetry"]')]
+    check(
+        "the dense Student response-band figure retains the accepted compact flow footprint",
+        all(
+            token in compact_band_rules
+            for token in (
+                '.figure[data-figure-id="fig-band-student"]',
+                "border-width: 1px",
+                "padding: 3px 0 0",
+                "padding-top: 0",
+                "border-top: 0",
+            )
+        ),
+        compact_band_rules,
+    )
 
     c1_figures = c1.select("figure.spectrum-figure")
     c1_roles = [figure.find_parent("section", attrs={"data-role": True})["data-role"] for figure in c1_figures]

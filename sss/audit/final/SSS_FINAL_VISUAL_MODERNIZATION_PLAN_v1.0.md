@@ -72,7 +72,10 @@ Common validation for every row: focused package validation; no overflow/clippin
 logical DOM order and alt/extended description where applicable; grayscale-independent meaning;
 unchanged response IDs/fill persistence; synchronized keyed exemplar where the learner completes
 the visual; zero JavaScript errors; `git diff --check`. Family completion additionally requires
-the full non-PDF browser regression against **2292/2292 PASS and 0 JavaScript errors**.
+the full non-PDF browser regression against the current executable baseline of **2293/2293 PASS
+and 0 JavaScript errors**. The closed correctness handoff's 2292/2292 total is retained as a
+historical result; the accepted correctness commit itself produces 2293/2293 with the current
+harness.
 
 ## 5. Grayscale-system work
 
@@ -223,7 +226,7 @@ Periodic/final system gate:
 - quality contract v3;
 - accessibility contract v2;
 - lifecycle tests and corrective-candidate contract;
-- full browser harness: baseline **2292/2292 PASS, 0 JavaScript errors**;
+- full browser harness: current executable baseline **2293/2293 PASS, 0 JavaScript errors**;
 - `git diff --check`.
 
 Frozen-release assertions remain `RELEASE-BASELINE-PENDING`; they are not re-pinned here.
