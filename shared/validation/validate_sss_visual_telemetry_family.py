@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -13,7 +14,9 @@ ROOT = Path(__file__).resolve().parents[2]
 REGISTER = ROOT / "sss/audit/final/SSS_FINAL_AUDIT_REMEDIATION_REGISTER_v0.1.md"
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
+EDITOR = ROOT / "apps/curriculum-editor/editor-app.js"
 C1C3 = ROOT / "sss/campaign-1/case-03-mars-habitat/source/content.html"
+C1C3_PACKAGE = ROOT / "sss/campaign-1/case-03-mars-habitat/source/case-package.json"
 C2C1 = ROOT / "sss/campaign-2/case-01-heavy-hands/source/content.html"
 C2C3 = ROOT / "sss/campaign-2/case-03-wrong-color-light/source/content.html"
 C2C4 = ROOT / "sss/campaign-2/case-04-silent-grove/source/content.html"
@@ -30,6 +33,8 @@ def main() -> int:
     register = REGISTER.read_text(encoding="utf-8")
     plan = PLAN.read_text(encoding="utf-8")
     css = COMPONENTS.read_text(encoding="utf-8")
+    editor = EDITOR.read_text(encoding="utf-8")
+    c1_package = json.loads(C1C3_PACKAGE.read_text(encoding="utf-8"))
     c1 = BeautifulSoup(C1C3.read_text(encoding="utf-8"), "html.parser")
     c2c1 = BeautifulSoup(C2C1.read_text(encoding="utf-8"), "html.parser")
     c2 = BeautifulSoup(C2C3.read_text(encoding="utf-8"), "html.parser")
@@ -58,7 +63,7 @@ def main() -> int:
         "DUAL-CHANNEL DIAGNOSTIC · UNEVEN",
         "QUANTITY ≠ DISTRIBUTION",
         "SHIP RECORD · DISCRETE BLOCKS",
-        'data-editor-content="sss-c2-case04-v1.0"',
+        '.worksheet-document[data-case-id="SSS-C2-CASE04"]',
         ".telemetry-table",
         'data-figure-id^="fig-profile-"',
         'data-figure-id^="fig-gauge-"',
@@ -66,11 +71,30 @@ def main() -> int:
         'data-figure-id^="fig-patches-"',
         'font-family: "JetBrains Mono"',
         "shape-rendering: crispEdges",
+        ".figure:where(",
     )
     missing_css = [token for token in required_css if token not in css]
     check("the shared component layer declares the telemetry frame, status, type, and line grammar", not missing_css, missing_css)
+    check(
+        "Mars opts into the extracted shared visual layer without the full protected-component layer",
+        c1_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and c1_package.get("presentation", {}).get("sharedComponentStyles") is not True,
+        c1_package.get("presentation"),
+    )
+    check(
+        "the editor delivers opt-in visual primitives and stamps a stable rendered case identity",
+        all(
+            token in editor
+            for token in (
+                "function visualPrimitiveCss(css)",
+                "casePackage.presentation.sharedVisualStyles",
+                "sharedStyles.push(visualPrimitiveCss",
+                "worksheetDocument.dataset.caseId = casePackage.id",
+            )
+        ),
+    )
     check("the shared telemetry grammar never applies a whole-figure grayscale filter", "filter:" not in css[css.index("SSS/HHH explanatory-visual primitives."):css.index(".source-status")])
-    compact_band_rules = css[css.index("Compact telemetry footprint."):css.index('.figure:is(\n  [data-visual-family="telemetry"]')]
+    compact_band_rules = css[css.index("Compact telemetry footprint."):css.index('.figure:where(\n  [data-visual-family="telemetry"]')]
     check(
         "the dense Student response-band figure retains the accepted compact flow footprint",
         all(

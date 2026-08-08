@@ -47,7 +47,8 @@
   },
   "presentation": {
     "source": "sss/campaign-1/case-03-mars-habitat/source/presentation.css",
-    "isolation": "shadow-dom"
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true
   },
   "taskRegistry": {
     "source": "sss/campaign-1/case-03-mars-habitat/source/task-registry.js",

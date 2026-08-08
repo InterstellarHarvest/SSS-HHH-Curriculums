@@ -1277,6 +1277,124 @@
         check(`${item.id} print document embeds print CSS/assets and has no authoring state`, printMeta && printAtPage && !printAuthoringState, JSON.stringify({ printMeta, printAtPage, printAuthoringState: printAuthoringState?.outerHTML.slice(0, 160) || null }));
         isolatedFrame.remove();
         if (item.id === "SSS-C1-CASE03") {
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const role of ["student", "answer", "accessible"]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const figure = workspace.querySelector(`.page[data-role="${role}"] figure:has(> svg[data-quantity-spectrum="canonical-v1.0"])`);
+              const before = figure ? win.getComputedStyle(figure, "::before") : null;
+              const after = figure ? win.getComputedStyle(figure, "::after") : null;
+              rendered.push({
+                role,
+                figure: Boolean(figure),
+                position: figure ? win.getComputedStyle(figure).position : "",
+                before: before?.content || "",
+                after: after?.content || ""
+              });
+            }
+            for (const role of ["student", "teacher", "answer", "accessible"]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const figure = workspace.querySelector(`.page[data-role="${role}"] figure.spectrum-figure`);
+              const before = figure ? win.getComputedStyle(figure, "::before") : null;
+              rendered.push({
+                role: `${role}-optical`,
+                figure: Boolean(figure),
+                position: figure ? win.getComputedStyle(figure).position : "",
+                before: before?.content || "",
+                after: "not-applicable"
+              });
+            }
+            check(
+              `C1 Case 03 ${grayscale ? "grayscale" : "normal"} shared telemetry grammar renders diagnostic and optical status text`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 7
+                && rendered.every(state => state.figure && state.position === "relative")
+                && rendered.slice(0, 3).every(state => state.before.includes("DUAL-CHANNEL DIAGNOSTIC · UNEVEN") && state.after.includes("QUANTITY ≠ DISTRIBUTION"))
+                && rendered.slice(3).every(state => state.before.includes("OPTICAL LINK · DISCRETE BANDS")),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
+        if (item.id === "SSS-C2-CASE03") {
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+          const denseFigure = workspace.querySelector('.page[data-page-id="student-mission-03"] .figure[data-figure-id="fig-band-student"]');
+          const denseCaption = denseFigure?.querySelector("figcaption");
+          const denseDescription = denseFigure?.querySelector(".extended-description");
+          const denseContent = denseFigure?.closest(".content-area");
+          const captionStyle = denseCaption ? win.getComputedStyle(denseCaption) : null;
+          const descriptionStyle = denseDescription ? win.getComputedStyle(denseDescription) : null;
+          check(
+            "C2 Case 03 dense Student response-band figure wins the compact runtime footprint",
+            worksheetDoc.dataset.caseId === item.id
+              && Boolean(denseFigure && denseCaption && denseDescription && denseContent)
+              && px(captionStyle.paddingTop) === 3
+              && px(captionStyle.paddingRight) === 0
+              && px(captionStyle.paddingBottom) === 0
+              && px(captionStyle.paddingLeft) === 0
+              && px(descriptionStyle.paddingTop) === 0
+              && px(descriptionStyle.borderTopWidth) === 0
+              && denseContent.scrollHeight <= denseContent.clientHeight + 1,
+            JSON.stringify({
+              captionPadding: captionStyle ? [captionStyle.paddingTop, captionStyle.paddingRight, captionStyle.paddingBottom, captionStyle.paddingLeft] : null,
+              description: descriptionStyle ? [descriptionStyle.paddingTop, descriptionStyle.borderTopWidth] : null,
+              content: denseContent ? [denseContent.scrollHeight, denseContent.clientHeight] : null
+            })
+          );
+        }
+        if (item.id === "SSS-C2-CASE04") {
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const role of ["student", "accessible"]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const pageId = role === "student" ? "student-mission-03" : "accessible-mission-03";
+              const table = workspace.querySelector(`.page[data-page-id="${pageId}"] table.timeline-table`);
+              const rows = Array.from(table?.querySelectorAll("tbody tr") || []);
+              const patterns = rows.map(row => win.getComputedStyle(row.children[1]).backgroundImage);
+              const signalBorders = rows.map(row => {
+                const style = win.getComputedStyle(row.children[2]);
+                return [style.borderLeftStyle, px(style.borderLeftWidth)];
+              });
+              const badge = table ? win.getComputedStyle(table.querySelector("caption"), "::after").content : "";
+              const expectedBorders = [["double", 3], ["solid", 3], ["double", 3], ["double", 3], ["solid", 5], ["double", 5]];
+              rendered.push({
+                role,
+                rows: rows.length,
+                badge,
+                patterns,
+                signalBorders,
+                pass: rows.length === 6
+                  && badge.includes("SHIP RECORD · DISCRETE BLOCKS")
+                  && patterns.every(value => value !== "none")
+                  && patterns[0] === patterns[1] && patterns[1] === patterns[2]
+                  && patterns[0] !== patterns[3] && patterns[3] === patterns[4]
+                  && patterns[5] !== patterns[0] && patterns[5] !== patterns[3]
+                  && signalBorders.every((value, index) => value[0] === expectedBorders[index][0] && value[1] >= expectedBorders[index][1])
+                  && !table.querySelector("svg,path,polyline")
+              });
+            }
+            check(
+              `C2 Case 04 ${grayscale ? "grayscale" : "normal"} within-cycle records render discrete schedule patterns and signal-state borders`,
+              worksheetDoc.dataset.caseId === item.id && rendered.length === 2 && rendered.every(state => state.pass),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
+        if (item.id === "SSS-C1-CASE03") {
           let isolatedWindowPrintCalls = 0;
           const printFrameObserved = new Promise(resolve => {
             const observer = new MutationObserver(records => {

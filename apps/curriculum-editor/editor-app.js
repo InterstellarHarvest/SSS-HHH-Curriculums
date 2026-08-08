@@ -7,6 +7,8 @@ import {
 const REGISTRY_PATH = "/shared/implementation/case-registry.v2.json";
 const PROTECTED_COMPONENT_STYLES_PATH = "shared/implementation/editor-shell/v1.0/protected-printable-components.css";
 const ACCESSIBLE_EDITION_STYLES_PATH = "shared/implementation/editor-shell/v1.0/accessible-edition.css";
+const VISUAL_PRIMITIVES_START = "/* SSS/HHH explanatory-visual primitives.";
+const VISUAL_PRIMITIVES_END = ".source-status {";
 const SELECTED_CASE_KEY = "curriculum-editor:selected-case:v1";
 const SUPPORTED_PACKAGE_SCHEMA = 2;
 const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"];
@@ -510,6 +512,15 @@ function scopePresentationCss(css) {
     .replace(/--__ce-b-var/g, "--body");
 }
 
+function visualPrimitiveCss(css) {
+  const start = css.indexOf(VISUAL_PRIMITIVES_START);
+  const end = css.indexOf(VISUAL_PRIMITIVES_END, start);
+  if (start < 0 || end < 0 || end <= start) {
+    throw new Error("Shared explanatory-visual primitives are missing their extraction markers.");
+  }
+  return css.slice(start, end);
+}
+
 async function installPackageFontImports(presentationCss) {
   document.head.querySelectorAll("link[data-case-package-font]").forEach(link => link.remove());
   const imports = [...presentationCss.matchAll(/@import\s+url\(["']?(https:\/\/fonts\.googleapis\.com\/[^"')]+)["']?\)\s*;/gi)]
@@ -537,6 +548,7 @@ function installWorksheet(sharedStyles, presentationCss, protectedComponentStyle
   worksheetDocument = document.createElement("div");
   worksheetDocument.className = "worksheet-document";
   worksheetDocument.dataset.standalone = "true";
+  worksheetDocument.dataset.caseId = casePackage.id;
   const icons = document.createElement("div");
   icons.className = "worksheet-icons";
   icons.setAttribute("aria-hidden", "true");
@@ -1317,6 +1329,11 @@ async function loadCase(selected, initial = false, options = {}) {
   const sharedStyles = casePackage.presentation.sharedComponentStyles
     ? casePackage.shell.styles.map(path => loaded.get(path))
     : [];
+  if (casePackage.presentation.sharedVisualStyles && !casePackage.presentation.sharedComponentStyles) {
+    const componentsPath = casePackage.shell.styles.find(path => path.endsWith("/curriculum-components.css"));
+    if (!componentsPath) throw new Error("Shared visual styles require curriculum-components.css.");
+    sharedStyles.push(visualPrimitiveCss(loaded.get(componentsPath)));
+  }
   installWorksheet(sharedStyles, loaded.get(casePackage.presentation.source), loaded.get(PROTECTED_COMPONENT_STYLES_PATH), loaded.get(ACCESSIBLE_EDITION_STYLES_PATH), loaded.get(casePackage.shell.icons));
   prepareContent(loaded.get(casePackage.content.source));
   currentSelection = selected;

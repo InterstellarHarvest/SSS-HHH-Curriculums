@@ -20,11 +20,10 @@ You are validating the isolated `visual/sss-final-modernization` branch of
      --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
    ```
 
-   The current executable browser baseline is **2293/2293 PASS with 0 JavaScript errors**, as
-   verified on the accepted correctness commit `5844b56fd10e4be068dc9049f6a743cd473de805`
-   during the first desktop run. The historical correctness handoff recorded 2292/2292 before the
-   additional assertion was present. Report any drop by assertion name and case/role/presentation
-   state. Do not change expected values.
+   The current executable browser target is **2298/2298 PASS with 0 JavaScript errors**. The
+   accepted correctness commit produces 2293/2293; this branch adds five computed-style assertions
+   for the visual-delivery defects exposed by the `71e555d` desktop run. Report any drop by
+   assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
    in Chrome, and inspect these telemetry-family candidates in both normal and grayscale modes:
 
@@ -56,11 +55,12 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused result: **33/33 PASS**. Return a concise run report with the exact branch SHA,
+Expected focused result: **35/35 PASS**. Return a concise run report with the exact branch SHA,
 commands, totals, and any failing page/state. Do not produce or inspect PDFs.
 
 ## Acceptance rule
 
-The family pilot may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness remains
-2293/2293 with zero JavaScript errors and every listed page has no overflow, clipping, or status
-collision in normal and grayscale presentation.
+The family pilot may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+2298/2298 with zero JavaScript errors and every listed page has no overflow, clipping, or status
+collision in normal and grayscale presentation. The five new browser assertions must confirm the
+C1C3 pseudo-content, C2C3 compact computed padding/page fit, and C2C4 computed pattern/border states.

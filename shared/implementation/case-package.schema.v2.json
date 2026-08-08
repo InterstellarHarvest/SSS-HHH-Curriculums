@@ -73,7 +73,8 @@
       "properties": {
         "source": {"type": "string", "pattern": "/source/presentation\\.css$"},
         "isolation": {"const": "shadow-dom"},
-        "sharedComponentStyles": {"type": "boolean"}
+        "sharedComponentStyles": {"type": "boolean"},
+        "sharedVisualStyles": {"type": "boolean"}
       },
       "additionalProperties": false
     },
