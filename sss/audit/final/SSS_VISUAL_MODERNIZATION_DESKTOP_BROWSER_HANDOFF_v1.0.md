@@ -4,6 +4,17 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 This is a read-only validation run. Do not edit sources, regenerate release baselines, run PDF
 automation, or reopen correctness findings.
 
+## Recorded outcome — 2026-08-08
+
+The C1C3 Mars mechanism expansion is `VERIFIED-FAMILY` at
+`c532ac5246a72ef4b9f06d985b3d5c60be92cfde`. The browser harness passed 2303/2303 twice with
+zero application JavaScript errors. The strict-fit assertion measured `scrollHeight 936 <=
+clientHeight 936` and 3.47 px of geometric bottom reserve. The mechanism validator passed 25/25,
+the telemetry validator passed 36/36, normal and grayscale inspection passed, and the accepted
+C1C2 rendering remained unchanged. The branch was pushed by normal fast-forward. This recorded
+outcome satisfies the acceptance rule below; the expansion is no longer an
+`IMPLEMENTED-CANDIDATE`.
+
 ## Prompt
 
 You are validating the isolated `visual/sss-final-modernization` branch of
@@ -87,10 +98,10 @@ or inspect PDFs.
 
 ## Acceptance rule
 
-The C1C3 expansion may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+The C1C3 expansion could advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reached
 2303/2303 with zero JavaScript errors and every listed page has no overflow, clipping or connector/
 status collision in normal and grayscale presentation. The two new assertions must confirm the
 computed five-stage chain, direct labels, border states, response identity/content and horizontal/
 vertical variants. The accepted C1C2 mechanism and telemetry computed-style assertions must remain
 green. C1C3 Student page 3 must also satisfy strict `scrollHeight <= clientHeight` and retain at
-least 3 px of real geometric bottom reserve.
+least 3 px of real geometric bottom reserve. The recorded outcome above satisfies every condition.

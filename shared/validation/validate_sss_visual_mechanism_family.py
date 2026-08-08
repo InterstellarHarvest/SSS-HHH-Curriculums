@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[2]
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
+HANDOFF = ROOT / "sss/audit/final/SSS_VISUAL_MODERNIZATION_DESKTOP_BROWSER_HANDOFF_v1.0.md"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 EDITOR = ROOT / "apps/curriculum-editor/editor-app.js"
 HARNESS = ROOT / "apps/curriculum-editor/tests/browser-harness.html"
@@ -37,6 +38,7 @@ def main() -> int:
         checks.append((name, bool(passed), str(detail)))
 
     plan = PLAN.read_text(encoding="utf-8")
+    handoff = HANDOFF.read_text(encoding="utf-8")
     css = COMPONENTS.read_text(encoding="utf-8")
     editor = EDITOR.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")
@@ -53,13 +55,15 @@ def main() -> int:
         "the accepted pilot and Mars expansion have explicit lifecycle states",
         bool(re.search(r"\| `C1C2-VIS01` .*`VERIFIED-FAMILY-PILOT .*2300/2300 BROWSER PASS", plan))
         and bool(re.search(
-            r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 25/25 FAMILY STATIC PASS "
-            r"· 7ec465e REJECTED 2295/2302 · 7ed27eb HELD 2302/2302, 937>936 "
-            r"· b429fb4 REJECTED 2302/2303, NO-OP MARGIN AND MISPLACED ASSERTION "
-            r"· a960018 REJECTED 2302/2303, C1C2 STATE RESET REGRESSION "
-            r"· SUCCESSOR 2303/2303 BROWSER GATE PENDING`",
+            r"\| `C1C3-VIS03` .*`VERIFIED-FAMILY · 25/25 FAMILY STATIC PASS "
+            r"· 2303/2303 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 "
+            r"· 3\.47px RESERVE · c532ac5 ACCEPTED`",
             plan,
-        )),
+        ))
+        and "The C1C3 Mars mechanism expansion is `VERIFIED-FAMILY`" in handoff
+        and "`c532ac5246a72ef4b9f06d985b3d5c60be92cfde`" in handoff
+        and "browser harness passed 2303/2303 twice" in handoff
+        and "outcome satisfies the acceptance rule" in handoff,
     )
     check(
         "Lunar Greenhouse opts into extracted shared visuals without the full component layer",
