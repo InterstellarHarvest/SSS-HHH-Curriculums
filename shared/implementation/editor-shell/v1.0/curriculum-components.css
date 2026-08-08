@@ -914,6 +914,13 @@ body.grayscale .figure:where(
   padding-top: .2in;
 }
 
+.worksheet-document[data-case-id="SSS-C1-CASE03"]
+  .page[data-role="student"][data-page-id="student-mission-03"]
+  .canonical-process[data-process-layout="horizontal"]
+  + .canonical-phrase-bank[data-phrase-bank-contract="sequence-v1.0"] {
+  margin-top: 2px;
+}
+
 .worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage {
   position: relative;
   min-width: 0;

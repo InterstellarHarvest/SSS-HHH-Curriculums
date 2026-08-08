@@ -55,6 +55,7 @@ def main() -> int:
         and bool(re.search(
             r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 24/24 FAMILY STATIC PASS "
             r"· 7ec465e REJECTED 2295/2302 · 7ed27eb HELD 2302/2302, 937>936 "
+            r"· b429fb4 REJECTED 2302/2303, NO-OP MARGIN AND MISPLACED ASSERTION "
             r"· SUCCESSOR 2303/2303 BROWSER GATE PENDING`",
             plan,
         )),
@@ -137,13 +138,22 @@ def main() -> int:
         and '.canonical-process[data-process-layout="horizontal"]' in mechanism_css
         and "margin-block: 1px" in mechanism_css
         and "padding-top: .2in" in mechanism_css
+        and '+ .canonical-phrase-bank[data-phrase-bank-contract="sequence-v1.0"]' in mechanism_css
+        and "margin-top: 2px" in mechanism_css
         and "min-height: 2.25in" not in mechanism_css,
     )
+    case02_visual_start = harness.index('if (item.id === "SSS-C1-CASE02")')
+    case03_visual_start = harness.index('if (item.id === "SSS-C1-CASE03")', case02_visual_start)
+    next_visual_start = harness.index('if (item.id === "SSS-C2-CASE03")', case03_visual_start)
+    case02_visual_block = harness[case02_visual_start:case03_visual_start]
+    case03_visual_block = harness[case03_visual_start:next_visual_start]
     check(
-        "the browser gate requires strict Mars Student page fit with real bottom reserve",
+        "the C1C3 browser block requires strict Mars Student page fit with real bottom reserve",
         harness.count("C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve") == 1
-        and "marsStudentContent.scrollHeight <= marsStudentContent.clientHeight" in harness
-        and "marsStudentReserve >= 3" in harness,
+        and "C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve" not in case02_visual_block
+        and "C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve" in case03_visual_block
+        and "marsStudentContent.scrollHeight <= marsStudentContent.clientHeight" in case03_visual_block
+        and "marsStudentReserve >= 3" in case03_visual_block,
     )
 
     expected_phrases = [

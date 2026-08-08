@@ -29,8 +29,12 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    it does not reduce the approved Task 5 response or 2.25 in process-stage writing height.
    Candidate `7ed27eb` subsequently passed 2302/2302 and reported `Pages fit`, but was held because
    the target content area still rounded to `scrollHeight 937 > clientHeight 936` and had no usable
-   reserve. The new assertion requires strict integer fit and at least 3 px of geometric bottom
-   reserve on that exact Student page.
+   reserve. Candidate `b429fb4` was rejected at 2302/2303 because its margin reduction collapsed
+   against larger neighboring margins and its new assertion was mistakenly placed in the C1C2
+   block, where it returned a null Mars-page measurement. This successor reduces the dominant
+   C1C3 Student phrase-bank top margin from 6 px to 2 px and moves the assertion into the C1C3 block.
+   The assertion requires strict integer fit and at least 3 px of geometric bottom reserve on that
+   exact Student page.
    Confirm that the default editor, C1C2 and C1C3 load before reporting case results. Report any
    drop by assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
@@ -61,6 +65,7 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    - C1C3 Student stages 2–5 remain blank and writable: yes/no;
    - C1C3 Teacher/Answer chains retain the exact approved sequence: yes/no;
    - C1C3 Accessible remains vertical with only the approved Step 2 prefill: yes/no;
+   - C1C3 Student phrase-bank top margin is 2 px and the process status rail remains .2 in: yes/no;
    - border, pattern and direct status remain distinguishable in grayscale: yes/no;
    - page geometry changed from the declared role/page: yes/no;
    - browser-console JavaScript errors: exact count and text.

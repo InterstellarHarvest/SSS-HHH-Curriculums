@@ -1336,6 +1336,8 @@
               JSON.stringify({ horizontal, accessibleState })
             );
           }
+        }
+        if (item.id === "SSS-C1-CASE03") {
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);
@@ -1355,8 +1357,6 @@
               reserve: rounded(marsStudentReserve)
             })
           );
-        }
-        if (item.id === "SSS-C1-CASE03") {
           for (const grayscale of [false, true]) {
             const rendered = [];
             for (const role of ["student", "answer", "accessible"]) {
