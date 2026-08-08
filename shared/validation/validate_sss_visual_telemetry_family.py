@@ -14,7 +14,10 @@ REGISTER = ROOT / "sss/audit/final/SSS_FINAL_AUDIT_REMEDIATION_REGISTER_v0.1.md"
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 C1C3 = ROOT / "sss/campaign-1/case-03-mars-habitat/source/content.html"
+C2C1 = ROOT / "sss/campaign-2/case-01-heavy-hands/source/content.html"
 C2C3 = ROOT / "sss/campaign-2/case-03-wrong-color-light/source/content.html"
+C2C5 = ROOT / "sss/campaign-2/case-05-too-clean-room/source/content.html"
+C2C6 = ROOT / "sss/campaign-2/case-06-first-garden/source/content.html"
 
 
 def main() -> int:
@@ -27,7 +30,10 @@ def main() -> int:
     plan = PLAN.read_text(encoding="utf-8")
     css = COMPONENTS.read_text(encoding="utf-8")
     c1 = BeautifulSoup(C1C3.read_text(encoding="utf-8"), "html.parser")
+    c2c1 = BeautifulSoup(C2C1.read_text(encoding="utf-8"), "html.parser")
     c2 = BeautifulSoup(C2C3.read_text(encoding="utf-8"), "html.parser")
+    c2c5 = BeautifulSoup(C2C5.read_text(encoding="utf-8"), "html.parser")
+    c2c6 = BeautifulSoup(C2C6.read_text(encoding="utf-8"), "html.parser")
 
     deferred = re.findall(
         r"^\| `((?:C1|C2)C\d-(?:VIS\d+|GS\d+))` .*\| \*\*DEFERRED-VISUAL\*\* \|",
@@ -47,6 +53,10 @@ def main() -> int:
         "DOME SENSOR · DISCRETE CATEGORIES",
         "SITE RESPONSE · DISCRETE BAND",
         "OPTICAL LINK · DISCRETE BANDS",
+        'data-figure-id^="fig-profile-"',
+        'data-figure-id^="fig-gauge-"',
+        'data-figure-id^="fig-production-"',
+        'data-figure-id^="fig-patches-"',
         'font-family: "JetBrains Mono"',
         "shape-rendering: crispEdges",
     )
@@ -108,6 +118,64 @@ def main() -> int:
             and "not specified and is not zero" in text
             and "No curve is drawn" in text
             and len(svg.select('rect[fill^="url("]')) == 3,
+            text,
+        )
+
+    profile = c2c1.select_one('figure[data-figure-id="fig-profile-t4"]')
+    profile_text = " ".join(profile.stripped_strings) if profile else ""
+    check(
+        "the Heavy Hands radial profile preserves three exact radii, magnitudes, and outward direction",
+        profile is not None
+        and profile.find("svg", attrs={"viewbox": "0 0 640 170"}) is not None
+        and all(
+            value in profile_text
+            for value in ("224.8 m", "224.9 m", "225.0 m", "2.0991 g", "2.10 g", "2.1009 g")
+        )
+        and profile_text.count("outward") >= 4
+        and "no intermediate values inferred" in profile_text,
+        profile_text,
+    )
+
+    gauge_figures = c2c5.select('figure[data-figure-id^="fig-gauge-"]')
+    check("the detection-bound instrument analogy remains synchronized across learner editions", len(gauge_figures) == 2)
+    for figure in gauge_figures:
+        figure_id = figure["data-figure-id"]
+        text = " ".join(figure.stripped_strings)
+        check(
+            f"{figure_id} preserves sub-threshold inputs, reported bin, and teaching-example status",
+            figure.find("svg", attrs={"viewbox": "0 0 640 112"}) is not None
+            and all(value in text for value in ("0.2 mm", "0.8 mm", "reported as 0 mm"))
+            and "teaching example, not vault data" in text
+            and "neither was nothing" in text,
+            text,
+        )
+
+    production_figures = c2c5.select('figure[data-figure-id^="fig-production-"]')
+    check("the six-month production monitor remains synchronized across learner editions", len(production_figures) == 2)
+    for figure in production_figures:
+        figure_id = figure["data-figure-id"]
+        text = " ".join(figure.stripped_strings)
+        check(
+            f"{figure_id} preserves all six discrete monthly readings and baseline context",
+            figure.find("svg", attrs={"viewbox": "0 0 640 152"}) is not None
+            and all(value in text for value in ("100%", "68%", "31%", "11%", "6%"))
+            and "month 1–2 baseline" in text
+            and "no curve is drawn between them" in text,
+            text,
+        )
+
+    patch_figures = c2c6.select('figure[data-figure-id^="fig-patches-"]')
+    check("the site-survey diagnostic remains synchronized across learner editions", len(patch_figures) == 2)
+    for figure in patch_figures:
+        figure_id = figure["data-figure-id"]
+        text = " ".join(figure.stripped_strings)
+        check(
+            f"{figure_id} preserves the patch range, trace status, and map/spacing limits",
+            figure.find("svg", attrs={"viewbox": "0 0 640 184"}) is not None
+            and "4–6 m" in text
+            and "trace levels only" in text
+            and "not a map" in text.lower()
+            and "No distance between circles is drawn" in text,
             text,
         )
 

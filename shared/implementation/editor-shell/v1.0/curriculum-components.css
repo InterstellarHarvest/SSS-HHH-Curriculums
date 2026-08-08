@@ -322,7 +322,8 @@ h3 {
  *
  * New figures opt in with data-visual-family. The GRO-9 output and response-
  * band figures plus the Case 03 optical-link figures are the first telemetry
- * pilot and retain their stable release-era selectors.
+ * pilot. Existing profile, instrument, production-monitor and site-survey
+ * figures inherit the same non-overlay grammar through stable figure IDs.
  * Exact data and labels stay in case SVG/HTML; this layer supplies only the
  * shared frame, status, type and grayscale grammar.
  */
@@ -330,6 +331,10 @@ h3 {
   [data-visual-family],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) {
   --visual-line-primary: 1.5pt;
@@ -380,6 +385,10 @@ h3 {
   [data-visual-family],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) figcaption {
   margin-top: 4px;
@@ -392,6 +401,10 @@ h3 {
   [data-visual-family],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) .extended-description {
   margin: 4px 0 0;
@@ -403,6 +416,10 @@ h3 {
   [data-visual-family="telemetry"],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) .fig-axis {
   font-family: Inter, Arial, sans-serif;
@@ -413,12 +430,20 @@ h3 {
   [data-visual-family="telemetry"],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) .fig-value,
 .figure:is(
   [data-visual-family="telemetry"],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) .fig-tick {
   font-family: "JetBrains Mono", "Courier New", monospace;
@@ -429,6 +454,10 @@ h3 {
   [data-visual-family="telemetry"],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) svg rect[fill^="url("] {
   stroke: var(--ink, #18212b);
@@ -446,6 +475,10 @@ body.grayscale .figure:is(
   [data-visual-family],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  [data-figure-id^="fig-profile-"],
+  [data-figure-id^="fig-gauge-"],
+  [data-figure-id^="fig-production-"],
+  [data-figure-id^="fig-patches-"],
   .spectrum-figure
 ) figcaption {
   color: var(--ink, #18212b);
