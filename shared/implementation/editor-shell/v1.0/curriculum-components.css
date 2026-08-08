@@ -862,6 +862,149 @@ body.grayscale .figure:where(
   background: var(--panel-light, #f7f9fa);
 }
 
+/*
+ * Mechanism/pathway family expansion: Mars spectral-loss chain.
+ *
+ * The released five-stage process already carries every fixed phrase,
+ * writable response and vertical Accessible variant. This layer exposes the
+ * hardware -> spectral -> biological -> visible-outcome grammar without
+ * inserting text into any learner response or changing the process order.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-contract="five-stage-v1.0"] {
+  --mechanism-line: var(--ink, #18212b);
+  --mechanism-muted: var(--rule, #8c9aa8);
+  --mechanism-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  padding: .25in 5px 5px;
+  overflow: hidden;
+  border: 1pt solid var(--mechanism-muted);
+  border-left: 4pt solid var(--mechanism-line);
+  border-radius: var(--radius, 3px);
+  background:
+    linear-gradient(180deg, var(--panel-light, #f7f9fa) 0 .22in, transparent .22in),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-contract="five-stage-v1.0"]::before {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 8px;
+  content: "SPECTRAL-LOSS PATHWAY · CASE-SPECIFIC MODEL";
+  font: 700 5.9pt/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-layout="horizontal"] {
+  grid-template-columns: repeat(4, minmax(0, 1fr) .19in) minmax(0, 1fr);
+  gap: 2px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage {
+  position: relative;
+  min-width: 0;
+  padding-top: .28in;
+  overflow: hidden;
+  border: 1pt solid var(--mechanism-line);
+  border-top-width: 4pt;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage::after {
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  max-width: calc(100% - .34in);
+  font: 700 5.4pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="1"]::after { content: "INTAKE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="2"]::after { content: "FILTER"; }
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="3"]::after { content: "BAND LOSS"; }
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="4"]::after { content: "CHLOROPHYLL"; }
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="5"]::after { content: "OUTCOME"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="2"],
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="5"] {
+  border-top-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="3"] {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .13) 7px 9px),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage[data-process-stage="4"] {
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .06) 6px 7px),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage .stage-number {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 5px;
+  margin: 0;
+  border: 1pt solid var(--mechanism-line);
+  box-shadow: 0 0 0 2px var(--mechanism-panel);
+  font-variant-numeric: tabular-nums;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-response {
+  background: rgba(255, 255, 255, .82);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-arrow {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: .19in;
+  height: .19in;
+  margin: 0;
+  border: .75pt solid var(--mechanism-line);
+  border-radius: 50%;
+  background: var(--mechanism-panel);
+  font: 800 9pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-layout="vertical"] {
+  gap: 3px;
+  padding-top: .28in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-layout="vertical"] .canonical-process-stage {
+  grid-template-columns: minmax(0, 1fr);
+  min-height: .57in;
+  padding: .29in 5px 5px .5in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-layout="vertical"] .canonical-process-arrow {
+  justify-self: start;
+  margin-left: .14in;
+  transform: rotate(90deg);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE03"] .canonical-process[data-process-contract="five-stage-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE03"] .canonical-process-stage {
+  color: var(--ink, #18212b);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE03"] .canonical-process-response {
+  background: rgba(255, 255, 255, .94);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

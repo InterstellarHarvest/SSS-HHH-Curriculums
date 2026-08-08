@@ -20,18 +20,22 @@ You are validating the isolated `visual/sss-final-modernization` branch of
      --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
    ```
 
-   The current executable browser target is **2300/2300 PASS with 0 JavaScript errors**. The
-   accepted telemetry-family baseline `bee63f5` produces 2298/2298. This mechanism pilot adds two
+   The current executable browser target is **2302/2302 PASS with 0 JavaScript errors**. The
+   accepted mechanism-family pilot `a9dfecf` produces 2300/2300. This expansion adds two
    computed-style assertions, one for normal and one for grayscale presentation, covering the
-   horizontal dependency rail, the Answer Key interruption state and the Accessible vertical rail.
+   C1C3 five-stage spectral-loss chain in Student, Teacher, Answer Key and Accessible roles.
    Confirm that the default editor, C1C2 and C1C3 load before reporting case results. Report any
    drop by assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
-   in Chrome, and inspect the C1 Case 02 mechanism pilot in both normal and grayscale modes:
+   in Chrome, and inspect the accepted C1 Case 02 pilot and the C1 Case 03 expansion in both normal
+   and grayscale modes:
 
    - Student p1, Task 3 horizontal six-stage dependency rail;
    - Answer Key p1, Task 3 completed six-stage rail and Step 2 interruption state;
    - Accessible p2, Task 3 vertical six-stage dependency rail.
+   - C1C3 Student p3, Task 6 horizontal five-stage spectral-loss chain;
+   - C1C3 Teacher p5 and Answer Key p3 completed five-stage chains;
+   - C1C3 Accessible p5 vertical five-stage chain.
 
 4. For every inspected page, report:
 
@@ -44,6 +48,12 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    - Answer Key Steps 3–6 remain `DOWNSTREAM BLOCKED`: yes/no;
    - Accessible rail contains six vertical fields with only the approved first/final prefills:
      yes/no;
+   - C1C3 contains five stages and four connectors in every role: yes/no;
+   - C1C3 direct stage labels remain `INTAKE`, `FILTER`, `BAND LOSS`, `CHLOROPHYLL`, `OUTCOME`:
+     yes/no;
+   - C1C3 Student stages 2–5 remain blank and writable: yes/no;
+   - C1C3 Teacher/Answer chains retain the exact approved sequence: yes/no;
+   - C1C3 Accessible remains vertical with only the approved Step 2 prefill: yes/no;
    - border, pattern and direct status remain distinguishable in grayscale: yes/no;
    - page geometry changed from the declared role/page: yes/no;
    - browser-console JavaScript errors: exact count and text.
@@ -56,14 +66,15 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused results: **14/14 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
+Expected focused results: **22/22 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
 run report with the exact branch SHA, commands, totals, and any failing page/state. Do not produce
 or inspect PDFs.
 
 ## Acceptance rule
 
-The mechanism pilot may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
-2300/2300 with zero JavaScript errors and every listed page has no overflow, clipping or connector/
+The C1C3 expansion may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+2302/2302 with zero JavaScript errors and every listed page has no overflow, clipping or connector/
 status collision in normal and grayscale presentation. The two new assertions must confirm the
-computed horizontal and vertical rails plus the completed Step 2 interruption state. The five
-accepted telemetry computed-style assertions must remain green.
+computed five-stage chain, direct labels, border states, response identity/content and horizontal/
+vertical variants. The accepted C1C2 mechanism and telemetry computed-style assertions must remain
+green.

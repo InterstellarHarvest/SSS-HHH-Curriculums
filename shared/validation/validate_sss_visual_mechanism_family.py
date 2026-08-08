@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Focused deterministic checks for the SSS mechanism/pathway family pilot."""
+"""Focused deterministic checks for the SSS mechanism/pathway visual family."""
 
 from __future__ import annotations
 
@@ -20,6 +20,10 @@ SOURCE = ROOT / "sss/campaign-1/case-02-lunar-greenhouse/source"
 PACKAGE = SOURCE / "case-package.json"
 CONTENT = SOURCE / "content.html"
 PRESENTATION = SOURCE / "presentation.css"
+MARS_SOURCE = ROOT / "sss/campaign-1/case-03-mars-habitat/source"
+MARS_PACKAGE = MARS_SOURCE / "case-package.json"
+MARS_CONTENT = MARS_SOURCE / "content.html"
+MARS_PRESENTATION = MARS_SOURCE / "presentation.css"
 
 
 def sha256(path: Path) -> str:
@@ -38,10 +42,17 @@ def main() -> int:
     harness = HARNESS.read_text(encoding="utf-8")
     package = json.loads(PACKAGE.read_text(encoding="utf-8"))
     content = BeautifulSoup(CONTENT.read_text(encoding="utf-8"), "html.parser")
+    mars_package = json.loads(MARS_PACKAGE.read_text(encoding="utf-8"))
+    mars_content = BeautifulSoup(MARS_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
+    )
+    check(
+        "the accepted pilot and Mars expansion have explicit lifecycle states",
+        bool(re.search(r"\| `C1C2-VIS01` .*`VERIFIED-FAMILY-PILOT .*2300/2300 BROWSER PASS", plan))
+        and bool(re.search(r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 22/22 FAMILY STATIC PASS · 2302/2302 BROWSER GATE PENDING`", plan)),
     )
     check(
         "Lunar Greenhouse opts into extracted shared visuals without the full component layer",
@@ -56,6 +67,17 @@ def main() -> int:
         {
             "content": [package["sourceHashes"]["content"], sha256(CONTENT)],
             "presentation": [package["sourceHashes"]["presentation"], sha256(PRESENTATION)],
+        },
+    )
+    check(
+        "Mars Habitat retains its shared-visual opt-in and byte-identical worksheet sources",
+        mars_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and mars_package["sourceHashes"]["content"] == sha256(MARS_CONTENT)
+        and mars_package["sourceHashes"]["presentation"] == sha256(MARS_PRESENTATION),
+        {
+            "presentation": mars_package.get("presentation"),
+            "content": [mars_package["sourceHashes"]["content"], sha256(MARS_CONTENT)],
+            "stylesheet": [mars_package["sourceHashes"]["presentation"], sha256(MARS_PRESENTATION)],
         },
     )
 
@@ -79,6 +101,10 @@ def main() -> int:
         ".process-figure.completed .failed-stage",
         '.linear-process[data-accessible-organizer="sequence"]',
         "grid-template-columns: repeat(5, minmax(0, 1fr) .19in) minmax(0, 1fr)",
+        '.worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process',
+        "SPECTRAL-LOSS PATHWAY · CASE-SPECIFIC MODEL",
+        'data-process-stage="3"',
+        'content: "BAND LOSS"',
         ".worksheet-document.grayscale",
     )
     check(
@@ -97,6 +123,7 @@ def main() -> int:
         "the mechanism grammar uses border and pattern states without a whole-figure filter",
         "repeating-linear-gradient" in mechanism_css
         and "border-top-style: double" in mechanism_css
+        and "border-top-style: dashed" in mechanism_css
         and "filter:" not in mechanism_css,
     )
 
@@ -174,13 +201,93 @@ def main() -> int:
     check(
         "the browser harness measures the mechanism grammar in normal and grayscale presentation",
         harness.count("shared mechanism grammar renders horizontal dependency and Accessible vertical rails") == 1
+        and harness.count("shared mechanism grammar renders the spectral-loss chain") == 1
         and 'for (const grayscale of [false, true])' in harness
         and 'horizontal[1].failedBorder === "double"' in harness
-        and "accessibleState.steps === 6" in harness,
+        and "accessibleState.steps === 6" in harness
+        and 'stageLabels.join("|") === "INTAKE|FILTER|BAND LOSS|CHLOROPHYLL|OUTCOME"' in harness,
+    )
+
+    mars_expected = [
+        "12 m light pipe and collector filter",
+        "Wrong BP-4 filter installed",
+        "Red and deep-red transmission drops",
+        "New chlorophyll production is disrupted",
+        "New growth becomes pale or white",
+    ]
+    mars_bank = [
+        "New chlorophyll production is disrupted",
+        "Wrong BP-4 filter installed",
+        "New growth becomes pale or white",
+        "Red and deep-red transmission drops",
+    ]
+
+    mars_processes = {
+        role: mars_content.select_one(
+            f'section[data-role="{role}"] .canonical-process[data-process-contract="five-stage-v1.0"]'
+        )
+        for role in ("student", "teacher", "answer", "accessible")
+    }
+    mars_stages = {
+        role: process.select(":scope > .canonical-process-stage") if process else []
+        for role, process in mars_processes.items()
+    }
+    check(
+        "the Mars chain retains five ordered stages and four connectors in every synchronized role",
+        all(
+            process
+            and len(mars_stages[role]) == 5
+            and len(process.select(":scope > .canonical-process-arrow")) == 4
+            and [stage.get("data-process-stage") for stage in mars_stages[role]] == ["1", "2", "3", "4", "5"]
+            for role, process in mars_processes.items()
+        ),
+        {role: [len(mars_stages[role]), len(process.select(":scope > .canonical-process-arrow")) if process else 0]
+         for role, process in mars_processes.items()},
+    )
+    check(
+        "the completed Teacher and Answer Key chains preserve the exact approved sequence",
+        all(
+            [" ".join(stage.stripped_strings) for stage in mars_stages[role]]
+            == [f"{index} {phrase}" for index, phrase in enumerate(mars_expected, start=1)]
+            for role in ("teacher", "answer")
+        ),
+        {role: [" ".join(stage.stripped_strings) for stage in mars_stages[role]] for role in ("teacher", "answer")},
+    )
+    student_mars_fields = [stage.select_one(".canonical-process-response") for stage in mars_stages["student"][1:]]
+    check(
+        "the Mars Student chain preserves one fixed intake and four blank writable response identities",
+        " ".join(mars_stages["student"][0].stripped_strings) == "1 " + mars_expected[0]
+        and [field.get("data-persist-id") for field in student_mars_fields] == ["m-2", "m-3", "m-4", "m-5"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in student_mars_fields),
+    )
+    accessible_mars_fields = [stage.select_one(".canonical-process-response") for stage in mars_stages["accessible"][1:]]
+    check(
+        "the Mars Accessible chain stays vertical with only the approved filter-stage prefill",
+        mars_processes["accessible"].get("data-process-layout") == "vertical"
+        and [field.get("data-persist-id") for field in accessible_mars_fields] == ["a6-2", "a6-3", "a6-4", "a6-5"]
+        and [field.get_text(strip=True) for field in accessible_mars_fields] == [mars_expected[1], "", "", ""]
+        and all(field.has_attr("data-response") for field in accessible_mars_fields),
+    )
+    check(
+        "the Mars phrase bank remains exact and synchronized across learner and key editions",
+        all(
+            [" ".join(item.stripped_strings) for item in mars_content.select(
+                f'section[data-role="{role}"] .canonical-phrase-bank-item'
+            )] == mars_bank
+            for role in ("student", "answer", "accessible")
+        ),
+    )
+    mars_source_text = MARS_CONTENT.read_text(encoding="utf-8")
+    check(
+        "the Mars mechanism retains the corrected PAR boundary and case-bounded chlorophyll wording",
+        "400-700 nm waveband used for photosynthesis metrics" in mars_source_text
+        and "New chlorophyll production is disrupted" in mars_source_text
+        and "Red and deep-red transmission drops" in mars_source_text
+        and "universal chlorophyll mechanism" not in mars_source_text,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]
-    print("SSS visual modernization · mechanism family pilot")
+    print("SSS visual modernization · mechanism family")
     print(f"Result: {len(checks) - len(failures)}/{len(checks)} PASS")
     for name, detail in failures:
         print(f"FAIL: {name}\n  {detail}")

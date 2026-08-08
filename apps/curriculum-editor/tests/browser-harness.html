@@ -1382,6 +1382,58 @@
                 && rendered.slice(3).every(state => state.before.includes("OPTICAL LINK · DISCRETE BANDS")),
               JSON.stringify(rendered)
             );
+            const mechanismRoles = [];
+            for (const role of ["student", "teacher", "answer", "accessible"]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const process = workspace.querySelector(`.page[data-role="${role}"] .canonical-process[data-process-contract="five-stage-v1.0"]`);
+              const stages = Array.from(process?.querySelectorAll(":scope > .canonical-process-stage") || []);
+              const arrows = Array.from(process?.querySelectorAll(":scope > .canonical-process-arrow") || []);
+              const fields = stages.map(stage => stage.querySelector(".canonical-process-response")).filter(Boolean);
+              const stageLabels = stages.map(stage => win.getComputedStyle(stage, "::after").content.replace(/^["']|["']$/g, ""));
+              mechanismRoles.push({
+                role,
+                process: Boolean(process),
+                display: process ? win.getComputedStyle(process).display : "",
+                layout: process?.dataset.processLayout || "",
+                frameBorder: process ? win.getComputedStyle(process).borderLeftWidth : "",
+                railLabel: process ? win.getComputedStyle(process, "::before").content : "",
+                stages: stages.length,
+                arrows: arrows.length,
+                stageLabels,
+                borderStates: stages.map(stage => win.getComputedStyle(stage).borderTopStyle),
+                fields: fields.map(field => ({ id: field.dataset.persistId, text: field.textContent.trim(), response: field.hasAttribute("data-response") })),
+                text: stages.map(stage => stage.querySelector(".stage-content, .canonical-process-response")?.textContent.trim().replace(/\s+/g, " ") || ""),
+                fits: process ? process.scrollWidth <= process.clientWidth + 1 && process.scrollHeight <= process.clientHeight + 1 : false
+              });
+            }
+            const studentMechanism = mechanismRoles.find(state => state.role === "student");
+            const answerMechanism = mechanismRoles.find(state => state.role === "answer");
+            const accessibleMechanism = mechanismRoles.find(state => state.role === "accessible");
+            const expectedMarsStages = [
+              "12 m light pipe and collector filter",
+              "Wrong BP-4 filter installed",
+              "Red and deep-red transmission drops",
+              "New chlorophyll production is disrupted",
+              "New growth becomes pale or white"
+            ];
+            check(
+              `C1 Case 03 ${grayscale ? "grayscale" : "normal"} shared mechanism grammar renders the spectral-loss chain`,
+              mechanismRoles.length === 4
+                && mechanismRoles.every(state => state.process && state.display === "grid" && state.stages === 5 && state.arrows === 4 && px(state.frameBorder) >= 5 && state.fits)
+                && mechanismRoles.every(state => state.railLabel.includes("SPECTRAL-LOSS PATHWAY · CASE-SPECIFIC MODEL"))
+                && mechanismRoles.every(state => state.stageLabels.join("|") === "INTAKE|FILTER|BAND LOSS|CHLOROPHYLL|OUTCOME")
+                && mechanismRoles.every(state => state.borderStates.join("|") === "solid|double|dashed|solid|double")
+                && mechanismRoles.filter(state => state.role !== "accessible").every(state => state.layout === "horizontal")
+                && accessibleMechanism.layout === "vertical"
+                && studentMechanism.fields.length === 4
+                && studentMechanism.fields.every((field, index) => field.id === `m-${index + 2}` && field.text === "" && field.response)
+                && answerMechanism.text.join("|") === expectedMarsStages.join("|")
+                && accessibleMechanism.fields.map(field => field.id).join("|") === "a6-2|a6-3|a6-4|a6-5"
+                && accessibleMechanism.fields.map(field => field.text).join("|") === "Wrong BP-4 filter installed|||",
+              JSON.stringify(mechanismRoles)
+            );
           }
           api.setRole("student");
           api.saveState({ grayscale: false });
