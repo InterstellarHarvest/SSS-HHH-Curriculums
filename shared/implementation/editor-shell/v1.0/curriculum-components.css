@@ -1681,6 +1681,181 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/pathway family expansion: The Missing Dance failure path.
+ *
+ * The frozen Student, Accessible and Answer Key organizers already preserve
+ * the five approved stages, four connectors, two learner response identities
+ * and the completed key. This case-scoped layer makes the absent vibration an
+ * explicit missing-event node and distinguishes the downstream pollen, bud
+ * and fruit states without adding worksheet text, changing a response field,
+ * or turning the near-124-Hz observation into a sufficient prescription.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] {
+  --dance-line: var(--ink, #18212b);
+  --dance-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 4px 0 0 var(--dance-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--dance-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--dance-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page:not([data-role="accessible"])
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage {
+  padding-top: .27in;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page:not([data-role="accessible"])
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage > span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-width: calc(100% - .3in);
+  font: 700 5pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .01em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(1)::after { content: "SEALED SYSTEM"; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(3)::after { content: "MISSING EVENT"; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(5)::after { content: "POLLEN RETAINED"; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(7)::after { content: "BUDS ABORT"; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(9)::after { content: "NO FRUIT"; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(3) {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .07) 6px 7px),
+    var(--dance-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(5) {
+  border-top-style: double;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px),
+    var(--dance-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(7) {
+  border-top-style: dotted;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px),
+    var(--dance-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] .mechanism-model > .path-stage:nth-child(9) {
+  border-top-style: double;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 5px, rgba(24, 33, 43, .12) 5px 6px),
+    var(--dance-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-arrow {
+  display: grid;
+  place-items: center;
+  min-width: 15px;
+  min-height: 15px;
+  border: .75pt solid var(--dance-line);
+  border-radius: 50%;
+  background: var(--dance-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] {
+  grid-template-columns: 1fr;
+  gap: 3px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage {
+  display: grid;
+  grid-template-columns: .34in minmax(0, 1fr);
+  gap: 3px 7px;
+  align-items: center;
+  min-height: .46in;
+  padding-right: .82in;
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+  font-size: 9.1pt;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage > span {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage > :not(span) {
+  grid-column: 2;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"] .mechanism-model > .path-stage:nth-child(3) { border-left-style: dashed; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"] .mechanism-model > .path-stage:nth-child(5) { border-left-style: double; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"] .mechanism-model > .path-stage:nth-child(7) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"] .mechanism-model > .path-stage:nth-child(9) { border-left-style: double; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-arrow {
+  justify-self: start;
+  width: 15px;
+  height: 15px;
+  margin-left: .12in;
+  color: transparent;
+  font-size: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-role="accessible"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-arrow::before {
+  content: "↓";
+  color: var(--dance-line);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"]
+  .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"] .path-stage {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

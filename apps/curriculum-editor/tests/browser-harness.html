@@ -1560,6 +1560,116 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        if (item.id === "SSS-C2-CASE02") {
+          const vibrationPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, expectedPages] of [["student", "student-mission-05", 6], ["answer", "answer-key-03", 4], ["accessible", "accessible-mission-06", 8]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const pageRect = page?.getBoundingClientRect();
+              vibrationPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                pages: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPages,
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C2 Case 02 vibration-release pages retain strict fit, page counts and geometry in normal and grayscale",
+            vibrationPageFit.length === 6
+              && vibrationPageFit.every(state => state.pages === state.expectedPages && state.pageSize === "816x1056" && !state.overflow && state.fits),
+            JSON.stringify(vibrationPageFit)
+          );
+          const expectedVibrationStatuses = "SEALED SYSTEM|MISSING EVENT|POLLEN RETAINED|BUDS ABORT|NO FRUIT";
+          const expectedAnswerVibrationStages = [
+            "A sealed garden No pollinators, no airflow, and no periodic vibration of any kind.",
+            "Nothing shakes the cone The pores are already there, but ordinary contact does not move the pollen through them.",
+            "What happens to the pollen It stays inside the cone. It is mature and viable at 98%, and it is simply never released.",
+            "What happens to the bud With no pollen delivered, no fruit can set, and the bud is abandoned before it opens.",
+            "What the garden sees Buds form, dry, and die before opening. No fruit sets."
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-mission-05"], ["answer", "answer-key-03"], ["accessible", "accessible-mission-06"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"]');
+              const stages = Array.from(model?.querySelectorAll(":scope > .path-stage") || []);
+              const arrows = Array.from(model?.querySelectorAll(":scope > .path-arrow") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && stages.every(stage => {
+                const rect = stage.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              rendered.push({
+                role,
+                pageId,
+                model: Boolean(model),
+                stages: stages.length,
+                arrows: arrows.length,
+                layoutTracks: model ? win.getComputedStyle(model).gridTemplateColumns.trim().split(/\s+/).length : 0,
+                statusLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                connectorGlyphs: arrows.map(arrow => role === "accessible" ? win.getComputedStyle(arrow, "::before").content.replaceAll('"', "") : arrow.textContent.trim()).join("|"),
+                connectorFontSizes: arrows.map(arrow => px(win.getComputedStyle(arrow).fontSize)),
+                fields: stages.map(stage => stage.querySelector(".stage-response")).filter(Boolean).map(field => ({ id: field.dataset.persistId, text: field.textContent.trim(), response: field.hasAttribute("data-response") })),
+                stageBodies: stages.map(stage => Array.from(stage.querySelectorAll(":scope > p")).map(node => node.textContent.trim().replace(/\s+/g, " ")).join(" ")),
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision
+              });
+            }
+            const studentPath = rendered.find(state => state.role === "student");
+            const answerPath = rendered.find(state => state.role === "answer");
+            const accessiblePath = rendered.find(state => state.role === "accessible");
+            check(
+              `C2 Case 02 ${grayscale ? "grayscale" : "normal"} failure path preserves the missing event and bounded vibration mechanism`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.model && state.stages === 5 && state.arrows === 4 && state.modelFits && state.contained && !state.stageCollision)
+                && rendered.every(state => state.statusLabels === expectedVibrationStatuses)
+                && rendered.every(state => state.patternStates.every(Boolean))
+                && [studentPath, answerPath].every(state => state.layoutTracks === 9 && state.connectorGlyphs === "→|→|→|→" && state.borderStates === "solid|dashed|double|dotted|double")
+                && accessiblePath.layoutTracks === 1
+                && accessiblePath.connectorGlyphs === "↓|↓|↓|↓"
+                && accessiblePath.connectorFontSizes.every(value => value === 0)
+                && accessiblePath.borderStates === "solid|dashed|double|dotted|double"
+                && studentPath.fields.map(field => field.id).join("|") === "t6-m3|t6-m4"
+                && studentPath.fields.every(field => field.text === "" && field.response)
+                && accessiblePath.fields.map(field => field.id).join("|") === "a6-m3|a6-m4"
+                && accessiblePath.fields.every(field => field.text === "" && field.response)
+                && answerPath.stageBodies.join("|") === expectedAnswerVibrationStages.join("|")
+                && workspace.textContent.includes("strongest measured response near 124 Hz with adequate amplitude and duration")
+                && workspace.textContent.includes("frequency, amplitude, duration and coupling rather than one universal frequency")
+                && workspace.textContent.includes("the case mechanism is airborne oscillation coupling into the tissue")
+                && workspace.textContent.includes("Earth bees grip the flower; the lyre-moth couples airborne oscillation into it."),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C2-CASE03") {
           api.setRole("student");
           api.saveState({ grayscale: false });

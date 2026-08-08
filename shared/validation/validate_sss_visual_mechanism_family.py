@@ -45,6 +45,10 @@ THE_GIFT_SOURCE = ROOT / "sss/campaign-1/case-07-the-gift/source"
 THE_GIFT_PACKAGE = THE_GIFT_SOURCE / "case-package.json"
 THE_GIFT_CONTENT = THE_GIFT_SOURCE / "content.html"
 THE_GIFT_PRESENTATION = THE_GIFT_SOURCE / "presentation.css"
+MISSING_DANCE_SOURCE = ROOT / "sss/campaign-2/case-02-missing-dance/source"
+MISSING_DANCE_PACKAGE = MISSING_DANCE_SOURCE / "case-package.json"
+MISSING_DANCE_CONTENT = MISSING_DANCE_SOURCE / "content.html"
+MISSING_DANCE_PRESENTATION = MISSING_DANCE_SOURCE / "presentation.css"
 
 
 def sha256(path: Path) -> str:
@@ -76,6 +80,8 @@ def main() -> int:
     first_contact_content = BeautifulSoup(FIRST_CONTACT_CONTENT.read_text(encoding="utf-8"), "html.parser")
     the_gift_package = json.loads(THE_GIFT_PACKAGE.read_text(encoding="utf-8"))
     the_gift_content = BeautifulSoup(THE_GIFT_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    missing_dance_package = json.loads(MISSING_DANCE_PACKAGE.read_text(encoding="utf-8"))
+    missing_dance_content = BeautifulSoup(MISSING_DANCE_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
@@ -113,7 +119,7 @@ def main() -> int:
             r"· 0 JS ERRORS · STRICT FIT 936/936 · 812d5c3 ACCEPTED`",
             plan,
         ))
-        and "Current branch state — Campaign 1 mechanism cohort closed" in handoff
+        and "Campaign 1 Family 2 closeout register" in handoff
         and "16 of 36 completed" in handoff
         and "20 remaining" in handoff
         and all(finding in handoff for finding in (
@@ -124,6 +130,21 @@ def main() -> int:
         and "812d5c35d21a3d1e2314e4993faac188b1441c8d" in handoff
         and "2318/2318 PASS with 0 application JavaScript" in handoff
         and "68/68 PASS" in handoff,
+    )
+    check(
+        "the production plan and handoff advance The Missing Dance as the sole Family 2 candidate",
+        bool(re.search(
+            r"\| `C2C2-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
+            plan,
+        ))
+        and "Current validation target — C2C2 vibration-release failure path" in handoff
+        and "2321/2321 PASS with 0 application JavaScript errors" in handoff
+        and "76/76 PASS" in handoff
+        and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
+            "C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02",
+        ))
+        and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -228,6 +249,17 @@ def main() -> int:
             "stylesheet": [the_gift_package["sourceHashes"]["presentation"], sha256(THE_GIFT_PRESENTATION)],
         },
     )
+    check(
+        "The Missing Dance retains the shared component layer and byte-identical worksheet sources",
+        missing_dance_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and missing_dance_package["sourceHashes"]["content"] == sha256(MISSING_DANCE_CONTENT)
+        and missing_dance_package["sourceHashes"]["presentation"] == sha256(MISSING_DANCE_PRESENTATION),
+        {
+            "presentation": missing_dance_package.get("presentation"),
+            "content": [missing_dance_package["sourceHashes"]["content"], sha256(MISSING_DANCE_CONTENT)],
+            "stylesheet": [missing_dance_package["sourceHashes"]["presentation"], sha256(MISSING_DANCE_PRESENTATION)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -273,6 +305,9 @@ def main() -> int:
         '.evidence-chain .final-stage-status',
         '.evidence-chain > .model-stage:nth-child(5)',
         '.accessible-model > .model-stage:nth-child(6)',
+        '.worksheet-document[data-case-id="SSS-C2-CASE02"]',
+        'content: "MISSING EVENT"',
+        '.path-arrow::before',
         ".worksheet-document.grayscale",
     )
     check(
@@ -291,7 +326,8 @@ def main() -> int:
     hayes_css = extracted[extracted.index("Mechanism/pathway family expansion: Hayes") : extracted.index("Mechanism/pathway family expansion: Europa")]
     europa_css = extracted[extracted.index("Mechanism/pathway family expansion: Europa") : extracted.index("Mechanism/pathway family expansion: First Contact")]
     first_contact_css = extracted[extracted.index("Mechanism/pathway family expansion: First Contact") : extracted.index("Mechanism/pathway family expansion: The Gift")]
-    the_gift_css = extracted[extracted.index("Mechanism/pathway family expansion: The Gift") :]
+    the_gift_css = extracted[extracted.index("Mechanism/pathway family expansion: The Gift") : extracted.index("Mechanism/pathway family expansion: The Missing Dance")]
+    missing_dance_css = extracted[extracted.index("Mechanism/pathway family expansion: The Missing Dance") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -369,6 +405,22 @@ def main() -> int:
         and "filter:" not in the_gift_css,
     )
     check(
+        "The Missing Dance failure path exposes the missing event and downstream states without a color-only filter",
+        all(f'content: "{label}"' in missing_dance_css for label in (
+            "SEALED SYSTEM", "MISSING EVENT", "POLLEN RETAINED", "BUDS ABORT", "NO FRUIT",
+        ))
+        and "border-top-style: dashed" in missing_dance_css
+        and "border-top-style: double" in missing_dance_css
+        and "border-top-style: dotted" in missing_dance_css
+        and "border-left-style: dashed" in missing_dance_css
+        and "border-left-style: double" in missing_dance_css
+        and "border-left-style: dotted" in missing_dance_css
+        and "grid-template-columns: 1fr" in missing_dance_css
+        and 'content: "↓"' in missing_dance_css
+        and "repeating-linear-gradient" in missing_dance_css
+        and "filter:" not in missing_dance_css,
+    )
+    check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
         '.page[data-role="student"][data-page-id="student-mission-03"]' in mechanism_css
         and '.canonical-process[data-process-layout="horizontal"]' in mechanism_css
@@ -380,7 +432,7 @@ def main() -> int:
     )
     case02_visual_start = harness.index('if (item.id === "SSS-C1-CASE02")')
     case03_visual_start = harness.index('if (item.id === "SSS-C1-CASE03")', case02_visual_start)
-    next_visual_start = harness.index('if (item.id === "SSS-C2-CASE03")', case03_visual_start)
+    next_visual_start = harness.index('if (item.id === "SSS-C2-CASE02")', case03_visual_start)
     case02_visual_block = harness[case02_visual_start:case03_visual_start]
     case03_visual_block = harness[case03_visual_start:next_visual_start]
     state_reset = (
@@ -1043,6 +1095,96 @@ def main() -> int:
         and 'accessibleModel.connectorZ === "1|1|1|1|1"' in harness
         and 'state.pageSize === "816x1056"' in harness
         and 'for (const grayscale of [false, true])' in harness,
+    )
+
+    missing_dance_headings = [
+        "A sealed garden",
+        "Nothing shakes the cone",
+        "What happens to the pollen",
+        "What happens to the bud",
+        "What the garden sees",
+    ]
+    missing_dance_student_page = missing_dance_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-05"]'
+    )
+    missing_dance_student_model = missing_dance_student_page.select_one(
+        '.mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"]'
+    ) if missing_dance_student_page else None
+    missing_dance_student_stages = missing_dance_student_model.select(":scope > .path-stage") if missing_dance_student_model else []
+    missing_dance_student_fields = [stage.select_one(".stage-response") for stage in missing_dance_student_stages if stage.select_one(".stage-response")]
+    check(
+        "The Missing Dance Student path preserves five stages, four connectors and two blank response identities",
+        [" ".join(stage.select_one("strong").stripped_strings) for stage in missing_dance_student_stages]
+        == missing_dance_headings
+        and [arrow.get_text(strip=True) for arrow in missing_dance_student_model.select(":scope > .path-arrow")]
+        == ["→"] * 4
+        and [field.get("data-persist-id") for field in missing_dance_student_fields] == ["t6-m3", "t6-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in missing_dance_student_fields),
+    )
+
+    missing_dance_accessible_page = missing_dance_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-06"]'
+    )
+    missing_dance_accessible_model = missing_dance_accessible_page.select_one(
+        '.mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"]'
+    ) if missing_dance_accessible_page else None
+    missing_dance_accessible_stages = missing_dance_accessible_model.select(":scope > .path-stage") if missing_dance_accessible_model else []
+    missing_dance_accessible_fields = [stage.select_one(".stage-response") for stage in missing_dance_accessible_stages if stage.select_one(".stage-response")]
+    check(
+        "The Missing Dance Accessible path preserves the same stages and two blank response identities",
+        [" ".join(stage.select_one("strong").stripped_strings) for stage in missing_dance_accessible_stages]
+        == missing_dance_headings
+        and [arrow.get_text(strip=True) for arrow in missing_dance_accessible_model.select(":scope > .path-arrow")]
+        == ["→"] * 4
+        and [field.get("data-persist-id") for field in missing_dance_accessible_fields] == ["a6-m3", "a6-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in missing_dance_accessible_fields),
+    )
+
+    missing_dance_answer_expected = [
+        "A sealed garden No pollinators, no airflow, and no periodic vibration of any kind.",
+        "Nothing shakes the cone The pores are already there, but ordinary contact does not move the pollen through them.",
+        "What happens to the pollen It stays inside the cone. It is mature and viable at 98%, and it is simply never released.",
+        "What happens to the bud With no pollen delivered, no fruit can set, and the bud is abandoned before it opens.",
+        "What the garden sees Buds form, dry, and die before opening. No fruit sets.",
+    ]
+    missing_dance_answer_page = missing_dance_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-03"]'
+    )
+    missing_dance_answer_model = missing_dance_answer_page.select_one(
+        '.mechanism-model.completed[data-process-contract="vibration-release-five-stage-v1.0"]'
+    ) if missing_dance_answer_page else None
+    missing_dance_answer_stages = missing_dance_answer_model.select(":scope > .path-stage") if missing_dance_answer_model else []
+    check(
+        "The Missing Dance Answer Key completes the identical five-stage failure path",
+        [" ".join(" ".join(paragraph.stripped_strings) for paragraph in stage.select(":scope > p"))
+         for stage in missing_dance_answer_stages] == missing_dance_answer_expected,
+    )
+
+    missing_dance_source_text = MISSING_DANCE_CONTENT.read_text(encoding="utf-8")
+    check(
+        "The Missing Dance path preserves its frequency, coupling and Earth-comparison boundaries",
+        "strongest measured response near 124 Hz with adequate amplitude and duration" in missing_dance_source_text
+        and "frequency, amplitude, duration and coupling rather than one universal frequency" in missing_dance_source_text
+        and "the case mechanism is airborne oscillation coupling into the tissue" in missing_dance_source_text
+        and "Earth bees grip the flower; the lyre-moth couples airborne oscillation into it." in missing_dance_source_text
+        and not missing_dance_content.select_one(
+            'section[data-role="teacher"] .mechanism-model[data-process-contract="vibration-release-five-stage-v1.0"]'
+        ),
+    )
+
+    missing_dance_visual_start = harness.index('if (item.id === "SSS-C2-CASE02")')
+    missing_dance_visual_end = harness.index('if (item.id === "SSS-C2-CASE03")', missing_dance_visual_start)
+    missing_dance_visual_block = harness[missing_dance_visual_start:missing_dance_visual_end]
+    check(
+        "the browser harness measures The Missing Dance states, fields, vertical connectors and strict fit in both modes",
+        harness.count("vibration-release pages retain strict fit, page counts and geometry") == 1
+        and harness.count("failure path preserves the missing event and bounded vibration mechanism") == 1
+        and "SEALED SYSTEM|MISSING EVENT|POLLEN RETAINED|BUDS ABORT|NO FRUIT" in missing_dance_visual_block
+        and "t6-m3|t6-m4" in missing_dance_visual_block
+        and "a6-m3|a6-m4" in missing_dance_visual_block
+        and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in missing_dance_visual_block
+        and 'state.pageSize === "816x1056"' in missing_dance_visual_block
+        and 'for (const grayscale of [false, true])' in missing_dance_visual_block,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]

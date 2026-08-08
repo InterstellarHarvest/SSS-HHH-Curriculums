@@ -121,9 +121,21 @@ response controls and release baselines remained unchanged. `C1C7-VIS02` is ther
 `VERIFIED-FAMILY`.
 
 Campaign 1's Family 2 cohort is closed: all seven Campaign 1 mechanism/pathway findings are
-verified. Family 2 remains open overall because `C2C2-VIS02`, `C2C3-VIS03`, `C2C5-VIS03` and
-`C2C6-VIS02` remain planned. The formal visual-modernization inventory now stands at 16 of 36
-completed findings, with 20 remaining.
+verified. Family 2 remains open overall because `C2C2-VIS02` is now an implementation candidate
+and `C2C3-VIS03`, `C2C5-VIS03` and `C2C6-VIS02` remain planned. The formal visual-modernization
+inventory still stands at 16 of 36 completed findings, with 20 remaining until the candidate passes
+its acceptance gate.
+
+The next isolated Family 2 candidate is `C2C2-VIS02`. The Missing Dance's frozen Student Task 6
+page 5, Answer Key Task 6 page 3 and Accessible Task 6 page 6 already preserve one exact
+five-stage failure path, four connectors, the two Student and two Accessible response identities,
+and the completed key. The shared visual layer now marks the sealed system, missing vibration
+event, retained pollen, aborted buds and no-fruit outcome as direct states; keeps Student and
+Answer Key horizontal; and renders Accessible as an in-flow vertical rail. Worksheet content,
+case presentation, package metadata, source hashes, page counts and release baselines remain
+unchanged. Acceptance requires the focused 76-check mechanism contract, the 2321-check browser
+gate, strict fixed-page fit and normal/grayscale inspection before the finding can advance beyond
+`IMPLEMENTED-CANDIDATE`.
 
 ## 3. Exact inventory reconciliation
 
@@ -214,7 +226,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C1-VIS02` | Heavy Hands; T reference p4 | Three-point radial profile is a basic Teacher-only schematic. | 1 · Technical telemetry/data | Centrifuge telemetry profile with three reported radii, outward direction arrows and direct exact magnitudes. | Teacher-only replacement; no learner workload/page changes. | Direction outward at all points; magnitude increases with radius; retain exact reported values and rounding note; no interpolation. | D1; exact-value/rounding and page-fit checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `PLANNED` |
 | `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `PLANNED` |
-| `C2C2-VIS02` | The Missing Dance; S T6 p5, A T6 p6, AK T6 p3 | Generic condition/mechanism/effect stage model. | 2 · Causal mechanism/pathway | Failure path: sealed garden → no coupled vibration → pollen retained → buds abort → no fruit, with explicit missing-event node. | Preserve existing diagnosis, rejection and two model-stage fields; sync AK. | Near 124 Hz is insufficient without amplitude, duration and coupling; do not equate bee gripping with airborne coupling. | mechanism primitive; field/parity and boundary checks | `PLANNED` |
+| `C2C2-VIS02` | The Missing Dance; S T6 p5, A T6 p6, AK T6 p3 | Generic condition/mechanism/effect stage model. | 2 · Causal mechanism/pathway | Failure path: sealed garden → no coupled vibration → pollen retained → buds abort → no fruit, with explicit missing-event node. | Preserve existing diagnosis, rejection and two model-stage fields; sync AK. | Near 124 Hz is insufficient without amplitude, duration and coupling; do not equate bee gripping with airborne coupling. | mechanism primitive; field/parity and boundary checks | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
 | `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `PLANNED` |
 | `C2C3-VIS01` | Wrong Color of Light; S T2 p2, A T2 p2 | Accurate discrete bars with correct labels but limited telemetry hierarchy. | 1 · Technical telemetry/data | GRO-9 discrete spectral-output diagnostic with four category rails and explicit category/inequality encoding. | Replace existing repeated figure at same height; table remains accessible backup. | Red 62% at 620–680; blue 18% at 440–490; broad 15%; blue-green <5% at 490–560; no interpolation/continuous curve. | D1; exact bins, inequality, DOM table and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS02` | Wrong Color of Light; S T3 p3, A T3 p3 | Accurate band overlay but measurement/status hierarchy can be clearer. | 1 · Technical telemetry/data | Measurement-overlay panel: discrete fixture bands against the 460–540 nm strongest-response band, with “outside unspecified ≠ zero.” | Same footprint and backup table; sync S/A. | Do not imply continuous response, geometric overlap calculation, or zero response outside band. | D1 overlay variant; prohibited-curve and inequality checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
