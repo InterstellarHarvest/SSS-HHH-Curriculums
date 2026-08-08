@@ -852,7 +852,8 @@ def main() -> int:
         "the First Contact model preserves fictional-system and correlation limits",
         "This explains the fictional Zhel'ii case. It does not prove that Earth organisms use the same system." in first_contact_source_text
         and "Alien evidence cannot serve as empirical proof about Earth ecosystems" in first_contact_source_text
-        and "correlation alone does not prove cause" in first_contact_source_text,
+        and "Timing can support a cause, but correlation alone does not prove it." in first_contact_source_text
+        and "A recorded association alone does not prove cause." in first_contact_source_text,
     )
     check(
         "the First Contact mechanism expansion adds no duplicate organizer to Teacher pages",
