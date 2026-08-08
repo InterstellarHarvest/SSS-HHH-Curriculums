@@ -2207,6 +2207,7 @@
                 stageTitles: stages.map(stage => stage.querySelector(":scope > strong")?.textContent.trim()).join("|"),
                 stageBodies: stages.map(stage => Array.from(stage.childNodes).filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent.trim()).filter(Boolean).join(" ")),
                 connectors: stages.slice(0, -1).map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                connectorZ: stages.slice(0, -1).map(stage => win.getComputedStyle(stage, "::after").zIndex).join("|"),
                 borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
                 patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
                 bank: Array.from(page?.querySelectorAll(".phrase-bank > span") || []).map(node => node.textContent.trim().replace(/\s+/g, " ")),
@@ -2232,6 +2233,7 @@
                 && accessibleModel.stageTitles === expectedLearnerBiologicalStages
                 && [studentModel, answerModel, teacherModel].every(state => state.connectors === "→|→|→|→|→" && !state.vertical && state.borderStates === "solid|dotted|double|solid|dashed|double")
                 && accessibleModel.connectors === "↓|↓|↓|↓|↓"
+                && accessibleModel.connectorZ === "1|1|1|1|1"
                 && accessibleModel.vertical
                 && accessibleModel.borderStates === "solid|dotted|double|solid|dashed|double"
                 && studentModel.fields.map(field => field.id).join("|") === expectedStudentBiologicalFields

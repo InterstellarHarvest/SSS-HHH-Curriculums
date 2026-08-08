@@ -355,6 +355,7 @@ def main() -> int:
         and "border-left-style: dotted" in the_gift_css
         and "border-left-style: double" in the_gift_css
         and "border-left-style: dashed" in the_gift_css
+        and "z-index: 1" in the_gift_css
         and "repeating-linear-gradient" in the_gift_css
         and "filter:" not in the_gift_css,
     )
@@ -1030,6 +1031,7 @@ def main() -> int:
         and "1 · Mature network|2 · Incidental cue|3 · Carrier and path|4 · Pod receptors|5 · Commitment|6 · Young symbiosis" in harness
         and "t4-source|t4-status-1|t4-cue|t4-status-2|t4-path|t4-status-3|t4-receptor|t4-status-4|t4-commitment|t4-status-5|t4-outcome|t4-status-6" in harness
         and "a4-source|a4-status-1|a4-cue|a4-status-2|a4-path|a4-status-3|a4-receptor|a4-status-4|a4-commitment|a4-status-5|a4-outcome|a4-status-6" in harness
+        and 'accessibleModel.connectorZ === "1|1|1|1|1"' in harness
         and 'state.pageSize === "816x1056"' in harness
         and 'for (const grayscale of [false, true])' in harness,
     )

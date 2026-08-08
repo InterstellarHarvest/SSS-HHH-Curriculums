@@ -1669,6 +1669,7 @@ body.grayscale .figure:where(
 
 .worksheet-document[data-case-id="SSS-C1-CASE07"]
   .evidence-chain.accessible-model .model-stage:not(:last-child)::after {
+  z-index: 1;
   right: auto;
   bottom: -14px;
   left: 50%;
