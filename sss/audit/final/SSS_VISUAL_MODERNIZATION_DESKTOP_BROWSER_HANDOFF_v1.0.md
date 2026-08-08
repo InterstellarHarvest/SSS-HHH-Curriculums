@@ -34,8 +34,8 @@ stages, and the Accessible `↓ then repeat` connector rendered as a padded 3 px
 without border/label collision. The branch was pushed by normal fast-forward. This recorded
 outcome satisfies every condition; C1C4 is no longer an `IMPLEMENTED-CANDIDATE`.
 
-Earlier accepted family evidence remains recorded in the modernization plan. In particular, the
-earlier C1C3 expansion could advance from `IMPLEMENTED-CANDIDATE` only after the harness reached
+Earlier accepted family evidence remains recorded in the modernization plan.
+The earlier C1C3 expansion could advance from `IMPLEMENTED-CANDIDATE` only after the harness reached
 2303/2303 with zero JavaScript errors and the dense Student mechanism page retained 3.47 px reserve.
 The recorded outcome above satisfies every condition.
 
