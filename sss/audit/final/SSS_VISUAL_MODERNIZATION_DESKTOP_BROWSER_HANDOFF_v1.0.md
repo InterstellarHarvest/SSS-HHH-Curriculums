@@ -20,51 +20,50 @@ You are validating the isolated `visual/sss-final-modernization` branch of
      --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
    ```
 
-   The current executable browser target is **2298/2298 PASS with 0 JavaScript errors**. The
-   accepted correctness commit produces 2293/2293; this branch adds five computed-style assertions
-   for the visual-delivery defects exposed by the `71e555d` desktop run. The first delivery repair,
-   `8e27e61`, is rejected evidence: C1C3 failed during editor boot because its extraction start
-   constant did not exist in the stylesheet. Confirm that the default editor and C1C3 load before
-   reporting case results. Report any drop by assertion name and case/role/presentation state. Do
-   not change expected values.
+   The current executable browser target is **2300/2300 PASS with 0 JavaScript errors**. The
+   accepted telemetry-family baseline `bee63f5` produces 2298/2298. This mechanism pilot adds two
+   computed-style assertions, one for normal and one for grayscale presentation, covering the
+   horizontal dependency rail, the Answer Key interruption state and the Accessible vertical rail.
+   Confirm that the default editor, C1C2 and C1C3 load before reporting case results. Report any
+   drop by assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
-   in Chrome, and inspect these telemetry-family candidates in both normal and grayscale modes:
+   in Chrome, and inspect the C1 Case 02 mechanism pilot in both normal and grayscale modes:
 
-   - C1 Case 03 optical scan: Student p1, Teacher p4, Answer Key p2, Accessible p2;
-   - C1 Case 03 quantity-versus-spectrum: Student p2, Answer Key p1, Accessible p3;
-   - C2 Case 01: Teacher p4;
-   - C2 Case 03: Student pp2–3 and Accessible pp2–3;
-   - C2 Case 04 within-cycle record: Student p3, Accessible p3, and the Answer Key p1 summary;
-   - C2 Case 05: Student pp2–3 and Accessible pp2–3;
-   - C2 Case 06: Student p2 and Accessible p2.
+   - Student p1, Task 3 horizontal six-stage dependency rail;
+   - Answer Key p1, Task 3 completed six-stage rail and Step 2 interruption state;
+   - Accessible p2, Task 3 vertical six-stage dependency rail.
 
 4. For every inspected page, report:
 
    - overflow warning visible: yes/no;
    - clipping or label collision: yes/no;
    - caption or extended-description clipping: yes/no;
-   - figure-status chip collision in C1C3/C2C3: yes/no;
-   - C1C3 dual-channel badges visibly state `QUANTITY ≠ DISTRIBUTION` and `UNEVEN`: yes/no;
-   - C2C4 light/dark patterns and reported/unreported border states remain distinct without a
-     connecting curve: yes/no;
-   - grayscale patterns and direct labels distinguish every category: yes/no;
+   - Student/Answer horizontal rail contains six stages and five connectors: yes/no;
+   - Student rail remains blank and writable: yes/no;
+   - Answer Key order remains exact and Step 2 alone is `FAILED STEP`: yes/no;
+   - Answer Key Steps 3–6 remain `DOWNSTREAM BLOCKED`: yes/no;
+   - Accessible rail contains six vertical fields with only the approved first/final prefills:
+     yes/no;
+   - border, pattern and direct status remain distinguishable in grayscale: yes/no;
    - page geometry changed from the declared role/page: yes/no;
    - browser-console JavaScript errors: exact count and text.
 
 5. Run the focused deterministic check and whitespace check:
 
    ```bash
+   python3 shared/validation/validate_sss_visual_mechanism_family.py
    python3 shared/validation/validate_sss_visual_telemetry_family.py
    git diff --check
    ```
 
-Expected focused result: **36/36 PASS**. The added check must prove that the JavaScript extraction
-constants delimit the real shared visual payload. Return a concise run report with the exact branch SHA,
-commands, totals, and any failing page/state. Do not produce or inspect PDFs.
+Expected focused results: **14/14 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
+run report with the exact branch SHA, commands, totals, and any failing page/state. Do not produce
+or inspect PDFs.
 
 ## Acceptance rule
 
-The family pilot may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
-2298/2298 with zero JavaScript errors and every listed page has no overflow, clipping, or status
-collision in normal and grayscale presentation. The five new browser assertions must confirm the
-C1C3 pseudo-content, C2C3 compact computed padding/page fit, and C2C4 computed pattern/border states.
+The mechanism pilot may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+2300/2300 with zero JavaScript errors and every listed page has no overflow, clipping or connector/
+status collision in normal and grayscale presentation. The two new assertions must confirm the
+computed horizontal and vertical rails plus the completed Step 2 interruption state. The five
+accepted telemetry computed-style assertions must remain green.

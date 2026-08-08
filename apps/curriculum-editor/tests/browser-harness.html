@@ -1276,6 +1276,70 @@
         const printAuthoringState = isolatedDoc.querySelector('[contenteditable="true"],.page.has-overflow');
         check(`${item.id} print document embeds print CSS/assets and has no authoring state`, printMeta && printAtPage && !printAuthoringState, JSON.stringify({ printMeta, printAtPage, printAuthoringState: printAuthoringState?.outerHTML.slice(0, 160) || null }));
         isolatedFrame.remove();
+        if (item.id === "SSS-C1-CASE02") {
+          for (const grayscale of [false, true]) {
+            const horizontal = [];
+            for (const role of ["student", "answer"]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const figure = workspace.querySelector(`.page[data-role="${role}"] .process-figure`);
+              const chain = figure?.querySelector(".process-chain");
+              const stages = Array.from(chain?.querySelectorAll(":scope > .process-stage") || []);
+              const arrows = Array.from(chain?.querySelectorAll(":scope > .process-arrow") || []);
+              const caption = figure?.querySelector("figcaption");
+              const failed = figure?.querySelector(".failed-stage");
+              horizontal.push({
+                role,
+                figure: Boolean(figure),
+                chainDisplay: chain ? win.getComputedStyle(chain).display : "",
+                stages: stages.length,
+                arrows: arrows.length,
+                frameBorder: figure ? win.getComputedStyle(figure).borderLeftWidth : "",
+                captionStatus: caption ? win.getComputedStyle(caption, "::after").content : "",
+                failedStatus: failed?.querySelector(".stage-status")?.textContent.trim() || "",
+                failedBorder: failed ? win.getComputedStyle(failed).borderTopStyle : ""
+              });
+            }
+            api.setRole("accessible");
+            api.saveState({ grayscale });
+            await wait(20);
+            const accessibleRail = workspace.querySelector('.page[data-role="accessible"] .linear-process[data-accessible-organizer="sequence"]');
+            const accessibleSteps = Array.from(accessibleRail?.querySelectorAll(":scope > li") || []);
+            const accessibleState = {
+              rail: Boolean(accessibleRail),
+              position: accessibleRail ? win.getComputedStyle(accessibleRail).position : "",
+              connectorContent: accessibleRail ? win.getComputedStyle(accessibleRail, "::before").content : "",
+              steps: accessibleSteps.length,
+              fields: accessibleSteps.filter(step => step.querySelector('[data-persist-id^="response-accessible-task3-step"]')).length,
+              firstBorder: accessibleSteps[0] ? [win.getComputedStyle(accessibleSteps[0]).borderLeftWidth, win.getComputedStyle(accessibleSteps[0]).borderLeftStyle] : [],
+              secondBorder: accessibleSteps[1] ? [win.getComputedStyle(accessibleSteps[1]).borderLeftWidth, win.getComputedStyle(accessibleSteps[1]).borderLeftStyle] : []
+            };
+            check(
+              `C1 Case 02 ${grayscale ? "grayscale" : "normal"} shared mechanism grammar renders horizontal dependency and Accessible vertical rails`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && horizontal.length === 2
+                && horizontal.every(state => state.figure && state.chainDisplay === "grid" && state.stages === 6 && state.arrows === 5 && px(state.frameBorder) >= 5)
+                && horizontal[0].captionStatus.includes("DEPENDENCY RAIL · EARLIER EVENT ENABLES NEXT")
+                && horizontal[1].captionStatus.includes("TRACE RESULT · FIRST INTERRUPTION AT STEP 2")
+                && horizontal[1].failedStatus === "FAILED STEP"
+                && horizontal[1].failedBorder === "double"
+                && accessibleState.rail
+                && accessibleState.position === "relative"
+                && accessibleState.connectorContent === '\"\"'
+                && accessibleState.steps === 6
+                && accessibleState.fields === 6
+                && px(accessibleState.firstBorder[0]) >= 4
+                && accessibleState.firstBorder[1] === "solid"
+                && accessibleState.secondBorder[1] === "double",
+              JSON.stringify({ horizontal, accessibleState })
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C1-CASE03") {
           for (const grayscale of [false, true]) {
             const rendered = [];

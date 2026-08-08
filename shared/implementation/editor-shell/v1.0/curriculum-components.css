@@ -697,6 +697,171 @@ body.grayscale .figure:where(
   font-weight: 700;
 }
 
+/*
+ * Mechanism/pathway pilot.
+ *
+ * Lunar Greenhouse already contains the exact six response fields, the
+ * completed interrupted-state exemplar and an Accessible vertical organizer.
+ * This case-scoped layer gives those existing structures one shared mechanism
+ * grammar without inserting learner text or changing their flow footprint.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure {
+  --mechanism-line: var(--ink, #18212b);
+  --mechanism-muted: var(--rule, #8c9aa8);
+  --mechanism-panel: var(--paper, #fff);
+  position: relative;
+  overflow: hidden;
+  border: 1pt solid var(--mechanism-muted);
+  border-left: 4pt solid var(--mechanism-line);
+  border-radius: var(--radius, 3px);
+  background:
+    linear-gradient(180deg, var(--panel-light, #f7f9fa) 0 .18in, transparent .18in),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-chain {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr) .19in) minmax(0, 1fr);
+  gap: 2px;
+  align-items: stretch;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-stage {
+  position: relative;
+  min-width: 0;
+  border: 1pt solid var(--mechanism-line);
+  border-top-width: 4pt;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-stage:nth-of-type(even) {
+  border-top-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .stage-num {
+  border: 1pt solid var(--mechanism-line);
+  box-shadow: 0 0 0 2px var(--mechanism-panel);
+  font-family: "JetBrains Mono", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .stage-entry {
+  background: rgba(255, 255, 255, .82);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-arrow {
+  display: grid;
+  place-items: center;
+  align-self: center;
+  width: .19in;
+  height: .19in;
+  border: .75pt solid var(--mechanism-line);
+  border-radius: 50%;
+  background: var(--mechanism-panel);
+  font: 800 9pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .stage-status {
+  padding-top: 3px;
+  border-top: .5pt solid var(--mechanism-muted);
+  font-size: 5.8pt;
+  letter-spacing: .045em;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure figcaption {
+  display: flow-root;
+  margin-top: 5px;
+  padding: 4px 5px;
+  border-top: .75pt solid var(--mechanism-muted);
+  background: var(--panel-light, #f7f9fa);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure figcaption::after {
+  float: right;
+  margin-left: 8px;
+  content: "DEPENDENCY RAIL · EARLIER EVENT ENABLES NEXT";
+  font: 700 5.9pt/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure.completed figcaption::after {
+  content: "TRACE RESULT · FIRST INTERRUPTION AT STEP 2";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure.completed .failed-stage {
+  border: 4px double var(--mechanism-line);
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .17) 6px 8px),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .process-figure.completed .failed-stage ~ .process-stage {
+  border-color: var(--mechanism-muted);
+  border-top-style: double;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px),
+    var(--mechanism-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .linear-process[data-accessible-organizer="sequence"] {
+  position: relative;
+  display: grid;
+  gap: 6px;
+  margin: 6px 0;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .linear-process[data-accessible-organizer="sequence"]::before {
+  position: absolute;
+  z-index: 0;
+  top: .18in;
+  bottom: .18in;
+  left: .31in;
+  width: 3px;
+  content: "";
+  background: repeating-linear-gradient(180deg, var(--ink, #18212b) 0 6px, transparent 6px 10px);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .linear-process[data-accessible-organizer="sequence"] li {
+  position: relative;
+  z-index: 1;
+  grid-template-columns: .72in 1fr;
+  gap: 8px;
+  margin: 0;
+  padding: 4px 5px 4px 7px;
+  border: .75pt solid var(--rule, #8c9aa8);
+  border-left: 3pt solid var(--ink, #18212b);
+  border-radius: var(--radius, 3px);
+  background: var(--paper, #fff);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .linear-process[data-accessible-organizer="sequence"] li:nth-child(even) {
+  border-left-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE02"] .linear-process[data-accessible-organizer="sequence"] li > span {
+  align-self: center;
+  padding: 4px 3px;
+  border: 1pt solid var(--ink, #18212b);
+  border-radius: 2px;
+  background: var(--panel-light, #f7f9fa);
+  text-align: center;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE02"] :is(.process-figure, .linear-process li) {
+  color: var(--ink, #18212b);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE02"] :is(
+  .process-figure figcaption,
+  .linear-process li > span
+) {
+  background: var(--panel-light, #f7f9fa);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
