@@ -41,6 +41,10 @@ FIRST_CONTACT_SOURCE = ROOT / "sss/campaign-1/case-06-first-contact-protocol/sou
 FIRST_CONTACT_PACKAGE = FIRST_CONTACT_SOURCE / "case-package.json"
 FIRST_CONTACT_CONTENT = FIRST_CONTACT_SOURCE / "content.html"
 FIRST_CONTACT_PRESENTATION = FIRST_CONTACT_SOURCE / "presentation.css"
+THE_GIFT_SOURCE = ROOT / "sss/campaign-1/case-07-the-gift/source"
+THE_GIFT_PACKAGE = THE_GIFT_SOURCE / "case-package.json"
+THE_GIFT_CONTENT = THE_GIFT_SOURCE / "content.html"
+THE_GIFT_PRESENTATION = THE_GIFT_SOURCE / "presentation.css"
 
 
 def sha256(path: Path) -> str:
@@ -70,13 +74,15 @@ def main() -> int:
     europa_content = BeautifulSoup(EUROPA_CONTENT.read_text(encoding="utf-8"), "html.parser")
     first_contact_package = json.loads(FIRST_CONTACT_PACKAGE.read_text(encoding="utf-8"))
     first_contact_content = BeautifulSoup(FIRST_CONTACT_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    the_gift_package = json.loads(THE_GIFT_PACKAGE.read_text(encoding="utf-8"))
+    the_gift_content = BeautifulSoup(THE_GIFT_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
     )
     check(
-        "the production plan records accepted Europa and advances First Contact's coordination model",
+        "the production plan records accepted First Contact and advances The Gift's biological model",
         bool(re.search(
             r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 "
@@ -97,12 +103,18 @@ def main() -> int:
         ))
         and bool(re.search(
             r"\| `C1C6-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED`",
+            plan,
+        ))
+        and bool(re.search(
+            r"\| `C1C7-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
             plan,
         ))
-        and "Current validation target — C1C6 coordination-system model" in handoff
-        and "2315/2315 PASS with 0 application JavaScript errors" in handoff
-        and "60/60 PASS" in handoff,
+        and "Current validation target — C1C7 biological-systems schematic" in handoff
+        and "2318/2318 PASS with 0 application JavaScript errors" in handoff
+        and "68/68 PASS" in handoff,
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -195,6 +207,18 @@ def main() -> int:
             "stylesheet": [first_contact_package["sourceHashes"]["presentation"], sha256(FIRST_CONTACT_PRESENTATION)],
         },
     )
+    check(
+        "The Gift opts into shared visuals with byte-identical worksheet sources",
+        the_gift_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and the_gift_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and the_gift_package["sourceHashes"]["content"] == sha256(THE_GIFT_CONTENT)
+        and the_gift_package["sourceHashes"]["presentation"] == sha256(THE_GIFT_PRESENTATION),
+        {
+            "presentation": the_gift_package.get("presentation"),
+            "content": [the_gift_package["sourceHashes"]["content"], sha256(THE_GIFT_CONTENT)],
+            "stylesheet": [the_gift_package["sourceHashes"]["presentation"], sha256(THE_GIFT_PRESENTATION)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -236,6 +260,10 @@ def main() -> int:
         'content: "FICTIONAL RESPONSE"',
         'content: "TRIGGERS"',
         '.accessible-model > .model-stage:nth-child(7)',
+        '.worksheet-document[data-case-id="SSS-C1-CASE07"]',
+        '.evidence-chain .final-stage-status',
+        '.evidence-chain > .model-stage:nth-child(5)',
+        '.accessible-model > .model-stage:nth-child(6)',
         ".worksheet-document.grayscale",
     )
     check(
@@ -253,7 +281,8 @@ def main() -> int:
     iss_css = extracted[extracted.index("Mechanism/pathway family expansion: ISS") : extracted.index("Mechanism/pathway pilot.")]
     hayes_css = extracted[extracted.index("Mechanism/pathway family expansion: Hayes") : extracted.index("Mechanism/pathway family expansion: Europa")]
     europa_css = extracted[extracted.index("Mechanism/pathway family expansion: Europa") : extracted.index("Mechanism/pathway family expansion: First Contact")]
-    first_contact_css = extracted[extracted.index("Mechanism/pathway family expansion: First Contact") :]
+    first_contact_css = extracted[extracted.index("Mechanism/pathway family expansion: First Contact") : extracted.index("Mechanism/pathway family expansion: The Gift")]
+    the_gift_css = extracted[extracted.index("Mechanism/pathway family expansion: The Gift") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -315,6 +344,19 @@ def main() -> int:
         and "border-left-style: double" in first_contact_css
         and "repeating-linear-gradient" in first_contact_css
         and "filter:" not in first_contact_css,
+    )
+    check(
+        "The Gift schematic emphasizes the six existing stages and supply controls without a color-only filter",
+        all(f".model-stage:nth-child({index})" in the_gift_css for index in range(2, 7))
+        and ".final-stage-status" in the_gift_css
+        and "border-top-style: dotted" in the_gift_css
+        and "border-top-style: double" in the_gift_css
+        and "border-top-style: dashed" in the_gift_css
+        and "border-left-style: dotted" in the_gift_css
+        and "border-left-style: double" in the_gift_css
+        and "border-left-style: dashed" in the_gift_css
+        and "repeating-linear-gradient" in the_gift_css
+        and "filter:" not in the_gift_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -867,6 +909,127 @@ def main() -> int:
         and "REMOVES|TRIGGERS|DISRUPTS" in harness
         and "t4-atmosphere|t4-signal|t4-network|t4-partnership" in harness
         and "a4-atmosphere|a4-signal|a4-network|a4-partnership" in harness
+        and 'state.pageSize === "816x1056"' in harness
+        and 'for (const grayscale of [false, true])' in harness,
+    )
+
+    the_gift_bank = [
+        "healthy mature network (source)",
+        "releases a short-lived cue",
+        "carrier droplets move through airflow",
+        "pod receptors detect the cue",
+        "chambers begin to open",
+        "young canopy–root–network system forms",
+    ]
+    the_gift_stage_ids = ["source", "cue", "path", "receptor", "commitment", "outcome"]
+    the_gift_student_page = the_gift_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-03"]'
+    )
+    the_gift_student_model = the_gift_student_page.select_one(
+        'figure[data-process-contract="source-receptor-response-v1.0"] > .evidence-chain'
+    ) if the_gift_student_page else None
+    the_gift_student_stages = the_gift_student_model.select(":scope > .model-stage") if the_gift_student_model else []
+    the_gift_student_stage_fields = [stage.select_one(".stage-response") for stage in the_gift_student_stages]
+    the_gift_student_status_fields = [stage.select_one(".compact-response") for stage in the_gift_student_stages]
+    check(
+        "The Gift Student schematic preserves six blank stage fields, six blank status controls and its exact bank",
+        [field.get("data-persist-id") for field in the_gift_student_stage_fields]
+        == [f"t4-{name}" for name in the_gift_stage_ids]
+        and [field.get("data-persist-id") for field in the_gift_student_status_fields]
+        == [f"t4-status-{index}" for index in range(1, 7)]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True)
+                for field in the_gift_student_stage_fields + the_gift_student_status_fields)
+        and [" ".join(item.stripped_strings) for item in the_gift_student_page.select(".phrase-bank > span")]
+        == the_gift_bank,
+    )
+
+    the_gift_accessible_page = the_gift_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-04"]'
+    )
+    the_gift_accessible_model = the_gift_accessible_page.select_one(
+        'figure[data-process-contract="accessible-source-receptor-response-v1.0"] > .evidence-chain.accessible-model'
+    ) if the_gift_accessible_page else None
+    the_gift_accessible_stages = the_gift_accessible_model.select(":scope > .model-stage") if the_gift_accessible_model else []
+    the_gift_accessible_stage_fields = [stage.select_one(".stage-response") for stage in the_gift_accessible_stages]
+    the_gift_accessible_status_fields = [stage.select_one(".compact-response") for stage in the_gift_accessible_stages]
+    check(
+        "The Gift Accessible schematic stays vertical with only the approved Stage 1 source and status prefills",
+        [field.get("data-persist-id") for field in the_gift_accessible_stage_fields]
+        == [f"a4-{name}" for name in the_gift_stage_ids]
+        and [field.get("data-persist-id") for field in the_gift_accessible_status_fields]
+        == [f"a4-status-{index}" for index in range(1, 7)]
+        and [field.get_text(strip=True) for field in the_gift_accessible_stage_fields]
+        == [the_gift_bank[0], "", "", "", "", ""]
+        and [field.get_text(strip=True) for field in the_gift_accessible_status_fields]
+        == ["X — MISSING", "", "", "", "", ""]
+        and all(field.has_attr("data-response")
+                for field in the_gift_accessible_stage_fields + the_gift_accessible_status_fields)
+        and [" ".join(item.stripped_strings) for item in the_gift_accessible_page.select(".phrase-bank > span")]
+        == the_gift_bank,
+    )
+
+    the_gift_answer_expected = [
+        "Healthy mature Zhel'ii growth is the natural source.",
+        "It produces a short-lived incidental signaling byproduct.",
+        "Fictional carrier droplets move on shared or sealed airflow under 3 m.",
+        "Selective pod receptors sustain activation above threshold.",
+        "Stoppable first; then membranes dissolve and chambers open.",
+        "Network precursor links canopy and roots; young symbiosis stabilizes.",
+    ]
+    the_gift_answer_page = the_gift_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-03"]'
+    )
+    the_gift_answer_model = the_gift_answer_page.select_one(
+        'figure[data-process-contract="answer-source-receptor-response-v1.0"] > .evidence-chain'
+    ) if the_gift_answer_page else None
+    the_gift_answer_stages = the_gift_answer_model.select(":scope > .model-stage") if the_gift_answer_model else []
+    check(
+        "The Gift Answer Key completes the six-stage model and unavailable-stage status exemplar",
+        [" ".join(text.strip() for text in stage.find_all(string=True, recursive=False) if text.strip())
+         for stage in the_gift_answer_stages] == the_gift_answer_expected
+        and the_gift_answer_page.select_one('[data-final-c1c7-task4-key="v1.0"]') is not None
+        and "X — mature source" in the_gift_answer_page.get_text(" ", strip=True)
+        and "X — available path" in the_gift_answer_page.get_text(" ", strip=True)
+        and "Available/represented" in the_gift_answer_page.get_text(" ", strip=True),
+    )
+
+    the_gift_teacher_expected = [
+        "Healthy established Zhel'ii growth",
+        "Short-lived signaling byproduct",
+        "Fictional droplets along shared or sealed airflow",
+        "Selective binding sustains activation",
+        "Pre-commitment stop, then chamber opening",
+        "Linked young canopy-root-network system",
+    ]
+    the_gift_teacher_page = the_gift_content.select_one(
+        'section[data-role="teacher"][data-page-id="teacher-guide-04"]'
+    )
+    the_gift_teacher_model = the_gift_teacher_page.select_one(
+        'figure[data-process-contract="teacher-source-receptor-response-v1.0"] > .evidence-chain'
+    ) if the_gift_teacher_page else None
+    the_gift_teacher_stages = the_gift_teacher_model.select(":scope > .model-stage") if the_gift_teacher_model else []
+    check(
+        "The Gift Teacher reference completes the identical six-stage biological system",
+        [" ".join(text.strip() for text in stage.find_all(string=True, recursive=False) if text.strip())
+         for stage in the_gift_teacher_stages] == the_gift_teacher_expected,
+    )
+
+    the_gift_source_text = THE_GIFT_CONTENT.read_text(encoding="utf-8")
+    check(
+        "The Gift schematic preserves fictional, path, safety and commitment limits",
+        "This background helps frame a question; it does not prove the fictional Zhel'ii mechanism." in the_gift_source_text
+        and "Fictional carrier droplets move on shared or sealed airflow under 3 m." in the_gift_source_text
+        and "Response alone does not reveal ligand, source, carrier, safe dose, or complete structure." in the_gift_source_text
+        and "Exposure can stop before commitment; do not assume reversibility afterward." in the_gift_source_text
+        and "an irreversible commitment checkpoint" in the_gift_source_text,
+    )
+    check(
+        "the browser harness measures The Gift stage markers, controls, completed references and strict fit in both modes",
+        harness.count("biological-system pages retain strict fit, page counts and geometry") == 1
+        and harness.count("biological system preserves stage markers, controls and science limits") == 1
+        and "1 · Mature network|2 · Incidental cue|3 · Carrier and path|4 · Pod receptors|5 · Commitment|6 · Young symbiosis" in harness
+        and "t4-source|t4-status-1|t4-cue|t4-status-2|t4-path|t4-status-3|t4-receptor|t4-status-4|t4-commitment|t4-status-5|t4-outcome|t4-status-6" in harness
+        and "a4-source|a4-status-1|a4-cue|a4-status-2|a4-path|a4-status-3|a4-receptor|a4-status-4|a4-commitment|a4-status-5|a4-outcome|a4-status-6" in harness
         and 'state.pageSize === "816x1056"' in harness
         and 'for (const grayscale of [false, true])' in harness,
     )

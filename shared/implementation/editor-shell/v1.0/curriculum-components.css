@@ -1573,6 +1573,113 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/pathway family expansion: The Gift biological system.
+ *
+ * The released Student and Accessible organizers already preserve six exact
+ * phrase fields, six independent availability controls and the approved
+ * Accessible Stage 1 scaffolds. The Answer Key and Teacher reference already
+ * complete the same six-stage system. This case-scoped layer emphasizes the
+ * source-to-symbiosis rail and its existing supply/status controls without
+ * adding response text, changing a status value or implying a safe dose,
+ * molecular structure or Earth-organism mechanism.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain {
+  --gift-line: var(--ink, #18212b);
+  --gift-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 4px 0 0 var(--gift-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain .model-stage {
+  position: relative;
+  border-color: var(--gift-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--gift-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain > .model-stage:nth-child(2) {
+  border-top-style: dotted;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .11) 7px 8px),
+    var(--gift-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain > .model-stage:nth-child(3),
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain > .model-stage:nth-child(6) {
+  border-top-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain > .model-stage:nth-child(4) {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px),
+    var(--gift-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] .evidence-chain > .model-stage:nth-child(5) {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .07) 6px 7px),
+    var(--gift-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-chain .model-stage:not(:last-child)::after {
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border: .75pt solid var(--gift-line);
+  border-radius: 50%;
+  background: var(--gift-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-chain .final-stage-status {
+  box-shadow: inset 0 1px 0 var(--gift-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-chain .final-stage-status .compact-response {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 7px, rgba(24, 33, 43, .06) 7px 8px),
+    rgba(255, 255, 255, .9);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-model > .model-stage:nth-child(2) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-model > .model-stage:nth-child(3),
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-model > .model-stage:nth-child(6) { border-left-style: double; }
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-model > .model-stage:nth-child(5) { border-left-style: dashed; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-chain.accessible-model .model-stage {
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-chain.accessible-model .model-stage:not(:last-child)::after {
+  right: auto;
+  bottom: -14px;
+  left: 50%;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE07"] .evidence-chain,
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE07"] .evidence-chain .model-stage {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

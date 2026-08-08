@@ -98,7 +98,17 @@ the 52/52 mechanism validator without changing any rendered or package-controlle
 Contact's existing four-stage Student, Accessible and Answer Key coordination model receives a
 bounded system rail, direct state markers, labeled transitions and grayscale-independent
 border/pattern states without changing worksheet content, response identities, phrase banks or
-package-controlled source hashes.
+package-controlled source hashes. Candidate `c9534e4` passed the complete 2315/2315 browser
+harness twice with zero application JavaScript errors and retained strict 936/936 fit on Student
+page 2, Accessible page 3 and Answer Key page 2 in both modes. Its sole static failure was a new
+literal that did not match either approved correlation caveat; validator-only successor `11a0871`
+required both approved source statements and passed the 60/60 mechanism validator without changing
+worksheet content, presentation or browser behavior. `C1C6-VIS02` is therefore `VERIFIED-FAMILY`.
+The final Campaign 1 Family 2 candidate is `C1C7-VIS02`: The Gift's existing six-stage Student,
+Accessible, Teacher and Answer Key source-to-symbiosis models receive a bounded biological-system
+rail, direct stage markers, emphasized supply/status controls and grayscale-independent
+border/pattern states without changing worksheet content, response identities, approved Accessible
+prefills, phrase banks or package-controlled source hashes.
 
 ## 3. Exact inventory reconciliation
 
@@ -137,7 +147,7 @@ Common validation for every row: focused package validation; no overflow/clippin
 logical DOM order and alt/extended description where applicable; grayscale-independent meaning;
 unchanged response IDs/fill persistence; synchronized keyed exemplar where the learner completes
 the visual; zero JavaScript errors; `git diff --check`. Family completion additionally requires
-the full non-PDF browser regression against the current executable baseline of **2312/2312 PASS
+the full non-PDF browser regression against the current executable baseline of **2315/2315 PASS
 and 0 JavaScript errors**. The accepted correctness commit produces 2293/2293; five telemetry
 assertions verify computed visual delivery, pseudo-content, table patterns/state borders and the
 dense telemetry cascade, two accepted mechanism-pilot assertions verify the horizontal dependency
@@ -171,10 +181,10 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `PLANNED` |
 | `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `PLANNED` |
 | `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `PLANNED` |
-| `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
+| `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
 | `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `PLANNED` |
 | `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `PLANNED` |
-| `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `PLANNED` |
+| `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
 | `C1C7-VIS03` | The Gift; S T7 p5, A T7 p7, AK T7 p5 | Dense intervention matrix; story rank competes with evidence. | 8 · Intervention comparison/trial workflow | Three-route decision/monitoring matrix with explicit evidence fit, controls, reversibility/commitment, monitoring and uncertainty hierarchy. | Preserve route choice, evidence, monitor/stop and prediction fields; points remain subordinate story ranks. | Story scores are not scientific results; no inferred dose, purity, synthesis or safety. | IC1; response/AK parity and label hierarchy checks | `PLANNED` |
 
 ## 7. Candidate production matrix — Campaign 2
@@ -296,7 +306,7 @@ Periodic/final system gate:
 - quality contract v3;
 - accessibility contract v2;
 - lifecycle tests and corrective-candidate contract;
-- full browser harness: current executable baseline **2312/2312 PASS, 0 JavaScript errors**;
+- full browser harness: current executable baseline **2315/2315 PASS, 0 JavaScript errors**;
 - `git diff --check`.
 
 Frozen-release assertions remain `RELEASE-BASELINE-PENDING`; they are not re-pinned here.

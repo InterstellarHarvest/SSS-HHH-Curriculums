@@ -2120,6 +2120,143 @@
           api.saveState({ grayscale: false });
         }
         if (item.id === "SSS-C1-CASE07") {
+          const biologicalSystemPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-03", 6], ["answer", "answer-key-03", 6], ["teacher", "teacher-guide-04", 8], ["accessible", "accessible-mission-04", 8]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              biologicalSystemPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 07 biological-system pages retain strict fit, page counts and geometry in normal and grayscale",
+            biologicalSystemPageFit.length === 8
+              && biologicalSystemPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(biologicalSystemPageFit)
+          );
+          const expectedBiologicalBank = [
+            "healthy mature network (source)",
+            "releases a short-lived cue",
+            "carrier droplets move through airflow",
+            "pod receptors detect the cue",
+            "chambers begin to open",
+            "young canopy–root–network system forms"
+          ];
+          const expectedLearnerBiologicalStages = "1 · Mature network|2 · Incidental cue|3 · Carrier and path|4 · Pod receptors|5 · Commitment|6 · Young symbiosis";
+          const expectedStudentBiologicalFields = "t4-source|t4-status-1|t4-cue|t4-status-2|t4-path|t4-status-3|t4-receptor|t4-status-4|t4-commitment|t4-status-5|t4-outcome|t4-status-6";
+          const expectedAccessibleBiologicalFields = "a4-source|a4-status-1|a4-cue|a4-status-2|a4-path|a4-status-3|a4-receptor|a4-status-4|a4-commitment|a4-status-5|a4-outcome|a4-status-6";
+          const expectedAnswerBiologicalStages = [
+            "Healthy mature Zhel'ii growth is the natural source.",
+            "It produces a short-lived incidental signaling byproduct.",
+            "Fictional carrier droplets move on shared or sealed airflow under 3 m.",
+            "Selective pod receptors sustain activation above threshold.",
+            "Stoppable first; then membranes dissolve and chambers open.",
+            "Network precursor links canopy and roots; young symbiosis stabilizes."
+          ];
+          const expectedTeacherBiologicalStages = [
+            "Healthy established Zhel'ii growth",
+            "Short-lived signaling byproduct",
+            "Fictional droplets along shared or sealed airflow",
+            "Selective binding sustains activation",
+            "Pre-commitment stop, then chamber opening",
+            "Linked young canopy-root-network system"
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-mission-03"], ["answer", "answer-key-03"], ["teacher", "teacher-guide-04"], ["accessible", "accessible-mission-04"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector(".evidence-chain");
+              const stages = Array.from(model?.querySelectorAll(":scope > .model-stage") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && stages.every(stage => {
+                const rect = stage.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = stages.flatMap(stage => Array.from(stage.querySelectorAll(":scope > .stage-response, :scope > .final-stage-status .compact-response")))
+                .map(field => ({ id: field.dataset.persistId, text: field.textContent.trim().replace(/\s+/g, " "), response: field.hasAttribute("data-response") }));
+              rendered.push({
+                role,
+                pageId,
+                model: Boolean(model),
+                vertical: model?.classList.contains("accessible-model") || false,
+                stages: stages.length,
+                stageTitles: stages.map(stage => stage.querySelector(":scope > strong")?.textContent.trim()).join("|"),
+                stageBodies: stages.map(stage => Array.from(stage.childNodes).filter(node => node.nodeType === Node.TEXT_NODE).map(node => node.textContent.trim()).filter(Boolean).join(" ")),
+                connectors: stages.slice(0, -1).map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                bank: Array.from(page?.querySelectorAll(".phrase-bank > span") || []).map(node => node.textContent.trim().replace(/\s+/g, " ")),
+                pageText: page?.textContent.replace(/\s+/g, " ") || "",
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision,
+                fields
+              });
+            }
+            const studentModel = rendered.find(state => state.role === "student");
+            const answerModel = rendered.find(state => state.role === "answer");
+            const teacherModel = rendered.find(state => state.role === "teacher");
+            const accessibleModel = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 07 ${grayscale ? "grayscale" : "normal"} biological system preserves stage markers, controls and science limits`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 4
+                && rendered.every(state => state.model && state.stages === 6 && state.modelFits && state.contained && !state.stageCollision)
+                && rendered.every(state => state.patternStates.every(Boolean))
+                && studentModel.stageTitles === expectedLearnerBiologicalStages
+                && accessibleModel.stageTitles === expectedLearnerBiologicalStages
+                && [studentModel, answerModel, teacherModel].every(state => state.connectors === "→|→|→|→|→" && !state.vertical && state.borderStates === "solid|dotted|double|solid|dashed|double")
+                && accessibleModel.connectors === "↓|↓|↓|↓|↓"
+                && accessibleModel.vertical
+                && accessibleModel.borderStates === "solid|dotted|double|solid|dashed|double"
+                && studentModel.fields.map(field => field.id).join("|") === expectedStudentBiologicalFields
+                && studentModel.fields.every(field => field.text === "" && field.response)
+                && accessibleModel.fields.map(field => field.id).join("|") === expectedAccessibleBiologicalFields
+                && accessibleModel.fields.map(field => field.text).join("|") === `${expectedBiologicalBank[0]}|X — MISSING||||||||||`
+                && accessibleModel.fields.every(field => field.response)
+                && studentModel.bank.join("|") === expectedBiologicalBank.join("|")
+                && accessibleModel.bank.join("|") === expectedBiologicalBank.join("|")
+                && answerModel.stageBodies.every((value, index) => value === expectedAnswerBiologicalStages[index])
+                && teacherModel.stageBodies.every((value, index) => value === expectedTeacherBiologicalStages[index])
+                && answerModel.pageText.includes("X — mature source")
+                && answerModel.pageText.includes("X — available path")
+                && answerModel.pageText.includes("Available/represented")
+                && workspace.textContent.includes("This background helps frame a question; it does not prove the fictional Zhel'ii mechanism.")
+                && workspace.textContent.includes("Fictional carrier droplets move on shared or sealed airflow under 3 m.")
+                && workspace.textContent.includes("Response alone does not reveal ligand, source, carrier, safe dose, or complete structure.")
+                && workspace.textContent.includes("Exposure can stop before commitment; do not assume reversibility afterward.")
+                && workspace.textContent.includes("an irreversible commitment checkpoint"),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
           const lockedTitles = ["Frame the Missing-Variable Problem", "Connect the Four Evidence Channels", "Distinguish Dormancy from Death", "Model the Trigger-to-Response System", "Compare and Reject Competing Diagnoses", "Explain the Missing Trigger with CER", "Choose and Monitor a Safe Intervention", "Synthesize Campaign 1 and Exit Independently"];
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           const firstPageIdentities = Array.from(workspace.querySelectorAll(".mission-title-block"));
