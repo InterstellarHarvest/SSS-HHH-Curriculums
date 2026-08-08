@@ -1,118 +1,89 @@
 # SSS Visual Modernization Desktop Browser Handoff v1.0
 
 Use this handoff with local Codex or Claude on a machine with installed Google Chrome.
-This is a read-only validation run. Do not edit sources, regenerate release baselines, run PDF
-automation, or reopen correctness findings.
+Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
+run PDF automation, or reopen accepted correctness findings.
 
-## Current validation target — C1C7 biological-systems schematic
+## Current branch state — Campaign 1 mechanism cohort closed
 
-The current branch tip advances `C1C7-VIS02` to `IMPLEMENTED-CANDIDATE`. It opts The Gift into the
-shared-visual layer and applies a bounded biological-system treatment to the existing Student Task 4
-page 3, Accessible Task 4 page 4, Teacher reference page 4 and Answer Key Task 4 page 3 models.
+The isolated `visual/sss-final-modernization` branch is accepted and pushed through
+`812d5c35d21a3d1e2314e4993faac188b1441c8d`. There is no pending Campaign 1 mechanism browser
+candidate. The current executable baseline is **2318/2318 PASS with 0 application JavaScript
+errors**, and the focused mechanism validator baseline is **68/68 PASS**.
 
-The six exact stages and five original connectors remain in their existing horizontal and Accessible
-vertical reading order. The existing stage headings directly mark `MATURE NETWORK`, `INCIDENTAL
-CUE`, `CARRIER AND PATH`, `POD RECEPTORS`, `COMMITMENT`, and `YOUNG SYMBIOSIS`; the twelve learner
-stage/status controls and the approved Accessible Stage 1 source/status prefills remain unchanged.
-Solid, dotted, double and dashed borders plus hatch states remain distinguishable in grayscale. No
-worksheet content, presentation source, response ID, status value, phrase-bank term, page count,
-source hash or release baseline changes.
+All seven Campaign 1 Family 2 findings are verified. The formal visual-modernization inventory is
+now **16 of 36 completed**, with **20 remaining**. Family 2 remains open overall only because four
+Campaign 2 findings remain planned: `C2C2-VIS02`, `C2C3-VIS03`, `C2C5-VIS03` and `C2C6-VIS02`.
 
-The accepted executable baseline is 2315/2315. This candidate adds one strict page-fit/geometry
-assertion covering all four touched pages in both modes and one computed-style/content assertion
-in each of normal and grayscale presentation. Its acceptance target is therefore
-**2318/2318 PASS with 0 application JavaScript errors**. The focused mechanism validator target is
-**68/68 PASS**.
+Do not rerun the browser harness merely to record this closeout. The accepted rendered evidence is
+preserved below. The next browser prompt belongs to the next separately implemented candidate.
 
-## Recorded outcome — 2026-08-08
+## Recorded late-case outcomes — 2026-08-08
 
-The C1C6 First Contact coordination-system model is `VERIFIED-FAMILY` at
-`11a0871d293d4294c72040b0ec9f9e79574704c2`. The browser harness passed 2315/2315 twice with zero
-application JavaScript errors. Student page 2, Answer Key page 2 and Accessible page 3 retained
-strict `scrollHeight 936 <= clientHeight 936` fit in normal and grayscale presentation. The
-mechanism validator passed 60/60. All four direct states, three labeled transitions, exact Student
-and Accessible field identities/contents, matching phrase banks and the complete Answer Key
-sequence were preserved. Manual inspection found no clipping or collision and retained the
-fictional-system boundary. The branch was pushed by normal fast-forward. This recorded outcome
-satisfies every condition; C1C6 is no longer an `IMPLEMENTED-CANDIDATE`.
+### C1C5-VIS01 — Europa radiation-to-growth pathway
 
-Earlier accepted family evidence remains recorded in the modernization plan.
-The earlier C1C3 expansion could advance from `IMPLEMENTED-CANDIDATE` only after the harness reached
-2303/2303 with zero JavaScript errors and the dense Student mechanism page retained 3.47 px reserve.
-The recorded outcome above satisfies every condition.
+`C1C5-VIS01` is `VERIFIED-FAMILY` at
+`dcb2d91565769d7bd907b491359ef695a805f784`. Candidate `df1ec0c` passed the complete 2312/2312
+browser harness twice with zero application JavaScript errors and retained strict
+`scrollHeight 936 <= clientHeight 936` fit on Student page 3, Answer Key page 3 and Accessible page
+5 in normal and grayscale. Documentation-only successor `dcb2d91` restored the accepted lifecycle
+literal and passed the 52/52 mechanism validator. All seven evidence states, six connectors,
+learner fields, phrase banks and the completed Answer Key sequence remained exact. Manual
+inspection found no clipping or collision and preserved the distinctions among modeled secondary
+radiation, possible exposure and biological evidence consistent with damage.
 
-## Prompt
+### C1C6-VIS02 — First Contact coordination-system model
 
-You are validating the isolated `visual/sss-final-modernization` branch of
-`InterstellarHarvest/SSS-HHH-Curriculums`. Correctness remediation is closed.
+`C1C6-VIS02` is `VERIFIED-FAMILY` at
+`11a0871d293d4294c72040b0ec9f9e79574704c2`. Candidate `c9534e4` passed the complete 2315/2315
+browser harness twice with zero application JavaScript errors and retained strict
+`scrollHeight 936 <= clientHeight 936` fit on Student page 2, Answer Key page 2 and Accessible page
+3 in normal and grayscale. Validator-only successor `11a0871` replaced a never-present literal
+with both approved correlation caveats and passed the 60/60 mechanism validator without changing
+worksheet content or presentation. All four states, three labeled transitions, learner fields,
+matching phrase banks and the completed Answer Key sequence remained exact. Manual inspection
+found no clipping or collision and preserved the fictional-system and correlation boundaries.
 
-1. Verify the working tree is clean at the supplied candidate on
-   `visual/sss-final-modernization`. Do not reset, rebase, amend, force-push, update frozen release
-   baselines, edit expected values, or open a PR.
+### C1C7-VIS02 — The Gift biological-systems schematic
 
-2. Run only:
+`C1C7-VIS02` is `VERIFIED-FAMILY` at
+`812d5c35d21a3d1e2314e4993faac188b1441c8d`. Candidate `70da06a` passed the complete 2318/2318
+browser harness twice with zero application JavaScript errors, the 68/68 mechanism validator and
+strict `scrollHeight 936 <= clientHeight 936` fit on Student page 3, Answer Key page 3, Teacher page
+4 and Accessible page 4 in normal and grayscale. Manual inspection then found that the following
+Accessible stages painted over all five vertical connector glyphs. Corrective successor `812d5c3`
+added one Case 07 Accessible `z-index: 1` declaration plus computed-style and static regression
+coverage. It passed the complete 2318/2318 browser harness twice, the 68/68 mechanism validator and
+manual inspection in both modes. All five circled down-arrow connectors were fully visible, with
+computed z-index `1 | 1 | 1 | 1 | 1`, no clipping, overlap or collision, fixed 816 × 1056 geometry,
+and unchanged Student 6, Answer Key 6, Teacher 8 and Accessible 8 page counts.
 
-   ```bash
-   python3 apps/curriculum-editor/tests/run_browser_tests.py \
-     --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+The six ordered stages, five original connectors, learner response/status controls, approved
+Accessible Stage 1 prefills, identical learner phrase banks, completed Answer Key and Teacher
+models, fictional-system boundary, under-3-m path, safe-dose/structure limitation and
+commitment/reversibility distinction all remained exact. No worksheet source, package metadata,
+release baseline or accepted content changed.
 
-   python3 shared/validation/validate_sss_visual_mechanism_family.py
-   git diff --check
-   ```
+## Campaign 1 Family 2 closeout register
 
-   Expected:
+| Finding | Accepted implementation | Recorded state |
+|---|---|---|
+| `C1C1-VIS01` | `ceb632d` | `VERIFIED-FAMILY` |
+| `C1C2-VIS01` | `a9dfecf` | `VERIFIED-FAMILY-PILOT` |
+| `C1C3-VIS03` | `c532ac5` | `VERIFIED-FAMILY` |
+| `C1C4-VIS02` | `d5b6c02` | `VERIFIED-FAMILY` |
+| `C1C5-VIS01` | `dcb2d91` | `VERIFIED-FAMILY` |
+| `C1C6-VIS02` | `11a0871` | `VERIFIED-FAMILY` |
+| `C1C7-VIS02` | `812d5c3` | `VERIFIED-FAMILY` |
 
-   - browser harness: **2318/2318 PASS**;
-   - application JavaScript errors: **0**;
-   - mechanism validator: **68/68 PASS**;
-   - whitespace: clean.
+The accepted Mars expansion at `c532ac5` reached 2303/2303 with zero JavaScript errors and retained
+3.47 px of geometric reserve. Together with the six other accepted rows above, this closes the
+Campaign 1 mechanism cohort. These lifecycle records do not merge the visual branch to `main`,
+declare the overall 11-item Family 2 complete, or reopen frozen curriculum and release decisions.
 
-3. Start the editor with `python3 apps/curriculum-editor/serve.py` and inspect only these pages in
-   normal and grayscale presentation:
+## Next production boundary
 
-   - C1C7 Student Task 4 page 3;
-   - C1C7 Answer Key Task 4 page 3;
-   - C1C7 Teacher reference page 4;
-   - C1C7 Accessible Task 4 page 4.
-
-4. Report for those pages:
-
-   - overflow warning visible: yes/no;
-   - clipping or stage-marker/status/connector collision: yes/no;
-   - strict `scrollHeight <= clientHeight`: exact values;
-   - fixed page box remains 816 × 1056 and page counts remain Student 6, Answer Key 6, Teacher 8,
-     Accessible 8: yes/no;
-   - six ordered stages and five original connectors remain: yes/no;
-   - horizontal connector order remains `→ | → | → | → | →`: yes/no;
-   - Accessible connector order remains `↓ | ↓ | ↓ | ↓ | ↓`: yes/no;
-   - learner stage headings remain `MATURE NETWORK | INCIDENTAL CUE | CARRIER AND PATH | POD
-     RECEPTORS | COMMITMENT | YOUNG SYMBIOSIS`: yes/no;
-   - Student retains all six blank `t4-*` stage fields and all six blank `t4-status-*` controls:
-     yes/no;
-   - Accessible retains its approved Stage 1 source and `X — MISSING` status prefills while its
-     other ten Task 4 controls remain blank and vertical: yes/no;
-   - Answer Key and Teacher reference retain their exact six-stage completed models: yes/no;
-   - the Student and Accessible phrase banks remain exact and identical: yes/no;
-   - the Answer Key retains the mature-source/path unavailability exemplar and downstream
-     represented-but-blocked distinction: yes/no;
-   - the system remains explicitly fictional and the supported path remains under 3 m: yes/no;
-   - no safe dose or complete molecular-structure claim appears: yes/no;
-   - pre-commitment reversibility remains distinct from irreversible commitment: yes/no;
-   - solid/dotted/double/dashed borders and hatch states remain distinguishable without color:
-     yes/no;
-   - browser-console JavaScript errors: exact count and text.
-
-Do not run telemetry, repository-wide, legacy mutation, PDF, or unrelated checks. If every check
-passes, push the candidate as a normal fast-forward and return the concise report. If anything
-fails, hold unpushed and report the exact assertion, role, mode and measurements.
-
-## Acceptance rule
-
-`C1C7-VIS02` may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
-2318/2318 with zero application JavaScript errors, the focused mechanism validator reaches 68/68,
-and the four touched pages retain strict fit, fixed geometry and their existing page counts in
-normal and grayscale. The three new assertions must confirm the six-stage order, five connectors,
-direct stage markers, grayscale-independent border/pattern states, exact learner response/status
-identities and contents, and complete Answer Key and Teacher sequences. Manual inspection must find
-no clipping or collision and must preserve the fictional-system, supported-path, safe-dose/structure
-and commitment/reversibility limits.
+The next Family 2 production candidate must be one of the four planned Campaign 2 mechanism
+findings and must receive its own implementation commit, focused static contract, rendered browser
+gate and normal/grayscale inspection. Until then, this handoff is a completed evidence record, not
+an instruction to run validation or push another change.

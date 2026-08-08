@@ -108,7 +108,22 @@ The final Campaign 1 Family 2 candidate is `C1C7-VIS02`: The Gift's existing six
 Accessible, Teacher and Answer Key source-to-symbiosis models receive a bounded biological-system
 rail, direct stage markers, emphasized supply/status controls and grayscale-independent
 border/pattern states without changing worksheet content, response identities, approved Accessible
-prefills, phrase banks or package-controlled source hashes.
+prefills, phrase banks or package-controlled source hashes. Candidate `70da06a` passed the complete
+2318/2318 browser harness twice with zero application JavaScript errors, retained strict 936/936
+fit and fixed 816 × 1056 geometry on Student page 3, Accessible page 4, Teacher page 4 and Answer
+Key page 3 in both modes, and passed the 68/68 mechanism validator. Manual inspection identified
+one real Accessible paint-order defect: all five vertical connector glyphs were occluded by the
+following stage. Corrective successor `812d5c3` lifted only those five Case 07 Accessible connector
+badges, added computed-style and static regression coverage, and then passed the complete 2318/2318
+browser harness twice, the 68/68 mechanism validator and normal/grayscale manual inspection with
+all five circled down-arrow glyphs visible. Worksheet sources, package metadata, page counts,
+response controls and release baselines remained unchanged. `C1C7-VIS02` is therefore
+`VERIFIED-FAMILY`.
+
+Campaign 1's Family 2 cohort is closed: all seven Campaign 1 mechanism/pathway findings are
+verified. Family 2 remains open overall because `C2C2-VIS02`, `C2C3-VIS03`, `C2C5-VIS03` and
+`C2C6-VIS02` remain planned. The formal visual-modernization inventory now stands at 16 of 36
+completed findings, with 20 remaining.
 
 ## 3. Exact inventory reconciliation
 
@@ -118,6 +133,10 @@ The current remediation register contains exactly **36 findings classified
 - **35 numbered `VIS` figure/diagram/data-display candidates** — exactly reconciled to the
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
+
+Accepted progress after the Campaign 1 mechanism closeout is **16 of 36 completed** and
+**20 of 36 remaining**. Family 1 contributes 9 completed findings; Family 2 contributes its seven
+verified Campaign 1 findings and retains four planned Campaign 2 findings.
 
 The final remediation status also carries token/fill maintenance notes for C1 Case 02 and
 C1 Case 06. Those two notes are tracked in §5 as visual-system work items but are not invented
@@ -147,7 +166,7 @@ Common validation for every row: focused package validation; no overflow/clippin
 logical DOM order and alt/extended description where applicable; grayscale-independent meaning;
 unchanged response IDs/fill persistence; synchronized keyed exemplar where the learner completes
 the visual; zero JavaScript errors; `git diff --check`. Family completion additionally requires
-the full non-PDF browser regression against the current executable baseline of **2315/2315 PASS
+the full non-PDF browser regression against the current executable baseline of **2318/2318 PASS
 and 0 JavaScript errors**. The accepted correctness commit produces 2293/2293; five telemetry
 assertions verify computed visual delivery, pseudo-content, table patterns/state borders and the
 dense telemetry cascade, two accepted mechanism-pilot assertions verify the horizontal dependency
@@ -184,7 +203,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
 | `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `PLANNED` |
 | `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `PLANNED` |
-| `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING` |
+| `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `VERIFIED-FAMILY · 68/68 FAMILY STATIC PASS · 2318/2318 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 812d5c3 ACCEPTED` |
 | `C1C7-VIS03` | The Gift; S T7 p5, A T7 p7, AK T7 p5 | Dense intervention matrix; story rank competes with evidence. | 8 · Intervention comparison/trial workflow | Three-route decision/monitoring matrix with explicit evidence fit, controls, reversibility/commitment, monitoring and uncertainty hierarchy. | Preserve route choice, evidence, monitor/stop and prediction fields; points remain subordinate story ranks. | Story scores are not scientific results; no inferred dose, purity, synthesis or safety. | IC1; response/AK parity and label hierarchy checks | `PLANNED` |
 
 ## 7. Candidate production matrix — Campaign 2
@@ -306,7 +325,7 @@ Periodic/final system gate:
 - quality contract v3;
 - accessibility contract v2;
 - lifecycle tests and corrective-candidate contract;
-- full browser harness: current executable baseline **2315/2315 PASS, 0 JavaScript errors**;
+- full browser harness: current executable baseline **2318/2318 PASS, 0 JavaScript errors**;
 - `git diff --check`.
 
 Frozen-release assertions remain `RELEASE-BASELINE-PENDING`; they are not re-pinned here.

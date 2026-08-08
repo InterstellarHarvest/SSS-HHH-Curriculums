@@ -82,7 +82,7 @@ def main() -> int:
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
     )
     check(
-        "the production plan records accepted First Contact and advances The Gift's biological model",
+        "the production plan and handoff close the Campaign 1 mechanism cohort",
         bool(re.search(
             r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 "
@@ -109,11 +109,20 @@ def main() -> int:
         ))
         and bool(re.search(
             r"\| `C1C7-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
-            r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
+            r"`VERIFIED-FAMILY · 68/68 FAMILY STATIC PASS · 2318/2318 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 812d5c3 ACCEPTED`",
             plan,
         ))
-        and "Current validation target — C1C7 biological-systems schematic" in handoff
-        and "2318/2318 PASS with 0 application JavaScript errors" in handoff
+        and "Current branch state — Campaign 1 mechanism cohort closed" in handoff
+        and "16 of 36 completed" in handoff
+        and "20 remaining" in handoff
+        and all(finding in handoff for finding in (
+            "C1C5-VIS01 — Europa radiation-to-growth pathway",
+            "C1C6-VIS02 — First Contact coordination-system model",
+            "C1C7-VIS02 — The Gift biological-systems schematic",
+        ))
+        and "812d5c35d21a3d1e2314e4993faac188b1441c8d" in handoff
+        and "2318/2318 PASS with 0 application JavaScript" in handoff
         and "68/68 PASS" in handoff,
     )
     check(
@@ -125,10 +134,10 @@ def main() -> int:
             r"· 3\.47px RESERVE · c532ac5 ACCEPTED`",
             plan,
         ))
-        and "The earlier C1C3 expansion could advance from `IMPLEMENTED-CANDIDATE`" in handoff
+        and "| `C1C2-VIS01` | `a9dfecf` | `VERIFIED-FAMILY-PILOT` |" in handoff
+        and "| `C1C3-VIS03` | `c532ac5` | `VERIFIED-FAMILY` |" in handoff
         and "2303/2303 with zero JavaScript errors" in handoff
-        and "3.47 px reserve" in handoff
-        and "The recorded outcome above satisfies every condition." in handoff,
+        and "3.47 px of geometric reserve" in handoff,
     )
     check(
         "Lunar Greenhouse opts into extracted shared visuals without the full component layer",
