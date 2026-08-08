@@ -93,6 +93,32 @@ def main() -> int:
             )
         ),
     )
+    marker_values = dict(
+        re.findall(
+            r'^const (VISUAL_PRIMITIVES_(?:START|END)) = "([^"]+)";$',
+            editor,
+            flags=re.MULTILINE,
+        )
+    )
+    start_marker = marker_values.get("VISUAL_PRIMITIVES_START", "")
+    end_marker = marker_values.get("VISUAL_PRIMITIVES_END", "")
+    start_index = css.find(start_marker) if start_marker else -1
+    content_start = start_index + len(start_marker)
+    end_index = css.find(end_marker, content_start) if end_marker else -1
+    extracted_visual_css = css[content_start:end_index] if start_index >= 0 and end_index > content_start else ""
+    check(
+        "the editor extraction constants delimit the real shared visual payload",
+        start_index >= 0
+        and end_index > content_start
+        and all(token in extracted_visual_css for token in required_css),
+        {
+            "start_marker": start_marker,
+            "start_index": start_index,
+            "end_marker": end_marker,
+            "end_index": end_index,
+            "missing_payload_tokens": [token for token in required_css if token not in extracted_visual_css],
+        },
+    )
     check("the shared telemetry grammar never applies a whole-figure grayscale filter", "filter:" not in css[css.index("SSS/HHH explanatory-visual primitives."):css.index(".source-status")])
     compact_band_rules = css[css.index("Compact telemetry footprint."):css.index('.figure:where(\n  [data-visual-family="telemetry"]')]
     check(

@@ -38,8 +38,12 @@ separate owner authorization.
 Rendered-gate history is preserved rather than overwritten: `2a04e14` passed 2293/2293 and is
 the last accepted browser checkpoint; `71e555d` was rejected at 2291/2293 because C2C3 page fit
 regressed and the new C1C3/C2C4 selectors produced no rendered treatment. The remediation after
-that rejection adds five computed-style browser assertions, so its acceptance target is
-2298/2298. A green source-token validator alone cannot promote a visual candidate.
+that rejection added five computed-style browser assertions. Its first candidate, `8e27e61`, was
+also rejected because its C1C3 visual-CSS start constant did not match the real multiline comment,
+blocking the default editor boot before case assertions ran. The successor uses explicit extraction
+sentinels and a deterministic check that the JavaScript constants delimit the real CSS payload. Its
+browser acceptance target remains 2298/2298. A green source-token validator alone cannot promote a
+visual candidate.
 
 ## 3. Exact inventory reconciliation
 

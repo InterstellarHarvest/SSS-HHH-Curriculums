@@ -22,8 +22,11 @@ You are validating the isolated `visual/sss-final-modernization` branch of
 
    The current executable browser target is **2298/2298 PASS with 0 JavaScript errors**. The
    accepted correctness commit produces 2293/2293; this branch adds five computed-style assertions
-   for the visual-delivery defects exposed by the `71e555d` desktop run. Report any drop by
-   assertion name and case/role/presentation state. Do not change expected values.
+   for the visual-delivery defects exposed by the `71e555d` desktop run. The first delivery repair,
+   `8e27e61`, is rejected evidence: C1C3 failed during editor boot because its extraction start
+   constant did not exist in the stylesheet. Confirm that the default editor and C1C3 load before
+   reporting case results. Report any drop by assertion name and case/role/presentation state. Do
+   not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
    in Chrome, and inspect these telemetry-family candidates in both normal and grayscale modes:
 
@@ -55,7 +58,8 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused result: **35/35 PASS**. Return a concise run report with the exact branch SHA,
+Expected focused result: **36/36 PASS**. The added check must prove that the JavaScript extraction
+constants delimit the real shared visual payload. Return a concise run report with the exact branch SHA,
 commands, totals, and any failing page/state. Do not produce or inspect PDFs.
 
 ## Acceptance rule

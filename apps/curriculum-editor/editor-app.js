@@ -7,8 +7,8 @@ import {
 const REGISTRY_PATH = "/shared/implementation/case-registry.v2.json";
 const PROTECTED_COMPONENT_STYLES_PATH = "shared/implementation/editor-shell/v1.0/protected-printable-components.css";
 const ACCESSIBLE_EDITION_STYLES_PATH = "shared/implementation/editor-shell/v1.0/accessible-edition.css";
-const VISUAL_PRIMITIVES_START = "/* SSS/HHH explanatory-visual primitives.";
-const VISUAL_PRIMITIVES_END = ".source-status {";
+const VISUAL_PRIMITIVES_START = "/* BEGIN SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */";
+const VISUAL_PRIMITIVES_END = "/* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */";
 const SELECTED_CASE_KEY = "curriculum-editor:selected-case:v1";
 const SUPPORTED_PACKAGE_SCHEMA = 2;
 const NAVIGATION_ROLES = ["student", "teacher", "answer", "accessible"];
@@ -514,11 +514,12 @@ function scopePresentationCss(css) {
 
 function visualPrimitiveCss(css) {
   const start = css.indexOf(VISUAL_PRIMITIVES_START);
-  const end = css.indexOf(VISUAL_PRIMITIVES_END, start);
+  const contentStart = start + VISUAL_PRIMITIVES_START.length;
+  const end = css.indexOf(VISUAL_PRIMITIVES_END, contentStart);
   if (start < 0 || end < 0 || end <= start) {
     throw new Error("Shared explanatory-visual primitives are missing their extraction markers.");
   }
-  return css.slice(start, end);
+  return css.slice(contentStart, end);
 }
 
 async function installPackageFontImports(presentationCss) {

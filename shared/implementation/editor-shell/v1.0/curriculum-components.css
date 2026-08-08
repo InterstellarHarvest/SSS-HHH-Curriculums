@@ -317,6 +317,7 @@ h3 {
   font-size: 7.5pt;
 }
 
+/* BEGIN SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 /*
  * SSS/HHH explanatory-visual primitives.
  *
@@ -696,6 +697,7 @@ body.grayscale .figure:where(
   font-weight: 700;
 }
 
+/* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
   letter-spacing: .05em;
