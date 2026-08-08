@@ -62,7 +62,7 @@ def main() -> int:
         checks.append((name, bool(passed), str(detail)))
 
     plan = PLAN.read_text(encoding="utf-8")
-    handoff = HANDOFF.read_text(encoding="utf-8")
+    handoff = " ".join(HANDOFF.read_text(encoding="utf-8").split())
     css = COMPONENTS.read_text(encoding="utf-8")
     editor = EDITOR.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")

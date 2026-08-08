@@ -28,8 +28,8 @@ flower is not the same route as the fictional airborne oscillation coupling into
 This candidate adds one strict fit/page-count/geometry assertion across all three pages and both
 modes, plus one computed-style/content assertion in normal and one in grayscale. Its acceptance
 target is therefore **2321/2321 PASS with 0 application JavaScript errors**. The focused mechanism
-validator target is **76/76 PASS**. The formal inventory remains **16 of 36 completed**, with **20
-remaining**, until this candidate is accepted.
+validator target is **76/76 PASS**. The formal inventory remains **16 of 36 completed**, with
+**20 remaining**, until this candidate is accepted.
 
 ## Recorded late-case outcomes — 2026-08-08
 
