@@ -321,9 +321,10 @@ h3 {
  * SSS/HHH explanatory-visual primitives.
  *
  * New figures opt in with data-visual-family. The GRO-9 output and response-
- * band figures plus the Case 03 optical-link figures are the first telemetry
- * pilot. Existing profile, instrument, production-monitor and site-survey
- * figures inherit the same non-overlay grammar through stable figure IDs.
+ * band figures plus the Case 03 optical-link and dual-channel figures are the
+ * first telemetry pilots. Existing profile, instrument, production-monitor,
+ * site-survey and bounded semantic-table figures inherit the same grammar
+ * through stable figure IDs or case-root selectors.
  * Exact data and labels stay in case SVG/HTML; this layer supplies only the
  * shared frame, status, type and grayscale grammar.
  */
@@ -335,7 +336,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) {
   --visual-line-primary: 1.5pt;
   --visual-line-secondary: .75pt;
@@ -351,6 +353,7 @@ h3 {
 .figure[data-visual-family][data-visual-status]::before,
 .figure[data-figure-id^="fig-gro9-"]::before,
 .figure[data-figure-id^="fig-band-"]::before,
+.figure:has(> svg[data-quantity-spectrum="canonical-v1.0"])::before,
 .figure.spectrum-figure::before {
   position: absolute;
   z-index: 1;
@@ -377,6 +380,26 @@ h3 {
   content: "SITE RESPONSE · DISCRETE BAND";
 }
 
+.figure:has(> svg[data-quantity-spectrum="canonical-v1.0"])::before {
+  content: "DUAL-CHANNEL DIAGNOSTIC · UNEVEN";
+}
+
+.figure:has(> svg[data-quantity-spectrum="canonical-v1.0"])::after {
+  position: absolute;
+  z-index: 1;
+  top: .045in;
+  left: .055in;
+  padding: .025in .045in;
+  content: "QUANTITY ≠ DISTRIBUTION";
+  color: var(--ink, #18212b);
+  border: .75pt solid var(--rule, #8c9aa8);
+  border-radius: 2px;
+  background: var(--paper, #fff);
+  font: 700 6.3pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+
 .figure.spectrum-figure::before {
   content: "OPTICAL LINK · DISCRETE BANDS";
 }
@@ -389,7 +412,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) figcaption {
   margin-top: 4px;
   padding: 4px 5px;
@@ -405,7 +429,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) .extended-description {
   margin: 4px 0 0;
   padding-top: 3px;
@@ -444,7 +469,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) .fig-axis {
   font-family: Inter, Arial, sans-serif;
   font-weight: 700;
@@ -458,7 +484,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) .fig-value,
 .figure:is(
   [data-visual-family="telemetry"],
@@ -468,7 +495,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) .fig-tick {
   font-family: "JetBrains Mono", "Courier New", monospace;
   font-variant-numeric: tabular-nums;
@@ -482,7 +510,8 @@ h3 {
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) svg rect[fill^="url("] {
   stroke: var(--ink, #18212b);
   stroke-width: var(--visual-line-primary);
@@ -493,6 +522,7 @@ body.grayscale .figure:is(
   [data-visual-family][data-visual-status],
   [data-figure-id^="fig-gro9-"],
   [data-figure-id^="fig-band-"],
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"]),
   .spectrum-figure
 )::before,
 body.grayscale .figure:is(
@@ -503,10 +533,167 @@ body.grayscale .figure:is(
   [data-figure-id^="fig-gauge-"],
   [data-figure-id^="fig-production-"],
   [data-figure-id^="fig-patches-"],
-  .spectrum-figure
+  .spectrum-figure,
+  :has(> svg[data-quantity-spectrum="canonical-v1.0"])
 ) figcaption {
   color: var(--ink, #18212b);
   background: var(--panel-light, #f7f9fa);
+}
+
+/*
+ * Semantic telemetry table.
+ *
+ * The Silent Grove within-cycle record remains an actual table so its exact
+ * reported and unreported blocks stay available to assistive technology. The
+ * row/cell attributes add a compact visual grammar without inserting a second
+ * graphic or changing the table's instructional footprint.
+ */
+:is(
+  .telemetry-table[data-visual-family="telemetry"],
+  [data-editor-content="sss-c2-case04-v1.0"] section:is(
+    [data-page-id="student-mission-03"],
+    [data-page-id="accessible-mission-03"]
+  ) .timeline-table
+) {
+  border: 1pt solid var(--rule, #8c9aa8);
+  border-collapse: collapse;
+  background: var(--paper, #fff);
+  table-layout: fixed;
+}
+
+:is(
+  .telemetry-table[data-visual-family="telemetry"],
+  [data-editor-content="sss-c2-case04-v1.0"] section:is(
+    [data-page-id="student-mission-03"],
+    [data-page-id="accessible-mission-03"]
+  ) .timeline-table
+) caption {
+  padding: 2px 4px;
+  border: .75pt solid var(--rule, #8c9aa8);
+  border-bottom: 0;
+  background: var(--panel-light, #f7f9fa);
+  font-weight: 800;
+  text-align: left;
+}
+
+:is(
+  .telemetry-table[data-visual-family="telemetry"],
+  [data-editor-content="sss-c2-case04-v1.0"] section:is(
+    [data-page-id="student-mission-03"],
+    [data-page-id="accessible-mission-03"]
+  ) .timeline-table
+) caption::after {
+  float: right;
+  margin-left: 8px;
+  content: attr(data-visual-status);
+  font: 700 6.2pt/1.2 "JetBrains Mono", monospace;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+:is(
+  .telemetry-table[data-visual-family="telemetry"],
+  [data-editor-content="sss-c2-case04-v1.0"] section:is(
+    [data-page-id="student-mission-03"],
+    [data-page-id="accessible-mission-03"]
+  ) .timeline-table
+) thead th {
+  border-bottom-width: 1.5pt;
+  background: var(--panel-light, #f7f9fa);
+}
+
+.telemetry-table[data-visual-family="telemetry"] tbody tr[data-light-state="light"] > td:nth-child(2) {
+  background-image: repeating-linear-gradient(-45deg, transparent 0 5px, rgba(24, 33, 43, .12) 5px 6px);
+}
+
+.telemetry-table[data-visual-family="telemetry"] tbody tr[data-light-state="dark"] > td:nth-child(2) {
+  background-image: radial-gradient(circle, rgba(24, 33, 43, .26) 1px, transparent 1.2px);
+  background-size: 6px 6px;
+}
+
+.telemetry-table[data-visual-family="telemetry"] tbody tr[data-light-state="continuous"] > td:nth-child(2) {
+  background-image: repeating-linear-gradient(45deg, transparent 0 4px, rgba(24, 33, 43, .14) 4px 5px);
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table caption::after {
+  content: "SHIP RECORD · DISCRETE BLOCKS";
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:nth-child(-n+3) > td:nth-child(2) {
+  background-image: repeating-linear-gradient(-45deg, transparent 0 5px, rgba(24, 33, 43, .12) 5px 6px);
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:is(:nth-child(4), :nth-child(5)) > td:nth-child(2) {
+  background-image: radial-gradient(circle, rgba(24, 33, 43, .26) 1px, transparent 1.2px);
+  background-size: 6px 6px;
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:nth-child(6) > td:nth-child(2) {
+  background-image: repeating-linear-gradient(45deg, transparent 0 4px, rgba(24, 33, 43, .14) 4px 5px);
+}
+
+.telemetry-table[data-visual-family="telemetry"] .telemetry-unreported {
+  border-left: 3px double var(--rule, #8c9aa8);
+  font-style: italic;
+}
+
+.telemetry-table[data-visual-family="telemetry"] .telemetry-minimum {
+  border-left: 3px solid var(--ink, #18212b);
+}
+
+.telemetry-table[data-visual-family="telemetry"] .telemetry-peak {
+  border-left: 5px solid var(--ink, #18212b);
+  font-weight: 700;
+}
+
+.telemetry-table[data-visual-family="telemetry"] .telemetry-no-cycle {
+  border-left: 5px double var(--ink, #18212b);
+  background-image: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px);
+  font-weight: 700;
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:is(:nth-child(1), :nth-child(3), :nth-child(4)) > td:nth-child(3) {
+  border-left: 3px double var(--rule, #8c9aa8);
+  font-style: italic;
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:nth-child(2) > td:nth-child(3) {
+  border-left: 3px solid var(--ink, #18212b);
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:nth-child(5) > td:nth-child(3) {
+  border-left: 5px solid var(--ink, #18212b);
+  font-weight: 700;
+}
+
+[data-editor-content="sss-c2-case04-v1.0"] section:is(
+  [data-page-id="student-mission-03"],
+  [data-page-id="accessible-mission-03"]
+) .timeline-table tbody tr:nth-child(6) > td:nth-child(3) {
+  border-left: 5px double var(--ink, #18212b);
+  background-image: repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px);
+  font-weight: 700;
 }
 
 .source-status {

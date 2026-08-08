@@ -28,9 +28,11 @@ You are validating the isolated `visual/sss-final-modernization` branch of
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
    in Chrome, and inspect these telemetry-family candidates in both normal and grayscale modes:
 
-   - C1 Case 03: Student p1, Teacher p4, Answer Key p2, Accessible p2;
+   - C1 Case 03 optical scan: Student p1, Teacher p4, Answer Key p2, Accessible p2;
+   - C1 Case 03 quantity-versus-spectrum: Student p2, Answer Key p1, Accessible p3;
    - C2 Case 01: Teacher p4;
    - C2 Case 03: Student pp2–3 and Accessible pp2–3;
+   - C2 Case 04 within-cycle record: Student p3, Accessible p3, and the Answer Key p1 summary;
    - C2 Case 05: Student pp2–3 and Accessible pp2–3;
    - C2 Case 06: Student p2 and Accessible p2.
 
@@ -40,6 +42,9 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    - clipping or label collision: yes/no;
    - caption or extended-description clipping: yes/no;
    - figure-status chip collision in C1C3/C2C3: yes/no;
+   - C1C3 dual-channel badges visibly state `QUANTITY ≠ DISTRIBUTION` and `UNEVEN`: yes/no;
+   - C2C4 light/dark patterns and reported/unreported border states remain distinct without a
+     connecting curve: yes/no;
    - grayscale patterns and direct labels distinguish every category: yes/no;
    - page geometry changed from the declared role/page: yes/no;
    - browser-console JavaScript errors: exact count and text.
@@ -51,7 +56,7 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused result: **24/24 PASS**. Return a concise run report with the exact branch SHA,
+Expected focused result: **33/33 PASS**. Return a concise run report with the exact branch SHA,
 commands, totals, and any failing page/state. Do not produce or inspect PDFs.
 
 ## Acceptance rule

@@ -16,6 +16,7 @@ COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-componen
 C1C3 = ROOT / "sss/campaign-1/case-03-mars-habitat/source/content.html"
 C2C1 = ROOT / "sss/campaign-2/case-01-heavy-hands/source/content.html"
 C2C3 = ROOT / "sss/campaign-2/case-03-wrong-color-light/source/content.html"
+C2C4 = ROOT / "sss/campaign-2/case-04-silent-grove/source/content.html"
 C2C5 = ROOT / "sss/campaign-2/case-05-too-clean-room/source/content.html"
 C2C6 = ROOT / "sss/campaign-2/case-06-first-garden/source/content.html"
 
@@ -32,6 +33,7 @@ def main() -> int:
     c1 = BeautifulSoup(C1C3.read_text(encoding="utf-8"), "html.parser")
     c2c1 = BeautifulSoup(C2C1.read_text(encoding="utf-8"), "html.parser")
     c2 = BeautifulSoup(C2C3.read_text(encoding="utf-8"), "html.parser")
+    c2c4 = BeautifulSoup(C2C4.read_text(encoding="utf-8"), "html.parser")
     c2c5 = BeautifulSoup(C2C5.read_text(encoding="utf-8"), "html.parser")
     c2c6 = BeautifulSoup(C2C6.read_text(encoding="utf-8"), "html.parser")
 
@@ -53,6 +55,11 @@ def main() -> int:
         "DOME SENSOR · DISCRETE CATEGORIES",
         "SITE RESPONSE · DISCRETE BAND",
         "OPTICAL LINK · DISCRETE BANDS",
+        "DUAL-CHANNEL DIAGNOSTIC · UNEVEN",
+        "QUANTITY ≠ DISTRIBUTION",
+        "SHIP RECORD · DISCRETE BLOCKS",
+        'data-editor-content="sss-c2-case04-v1.0"',
+        ".telemetry-table",
         'data-figure-id^="fig-profile-"',
         'data-figure-id^="fig-gauge-"',
         'data-figure-id^="fig-production-"',
@@ -92,6 +99,26 @@ def main() -> int:
             and svg.get("viewbox") == "0 0 520 250"
             and all(value in text for value in ("92%", "88%", "31%", "12%"))
             and len(patterned) == 4,
+            text,
+        )
+
+    quantity_figures = c1.select('figure:has(svg[data-quantity-spectrum="canonical-v1.0"])')
+    quantity_roles = [figure.find_parent("section", attrs={"data-role": True})["data-role"] for figure in quantity_figures]
+    check(
+        "the Mars quantity-versus-spectrum diagnostic remains synchronized across learner and key instances",
+        len(quantity_figures) == 3 and sorted(quantity_roles) == ["accessible", "answer", "student"],
+        quantity_roles,
+    )
+    for index, figure in enumerate(quantity_figures, start=1):
+        text = " ".join(figure.stripped_strings)
+        svg = figure.find("svg")
+        check(
+            f"Mars quantity-versus-spectrum figure {index} preserves both exact channels and their footprint",
+            svg is not None
+            and svg.get("viewbox") == "0 0 520 205"
+            and all(value in text for value in ("280", "ADEQUATE", "92%", "88%", "31%", "12%"))
+            and len(svg.select('rect[fill^="url("]')) == 4
+            and figure.find("figcaption") is not None,
             text,
         )
 
@@ -135,6 +162,54 @@ def main() -> int:
             and len(svg.select('rect[fill^="url("]')) == 3,
             text,
         )
+
+    grove_cycle_tables = []
+    for role, page_id in (("student", "student-mission-03"), ("accessible", "accessible-mission-03")):
+        page = c2c4.select_one(f'section[data-role="{role}"][data-page-id="{page_id}"]')
+        table = page.select_one("table.timeline-table") if page else None
+        if table is not None:
+            grove_cycle_tables.append((role, table))
+    check(
+        "the Silent Grove within-cycle record remains synchronized as two semantic tables",
+        len(grove_cycle_tables) == 2,
+        [role for role, _ in grove_cycle_tables],
+    )
+    for role, table in grove_cycle_tables:
+        rows = table.select("tbody tr")
+        text = " ".join(table.stripped_strings)
+        check(
+            f"the Silent Grove {role} cycle panel preserves exact discrete and missing-data blocks",
+            len(rows) == 6
+            and text.count("not separately reported") == 3
+            and all(
+                value in text
+                for value in (
+                    "Hours 0–6",
+                    "Hours 6–12",
+                    "Hours 12–18",
+                    "Hours 18–19",
+                    "Hours 19–24",
+                    "24 h on / 0 h off",
+                    "minimum reported",
+                    "peak reported",
+                    "no cycling pattern detectable",
+                )
+            ),
+            text,
+        )
+    c2c4_text = " ".join(c2c4.stripped_strings)
+    check(
+        "the Silent Grove telemetry context preserves schedule, range, and threshold distinctions",
+        all(
+            value in c2c4_text
+            for value in (
+                "24.0 h on / 0.0 h off",
+                "18.0 h on / 6.0 h off",
+                "40–80 ppb",
+                "0.0 ppb — no signal at the reporting threshold",
+            )
+        ),
+    )
 
     profile = c2c1.select_one('figure[data-figure-id="fig-profile-t4"]')
     profile_text = " ".join(profile.stripped_strings) if profile else ""
