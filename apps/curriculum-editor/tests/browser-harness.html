@@ -1979,6 +1979,126 @@
           api.saveState({ grayscale: false });
         }
         if (item.id === "SSS-C1-CASE06") {
+          const coordinationPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-02", 5], ["answer", "answer-key-02", 5], ["accessible", "accessible-mission-03", 7]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              coordinationPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 06 coordination-system pages retain strict fit, page counts and geometry in normal and grayscale",
+            coordinationPageFit.length === 6
+              && coordinationPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(coordinationPageFit)
+          );
+          const expectedCoordinationStages = [
+            "Human-standard treatment removes unrecognized volatile compounds after docking.",
+            "Network signals fall to zero and cannot persist in the shared atmosphere.",
+            "The fictional feedback system treats failed persistence as hostile and enters dormancy.",
+            "Nutrient transfer and coordination stop; canopy and roots remain active but inefficient."
+          ];
+          const expectedCoordinationBank = [
+            "network signals fall to zero and cannot persist",
+            "nutrient transfer and coordination stop",
+            "human-standard filtration removes unfamiliar signaling compounds",
+            "the fictional network enters reversible dormancy when signals do not persist"
+          ];
+          const expectedCoordinationStatuses = "PROCESSING|SIGNAL OFF|FICTIONAL RESPONSE|COORDINATION OFF";
+          const expectedCoordinationTransitions = "REMOVES|TRIGGERS|DISRUPTS";
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-mission-02"], ["answer", "answer-key-02"], ["accessible", "accessible-mission-03"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"]');
+              const stages = Array.from(model?.querySelectorAll(":scope > .model-stage") || []);
+              const connectors = Array.from(model?.querySelectorAll(":scope > .path-arrow") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && [...stages, ...connectors].every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = stages.map(stage => stage.querySelector("[data-response]"))
+                .filter(Boolean)
+                .map(field => ({ id: field.dataset.persistId, text: field.textContent.trim().replace(/\s+/g, " "), response: field.hasAttribute("data-response") }));
+              rendered.push({
+                role,
+                pageId,
+                model: Boolean(model),
+                vertical: model?.classList.contains("accessible-model") || false,
+                stages: stages.length,
+                stageLabels: stages.map(stage => stage.querySelector(":scope > span")?.textContent.trim()).join("|"),
+                stageText: stages.map(stage => stage.querySelector("strong, .stage-response")?.textContent.trim().replace(/\s+/g, " ") || ""),
+                connectors: connectors.map(node => node.childNodes[0]?.textContent.trim() || node.textContent.trim()[0]).join("|"),
+                connectorFits: connectors.map(node => node.scrollWidth <= node.clientWidth + 1 && node.scrollHeight <= node.clientHeight + 1),
+                transitionLabels: connectors.map(node => win.getComputedStyle(node, "::after").content.replaceAll('"', "")).join("|"),
+                statusLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                bank: Array.from(page?.querySelectorAll(".phrase-bank > span") || []).map(node => node.textContent.trim().replace(/\s+/g, " ")),
+                pageText: page?.textContent.replace(/\s+/g, " ") || "",
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision,
+                fields
+              });
+            }
+            const studentModel = rendered.find(state => state.role === "student");
+            const answerModel = rendered.find(state => state.role === "answer");
+            const accessibleModel = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 06 ${grayscale ? "grayscale" : "normal"} coordination system preserves fictional boundary and labeled transitions`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.model && state.stages === 4 && state.stageLabels === "1 · Atmosphere|2 · Signal persistence|3 · Network response|4 · Partnership outcome" && state.modelFits && state.contained && !state.stageCollision)
+                && rendered.every(state => state.statusLabels === expectedCoordinationStatuses)
+                && rendered.every(state => state.transitionLabels === expectedCoordinationTransitions)
+                && rendered.every(state => state.borderStates === "solid|dotted|dashed|double")
+                && rendered.every(state => state.patternStates.every(Boolean) && state.connectorFits.every(Boolean))
+                && studentModel.connectors === "→|→|→"
+                && answerModel.connectors === "→|→|→"
+                && accessibleModel.connectors === "↓|↓|↓"
+                && !studentModel.vertical && !answerModel.vertical && accessibleModel.vertical
+                && studentModel.fields.map(field => field.id).join("|") === "t4-atmosphere|t4-signal|t4-network|t4-partnership"
+                && studentModel.fields.every(field => field.text === "" && field.response)
+                && accessibleModel.fields.map(field => field.id).join("|") === "a4-atmosphere|a4-signal|a4-network|a4-partnership"
+                && accessibleModel.fields.every(field => field.text === "" && field.response)
+                && studentModel.bank.join("|") === expectedCoordinationBank.join("|")
+                && accessibleModel.bank.join("|") === expectedCoordinationBank.join("|")
+                && answerModel.stageText.every((value, index) => value === expectedCoordinationStages[index])
+                && accessibleModel.pageText.includes("This explains the fictional Zhel'ii case. It does not prove that Earth organisms use the same system."),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
           const lockedTitles = ["Predict What Changed at Docking", "Separate Observation from Interpretation", "Connect the Four Evidence Sources", "Model the Broken Coordination System", "Compare and Reject Competing Diagnoses", "Recommend a Monitored Signal-Safe Response", "Explain the Diagnosis with CER", "Transfer the Systems Reasoning"];
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           const firstPageIdentities = Array.from(workspace.querySelectorAll(".mission-title-block"));

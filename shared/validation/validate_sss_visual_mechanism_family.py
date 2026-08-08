@@ -37,6 +37,10 @@ EUROPA_SOURCE = ROOT / "sss/campaign-1/case-05-europa-bunker/source"
 EUROPA_PACKAGE = EUROPA_SOURCE / "case-package.json"
 EUROPA_CONTENT = EUROPA_SOURCE / "content.html"
 EUROPA_PRESENTATION = EUROPA_SOURCE / "presentation.css"
+FIRST_CONTACT_SOURCE = ROOT / "sss/campaign-1/case-06-first-contact-protocol/source"
+FIRST_CONTACT_PACKAGE = FIRST_CONTACT_SOURCE / "case-package.json"
+FIRST_CONTACT_CONTENT = FIRST_CONTACT_SOURCE / "content.html"
+FIRST_CONTACT_PRESENTATION = FIRST_CONTACT_SOURCE / "presentation.css"
 
 
 def sha256(path: Path) -> str:
@@ -64,13 +68,15 @@ def main() -> int:
     hayes_content = BeautifulSoup(HAYES_CONTENT.read_text(encoding="utf-8"), "html.parser")
     europa_package = json.loads(EUROPA_PACKAGE.read_text(encoding="utf-8"))
     europa_content = BeautifulSoup(EUROPA_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    first_contact_package = json.loads(FIRST_CONTACT_PACKAGE.read_text(encoding="utf-8"))
+    first_contact_content = BeautifulSoup(FIRST_CONTACT_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
     )
     check(
-        "the production plan records accepted Hayes and advances Europa's radiation pathway",
+        "the production plan records accepted Europa and advances First Contact's coordination model",
         bool(re.search(
             r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 "
@@ -85,12 +91,18 @@ def main() -> int:
         ))
         and bool(re.search(
             r"\| `C1C5-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`VERIFIED-FAMILY · 52/52 FAMILY STATIC PASS · 2312/2312 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · dcb2d91 ACCEPTED`",
+            plan,
+        ))
+        and bool(re.search(
+            r"\| `C1C6-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
             plan,
         ))
-        and "Current validation target — C1C5 radiation-to-growth pathway" in handoff
-        and "2312/2312 PASS with 0 application JavaScript errors" in handoff
-        and "52/52 PASS" in handoff,
+        and "Current validation target — C1C6 coordination-system model" in handoff
+        and "2315/2315 PASS with 0 application JavaScript errors" in handoff
+        and "60/60 PASS" in handoff,
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -171,6 +183,18 @@ def main() -> int:
             "stylesheet": [europa_package["sourceHashes"]["presentation"], sha256(EUROPA_PRESENTATION)],
         },
     )
+    check(
+        "First Contact opts into shared visuals with byte-identical worksheet sources",
+        first_contact_package.get("presentation", {}).get("sharedVisualStyles") is True
+        and first_contact_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and first_contact_package["sourceHashes"]["content"] == sha256(FIRST_CONTACT_CONTENT)
+        and first_contact_package["sourceHashes"]["presentation"] == sha256(FIRST_CONTACT_PRESENTATION),
+        {
+            "presentation": first_contact_package.get("presentation"),
+            "content": [first_contact_package["sourceHashes"]["content"], sha256(FIRST_CONTACT_CONTENT)],
+            "stylesheet": [first_contact_package["sourceHashes"]["presentation"], sha256(FIRST_CONTACT_PRESENTATION)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -208,6 +232,10 @@ def main() -> int:
         'content: "LIMIT ≠ DAMAGE"',
         'content: "CONVERGENCE"',
         '.accessible-path > .path-stage:nth-child(7)',
+        '.worksheet-document[data-case-id="SSS-C1-CASE06"]',
+        'content: "FICTIONAL RESPONSE"',
+        'content: "TRIGGERS"',
+        '.accessible-model > .model-stage:nth-child(7)',
         ".worksheet-document.grayscale",
     )
     check(
@@ -224,7 +252,8 @@ def main() -> int:
     mechanism_css = extracted[extracted.index("Mechanism/pathway pilot.") :]
     iss_css = extracted[extracted.index("Mechanism/pathway family expansion: ISS") : extracted.index("Mechanism/pathway pilot.")]
     hayes_css = extracted[extracted.index("Mechanism/pathway family expansion: Hayes") : extracted.index("Mechanism/pathway family expansion: Europa")]
-    europa_css = extracted[extracted.index("Mechanism/pathway family expansion: Europa") :]
+    europa_css = extracted[extracted.index("Mechanism/pathway family expansion: Europa") : extracted.index("Mechanism/pathway family expansion: First Contact")]
+    first_contact_css = extracted[extracted.index("Mechanism/pathway family expansion: First Contact") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -271,6 +300,21 @@ def main() -> int:
         and "border-left-style: dashed" in europa_css
         and "repeating-linear-gradient" in europa_css
         and "filter:" not in europa_css,
+    )
+    check(
+        "the First Contact system exposes four states and three labeled transitions without a color-only filter",
+        all(f'content: "{label}"' in first_contact_css for label in (
+            "PROCESSING", "SIGNAL OFF", "FICTIONAL RESPONSE", "COORDINATION OFF",
+            "REMOVES", "DISRUPTS", "TRIGGERS",
+        ))
+        and "border-top-style: dotted" in first_contact_css
+        and "border-top-style: dashed" in first_contact_css
+        and "border-top-style: double" in first_contact_css
+        and "border-left-style: dotted" in first_contact_css
+        and "border-left-style: dashed" in first_contact_css
+        and "border-left-style: double" in first_contact_css
+        and "repeating-linear-gradient" in first_contact_css
+        and "filter:" not in first_contact_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -737,6 +781,91 @@ def main() -> int:
         and "ENVIRONMENT|MODELED|EXPOSURE|LIMIT ≠ DAMAGE|BIO EVIDENCE|GROWTH|CONVERGENCE" in harness
         and "t5-2|t5-3|t5-4|t5-5|t5-6|t5-7" in harness
         and "a5-2|a5-3|a5-4|a5-5|a5-6|a5-7" in harness
+        and 'state.pageSize === "816x1056"' in harness
+        and 'for (const grayscale of [false, true])' in harness,
+    )
+
+    first_contact_bank = [
+        "network signals fall to zero and cannot persist",
+        "nutrient transfer and coordination stop",
+        "human-standard filtration removes unfamiliar signaling compounds",
+        "the fictional network enters reversible dormancy when signals do not persist",
+    ]
+    first_contact_expected = [
+        "Human-standard treatment removes unrecognized volatile compounds after docking.",
+        "Network signals fall to zero and cannot persist in the shared atmosphere.",
+        "The fictional feedback system treats failed persistence as hostile and enters dormancy.",
+        "Nutrient transfer and coordination stop; canopy and roots remain active but inefficient.",
+    ]
+    first_contact_student_page = first_contact_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-02"]'
+    )
+    first_contact_student_model = first_contact_student_page.select_one(
+        '.systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"]'
+    ) if first_contact_student_page else None
+    first_contact_student_stages = first_contact_student_model.select(":scope > .model-stage") if first_contact_student_model else []
+    first_contact_student_fields = [stage.select_one("[data-response]") for stage in first_contact_student_stages]
+    check(
+        "the First Contact Student model preserves four blank fields, three connectors and its exact bank",
+        [arrow.get_text(strip=True) for arrow in first_contact_student_model.select(":scope > .path-arrow")]
+        == ["→"] * 3
+        and [field.get("data-persist-id") for field in first_contact_student_fields]
+        == ["t4-atmosphere", "t4-signal", "t4-network", "t4-partnership"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in first_contact_student_fields)
+        and [" ".join(item.stripped_strings) for item in first_contact_student_page.select(".phrase-bank > span")]
+        == first_contact_bank,
+    )
+
+    first_contact_accessible_page = first_contact_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-03"]'
+    )
+    first_contact_accessible_model = first_contact_accessible_page.select_one(
+        '.systems-model.accessible-model[data-process-contract="atmosphere-signal-partnership-v1.0"]'
+    ) if first_contact_accessible_page else None
+    first_contact_accessible_stages = first_contact_accessible_model.select(":scope > .model-stage") if first_contact_accessible_model else []
+    first_contact_accessible_fields = [stage.select_one("[data-response]") for stage in first_contact_accessible_stages]
+    check(
+        "the First Contact Accessible model stays vertical with four blank fields and exact bank parity",
+        [arrow.get_text(strip=True) for arrow in first_contact_accessible_model.select(":scope > .path-arrow")]
+        == ["↓"] * 3
+        and [field.get("data-persist-id") for field in first_contact_accessible_fields]
+        == ["a4-atmosphere", "a4-signal", "a4-network", "a4-partnership"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in first_contact_accessible_fields)
+        and [" ".join(item.stripped_strings) for item in first_contact_accessible_page.select(".phrase-bank > span")]
+        == first_contact_bank,
+    )
+
+    first_contact_answer_page = first_contact_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-02"]'
+    )
+    first_contact_answer_model = first_contact_answer_page.select_one(
+        '.systems-model.completed[data-process-contract="atmosphere-signal-partnership-v1.0"]'
+    ) if first_contact_answer_page else None
+    first_contact_answer_stages = first_contact_answer_model.select(":scope > .model-stage") if first_contact_answer_model else []
+    check(
+        "the First Contact Answer Key completes the identical four-stage coordination model",
+        [" ".join(stage.select_one("strong").stripped_strings) for stage in first_contact_answer_stages]
+        == first_contact_expected,
+    )
+    first_contact_source_text = FIRST_CONTACT_CONTENT.read_text(encoding="utf-8")
+    check(
+        "the First Contact model preserves fictional-system and correlation limits",
+        "This explains the fictional Zhel'ii case. It does not prove that Earth organisms use the same system." in first_contact_source_text
+        and "Alien evidence cannot serve as empirical proof about Earth ecosystems" in first_contact_source_text
+        and "correlation alone does not prove cause" in first_contact_source_text,
+    )
+    check(
+        "the First Contact mechanism expansion adds no duplicate organizer to Teacher pages",
+        not first_contact_content.select_one('section[data-role="teacher"] .systems-model'),
+    )
+    check(
+        "the browser harness measures First Contact states, transitions, exact fields and strict fit in both modes",
+        harness.count("coordination-system pages retain strict fit, page counts and geometry") == 1
+        and harness.count("coordination system preserves fictional boundary and labeled transitions") == 1
+        and "PROCESSING|SIGNAL OFF|FICTIONAL RESPONSE|COORDINATION OFF" in harness
+        and "REMOVES|TRIGGERS|DISRUPTS" in harness
+        and "t4-atmosphere|t4-signal|t4-network|t4-partnership" in harness
+        and "a4-atmosphere|a4-signal|a4-network|a4-partnership" in harness
         and 'state.pageSize === "816x1056"' in harness
         and 'for (const grayscale of [false, true])' in harness,
     )

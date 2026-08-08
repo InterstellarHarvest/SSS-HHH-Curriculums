@@ -1431,6 +1431,148 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/pathway family expansion: First Contact coordination system.
+ *
+ * The released organizers already preserve the four exact phrase-bank
+ * entries, four writable Student and Accessible fields, and the completed
+ * Answer Key. This case-scoped layer marks the shared-atmosphere boundary,
+ * labels the three causal transitions, and distinguishes the fictional
+ * network response from observed atmospheric and partnership states without
+ * adding response text or implying an Earth-organism mechanism.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"] {
+  --coordination-line: var(--ink, #18212b);
+  --coordination-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 4px 0 0 var(--coordination-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"]:not(.accessible-model) {
+  grid-template-columns: repeat(3, minmax(0, 1fr) .38in) minmax(0, 1fr);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"] .model-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--coordination-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px),
+    var(--coordination-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"]:not(.accessible-model)
+  .model-stage {
+  padding-bottom: .22in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"] .model-stage::after {
+  position: absolute;
+  right: 5px;
+  bottom: 4px;
+  left: 5px;
+  padding-top: 2px;
+  border-top: .5pt solid var(--coordination-line);
+  font: 700 5pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .015em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(1)::after { content: "PROCESSING"; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(3)::after { content: "SIGNAL OFF"; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(5)::after { content: "FICTIONAL RESPONSE"; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(7)::after { content: "COORDINATION OFF"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(3) {
+  border-top-style: dotted;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .11) 7px 8px),
+    var(--coordination-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(5) {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .07) 6px 7px),
+    var(--coordination-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .model-stage:nth-child(7) {
+  border-top-style: double;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px),
+    var(--coordination-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"] .path-arrow {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  place-items: center;
+  align-self: center;
+  min-width: .34in;
+  min-height: .34in;
+  padding: 2px;
+  border: .75pt solid var(--coordination-line);
+  border-radius: 3px;
+  background: var(--coordination-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"] .path-arrow::after {
+  font: 700 4.8pt/1 "JetBrains Mono", monospace;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .path-arrow:nth-child(2)::after { content: "REMOVES"; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .path-arrow:nth-child(4)::after { content: "TRIGGERS"; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .systems-model > .path-arrow:nth-child(6)::after { content: "DISRUPTS"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"].accessible-model
+  .model-stage {
+  padding-bottom: .22in;
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .accessible-model > .model-stage:nth-child(3) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .accessible-model > .model-stage:nth-child(5) { border-left-style: dashed; }
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .accessible-model > .model-stage:nth-child(7) { border-left-style: double; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"].accessible-model
+  .path-arrow {
+  grid-template-columns: .2in auto;
+  grid-template-rows: auto;
+  justify-self: start;
+  min-width: 1.02in;
+  min-height: .22in;
+  margin-left: .12in;
+  padding-inline: 5px;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE06"]
+  .systems-model[data-process-contract="atmosphere-signal-partnership-v1.0"] .model-stage {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

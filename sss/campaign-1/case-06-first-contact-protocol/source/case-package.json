@@ -48,6 +48,7 @@
   "presentation": {
     "source": "sss/campaign-1/case-06-first-contact-protocol/source/presentation.css",
     "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
     "sharedComponentStyles": true
   },
   "taskRegistry": {
