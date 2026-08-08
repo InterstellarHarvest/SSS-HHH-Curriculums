@@ -52,7 +52,11 @@ def main() -> int:
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
         bool(re.search(r"\| `C1C2-VIS01` .*`VERIFIED-FAMILY-PILOT .*2300/2300 BROWSER PASS", plan))
-        and bool(re.search(r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 22/22 FAMILY STATIC PASS · 2302/2302 BROWSER GATE PENDING`", plan)),
+        and bool(re.search(
+            r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 23/23 FAMILY STATIC PASS "
+            r"· 7ec465e REJECTED 2295/2302 · SUCCESSOR 2302/2302 BROWSER GATE PENDING`",
+            plan,
+        )),
     )
     check(
         "Lunar Greenhouse opts into extracted shared visuals without the full component layer",
@@ -125,6 +129,14 @@ def main() -> int:
         and "border-top-style: double" in mechanism_css
         and "border-top-style: dashed" in mechanism_css
         and "filter:" not in mechanism_css,
+    )
+    check(
+        "the Mars Student page compacts only mechanism chrome while preserving stage response height",
+        '.page[data-role="student"][data-page-id="student-mission-03"]' in mechanism_css
+        and '.canonical-process[data-process-layout="horizontal"]' in mechanism_css
+        and "margin-block: 3px" in mechanism_css
+        and "padding-top: .2in" in mechanism_css
+        and "min-height: 2.25in" not in mechanism_css,
     )
 
     expected_phrases = [

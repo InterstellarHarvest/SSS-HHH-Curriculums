@@ -24,6 +24,9 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    accepted mechanism-family pilot `a9dfecf` produces 2300/2300. This expansion adds two
    computed-style assertions, one for normal and one for grayscale presentation, covering the
    C1C3 five-stage spectral-loss chain in Student, Teacher, Answer Key and Accessible roles.
+   Candidate `7ec465e` was rejected at 2295/2302 solely because C1C3 Student page 3 exceeded its
+   content area by 7 px. This successor compacts only the added Student-page mechanism chrome;
+   it does not reduce the approved Task 5 response or 2.25 in process-stage writing height.
    Confirm that the default editor, C1C2 and C1C3 load before reporting case results. Report any
    drop by assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
@@ -66,7 +69,7 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused results: **22/22 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
+Expected focused results: **23/23 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
 run report with the exact branch SHA, commands, totals, and any failing page/state. Do not produce
 or inspect PDFs.
 

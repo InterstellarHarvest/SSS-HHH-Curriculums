@@ -902,6 +902,18 @@ body.grayscale .figure:where(
   gap: 2px;
 }
 
+/*
+ * Student page 3 already preserves a 2.25 in minimum writing height in every
+ * process stage. Keep that response utility and compact only the added status
+ * rail/chrome so Task 5, Task 6 and the phrase bank retain fixed-page fit.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE03"]
+  .page[data-role="student"][data-page-id="student-mission-03"]
+  .canonical-process[data-process-layout="horizontal"] {
+  margin-block: 3px;
+  padding-top: .2in;
+}
+
 .worksheet-document[data-case-id="SSS-C1-CASE03"] .canonical-process-stage {
   position: relative;
   min-width: 0;
