@@ -75,6 +75,13 @@ stage-state labels and grayscale-independent border/pattern states without chang
 content, response identities, phrase banks or package-controlled source hashes. It remains
 `IMPLEMENTED-CANDIDATE` until the 2309-assertion rendered gate confirms both presentation modes and
 strict page fit. A green source-token validator alone cannot promote a visual candidate.
+Candidate `f14355b` was rejected deterministically at 2307/2309: the new Answer Key assertion read
+each stage number and body as fused DOM text even though the approved stage bodies were exact, and
+the Accessible Stage 5 connector's circular border crossed its existing `↓ then repeat` label in
+normal and grayscale. The corrective successor reads the stage body element directly, gives only
+that labeled connector a padded 3 px rounded-rectangle border, and makes the rendered contract
+require the label's radius, padding and internal fit. No worksheet content or package-controlled
+source changes.
 
 ## 3. Exact inventory reconciliation
 

@@ -22,6 +22,14 @@ style/content assertion in each of normal and grayscale presentation. Its accept
 therefore **2309/2309 PASS with 0 application JavaScript errors**. The focused mechanism validator
 target is **44/44 PASS**; telemetry remains **36/36 PASS**.
 
+Candidate `f14355b` was held unpushed after two identical 2307/2309 runs. Its only computed-style
+failure was a harness extraction defect: Answer Key stage numbers and bodies were read as fused DOM
+text although all six approved body strings were exact. Manual inspection also found the circular
+border crossing the Accessible connector's existing `↓ then repeat` label. This corrective
+successor reads each body element directly, changes only that labeled connector to a padded 3 px
+rounded rectangle, and requires its computed radius, padding and internal fit in both modes. The
+acceptance target remains 2309/2309; no expected content, worksheet source or baseline changed.
+
 ## Recorded outcome — 2026-08-08
 
 The C1C1 ISS gravity-sensing expansion is `VERIFIED-FAMILY` at
@@ -58,6 +66,9 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    stages, five existing connectors, a direct `REPEAT TO STAGE 1` link, horizontal direct-state
    labels, solid/double/dashed borders, exact response identities and the approved Accessible
    Stage 2 prefill. They also require the Answer Key's six exact completed stages to remain exact.
+   The labeled Accessible `↓ then repeat` connector must have a computed corner radius no greater
+   than 4 px, at least 4 px left/right padding, and `scrollWidth <= clientWidth` plus
+   `scrollHeight <= clientHeight`; its border must not cross the label.
 
    Historical context: the accepted mechanism-family pilot `a9dfecf` produces 2300/2300. The
    later C1C3 expansion added two computed-style assertions, one for normal and one for grayscale

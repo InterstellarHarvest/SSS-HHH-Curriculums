@@ -1253,6 +1253,13 @@ body.grayscale .figure:where(
 }
 
 .worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .cycle-model[data-process-contract="six-stage-cycle-v1.0"].accessible-cycle
+  .cycle-connector[data-process-connector="5"] {
+  padding-inline: 4px;
+  border-radius: 3px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
   .cycle-model[data-process-contract="six-stage-cycle-v1.0"].accessible-cycle {
   padding-right: .82in;
 }

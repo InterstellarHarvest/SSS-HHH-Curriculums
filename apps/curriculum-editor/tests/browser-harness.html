@@ -1717,15 +1717,26 @@
               const fields = stages.map(stage => stage.querySelector("[data-response]"))
                 .filter(Boolean)
                 .map(field => ({ id: field.dataset.persistId, text: field.textContent.trim(), response: field.hasAttribute("data-response") }));
+              const connectorDetails = connectors.map(node => {
+                const style = win.getComputedStyle(node);
+                return {
+                  text: node.textContent.trim(),
+                  borderRadius: px(style.borderTopLeftRadius),
+                  paddingLeft: px(style.paddingLeft),
+                  paddingRight: px(style.paddingRight),
+                  fits: node.scrollWidth <= node.clientWidth && node.scrollHeight <= node.clientHeight
+                };
+              });
               rendered.push({
                 role,
                 pageId,
                 model: Boolean(model),
                 stages: stages.length,
                 stageNumbers: stages.map(stage => stage.dataset.processStage).join("|"),
-                stageText: stages.map(stage => stage.textContent.trim().replace(/\s+/g, " ")),
+                stageText: stages.map(stage => stage.querySelector("strong, .stage-response")?.textContent.trim().replace(/\s+/g, " ") || ""),
                 connectors: connectors.map(node => node.textContent.trim()).join("|"),
                 connectorShapes: connectors.map(node => win.getComputedStyle(node).borderRadius),
+                connectorDetails,
                 loopLabel: model ? win.getComputedStyle(model, "::before").content : "",
                 stageLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content),
                 borderStates: stages.map(stage => win.getComputedStyle(stage).borderTopStyle).join("|"),
@@ -1739,6 +1750,7 @@
             const studentLoop = rendered.find(state => state.role === "student");
             const answerLoop = rendered.find(state => state.role === "answer");
             const accessibleLoop = rendered.find(state => state.role === "accessible");
+            const accessibleRepeatConnector = accessibleLoop?.connectorDetails[4];
             check(
               `C1 Case 04 ${grayscale ? "grayscale" : "normal"} fault cycle renders a direct closed repeat loop`,
               worksheetDoc.dataset.caseId === item.id
@@ -1752,6 +1764,11 @@
                 && studentLoop.connectors === "→|→|↓|←|←"
                 && answerLoop.connectors === "→|→|↓|←|←"
                 && accessibleLoop.connectors === "↓|↓|↓|↓|↓ then repeat"
+                && accessibleRepeatConnector?.text === "↓ then repeat"
+                && accessibleRepeatConnector.borderRadius <= 4
+                && accessibleRepeatConnector.paddingLeft >= 4
+                && accessibleRepeatConnector.paddingRight >= 4
+                && accessibleRepeatConnector.fits
                 && studentLoop.stageLabels.map(value => value.replaceAll('"', "")).join("|") === "EXPOSURE|LOAD|DAMAGE|DECLINE|REBUILD|RECURRENCE"
                 && answerLoop.stageLabels.map(value => value.replaceAll('"', "")).join("|") === "EXPOSURE|LOAD|DAMAGE|DECLINE|REBUILD|RECURRENCE"
                 && studentLoop.fields.map(field => field.id).join("|") === "t5-2|t5-3|t5-4|t5-5|t5-6"
@@ -1759,7 +1776,7 @@
                 && accessibleLoop.fields.map(field => field.id).join("|") === "a5-2|a5-3|a5-4|a5-5|a5-6"
                 && accessibleLoop.fields.map(field => field.text).join("|") === "excessive daily light dose under current operating conditions||||"
                 && accessibleLoop.fields.every(field => field.response)
-                && answerLoop.stageText.every((value, index) => value === `${index + 1} ${expectedFaultStages[index]}`),
+                && answerLoop.stageText.every((value, index) => value === expectedFaultStages[index]),
               JSON.stringify(rendered)
             );
           }

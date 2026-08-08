@@ -223,6 +223,9 @@ def main() -> int:
         and "border-top-style: dashed" in hayes_css
         and "repeating-linear-gradient" in hayes_css
         and ".accessible-cycle::after" in hayes_css
+        and '.cycle-connector[data-process-connector="5"]' in hayes_css
+        and "padding-inline: 4px" in hayes_css
+        and "border-radius: 3px" in hayes_css
         and "filter:" not in hayes_css,
     )
     check(
@@ -593,6 +596,12 @@ def main() -> int:
         and "EXPOSURE|LOAD|DAMAGE|DECLINE|REBUILD|RECURRENCE" in harness
         and "t5-2|t5-3|t5-4|t5-5|t5-6" in harness
         and "a5-2|a5-3|a5-4|a5-5|a5-6" in harness
+        and 'stage.querySelector("strong, .stage-response")' in harness
+        and "accessibleRepeatConnector.borderRadius <= 4" in harness
+        and "accessibleRepeatConnector.paddingLeft >= 4" in harness
+        and "accessibleRepeatConnector.paddingRight >= 4" in harness
+        and "accessibleRepeatConnector.fits" in harness
+        and "value === expectedFaultStages[index]" in harness
         and 'for (const grayscale of [false, true])' in harness,
     )
 
