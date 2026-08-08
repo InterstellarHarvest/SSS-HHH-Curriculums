@@ -53,9 +53,10 @@ def main() -> int:
         "the accepted pilot and Mars expansion have explicit lifecycle states",
         bool(re.search(r"\| `C1C2-VIS01` .*`VERIFIED-FAMILY-PILOT .*2300/2300 BROWSER PASS", plan))
         and bool(re.search(
-            r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 24/24 FAMILY STATIC PASS "
+            r"\| `C1C3-VIS03` .*`IMPLEMENTED-CANDIDATE · 25/25 FAMILY STATIC PASS "
             r"· 7ec465e REJECTED 2295/2302 · 7ed27eb HELD 2302/2302, 937>936 "
             r"· b429fb4 REJECTED 2302/2303, NO-OP MARGIN AND MISPLACED ASSERTION "
+            r"· a960018 REJECTED 2302/2303, C1C2 STATE RESET REGRESSION "
             r"· SUCCESSOR 2303/2303 BROWSER GATE PENDING`",
             plan,
         )),
@@ -147,6 +148,19 @@ def main() -> int:
     next_visual_start = harness.index('if (item.id === "SSS-C2-CASE03")', case03_visual_start)
     case02_visual_block = harness[case02_visual_start:case03_visual_start]
     case03_visual_block = harness[case03_visual_start:next_visual_start]
+    state_reset = (
+        'api.setRole("student");\n'
+        '          api.saveState({ grayscale: false });\n'
+        '          await wait(20);'
+    )
+    check(
+        "the C1C2 block restores Student normal state before the C1C3 block initializes it independently",
+        bool(re.search(re.escape(state_reset) + r"\s+}\s*$", case02_visual_block))
+        and bool(re.match(
+            r'if \(item\.id === "SSS-C1-CASE03"\) \{\s+' + re.escape(state_reset),
+            case03_visual_block,
+        )),
+    )
     check(
         "the C1C3 browser block requires strict Mars Student page fit with real bottom reserve",
         harness.count("C1 Case 03 Student mechanism page retains strict integer fit and positive bottom reserve") == 1

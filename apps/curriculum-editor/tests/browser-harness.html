@@ -1336,6 +1336,9 @@
               JSON.stringify({ horizontal, accessibleState })
             );
           }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
         }
         if (item.id === "SSS-C1-CASE03") {
           api.setRole("student");

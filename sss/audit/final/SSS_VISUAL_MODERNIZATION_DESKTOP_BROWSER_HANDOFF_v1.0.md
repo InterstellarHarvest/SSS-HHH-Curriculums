@@ -34,7 +34,10 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    block, where it returned a null Mars-page measurement. This successor reduces the dominant
    C1C3 Student phrase-bank top margin from 6 px to 2 px and moves the assertion into the C1C3 block.
    The assertion requires strict integer fit and at least 3 px of geometric bottom reserve on that
-   exact Student page.
+   exact Student page. Candidate `a960018` achieved that fit (`936 <= 936`, 3.47 px reserve) but was
+   rejected at 2302/2303 because relocating the assertion also moved C1C2's terminal Student/normal
+   state reset. This successor restores the reset at the end of C1C2 while retaining the independent
+   reset at the start of C1C3.
    Confirm that the default editor, C1C2 and C1C3 load before reporting case results. Report any
    drop by assertion name and case/role/presentation state. Do not change expected values.
 3. Start the editor with `python3 apps/curriculum-editor/serve.py`, open the printed-page preview
@@ -78,7 +81,7 @@ You are validating the isolated `visual/sss-final-modernization` branch of
    git diff --check
    ```
 
-Expected focused results: **24/24 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
+Expected focused results: **25/25 mechanism PASS** and **36/36 telemetry PASS**. Return a concise
 run report with the exact branch SHA, commands, totals, and any failing page/state. Do not produce
 or inspect PDFs.
 
