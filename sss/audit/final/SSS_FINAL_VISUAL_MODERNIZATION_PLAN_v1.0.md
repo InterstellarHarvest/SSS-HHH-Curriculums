@@ -282,6 +282,33 @@ all four exact exemplars. Every exposure, biological-evidence, modeled-secondary
 protection-limit, threshold and single-clue boundary remained exact. `C1C5-VIS02` is therefore
 `VERIFIED-FAMILY`, the first accepted Family 4 finding.
 
+`C1C7-VIS01` is now an implemented but unaccepted Family 4 completion candidate for The Gift.
+The frozen Task 2 Student table, Accessible cards and completed Answer Key table remain the source
+of truth. Liaison, Biomonitors, Specimen and Archives stay independent channels with the direct
+states `SOURCE / RANGE`, `MATCH / TRACE GAP`, `VIABLE / RESPONSIVE` and `MECHANISM RECORD`,
+distinct solid/double/dashed/dotted borders and grayscale-independent patterns. The shared,
+Case-07-scoped EC1 treatment separates the exact diagnostic
+`PRIMARY TARGETS MATCH · TRACE CONTEXT INCOMPLETE` into primary-condition and trace-context
+summaries, then converges only on
+`QUALIFIED QUESTION · WHICH MISSING CONTEXT MATTERS? · 99.7% ≠ COMPLETE · SETS DIFFER / NO RATIO`.
+It preserves all ten blank learner responses, all eight completed Answer Key contribution/limit
+cells, the exact trace-comparison and convergence exemplars, and Student 6 / Answer Key 6 /
+Accessible 8 page counts. It changes no worksheet content, case presentation, layout override,
+package metadata, task registry, persistence identity, source hash, Teacher content or release
+record.
+
+The local Chromium preflight reports 2314/2345 because of 31 established Linux
+platform/font/screenshot-smoke exceptions; all three new Case 07 fit, semantic and grayscale
+contracts pass with zero application JavaScript errors. Normal and grayscale inspection of
+Student page 2, Answer Key page 2 and Accessible page 2 confirms fixed 816 × 1056 geometry,
+strict `scrollHeight 936 == clientHeight 936` fit, contained channels and diagnostic gates,
+legible patterned states, intact exact exemplars and blank, unclipped learner fields. The focused
+evidence-convergence validator is 60/60 PASS and the accepted timeline, mechanism and telemetry
+families remain unchanged. This remains `IMPLEMENTED-CANDIDATE` until a separate Mac/Chrome run
+passes the complete 2345/2345 harness twice with zero application JavaScript errors and the six
+normal/grayscale target views pass manual inspection. Accepted inventory therefore remains
+**24 of 36 completed**, with **12 remaining**; Family 4 still has one of two findings verified.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified
@@ -371,7 +398,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `VERIFIED-FAMILY · 30/30 TIMELINE STATIC PASS · 2336/2336 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 66a3d1b ACCEPTED` |
 | `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
 | `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `PLANNED` |
-| `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `PLANNED` |
+| `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `IMPLEMENTED-CANDIDATE · 60/60 FAMILY STATIC PASS · 2345/2345 MAC/CHROME GATE REQUIRED` |
 | `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `VERIFIED-FAMILY · 68/68 FAMILY STATIC PASS · 2318/2318 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 812d5c3 ACCEPTED` |
 | `C1C7-VIS03` | The Gift; S T7 p5, A T7 p7, AK T7 p5 | Dense intervention matrix; story rank competes with evidence. | 8 · Intervention comparison/trial workflow | Three-route decision/monitoring matrix with explicit evidence fit, controls, reversibility/commitment, monitoring and uncertainty hierarchy. | Preserve route choice, evidence, monitor/stop and prediction fields; points remain subordinate story ranks. | Story scores are not scientific results; no inferred dose, purity, synthesis or safety. | IC1; response/AK parity and label hierarchy checks | `PLANNED` |
 

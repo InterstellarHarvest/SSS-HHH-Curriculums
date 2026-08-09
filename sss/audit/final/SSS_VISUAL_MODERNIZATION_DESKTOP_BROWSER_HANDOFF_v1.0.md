@@ -4,6 +4,93 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Implemented Family 4 completion candidate — The Gift diagnostic question
+
+Candidate production starts from the synchronized accepted prerequisite
+`9934febfe255778b29b84955a1f65371e74fa8d0`. `C1C7-VIS01` is implemented for The Gift but remains
+unaccepted until the external Mac/Chrome gate below is complete. The accepted inventory remains
+**24 of 36 completed**, with **12 remaining**, and Family 4 still has one of two findings verified.
+
+The frozen Task 2 structures remain semantic and source-controlled:
+
+- Student page 2 retains the four-row table and blank fields
+  `t2-liaison | t2-biomonitors | t2-specimen | t2-archives`, followed by blank
+  `t2-comparison`.
+- Accessible page 2 retains four independent evidence cards and blank fields
+  `a2-liaison | a2-biomonitors | a2-specimen | a2-archives`, followed by blank
+  `a2-comparison`.
+- Answer Key page 2 retains the four-row completed contribution/limit table, exact trace-
+  comparison exemplar and exact evidence-convergence exemplar.
+
+The Case-07-scoped shared presentation keeps the exact channel order
+`Liaison | Biomonitors | Specimen | Archives` and assigns the exact direct states
+`SOURCE / RANGE | MATCH / TRACE GAP | VIABLE / RESPONSIVE | MECHANISM RECORD`. Solid, double,
+dashed and dotted left borders plus independent hatch treatment keep the four channels distinct
+in grayscale. The map labels the central diagnostic exactly:
+
+`PRIMARY TARGETS MATCH · TRACE CONTEXT INCOMPLETE`
+
+The channels feed primary-condition and trace-context summaries through the explicit
+`↘  ↓  ↓  ↙ · DIAGNOSTIC GATE` connector and stop at the qualified question:
+
+`QUALIFIED QUESTION · WHICH MISSING CONTEXT MATTERS? · 99.7% ≠ COMPLETE · SETS DIFFER / NO RATIO`
+
+The display does not turn the 99.7% composite into complete ecosystem similarity. The lab's 12
+trace identifiers and the living area's 847 or more identifiers remain nonmatching sets and are
+not divided into a percentage. Primary-target agreement cannot establish which identifiers are
+shared, which differences matter or which compound triggers germination; receptor, archive and
+biomonitor evidence remain necessary.
+
+No Case 07 source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11`
+- `presentation.css` — `259b76e2d7752680d58e01092e2bc3528956e13be7b79c3b453611b6c2d258a4`
+- `layout-overrides.json` — `0b3fc73e9baddf29e982f01841a66c41f2ae2a96f44d6fe72aadd5e83ebae6ea`
+- `case-package.json` — `fdd287d5b3874d20f49b94836f0bff3ccf24702eb3ee17093f60b2cc6f39871c`
+- `task-registry.js` — `5d6e5fe1223b4faee4e5f49c41e0bd4e1ae7e92767027ee15dce5adc268eeaff`
+
+Candidate scope is exactly the shared component CSS, browser harness, focused evidence-family
+validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+layout override, package metadata, task registry, response ID, response text, page count,
+persistence identity, source hash, Teacher content, release/history record or accepted-family
+implementation.
+
+Local Linux Chromium preflight reports 2314/2345 because of 31 established
+platform/font/screenshot-smoke exceptions. All three new Case 07 assertions pass: six-state page
+fit, normal semantic/geometry and grayscale semantic/geometry. All six target states retain fixed
+816 × 1056 pages, exact `scrollHeight 936 == clientHeight 936`, no `has-overflow` state and exact
+Student 6 / Answer Key 6 / Accessible 8 page counts. All ten learner fields remain blank,
+contained and unclipped. Student channel fields remain 338.98 × 55.67 px with a 720 × 49.91 px
+comparison field; Accessible channel and comparison fields remain at least 340 × 63.36 px. The
+focused evidence-convergence validator is **60/60 PASS**; the timeline, mechanism and telemetry
+regression baselines remain 44/44, 103/103 and 36/36 respectively.
+
+Normal and grayscale inspection has been completed locally for Student page 2, Answer Key page 2
+and Accessible page 2. In every view, the channel map, diagnostic label, patterned states,
+connector, summary gate and qualified-question rail remain contained, legible and collision-free;
+the learner response areas remain usable; and no content boundary spills. The Answer Key retains
+these exact eight contribution/limit cells, in row order:
+
+1. `Historic success within 1–3 m and shared airflow supports mature growth as source context and constrains delivery distance.`
+2. `Proximity alone does not prove the cue's identity, nutrient transfer, intention, or receptor mechanism.`
+3. `Primary targets match, but the lab has 12 residual trace identifiers compared with 847+ near living growth, and the sets differ.`
+4. `A broad trace gap does not show that every absence matters or identify the active cue.`
+5. `Integrity, primed chambers, dense receptors, and selective responses support a viable cue-gated dormant state.`
+6. `Response does not identify ligand structure, natural source, safe dose, or transport.`
+7. `Fictional records name a short-lived mature-network cue in carrier droplets and a receptor-mediated commitment pathway.`
+8. `An archive does not prove an Earth analogy or that any proposed intervention is safe.`
+
+External acceptance requires installed Google Chrome to pass the complete **2345/2345** harness
+twice with zero application JavaScript errors, followed by manual inspection of the same six
+Student/Answer Key/Accessible normal and grayscale views. Verify exact page counts and 936/936
+fit; no overflow, spill, clipping, collision or crowding; readable diagnostic and question rails;
+distinct normal/grayscale channel encodings; all ten blank learner fields; all eight exact Answer
+Key cells; the exact trace-comparison and convergence exemplars; and the 99.7%-not-complete and
+sets-differ/no-ratio boundaries. If any check fails, stop and report the failing assertion or view;
+do not edit or integrate the candidate. Until both automated passes and manual inspection succeed,
+do not add `C1C7-VIS01` to the Family 4 accepted register, do not advance the inventory and do not
+begin another finding.
+
 ## Accepted Family 4 pilot — Europa four-route evidence convergence
 
 Candidate `70375daa5bebe7dea127c0b8f6f6e0aeece48fc9` advances `C1C5-VIS02` for Europa
@@ -75,7 +162,7 @@ protection was unverified; no numerical radiation quantity, plant threshold or s
 was introduced; and brown spots alone do not identify the cause or rule out nutrients or
 pathogens. All six views had zero JavaScript console errors and no overflow, spill, clipping,
 collision or crowding. The formal inventory is now **24 of 36 completed**, with **12 remaining**.
-Do not begin `C1C7-VIS01` before a separate candidate-production instruction.
+That closeout did not begin `C1C7-VIS01`; the implemented candidate is recorded separately above.
 
 ## Accepted Family 3 completion — Silent Grove same-total sleep-pattern example
 

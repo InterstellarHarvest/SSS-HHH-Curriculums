@@ -3134,6 +3134,152 @@
           api.saveState({ grayscale: false });
         }
         if (item.id === "SSS-C1-CASE07") {
+          const giftConvergencePageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-02", 6], ["answer", "answer-key-02", 6], ["accessible", "accessible-mission-02", 8]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              giftConvergencePageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 07 evidence-convergence pages retain strict fit, page counts and geometry in normal and grayscale",
+            giftConvergencePageFit.length === 6
+              && giftConvergencePageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(giftConvergencePageFit)
+          );
+          const expectedGiftSources = "Liaison|Biomonitors|Specimen|Archives";
+          const expectedGiftStatuses = "SOURCE / RANGE|MATCH / TRACE GAP|VIABLE / RESPONSIVE|MECHANISM RECORD";
+          const expectedGiftBorders = "solid|double|dashed|dotted";
+          const expectedGiftDiagnostic = "PRIMARY TARGETS MATCH · TRACE CONTEXT INCOMPLETE";
+          const expectedGiftQuestion = "QUALIFIED QUESTION · WHICH MISSING CONTEXT MATTERS? · 99.7% ≠ COMPLETE · SETS DIFFER / NO RATIO";
+          const expectedGiftAnswerCells = [
+            "Historic success within 1–3 m and shared airflow supports mature growth as source context and constrains delivery distance.",
+            "Proximity alone does not prove the cue's identity, nutrient transfer, intention, or receptor mechanism.",
+            "Primary targets match, but the lab has 12 residual trace identifiers compared with 847+ near living growth, and the sets differ.",
+            "A broad trace gap does not show that every absence matters or identify the active cue.",
+            "Integrity, primed chambers, dense receptors, and selective responses support a viable cue-gated dormant state.",
+            "Response does not identify ligand structure, natural source, safe dose, or transport.",
+            "Fictional records name a short-lived mature-network cue in carrier droplets and a receptor-mediated commitment pathway.",
+            "An archive does not prove an Earth analogy or that any proposed intervention is safe."
+          ];
+          const expectedGiftTraceExemplar = "The isolated lab detects 12 trace identifiers while the living area has 847 or more, and the two sets do not match. This establishes that their trace-chemical contexts differ substantially. It does not show which identifiers are shared, which differences matter, or which compound triggers germination; receptor, archive, and proximity evidence are also required.";
+          const expectedGiftConvergence = "The channels form a chain: matched primary targets shift attention away from known physical conditions; specimen data support dormancy rather than death; the trace mismatch supplies a missing-variable category; receptor data support a selective trigger; and archive plus proximity identify the mature network as the natural source. No single channel supplies the full diagnosis.";
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, rootSelector] of [
+              ["student", "student-mission-02", '.evidence-table[data-evidence-summary="case07-four-channel-v1.0"]'],
+              ["answer", "answer-key-02", '.evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"]'],
+              ["accessible", "accessible-mission-02", '.accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"]']
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const root = page?.querySelector(rootSelector);
+              const cards = role === "accessible"
+                ? Array.from(root?.querySelectorAll(":scope > section") || [])
+                : Array.from(root?.querySelectorAll(":scope > tbody > tr") || []);
+              const headings = cards.map(card => role === "accessible" ? card.querySelector(":scope > h3") : card.querySelector(':scope > th[scope="row"]'));
+              const patterned = cards.map(card => {
+                const surface = role === "accessible" ? card : card.querySelector(":scope > td");
+                return Boolean(surface) && win.getComputedStyle(surface).backgroundImage !== "none";
+              });
+              const rootRect = root?.getBoundingClientRect();
+              const cardRects = cards.map(card => card.getBoundingClientRect());
+              const contained = Boolean(rootRect) && cards.every(card => {
+                const rect = card.getBoundingClientRect();
+                return rect.left >= rootRect.left - 1 && rect.right <= rootRect.right + 1
+                  && rect.top >= rootRect.top - 1 && rect.bottom <= rootRect.bottom + 1;
+              });
+              const cardCollision = cardRects.some((rect, index) => cardRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const gate = root?.nextElementSibling;
+              const gateRect = gate?.getBoundingClientRect();
+              const pageRect = page?.getBoundingClientRect();
+              const gateContained = Boolean(gateRect && pageRect)
+                && gateRect.left >= pageRect.left - 1 && gateRect.right <= pageRect.right + 1
+                && gateRect.top >= pageRect.top - 1 && gateRect.bottom <= pageRect.bottom + 1;
+              const fieldIds = role === "student"
+                ? "t2-liaison|t2-biomonitors|t2-specimen|t2-archives|t2-comparison"
+                : role === "accessible"
+                  ? "a2-liaison|a2-biomonitors|a2-specimen|a2-archives|a2-comparison"
+                  : "";
+              const fields = fieldIds
+                ? fieldIds.split("|").map(id => page?.querySelector(`[data-persist-id="${id}"][data-response]`)).map(field => ({
+                    id: field?.dataset.persistId || "",
+                    text: field?.textContent.trim() || "",
+                    width: field ? rounded(field.getBoundingClientRect().width) : 0,
+                    height: field ? rounded(field.getBoundingClientRect().height) : 0,
+                    contained: Boolean(field && field.closest(rootSelector) || field?.dataset.persistId.endsWith("comparison"))
+                  }))
+                : [];
+              const diagnosticNode = role === "accessible" ? root : root?.querySelector("caption");
+              rendered.push({
+                role,
+                pageId,
+                root: Boolean(root),
+                channels: headings.map(node => node?.childNodes[0]?.textContent.trim() || node?.textContent.trim()).join("|"),
+                statuses: headings.map(node => win.getComputedStyle(node, "::after").content.replaceAll('"', "")).join("|"),
+                borders: cards.map(card => win.getComputedStyle(role === "accessible" ? card : card.querySelector(':scope > th[scope="row"]')).borderLeftStyle).join("|"),
+                patterned,
+                diagnostic: win.getComputedStyle(diagnosticNode, role === "accessible" ? "::before" : "::after").content.replaceAll('"', ""),
+                connector: win.getComputedStyle(gate, "::before").content.replaceAll('"', ""),
+                question: win.getComputedStyle(gate, "::after").content.replaceAll('"', ""),
+                contained,
+                cardCollision,
+                gateContained,
+                fields,
+                answerCells: role === "answer" ? cards.flatMap(card => Array.from(card.querySelectorAll(":scope > td")).map(node => node.textContent.trim().replace(/\s+/g, " "))) : [],
+                traceExemplar: role === "answer" ? gate?.querySelector("p")?.textContent.trim().replace(/\s+/g, " ") : "",
+                convergence: role === "answer" ? gate?.nextElementSibling?.nextElementSibling?.textContent.trim().replace(/\s+/g, " ") : ""
+              });
+            }
+            const studentMap = rendered.find(state => state.role === "student");
+            const answerMap = rendered.find(state => state.role === "answer");
+            const accessibleMap = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 07 ${grayscale ? "grayscale" : "normal"} evidence convergence preserves diagnostic limits and response geometry`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.root && state.channels === expectedGiftSources && state.statuses === expectedGiftStatuses)
+                && rendered.every(state => state.borders === expectedGiftBorders && state.patterned.every(Boolean))
+                && rendered.every(state => state.diagnostic === expectedGiftDiagnostic && state.connector === "↘  ↓  ↓  ↙ · DIAGNOSTIC GATE" && state.question === expectedGiftQuestion)
+                && rendered.every(state => state.contained && !state.cardCollision && state.gateContained)
+                && studentMap.fields.map(field => field.id).join("|") === "t2-liaison|t2-biomonitors|t2-specimen|t2-archives|t2-comparison"
+                && studentMap.fields.every((field, index) => field.text === "" && field.contained && field.width >= (index < 4 ? 265 : 700) && field.height >= (index < 4 ? 55 : 49))
+                && accessibleMap.fields.map(field => field.id).join("|") === "a2-liaison|a2-biomonitors|a2-specimen|a2-archives|a2-comparison"
+                && accessibleMap.fields.every((field, index) => field.text === "" && field.contained && field.width >= (index < 4 ? 330 : 700) && field.height >= 63)
+                && answerMap.answerCells.every((value, index) => value === expectedGiftAnswerCells[index])
+                && answerMap.answerCells.length === expectedGiftAnswerCells.length
+                && answerMap.traceExemplar === expectedGiftTraceExemplar
+                && answerMap.convergence === expectedGiftConvergence
+                && workspace.textContent.includes("99.7% primary-condition similarity. Trace compounds are excluded; no weighting formula is supplied.")
+                && workspace.textContent.includes("ratioIsCoverage") === false,
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
           const biologicalSystemPageFit = [];
           for (const grayscale of [false, true]) {
             for (const [role, pageId, pageCount] of [["student", "student-mission-03", 6], ["answer", "answer-key-03", 6], ["teacher", "teacher-guide-04", 8], ["accessible", "accessible-mission-04", 8]]) {

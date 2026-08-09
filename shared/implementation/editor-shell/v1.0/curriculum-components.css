@@ -1974,6 +1974,257 @@ body.grayscale .figure:where(
 }
 
 /*
+ * Evidence-convergence family completion: The Gift diagnostic question.
+ *
+ * The released Task 2 tables and Accessible cards already preserve four
+ * independent evidence channels, ten learner responses and the completed
+ * Answer Key contribution/limit exemplars. This case-scoped layer exposes the
+ * primary-match / trace-context distinction and stops convergence at a
+ * qualified investigation question. It does not turn the 99.7% primary-target
+ * summary into ecosystem similarity or treat the nonmatching 12 and 847+
+ * identifier sets as a ratio.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"],
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"],
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"]
+) {
+  --gift-evidence-line: var(--ink, #18212b);
+  --gift-evidence-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"],
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"]
+) caption::after,
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"]::before {
+  display: inline-block;
+  margin-left: 5px;
+  padding: 2px 5px;
+  border: 1px solid var(--gift-evidence-line);
+  border-radius: 2px;
+  content: "PRIMARY TARGETS MATCH · TRACE CONTEXT INCOMPLETE";
+  color: var(--gift-evidence-line);
+  background: var(--gift-evidence-panel);
+  font: 800 5.7pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"]::before {
+  grid-column: 1 / -1;
+  margin: 0;
+  text-align: center;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr > *,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr > *
+) {
+  background:
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(24, 33, 43, .035) 10px 11px),
+    var(--gift-evidence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(2) > *,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(2),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(2) > *
+) {
+  background:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .09) 8px 9px),
+    var(--gift-evidence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(3) > *,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(3),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(3) > *
+) {
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 8px, rgba(24, 33, 43, .08) 8px 9px),
+    var(--gift-evidence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(4) > *,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(4),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(4) > *
+) {
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .045) 6px 7px),
+    var(--gift-evidence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section > h3,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr > th
+) {
+  position: relative;
+  color: var(--gift-evidence-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr > th,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr > th
+) {
+  border-left-width: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section {
+  margin: 0;
+  border-left-width: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(1) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(1),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(1) > th
+) { border-left-style: solid; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(2) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(2),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(2) > th
+) { border-left-style: double; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(3) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(3),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(3) > th
+) { border-left-style: dashed; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(4) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(4),
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(4) > th
+) { border-left-style: dotted; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section > h3,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr > th
+)::after {
+  display: block;
+  margin-top: 2px;
+  content: "";
+  font: 800 5.1pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(1) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(1) > h3,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(1) > th
+)::after { content: "SOURCE / RANGE"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(2) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(2) > h3,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(2) > th
+)::after { content: "MATCH / TRACE GAP"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(3) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(3) > h3,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(3) > th
+)::after { content: "VIABLE / RESPONSIVE"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] > tbody > tr:nth-child(4) > th,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] > section:nth-of-type(4) > h3,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] > tbody > tr:nth-child(4) > th
+)::after { content: "MECHANISM RECORD"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] + .two-col,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] + .callout,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] + .answer-block
+) {
+  --gift-evidence-line: var(--ink, #18212b);
+  --gift-evidence-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  margin-top: 4px;
+  padding: .2in 5px .34in;
+  border: 1.5px solid var(--gift-evidence-line);
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(24, 33, 43, .04) 12px 13px),
+    var(--gift-evidence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] + .two-col {
+  gap: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] + .two-col > .callout {
+  margin: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] + .two-col,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] + .callout,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] + .answer-block
+)::before {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  left: 6px;
+  content: "↘  ↓  ↓  ↙ · DIAGNOSTIC GATE";
+  color: var(--gift-evidence-line);
+  font: 800 5.5pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] + .two-col,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] + .callout,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] + .answer-block
+)::after {
+  position: absolute;
+  right: 6px;
+  bottom: 4px;
+  left: 6px;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  border: 3px double var(--gift-evidence-line);
+  border-radius: 2px;
+  content: "QUALIFIED QUESTION · WHICH MISSING CONTEXT MATTERS? · 99.7% ≠ COMPLETE · SETS DIFFER / NO RATIO";
+  background: var(--gift-evidence-panel);
+  font: 800 5.8pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .012em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE07"] :is(
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"],
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"],
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"],
+  .evidence-table[data-evidence-summary="case07-four-channel-v1.0"] + .two-col,
+  .accessible-evidence[data-evidence-summary="case07-accessible-four-channel-v1.0"] + .callout,
+  .evidence-table[data-evidence-summary="case07-answer-four-channel-v1.0"] + .answer-block
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
+/*
  * Mechanism/pathway family expansion: The Missing Dance failure path.
  *
  * The frozen Student, Accessible and Answer Key organizers already preserve
