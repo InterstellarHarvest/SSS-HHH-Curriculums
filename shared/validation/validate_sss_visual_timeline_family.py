@@ -134,12 +134,20 @@ def main() -> int:
     )
 
     check(
-        "the plan and handoff stage C1C4-VIS01 as the Family 3 pilot candidate",
-        bool(re.search(r"\| `C1C4-VIS01` .*`IMPLEMENTED-CANDIDATE", plan))
-        and "Hayes incident-log candidate handoff" in handoff
-        and "2333/2333" in handoff
-        and "20 of 36 completed" in handoff
-        and "16 remaining" in handoff,
+        "the plan and handoff accept C1C4-VIS01 as the first Family 3 finding",
+        bool(re.search(
+            r"\| `C1C4-VIS01` .*\| 3 · Timeline/event log \|.*"
+            r"`VERIFIED-FAMILY · 17/17 TIMELINE STATIC PASS · 2333/2333 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · d5ffe37 ACCEPTED`",
+            plan,
+        ))
+        and "Accepted Family 3 pilot — Hayes relative incident log" in handoff
+        and "d5ffe37c0db952fb74c51c961d5b58bb405f01ea" in handoff
+        and "2333/2333 PASS with 0 application JavaScript errors" in handoff
+        and "17/17 PASS" in handoff
+        and "| `C1C4-VIS01` | `d5ffe37` | `VERIFIED-FAMILY` |" in handoff
+        and "21 of 36 completed" in handoff
+        and "15 remaining" in handoff,
     )
 
     source_paths = (
@@ -149,7 +157,7 @@ def main() -> int:
         "sss/campaign-1/case-04-hayes-orbital-station/source/case-package.json",
         "sss/campaign-1/case-04-hayes-orbital-station/source/task-registry.js",
     )
-    check("the candidate handoff explicitly protects all frozen Hayes sources", all(path in handoff for path in source_paths), [path for path in source_paths if path not in handoff])
+    check("the accepted handoff explicitly protects all frozen Hayes sources", all(path in handoff for path in source_paths), [path for path in source_paths if path not in handoff])
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]
     print("SSS visual modernization · timeline family")

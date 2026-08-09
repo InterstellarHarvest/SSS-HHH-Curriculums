@@ -202,11 +202,16 @@ All five Student fields, all five Accessible fields, both exact event banks and 
 Answer Key sequence remain unchanged. The visual spacing is deliberately equal: no mission days,
 proportional distances or new timing precision are introduced. No worksheet content, case
 presentation, layout override, package metadata, task registry, page count, persistence identity,
-source hash or release baseline changes. Candidate acceptance requires the complete Mac/Chrome
-2333/2333 browser harness twice with zero application JavaScript errors, strict 936/936-or-better
-fit and fixed 816 × 1056 geometry on all three pages in both modes, plus the focused timeline
-validator and manual normal/grayscale inspection. Until that evidence exists, `C1C4-VIS01`
-remains `IMPLEMENTED-CANDIDATE`; the formal inventory remains 20/36 completed with 16 remaining.
+source hash or release baseline changes. Candidate
+`d5ffe37c0db952fb74c51c961d5b58bb405f01ea` passed the complete 2333/2333 Mac/Chrome browser
+harness twice with zero application JavaScript errors, the 17/17 focused timeline validator, the
+103/103 mechanism validator, the 36/36 telemetry validator and the Case 04 layout-override
+validator. Normal and grayscale inspection confirmed strict 936/936 fit, fixed 816 × 1056
+geometry, unchanged Student 4 / Answer Key 4 / Accessible 7 page counts and zero content-boundary
+spill on all three touched pages. All connectors, state labels, patterns and borders remained
+visible and collision-free; all ten learner fields retained their source-controlled geometry and
+blank state; and the relative-timing, reactor-specific and correlation boundaries remained exact.
+`C1C4-VIS01` is therefore `VERIFIED-FAMILY`, the first accepted Family 3 finding.
 
 ## 3. Exact inventory reconciliation
 
@@ -217,9 +222,11 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the First Garden candidate-pathway closeout is **20 of 36 completed** and
-**16 of 36 remaining**. Family 1 contributes 9 completed findings and Family 2 contributes all 11
-of its verified findings.
+Accepted progress after the Hayes incident-log closeout is **21 of 36 completed** and **15 of 36
+remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11 of its verified
+findings and Family 3 contributes its first verified finding.
+
+At the preceding Family 2 closeout, accepted progress was 20 of 36 completed and 16 of 36 remaining.
 
 The final remediation status also carries token/fill maintenance notes for C1 Case 02 and
 C1 Case 06. Those two notes are tracked in §5 as visual-system work items but are not invented
@@ -276,7 +283,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C3-VIS01` | Mars Habitat; S T2 p1, A T2 p2, T reference p4, AK T2 p1 | Accurate ordinary four-bar transmission graph repeated across roles. | 1 · Technical telemetry/data | Four-channel optical-transmission scan with direct percentages, patterned rails, and low-transmission flags; deterministic SVG. | Preserve current figure height and table backup; synchronize all existing instances. | Four discrete bands only; no continuous spectrum or interpolated values; retain 92%, 88%, 31%, 12%. | P1–P5, D1; numeric DOM assertions and extended description | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C1C3-VIS02` | Mars Habitat; S T3 p2, A T3 p3, AK T3 p1 | Boxed “280 adequate” plus repeated mini bars; comparison is correct but visually ordinary. | 1 · Technical telemetry/data | Dual-channel diagnostic: photon quantity 280 PPFD `ADEQUATE` vs four-rail spectrum `UNEVEN`, with `Quantity ≠ Distribution`; deterministic HTML/SVG. | Same footprint; synchronize S/A and concise AK treatment. | PPFD quantity must not be presented as spectral adequacy; preserve units and exact discrete values. | C1C3-VIS01 rail primitive; numeric/parity checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C1C3-VIS03` | Mars Habitat; S T6 p3, A T6 p5, AK T6 p3 | Generic five-stage rectangles. | 2 · Causal mechanism/pathway | Technical glyph chain: collector → wrong BP-4 filter → selective loss → disrupted new chlorophyll production → pale new growth; deterministic HTML/SVG. | Preserve five-stage exact-match bank, blank stages and vertical A variant. | Do not claim an unsupported universal chlorophyll mechanism; retain case wording and corrected 700 nm boundary. | mechanism primitive; bank/order/persistence checks | `VERIFIED-FAMILY · 25/25 FAMILY STATIC PASS · 2303/2303 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 3.47px RESERVE · c532ac5 ACCEPTED` |
-| `C1C4-VIS01` | Hayes Orbital Station; S T2 p1, A T2 p2, AK T2 p1 | Five numbered blanks connected by plain arrows. | 3 · Timeline/event log | SAA incident log with verified relative-event slots and event-type markers; deterministic HTML/CSS. | Same five writable positions; A stays vertical; AK completes identical log. | Relative timing only; do not invent mission days or proportional spacing. | P1–P5, TL1; exact event-bank/parity checks | `IMPLEMENTED-CANDIDATE · 17/17 TIMELINE STATIC PASS · MAC/CHROME 2333/2333 REQUIRED ×2 · 0 JS ERRORS REQUIRED · STRICT FIT 936/936 REQUIRED` |
+| `C1C4-VIS01` | Hayes Orbital Station; S T2 p1, A T2 p2, AK T2 p1 | Five numbered blanks connected by plain arrows. | 3 · Timeline/event log | SAA incident log with verified relative-event slots and event-type markers; deterministic HTML/CSS. | Same five writable positions; A stays vertical; AK completes identical log. | Relative timing only; do not invent mission days or proportional spacing. | P1–P5, TL1; exact event-bank/parity checks | `VERIFIED-FAMILY · 17/17 TIMELINE STATIC PASS · 2333/2333 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d5ffe37 ACCEPTED` |
 | `C1C4-VIS02` | Hayes Orbital Station; S T5 p3, A T5 p5, AK T5 p3 | Six-stage snake layout; reading direction requires prose. | 2 · Causal mechanism/pathway | Immediate closed fault loop with directional connectors and explicit repeat link. | Preserve six exact stages/fields and A vertical reading order. | Qualitative recurrence; no invented light dose, density or crash interval beyond reported 6–8 days. | loop variant of mechanism primitive; connector/read-order tests | `VERIFIED-FAMILY · 44/44 FAMILY STATIC PASS · 2309/2309 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d5b6c02 ACCEPTED` |
 | `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `PLANNED` |
 | `C1C5-VIS01` | Europa Bunker; S T5 p3, A T5 p5, AK T5 p3 | Seven-stage snake of text boxes. | 2 · Causal mechanism/pathway | Qualified hazard pathway visually separating environment, modeled interaction, exposure evidence, evidence limit, biological evidence, growth consequence and convergence; deterministic HTML/SVG. | Preserve seven exact bank entries and current blanks; A vertical; AK complete. | Modeled secondary radiation ≠ measured; exposure ≠ damage; abnormalities are consistent with damage; no exact quantities. | mechanism/status primitives; phrase, qualifier and persistence tests | `VERIFIED-FAMILY · 52/52 FAMILY STATIC PASS · 2312/2312 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · dcb2d91 ACCEPTED` |
