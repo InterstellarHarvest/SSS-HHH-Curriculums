@@ -2258,6 +2258,147 @@
           const lockedTitles = ["Initial Thinking — Identify the Variable", "Build the Change-to-Crash Timeline", "Isolate Variables and Test Alternatives", "Diagnose the Reactor Failure", "Model the Repeating Crash Cycle", "Explain the Failure with CER", "Design Independent Reactor Controls", "Exit Ticket — Cause or Effect?"];
           const roleTitles = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`)).map(node => node.dataset.taskTitle);
           check("Case 04 generated Student, Answer Key, and Accessible task titles have exact parity", ["student", "answer", "accessible"].every(role => JSON.stringify(roleTitles(role)) === JSON.stringify(lockedTitles)));
+          const incidentLogPageFit = [];
+          const incidentLogPages = [
+            ["student", "student-mission-01", 4],
+            ["answer", "answer-key-01", 4],
+            ["accessible", "accessible-mission-02", 7]
+          ];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, expectedPages] of incidentLogPages) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const pageRect = page?.getBoundingClientRect();
+              incidentLogPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                pages: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPages,
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 04 incident-log pages retain strict fit, page counts and geometry in normal and grayscale",
+            incidentLogPageFit.length === 6
+              && incidentLogPageFit.every(state => state.pages === state.expectedPages && state.pageSize === "816x1056" && !state.overflow && state.fits),
+            JSON.stringify(incidentLogPageFit)
+          );
+          const expectedIncidentLabels = "BASELINE|CHANGE|FIRST FAILURE|REPEAT|RECOVERY";
+          const expectedIncidentAnswer = [
+            "Four months of stable operation",
+            "Lighting changes from 16/8 to uncontrolled 24/0",
+            "About one week later: first crash",
+            "Every 6–8 days: another crash",
+            "Between crashes: surviving cells rebuild"
+          ];
+          const expectedStudentBank = [
+            "A Between crashes: surviving cells rebuild",
+            "B Four months of stable operation",
+            "C Every 6–8 days: another crash",
+            "D Lighting changes from 16/8 to uncontrolled 24/0",
+            "E About one week later: first crash"
+          ];
+          const incidentLearnerText = field => {
+            if (!field) return "";
+            const clone = field.cloneNode(true);
+            clone.querySelectorAll("[data-layout-resize-ui]").forEach(node => node.remove());
+            return clone.textContent.trim().replace(/\s+/g, " ");
+          };
+          for (const grayscale of [false, true]) {
+            const renderedLogs = [];
+            for (const [role, pageId, fieldPrefix] of [
+              ["student", "student-mission-01", "t2"],
+              ["accessible", "accessible-mission-02", "a2"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const log = page?.querySelector('.relative-timeline[data-timeline-contract="relative-five-event-v1.0"]');
+              const steps = Array.from(log?.querySelectorAll(":scope > .timeline-step") || []);
+              const arrows = Array.from(log?.querySelectorAll(":scope > .timeline-arrow") || []);
+              const fields = steps.map(step => step.querySelector(".timeline-response")).filter(Boolean);
+              const logRect = log?.getBoundingClientRect();
+              const contained = Boolean(logRect) && steps.every(step => {
+                const rect = step.getBoundingClientRect();
+                return rect.left >= logRect.left - 1 && rect.right <= logRect.right + 1
+                  && rect.top >= logRect.top - 1 && rect.bottom <= logRect.bottom + 1;
+              });
+              renderedLogs.push({
+                role,
+                log: Boolean(log),
+                rail: log ? win.getComputedStyle(log, "::before").content.replaceAll('"', "") : "",
+                steps: steps.length,
+                eventOrder: steps.map(step => step.dataset.timelineEvent).join("|"),
+                labels: steps.map(step => win.getComputedStyle(step, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: steps.map(step => role === "accessible" ? win.getComputedStyle(step).borderLeftStyle : win.getComputedStyle(step).borderTopStyle).join("|"),
+                patternStates: steps.map(step => win.getComputedStyle(step).backgroundImage !== "none"),
+                arrows: arrows.map(arrow => arrow.textContent.trim()).join("|"),
+                accessibleConnectors: steps.slice(0, -1).map(step => win.getComputedStyle(step, "::before").content.replaceAll('"', "")).join("|"),
+                accessibleConnectorZ: steps.slice(0, -1).map(step => win.getComputedStyle(step, "::before").zIndex).join("|"),
+                fields: fields.map(field => field.dataset.persistId).join("|"),
+                blanks: fields.map(field => field.hasAttribute("data-response") && incidentLearnerText(field) === ""),
+                fieldSizes: fields.map(field => dimensions(field)),
+                logFits: Boolean(log) && log.scrollWidth <= log.clientWidth + 1 && log.scrollHeight <= log.clientHeight + 1,
+                contained
+              });
+            }
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerPage = workspace.querySelector('.page[data-role="answer"][data-page-id="answer-key-01"]');
+            const answerLog = answerPage?.querySelector('.relative-timeline.completed[data-timeline-contract="relative-five-event-v1.0"]');
+            const answerSteps = Array.from(answerLog?.querySelectorAll(":scope > .timeline-step") || []);
+            const answerArrows = Array.from(answerLog?.querySelectorAll(":scope > .timeline-arrow") || []);
+            const studentLog = renderedLogs.find(state => state.role === "student");
+            const accessibleLog = renderedLogs.find(state => state.role === "accessible");
+            const studentBank = Array.from(workspace.querySelectorAll('.page[data-role="student"][data-page-id="student-mission-01"] .event-bank > span'))
+              .map(node => node.textContent.trim().replace(/\s+/g, " "));
+            const accessibleBank = Array.from(workspace.querySelectorAll('.page[data-role="accessible"][data-page-id="accessible-mission-02"] .accessible-event-bank > li'))
+              .map(node => node.textContent.trim().replace(/\s+/g, " ").replace(/\.$/, ""));
+            check(
+              `C1 Case 04 ${grayscale ? "grayscale" : "normal"} incident log preserves relative sequence, learner fields and completed key`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && renderedLogs.length === 2
+                && renderedLogs.every(state => state.log && state.steps === 5 && state.eventOrder === "1|2|3|4|5" && state.logFits && state.contained)
+                && renderedLogs.every(state => state.rail === "SAA INCIDENT LOG · RELATIVE SEQUENCE")
+                && renderedLogs.every(state => state.labels === expectedIncidentLabels && state.patternStates.every(Boolean))
+                && renderedLogs.every(state => state.borderStates === "solid|double|dashed|dotted|solid")
+                && studentLog.arrows === "→|→|→|→"
+                && studentLog.fields === "t2-1|t2-2|t2-3|t2-4|t2-5"
+                && studentLog.blanks.every(Boolean)
+                && studentLog.fieldSizes.every(([, height]) => height >= 76.77)
+                && accessibleLog.arrows === ""
+                && accessibleLog.accessibleConnectors === "↓|↓|↓|↓"
+                && accessibleLog.accessibleConnectorZ === "1|1|1|1"
+                && accessibleLog.fields === "a2-1|a2-2|a2-3|a2-4|a2-5"
+                && accessibleLog.blanks.every(Boolean)
+                && JSON.stringify(studentBank) === JSON.stringify(expectedStudentBank)
+                && JSON.stringify(accessibleBank) === JSON.stringify(expectedStudentBank.map(value => `${value.slice(0, 1)}. ${value.slice(2)}`))
+                && answerLog
+                && win.getComputedStyle(answerLog, "::before").content.replaceAll('"', "") === "SAA INCIDENT LOG · RELATIVE SEQUENCE"
+                && answerSteps.map(step => win.getComputedStyle(step, "::after").content.replaceAll('"', "")).join("|") === expectedIncidentLabels
+                && answerSteps.map(step => win.getComputedStyle(step).borderTopStyle).join("|") === "solid|double|dashed|dotted|solid"
+                && answerSteps.map(step => step.querySelector("strong")?.textContent.trim().replace(/\s+/g, " ")).every((value, index) => value === expectedIncidentAnswer[index])
+                && answerArrows.map(arrow => arrow.textContent.trim()).join("|") === "→|→|→|→"
+                && answerPage?.textContent.includes("Invented mission-day labels")
+                && answerPage?.textContent.includes("survivor rebuilding between the first and repeated crashes"),
+              JSON.stringify({ renderedLogs, answerSteps: answerSteps.length, studentBank, accessibleBank })
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
           const faultLoopPageFit = [];
           for (const grayscale of [false, true]) {
             for (const [role, pageId] of [["student", "student-mission-03"], ["answer", "answer-key-03"], ["accessible", "accessible-mission-05"]]) {

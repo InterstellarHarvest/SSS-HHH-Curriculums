@@ -4,6 +4,65 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Hayes incident-log candidate handoff
+
+`C1C4-VIS01` is the Family 3 timeline/event-log pilot. It is implemented from clean synchronized
+Family 2 closeout `85e898d76c45a0008e5751cffdca327640de8747` and remains
+`IMPLEMENTED-CANDIDATE` until the required Mac/Chrome evidence is returned. Do not promote it from
+local or static evidence alone. The formal inventory remains **20 of 36 completed**, with
+**16 remaining**.
+
+The frozen Task 2 organizers on Student page 1 and Accessible page 2 retain five blank learner
+positions and their exact event banks. The completed Answer Key remains on page 1. The case-scoped
+presentation makes all three versions read as one `SAA INCIDENT LOG · RELATIVE SEQUENCE` with
+ordered event-type states `BASELINE` → `CHANGE` → `FIRST FAILURE` → `REPEAT` → `RECOVERY`.
+Student and Answer Key remain horizontal with `→ | → | → | →`. Accessible remains one true
+in-flow vertical sequence and receives four visible `↓` connectors. Solid, double, dashed, dotted
+and solid state borders plus independent patterns preserve the distinctions in grayscale.
+
+No case source file changes:
+
+- `sss/campaign-1/case-04-hayes-orbital-station/source/content.html`
+- `sss/campaign-1/case-04-hayes-orbital-station/source/presentation.css`
+- `sss/campaign-1/case-04-hayes-orbital-station/source/layout-overrides.json`
+- `sss/campaign-1/case-04-hayes-orbital-station/source/case-package.json`
+- `sss/campaign-1/case-04-hayes-orbital-station/source/task-registry.js`
+
+The candidate changes only the shared case-scoped component layer, browser harness, new focused
+timeline validator, production plan and this handoff. It does not change worksheet wording,
+answer-key wording, response identities, response dimensions, package metadata, page counts,
+source hashes or release/history records.
+
+The focused timeline validator passes **17/17**. An isolated Linux serverless-Chromium preflight
+reached **2300/2333** with zero application JavaScript errors. All three new Hayes assertions
+passed: the six role/mode page measurements were 936/936 at fixed 816 × 1056; both normal and
+grayscale grammar checks preserved the rail, five labels, patterns, border order, connectors,
+blank fields, exact banks and completed key. The 33 local failures were 32 pre-existing
+font-dependent assertions elsewhere in the curriculum plus the serverless screenshot-smoke PNG.
+They do not replace or waive the required Mac/Chrome acceptance run.
+
+Run the focused timeline validator, then the complete Mac/Chrome browser harness twice. The
+complete browser target is **2333/2333 PASS** twice with zero application JavaScript errors.
+External inspection must cover Student Task 2 page 1, Accessible Task 2 page 2 and Answer Key Task
+2 page 1 in normal and grayscale. Every page must retain fixed 816 × 1056 geometry, accepted page
+counts Student 4 / Answer Key 4 / Accessible 7, no `has-overflow` state and strict
+`scrollHeight <= clientHeight` within the 936 px printable content box.
+
+Confirm that all five state labels, all patterns, every connector and every answer area are fully
+visible without clipping, collision, overlap or response-space loss. All ten learner fields must
+remain genuinely blank after hidden resize UI is excluded: `t2-1 | t2-2 | t2-3 | t2-4 | t2-5`
+and `a2-1 | a2-2 | a2-3 | a2-4 | a2-5`. Report the exact width and height of all ten. Both event
+banks and the completed Answer Key must remain verbatim.
+
+Scientific and temporal inspection must preserve only this relative order: four stable months;
+lighting changes from 16/8 to uncontrolled 24/0; about one week later the first crash; another
+crash every 6–8 days; surviving cells rebuild between crashes. Equal visual slot width must not
+be read as equal elapsed time. Do not introduce mission-day labels, calendar dates, proportional
+spacing, precise crash dates, new culture-density values or a claim that timing alone proves the
+cause. The acceptable alternative placing survivor rebuilding between the first and repeated
+crashes must remain valid. Report the exact console-error count and text. Any failed assertion or
+visible defect holds the candidate unpushed for an ordinary corrective successor.
+
 ## Accepted Family 2 expansion — C2C6 candidate pathway
 
 Candidate `d8886b539e328fd3e9dcb9cdaa1bd4e16aaf6a54` advances `C2C6-VIS02` for The First Garden to
