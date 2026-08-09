@@ -4,6 +4,67 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Silent Grove same-total sleep-pattern candidate
+
+`C2C4-VIS01` is the third and final Family 3 timeline/event-log finding. It modernizes the frozen
+Task 3 teaching figure on Student page 3 and Accessible page 3 while leaving the real within-cycle
+ship-record telemetry table immediately below it unchanged. The synchronized prerequisite is
+`5c07309eef3257e5a91c97281e48d896d924e40f`.
+
+The existing example is unchanged. Mia retains one unbroken 8-hour sleep block from hour 0 to hour
+8. Sam retains eight separate one-hour blocks at the existing positions across the same 24-hour
+scale. Both retain the exact 8-hour total and the exact `0`, `6`, `12`, `18`, `24` tick labels.
+The SVG title and aria-label remain `Two sleep patterns with the same daily total`; the caption and
+extended description retain the same values and discrete-block explanation.
+
+The case-scoped shared presentation frames both figures as
+`SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA`. The consolidated block
+has a solid edge and the eight fragmented blocks have dashed edges, in addition to their visibly
+different one-block/eight-block geometry. The frame, status rail, caption treatment and block edges
+remain grayscale-independent. The source caption still states `Discrete blocks only; no curve is
+drawn`, and the source note still states that the sleep hours are not grove measurements.
+
+This is an illustrative comparison only. It introduces no grove measurement, sleep claim about the
+fictional organisms, causal inference, interpolated line or curve. The separate six-row Table 5
+continues to carry the actual ship record with its own `SHIP RECORD · DISCRETE BLOCKS` status. None
+of the example's values becomes case evidence.
+
+No case source file changes:
+
+- `sss/campaign-2/case-04-silent-grove/source/content.html`
+- `sss/campaign-2/case-04-silent-grove/source/presentation.css`
+- `sss/campaign-2/case-04-silent-grove/source/layout-overrides.json`
+- `sss/campaign-2/case-04-silent-grove/source/case-package.json`
+- `sss/campaign-2/case-04-silent-grove/source/task-registry.js`
+
+The candidate changes only the shared case-scoped component layer, browser harness, focused
+timeline validator, production plan and this handoff. It does not change worksheet wording, SVG
+data, response controls or identities, Table 5, Answer Key or Teacher wording, package metadata,
+page counts, source hashes or release/history records.
+
+Local focused validation is **44/44 PASS**. The new browser assertions cover both figures in normal
+and grayscale, exact SVG geometry and labels, semantic text, solid/dashed block states, response
+identity, full figure containment, strict page fit and separation from the real ship record.
+The mechanism family remains **103/103 PASS**, the telemetry family remains **36/36 PASS**, the
+Case 04 layout-override validator passes and `git diff --check` is clean. The complete isolated
+Linux Chromium preflight reports **2306/2339**; all three new Silent Grove assertions pass in
+normal and grayscale with zero application JavaScript errors. The remaining 33 are the known 32
+font-dependent legacy differences in this browser image plus its temporary screenshot smoke-test
+limitation, not Silent Grove failures.
+
+Both targeted pages retain fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936`,
+their existing Student 6 / Accessible 8 page counts, no `has-overflow` state and full figure
+containment in both modes. Targeted screenshots confirm that the absolute status rail occupies the
+unused right side of the SVG header without touching its `One day, hour 0 to hour 24` text; the
+solid consolidated block and eight dashed fragments remain distinct; and neither the caption,
+extended description, responses nor following ship-record table is clipped, overlapped or crowded.
+
+Formal acceptance requires two complete Mac/Chrome browser-harness passes, zero application
+JavaScript errors, the focused timeline validator, mechanism and telemetry regressions, the Case
+04 layout-override validator, `git diff --check`, and manual inspection of Student Task 3 page 3
+and Accessible Task 3 page 3 in normal and grayscale. The accepted inventory remains **22 of 36
+completed**, with **14 remaining**, until external acceptance and closeout.
+
 ## Accepted Family 3 expansion — First Contact reported-event telemetry
 
 Candidate `66a3d1b76077201cbd438f2b70b64e4a1380d7a2` advances `C1C6-VIS01` for First Contact

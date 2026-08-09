@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 ROOT = Path(__file__).resolve().parents[2]
 HAYES_CONTENT = ROOT / "sss/campaign-1/case-04-hayes-orbital-station/source/content.html"
 CONTACT_CONTENT = ROOT / "sss/campaign-1/case-06-first-contact-protocol/source/content.html"
+SILENT_CONTENT = ROOT / "sss/campaign-2/case-04-silent-grove/source/content.html"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 HARNESS = ROOT / "apps/curriculum-editor/tests/browser-harness.html"
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
@@ -28,6 +29,8 @@ def main() -> int:
     soup = BeautifulSoup(source, "html.parser")
     contact_source = CONTACT_CONTENT.read_text(encoding="utf-8")
     contact_soup = BeautifulSoup(contact_source, "html.parser")
+    silent_source = SILENT_CONTENT.read_text(encoding="utf-8")
+    silent_soup = BeautifulSoup(silent_source, "html.parser")
     css = COMPONENTS.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")
     plan = PLAN.read_text(encoding="utf-8")
@@ -208,7 +211,7 @@ def main() -> int:
     )
 
     contact_css_start = css.index("Timeline/event-log family expansion: First Contact Protocol.")
-    contact_css_end = css.index("/* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */", contact_css_start)
+    contact_css_end = css.index("Timeline/event-log family completion: Silent Grove sleep-pattern example.", contact_css_start)
     contact_css = css[contact_css_start:contact_css_end]
     contact_css_without_comments = re.sub(
         r"/\*.*?\*/",
@@ -285,6 +288,198 @@ def main() -> int:
         and "2336/2336 PASS with 0 application JavaScript errors" in handoff
         and "30/30 PASS" in handoff
         and "| `C1C6-VIS01` | `66a3d1b` | `VERIFIED-FAMILY` |" in handoff
+        and "22 of 36 completed" in handoff
+        and "14 remaining" in handoff,
+    )
+
+    sleep_figures = silent_soup.select(
+        '.teaching-analogy[data-analogy="sleep-pattern-v1"] .figure[data-figure-id^="fig-sleep-"]'
+    )
+    sleep_roles = [figure.find_parent("section", attrs={"data-role": True})["data-role"] for figure in sleep_figures]
+    check(
+        "Silent Grove retains one sleep-pattern teaching figure in Student and Accessible",
+        len(sleep_figures) == 2 and sorted(sleep_roles) == ["accessible", "student"],
+        sleep_roles,
+    )
+
+    expected_sleep_text = (
+        "Mia sleeps one unbroken 8-hour block. Sam sleeps eight one-hour naps spread around the "
+        "clock. Both sleep 8 hours in a day."
+    )
+    sleep_analogies = silent_soup.select('.teaching-analogy[data-analogy="sleep-pattern-v1"]')
+    check(
+        "both learner editions retain the exact same-total teaching example and source disclaimer",
+        len(sleep_analogies) == 2
+        and all(expected_sleep_text in " ".join(node.stripped_strings) for node in sleep_analogies)
+        and all(
+            "These sleep hours are just for this example. They are not measurements from the grove."
+            in " ".join(node.stripped_strings)
+            for node in sleep_analogies
+        ),
+    )
+
+    expected_caption = (
+        "Figure A · Two sleep patterns with the same daily total — teaching example, not grove data. "
+        "Discrete blocks only; no curve is drawn."
+    )
+    check(
+        "both sleep figures retain their semantic title, caption and extended description",
+        all(
+            figure.select_one("svg").get("aria-label") == "Two sleep patterns with the same daily total"
+            and figure.select_one("title").get_text(strip=True) == "Two sleep patterns with the same daily total"
+            and " ".join(figure.select_one("figcaption").stripped_strings) == expected_caption
+            and "one shaded block running from hour 0 to hour 8" in " ".join(figure.select_one(".extended-description").stripped_strings)
+            and "eight separate shaded blocks of one hour each" in " ".join(figure.select_one(".extended-description").stripped_strings)
+            for figure in sleep_figures
+        ),
+    )
+
+    def sleep_geometry(figure: object) -> tuple[object, ...]:
+        svg = figure.select_one("svg")
+        rects = svg.find_all("rect", recursive=False)
+        return (
+            svg.get("viewbox"),
+            len(rects),
+            len([rect for rect in rects if rect.get("fill", "").startswith("url(")]),
+            (rects[1].get("x"), rects[1].get("width")),
+            [(rect.get("x"), rect.get("width")) for rect in rects[3:]],
+            [node.get_text(strip=True) for node in svg.select(".fig-tick")],
+        )
+
+    expected_geometry = (
+        "0 0 640 104",
+        11,
+        9,
+        ("120.0", "160.0"),
+        [(f"{x:.1f}", "20.0") for x in (140, 200, 260, 320, 380, 440, 500, 560)],
+        ["0", "6", "12", "18", "24"],
+    )
+    check(
+        "both sleep figures retain the exact discrete 24-hour block geometry",
+        all(sleep_geometry(figure) == expected_geometry for figure in sleep_figures),
+        [sleep_geometry(figure) for figure in sleep_figures],
+    )
+    check(
+        "the sleep example contains no direct curve or interpolated series",
+        all(
+            not figure.select_one("svg").find_all(["path", "polyline"], recursive=False)
+            and len(figure.select_one("svg").find_all("line", recursive=False)) == 6
+            for figure in sleep_figures
+        ),
+    )
+
+    expected_sleep_fields = {
+        "student": ["t3-total", "t3-why", "t3-grove"],
+        "accessible": ["a3-total", "a3-why", "a3-grove"],
+    }
+    sleep_field_detail = {}
+    for role, expected_ids in expected_sleep_fields.items():
+        page = silent_soup.select_one(f'section[data-role="{role}"][data-page-id="{role}-mission-03"]')
+        prefix = "t3-" if role == "student" else "a3-"
+        fields = page.select(f'[data-persist-id^="{prefix}"][data-response]')
+        sleep_field_detail[role] = [field.get("data-persist-id") for field in fields]
+    check(
+        "Silent Grove Task 3 retains all six ordered blank learner responses",
+        sleep_field_detail == expected_sleep_fields
+        and all(
+            not field.get_text(strip=True)
+            for role in expected_sleep_fields
+            for field in silent_soup.select(
+                f'section[data-role="{role}"][data-page-id="{role}-mission-03"] [data-persist-id^="{"t3-" if role == "student" else "a3-"}"][data-response]'
+            )
+        ),
+        sleep_field_detail,
+    )
+    check(
+        "Silent Grove role page counts remain unchanged",
+        len(silent_soup.select('section[data-role="student"]')) == 6
+        and len(silent_soup.select('section[data-role="answer"]')) == 4
+        and len(silent_soup.select('section[data-role="teacher"]')) == 8
+        and len(silent_soup.select('section[data-role="accessible"]')) == 8,
+    )
+
+    task3_tables = [
+        silent_soup.select_one('section[data-page-id="student-mission-03"] .timeline-table'),
+        silent_soup.select_one('section[data-page-id="accessible-mission-03"] .timeline-table'),
+    ]
+    check(
+        "the teaching figures remain distinct from the exact six-row ship record",
+        all(table is not None and len(table.select("tbody tr")) == 6 for table in task3_tables)
+        and all("Within-cycle signalling record — ship records" in " ".join(table.caption.stripped_strings) for table in task3_tables)
+        and all("40–80 ppb" not in " ".join(figure.stripped_strings) and "0.0 ppb" not in " ".join(figure.stripped_strings) for figure in sleep_figures),
+    )
+
+    silent_css_start = css.index("Timeline/event-log family completion: Silent Grove sleep-pattern example.")
+    silent_css_end = css.index("/* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */", silent_css_start)
+    silent_css = css[silent_css_start:silent_css_end]
+    silent_css_without_comments = re.sub(r"/\*.*?\*/", "", silent_css, flags=re.DOTALL)
+    required_silent_css = (
+        '.worksheet-document[data-case-id="SSS-C2-CASE04"]',
+        'data-analogy="sleep-pattern-v1"',
+        'data-figure-id^="fig-sleep-"',
+        "SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA",
+        "stroke-dasharray: none",
+        "stroke-dasharray: 3 2",
+        "repeating-linear-gradient",
+        "body.grayscale",
+    )
+    check(
+        "the shared component layer declares the complete Silent Grove teaching-example grammar",
+        all(token in silent_css for token in required_silent_css),
+        [token for token in required_silent_css if token not in silent_css],
+    )
+    check(
+        "the Silent Grove teaching-example layer stays inside the extracted shared visual payload",
+        css.index("/* BEGIN SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */") < silent_css_start < silent_css_end,
+    )
+    generated_strings = re.findall(r'content:\s*"([^"]*)"', silent_css_without_comments)
+    check(
+        "the Silent Grove visual layer generates only the approved teaching-example status rail",
+        generated_strings == ["SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA"],
+        generated_strings,
+    )
+    check(
+        "the Silent Grove teaching-example layer remains case- and figure-scoped",
+        silent_css.count('.worksheet-document[data-case-id="SSS-C2-CASE04"]') >= 12
+        and "SSS-C2-CASE0" not in silent_css.replace("SSS-C2-CASE04", "")
+        and "timeline-table" not in silent_css
+        and "data-response" not in silent_css,
+    )
+
+    case04_harness_start = harness.index('if (item.id === "SSS-C2-CASE04")')
+    case04_harness_end = harness.index('if (item.id === "SSS-C2-CASE05")', case04_harness_start)
+    case04_harness = harness[case04_harness_start:case04_harness_end]
+    check(
+        "the browser harness measures Silent Grove sleep-example semantics and fit in both modes",
+        harness.count("sleep teaching example preserves same-total discrete patterns and source boundary") == 1
+        and harness.count("sleep-example pages retain strict fit, page counts and geometry") == 1
+        and 'for (const grayscale of [false, true])' in case04_harness
+        and 'state.pageSize === "816x1056"' in case04_harness
+        and "SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA" in case04_harness
+        and "120.0|160.0" in case04_harness
+        and "140.0/20.0|200.0/20.0" in case04_harness
+        and 'studentExample.responseIds === "t3-total|t3-why|t3-grove"' in case04_harness
+        and 'accessibleExample.responseIds === "a3-total|a3-why|a3-grove"' in case04_harness,
+    )
+
+    silent_source_paths = (
+        "sss/campaign-2/case-04-silent-grove/source/content.html",
+        "sss/campaign-2/case-04-silent-grove/source/presentation.css",
+        "sss/campaign-2/case-04-silent-grove/source/layout-overrides.json",
+        "sss/campaign-2/case-04-silent-grove/source/case-package.json",
+        "sss/campaign-2/case-04-silent-grove/source/task-registry.js",
+    )
+    check(
+        "the plan and handoff record C2C4-VIS01 as the pending Family 3 completion candidate",
+        "C2C4-VIS01` is the Family 3 completion candidate" in plan
+        and "Silent Grove same-total sleep-pattern candidate" in handoff
+        and "44/44 PASS" in handoff
+        and all(path in handoff for path in silent_source_paths)
+        and bool(re.search(
+            r"\| `C2C4-VIS01` .*\| 3 · Timeline/event log \|.*"
+            r"`CANDIDATE · 44/44 TIMELINE STATIC PASS · LOCAL TARGET ASSERTIONS PASS · MAC/CHROME ACCEPTANCE PENDING`",
+            plan,
+        ))
         and "22 of 36 completed" in handoff
         and "14 remaining" in handoff,
     )

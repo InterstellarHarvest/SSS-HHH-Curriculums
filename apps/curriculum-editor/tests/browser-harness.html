@@ -2013,13 +2013,63 @@
           await wait(20);
         }
         if (item.id === "SSS-C2-CASE04") {
+          const sleepExamplePageFit = [];
           for (const grayscale of [false, true]) {
             const rendered = [];
+            const sleepExamples = [];
             for (const role of ["student", "accessible"]) {
               api.setRole(role);
               api.saveState({ grayscale });
               await wait(20);
               const pageId = role === "student" ? "student-mission-03" : "accessible-mission-03";
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const figure = page?.querySelector('.teaching-analogy[data-analogy="sleep-pattern-v1"] .figure[data-figure-id^="fig-sleep-"]');
+              const svg = figure?.querySelector(":scope > svg");
+              const directRects = Array.from(svg?.querySelectorAll(":scope > rect") || []);
+              const sleepRects = directRects.filter(rect => (rect.getAttribute("fill") || "").startsWith("url("));
+              const miaBlock = directRects[1];
+              const samBlocks = directRects.slice(3);
+              const figureRect = figure?.getBoundingClientRect();
+              const visualNodes = [svg, figure?.querySelector("figcaption"), figure?.querySelector(".extended-description")].filter(Boolean);
+              const contained = Boolean(figureRect) && visualNodes.every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= figureRect.left - 1 && rect.right <= figureRect.right + 1
+                  && rect.top >= figureRect.top - 1 && rect.bottom <= figureRect.bottom + 1;
+              });
+              const responseIds = Array.from(page?.querySelectorAll('[data-persist-id^="t3-"][data-response], [data-persist-id^="a3-"][data-response]') || []);
+              const state = {
+                role,
+                pageId,
+                grayscale,
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: role === "student" ? 6 : 8,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                figure: Boolean(figure),
+                figureId: figure?.dataset.figureId || "",
+                rail: figure ? win.getComputedStyle(figure, "::before").content.replaceAll('"', "") : "",
+                title: svg?.querySelector("title")?.textContent.trim() || "",
+                ariaLabel: svg?.getAttribute("aria-label") || "",
+                directRects: directRects.length,
+                sleepRects: sleepRects.length,
+                miaGeometry: miaBlock ? [miaBlock.getAttribute("x"), miaBlock.getAttribute("width")] : [],
+                samGeometry: samBlocks.map(rect => [rect.getAttribute("x"), rect.getAttribute("width")]),
+                miaStroke: miaBlock ? win.getComputedStyle(miaBlock).strokeDasharray : "",
+                samStrokes: samBlocks.map(rect => win.getComputedStyle(rect).strokeDasharray),
+                ticks: Array.from(svg?.querySelectorAll(".fig-tick") || []).map(node => node.textContent.trim()).join("|"),
+                caption: figure?.querySelector("figcaption")?.textContent.trim().replace(/\s+/g, " ") || "",
+                description: figure?.querySelector(".extended-description")?.textContent.trim().replace(/\s+/g, " ") || "",
+                responseIds: responseIds.map(node => node.dataset.persistId).join("|"),
+                blankResponses: responseIds.every(node => node.textContent.trim() === ""),
+                contained,
+                figureFits: Boolean(figure) && figure.scrollWidth <= figure.clientWidth + 1 && figure.scrollHeight <= figure.clientHeight + 1,
+                noCurve: !svg?.querySelector(":scope > path, :scope > polyline")
+              };
+              sleepExamplePageFit.push(state);
+              sleepExamples.push(state);
               const table = workspace.querySelector(`.page[data-page-id="${pageId}"] table.timeline-table`);
               const rows = Array.from(table?.querySelectorAll("tbody tr") || []);
               const patterns = rows.map(row => win.getComputedStyle(row.children[1]).backgroundImage);
@@ -2050,7 +2100,43 @@
               worksheetDoc.dataset.caseId === item.id && rendered.length === 2 && rendered.every(state => state.pass),
               JSON.stringify(rendered)
             );
+            const studentExample = sleepExamples.find(state => state.role === "student");
+            const accessibleExample = sleepExamples.find(state => state.role === "accessible");
+            check(
+              `C2 Case 04 ${grayscale ? "grayscale" : "normal"} sleep teaching example preserves same-total discrete patterns and source boundary`,
+              worksheetDoc.dataset.caseId === item.id
+                && sleepExamples.length === 2
+                && sleepExamples.every(state => state.figure
+                  && state.rail === "SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA"
+                  && state.title === "Two sleep patterns with the same daily total"
+                  && state.ariaLabel === "Two sleep patterns with the same daily total"
+                  && state.directRects === 11
+                  && state.sleepRects === 9
+                  && state.miaGeometry.join("|") === "120.0|160.0"
+                  && state.samGeometry.map(value => value.join("/")).join("|") === "140.0/20.0|200.0/20.0|260.0/20.0|320.0/20.0|380.0/20.0|440.0/20.0|500.0/20.0|560.0/20.0"
+                  && (state.miaStroke === "none" || state.miaStroke === "")
+                  && state.samStrokes.every(value => value !== "none" && value !== "")
+                  && state.ticks === "0|6|12|18|24"
+                  && state.caption.includes("teaching example, not grove data")
+                  && state.caption.includes("Discrete blocks only; no curve is drawn")
+                  && state.description.includes("one shaded block running from hour 0 to hour 8")
+                  && state.description.includes("eight separate shaded blocks of one hour each")
+                  && state.contained && state.figureFits && state.noCurve)
+                && studentExample.responseIds === "t3-total|t3-why|t3-grove"
+                && accessibleExample.responseIds === "a3-total|a3-why|a3-grove"
+                && sleepExamples.every(state => state.blankResponses),
+              JSON.stringify(sleepExamples)
+            );
           }
+          check(
+            "C2 Case 04 sleep-example pages retain strict fit, page counts and geometry in normal and grayscale",
+            sleepExamplePageFit.length === 4
+              && sleepExamplePageFit.every(state => state.pageSize === "816x1056"
+                && state.pageCount === state.expectedPageCount
+                && !state.overflow
+                && state.scrollHeight <= state.clientHeight),
+            JSON.stringify(sleepExamplePageFit)
+          );
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

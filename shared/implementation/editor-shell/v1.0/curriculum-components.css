@@ -3112,6 +3112,152 @@ body.grayscale .worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip >
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Timeline/event-log family completion: Silent Grove sleep-pattern example.
+ *
+ * The released Student and Accessible figures already contain the exact
+ * 24-hour teaching example, semantic title, caption, extended description and
+ * discrete SVG blocks. This case-scoped layer strengthens the same-total /
+ * different-pattern comparison and its teaching-example status without
+ * changing any value, response, ship record or scientific conclusion.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] {
+  --sleep-example-line: var(--ink, #18212b);
+  --sleep-example-rule: var(--rule, #8c9aa8);
+  --sleep-example-paper: var(--paper, #fff);
+  --sleep-example-panel: var(--panel-light, #f7f9fa);
+  position: relative;
+  isolation: isolate;
+  margin-block: 4px;
+  padding: 5px;
+  border: 1.5pt solid var(--sleep-example-line);
+  border-left-width: 4px;
+  border-radius: 2px;
+  background: var(--sleep-example-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"]::before {
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  right: 5px;
+  display: block;
+  margin: 0;
+  padding: 3px 5px;
+  border: 1pt solid var(--sleep-example-line);
+  border-right-width: 4px;
+  content: "SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA";
+  color: var(--sleep-example-line);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .05) 8px 9px),
+    var(--sleep-example-panel);
+  font: 800 5.8pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] > svg {
+  padding: 3px 4px 1px;
+  border: .75pt solid var(--sleep-example-rule);
+  border-left: 3px solid var(--sleep-example-line);
+  background: var(--sleep-example-paper);
+  box-sizing: border-box;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] > svg .fig-axis {
+  fill: var(--sleep-example-line);
+  font-family: Inter, Arial, sans-serif;
+  font-weight: 800;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] > svg .fig-tick {
+  fill: var(--sleep-example-line);
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] > svg > rect:is(:nth-of-type(1), :nth-of-type(3)) {
+  fill: var(--sleep-example-panel);
+  stroke: var(--sleep-example-line);
+  stroke-width: 1.25;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] > svg > rect:nth-of-type(2) {
+  stroke: var(--sleep-example-line);
+  stroke-width: 2;
+  stroke-dasharray: none;
+  shape-rendering: crispEdges;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] > svg > rect:nth-of-type(n+4) {
+  stroke: var(--sleep-example-line);
+  stroke-width: 2;
+  stroke-dasharray: 3 2;
+  shape-rendering: crispEdges;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] figcaption {
+  margin-top: 4px;
+  padding: 3px 5px;
+  border-top: 1pt solid var(--sleep-example-line);
+  background: var(--sleep-example-panel);
+  font-weight: 700;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] .extended-description {
+  margin-top: 3px;
+  padding: 1px 5px;
+  border-left: 3px double var(--sleep-example-line);
+  background: var(--sleep-example-paper);
+}
+
+body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"],
+body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"]::before,
+body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
+  section:is([data-page-id="student-mission-03"], [data-page-id="accessible-mission-03"])
+  .teaching-analogy[data-analogy="sleep-pattern-v1"]
+  .figure[data-figure-id^="fig-sleep-"] :is(figcaption, .extended-description) {
+  color: var(--ink, #18212b);
+  border-color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
