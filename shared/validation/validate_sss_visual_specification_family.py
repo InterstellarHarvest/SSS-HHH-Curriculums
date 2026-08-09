@@ -223,33 +223,43 @@ def main() -> int:
     )
 
     check(
-        "the production matrix records C1C5-VIS03 as the unaccepted 35-check candidate",
+        "the production matrix accepts C1C5-VIS03 as the 35-check Family 6 finding",
         bool(re.search(
             r"\| `C1C5-VIS03` .*\| 6 · Specification/verification \|.*"
-            r"`IMPLEMENTED-CANDIDATE · 35/35 SPECIFICATION STATIC PASS · 2320/2351 LINUX BROWSER "
-            r"· 3/3 CANDIDATE ASSERTIONS · 0 JS ERRORS · STRICT FIT 936/936 · EXTERNAL ACCEPTANCE PENDING`",
+            r"`VERIFIED-FAMILY · 35/35 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 22ab529 ACCEPTED`",
             plan,
-        )),
+        ))
+        and "accepted first standalone Family 6 specification/verification finding" in plan
+        and "`VERIFIED-FAMILY`. Family 6 now has two of four assignments verified" in plan,
     )
     check(
-        "the plan keeps formal inventory at 26 of 36 with 10 remaining",
-        "the formal inventory remains 26/36 completed with 10 remaining" in plan
-        and "Accepted progress after the Hayes engineering-control-loop closeout is **26 of 36 completed**" in plan,
+        "the plan advances formal inventory to 27 of 36 with 9 remaining without double-counting the hybrid",
+        "Accepted progress after the Europa specification/verification closeout is **27 of 36 completed**" in plan
+        and "**9 of 36 remaining**" in plan
+        and "At the preceding Hayes engineering-control-loop closeout, accepted progress was 26 of 36 completed" in plan
+        and "hybrid `C2C3-VIS03`, already counted once" in plan,
     )
     check(
-        "the handoff binds prerequisite scope hashes and canonical browser evidence",
-        "Unaccepted Family 6 candidate — Europa crop-protection specification" in handoff
+        "the handoff records the accepted differential gate and preserved scope",
+        "Accepted Family 6 finding — Europa crop-protection specification" in handoff
+        and "22ab529c388ee4f33be97ce3150fc5b5c49cba0b" in handoff
         and "3b19fcbcf7cabec08aadf303b41eb8168604c931" in handoff
         and all(expected_hash in handoff for expected_hash in FROZEN_HASHES.values())
-        and "**2320/2351**" in handoff
-        and "**2351/2351 PASS**" in handoff,
+        and "2347/2347 PASS" in handoff
+        and handoff.count("2350/2350 PASS") >= 2
+        and "candidate delta is exactly +3" in handoff
+        and "**2320/2351**" in handoff,
     )
     check(
-        "the handoff requires a candidate-specific stop and creates no acceptance",
-        "Differential evidence does not itself authorize acceptance" in handoff
-        and "does not establish a general platform policy" in handoff
-        and "does not advance the 26/36 inventory" in handoff
-        and "Do not mark `C1C5-VIS03` `VERIFIED-FAMILY`" in handoff,
+        "the handoff records the Family 6 register and accepted inventory without creating platform policy",
+        "does not establish a general platform policy" in handoff
+        and "| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |" in handoff
+        and "| `C1C5-VIS03` | `22ab529` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 6 has two of four assignments verified" in handoff
+        and "27 of 36 completed" in handoff
+        and "9 remaining" in handoff
+        and "Do not mark any additional finding accepted" in handoff,
     )
 
     passed = sum(1 for _, ok, _ in checks if ok)

@@ -4,11 +4,13 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Unaccepted Family 6 candidate — Europa crop-protection specification
+## Accepted Family 6 finding — Europa crop-protection specification
 
-The successor to accepted closeout `3b19fcbcf7cabec08aadf303b41eb8168604c931` implements
-`C1C5-VIS03` as the first standalone Family 6 specification/verification candidate. It is not
-accepted, does not advance the 26/36 inventory and does not complete Family 6.
+Candidate `22ab529c388ee4f33be97ce3150fc5b5c49cba0b` advances `C1C5-VIS03` to
+`VERIFIED-FAMILY`, the first standalone accepted Family 6 specification/verification finding. Its
+accepted prerequisite is `3b19fcbcf7cabec08aadf303b41eb8168604c931`. Family 6 now has two of
+four assignments verified because hybrid `C2C3-VIS03` was accepted previously; that hybrid remains
+one unique completed finding and is not counted twice in the programme inventory.
 
 The frozen final-page structures remain semantic and source-controlled:
 
@@ -34,7 +36,7 @@ The existing final justification/test field is labeled `MONITORING GATE`. The An
 parallel status `ACCEPTED RESPONSE PATH · ACTION → DESIGN → VERIFY`. These labels add no learner
 action and make no proposal, threshold or completed-result claim.
 
-No Case 05 source file changes. The candidate preserves these SHA-256 identities:
+No Case 05 source file changes. The accepted implementation preserves these SHA-256 identities:
 
 - `content.html` — `8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d`
 - `presentation.css` — `5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8`
@@ -42,21 +44,31 @@ No Case 05 source file changes. The candidate preserves these SHA-256 identities
 - `case-package.json` — `b1477d499fcb1bfb026f606bc0c5c8d9833f967950daba45dff2c9cdd0a9a200`
 - `task-registry.js` — `402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc`
 
-The candidate scope is exactly the shared component CSS, browser harness, new focused
+The accepted candidate scope is exactly the shared component CSS, browser harness, focused
 specification-family validator, production plan and this handoff. It changes no worksheet wording,
 case presentation, layout override, package metadata, task registry, response text, page count,
 persistence identity, Teacher content, source hash, release/history record or accepted-family
 implementation.
 
-Linux Chromium 149 registers the new canonical total of 2351 assertions. The finished run reports
-**2320/2351**, exactly the 31 established platform/font/screenshot-smoke exceptions, with all three
-new Case 05 assertions passing and zero application JavaScript errors. The candidate adds exactly:
+The external Mac/Chrome gate passed under a candidate-specific differential acceptance. On the
+same Mac, prerequisite `3b19fcb…` passed **2347/2347 PASS** with zero application JavaScript
+errors. Candidate Run 1 passed **2350/2350 PASS** with zero application JavaScript errors, and
+Candidate Run 2 passed **2350/2350 PASS** with zero application JavaScript errors. The candidate
+delta is exactly +3, all three new Case 05 assertions registered and passed, no inherited assertion
+was removed, and both candidate runs had identical assertion-name sets. This does not establish a
+general platform policy or change the canonical 2351-assertion registration. Linux Chromium 149
+reports **2320/2351** because of the 31 established platform/font/screenshot-smoke exceptions,
+while all three new Case 05 assertions pass and the JavaScript-error assertion passes. The accepted
+candidate adds exactly:
 
 1. six-state page fit, page counts and fixed geometry;
 2. normal requirements, fields, Answer Key parity, action path and monitoring gate;
 3. grayscale requirements, fields, Answer Key parity, action path and monitoring gate.
 
-The focused specification/verification validator is **35/35 PASS**.
+The focused specification/verification validator is **35/35 PASS**; control remains **30/30
+PASS**; timeline remains **44/44 PASS**; mechanism remains **103/103 PASS**; evidence convergence
+remains **60/60 PASS**; telemetry remains **36/36 PASS**; the Case 05 layout-override validator
+passes; and `git diff --check` is clean.
 
 Independent normal and grayscale inspection of Student page 4, Answer Key page 4 and Accessible
 page 7 confirmed fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936` fit and
@@ -78,19 +90,11 @@ safe; and the packet does not establish that one design is already successful. T
 still prohibits inventing a numerical safe level and states that the game contains no in-game
 `apply the fix` step.
 
-External validation must run the complete Mac/Google Chrome harness twice. Canonical expectation
-is **2351/2351 PASS** with zero application JavaScript errors. If that Mac reproduces the inherited
-one-assertion registration shortfall, run prerequisite `3b19fcb…` in a throwaway worktree on the
-same machine. Require candidate delta exactly +3, all three named Case 05 assertions passing and
-zero JavaScript errors, then stop without pushing for separate candidate-specific disposition.
-Differential evidence does not itself authorize acceptance, does not change canonical 2351 and
-does not establish a general platform policy.
-
-Run the focused specification validator, all five established family validators and
-`validate_layout_overrides.py --case SSS-C1-CASE05`. Inspect the same six target views. If every
-gate passes at the canonical total, push only by ordinary fast-forward. Otherwise stop without
-pushing. Do not mark `C1C5-VIS03` `VERIFIED-FAMILY`, advance the inventory, merge to `main` or begin
-another finding.
+`C1C5-VIS03` is accepted without changing the canonical project registration or creating a general
+environment exception. The formal inventory is now **27 of 36 completed**, with **9 remaining**.
+Family 6 has two of four assignments verified: accepted hybrid `C2C3-VIS03` and accepted standalone
+`C1C5-VIS03`. Do not mark any additional finding accepted or begin another finding without a
+separate candidate-production instruction.
 
 ## Accepted Family 5 completion — Hayes independent reactor control loop
 
@@ -841,17 +845,29 @@ Family 4 is complete with both findings verified. The overall visual-modernizati
 Family 5 is complete with its sole finding verified. The overall visual-modernization inventory is
 26 of 36 completed and 10 remaining. The visual branch remains isolated from `main`.
 
-## C1C4-VIS03 closeout integration prompt
+## Family 6 accepted register
+
+| Finding | Accepted implementation | Recorded state | Assignment note |
+|---|---|---|---|
+| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` | hybrid Family 2 + 6 finding; counted once in the unique inventory |
+| `C1C5-VIS03` | `22ab529` | `VERIFIED-FAMILY` | first standalone Family 6 finding |
+
+Family 6 has two of four assignments verified. Accepting `C1C5-VIS03` advances the unique
+visual-modernization inventory to 27 of 36 completed and 9 remaining; the previously accepted
+hybrid `C2C3-VIS03` is not counted again. The visual branch remains isolated from `main`.
+
+## C1C5-VIS03 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`4b0ef8bafd8f633b49e248a511bda13e554887e7`. Confirm the pushed remote remains
-`4b0ef8bafd8f633b49e248a511bda13e554887e7`, verify the checksum and bundle prerequisite, fetch it,
+`22ab529c388ee4f33be97ce3150fc5b5c49cba0b`. Confirm the pushed remote remains
+`22ab529c388ee4f33be97ce3150fc5b5c49cba0b`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 30-check engineering-control-loop validator and `git diff --check`. Confirm the
+files. Run the focused 35-check specification/verification validator and `git diff --check`. Confirm the
 closeout changes only this handoff, the production plan and the focused validator; records
-`C1C4-VIS03` as `VERIFIED-FAMILY`; completes Family 5 with its sole finding verified; records the
+`C1C5-VIS03` as `VERIFIED-FAMILY`; records Family 6 at two of four verified assignments without
+double-counting hybrid `C2C3-VIS03`; records the
 candidate-specific differential Mac/Chrome acceptance without changing the canonical project
-total; and advances the inventory to 26/36 completed and 10 remaining. Because the successor
+total; and advances the inventory to 27/36 completed and 9 remaining. Because the successor
 changes only documentation and the focused validator, do not rerun the Mac/Chrome harness or
 manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
 tracking and live remote SHAs. Do not mark any additional finding accepted.
