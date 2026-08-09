@@ -2541,6 +2541,262 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/pathway family expansion: The First Garden.
+ *
+ * The frozen Task 5 organizers already preserve the two observed endpoints,
+ * three learner response identities, exact phrase banks and separate model-
+ * limit responses. This case-scoped layer makes the candidate status persist
+ * across the entire path, gives every stage a grayscale-safe state and syncs
+ * the completed Answer Key without changing worksheet text, package sources,
+ * page counts or the scientific status of the explanation.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE06"] {
+  --garden-line: var(--ink, #18212b);
+  --garden-panel: var(--paper, #fff);
+  --garden-history-pattern:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+  --garden-partner-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px);
+  --garden-root-pattern:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+  --garden-acquisition-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+  --garden-survey-pattern:
+    repeating-linear-gradient(0deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] {
+  position: relative;
+  isolation: isolate;
+  margin-top: .27in;
+  box-shadow: inset 4px 0 0 var(--garden-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"]::before,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block::before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -.22in;
+  display: grid;
+  place-items: center;
+  min-height: .18in;
+  border: 1px dashed var(--garden-line);
+  content: "CANDIDATE · NOT ESTABLISHED";
+  color: var(--garden-line);
+  background: var(--garden-partner-pattern), var(--garden-panel);
+  font: 800 6.2pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--garden-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background: var(--garden-history-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page:not([data-role="accessible"])
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage {
+  padding-top: .29in;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page:not([data-role="accessible"])
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage > span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-width: calc(100% - .3in);
+  font: 700 4.65pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: 0;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(1)::after { content: "CONSTRUCTION HISTORY"; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(3)::after { content: "POSSIBLE PARTNER LOSS"; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(5)::after { content: "FEWER PARTNERSHIPS"; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(7)::after { content: "LESS ASSISTED ACQUISITION"; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(9)::after { content: "SURVEYED PATTERN"; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(3) {
+  border-top-style: dashed;
+  background: var(--garden-partner-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(5) {
+  border-top-style: dotted;
+  background: var(--garden-root-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(7) {
+  border-top-style: double;
+  background: var(--garden-acquisition-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] .pathway-model > .path-stage:nth-child(9) {
+  border-top-style: solid;
+  background: var(--garden-survey-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-arrow {
+  display: grid;
+  place-items: center;
+  min-width: 15px;
+  min-height: 15px;
+  border: .75pt solid var(--garden-line);
+  border-radius: 50%;
+  background: var(--garden-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] {
+  grid-template-columns: 1fr;
+  gap: 3px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage {
+  display: grid;
+  grid-template-columns: .34in minmax(0, 1fr);
+  gap: 3px 7px;
+  align-items: center;
+  min-height: .5in;
+  padding-right: 1.08in;
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+  font-size: 8.9pt;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage > span {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage > :not(span) {
+  grid-column: 2;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(3) { border-left-style: dashed; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(5) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(7) { border-left-style: double; }
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(9) { border-left-style: solid; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-arrow {
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  width: 15px;
+  height: 15px;
+  margin-left: .12in;
+  color: transparent;
+  font-size: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-arrow::before {
+  content: "↓";
+  color: var(--garden-line);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block {
+  position: relative;
+  margin-top: .27in;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block > p {
+  padding: 3px 4px;
+  border-left: 4px solid var(--garden-line);
+  background: var(--garden-history-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block > p:nth-child(1) {
+  border-left-style: dashed;
+  background: var(--garden-partner-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block > p:nth-child(2) {
+  border-left-style: dotted;
+  background: var(--garden-root-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block > p:nth-child(3) {
+  border-left-style: double;
+  background: var(--garden-acquisition-pattern), var(--garden-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  :is([data-persist-id="t5-limit"], [data-persist-id="a5-limit"]) {
+  border-left: 4px dashed var(--garden-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  :is(.page[data-page-id="student-mission-05"], .page[data-page-id="accessible-mission-05"])
+  .response-label {
+  padding-left: 5px;
+  border-left: 4px dashed var(--garden-line);
+  background: var(--garden-partner-pattern), var(--garden-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE06"]
+  .pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"] .path-stage,
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-04"]
+  .task-heading[data-task-id="5"] + .answer-block > p,
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE06"]
+  :is(.page[data-page-id="student-mission-05"], .page[data-page-id="accessible-mission-05"])
+  .response-label {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

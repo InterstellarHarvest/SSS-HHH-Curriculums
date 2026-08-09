@@ -60,6 +60,12 @@ TOO_CLEAN_CONTENT = TOO_CLEAN_SOURCE / "content.html"
 TOO_CLEAN_PRESENTATION = TOO_CLEAN_SOURCE / "presentation.css"
 TOO_CLEAN_REGISTRY = TOO_CLEAN_SOURCE / "task-registry.js"
 TOO_CLEAN_LAYOUT = TOO_CLEAN_SOURCE / "layout-overrides.json"
+FIRST_GARDEN_SOURCE = ROOT / "sss/campaign-2/case-06-first-garden/source"
+FIRST_GARDEN_PACKAGE = FIRST_GARDEN_SOURCE / "case-package.json"
+FIRST_GARDEN_CONTENT = FIRST_GARDEN_SOURCE / "content.html"
+FIRST_GARDEN_PRESENTATION = FIRST_GARDEN_SOURCE / "presentation.css"
+FIRST_GARDEN_REGISTRY = FIRST_GARDEN_SOURCE / "task-registry.js"
+FIRST_GARDEN_LAYOUT = FIRST_GARDEN_SOURCE / "layout-overrides.json"
 
 
 def sha256(path: Path) -> str:
@@ -97,6 +103,8 @@ def main() -> int:
     wrong_color_content = BeautifulSoup(WRONG_COLOR_CONTENT.read_text(encoding="utf-8"), "html.parser")
     too_clean_package = json.loads(TOO_CLEAN_PACKAGE.read_text(encoding="utf-8"))
     too_clean_content = BeautifulSoup(TOO_CLEAN_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    first_garden_package = json.loads(FIRST_GARDEN_PACKAGE.read_text(encoding="utf-8"))
+    first_garden_content = BeautifulSoup(FIRST_GARDEN_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
@@ -162,7 +170,7 @@ def main() -> int:
         and "19 of 36 completed" in plan
         and "17 of 36 remaining" in plan
         and bool(re.search(r"\| `C2C5-VIS03` .*`VERIFIED-FAMILY", plan))
-        and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan))
+        and bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
     check(
@@ -181,7 +189,7 @@ def main() -> int:
         and "19 of 36 completed" in handoff
         and "17 remaining" in handoff
         and bool(re.search(r"\| `C2C5-VIS03` .*`VERIFIED-FAMILY", plan))
-        and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
+        and bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan)),
     )
     check(
         "the production plan and handoff accept Too Clean a Room and isolate the final Family 2 finding",
@@ -199,7 +207,7 @@ def main() -> int:
         and "19 of 36 completed" in handoff
         and "17 remaining" in handoff
         and "15 × 15 px to 11 × 11 px" in handoff
-        and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
+        and bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan)),
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -343,6 +351,21 @@ def main() -> int:
             "layout": [too_clean_package["sourceHashes"]["layoutOverrides"], sha256(TOO_CLEAN_LAYOUT)],
         },
     )
+    check(
+        "The First Garden retains the shared component layer and byte-identical worksheet sources",
+        first_garden_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and first_garden_package["sourceHashes"]["content"] == sha256(FIRST_GARDEN_CONTENT)
+        and first_garden_package["sourceHashes"]["presentation"] == sha256(FIRST_GARDEN_PRESENTATION)
+        and first_garden_package["sourceHashes"]["taskRegistry"] == sha256(FIRST_GARDEN_REGISTRY)
+        and first_garden_package["sourceHashes"]["layoutOverrides"] == sha256(FIRST_GARDEN_LAYOUT),
+        {
+            "presentation": first_garden_package.get("presentation"),
+            "content": [first_garden_package["sourceHashes"]["content"], sha256(FIRST_GARDEN_CONTENT)],
+            "stylesheet": [first_garden_package["sourceHashes"]["presentation"], sha256(FIRST_GARDEN_PRESENTATION)],
+            "registry": [first_garden_package["sourceHashes"]["taskRegistry"], sha256(FIRST_GARDEN_REGISTRY)],
+            "layout": [first_garden_package["sourceHashes"]["layoutOverrides"], sha256(FIRST_GARDEN_LAYOUT)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -398,6 +421,10 @@ def main() -> int:
         'content: "PATHWAY QUIESCENT"',
         'content: "06"',
         '[data-persist-id="t7-criterion-1"]',
+        '.worksheet-document[data-case-id="SSS-C2-CASE06"]',
+        'content: "CANDIDATE · NOT ESTABLISHED"',
+        'content: "POSSIBLE PARTNER LOSS"',
+        '[data-persist-id="t5-limit"]',
         ".worksheet-document.grayscale",
     )
     check(
@@ -419,7 +446,11 @@ def main() -> int:
     the_gift_css = extracted[extracted.index("Mechanism/pathway family expansion: The Gift") : extracted.index("Mechanism/pathway family expansion: The Missing Dance")]
     missing_dance_css = extracted[extracted.index("Mechanism/pathway family expansion: The Missing Dance") : extracted.index("Mechanism/specification family expansion: The Wrong Color of Light")]
     wrong_color_css = extracted[extracted.index("Mechanism/specification family expansion: The Wrong Color of Light") : extracted.index("Mechanism/trial-workflow family expansion: Too Clean a Room")]
-    too_clean_css = extracted[extracted.index("Mechanism/trial-workflow family expansion: Too Clean a Room") :]
+    too_clean_css = extracted[
+        extracted.index("Mechanism/trial-workflow family expansion: Too Clean a Room") :
+        extracted.index("Mechanism/pathway family expansion: The First Garden")
+    ]
+    first_garden_css = extracted[extracted.index("Mechanism/pathway family expansion: The First Garden") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -566,6 +597,28 @@ def main() -> int:
         and 'content: "↓"' in too_clean_css
         and "repeating-linear-gradient" in too_clean_css
         and "filter:" not in too_clean_css,
+    )
+    check(
+        "The First Garden exposes a persistent candidate rail and grayscale-safe pathway states",
+        all(f'content: "{label}"' in first_garden_css for label in (
+            "CANDIDATE · NOT ESTABLISHED", "CONSTRUCTION HISTORY", "POSSIBLE PARTNER LOSS",
+            "FEWER PARTNERSHIPS", "LESS ASSISTED ACQUISITION", "SURVEYED PATTERN",
+        ))
+        and all(token in first_garden_css for token in (
+            "--garden-history-pattern", "--garden-partner-pattern", "--garden-root-pattern",
+            "--garden-acquisition-pattern", "--garden-survey-pattern",
+            '[data-persist-id="t5-limit"]', '[data-persist-id="a5-limit"]',
+        ))
+        and "border-top-style: dashed" in first_garden_css
+        and "border-top-style: dotted" in first_garden_css
+        and "border-top-style: double" in first_garden_css
+        and "border-left-style: dashed" in first_garden_css
+        and "border-left-style: dotted" in first_garden_css
+        and "border-left-style: double" in first_garden_css
+        and "grid-template-columns: 1fr" in first_garden_css
+        and 'content: "↓"' in first_garden_css
+        and "repeating-linear-gradient" in first_garden_css
+        and "filter:" not in first_garden_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -1596,6 +1649,140 @@ def main() -> int:
         and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in too_clean_visual_block
         and 'state.pageSize === "816x1056"' in too_clean_visual_block
         and 'for (const grayscale of [false, true])' in too_clean_visual_block,
+    )
+
+    first_garden_student_page = first_garden_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-05"]'
+    )
+    first_garden_student_model = first_garden_student_page.select_one(
+        '.pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"]'
+    ) if first_garden_student_page else None
+    first_garden_student_stages = first_garden_student_model.select(":scope > .path-stage") if first_garden_student_model else []
+    first_garden_student_fields = [
+        stage.select_one(".stage-response") for stage in first_garden_student_stages
+        if stage.select_one(".stage-response")
+    ]
+    first_garden_student_bank = [
+        "compatible mycorrhizal fungi may not have re-established in the beds built from clean substrate",
+        "fewer roots in those beds form the partnerships whose hyphae extend out into the surrounding soil",
+        "less of the phosphorus, nitrogen and water acquisition those partnerships contribute happens in that ground",
+    ]
+    check(
+        "The First Garden Student Task 5 preserves five stages, three blanks and the exact candidate bank",
+        [stage.get("data-process-stage") for stage in first_garden_student_stages] == ["1", "2", "3", "4", "5"]
+        and [arrow.get_text(strip=True) for arrow in first_garden_student_model.select(":scope > .path-arrow")] == ["→"] * 4
+        and [field.get("data-persist-id") for field in first_garden_student_fields] == ["t5-m2", "t5-m3", "t5-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in first_garden_student_fields)
+        and [" ".join(item.stripped_strings) for item in first_garden_student_page.select(".word-bank-item")]
+        == first_garden_student_bank,
+    )
+
+    first_garden_accessible_page = first_garden_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-05"]'
+    )
+    first_garden_accessible_model = first_garden_accessible_page.select_one(
+        '.pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"]'
+    ) if first_garden_accessible_page else None
+    first_garden_accessible_stages = first_garden_accessible_model.select(":scope > .path-stage") if first_garden_accessible_model else []
+    first_garden_accessible_fields = [
+        stage.select_one(".stage-response") for stage in first_garden_accessible_stages
+        if stage.select_one(".stage-response")
+    ]
+    first_garden_accessible_bank = [
+        "compatible fungi may not have come back in the new beds",
+        "fewer roots in those beds form partnerships with fungi",
+        "less of the nutrient and water pickup those partnerships help with happens there",
+    ]
+    check(
+        "The First Garden Accessible Task 5 preserves the same path, three blanks and exact shorter bank",
+        [stage.get("data-process-stage") for stage in first_garden_accessible_stages] == ["1", "2", "3", "4", "5"]
+        and [arrow.get_text(strip=True) for arrow in first_garden_accessible_model.select(":scope > .path-arrow")] == ["→"] * 4
+        and [field.get("data-persist-id") for field in first_garden_accessible_fields] == ["a5-m2", "a5-m3", "a5-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in first_garden_accessible_fields)
+        and [" ".join(item.stripped_strings) for item in first_garden_accessible_page.select(".word-bank-item")]
+        == first_garden_accessible_bank,
+    )
+
+    first_garden_answer_page = first_garden_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-04"]'
+    )
+    first_garden_answer_heading = first_garden_answer_page.select_one(
+        'h2[data-shell-task-heading="5"]'
+    ) if first_garden_answer_page else None
+    first_garden_answer_model = first_garden_answer_heading.find_next_sibling(
+        "div", class_="answer-block"
+    ) if first_garden_answer_heading else None
+    first_garden_answer_limit = first_garden_answer_model.find_next_sibling(
+        "div", class_="answer-block"
+    ) if first_garden_answer_model else None
+    expected_first_garden_answer = [
+        "Stage 2 — compatible mycorrhizal fungi may not have re-established in the beds built from clean substrate. Accessible wording: compatible fungi may not have come back in the new beds.",
+        "Stage 3 — fewer roots in those beds form the partnerships whose hyphae extend out into the surrounding soil. Accessible wording: fewer roots in those beds form partnerships with fungi.",
+        "Stage 4 — less of the phosphorus, nitrogen and water acquisition those partnerships contribute happens in that ground. Accessible wording: less of the nutrient and water pickup those partnerships help with happens there.",
+    ]
+    check(
+        "The First Garden Answer Key retains the exact three-stage completion and candidate boundary",
+        [" ".join(paragraph.stripped_strings) for paragraph in first_garden_answer_model.select(":scope > p")]
+        == expected_first_garden_answer
+        and "The model orders a candidate explanation. It does not demonstrate it."
+        in first_garden_answer_limit.get_text(" ", strip=True),
+    )
+
+    first_garden_limit_fields = [
+        first_garden_student_page.select_one('[data-persist-id="t5-limit"]'),
+        first_garden_accessible_page.select_one('[data-persist-id="a5-limit"]'),
+    ]
+    check(
+        "The First Garden retains both blank model-limit responses and all accepted page counts",
+        [field.get("data-persist-id") for field in first_garden_limit_fields] == ["t5-limit", "a5-limit"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in first_garden_limit_fields)
+        and len(first_garden_content.select('section[data-role="student"]')) == 6
+        and len(first_garden_content.select('section[data-role="answer"]')) == 5
+        and len(first_garden_content.select('section[data-role="accessible"]')) == 7,
+    )
+
+    first_garden_source_text = FIRST_GARDEN_CONTENT.read_text(encoding="utf-8")
+    check(
+        "The First Garden retains candidate, survey and ecological-safety boundaries",
+        all(token in first_garden_source_text for token in (
+            "best-supported candidate cause", "trace levels only", "approximately four to six metres",
+            "not a map of the garden", "not drawn to scale", "cannot identify an organism",
+            "How much a plant is helped depends on the plant, the fungus and the soil",
+            "never concludes that adding fungi would repair the garden",
+            "does not establish that adding fungi would repair the garden",
+            "organism identification", "screened for pathogens and for invasion risk",
+            "Replicated treated plots are run alongside untreated control plots",
+        ))
+        and all(token not in first_garden_css.lower() for token in (
+            "wood wide web", "mother tree", "guaranteed cure", "inoculant product", "specific species",
+        )),
+    )
+
+    first_garden_visual_start = harness.index('if (item.id === "SSS-C2-CASE06")')
+    first_garden_visual_end = harness.index('if (item.id === "SSS-C1-CASE03")', first_garden_visual_start)
+    first_garden_visual_block = harness[first_garden_visual_start:first_garden_visual_end]
+    check(
+        "the browser harness measures The First Garden candidate rail, fields, key, limits and strict fit in both modes",
+        harness.count("candidate-pathway pages retain strict fit, page counts and geometry") == 1
+        and harness.count("candidate status, pathway and model limit preserve every frozen response") == 1
+        and "CANDIDATE · NOT ESTABLISHED" in first_garden_visual_block
+        and "CONSTRUCTION HISTORY|POSSIBLE PARTNER LOSS|FEWER PARTNERSHIPS|LESS ASSISTED ACQUISITION|SURVEYED PATTERN" in first_garden_visual_block
+        and "t5-m2|t5-m3|t5-m4" in first_garden_visual_block
+        and "a5-m2|a5-m3|a5-m4" in first_garden_visual_block
+        and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in first_garden_visual_block
+        and 'state.pageSize === "816x1056"' in first_garden_visual_block
+        and 'for (const grayscale of [false, true])' in first_garden_visual_block,
+    )
+
+    check(
+        "the production plan and handoff stage The First Garden as the final Family 2 candidate",
+        bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan))
+        and "First Garden candidate-pathway handoff" in handoff
+        and "2330/2330" in handoff
+        and "103/103" in handoff
+        and "19 of 36 completed" in handoff
+        and "17 remaining" in handoff
+        and "CANDIDATE · NOT ESTABLISHED" in handoff,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]

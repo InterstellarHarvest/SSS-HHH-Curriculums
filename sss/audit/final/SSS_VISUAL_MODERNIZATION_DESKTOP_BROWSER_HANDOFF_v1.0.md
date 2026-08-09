@@ -4,6 +4,53 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## First Garden candidate-pathway handoff
+
+`C2C6-VIS02` is the final Family 2 candidate. It is implemented from clean synchronized closeout
+`2d02f252175a70d52fccae6fde7ae956bd5fdf3e` and remains `IMPLEMENTED-CANDIDATE` until the required
+Mac/Chrome evidence is returned. Do not promote it from local or static evidence alone. The formal
+inventory remains **19 of 36 completed**, with **17 remaining**.
+
+The frozen Task 5 organizers on Student page 5 and Accessible page 5 retain the two observed
+endpoints, three blank learner stages, exact edition-specific phrase banks and separate blank model-
+limit response. The new case-scoped presentation adds one persistent
+`CANDIDATE · NOT ESTABLISHED` rail and the ordered states `CONSTRUCTION HISTORY` →
+`POSSIBLE PARTNER LOSS` → `FEWER PARTNERSHIPS` → `LESS ASSISTED ACQUISITION` →
+`SURVEYED PATTERN`. Student remains horizontal. Accessible becomes one true in-flow vertical track
+with four circled down-arrow connectors. The three Answer Key completion paragraphs retain their
+verbatim text and receive the matching dashed, dotted and double state treatment beneath the same
+candidate rail.
+
+No worksheet `content.html`, case `presentation.css`, `layout-overrides.json`, package metadata,
+task registry, page count, response identity, source hash or release/history record changes. The
+candidate changes only the shared case-scoped component layer, browser harness, focused mechanism
+validator, production plan and this handoff. The focused acceptance target is **103/103**. The
+complete browser target is **2330/2330** twice with zero application JavaScript errors.
+
+External inspection must cover Student Task 5 page 5, Accessible Task 5 page 5 and Answer Key Task
+5 page 4 in normal and grayscale. Every page must retain fixed 816 × 1056 geometry, accepted page
+counts Student 6 / Answer Key 5 / Accessible 7, no `has-overflow` state and strict
+`scrollHeight <= clientHeight` within the 936 px printable content box. Confirm all five stages,
+four connectors, five labels, the persistent candidate rail, border order
+`solid | dashed | dotted | double | solid`, patterns and response areas are fully visible without
+clipping, collision or paint-order loss. Student connectors must remain `→ | → | → | →`;
+Accessible must show `↓ | ↓ | ↓ | ↓` in one vertical track with all four connectors topmost.
+
+All six learner stage fields must remain genuinely blank after hidden resize UI is excluded:
+`t5-m2 | t5-m3 | t5-m4` and `a5-m2 | a5-m3 | a5-m4`. Both `t5-limit` and `a5-limit` must remain
+blank with unchanged source-controlled response geometry. The Student and Accessible word banks
+must remain exact, and the Answer Key must retain all three completed stages plus the exact limit
+sentence ending `The model orders a candidate explanation. It does not demonstrate it.`
+
+Scientific inspection must preserve the explanation as the best-supported candidate rather than
+a diagnosis or cure. `trace levels only` must not become zero or absence; approximately 4–6 m must
+remain a range; the figure must remain a pattern rather than a map or scale; chemistry must not
+identify an organism; partnership benefit must remain plant/fungus/soil dependent; and adding
+fungi must remain untested. No wood-wide-web, mother-tree, guaranteed-inoculation, product,
+supplier or specific-organism claim may be introduced. Report the exact console-error count and
+text. Any failed assertion or visible defect holds the candidate unpushed for an ordinary
+corrective successor.
+
 ## Accepted Family 2 expansion — C2C5 mechanism/trial workflow
 
 Corrective successor `7be2f428dfe41a3247794662ca9d1f4ef5362d2e` advances `C2C5-VIS03` for
@@ -50,9 +97,8 @@ workflow remains non-operational and governed by qualified approval, comparison,
 measurement, containment, staging and a prewritten stop rule. No new visible fictional-status
 reminder was added. The formal inventory is now **19 of 36 completed**, with **17 remaining**.
 
-The final remaining Family 2 candidate is `C2C6-VIS02`. Do not implement it until the accepted
-Too Clean a Room closeout is synchronized and its frozen First Garden content, governing finding,
-Family 2 precedents and validation contract have been audited from that pushed state.
+The accepted Too Clean a Room closeout is the direct prerequisite for the First Garden candidate
+described above.
 
 ## Accepted Family 2 expansion — C2C3 spectral-match mechanism/specification
 
@@ -242,19 +288,19 @@ declare the overall 11-item Family 2 complete, or reopen frozen curriculum and r
 | `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |
 | `C2C5-VIS03` | `7be2f42` | `VERIFIED-FAMILY` |
 
-Family 2 now has ten verified findings and remains open only for `C2C6-VIS02`. The overall visual-
-modernization inventory is 19 of 36 completed and 17 remaining. The visual branch remains isolated
-from `main`.
+Family 2 now has ten verified findings and one implemented candidate, `C2C6-VIS02`, awaiting
+external rendered acceptance. The overall visual-modernization inventory is 19 of 36 completed and
+17 remaining. The visual branch remains isolated from `main`.
 
-## Closeout integration prompt
+## Candidate integration prompt
 
-Validate the supplied closeout bundle only from clean corrective successor
-`7be2f428dfe41a3247794662ca9d1f4ef5362d2e`. Confirm the pushed remote remains
-`775680de5d8d216d6ca416da6f5e06a57bfdbfd6`, verify the checksum and bundle prerequisites, fetch
-it, and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or
-edit files. Run the focused 94-check mechanism validator and `git diff --check`. Confirm the
-closeout changes only this handoff, the production plan and the focused validator; records
-`C2C5-VIS03` as `VERIFIED-FAMILY`; advances the inventory to 19/36 completed and 17 remaining; and
-leaves `C2C6-VIS02` as the only open Family 2 finding. If both checks pass, push the branch by
-ordinary fast-forward and report local, tracking and live remote SHAs. Do not begin the final
-Family 2 candidate in the same run.
+Validate the supplied First Garden candidate bundle only from clean synchronized prerequisite
+`2d02f252175a70d52fccae6fde7ae956bd5fdf3e`. Confirm the local, tracking and live remote branch all
+remain at that prerequisite before integration. Verify the supplied checksum, bundle prerequisites
+and single-parent lineage, then fetch and integrate with `git merge --ff-only`. Do not reset,
+rebase, amend, squash, force-push, edit files or create a correction. Run the focused 103-check
+mechanism validator, the complete 2330-assertion Mac/Chrome harness twice and `git diff --check`.
+Then manually inspect the three Task 5 pages in both modes under the contract above. If anything
+fails, stop without pushing and report the exact assertion, role, mode, page and measurement. If
+everything passes, leave the candidate integrated locally but unpushed; ChatGPT will prepare the
+ordinary Family 2 closeout successor.

@@ -1442,6 +1442,164 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        if (item.id === "SSS-C2-CASE06") {
+          const firstGardenPageFit = [];
+          const firstGardenPages = [
+            ["student", "student-mission-05", 6],
+            ["answer", "answer-key-04", 5],
+            ["accessible", "accessible-mission-05", 7]
+          ];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, expectedPages] of firstGardenPages) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const pageRect = page?.getBoundingClientRect();
+              firstGardenPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                pages: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPages,
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C2 Case 06 candidate-pathway pages retain strict fit, page counts and geometry in normal and grayscale",
+            firstGardenPageFit.length === 6
+              && firstGardenPageFit.every(state => state.pages === state.expectedPages && state.pageSize === "816x1056" && !state.overflow && state.fits),
+            JSON.stringify(firstGardenPageFit)
+          );
+          const expectedGardenStatuses = "CONSTRUCTION HISTORY|POSSIBLE PARTNER LOSS|FEWER PARTNERSHIPS|LESS ASSISTED ACQUISITION|SURVEYED PATTERN";
+          const expectedGardenRail = "CANDIDATE · NOT ESTABLISHED";
+          const expectedGardenAnswer = [
+            "Stage 2 — compatible mycorrhizal fungi may not have re-established in the beds built from clean substrate. Accessible wording: compatible fungi may not have come back in the new beds.",
+            "Stage 3 — fewer roots in those beds form the partnerships whose hyphae extend out into the surrounding soil. Accessible wording: fewer roots in those beds form partnerships with fungi.",
+            "Stage 4 — less of the phosphorus, nitrogen and water acquisition those partnerships contribute happens in that ground. Accessible wording: less of the nutrient and water pickup those partnerships help with happens there."
+          ];
+          const expectedGardenLimit = "One thing the model does not establish — accept any of: which fungi are present in either kind of bed; whether the fungi in the original beds are compatible with the plants in the expansion beds; whether the fungi would colonise the expansion beds if introduced; whether something other than biology changed when the expansion beds were built; whether adding fungi would improve plant performance; or how long any improvement would take. The model orders a candidate explanation. It does not demonstrate it.";
+          const expectedGardenBanks = {
+            student: [
+              "compatible mycorrhizal fungi may not have re-established in the beds built from clean substrate",
+              "fewer roots in those beds form the partnerships whose hyphae extend out into the surrounding soil",
+              "less of the phosphorus, nitrogen and water acquisition those partnerships contribute happens in that ground"
+            ],
+            accessible: [
+              "compatible fungi may not have come back in the new beds",
+              "fewer roots in those beds form partnerships with fungi",
+              "less of the nutrient and water pickup those partnerships help with happens there"
+            ]
+          };
+          const gardenLearnerText = field => {
+            if (!field) return "";
+            const clone = field.cloneNode(true);
+            clone.querySelectorAll("[data-layout-resize-ui]").forEach(node => node.remove());
+            return clone.textContent.trim().replace(/\s+/g, " ");
+          };
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, fieldPrefix] of [
+              ["student", "student-mission-05", "t5"],
+              ["accessible", "accessible-mission-05", "a5"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.pathway-model[data-process-contract="mycorrhizal-candidate-five-stage-v1.0"]');
+              const stages = Array.from(model?.querySelectorAll(":scope > .path-stage") || []);
+              const arrows = Array.from(model?.querySelectorAll(":scope > .path-arrow") || []);
+              const fields = stages.map(stage => stage.querySelector(".stage-response")).filter(Boolean);
+              const limitField = page?.querySelector(`[data-persist-id="${fieldPrefix}-limit"]`);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && stages.every(stage => {
+                const rect = stage.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              rendered.push({
+                role,
+                model: Boolean(model),
+                stages: stages.length,
+                arrows: arrows.length,
+                layoutTracks: model ? win.getComputedStyle(model).gridTemplateColumns.trim().split(/\s+/).length : 0,
+                rail: model ? win.getComputedStyle(model, "::before").content.replaceAll('"', "") : "",
+                statusLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                connectorGlyphs: arrows.map(arrow => role === "accessible" ? win.getComputedStyle(arrow, "::before").content.replaceAll('"', "") : arrow.textContent.trim()).join("|"),
+                connectorZ: arrows.map(arrow => win.getComputedStyle(arrow).zIndex).join("|"),
+                fieldIds: fields.map(field => field.dataset.persistId).join("|"),
+                blankFields: fields.map(field => field.hasAttribute("data-response") && gardenLearnerText(field) === ""),
+                fixedBodies: [stages[0], stages[4]].map(stage => stage?.querySelector("p")?.textContent.trim().replace(/\s+/g, " ") || ""),
+                bank: Array.from(page?.querySelectorAll(".word-bank-item") || []).map(item => item.textContent.trim().replace(/\s+/g, " ")),
+                limitId: limitField?.dataset.persistId || "",
+                limitBlank: Boolean(limitField?.hasAttribute("data-response")) && gardenLearnerText(limitField) === "",
+                limitBorder: limitField ? win.getComputedStyle(limitField).borderLeftStyle : "",
+                labelBorder: limitField?.previousElementSibling ? win.getComputedStyle(limitField.previousElementSibling).borderLeftStyle : "",
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision
+              });
+            }
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerPage = workspace.querySelector('.page[data-role="answer"][data-page-id="answer-key-04"]');
+            const answerHeading = answerPage?.querySelector('.task-heading[data-task-id="5"]');
+            const answerMechanism = answerHeading?.nextElementSibling;
+            const answerRows = Array.from(answerMechanism?.querySelectorAll(":scope > p") || []);
+            const answerLimit = answerMechanism?.nextElementSibling?.querySelector(":scope > p");
+            const studentPath = rendered.find(state => state.role === "student");
+            const accessiblePath = rendered.find(state => state.role === "accessible");
+            check(
+              `C2 Case 06 ${grayscale ? "grayscale" : "normal"} candidate status, pathway and model limit preserve every frozen response`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && rendered.length === 2
+                && rendered.every(state => state.model && state.stages === 5 && state.arrows === 4 && state.modelFits && state.contained && !state.stageCollision)
+                && rendered.every(state => state.rail === expectedGardenRail && state.statusLabels === expectedGardenStatuses && state.patternStates.every(Boolean))
+                && rendered.every(state => state.borderStates === "solid|dashed|dotted|double|solid")
+                && studentPath.layoutTracks === 9
+                && studentPath.connectorGlyphs === "→|→|→|→"
+                && studentPath.fieldIds === "t5-m2|t5-m3|t5-m4"
+                && studentPath.blankFields.every(Boolean)
+                && studentPath.limitId === "t5-limit" && studentPath.limitBlank
+                && accessiblePath.layoutTracks === 1
+                && accessiblePath.connectorGlyphs === "↓|↓|↓|↓"
+                && accessiblePath.connectorZ === "1|1|1|1"
+                && accessiblePath.fieldIds === "a5-m2|a5-m3|a5-m4"
+                && accessiblePath.blankFields.every(Boolean)
+                && accessiblePath.limitId === "a5-limit" && accessiblePath.limitBlank
+                && rendered.every(state => state.limitBorder === "dashed" && state.labelBorder === "dashed")
+                && JSON.stringify(studentPath.bank) === JSON.stringify(expectedGardenBanks.student)
+                && JSON.stringify(accessiblePath.bank) === JSON.stringify(expectedGardenBanks.accessible)
+                && answerMechanism && win.getComputedStyle(answerMechanism, "::before").content.replaceAll('"', "") === expectedGardenRail
+                && answerRows.map(row => row.textContent.trim().replace(/\s+/g, " ")).join("|") === expectedGardenAnswer.join("|")
+                && answerRows.map(row => win.getComputedStyle(row).borderLeftStyle).join("|") === "dashed|dotted|double"
+                && answerLimit?.textContent.trim().replace(/\s+/g, " ") === expectedGardenLimit
+                && workspace.textContent.includes("trace levels only")
+                && workspace.textContent.includes("best-supported candidate cause")
+                && workspace.textContent.includes("It does not demonstrate it."),
+              JSON.stringify({ rendered, answerRows: answerRows.length, answerLimit: Boolean(answerLimit) })
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C1-CASE03") {
           api.setRole("student");
           api.saveState({ grayscale: false });
