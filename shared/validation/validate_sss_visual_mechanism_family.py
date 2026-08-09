@@ -161,7 +161,7 @@ def main() -> int:
         and "| `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |" in handoff
         and "18 of 36 completed" in plan
         and "18 of 36 remaining" in plan
-        and bool(re.search(r"\| `C2C5-VIS03` .*`IMPLEMENTED-CANDIDATE", plan))
+        and bool(re.search(r"\| `C2C5-VIS03` .*`CORRECTIVE-CANDIDATE", plan))
         and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
@@ -180,14 +180,14 @@ def main() -> int:
         and "| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |" in handoff
         and "18 of 36 completed" in handoff
         and "18 remaining" in handoff
-        and bool(re.search(r"\| `C2C5-VIS03` .*`IMPLEMENTED-CANDIDATE", plan))
+        and bool(re.search(r"\| `C2C5-VIS03` .*`CORRECTIVE-CANDIDATE", plan))
         and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
     )
     check(
         "the production plan and handoff advance Too Clean a Room as the sole Family 2 candidate",
         bool(re.search(
             r"\| `C2C5-VIS03` .*\| 2 \+ 8 · Mechanism/trial workflow \|.*"
-            r"`IMPLEMENTED-CANDIDATE · MAC/CHROME GATE PENDING`",
+            r"`CORRECTIVE-CANDIDATE · MAC/CHROME REGATE PENDING`",
             plan,
         ))
         and "Current validation target — C2C5 mechanism/trial workflow" in handoff
@@ -552,6 +552,14 @@ def main() -> int:
         and "border-left-style: double" in too_clean_css
         and "border-left-style: dotted" in too_clean_css
         and "grid-template-columns: 1fr" in too_clean_css
+        and '.page[data-role="accessible"][data-page-id="accessible-mission-05"]' in too_clean_css
+        and "margin-block: 1px" in too_clean_css
+        and "min-height: .34in" in too_clean_css
+        and "padding-block: 1px" in too_clean_css
+        and "> .page-frame > .content-area > .response-label:nth-of-type(2)" in too_clean_css
+        and "> .page-frame > .content-area > .response-label:nth-of-type(5)" in too_clean_css
+        and ".response-label:has(" not in too_clean_css
+        and ':is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"]) + .response-label' not in too_clean_css
         and 'content: "↓"' in too_clean_css
         and "repeating-linear-gradient" in too_clean_css
         and "filter:" not in too_clean_css,

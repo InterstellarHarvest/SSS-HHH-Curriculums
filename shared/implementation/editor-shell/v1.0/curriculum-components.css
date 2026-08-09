@@ -2206,6 +2206,19 @@ body.grayscale .figure:where(
   gap: 3px;
 }
 
+/*
+ * Keep the page-5 Accessible rail in flow without consuming the response or
+ * phrase-bank space. The compact track and surrounding panel spacing remove
+ * only chrome: the three stage responses retain their source-controlled .5in
+ * minimum and full width.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] {
+  gap: 0;
+  margin-block: 1px;
+}
+
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
   .page[data-role="accessible"]
   .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage {
@@ -2218,6 +2231,13 @@ body.grayscale .figure:where(
   border-top-width: 1.4px;
   border-left-width: 4px;
   font-size: 8.9pt;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage {
+  min-height: .34in;
+  padding-block: 1px;
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
@@ -2257,11 +2277,54 @@ body.grayscale .figure:where(
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-arrow {
+  width: 11px;
+  min-width: 11px;
+  height: 11px;
+  min-height: 11px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
   .page[data-role="accessible"]
   .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-arrow::before {
   content: "↓";
   color: var(--clean-line);
   font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-arrow::before {
+  font-size: 7pt;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"] .word-bank {
+  gap: 0;
+  margin-block: 0;
+  padding-block: 2px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"] .word-bank-item {
+  padding-block: 3px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"] .diagnosis-table caption {
+  padding-block: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"] .diagnosis-table :is(th, td) {
+  padding-block: 1px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"][data-page-id="accessible-mission-05"] .alt-support {
+  margin-block: 3px;
+  padding-block: 4px;
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
@@ -2404,8 +2467,6 @@ body.grayscale .figure:where(
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
-  :is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"]) + .response-label,
-.worksheet-document[data-case-id="SSS-C2-CASE05"]
   :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
   .conditions-table + .alt-support + .response-label {
   border-left-style: double;
@@ -2413,25 +2474,29 @@ body.grayscale .figure:where(
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
-  :is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"]) + .response-label {
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  > .page-frame > .content-area > .response-label:nth-of-type(2) {
   border-left-style: dashed;
   background: var(--clean-signal-pattern), var(--clean-panel);
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
-  :is([data-persist-id="t7-criterion-2"], [data-persist-id="a7-criterion-2"]) + .response-label {
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  > .page-frame > .content-area > .response-label:nth-of-type(3) {
   border-left-style: dotted;
   background: var(--clean-product-pattern), var(--clean-panel);
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
-  :is([data-persist-id="t7-constraint"], [data-persist-id="a7-constraint"]) + .response-label {
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  > .page-frame > .content-area > .response-label:nth-of-type(4) {
   border-left-style: dashed;
   background: var(--clean-signal-pattern), var(--clean-panel);
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE05"]
-  :is([data-persist-id="t7-minimum"], [data-persist-id="a7-minimum"]) + .response-label {
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  > .page-frame > .content-area > .response-label:nth-of-type(5) {
   border-left-style: solid;
 }
 

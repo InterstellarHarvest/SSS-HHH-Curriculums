@@ -7,11 +7,24 @@ run PDF automation, or reopen accepted correctness findings.
 ## Current validation target — C2C5 mechanism/trial workflow
 
 The authoritative pushed prerequisite is
-`775680de5d8d216d6ca416da6f5e06a57bfdbfd6`. Its ordinary local successor advances
-`C2C5-VIS03` for Too Clean a Room to `IMPLEMENTED-CANDIDATE`; keep it unpushed until the
-Mac/Chrome gate and manual inspection pass. The accepted executable baseline is **2324/2324 PASS
-with 0 application JavaScript errors**, repeated twice, and the accepted focused mechanism
-baseline is **85/85 PASS**.
+`775680de5d8d216d6ca416da6f5e06a57bfdbfd6`. Held candidate
+`41a83e9fa1bea3864a3008571a604c5c637512c6` advanced `C2C5-VIS03` for Too Clean a Room to
+`IMPLEMENTED-CANDIDATE`, but its external Mac/Chrome gate deterministically stopped at
+**2321/2327 PASS** in both runs. The candidate remains unpushed. Its ordinary corrective successor
+advances the finding to `CORRECTIVE-CANDIDATE`; keep the complete lineage unpushed until the full
+Mac/Chrome gate and manual inspection pass. The accepted pushed executable baseline remains
+**2324/2324 PASS with 0 application JavaScript errors**, repeated twice, and the accepted pushed
+focused mechanism baseline remains **85/85 PASS**.
+
+The held report identified exactly two rendered defects. Accessible Task 5 page 5 measured
+`scrollHeight 1029` against `clientHeight 936` in normal and grayscale, with the word bank extending
+93 px into the footer. Task 7 label borders rendered `double | solid | solid | solid | solid` in
+both learner editions because the case-scoped selectors targeted a label after each field while
+the frozen DOM places each label before its field. The corrective successor keeps all source
+response minimums and widths intact while compacting the Accessible rail's gaps, connector tracks
+and surrounding table/support/bank chrome. It retargets the four non-default labels through their
+frozen direct-label order, avoiding both the reversed sibling direction and unsupported relational-
+selector behavior. Worksheet source and the browser assertions remain unchanged.
 
 The candidate uses the existing five-stage models on Student Task 5 page 5 and Accessible Task 5
 page 5. It marks the exact visual states as `SHIELDED READING` → `SIGNAL TOO LOW` → `PATHWAY
@@ -34,7 +47,7 @@ mGy and cannot be restated in sievert; two conditions do not form a response cur
 worksheet still does not ask for a radiation source, device or operating setting. No new visible
 fictional-status reminder was added.
 
-This candidate adds one strict fit/page-count/geometry assertion across all six touched pages and
+This lineage adds one strict fit/page-count/geometry assertion across all six touched pages and
 both modes, plus one computed-style/content assertion in normal and one in grayscale. Its
 acceptance target is therefore **2327/2327 PASS with 0 application JavaScript errors**. The focused
 mechanism validator target is **94/94 PASS**. The formal inventory remains **18 of 36 completed**,
@@ -219,7 +232,8 @@ The visual branch remains isolated from `main`.
 
 ## Validation prompt
 
-1. Apply the supplied fast-forward bundle only if the branch is clean at
+1. Apply the supplied corrective fast-forward bundle only if the branch is clean at held candidate
+   `41a83e9fa1bea3864a3008571a604c5c637512c6`. Confirm the pushed remote remains
    `775680de5d8d216d6ca416da6f5e06a57bfdbfd6`. Verify the checksum and prerequisite before
    fetching it, then use a fast-forward-only merge. Do not reset, rebase, amend, squash,
    force-push, edit any file or push the candidate.
@@ -271,7 +285,7 @@ recorded as an ordinary successor.
 
 ## Acceptance rule
 
-`C2C5-VIS03` may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+`C2C5-VIS03` may advance from `CORRECTIVE-CANDIDATE` only when the browser harness reaches
 2327/2327 with zero application JavaScript errors, the focused mechanism validator reaches 94/94,
 and all six touched pages retain strict fit, fixed geometry and existing page counts in normal and
 grayscale. Manual inspection must confirm the horizontal/vertical mechanism connectors, all five
