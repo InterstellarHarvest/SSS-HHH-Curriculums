@@ -2777,6 +2777,114 @@
               JSON.stringify(rendered)
             );
           }
+          const europaConvergencePageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-02", 4], ["answer", "answer-key-02", 4], ["accessible", "accessible-mission-03", 7]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              europaConvergencePageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 05 evidence-convergence pages retain strict fit, page counts and geometry in normal and grayscale",
+            europaConvergencePageFit.length === 6
+              && europaConvergencePageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(europaConvergencePageFit)
+          );
+          const expectedConvergenceSources = "Crew|Sensors|Plants|Logs";
+          const expectedConvergenceStatuses = "REPEATED PATTERN|EXPOSURE|BIO EVIDENCE|PROTECTION LIMIT";
+          const expectedConvergenceBorders = "solid|double|dashed|dotted";
+          const expectedConvergenceNode = "QUALIFIED CONVERGENCE · RADIATION BEST-SUPPORTED · NO SINGLE CLUE PROVES CAUSE";
+          const expectedAnswerContributions = [
+            "Repeated failure across plantings supports a persistent environmental cause rather than one seed batch.",
+            "Establishes elevated grow-chamber ionizing-radiation exposure, not biological harm by itself.",
+            "Provides biological evidence: meristem abnormalities are consistent with DNA damage, without proving the cause or exact molecular mechanism.",
+            "Shows crop protection was unverified and modeled secondary radiation may contribute through material interactions."
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId] of [["student", "student-mission-02"], ["answer", "answer-key-02"], ["accessible", "accessible-mission-03"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const root = role === "student"
+                ? page?.querySelector('.evidence-table[data-evidence-summary="qualitative-four-route-v1.0"]')
+                : role === "accessible"
+                  ? page?.querySelector('.accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"]')
+                  : page?.querySelector('.task-heading[data-task-id="3"] + .data-table');
+              const cards = Array.from(root?.querySelectorAll(role === "accessible" ? ":scope > section" : ":scope > tbody > tr") || []);
+              const cardRects = cards.map(card => card.getBoundingClientRect());
+              const rootRect = root?.getBoundingClientRect();
+              const contained = Boolean(rootRect) && cards.every(card => {
+                const rect = card.getBoundingClientRect();
+                return rect.left >= rootRect.left - 1 && rect.right <= rootRect.right + 1
+                  && rect.top >= rootRect.top - 1 && rect.bottom <= rootRect.bottom + 1;
+              });
+              const cardCollision = cardRects.some((rect, index) => cardRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const headers = cards.map(card => card.querySelector(":scope > th, :scope > h3"));
+              const fields = Array.from(root?.querySelectorAll("[data-response]") || []).map(field => ({
+                id: field.dataset.persistId,
+                text: field.textContent.trim().replace(/\s+/g, " "),
+                response: field.hasAttribute("data-response"),
+                size: dimensions(field)
+              }));
+              rendered.push({
+                role,
+                pageId,
+                root: Boolean(root),
+                rootTag: root?.tagName || "",
+                cards: cards.length,
+                sources: headers.map(header => header?.childNodes[0]?.textContent.trim() || header?.textContent.trim()).join("|"),
+                statuses: headers.map(header => win.getComputedStyle(header, "::after").content.replaceAll('"', "")).join("|"),
+                borders: cards.map(card => win.getComputedStyle(card).borderLeftStyle).join("|"),
+                patterns: cards.map(card => win.getComputedStyle(card).backgroundImage !== "none"),
+                connectorCue: win.getComputedStyle(root, "::before").content.replaceAll('"', ""),
+                convergenceNode: win.getComputedStyle(root, "::after").content.replaceAll('"', ""),
+                contained,
+                cardCollision,
+                fields,
+                answers: role === "answer" ? cards.map(card => card.querySelector(":scope > td")?.textContent.trim().replace(/\s+/g, " ") || "") : []
+              });
+            }
+            const studentMap = rendered.find(state => state.role === "student");
+            const answerMap = rendered.find(state => state.role === "answer");
+            const accessibleMap = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 05 ${grayscale ? "grayscale" : "normal"} evidence map preserves independent channels and qualified convergence`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.root && state.cards === 4 && state.sources === expectedConvergenceSources && state.statuses === expectedConvergenceStatuses)
+                && rendered.every(state => state.borders === expectedConvergenceBorders && state.patterns.every(Boolean) && state.connectorCue === "↘  ↓  ↓  ↙" && state.convergenceNode === expectedConvergenceNode)
+                && rendered.every(state => state.contained && !state.cardCollision)
+                && studentMap.rootTag === "TABLE" && answerMap.rootTag === "TABLE" && accessibleMap.rootTag === "DIV"
+                && studentMap.fields.map(field => field.id).join("|") === "t3-crew|t3-sensors|t3-plants|t3-logs"
+                && accessibleMap.fields.map(field => field.id).join("|") === "a3-crew|a3-sensors|a3-plants|a3-logs"
+                && [...studentMap.fields, ...accessibleMap.fields].every(field => field.text === "" && field.response && field.size[0] > 0 && field.size[1] >= 44)
+                && answerMap.fields.length === 0
+                && answerMap.answers.every((value, index) => value === expectedAnswerContributions[index]),
+              JSON.stringify(rendered)
+            );
+          }
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

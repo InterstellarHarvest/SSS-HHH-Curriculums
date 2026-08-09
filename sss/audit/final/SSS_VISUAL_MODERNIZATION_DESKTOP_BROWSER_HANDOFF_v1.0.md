@@ -4,6 +4,80 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Implemented Family 4 candidate — Europa four-route evidence convergence
+
+`C1C5-VIS02` begins the two-finding evidence-convergence family. It remains
+`IMPLEMENTED-CANDIDATE` until the complete **2342/2342** Mac/Chrome harness passes twice with zero
+application JavaScript errors and all six normal/grayscale target states pass manual inspection.
+The accepted synchronized prerequisite is
+`c218e7c41c1feafc481034d72663a04d3224861e`. The accepted inventory remains **23 of 36
+completed**, with **13 remaining**; do not add this candidate to a verified register or begin
+`C1C7-VIS01` before separate acceptance and closeout.
+
+The frozen Task 3 structures remain semantic and source-controlled:
+
+- Student page 2 retains the four-source table and blank contribution fields
+  `t3-crew | t3-sensors | t3-plants | t3-logs`.
+- Accessible page 3 retains four independent evidence cards and blank contribution fields
+  `a3-crew | a3-sensors | a3-plants | a3-logs`.
+- Answer Key page 2 retains the four exact completed contribution exemplars.
+
+The case-scoped shared presentation renders the channels in the exact order
+`Crew | Sensors | Plants | Logs`, with direct states
+`REPEATED PATTERN | EXPOSURE | BIO EVIDENCE | PROTECTION LIMIT`. Solid, double, dashed and dotted
+left borders plus independent hatch treatment preserve channel distinction in grayscale. The
+four channels feed one bounded synthesis node:
+
+`QUALIFIED CONVERGENCE · RADIATION BEST-SUPPORTED · NO SINGLE CLUE PROVES CAUSE`
+
+Student uses a compact 2 × 2 map with its original semantic column headers retained in the DOM;
+the redundant visible header rail is collapsed to preserve the existing page footprint. Answer
+Key and Accessible use matching 2 × 2 channel maps with a bottom convergence rail. No channel is
+drawn as a single-clue proof arrow. Sensor exposure remains separate from plant biological
+evidence, and the construction log remains a protection limit rather than a measured secondary
+fraction or safety threshold.
+
+No Case 05 source file changes. The candidate must preserve these SHA-256 identities:
+
+- `content.html` — `8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d`
+- `presentation.css` — `5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8`
+- `layout-overrides.json` — `6667dec008f983f057c1bc56eec0ba5b1fd59b918c66b57f9872c418cd2578d2`
+- `case-package.json` — `b1477d499fcb1bfb026f606bc0c5c8d9833f967950daba45dff2c9cdd0a9a200`
+- `task-registry.js` — `402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc`
+
+The intended candidate scope is exactly the shared component CSS, browser harness, focused
+evidence-family validator, production plan and this handoff. It changes no worksheet wording,
+case presentation, layout override, package metadata, task registry, response ID, response text,
+page count, persistence identity, source hash, Teacher content, release/history record or
+completed-family implementation.
+
+Local Chromium preflight reports **2311/2342**. The 31 remaining failures are the established
+Linux/platform font and temporary screenshot-smoke exceptions; all three new candidate assertions
+pass. In normal and grayscale, Student page 2, Answer Key page 2 and Accessible page 3 retain fixed
+816 × 1056 geometry and exact `scrollHeight 936 == clientHeight 936` fit with no `has-overflow`
+state. All four Student fields remain blank and approximately 196.38 × 67.19 px. All four
+Accessible fields remain blank and approximately 335.5 × 105.59 px. The Answer Key has no learner
+fields and retains these exact exemplars in order:
+
+1. `Repeated failure across plantings supports a persistent environmental cause rather than one seed batch.`
+2. `Establishes elevated grow-chamber ionizing-radiation exposure, not biological harm by itself.`
+3. `Provides biological evidence: meristem abnormalities are consistent with DNA damage, without proving the cause or exact molecular mechanism.`
+4. `Shows crop protection was unverified and modeled secondary radiation may contribute through material interactions.`
+
+Mac/Chrome acceptance must run the complete browser harness twice and reach **2342/2342 PASS**
+with zero application JavaScript errors in both runs. Manually inspect:
+
+1. Student Task 3, page 2 — normal and grayscale.
+2. Answer Key Task 3, page 2 — normal and grayscale.
+3. Accessible Task 3, page 3 — normal and grayscale.
+
+Confirm fixed geometry, exact page counts Student 4 / Answer Key 4 / Accessible 7, strict
+936/936 fit, full root/card containment, no card collision, clear inward connector cues, visible
+channel states, unbroken response borders, readable evidence text and a synthesis rail that does
+not touch or cover any channel heading, status, evidence sentence or response box. Confirm Task 4
+and the Accessible science note remain outside the map and unchanged. Any failure leaves the
+candidate unaccepted and unpushed; do not edit it during external validation.
+
 ## Accepted Family 3 completion — Silent Grove same-total sleep-pattern example
 
 Candidate `73e8496393f5f29d90abf0e805e4f43c90ca26f9` advances `C2C4-VIS01` for The Silent

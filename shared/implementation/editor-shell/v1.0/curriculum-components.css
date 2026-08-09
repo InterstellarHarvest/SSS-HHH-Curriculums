@@ -1432,6 +1432,298 @@ body.grayscale .figure:where(
 }
 
 /*
+ * Evidence-convergence family pilot: Europa four-route diagnosis.
+ *
+ * The released Student table, Accessible cards and completed Answer Key
+ * already preserve the four independent sources and their contribution
+ * fields. This case-scoped layer makes the convergence visible without
+ * changing source wording, response identity or the evidence boundary:
+ * sensor exposure and plant biological evidence remain separate, and the
+ * qualified synthesis never treats one clue as proof.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) {
+  --convergence-line: var(--ink, #18212b);
+  --convergence-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  box-sizing: border-box;
+  padding: 6px 6px .5in;
+  border: 1.5px solid var(--convergence-line);
+  border-radius: 3px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(24, 33, 43, .035) 12px 13px),
+    var(--convergence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+)::before {
+  position: absolute;
+  z-index: 2;
+  right: 1.18in;
+  bottom: .3in;
+  left: 1.18in;
+  content: "↘  ↓  ↓  ↙";
+  color: var(--convergence-line);
+  font: 800 7pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .17in;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+)::after {
+  position: absolute;
+  z-index: 3;
+  right: .38in;
+  bottom: 4px;
+  left: .38in;
+  box-sizing: border-box;
+  padding: 4px 7px;
+  border: 3px double var(--convergence-line);
+  border-radius: 2px;
+  content: "QUALIFIED CONVERGENCE · RADIATION BEST-SUPPORTED · NO SINGLE CLUE PROVES CAUSE";
+  background: var(--convergence-panel);
+  font: 800 6.4pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] {
+  padding: 6px 6px .5in !important;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > thead {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody {
+  gap: 2px !important;
+  margin-top: 0 !important;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) {
+  display: block;
+  table-layout: auto;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) > :is(thead, tbody) {
+  display: block;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > thead > tr {
+  display: grid;
+  grid-template-columns: .76in minmax(0, 1fr) 2.85in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table > thead > tr {
+  display: grid;
+  grid-template-columns: .76in minmax(0, 1fr);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) > thead th {
+  border-color: var(--convergence-line);
+  background: var(--convergence-panel);
+  font: 700 6.2pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) > tbody {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr,
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"] > section,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table > tbody > tr
+) {
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding: 5px;
+  border: 1px solid var(--convergence-line);
+  border-left-width: 4px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 9px, rgba(24, 33, 43, .04) 9px 10px),
+    var(--convergence-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr {
+  display: grid !important;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  grid-template-areas: "source source" "evidence contribution";
+  padding: 2px !important;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr > th {
+  grid-area: source;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr > td:nth-of-type(1) {
+  grid-area: evidence;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr > td:nth-of-type(2) {
+  grid-area: contribution;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr > * {
+  padding: 1px 3px !important;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) > tbody > tr > * {
+  display: block;
+  width: auto;
+  padding: 3px 4px;
+  border: 0;
+  border-top: 1px solid var(--rule, #b8c2c8);
+  background: transparent;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) > tbody > tr > th {
+  position: relative;
+  padding-right: 1.15in;
+  border-top: 0;
+  color: var(--convergence-line);
+  font-size: 8.2pt;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"] {
+  gap: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"] h3 {
+  position: relative;
+  min-height: .18in;
+  padding-right: 1.28in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"] > tbody > tr > th,
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"] h3,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table > tbody > tr > th
+)::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  content: "";
+  font: 700 5.4pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .015em;
+  text-align: right;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr,
+  .accessible-evidence > section,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr
+):nth-child(1) { border-left-style: solid; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr,
+  .accessible-evidence > section,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr
+):nth-child(2) { border-left-style: double; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr,
+  .accessible-evidence > section,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr
+):nth-child(3) { border-left-style: dashed; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr,
+  .accessible-evidence > section,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr
+):nth-child(4) { border-left-style: dotted; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr:nth-child(1) > th,
+  .accessible-evidence > section:nth-child(1) h3,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr:nth-child(1) > th
+)::after { content: "REPEATED PATTERN"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr:nth-child(2) > th,
+  .accessible-evidence > section:nth-child(2) h3,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr:nth-child(2) > th
+)::after { content: "EXPOSURE"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr:nth-child(3) > th,
+  .accessible-evidence > section:nth-child(3) h3,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr:nth-child(3) > th
+)::after { content: "BIO EVIDENCE"; }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table tbody > tr:nth-child(4) > th,
+  .accessible-evidence > section:nth-child(4) h3,
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table tbody > tr:nth-child(4) > th
+)::after { content: "PROTECTION LIMIT"; }
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE05"] :is(
+  .evidence-table[data-evidence-summary="qualitative-four-route-v1.0"],
+  .accessible-evidence[data-evidence-summary="qualitative-four-route-v1.0"],
+  .page[data-page-id="answer-key-02"] .task-heading[data-task-id="3"] + .data-table
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
+/*
  * Mechanism/pathway family expansion: First Contact coordination system.
  *
  * The released organizers already preserve the four exact phrase-bank
