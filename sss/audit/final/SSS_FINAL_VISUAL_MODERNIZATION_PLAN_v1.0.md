@@ -235,21 +235,28 @@ rail, direct state labels, border order and grayscale-independent patterns remai
 ordinal timing, correlation, converging-evidence and fictional-organism boundaries remained
 intact. `C1C6-VIS01` is therefore `VERIFIED-FAMILY`, the second accepted Family 3 finding.
 
-`C2C4-VIS01` is the Family 3 completion candidate. It modernizes The Silent Grove's frozen Task 3
-same-total sleep-pattern teaching figures on Student page 3 and Accessible page 3 without changing
-their inline SVG or the adjacent ship-record telemetry table. Mia retains one unbroken 8-hour
-block; Sam retains eight separate one-hour blocks; both retain the exact 8-hour total, the 0–24
-hour scale and the exact `0`, `6`, `12`, `18`, `24` ticks. The case-scoped shared layer adds the
-persistent rail `SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA`, a stronger
-figure frame and grayscale-independent solid-versus-dashed block edges. It preserves the semantic
-title, caption, extended description, all six learner responses and every source disclaimer. It
-adds no case measurement, curve, biological inference or new action. No worksheet content, case
-presentation, layout override, package metadata, task registry, page count, persistence identity,
-source hash or release baseline changes. The accepted inventory remains 22/36 completed with 14
-remaining until external validation and closeout. The candidate passes the expanded 44/44 focused
-timeline contract; mechanism, telemetry, layout and browser evidence are recorded in the desktop
-handoff. Formal Family 3 completion remains gated on two perfect Mac/Chrome runs and manual normal/
-grayscale inspection.
+`C2C4-VIS01` is the third accepted Family 3 finding. It modernizes The Silent Grove's frozen Task
+3 same-total sleep-pattern teaching figures on Student page 3 and Accessible page 3 without
+changing their inline SVG or the adjacent ship-record telemetry table. Mia retains one unbroken
+8-hour block; Sam retains eight separate one-hour blocks; both retain the exact 8-hour total, the
+0–24 hour scale and the exact `0`, `6`, `12`, `18`, `24` ticks. The case-scoped shared layer adds
+the persistent rail `SAA TEACHING EXAMPLE · SAME TOTAL / DIFFERENT PATTERN · NOT GROVE DATA`, a
+stronger figure frame and grayscale-independent solid-versus-dashed block edges. It preserves the
+semantic title, caption, extended description, all six learner responses and every source
+disclaimer. It adds no case measurement, curve, biological inference or new action. No worksheet
+content, case presentation, layout override, package metadata, task registry, page count,
+persistence identity, source hash or release baseline changes.
+
+Candidate `73e8496393f5f29d90abf0e805e4f43c90ca26f9` passed the complete 2339/2339
+Mac/Chrome browser harness twice with zero application JavaScript errors, the 44/44 focused
+timeline validator, the 103/103 mechanism validator, the 36/36 telemetry validator and the Case
+04 layout-override validator. Normal and grayscale inspection confirmed strict 936/936 fit, fixed
+816 × 1056 geometry, unchanged Student 6 / Accessible 8 page counts and zero content-boundary
+spill on both touched pages. The status rail remained clear of the figure header; the exact SVG
+geometry, hatch, solid/dashed edges, semantic relationships and all six blank learner responses
+remained intact; and the separate six-row Table 5 ship record remained unchanged. The
+teaching-example, not-grove-data, discrete-block and no-biological-claim boundaries remained
+exact. `C2C4-VIS01` is therefore `VERIFIED-FAMILY`, completing Family 3.
 
 ## 3. Exact inventory reconciliation
 
@@ -260,9 +267,12 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the First Contact timing-telemetry closeout is **22 of 36 completed** and
-**14 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11 of
-its verified findings and Family 3 contributes its first two verified findings.
+Accepted progress after the Silent Grove sleep-pattern closeout is **23 of 36 completed** and
+**13 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11 of
+its verified findings and Family 3 contributes all 3 of its verified findings.
+
+At the preceding First Contact timing-telemetry closeout, accepted progress was 22 of 36 completed
+and 14 of 36 remaining.
 
 At the preceding Hayes incident-log closeout, accepted progress was 21 of 36 completed and 15 of
 36 remaining.
@@ -350,7 +360,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C3-VIS01` | Wrong Color of Light; S T2 p2, A T2 p2 | Accurate discrete bars with correct labels but limited telemetry hierarchy. | 1 · Technical telemetry/data | GRO-9 discrete spectral-output diagnostic with four category rails and explicit category/inequality encoding. | Replace existing repeated figure at same height; table remains accessible backup. | Red 62% at 620–680; blue 18% at 440–490; broad 15%; blue-green <5% at 490–560; no interpolation/continuous curve. | D1; exact bins, inequality, DOM table and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS02` | Wrong Color of Light; S T3 p3, A T3 p3 | Accurate band overlay but measurement/status hierarchy can be clearer. | 1 · Technical telemetry/data | Measurement-overlay panel: discrete fixture bands against the 460–540 nm strongest-response band, with “outside unspecified ≠ zero.” | Same footprint and backup table; sync S/A. | Do not imply continuous response, geometric overlap calculation, or zero response outside band. | D1 overlay variant; prohibited-curve and inequality checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `VERIFIED-FAMILY · 85/85 FAMILY STATIC PASS · 2324/2324 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 79a7c80 ACCEPTED` |
-| `C2C4-VIS01` | Silent Grove; S T3 p3, A T3 p3 | Correct but plain same-total sleep-pattern teaching example. | 3 · Timeline/event log | Cleaner discrete 24-hour comparison with identical totals, distinct block patterns and an unmistakable “teaching example—not grove data” band. | Replace existing figure only; no new action or data. | Example values are illustrative, not grove measurements; no curve or biological claim. | TL1; status-label/alt and no-case-data confusion check | `CANDIDATE · 44/44 TIMELINE STATIC PASS · LOCAL TARGET ASSERTIONS PASS · MAC/CHROME ACCEPTANCE PENDING` |
+| `C2C4-VIS01` | Silent Grove; S T3 p3, A T3 p3 | Correct but plain same-total sleep-pattern teaching example. | 3 · Timeline/event log | Cleaner discrete 24-hour comparison with identical totals, distinct block patterns and an unmistakable “teaching example—not grove data” band. | Replace existing figure only; no new action or data. | Example values are illustrative, not grove measurements; no curve or biological claim. | TL1; status-label/alt and no-case-data confusion check | `VERIFIED-FAMILY · 44/44 TIMELINE STATIC PASS · 2339/2339 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 73e8496 ACCEPTED` |
 | `C2C4-VIS02` | Silent Grove; S T3 p3, A T3 p3, AK T3 p1 where summarized | The exact within-cycle record is a conventional table with little visual distinction among light, dark, reported and unreported blocks. | 1 · Technical telemetry/data | Preserve the semantic table as a discrete 24-hour telemetry panel; distinguish light/dark schedule blocks and reported/unreported signal states through pattern, border weight and direct text, with no connecting curve. | Restyle the existing S/A Table 5 in place; retain all six rows, exact table semantics and the concise AK explanation. | Current 24/0; previous 18/6; healthy 40–80 ppb; current 0.0 ppb is threshold result; unreported blocks stay missing. | D1 timeline hybrid; exact-value/missing-data checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C4-VIS03` | Silent Grove; S T8 p6, A T8 p8, AK T8 p4 | Schedule requirements and monitored trial are prose/table led. | 6 · Specification/verification | Specification panel separating minimum evidence, six-hour historical schedule, stability criterion, power constraint, monitoring and stop rule. | Preserve all design fields and accepted response space; synchronize AK. | Five-hour minimum ≠ preferred design; successful schedule has six dark hours; 40–80 remains a range; no guaranteed recovery. | SV1; cross-edition acceptance and numeric checks | `PLANNED` |
 | `C2C5-VIS01` | Too Clean a Room; S T2 p2, A T2 p2 | Accurate whole-mm rain-gauge analogy is visually basic. | 1 · Technical telemetry/data | Instrument-resolution figure with two sub-threshold inputs yielding the same reported bin and an explicit “teaching example—not vault data” status. | Replace figure at same height; preserve questions/table. | Detection bound analogy only; vault `<0.01 mGy/day` is not literal zero or exactly 0.01. | D1 instrument variant; inequality/status and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |

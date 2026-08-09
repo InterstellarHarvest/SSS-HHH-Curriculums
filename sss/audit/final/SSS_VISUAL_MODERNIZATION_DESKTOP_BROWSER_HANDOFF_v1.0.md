@@ -4,11 +4,14 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Silent Grove same-total sleep-pattern candidate
+## Accepted Family 3 completion — Silent Grove same-total sleep-pattern example
 
-`C2C4-VIS01` is the third and final Family 3 timeline/event-log finding. It modernizes the frozen
-Task 3 teaching figure on Student page 3 and Accessible page 3 while leaving the real within-cycle
-ship-record telemetry table immediately below it unchanged. The synchronized prerequisite is
+Candidate `73e8496393f5f29d90abf0e805e4f43c90ca26f9` advances `C2C4-VIS01` for The Silent
+Grove to `VERIFIED-FAMILY`, the third and final accepted Family 3 timeline/event-log finding. The
+accepted executable baseline is **2339/2339 PASS with 0 application JavaScript errors**, repeated
+twice. The accepted focused timeline baseline is **44/44 PASS**; the mechanism validator remains
+**103/103 PASS**; the telemetry validator remains **36/36 PASS**; and the Case 04 layout-override
+validator passes. The accepted synchronized prerequisite is
 `5c07309eef3257e5a91c97281e48d896d924e40f`.
 
 The existing example is unchanged. Mia retains one unbroken 8-hour sleep block from hour 0 to hour
@@ -37,33 +40,30 @@ No case source file changes:
 - `sss/campaign-2/case-04-silent-grove/source/case-package.json`
 - `sss/campaign-2/case-04-silent-grove/source/task-registry.js`
 
-The candidate changes only the shared case-scoped component layer, browser harness, focused
+The candidate changed only the shared case-scoped component layer, browser harness, focused
 timeline validator, production plan and this handoff. It does not change worksheet wording, SVG
 data, response controls or identities, Table 5, Answer Key or Teacher wording, package metadata,
 page counts, source hashes or release/history records.
 
-Local focused validation is **44/44 PASS**. The new browser assertions cover both figures in normal
-and grayscale, exact SVG geometry and labels, semantic text, solid/dashed block states, response
-identity, full figure containment, strict page fit and separation from the real ship record.
-The mechanism family remains **103/103 PASS**, the telemetry family remains **36/36 PASS**, the
-Case 04 layout-override validator passes and `git diff --check` is clean. The complete isolated
-Linux Chromium preflight reports **2306/2339**; all three new Silent Grove assertions pass in
-normal and grayscale with zero application JavaScript errors. The remaining 33 are the known 32
-font-dependent legacy differences in this browser image plus its temporary screenshot smoke-test
-limitation, not Silent Grove failures.
+Manual inspection in normal and grayscale confirmed exact `scrollHeight 936 == clientHeight 936`,
+fixed 816 × 1056 geometry, unchanged Student 6 / Accessible 8 page counts, no `has-overflow`
+state, zero content-boundary spill and full figure containment on Student Task 3 page 3 and
+Accessible Task 3 page 3. The absolute status rail remained within the figure with 53.05 px
+horizontal clearance from the `One day, hour 0 to hour 24` header text. No clipping, collision,
+overlap or crowding appeared, and the console remained free of errors.
 
-Both targeted pages retain fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936`,
-their existing Student 6 / Accessible 8 page counts, no `has-overflow` state and full figure
-containment in both modes. Targeted screenshots confirm that the absolute status rail occupies the
-unused right side of the SVG header without touching its `One day, hour 0 to hour 24` text; the
-solid consolidated block and eight dashed fragments remain distinct; and neither the caption,
-extended description, responses nor following ship-record table is clipped, overlapped or crowded.
+The accepted figures retain one Mia block at `x=120`, `width=160` and eight Sam blocks at
+`x=140, 200, 260, 320, 380, 440, 500, 560`, each `width=20`. All nine shaded blocks retain their
+hatch; Mia retains a solid edge and Sam's blocks retain dashed edges. The exact title, accessible
+name, `aria-labelledby` relationship, caption and extended description remain functional. The
+Student responses remain `t3-total`, `t3-why`, `t3-grove`; the actual frozen Accessible responses
+remain `a3-total`, `a3-why`, `a3-grove`; all six remain blank.
 
-Formal acceptance requires two complete Mac/Chrome browser-harness passes, zero application
-JavaScript errors, the focused timeline validator, mechanism and telemetry regressions, the Case
-04 layout-override validator, `git diff --check`, and manual inspection of Student Task 3 page 3
-and Accessible Task 3 page 3 in normal and grayscale. The accepted inventory remains **22 of 36
-completed**, with **14 remaining**, until external acceptance and closeout.
+Table 5 remains outside the figure with all six original rows and the exact status
+`SHIP RECORD · DISCRETE BLOCKS`. The accepted example adds no curve, interpolation, grove
+measurement, biological or causal claim, altered exercise value, response change or learner
+action. The formal inventory is now **23 of 36 completed**, with **13 remaining**. Family 3 is
+complete.
 
 ## Accepted Family 3 expansion — First Contact reported-event telemetry
 
@@ -482,21 +482,21 @@ was 20 of 36 completed and 16 remaining at its closeout. The visual branch remai
 |---|---|---|
 | `C1C4-VIS01` | `d5ffe37` | `VERIFIED-FAMILY` |
 | `C1C6-VIS01` | `66a3d1b` | `VERIFIED-FAMILY` |
+| `C2C4-VIS01` | `73e8496` | `VERIFIED-FAMILY` |
 
-Family 3 has two verified findings and one planned finding remaining. The overall
-visual-modernization inventory is 22 of 36 completed and 14 remaining. The visual branch remains
-isolated from `main`.
+Family 3 is complete with all three findings verified. The overall visual-modernization inventory
+is 23 of 36 completed and 13 remaining. The visual branch remains isolated from `main`.
 
-## C1C6-VIS01 closeout integration prompt
+## C2C4-VIS01 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`66a3d1b76077201cbd438f2b70b64e4a1380d7a2`. Confirm the pushed remote remains
-`185474673f4a7852c546ef2ef364fc2b3a7b3a02`, verify the checksum and bundle prerequisite, fetch it,
+`73e8496393f5f29d90abf0e805e4f43c90ca26f9`. Confirm the pushed remote remains
+`5c07309eef3257e5a91c97281e48d896d924e40f`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 30-check timeline validator and `git diff --check`. Confirm the closeout
-changes only this handoff, the production plan and the focused validator; records `C1C6-VIS01` as
-`VERIFIED-FAMILY`; records the second accepted Family 3 finding; and advances the inventory to
-22/36 completed and 14 remaining. Because the successor changes only documentation and the
+files. Run the focused 44-check timeline validator and `git diff --check`. Confirm the closeout
+changes only this handoff, the production plan and the focused validator; records `C2C4-VIS01` as
+`VERIFIED-FAMILY`; completes Family 3; and advances the inventory to 23/36 completed and 13
+remaining. Because the successor changes only documentation and the
 focused validator, do not rerun the Mac/Chrome harness or manual inspection. If both checks pass,
 push the branch by ordinary fast-forward and report local, tracking and live remote SHAs. Do not
-begin the next Family 3 finding in the same run.
+begin Family 4 or `C1C5-VIS02` in the same run.

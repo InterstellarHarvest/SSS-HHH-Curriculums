@@ -288,8 +288,8 @@ def main() -> int:
         and "2336/2336 PASS with 0 application JavaScript errors" in handoff
         and "30/30 PASS" in handoff
         and "| `C1C6-VIS01` | `66a3d1b` | `VERIFIED-FAMILY` |" in handoff
-        and "22 of 36 completed" in handoff
-        and "14 remaining" in handoff,
+        and "At the preceding First Contact timing-telemetry closeout" in plan
+        and bool(re.search(r"22 of 36 completed\s+and 14 of 36 remaining", plan)),
     )
 
     sleep_figures = silent_soup.select(
@@ -470,18 +470,23 @@ def main() -> int:
         "sss/campaign-2/case-04-silent-grove/source/task-registry.js",
     )
     check(
-        "the plan and handoff record C2C4-VIS01 as the pending Family 3 completion candidate",
-        "C2C4-VIS01` is the Family 3 completion candidate" in plan
-        and "Silent Grove same-total sleep-pattern candidate" in handoff
-        and "44/44 PASS" in handoff
-        and all(path in handoff for path in silent_source_paths)
-        and bool(re.search(
+        "the plan and handoff accept C2C4-VIS01 and complete Family 3",
+        bool(re.search(
             r"\| `C2C4-VIS01` .*\| 3 · Timeline/event log \|.*"
-            r"`CANDIDATE · 44/44 TIMELINE STATIC PASS · LOCAL TARGET ASSERTIONS PASS · MAC/CHROME ACCEPTANCE PENDING`",
+            r"`VERIFIED-FAMILY · 44/44 TIMELINE STATIC PASS · 2339/2339 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 73e8496 ACCEPTED`",
             plan,
         ))
-        and "22 of 36 completed" in handoff
-        and "14 remaining" in handoff,
+        and "Accepted Family 3 completion — Silent Grove same-total sleep-pattern example" in handoff
+        and "73e8496393f5f29d90abf0e805e4f43c90ca26f9" in handoff
+        and "2339/2339 PASS with 0 application JavaScript errors" in handoff
+        and "44/44 PASS" in handoff
+        and all(path in handoff for path in silent_source_paths)
+        and "`a3-total`, `a3-why`, `a3-grove`" in handoff
+        and "| `C2C4-VIS01` | `73e8496` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 3 is complete with all three findings verified" in handoff
+        and "23 of 36 completed" in handoff
+        and "13 remaining" in handoff,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]
