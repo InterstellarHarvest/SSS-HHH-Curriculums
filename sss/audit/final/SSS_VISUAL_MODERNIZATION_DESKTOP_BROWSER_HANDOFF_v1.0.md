@@ -4,6 +4,94 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Unaccepted Family 6 candidate — Europa crop-protection specification
+
+The successor to accepted closeout `3b19fcbcf7cabec08aadf303b41eb8168604c931` implements
+`C1C5-VIS03` as the first standalone Family 6 specification/verification candidate. It is not
+accepted, does not advance the 26/36 inventory and does not complete Family 6.
+
+The frozen final-page structures remain semantic and source-controlled:
+
+- Student page 4 retains blank Task 7 fields
+  `t7-need | t7-criteria | t7-constraints | t7-verify` and blank Task 8 fields
+  `t8-immediate | t8-durable | t8-justify`.
+- Accessible page 7 retains the parallel blank fields
+  `a7-need | a7-criteria | a7-constraints | a7-verify | a8-immediate | a8-durable | a8-test`.
+- Answer Key page 4 retains the exact completed Need, Criteria, Constraints and Verification
+  exemplar followed by the exact immediate, durable and justification/verification exemplar.
+
+The Case-05-scoped shared presentation gives the existing requirements one direct status line:
+
+`MISSION REQUIREMENTS · DEFINE BEFORE DESIGN`
+
+Need, Criteria, Constraints and Verification use solid, double, dotted and dashed borders plus
+four independent hatch states. Task 8 retains its separate instructional identity while making
+the existing relationship explicit:
+
+`ACTION PATH · CAUTIOUS NOW → DURABLE DESIGN`
+
+The existing final justification/test field is labeled `MONITORING GATE`. The Answer Key uses the
+parallel status `ACCEPTED RESPONSE PATH · ACTION → DESIGN → VERIFY`. These labels add no learner
+action and make no proposal, threshold or completed-result claim.
+
+No Case 05 source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d`
+- `presentation.css` — `5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8`
+- `layout-overrides.json` — `6667dec008f983f057c1bc56eec0ba5b1fd59b918c66b57f9872c418cd2578d2`
+- `case-package.json` — `b1477d499fcb1bfb026f606bc0c5c8d9833f967950daba45dff2c9cdd0a9a200`
+- `task-registry.js` — `402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc`
+
+The candidate scope is exactly the shared component CSS, browser harness, new focused
+specification-family validator, production plan and this handoff. It changes no worksheet wording,
+case presentation, layout override, package metadata, task registry, response text, page count,
+persistence identity, Teacher content, source hash, release/history record or accepted-family
+implementation.
+
+Linux Chromium 149 registers the new canonical total of 2351 assertions. The finished run reports
+**2320/2351**, exactly the 31 established platform/font/screenshot-smoke exceptions, with all three
+new Case 05 assertions passing and zero application JavaScript errors. The candidate adds exactly:
+
+1. six-state page fit, page counts and fixed geometry;
+2. normal requirements, fields, Answer Key parity, action path and monitoring gate;
+3. grayscale requirements, fields, Answer Key parity, action path and monitoring gate.
+
+The focused specification/verification validator is **35/35 PASS**.
+
+Independent normal and grayscale inspection of Student page 4, Answer Key page 4 and Accessible
+page 7 confirmed fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936` fit and
+exact Student 4 / Answer Key 4 / Accessible 7 page counts in all six views. No view had overflow,
+spill, clipping, collision or crowding. All labels, four border/pattern states and the monitoring
+gate remained contained and distinct. Learner fields remained blank, visible and unclipped:
+
+- Student Task 7: approximately 341.5 × 131.52 px each.
+- Student `t8-immediate | t8-durable`: approximately 341 × 146.88 px each.
+- Student `t8-justify`: approximately 720 × 193.91 px.
+- Accessible Task 7: approximately 342 × 124.8 px each.
+- Accessible `a8-immediate | a8-durable`: approximately 341 × 124.8 px each.
+- Accessible `a8-test`: approximately 720 × 124.8 px.
+
+The Answer Key still requires crop-specific verification using monitor trends, plant microscopy,
+growth-stage outcomes and repeated crop trials. A crew criterion does not become a crop threshold;
+modeled secondary radiation remains modeled; the best-protected available location is not claimed
+safe; and the packet does not establish that one design is already successful. The learner note
+still prohibits inventing a numerical safe level and states that the game contains no in-game
+`apply the fix` step.
+
+External validation must run the complete Mac/Google Chrome harness twice. Canonical expectation
+is **2351/2351 PASS** with zero application JavaScript errors. If that Mac reproduces the inherited
+one-assertion registration shortfall, run prerequisite `3b19fcb…` in a throwaway worktree on the
+same machine. Require candidate delta exactly +3, all three named Case 05 assertions passing and
+zero JavaScript errors, then stop without pushing for separate candidate-specific disposition.
+Differential evidence does not itself authorize acceptance, does not change canonical 2351 and
+does not establish a general platform policy.
+
+Run the focused specification validator, all five established family validators and
+`validate_layout_overrides.py --case SSS-C1-CASE05`. Inspect the same six target views. If every
+gate passes at the canonical total, push only by ordinary fast-forward. Otherwise stop without
+pushing. Do not mark `C1C5-VIS03` `VERIFIED-FAMILY`, advance the inventory, merge to `main` or begin
+another finding.
+
 ## Accepted Family 5 completion — Hayes independent reactor control loop
 
 Candidate `4b0ef8bafd8f633b49e248a511bda13e554887e7` advances `C1C4-VIS03` for Hayes Orbital

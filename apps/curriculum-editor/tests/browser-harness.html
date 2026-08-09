@@ -1378,6 +1378,152 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        // Register the standalone Family 6 contract independently of the
+        // legacy literal case-range markers used by accepted-family validators.
+        if (item.id === ["SSS", "C1", "CASE05"].join("-")) {
+          const europaSpecificationPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-04", 4], ["answer", "answer-key-04", 4], ["accessible", "accessible-mission-07", 7]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              europaSpecificationPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 05 specification-verification pages retain strict fit, page counts and geometry in normal and grayscale",
+            europaSpecificationPageFit.length === 6
+              && europaSpecificationPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(europaSpecificationPageFit)
+          );
+          const expectedRequirementStatus = "MISSION REQUIREMENTS · DEFINE BEFORE DESIGN";
+          const expectedActionStatus = "ACTION PATH · CAUTIOUS NOW → DURABLE DESIGN";
+          const expectedAnswerActionStatus = "ACCEPTED RESPONSE PATH · ACTION → DESIGN → VERIFY";
+          const expectedTask7Answers = [
+            "Need: Define a crop-protection system that permits long-duration cultivation while producing evidence that crop exposure and biological response are adequately controlled.",
+            "Criteria: Reduce grow-chamber ionizing-radiation exposure; support normal meristem development and repeated crop growth; provide monitoring that can verify crop performance.",
+            "Constraints: Europa’s trapped energetic-particle environment; possible secondary radiation from material interactions; limited habitat mass, volume, power, and placement; separate crew and crop assessments; crop-specific protection criteria are not yet verified.",
+            "Verification: Compare monitor trends, plant microscopy, growth-stage outcomes, and repeated crop trials under the revised system. Do not substitute a crew criterion or invent a crop threshold."
+          ];
+          const expectedTask8Answers = [
+            "Immediate operational response: Pause or limit long-duration planting, preserve monitoring data and plant samples, and move cultivation to the best-protected available location if operations can do so without claiming safety is verified.",
+            "Durable engineering response: Redesign or supplement grow-chamber protection, placement, and monitoring, then conduct a crop-specific validation program that considers both primary and modeled secondary radiation.",
+            "Justification and verification: The response follows from converging exposure, plant, repeated-failure, and construction-log evidence. Success requires improved monitor evidence together with normal meristem development and sustained crop growth across repeated trials."
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, requirementSelector, actionSelector, requirementFieldIds, actionFieldIds] of [
+              ["student", "student-mission-04", ".task7-design-grid", ".task8-response-block", ["t7-need", "t7-criteria", "t7-constraints", "t7-verify"], ["t8-immediate", "t8-durable", "t8-justify"]],
+              ["answer", "answer-key-04", '.task-heading[data-task-id="7"] + .answer-block', '.task-heading[data-task-id="8"] + .answer-block', [], []],
+              ["accessible", "accessible-mission-07", ".accessible-task7-design", ".accessible-task8-block", ["a7-need", "a7-criteria", "a7-constraints", "a7-verify"], ["a8-immediate", "a8-durable", "a8-test"]]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const requirementRoot = page?.querySelector(requirementSelector);
+              const actionRoot = page?.querySelector(actionSelector);
+              const requirementCards = Array.from(requirementRoot?.querySelectorAll(role === "answer" ? ":scope > p" : ":scope > div") || []);
+              const actionPanel = role === "answer" ? actionRoot : actionRoot?.querySelector(".response-pair, .two-col");
+              const actionCards = Array.from(role === "answer" ? actionRoot?.querySelectorAll(":scope > p") || [] : actionPanel?.querySelectorAll(":scope > div") || []);
+              const requirementFields = requirementFieldIds.map(id => page?.querySelector(`[data-persist-id="${id}"]`));
+              const actionFields = actionFieldIds.map(id => page?.querySelector(`[data-persist-id="${id}"]`));
+              const requirementRect = requirementRoot?.getBoundingClientRect();
+              const actionRect = actionPanel?.getBoundingClientRect();
+              const contained = (rootRect, nodes) => Boolean(rootRect) && nodes.every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= rootRect.left - 1 && rect.right <= rootRect.right + 1
+                  && rect.top >= rootRect.top - 1 && rect.bottom <= rootRect.bottom + 1;
+              });
+              const collisions = nodes => nodes.some((node, index) => {
+                const rect = node.getBoundingClientRect();
+                return nodes.slice(index + 1).some(other => {
+                  const otherRect = other.getBoundingClientRect();
+                  return Math.min(rect.right, otherRect.right) - Math.max(rect.left, otherRect.left) > 1
+                    && Math.min(rect.bottom, otherRect.bottom) - Math.max(rect.top, otherRect.top) > 1;
+                });
+              });
+              const finalLabel = role === "student"
+                ? actionRoot?.querySelector(":scope > .response-label")
+                : role === "accessible"
+                  ? actionRoot?.querySelector(":scope > .response-label")
+                  : null;
+              rendered.push({
+                role,
+                pageId,
+                requirementRoot: Boolean(requirementRoot),
+                actionRoot: Boolean(actionRoot && actionPanel),
+                requirementStatus: requirementRoot ? win.getComputedStyle(requirementRoot, "::before").content.replaceAll('"', "") : "",
+                actionStatus: actionPanel ? win.getComputedStyle(actionPanel, "::before").content.replaceAll('"', "") : "",
+                requirementBorders: requirementCards.map(card => win.getComputedStyle(card).borderLeftStyle).join("|"),
+                requirementPatterns: requirementCards.map(card => win.getComputedStyle(card).backgroundImage !== "none"),
+                actionBorders: actionCards.map(card => win.getComputedStyle(card).borderLeftStyle).join("|"),
+                actionPatterns: actionCards.map(card => win.getComputedStyle(card).backgroundImage !== "none"),
+                requirementContained: contained(requirementRect, requirementCards),
+                actionContained: contained(actionRect, actionCards),
+                requirementCollisions: collisions(requirementCards),
+                actionCollisions: collisions(actionCards),
+                requirementFieldIds: requirementFields.map(field => field?.dataset.persistId || ""),
+                actionFieldIds: actionFields.map(field => field?.dataset.persistId || ""),
+                blankFields: [...requirementFields, ...actionFields].map(field => Boolean(field?.hasAttribute("data-response")) && field.textContent.trim() === "" && dimensions(field).every(value => value > 0)),
+                requirementFieldBorders: requirementFields.map(field => field ? win.getComputedStyle(field).borderLeftStyle : "").join("|"),
+                actionFieldBorders: actionFields.map(field => field ? win.getComputedStyle(field).borderLeftStyle : "").join("|"),
+                monitorGate: finalLabel ? win.getComputedStyle(finalLabel, "::after").content.replaceAll('"', "") : "",
+                answerRequirementText: role === "answer" ? requirementCards.map(card => card.textContent.trim().replace(/\s+/g, " ")) : [],
+                answerActionText: role === "answer" ? actionCards.map(card => card.textContent.trim().replace(/\s+/g, " ")) : []
+              });
+            }
+            const studentSpec = rendered.find(state => state.role === "student");
+            const answerSpec = rendered.find(state => state.role === "answer");
+            const accessibleSpec = rendered.find(state => state.role === "accessible");
+            check(
+              `C1 Case 05 ${grayscale ? "grayscale" : "normal"} specification panel preserves requirements, response fields and monitoring gate`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 3
+                && rendered.every(state => state.requirementRoot && state.actionRoot && state.requirementContained && state.actionContained && !state.requirementCollisions && !state.actionCollisions)
+                && rendered.every(state => state.requirementStatus === expectedRequirementStatus && state.requirementBorders === "solid|double|dotted|dashed" && state.requirementPatterns.every(Boolean))
+                && studentSpec.actionStatus === expectedActionStatus
+                && accessibleSpec.actionStatus === expectedActionStatus
+                && answerSpec.actionStatus === expectedAnswerActionStatus
+                && studentSpec.actionBorders === "dotted|double"
+                && accessibleSpec.actionBorders === "dotted|double"
+                && answerSpec.actionBorders === "dotted|double|dashed"
+                && rendered.every(state => state.actionPatterns.every(Boolean))
+                && studentSpec.requirementFieldIds.join("|") === "t7-need|t7-criteria|t7-constraints|t7-verify"
+                && accessibleSpec.requirementFieldIds.join("|") === "a7-need|a7-criteria|a7-constraints|a7-verify"
+                && studentSpec.actionFieldIds.join("|") === "t8-immediate|t8-durable|t8-justify"
+                && accessibleSpec.actionFieldIds.join("|") === "a8-immediate|a8-durable|a8-test"
+                && [studentSpec, accessibleSpec].every(state => state.blankFields.every(Boolean))
+                && [studentSpec, accessibleSpec].every(state => state.requirementFieldBorders === "solid|double|dotted|dashed" && state.actionFieldBorders === "dotted|double|dashed")
+                && studentSpec.monitorGate === "MONITORING GATE"
+                && accessibleSpec.monitorGate === "MONITORING GATE"
+                && answerSpec.answerRequirementText.join("|") === expectedTask7Answers.join("|")
+                && answerSpec.answerActionText.join("|") === expectedTask8Answers.join("|")
+                && workspace.textContent.includes("Do not substitute a crew criterion or invent a crop threshold.")
+                && workspace.textContent.includes("The packet does not establish that one proposed design is already successful.")
+                && workspace.textContent.includes("Do not invent a numerical safe level. The game provides a diagnosis, not an in-game “apply the fix” step."),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C1-CASE02") {
           for (const grayscale of [false, true]) {
             const horizontal = [];

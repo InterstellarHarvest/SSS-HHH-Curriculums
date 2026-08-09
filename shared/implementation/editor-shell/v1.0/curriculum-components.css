@@ -1914,6 +1914,265 @@ body.grayscale .figure:where(
 }
 
 /*
+ * Specification/verification family expansion: Europa crop protection.
+ *
+ * The frozen final pages already preserve Need, Criteria, Constraints and
+ * Verification fields followed by separate immediate, durable and monitored-
+ * verification responses. This Case-05-scoped layer makes that requirement
+ * flow visible without adding a threshold, changing a response identity or
+ * presenting any shielding proposal as an already successful solution.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE05"] {
+  --europa-spec-line: var(--ink, #18212b);
+  --europa-spec-panel: var(--paper, #fff);
+  --europa-spec-need-pattern:
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(24, 33, 43, .055) 10px 11px);
+  --europa-spec-criteria-pattern:
+    repeating-linear-gradient(45deg, transparent 0 7px, rgba(24, 33, 43, .11) 7px 8px);
+  --europa-spec-constraint-pattern:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .1) 8px 9px);
+  --europa-spec-verify-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .08) 7px 8px);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid,
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block
+) {
+  position: relative;
+  isolation: isolate;
+  padding: 16px 5px 5px;
+  border: 1.5px solid var(--europa-spec-line);
+  border-radius: 3px;
+  box-shadow: inset 4px 0 0 var(--europa-spec-line);
+  background: var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid,
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block
+)::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto 0;
+  box-sizing: border-box;
+  height: 14px;
+  padding: 3px 6px 2px 9px;
+  border-bottom: .75pt solid var(--europa-spec-line);
+  content: "MISSION REQUIREMENTS · DEFINE BEFORE DESIGN";
+  background: var(--europa-spec-need-pattern), var(--europa-spec-panel);
+  font: 800 5.7pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid > div,
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design > div,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block > p
+) {
+  min-width: 0;
+  padding-left: 5px;
+  border-left: 4px solid var(--europa-spec-line);
+  background: var(--europa-spec-need-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid > div:nth-child(2),
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design > div:nth-child(2),
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block > p:nth-child(2)
+) {
+  border-left-style: double;
+  background: var(--europa-spec-criteria-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid > div:nth-child(3),
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design > div:nth-child(3),
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block > p:nth-child(3)
+) {
+  border-left-style: dotted;
+  background: var(--europa-spec-constraint-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid > div:nth-child(4),
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design > div:nth-child(4),
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block > p:nth-child(4)
+) {
+  border-left-style: dashed;
+  background: var(--europa-spec-verify-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t7-need"],
+  [data-persist-id="a7-need"]
+) { border-left: 4px solid var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t7-criteria"],
+  [data-persist-id="a7-criteria"]
+) { border-left: 4px double var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t7-constraints"],
+  [data-persist-id="a7-constraints"]
+) { border-left: 4px dotted var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t7-verify"],
+  [data-persist-id="a7-verify"]
+) { border-left: 4px dashed var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task8-response-block .response-pair,
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block .two-col
+) {
+  position: relative;
+  isolation: isolate;
+  padding: 16px 5px 5px;
+  border: 1.5px solid var(--europa-spec-line);
+  border-radius: 3px;
+  background: var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task8-response-block .response-pair,
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block .two-col
+)::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto 0;
+  box-sizing: border-box;
+  height: 14px;
+  padding: 3px 6px 2px;
+  border-bottom: .75pt solid var(--europa-spec-line);
+  content: "ACTION PATH · CAUTIOUS NOW → DURABLE DESIGN";
+  background: var(--europa-spec-criteria-pattern), var(--europa-spec-panel);
+  font: 800 5.7pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task8-response-block .response-pair > div,
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block .two-col > div
+) {
+  min-width: 0;
+  padding-left: 5px;
+  border-left: 4px dotted var(--europa-spec-line);
+  background: var(--europa-spec-constraint-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task8-response-block .response-pair > div:nth-child(2),
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block .two-col > div:nth-child(2)
+) {
+  border-left-style: double;
+  background: var(--europa-spec-criteria-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t8-immediate"],
+  [data-persist-id="a8-immediate"]
+) { border-left: 4px dotted var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t8-durable"],
+  [data-persist-id="a8-durable"]
+) { border-left: 4px double var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task8-response-block > .response-label,
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block > .response-label
+) {
+  position: relative;
+  min-height: 16px;
+  margin-top: 5px;
+  padding: 3px 5px 2px;
+  border: .75pt solid var(--europa-spec-line);
+  border-left: 4px dashed var(--europa-spec-line);
+  background: var(--europa-spec-verify-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task8-response-block > .response-label,
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block > .response-label
+)::after {
+  position: absolute;
+  right: 5px;
+  content: "MONITORING GATE";
+  font: 800 5.5pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"] :is(
+  [data-persist-id="t8-justify"],
+  [data-persist-id="a8-test"]
+) { border-left: 4px dashed var(--europa-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block {
+  position: relative;
+  isolation: isolate;
+  padding: 16px 5px 5px;
+  border: 1.5px solid var(--europa-spec-line);
+  border-radius: 3px;
+  background: var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block::before {
+  position: absolute;
+  z-index: 2;
+  inset: 0 0 auto 0;
+  box-sizing: border-box;
+  height: 14px;
+  padding: 3px 6px 2px;
+  border-bottom: .75pt solid var(--europa-spec-line);
+  content: "ACCEPTED RESPONSE PATH · ACTION → DESIGN → VERIFY";
+  background: var(--europa-spec-verify-pattern), var(--europa-spec-panel);
+  font: 800 5.7pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p {
+  padding: 2px 4px;
+  border-left: 4px dotted var(--europa-spec-line);
+  background: var(--europa-spec-constraint-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(2) {
+  border-left-style: double;
+  background: var(--europa-spec-criteria-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE05"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(3) {
+  border-left-style: dashed;
+  background: var(--europa-spec-verify-pattern), var(--europa-spec-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE05"] :is(
+  .page[data-page-id="student-mission-04"] .task7-design-grid,
+  .page[data-page-id="accessible-mission-07"] .accessible-task7-design,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block,
+  .page[data-page-id="student-mission-04"] .task8-response-block .response-pair,
+  .page[data-page-id="accessible-mission-07"] .accessible-task8-block .two-col,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
+/*
  * Mechanism/pathway family expansion: First Contact coordination system.
  *
  * The released organizers already preserve the four exact phrase-bank

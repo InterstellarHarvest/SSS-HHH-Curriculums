@@ -356,6 +356,36 @@ control validator passed 30/30, timeline 44/44, mechanism 103/103, evidence conv
 telemetry 36/36 and the Case 04 layout-override validator passed. `C1C4-VIS03` is therefore
 `VERIFIED-FAMILY`, completing Family 5.
 
+`C1C5-VIS03` is the first standalone Family 6 specification/verification candidate. It preserves
+Europa Bunker's frozen final Student page 4, Answer Key page 4 and Accessible page 7 as the
+semantic source of truth. Task 7 remains the engineering-problem definition and Task 8 remains
+the immediate/durable recommendation; the shared Case-05-scoped SV1 treatment simply joins them
+into one visible requirements-to-verification grammar. The existing Need, Criteria, Constraints
+and Verification states use solid, double, dotted and dashed borders with independent hatch
+patterns. The existing immediate and durable responses form the labeled
+`ACTION PATH · CAUTIOUS NOW → DURABLE DESIGN`, and the existing justification/test response is
+identified as the `MONITORING GATE`. The Answer Key carries the parallel
+`ACCEPTED RESPONSE PATH · ACTION → DESIGN → VERIFY` treatment.
+
+The candidate changes no worksheet source, case presentation, layout override, package metadata,
+task registry, page count, response text, persistence identity, Teacher content, source hash,
+release/history record or accepted-family implementation. Student retains seven blank fields:
+`t7-need | t7-criteria | t7-constraints | t7-verify | t8-immediate | t8-durable | t8-justify`.
+Accessible retains the parallel seven blank fields ending in `a8-test`. The Answer Key retains
+the exact accepted Need/Criteria/Constraints/Verification and immediate/durable/justification
+exemplars. No crop-safe threshold, shielding percentage, guaranteed solution or completed in-game
+fix is added.
+
+The finished Linux Chromium 149 run registers the new canonical total of 2351 assertions and
+reports 2320/2351 because of the same 31 established platform/font/screenshot-smoke exceptions.
+All three new Case 05 assertions pass and application JavaScript errors remain zero. The candidate
+adds one six-state strict-fit contract plus normal and grayscale semantic/geometry contracts.
+Normal and grayscale inspection confirms fixed 816 × 1056 pages, exact
+`scrollHeight 936 == clientHeight 936`, Student 4 / Answer Key 4 / Accessible 7 page counts,
+contained panels, distinct border/pattern states, blank usable learner fields and no overflow,
+spill, clipping, collision or crowding. External Mac/Google Chrome acceptance remains required;
+the candidate is not accepted and the formal inventory remains 26/36 completed with 10 remaining.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified
@@ -447,7 +477,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `VERIFIED-FAMILY · 30/30 CONTROL STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 4b0ef8b ACCEPTED` |
 | `C1C5-VIS01` | Europa Bunker; S T5 p3, A T5 p5, AK T5 p3 | Seven-stage snake of text boxes. | 2 · Causal mechanism/pathway | Qualified hazard pathway visually separating environment, modeled interaction, exposure evidence, evidence limit, biological evidence, growth consequence and convergence; deterministic HTML/SVG. | Preserve seven exact bank entries and current blanks; A vertical; AK complete. | Modeled secondary radiation ≠ measured; exposure ≠ damage; abnormalities are consistent with damage; no exact quantities. | mechanism/status primitives; phrase, qualifier and persistence tests | `VERIFIED-FAMILY · 52/52 FAMILY STATIC PASS · 2312/2312 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · dcb2d91 ACCEPTED` |
 | `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `VERIFIED-FAMILY · 30/30 FAMILY STATIC PASS · 2342/2342 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 70375da ACCEPTED` |
-| `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `PLANNED` |
+| `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `IMPLEMENTED-CANDIDATE · 35/35 SPECIFICATION STATIC PASS · 2320/2351 LINUX BROWSER · 3/3 CANDIDATE ASSERTIONS · 0 JS ERRORS · STRICT FIT 936/936 · EXTERNAL ACCEPTANCE PENDING` |
 | `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `VERIFIED-FAMILY · 30/30 TIMELINE STATIC PASS · 2336/2336 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 66a3d1b ACCEPTED` |
 | `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
 | `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `PLANNED` |
