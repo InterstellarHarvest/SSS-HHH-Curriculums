@@ -2606,6 +2606,168 @@
               JSON.stringify(rendered)
             );
           }
+          const controlLoopPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, expectedPages] of [
+              ["student", "student-mission-04", 4],
+              ["answer", "answer-key-03", 4],
+              ["accessible", "accessible-mission-07", 7]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const pageRect = page?.getBoundingClientRect();
+              controlLoopPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPages,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C1 Case 04 control-loop pages retain strict fit, page counts and geometry in normal and grayscale",
+            controlLoopPageFit.length === 6
+              && controlLoopPageFit.every(state => state.page && state.pageSize === "816x1056"
+                && state.pageCount === state.expectedPages && !state.overflow && state.fits),
+            JSON.stringify(controlLoopPageFit)
+          );
+          const controlLearnerText = field => {
+            if (!field) return "";
+            const clone = field.cloneNode(true);
+            clone.querySelectorAll("[data-layout-resize-ui]").forEach(node => node.remove());
+            return clone.textContent.trim().replace(/\s+/g, " ");
+          };
+          const expectedControlSource = {
+            student: [
+              "Measure Light intensity and exposure time",
+              "Compare Validated operating range",
+              "Control Independent dimming or recovery interval",
+              "Verify Culture response"
+            ],
+            answer: [
+              "Sensor Measure intensity and duration",
+              "Controller Compare with validated range",
+              "Actuator Dim or schedule recovery",
+              "Feedback Track culture performance"
+            ],
+            accessible: [
+              "Measure Intensity and time",
+              "Compare Validated range",
+              "Control Dim or schedule recovery",
+              "Verify Culture response"
+            ]
+          };
+          for (const grayscale of [false, true]) {
+            const renderedControls = [];
+            for (const [role, pageId] of [
+              ["student", "student-mission-04"],
+              ["answer", "answer-key-03"],
+              ["accessible", "accessible-mission-07"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.systems-diagram[data-systems-contract="reactor-control-v1.0"]');
+              const nodes = Array.from(model?.querySelectorAll(":scope > div") || []);
+              const connectors = Array.from(model?.querySelectorAll(":scope > i") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const nodeRects = nodes.map(node => node.getBoundingClientRect());
+              const nodeCollision = nodeRects.some((rect, index) => nodeRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const contained = Boolean(modelRect) && [...nodes, ...connectors].every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              renderedControls.push({
+                role,
+                pageId,
+                model: Boolean(model),
+                nodeCount: nodes.length,
+                connectorCount: connectors.length,
+                sourceText: nodes.map(node => Array.from(node.children)
+                  .map(child => child.textContent.trim().replace(/\s+/g, " "))
+                  .filter(Boolean)
+                  .join(" ")),
+                technicalLabels: nodes.map(node => win.getComputedStyle(node, "::before").content.replaceAll('"', "")),
+                borderStates: nodes.map(node => win.getComputedStyle(node).borderTopStyle).join("|"),
+                patternStates: nodes.map(node => win.getComputedStyle(node).backgroundImage !== "none"),
+                arrows: connectors.map(node => node.textContent.trim()).join("|"),
+                relationshipLabels: connectors.map(node => win.getComputedStyle(node, "::before").content.replaceAll('"', "")).join("|"),
+                status: model ? win.getComputedStyle(model, "::before").content.replaceAll('"', "") : "",
+                feedback: model ? win.getComputedStyle(model, "::after").content.replaceAll('"', "") : "",
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                nodeCollision
+              });
+            }
+            api.setRole("student");
+            api.saveState({ grayscale });
+            await wait(20);
+            const studentPage = workspace.querySelector('.page[data-role="student"][data-page-id="student-mission-04"]');
+            const studentFields = ["t7a", "t7b"].map(id => {
+              const field = studentPage?.querySelector(`[data-persist-id="${id}"]`);
+              return {
+                id,
+                found: Boolean(field),
+                response: field?.hasAttribute("data-response") || false,
+                blank: controlLearnerText(field) === "",
+                size: field ? dimensions(field) : [0, 0]
+              };
+            });
+            api.setRole("accessible");
+            api.saveState({ grayscale });
+            await wait(20);
+            const accessiblePage = workspace.querySelector('.page[data-role="accessible"][data-page-id="accessible-mission-07"]');
+            const accessibleFields = ["a7", "a7-longterm"].map(id => {
+              const field = accessiblePage?.querySelector(`[data-persist-id="${id}"]`);
+              return {
+                id,
+                found: Boolean(field),
+                response: field?.hasAttribute("data-response") || false,
+                blank: controlLearnerText(field) === "",
+                size: field ? dimensions(field) : [0, 0]
+              };
+            });
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerTaskSeven = workspace.querySelector('.page[data-role="answer"][data-page-id="answer-key-04"] .task-heading[data-task-id="7"] + .answer-block');
+            check(
+              `C1 Case 04 ${grayscale ? "grayscale" : "normal"} control loop preserves roles, feedback, learner fields and reactor boundary`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && renderedControls.length === 3
+                && renderedControls.every(state => state.model && state.nodeCount === 4 && state.connectorCount === 3
+                  && state.modelFits && state.contained && !state.nodeCollision)
+                && renderedControls.every(state => state.status === "CLOSED CONTROL LOOP · INDEPENDENT REACTOR LIGHT SYSTEM")
+                && renderedControls.every(state => state.feedback === "↰ PERFORMANCE FEEDBACK · CULTURE RESPONSE → SENSOR / COMPARATOR")
+                && renderedControls.every(state => state.technicalLabels.join("|") === "SENSOR|COMPARATOR / CONTROLLER|INDEPENDENT ACTUATOR|REACTOR / VERIFICATION")
+                && renderedControls.every(state => state.borderStates === "solid|double|dashed|dotted" && state.patternStates.every(Boolean))
+                && renderedControls.every(state => state.arrows === "→|→|→" && state.relationshipLabels === "MEASURES|COMMANDS|ADJUSTS")
+                && renderedControls.every(state => JSON.stringify(state.sourceText) === JSON.stringify(expectedControlSource[state.role]))
+                && studentFields.every(field => field.found && field.response && field.blank && field.size[1] >= 196)
+                && accessibleFields.every(field => field.found && field.response && field.blank && field.size[1] >= 55)
+                && answerTaskSeven?.textContent.includes("Restore the validated dark or low-light recovery interval")
+                && answerTaskSeven?.textContent.includes("Continuous cultivation remains possible under appropriately controlled conditions")
+                && studentPage?.textContent.includes("Continuous cultivation may work with appropriate independent intensity, mixing, density, and process controls")
+                && accessiblePage?.textContent.includes("this conclusion is about this reactor"),
+              JSON.stringify({ renderedControls, studentFields, accessibleFields })
+            );
+          }
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

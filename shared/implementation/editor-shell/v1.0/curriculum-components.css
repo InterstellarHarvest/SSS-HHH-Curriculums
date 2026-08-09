@@ -1306,6 +1306,196 @@ body.grayscale .figure:where(
 }
 
 /*
+ * Engineering-control-loop family: Hayes independent reactor controls.
+ *
+ * The released Student, Accessible and Answer Key structures already retain
+ * the four approved control functions and both learner response fields. This
+ * case-scoped layer distinguishes the physical control roles, labels each
+ * forward relationship and adds a direct monitored-performance return rail.
+ * It does not insert an operating setpoint, imply that corridor lighting is
+ * an independent actuator or generalize this reactor's recovery requirement.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] {
+  --control-line: var(--ink, #18212b);
+  --control-muted: var(--rule, #8c9aa8);
+  --control-panel: var(--paper, #fff);
+  position: relative;
+  isolation: isolate;
+  grid-template-columns:
+    minmax(0, 1fr) 44px
+    minmax(0, 1fr) 44px
+    minmax(0, 1fr) 44px
+    minmax(0, 1fr);
+  gap: 3px;
+  box-sizing: border-box;
+  padding: .27in 5px .35in;
+  overflow: hidden;
+  border: 1.5px solid var(--control-muted);
+  border-left: 4px solid var(--control-line);
+  border-radius: var(--radius, 3px);
+  background:
+    repeating-linear-gradient(135deg, transparent 0 12px, rgba(24, 33, 43, .035) 12px 13px),
+    var(--control-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"]::before {
+  position: absolute;
+  z-index: 3;
+  top: 4px;
+  right: 6px;
+  left: 6px;
+  content: "CLOSED CONTROL LOOP · INDEPENDENT REACTOR LIGHT SYSTEM";
+  color: var(--control-line);
+  font: 800 6.2pt/1.1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"]::after {
+  position: absolute;
+  z-index: 3;
+  right: 6px;
+  bottom: 4px;
+  left: 6px;
+  box-sizing: border-box;
+  min-height: .25in;
+  padding: 4px 7px 3px;
+  border: 3px double var(--control-line);
+  border-top-style: dashed;
+  border-radius: 2px;
+  content: "↰ PERFORMANCE FEEDBACK · CULTURE RESPONSE → SENSOR / COMPARATOR";
+  background: var(--control-panel);
+  color: var(--control-line);
+  font: 800 5.9pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div {
+  position: relative;
+  min-height: .63in;
+  padding: .24in 5px 5px;
+  border: 1px solid var(--control-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 9px, rgba(24, 33, 43, .045) 9px 10px),
+    var(--control-panel);
+  color: var(--control-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div::before {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  left: 4px;
+  color: var(--control-line);
+  font: 800 5.3pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(1)::before {
+  content: "SENSOR";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(2)::before {
+  content: "COMPARATOR / CONTROLLER";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(3)::before {
+  content: "INDEPENDENT ACTUATOR";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(4)::before {
+  content: "REACTOR / VERIFICATION";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(2) {
+  border-top-style: double;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .08) 7px 8px),
+    var(--control-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(3) {
+  border-top-style: dashed;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .12) 6px 8px),
+    var(--control-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div:nth-of-type(4) {
+  border-top-style: dotted;
+  background:
+    radial-gradient(circle, rgba(24, 33, 43, .15) 1px, transparent 1.2px),
+    var(--control-panel);
+  background-size: 7px 7px, auto;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > i {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  align-self: stretch;
+  min-width: 0;
+  padding-bottom: 12px;
+  color: var(--control-line);
+  font: 800 11pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > i::before {
+  position: absolute;
+  top: 7px;
+  right: -2px;
+  left: -2px;
+  font: 800 5.2pt/1 "JetBrains Mono", monospace;
+  letter-spacing: -.01em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > i:nth-of-type(1)::before {
+  content: "MEASURES";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > i:nth-of-type(2)::before {
+  content: "COMMANDS";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > i:nth-of-type(3)::before {
+  content: "ADJUSTS";
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE04"]
+  .systems-diagram[data-systems-contract="reactor-control-v1.0"] > div {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
+/*
  * Mechanism/pathway family expansion: Europa radiation-to-growth pathway.
  *
  * The released organizers already preserve the seven exact stages, six

@@ -316,6 +316,39 @@ The focused evidence-convergence validator passed 60/60, timeline 44/44, mechani
 telemetry 36/36 and the Case 07 layout-override validator passed. `C1C7-VIS01` is therefore
 `VERIFIED-FAMILY`, completing Family 4.
 
+`C1C4-VIS03` is now an implemented but unaccepted Family 5 candidate for Hayes Orbital Station.
+The frozen Student page 4, Answer Key page 3 reference and Accessible page 7 control structures
+remain the semantic source of truth. The shared Case-04-scoped CL1 treatment identifies the four
+existing nodes as `SENSOR`, `COMPARATOR / CONTROLLER`, `INDEPENDENT ACTUATOR` and
+`REACTOR / VERIFICATION`; labels the existing forward relationships `MEASURES`, `COMMANDS` and
+`ADJUSTS`; and adds the explicit return rail
+`PERFORMANCE FEEDBACK · CULTURE RESPONSE → SENSOR / COMPARATOR`. Solid, double, dashed and
+dotted node borders plus independent hatch states preserve the role distinctions in grayscale.
+The source labels and descriptions remain present, including the Answer Key's completed sensor,
+controller, actuator and feedback wording.
+
+The implementation changes no worksheet source, case presentation, layout override, package
+metadata, task registry, page count, persistence identity, Teacher content, release record or
+accepted-family implementation. Student retains blank fields `t7a | t7b` at 356 × 196.8 px;
+Accessible retains blank fields `a7 | a7-longterm` at 720 × 148.8 px and 720 × 65.27 px. The
+immediate response remains restoration of the validated recovery interval, while the long-term
+response remains independent intensity/schedule control with actual-exposure and culture-response
+monitoring. The diagram introduces no setpoint and does not generalize this reactor's failure to
+all continuous cultivation.
+
+Local Linux Chromium registers the new canonical total of 2348 assertions and reports 2317/2348
+because of the same 31 established platform/font/screenshot-smoke exceptions. All three new
+control-loop assertions pass: six-state page fit plus complete normal and grayscale semantics,
+geometry, fields and science boundaries. Student 4 / Answer Key 4 / Accessible 7 page counts,
+fixed 816 × 1056 geometry and strict `scrollHeight 936 == clientHeight 936` fit remain exact in all
+six target views. Local normal/grayscale inspection confirms contained nodes and rails, readable
+labels, blank unclipped fields, distinct patterns and no collision, spill or crowding. The focused
+control validator is 30/30 PASS and the accepted timeline, mechanism, evidence-convergence and
+telemetry families remain unchanged. `C1C4-VIS03` remains `IMPLEMENTED-CANDIDATE` until a separate
+Mac/Chrome run passes the complete 2348-assertion gate twice with zero application JavaScript
+errors and the six target views pass manual inspection. Accepted inventory therefore remains
+**25 of 36 completed**, with **11 remaining**; Family 5 has no accepted finding yet.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified
@@ -401,7 +434,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C3-VIS03` | Mars Habitat; S T6 p3, A T6 p5, AK T6 p3 | Generic five-stage rectangles. | 2 · Causal mechanism/pathway | Technical glyph chain: collector → wrong BP-4 filter → selective loss → disrupted new chlorophyll production → pale new growth; deterministic HTML/SVG. | Preserve five-stage exact-match bank, blank stages and vertical A variant. | Do not claim an unsupported universal chlorophyll mechanism; retain case wording and corrected 700 nm boundary. | mechanism primitive; bank/order/persistence checks | `VERIFIED-FAMILY · 25/25 FAMILY STATIC PASS · 2303/2303 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 3.47px RESERVE · c532ac5 ACCEPTED` |
 | `C1C4-VIS01` | Hayes Orbital Station; S T2 p1, A T2 p2, AK T2 p1 | Five numbered blanks connected by plain arrows. | 3 · Timeline/event log | SAA incident log with verified relative-event slots and event-type markers; deterministic HTML/CSS. | Same five writable positions; A stays vertical; AK completes identical log. | Relative timing only; do not invent mission days or proportional spacing. | P1–P5, TL1; exact event-bank/parity checks | `VERIFIED-FAMILY · 17/17 TIMELINE STATIC PASS · 2333/2333 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d5ffe37 ACCEPTED` |
 | `C1C4-VIS02` | Hayes Orbital Station; S T5 p3, A T5 p5, AK T5 p3 | Six-stage snake layout; reading direction requires prose. | 2 · Causal mechanism/pathway | Immediate closed fault loop with directional connectors and explicit repeat link. | Preserve six exact stages/fields and A vertical reading order. | Qualitative recurrence; no invented light dose, density or crash interval beyond reported 6–8 days. | loop variant of mechanism primitive; connector/read-order tests | `VERIFIED-FAMILY · 44/44 FAMILY STATIC PASS · 2309/2309 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d5b6c02 ACCEPTED` |
-| `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `PLANNED` |
+| `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `IMPLEMENTED-CANDIDATE · 30/30 CONTROL STATIC PASS · 2348/2348 MAC/CHROME GATE REQUIRED` |
 | `C1C5-VIS01` | Europa Bunker; S T5 p3, A T5 p5, AK T5 p3 | Seven-stage snake of text boxes. | 2 · Causal mechanism/pathway | Qualified hazard pathway visually separating environment, modeled interaction, exposure evidence, evidence limit, biological evidence, growth consequence and convergence; deterministic HTML/SVG. | Preserve seven exact bank entries and current blanks; A vertical; AK complete. | Modeled secondary radiation ≠ measured; exposure ≠ damage; abnormalities are consistent with damage; no exact quantities. | mechanism/status primitives; phrase, qualifier and persistence tests | `VERIFIED-FAMILY · 52/52 FAMILY STATIC PASS · 2312/2312 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · dcb2d91 ACCEPTED` |
 | `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `VERIFIED-FAMILY · 30/30 FAMILY STATIC PASS · 2342/2342 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 70375da ACCEPTED` |
 | `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `PLANNED` |

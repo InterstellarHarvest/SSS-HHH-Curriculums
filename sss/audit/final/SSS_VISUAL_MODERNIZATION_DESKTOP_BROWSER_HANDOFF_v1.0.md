@@ -4,6 +4,93 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Implemented Family 5 candidate — Hayes independent reactor control loop
+
+Candidate production starts from synchronized accepted prerequisite
+`e3abde0f0a05c3481bf6d03a7ca22c52c520d9ec`. `C1C4-VIS03` is implemented for Hayes Orbital
+Station but remains unaccepted until the external Mac/Chrome gate below is complete. Accepted
+inventory remains **25 of 36 completed**, with **11 remaining**; Family 5 has no accepted finding.
+
+The frozen Task 7 structures remain semantic and source-controlled:
+
+- Student page 4 retains the four existing `Measure → Compare → Control → Verify` nodes and blank
+  fields `t7a | t7b` for immediate recovery and long-term independent control.
+- Accessible page 7 retains the same four functions and blank fields `a7 | a7-longterm`, plus its
+  existing sentence starters.
+- Answer Key page 3 retains the completed sensor/controller/actuator/feedback connection, while
+  Answer Key page 4 retains the exact immediate and long-term exemplar.
+
+The Case-04-scoped shared presentation identifies the existing nodes as:
+
+`SENSOR | COMPARATOR / CONTROLLER | INDEPENDENT ACTUATOR | REACTOR / VERIFICATION`
+
+The three forward connectors retain their source arrows and gain direct relationship labels:
+
+`MEASURES | COMMANDS | ADJUSTS`
+
+The surrounding technical frame labels the model exactly
+`CLOSED CONTROL LOOP · INDEPENDENT REACTOR LIGHT SYSTEM`. A distinct return rail makes the
+closed-loop relationship explicit:
+
+`↰ PERFORMANCE FEEDBACK · CULTURE RESPONSE → SENSOR / COMPARATOR`
+
+Solid, double, dashed and dotted node borders plus independent hatch states preserve the four
+roles without color. The figure does not insert an intensity, duration or schedule setpoint;
+corridor lighting is not framed as the independent actuator; and measured culture performance
+returns to the sensor/comparator rather than becoming a guaranteed success claim.
+
+No Case 04 source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `7725f9b5cd204171eae9d3a77158307ed4e9f6f66691cdd8dd27c0132d0bc061`
+- `presentation.css` — `be6192cd9401105d8978b59be3204432e5e095f58da2b2f349a8099a9cfb9d2f`
+- `layout-overrides.json` — `11653245ad346f9ccb67c938dbd4b021c8278601b154403bf25ded97d7ab754f`
+- `case-package.json` — `8cab25b388b5a6d7c371cf083acc7339a0bd81d11fc1d923f5d0e683b339ee37`
+- `task-registry.js` — `afb3e989647a2eb03e354800ee8413c0783f4f1f2ce723cd802bd0e5c9c6dfd7`
+
+Candidate scope is exactly the shared component CSS, browser harness, focused control-family
+validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+layout override, package metadata, task registry, response ID, page count, persistence identity,
+Teacher content, source hash, release/history record or accepted-family implementation.
+
+Local Linux Chromium registers the new canonical total of 2348 assertions and reports
+**2317/2348** because of the same 31 established platform/font/screenshot-smoke exceptions. All
+three new Case 04 contracts pass: six-state page fit, complete normal semantics/geometry and
+complete grayscale semantics/geometry. All six targets retain fixed 816 × 1056 pages, exact
+`scrollHeight 936 == clientHeight 936`, no `has-overflow` state and exact Student 4 / Answer Key 4 /
+Accessible 7 page counts. The learner fields remain blank and unclipped at these computed sizes:
+
+- Student `t7a | t7b`: 356 × 196.8 px each.
+- Accessible `a7`: 720 × 148.8 px.
+- Accessible `a7-longterm`: 720 × 65.27 px.
+
+The focused engineering-control-loop validator is **30/30 PASS**; timeline remains **44/44**;
+mechanism remains **103/103**; evidence convergence remains **60/60**; telemetry remains
+**36/36**; and the Case 04 layout-override validator passes.
+
+Normal and grayscale inspection has been completed locally for Student page 4, Answer Key page 3
+and Accessible page 7. In every view, the status line, four nodes, three labeled connectors and
+feedback rail remain contained and legible; the solid/double/dashed/dotted borders and independent
+hatches remain distinct; the learner fields remain usable; and no content boundary spills. The
+Answer Key preserves the immediate recovery action, independent control, actual-exposure and
+culture-response monitoring, current mixing/density validation and controlled-continuous-
+cultivation possibility. Student and Accessible retain the explicit reactor-specific boundary.
+
+External acceptance requires installed Google Chrome to pass the complete **2348/2348** harness
+twice with zero application JavaScript errors, followed by manual inspection of the same six
+Student/Answer Key/Accessible normal and grayscale views. If that Mac again registers one fewer
+inherited assertion, also run prerequisite `e3abde0…` on the same machine and report both totals;
+the candidate must add exactly +3 with all three Case 04 assertions passing. That differential
+evidence requires separate disposition and does not itself authorize acceptance or push.
+
+Verify exact page counts and 936/936 fit; no overflow, spill, clipping, collision or crowding;
+readable status, role, relationship and feedback labels; distinct normal/grayscale node encodings;
+both blank Student fields; both blank Accessible fields; the completed Answer Key control
+connection; and the no-setpoint, independent-control, monitored-response and reactor-specific
+continuous-cultivation boundaries. If any check fails, stop and report the failing assertion or
+view; do not edit or integrate the candidate. Until both automated passes and manual inspection
+succeed, do not add `C1C4-VIS03` to a Family 5 accepted register, do not advance the inventory and
+do not begin another finding.
+
 ## Accepted Family 4 completion — The Gift diagnostic question
 
 Candidate `39325dcd1639c40e17aac435c599e17ecaffc3df` advances `C1C7-VIS01` for The Gift
