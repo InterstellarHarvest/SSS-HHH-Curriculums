@@ -121,9 +121,9 @@ response controls and release baselines remained unchanged. `C1C7-VIS02` is ther
 `VERIFIED-FAMILY`.
 
 Campaign 1's Family 2 cohort is closed: all seven Campaign 1 mechanism/pathway findings are
-verified. Family 2 remains open overall because `C2C2-VIS02` is now verified and `C2C3-VIS03`,
-`C2C5-VIS03` and `C2C6-VIS02` remain planned. The formal visual-modernization inventory now stands
-at 17 of 36 completed findings, with 19 remaining.
+verified. Family 2 remains open overall because `C2C2-VIS02` and `C2C3-VIS03` are now verified,
+while `C2C5-VIS03` and `C2C6-VIS02` remain planned. The formal visual-modernization inventory now
+stands at 18 of 36 completed findings, with 18 remaining.
 
 `C2C2-VIS02` modernizes The Missing Dance's frozen Student Task 6 page 5, Answer Key Task 6 page 3
 and Accessible Task 6 page 6 as one exact five-stage failure path. Candidate `132161a` passed the
@@ -136,17 +136,23 @@ normalized handoff whitespace, passed the 76/76 mechanism validator, and changed
 or curriculum source. The missing vibration event, near-124-Hz insufficiency and Earth-bee-versus-
 airborne-coupling boundaries remained exact. `C2C2-VIS02` is therefore `VERIFIED-FAMILY`.
 
-The current isolated Family 2 candidate is `C2C3-VIS03`: Wrong Color of Light's related Task 6
-mechanism and Task 8 specification panels. The frozen five-stage Student, Accessible and Answer
-Key models now share direct `OUTPUT PROFILE` → `POOR MATCH` → `CAPTURED ENERGY` → `GROWTH +
-PIGMENT` → `OBSERVED OUTCOME` states. The separate Task 8 spectrum, intensity, constraint and
-monitored-trial rows reuse the same border/pattern grammar without merging tasks or pages. Every
-diagnosis, model and specification response identity remains unchanged; the completed Answer Key
-remains exact; and worksheet content, case presentation, package metadata, source hashes, page
-counts and release baselines remain unchanged. Acceptance requires the focused 85-check mechanism
-contract, the 2324-check Mac/Chrome gate, strict fixed-page fit and normal/grayscale inspection.
-Until those gates pass, the inventory remains 17 of 36 completed with 19 remaining and the finding
-stays `IMPLEMENTED-CANDIDATE`.
+`C2C3-VIS03` modernizes Wrong Color of Light's related Task 6 mechanism and Task 8 specification
+panels without merging their tasks or pages. Candidate `79a7c80` passed the complete 2324/2324
+browser harness twice with zero application JavaScript errors, the 85/85 focused mechanism
+validator and normal/grayscale inspection of all six touched pages. It retained strict 936/936
+fit, fixed 816 × 1056 geometry, Student 5 / Answer Key 4 / Accessible 8 page counts, all response
+geometry and blank learner fields, and the exact completed Answer Key. The five direct Task 6
+states and four connectors remained fully visible, while Task 8 retained the related spectrum,
+intensity, constraint and monitored-trial grammar. Total PAR 280 remained adequate; every discrete
+spectral value and band remained exact; response outside 460–540 nm remained unspecified; and the
+recovery statement remained a trial prediction rather than a result. Worksheet content, case
+presentation, package metadata, source hashes and release baselines remained unchanged.
+`C2C3-VIS03` is therefore `VERIFIED-FAMILY`.
+
+The next isolated Family 2 candidate is `C2C5-VIS03`: Too Clean a Room's species-specific
+signal-to-product mechanism paired with its separate high-level trial workflow. Its audit must
+precede implementation, and its frozen tasks, pages, response fields, units, scientific context
+and non-operational safety boundaries remain authoritative.
 
 ## 3. Exact inventory reconciliation
 
@@ -157,9 +163,9 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after The Missing Dance mechanism closeout is **17 of 36 completed** and
-**19 of 36 remaining**. Family 1 contributes 9 completed findings; Family 2 contributes its seven
-verified Campaign 1 findings plus one verified Campaign 2 finding and retains three planned
+Accepted progress after the Wrong Color of Light mechanism/specification closeout is **18 of 36 completed**
+and **18 of 36 remaining**. Family 1 contributes 9 completed findings; Family 2 contributes its
+seven verified Campaign 1 findings plus two verified Campaign 2 findings and retains two planned
 Campaign 2 findings.
 
 The final remediation status also carries token/fill maintenance notes for C1 Case 02 and
@@ -242,7 +248,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `PLANNED` |
 | `C2C3-VIS01` | Wrong Color of Light; S T2 p2, A T2 p2 | Accurate discrete bars with correct labels but limited telemetry hierarchy. | 1 · Technical telemetry/data | GRO-9 discrete spectral-output diagnostic with four category rails and explicit category/inequality encoding. | Replace existing repeated figure at same height; table remains accessible backup. | Red 62% at 620–680; blue 18% at 440–490; broad 15%; blue-green <5% at 490–560; no interpolation/continuous curve. | D1; exact bins, inequality, DOM table and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS02` | Wrong Color of Light; S T3 p3, A T3 p3 | Accurate band overlay but measurement/status hierarchy can be clearer. | 1 · Technical telemetry/data | Measurement-overlay panel: discrete fixture bands against the 460–540 nm strongest-response band, with “outside unspecified ≠ zero.” | Same footprint and backup table; sync S/A. | Do not imply continuous response, geometric overlap calculation, or zero response outside band. | D1 overlay variant; prohibited-curve and inequality checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `IMPLEMENTED-CANDIDATE · MAC/CHROME GATE PENDING` |
+| `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `VERIFIED-FAMILY · 85/85 FAMILY STATIC PASS · 2324/2324 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 79a7c80 ACCEPTED` |
 | `C2C4-VIS01` | Silent Grove; S T3 p3, A T3 p3 | Correct but plain same-total sleep-pattern teaching example. | 3 · Timeline/event log | Cleaner discrete 24-hour comparison with identical totals, distinct block patterns and an unmistakable “teaching example—not grove data” band. | Replace existing figure only; no new action or data. | Example values are illustrative, not grove measurements; no curve or biological claim. | TL1; status-label/alt and no-case-data confusion check | `PLANNED` |
 | `C2C4-VIS02` | Silent Grove; S T3 p3, A T3 p3, AK T3 p1 where summarized | The exact within-cycle record is a conventional table with little visual distinction among light, dark, reported and unreported blocks. | 1 · Technical telemetry/data | Preserve the semantic table as a discrete 24-hour telemetry panel; distinguish light/dark schedule blocks and reported/unreported signal states through pattern, border weight and direct text, with no connecting curve. | Restyle the existing S/A Table 5 in place; retain all six rows, exact table semantics and the concise AK explanation. | Current 24/0; previous 18/6; healthy 40–80 ppb; current 0.0 ppb is threshold result; unreported blocks stay missing. | D1 timeline hybrid; exact-value/missing-data checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C4-VIS03` | Silent Grove; S T8 p6, A T8 p8, AK T8 p4 | Schedule requirements and monitored trial are prose/table led. | 6 · Specification/verification | Specification panel separating minimum evidence, six-hour historical schedule, stability criterion, power constraint, monitoring and stop rule. | Preserve all design fields and accepted response space; synchronize AK. | Five-hour minimum ≠ preferred design; successful schedule has six dark hours; 40–80 remains a range; no guaranteed recovery. | SV1; cross-edition acceptance and numeric checks | `PLANNED` |

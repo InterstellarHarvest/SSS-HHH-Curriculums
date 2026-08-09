@@ -127,8 +127,8 @@ def main() -> int:
             plan,
         ))
         and "Campaign 1 Family 2 closeout register" in handoff
-        and "17 of 36 completed" in handoff
-        and "19 remaining" in handoff
+        and "18 of 36 completed" in handoff
+        and "18 remaining" in handoff
         and all(finding in handoff for finding in (
             "C1C5-VIS01 — Europa radiation-to-growth pathway",
             "C1C6-VIS02 — First Contact coordination-system model",
@@ -151,25 +151,28 @@ def main() -> int:
         and "2321/2321 PASS with 0 application JavaScript errors" in handoff
         and "76/76 PASS" in handoff
         and "| `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |" in handoff
-        and "17 of 36 completed" in plan
-        and "19 of 36 remaining" in plan
+        and "18 of 36 completed" in plan
+        and "18 of 36 remaining" in plan
         and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
             "C2C5-VIS03", "C2C6-VIS02",
         ))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
     check(
-        "the production plan and handoff advance Wrong Color of Light as the sole Family 2 candidate",
+        "the production plan and handoff accept Wrong Color of Light and isolate the remaining Family 2 findings",
         bool(re.search(
             r"\| `C2C3-VIS03` .*\| 2 \+ 6 · Mechanism/specification \|.*"
-            r"`IMPLEMENTED-CANDIDATE · MAC/CHROME GATE PENDING`",
+            r"`VERIFIED-FAMILY · 85/85 FAMILY STATIC PASS · 2324/2324 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 79a7c80 ACCEPTED`",
             plan,
         ))
-        and "Current validation target — C2C3 spectral-match mechanism/specification" in handoff
+        and "Accepted Family 2 expansion — C2C3 spectral-match mechanism/specification" in handoff
+        and "79a7c8060e964d48aaddb1b558581e0c6ca1e8cd" in handoff
         and "2324/2324 PASS with 0 application JavaScript errors" in handoff
         and "85/85 PASS" in handoff
-        and "17 of 36 completed" in handoff
-        and "19 remaining" in handoff
+        and "| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |" in handoff
+        and "18 of 36 completed" in handoff
+        and "18 remaining" in handoff
         and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
             "C2C5-VIS03", "C2C6-VIS02",
         )),

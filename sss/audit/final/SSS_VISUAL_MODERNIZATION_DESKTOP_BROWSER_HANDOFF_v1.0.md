@@ -4,14 +4,14 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Current validation target — C2C3 spectral-match mechanism/specification
+## Accepted Family 2 expansion — C2C3 spectral-match mechanism/specification
 
-The authoritative remote tip remains
-`61a74190a9e8ec63edffdcec90f5cd38489a39b8`. Its ordinary local successor advances
-`C2C3-VIS03` for Wrong Color of Light to `IMPLEMENTED-CANDIDATE`; keep it unpushed until the
-Mac/Chrome gate and manual inspection pass. The accepted executable baseline is **2321/2321 PASS
-with 0 application JavaScript errors**, repeated twice, and the accepted focused mechanism
-baseline is **76/76 PASS**.
+Candidate `79a7c8060e964d48aaddb1b558581e0c6ca1e8cd` advances `C2C3-VIS03` for Wrong Color of
+Light to `VERIFIED-FAMILY`. The accepted executable baseline is **2324/2324 PASS with 0 application
+JavaScript errors**, repeated twice, and the accepted focused mechanism baseline is **85/85 PASS**.
+The candidate remains an ordinary unpushed successor of authoritative remote tip
+`61a74190a9e8ec63edffdcec90f5cd38489a39b8` until its documentation-only closeout successor is
+integrated and the two-commit lineage is pushed.
 
 The candidate uses the existing five-stage models on Student Task 6 page 4, Answer Key Task 6 page
 3 and Accessible Task 6 page 6. It marks the exact visual states as `OUTPUT PROFILE` → `POOR MATCH`
@@ -28,11 +28,18 @@ site-specific strongest response remains 460–540 nm; response outside that ban
 unspecified; and recovery remains a trial hypothesis rather than a result. No new visible
 fictional-status reminder was added.
 
-This candidate adds one strict fit/page-count/geometry assertion across all six touched pages and
-both modes, plus one computed-style/content assertion in normal and one in grayscale. Its
-acceptance target is therefore **2324/2324 PASS with 0 application JavaScript errors**. The focused
-mechanism validator target is **85/85 PASS**. The formal inventory remains **17 of 36 completed**,
-with **19 remaining**, until the candidate is accepted.
+Manual normal/grayscale inspection confirmed strict `scrollHeight 936 <= clientHeight 936` fit,
+fixed 816 × 1056 geometry and unchanged Student 5 / Answer Key 4 / Accessible 8 page counts on all
+six touched pages. All Task 6 stages, connectors, border states and hatch states were visible with
+no clipping, collision or overlap. Every Student and Accessible learner field remained blank with
+its accepted response geometry, and the completed Answer Key remained verbatim. Task 8 retained
+all four blank learner rows and five completed key rows. All scientific quantities, categorical
+boundaries and prediction qualifiers remained exact. The formal inventory is now **18 of 36
+completed**, with **18 remaining**.
+
+The next Family 2 candidate is `C2C5-VIS03`. Do not implement it until its frozen Too Clean a Room
+content, presentation, governing finding, accepted Family 2 precedents and validation contract
+have been audited from the accepted pushed closeout state.
 
 ## Accepted Family 2 expansion — C2C2 vibration-release failure path
 
@@ -59,8 +66,8 @@ retained strict `scrollHeight 936 <= clientHeight 936` fit and fixed 816 × 1056
 three inspected pages in both modes, and produced zero application JavaScript errors. Its sole
 static failure was a handoff line wrap that split one required lifecycle literal. Successor
 `aa4eeac` normalized handoff whitespace and passed the 76/76 mechanism validator without changing
-CSS, browser coverage, worksheet content or package-controlled sources. The formal inventory is
-now **17 of 36 completed**, with **19 remaining**.
+CSS, browser coverage, worksheet content or package-controlled sources. That closeout is the
+accepted predecessor baseline for the C2C3 expansion.
 
 ## Recorded late-case outcomes — 2026-08-08
 
@@ -126,6 +133,26 @@ amplitude, duration and coupling; and Earth bee gripping remained distinct from 
 coupling. Documentation/validator successor `aa4eeac` repaired the sole line-wrap failure,
 normalized future handoff comparisons, and passed 76/76 without changing the implementation.
 
+### C2C3-VIS03 — Wrong Color of Light spectral-match mechanism/specification
+
+`C2C3-VIS03` is `VERIFIED-FAMILY` at
+`79a7c8060e964d48aaddb1b558581e0c6ca1e8cd`. The candidate passed the complete 2324/2324 browser
+harness twice with zero application JavaScript errors and retained strict
+`scrollHeight 936 <= clientHeight 936` fit, fixed 816 × 1056 geometry and unchanged Student 5,
+Answer Key 4 and Accessible 8 page counts on all six touched pages in normal and grayscale. Task 6
+retained five ordered states and four fully visible connectors; Student and Answer Key remained
+horizontal, while Accessible retained a true in-flow vertical rail. All three Student and three
+Accessible mechanism fields remained blank, and the completed Answer Key remained verbatim.
+
+Task 8 retained all four blank Student and four blank Accessible response fields, their accepted
+response geometry, and all five completed Answer Key rows. The spectral and specification states
+remained distinguishable by border and hatch treatment without color. Total PAR 280 remained
+adequate; red 62% at 620–680 nm, blue 18% at 440–490 nm, broad 15%, blue-green under 5% at
+490–560 nm and the zhal-kelp 460–540 nm response band remained exact. No intermediate or
+continuous data was implied, response outside the band remained unspecified rather than zero, and
+recovery remained a narrated prediction requiring a monitored trial. No worksheet source, case
+presentation, package metadata, release baseline or accepted content changed.
+
 ## Campaign 1 Family 2 closeout register
 
 | Finding | Accepted implementation | Recorded state |
@@ -148,66 +175,20 @@ declare the overall 11-item Family 2 complete, or reopen frozen curriculum and r
 | Finding | Accepted implementation | Recorded state |
 |---|---|---|
 | `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |
+| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |
 
-Family 2 now has eight verified findings and remains open only for `C2C3-VIS03`, `C2C5-VIS03`
-and `C2C6-VIS02`. The overall visual-modernization inventory is 17 of 36 completed and 19
-remaining. The visual branch remains isolated from `main`.
+Family 2 now has nine verified findings and remains open only for `C2C5-VIS03` and
+`C2C6-VIS02`. The overall visual-modernization inventory is 18 of 36 completed and 18 remaining.
+The visual branch remains isolated from `main`.
 
-## Validation prompt
+## Closeout integration prompt
 
-1. Apply the supplied fast-forward bundle only if the branch is clean at
-   `61a74190a9e8ec63edffdcec90f5cd38489a39b8`. Verify the bundle before fetching it, then use a
-   fast-forward-only merge. Do not reset, rebase, amend, squash, force-push, edit any file or push
-   the candidate.
-
-2. Run only:
-
-   ```bash
-   python3 apps/curriculum-editor/tests/run_browser_tests.py \
-     --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-
-   python3 shared/validation/validate_sss_visual_mechanism_family.py
-   git diff --check
-   ```
-
-   Expected: **2324/2324 browser PASS**, **0 application JavaScript errors**, **85/85 mechanism
-   PASS**, and clean whitespace.
-
-3. Start the editor with `python3 apps/curriculum-editor/serve.py`. Inspect these pages in normal
-   and grayscale:
-
-   - Student Task 6 page 4 and Task 8 page 5;
-   - Answer Key Task 6 page 3 and Task 8 page 4;
-   - Accessible Task 6 page 6 and Task 8 page 8.
-
-4. Report exact `scrollHeight <= clientHeight` values for all six pages in both modes, page counts
-   Student 5 / Answer Key 4 / Accessible 8, fixed 816 × 1056 page boxes, and any visible overflow,
-   clipping, collision, hidden connector, status-label overlap or response-space loss. Confirm:
-
-   - Task 6 has five ordered stages and four connectors in every edition;
-   - Student and Answer Key retain `→ | → | → | →` and Accessible shows four fully visible circled
-     `↓` connectors;
-   - state order is `OUTPUT PROFILE | POOR MATCH | CAPTURED ENERGY | GROWTH + PIGMENT | OBSERVED
-     OUTCOME` and border order is `solid | dashed | double | dotted | double`;
-   - Student blanks remain `t6-m2 | t6-m3 | t6-m4`; Accessible blanks remain `a6-m2 | a6-m3 |
-     a6-m4`; the Answer Key model is exact;
-   - Task 8 retains all four Student and four Accessible response fields, with border order `dashed
-     | double | dotted | solid`, and the Answer Key retains all five completed rows;
-   - the scientific quantities and boundaries listed in the current-target section remain exact,
-     with no continuous/intermediate values implied and no guaranteed recovery claim;
-   - browser-console JavaScript errors: exact count and text.
-
-If anything fails, hold the candidate and report the exact assertion, role, mode, page and
-measurement. If everything passes, return the report without pushing so the closeout can be
-recorded as an ordinary successor.
-
-## Acceptance rule
-
-`C2C3-VIS03` may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
-2324/2324 with zero application JavaScript errors, the focused mechanism validator reaches 85/85,
-and all six touched pages retain strict fit, fixed geometry and existing page counts in normal and
-grayscale. Manual inspection must confirm the horizontal/vertical connectors, all five state
-labels, the four-row specification grammar, response geometry, blank fields and completed key are
-fully visible and unchanged in meaning. Until then, do not begin `C2C5-VIS03` or `C2C6-VIS02`,
-edit frozen worksheet sources, regenerate release baselines, merge the visual branch to `main`, or
-reopen accepted correctness findings.
+Validate the supplied closeout bundle only from clean candidate
+`79a7c8060e964d48aaddb1b558581e0c6ca1e8cd`. Verify the checksum and bundle prerequisites, fetch
+it, and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or
+edit files. Run the focused 85-check mechanism validator and `git diff --check`. Confirm the
+closeout changes only this handoff, the production plan and the focused validator; records
+`C2C3-VIS03` as `VERIFIED-FAMILY`; advances the inventory to 18/36 completed and 18 remaining; and
+leaves `C2C5-VIS03` and `C2C6-VIS02` as the only open Family 2 findings. If both checks pass, push
+the branch by ordinary fast-forward and report local, tracking and live remote SHAs. Do not begin
+the next candidate in the same run.
