@@ -232,23 +232,29 @@ def main() -> int:
     )
 
     check(
-        "the production plan records C1C4-VIS03 as an unaccepted 30-check Family 5 candidate",
+        "the production plan accepts C1C4-VIS03 as the 30-check Family 5 finding",
         bool(re.search(
             r"\| `C1C4-VIS03` .*\| 5 · Engineering control loop \|.*"
-            r"`IMPLEMENTED-CANDIDATE · 30/30 CONTROL STATIC PASS · 2348/2348 MAC/CHROME GATE REQUIRED`",
+            r"`VERIFIED-FAMILY · 30/30 CONTROL STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 4b0ef8b ACCEPTED`",
             plan,
         ))
-        and "implemented but unaccepted Family 5 candidate" in plan,
+        and "accepted Family 5 engineering-control-loop finding" in plan
+        and "`VERIFIED-FAMILY`, completing Family 5" in plan,
     )
     check(
-        "the handoff preserves the accepted inventory and external acceptance boundary",
-        "Implemented Family 5 candidate — Hayes independent reactor control loop" in handoff
-        and "e3abde0f0a05c3481bf6d03a7ca22c52c520d9ec" in handoff
-        and "25 of 36 completed" in handoff
-        and "11 remaining" in handoff
+        "the handoff records the accepted differential gate and Family 5 closeout",
+        "Accepted Family 5 completion — Hayes independent reactor control loop" in handoff
+        and "4b0ef8bafd8f633b49e248a511bda13e554887e7" in handoff
+        and "2344/2344 PASS" in handoff
+        and handoff.count("2347/2347 PASS") >= 2
+        and "candidate delta is exactly +3" in handoff
         and "2317/2348" in handoff
-        and "2348/2348" in handoff
-        and "do not add `C1C4-VIS03` to a Family 5 accepted register" in handoff,
+        and "26 of 36 completed" in handoff
+        and "10 remaining" in handoff
+        and "| `C1C4-VIS03` | `4b0ef8b` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 5 is complete with its sole finding verified" in handoff
+        and "Do not mark any additional finding accepted" in handoff,
     )
 
     if len(checks) != 30:

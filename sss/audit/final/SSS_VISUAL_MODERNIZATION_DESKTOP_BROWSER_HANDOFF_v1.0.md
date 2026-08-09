@@ -4,12 +4,11 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Implemented Family 5 candidate — Hayes independent reactor control loop
+## Accepted Family 5 completion — Hayes independent reactor control loop
 
-Candidate production starts from synchronized accepted prerequisite
-`e3abde0f0a05c3481bf6d03a7ca22c52c520d9ec`. `C1C4-VIS03` is implemented for Hayes Orbital
-Station but remains unaccepted until the external Mac/Chrome gate below is complete. Accepted
-inventory remains **25 of 36 completed**, with **11 remaining**; Family 5 has no accepted finding.
+Candidate `4b0ef8bafd8f633b49e248a511bda13e554887e7` advances `C1C4-VIS03` for Hayes Orbital
+Station to `VERIFIED-FAMILY`, the accepted engineering-control-loop finding and the completion of
+Family 5. Its accepted prerequisite is `e3abde0f0a05c3481bf6d03a7ca22c52c520d9ec`.
 
 The frozen Task 7 structures remain semantic and source-controlled:
 
@@ -39,7 +38,7 @@ roles without color. The figure does not insert an intensity, duration or schedu
 corridor lighting is not framed as the independent actuator; and measured culture performance
 returns to the sensor/comparator rather than becoming a guaranteed success claim.
 
-No Case 04 source file changes. The candidate preserves these SHA-256 identities:
+No Case 04 source file changes. The accepted implementation preserves these SHA-256 identities:
 
 - `content.html` — `7725f9b5cd204171eae9d3a77158307ed4e9f6f66691cdd8dd27c0132d0bc061`
 - `presentation.css` — `be6192cd9401105d8978b59be3204432e5e095f58da2b2f349a8099a9cfb9d2f`
@@ -47,49 +46,46 @@ No Case 04 source file changes. The candidate preserves these SHA-256 identities
 - `case-package.json` — `8cab25b388b5a6d7c371cf083acc7339a0bd81d11fc1d923f5d0e683b339ee37`
 - `task-registry.js` — `afb3e989647a2eb03e354800ee8413c0783f4f1f2ce723cd802bd0e5c9c6dfd7`
 
-Candidate scope is exactly the shared component CSS, browser harness, focused control-family
+The accepted candidate scope is exactly the shared component CSS, browser harness, focused control-family
 validator, production plan and this handoff. It changes no worksheet wording, case presentation,
 layout override, package metadata, task registry, response ID, page count, persistence identity,
 Teacher content, source hash, release/history record or accepted-family implementation.
 
-Local Linux Chromium registers the new canonical total of 2348 assertions and reports
-**2317/2348** because of the same 31 established platform/font/screenshot-smoke exceptions. All
-three new Case 04 contracts pass: six-state page fit, complete normal semantics/geometry and
-complete grayscale semantics/geometry. All six targets retain fixed 816 × 1056 pages, exact
-`scrollHeight 936 == clientHeight 936`, no `has-overflow` state and exact Student 4 / Answer Key 4 /
-Accessible 7 page counts. The learner fields remain blank and unclipped at these computed sizes:
+The external Mac/Chrome gate passed under a candidate-specific differential acceptance. On the
+same Mac, prerequisite `e3abde0…` passed **2344/2344 PASS** with zero application JavaScript
+errors. Candidate Run 1 passed **2347/2347 PASS** with zero application JavaScript errors, and
+Candidate Run 2 passed **2347/2347 PASS** with zero application JavaScript errors. The candidate
+delta is exactly +3, matching the three documented Case 04 assertions; all three registered and
+passed. This does not establish a general platform policy or change the canonical 2348-assertion
+registration. Linux reports **2317/2348** because of the 31 established
+platform/font/screenshot-smoke exceptions, while all three Case 04 assertions pass and the
+JavaScript-error assertion passes.
+
+The focused engineering-control-loop validator is **30/30 PASS**; timeline remains **44/44 PASS**;
+mechanism remains **103/103 PASS**; evidence convergence remains **60/60 PASS**; telemetry remains
+**36/36 PASS**; the Case 04 layout-override validator passes; and `git diff --check` is clean.
+
+Independent normal and grayscale inspection of Student page 4, Answer Key page 3 and Accessible
+page 7 confirmed fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936` fit and
+exact Student 4 / Answer Key 4 / Accessible 7 page counts in all six views. No view had overflow,
+spill, clipping, collision or crowding. The status line, four nodes, three labeled connectors and
+feedback rail remained contained and readable. Solid, double, dashed and dotted borders plus four
+independent hatch patterns remained distinct in both modes. The learner fields remained blank,
+visible, editable and unclipped at these computed sizes:
 
 - Student `t7a | t7b`: 356 × 196.8 px each.
 - Accessible `a7`: 720 × 148.8 px.
 - Accessible `a7-longterm`: 720 × 65.27 px.
 
-The focused engineering-control-loop validator is **30/30 PASS**; timeline remains **44/44**;
-mechanism remains **103/103**; evidence convergence remains **60/60**; telemetry remains
-**36/36**; and the Case 04 layout-override validator passes.
-
-Normal and grayscale inspection has been completed locally for Student page 4, Answer Key page 3
-and Accessible page 7. In every view, the status line, four nodes, three labeled connectors and
-feedback rail remain contained and legible; the solid/double/dashed/dotted borders and independent
-hatches remain distinct; the learner fields remain usable; and no content boundary spills. The
-Answer Key preserves the immediate recovery action, independent control, actual-exposure and
+The Answer Key preserves the immediate recovery action, independent control, actual-exposure and
 culture-response monitoring, current mixing/density validation and controlled-continuous-
 cultivation possibility. Student and Accessible retain the explicit reactor-specific boundary.
-
-External acceptance requires installed Google Chrome to pass the complete **2348/2348** harness
-twice with zero application JavaScript errors, followed by manual inspection of the same six
-Student/Answer Key/Accessible normal and grayscale views. If that Mac again registers one fewer
-inherited assertion, also run prerequisite `e3abde0…` on the same machine and report both totals;
-the candidate must add exactly +3 with all three Case 04 assertions passing. That differential
-evidence requires separate disposition and does not itself authorize acceptance or push.
-
-Verify exact page counts and 936/936 fit; no overflow, spill, clipping, collision or crowding;
-readable status, role, relationship and feedback labels; distinct normal/grayscale node encodings;
-both blank Student fields; both blank Accessible fields; the completed Answer Key control
-connection; and the no-setpoint, independent-control, monitored-response and reactor-specific
-continuous-cultivation boundaries. If any check fails, stop and report the failing assertion or
-view; do not edit or integrate the candidate. Until both automated passes and manual inspection
-succeed, do not add `C1C4-VIS03` to a Family 5 accepted register, do not advance the inventory and
-do not begin another finding.
+The model invents no operating setpoint, never treats corridor lighting as the independent
+actuator and keeps continuous cultivation conditional and specific to this reactor configuration.
+`C1C4-VIS03` is accepted without changing the canonical project registration or creating a
+general environment exception. The formal inventory is now **26 of 36 completed**, with **10
+remaining**. Family 5 is complete with its sole finding verified. Do not mark any additional
+finding accepted or begin another finding without a separate candidate-production instruction.
 
 ## Accepted Family 4 completion — The Gift diagnostic question
 
@@ -748,18 +744,27 @@ is 23 of 36 completed and 13 remaining. The visual branch remains isolated from 
 Family 4 is complete with both findings verified. The overall visual-modernization inventory is
 25 of 36 completed and 11 remaining. The visual branch remains isolated from `main`.
 
-## C1C7-VIS01 closeout integration prompt
+## Family 5 accepted register
+
+| Finding | Accepted implementation | Recorded state |
+|---|---|---|
+| `C1C4-VIS03` | `4b0ef8b` | `VERIFIED-FAMILY` |
+
+Family 5 is complete with its sole finding verified. The overall visual-modernization inventory is
+26 of 36 completed and 10 remaining. The visual branch remains isolated from `main`.
+
+## C1C4-VIS03 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`39325dcd1639c40e17aac435c599e17ecaffc3df`. Confirm the pushed remote remains
-`39325dcd1639c40e17aac435c599e17ecaffc3df`, verify the checksum and bundle prerequisite, fetch it,
+`4b0ef8bafd8f633b49e248a511bda13e554887e7`. Confirm the pushed remote remains
+`4b0ef8bafd8f633b49e248a511bda13e554887e7`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 60-check evidence-convergence validator and `git diff --check`. Confirm the
+files. Run the focused 30-check engineering-control-loop validator and `git diff --check`. Confirm the
 closeout changes only this handoff, the production plan and the focused validator; records
-`C1C7-VIS01` as `VERIFIED-FAMILY`; completes Family 4 with both findings verified; records the
-candidate-specific differential Mac/Chrome acceptance without changing the canonical Linux total;
-and advances the inventory to 25/36 completed and 11 remaining. Because the successor changes only
-documentation and the focused validator, do not rerun the Mac/Chrome harness or manual inspection.
-If both checks pass, push the branch by ordinary fast-forward and report local, tracking and live
-remote SHAs. Do not mark any additional finding accepted. Do not begin another finding in the same
-run.
+`C1C4-VIS03` as `VERIFIED-FAMILY`; completes Family 5 with its sole finding verified; records the
+candidate-specific differential Mac/Chrome acceptance without changing the canonical project
+total; and advances the inventory to 26/36 completed and 10 remaining. Because the successor
+changes only documentation and the focused validator, do not rerun the Mac/Chrome harness or
+manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
+tracking and live remote SHAs. Do not mark any additional finding accepted.
+Do not begin another finding in the same run.
