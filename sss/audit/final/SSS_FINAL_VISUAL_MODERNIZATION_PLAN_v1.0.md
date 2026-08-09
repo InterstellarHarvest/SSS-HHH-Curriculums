@@ -136,11 +136,17 @@ normalized handoff whitespace, passed the 76/76 mechanism validator, and changed
 or curriculum source. The missing vibration event, near-124-Hz insufficiency and Earth-bee-versus-
 airborne-coupling boundaries remained exact. `C2C2-VIS02` is therefore `VERIFIED-FAMILY`.
 
-The next isolated Family 2 candidate is `C2C3-VIS03`: Wrong Color of Light's related Task 6
-mechanism and Task 8 specification panels. They must remain separate tasks and pages while sharing
-a spectral-match grammar, preserving every response identity and completed Answer Key entry, and
-retaining the boundaries that total PAR 280 is adequate, response outside 460–540 nm is
-unspecified, and the growth/pigment prediction remains a trial hypothesis.
+The current isolated Family 2 candidate is `C2C3-VIS03`: Wrong Color of Light's related Task 6
+mechanism and Task 8 specification panels. The frozen five-stage Student, Accessible and Answer
+Key models now share direct `OUTPUT PROFILE` → `POOR MATCH` → `CAPTURED ENERGY` → `GROWTH +
+PIGMENT` → `OBSERVED OUTCOME` states. The separate Task 8 spectrum, intensity, constraint and
+monitored-trial rows reuse the same border/pattern grammar without merging tasks or pages. Every
+diagnosis, model and specification response identity remains unchanged; the completed Answer Key
+remains exact; and worksheet content, case presentation, package metadata, source hashes, page
+counts and release baselines remain unchanged. Acceptance requires the focused 85-check mechanism
+contract, the 2324-check Mac/Chrome gate, strict fixed-page fit and normal/grayscale inspection.
+Until those gates pass, the inventory remains 17 of 36 completed with 19 remaining and the finding
+stays `IMPLEMENTED-CANDIDATE`.
 
 ## 3. Exact inventory reconciliation
 
@@ -184,7 +190,7 @@ Common validation for every row: focused package validation; no overflow/clippin
 logical DOM order and alt/extended description where applicable; grayscale-independent meaning;
 unchanged response IDs/fill persistence; synchronized keyed exemplar where the learner completes
 the visual; zero JavaScript errors; `git diff --check`. Family completion additionally requires
-the full non-PDF browser regression against the current executable baseline of **2318/2318 PASS
+the full non-PDF browser regression against the current executable baseline of **2321/2321 PASS
 and 0 JavaScript errors**. The accepted correctness commit produces 2293/2293; five telemetry
 assertions verify computed visual delivery, pseudo-content, table patterns/state borders and the
 dense telemetry cascade, two accepted mechanism-pilot assertions verify the horizontal dependency
@@ -236,7 +242,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `PLANNED` |
 | `C2C3-VIS01` | Wrong Color of Light; S T2 p2, A T2 p2 | Accurate discrete bars with correct labels but limited telemetry hierarchy. | 1 · Technical telemetry/data | GRO-9 discrete spectral-output diagnostic with four category rails and explicit category/inequality encoding. | Replace existing repeated figure at same height; table remains accessible backup. | Red 62% at 620–680; blue 18% at 440–490; broad 15%; blue-green <5% at 490–560; no interpolation/continuous curve. | D1; exact bins, inequality, DOM table and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS02` | Wrong Color of Light; S T3 p3, A T3 p3 | Accurate band overlay but measurement/status hierarchy can be clearer. | 1 · Technical telemetry/data | Measurement-overlay panel: discrete fixture bands against the 460–540 nm strongest-response band, with “outside unspecified ≠ zero.” | Same footprint and backup table; sync S/A. | Do not imply continuous response, geometric overlap calculation, or zero response outside band. | D1 overlay variant; prohibited-curve and inequality checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `PLANNED` |
+| `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `IMPLEMENTED-CANDIDATE · MAC/CHROME GATE PENDING` |
 | `C2C4-VIS01` | Silent Grove; S T3 p3, A T3 p3 | Correct but plain same-total sleep-pattern teaching example. | 3 · Timeline/event log | Cleaner discrete 24-hour comparison with identical totals, distinct block patterns and an unmistakable “teaching example—not grove data” band. | Replace existing figure only; no new action or data. | Example values are illustrative, not grove measurements; no curve or biological claim. | TL1; status-label/alt and no-case-data confusion check | `PLANNED` |
 | `C2C4-VIS02` | Silent Grove; S T3 p3, A T3 p3, AK T3 p1 where summarized | The exact within-cycle record is a conventional table with little visual distinction among light, dark, reported and unreported blocks. | 1 · Technical telemetry/data | Preserve the semantic table as a discrete 24-hour telemetry panel; distinguish light/dark schedule blocks and reported/unreported signal states through pattern, border weight and direct text, with no connecting curve. | Restyle the existing S/A Table 5 in place; retain all six rows, exact table semantics and the concise AK explanation. | Current 24/0; previous 18/6; healthy 40–80 ppb; current 0.0 ppb is threshold result; unreported blocks stay missing. | D1 timeline hybrid; exact-value/missing-data checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C4-VIS03` | Silent Grove; S T8 p6, A T8 p8, AK T8 p4 | Schedule requirements and monitored trial are prose/table led. | 6 · Specification/verification | Specification panel separating minimum evidence, six-hour historical schedule, stability criterion, power constraint, monitoring and stop rule. | Preserve all design fields and accepted response space; synchronize AK. | Five-hour minimum ≠ preferred design; successful schedule has six dark hours; 40–80 remains a range; no guaranteed recovery. | SV1; cross-edition acceptance and numeric checks | `PLANNED` |
@@ -343,7 +349,7 @@ Periodic/final system gate:
 - quality contract v3;
 - accessibility contract v2;
 - lifecycle tests and corrective-candidate contract;
-- full browser harness: current executable baseline **2318/2318 PASS, 0 JavaScript errors**;
+- full browser harness: current accepted executable baseline **2321/2321 PASS, 0 JavaScript errors**;
 - `git diff --check`.
 
 Frozen-release assertions remain `RELEASE-BASELINE-PENDING`; they are not re-pinned here.

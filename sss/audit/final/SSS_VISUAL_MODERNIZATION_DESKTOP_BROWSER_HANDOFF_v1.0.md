@@ -4,6 +4,36 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Current validation target — C2C3 spectral-match mechanism/specification
+
+The authoritative remote tip remains
+`61a74190a9e8ec63edffdcec90f5cd38489a39b8`. Its ordinary local successor advances
+`C2C3-VIS03` for Wrong Color of Light to `IMPLEMENTED-CANDIDATE`; keep it unpushed until the
+Mac/Chrome gate and manual inspection pass. The accepted executable baseline is **2321/2321 PASS
+with 0 application JavaScript errors**, repeated twice, and the accepted focused mechanism
+baseline is **76/76 PASS**.
+
+The candidate uses the existing five-stage models on Student Task 6 page 4, Answer Key Task 6 page
+3 and Accessible Task 6 page 6. It marks the exact visual states as `OUTPUT PROFILE` → `POOR MATCH`
+→ `CAPTURED ENERGY` → `GROWTH + PIGMENT` → `OBSERVED OUTCOME`; Student and Answer Key remain
+horizontal, and Accessible remains an in-flow vertical rail with four circled down-arrow glyphs.
+Task 8 stays separate on Student page 5, Answer Key page 4 and Accessible page 8. Its spectrum,
+total-intensity, constraint and monitored-trial rows reuse the matching dashed, double, dotted and
+solid specification states.
+
+No worksheet content, case presentation, package metadata, response identity, page count, source
+hash or release baseline changed. Total PAR remains 280 and adequate; the output record remains red
+62% at 620–680 nm, blue 18% at 440–490 nm, broad 15%, and blue-green under 5% at 490–560 nm; the
+site-specific strongest response remains 460–540 nm; response outside that band remains
+unspecified; and recovery remains a trial hypothesis rather than a result. No new visible
+fictional-status reminder was added.
+
+This candidate adds one strict fit/page-count/geometry assertion across all six touched pages and
+both modes, plus one computed-style/content assertion in normal and one in grayscale. Its
+acceptance target is therefore **2324/2324 PASS with 0 application JavaScript errors**. The focused
+mechanism validator target is **85/85 PASS**. The formal inventory remains **17 of 36 completed**,
+with **19 remaining**, until the candidate is accepted.
+
 ## Accepted Family 2 expansion — C2C2 vibration-release failure path
 
 The isolated `visual/sss-final-modernization` branch is accepted and pushed through corrective
@@ -123,14 +153,61 @@ Family 2 now has eight verified findings and remains open only for `C2C3-VIS03`,
 and `C2C6-VIS02`. The overall visual-modernization inventory is 17 of 36 completed and 19
 remaining. The visual branch remains isolated from `main`.
 
-## Next candidate boundary
+## Validation prompt
 
-The next isolated Family 2 candidate is `C2C3-VIS03` for Wrong Color of Light. Its Task 6
-mechanism and Task 8 specification remain separate panels on their existing pages but share a
-spectral-match grammar. Preserve every learner response identity and completed Answer Key entry.
-Total PAR 280 remains adequate, response outside 460–540 nm remains unspecified, and the
-growth/pigment response remains a monitored trial hypothesis rather than a guaranteed outcome.
+1. Apply the supplied fast-forward bundle only if the branch is clean at
+   `61a74190a9e8ec63edffdcec90f5cd38489a39b8`. Verify the bundle before fetching it, then use a
+   fast-forward-only merge. Do not reset, rebase, amend, squash, force-push, edit any file or push
+   the candidate.
 
-Do not begin `C2C5-VIS03` or `C2C6-VIS02`, edit frozen worksheet sources, regenerate release
-baselines, merge the visual branch to `main`, or reopen accepted correctness findings while the
-Wrong Color of Light candidate is in progress.
+2. Run only:
+
+   ```bash
+   python3 apps/curriculum-editor/tests/run_browser_tests.py \
+     --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+   python3 shared/validation/validate_sss_visual_mechanism_family.py
+   git diff --check
+   ```
+
+   Expected: **2324/2324 browser PASS**, **0 application JavaScript errors**, **85/85 mechanism
+   PASS**, and clean whitespace.
+
+3. Start the editor with `python3 apps/curriculum-editor/serve.py`. Inspect these pages in normal
+   and grayscale:
+
+   - Student Task 6 page 4 and Task 8 page 5;
+   - Answer Key Task 6 page 3 and Task 8 page 4;
+   - Accessible Task 6 page 6 and Task 8 page 8.
+
+4. Report exact `scrollHeight <= clientHeight` values for all six pages in both modes, page counts
+   Student 5 / Answer Key 4 / Accessible 8, fixed 816 × 1056 page boxes, and any visible overflow,
+   clipping, collision, hidden connector, status-label overlap or response-space loss. Confirm:
+
+   - Task 6 has five ordered stages and four connectors in every edition;
+   - Student and Answer Key retain `→ | → | → | →` and Accessible shows four fully visible circled
+     `↓` connectors;
+   - state order is `OUTPUT PROFILE | POOR MATCH | CAPTURED ENERGY | GROWTH + PIGMENT | OBSERVED
+     OUTCOME` and border order is `solid | dashed | double | dotted | double`;
+   - Student blanks remain `t6-m2 | t6-m3 | t6-m4`; Accessible blanks remain `a6-m2 | a6-m3 |
+     a6-m4`; the Answer Key model is exact;
+   - Task 8 retains all four Student and four Accessible response fields, with border order `dashed
+     | double | dotted | solid`, and the Answer Key retains all five completed rows;
+   - the scientific quantities and boundaries listed in the current-target section remain exact,
+     with no continuous/intermediate values implied and no guaranteed recovery claim;
+   - browser-console JavaScript errors: exact count and text.
+
+If anything fails, hold the candidate and report the exact assertion, role, mode, page and
+measurement. If everything passes, return the report without pushing so the closeout can be
+recorded as an ordinary successor.
+
+## Acceptance rule
+
+`C2C3-VIS03` may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+2324/2324 with zero application JavaScript errors, the focused mechanism validator reaches 85/85,
+and all six touched pages retain strict fit, fixed geometry and existing page counts in normal and
+grayscale. Manual inspection must confirm the horizontal/vertical connectors, all five state
+labels, the four-row specification grammar, response geometry, blank fields and completed key are
+fully visible and unchanged in meaning. Until then, do not begin `C2C5-VIS03` or `C2C6-VIS02`,
+edit frozen worksheet sources, regenerate release baselines, merge the visual branch to `main`, or
+reopen accepted correctness findings.

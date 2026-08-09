@@ -1856,6 +1856,244 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/specification family expansion: The Wrong Color of Light.
+ *
+ * The frozen Task 6 models already preserve the five approved stages, three
+ * learner response identities and completed Answer Key. Task 8 already
+ * preserves separate spectrum, intensity, constraint and monitored-trial
+ * fields. This case-scoped layer gives both tasks one spectral-match grammar
+ * without merging their pages, adding measurements, changing worksheet text
+ * or turning the narrated recovery prediction into a measured result.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE03"] {
+  --spectral-line: var(--ink, #18212b);
+  --spectral-panel: var(--paper, #fff);
+  --spectral-spectrum-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px);
+  --spectral-intensity-pattern:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+  --spectral-growth-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+  --spectral-trial-pattern:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] {
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 4px 0 0 var(--spectral-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--spectral-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background: var(--spectral-trial-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page:not([data-role="accessible"])
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-stage {
+  padding-top: .27in;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page:not([data-role="accessible"])
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-stage > span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-stage::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-width: calc(100% - .3in);
+  font: 700 5pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .01em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(1)::after { content: "OUTPUT PROFILE"; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(3)::after { content: "POOR MATCH"; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(5)::after { content: "CAPTURED ENERGY"; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(7)::after { content: "GROWTH + PIGMENT"; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(9)::after { content: "OBSERVED OUTCOME"; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(3) {
+  border-top-style: dashed;
+  background: var(--spectral-spectrum-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(5) {
+  border-top-style: double;
+  background: var(--spectral-intensity-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(7) {
+  border-top-style: dotted;
+  background: var(--spectral-growth-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"] .pathway-model > .path-stage:nth-child(9) {
+  border-top-style: double;
+  background: var(--spectral-trial-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-arrow {
+  display: grid;
+  place-items: center;
+  min-width: 15px;
+  min-height: 15px;
+  border: .75pt solid var(--spectral-line);
+  border-radius: 50%;
+  background: var(--spectral-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-stage {
+  padding-right: .92in;
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(3) { border-left-style: dashed; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(5) { border-left-style: double; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(7) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(9) { border-left-style: double; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-arrow {
+  position: relative;
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  color: transparent;
+  font-size: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-arrow::before {
+  content: "↓";
+  color: var(--spectral-line);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is(.page[data-page-id="student-mission-05"] .task-block,
+      .page[data-page-id="accessible-mission-08"] .content-area) .response-label {
+  padding-left: 5px;
+  border-left: 4px solid var(--spectral-line);
+  background: var(--spectral-trial-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is([data-persist-id="t8-criterion-1"], [data-persist-id="a8-criterion-1"]) {
+  border-left-width: 4px;
+  border-left-style: dashed;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is(.page[data-page-id="student-mission-05"] .two-col > div:first-child,
+      .page[data-page-id="accessible-mission-08"] .accessible-design > div:first-child) .response-label {
+  border-left-style: dashed;
+  background: var(--spectral-spectrum-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is([data-persist-id="t8-criterion-2"], [data-persist-id="a8-criterion-2"]) {
+  border-left-width: 4px;
+  border-left-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is(.page[data-page-id="student-mission-05"] .two-col > div:nth-child(2),
+      .page[data-page-id="accessible-mission-08"] .accessible-design > div:nth-child(2)) .response-label {
+  border-left-style: double;
+  background: var(--spectral-intensity-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is([data-persist-id="t8-constraint"], [data-persist-id="a8-constraint"]) {
+  border-left-width: 4px;
+  border-left-style: dotted;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is(.page[data-page-id="student-mission-05"] .two-col,
+      .page[data-page-id="accessible-mission-08"] .accessible-design) + .response-label {
+  border-left-style: dotted;
+  background: var(--spectral-growth-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is([data-persist-id="t8-test"], [data-persist-id="a8-test"]) {
+  border-left-width: 4px;
+  border-left-style: solid;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  :is([data-persist-id="t8-constraint"], [data-persist-id="a8-constraint"]) + .response-label {
+  border-left-style: solid;
+  background: var(--spectral-trial-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p {
+  border-left: 4px solid var(--spectral-line);
+  background: var(--spectral-trial-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(1) {
+  border-left-style: dashed;
+  background: var(--spectral-spectrum-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(2) {
+  border-left-style: double;
+  background: var(--spectral-intensity-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(3) {
+  border-left-style: dotted;
+  background: var(--spectral-growth-pattern), var(--spectral-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE03"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(5) {
+  border-left-style: dotted;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE03"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE03"]
+  .pathway-model[data-process-contract="spectral-match-five-stage-v1.0"] .path-stage,
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE03"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;

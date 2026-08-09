@@ -49,6 +49,11 @@ MISSING_DANCE_SOURCE = ROOT / "sss/campaign-2/case-02-missing-dance/source"
 MISSING_DANCE_PACKAGE = MISSING_DANCE_SOURCE / "case-package.json"
 MISSING_DANCE_CONTENT = MISSING_DANCE_SOURCE / "content.html"
 MISSING_DANCE_PRESENTATION = MISSING_DANCE_SOURCE / "presentation.css"
+WRONG_COLOR_SOURCE = ROOT / "sss/campaign-2/case-03-wrong-color-light/source"
+WRONG_COLOR_PACKAGE = WRONG_COLOR_SOURCE / "case-package.json"
+WRONG_COLOR_CONTENT = WRONG_COLOR_SOURCE / "content.html"
+WRONG_COLOR_PRESENTATION = WRONG_COLOR_SOURCE / "presentation.css"
+WRONG_COLOR_REGISTRY = WRONG_COLOR_SOURCE / "task-registry.js"
 
 
 def sha256(path: Path) -> str:
@@ -82,6 +87,8 @@ def main() -> int:
     the_gift_content = BeautifulSoup(THE_GIFT_CONTENT.read_text(encoding="utf-8"), "html.parser")
     missing_dance_package = json.loads(MISSING_DANCE_PACKAGE.read_text(encoding="utf-8"))
     missing_dance_content = BeautifulSoup(MISSING_DANCE_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    wrong_color_package = json.loads(WRONG_COLOR_PACKAGE.read_text(encoding="utf-8"))
+    wrong_color_content = BeautifulSoup(WRONG_COLOR_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
@@ -147,9 +154,25 @@ def main() -> int:
         and "17 of 36 completed" in plan
         and "19 of 36 remaining" in plan
         and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
-            "C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02",
+            "C2C5-VIS03", "C2C6-VIS02",
         ))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
+    )
+    check(
+        "the production plan and handoff advance Wrong Color of Light as the sole Family 2 candidate",
+        bool(re.search(
+            r"\| `C2C3-VIS03` .*\| 2 \+ 6 · Mechanism/specification \|.*"
+            r"`IMPLEMENTED-CANDIDATE · MAC/CHROME GATE PENDING`",
+            plan,
+        ))
+        and "Current validation target — C2C3 spectral-match mechanism/specification" in handoff
+        and "2324/2324 PASS with 0 application JavaScript errors" in handoff
+        and "85/85 PASS" in handoff
+        and "17 of 36 completed" in handoff
+        and "19 remaining" in handoff
+        and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
+            "C2C5-VIS03", "C2C6-VIS02",
+        )),
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -265,6 +288,19 @@ def main() -> int:
             "stylesheet": [missing_dance_package["sourceHashes"]["presentation"], sha256(MISSING_DANCE_PRESENTATION)],
         },
     )
+    check(
+        "Wrong Color of Light retains the shared component layer and byte-identical worksheet sources",
+        wrong_color_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and wrong_color_package["sourceHashes"]["content"] == sha256(WRONG_COLOR_CONTENT)
+        and wrong_color_package["sourceHashes"]["presentation"] == sha256(WRONG_COLOR_PRESENTATION)
+        and wrong_color_package["sourceHashes"]["taskRegistry"] == sha256(WRONG_COLOR_REGISTRY),
+        {
+            "presentation": wrong_color_package.get("presentation"),
+            "content": [wrong_color_package["sourceHashes"]["content"], sha256(WRONG_COLOR_CONTENT)],
+            "stylesheet": [wrong_color_package["sourceHashes"]["presentation"], sha256(WRONG_COLOR_PRESENTATION)],
+            "registry": [wrong_color_package["sourceHashes"]["taskRegistry"], sha256(WRONG_COLOR_REGISTRY)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -313,6 +349,9 @@ def main() -> int:
         '.worksheet-document[data-case-id="SSS-C2-CASE02"]',
         'content: "MISSING EVENT"',
         '.path-arrow::before',
+        '.worksheet-document[data-case-id="SSS-C2-CASE03"]',
+        'content: "POOR MATCH"',
+        '[data-persist-id="t8-criterion-1"]',
         ".worksheet-document.grayscale",
     )
     check(
@@ -332,7 +371,8 @@ def main() -> int:
     europa_css = extracted[extracted.index("Mechanism/pathway family expansion: Europa") : extracted.index("Mechanism/pathway family expansion: First Contact")]
     first_contact_css = extracted[extracted.index("Mechanism/pathway family expansion: First Contact") : extracted.index("Mechanism/pathway family expansion: The Gift")]
     the_gift_css = extracted[extracted.index("Mechanism/pathway family expansion: The Gift") : extracted.index("Mechanism/pathway family expansion: The Missing Dance")]
-    missing_dance_css = extracted[extracted.index("Mechanism/pathway family expansion: The Missing Dance") :]
+    missing_dance_css = extracted[extracted.index("Mechanism/pathway family expansion: The Missing Dance") : extracted.index("Mechanism/specification family expansion: The Wrong Color of Light")]
+    wrong_color_css = extracted[extracted.index("Mechanism/specification family expansion: The Wrong Color of Light") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -424,6 +464,27 @@ def main() -> int:
         and 'content: "↓"' in missing_dance_css
         and "repeating-linear-gradient" in missing_dance_css
         and "filter:" not in missing_dance_css,
+    )
+    check(
+        "Wrong Color of Light shares spectral-match states with a grayscale-safe specification grammar",
+        all(f'content: "{label}"' in wrong_color_css for label in (
+            "OUTPUT PROFILE", "POOR MATCH", "CAPTURED ENERGY", "GROWTH + PIGMENT", "OBSERVED OUTCOME",
+        ))
+        and all(token in wrong_color_css for token in (
+            "--spectral-spectrum-pattern", "--spectral-intensity-pattern",
+            "--spectral-growth-pattern", "--spectral-trial-pattern",
+            '[data-persist-id="t8-criterion-1"]', '[data-persist-id="a8-criterion-1"]',
+            '[data-persist-id="t8-test"]', '[data-persist-id="a8-test"]',
+        ))
+        and "border-top-style: dashed" in wrong_color_css
+        and "border-top-style: double" in wrong_color_css
+        and "border-top-style: dotted" in wrong_color_css
+        and "border-left-style: dashed" in wrong_color_css
+        and "border-left-style: double" in wrong_color_css
+        and "border-left-style: dotted" in wrong_color_css
+        and 'content: "↓"' in wrong_color_css
+        and "repeating-linear-gradient" in wrong_color_css
+        and "filter:" not in wrong_color_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -1190,6 +1251,136 @@ def main() -> int:
         and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in missing_dance_visual_block
         and 'state.pageSize === "816x1056"' in missing_dance_visual_block
         and 'for (const grayscale of [false, true])' in missing_dance_visual_block,
+    )
+
+    wrong_color_bank = [
+        "less energy is available for growth and pigment replacement",
+        "the installed spectrum is a poor match for the zhal-kelp response measured at this site",
+        "captured energy is lower than the total PAR reading suggests",
+    ]
+    wrong_color_fixed_stages = [
+        "A red-heavy GRO-9 spectrum is installed in the dome.",
+        "Blades yellow from the tips and growth falls to 15% of nominal.",
+    ]
+    wrong_color_student_page = wrong_color_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-04"]'
+    )
+    wrong_color_student_model = wrong_color_student_page.select_one(
+        '.pathway-model[data-process-contract="spectral-match-five-stage-v1.0"]'
+    ) if wrong_color_student_page else None
+    wrong_color_student_stages = wrong_color_student_model.select(":scope > .path-stage") if wrong_color_student_model else []
+    wrong_color_student_fields = [stage.select_one(".stage-response") for stage in wrong_color_student_stages if stage.select_one(".stage-response")]
+    check(
+        "Wrong Color of Light Student Task 6 preserves five stages, three blanks and every diagnosis response",
+        [stage.get("data-process-stage") for stage in wrong_color_student_stages] == ["1", "2", "3", "4", "5"]
+        and [arrow.get_text(strip=True) for arrow in wrong_color_student_model.select(":scope > .path-arrow")] == ["→"] * 4
+        and [" ".join(wrong_color_student_stages[index].select_one("p").stripped_strings) for index in (0, 4)] == wrong_color_fixed_stages
+        and [field.get("data-persist-id") for field in wrong_color_student_fields] == ["t6-m2", "t6-m3", "t6-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in wrong_color_student_fields)
+        and [field.get("data-persist-id") for field in wrong_color_student_page.select('[data-persist-id^="t6-"]')]
+        == ["t6-d1", "t6-d2", "t6-d3", "t6-d4", "t6-reject", "t6-m2", "t6-m3", "t6-m4"]
+        and [" ".join(item.stripped_strings) for item in wrong_color_student_page.select(".word-bank-item")] == wrong_color_bank,
+    )
+
+    wrong_color_accessible_page = wrong_color_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-06"]'
+    )
+    wrong_color_accessible_model = wrong_color_accessible_page.select_one(
+        '.pathway-model.accessible-path[data-process-contract="spectral-match-five-stage-v1.0"]'
+    ) if wrong_color_accessible_page else None
+    wrong_color_accessible_stages = wrong_color_accessible_model.select(":scope > .path-stage") if wrong_color_accessible_model else []
+    wrong_color_accessible_fields = [stage.select_one(".stage-response") for stage in wrong_color_accessible_stages if stage.select_one(".stage-response")]
+    check(
+        "Wrong Color of Light Accessible Task 6 preserves the vertical model, three blanks and exact bank",
+        [stage.get("data-process-stage") for stage in wrong_color_accessible_stages] == ["1", "2", "3", "4", "5"]
+        and [arrow.get_text(strip=True) for arrow in wrong_color_accessible_model.select(":scope > .path-arrow")] == ["→"] * 4
+        and [" ".join(wrong_color_accessible_stages[index].select_one("p").stripped_strings) for index in (0, 4)] == wrong_color_fixed_stages
+        and [field.get("data-persist-id") for field in wrong_color_accessible_fields] == ["a6-m2", "a6-m3", "a6-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in wrong_color_accessible_fields)
+        and [field.get("data-persist-id") for field in wrong_color_accessible_page.select('[data-persist-id^="a6-"]')]
+        == ["a6-d1", "a6-d2", "a6-d3", "a6-d4", "a6-m2", "a6-m3", "a6-m4", "a6-reject"]
+        and [" ".join(item.stripped_strings) for item in wrong_color_accessible_page.select(".word-bank-item")] == wrong_color_bank,
+    )
+
+    wrong_color_answer_expected = [
+        wrong_color_fixed_stages[0],
+        wrong_color_bank[1],
+        wrong_color_bank[2],
+        wrong_color_bank[0],
+        wrong_color_fixed_stages[1],
+    ]
+    wrong_color_answer_page = wrong_color_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-03"]'
+    )
+    wrong_color_answer_model = wrong_color_answer_page.select_one(
+        '.pathway-model.completed[data-process-contract="spectral-match-five-stage-v1.0"]'
+    ) if wrong_color_answer_page else None
+    wrong_color_answer_stages = wrong_color_answer_model.select(":scope > .path-stage") if wrong_color_answer_model else []
+    check(
+        "Wrong Color of Light Answer Key completes the identical five-stage spectral-match mechanism",
+        [" ".join(stage.select_one("p").stripped_strings) for stage in wrong_color_answer_stages]
+        == wrong_color_answer_expected,
+    )
+
+    wrong_color_student_spec = wrong_color_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-05"]'
+    )
+    wrong_color_accessible_spec = wrong_color_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-08"]'
+    )
+    student_spec_fields = wrong_color_student_spec.select('[data-persist-id^="t8-"]') if wrong_color_student_spec else []
+    accessible_spec_fields = wrong_color_accessible_spec.select('[data-persist-id^="a8-"]') if wrong_color_accessible_spec else []
+    answer_spec_page = wrong_color_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-04"]'
+    )
+    answer_task8_heading = answer_spec_page.select_one('h2[data-shell-task-heading="8"]') if answer_spec_page else None
+    answer_spec_block = answer_task8_heading.find_next_sibling("div", class_="answer-block") if answer_task8_heading else None
+    expected_specification_paragraphs = [
+        "Criterion 1 — spectrum: The fixture must deliver a majority of its output within the 460–540 nm range measured for zhal-kelp at this site, verified against the fixture’s own reported output categories.",
+        "Criterion 2 — total intensity: Total PAR at the canopy must stay at or above the 280 µmol/m²/s the case already reports as adequate, so the spectral change does not create a brightness problem.",
+        "Constraint — completed exemplar: Accept solutions that work with the existing dome hardware and power budget; the installed fixtures support custom spectra, so retuning and replacement should both be considered against the same criteria.",
+        "Monitored trial and stop rule: Run the change on part of the dome first and keep the remaining tanks on the current fixtures as a comparison. Measure delivered spectrum, total PAR, blade colour, and growth rate on a fixed schedule. If yellowing continues or growth does not improve over the agreed window, stop, restore the comparison condition, and re-examine the diagnosis rather than increasing brightness.",
+        "Uncertainty note: The case predicts recovery within days. That is a narrated outcome, not a replicated experiment, so the prediction must be treated as something the trial tests.",
+    ]
+    check(
+        "Wrong Color of Light Task 8 preserves all learner fields and the completed monitored specification",
+        [field.get("data-persist-id") for field in student_spec_fields]
+        == ["t8-criterion-1", "t8-criterion-2", "t8-constraint", "t8-test"]
+        and [field.get("data-persist-id") for field in accessible_spec_fields]
+        == ["a8-criterion-1", "a8-criterion-2", "a8-constraint", "a8-test"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True)
+                for field in student_spec_fields + accessible_spec_fields)
+        and [" ".join(paragraph.stripped_strings) for paragraph in answer_spec_block.select(":scope > p")]
+        == expected_specification_paragraphs,
+    )
+
+    wrong_color_source_text = WRONG_COLOR_CONTENT.read_text(encoding="utf-8")
+    check(
+        "Wrong Color of Light retains exact discrete data and bounded trial language without added fiction reminders",
+        all(token in wrong_color_source_text for token in (
+            "280 µmol/m²/s", "62%", "620–680 nm", "18%", "440–490 nm", "15%",
+            "&lt;5%", "490–560 nm", "460–540 nm",
+            "response outside 460–540 nm is not specified and is not zero",
+            "That is a narrated outcome, not a replicated experiment",
+        ))
+        and "fiction" not in wrong_color_css.lower(),
+    )
+
+    wrong_color_visual_start = harness.index('if (item.id === "SSS-C2-CASE03")')
+    wrong_color_visual_end = harness.index('if (item.id === "SSS-C2-CASE04")', wrong_color_visual_start)
+    wrong_color_visual_block = harness[wrong_color_visual_start:wrong_color_visual_end]
+    check(
+        "the browser harness measures Wrong Color mechanism, specification, fields and strict fit in both modes",
+        harness.count("spectral-match and specification pages retain strict fit, page counts and geometry") == 1
+        and harness.count("spectral-match grammar preserves mechanism and monitored specification") == 1
+        and "OUTPUT PROFILE|POOR MATCH|CAPTURED ENERGY|GROWTH + PIGMENT|OBSERVED OUTCOME" in wrong_color_visual_block
+        and "t6-m2|t6-m3|t6-m4" in wrong_color_visual_block
+        and "a6-m2|a6-m3|a6-m4" in wrong_color_visual_block
+        and "t8-criterion-1|t8-criterion-2|t8-constraint|t8-test" in wrong_color_visual_block
+        and "a8-criterion-1|a8-criterion-2|a8-constraint|a8-test" in wrong_color_visual_block
+        and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in wrong_color_visual_block
+        and 'state.pageSize === "816x1056"' in wrong_color_visual_block
+        and 'for (const grayscale of [false, true])' in wrong_color_visual_block,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]
