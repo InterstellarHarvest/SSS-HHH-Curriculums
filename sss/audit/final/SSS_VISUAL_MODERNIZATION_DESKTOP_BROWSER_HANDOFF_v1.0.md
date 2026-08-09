@@ -4,15 +4,15 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Implemented Family 4 candidate — Europa four-route evidence convergence
+## Accepted Family 4 pilot — Europa four-route evidence convergence
 
-`C1C5-VIS02` begins the two-finding evidence-convergence family. It remains
-`IMPLEMENTED-CANDIDATE` until the complete **2342/2342** Mac/Chrome harness passes twice with zero
-application JavaScript errors and all six normal/grayscale target states pass manual inspection.
-The accepted synchronized prerequisite is
-`c218e7c41c1feafc481034d72663a04d3224861e`. The accepted inventory remains **23 of 36
-completed**, with **13 remaining**; do not add this candidate to a verified register or begin
-`C1C7-VIS01` before separate acceptance and closeout.
+Candidate `70375daa5bebe7dea127c0b8f6f6e0aeece48fc9` advances `C1C5-VIS02` for Europa
+Bunker to `VERIFIED-FAMILY`, the first accepted Family 4 evidence-convergence finding. The accepted
+executable baseline is **2342/2342 PASS with 0 application JavaScript errors**, repeated twice.
+The accepted focused evidence-convergence baseline is **30/30 PASS**; the timeline validator
+remains **44/44 PASS**; the mechanism validator remains **103/103 PASS**; the telemetry validator
+remains **36/36 PASS**; and the Case 05 layout-override validator passes. The accepted synchronized
+prerequisite is `c218e7c41c1feafc481034d72663a04d3224861e`.
 
 The frozen Task 3 structures remain semantic and source-controlled:
 
@@ -37,7 +37,7 @@ drawn as a single-clue proof arrow. Sensor exposure remains separate from plant 
 evidence, and the construction log remains a protection limit rather than a measured secondary
 fraction or safety threshold.
 
-No Case 05 source file changes. The candidate must preserve these SHA-256 identities:
+No Case 05 source file changes. The accepted implementation preserves these SHA-256 identities:
 
 - `content.html` — `8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d`
 - `presentation.css` — `5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8`
@@ -45,38 +45,37 @@ No Case 05 source file changes. The candidate must preserve these SHA-256 identi
 - `case-package.json` — `b1477d499fcb1bfb026f606bc0c5c8d9833f967950daba45dff2c9cdd0a9a200`
 - `task-registry.js` — `402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc`
 
-The intended candidate scope is exactly the shared component CSS, browser harness, focused
+The accepted candidate scope is exactly the shared component CSS, browser harness, focused
 evidence-family validator, production plan and this handoff. It changes no worksheet wording,
 case presentation, layout override, package metadata, task registry, response ID, response text,
 page count, persistence identity, source hash, Teacher content, release/history record or
 completed-family implementation.
 
-Local Chromium preflight reports **2311/2342**. The 31 remaining failures are the established
-Linux/platform font and temporary screenshot-smoke exceptions; all three new candidate assertions
-pass. In normal and grayscale, Student page 2, Answer Key page 2 and Accessible page 3 retain fixed
-816 × 1056 geometry and exact `scrollHeight 936 == clientHeight 936` fit with no `has-overflow`
-state. All four Student fields remain blank and approximately 196.38 × 67.19 px. All four
-Accessible fields remain blank and approximately 335.5 × 105.59 px. The Answer Key has no learner
-fields and retains these exact exemplars in order:
+Normal and grayscale inspection of Student page 2, Answer Key page 2 and Accessible page 3
+confirmed fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936` fit and no
+`has-overflow` state in all six views. All four cards remained contained with zero card-to-card
+intersections. The synthesis rail remained 24.63–27.63 px clear of every channel heading, status,
+evidence sentence and response border. Task 4 and the Accessible science note remained outside the
+map and unchanged. All four Student fields remained blank, visible and exactly 196.38 × 67.19 px.
+All four Accessible fields remained blank, visible and exactly 335.5 × 105.59 px. The Answer Key
+has no learner fields and retains these exact exemplars in order:
 
 1. `Repeated failure across plantings supports a persistent environmental cause rather than one seed batch.`
 2. `Establishes elevated grow-chamber ionizing-radiation exposure, not biological harm by itself.`
 3. `Provides biological evidence: meristem abnormalities are consistent with DNA damage, without proving the cause or exact molecular mechanism.`
 4. `Shows crop protection was unverified and modeled secondary radiation may contribute through material interactions.`
 
-Mac/Chrome acceptance must run the complete browser harness twice and reach **2342/2342 PASS**
-with zero application JavaScript errors in both runs. Manually inspect:
-
-1. Student Task 3, page 2 — normal and grayscale.
-2. Answer Key Task 3, page 2 — normal and grayscale.
-3. Accessible Task 3, page 3 — normal and grayscale.
-
-Confirm fixed geometry, exact page counts Student 4 / Answer Key 4 / Accessible 7, strict
-936/936 fit, full root/card containment, no card collision, clear inward connector cues, visible
-channel states, unbroken response borders, readable evidence text and a synthesis rail that does
-not touch or cover any channel heading, status, evidence sentence or response box. Confirm Task 4
-and the Accessible science note remain outside the map and unchanged. Any failure leaves the
-candidate unaccepted and unpushed; do not edit it during external validation.
+Student 4 / Answer Key 4 / Accessible 7 page counts remained exact. All eight learner fields stayed
+inside their cards without reduction, clipping, prefilling or relocation. The four Answer Key
+exemplars remained verbatim and ordered Crew, Sensors, Plants, Logs. The science boundaries remain
+exact: no single clue proves radiation; exposure is not biological harm by itself; meristem
+abnormalities are consistent with DNA damage without proving the cause or exact molecular
+mechanism; modeled secondary radiation may contribute but is not a measured fraction; crop
+protection was unverified; no numerical radiation quantity, plant threshold or safety threshold
+was introduced; and brown spots alone do not identify the cause or rule out nutrients or
+pathogens. All six views had zero JavaScript console errors and no overflow, spill, clipping,
+collision or crowding. The formal inventory is now **24 of 36 completed**, with **12 remaining**.
+Do not begin `C1C7-VIS01` before a separate candidate-production instruction.
 
 ## Accepted Family 3 completion — Silent Grove same-total sleep-pattern example
 
@@ -561,16 +560,25 @@ was 20 of 36 completed and 16 remaining at its closeout. The visual branch remai
 Family 3 is complete with all three findings verified. The overall visual-modernization inventory
 is 23 of 36 completed and 13 remaining. The visual branch remains isolated from `main`.
 
-## C2C4-VIS01 closeout integration prompt
+## Family 4 accepted register
+
+| Finding | Accepted implementation | Recorded state |
+|---|---|---|
+| `C1C5-VIS02` | `70375da` | `VERIFIED-FAMILY` |
+
+Family 4 has one of two findings verified. The overall visual-modernization inventory is 24 of 36
+completed and 12 remaining. The visual branch remains isolated from `main`.
+
+## C1C5-VIS02 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`73e8496393f5f29d90abf0e805e4f43c90ca26f9`. Confirm the pushed remote remains
-`5c07309eef3257e5a91c97281e48d896d924e40f`, verify the checksum and bundle prerequisite, fetch it,
+`70375daa5bebe7dea127c0b8f6f6e0aeece48fc9`. Confirm the pushed remote remains
+`c218e7c41c1feafc481034d72663a04d3224861e`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 44-check timeline validator and `git diff --check`. Confirm the closeout
-changes only this handoff, the production plan and the focused validator; records `C2C4-VIS01` as
-`VERIFIED-FAMILY`; completes Family 3; and advances the inventory to 23/36 completed and 13
-remaining. Because the successor changes only documentation and the
+files. Run the focused 30-check evidence-convergence validator and `git diff --check`. Confirm the
+closeout changes only this handoff, the production plan and the focused validator; records
+`C1C5-VIS02` as `VERIFIED-FAMILY`; opens the Family 4 accepted register with one of two findings;
+and advances the inventory to 24/36 completed and 12 remaining. Because the successor changes only documentation and the
 focused validator, do not rerun the Mac/Chrome harness or manual inspection. If both checks pass,
 push the branch by ordinary fast-forward and report local, tracking and live remote SHAs. Do not
-begin Family 4 or `C1C5-VIS02` in the same run.
+begin `C1C7-VIS01` in the same run.

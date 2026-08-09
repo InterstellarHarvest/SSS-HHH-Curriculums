@@ -96,22 +96,29 @@ def main() -> int:
     answer_rows = answer_root.select(":scope > tbody > tr")
 
     check(
-        "the production plan assigns C1C5-VIS02 to Family 4 as an implemented candidate",
-        bool(re.search(r"\| `C1C5-VIS02` .*\| 4 · Evidence-convergence map \|.*`IMPLEMENTED-CANDIDATE · 30/30 FAMILY STATIC PASS · 2342/2342 MAC/CHROME GATE REQUIRED`", plan)),
+        "the production plan accepts C1C5-VIS02 as the first Family 4 finding",
+        bool(re.search(
+            r"\| `C1C5-VIS02` .*\| 4 · Evidence-convergence map \|.*"
+            r"`VERIFIED-FAMILY · 30/30 FAMILY STATIC PASS · 2342/2342 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 70375da ACCEPTED`",
+            plan,
+        )),
     )
     check(
-        "the desktop handoff records the rendered gate without advancing accepted inventory",
-        "Implemented Family 4 candidate — Europa four-route evidence convergence" in handoff
-        and "2342/2342" in handoff
-        and "2311/2342" in handoff
-        and "23 of 36" in handoff
-        and "13 remaining" in handoff,
+        "the desktop handoff records the accepted Mac/Chrome and manual gate",
+        "Accepted Family 4 pilot — Europa four-route evidence convergence" in handoff
+        and "70375daa5bebe7dea127c0b8f6f6e0aeece48fc9" in handoff
+        and "2342/2342 PASS with 0 application JavaScript errors" in handoff
+        and "30/30 PASS" in handoff
+        and "24 of 36 completed" in handoff
+        and "12 remaining" in handoff,
     )
     check(
-        "Family 4 has no premature accepted-register or verified-family entry",
-        "| `C1C5-VIS02` |" not in handoff
-        and not bool(re.search(r"\| `C1C5-VIS02` .*`VERIFIED-FAMILY", plan))
-        and "`C1C7-VIS01` before separate acceptance and closeout" in handoff,
+        "Family 4 register accepts only C1C5-VIS02 and leaves C1C7-VIS01 planned",
+        "| `C1C5-VIS02` | `70375da` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 4 has one of two findings verified" in handoff
+        and bool(re.search(r"\| `C1C7-VIS01` .*`PLANNED`", plan))
+        and bool(re.search(r"Do not\s+begin `C1C7-VIS01` in the same run\.", handoff)),
     )
     check(
         "the evidence presentation block is isolated to Europa Case 05",

@@ -258,7 +258,7 @@ remained intact; and the separate six-row Table 5 ship record remained unchanged
 teaching-example, not-grove-data, discrete-block and no-biological-claim boundaries remained
 exact. `C2C4-VIS01` is therefore `VERIFIED-FAMILY`, completing Family 3.
 
-`C1C5-VIS02` begins Family 4 as an evidence-convergence pilot. It recomposes Europa Bunker's
+`C1C5-VIS02` is the first accepted Family 4 evidence-convergence finding. It recomposes Europa Bunker's
 frozen Task 3 Student table, Accessible cards and completed Answer Key exemplars through one
 case-scoped EC1 presentation grammar. Crew, Sensors, Plants and Logs remain four independent
 channels with the direct states `REPEATED PATTERN`, `EXPOSURE`, `BIO EVIDENCE` and
@@ -267,13 +267,20 @@ patterns. All four channels feed the qualified synthesis
 `QUALIFIED CONVERGENCE · RADIATION BEST-SUPPORTED · NO SINGLE CLUE PROVES CAUSE`. Student retains
 its four blank `t3-*` contribution fields; Accessible retains its four blank `a3-*` fields; and
 the Answer Key retains all four exact completed exemplars. The shared layer changes no worksheet
-wording, response identity, package-controlled source, page count or release record. Local
-Chromium preflight reaches 2311/2342 with the 31 established platform/font and screenshot-smoke
-exceptions; all three new assertions pass, including strict 936/936 fit on all six target states.
-`C1C5-VIS02` remains `IMPLEMENTED-CANDIDATE` until the complete 2342/2342 Mac/Chrome gate passes
-twice with zero JavaScript errors and normal/grayscale manual inspection confirms the synthesis
-rail, channel labels, connectors and response boxes remain collision-free. The accepted inventory
-therefore remains 23 of 36 completed and 13 remaining.
+wording, response identity, package-controlled source, page count or release record.
+
+Candidate `70375daa5bebe7dea127c0b8f6f6e0aeece48fc9` passed the complete 2342/2342
+Mac/Chrome browser harness twice with zero application JavaScript errors, the 30/30 focused
+evidence-convergence validator, the 44/44 timeline validator, the 103/103 mechanism validator, the
+36/36 telemetry validator and the Case 05 layout-override validator. Normal and grayscale
+inspection confirmed strict 936/936 fit, fixed 816 × 1056 geometry, unchanged Student 4 / Answer
+Key 4 / Accessible 7 page counts, full map/card containment and zero overflow, spill, clipping,
+collision or crowding across all six target views. The synthesis rail remained at least 24.63 px
+clear of every channel heading, status, evidence sentence and response border. All eight learner
+fields remained blank, visible, unclipped and at their accepted dimensions; the Answer Key retained
+all four exact exemplars. Every exposure, biological-evidence, modeled-secondary-radiation,
+protection-limit, threshold and single-clue boundary remained exact. `C1C5-VIS02` is therefore
+`VERIFIED-FAMILY`, the first accepted Family 4 finding.
 
 ## 3. Exact inventory reconciliation
 
@@ -284,9 +291,13 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the Silent Grove sleep-pattern closeout is **23 of 36 completed** and
-**13 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11 of
-its verified findings and Family 3 contributes all 3 of its verified findings.
+Accepted progress after the Europa evidence-convergence closeout is **24 of 36 completed** and
+**12 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11 of
+its verified findings, Family 3 contributes all 3 of its verified findings and Family 4 contributes
+its first verified finding.
+
+At the preceding Silent Grove sleep-pattern closeout, accepted progress was 23 of 36 completed and
+13 of 36 remaining.
 
 At the preceding First Contact timing-telemetry closeout, accepted progress was 22 of 36 completed
 and 14 of 36 remaining.
@@ -355,7 +366,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C4-VIS02` | Hayes Orbital Station; S T5 p3, A T5 p5, AK T5 p3 | Six-stage snake layout; reading direction requires prose. | 2 · Causal mechanism/pathway | Immediate closed fault loop with directional connectors and explicit repeat link. | Preserve six exact stages/fields and A vertical reading order. | Qualitative recurrence; no invented light dose, density or crash interval beyond reported 6–8 days. | loop variant of mechanism primitive; connector/read-order tests | `VERIFIED-FAMILY · 44/44 FAMILY STATIC PASS · 2309/2309 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d5b6c02 ACCEPTED` |
 | `C1C4-VIS03` | Hayes Orbital Station; S T7 p4, A T7 p7, AK T7 p4 | Four equal text boxes in a linear row. | 5 · Engineering control loop | Sensor → comparator → independent actuator → reactor, with performance feedback to verification; deterministic SVG/HTML. | Keep two learner response fields and current page; complete AK treatment without new graded actions. | Independent light control and monitored response; do not generalize continuous-light failure to all cultures. | P1–P6, CL1; feedback-label and response tests | `PLANNED` |
 | `C1C5-VIS01` | Europa Bunker; S T5 p3, A T5 p5, AK T5 p3 | Seven-stage snake of text boxes. | 2 · Causal mechanism/pathway | Qualified hazard pathway visually separating environment, modeled interaction, exposure evidence, evidence limit, biological evidence, growth consequence and convergence; deterministic HTML/SVG. | Preserve seven exact bank entries and current blanks; A vertical; AK complete. | Modeled secondary radiation ≠ measured; exposure ≠ damage; abnormalities are consistent with damage; no exact quantities. | mechanism/status primitives; phrase, qualifier and persistence tests | `VERIFIED-FAMILY · 52/52 FAMILY STATIC PASS · 2312/2312 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · dcb2d91 ACCEPTED` |
-| `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `IMPLEMENTED-CANDIDATE · 30/30 FAMILY STATIC PASS · 2342/2342 MAC/CHROME GATE REQUIRED` |
+| `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `VERIFIED-FAMILY · 30/30 FAMILY STATIC PASS · 2342/2342 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 70375da ACCEPTED` |
 | `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `PLANNED` |
 | `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `VERIFIED-FAMILY · 30/30 TIMELINE STATIC PASS · 2336/2336 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 66a3d1b ACCEPTED` |
 | `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
