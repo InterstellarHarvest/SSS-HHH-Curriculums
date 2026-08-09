@@ -268,17 +268,25 @@ def main() -> int:
         "sss/campaign-1/case-06-first-contact-protocol/source/task-registry.js",
     )
     check(
-        "the candidate handoff protects all frozen First Contact sources",
+        "the accepted handoff protects all frozen First Contact sources",
         all(path in handoff for path in contact_source_paths),
         [path for path in contact_source_paths if path not in handoff],
     )
     check(
-        "the plan and handoff stage C1C6-VIS01 without advancing the accepted inventory",
-        "C1C6-VIS01" in plan
-        and "CANDIDATE" in next(line for line in plan.splitlines() if line.startswith("| `C1C6-VIS01`"))
-        and "First Contact reported-event telemetry candidate" in handoff
-        and "21 of 36 completed" in handoff
-        and "15 remaining" in handoff,
+        "the plan and handoff accept C1C6-VIS01 as the second Family 3 finding",
+        bool(re.search(
+            r"\| `C1C6-VIS01` .*\| 3 · Timeline/event log \|.*"
+            r"`VERIFIED-FAMILY · 30/30 TIMELINE STATIC PASS · 2336/2336 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 66a3d1b ACCEPTED`",
+            plan,
+        ))
+        and "Accepted Family 3 expansion — First Contact reported-event telemetry" in handoff
+        and "66a3d1b76077201cbd438f2b70b64e4a1380d7a2" in handoff
+        and "2336/2336 PASS with 0 application JavaScript errors" in handoff
+        and "30/30 PASS" in handoff
+        and "| `C1C6-VIS01` | `66a3d1b` | `VERIFIED-FAMILY` |" in handoff
+        and "22 of 36 completed" in handoff
+        and "14 remaining" in handoff,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]

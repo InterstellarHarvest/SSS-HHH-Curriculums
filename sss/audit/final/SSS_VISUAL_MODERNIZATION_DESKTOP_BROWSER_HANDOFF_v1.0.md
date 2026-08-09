@@ -4,11 +4,14 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## First Contact reported-event telemetry candidate
+## Accepted Family 3 expansion — First Contact reported-event telemetry
 
-`C1C6-VIS01` is the second Family 3 timeline/event-log finding. It modernizes the frozen Task 3
-timing strips on Student page 2 and Accessible page 2 while leaving the Teacher and Answer Key
-timing references in their approved prose form. The synchronized prerequisite is
+Candidate `66a3d1b76077201cbd438f2b70b64e4a1380d7a2` advances `C1C6-VIS01` for First Contact
+Protocol to `VERIFIED-FAMILY`, the second accepted Family 3 timeline/event-log finding. The
+accepted executable baseline is **2336/2336 PASS with 0 application JavaScript errors**, repeated
+twice. The accepted focused timeline baseline is **30/30 PASS**; the mechanism validator remains
+**103/103 PASS**; the telemetry validator remains **36/36 PASS**; and the Case 06 layout-override
+validator passes. The accepted synchronized prerequisite is
 `185474673f4a7852c546ef2ef364fc2b3a7b3a02`.
 
 The existing event text is unchanged. Student retains three events: docking and human-standard
@@ -40,30 +43,31 @@ No case source file changes:
 - `sss/campaign-1/case-06-first-contact-protocol/source/case-package.json`
 - `sss/campaign-1/case-06-first-contact-protocol/source/task-registry.js`
 
-The candidate changes only the shared case-scoped component layer, browser harness, focused
+The candidate changed only the shared case-scoped component layer, browser harness, focused
 timeline validator, production plan and this handoff. It does not change worksheet wording,
 response controls or identities, evidence-card text, Answer Key or Teacher wording, package
 metadata, page counts, source hashes or release/history records.
 
-Local focused validation is **30/30 PASS**. The mechanism family remains **103/103 PASS**, the
-telemetry family remains **36/36 PASS**, the Case 06 layout-override validator passes and
-`git diff --check` is clean. The complete isolated Linux Chromium preflight reports 2303/2336;
-all three new First Contact assertions pass in normal and grayscale with zero application
-JavaScript errors. The remaining 33 are the known 32 font-dependent legacy differences in this
-browser image plus its temporary screenshot smoke-test limitation, not First Contact failures.
+Manual inspection in normal and grayscale confirmed exact `scrollHeight 936 == clientHeight 936`,
+fixed 816 × 1056 geometry, unchanged Student 5 / Accessible 7 page counts, no `has-overflow`
+state and zero content-boundary spill on Student Task 3 page 2 and Accessible Task 3 page 2. A
+full four-role, two-mode Case 06 sweep found zero overflowing pages. Every event and connector was
+contained within the strip with no clipping, collision, overlap or crowding; all connectors were
+visible, topmost and unobscured.
 
-The two targeted pages each retain fixed 816 × 1056 geometry, exact `scrollHeight 936 ==
-clientHeight 936`, their existing Student 5 / Accessible 7 page counts, no `has-overflow` state,
-full strip containment and zero event/connector collisions in both modes. Targeted normal and
-grayscale screenshots show the telemetry rail, states, patterns and interval capsule without
-clipping, overlap or crowding of the evidence cards, learner responses or following systems
-model.
+Student retained the states `DOCKING EVENT | LAST SIGNAL | FIRST-CYCLE OBSERVATION`, border order
+`solid | double | dashed`, its exact three event labels, `→ 18 min →` exact-interval connector and
+separate dashed qualitative-cycle connector. Accessible retained `DOCKING EVENT | LAST SIGNAL`,
+border order `solid | double`, its exact two event labels and `→ 18 minutes →` connector. Every
+event retained a distinct grayscale-independent pattern, and the rail remained
+`SAA EVENT TELEMETRY · REPORTED ORDER · NOT TO SCALE` in both modes.
 
-Formal acceptance still requires two complete Mac/Chrome browser-harness passes, zero application
-JavaScript errors, the focused timeline validator, mechanism and telemetry regressions, the Case
-06 layout-override validator, `git diff --check`, and manual inspection of Student Task 3 page 2
-and Accessible Task 3 page 2 in normal and grayscale. The accepted inventory remains **21 of 36
-completed**, with **15 remaining**, until external acceptance and closeout.
+The accepted display remains ordinal: it adds no axis, ticks, curve or proportional spacing. A
+larger “hours ago” value remains earlier, and `72.4 - 72.1 = 0.3 hours = 18 minutes`. Timing
+supports association but does not prove causation; filtration, missing-signal, organism-state and
+archive evidence remain necessary. No new timestamp, interval, signal value, biological
+measurement or Earth-organism generalization was introduced. The formal inventory is now **22 of
+36 completed**, with **14 remaining**.
 
 ## Accepted Family 3 pilot — Hayes relative incident log
 
@@ -416,21 +420,22 @@ was 20 of 36 completed and 16 remaining at its closeout. The visual branch remai
 | Finding | Accepted implementation | Recorded state |
 |---|---|---|
 | `C1C4-VIS01` | `d5ffe37` | `VERIFIED-FAMILY` |
+| `C1C6-VIS01` | `66a3d1b` | `VERIFIED-FAMILY` |
 
-Family 3 has one verified finding and two planned findings remaining. The overall
-visual-modernization inventory is 21 of 36 completed and 15 remaining. The visual branch remains
+Family 3 has two verified findings and one planned finding remaining. The overall
+visual-modernization inventory is 22 of 36 completed and 14 remaining. The visual branch remains
 isolated from `main`.
 
-## C1C4-VIS01 closeout integration prompt
+## C1C6-VIS01 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`d5ffe37c0db952fb74c51c961d5b58bb405f01ea`. Confirm the pushed remote remains
-`85e898d76c45a0008e5751cffdca327640de8747`, verify the checksum and bundle prerequisite, fetch it,
+`66a3d1b76077201cbd438f2b70b64e4a1380d7a2`. Confirm the pushed remote remains
+`185474673f4a7852c546ef2ef364fc2b3a7b3a02`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 17-check timeline validator and `git diff --check`. Confirm the closeout
-changes only this handoff, the production plan and the focused validator; records `C1C4-VIS01` as
-`VERIFIED-FAMILY`; records the first accepted Family 3 finding; and advances the inventory to
-21/36 completed and 15 remaining. Because the successor changes only documentation and the
+files. Run the focused 30-check timeline validator and `git diff --check`. Confirm the closeout
+changes only this handoff, the production plan and the focused validator; records `C1C6-VIS01` as
+`VERIFIED-FAMILY`; records the second accepted Family 3 finding; and advances the inventory to
+22/36 completed and 14 remaining. Because the successor changes only documentation and the
 focused validator, do not rerun the Mac/Chrome harness or manual inspection. If both checks pass,
 push the branch by ordinary fast-forward and report local, tracking and live remote SHAs. Do not
 begin the next Family 3 finding in the same run.
