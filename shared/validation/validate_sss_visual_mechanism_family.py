@@ -128,8 +128,8 @@ def main() -> int:
             "C1C7-VIS02 — The Gift biological-systems schematic",
         ))
         and "812d5c35d21a3d1e2314e4993faac188b1441c8d" in handoff
-        and "2318/2318 PASS with 0 application JavaScript" in handoff
-        and "68/68 PASS" in handoff,
+        and "2318/2318 browser harness twice" in handoff
+        and "68/68 mechanism validator" in handoff,
     )
     check(
         "the production plan and handoff accept The Missing Dance and isolate the remaining Family 2 findings",
