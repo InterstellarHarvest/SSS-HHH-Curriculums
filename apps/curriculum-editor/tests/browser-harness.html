@@ -1897,6 +1897,181 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        if (item.id === "SSS-C2-CASE05") {
+          const cleanRoomPageFit = [];
+          const cleanRoomPages = [
+            ["student", "student-mission-05", 7],
+            ["answer", "answer-key-04", 5],
+            ["accessible", "accessible-mission-05", 7],
+            ["student", "student-mission-07", 7],
+            ["answer", "answer-key-05", 5],
+            ["accessible", "accessible-mission-07", 7]
+          ];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, expectedPages] of cleanRoomPages) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const pageRect = page?.getBoundingClientRect();
+              cleanRoomPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                pages: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPages,
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C2 Case 05 mechanism and trial-workflow pages retain strict fit, page counts and geometry in normal and grayscale",
+            cleanRoomPageFit.length === 12
+              && cleanRoomPageFit.every(state => state.pages === state.expectedPages && state.pageSize === "816x1056" && !state.overflow && state.fits),
+            JSON.stringify(cleanRoomPageFit)
+          );
+          const expectedCleanRoomStatuses = "SHIELDED READING|SIGNAL TOO LOW|PATHWAY QUIESCENT|PRODUCT NOT MADE|OBSERVED DECLINE";
+          const expectedWorkflowSteps = "01|02|03|04|05|06";
+          const expectedWorkflowBorders = "solid|dashed|double|dotted|dashed|double";
+          const expectedAnswerMechanism = [
+            "Stage 2 — the exposure the karreth repair pathway responds to falls below the level the species record associates with pathway activity.",
+            "Stage 3 — the repair-linked pathway stays quiescent instead of running.",
+            "Stage 4 — the compounds built downstream of that pathway are no longer produced."
+          ];
+          const expectedAnswerTrial = [
+            "Criterion 1 — measure absorbed dose actually reaching plant tissue with remote dosimetry, and measure compound production on a fixed schedule. Dose at the tissue is the quantity in the diagnosis, and production is the outcome it is supposed to explain.",
+            "Criterion 2 — keep a chamber that receives no added exposure. Without it, any recovery could follow some other change, or could be the bloom recovering on its own.",
+            "Constraint — accept any of: the work needs licensed radiation-protection and radiological-engineering approval; shielding and interlocks must stay in place for the whole trial; the exposure must be staged and raised gradually rather than applied at full value at once; the stop criteria must be written down before the trial starts; supplies of the compound are running out, so the trial is under time pressure. Each of these is printed in Table 7 or the briefing in both learner editions.",
+            "Smallest effective exposure — about 8.4 mGy/day is what was recorded at one surveyed site, not a value shown to be necessary or best. Two dose conditions give no response curve, and more exposure could damage the bloom, so a staged trial should find the lowest exposure that restores production.",
+            "Recommendation — both answers are acceptable when reasoned. Repairing the vault alone fixes this bloom and leaves the standard unchanged. Recommending a species-specific validation step in Protocol v3.2 addresses the missing review that produced the failure, while keeping radiation protection as the default. A strong answer keeps the trial requirement either way."
+          ];
+          const learnerText = field => {
+            if (!field) return "";
+            const clone = field.cloneNode(true);
+            clone.querySelectorAll("[data-layout-resize-ui]").forEach(node => node.remove());
+            return clone.textContent.trim().replace(/\s+/g, " ");
+          };
+          for (const grayscale of [false, true]) {
+            const renderedPaths = [];
+            for (const [role, pageId] of [["student", "student-mission-05"], ["accessible", "accessible-mission-05"]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const model = page?.querySelector('.pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"]');
+              const stages = Array.from(model?.querySelectorAll(":scope > .path-stage") || []);
+              const arrows = Array.from(model?.querySelectorAll(":scope > .path-arrow") || []);
+              const modelRect = model?.getBoundingClientRect();
+              const stageRects = stages.map(stage => stage.getBoundingClientRect());
+              const contained = Boolean(modelRect) && stages.every(stage => {
+                const rect = stage.getBoundingClientRect();
+                return rect.left >= modelRect.left - 1 && rect.right <= modelRect.right + 1
+                  && rect.top >= modelRect.top - 1 && rect.bottom <= modelRect.bottom + 1;
+              });
+              const stageCollision = stageRects.some((rect, index) => stageRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              renderedPaths.push({
+                role,
+                model: Boolean(model),
+                stages: stages.length,
+                arrows: arrows.length,
+                layoutTracks: model ? win.getComputedStyle(model).gridTemplateColumns.trim().split(/\s+/).length : 0,
+                statusLabels: stages.map(stage => win.getComputedStyle(stage, "::after").content.replaceAll('"', "")).join("|"),
+                borderStates: stages.map(stage => role === "accessible" ? win.getComputedStyle(stage).borderLeftStyle : win.getComputedStyle(stage).borderTopStyle).join("|"),
+                patternStates: stages.map(stage => win.getComputedStyle(stage).backgroundImage !== "none"),
+                connectorGlyphs: arrows.map(arrow => role === "accessible" ? win.getComputedStyle(arrow, "::before").content.replaceAll('"', "") : arrow.textContent.trim()).join("|"),
+                connectorZ: arrows.map(arrow => win.getComputedStyle(arrow).zIndex).join("|"),
+                fields: stages.map(stage => stage.querySelector(".stage-response")).filter(Boolean).map(field => ({ id: field.dataset.persistId, text: learnerText(field), response: field.hasAttribute("data-response") })),
+                modelFits: Boolean(model) && model.scrollWidth <= model.clientWidth + 1 && model.scrollHeight <= model.clientHeight + 1,
+                contained,
+                stageCollision
+              });
+            }
+            const workflows = [];
+            for (const [role, pageId, fieldIds] of [
+              ["student", "student-mission-07", ["t7-criterion-1", "t7-criterion-2", "t7-constraint", "t7-minimum", "t7-recommendation"]],
+              ["accessible", "accessible-mission-07", ["a7-criterion-1", "a7-criterion-2", "a7-constraint", "a7-minimum", "a7-recommendation"]]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const table = page?.querySelector(".conditions-table");
+              const rows = Array.from(table?.querySelectorAll("tbody tr") || []);
+              const fields = fieldIds.map(id => page?.querySelector(`[data-persist-id="${id}"]`));
+              workflows.push({
+                role,
+                rows: rows.length,
+                stepLabels: rows.map(row => win.getComputedStyle(row.children[0], "::before").content.replaceAll('"', "")).join("|"),
+                rowTitles: rows.map(row => row.children[0].textContent.trim().replace(/\s+/g, " ")).join("|"),
+                rowBorders: rows.map(row => win.getComputedStyle(row.children[0]).borderTopStyle).join("|"),
+                rowPatterns: rows.map(row => win.getComputedStyle(row.children[1]).backgroundImage !== "none"),
+                connectorGlyphs: rows.slice(0, -1).map(row => win.getComputedStyle(row.children[1], "::after").content.replaceAll('"', "")).join("|"),
+                fieldIds: fields.map(field => field?.dataset.persistId || ""),
+                blankResponses: fields.map(field => Boolean(field?.hasAttribute("data-response")) && learnerText(field) === ""),
+                fieldBorders: fields.map(field => field ? win.getComputedStyle(field).borderLeftStyle : ""),
+                labelBorders: fields.map(field => field?.previousElementSibling ? win.getComputedStyle(field.previousElementSibling).borderLeftStyle : "")
+              });
+            }
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerMechanismRows = Array.from(workspace.querySelectorAll('.page[data-page-id="answer-key-04"] .support-heading + .answer-block li'));
+            const answerTrialRows = Array.from(workspace.querySelectorAll('.page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li'));
+            const studentPath = renderedPaths.find(state => state.role === "student");
+            const accessiblePath = renderedPaths.find(state => state.role === "accessible");
+            check(
+              `C2 Case 05 ${grayscale ? "grayscale" : "normal"} mechanism and non-operational trial workflow preserve every state and response`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && renderedPaths.length === 2
+                && renderedPaths.every(state => state.model && state.stages === 5 && state.arrows === 4 && state.modelFits && state.contained && !state.stageCollision)
+                && renderedPaths.every(state => state.statusLabels === expectedCleanRoomStatuses && state.patternStates.every(Boolean))
+                && studentPath.layoutTracks === 9
+                && studentPath.connectorGlyphs === "→|→|→|→"
+                && studentPath.borderStates === "solid|dashed|dotted|double|double"
+                && studentPath.fields.map(field => field.id).join("|") === "t5-m2|t5-m3|t5-m4"
+                && studentPath.fields.every(field => field.text === "" && field.response)
+                && accessiblePath.layoutTracks === 1
+                && accessiblePath.connectorGlyphs === "↓|↓|↓|↓"
+                && accessiblePath.connectorZ === "1|1|1|1"
+                && accessiblePath.borderStates === "solid|dashed|dotted|double|double"
+                && accessiblePath.fields.map(field => field.id).join("|") === "a5-m2|a5-m3|a5-m4"
+                && accessiblePath.fields.map(field => field.text).join("|") === "|the repair pathway stays switched off|"
+                && accessiblePath.fields.every(field => field.response)
+                && workflows.length === 2
+                && workflows.every(state => state.rows === 6 && state.stepLabels === expectedWorkflowSteps && state.rowBorders === expectedWorkflowBorders)
+                && workflows[0].rowTitles === "Review and authorization|Comparison|Measurement|Containment|Sequence|Ending rule"
+                && workflows[1].rowTitles === "Who says yes first|Something to compare with|What gets measured|Staying safe|Going slowly|When to stop"
+                && workflows.every(state => state.rowPatterns.every(Boolean) && state.connectorGlyphs === "↓|↓|↓|↓|↓")
+                && workflows[0].fieldIds.join("|") === "t7-criterion-1|t7-criterion-2|t7-constraint|t7-minimum|t7-recommendation"
+                && workflows[1].fieldIds.join("|") === "a7-criterion-1|a7-criterion-2|a7-constraint|a7-minimum|a7-recommendation"
+                && workflows.every(state => state.blankResponses.every(Boolean))
+                && workflows.every(state => state.fieldBorders.join("|") === "double|dashed|dotted|dashed|solid")
+                && workflows.every(state => state.labelBorders.join("|") === "double|dashed|dotted|dashed|solid")
+                && answerMechanismRows.map(row => row.textContent.trim().replace(/\s+/g, " ")).join("|") === expectedAnswerMechanism.join("|")
+                && answerMechanismRows.map(row => win.getComputedStyle(row).borderLeftStyle).join("|") === "dashed|dotted|double"
+                && answerTrialRows.map(row => row.textContent.trim().replace(/\s+/g, " ")).join("|") === expectedAnswerTrial.join("|")
+                && answerTrialRows.map(row => win.getComputedStyle(row).borderLeftStyle).join("|") === "double|dashed|dotted|dashed|solid"
+                && workspace.textContent.includes("<0.01 mGy/day")
+                && workspace.textContent.includes("about 8.4 mGy/day")
+                && workspace.textContent.includes("about 12 mGy/day")
+                && workspace.textContent.includes("Two dose conditions give no response curve")
+                && workspace.textContent.includes("You are not asked to name a radiation source, a device, or an operating setting"),
+              JSON.stringify({ renderedPaths, workflows, answerMechanismRows: answerMechanismRows.length, answerTrialRows: answerTrialRows.length })
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C1-CASE03") {
           let isolatedWindowPrintCalls = 0;
           const printFrameObserved = new Promise(resolve => {

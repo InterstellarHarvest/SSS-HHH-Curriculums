@@ -54,6 +54,12 @@ WRONG_COLOR_PACKAGE = WRONG_COLOR_SOURCE / "case-package.json"
 WRONG_COLOR_CONTENT = WRONG_COLOR_SOURCE / "content.html"
 WRONG_COLOR_PRESENTATION = WRONG_COLOR_SOURCE / "presentation.css"
 WRONG_COLOR_REGISTRY = WRONG_COLOR_SOURCE / "task-registry.js"
+TOO_CLEAN_SOURCE = ROOT / "sss/campaign-2/case-05-too-clean-room/source"
+TOO_CLEAN_PACKAGE = TOO_CLEAN_SOURCE / "case-package.json"
+TOO_CLEAN_CONTENT = TOO_CLEAN_SOURCE / "content.html"
+TOO_CLEAN_PRESENTATION = TOO_CLEAN_SOURCE / "presentation.css"
+TOO_CLEAN_REGISTRY = TOO_CLEAN_SOURCE / "task-registry.js"
+TOO_CLEAN_LAYOUT = TOO_CLEAN_SOURCE / "layout-overrides.json"
 
 
 def sha256(path: Path) -> str:
@@ -89,6 +95,8 @@ def main() -> int:
     missing_dance_content = BeautifulSoup(MISSING_DANCE_CONTENT.read_text(encoding="utf-8"), "html.parser")
     wrong_color_package = json.loads(WRONG_COLOR_PACKAGE.read_text(encoding="utf-8"))
     wrong_color_content = BeautifulSoup(WRONG_COLOR_CONTENT.read_text(encoding="utf-8"), "html.parser")
+    too_clean_package = json.loads(TOO_CLEAN_PACKAGE.read_text(encoding="utf-8"))
+    too_clean_content = BeautifulSoup(TOO_CLEAN_CONTENT.read_text(encoding="utf-8"), "html.parser")
 
     check(
         "the production plan assigns the Lunar pollination sequence to Family 2",
@@ -153,9 +161,8 @@ def main() -> int:
         and "| `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |" in handoff
         and "18 of 36 completed" in plan
         and "18 of 36 remaining" in plan
-        and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
-            "C2C5-VIS03", "C2C6-VIS02",
-        ))
+        and bool(re.search(r"\| `C2C5-VIS03` .*`IMPLEMENTED-CANDIDATE", plan))
+        and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
     check(
@@ -173,9 +180,23 @@ def main() -> int:
         and "| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |" in handoff
         and "18 of 36 completed" in handoff
         and "18 remaining" in handoff
-        and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
-            "C2C5-VIS03", "C2C6-VIS02",
-        )),
+        and bool(re.search(r"\| `C2C5-VIS03` .*`IMPLEMENTED-CANDIDATE", plan))
+        and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
+    )
+    check(
+        "the production plan and handoff advance Too Clean a Room as the sole Family 2 candidate",
+        bool(re.search(
+            r"\| `C2C5-VIS03` .*\| 2 \+ 8 · Mechanism/trial workflow \|.*"
+            r"`IMPLEMENTED-CANDIDATE · MAC/CHROME GATE PENDING`",
+            plan,
+        ))
+        and "Current validation target — C2C5 mechanism/trial workflow" in handoff
+        and "775680de5d8d216d6ca416da6f5e06a57bfdbfd6" in handoff
+        and "2324/2324 PASS with 0 application JavaScript errors" in handoff
+        and "85/85 PASS" in handoff
+        and "18 of 36 completed" in handoff
+        and "18 remaining" in handoff
+        and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -304,6 +325,21 @@ def main() -> int:
             "registry": [wrong_color_package["sourceHashes"]["taskRegistry"], sha256(WRONG_COLOR_REGISTRY)],
         },
     )
+    check(
+        "Too Clean a Room retains the shared component layer and byte-identical worksheet sources",
+        too_clean_package.get("presentation", {}).get("sharedComponentStyles") is True
+        and too_clean_package["sourceHashes"]["content"] == sha256(TOO_CLEAN_CONTENT)
+        and too_clean_package["sourceHashes"]["presentation"] == sha256(TOO_CLEAN_PRESENTATION)
+        and too_clean_package["sourceHashes"]["taskRegistry"] == sha256(TOO_CLEAN_REGISTRY)
+        and too_clean_package["sourceHashes"]["layoutOverrides"] == sha256(TOO_CLEAN_LAYOUT),
+        {
+            "presentation": too_clean_package.get("presentation"),
+            "content": [too_clean_package["sourceHashes"]["content"], sha256(TOO_CLEAN_CONTENT)],
+            "stylesheet": [too_clean_package["sourceHashes"]["presentation"], sha256(TOO_CLEAN_PRESENTATION)],
+            "registry": [too_clean_package["sourceHashes"]["taskRegistry"], sha256(TOO_CLEAN_REGISTRY)],
+            "layout": [too_clean_package["sourceHashes"]["layoutOverrides"], sha256(TOO_CLEAN_LAYOUT)],
+        },
+    )
 
     marker_values = dict(
         re.findall(
@@ -355,6 +391,10 @@ def main() -> int:
         '.worksheet-document[data-case-id="SSS-C2-CASE03"]',
         'content: "POOR MATCH"',
         '[data-persist-id="t8-criterion-1"]',
+        '.worksheet-document[data-case-id="SSS-C2-CASE05"]',
+        'content: "PATHWAY QUIESCENT"',
+        'content: "06"',
+        '[data-persist-id="t7-criterion-1"]',
         ".worksheet-document.grayscale",
     )
     check(
@@ -375,7 +415,8 @@ def main() -> int:
     first_contact_css = extracted[extracted.index("Mechanism/pathway family expansion: First Contact") : extracted.index("Mechanism/pathway family expansion: The Gift")]
     the_gift_css = extracted[extracted.index("Mechanism/pathway family expansion: The Gift") : extracted.index("Mechanism/pathway family expansion: The Missing Dance")]
     missing_dance_css = extracted[extracted.index("Mechanism/pathway family expansion: The Missing Dance") : extracted.index("Mechanism/specification family expansion: The Wrong Color of Light")]
-    wrong_color_css = extracted[extracted.index("Mechanism/specification family expansion: The Wrong Color of Light") :]
+    wrong_color_css = extracted[extracted.index("Mechanism/specification family expansion: The Wrong Color of Light") : extracted.index("Mechanism/trial-workflow family expansion: Too Clean a Room")]
+    too_clean_css = extracted[extracted.index("Mechanism/trial-workflow family expansion: Too Clean a Room") :]
     check(
         "the ISS cutaways encode distinct settled and dispersed statolith/root states without a color-only filter",
         iss_css.count("data:image/svg+xml,%3Csvg") == 2
@@ -488,6 +529,32 @@ def main() -> int:
         and 'content: "↓"' in wrong_color_css
         and "repeating-linear-gradient" in wrong_color_css
         and "filter:" not in wrong_color_css,
+    )
+    check(
+        "Too Clean a Room shares bounded mechanism states with a grayscale-safe trial workflow",
+        all(f'content: "{label}"' in too_clean_css for label in (
+            "SHIELDED READING", "SIGNAL TOO LOW", "PATHWAY QUIESCENT",
+            "PRODUCT NOT MADE", "OBSERVED DECLINE",
+        ))
+        and all(f'content: "{label}"' in too_clean_css for label in (
+            "01", "02", "03", "04", "05", "06",
+        ))
+        and all(token in too_clean_css for token in (
+            "--clean-signal-pattern", "--clean-pathway-pattern",
+            "--clean-product-pattern", "--clean-trial-pattern",
+            '[data-persist-id="t7-criterion-1"]', '[data-persist-id="a7-criterion-1"]',
+            '[data-persist-id="t7-recommendation"]', '[data-persist-id="a7-recommendation"]',
+        ))
+        and "border-top-style: dashed" in too_clean_css
+        and "border-top-style: double" in too_clean_css
+        and "border-top-style: dotted" in too_clean_css
+        and "border-left-style: dashed" in too_clean_css
+        and "border-left-style: double" in too_clean_css
+        and "border-left-style: dotted" in too_clean_css
+        and "grid-template-columns: 1fr" in too_clean_css
+        and 'content: "↓"' in too_clean_css
+        and "repeating-linear-gradient" in too_clean_css
+        and "filter:" not in too_clean_css,
     )
     check(
         "the Mars Student page compacts only mechanism chrome while preserving stage response height",
@@ -1384,6 +1451,140 @@ def main() -> int:
         and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in wrong_color_visual_block
         and 'state.pageSize === "816x1056"' in wrong_color_visual_block
         and 'for (const grayscale of [false, true])' in wrong_color_visual_block,
+    )
+
+    too_clean_student_page = too_clean_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-05"]'
+    )
+    too_clean_student_model = too_clean_student_page.select_one(
+        '.pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"]'
+    ) if too_clean_student_page else None
+    too_clean_student_stages = too_clean_student_model.select(":scope > .path-stage") if too_clean_student_model else []
+    too_clean_student_fields = [stage.select_one(".stage-response") for stage in too_clean_student_stages if stage.select_one(".stage-response")]
+    too_clean_student_bank = [
+        "the exposure the karreth repair pathway responds to falls below the level the species record associates with pathway activity",
+        "the repair-linked pathway stays quiescent instead of running",
+        "the compounds built downstream of that pathway are no longer produced",
+    ]
+    check(
+        "Too Clean a Room Student Task 5 preserves five stages, three blanks, diagnosis fields and exact bank",
+        [stage.get("data-process-stage") for stage in too_clean_student_stages] == ["1", "2", "3", "4", "5"]
+        and [arrow.get_text(strip=True) for arrow in too_clean_student_model.select(":scope > .path-arrow")] == ["→"] * 4
+        and [field.get("data-persist-id") for field in too_clean_student_fields] == ["t5-m2", "t5-m3", "t5-m4"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True) for field in too_clean_student_fields)
+        and [field.get("data-persist-id") for field in too_clean_student_page.select('[data-persist-id^="t5-"]')]
+        == ["t5-d1", "t5-d2", "t5-d3", "t5-d4", "t5-nutrient", "t5-climate", "t5-shock", "t5-m2", "t5-m3", "t5-m4"]
+        and [" ".join(item.stripped_strings) for item in too_clean_student_page.select(".word-bank-item")]
+        == too_clean_student_bank,
+    )
+
+    too_clean_accessible_page = too_clean_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-05"]'
+    )
+    too_clean_accessible_model = too_clean_accessible_page.select_one(
+        '.pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"]'
+    ) if too_clean_accessible_page else None
+    too_clean_accessible_stages = too_clean_accessible_model.select(":scope > .path-stage") if too_clean_accessible_model else []
+    too_clean_accessible_fields = [stage.select_one(".stage-response") for stage in too_clean_accessible_stages if stage.select_one(".stage-response")]
+    check(
+        "Too Clean a Room Accessible Task 5 preserves the same path, approved scaffold and exact shorter bank",
+        [stage.get("data-process-stage") for stage in too_clean_accessible_stages] == ["1", "2", "3", "4", "5"]
+        and [arrow.get_text(strip=True) for arrow in too_clean_accessible_model.select(":scope > .path-arrow")] == ["→"] * 4
+        and [field.get("data-persist-id") for field in too_clean_accessible_fields] == ["a5-m2", "a5-m3", "a5-m4"]
+        and [field.get_text(" ", strip=True) for field in too_clean_accessible_fields]
+        == ["", "the repair pathway stays switched off", ""]
+        and all(field.has_attr("data-response") for field in too_clean_accessible_fields)
+        and too_clean_accessible_fields[1].get("data-accessible-scaffold") == "modeled-or-partial"
+        and [" ".join(item.stripped_strings) for item in too_clean_accessible_page.select(".word-bank-item")]
+        == [
+            "the radiation this pathway responds to drops too low",
+            "the repair pathway stays switched off",
+            "the medicine that pathway builds is not made",
+        ],
+    )
+
+    too_clean_answer4 = too_clean_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-04"]'
+    )
+    too_clean_answer5 = too_clean_content.select_one(
+        'section[data-role="answer"][data-page-id="answer-key-05"]'
+    )
+    answer5_heading = too_clean_answer4.select_one('h2[data-shell-task-heading="5"]') if too_clean_answer4 else None
+    answer_mechanism_heading = answer5_heading.find_next_sibling("h3") if answer5_heading else None
+    answer_mechanism_block = answer_mechanism_heading.find_next_sibling("div", class_="answer-block") if answer_mechanism_heading else None
+    check(
+        "Too Clean a Room Answer Key retains the exact three-stage causal completion and marking boundary",
+        [" ".join(item.stripped_strings) for item in answer_mechanism_block.select("li")]
+        == [
+            "Stage 2 — the exposure the karreth repair pathway responds to falls below the level the species record associates with pathway activity.",
+            "Stage 3 — the repair-linked pathway stays quiescent instead of running.",
+            "Stage 4 — the compounds built downstream of that pathway are no longer produced.",
+        ]
+        and "A student who places the compounds before the pathway has inverted the causal chain"
+        in too_clean_answer4.get_text(" ", strip=True),
+    )
+
+    student_trial_page = too_clean_content.select_one(
+        'section[data-role="student"][data-page-id="student-mission-07"]'
+    )
+    accessible_trial_page = too_clean_content.select_one(
+        'section[data-role="accessible"][data-page-id="accessible-mission-07"]'
+    )
+    answer7_heading = too_clean_answer5.select_one('h2[data-shell-task-heading="7"]') if too_clean_answer5 else None
+    answer_trial_block = answer7_heading.find_next_sibling("div", class_="answer-block") if answer7_heading else None
+    trial_requirements = [
+        "Review and authorization", "Comparison", "Measurement", "Containment", "Sequence", "Ending rule",
+    ]
+    student_trial_fields = student_trial_page.select('[data-persist-id^="t7-"]') if student_trial_page else []
+    accessible_trial_fields = accessible_trial_page.select('[data-persist-id^="a7-"]') if accessible_trial_page else []
+    check(
+        "Too Clean a Room Task 7 preserves all six safety gates, ten blank learner fields and five completed key rows",
+        [" ".join(row.select_one("td").stripped_strings) for row in student_trial_page.select(".conditions-table tbody tr")]
+        == trial_requirements
+        and [" ".join(row.select_one("td").stripped_strings) for row in accessible_trial_page.select(".conditions-table tbody tr")]
+        == ["Who says yes first", "Something to compare with", "What gets measured", "Staying safe", "Going slowly", "When to stop"]
+        and [field.get("data-persist-id") for field in student_trial_fields]
+        == ["t7-criterion-1", "t7-criterion-2", "t7-constraint", "t7-minimum", "t7-recommendation"]
+        and [field.get("data-persist-id") for field in accessible_trial_fields]
+        == ["a7-criterion-1", "a7-criterion-2", "a7-constraint", "a7-minimum", "a7-recommendation"]
+        and all(field.has_attr("data-response") and not field.get_text(strip=True)
+                for field in student_trial_fields + accessible_trial_fields)
+        and len(answer_trial_block.select("li")) == 5
+        and all(token in answer_trial_block.get_text(" ", strip=True) for token in (
+            "remote dosimetry", "no added exposure", "shielding and interlocks",
+            "staged and raised gradually", "stop criteria must be written down",
+        )),
+    )
+
+    too_clean_source_text = TOO_CLEAN_CONTENT.read_text(encoding="utf-8")
+    check(
+        "Too Clean a Room retains exact unit, context, curve and non-operational safety boundaries",
+        all(token in too_clean_source_text for token in (
+            "&lt;0.01 mGy/day", "about 8.4 mGy/day", "about 12 mGy/day",
+            "Two dose conditions and one outcome do not make a response curve", "Two dose conditions give no response curve",
+            "cannot be restated in sievert", "not asked to name a radiation source, a device, or an operating setting",
+            "qualified radiation-protection and radiological-engineering team",
+        ))
+        and "fiction" not in too_clean_css.lower(),
+    )
+
+    too_clean_visual_start = harness.index('if (item.id === "SSS-C2-CASE05")')
+    too_clean_visual_end = harness.index('if (item.id === "SSS-C1-CASE03")', too_clean_visual_start)
+    too_clean_visual_block = harness[too_clean_visual_start:too_clean_visual_end]
+    check(
+        "the browser harness measures Too Clean mechanism, trial workflow, fields, keys and strict fit in both modes",
+        harness.count("mechanism and trial-workflow pages retain strict fit, page counts and geometry") == 1
+        and harness.count("mechanism and non-operational trial workflow preserve every state and response") == 1
+        and "SHIELDED READING|SIGNAL TOO LOW|PATHWAY QUIESCENT|PRODUCT NOT MADE|OBSERVED DECLINE" in too_clean_visual_block
+        and 'const expectedWorkflowSteps = "01|02|03|04|05|06"' in too_clean_visual_block
+        and "Review and authorization|Comparison|Measurement|Containment|Sequence|Ending rule" in too_clean_visual_block
+        and "t5-m2|t5-m3|t5-m4" in too_clean_visual_block
+        and "a5-m2|a5-m3|a5-m4" in too_clean_visual_block
+        and "t7-criterion-1|t7-criterion-2|t7-constraint|t7-minimum|t7-recommendation" in too_clean_visual_block
+        and "a7-criterion-1|a7-criterion-2|a7-constraint|a7-minimum|a7-recommendation" in too_clean_visual_block
+        and 'accessiblePath.connectorGlyphs === "↓|↓|↓|↓"' in too_clean_visual_block
+        and 'state.pageSize === "816x1056"' in too_clean_visual_block
+        and 'for (const grayscale of [false, true])' in too_clean_visual_block,
     )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]

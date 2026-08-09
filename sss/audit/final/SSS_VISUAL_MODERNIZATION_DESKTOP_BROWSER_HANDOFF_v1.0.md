@@ -4,14 +4,50 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Current validation target — C2C5 mechanism/trial workflow
+
+The authoritative pushed prerequisite is
+`775680de5d8d216d6ca416da6f5e06a57bfdbfd6`. Its ordinary local successor advances
+`C2C5-VIS03` for Too Clean a Room to `IMPLEMENTED-CANDIDATE`; keep it unpushed until the
+Mac/Chrome gate and manual inspection pass. The accepted executable baseline is **2324/2324 PASS
+with 0 application JavaScript errors**, repeated twice, and the accepted focused mechanism
+baseline is **85/85 PASS**.
+
+The candidate uses the existing five-stage models on Student Task 5 page 5 and Accessible Task 5
+page 5. It marks the exact visual states as `SHIELDED READING` → `SIGNAL TOO LOW` → `PATHWAY
+QUIESCENT` → `PRODUCT NOT MADE` → `OBSERVED DECLINE`; Student remains horizontal, and Accessible
+becomes a true in-flow vertical rail with four circled down-arrow glyphs. The existing Answer Key
+Task 5 completion remains on page 4 and receives the same dashed/dotted/double state treatment for
+Stages 2–4 without inventing missing key content.
+
+Task 7 remains separate on Student page 7, Accessible page 7 and Answer Key page 5. Its existing
+six-row requirements table becomes an ordered `APPROVE` → `COMPARE` → `MEASURE` → `CONTAIN` →
+`STAGE` → `STOP` safety workflow. The workflow remains high-level and non-operational. All five
+Student and five Accessible response fields remain blank, with the accepted geometry and resize
+contracts unchanged; the Answer Key retains its five completed rows verbatim.
+
+No worksheet content, case presentation, layout override, package metadata, response identity,
+page count, source hash or release baseline changed. The vault reading remains `<0.01 mGy/day`,
+not zero or exactly 0.01; the homeworld record remains about 8.4 mGy/day; the about 12 mGy/day
+Rhessi comparison remains modeled and belongs to a different species; absorbed dose remains in
+mGy and cannot be restated in sievert; two conditions do not form a response curve; and the
+worksheet still does not ask for a radiation source, device or operating setting. No new visible
+fictional-status reminder was added.
+
+This candidate adds one strict fit/page-count/geometry assertion across all six touched pages and
+both modes, plus one computed-style/content assertion in normal and one in grayscale. Its
+acceptance target is therefore **2327/2327 PASS with 0 application JavaScript errors**. The focused
+mechanism validator target is **94/94 PASS**. The formal inventory remains **18 of 36 completed**,
+with **18 remaining**, until the candidate is accepted.
+
 ## Accepted Family 2 expansion — C2C3 spectral-match mechanism/specification
 
 Candidate `79a7c8060e964d48aaddb1b558581e0c6ca1e8cd` advances `C2C3-VIS03` for Wrong Color of
 Light to `VERIFIED-FAMILY`. The accepted executable baseline is **2324/2324 PASS with 0 application
 JavaScript errors**, repeated twice, and the accepted focused mechanism baseline is **85/85 PASS**.
-The candidate remains an ordinary unpushed successor of authoritative remote tip
-`61a74190a9e8ec63edffdcec90f5cd38489a39b8` until its documentation-only closeout successor is
-integrated and the two-commit lineage is pushed.
+Documentation/validator successor `775680de5d8d216d6ca416da6f5e06a57bfdbfd6` records the
+closeout and is synchronized across the local, tracking and live remote branch. The accepted
+implementation remains `79a7c8060e964d48aaddb1b558581e0c6ca1e8cd`.
 
 The candidate uses the existing five-stage models on Student Task 6 page 4, Answer Key Task 6 page
 3 and Accessible Task 6 page 6. It marks the exact visual states as `OUTPUT PROFILE` → `POOR MATCH`
@@ -181,14 +217,65 @@ Family 2 now has nine verified findings and remains open only for `C2C5-VIS03` a
 `C2C6-VIS02`. The overall visual-modernization inventory is 18 of 36 completed and 18 remaining.
 The visual branch remains isolated from `main`.
 
-## Closeout integration prompt
+## Validation prompt
 
-Validate the supplied closeout bundle only from clean candidate
-`79a7c8060e964d48aaddb1b558581e0c6ca1e8cd`. Verify the checksum and bundle prerequisites, fetch
-it, and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or
-edit files. Run the focused 85-check mechanism validator and `git diff --check`. Confirm the
-closeout changes only this handoff, the production plan and the focused validator; records
-`C2C3-VIS03` as `VERIFIED-FAMILY`; advances the inventory to 18/36 completed and 18 remaining; and
-leaves `C2C5-VIS03` and `C2C6-VIS02` as the only open Family 2 findings. If both checks pass, push
-the branch by ordinary fast-forward and report local, tracking and live remote SHAs. Do not begin
-the next candidate in the same run.
+1. Apply the supplied fast-forward bundle only if the branch is clean at
+   `775680de5d8d216d6ca416da6f5e06a57bfdbfd6`. Verify the checksum and prerequisite before
+   fetching it, then use a fast-forward-only merge. Do not reset, rebase, amend, squash,
+   force-push, edit any file or push the candidate.
+
+2. Run only:
+
+   ```bash
+   python3 apps/curriculum-editor/tests/run_browser_tests.py \
+     --chrome "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+
+   python3 shared/validation/validate_sss_visual_mechanism_family.py
+   git diff --check
+   ```
+
+   Expected: **2327/2327 browser PASS**, **0 application JavaScript errors**, **94/94 mechanism
+   PASS**, and clean whitespace. Run the complete browser harness twice.
+
+3. Start the editor with `python3 apps/curriculum-editor/serve.py`. Inspect these pages in normal
+   and grayscale:
+
+   - Student Task 5 page 5 and Task 7 page 7;
+   - Answer Key Task 5 page 4 and Task 7 page 5;
+   - Accessible Task 5 page 5 and Task 7 page 7.
+
+4. Report exact `scrollHeight <= clientHeight` values for all six pages in both modes, page counts
+   Student 7 / Answer Key 5 / Accessible 7, fixed 816 × 1056 page boxes, and any visible overflow,
+   clipping, collision, hidden connector, status-label overlap or response-space loss. Confirm:
+
+   - Task 5 has five ordered stages and four connectors in both learner editions;
+   - Student retains `→ | → | → | →`, while Accessible shows four fully visible circled `↓`
+     connectors in one in-flow vertical rail;
+   - state order is `SHIELDED READING | SIGNAL TOO LOW | PATHWAY QUIESCENT | PRODUCT NOT MADE |
+     OBSERVED DECLINE` and border order is `solid | dashed | dotted | double | double`;
+   - Student blanks remain `t5-m2 | t5-m3 | t5-m4`; Accessible remains blank/prefilled/blank at
+     `a5-m2 | a5-m3 | a5-m4`, with the accepted Stage 3 text unchanged; Answer Key Stages 2–4 are
+     exact;
+   - Task 7 retains all six workflow rows and five circled down connectors, with step order
+     `APPROVE | COMPARE | MEASURE | CONTAIN | STAGE | STOP` and border order `solid | dashed |
+     double | dotted | dashed | double`;
+   - all five Student and five Accessible Task 7 fields remain blank, with field/label border order
+     `double | dashed | dotted | dashed | solid`; the Answer Key retains all five completed rows;
+   - `<0.01 mGy/day`, about 8.4 mGy/day, modeled about 12 mGy/day, mGy-versus-sievert, no-response-
+     curve and non-operational safety boundaries remain exact;
+   - browser-console JavaScript errors: exact count and text.
+
+If anything fails, hold the candidate and report the exact assertion, role, mode, page and
+measurement. If everything passes, return the report without pushing so the closeout can be
+recorded as an ordinary successor.
+
+## Acceptance rule
+
+`C2C5-VIS03` may advance from `IMPLEMENTED-CANDIDATE` only when the browser harness reaches
+2327/2327 with zero application JavaScript errors, the focused mechanism validator reaches 94/94,
+and all six touched pages retain strict fit, fixed geometry and existing page counts in normal and
+grayscale. Manual inspection must confirm the horizontal/vertical mechanism connectors, all five
+mechanism states, the six-step trial workflow, learner response geometry, accepted Accessible
+scaffold, blank fields and completed key are fully visible and unchanged in meaning. Until then,
+do not begin `C2C6-VIS02`, edit frozen worksheet sources, regenerate release baselines, merge the
+visual branch to `main`, or reopen accepted correctness findings.

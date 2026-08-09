@@ -2094,6 +2094,388 @@ body.grayscale .figure:where(
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Mechanism/trial-workflow family expansion: Too Clean a Room.
+ *
+ * The frozen Task 5 organizers already preserve the five species-specific
+ * causal stages, three learner response identities, one approved Accessible
+ * scaffold and the exact phrase banks. Task 7 already preserves the qualified
+ * authorization, comparison, measurement, containment, staging and stop
+ * requirements. This case-scoped layer makes those existing states legible as
+ * one bounded mechanism and one non-operational trial workflow without adding
+ * a source, device, setting, dose target, response curve or safety claim.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE05"] {
+  --clean-line: var(--ink, #18212b);
+  --clean-panel: var(--paper, #fff);
+  --clean-signal-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .13) 6px 8px);
+  --clean-pathway-pattern:
+    repeating-linear-gradient(90deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+  --clean-product-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+  --clean-trial-pattern:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] {
+  position: relative;
+  isolation: isolate;
+  box-shadow: inset 4px 0 0 var(--clean-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--clean-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background: var(--clean-trial-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page:not([data-role="accessible"])
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage {
+  padding-top: .27in;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page:not([data-role="accessible"])
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage > span {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage::after {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  max-width: calc(100% - .3in);
+  font: 700 4.8pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: 0;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(1)::after { content: "SHIELDED READING"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(3)::after { content: "SIGNAL TOO LOW"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(5)::after { content: "PATHWAY QUIESCENT"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(7)::after { content: "PRODUCT NOT MADE"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(9)::after { content: "OBSERVED DECLINE"; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(3) {
+  border-top-style: dashed;
+  background: var(--clean-signal-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(5) {
+  border-top-style: dotted;
+  background: var(--clean-pathway-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(7) {
+  border-top-style: double;
+  background: var(--clean-product-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"] .pathway-model > .path-stage:nth-child(9) {
+  border-top-style: double;
+  background: var(--clean-trial-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-arrow {
+  display: grid;
+  place-items: center;
+  min-width: 15px;
+  min-height: 15px;
+  border: .75pt solid var(--clean-line);
+  border-radius: 50%;
+  background: var(--clean-panel);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] {
+  grid-template-columns: 1fr;
+  gap: 3px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage {
+  display: grid;
+  grid-template-columns: .34in minmax(0, 1fr);
+  gap: 3px 7px;
+  align-items: center;
+  min-height: .44in;
+  padding-right: 1.02in;
+  border-top-width: 1.4px;
+  border-left-width: 4px;
+  font-size: 8.9pt;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage > span {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage > :not(span) {
+  grid-column: 2;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(3) { border-left-style: dashed; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(5) { border-left-style: dotted; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(7) { border-left-style: double; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"] .pathway-model > .path-stage:nth-child(9) { border-left-style: double; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-arrow {
+  position: relative;
+  z-index: 1;
+  justify-self: start;
+  width: 15px;
+  height: 15px;
+  margin-left: .12in;
+  color: transparent;
+  font-size: 0;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-role="accessible"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-arrow::before {
+  content: "↓";
+  color: var(--clean-line);
+  font: 800 8pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table {
+  border-collapse: separate;
+  border-spacing: 0 1px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody td {
+  position: relative;
+  padding-block: 1px;
+  background: var(--clean-trial-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:not(:last-child) td:last-child {
+  padding-right: 20px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody td:first-child {
+  border-left: 4px solid var(--clean-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody td:first-child::before {
+  display: inline-grid;
+  place-items: center;
+  min-width: 16px;
+  min-height: 14px;
+  margin-right: 3px;
+  border: .75pt solid var(--clean-line);
+  border-radius: 50%;
+  font: 700 5pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(1) td:first-child::before { content: "01"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(2) td:first-child::before { content: "02"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(3) td:first-child::before { content: "03"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(4) td:first-child::before { content: "04"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(5) td:first-child::before { content: "05"; }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(6) td:first-child::before { content: "06"; }
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(2) td {
+  border-top-style: dashed;
+  border-bottom-style: dashed;
+  background: var(--clean-signal-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(3) td {
+  border-top-style: double;
+  border-bottom-style: double;
+  background: var(--clean-pathway-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(4) td {
+  border-top-style: dotted;
+  border-bottom-style: dotted;
+  background: var(--clean-product-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(5) td {
+  border-top-style: dashed;
+  border-bottom-style: dashed;
+  background: var(--clean-signal-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:nth-child(6) td {
+  border-top-style: double;
+  border-bottom-style: double;
+  background: var(--clean-trial-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody tr:not(:last-child) td:last-child::after {
+  position: absolute;
+  z-index: 1;
+  right: 5px;
+  bottom: 2px;
+  display: grid;
+  place-items: center;
+  width: 12px;
+  height: 12px;
+  border: .75pt solid var(--clean-line);
+  border-radius: 50%;
+  content: "↓";
+  color: var(--clean-line);
+  background: var(--clean-panel);
+  font: 800 7pt/1 "JetBrains Mono", monospace;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"]) { border-left: 4px double var(--clean-line); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-criterion-2"], [data-persist-id="a7-criterion-2"]) { border-left: 4px dashed var(--clean-line); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-constraint"], [data-persist-id="a7-constraint"]) { border-left: 4px dotted var(--clean-line); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-minimum"], [data-persist-id="a7-minimum"]) { border-left: 4px dashed var(--clean-line); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-recommendation"], [data-persist-id="a7-recommendation"]) { border-left: 4px solid var(--clean-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .response-label {
+  padding-left: 5px;
+  border-left: 4px solid var(--clean-line);
+  background: var(--clean-trial-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"]) + .response-label,
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table + .alt-support + .response-label {
+  border-left-style: double;
+  background: var(--clean-pathway-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"]) + .response-label {
+  border-left-style: dashed;
+  background: var(--clean-signal-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-criterion-2"], [data-persist-id="a7-criterion-2"]) + .response-label {
+  border-left-style: dotted;
+  background: var(--clean-product-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-constraint"], [data-persist-id="a7-constraint"]) + .response-label {
+  border-left-style: dashed;
+  background: var(--clean-signal-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  :is([data-persist-id="t7-minimum"], [data-persist-id="a7-minimum"]) + .response-label {
+  border-left-style: solid;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-04"] .support-heading + .answer-block li,
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li {
+  margin-block: 2px;
+  padding: 2px 3px;
+  border-left: 4px solid var(--clean-line);
+  background: var(--clean-trial-pattern), var(--clean-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-04"] .support-heading + .answer-block li:nth-child(1) { border-left-style: dashed; background: var(--clean-signal-pattern), var(--clean-panel); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-04"] .support-heading + .answer-block li:nth-child(2) { border-left-style: dotted; background: var(--clean-pathway-pattern), var(--clean-panel); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-04"] .support-heading + .answer-block li:nth-child(3) { border-left-style: double; background: var(--clean-product-pattern), var(--clean-panel); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li:nth-child(1) { border-left-style: double; background: var(--clean-pathway-pattern), var(--clean-panel); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li:nth-child(2) { border-left-style: dashed; background: var(--clean-signal-pattern), var(--clean-panel); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li:nth-child(3) { border-left-style: dotted; background: var(--clean-product-pattern), var(--clean-panel); }
+.worksheet-document[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li:nth-child(4) { border-left-style: dashed; background: var(--clean-signal-pattern), var(--clean-panel); }
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"],
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE05"]
+  .pathway-model[data-process-contract="radiation-signal-five-stage-v1.0"] .path-stage,
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE05"]
+  :is(.page[data-page-id="student-mission-07"], .page[data-page-id="accessible-mission-07"])
+  .conditions-table tbody td,
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-04"] .support-heading + .answer-block li,
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE05"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block li {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
