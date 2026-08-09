@@ -88,7 +88,7 @@ def main() -> int:
         bool(re.search(r"\| `C1C2-VIS01` .*\| 2 · Causal mechanism/pathway \|", plan)),
     )
     check(
-        "the production plan and handoff close the Campaign 1 mechanism cohort",
+        "the production plan and handoff preserve the closed Campaign 1 mechanism cohort",
         bool(re.search(
             r"\| `C1C1-VIS01` .*\| 2 · Causal mechanism/pathway \|.*"
             r"`VERIFIED-FAMILY · 35/35 FAMILY STATIC PASS · 2306/2306 BROWSER PASS ×2 "
@@ -120,8 +120,8 @@ def main() -> int:
             plan,
         ))
         and "Campaign 1 Family 2 closeout register" in handoff
-        and "16 of 36 completed" in handoff
-        and "20 remaining" in handoff
+        and "17 of 36 completed" in handoff
+        and "19 remaining" in handoff
         and all(finding in handoff for finding in (
             "C1C5-VIS01 — Europa radiation-to-growth pathway",
             "C1C6-VIS02 — First Contact coordination-system model",
@@ -132,15 +132,20 @@ def main() -> int:
         and "68/68 PASS" in handoff,
     )
     check(
-        "the production plan and handoff advance The Missing Dance as the sole Family 2 candidate",
+        "the production plan and handoff accept The Missing Dance and isolate the remaining Family 2 findings",
         bool(re.search(
             r"\| `C2C2-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
-            r"`IMPLEMENTED-CANDIDATE · BROWSER GATE PENDING`",
+            r"`VERIFIED-FAMILY · 76/76 FAMILY STATIC PASS · 2321/2321 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · aa4eeac ACCEPTED`",
             plan,
         ))
-        and "Current validation target — C2C2 vibration-release failure path" in handoff
+        and "Accepted Family 2 expansion — C2C2 vibration-release failure path" in handoff
+        and "aa4eeacf0c75caa8b7fa5dfb012f0d74853e6079" in handoff
         and "2321/2321 PASS with 0 application JavaScript errors" in handoff
         and "76/76 PASS" in handoff
+        and "| `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |" in handoff
+        and "17 of 36 completed" in plan
+        and "19 of 36 remaining" in plan
         and all(bool(re.search(rf"\| `{finding}` .*`PLANNED`", plan)) for finding in (
             "C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02",
         ))
