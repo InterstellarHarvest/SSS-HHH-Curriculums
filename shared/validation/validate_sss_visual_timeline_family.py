@@ -10,7 +10,8 @@ from bs4 import BeautifulSoup
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONTENT = ROOT / "sss/campaign-1/case-04-hayes-orbital-station/source/content.html"
+HAYES_CONTENT = ROOT / "sss/campaign-1/case-04-hayes-orbital-station/source/content.html"
+CONTACT_CONTENT = ROOT / "sss/campaign-1/case-06-first-contact-protocol/source/content.html"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 HARNESS = ROOT / "apps/curriculum-editor/tests/browser-harness.html"
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
@@ -23,8 +24,10 @@ def main() -> int:
     def check(name: str, passed: bool, detail: object = "") -> None:
         checks.append((name, bool(passed), str(detail)))
 
-    source = CONTENT.read_text(encoding="utf-8")
+    source = HAYES_CONTENT.read_text(encoding="utf-8")
     soup = BeautifulSoup(source, "html.parser")
+    contact_source = CONTACT_CONTENT.read_text(encoding="utf-8")
+    contact_soup = BeautifulSoup(contact_source, "html.parser")
     css = COMPONENTS.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")
     plan = PLAN.read_text(encoding="utf-8")
@@ -96,7 +99,7 @@ def main() -> int:
     )
 
     css_start = css.index("Timeline/event-log family pilot: Hayes Orbital Station.")
-    css_end = css.index("/* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */", css_start)
+    css_end = css.index("Timeline/event-log family expansion: First Contact Protocol.", css_start)
     timeline_css = css[css_start:css_end]
     required_css = (
         '.worksheet-document[data-case-id="SSS-C1-CASE04"]',
@@ -158,6 +161,125 @@ def main() -> int:
         "sss/campaign-1/case-04-hayes-orbital-station/source/task-registry.js",
     )
     check("the accepted handoff explicitly protects all frozen Hayes sources", all(path in handoff for path in source_paths), [path for path in source_paths if path not in handoff])
+
+    contact_strips = contact_soup.select(".timing-strip")
+    contact_roles = [strip.find_parent("section", attrs={"data-role": True})["data-role"] for strip in contact_strips]
+    check(
+        "First Contact retains one timing strip in Student and Accessible",
+        len(contact_strips) == 2 and sorted(contact_roles) == ["accessible", "student"],
+        contact_roles,
+    )
+    student_timing = next(strip for strip in contact_strips if strip.find_parent("section")["data-role"] == "student")
+    accessible_timing = next(strip for strip in contact_strips if strip.find_parent("section")["data-role"] == "accessible")
+    check(
+        "First Contact Student retains the exact three reported event labels",
+        [" ".join(node.stripped_strings) for node in student_timing.find_all("div", recursive=False)] == [
+            "72.4 hours ago Docking and human-standard filtration",
+            "72.1 hours ago Last detected network signal",
+            "First post-docking cycle Activity declines toward dormancy",
+        ],
+    )
+    check(
+        "First Contact Accessible retains the exact two timestamped event labels",
+        [" ".join(node.stripped_strings) for node in accessible_timing.find_all("div", recursive=False)] == [
+            "72.4 hours ago Docking and filtration",
+            "72.1 hours ago Last signal",
+        ],
+    )
+    check(
+        "First Contact elapsed connectors remain exact across learner editions",
+        [" ".join(node.stripped_strings) for node in student_timing.find_all("b", recursive=False)] == ["→ 18 min →", "→"]
+        and [" ".join(node.stripped_strings) for node in accessible_timing.find_all("b", recursive=False)] == ["→ 18 minutes →"],
+    )
+    contact_text = " ".join(contact_soup.stripped_strings)
+    check(
+        "First Contact preserves the timestamp arithmetic and correlation boundary",
+        "0.3 hours, or 18 minutes, after docking" in contact_text
+        and "larger “hours ago” value is earlier" in contact_text
+        and "It remains correlation, not proof" in contact_text
+        and "timing alone cannot rule out another docking-related cause" in contact_text,
+    )
+    check(
+        "First Contact page counts remain unchanged",
+        len(contact_soup.select('section[data-role="student"]')) == 5
+        and len(contact_soup.select('section[data-role="answer"]')) == 5
+        and len(contact_soup.select('section[data-role="teacher"]')) == 8
+        and len(contact_soup.select('section[data-role="accessible"]')) == 7,
+    )
+
+    contact_css_start = css.index("Timeline/event-log family expansion: First Contact Protocol.")
+    contact_css_end = css.index("/* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */", contact_css_start)
+    contact_css = css[contact_css_start:contact_css_end]
+    contact_css_without_comments = re.sub(
+        r"/\*.*?\*/",
+        "",
+        contact_css.split("*/", 1)[1],
+        flags=re.DOTALL,
+    )
+    required_contact_css = (
+        '.worksheet-document[data-case-id="SSS-C1-CASE06"]',
+        "SAA EVENT TELEMETRY · REPORTED ORDER · NOT TO SCALE",
+        'content: "DOCKING EVENT"',
+        'content: "LAST SIGNAL"',
+        'content: "FIRST-CYCLE OBSERVATION"',
+        "repeating-linear-gradient",
+        "radial-gradient",
+        "body.grayscale",
+    )
+    check(
+        "the shared component layer declares the complete case-scoped First Contact timing grammar",
+        all(token in contact_css for token in required_contact_css),
+        [token for token in required_contact_css if token not in contact_css],
+    )
+    check(
+        "the First Contact timing layer stays inside the extracted shared visual payload",
+        css.index("/* BEGIN SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */") < contact_css_start < contact_css_end,
+    )
+    check(
+        "the First Contact timing layer introduces no new numeric evidence or time axis",
+        not re.search(r"72\.[14]|18\s*(?:min|minutes)|0\.3\s*h|axis|grid-template-columns:\s*\d", contact_css_without_comments, flags=re.IGNORECASE),
+        contact_css_without_comments[:240],
+    )
+    check(
+        "the First Contact timing layer remains strictly Case 06 scoped",
+        contact_css.count('.worksheet-document[data-case-id="SSS-C1-CASE06"]') >= 10
+        and "SSS-C1-CASE0" not in contact_css.replace("SSS-C1-CASE06", ""),
+    )
+
+    case06_harness_start = harness.index('if (item.id === "SSS-C1-CASE06")')
+    case06_harness_end = harness.index('if (item.id === "SSS-C1-CASE07")', case06_harness_start)
+    case06_harness = harness[case06_harness_start:case06_harness_end]
+    check(
+        "the browser harness measures First Contact timing fit and exact rendering in both modes",
+        harness.count("reported timing strip preserves exact ordinal telemetry") == 1
+        and harness.count("timing-strip pages retain strict fit, page counts and geometry") == 1
+        and 'for (const grayscale of [false, true])' in case06_harness
+        and 'state.pageSize === "816x1056"' in case06_harness
+        and "SAA EVENT TELEMETRY · REPORTED ORDER · NOT TO SCALE" in case06_harness
+        and "→ 18 min →|→" in case06_harness
+        and "→ 18 minutes →" in case06_harness,
+    )
+
+    contact_source_paths = (
+        "sss/campaign-1/case-06-first-contact-protocol/source/content.html",
+        "sss/campaign-1/case-06-first-contact-protocol/source/presentation.css",
+        "sss/campaign-1/case-06-first-contact-protocol/source/layout-overrides.json",
+        "sss/campaign-1/case-06-first-contact-protocol/source/case-package.json",
+        "sss/campaign-1/case-06-first-contact-protocol/source/task-registry.js",
+    )
+    check(
+        "the candidate handoff protects all frozen First Contact sources",
+        all(path in handoff for path in contact_source_paths),
+        [path for path in contact_source_paths if path not in handoff],
+    )
+    check(
+        "the plan and handoff stage C1C6-VIS01 without advancing the accepted inventory",
+        "C1C6-VIS01" in plan
+        and "CANDIDATE" in next(line for line in plan.splitlines() if line.startswith("| `C1C6-VIS01`"))
+        and "First Contact reported-event telemetry candidate" in handoff
+        and "21 of 36 completed" in handoff
+        and "15 remaining" in handoff,
+    )
 
     failures = [(name, detail) for name, passed, detail in checks if not passed]
     print("SSS visual modernization · timeline family")

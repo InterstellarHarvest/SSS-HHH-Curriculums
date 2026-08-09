@@ -213,6 +213,25 @@ visible and collision-free; all ten learner fields retained their source-control
 blank state; and the relative-timing, reactor-specific and correlation boundaries remained exact.
 `C1C4-VIS01` is therefore `VERIFIED-FAMILY`, the first accepted Family 3 finding.
 
+`C1C6-VIS01` is the second Family 3 candidate. It modernizes First Contact Protocol's frozen Task 3
+timing strips on Student page 2 and Accessible page 2 as one compact reported-event telemetry
+grammar. Both learner displays retain the exact `72.4 hours ago` docking event, the exact `72.1
+hours ago` last-signal event and the exact 18-minute interval. Student also retains the qualitative
+first post-docking cycle observation and its separate connector. The case-scoped shared layer adds
+the persistent rail `SAA EVENT TELEMETRY · REPORTED ORDER · NOT TO SCALE`, the direct states
+`DOCKING EVENT`, `LAST SIGNAL` and `FIRST-CYCLE OBSERVATION`, distinct border/pattern states and an
+interval capsule. It adds no axis, tick, curve, scaled distance, new timing value, learner response
+or causal conclusion. Larger “hours ago” remains earlier; 0.3 hours remains exactly 18 minutes;
+timing remains correlation rather than proof; and the approved converging evidence remains
+necessary. No worksheet content, case presentation, layout override, package metadata, task
+registry, page count, persistence identity, source hash or release baseline changes. The accepted
+inventory remains 21/36 completed with 15 remaining until external validation and closeout. The
+candidate passes the expanded 30/30 focused timeline contract, the 103/103 mechanism regression,
+the 36/36 telemetry regression, the Case 06 layout-override validator and all three new browser
+assertions in both modes with zero JavaScript errors. Local targeted screenshots confirm strict
+936/936 fit, fixed 816 × 1056 geometry and collision-free normal/grayscale rendering; the formal
+Mac/Chrome double run remains the acceptance gate.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified
@@ -289,7 +308,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C5-VIS01` | Europa Bunker; S T5 p3, A T5 p5, AK T5 p3 | Seven-stage snake of text boxes. | 2 · Causal mechanism/pathway | Qualified hazard pathway visually separating environment, modeled interaction, exposure evidence, evidence limit, biological evidence, growth consequence and convergence; deterministic HTML/SVG. | Preserve seven exact bank entries and current blanks; A vertical; AK complete. | Modeled secondary radiation ≠ measured; exposure ≠ damage; abnormalities are consistent with damage; no exact quantities. | mechanism/status primitives; phrase, qualifier and persistence tests | `VERIFIED-FAMILY · 52/52 FAMILY STATIC PASS · 2312/2312 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · dcb2d91 ACCEPTED` |
 | `C1C5-VIS02` | Europa Bunker; S T3 p2, A T3 p3, AK T3 p2 | Four-row source table; convergence remains implicit. | 4 · Evidence-convergence map | Four labeled channels—Crew, Sensors, Plants, Logs—feeding a qualified “best-supported” diagnosis node while retaining contribution writing areas. | Recompose within table footprint; preserve all contribution fields and AK exemplars. | No single clue proves radiation; sensor exposure and biological evidence stay distinct. | P1–P6, EC1; field-count, AK and causal-language checks | `PLANNED` |
 | `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `PLANNED` |
-| `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `PLANNED` |
+| `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `CANDIDATE · 30/30 TIMELINE STATIC PASS · LOCAL TARGET ASSERTIONS PASS · MAC/CHROME ACCEPTANCE PENDING` |
 | `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
 | `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `PLANNED` |
 | `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `PLANNED` |

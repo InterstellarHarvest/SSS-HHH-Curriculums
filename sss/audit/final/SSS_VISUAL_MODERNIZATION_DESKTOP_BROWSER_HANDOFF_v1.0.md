@@ -4,6 +4,67 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## First Contact reported-event telemetry candidate
+
+`C1C6-VIS01` is the second Family 3 timeline/event-log finding. It modernizes the frozen Task 3
+timing strips on Student page 2 and Accessible page 2 while leaving the Teacher and Answer Key
+timing references in their approved prose form. The synchronized prerequisite is
+`185474673f4a7852c546ef2ef364fc2b3a7b3a02`.
+
+The existing event text is unchanged. Student retains three events: docking and human-standard
+filtration at `72.4 hours ago`; the last detected network signal at `72.1 hours ago`; and activity
+declining toward dormancy during the first post-docking cycle. Accessible retains the matching
+two timestamped events. Student retains `→ 18 min →` and its second plain `→`; Accessible retains
+`→ 18 minutes →`.
+
+The case-scoped shared presentation now frames both displays as
+`SAA EVENT TELEMETRY · REPORTED ORDER · NOT TO SCALE`. The event states are `DOCKING EVENT`,
+`LAST SIGNAL` and, on Student only, `FIRST-CYCLE OBSERVATION`. Solid, double and dashed state
+borders plus independent hatch/dot patterns preserve their order in grayscale. The exact
+18-minute connector receives its own double-border interval treatment; the Student connector to
+the qualitative first-cycle observation remains visually distinct and does not create a second
+elapsed-time claim.
+
+The display is ordinal. It has no axis, ticks, continuous curve or proportional spacing. A larger
+“hours ago” value remains earlier; `72.4 - 72.1 = 0.3 hours = 18 minutes`. The timing supports a
+post-docking association but does not prove filtration caused dormancy. The missing-signal,
+organism-state, filtration and fictional archive evidence remain necessary for the causal
+interpretation. No new timestamp, interval, signal value, biological measurement or Earth-
+organism generalization is introduced.
+
+No case source file changes:
+
+- `sss/campaign-1/case-06-first-contact-protocol/source/content.html`
+- `sss/campaign-1/case-06-first-contact-protocol/source/presentation.css`
+- `sss/campaign-1/case-06-first-contact-protocol/source/layout-overrides.json`
+- `sss/campaign-1/case-06-first-contact-protocol/source/case-package.json`
+- `sss/campaign-1/case-06-first-contact-protocol/source/task-registry.js`
+
+The candidate changes only the shared case-scoped component layer, browser harness, focused
+timeline validator, production plan and this handoff. It does not change worksheet wording,
+response controls or identities, evidence-card text, Answer Key or Teacher wording, package
+metadata, page counts, source hashes or release/history records.
+
+Local focused validation is **30/30 PASS**. The mechanism family remains **103/103 PASS**, the
+telemetry family remains **36/36 PASS**, the Case 06 layout-override validator passes and
+`git diff --check` is clean. The complete isolated Linux Chromium preflight reports 2303/2336;
+all three new First Contact assertions pass in normal and grayscale with zero application
+JavaScript errors. The remaining 33 are the known 32 font-dependent legacy differences in this
+browser image plus its temporary screenshot smoke-test limitation, not First Contact failures.
+
+The two targeted pages each retain fixed 816 × 1056 geometry, exact `scrollHeight 936 ==
+clientHeight 936`, their existing Student 5 / Accessible 7 page counts, no `has-overflow` state,
+full strip containment and zero event/connector collisions in both modes. Targeted normal and
+grayscale screenshots show the telemetry rail, states, patterns and interval capsule without
+clipping, overlap or crowding of the evidence cards, learner responses or following systems
+model.
+
+Formal acceptance still requires two complete Mac/Chrome browser-harness passes, zero application
+JavaScript errors, the focused timeline validator, mechanism and telemetry regressions, the Case
+06 layout-override validator, `git diff --check`, and manual inspection of Student Task 3 page 2
+and Accessible Task 3 page 2 in normal and grayscale. The accepted inventory remains **21 of 36
+completed**, with **15 remaining**, until external acceptance and closeout.
+
 ## Accepted Family 3 pilot — Hayes relative incident log
 
 Candidate `d5ffe37c0db952fb74c51c961d5b58bb405f01ea` advances `C1C4-VIS01` for Hayes Orbital Station

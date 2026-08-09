@@ -2991,6 +2991,127 @@ body.grayscale .worksheet-document[data-case-id="SSS-C1-CASE04"]
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Timeline/event-log family expansion: First Contact Protocol.
+ *
+ * The frozen Task 3 evidence pages already contain the exact docking time,
+ * last-signal time and elapsed 18-minute interval. This case-scoped layer
+ * presents those reported events as an ordinal telemetry strip. It does not
+ * add a time axis, scale the event spacing, change the existing text or turn
+ * the timing association into causal proof.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE06"] {
+  --contact-log-line: var(--ink, #18212b);
+  --contact-log-paper: var(--paper, #fff);
+  --contact-log-docking:
+    repeating-linear-gradient(135deg, transparent 0 7px, rgba(24, 33, 43, .09) 7px 8px);
+  --contact-log-signal:
+    radial-gradient(circle, rgba(24, 33, 43, .18) 1px, transparent 1.25px);
+  --contact-log-cycle:
+    repeating-linear-gradient(45deg, transparent 0 7px, rgba(24, 33, 43, .1) 7px 8px);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip {
+  position: relative;
+  isolation: isolate;
+  margin-top: .25in;
+  box-shadow: inset 4px 0 0 var(--contact-log-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip::before {
+  position: absolute;
+  top: -.21in;
+  right: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  height: .18in;
+  border: 1px solid var(--contact-log-line);
+  content: "SAA EVENT TELEMETRY · REPORTED ORDER · NOT TO SCALE";
+  color: var(--contact-log-line);
+  background: var(--contact-log-docking), var(--contact-log-paper);
+  font: 800 5.8pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div {
+  position: relative;
+  overflow: hidden;
+  min-height: .66in;
+  padding: 6px 5px .18in;
+  border-color: var(--contact-log-line);
+  border-top-width: 4px;
+  border-radius: 2px;
+  background: var(--contact-log-docking), var(--contact-log-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div::after {
+  position: absolute;
+  right: 5px;
+  bottom: 4px;
+  left: 5px;
+  padding-top: 2px;
+  border-top: .5pt solid var(--contact-log-line);
+  content: "DOCKING EVENT";
+  color: var(--contact-log-line);
+  font: 700 4.8pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div:nth-of-type(2) {
+  border-top-style: double;
+  background: var(--contact-log-signal), var(--contact-log-paper);
+  background-size: 6px 6px;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div:nth-of-type(2)::after {
+  content: "LAST SIGNAL";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div:nth-of-type(3) {
+  border-top-style: dashed;
+  background: var(--contact-log-cycle), var(--contact-log-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div:nth-of-type(3)::after {
+  content: "FIRST-CYCLE OBSERVATION";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > b {
+  display: grid;
+  place-items: center;
+  min-width: .58in;
+  min-height: .28in;
+  padding: 3px 5px;
+  border: .75pt solid var(--contact-log-line);
+  border-radius: 3px;
+  color: var(--contact-log-line);
+  background: var(--contact-log-paper);
+  font: 800 6.2pt/1.1 "JetBrains Mono", monospace;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > b:first-of-type {
+  border-style: double;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > b:last-of-type:not(:first-of-type) {
+  min-width: .28in;
+  padding-inline: 3px;
+  border-style: dashed;
+}
+
+body.grayscale .worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip::before,
+body.grayscale .worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > div,
+body.grayscale .worksheet-document[data-case-id="SSS-C1-CASE06"] .timing-strip > b {
+  color: var(--ink, #18212b);
+  border-color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
