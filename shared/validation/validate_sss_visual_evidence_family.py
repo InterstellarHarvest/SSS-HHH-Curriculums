@@ -186,15 +186,17 @@ def main() -> int:
         and "12 remaining" in handoff,
     )
     check(
-        "Family 4 register accepts only C1C5-VIS02 and leaves C1C7-VIS01 unaccepted",
+        "Family 4 register accepts both evidence-convergence findings",
         "| `C1C5-VIS02` | `70375da` | `VERIFIED-FAMILY` |" in handoff
-        and "Family 4 has one of two findings verified" in handoff
+        and "| `C1C7-VIS01` | `39325dc` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 4 is complete with both findings verified" in handoff
         and bool(re.search(
             r"\| `C1C7-VIS01` .*"
-            r"`IMPLEMENTED-CANDIDATE · 60/60 FAMILY STATIC PASS · 2345/2345 MAC/CHROME GATE REQUIRED`",
+            r"`VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 39325dc ACCEPTED`",
             plan,
         ))
-        and bool(re.search(r"Do not\s+begin `C1C7-VIS01` in the same run\.", handoff)),
+        and bool(re.search(r"Do not\s+begin another finding in the same\s+run\.", handoff)),
     )
     check(
         "the evidence presentation block is isolated to Europa Case 05",
@@ -349,28 +351,32 @@ def main() -> int:
     )
 
     check(
-        "the production plan records C1C7-VIS01 as the second Family 4 candidate",
+        "the production plan accepts C1C7-VIS01 as the second Family 4 finding",
         bool(re.search(
             r"\| `C1C7-VIS01` .*\| 4 · Evidence-convergence/diagnostic map \|.*"
-            r"`IMPLEMENTED-CANDIDATE · 60/60 FAMILY STATIC PASS · 2345/2345 MAC/CHROME GATE REQUIRED`",
+            r"`VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 39325dc ACCEPTED`",
             plan,
         )),
     )
     check(
-        "the desktop handoff records the unaccepted Gift candidate gate",
-        "Implemented Family 4 completion candidate — The Gift diagnostic question" in handoff
-        and "9934febfe255778b29b84955a1f65371e74fa8d0" in handoff
-        and "2345/2345" in handoff
+        "the desktop handoff records the accepted Gift differential browser gate",
+        "Accepted Family 4 completion — The Gift diagnostic question" in handoff
+        and "39325dcd1639c40e17aac435c599e17ecaffc3df" in handoff
+        and "2341/2341 PASS" in handoff
+        and handoff.count("2344/2344 PASS") >= 2
+        and "candidate delta is exactly +3" in handoff
+        and "2314/2345" in handoff
         and "60/60 PASS" in handoff
-        and "24 of 36 completed" in handoff
-        and "12 remaining" in handoff,
+        and "25 of 36 completed" in handoff
+        and "11 remaining" in handoff,
     )
     check(
-        "Family 4 register still accepts only Europa while the Gift remains a candidate",
+        "Family 4 register accepts Europa and the Gift and records completion",
         "| `C1C5-VIS02` | `70375da` | `VERIFIED-FAMILY` |" in handoff
-        and "| `C1C7-VIS01` |" not in handoff.split("## Family 4 accepted register", 1)[1].split("## C1C5-VIS02 closeout", 1)[0]
-        and "Family 4 has one of two findings verified" in handoff
-        and "do not add `C1C7-VIS01` to the Family 4 accepted register" in handoff,
+        and "| `C1C7-VIS01` | `39325dc` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 4 is complete with both findings verified" in handoff
+        and "Do not mark any additional finding accepted" in handoff,
     )
     check(
         "the Gift evidence presentation block is isolated to Case 07",
