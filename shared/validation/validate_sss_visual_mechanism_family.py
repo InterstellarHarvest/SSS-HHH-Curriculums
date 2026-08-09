@@ -135,8 +135,8 @@ def main() -> int:
             plan,
         ))
         and "Campaign 1 Family 2 closeout register" in handoff
-        and "18 of 36 completed" in handoff
-        and "18 remaining" in handoff
+        and "19 of 36 completed" in handoff
+        and "17 remaining" in handoff
         and all(finding in handoff for finding in (
             "C1C5-VIS01 — Europa radiation-to-growth pathway",
             "C1C6-VIS02 — First Contact coordination-system model",
@@ -159,9 +159,9 @@ def main() -> int:
         and "2321/2321 PASS with 0 application JavaScript errors" in handoff
         and "76/76 PASS" in handoff
         and "| `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |" in handoff
-        and "18 of 36 completed" in plan
-        and "18 of 36 remaining" in plan
-        and bool(re.search(r"\| `C2C5-VIS03` .*`CORRECTIVE-CANDIDATE", plan))
+        and "19 of 36 completed" in plan
+        and "17 of 36 remaining" in plan
+        and bool(re.search(r"\| `C2C5-VIS03` .*`VERIFIED-FAMILY", plan))
         and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
@@ -178,24 +178,27 @@ def main() -> int:
         and "2324/2324 PASS with 0 application JavaScript errors" in handoff
         and "85/85 PASS" in handoff
         and "| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |" in handoff
-        and "18 of 36 completed" in handoff
-        and "18 remaining" in handoff
-        and bool(re.search(r"\| `C2C5-VIS03` .*`CORRECTIVE-CANDIDATE", plan))
+        and "19 of 36 completed" in handoff
+        and "17 remaining" in handoff
+        and bool(re.search(r"\| `C2C5-VIS03` .*`VERIFIED-FAMILY", plan))
         and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
     )
     check(
-        "the production plan and handoff advance Too Clean a Room as the sole Family 2 candidate",
+        "the production plan and handoff accept Too Clean a Room and isolate the final Family 2 finding",
         bool(re.search(
             r"\| `C2C5-VIS03` .*\| 2 \+ 8 · Mechanism/trial workflow \|.*"
-            r"`CORRECTIVE-CANDIDATE · MAC/CHROME REGATE PENDING`",
+            r"`VERIFIED-FAMILY · 94/94 FAMILY STATIC PASS · 2327/2327 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 7be2f42 ACCEPTED`",
             plan,
         ))
-        and "Current validation target — C2C5 mechanism/trial workflow" in handoff
-        and "775680de5d8d216d6ca416da6f5e06a57bfdbfd6" in handoff
-        and "2324/2324 PASS with 0 application JavaScript errors" in handoff
-        and "85/85 PASS" in handoff
-        and "18 of 36 completed" in handoff
-        and "18 remaining" in handoff
+        and "Accepted Family 2 expansion — C2C5 mechanism/trial workflow" in handoff
+        and "7be2f428dfe41a3247794662ca9d1f4ef5362d2e" in handoff
+        and "2327/2327 PASS with 0 application JavaScript errors" in handoff
+        and "94/94 PASS" in handoff
+        and "| `C2C5-VIS03` | `7be2f42` | `VERIFIED-FAMILY` |" in handoff
+        and "19 of 36 completed" in handoff
+        and "17 remaining" in handoff
+        and "15 × 15 px to 11 × 11 px" in handoff
         and bool(re.search(r"\| `C2C6-VIS02` .*`PLANNED`", plan)),
     )
     check(
