@@ -4,16 +4,17 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## First Garden candidate-pathway handoff
+## Accepted Family 2 expansion — C2C6 candidate pathway
 
-`C2C6-VIS02` is the final Family 2 candidate. It is implemented from clean synchronized closeout
-`2d02f252175a70d52fccae6fde7ae956bd5fdf3e` and remains `IMPLEMENTED-CANDIDATE` until the required
-Mac/Chrome evidence is returned. Do not promote it from local or static evidence alone. The formal
-inventory remains **19 of 36 completed**, with **17 remaining**.
+Candidate `d8886b539e328fd3e9dcb9cdaa1bd4e16aaf6a54` advances `C2C6-VIS02` for The First Garden to
+`VERIFIED-FAMILY`. The accepted executable baseline is **2330/2330 PASS with 0 application
+JavaScript errors**, repeated twice. The accepted focused mechanism baseline is **103/103 PASS**;
+the telemetry validator remains **36/36 PASS**; and the Case 06 layout-override validator passes.
+The accepted synchronized prerequisite is `2d02f252175a70d52fccae6fde7ae956bd5fdf3e`.
 
 The frozen Task 5 organizers on Student page 5 and Accessible page 5 retain the two observed
 endpoints, three blank learner stages, exact edition-specific phrase banks and separate blank model-
-limit response. The new case-scoped presentation adds one persistent
+limit response. The accepted case-scoped presentation adds one persistent
 `CANDIDATE · NOT ESTABLISHED` rail and the ordered states `CONSTRUCTION HISTORY` →
 `POSSIBLE PARTNER LOSS` → `FEWER PARTNERSHIPS` → `LESS ASSISTED ACQUISITION` →
 `SURVEYED PATTERN`. Student remains horizontal. Accessible becomes one true in-flow vertical track
@@ -22,34 +23,33 @@ verbatim text and receive the matching dashed, dotted and double state treatment
 candidate rail.
 
 No worksheet `content.html`, case `presentation.css`, `layout-overrides.json`, package metadata,
-task registry, page count, response identity, source hash or release/history record changes. The
-candidate changes only the shared case-scoped component layer, browser harness, focused mechanism
-validator, production plan and this handoff. The focused acceptance target is **103/103**. The
-complete browser target is **2330/2330** twice with zero application JavaScript errors.
+task registry, page count, response identity, source hash or release/history record changed. The
+candidate changed only the shared case-scoped component layer, browser harness, focused mechanism
+validator, production plan and this handoff.
 
-External inspection must cover Student Task 5 page 5, Accessible Task 5 page 5 and Answer Key Task
-5 page 4 in normal and grayscale. Every page must retain fixed 816 × 1056 geometry, accepted page
-counts Student 6 / Answer Key 5 / Accessible 7, no `has-overflow` state and strict
-`scrollHeight <= clientHeight` within the 936 px printable content box. Confirm all five stages,
-four connectors, five labels, the persistent candidate rail, border order
-`solid | dashed | dotted | double | solid`, patterns and response areas are fully visible without
-clipping, collision or paint-order loss. Student connectors must remain `→ | → | → | →`;
-Accessible must show `↓ | ↓ | ↓ | ↓` in one vertical track with all four connectors topmost.
+Manual inspection in normal and grayscale confirmed `scrollHeight 936 == clientHeight 936`, fixed
+816 × 1056 geometry, unchanged Student 6 / Answer Key 5 / Accessible 7 page counts, no
+`has-overflow` state and zero content-boundary spill on Student Task 5 page 5, Accessible Task 5
+page 5 and Answer Key Task 5 page 4. All five stages, four connectors, five labels, the candidate
+rail, border order `solid | dashed | dotted | double | solid` and grayscale-independent patterns
+remained fully visible without clipping, collision, overlap or paint-order loss. Student retained
+`→ | → | → | →`; Accessible retained one in-flow vertical `↓ | ↓ | ↓ | ↓` track with all four
+15 × 15 connectors circled, topmost and unobscured.
 
-All six learner stage fields must remain genuinely blank after hidden resize UI is excluded:
-`t5-m2 | t5-m3 | t5-m4` and `a5-m2 | a5-m3 | a5-m4`. Both `t5-limit` and `a5-limit` must remain
-blank with unchanged source-controlled response geometry. The Student and Accessible word banks
-must remain exact, and the Answer Key must retain all three completed stages plus the exact limit
-sentence ending `The model orders a candidate explanation. It does not demonstrate it.`
+All six learner stage fields remained genuinely blank after hidden resize UI was excluded:
+`t5-m2 | t5-m3 | t5-m4` and `a5-m2 | a5-m3 | a5-m4`. Both `t5-limit` and `a5-limit` remained blank
+with their source-controlled response geometry. No response area was reduced, clipped, hidden or
+relocated. The Student and Accessible word banks remained exact, and the Answer Key retained all
+three completed stages plus the exact limit sentence ending `The model orders a candidate
+explanation. It does not demonstrate it.`
 
-Scientific inspection must preserve the explanation as the best-supported candidate rather than
-a diagnosis or cure. `trace levels only` must not become zero or absence; approximately 4–6 m must
-remain a range; the figure must remain a pattern rather than a map or scale; chemistry must not
-identify an organism; partnership benefit must remain plant/fungus/soil dependent; and adding
-fungi must remain untested. No wood-wide-web, mother-tree, guaranteed-inoculation, product,
-supplier or specific-organism claim may be introduced. Report the exact console-error count and
-text. Any failed assertion or visible defect holds the candidate unpushed for an ordinary
-corrective successor.
+The explanation remains the best-supported candidate rather than a diagnosis or cure. `trace
+levels only` did not become zero or absence; approximately 4–6 m remained a range; the figure
+remained a pattern rather than a map or scale; chemistry did not identify an organism; partnership
+benefit remained plant/fungus/soil dependent; and adding fungi remained untested. No wood-wide-web,
+mother-tree, guaranteed-inoculation, product, supplier or specific-organism claim was introduced.
+Family 2 is now complete with all 11 findings verified. The formal inventory is **20 of 36
+completed**, with **16 remaining**.
 
 ## Accepted Family 2 expansion — C2C5 mechanism/trial workflow
 
@@ -95,10 +95,11 @@ Rhessi comparison remains modeled and belongs to a different species; absorbed d
 mGy and cannot be restated in sievert; two conditions do not form a response curve; and the
 workflow remains non-operational and governed by qualified approval, comparison, remote
 measurement, containment, staging and a prewritten stop rule. No new visible fictional-status
-reminder was added. The formal inventory is now **19 of 36 completed**, with **17 remaining**.
+reminder was added. That closeout advanced the formal inventory to 19 of 36 completed, with 17
+remaining.
 
-The accepted Too Clean a Room closeout is the direct prerequisite for the First Garden candidate
-described above.
+The accepted Too Clean a Room closeout was the direct prerequisite for the First Garden candidate
+accepted above.
 
 ## Accepted Family 2 expansion — C2C3 spectral-match mechanism/specification
 
@@ -277,8 +278,9 @@ case presentation, package metadata, release baseline or accepted content change
 
 The accepted Mars expansion at `c532ac5` reached 2303/2303 with zero JavaScript errors and retained
 3.47 px of geometric reserve. Together with the six other accepted rows above, this closes the
-Campaign 1 mechanism cohort. These lifecycle records do not merge the visual branch to `main`,
-declare the overall 11-item Family 2 complete, or reopen frozen curriculum and release decisions.
+Campaign 1 mechanism cohort. Those Campaign 1 lifecycle records alone did not merge the visual
+branch to `main`, close the overall 11-item Family 2, or reopen frozen curriculum and release
+decisions; the Campaign 2 register below now supplies the remaining accepted findings.
 
 ## Campaign 2 Family 2 accepted register
 
@@ -287,20 +289,21 @@ declare the overall 11-item Family 2 complete, or reopen frozen curriculum and r
 | `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |
 | `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |
 | `C2C5-VIS03` | `7be2f42` | `VERIFIED-FAMILY` |
+| `C2C6-VIS02` | `d8886b5` | `VERIFIED-FAMILY` |
 
-Family 2 now has ten verified findings and one implemented candidate, `C2C6-VIS02`, awaiting
-external rendered acceptance. The overall visual-modernization inventory is 19 of 36 completed and
-17 remaining. The visual branch remains isolated from `main`.
+Family 2 is complete with all eleven findings verified. The overall visual-modernization inventory
+is 20 of 36 completed and 16 remaining. The visual branch remains isolated from `main`.
 
-## Candidate integration prompt
+## Family 2 closeout integration prompt
 
-Validate the supplied First Garden candidate bundle only from clean synchronized prerequisite
-`2d02f252175a70d52fccae6fde7ae956bd5fdf3e`. Confirm the local, tracking and live remote branch all
-remain at that prerequisite before integration. Verify the supplied checksum, bundle prerequisites
-and single-parent lineage, then fetch and integrate with `git merge --ff-only`. Do not reset,
-rebase, amend, squash, force-push, edit files or create a correction. Run the focused 103-check
-mechanism validator, the complete 2330-assertion Mac/Chrome harness twice and `git diff --check`.
-Then manually inspect the three Task 5 pages in both modes under the contract above. If anything
-fails, stop without pushing and report the exact assertion, role, mode, page and measurement. If
-everything passes, leave the candidate integrated locally but unpushed; ChatGPT will prepare the
-ordinary Family 2 closeout successor.
+Validate the supplied closeout bundle only from clean accepted implementation
+`d8886b539e328fd3e9dcb9cdaa1bd4e16aaf6a54`. Confirm the pushed remote remains
+`2d02f252175a70d52fccae6fde7ae956bd5fdf3e`, verify the checksum and bundle prerequisite, fetch it,
+and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
+files. Run the focused 103-check mechanism validator and `git diff --check`. Confirm the closeout
+changes only this handoff, the production plan and the focused validator; records `C2C6-VIS02` as
+`VERIFIED-FAMILY`; closes all 11 Family 2 findings; and advances the inventory to 20/36 completed
+and 16 remaining. Because the successor changes only documentation and the focused validator, do
+not rerun the Mac/Chrome harness or manual inspection. If both checks pass, push the branch by
+ordinary fast-forward and report local, tracking and live remote SHAs. Do not begin Family 3 in the
+same run.

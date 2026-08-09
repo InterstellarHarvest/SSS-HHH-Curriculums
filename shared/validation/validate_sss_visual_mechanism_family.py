@@ -143,8 +143,8 @@ def main() -> int:
             plan,
         ))
         and "Campaign 1 Family 2 closeout register" in handoff
-        and "19 of 36 completed" in handoff
-        and "17 remaining" in handoff
+        and "20 of 36 completed" in handoff
+        and "16 remaining" in handoff
         and all(finding in handoff for finding in (
             "C1C5-VIS01 — Europa radiation-to-growth pathway",
             "C1C6-VIS02 — First Contact coordination-system model",
@@ -167,10 +167,10 @@ def main() -> int:
         and "2321/2321 PASS with 0 application JavaScript errors" in handoff
         and "76/76 PASS" in handoff
         and "| `C2C2-VIS02` | `aa4eeac` | `VERIFIED-FAMILY` |" in handoff
-        and "19 of 36 completed" in plan
-        and "17 of 36 remaining" in plan
+        and "20 of 36 completed" in plan
+        and "16 of 36 remaining" in plan
         and bool(re.search(r"\| `C2C5-VIS03` .*`VERIFIED-FAMILY", plan))
-        and bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan))
+        and bool(re.search(r"\| `C2C6-VIS02` .*`VERIFIED-FAMILY", plan))
         and all(finding in handoff for finding in ("C2C3-VIS03", "C2C5-VIS03", "C2C6-VIS02")),
     )
     check(
@@ -186,13 +186,13 @@ def main() -> int:
         and "2324/2324 PASS with 0 application JavaScript errors" in handoff
         and "85/85 PASS" in handoff
         and "| `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` |" in handoff
-        and "19 of 36 completed" in handoff
-        and "17 remaining" in handoff
+        and "20 of 36 completed" in handoff
+        and "16 remaining" in handoff
         and bool(re.search(r"\| `C2C5-VIS03` .*`VERIFIED-FAMILY", plan))
-        and bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan)),
+        and bool(re.search(r"\| `C2C6-VIS02` .*`VERIFIED-FAMILY", plan)),
     )
     check(
-        "the production plan and handoff accept Too Clean a Room and isolate the final Family 2 finding",
+        "the production plan and handoff preserve the accepted Too Clean a Room closeout",
         bool(re.search(
             r"\| `C2C5-VIS03` .*\| 2 \+ 8 · Mechanism/trial workflow \|.*"
             r"`VERIFIED-FAMILY · 94/94 FAMILY STATIC PASS · 2327/2327 BROWSER PASS ×2 "
@@ -204,10 +204,10 @@ def main() -> int:
         and "2327/2327 PASS with 0 application JavaScript errors" in handoff
         and "94/94 PASS" in handoff
         and "| `C2C5-VIS03` | `7be2f42` | `VERIFIED-FAMILY` |" in handoff
-        and "19 of 36 completed" in handoff
-        and "17 remaining" in handoff
+        and "20 of 36 completed" in handoff
+        and "16 remaining" in handoff
         and "15 × 15 px to 11 × 11 px" in handoff
-        and bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan)),
+        and bool(re.search(r"\| `C2C6-VIS02` .*`VERIFIED-FAMILY", plan)),
     )
     check(
         "the accepted pilot and Mars expansion have explicit lifecycle states",
@@ -1775,13 +1775,22 @@ def main() -> int:
     )
 
     check(
-        "the production plan and handoff stage The First Garden as the final Family 2 candidate",
-        bool(re.search(r"\| `C2C6-VIS02` .*`IMPLEMENTED-CANDIDATE", plan))
-        and "First Garden candidate-pathway handoff" in handoff
+        "the production plan and handoff accept The First Garden and close Family 2",
+        bool(re.search(
+            r"\| `C2C6-VIS02` .*\| 2 · Causal mechanism/pathway \|.*"
+            r"`VERIFIED-FAMILY · 103/103 FAMILY STATIC PASS · 2330/2330 BROWSER PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · d8886b5 ACCEPTED`",
+            plan,
+        ))
+        and "Accepted Family 2 expansion — C2C6 candidate pathway" in handoff
+        and "d8886b539e328fd3e9dcb9cdaa1bd4e16aaf6a54" in handoff
+        and "2330/2330 PASS with 0 application JavaScript errors" in handoff
         and "2330/2330" in handoff
-        and "103/103" in handoff
-        and "19 of 36 completed" in handoff
-        and "17 remaining" in handoff
+        and "103/103 PASS" in handoff
+        and "| `C2C6-VIS02` | `d8886b5` | `VERIFIED-FAMILY` |" in handoff
+        and "Family 2 is complete with all eleven findings verified" in handoff
+        and "20 of 36 completed" in handoff
+        and "16 remaining" in handoff
         and "CANDIDATE · NOT ESTABLISHED" in handoff,
     )
 

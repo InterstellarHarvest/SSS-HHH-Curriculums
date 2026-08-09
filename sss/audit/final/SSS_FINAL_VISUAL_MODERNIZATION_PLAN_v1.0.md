@@ -121,10 +121,9 @@ response controls and release baselines remained unchanged. `C1C7-VIS02` is ther
 `VERIFIED-FAMILY`.
 
 Campaign 1's Family 2 cohort is closed: all seven Campaign 1 mechanism/pathway findings are
-verified. Family 2 remains open overall because `C2C2-VIS02`, `C2C3-VIS03` and `C2C5-VIS03` are
-now verified, while only `C2C6-VIS02` remains an implemented candidate awaiting external rendered
-acceptance. The formal visual-modernization inventory
-now stands at 19 of 36 completed findings, with 17 remaining.
+verified. Campaign 2's four Family 2 findings are also verified, so the complete 11-finding
+mechanism/pathway family is closed. The formal visual-modernization inventory now stands at 20 of
+36 completed findings, with 16 remaining.
 
 `C2C2-VIS02` modernizes The Missing Dance's frozen Student Task 6 page 5, Answer Key Task 6 page 3
 and Accessible Task 6 page 6 as one exact five-stage failure path. Candidate `132161a` passed the
@@ -182,12 +181,16 @@ completed rows receive the matching dashed, dotted and double state treatment. T
 endpoints, three blank fields in each learner edition, exact edition-specific phrase banks, both
 blank model-limit responses and the verbatim completed Answer Key remain unchanged. No worksheet
 content, case presentation, package metadata, persistence identity, layout override, page count,
-source hash or release baseline changes. Candidate acceptance requires the complete Mac/Chrome
-2330/2330 browser harness twice with zero application JavaScript errors, strict 936/936-or-better
-fit and fixed 816 × 1056 geometry on all three pages in both modes, plus the 103/103 focused
-mechanism validator and manual normal/grayscale inspection. Until that evidence exists,
-`C2C6-VIS02` remains `IMPLEMENTED-CANDIDATE` and the formal inventory remains 19/36 completed with
-17 remaining.
+source hash or release baseline changes. Candidate
+`d8886b539e328fd3e9dcb9cdaa1bd4e16aaf6a54` passed the complete 2330/2330 Mac/Chrome browser
+harness twice with zero application JavaScript errors, the 103/103 focused mechanism validator,
+the 36/36 telemetry validator and the Case 06 layout-override validator. Normal and grayscale
+inspection confirmed strict 936/936 fit, fixed 816 × 1056 geometry, unchanged Student 6 / Answer
+Key 5 / Accessible 7 page counts and zero content-boundary spill on all three touched pages. All
+four 15 × 15 Accessible connectors remained visible, circled, in flow and topmost; all eight
+learner fields retained their source-controlled geometry and blank state; and the candidate,
+survey and ecological-safety boundaries remained exact. `C2C6-VIS02` is therefore
+`VERIFIED-FAMILY`, closing Family 2.
 
 ## 3. Exact inventory reconciliation
 
@@ -198,10 +201,9 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the Too Clean a Room mechanism/trial-workflow closeout is **19 of 36
-completed** and **17 of 36 remaining**. Family 1 contributes 9 completed findings; Family 2
-contributes its seven verified Campaign 1 findings plus three verified Campaign 2 findings and
-retains one implemented Campaign 2 candidate awaiting rendered acceptance.
+Accepted progress after the First Garden candidate-pathway closeout is **20 of 36 completed** and
+**16 of 36 remaining**. Family 1 contributes 9 completed findings and Family 2 contributes all 11
+of its verified findings.
 
 The final remediation status also carries token/fill maintenance notes for C1 Case 02 and
 C1 Case 06. Those two notes are tracked in §5 as visual-system work items but are not invented
@@ -291,7 +293,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C5-VIS02` | Too Clean a Room; S T3 p3, A T3 p3 | Accurate six discrete bars with limited production-monitor hierarchy. | 1 · Technical telemetry/data | Six-month SAA production-monitor display with direct values and no interpolation. | Replace existing repeated figure at same footprint; table remains. | Six discrete monthly values only; draw nothing between months; preserve baseline definition. | D1; exact-value/DOM and no-line checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C5-VIS03` | Too Clean a Room; S T5 p5 + T7 p7, A T5 p5 + T7 p7, AK T5 p4 + T7 p5 | Generic pathway and separate dense trial-requirements table. | 2 + 8 · Mechanism/trial workflow | Species-specific signal → pathway → product panel paired with high-level authorization → control → dosimetry/production → staged trial → stop workflow. | Keep tasks/pages separate; preserve diagnosis fields, pathway blanks and all trial requirements. | `<0.01 mGy/day` bound; homeworld ~8.4 and Rhessi ~12 are different contexts; mGy ≠ sievert; two conditions do not form a curve; non-operational only. | mechanism + IC1; unit, context, safety and response checks | `VERIFIED-FAMILY · 94/94 FAMILY STATIC PASS · 2327/2327 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 7be2f42 ACCEPTED` |
 | `C2C6-VIS01` | The First Garden; S T2 p2, A T2 p2 | Accurate simple plan-view patch diagram. | 1 · Technical telemetry/data | SAA soil-survey diagnostic with discrete abundance zones, sharp boundary and trace inter-patch ground. | Replace existing figure only; same caption/table backup and height. | Approximately 4–6 m remains a range; trace ≠ absent; pattern is not a map/not to scale; no patch spacing invented. | D1 spatial variant; range/status/alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C2C6-VIS02` | The First Garden; S T5 p5, A T5 p5, AK T5 p4 | Generic five-stage pathway. | 2 · Causal mechanism/pathway | Candidate pathway with an explicit persistent `CANDIDATE · NOT ESTABLISHED` status rail from construction history through possible partnership loss to surveyed pattern. | Preserve fixed stages, three blanks, exact bank and model-limit response; sync AK. | Best-supported candidate only; no wood-wide-web/mother-tree/guaranteed-inoculation claims. | mechanism/status primitive; bank, qualifier and persistence checks | `IMPLEMENTED-CANDIDATE · 103/103 FAMILY STATIC PASS · MAC/CHROME 2330/2330 REQUIRED ×2 · 0 JS ERRORS REQUIRED · STRICT FIT 936/936 REQUIRED` |
+| `C2C6-VIS02` | The First Garden; S T5 p5, A T5 p5, AK T5 p4 | Generic five-stage pathway. | 2 · Causal mechanism/pathway | Candidate pathway with an explicit persistent `CANDIDATE · NOT ESTABLISHED` status rail from construction history through possible partnership loss to surveyed pattern. | Preserve fixed stages, three blanks, exact bank and model-limit response; sync AK. | Best-supported candidate only; no wood-wide-web/mother-tree/guaranteed-inoculation claims. | mechanism/status primitive; bank, qualifier and persistence checks | `VERIFIED-FAMILY · 103/103 FAMILY STATIC PASS · 2330/2330 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d8886b5 ACCEPTED` |
 | `C2C6-VIS03` | The First Garden; S T7 p6, A T7 p7, AK T7 p5, T support p4 | Trial requirements are a long table; decision sequence is implicit. | 8 · Intervention comparison/trial workflow | Screened ecological workflow: identify → screen → approve → replicated treated + untreated plots → monitor colonization/performance/spread → conditional expansion. | Preserve all requirement fields and no-product/no-species instruction; synchronize AK and Teacher explanation. | Do not name treatment/product/organism; within-world transfer is not risk-free; no guaranteed cure; expand only if evidence supports. | IC1; safety-language, field/parity and conditionality checks | `PLANNED` |
 
 ## 8. Reusable visual grammar and smallest primitive set
