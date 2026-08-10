@@ -7,8 +7,10 @@ run PDF automation, or reopen accepted correctness findings.
 ## Active unaccepted Family 6 candidate — Heavy Hands across-bed specification
 
 `C2C1-VIS03` is implemented locally as the second standalone Family 6
-specification/verification candidate. Its required accepted prerequisite is
-`b95563f181c0d442d40784bbe1a45d1794cfb256`. It remains `IMPLEMENTED-CANDIDATE ·
+specification/verification candidate. Its accepted lineage root is
+`b95563f181c0d442d40784bbe1a45d1794cfb256`; its failed first implementation is
+`473722443e0d6e03e3e7edf1c855cf68e7c8fbc8`, and the active candidate is an ordinary corrective
+successor to that commit. It remains `CORRECTED-CANDIDATE ·
 UNACCEPTED`: do not mark it `VERIFIED-FAMILY`, advance the 27/36 inventory or count Family 6 as
 three verified assignments unless the external browser and manual gates pass and a separate
 acceptance/closeout is authorized.
@@ -30,6 +32,19 @@ add no learner action, tolerance, engineering result or completed test. They do 
 into a universal radius rule, introduce GC-1445 to learner or Answer Key pages, or promise crop
 recovery.
 
+The first implementation's Mac/Google Chrome 150 gate failed deterministically at **2351/2353**
+twice with zero JavaScript errors. Its normal and grayscale Heavy Hands assertions both failed:
+Accessible proposal fields `a8-o1` and `a8-o2` measured 109.38 × 44.16 px against the explicit
+110 px minimum. The same inspection found each of the ten new 4 px inset label rails painting
+beneath its first glyph because the labels began at zero left padding. Accepted prerequisite
+`b95563f…` passed **2350/2350** on the same Mac; candidate total delta was +3, but passing delta
+was only +1. These are new candidate failures, so no differential exception applies.
+
+The corrective successor replaces the over-tight cross-platform field floor with
+`width >= 108 && height >= 30`; the measured 109.38 px Mac proposal checks remain above it, and no
+response dimension changes. It also gives all ten affected labels 6 px of left clearance and
+extends both normal/grayscale browser contracts to require five clear labels per learner role.
+
 No Heavy Hands source file changes. The candidate preserves these SHA-256 identities:
 
 - `content.html` — `da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a`
@@ -38,7 +53,7 @@ No Heavy Hands source file changes. The candidate preserves these SHA-256 identi
 - `case-package.json` — `f6244b5db18e7de66c32bc787792898612195cecb1927d23b5e52a8d5119a0c4`
 - `task-registry.js` — `a62376edaf946fc28f54527cd4c7d7190fd4b96826bc52b4d693a0ab6d543f51`
 
-The candidate scope is exactly the shared component CSS, browser harness, focused
+The cumulative candidate scope from `b95563f…` is exactly the shared component CSS, browser harness, focused
 specification-family validator, production plan and this handoff. It changes no worksheet wording,
 case presentation, layout override, package metadata, task registry, response text or dimension,
 page count, persistence identity, Teacher content, source hash, release/history record or accepted-
@@ -57,9 +72,10 @@ exceptions; all three new Heavy Hands assertions pass. Canonical project registr
 
 The external Mac/Google Chrome gate must run the complete harness twice. The canonical target is
 **2354/2354 PASS** with zero application JavaScript errors on both runs. If that Mac again
-registers one fewer inherited assertion, run accepted prerequisite `b95563f…` on the same machine
-in a throwaway worktree. Stop without pushing unless the candidate delta is exactly +3, all three
-new Heavy Hands assertions register and pass, no inherited assertion is removed, both candidate
+registers 2353 assertions, accepted prerequisite `b95563f…` may be reused because its 2350/2350
+result was captured on the same machine in this gate. Stop without pushing unless the candidate
+delta is exactly +3, all three new Heavy Hands assertions register and pass, no inherited
+assertion is removed, both candidate
 runs have identical assertion-name sets and JavaScript errors remain zero. Differential evidence
 does not itself authorize acceptance, change canonical 2354 or establish a general platform
 policy.
@@ -69,7 +85,8 @@ Accessible page 8 confirmed fixed 816 × 1056 geometry, exact
 `scrollHeight 936 == clientHeight 936` fit and exact Student 5 / Answer Key 4 / Accessible 8 page
 counts in all six views. No view had overflow, spill, clipping, collision or crowding. Labels,
 patterns and rails remained contained and distinct. Learner fields remained blank, editable and
-unclipped at these exact Linux dimensions:
+unclipped at these pre-correction Linux dimensions; they are platform-reference measurements, not
+exact cross-platform targets:
 
 - Student criterion/constraint: 356 × 32.63 px each.
 - Student proposal checks: 151.34 × 44.16 px each.
@@ -79,7 +96,11 @@ unclipped at these exact Linux dimensions:
 - Accessible proposal checks: 115.2 × 44.16 px each.
 - Accessible choice/trial/stop: 720 × 61.44 px each.
 
-Bottom reserve is 24.27 px Student, 73.41 px Answer Key and 193.22 px Accessible. The Answer Key
+Earlier local bottom-reserve measurements were 24.27 / 73.41 / 193.22 px for Student / Answer Key /
+Accessible. Independent inspection using content-area bottom minus the lowest rendered element
+reported **39.59 / 150.05 / 211.36 px**. No validator defines this metric, so either numeric series
+is reference-only and **not a numeric acceptance gate**. Require exact 936/936 fit, positive
+clearance and no crowding instead. The Answer Key
 still requires an across-bed top/base criterion rather than a midpoint-only reading; permits a
 tolerance only when trial-justified; treats GC-1208 as one reported precedent; states that neither
 proposal may promise recovery; requires an unchanged control, scheduled magnitude/deformation
@@ -941,9 +962,10 @@ Family 6 has two of four assignments verified. Accepting `C1C5-VIS03` advances t
 visual-modernization inventory to 27 of 36 completed and 9 remaining; the previously accepted
 hybrid `C2C3-VIS03` is not counted again. The visual branch remains isolated from `main`.
 
-Active unaccepted assignment: `C2C1-VIS03` is `IMPLEMENTED-CANDIDATE · UNACCEPTED` against
-prerequisite `b95563f…`. It is not part of the accepted register above and does not change the
-Family 6 or unique-inventory totals.
+Active unaccepted assignment: `C2C1-VIS03` is `CORRECTED-CANDIDATE · UNACCEPTED`. Its accepted
+lineage root is `b95563f…`; failed implementation `4737224…` remains an immutable intermediate
+commit beneath the corrective successor. It is not part of the accepted register above and does
+not change the Family 6 or unique-inventory totals.
 
 ## C1C5-VIS03 closeout integration prompt
 

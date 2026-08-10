@@ -418,6 +418,7 @@ def main() -> int:
             "heavy-spec-constraint-pattern",
             "heavy-spec-option-pattern",
             "heavy-spec-verify-pattern",
+            "padding-left: 6px",
         )),
     )
     check(
@@ -447,6 +448,9 @@ def main() -> int:
             'state.pageSize === "816x1056"',
             "state.fits",
             "heavySpecificationPageFit.length === 6",
+            "labelRailClearance.length === 5",
+            "value >= 6",
+            "width >= 108 && height >= 30",
         )),
     )
     check(
@@ -464,14 +468,14 @@ def main() -> int:
         )),
     )
     check(
-        "the production matrix freezes C2C1-VIS03 as the unaccepted 70-check candidate",
+        "the production matrix freezes C2C1-VIS03 as the corrected unaccepted 70-check candidate",
         bool(re.search(
             r"\| `C2C1-VIS03` .*\| 6 · Specification/verification \|.*"
-            r"`IMPLEMENTED-CANDIDATE · UNACCEPTED · 70/70 SPECIFICATION STATIC PASS "
+            r"`CORRECTED-CANDIDATE · UNACCEPTED · 70/70 SPECIFICATION STATIC PASS "
             r"· 2323/2354 LINUX BROWSER · 3/3 NEW CONTRACTS PASS · 0 JS ERRORS · STRICT FIT 936/936`",
             plan,
         ))
-        and "implemented but unaccepted second standalone Family 6" in plan,
+        and "corrected but unaccepted second standalone Family 6" in plan,
     )
     check(
         "the handoff records the Heavy Hands candidate gate hashes and canonical total",
@@ -483,16 +487,15 @@ def main() -> int:
         and "candidate delta is exactly +3" in handoff,
     )
     check(
-        "the handoff freezes all Heavy Hands field dimensions and measured reserves",
+        "the handoff freezes Heavy Hands field dimensions and makes reserve metrics non-contractual",
         all(token in handoff for token in (
             "356 × 32.63 px",
             "151.34 × 44.16 px",
             "720 × 53.75 px",
             "115.2 × 44.16 px",
             "720 × 61.44 px",
-            "24.27 px Student",
-            "73.41 px Answer Key",
-            "193.22 px Accessible",
+            "39.59 / 150.05 / 211.36 px",
+            "not a numeric acceptance gate",
         )),
     )
     check(

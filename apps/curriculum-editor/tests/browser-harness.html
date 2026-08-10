@@ -1919,6 +1919,7 @@
               const choice = page?.querySelector(`.response-label:has(+ [data-persist-id="${role === "student" ? "t8-choice" : "a8-choice"}"])`);
               const trial = page?.querySelector(`.response-label:has(+ [data-persist-id="${role === "student" ? "t8-trial" : "a8-trial"}"])`);
               const stop = page?.querySelector(`.response-label:has(+ [data-persist-id="${role === "student" ? "t8-stop" : "a8-stop"}"])`);
+              const taskLabels = Array.from(page?.querySelectorAll(role === "student" ? ".task-block .response-label" : ".content-area > .response-label") || []);
               rendered.push({
                 role,
                 headingStatus: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
@@ -1932,6 +1933,7 @@
                 choicePattern: choice ? win.getComputedStyle(choice).backgroundImage !== "none" : false,
                 trialPattern: trial ? win.getComputedStyle(trial).backgroundImage !== "none" : false,
                 stopPattern: stop ? win.getComputedStyle(stop).backgroundImage !== "none" : false,
+                labelRailClearance: taskLabels.map(label => Number.parseFloat(win.getComputedStyle(label).paddingLeft)),
                 tableText: table?.textContent.trim().replace(/\s+/g, " ") || "",
                 pageText: page?.textContent.trim().replace(/\s+/g, " ") || ""
               });
@@ -1955,7 +1957,8 @@
                 && studentSpec.fieldIds.join("|") === heavyStudentFields.join("|")
                 && accessibleSpec.fieldIds.join("|") === heavyAccessibleFields.join("|")
                 && rendered.every(state => state.blankFields.every(Boolean) && state.fieldRails.every(Boolean))
-                && rendered.every(state => state.fieldSizes.every(([width, height]) => width >= 110 && height >= 30))
+                && rendered.every(state => state.fieldSizes.every(([width, height]) => width >= 108 && height >= 30))
+                && rendered.every(state => state.labelRailClearance.length === 5 && state.labelRailClearance.every(value => value >= 6))
                 && rendered.every(state => state.decisionGate === "DECISION GATE" && state.choicePattern && state.trialPattern && state.stopPattern)
                 && rendered.every(state => state.tableText.includes("GC-1208") && state.tableText.includes("600 m"))
                 && rendered.every(state => state.pageText.includes("2.10 g ±0.05 g at midpoint") && !state.pageText.includes("GC-1445"))

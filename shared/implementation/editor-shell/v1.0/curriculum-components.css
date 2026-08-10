@@ -4611,6 +4611,14 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   [data-persist-id="a8-o2"]
 ) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
 
+/* Keep the inset relationship rail clear of the first label glyph. */
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block .response-label,
+  .page[data-page-id="accessible-mission-08"] .content-area > .response-label
+) {
+  padding-left: 6px;
+}
+
 .worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
   .page[data-page-id="student-mission-05"] .response-label:has(+ [data-persist-id="t8-choice"]),
   .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-choice"])

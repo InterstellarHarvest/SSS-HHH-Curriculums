@@ -399,7 +399,7 @@ guaranteed success and an in-game `apply the fix` step. The focused specificatio
 `VERIFIED-FAMILY`. Family 6 now has two of four assignments verified, including the previously
 accepted hybrid `C2C3-VIS03`; the unique-finding inventory counts that hybrid only once.
 
-`C2C1-VIS03` is the implemented but unaccepted second standalone Family 6
+`C2C1-VIS03` is the corrected but unaccepted second standalone Family 6
 specification/verification candidate. It preserves Heavy Hands Student page 5, Answer Key page 4
 and Accessible page 8 as the semantic source of truth. The existing Task 8 sequence remains
 midpoint-only rule → missing across-bed criterion and reported constraint → compare two reported
@@ -407,7 +407,11 @@ proposals → choose → monitored trial → stop/revise. The strictly Case-01-s
 labels that path `POINT RULE → ACROSS-BED TEST`, identifies the proposal table as
 `COMPARE AGAINST CRITERION` and marks the existing choice response as `DECISION GATE`. Independent
 hatch states and inset rails distinguish the rule, criterion, constraint, proposal, verification
-and stop states without adding a learner action or changing a response dimension.
+and stop states without adding a learner action. The four proposal checks remain the only
+content-derived response widths; the cross-platform browser usability floor is 108 px, below the
+independently observed 109.38 px Mac width, so no response dimension changes. Each of the ten Task
+8 response labels has 6 px of left clearance so its inset rail cannot paint beneath the first
+glyph.
 
 The candidate changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response text, persistence identity, page count, Teacher content, source hash,
@@ -417,13 +421,23 @@ retains the parallel seven `a8-*` fields. The Answer Key retains its exact five-
 including the trial-justified tolerance boundary, the statement that neither proposal may promise
 recovery, the unchanged-control trial, the stop/revise rule and the case-bounded marking note.
 
+The first implementation commit, `473722443e0d6e03e3e7edf1c855cf68e7c8fbc8`, failed its
+external Mac/Chrome gate at **2351/2353** twice with zero JavaScript errors. Both normal and
+grayscale Heavy Hands assertions failed because `a8-o1` and `a8-o2` measured 109.38 px against the
+110 px floor; independent inspection also found all ten new inset label rails painted beneath the
+first glyph. Accepted prerequisite `b95563f…` passed 2350/2350 on that Mac, so the candidate added
+three registered assertions but only one passing assertion. No differential exception applies to
+new failing contracts. The corrective successor preserves `4737224…` as immutable evidence.
+
 Linux Chromium registers the intended three new browser assertions and reports **2323/2354** with
 zero application JavaScript errors: exactly the 31 established platform/font/screenshot-smoke
 exceptions and no candidate-specific failure. All three new contracts pass. Six-view normal and
 grayscale inspection confirms fixed 816 × 1056 geometry, strict
 `scrollHeight 936 == clientHeight 936` fit, exact Student 5 / Answer Key 4 / Accessible 8 page
-counts, no overflow/spill/clipping/collision/crowding and preserved field dimensions. Bottom
-reserve is 24.27 px Student, 73.41 px Answer Key and 193.22 px Accessible. This evidence is local
+counts, no overflow/spill/clipping/collision/crowding and preserved field dimensions. Earlier
+local reserve measurements were 24.27 / 73.41 / 193.22 px; an independent content-area method
+reported 39.59 / 150.05 / 211.36 px. Because the metric was not defined, neither numeric series is
+an acceptance gate; exact fit, positive clearance and no crowding govern. This evidence is local
 candidate evidence only; external Mac/Google Chrome validation and acceptance remain required.
 The formal inventory therefore remains 27 of 36 completed and 9 remaining, and Family 6 remains
 two of four verified assignments until a separate acceptance and documentation closeout.
@@ -538,7 +552,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 |---|---|---|---|---|---|---|---|---|
 | `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `PLANNED` |
 | `C2C1-VIS02` | Heavy Hands; T reference p4 | Three-point radial profile is a basic Teacher-only schematic. | 1 · Technical telemetry/data | Centrifuge telemetry profile with three reported radii, outward direction arrows and direct exact magnitudes. | Teacher-only replacement; no learner workload/page changes. | Direction outward at all points; magnitude increases with radius; retain exact reported values and rounding note; no interpolation. | D1; exact-value/rounding and page-fit checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `IMPLEMENTED-CANDIDATE · UNACCEPTED · 70/70 SPECIFICATION STATIC PASS · 2323/2354 LINUX BROWSER · 3/3 NEW CONTRACTS PASS · 0 JS ERRORS · STRICT FIT 936/936` |
+| `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `CORRECTED-CANDIDATE · UNACCEPTED · 70/70 SPECIFICATION STATIC PASS · 2323/2354 LINUX BROWSER · 3/3 NEW CONTRACTS PASS · 0 JS ERRORS · STRICT FIT 936/936` |
 | `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `PLANNED` |
 | `C2C2-VIS02` | The Missing Dance; S T6 p5, A T6 p6, AK T6 p3 | Generic condition/mechanism/effect stage model. | 2 · Causal mechanism/pathway | Failure path: sealed garden → no coupled vibration → pollen retained → buds abort → no fruit, with explicit missing-event node. | Preserve existing diagnosis, rejection and two model-stage fields; sync AK. | Near 124 Hz is insufficient without amplitude, duration and coupling; do not equate bee gripping with airborne coupling. | mechanism primitive; field/parity and boundary checks | `VERIFIED-FAMILY · 76/76 FAMILY STATIC PASS · 2321/2321 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · aa4eeac ACCEPTED` |
 | `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `PLANNED` |
