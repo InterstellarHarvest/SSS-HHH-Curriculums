@@ -503,30 +503,33 @@ def main() -> int:
     check("browser harness rejects The First Garden row collision overflow and automatic cure claims", "!state.requirementCollisions" in garden_case_harness and "state.scrollHeight <= state.clientHeight" in garden_case_harness and "guaranteed (?:cure|recovery|improvement)" in garden_case_harness)
 
     check(
-        "plan records C2C6-VIS03 as the 235-check pending Family 8 candidate",
+        "plan records C2C6-VIS03 as the accepted 235-check Family 8 completion",
         bool(re.search(
             r"\| `C2C6-VIS03` .*\| 8 · Intervention comparison/trial workflow \|.*"
-            r"`IMPLEMENTED-CANDIDATE · 235/235 INTERVENTION STATIC PASS · MAC/CHROME PENDING · STRICT FIT PENDING`",
+            r"`VERIFIED-FAMILY · 235/235 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 8a81fd0 ACCEPTED`",
             plan,
         ))
-        and "Implementation candidate — C2C6-VIS03 screened ecological trial" in plan
+        and "Accepted Family 8 completion — C2C6-VIS03 screened ecological trial" in plan
+        and "8a81fd02b83157dc7bebca443f294595d1eee6d3" in plan
         and "`IDENTIFY → SCREEN → APPROVE → TEST → MONITOR`" in plan
         and "`EXPAND ONLY IF SUPPORTED`" in plan,
     )
     check(
-        "plan preserves The First Garden science limits and pending inventory boundary",
-        all(token in plan for token in ("approximately **4–6 m**", "best-supported **candidate cause**", "names no treatment, product, supplier or organism", "within-world transfer is not risk-free", "No cure, recovery, colonisation, improvement or expansion is guaranteed", "Accepted inventory deliberately remains **34 of 36 completed / 2 of 36 remaining**", "Family 8 remains four of five verified", "`C1C1-GS01` is not begun")),
+        "plan preserves The First Garden science limits and records the accepted differential",
+        all(token in plan for token in ("approximately **4–6 m**", "best-supported **candidate cause**", "names no treatment, product, supplier or organism", "within-world transfer is not risk-free", "No cure, recovery, colonisation, improvement or expansion is guaranteed", "**2371/2371 PASS**", "**2374/2374 PASS**", "**+3 registered and +3 passed**", "Canonical project registration remains 2375", "Family 8 is complete at five of five assignments", "**35 of 36 completed / 1 of 36 remaining**", "Only `C1C1-GS01` remains; it is not begun")),
     )
     check(
-        "handoff preserves The First Garden source ownership fields and all five frozen hashes",
-        "Candidate Family 8 completion — The First Garden screened ecological trial" in handoff
+        "handoff accepts The First Garden and preserves source ownership fields and hashes",
+        "Accepted Family 8 completion — The First Garden screened ecological trial" in handoff
+        and "8a81fd02b83157dc7bebca443f294595d1eee6d3" in handoff
         and "changes no worksheet wording" in handoff
         and all(value in handoff for value in GARDEN_FROZEN_HASHES.values())
         and all(token in handoff for token in ("t7-criterion-1 | t7-criterion-2 | t7-constraint | t7-approval", "a7-criterion-1 | a7-criterion-2 | a7-constraint | a7-approval", "All eight fields remain blank", "Student page 6's combined Task 6 CER remains complete")),
     )
     check(
-        "handoff preserves The First Garden external gate and safety boundary without inferring acceptance",
-        all(token in handoff for token in ("**235/235 PASS**", "existing 103/103 mechanism contract", "exactly three browser assertions", "**2375/2375 PASS**", "**2374/2374 PASS**", "**2371/2371 PASS**", "exactly +3", "Canonical candidate registration remains 2375", "Within-world transfer is not risk-free", "No cure, recovery, colonisation, improvement or expansion is guaranteed", "Accepted inventory remains **34 of 36 completed**", "Family 8 remains four of five", "Do not begin `C1C1-GS01`")),
+        "handoff preserves The First Garden rendered evidence acceptance and final inventory boundary",
+        all(token in handoff for token in ("**235/235 PASS**", "existing 103/103 mechanism contract", "exactly three browser assertions", "**2374/2374", "**2371/2371 PASS**", "**+3 registered", "Canonical project registration remains 2375", "no general Mac, Chrome, browser, platform or", "exact 936/936 content fit", "identical inherited **219/230**", "Within-world transfer is not risk-free", "No cure, recovery, colonisation, improvement or expansion is guaranteed", "Family 8 is complete with five of five assignments", "**35 of 36 completed**", "with **1 remaining**: exactly", "`C1C1-GS01`")),
     )
 
     check(

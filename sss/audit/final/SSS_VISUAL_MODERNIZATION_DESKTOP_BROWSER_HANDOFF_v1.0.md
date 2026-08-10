@@ -4,12 +4,13 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Candidate Family 8 completion — The First Garden screened ecological trial
+## Accepted Family 8 completion — The First Garden screened ecological trial
 
-`C2C6-VIS03` is implemented as the final Family 8 intervention/trial candidate against exact
-accepted prerequisite `d44467f517059788ebd9d4398c4cd517471c687e`. It remains unaccepted and must
-not be pushed until the external Mac/Google Chrome gate below passes or receives a separate exact
-candidate-specific differential disposition.
+Accepted implementation `8a81fd02b83157dc7bebca443f294595d1eee6d3` advances `C2C6-VIS03` to
+`VERIFIED-FAMILY`, the fourth standalone and fifth overall accepted Family 8 intervention/trial
+finding. Its synchronized accepted prerequisite is
+`d44467f517059788ebd9d4398c4cd517471c687e`; the accepted lineage is exactly
+`d44467f… → 8a81fd0…`.
 
 The candidate changes only the shared component CSS, browser harness, focused intervention/trial
 validator, production plan and this handoff. It changes no worksheet wording, case presentation,
@@ -65,28 +66,33 @@ reports the identical inherited **219/230** result at prerequisite `d44467f…` 
 with the same eleven release-lifecycle/DOM-baseline failure names and no new failure. Do not repair
 or re-pin that validator during this visual finding.
 
-Run the complete browser harness twice. Canonical expectation is **2375/2375 PASS** with zero
-application JavaScript errors, byte-identical assertion-name sequences, 2375 unique names, no
-duplicates and exactly the three assertions above added and passing. If both candidate runs instead
-report exactly **2374/2374 PASS**, run a fresh same-Mac prerequisite at `d44467f…`. Only an exact
-prerequisite **2371/2371 PASS** and candidate **2374/2374 PASS ×2** differential—exactly +3
-registered/+3 passed, zero removed, no inherited assertion broken and no prerequisite-passing
-assertion failing—may be returned for owner disposition. Do not infer acceptance or create a
-general Mac, Chrome, browser, platform or environment exception. Canonical candidate registration
-remains 2375.
+The external Mac/Google Chrome gate passed under an exact candidate-specific differential
+acceptance. A fresh same-Mac prerequisite run at `d44467f…` registered **2371/2371 PASS** with zero
+application JavaScript errors. Accepted candidate Run 1 and Run 2 each registered **2374/2374
+PASS** with zero application JavaScript errors and exit 0. Their assertion-name sequences were
+byte-identical, with 2374 unique names and no duplicates. The set delta is exactly **+3 registered
+and +3 passed**: precisely the three assertions above. All three passed; zero assertions were
+removed, no inherited assertion was broken and no prerequisite-passing assertion failed at
+`8a81fd0…`.
 
-Inspect Student page 6, Accessible page 7, Answer Key page 5 and Teacher page 4 in normal and
-grayscale. Require fixed 816 × 1056 geometry, exact 936/936 content fit, unchanged 6 / 7 / 5 / 7
-role page counts, zero overflow/clipping/collision/spill/crowding, a legible non-colliding workflow
-rail, contained non-overlapping requirement rows, distinct border/pattern states, all eight learner
-fields blank/editable/unclipped, all four Answer Key gates and the Teacher explanation intact, and
-normal/grayscale meaning equivalence. The full Student CER must remain visible. Do not run PDF
-automation or re-pin `validate_static.py`.
+Instrumented Student page 6, Accessible page 7, Answer Key page 5 and Teacher page 4 captures in
+normal and grayscale confirm fixed **816 × 1056** geometry, exact 936/936 content fit, unchanged
+6 / 7 / 5 / 7 role page counts, zero overflow/clipping/collision/spill/crowding, a legible
+non-colliding workflow rail, contained non-overlapping requirement rows, distinct border/pattern
+states, all eight learner fields blank/editable/unclipped, all four Answer Key gates and the
+Teacher explanation intact, and normal/grayscale meaning equivalence. The height-neutral
+`EXPAND ONLY IF SUPPORTED` gate remains legible and the full Student CER remains unchanged and
+visible. Every implementation, geometry, science and safety condition passed.
 
-Accepted inventory remains **34 of 36 completed**, with **2 remaining**, and Family 8 remains four
-of five until separate owner acceptance and documentation-only closeout. Do not begin
-`C1C1-GS01`, mark `C2C6-VIS03` `VERIFIED-FAMILY`, advance the inventory or merge to `main` in this
-candidate run.
+Canonical project registration remains 2375. This acceptance applies only to `8a81fd0…`; the
+inherited one-registration difference creates no general Mac, Chrome, browser, platform or
+environment exception. The older Case-06 validator remains the identical inherited **219/230** at
+the prerequisite and accepted implementation, with precisely the same eleven failure names and no
+new failure. PDF automation was not run and `validate_static.py` was not re-pinned.
+
+`C2C6-VIS03` is therefore `VERIFIED-FAMILY`. Family 8 is complete with five of five assignments
+verified. The formal inventory is now **35 of 36 completed**, with **1 remaining**: exactly
+`C1C1-GS01`. Do not begin that final finding or merge to `main` in the closeout integration run.
 
 ## Accepted Family 8 finding — The Missing Dance monitored vibration trial
 
@@ -1600,9 +1606,10 @@ beneath accepted second corrective `5ab152e…`. The visual branch remains isola
 | `C1C6-VIS03` | `8d6a51a` | `VERIFIED-FAMILY` | first standalone Family 8 finding |
 | `C1C7-VIS03` | `917908c` | `VERIFIED-FAMILY` | second standalone Family 8 finding; failed `d97fd46` retained in lineage |
 | `C2C2-VIS03` | `f987bbb` | `VERIFIED-FAMILY` | third standalone and fourth overall Family 8 finding |
+| `C2C6-VIS03` | `8a81fd0` | `VERIFIED-FAMILY` | fourth standalone and fifth overall Family 8 finding |
 
-Family 8 has four of five assignments verified. Accepting `C2C2-VIS03` advances the unique visual-
-modernization inventory to 34 of 36 completed and 2 remaining; the previously accepted hybrid
+Family 8 is complete with five of five assignments verified. Accepting `C2C6-VIS03` advances the
+unique visual-modernization inventory to 35 of 36 completed and 1 remaining; the previously accepted hybrid
 `C2C5-VIS03` is not counted again. Failed implementation `d97fd46…` remains an immutable
 intermediate commit beneath accepted corrective successor `917908c…`. The visual branch remains
 isolated from `main`.
@@ -1678,3 +1685,22 @@ successor changes only documentation and the focused validator, do not rerun the
 harness, manual inspection or PDF automation. If both checks pass, push the branch by ordinary
 fast-forward and report local, tracking and live remote SHAs. Do not mark any additional finding
 accepted. Do not begin another finding in the same run.
+
+## C2C6-VIS03 closeout integration prompt
+
+Validate the supplied closeout bundle only from clean owner-accepted implementation
+`8a81fd02b83157dc7bebca443f294595d1eee6d3`. Confirm the pushed remote remains at that exact
+commit, verify the checksum and bundle prerequisite, fetch it, and integrate it with
+`git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit files. Run the
+focused 235-check intervention/trial validator and the 91-check cutaway validator, then
+`git diff --check`. Confirm the closeout changes only this handoff, the production plan and the
+focused validator; records `C2C6-VIS03` as `VERIFIED-FAMILY`; completes Family 8 at five of five
+assignments; records the exact 2371/2371 prerequisite to 2374/2374 candidate-specific differential
+Mac/Chrome acceptance without changing canonical registration 2375 or creating a general Mac,
+Chrome, browser, platform or environment exception; preserves the eight-view rendered and bounded-
+science evidence; preserves the inherited identical 219/230 legacy Case-06 result; and advances
+the inventory to 35/36 completed and 1 remaining, exactly `C1C1-GS01`. Because the successor
+changes only documentation and the focused validator, do not rerun the Mac/Chrome harness, manual
+inspection or PDF automation. If both checks pass, push the branch by ordinary fast-forward and
+report local, tracking and live remote SHAs. Do not begin `C1C1-GS01`, merge to `main` or mark any
+additional finding accepted in the same run.

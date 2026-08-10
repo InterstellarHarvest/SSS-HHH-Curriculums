@@ -18,11 +18,13 @@ Teacher Editions.
 
 Only a new regression introduced by this branch may reopen a correctness question.
 
-### Implementation candidate — C2C6-VIS03 screened ecological trial
+### Accepted Family 8 completion — C2C6-VIS03 screened ecological trial
 
-`C2C6-VIS03` is the final planned Family 8 intervention/trial finding. Its synchronized accepted
-prerequisite is the C2C2-VIS03 closeout
-`d44467f517059788ebd9d4398c4cd517471c687e`. The candidate changes only the shared component
+Accepted implementation `8a81fd02b83157dc7bebca443f294595d1eee6d3` advances `C2C6-VIS03` to
+`VERIFIED-FAMILY`, the fourth standalone and fifth overall accepted Family 8 intervention/trial
+finding. Its synchronized accepted prerequisite is the C2C2-VIS03 closeout
+`d44467f517059788ebd9d4398c4cd517471c687e`; the accepted lineage is exactly
+`d44467f… → 8a81fd0…`. The implementation changes only the shared component
 presentation layer, browser harness, focused intervention/trial validator, this production plan
 and the desktop browser handoff. It changes no worksheet or case source, case presentation,
 layout override, package metadata, task registry, response wording or geometry, persistence
@@ -61,17 +63,33 @@ mother-tree claim is introduced.
 The focused intervention/trial validator is **235/235 PASS**. It protects all five frozen The
 First Garden source hashes, exact cross-edition requirements and field identities, blank learner
 responses, the combined Student CER, Answer Key and Teacher parity, scoped CSS states, no authored
-learner-field dimensions and exactly three candidate browser assertions. Canonical external
-Mac/Google Chrome registration is expected to advance from 2372 to **2375** through exactly the
-normal semantic, grayscale semantic and eight-view strict-fit/page-count/geometry assertions.
-The implementation remains `IMPLEMENTED-CANDIDATE` pending those two complete browser runs and
-normal/grayscale inspection of Student page 6, Accessible page 7, Answer Key page 5 and Teacher
-page 4. No rendered acceptance is inferred from static validation.
+learner-field dimensions and exactly three browser assertions. The external Mac/Google Chrome gate
+passed under an exact candidate-specific differential acceptance. A fresh same-Mac prerequisite
+run at `d44467f…` registered **2371/2371 PASS** with zero application JavaScript errors. Accepted
+candidate Run 1 and Run 2 each registered **2374/2374 PASS** with zero application JavaScript
+errors and exit 0. Their assertion-name sequences were byte-identical, with 2374 unique names and
+no duplicates. The set delta is exactly **+3 registered and +3 passed**: precisely the normal
+semantic, grayscale semantic and eight-view strict-fit/page-count/geometry assertions. All three
+new `C2C6-VIS03` assertions passed; zero assertions were removed, no inherited assertion was
+broken and no prerequisite-passing assertion failed at `8a81fd0…`.
 
-Accepted inventory deliberately remains **34 of 36 completed / 2 of 36 remaining**, and Family 8
-remains four of five verified, until the external rendered gate is accepted. `C1C1-GS01` is not
-begun. Do not merge to `main`, mark `C2C6-VIS03` `VERIFIED-FAMILY`, advance the inventory or create
-a general Mac/Chrome/platform exception from this candidate record.
+Instrumented Student page 6, Accessible page 7, Answer Key page 5 and Teacher page 4 captures in
+normal and grayscale confirm fixed **816 × 1056** pages, exact 936/936 content fit, unchanged
+6 / 7 / 5 / 7 role page counts, zero overflow, clipping, collision, spill or crowding, contained
+non-overlapping requirement rows, distinct grayscale-safe patterns and border states, all eight
+learner fields blank/editable/unclipped, four distinct Answer Key gates and the complete Teacher
+control/risk explanation. `IDENTIFY → SCREEN → APPROVE → TEST → MONITOR` and
+`EXPAND ONLY IF SUPPORTED` remain legible without changing caption height; Student page 6's full
+CER remains unchanged and fully visible.
+
+Canonical project registration remains 2375. This acceptance applies only to `8a81fd0…`; the
+inherited one-registration difference creates no general Mac, Chrome, browser, platform or
+environment exception. The older Case-06 validator remains the identical inherited **219/230** at
+the prerequisite and accepted implementation, with the same eleven failure names and no new
+failure. `C2C6-VIS03` is therefore `VERIFIED-FAMILY`, Family 8 is complete at five of five
+assignments, and the accepted unique inventory is now **35 of 36 completed / 1 of 36 remaining**.
+Only `C1C1-GS01` remains; it is not begun. Do not merge to `main` or begin that final finding in
+the closeout integration run.
 
 ## 2. Repository and branch verification
 
@@ -880,17 +898,21 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after The Missing Dance monitored-vibration-trial closeout is **34 of 36
-completed** and **2 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after The First Garden screened-ecological-trial closeout is **35 of 36
+completed** and **1 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
 complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
 unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
 Family 7 is complete at two of two assignments: accepted corrective standalone `C2C1-VIS01` and
 accepted second-corrective standalone `C2C2-VIS01`.
-Family 8 has four of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
+Family 8 is complete at five of five assignments: hybrid `C2C5-VIS03`, already counted once among
 Family 2's unique findings, accepted standalone `C1C6-VIS03`, accepted corrective standalone
-`C1C7-VIS03` and accepted standalone `C2C2-VIS03`.
+`C1C7-VIS03`, accepted standalone `C2C2-VIS03` and accepted standalone `C2C6-VIS03`.
+
+Accepted progress after The Missing Dance monitored-vibration-trial closeout was **34 of 36
+completed** and **2 of 36 remaining**. At that checkpoint, Family 8 had four of five assignments
+verified.
 
 Accepted progress after The Missing Dance botanical-cutaway closeout was **33 of 36 completed**
 and **3 of 36 remaining**. At that checkpoint, Family 8 had three of five assignments verified.
@@ -1022,7 +1044,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C5-VIS03` | Too Clean a Room; S T5 p5 + T7 p7, A T5 p5 + T7 p7, AK T5 p4 + T7 p5 | Generic pathway and separate dense trial-requirements table. | 2 + 8 · Mechanism/trial workflow | Species-specific signal → pathway → product panel paired with high-level authorization → control → dosimetry/production → staged trial → stop workflow. | Keep tasks/pages separate; preserve diagnosis fields, pathway blanks and all trial requirements. | `<0.01 mGy/day` bound; homeworld ~8.4 and Rhessi ~12 are different contexts; mGy ≠ sievert; two conditions do not form a curve; non-operational only. | mechanism + IC1; unit, context, safety and response checks | `VERIFIED-FAMILY · 94/94 FAMILY STATIC PASS · 2327/2327 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 7be2f42 ACCEPTED` |
 | `C2C6-VIS01` | The First Garden; S T2 p2, A T2 p2 | Accurate simple plan-view patch diagram. | 1 · Technical telemetry/data | SAA soil-survey diagnostic with discrete abundance zones, sharp boundary and trace inter-patch ground. | Replace existing figure only; same caption/table backup and height. | Approximately 4–6 m remains a range; trace ≠ absent; pattern is not a map/not to scale; no patch spacing invented. | D1 spatial variant; range/status/alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C6-VIS02` | The First Garden; S T5 p5, A T5 p5, AK T5 p4 | Generic five-stage pathway. | 2 · Causal mechanism/pathway | Candidate pathway with an explicit persistent `CANDIDATE · NOT ESTABLISHED` status rail from construction history through possible partnership loss to surveyed pattern. | Preserve fixed stages, three blanks, exact bank and model-limit response; sync AK. | Best-supported candidate only; no wood-wide-web/mother-tree/guaranteed-inoculation claims. | mechanism/status primitive; bank, qualifier and persistence checks | `VERIFIED-FAMILY · 103/103 FAMILY STATIC PASS · 2330/2330 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d8886b5 ACCEPTED` |
-| `C2C6-VIS03` | The First Garden; S T7 p6, A T7 p7, AK T7 p5, T support p4 | Trial requirements are a long table; decision sequence is implicit. | 8 · Intervention comparison/trial workflow | Screened ecological workflow: identify → screen → approve → replicated treated + untreated plots → monitor colonization/performance/spread → conditional expansion. | Preserve all requirement fields and no-product/no-species instruction; synchronize AK and Teacher explanation. | Do not name treatment/product/organism; within-world transfer is not risk-free; no guaranteed cure; expand only if evidence supports. | IC1; safety-language, field/parity and conditionality checks | `IMPLEMENTED-CANDIDATE · 235/235 INTERVENTION STATIC PASS · MAC/CHROME PENDING · STRICT FIT PENDING` |
+| `C2C6-VIS03` | The First Garden; S T7 p6, A T7 p7, AK T7 p5, T support p4 | Trial requirements are a long table; decision sequence is implicit. | 8 · Intervention comparison/trial workflow | Screened ecological workflow: identify → screen → approve → replicated treated + untreated plots → monitor colonization/performance/spread → conditional expansion. | Preserve all requirement fields and no-product/no-species instruction; synchronize AK and Teacher explanation. | Do not name treatment/product/organism; within-world transfer is not risk-free; no guaranteed cure; expand only if evidence supports. | IC1; safety-language, field/parity and conditionality checks | `VERIFIED-FAMILY · 235/235 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 8a81fd0 ACCEPTED` |
 
 ## 8. Reusable visual grammar and smallest primitive set
 
