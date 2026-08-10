@@ -535,8 +535,8 @@ evidence convergence 60/60, telemetry 36/36 and the Case 06 layout-override vali
 accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, and accepted standalone
 `C1C6-VIS03`.
 
-`C1C7-VIS03` is the corrected but unaccepted second standalone Family 8
-intervention-comparison candidate. It preserves The Gift's frozen Student page 5, Answer Key
+`C1C7-VIS03` is the accepted second standalone Family 8 intervention-comparison finding. Corrective
+candidate `917908cc6da875d33c953601f2ed565b53939dc5` preserves The Gift's frozen Student page 5, Answer Key
 page 5 and Accessible page 7 as the semantic source of truth. The strictly Case-07-scoped shared
 treatment exposes the existing Task 7 sequence as `EVIDENCE → CONTROL → MONITOR`. The three
 existing routes retain their exact order. Student matrix rows and Accessible route cards receive
@@ -546,7 +546,7 @@ subordinate to evidence, controls and uncertainty. Recommendation, monitoring/st
 prediction/challenge fields remain separate solid, dashed and dotted rails. The Answer Key mirrors
 the same three response gates.
 
-The candidate changes no worksheet source, case presentation, layout override, package metadata,
+The accepted implementation changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response wording or dimensions, persistence identity, page count, Teacher content,
 source hash, release/history record or accepted-family implementation. Student retains three blank
 fields: `t7-recommend | t7-monitor | t7-predict`. Accessible retains the parallel three fields and
@@ -569,15 +569,29 @@ oracle defects, not the inherited one-registration differential and not product-
 The corrective successor preserves `d97fd46…` as immutable evidence and changes only those two
 harness expectations plus the focused validator and active lifecycle records that govern them.
 
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. On
+the same Mac, accepted prerequisite `e7e1b58f61899b0e53de5b7f07cba205fdb7797b` registered
+2359/2359 PASS. Corrective candidate Run 1 and Run 2 each registered 2362/2362 PASS with zero
+application JavaScript errors. The candidate delta is exactly +3 registered and +3 passed, both
+runs have identical assertion-name sets, all three new The Gift contracts passed, no inherited
+assertion was removed or broken and no assertion passing at the prerequisite now fails. Both
+previously failing DOM-oracle assertions now pass. This disposition applies only to corrective
+candidate `917908c…`; it does not create a general platform policy or change the canonical
+2363-assertion registration. Failed first implementation `d97fd46…` remains immutable evidence in
+the accepted lineage and is not itself granted visual acceptance.
+
 The candidate adds exactly three browser assertions: one six-view strict-fit contract plus normal
-and grayscale semantic/geometry contracts. Canonical registration after these additions is 2363.
-The corrected candidate must rerun the complete Mac/Google Chrome harness twice, inspect Student
-page 5, Answer Key page 5 and Accessible page 7 in normal and grayscale, and compare against
-prerequisite `e7e1b58…` on the same machine if the inherited one-registration difference remains.
-Until that gate passes and a separate documentation-only closeout is synchronized, `C1C7-VIS03`
-does not advance the accepted **30 of 36 completed / 6 of 36 remaining** inventory. Family 8
-retains two accepted assignments—hybrid `C2C5-VIS03` and standalone `C1C6-VIS03`—and this
-corrected candidate remains unaccepted.
+and grayscale semantic/geometry contracts. Independent normal and grayscale inspection of Student
+page 5, Answer Key page 5 and Accessible page 7 confirmed fixed 816 × 1056 geometry, exact
+`scrollHeight 936 == clientHeight 936` fit, Student 6 / Answer Key 6 / Accessible 8 page counts,
+contained route panels and response rails, distinct border/pattern states, blank usable learner
+fields except the accepted Accessible monitoring scaffold, three unchanged Answer Key exemplars,
+and no overflow, spill, clipping, collision or crowding. The focused intervention/trial validator
+passed 125/125; specification 105/105; control 30/30; timeline 44/44; mechanism 103/103; evidence
+convergence 60/60; telemetry 36/36; and the Case 07 layout-override validator passed.
+`C1C7-VIS03` is therefore `VERIFIED-FAMILY`. Family 8 now has three of five assignments verified:
+accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, accepted standalone
+`C1C6-VIS03` and accepted corrective standalone `C1C7-VIS03`.
 
 ## 3. Exact inventory reconciliation
 
@@ -588,14 +602,18 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**
-and **6 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**
+and **5 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
 complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
 unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
-Family 8 has two of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
-Family 2's unique findings, and newly accepted standalone `C1C6-VIS03`.
+Family 8 has three of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
+Family 2's unique findings, accepted standalone `C1C6-VIS03` and accepted corrective standalone
+`C1C7-VIS03`.
+
+Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**
+and **6 of 36 remaining**.
 
 Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**
 and **7 of 36 remaining**.
@@ -692,7 +710,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `VERIFIED-FAMILY · 63/63 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 8d6a51a ACCEPTED` |
 | `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 39325dc ACCEPTED` |
 | `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `VERIFIED-FAMILY · 68/68 FAMILY STATIC PASS · 2318/2318 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 812d5c3 ACCEPTED` |
-| `C1C7-VIS03` | The Gift; S T7 p5, A T7 p7, AK T7 p5 | Dense intervention matrix; story rank competes with evidence. | 8 · Intervention comparison/trial workflow | Three-route decision/monitoring matrix with explicit evidence fit, controls, reversibility/commitment, monitoring and uncertainty hierarchy. | Preserve route choice, evidence, monitor/stop and prediction fields; points remain subordinate story ranks. | Story scores are not scientific results; no inferred dose, purity, synthesis or safety. | IC1; response/AK parity and label hierarchy checks | `PLANNED` |
+| `C1C7-VIS03` | The Gift; S T7 p5, A T7 p7, AK T7 p5 | Dense intervention matrix; story rank competes with evidence. | 8 · Intervention comparison/trial workflow | Three-route decision/monitoring matrix with explicit evidence fit, controls, reversibility/commitment, monitoring and uncertainty hierarchy. | Preserve route choice, evidence, monitor/stop and prediction fields; points remain subordinate story ranks. | Story scores are not scientific results; no inferred dose, purity, synthesis or safety. | IC1; response/AK parity and label hierarchy checks | `VERIFIED-FAMILY · 125/125 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 917908c ACCEPTED` |
 
 ## 7. Candidate production matrix — Campaign 2
 

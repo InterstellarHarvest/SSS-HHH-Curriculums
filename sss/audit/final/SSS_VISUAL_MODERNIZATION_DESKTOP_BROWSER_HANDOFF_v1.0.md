@@ -4,15 +4,13 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Unaccepted Family 8 candidate — The Gift controlled response
+## Accepted Family 8 finding — The Gift controlled response
 
-The accepted lineage root is First Contact closeout
-`e7e1b58f61899b0e53de5b7f07cba205fdb7797b`. Failed first implementation
+Corrective candidate `917908cc6da875d33c953601f2ed565b53939dc5` advances `C1C7-VIS03` to
+`VERIFIED-FAMILY`, the second standalone accepted Family 8 intervention-comparison finding. Its
+accepted lineage root is First Contact closeout `e7e1b58f61899b0e53de5b7f07cba205fdb7797b`. Failed first implementation
 `d97fd466057ad1c9bab7d33d5666cc946416586c` remains an immutable intermediate commit beneath the
-active corrective successor for `C1C7-VIS03`, the second standalone Family 8
-intervention-comparison candidate. It is not accepted and does not advance the 30/36 inventory.
-Accepted hybrid `C2C5-VIS03` and standalone `C1C6-VIS03` remain Family 8's two verified
-assignments; the hybrid remains counted only once in the unique inventory.
+accepted corrective successor and is not itself granted visual acceptance.
 
 The frozen Task 7 structures remain semantic and source-controlled:
 
@@ -34,7 +32,7 @@ verification rail, and prediction/challenge uses a dotted uncertainty rail. Ever
 rail retains at least 6 px clearance. These labels add no route, dose, purity value, synthesis
 procedure, completed trial, recovery result or learner action.
 
-No The Gift source file changes. The candidate preserves these SHA-256 identities:
+No The Gift source file changes. The accepted corrective implementation preserves these SHA-256 identities:
 
 - `content.html` — `45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11`
 - `presentation.css` — `259b76e2d7752680d58e01092e2bc3528956e13be7b79c3b453611b6c2d258a4`
@@ -42,7 +40,7 @@ No The Gift source file changes. The candidate preserves these SHA-256 identitie
 - `case-package.json` — `fdd287d5b3874d20f49b94836f0bff3ccf24702eb3ee17093f60b2cc6f39871c`
 - `task-registry.js` — `5d6e5fe1223b4faee4e5f49c41e0bd4e1ae7e92767027ee15dce5adc268eeaff`
 
-The cumulative candidate scope from `e7e1b58…` is exactly the shared component CSS, browser
+The cumulative accepted scope from `e7e1b58…` is exactly the shared component CSS, browser
 harness, focused Family 8 validator, production plan and this handoff. The corrective successor
 changes only the two defective harness expectations, the focused validator that checks them, the
 production plan and this handoff. It changes no worksheet wording, case presentation,
@@ -75,24 +73,28 @@ contract in each of normal and grayscale. Canonical project registration is ther
 focused intervention/trial validator is **125/125 PASS** after the candidate record is included;
 all established family validators and The Gift layout overrides must remain green.
 
-External Mac/Google Chrome acceptance remains required for the corrected successor. Run the
-complete harness twice with canonical expectation **2363/2363 PASS** and zero
-application JavaScript errors. Inspect Student page 5, Answer Key page 5 and Accessible page 7 in
-normal and grayscale for fixed 816 × 1056 geometry, exact role page counts Student 6 / Answer Key
-6 / Accessible 8, `scrollHeight 936 == clientHeight 936`, no overflow/collision/crowding, distinct
-route and response-gate states without color, legible labels and usable unclipped learner fields.
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. On
+the same Mac, accepted prerequisite `e7e1b58…` passed **2359/2359 PASS**. Corrective candidate Run 1
+and Run 2 each passed **2362/2362 PASS** with zero application JavaScript errors. The candidate
+delta is exactly +3 registered and +3 passed; all three The Gift assertions registered and passed;
+both corrected runs had identical assertion-name sets; no inherited assertion was removed or
+broken; no assertion passing at the prerequisite now fails; and both formerly defective browser
+oracles now pass. Canonical project registration remains 2363. This disposition applies only to
+corrective candidate `917908c…` and does not establish a general platform policy or environment
+exception.
 
-If that Mac reproduces an inherited one-registration difference, test prerequisite `e7e1b58…` in
-a throwaway worktree on the same machine. Require candidate delta exactly +3 registered and +3
-passed, all three named Case 07 assertions passing, identical candidate assertion-name sets, no
-inherited regression and zero application JavaScript errors; then stop without pushing for separate
-candidate-specific disposition. Differential evidence does not itself authorize acceptance,
-change canonical 2363 or establish a general platform policy.
-
-Run the focused intervention/trial validator, all established family regressions and
-`validate_layout_overrides.py --case SSS-C1-CASE07`. If every gate passes, push only by ordinary
-fast-forward. Do not mark `C1C7-VIS03` `VERIFIED-FAMILY`, advance the inventory, merge to `main` or
-begin another finding. A separate closeout is required after acceptance.
+The earlier six-view manual inspection remains applicable because the corrective successor changes
+no CSS, source content, dimensions or rendering. Captured browser details reconfirm fixed
+816 × 1056 geometry, exact Student 6 / Answer Key 6 / Accessible 8 page counts,
+`scrollHeight 936 == clientHeight 936`, no overflow/collision/crowding, distinct route and
+response-gate states without color, legible labels, usable unclipped learner fields, the accepted
+Accessible scaffold and all three Answer Key exemplars. The focused intervention/trial validator
+passed 125/125; specification 105/105; control 30/30; timeline 44/44; mechanism 103/103; evidence
+convergence 60/60; telemetry 36/36; and The Gift layout-override validator passed.
+`C1C7-VIS03` is accepted without changing canonical project registration or creating a general
+platform exception. The formal inventory is now **31 of 36 completed**, with **5 remaining**.
+Family 8 has three of five assignments verified. Do not mark any additional finding accepted or
+begin another finding without a separate candidate-production instruction.
 
 ## Accepted Family 8 finding — First Contact monitored response
 
@@ -1234,23 +1236,28 @@ branch remains isolated from `main`.
 |---|---|---|---|
 | `C2C5-VIS03` | `7be2f42` | `VERIFIED-FAMILY` | hybrid Family 2 + 8 finding; counted once in the unique inventory |
 | `C1C6-VIS03` | `8d6a51a` | `VERIFIED-FAMILY` | first standalone Family 8 finding |
+| `C1C7-VIS03` | `917908c` | `VERIFIED-FAMILY` | second standalone Family 8 finding; failed `d97fd46` retained in lineage |
 
-Family 8 has two of five assignments verified. Accepting `C1C6-VIS03` advances the unique
-visual-modernization inventory to 30 of 36 completed and 6 remaining; the previously accepted
-hybrid `C2C5-VIS03` is not counted again. The visual branch remains isolated from `main`.
+Family 8 has three of five assignments verified. Accepting `C1C7-VIS03` advances the unique
+visual-modernization inventory to 31 of 36 completed and 5 remaining; the previously accepted
+hybrid `C2C5-VIS03` is not counted again. Failed implementation `d97fd46…` remains an immutable
+intermediate commit beneath accepted corrective successor `917908c…`. The visual branch remains
+isolated from `main`.
 
-## C1C6-VIS03 closeout integration prompt
+## C1C7-VIS03 closeout integration prompt
 
-Validate the supplied closeout bundle only from clean accepted implementation
-`8d6a51a58a18f1f4db51d7a25ea58317f1962408`. Confirm the pushed remote remains
-`8d6a51a58a18f1f4db51d7a25ea58317f1962408`, verify the checksum and bundle prerequisite, fetch it,
+Validate the supplied closeout bundle only from clean accepted corrective implementation
+`917908cc6da875d33c953601f2ed565b53939dc5`. Confirm the pushed remote remains
+`e7e1b58f61899b0e53de5b7f07cba205fdb7797b`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 63-check intervention/trial validator and `git diff --check`. Confirm the
+files. Run the focused 125-check intervention/trial validator and the 105-check
+specification/verification validator, then `git diff --check`. Confirm the
 closeout changes only this handoff, the production plan and the focused validator; records
-`C1C6-VIS03` as `VERIFIED-FAMILY`; records Family 8 at two of five verified assignments without
+`C1C7-VIS03` as `VERIFIED-FAMILY`; records Family 8 at three of five verified assignments without
 double-counting hybrid `C2C5-VIS03`; records the
 candidate-specific differential Mac/Chrome acceptance without changing the canonical project
-total; and advances the inventory to 30/36 completed and 6 remaining. Because the successor
+total; preserves failed `d97fd46…` in the accepted lineage; and advances the inventory to 31/36
+completed and 5 remaining. Because the successor
 changes only documentation and the focused validator, do not rerun the Mac/Chrome harness or
 manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
 tracking and live remote SHAs. Do not mark any additional finding accepted.

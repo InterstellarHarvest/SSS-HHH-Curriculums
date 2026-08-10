@@ -253,33 +253,50 @@ def main() -> int:
     check("browser harness rejects The Gift route collision and overflow", "!state.routeCollisions" in gift_case_harness and "state.scrollHeight <= state.clientHeight" in gift_case_harness)
 
     check(
-        "plan records C1C7-VIS03 as the corrected unaccepted Family 8 candidate",
-        "`C1C7-VIS03` is the corrected but unaccepted second standalone Family 8 intervention-comparison candidate" in plan
+        "plan records C1C7-VIS03 as the accepted corrected Family 8 finding",
+        bool(re.search(
+            r"\| `C1C7-VIS03` .*\| 8 · Intervention comparison/trial workflow \|.*"
+            r"`VERIFIED-FAMILY · 125/125 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 917908c ACCEPTED`",
+            plan,
+        ))
+        and "accepted second standalone Family 8 intervention-comparison finding" in plan
+        and "`C1C7-VIS03` is therefore `VERIFIED-FAMILY`" in plan
         and "`EVIDENCE → CONTROL → MONITOR`" in plan
         and all(token in plan for token in ("`SUPPORTED`", "`QUALIFIED`", "`RESEARCH ONLY`", "2360/2362", "DOM-structure oracle defects")),
     )
     check(
-        "plan preserves the accepted 30 of 36 inventory while The Gift awaits acceptance",
-        "does not advance the accepted **30 of 36 completed / 6 of 36 remaining** inventory" in plan
-        and "this corrected candidate remains unaccepted" in plan,
+        "plan advances accepted inventory to 31 of 36 and Family 8 to three of five",
+        "Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**" in plan
+        and "**5 of 36 remaining**" in plan
+        and "Family 8 has three of five assignments verified" in plan
+        and "Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**" in plan,
     )
     check(
         "handoff preserves The Gift source ownership and all five frozen hashes",
-        "Unaccepted Family 8 candidate — The Gift controlled response" in handoff
+        "Accepted Family 8 finding — The Gift controlled response" in handoff
         and "changes no worksheet wording" in handoff
         and all(value in handoff for value in GIFT_FROZEN_HASHES.values()),
     )
     check("handoff preserves exact The Gift route and response-gate states", all(token in handoff for token in ("`SUPPORTED`", "`QUALIFIED`", "`RESEARCH ONLY`", "solid evidence-selection rail", "dashed verification rail", "dotted uncertainty rail")))
     check("handoff preserves The Gift dose commitment and prediction limits", all(token in handoff for token in ("no safe numerical dose", "Exposure can stop before commitment", "not replicated trials or guaranteed outcomes", "formula is insufficient")))
     check(
-        "handoff requires canonical 2363 external acceptance without advancing lifecycle",
-        "canonical expectation **2363/2363 PASS**" in handoff
+        "handoff records candidate-specific differential acceptance without platform policy",
+        "2359/2359 PASS" in handoff
+        and "Run 2 each passed **2362/2362 PASS**" in handoff
+        and "+3 registered and +3 passed" in handoff
+        and "all three The Gift assertions registered and passed" in handoff
+        and "both formerly defective browser" in handoff
+        and "Canonical project registration remains 2363" in handoff
+        and "does not establish a general platform policy" in handoff
         and "focused intervention/trial validator is **125/125 PASS**" in handoff
         and "first browser execution" in handoff
         and "2360/2362" in handoff
         and "DOM-accurate expectations" in handoff
-        and "Do not mark `C1C7-VIS03` `VERIFIED-FAMILY`" in handoff
-        and "A separate closeout is required after acceptance" in handoff,
+        and "The formal inventory is now **31 of 36 completed**" in handoff
+        and "with **5 remaining**" in handoff
+        and "Family 8 has three of five assignments verified" in handoff
+        and "Failed implementation `d97fd46…` remains an immutable" in handoff,
     )
 
     check(
@@ -294,16 +311,16 @@ def main() -> int:
         and "`C1C6-VIS03` is therefore `VERIFIED-FAMILY`" in plan,
     )
     check(
-        "plan advances accepted inventory to 30 of 36 and Family 8 to two of five",
+        "plan preserves the preceding First Contact 30-of-36 milestone",
         "Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**" in plan
-        and "**6 of 36 remaining**" in plan
-        and "Family 8 has two of five assignments verified" in plan
+        and "and **6 of 36 remaining**" in plan
         and "Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**" in plan,
     )
     check(
-        "plan identifies the accepted Family 8 hybrid without double-counting",
+        "plan identifies the accepted Family 8 hybrid without double-counting in the current inventory",
         "accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory" in plan
-        and "newly accepted standalone `C1C6-VIS03`" in plan,
+        and "accepted corrective standalone `C1C7-VIS03`" in plan
+        and "Family 8 now has three of five assignments verified" in plan,
     )
     check(
         "handoff accepts the First Contact Family 8 finding and preserves source ownership",
