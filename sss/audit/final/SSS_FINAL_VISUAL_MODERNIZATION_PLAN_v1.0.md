@@ -593,7 +593,7 @@ convergence 60/60; telemetry 36/36; and the Case 07 layout-override validator pa
 accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, accepted standalone
 `C1C6-VIS03` and accepted corrective standalone `C1C7-VIS03`.
 
-`C2C1-VIS01` is the implemented but unaccepted Family 7 pilot. It preserves Heavy Hands' frozen
+`C2C1-VIS01` is the corrected but unaccepted Family 7 pilot. It preserves Heavy Hands' frozen
 Student Task 4 page 3 and Accessible Task 4 page 4 SVGs as the semantic source of truth. Those two
 figures already contain the same 20 cm bed boundary, the qualitative small / medium / large size
 sequence, three independent patterns, the explicit no-deformation-quantity limit, an accessible
@@ -611,14 +611,30 @@ starts aligned with the outward primary roots, curves sideways across the row ra
 or away from the axis, and deformation increases qualitatively with diameter. No organ dimension,
 deformation amount, cross-species rule or scale relationship is introduced.
 
+The first implementation commit, `b6a56b9c7b8a24cdb41942a2d32705d95432e0c0`, failed its first
+external Mac/Google Chrome gate deterministically at **2363/2365** on both runs with zero
+application JavaScript errors and identical assertion-name sets. The strict-fit/page-count/geometry
+assertion passed, all 2362 inherited assertions passed and every other captured semantic and
+geometry sub-condition passed. The normal and grayscale semantic assertions failed only because
+their copied Campaign 1 oracle required `presentation.sharedVisualStyles === true`; every Campaign
+2 package, including frozen Heavy Hands, correctly declares
+`presentation.sharedComponentStyles: true`. Accepted prerequisite `a9fd1b0…` passed 2362/2362 on
+the same Mac, so the failed candidate added three registered assertions but only one passing
+assertion. This is a candidate-authored package-property oracle defect, not a rendering or platform
+problem, not the anticipated inherited 2365/2365 differential and not a failure of inherited
+coverage. The corrective successor preserves `b6a56b9…` as immutable evidence and changes only
+that one harness property token plus the focused validator and active lifecycle records that
+govern it. The frozen package must not be changed to satisfy the assertion.
+
 The candidate adds exactly three browser assertions: one four-view strict-fit/page-count/geometry
 contract plus normal and grayscale semantic/geometry contracts. Canonical project registration is
 therefore expected to become 2366. The focused contracts require fixed 816 × 1056 pages, unchanged
 Student 5 / Accessible 8 page counts, equal bed boundaries, strictly increasing contained tuber
 spans, three independent source patterns, exact direct labels, the qualitative/not-to-scale state,
-the 20 cm boundary and the no-deformation-quantity limitation. This production environment makes
-no executable-browser, rendered-fit or manual-inspection claim. Until the complete external
-browser harness passes twice and both pages are inspected in normal and grayscale,
+the 20 cm boundary and the no-deformation-quantity limitation. The corrected candidate must rerun
+the complete external browser harness twice. The completed four-view manual inspection remains
+applicable because the corrective successor changes no CSS, source content, dimensions or
+rendering; its captured browser details must remain intact. Until the browser gate passes,
 C2C1-VIS01 does not advance the accepted **31 of 36 completed / 5 of 36 remaining** inventory.
 Family 7 remains zero of two accepted assignments; this pilot remains `IMPLEMENTED-CANDIDATE`.
 

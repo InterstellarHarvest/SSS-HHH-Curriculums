@@ -1956,7 +1956,7 @@
             check(
               `C2 Case 01 ${grayscale ? "grayscale" : "normal"} tuber cutaway preserves matched bed depth, qualitative size order and evidence limits`,
               worksheetDoc.dataset.caseId === item.id
-                && api.getPackage().presentation.sharedVisualStyles === true
+                && api.getPackage().presentation.sharedComponentStyles === true
                 && rendered.length === 2
                 && rendered.every(state => state.figure && state.position === "relative" && state.overflow === "hidden" && state.railWidth >= 4)
                 && rendered.every(state => state.status === "RADIAL BED CUTAWAY · NOT TO SCALE" && state.svgBackground !== "none")

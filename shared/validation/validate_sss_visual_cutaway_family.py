@@ -236,14 +236,16 @@ def main() -> int:
         and "var(--panel-light, #f7f9fa)" in cutaway_css,
     )
 
-    check(
-        "the browser harness registers exactly three focused Heavy Hands cutaway assertions",
-        harness.count("C2 Case 01 cutaway pages retain strict fit, page counts and geometry in normal and grayscale") == 1
-        and harness.count('C2 Case 01 ${grayscale ? "grayscale" : "normal"} tuber cutaway preserves matched bed depth, qualitative size order and evidence limits') == 1,
-    )
     cutaway_start = harness.index("// Register the Family 7 cutaway pilot")
     cutaway_end = harness.index("// Register the second standalone Family 6 contract", cutaway_start)
     cutaway_harness = harness[cutaway_start:cutaway_end]
+    check(
+        "the browser harness registers exactly three focused Heavy Hands cutaway assertions",
+        harness.count("C2 Case 01 cutaway pages retain strict fit, page counts and geometry in normal and grayscale") == 1
+        and harness.count('C2 Case 01 ${grayscale ? "grayscale" : "normal"} tuber cutaway preserves matched bed depth, qualitative size order and evidence limits') == 1
+        and "api.getPackage().presentation.sharedComponentStyles === true" in cutaway_harness
+        and "api.getPackage().presentation.sharedVisualStyles" not in cutaway_harness,
+    )
     check(
         "the cutaway browser contract covers all four rendered views and strict fit",
         all(token in cutaway_harness for token in (
@@ -287,9 +289,19 @@ def main() -> int:
     )
 
     check(
-        "the plan records C2C1-VIS01 as implemented but unaccepted",
-        "`C2C1-VIS01` is the implemented but unaccepted Family 7 pilot" in plan
-        and re.search(r"\| `C2C1-VIS01` .*\| `IMPLEMENTED-CANDIDATE` \|", plan) is not None,
+        "the plan records C2C1-VIS01 as corrected but unaccepted",
+        "`C2C1-VIS01` is the corrected but unaccepted Family 7 pilot" in plan
+        and re.search(r"\| `C2C1-VIS01` .*\| `IMPLEMENTED-CANDIDATE` \|", plan) is not None
+        and all(token in plan for token in (
+            "b6a56b9c7b8a24cdb41942a2d32705d95432e0c0",
+            "2363/2365",
+            "zero application JavaScript errors",
+            "identical assertion-name sets",
+            "all 2362 inherited assertions passed",
+            "three registered assertions but only one passing",
+            "not the anticipated inherited 2365/2365 differential",
+            "immutable evidence",
+        )),
     )
     check(
         "the plan preserves 31/36 while the cutaway candidate awaits rendering",
@@ -301,6 +313,11 @@ def main() -> int:
         "Pending Family 7 pilot — Heavy Hands radial-bed cutaway" in handoff
         and "C2C1-VIS01" in handoff
         and "2366/2366" in handoff
+        and "2363/2365" in handoff
+        and "2362/2362 PASS" in handoff
+        and "all 2362 inherited assertions passed" in handoff
+        and "not the anticipated inherited 2365/2365 differential" in handoff
+        and "sharedComponentStyles" in handoff
         and "31/36" in handoff
         and all(expected in handoff for expected in FROZEN_HASHES.values()),
     )

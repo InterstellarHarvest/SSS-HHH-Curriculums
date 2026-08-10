@@ -6,11 +6,12 @@ run PDF automation, or reopen accepted correctness findings.
 
 ## Pending Family 7 pilot — Heavy Hands radial-bed cutaway
 
-The successor to accepted The Gift closeout
-`a9fd1b0fb2d0a5a3ff9c7a4b53c3961033ac4f57` implements `C2C1-VIS01` as the first Family 7
-biological/structural cutaway candidate. It is not accepted and does not advance the 31/36
-inventory. Family 7 remains zero of two accepted assignments until the external rendered gate and
-manual inspection pass.
+The accepted lineage root is The Gift closeout
+`a9fd1b0fb2d0a5a3ff9c7a4b53c3961033ac4f57`. Failed first implementation
+`b6a56b9c7b8a24cdb41942a2d32705d95432e0c0` remains an immutable intermediate commit beneath the
+active corrective successor for `C2C1-VIS01`, the first Family 7 biological/structural cutaway
+candidate. It is not accepted and does not advance the 31/36 inventory. Family 7 remains zero of
+two accepted assignments until the external browser gate passes.
 
 The frozen Student Task 4 page 3 and Accessible Task 4 page 4 figures remain the semantic source.
 Each retains the exact same 20 cm bed-depth boundary, the direct `Small tuber | Medium tuber |
@@ -38,10 +39,26 @@ axis; deformation increases qualitatively with tuber diameter; and no deformatio
 reported. The cutaway adds no organ measurement, response, scale relation, engineering threshold,
 cross-species rule or learner action.
 
+The failed first implementation's first browser execution on Mac/Google Chrome reported
+**2363/2365** twice with zero application JavaScript errors, identical assertion-name sets and an
+exact +3 registered delta over same-Mac prerequisite `a9fd1b0…` at 2362/2362 PASS. The four-view
+strict-fit/page-count/geometry assertion passed, all 2362 inherited assertions passed and every
+other captured semantic/geometry sub-condition passed. The normal and grayscale semantic
+assertions failed only because the copied Campaign 1 oracle required
+`presentation.sharedVisualStyles === true`. Heavy Hands and every other Campaign 2 package
+correctly declare `presentation.sharedComponentStyles: true`; all eight pre-existing Campaign 2
+harness contracts use that property. This is a candidate-authored oracle defect, not a rendering
+or platform problem and not the anticipated inherited 2365/2365 differential. The corrective
+successor changes that one property token to `sharedComponentStyles` without altering CSS,
+worksheet content, package metadata, rendering or geometry. Failed `b6a56b9…` remains immutable
+evidence and is not itself granted visual acceptance.
+
 The candidate adds exactly three browser assertions: a four-view strict-fit/page-count/geometry
 contract plus one semantic/geometry contract in normal and one in grayscale. Canonical project
 registration is expected to be **2366/2366** with zero application JavaScript errors. Run the
-complete harness twice. Inspect Student page 3 and Accessible page 4 in normal and grayscale.
+complete harness twice. The prior Student page 3 and Accessible page 4 inspection in normal and
+grayscale remains applicable because the corrective successor changes no rendering bytes; confirm
+its captured conditions remain intact.
 Require fixed 816 × 1056 geometry, exact page counts, strict fit, no overflow, clipping, collision
 or crowding, equal bed-section dimensions, increasing contained tuber spans, three distinct
 patterns without color, readable direct labels, a legible `RADIAL BED CUTAWAY · NOT TO SCALE`
@@ -49,7 +66,6 @@ status, the exact same 20 cm bed depth and the explicit No deformation quantity 
 focused cutaway validator, every established family validator, Heavy Hands layout overrides and
 `git diff --check` must pass. Do not run PDF automation.
 
-This production environment makes no browser-pass, rendered-dimension or visual-inspection claim.
 Do not mark `C2C1-VIS01` `VERIFIED-FAMILY`, advance the accepted 31/36 inventory, record Family 7
 as one of two verified, push, merge to `main` or begin another finding until the external gate is
 complete. A separate documentation-only closeout is required after acceptance.
