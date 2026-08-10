@@ -758,7 +758,7 @@ failures. The legacy 516/545 static aggregate remains the explicitly disposition
 release-baseline diagnostic described in `SSS_FINAL_REMEDIATION_STATUS_v1.0.md` §4.1; its 29
 known failures predate this candidate and are not re-pinned during visual modernization.
 
-`C2C2-VIS03` is the next Family 8 implementation candidate. It modernizes The Missing Dance's
+`C2C2-VIS03` is the accepted third standalone Family 8 intervention/trial finding. It modernizes The Missing Dance's
 frozen Task 8 trial design across Student page 6, Accessible page 8 and Answer Key page 4. The
 existing four-control source remains exact: `Frequency | Amplitude | Duration | Coupling`. The
 Case-02-scoped shared layer adds the direct control states `01 · RATE | 02 · FORCE | 03 · TIME |
@@ -788,16 +788,33 @@ measure pollen actually released rather than merely whether the exciter was swit
 observable harm is an immediate stop, and a named no-release or damage condition returns the design
 for revision. Conclusions remain bounded to this species in this garden.
 
-The candidate adds exactly three browser assertions: one six-view strict-fit/page-count/geometry
-contract plus normal and grayscale semantic/rendering contracts. The canonical Mac/Google Chrome
-target becomes **2372/2372 PASS with zero application JavaScript errors**. If the inherited
-one-registration same-Mac differential persists, a fresh accepted-prerequisite run at
-`f41a4ac…` must reproduce 2368/2368 before an exact candidate 2371/2371 result can be considered
-separately; no platform exception may be inferred. Until the external browser runs and manual
-normal/grayscale inspection pass, `C2C2-VIS03` remains `IMPLEMENTED-CANDIDATE`, Family 8 remains
-three of five verified and the accepted unique inventory remains **33 of 36 completed / 3 of 36
-remaining**. Local focused intervention/trial validation is **176/176 PASS**; browser acceptance
-and any inventory advance remain pending.
+Accepted implementation `f987bbb0c4c7fc34f07bc0f00fd4f38aeceb066b` adds exactly three browser
+assertions: one six-view strict-fit/page-count/geometry contract plus normal and grayscale
+semantic/rendering contracts. The external Mac/Google Chrome gate passed under an exact
+candidate-specific differential acceptance. A fresh same-Mac prerequisite run at accepted
+closeout `f41a4acff852355d30bb182415e53aa67ab7eb88` registered **2368/2368 PASS** with zero
+application JavaScript errors. Accepted candidate Run 1 and Run 2 each registered **2371/2371
+PASS** with zero application JavaScript errors and exit 0. Their assertion-name sequences were
+byte-identical, with 2371 unique names and no duplicates. The set delta is exactly **+3 registered
+and +3 passed**: precisely the normal semantic, grayscale semantic and six-view strict-fit/page-
+count/geometry contracts. All three new `C2C2-VIS03` assertions passed; zero assertions were
+removed, no inherited assertion was broken and no prerequisite-passing assertion failed at
+`f987bbb…`.
+
+Canonical project registration remains 2372. This acceptance applies only to `f987bbb…`; the
+inherited one-registration difference does not establish a general Mac, Chrome, browser, platform
+or environment exception. Instrumented Student page 6, Accessible page 8 and Answer Key page 4
+captures in normal and grayscale confirm fixed 816 × 1056 pages, exact 936/936 fit, unchanged
+Student 6 / Accessible 8 / Answer Key 4 page counts, legible `SET → MEASURE → STOP`, four contained
+non-overlapping control cards, distinct grayscale-safe patterns and border states, all ten learner
+fields blank/editable/unclipped, six distinct Answer Key guidance gates, the correctly qualified
+near-124-Hz evidence and no overflow, clipping, collision, spill or crowding. Student page 6's full
+CER and final case callout remain unchanged and fully visible.
+
+Local focused intervention/trial validation is **176/176 PASS** and every governing static,
+layout and system gate passed. `C2C2-VIS03` is therefore `VERIFIED-FAMILY`. Family 8 now has four
+of five assignments verified, advancing the accepted unique inventory to **34 of 36 completed / 2
+of 36 remaining**.
 
 ## 3. Exact inventory reconciliation
 
@@ -808,17 +825,20 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after The Missing Dance botanical-cutaway closeout is **33 of 36 completed**
-and **3 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after The Missing Dance monitored-vibration-trial closeout is **34 of 36
+completed** and **2 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
 complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
 unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
 Family 7 is complete at two of two assignments: accepted corrective standalone `C2C1-VIS01` and
 accepted second-corrective standalone `C2C2-VIS01`.
-Family 8 has three of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
-Family 2's unique findings, accepted standalone `C1C6-VIS03` and accepted corrective standalone
-`C1C7-VIS03`.
+Family 8 has four of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
+Family 2's unique findings, accepted standalone `C1C6-VIS03`, accepted corrective standalone
+`C1C7-VIS03` and accepted standalone `C2C2-VIS03`.
+
+Accepted progress after The Missing Dance botanical-cutaway closeout was **33 of 36 completed**
+and **3 of 36 remaining**. At that checkpoint, Family 8 had three of five assignments verified.
 
 Accepted progress after the Heavy Hands radial-bed cutaway closeout was **32 of 36 completed**
 and **4 of 36 remaining**.
@@ -935,7 +955,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `VERIFIED-FAMILY · 70/70 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 4d181aa ACCEPTED` |
 | `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `VERIFIED-FAMILY · 91/91 CUTAWAY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 5ab152e ACCEPTED` |
 | `C2C2-VIS02` | The Missing Dance; S T6 p5, A T6 p6, AK T6 p3 | Generic condition/mechanism/effect stage model. | 2 · Causal mechanism/pathway | Failure path: sealed garden → no coupled vibration → pollen retained → buds abort → no fruit, with explicit missing-event node. | Preserve existing diagnosis, rejection and two model-stage fields; sync AK. | Near 124 Hz is insufficient without amplitude, duration and coupling; do not equate bee gripping with airborne coupling. | mechanism primitive; field/parity and boundary checks | `VERIFIED-FAMILY · 76/76 FAMILY STATIC PASS · 2321/2321 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · aa4eeac ACCEPTED` |
-| `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `IMPLEMENTED-CANDIDATE · 176/176 INTERVENTION STATIC PASS · MAC/CHROME PENDING` |
+| `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `VERIFIED-FAMILY · 176/176 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · f987bbb ACCEPTED` |
 | `C2C3-VIS01` | Wrong Color of Light; S T2 p2, A T2 p2 | Accurate discrete bars with correct labels but limited telemetry hierarchy. | 1 · Technical telemetry/data | GRO-9 discrete spectral-output diagnostic with four category rails and explicit category/inequality encoding. | Replace existing repeated figure at same height; table remains accessible backup. | Red 62% at 620–680; blue 18% at 440–490; broad 15%; blue-green <5% at 490–560; no interpolation/continuous curve. | D1; exact bins, inequality, DOM table and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS02` | Wrong Color of Light; S T3 p3, A T3 p3 | Accurate band overlay but measurement/status hierarchy can be clearer. | 1 · Technical telemetry/data | Measurement-overlay panel: discrete fixture bands against the 460–540 nm strongest-response band, with “outside unspecified ≠ zero.” | Same footprint and backup table; sync S/A. | Do not imply continuous response, geometric overlap calculation, or zero response outside band. | D1 overlay variant; prohibited-curve and inequality checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `VERIFIED-FAMILY · 85/85 FAMILY STATIC PASS · 2324/2324 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 79a7c80 ACCEPTED` |

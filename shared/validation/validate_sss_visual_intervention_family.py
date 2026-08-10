@@ -361,29 +361,31 @@ def main() -> int:
     check("browser harness rejects The Missing Dance control collision overflow and invented settings", "!state.factorCollisions" in dance_case_harness and "state.scrollHeight <= state.clientHeight" in dance_case_harness and "guaranteed (?:release|recovery|fruit)" in dance_case_harness)
 
     check(
-        "plan records C2C2-VIS03 as the 176-check browser-pending Family 8 candidate",
+        "plan records C2C2-VIS03 as the accepted 176-check Family 8 finding",
         bool(re.search(
             r"\| `C2C2-VIS03` .*\| 8 · Intervention comparison/trial workflow \|.*"
-            r"`IMPLEMENTED-CANDIDATE · 176/176 INTERVENTION STATIC PASS · MAC/CHROME PENDING`",
+            r"`VERIFIED-FAMILY · 176/176 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · f987bbb ACCEPTED`",
             plan,
         ))
-        and "`C2C2-VIS03` is the next Family 8 implementation candidate" in plan
+        and "`C2C2-VIS03` is the accepted third standalone Family 8 intervention/trial finding" in plan
         and "`SET → MEASURE → STOP`" in plan
         and "`01 · RATE | 02 · FORCE | 03 · TIME | 04 · TRANSFER`" in plan,
     )
     check(
-        "plan preserves The Missing Dance trial limits and does not advance accepted inventory",
-        all(token in plan for token in ("strongest release **near 124 Hz**", "does not supply an amplitude, duration or coupling setting", "measure pollen actually released", "Any observable harm is an immediate stop", "canonical Mac/Google Chrome target becomes **2372/2372 PASS", "Family 8 remains three of five verified", "**33 of 36 completed / 3 of 36 remaining**")),
+        "plan preserves The Missing Dance trial limits and records the accepted differential",
+        all(token in plan for token in ("strongest release **near 124 Hz**", "does not supply an amplitude, duration or coupling setting", "measure pollen actually released", "Any observable harm is an immediate stop", "f987bbb0c4c7fc34f07bc0f00fd4f38aeceb066b", "**2368/2368 PASS**", "**2371/2371 PASS**", "**+3 registered and +3 passed**", "Canonical project registration remains 2372", "Family 8 now has four of five assignments verified", "**34 of 36 completed / 2 of 36 remaining**")),
     )
     check(
-        "handoff preserves The Missing Dance trial source ownership and all five frozen hashes",
-        "Pending Family 8 candidate — The Missing Dance monitored vibration trial" in handoff
+        "handoff accepts The Missing Dance trial and preserves source ownership and frozen hashes",
+        "Accepted Family 8 finding — The Missing Dance monitored vibration trial" in handoff
+        and "f987bbb0c4c7fc34f07bc0f00fd4f38aeceb066b" in handoff
         and "changes no worksheet wording" in handoff
         and all(value in handoff for value in DANCE_FROZEN_HASHES.values()),
     )
     check(
-        "handoff preserves exact The Missing Dance controls fields science and browser boundary",
-        all(token in handoff for token in ("`01 · RATE | 02 · FORCE | 03 · TIME | 04 · TRANSFER`", "`SET → MEASURE → STOP`", "t8-first | t8-measure | t8-limit | t8-stop | t8-why", "a8-first | a8-measure | a8-limit | a8-stop | a8-why", "strongest release is reported **near 124 Hz**", "no numeric setting", "Observable damage is an immediate stop", "**176/176 PASS**", "**2372/2372 PASS", "**2371/2371 PASS", "**2368/2368 PASS**", "no general Mac, Chrome, platform or environment")),
+        "handoff preserves exact controls fields science rendered evidence and acceptance boundary",
+        all(token in handoff for token in ("`01 · RATE | 02 · FORCE | 03 · TIME | 04 · TRANSFER`", "`SET → MEASURE → STOP`", "t8-first | t8-measure | t8-limit | t8-stop | t8-why", "a8-first | a8-measure | a8-limit | a8-stop | a8-why", "strongest release is reported **near 124 Hz**", "no numeric setting", "Observable damage is an immediate stop", "**176/176 PASS**", "**2371/2371 PASS**", "**2368/2368 PASS**", "**+3 registered and +3 passed**", "Canonical project registration remains 2372", "no general Mac, Chrome, browser, platform or environment exception", "exact 936/936 content fit", "The formal inventory is now **34 of 36 completed**", "with **2 remaining**")),
     )
 
     check(
@@ -403,7 +405,7 @@ def main() -> int:
         "plan advances accepted inventory to 31 of 36 and Family 8 to three of five",
         "Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**" in plan
         and "**5 of 36 remaining**" in plan
-        and "Family 8 has three of five assignments verified" in plan
+        and "At that checkpoint, Family 8 had three of five assignments verified" in plan
         and "Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**" in plan,
     )
     check(
