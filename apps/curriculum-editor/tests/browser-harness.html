@@ -1864,6 +1864,115 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        // Register the second standalone Family 6 contract independently of
+        // literal case-range markers used by accepted-family validators.
+        if (item.id === ["SSS", "C2", "CASE01"].join("-")) {
+          const heavySpecificationPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount] of [["student", "student-mission-05", 5], ["answer", "answer-key-04", 4], ["accessible", "accessible-mission-08", 8]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              heavySpecificationPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight
+              });
+            }
+          }
+          check(
+            "C2 Case 01 specification-verification pages retain strict fit, page counts and geometry in normal and grayscale",
+            heavySpecificationPageFit.length === 6
+              && heavySpecificationPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits),
+            JSON.stringify(heavySpecificationPageFit)
+          );
+          const heavyStudentFields = ["t8-criterion", "t8-constraint", "t8-o1", "t8-o2", "t8-choice", "t8-trial", "t8-stop"];
+          const heavyAccessibleFields = ["a8-criterion", "a8-constraint", "a8-o1", "a8-o2", "a8-choice", "a8-trial", "a8-stop"];
+          const expectedHeavyAnswers = [
+            "Across-bed criterion the specification left out: A maximum permitted difference in magnitude across the full radial depth of the growing bed, measured at the bed top and the bed base rather than at one point. A secure answer names where the requirement applies and over what span. Accept any tolerance value provided the student says the number itself would have to be justified by a trial.",
+            "One constraint reported in this case: A larger ring requires engineering work, while a thinner bed can be trialled immediately. Accept also the fixed 2.1 g target.",
+            "Table 7 — does each proposal meet the criterion: Larger radius: yes. Spinning a longer ring more slowly keeps the pull at the same target, and the same 20 cm of bed depth is then a smaller share of a longer radius, so the difference across the bed falls. Record GC-1208 resolved the matching problem this way, by extending the radius to 600 m. Thinner bed: yes, by the other route — a shallower bed reaches across less of the difference, so each plant samples less of it. Neither answer may promise recovery; both proposals still need the monitored trial.",
+            "Monitored trial and stop rule: A secure answer measures the magnitude at the bed top and the bed base rather than at the midpoint alone, records tuber diameter alongside deformation on a stated schedule, and runs alongside an unchanged control planting. The stop rule should name an observation that ends the trial — for example, deformation still increasing with diameter by the day it first appeared in earlier crops — and should send the design back for revision rather than continuing to full scale.",
+            "Marking note: Full credit requires the student to keep the claim bounded to this crop in this habitat. Answers that promise recovery, or that generalise the response to other organisms, have not met the bounded-claim dimension."
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, fieldIds] of [["student", "student-mission-05", heavyStudentFields], ["accessible", "accessible-mission-08", heavyAccessibleFields]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const heading = page?.querySelector('.task-heading[data-task-id="8"]');
+              const table = page?.querySelector("table");
+              const rows = Array.from(table?.querySelectorAll("tbody > tr") || []);
+              const fields = fieldIds.map(id => page?.querySelector(`[data-persist-id="${id}"]`));
+              const choice = page?.querySelector(`.response-label:has(+ [data-persist-id="${role === "student" ? "t8-choice" : "a8-choice"}"])`);
+              const trial = page?.querySelector(`.response-label:has(+ [data-persist-id="${role === "student" ? "t8-trial" : "a8-trial"}"])`);
+              const stop = page?.querySelector(`.response-label:has(+ [data-persist-id="${role === "student" ? "t8-stop" : "a8-stop"}"])`);
+              rendered.push({
+                role,
+                headingStatus: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
+                captionStatus: table?.caption ? win.getComputedStyle(table.caption, "::after").content.replaceAll('"', "") : "",
+                rowPatterns: rows.map(row => win.getComputedStyle(row.cells[0]).backgroundImage !== "none"),
+                fieldIds: fields.map(field => field?.dataset.persistId || ""),
+                blankFields: fields.map(field => Boolean(field?.hasAttribute("data-response")) && field.textContent.trim() === "" && dimensions(field).every(value => value > 0)),
+                fieldSizes: fields.map(field => field ? dimensions(field) : []),
+                fieldRails: fields.map(field => field ? win.getComputedStyle(field).boxShadow !== "none" : false),
+                decisionGate: choice ? win.getComputedStyle(choice, "::after").content.replaceAll('"', "") : "",
+                choicePattern: choice ? win.getComputedStyle(choice).backgroundImage !== "none" : false,
+                trialPattern: trial ? win.getComputedStyle(trial).backgroundImage !== "none" : false,
+                stopPattern: stop ? win.getComputedStyle(stop).backgroundImage !== "none" : false,
+                tableText: table?.textContent.trim().replace(/\s+/g, " ") || "",
+                pageText: page?.textContent.trim().replace(/\s+/g, " ") || ""
+              });
+            }
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerPage = workspace.querySelector('.page[data-role="answer"][data-page-id="answer-key-04"]');
+            const answerHeading = answerPage?.querySelector('.task-heading[data-task-id="8"]');
+            const answerBlock = answerHeading?.nextElementSibling;
+            const answerRows = Array.from(answerBlock?.querySelectorAll(":scope > p") || []);
+            const studentSpec = rendered.find(state => state.role === "student");
+            const accessibleSpec = rendered.find(state => state.role === "accessible");
+            check(
+              `C2 Case 01 ${grayscale ? "grayscale" : "normal"} specification panel preserves criterion, proposal comparison and monitored verification`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && rendered.length === 2
+                && rendered.every(state => state.headingStatus === "POINT RULE → ACROSS-BED TEST" && state.captionStatus === "COMPARE AGAINST CRITERION")
+                && rendered.every(state => state.rowPatterns.length === 2 && state.rowPatterns.every(Boolean))
+                && studentSpec.fieldIds.join("|") === heavyStudentFields.join("|")
+                && accessibleSpec.fieldIds.join("|") === heavyAccessibleFields.join("|")
+                && rendered.every(state => state.blankFields.every(Boolean) && state.fieldRails.every(Boolean))
+                && rendered.every(state => state.fieldSizes.every(([width, height]) => width >= 110 && height >= 30))
+                && rendered.every(state => state.decisionGate === "DECISION GATE" && state.choicePattern && state.trialPattern && state.stopPattern)
+                && rendered.every(state => state.tableText.includes("GC-1208") && state.tableText.includes("600 m"))
+                && rendered.every(state => state.pageText.includes("2.10 g ±0.05 g at midpoint") && !state.pageText.includes("GC-1445"))
+                && answerHeading && win.getComputedStyle(answerHeading, "::after").content.replaceAll('"', "") === "POINT RULE → ACROSS-BED TEST"
+                && answerRows.map(row => row.textContent.trim().replace(/\s+/g, " ")).join("|") === expectedHeavyAnswers.join("|")
+                && answerRows.map(row => win.getComputedStyle(row).borderLeftStyle).join("|") === "double|dotted|solid|dashed|double"
+                && answerRows.every(row => win.getComputedStyle(row).backgroundImage !== "none")
+                && answerPage.textContent.includes("Neither answer may promise recovery; both proposals still need the monitored trial.")
+                && answerPage.textContent.includes("Accept any tolerance value provided the student says the number itself would have to be justified by a trial.")
+                && !answerPage.textContent.includes("GC-1445"),
+              JSON.stringify({ rendered, answerRows: answerRows.length })
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         if (item.id === "SSS-C2-CASE02") {
           const vibrationPageFit = [];
           for (const grayscale of [false, true]) {

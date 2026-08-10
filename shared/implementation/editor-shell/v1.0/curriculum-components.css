@@ -4251,6 +4251,7 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
 }
 
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
+
 .source-status {
   font: 800 6.7pt "JetBrains Mono", monospace;
   letter-spacing: .05em;
@@ -4467,3 +4468,249 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   size: letter;
   margin: 0;
 }
+
+/* BEGIN SSS/HHH SPECIFICATION-VISUAL EXTENSIONS */
+/*
+ * Specification/verification family expansion: Heavy Hands.
+ *
+ * The frozen Task 8 pages already preserve the midpoint-only rule, one
+ * across-bed criterion, one reported constraint, two proposal checks, a
+ * proposal choice, a monitored trial and a stop/revise field. This strictly
+ * Case-01-scoped layer exposes that existing requirement path without adding
+ * a tolerance, treating GC-1445 as a universal precedent or presenting either
+ * proposal as a completed successful test.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE01"] {
+  --heavy-spec-line: var(--ink, #18212b);
+  --heavy-spec-panel: var(--paper, #fff);
+  --heavy-spec-rule-pattern:
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(24, 33, 43, .055) 10px 11px);
+  --heavy-spec-criterion-pattern:
+    repeating-linear-gradient(45deg, transparent 0 7px, rgba(24, 33, 43, .11) 7px 8px);
+  --heavy-spec-constraint-pattern:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .1) 8px 9px);
+  --heavy-spec-option-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .08) 7px 8px);
+  --heavy-spec-verify-pattern:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .task-heading[data-task-id="8"],
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"],
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"]
+) {
+  position: relative;
+  padding-right: 2.25in;
+  border-bottom: 1.5px solid var(--heavy-spec-line);
+  background: var(--heavy-spec-rule-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .task-heading[data-task-id="8"],
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"],
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"]
+)::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "POINT RULE → ACROSS-BED TEST";
+  font: 800 5.5pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .directions,
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"] + .directions
+) {
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-rule-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .two-col:first-of-type > div,
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-criterion"]),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-constraint"])
+) {
+  min-width: 0;
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-criterion-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .two-col:first-of-type > div:nth-child(2),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-constraint"])
+) {
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-constraint-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-criterion"],
+  [data-persist-id="a8-criterion"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-constraint"],
+  [data-persist-id="a8-constraint"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > table,
+  .page[data-page-id="accessible-mission-08"] > .page-frame > .content-area > table
+) {
+  outline: 1.5px solid var(--heavy-spec-line);
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > table,
+  .page[data-page-id="accessible-mission-08"] > .page-frame > .content-area > table
+) caption {
+  position: relative;
+  padding-right: 1.9in;
+  background: var(--heavy-spec-option-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > table,
+  .page[data-page-id="accessible-mission-08"] > .page-frame > .content-area > table
+) caption::after {
+  position: absolute;
+  right: 5px;
+  content: "COMPARE AGAINST CRITERION";
+  font: 800 5.2pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > table,
+  .page[data-page-id="accessible-mission-08"] > .page-frame > .content-area > table
+) tbody tr:first-child > td:first-child {
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-option-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > table,
+  .page[data-page-id="accessible-mission-08"] > .page-frame > .content-area > table
+) tbody tr:nth-child(2) > td:first-child {
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-criterion-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-o1"],
+  [data-persist-id="a8-o1"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-o2"],
+  [data-persist-id="a8-o2"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .response-label:has(+ [data-persist-id="t8-choice"]),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-choice"])
+) {
+  position: relative;
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-option-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .response-label:has(+ [data-persist-id="t8-choice"]),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-choice"])
+)::after {
+  position: absolute;
+  right: 5px;
+  content: "DECISION GATE";
+  font: 800 5.5pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .035em;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-choice"],
+  [data-persist-id="a8-choice"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .two-col:last-of-type > div,
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-trial"]),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-stop"])
+) {
+  min-width: 0;
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-verify-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="student-mission-05"] .task-block > .two-col:last-of-type .response-label {
+  background: var(--heavy-spec-verify-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block > .two-col:last-of-type > div:nth-child(2),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-stop"])
+) {
+  box-shadow: inset 4px 0 0 var(--heavy-spec-line);
+  background: var(--heavy-spec-constraint-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="student-mission-05"] .task-block > .two-col:last-of-type > div:nth-child(2) .response-label {
+  background: var(--heavy-spec-constraint-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-trial"],
+  [data-persist-id="a8-trial"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"] :is(
+  [data-persist-id="t8-stop"],
+  [data-persist-id="a8-stop"]
+) { box-shadow: inset 4px 0 0 var(--heavy-spec-line); }
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p {
+  padding: 2px 4px;
+  border-left: 4px double var(--heavy-spec-line);
+  background: var(--heavy-spec-criterion-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(2) {
+  border-left-style: dotted;
+  background: var(--heavy-spec-constraint-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(3) {
+  border-left-style: solid;
+  background: var(--heavy-spec-option-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(4) {
+  border-left-style: dashed;
+  background: var(--heavy-spec-verify-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(5) {
+  border-left-style: double;
+  background: var(--heavy-spec-rule-pattern), var(--heavy-spec-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE01"] :is(
+  .page[data-page-id="student-mission-05"] .task-block,
+  .page[data-page-id="accessible-mission-08"] .content-area,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+/* END SSS/HHH SPECIFICATION-VISUAL EXTENSIONS */
