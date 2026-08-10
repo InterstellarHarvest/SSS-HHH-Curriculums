@@ -4,13 +4,14 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Pending Family 7 completion — The Missing Dance botanical cutaway
+## Accepted Family 7 completion — The Missing Dance botanical cutaway
 
-`C2C2-VIS01` is the implemented but unaccepted second Family 7 biological/structural cutaway
-candidate. Its required accepted prerequisite is the synchronized Heavy Hands closeout
-`26ab8e3bf164c98797304feaf2c58d8e9154295b`. Family 7 remains one of two verified assignments,
-and the accepted inventory remains **32/36** until the external browser gate and a separate
-closeout succeed.
+Accepted second corrective `5ab152e919f16b8695c92c823c53ff82f3ecb31d` advances
+`C2C2-VIS01` to `VERIFIED-FAMILY`, the second and final Family 7 biological/structural cutaway
+finding. Its accepted prerequisite is the synchronized Heavy Hands closeout
+`26ab8e3bf164c98797304feaf2c58d8e9154295b`. The accepted lineage is exactly
+`26ab8e3… → bab4135… → e91aa32… → 5ab152e…`; both failed intermediates remain immutable evidence
+and receive no visual acceptance.
 
 Failed first implementation `bab41352f413b5110c11c9e024722c720401f757` is preserved as an
 immutable intermediate. Its two complete Mac/Google Chrome runs each reported **2365/2368 FAIL**
@@ -46,12 +47,11 @@ semantic conditions passed. This is a deterministic static/browser oracle mismat
 rendering, source, science or platform defect. `e91aa32…` is the failed immutable first corrective
 and is not eligible for acceptance.
 
-The second corrective successor keeps the proven CSS and rendered geometry byte-identical while
-changing the browser status oracle to sample
-`getComputedStyle(figure, "::before").content`. Reconfirm exact 936/936 fit, the hairline but
-non-overflowing Accessible page, and the collision-free status in all four views. The focused
-validator and candidate records must agree with that same figure-node oracle; no frozen page,
-response geometry, package or presentation CSS may change.
+The accepted second corrective successor keeps the proven CSS and rendered geometry byte-identical
+while changing the browser status oracle to sample
+`getComputedStyle(figure, "::before").content`. The focused validator and accepted records agree
+with that same figure-node oracle; no frozen page, response geometry, package or presentation CSS
+changed.
 
 The frozen Student Task 3 page 3 and Accessible Task 3 page 3 SVGs remain the semantic source.
 Each retains one triangular cone section, eight already-present pore marks, a dot-patterned mature-
@@ -77,30 +77,39 @@ treatment claim. Pores remain already present, not blocked, sealed or newly open
 pollen remains retained; gentle contact releases almost none; and the established Earth buzz-
 pollination comparison remains distinct from the fictional lyre-moth airborne-coupling evidence.
 
-The candidate adds exactly three browser assertions: a four-view strict-fit/page-count/geometry
-contract plus one semantic/geometry contract in normal and one in grayscale. Canonical project
-registration is expected to become **2369/2369** with zero application JavaScript errors. Run the
-complete Mac/Google Chrome harness twice. Inspect Student page 3 and Accessible page 3 in normal
-and grayscale. Require fixed **816 × 1056** pages, unchanged Student 6 / Accessible 8 counts,
-strict fit, no overflow, clipping, collision or crowding, one enlarged coherent cone section,
-exactly eight visible pore marks split across both sides, patterned retained pollen, distinct
-solid/dashed leaders, direct labels, the exact 98% viability statement, the gentle-contact and
-no-opening limits, and a legible `BOTANICAL CUTAWAY · SECTION A–A` status.
+The accepted implementation adds exactly three browser assertions: a four-view strict-fit/page-
+count/geometry contract plus one semantic/geometry contract in normal and one in grayscale. The
+external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. A fresh
+same-Mac prerequisite run at `26ab8e3…` registered **2365/2365 PASS** with zero application
+JavaScript errors. Accepted candidate Run 1 and Run 2 each registered **2368/2368 PASS** with zero
+application JavaScript errors and exit 0. Their assertion-name sequences were byte-identical, with
+2368 unique names and no duplicates. The set delta is exactly **+3 registered and +3 passed**:
+precisely the normal semantic, grayscale semantic and four-view strict-fit/page-count/geometry
+contracts. All three new `C2C2-VIS01` assertions passed; zero assertions were removed, no inherited
+assertion was broken and no prerequisite-passing assertion failed at `5ab152e…`. Both semantic
+payloads captured the figure-node status exactly as `BOTANICAL CUTAWAY · SECTION A–A`.
 
-This Mac has a previously isolated inherited one-registration shortfall. If a fresh prerequisite
-run at `26ab8e3…` reports exactly **2365/2365 PASS** and both candidate runs report exactly
-**2368/2368 PASS**, all with zero application JavaScript errors, require byte-identical candidate
-assertion-name sequences, an exact +3 registered/+3 passed set delta, precisely the three new
-`C2C2-VIS01` assertions added and passed, zero removals, zero broken inherited assertions and no
-prerequisite-passing assertion failing at the candidate. Stop without pushing and return that
-candidate-specific differential for separate disposition. Do not infer acceptance or create a
-general Mac/platform policy; canonical registration remains 2369.
+Canonical project registration remains 2369. This acceptance applies only to second corrective
+`5ab152e…`; the inherited one-registration difference does not establish a general Mac/platform
+policy or environment exception. Failed first implementation `bab4135…` and failed first
+corrective `e91aa32…` remain immutable evidence in the accepted lineage and are not themselves
+granted visual acceptance.
 
-The focused cutaway validator, every established family validator, The Missing Dance layout
-overrides, all governing system validators and `git diff --check` must pass. Do not run PDF
-automation. Do not mark `C2C2-VIS01` `VERIFIED-FAMILY`, complete Family 7, advance the accepted
-32/36 inventory, merge to `main` or begin another finding until the external gate is complete. A
-separate documentation-only closeout is required after acceptance.
+Instrumented Student page 3 and Accessible page 3 captures in normal and grayscale confirm fixed
+**816 × 1056** pages, exact `scrollHeight 936 == clientHeight 936` fit, unchanged Student 6 /
+Accessible 8 page counts, no overflow, clipping, collision or crowding, a 261.95 px Student figure,
+an Accessible caption at its prerequisite one-line 33.34 px height, and an inherited hairline but
+non-overflowing Accessible page. They also confirm one enlarged coherent cone section, exactly
+eight visible pore marks split across both sides, patterned retained pollen legible in grayscale,
+distinct solid/dashed leaders, direct labels, the exact 98% viability statement, the gentle-contact
+and no-opening limits, a collision-free `BOTANICAL CUTAWAY · SECTION A–A` status, and blank,
+editable, unclipped learner fields.
+
+The focused cutaway validator, every established family validator, The Missing Dance and all-case
+layout overrides, all governing system validators and `git diff --check` passed. PDF automation
+was not run. `C2C2-VIS01` is therefore `VERIFIED-FAMILY`. Family 7 is complete at two of two
+assignments. The formal inventory is now **33 of 36 completed**, with **3 remaining**. Do not merge
+to `main` or begin another finding in the closeout integration run.
 
 Local candidate validation is complete: cutaway **91/91**, intervention **125/125**,
 specification **105/105**, control **30/30**, timeline **44/44**, mechanism **103/103**, evidence
@@ -1420,11 +1429,13 @@ branch remains isolated from `main`.
 | Finding | Accepted implementation | Recorded state | Assignment note |
 |---|---|---|---|
 | `C2C1-VIS01` | `95af208` | `VERIFIED-FAMILY` | first accepted Family 7 finding; failed `b6a56b9` retained in lineage |
+| `C2C2-VIS01` | `5ab152e` | `VERIFIED-FAMILY` | second and final Family 7 finding; failed `bab4135` and `e91aa32` retained in lineage |
 
-Family 7 has one of two assignments verified. Accepting `C2C1-VIS01` advances the unique
-visual-modernization inventory to 32 of 36 completed and 4 remaining. Failed implementation
-`b6a56b9…` remains an immutable intermediate commit beneath accepted corrective successor
-`95af208…`. The visual branch remains isolated from `main`.
+Family 7 is complete with two of two assignments verified. Accepting `C2C2-VIS01` advances the
+unique visual-modernization inventory to 33 of 36 completed and 3 remaining. Failed implementation
+`b6a56b9…` remains an immutable intermediate beneath accepted corrective `95af208…`; failed first
+implementation `bab4135…` and failed first corrective `e91aa32…` remain immutable intermediates
+beneath accepted second corrective `5ab152e…`. The visual branch remains isolated from `main`.
 
 ## Family 8 accepted register
 
@@ -1475,3 +1486,21 @@ successor changes only documentation and the focused validator, do not rerun the
 harness, manual inspection or PDF automation. If both checks pass, push the branch by ordinary
 fast-forward and report local, tracking and live remote SHAs. Do not mark any additional finding
 accepted. Do not begin another finding in the same run.
+
+## C2C2-VIS01 closeout integration prompt
+
+Validate the supplied closeout bundle only from clean owner-accepted second corrective
+`5ab152e919f16b8695c92c823c53ff82f3ecb31d`. Confirm the pushed remote remains at that exact
+commit, verify the checksum and bundle prerequisite, fetch it, and integrate it with
+`git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit files. Run the
+focused 91-check cutaway validator and the 125-check intervention/trial validator, then
+`git diff --check`. Confirm the closeout changes only this handoff, the production plan and the
+focused validator; records `C2C2-VIS01` as `VERIFIED-FAMILY`; completes Family 7 at two of two
+assignments; records the exact 2365/2365 prerequisite to 2368/2368 candidate-specific differential
+Mac/Chrome acceptance without changing canonical registration 2369 or creating a general platform
+exception; preserves failed `bab4135…` and `e91aa32…` in the accepted lineage; preserves the
+inherited hairline but non-overflowing Accessible exact fit; and advances the inventory to 33/36
+completed and 3 remaining. Because the successor changes only documentation and the focused
+validator, do not rerun the Mac/Chrome harness, manual inspection or PDF automation. If both checks
+pass, push the branch by ordinary fast-forward and report local, tracking and live remote SHAs. Do
+not mark any additional finding accepted. Do not begin another finding in the same run.

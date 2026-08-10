@@ -319,10 +319,10 @@ def main() -> int:
         )),
     )
     check(
-        "the plan advances accepted inventory to 32 of 36 and Family 7 to one of two",
-        "Accepted progress after the Heavy Hands radial-bed cutaway closeout is **32 of 36 completed**" in plan
+        "the plan preserves the Heavy Hands 32 of 36 milestone beneath completed Family 7",
+        "Accepted progress after the Heavy Hands radial-bed cutaway closeout was **32 of 36 completed**" in plan
         and "**4 of 36 remaining**" in plan
-        and "Family 7 has one of two assignments verified" in plan
+        and "Family 7 is complete at two of two assignments" in plan
         and "Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**" in plan,
     )
     check(
@@ -625,10 +625,15 @@ def main() -> int:
     )
 
     check(
-        "the plan records C2C2-VIS01 as the implemented but unaccepted Family 7 completion candidate",
-        "`C2C2-VIS01` is the implemented but unaccepted second Family 7 candidate" in plan
-        and re.search(r"\| `C2C2-VIS01` .*\| `IMPLEMENTED-CANDIDATE` \|", plan) is not None
-        and re.search(r"Canonical project registration is\s+expected to become 2369", plan) is not None,
+        "the plan records C2C2-VIS01 as the accepted second-corrective Family 7 completion",
+        "`C2C2-VIS01` is the accepted second and final Family 7 candidate" in plan
+        and re.search(
+            r"\| `C2C2-VIS01` .*\| 7 · Biological/structural cutaway \|.*"
+            r"`VERIFIED-FAMILY · 91/91 CUTAWAY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 5ab152e ACCEPTED`",
+            plan,
+        ) is not None
+        and "Canonical project registration remains 2369" in plan,
     )
     check(
         "the plan preserves the failed first Missing Dance implementation and corrective fit diagnosis",
@@ -650,24 +655,45 @@ def main() -> int:
             'getComputedStyle(figure, "::before").content',
             'computed to `"none"`',
             "failed immutable first corrective",
-            "second corrective successor",
+            "Accepted second corrective",
         )),
     )
     check(
-        "the plan preserves 32/36 while the Missing Dance candidate awaits rendering",
-        re.search(
-            r"C2C2-VIS01 does not advance the accepted\s+\*\*32 of 36 completed / 4 of 36 remaining\*\* inventory",
-            plan,
-        ) is not None
-        and re.search(r"Family 7 remains one of two accepted\s+assignments", plan) is not None,
+        "the plan records the exact Missing Dance differential and advances inventory to 33/36",
+        all(token in plan for token in (
+            "5ab152e919f16b8695c92c823c53ff82f3ecb31d",
+            "2365/2365 PASS",
+            "2368/2368 PASS",
+            "+3 registered and +3 passed",
+            "zero assertions were removed",
+            "no inherited assertion was broken",
+            "does not establish a general Mac/platform",
+            "33 of 36 completed / 3 of 36",
+            "Family 7 is complete at two of two assignments",
+        ))
+        and re.search(r"2368 unique\s+names and no duplicates", plan) is not None,
     )
     check(
-        "the handoff records the pending Missing Dance cutaway and its frozen hashes",
-        "Pending Family 7 completion — The Missing Dance botanical cutaway" in handoff
+        "the handoff records the accepted Missing Dance cutaway and its frozen hashes",
+        "Accepted Family 7 completion — The Missing Dance botanical cutaway" in handoff
         and "C2C2-VIS01" in handoff
-        and "2369/2369" in handoff
+        and "Canonical project registration remains 2369" in handoff
+        and "5ab152e919f16b8695c92c823c53ff82f3ecb31d" in handoff
+        and "2365/2365 PASS" in handoff
         and "2368/2368" in handoff
-        and "32/36" in handoff
+        and "+3 registered and +3 passed" in handoff
+        and "2368 unique names and no duplicates" in handoff
+        and "zero assertions were removed" in handoff
+        and "no inherited assertion was broken" in handoff
+        and "does not establish a general Mac/platform" in handoff
+        and "The formal inventory is now **33 of 36 completed**" in handoff
+        and "with **3 remaining**" in handoff
+        and re.search(r"Family 7 is complete at two of two\s+assignments", handoff) is not None
+        and re.search(r"hairline but\s+non-overflowing Accessible page", handoff) is not None
+        and re.search(
+            r"\| `C2C2-VIS01` \| `5ab152e` \| `VERIFIED-FAMILY` \|",
+            handoff,
+        ) is not None
         and all(expected in handoff for expected in DANCE_FROZEN_HASHES.values()),
     )
     check(

@@ -655,7 +655,7 @@ specification 105/105; control 30/30; timeline 44/44; mechanism 103/103; evidenc
 system validators reported zero failures. `C2C1-VIS01` is therefore `VERIFIED-FAMILY`. Family 7
 now has one of two assignments verified.
 
-`C2C2-VIS01` is the implemented but unaccepted second Family 7 candidate. The Missing Dance's
+`C2C2-VIS01` is the accepted second and final Family 7 candidate. The Missing Dance's
 frozen Student Task 3 page 3 and Accessible Task 3 page 3 SVGs remain the semantic source of truth.
 Each retains one triangular cone section, eight already-present pore marks, a dot-patterned mature-
 pollen fill, direct `Pores | Mature pollen` labels, the exact `viable at 98%, still inside`
@@ -701,11 +701,11 @@ candidate-authored static/browser oracle mismatch, not a rendering, source-packa
 platform defect. `e91aa32…` is the failed immutable first corrective and is not eligible for
 acceptance.
 
-The second corrective successor keeps the proven CSS and all rendered geometry unchanged and
-updates only the browser status oracle to sample
-`getComputedStyle(figure, "::before").content`. The focused validator and candidate records must
-bind that oracle to the same height-neutral figure node. No page or response-area geometry may be
-recut, and no case source, package metadata or presentation layer may change.
+Accepted second corrective `5ab152e919f16b8695c92c823c53ff82f3ecb31d` keeps the proven CSS and
+all rendered geometry unchanged and updates only the browser status oracle to sample
+`getComputedStyle(figure, "::before").content`. The focused validator and accepted records bind
+that oracle to the same height-neutral figure node. No page or response-area geometry was recut,
+and no case source, package metadata or presentation layer changed.
 
 The candidate changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response wording or dimensions, persistence identity, page count, Teacher content,
@@ -725,20 +725,29 @@ contact releases almost none; and the established Earth buzz-pollination compari
 separate from the fictional lyre-moth airborne-coupling evidence. It generates no opening event,
 release result, universal frequency, new pollen measurement or treatment claim.
 
-The candidate adds exactly three browser assertions: one four-view strict-fit/page-count/geometry
-contract plus normal and grayscale semantic/geometry contracts. Canonical project registration is
-expected to become 2369. The focused contracts require fixed 816 × 1056 pages, unchanged Student
-6 / Accessible 8 page counts, an enlarged coherent cone section, exactly eight visible pore marks
-split across both sides, retained patterned pollen, independent leader states, direct labels, the
-98% evidence, the no-opening evidence limit and the section status. The complete external browser
-harness must run twice. Canonical acceptance requires 2369/2369 with zero application JavaScript
-errors. If this same Mac again carries only the already isolated inherited one-registration
-shortfall, the exact candidate-specific differential would be 2368/2368 against a fresh 2365/2365
-prerequisite measurement, with precisely the three new assertions added and passed and no inherited
-assertion removed or broken; that outcome requires separate disposition and creates no general
-platform policy. Until the browser gate passes, C2C2-VIS01 does not advance the accepted
-**32 of 36 completed / 4 of 36 remaining** inventory. Family 7 remains one of two accepted
-assignments; this completion candidate remains `IMPLEMENTED-CANDIDATE`.
+The accepted implementation adds exactly three browser assertions: one four-view strict-fit/page-
+count/geometry contract plus normal and grayscale semantic/geometry contracts. The external
+Mac/Google Chrome gate passed under a candidate-specific differential acceptance. A fresh same-Mac
+prerequisite run at `26ab8e3…` registered **2365/2365 PASS** with zero application JavaScript
+errors. Accepted candidate Run 1 and Run 2 each registered **2368/2368 PASS** with zero application
+JavaScript errors and exit 0. Their assertion-name sequences were byte-identical, with 2368 unique
+names and no duplicates. The set delta is exactly **+3 registered and +3 passed**: precisely the
+normal semantic, grayscale semantic and four-view strict-fit/page-count/geometry contracts. All
+three new assertions passed; zero assertions were removed, no inherited assertion was broken and
+no prerequisite-passing assertion failed at `5ab152e…`. Both semantic payloads captured
+`BOTANICAL CUTAWAY · SECTION A–A` from the figure pseudo-element.
+
+Canonical project registration remains 2369. This acceptance applies only to second corrective
+`5ab152e…`; the inherited one-registration difference does not establish a general Mac/platform
+policy or browser exception. Failed first implementation `bab4135…` and failed first corrective `e91aa32…` remain
+immutable evidence in the accepted lineage and receive no visual acceptance. Instrumented normal
+and grayscale views confirm fixed 816 × 1056 pages, exact 936/936 fit, unchanged Student 6 /
+Accessible 8 counts, a 261.95 px Student figure, the Accessible caption at its prerequisite one-line
+33.34 px height, an inherited hairline but non-overflowing Accessible page, exactly eight distinct
+pores, grayscale-legible pollen pattern, distinct leaders, a collision-free status and blank,
+editable, unclipped learner fields. `C2C2-VIS01` is therefore `VERIFIED-FAMILY`, completing Family
+7 at two of two assignments and advancing the accepted inventory to **33 of 36 completed / 3 of 36
+remaining**.
 
 Local candidate validation passes the expanded cutaway family at 91/91, intervention 125/125,
 specification 105/105, control 30/30, timeline 44/44, mechanism 103/103, evidence convergence
@@ -758,16 +767,20 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the Heavy Hands radial-bed cutaway closeout is **32 of 36 completed**
-and **4 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after The Missing Dance botanical-cutaway closeout is **33 of 36 completed**
+and **3 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
 complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
 unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
-Family 7 has one of two assignments verified: accepted corrective standalone `C2C1-VIS01`.
+Family 7 is complete at two of two assignments: accepted corrective standalone `C2C1-VIS01` and
+accepted second-corrective standalone `C2C2-VIS01`.
 Family 8 has three of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
 Family 2's unique findings, accepted standalone `C1C6-VIS03` and accepted corrective standalone
 `C1C7-VIS03`.
+
+Accepted progress after the Heavy Hands radial-bed cutaway closeout was **32 of 36 completed**
+and **4 of 36 remaining**.
 
 Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**
 and **5 of 36 remaining**.
@@ -879,7 +892,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `VERIFIED-FAMILY · 41/41 CUTAWAY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 95af208 ACCEPTED` |
 | `C2C1-VIS02` | Heavy Hands; T reference p4 | Three-point radial profile is a basic Teacher-only schematic. | 1 · Technical telemetry/data | Centrifuge telemetry profile with three reported radii, outward direction arrows and direct exact magnitudes. | Teacher-only replacement; no learner workload/page changes. | Direction outward at all points; magnitude increases with radius; retain exact reported values and rounding note; no interpolation. | D1; exact-value/rounding and page-fit checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `VERIFIED-FAMILY · 70/70 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 4d181aa ACCEPTED` |
-| `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `IMPLEMENTED-CANDIDATE` |
+| `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `VERIFIED-FAMILY · 91/91 CUTAWAY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 5ab152e ACCEPTED` |
 | `C2C2-VIS02` | The Missing Dance; S T6 p5, A T6 p6, AK T6 p3 | Generic condition/mechanism/effect stage model. | 2 · Causal mechanism/pathway | Failure path: sealed garden → no coupled vibration → pollen retained → buds abort → no fruit, with explicit missing-event node. | Preserve existing diagnosis, rejection and two model-stage fields; sync AK. | Near 124 Hz is insufficient without amplitude, duration and coupling; do not equate bee gripping with airborne coupling. | mechanism primitive; field/parity and boundary checks | `VERIFIED-FAMILY · 76/76 FAMILY STATIC PASS · 2321/2321 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · aa4eeac ACCEPTED` |
 | `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `PLANNED` |
 | `C2C3-VIS01` | Wrong Color of Light; S T2 p2, A T2 p2 | Accurate discrete bars with correct labels but limited telemetry hierarchy. | 1 · Technical telemetry/data | GRO-9 discrete spectral-output diagnostic with four category rails and explicit category/inequality encoding. | Replace existing repeated figure at same height; table remains accessible backup. | Red 62% at 620–680; blue 18% at 440–490; broad 15%; blue-green <5% at 490–560; no interpolation/continuous curve. | D1; exact bins, inequality, DOM table and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
