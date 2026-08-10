@@ -535,7 +535,7 @@ evidence convergence 60/60, telemetry 36/36 and the Case 06 layout-override vali
 accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, and accepted standalone
 `C1C6-VIS03`.
 
-`C1C7-VIS03` is the implemented but unaccepted second standalone Family 8
+`C1C7-VIS03` is the corrected but unaccepted second standalone Family 8
 intervention-comparison candidate. It preserves The Gift's frozen Student page 5, Answer Key
 page 5 and Accessible page 7 as the semantic source of truth. The strictly Case-07-scoped shared
 treatment exposes the existing Task 7 sequence as `EVIDENCE → CONTROL → MONITOR`. The three
@@ -557,16 +557,27 @@ than a safe immediate action. The evidence supplies no safe numerical dose, expo
 only before commitment, and the predicted first responses and stabilization remain modeled story
 outcomes rather than replicated trials.
 
+The first implementation commit, `d97fd466057ad1c9bab7d33d5666cc946416586c`, failed its first
+external Mac/Google Chrome 150 gate deterministically at **2360/2362** on both runs with zero
+application JavaScript errors. The strict-fit/page-count/geometry assertion passed. The normal and
+grayscale semantic assertions failed only because their browser oracles expected spaces that a
+`<br/>` does not contribute to `textContent` and expected `Task 7` text that exists only in
+`aria-label` attributes rather than visible page `textContent`. Every other captured sub-condition
+passed. Accepted prerequisite `e7e1b58…` passed 2359/2359 on the same Mac, so the failed candidate
+added three registered assertions but only one passing assertion. These are new DOM-structure
+oracle defects, not the inherited one-registration differential and not product-rendering defects.
+The corrective successor preserves `d97fd46…` as immutable evidence and changes only those two
+harness expectations plus the focused validator and active lifecycle records that govern them.
+
 The candidate adds exactly three browser assertions: one six-view strict-fit contract plus normal
 and grayscale semantic/geometry contracts. Canonical registration after these additions is 2363.
-This transferred production environment has no executable Chromium, so it makes no browser-pass,
-manual-geometry or field-dimension claim. External Mac/Google Chrome acceptance must run the
-complete harness twice, inspect Student page 5, Answer Key page 5 and Accessible page 7 in normal
-and grayscale, and compare against prerequisite `e7e1b58…` on the same machine if an inherited
-registration difference appears. Until that gate passes and a separate documentation-only closeout
-is synchronized, `C1C7-VIS03` does not advance the accepted **30 of 36 completed / 6 of 36
-remaining** inventory. Family 8 retains two accepted assignments—hybrid `C2C5-VIS03` and
-standalone `C1C6-VIS03`—and this new candidate remains unaccepted.
+The corrected candidate must rerun the complete Mac/Google Chrome harness twice, inspect Student
+page 5, Answer Key page 5 and Accessible page 7 in normal and grayscale, and compare against
+prerequisite `e7e1b58…` on the same machine if the inherited one-registration difference remains.
+Until that gate passes and a separate documentation-only closeout is synchronized, `C1C7-VIS03`
+does not advance the accepted **30 of 36 completed / 6 of 36 remaining** inventory. Family 8
+retains two accepted assignments—hybrid `C2C5-VIS03` and standalone `C1C6-VIS03`—and this
+corrected candidate remains unaccepted.
 
 ## 3. Exact inventory reconciliation
 

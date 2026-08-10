@@ -4156,7 +4156,7 @@
                 && studentIntervention.routeStates === expectedGiftRouteStates
                 && studentIntervention.routeBorders === expectedGiftRouteBorders
                 && studentIntervention.routePatterns.every(Boolean)
-                && studentIntervention.rankText === "+10 best supported|+5 defensible|+0 most uncertain"
+                && studentIntervention.rankText === "+10best supported|+5defensible|+0most uncertain"
                 && studentIntervention.rankSize === "7.73|7.73|7.73"
                 && studentIntervention.directions.includes("story rankings; justify your choice with evidence, not points")
                 && accessibleIntervention.routeCount === 3
@@ -4184,7 +4184,7 @@
                 && answerIntervention.answerBlocks[1].text.includes("Stop for loss of containment, unexpected material, adverse response, or failed verification")
                 && answerIntervention.answerBlocks[1].text.includes("Do not claim reversibility after commitment")
                 && answerIntervention.answerBlocks[2].text.includes("not a replicated trial")
-                && renderedInterventions.every(state => state.pageText.includes("Task 7 · Choose and Monitor a Safe Intervention")),
+                && renderedInterventions.every(state => state.pageText.includes("7 · Choose and Monitor a Safe Intervention")),
               JSON.stringify(renderedInterventions)
             );
           }

@@ -6,10 +6,12 @@ run PDF automation, or reopen accepted correctness findings.
 
 ## Unaccepted Family 8 candidate — The Gift controlled response
 
-The successor to accepted First Contact closeout
-`e7e1b58f61899b0e53de5b7f07cba205fdb7797b` implements `C1C7-VIS03` as the second standalone
-Family 8 intervention-comparison candidate. It is not accepted and does not advance the 30/36
-inventory. Accepted hybrid `C2C5-VIS03` and standalone `C1C6-VIS03` remain Family 8's two verified
+The accepted lineage root is First Contact closeout
+`e7e1b58f61899b0e53de5b7f07cba205fdb7797b`. Failed first implementation
+`d97fd466057ad1c9bab7d33d5666cc946416586c` remains an immutable intermediate commit beneath the
+active corrective successor for `C1C7-VIS03`, the second standalone Family 8
+intervention-comparison candidate. It is not accepted and does not advance the 30/36 inventory.
+Accepted hybrid `C2C5-VIS03` and standalone `C1C6-VIS03` remain Family 8's two verified
 assignments; the hybrid remains counted only once in the unique inventory.
 
 The frozen Task 7 structures remain semantic and source-controlled:
@@ -40,8 +42,10 @@ No The Gift source file changes. The candidate preserves these SHA-256 identitie
 - `case-package.json` — `fdd287d5b3874d20f49b94836f0bff3ccf24702eb3ee17093f60b2cc6f39871c`
 - `task-registry.js` — `5d6e5fe1223b4faee4e5f49c41e0bd4e1ae7e92767027ee15dce5adc268eeaff`
 
-The candidate scope is exactly the shared component CSS, browser harness, focused Family 8
-validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+The cumulative candidate scope from `e7e1b58…` is exactly the shared component CSS, browser
+harness, focused Family 8 validator, production plan and this handoff. The corrective successor
+changes only the two defective harness expectations, the focused validator that checks them, the
+production plan and this handoff. It changes no worksheet wording, case presentation,
 layout override, package metadata, task registry, response text, response dimensions, page count,
 persistence identity, Teacher content, source hash, release/history record or accepted-family
 implementation.
@@ -55,14 +59,24 @@ dose. Exposure can stop before commitment; reversibility must not be assumed aft
 12/18/24-hour first responses and 24–36-hour stabilization remain modeled/narrated predictions,
 not replicated trials or guaranteed outcomes.
 
+The failed first implementation's first browser execution on Mac/Google Chrome 150 reported
+**2360/2362** twice with zero application JavaScript errors and identical assertion-name sets. The
+strict-fit/page-count/geometry assertion passed. Both normal and grayscale semantic assertions
+failed only at two impossible text expectations: the frozen `<br/>` markup yields DOM
+`textContent` of `+10best supported|+5defensible|+0most uncertain`, and the visible heading yields
+`7 · Choose and Monitor a Safe Intervention`; `Task 7` exists only in `aria-label` attributes and
+is absent from page `textContent`. Every other captured sub-condition passed. Accepted prerequisite
+`e7e1b58…` passed 2359/2359 on the same Mac, making the candidate delta +3 registered but only +1
+passed. This is not the inherited differential. The corrective successor uses those two
+DOM-accurate expectations without altering content, rendering or geometry.
+
 The candidate adds exactly three browser assertions: six-view strict fit and one semantic/geometry
 contract in each of normal and grayscale. Canonical project registration is therefore 2363. The
 focused intervention/trial validator is **125/125 PASS** after the candidate record is included;
 all established family validators and The Gift layout overrides must remain green.
 
-This transferred production environment has no executable Chromium, so it makes no local browser-
-pass, rendered-dimension or manual-inspection claim. External Mac/Google Chrome acceptance remains
-required. Run the complete harness twice with canonical expectation **2363/2363 PASS** and zero
+External Mac/Google Chrome acceptance remains required for the corrected successor. Run the
+complete harness twice with canonical expectation **2363/2363 PASS** and zero
 application JavaScript errors. Inspect Student page 5, Answer Key page 5 and Accessible page 7 in
 normal and grayscale for fixed 816 × 1056 geometry, exact role page counts Student 6 / Answer Key
 6 / Accessible 8, `scrollHeight 936 == clientHeight 936`, no overflow/collision/crowding, distinct

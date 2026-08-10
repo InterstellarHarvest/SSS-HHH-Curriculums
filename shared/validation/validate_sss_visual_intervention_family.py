@@ -239,7 +239,12 @@ def main() -> int:
     check("browser harness requires all three The Gift route states", 'SUPPORTED|QUALIFIED|RESEARCH ONLY' in gift_case_harness)
     check("browser harness requires all three The Gift route borders", 'solid|dashed|double' in gift_case_harness)
     check("browser harness preserves exact Student and Accessible route order", all(token in gift_case_harness for token in ("Sealed natural plume|Verified extraction|Validated synthesis", "Sealed natural plume · +10|Verified extraction · +5|Validated synthesis · +0")))
-    check("browser harness subordinates exact story ranks", "+10 best supported|+5 defensible|+0 most uncertain" in gift_case_harness and 'rankSize === "7.73|7.73|7.73"' in gift_case_harness)
+    check(
+        "browser harness uses DOM-accurate story ranks and visible Task 7 heading text",
+        "+10best supported|+5defensible|+0most uncertain" in gift_case_harness
+        and 'rankSize === "7.73|7.73|7.73"' in gift_case_harness
+        and 'pageText.includes("7 · Choose and Monitor a Safe Intervention")' in gift_case_harness,
+    )
     check("browser harness verifies both The Gift learner field sets", all(token in gift_case_harness for token in ("t7-recommend|t7-monitor|t7-predict", "a7-recommend|a7-monitor|a7-predict")))
     check("browser harness protects The Gift Accessible monitoring scaffold", "Monitor cue identity and containment. I would stop if ________________________________." in gift_case_harness)
     check("browser harness protects The Gift minimum learner field utility", "field.size[0] >= 108 && field.size[1] >= 30" in gift_case_harness)
@@ -248,15 +253,15 @@ def main() -> int:
     check("browser harness rejects The Gift route collision and overflow", "!state.routeCollisions" in gift_case_harness and "state.scrollHeight <= state.clientHeight" in gift_case_harness)
 
     check(
-        "plan records C1C7-VIS03 as the implemented unaccepted Family 8 candidate",
-        "`C1C7-VIS03` is the implemented but unaccepted second standalone Family 8 intervention-comparison candidate" in plan
+        "plan records C1C7-VIS03 as the corrected unaccepted Family 8 candidate",
+        "`C1C7-VIS03` is the corrected but unaccepted second standalone Family 8 intervention-comparison candidate" in plan
         and "`EVIDENCE → CONTROL → MONITOR`" in plan
-        and all(token in plan for token in ("`SUPPORTED`", "`QUALIFIED`", "`RESEARCH ONLY`")),
+        and all(token in plan for token in ("`SUPPORTED`", "`QUALIFIED`", "`RESEARCH ONLY`", "2360/2362", "DOM-structure oracle defects")),
     )
     check(
         "plan preserves the accepted 30 of 36 inventory while The Gift awaits acceptance",
         "does not advance the accepted **30 of 36 completed / 6 of 36 remaining** inventory" in plan
-        and "this new candidate remains unaccepted" in plan,
+        and "this corrected candidate remains unaccepted" in plan,
     )
     check(
         "handoff preserves The Gift source ownership and all five frozen hashes",
@@ -270,7 +275,9 @@ def main() -> int:
         "handoff requires canonical 2363 external acceptance without advancing lifecycle",
         "canonical expectation **2363/2363 PASS**" in handoff
         and "focused intervention/trial validator is **125/125 PASS**" in handoff
-        and "no executable Chromium" in handoff
+        and "first browser execution" in handoff
+        and "2360/2362" in handoff
+        and "DOM-accurate expectations" in handoff
         and "Do not mark `C1C7-VIS03` `VERIFIED-FAMILY`" in handoff
         and "A separate closeout is required after acceptance" in handoff,
     )
