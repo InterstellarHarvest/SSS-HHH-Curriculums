@@ -4721,4 +4721,215 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   color: var(--ink, #18212b);
   background-color: var(--paper, #fff);
 }
+
+/*
+ * Specification/verification family completion: Silent Grove.
+ *
+ * The frozen Task 8 pages already distinguish the five-hour recorded trial
+ * minimum from the six-hour schedule with a two-year successful record, then
+ * ask for cycle stability, one reported constraint and a monitored trial with
+ * a stop/revise condition. This strictly Case-04-scoped layer exposes that
+ * existing evidence-to-specification path without changing the requirement,
+ * averaging the 40–80 ppb range or promising recovery.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE04"] {
+  --grove-spec-line: var(--ink, #18212b);
+  --grove-spec-panel: var(--paper, #fff);
+  --grove-spec-minimum-pattern:
+    repeating-linear-gradient(45deg, transparent 0 7px, rgba(24, 33, 43, .11) 7px 8px);
+  --grove-spec-schedule-pattern:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .1) 8px 9px);
+  --grove-spec-constraint-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .08) 7px 8px);
+  --grove-spec-verify-pattern:
+    repeating-linear-gradient(135deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .task-heading[data-task-id="8"],
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"],
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"]
+) {
+  position: relative;
+  padding-right: 1.85in;
+  border-bottom: 1.5px solid var(--grove-spec-line);
+  background: var(--grove-spec-verify-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .task-heading[data-task-id="8"],
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"],
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"]
+)::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "EVIDENCE → SPECIFY → VERIFY";
+  font: 800 5.4pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) table.conditions-table {
+  outline: 1.5px solid var(--grove-spec-line);
+  box-shadow: inset 4px 0 0 var(--grove-spec-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) table.conditions-table caption {
+  position: relative;
+  padding-right: 1.55in;
+  background: var(--grove-spec-minimum-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) table.conditions-table caption::after {
+  position: absolute;
+  right: 5px;
+  content: "MINIMUM ≠ PREFERRED DESIGN";
+  font: 800 5.2pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) table.conditions-table tbody tr:first-child > td:first-child {
+  border-left: 4px dashed var(--grove-spec-line);
+  background: var(--grove-spec-minimum-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) table.conditions-table tbody tr:nth-child(2) > td:first-child {
+  border-left: 4px double var(--grove-spec-line);
+  background: var(--grove-spec-schedule-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) table.conditions-table tbody tr:nth-child(3) > td:first-child {
+  border-left: 4px dotted var(--grove-spec-line);
+  background: var(--grove-spec-constraint-pattern), var(--grove-spec-panel);
+}
+
+/* Keep each inset requirement rail clear of its first label glyph. */
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .response-label,
+  .page[data-page-id="accessible-mission-08"] .response-label
+) {
+  padding-left: 6px;
+  border-left: 4px solid var(--grove-spec-line);
+  background: var(--grove-spec-verify-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .two-col > div:first-child .response-label,
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-criterion-1"])
+) {
+  border-left-style: dashed;
+  background: var(--grove-spec-minimum-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  [data-persist-id="t8-criterion-1"],
+  [data-persist-id="a8-criterion-1"]
+) {
+  border-left: 4px dashed var(--grove-spec-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .two-col > div:nth-child(2) .response-label,
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-criterion-2"])
+) {
+  border-left-style: double;
+  background: var(--grove-spec-schedule-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  [data-persist-id="t8-criterion-2"],
+  [data-persist-id="a8-criterion-2"]
+) {
+  border-left: 4px double var(--grove-spec-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .response-label:has(+ [data-persist-id="t8-constraint"]),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-constraint"])
+) {
+  border-left-style: dotted;
+  background: var(--grove-spec-constraint-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  [data-persist-id="t8-constraint"],
+  [data-persist-id="a8-constraint"]
+) {
+  border-left: 4px dotted var(--grove-spec-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .response-label:has(+ [data-persist-id="t8-test"]),
+  .page[data-page-id="accessible-mission-08"] .response-label:has(+ [data-persist-id="a8-test"])
+) {
+  border-left-style: solid;
+  background: var(--grove-spec-verify-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"] :is(
+  [data-persist-id="t8-test"],
+  [data-persist-id="a8-test"]
+) {
+  border-left: 4px solid var(--grove-spec-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p {
+  padding: 2px 4px;
+  border-left: 4px solid var(--grove-spec-line);
+  background: var(--grove-spec-verify-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(1) {
+  border-left-style: dashed;
+  background: var(--grove-spec-minimum-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(2) {
+  border-left-style: double;
+  background: var(--grove-spec-schedule-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(3) {
+  border-left-style: dotted;
+  background: var(--grove-spec-constraint-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE04"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(5) {
+  border-left-style: dotted;
+  background: var(--grove-spec-constraint-pattern), var(--grove-spec-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE04"] :is(
+  .page[data-page-id="student-mission-06"] .content-area,
+  .page[data-page-id="accessible-mission-08"] .content-area,
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
 /* END SSS/HHH SPECIFICATION-VISUAL EXTENSIONS */

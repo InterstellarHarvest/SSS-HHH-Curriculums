@@ -2395,6 +2395,118 @@
                 && state.scrollHeight <= state.clientHeight),
             JSON.stringify(sleepExamplePageFit)
           );
+          const groveSpecificationPageFit = [];
+          const groveStudentFields = ["t8-criterion-1", "t8-criterion-2", "t8-constraint", "t8-test"];
+          const groveAccessibleFields = ["a8-criterion-1", "a8-criterion-2", "a8-constraint", "a8-test"];
+          const expectedGroveAnswers = [
+            "Criterion 1 — dark hours per cycle: Specify a recurring dark interval of at least 6.0 h per 24 h cycle. Accept answers that choose six rather than the recorded five-hour minimum and justify it: six is the interval with a two-year record of full signalling in this grove, while five is only the smallest interval that maintained signalling in trials, leaving no margin.",
+            "Criterion 2 — cycle stability: The dark interval must fall at the same point in every cycle and repeat without interruption, so the cue recurs on a fixed schedule rather than appearing at random.",
+            "Constraint — completed exemplar: Accept any constraint drawn from the records. Strong answers name the ship’s power supply, which already fluctuated once on Day −93 and must not be able to cancel the dark interval, or the six-month reversibility window, which bounds how long the trial can take. Both are printed in the learner editions; do not require a constraint the packet does not supply.",
+            "Monitored trial and stop rule: Restore the 18/6 schedule and measure signalling output on a fixed schedule, sampling within the dark block and within the lit block so a returning cycle can be distinguished from a rise in the total. Record whether output re-enters the 40–80 ppb range and whether it cycles. If output has not risen above the reporting threshold within the window the records give for reversibility, stop, restore the recorded conditions, and re-examine the diagnosis rather than lengthening the dark period further.",
+            "Uncertainty note: The investigation predicts that signalling resumes within a day or two. That is a narrated outcome, not a replicated trial, so the prediction is something the trial tests."
+          ];
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, expectedPages, fieldIds] of [
+              ["student", "student-mission-06", 6, groveStudentFields],
+              ["accessible", "accessible-mission-08", 8, groveAccessibleFields]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const heading = page?.querySelector('.task-heading[data-task-id="8"]');
+              const table = page?.querySelector("table.conditions-table");
+              const rows = Array.from(table?.querySelectorAll("tbody > tr") || []);
+              const fields = fieldIds.map(id => page?.querySelector(`[data-persist-id="${id}"]`));
+              const labels = fieldIds.map(id => page?.querySelector(`.response-label:has(+ [data-persist-id="${id}"])`));
+              const state = {
+                role,
+                pageId,
+                grayscale,
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPages,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight,
+                headingStatus: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
+                captionStatus: table?.caption ? win.getComputedStyle(table.caption, "::after").content.replaceAll('"', "") : "",
+                rowBorders: rows.map(row => win.getComputedStyle(row.cells[0]).borderLeftStyle),
+                rowPatterns: rows.map(row => win.getComputedStyle(row.cells[0]).backgroundImage !== "none"),
+                fieldIds: fields.map(field => field?.dataset.persistId || ""),
+                blankFields: fields.map(field => Boolean(field?.hasAttribute("data-response")) && field.textContent.trim() === ""),
+                fieldSizes: fields.map(field => field ? dimensions(field) : []),
+                fieldBorders: fields.map(field => field ? win.getComputedStyle(field).borderLeftStyle : ""),
+                labelBorders: labels.map(label => label ? win.getComputedStyle(label).borderLeftStyle : ""),
+                labelRailClearance: labels.map(label => label ? Number.parseFloat(win.getComputedStyle(label).paddingLeft) : 0),
+                labelPatterns: labels.map(label => label ? win.getComputedStyle(label).backgroundImage !== "none" : false),
+                tableText: table?.textContent.trim().replace(/\s+/g, " ") || "",
+                pageText: page?.textContent.trim().replace(/\s+/g, " ") || ""
+              };
+              groveSpecificationPageFit.push(state);
+              rendered.push(state);
+            }
+            api.setRole("answer");
+            api.saveState({ grayscale });
+            await wait(20);
+            const answerPage = workspace.querySelector('.page[data-role="answer"][data-page-id="answer-key-04"]');
+            const answerContent = answerPage?.querySelector(".content-area");
+            const answerHeading = answerPage?.querySelector('.task-heading[data-task-id="8"]');
+            const answerBlock = answerHeading?.nextElementSibling;
+            const answerRows = Array.from(answerBlock?.querySelectorAll(":scope > p") || []);
+            groveSpecificationPageFit.push({
+              role: "answer",
+              pageId: "answer-key-04",
+              grayscale,
+              pageSize: answerPage ? dimensions(answerPage).join("x") : "",
+              pageCount: workspace.querySelectorAll('.page[data-role="answer"]').length,
+              expectedPages: 4,
+              overflow: answerPage?.classList.contains("has-overflow") || false,
+              scrollHeight: answerContent?.scrollHeight ?? null,
+              clientHeight: answerContent?.clientHeight ?? null,
+              fits: Boolean(answerContent) && answerContent.scrollHeight <= answerContent.clientHeight
+            });
+            const studentSpec = rendered.find(state => state.role === "student");
+            const accessibleSpec = rendered.find(state => state.role === "accessible");
+            check(
+              `C2 Case 04 ${grayscale ? "grayscale" : "normal"} specification panel preserves evidence floor, schedule requirements and monitored verification`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && rendered.length === 2
+                && rendered.every(state => state.headingStatus === "EVIDENCE → SPECIFY → VERIFY")
+                && rendered.every(state => state.captionStatus === "MINIMUM ≠ PREFERRED DESIGN")
+                && rendered.every(state => state.rowBorders.join("|") === "dashed|double|dotted" && state.rowPatterns.every(Boolean))
+                && studentSpec.fieldIds.join("|") === groveStudentFields.join("|")
+                && accessibleSpec.fieldIds.join("|") === groveAccessibleFields.join("|")
+                && rendered.every(state => state.blankFields.every(Boolean))
+                && rendered.every(state => state.fieldSizes.every(([width, height]) => width >= 108 && height >= 30))
+                && rendered.every(state => state.fieldBorders.join("|") === "dashed|double|dotted|solid")
+                && rendered.every(state => state.labelBorders.join("|") === "dashed|double|dotted|solid")
+                && rendered.every(state => state.labelRailClearance.every(value => value >= 6) && state.labelPatterns.every(Boolean))
+                && rendered.every(state => state.tableText.includes("At least five dark hours maintained signalling") && state.tableText.includes("18 h on / 6 h off"))
+                && rendered.every(state => state.pageText.includes("six dark hours") && !state.pageText.includes("60 ppb"))
+                && answerHeading && win.getComputedStyle(answerHeading, "::after").content.replaceAll('"', "") === "EVIDENCE → SPECIFY → VERIFY"
+                && answerRows.map(row => row.textContent.trim().replace(/\s+/g, " ")).join("|") === expectedGroveAnswers.join("|")
+                && answerRows.map(row => win.getComputedStyle(row).borderLeftStyle).join("|") === "dashed|double|dotted|solid|dotted"
+                && answerRows.every(row => win.getComputedStyle(row).backgroundImage !== "none")
+                && answerPage.textContent.includes("40–80 ppb range")
+                && answerPage.textContent.includes("That is a narrated outcome, not a replicated trial")
+                && !answerPage.textContent.includes("60 ppb"),
+              JSON.stringify({ rendered, answerRows: answerRows.length })
+            );
+          }
+          check(
+            "C2 Case 04 specification-verification pages retain strict fit, page counts and geometry in normal and grayscale",
+            groveSpecificationPageFit.length === 6
+              && groveSpecificationPageFit.every(state => state.pageSize === "816x1056"
+                && state.pageCount === state.expectedPages
+                && !state.overflow
+                && state.fits),
+            JSON.stringify(groveSpecificationPageFit)
+          );
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

@@ -4,6 +4,97 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Unaccepted Family 6 completion candidate — Silent Grove schedule specification
+
+The successor to accepted Heavy Hands closeout
+`199d5d289947fe8402d6563067afa7d47be60cfb` implements `C2C4-VIS03` as the fourth and final
+Family 6 specification/verification candidate. It is not accepted, does not advance the 28/36
+inventory and does not complete Family 6.
+
+The frozen Task 8 structures remain semantic and source-controlled:
+
+- Student page 6 retains blank fields
+  `t8-criterion-1 | t8-criterion-2 | t8-constraint | t8-test`.
+- Accessible page 8 retains the parallel blank fields
+  `a8-criterion-1 | a8-criterion-2 | a8-constraint | a8-test`.
+- Answer Key page 4 retains the exact five-paragraph dark-hours, cycle-stability, constraint,
+  monitored-trial/stop and uncertainty exemplar.
+
+The Case-04-scoped shared presentation gives the existing task one direct relationship line:
+
+`EVIDENCE → SPECIFY → VERIFY`
+
+The existing Table 7 is labeled `MINIMUM ≠ PREFERRED DESIGN`. Its three rows use dashed, double
+and dotted borders plus independent hatch states for the recorded minimum, the schedule with the
+two-year record and the reversibility record. The existing learner responses use
+dashed / double / dotted / solid borders and matching patterns for Criterion 1, Criterion 2,
+Constraint and Monitored trial/stop. The Answer Key mirrors those four states, and its fifth
+uncertainty note remains dotted. These labels add no learner action, numerical requirement,
+completed trial or recovery result.
+
+No Silent Grove source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `38937cf5734185d820d597fdcb14fce41e29305f087d47b4a6b94f63a19c3c56`
+- `presentation.css` — `32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9`
+- `layout-overrides.json` — `7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c`
+- `case-package.json` — `b1739a3f1ad09d44208c3c0b362aeeb77868f9b46ae0a564744c0864227779b8`
+- `task-registry.js` — `d7f4f09af87f0a3bd7895c320fb530d25d7925aa8a59e2bd2bfd6556b6cf0860`
+
+The candidate scope is exactly the shared component CSS, browser harness, focused
+specification-family validator, production plan and this handoff. It changes no worksheet wording,
+case presentation, layout override, package metadata, task registry, response text, response
+dimensions, page count, persistence identity, Teacher content, source hash, release/history record
+or accepted-family implementation.
+
+Linux Chromium 149 registers the new canonical total of 2357 assertions. The finished run reports
+**2326/2357**, exactly the 31 established platform/font/screenshot-smoke exceptions, with all three
+new Case 04 assertions passing and zero application JavaScript errors. The candidate adds exactly:
+
+1. six-state page fit, page counts and fixed geometry;
+2. normal evidence floor, schedule requirements, fields, Answer Key parity and monitored
+   verification;
+3. grayscale evidence floor, schedule requirements, fields, Answer Key parity and monitored
+   verification.
+
+The focused specification/verification validator is **105/105 PASS**. Control remains 30/30,
+timeline remains 44/44, mechanism remains 103/103, evidence convergence remains 60/60 and
+telemetry remains 36/36. The Silent Grove layout-override validator passes.
+
+Independent normal and grayscale inspection of Student page 6, Answer Key page 4 and Accessible
+page 8 confirmed fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936` fit and
+exact Student 6 / Answer Key 4 / Accessible 8 page counts in all six views. No view had overflow,
+spill, clipping, collision or crowding. Every label rail has 6 px clearance from its first glyph;
+all four border/pattern states remain distinct without color. Learner fields remain blank, visible
+and unclipped:
+
+- Student `t8-criterion-1 | t8-criterion-2`: 356 × 36.47 px each.
+- Student `t8-constraint`: 720 × 32.63 px.
+- Student `t8-test`: 720 × 84.47 px.
+- Accessible `a8-criterion-1 | a8-criterion-2`: 720 × 36.47 px each.
+- Accessible `a8-constraint`: 720 × 40.31 px.
+- Accessible `a8-test`: 720 × 84.47 px.
+
+The five-hour recorded minimum remains distinct from the six-hour schedule with a two-year record.
+The six-hour schedule is the supported specification for this grove, not a general plant rule.
+The 40–80 ppb healthy-output value remains a range and is not converted to a 60 ppb midpoint.
+The monitored trial distinguishes a returning cycle from a rise in total output, retains a stop
+and re-examine rule, and recovery remains an unreplicated prediction rather than a guaranteed
+result.
+
+External validation must run the complete Mac/Google Chrome harness twice. Canonical expectation
+is **2357/2357 PASS** with zero application JavaScript errors. If that Mac reproduces an inherited
+registration-count difference, run prerequisite `199d5d2…` in a throwaway worktree on the same
+machine. Require candidate delta exactly +3, all three named Case 04 assertions passing and zero
+JavaScript errors, then stop without pushing for separate candidate-specific disposition.
+Differential evidence does not itself authorize acceptance, does not change canonical 2357 and
+does not establish a general platform policy.
+
+Run the focused specification validator, all five established family validators and
+`validate_layout_overrides.py --case SSS-C2-CASE04`. Inspect the same six target views. If every
+gate passes at the canonical total, push only by ordinary fast-forward. Otherwise stop without
+pushing. Do not mark `C2C4-VIS03` `VERIFIED-FAMILY`, advance the inventory, complete Family 6,
+merge to `main` or begin another finding.
+
 ## Accepted Family 6 finding — Heavy Hands across-bed specification
 
 Corrected candidate `4d181aa796591249bb4f989e091c646b22b3a3e8` advances `C2C1-VIS03` to
