@@ -18,6 +18,57 @@ Teacher Editions.
 
 Only a new regression introduced by this branch may reopen a correctness question.
 
+### Implementation candidate — C1C1-GS01 grayscale-system correction
+
+`C1C1-GS01` is the sole remaining formal finding in the 36-item visual-modernization inventory.
+Its synchronized accepted prerequisite is the First Garden family closeout
+`6a121a56f6d3a799c3f182a14f235651d2d8c1a3`. The candidate changes only the extracted shared
+visual CSS, browser harness, focused grayscale-system validator, this production plan and the
+desktop browser handoff. It changes no worksheet or case source, case presentation, layout
+override, package metadata, task registry, response wording or geometry, persistence identity,
+page count, Teacher or Answer Key content, release/history record or any of the 35 accepted visual
+findings.
+
+Case 01 retains its frozen source files and package pins:
+
+- `content.html` — `ab4aece5aea687efa477148af920c96aa24208d9e428100b6f2c80d40fd774a1`
+- `presentation.css` — `3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41`
+- `layout-overrides.json` — `2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781`
+- `case-package.json` — `926b6bcbf0fdf59f234cd59527aab16a672650edc905cd61cbe1f7859dd454e8`
+- `task-registry.js` — `4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d`
+
+The case-scoped shared override is active only for
+`.worksheet-document.grayscale[data-case-id="SSS-C1-CASE01"]`. It maps neutral and optional-
+extension callouts to neutral `#f2f2f2` and the success callout to the darker neutral `#e6e6e6`.
+That retains the existing border, label and value hierarchy while leaving the approved color
+presentation untouched. It authors no layout geometry and does not rewrite the frozen Case 01
+palette. The browser harness removes the inherited Case 01 rendered-tint exception and now expects
+zero tinted rendered fills for every registered case while preserving the existing assertion name
+and total registration.
+
+Cases 01, 02 and 06 still declare the previously recorded dormant grayscale-token exceptions.
+Those records remain exact because the rendered-surface contract—not blanket token rewriting—is
+the production requirement. Cases 02 and 06 already render zero tinted fills; the new scoped Case
+01 override closes the only reachable gap. No dormant token is rewritten without demonstrated
+printable reach or material maintenance value.
+
+The focused grayscale-system validator is **42/42 PASS**. It protects all five Case 01 source
+hashes, role counts, callout inventory, shared-layer extraction and grayscale scoping, the two
+neutral fills and their value order, zero authored geometry, the empty harness exception, the
+unchanged dormant-token records, stable browser assertion registration and this pending-state
+contract. Canonical external Mac/Google Chrome registration remains **2375**. Two complete runs
+must reach 2375/2375 with zero application JavaScript errors and byte-identical unique assertion-
+name sequences, followed by instrumented color/grayscale inspection of all four roles and the
+affected Student page 3, Teacher pages 5 and 7 and Accessible page 6. If the same Mac instead
+retains the inherited 2374 registration, an exact prerequisite-to-candidate 2374/2374 comparison
+with no name, count or pass regression plus direct zero-tint rendered evidence may be returned only
+for owner disposition. It creates no general platform exception.
+
+The implementation remains `IMPLEMENTED-CANDIDATE` pending external rendered acceptance. Accepted
+inventory deliberately remains **35 of 36 completed / 1 of 36 remaining**. Do not advance the
+inventory to 36/36, mark `C1C1-GS01` verified, perform whole-program closeout or merge to `main`
+from this candidate record. No rendered acceptance is inferred from static validation.
+
 ### Accepted Family 8 completion — C2C6-VIS03 screened ecological trial
 
 Accepted implementation `8a81fd02b83157dc7bebca443f294595d1eee6d3` advances `C2C6-VIS03` to
@@ -997,7 +1048,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 
 | Finding / item | Case | Current state | Modernization | Method | Constraints and validation | Status |
 |---|---|---|---|---|---|---|
-| `C1C1-GS01` | C1 Case 01 — ISS Greenhouse | Grayscale variables change, but neutral/optional callouts retain tint and `.callout-success` uses hard-coded `#e9f3ed`. | Neutralize rendered callout surfaces in grayscale while retaining border/value hierarchy; update the inherited-tint browser expectation only after the rendered count reaches zero. | deterministic CSS | Do not rewrite dormant tokens without maintenance value; verify all four roles, color and grayscale, page geometry, contrast, and zero tint. | `PLANNED · FORMAL FINDING` |
+| `C1C1-GS01` | C1 Case 01 — ISS Greenhouse | Grayscale variables change, but neutral/optional callouts retain tint and `.callout-success` uses hard-coded `#e9f3ed`. | Neutralize rendered callout surfaces in grayscale while retaining border/value hierarchy; update the inherited-tint browser expectation only after the rendered count reaches zero. | deterministic CSS | Do not rewrite dormant tokens without maintenance value; verify all four roles, color and grayscale, page geometry, contrast, and zero tint. | `IMPLEMENTED-CANDIDATE · 42/42 GRAYSCALE STATIC PASS · MAC/CHROME PENDING · ZERO-TINT RENDER PENDING` |
 | tracked status §5.3 | C1 Case 02 — Lunar Greenhouse | Rendered grayscale passes; some declared palette tokens are dormant and not neutralized. | Trace token reachability; neutralize only tokens that can reach printable components or consolidate them into governed grayscale values. | deterministic CSS audit | Must not turn a passing rendered state into blanket low-contrast gray; zero new tinted rendered surfaces. | `PLANNED · UNNUMBERED BACKLOG ITEM` |
 | tracked status §5.3 | C1 Case 06 — First Contact Protocol | Grayscale override exists, but the accepted handoff records token/fill coverage as visual backlog. | Audit all printable fills against the override set and close any reachable gap using Cool Mission Gray hierarchy. | deterministic CSS audit | Preserve timing/model/data distinction with value, border, label and pattern; no color-only meaning. | `PLANNED · UNNUMBERED BACKLOG ITEM` |
 

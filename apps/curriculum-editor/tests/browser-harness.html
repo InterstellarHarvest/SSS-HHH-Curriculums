@@ -1185,28 +1185,18 @@
             const tintedSurfaces = Array.from(workspace.querySelectorAll(".callout,.data-table th,.teacher-card,.canonical-phrase-bank,.optional-extension"));
             const tokenFailures = grayscaleTokens.filter(token => !isNeutralRgb(palette.getPropertyValue(token).trim()));
             const surfaceFailures = tintedSurfaces.filter(node => !isNeutralRgb(win.getComputedStyle(node).backgroundColor));
-            // Rendered output is the contract. It holds for twelve of the thirteen
-            // registered cases. Campaign 1 Case 01 leaves its callout fills tinted under
-            // grayscale in every role -- a real defect in an approved package, surfaced
-            // only once this assertion stopped running against a 7-of-13 roster. It is
-            // recorded exactly, so it cannot grow or spread, and is carried to the later
-            // whole-SSS audit; correcting approved Campaign 1 presentation is that audit's
-            // work, not a Campaign 2 maintenance pass's.
-            const knownTintedGrayscaleFills = {
-              "SSS-C1-CASE01": ["callout callout-neutral", "callout callout-neutral optional-extension", "callout callout-success"]
-            };
-            const expectedTintedFills = knownTintedGrayscaleFills[item.id] || [];
+            // Rendered output is the contract. C1C1-GS01 removes the final approved
+            // inherited exception, so every registered case must now render zero tinted
+            // printable surfaces in grayscale. Keep this assertion name stable: only its
+            // expected rendered state changes from the recorded exception to an empty set.
+            const expectedTintedFills = [];
             const observedTintedFills = [...new Set(surfaceFailures.map(node => node.className))].sort();
             check(`${item.id} ${profile.role} grayscale rendered tinted fills match its recorded state exactly`, tintedSurfaces.length > 0 && JSON.stringify(observedTintedFills) === JSON.stringify(expectedTintedFills.slice().sort()), JSON.stringify({ observed: observedTintedFills, expected: expectedTintedFills }));
             // Token-level neutralization holds everywhere except three approved Campaign 1
             // presentations, which leave some declared tokens tinted under grayscale. For
-            // Cases 02 and 06 the rendered surfaces are still neutral, so nothing prints
-            // tinted; Case 01 is the one case where it reaches the page, per the check
-            // above. All three went unseen while the roster covered 7 of 13. Asserting the
-            // gap exactly means it cannot
-            // grow and cannot spread to a new case, and it shrinks to nothing the moment
-            // those presentations are corrected. Correcting them is approved Campaign 1
-            // artwork and belongs to the later whole-SSS audit, not to a maintenance pass.
+            // Cases 01, 02 and 06 still declare some dormant tinted tokens, but C1C1-GS01
+            // proves none reaches a printable surface. Asserting the token gap exactly
+            // keeps it from growing while the rendered-fill contract above stays at zero.
             const knownUnneutralizedTokens = {
               "SSS-C1-CASE01": ["--panel", "--panel-light", "--neutral-field", "--institution", "--botanical", "--accent-dark", "--accent-pale", "--primary", "--secondary", "--soft", "--caution", "--caution-field"],
               "SSS-C1-CASE02": ["--panel", "--panel-light", "--cyan-dark", "--slate", "--primary", "--secondary", "--soft", "--caution-field"],

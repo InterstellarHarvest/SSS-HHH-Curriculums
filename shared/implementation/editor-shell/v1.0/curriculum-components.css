@@ -4250,6 +4250,26 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Grayscale-system correction: ISS Greenhouse callout fills.
+ *
+ * The frozen Case 01 presentation predates the governed shared palette. Its
+ * neutral callouts inherit a slightly blue field and its success callout uses
+ * a hard-coded pale green. Keep the approved color presentation untouched,
+ * but replace those rendered fills with two neutral values in grayscale. The
+ * darker success field preserves the existing success-versus-neutral value
+ * hierarchy without changing layout, borders, labels or worksheet content.
+ */
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE01"]
+  .callout-neutral {
+  background-color: #f2f2f2;
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE01"]
+  .callout-success {
+  background-color: #e6e6e6;
+}
+
 /* END SSS/HHH EXPLANATORY-VISUAL PRIMITIVES */
 
 .source-status {

@@ -4,6 +4,74 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Candidate final finding — C1C1-GS01 grayscale-system correction
+
+`C1C1-GS01` is implemented against exact synchronized accepted prerequisite
+`6a121a56f6d3a799c3f182a14f235651d2d8c1a3`. It is the sole remaining formal finding and remains
+unaccepted. Do not push it until the external Mac/Google Chrome gate below passes or receives a
+separate exact candidate-specific disposition.
+
+The candidate changes only the extracted shared visual CSS, browser harness, focused grayscale-
+system validator, production plan and this handoff. It changes no worksheet wording, case
+presentation, layout override, package metadata, task registry, response identity or geometry,
+page count, Teacher or Answer Key content, release/history record or accepted visual finding.
+These ISS Greenhouse source hashes remain exact:
+
+- `content.html` — `ab4aece5aea687efa477148af920c96aa24208d9e428100b6f2c80d40fd774a1`
+- `presentation.css` — `3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41`
+- `layout-overrides.json` — `2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781`
+- `case-package.json` — `926b6bcbf0fdf59f234cd59527aab16a672650edc905cd61cbe1f7859dd454e8`
+- `task-registry.js` — `4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d`
+
+The final rendered defect is narrowly scoped. Student page 3 and Accessible page 6 each contain one
+neutral optional-extension callout; Teacher page 5 contains the success callout and one neutral
+callout; Teacher page 7 contains one neutral callout. The shared override applies only in
+grayscale Case 01, mapping neutral/optional fills to `#f2f2f2` and success to darker `#e6e6e6`.
+Both are neutral RGB values. Color mode, border colors, labels, value hierarchy, dimensions and
+content remain unchanged. Answer Key contains no affected callout but remains part of the all-role
+rendered regression.
+
+The browser harness keeps its existing all-case, all-role assertion and assertion name but removes
+the Case 01 inherited rendered-tint allowance. Every registered case must now produce an empty
+computed `surfaceFailures` set: zero tinted rendered fills. The dormant token records for Cases 01,
+02 and 06 remain exact; do not broaden this finding into blanket token replacement. Rendered
+output is the contract.
+
+Run `python3 shared/validation/validate_sss_rendered_surface_system.py`; expected result is **42/42 PASS**.
+Run all eight accepted visual-family validators plus the case-scoped and all-case layout validators
+and all six governing corrective-system gates. Every existing accepted total must remain green.
+Run `git diff --check` against `6a121a5…`. Do not run PDF automation and do not run or re-pin
+`validate_static.py`.
+
+Run the complete browser harness twice. Canonical project registration remains 2375. Canonical
+acceptance requires **2375/2375 PASS** twice, zero application JavaScript errors, byte-identical
+assertion-name sequences, 2375 unique names, no duplicates and no failure. This candidate adds no
+browser assertion and changes no assertion name; it changes only the expected computed rendered-
+fill state from the inherited Case 01 exception to an empty set.
+
+Inspect all four printable roles in normal and grayscale, with direct instrumented attention to
+Student page 3, Teacher pages 5 and 7 and Accessible page 6. Require fixed 816 × 1056 pages, exact
+936/936 content fit, unchanged 3 / 8 / 3 / 6 role page counts, no overflow, clipping, collision,
+spill, crowding or hidden text, and no layout or typography movement between prerequisite and
+candidate. In color mode require byte-equivalent computed backgrounds for all affected callouts.
+In grayscale require every affected callout background to have equal red, green and blue channels,
+the neutral/optional fill to resolve to `rgb(242, 242, 242)`, the success fill to resolve to
+`rgb(230, 230, 230)`, and the success fill to remain darker. Borders, labels and meaning must remain
+clear in both modes. Confirm all other printable surfaces across all thirteen cases report zero
+tinted rendered fills.
+
+If both candidate runs instead report the inherited same-Mac total **2374/2374 PASS** with zero
+JavaScript errors, run a fresh prerequisite at `6a121a5…`. Only if the prerequisite also reports
+2374/2374, both candidate sequences are byte-identical, prerequisite and candidate name sets are
+identical, all 2374 names are unique, no pass is lost, and the targeted rendered measurements above
+are exact may the evidence be returned for owner disposition. Canonical project registration
+remains 2375; do not infer acceptance or create a general Mac, Chrome, browser, platform or
+environment exception.
+
+Accepted inventory remains **35 of 36 completed**, with **1 remaining**. `C1C1-GS01` remains
+unaccepted until owner disposition. Do not mark 36/36, run whole-program closeout, merge to `main`
+or alter another finding in this candidate run.
+
 ## Accepted Family 8 completion — The First Garden screened ecological trial
 
 Accepted implementation `8a81fd02b83157dc7bebca443f294595d1eee6d3` advances `C2C6-VIS03` to
