@@ -516,9 +516,9 @@ def main() -> int:
         )),
     )
     check(
-        "the Heavy Hands closeout advances inventory and Family 6 without creating platform policy",
-        "Accepted progress after the Heavy Hands specification/verification closeout is **28 of 36 completed**" in plan
-        and "**8 of 36 remaining**" in plan
+        "the plan preserves the Heavy Hands 28-of-36 milestone without creating platform policy",
+        "At the preceding Heavy Hands specification/verification closeout, accepted progress was 28 of 36" in plan
+        and "completed and 8 of 36 remaining" in plan
         and "At the preceding Europa specification/verification closeout, accepted progress was 27 of 36" in plan
         and "The formal inventory is now **28 of 36 completed**, with **8 remaining**" in handoff
         and "Family 6 has three of four assignments verified" in handoff
@@ -712,27 +712,30 @@ def main() -> int:
     )
 
     check(
-        "the production matrix records C2C4-VIS03 as the unaccepted 105-check Family 6 candidate",
+        "the production matrix accepts C2C4-VIS03 as the 105-check Family 6 completion",
         bool(re.search(
             r"\| `C2C4-VIS03` .*\| 6 · Specification/verification \|.*"
-            r"`IMPLEMENTED-CANDIDATE · 105/105 SPECIFICATION STATIC PASS · 2326/2357 LINUX BROWSER "
-            r"· 3/3 CANDIDATE ASSERTIONS · 0 JS ERRORS · STRICT FIT 936/936 · EXTERNAL ACCEPTANCE PENDING`",
+            r"`VERIFIED-FAMILY · 105/105 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 8433392 ACCEPTED`",
             plan,
         ))
-        and "fourth and final Family 6 specification/verification candidate" in plan,
+        and "accepted fourth and final Family 6 specification/verification finding" in plan
+        and "`C2C4-VIS03` is therefore" in plan
+        and "`VERIFIED-FAMILY`, completing Family 6 at four of four assignments" in plan,
     )
     check(
-        "the plan leaves the accepted inventory and Family 6 register unchanged",
-        "Accepted progress after the Heavy Hands specification/verification closeout is **28 of 36 completed**" in plan
-        and "**8 of 36 remaining**" in plan
-        and "Family 6 now has three of four assignments verified" in plan
-        and re.search(r"does not\s+advance the 28/36\s+inventory", plan),
+        "the plan advances accepted inventory to 29 of 36 and completes Family 6",
+        "Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**" in plan
+        and "**7 of 36 remaining**" in plan
+        and "Family 6 is" in plan
+        and "complete at four of four assignments" in plan
+        and "At the preceding Heavy Hands specification/verification closeout, accepted progress was 28 of 36" in plan,
     )
     check(
-        "the handoff records Silent Grove as unaccepted and preserves source ownership",
-        "Unaccepted Family 6 completion candidate — Silent Grove schedule specification" in handoff
+        "the handoff accepts Silent Grove and preserves source ownership",
+        "Accepted Family 6 completion — Silent Grove schedule specification" in handoff
+        and "84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2" in handoff
         and "199d5d289947fe8402d6563067afa7d47be60cfb" in handoff
-        and re.search(r"does not\s+advance the 28/36\s+inventory", handoff)
         and "changes no worksheet wording" in handoff,
     )
     check(
@@ -740,9 +743,15 @@ def main() -> int:
         all(expected_hash in handoff for expected_hash in GROVE_FROZEN_HASHES.values()),
     )
     check(
-        "the handoff records the completed local browser and static gates",
+        "the handoff records the completed local and external browser and static gates",
         "**2326/2357**" in handoff
         and re.search(r"all three\s+new Case 04 assertions passing", handoff)
+        and "2353/2353 PASS" in handoff
+        and "Run 2 each" in handoff
+        and "**2356/2356 PASS**" in handoff
+        and "The candidate delta is exactly" in handoff
+        and "+3 registered and +3 passed" in handoff
+        and "Canonical project registration remains 2357" in handoff
         and "zero application JavaScript errors" in handoff
         and "**105/105 PASS**" in handoff,
     )
@@ -756,17 +765,19 @@ def main() -> int:
             "six-hour schedule with a two-year record",
             "40–80 ppb",
             "recovery remains an unreplicated prediction",
+            "All eight learner fields matched the",
+            "Linux reference dimensions exactly",
         )),
     )
     check(
-        "the handoff leaves acceptance, inventory and main unchanged",
-        "Do not mark `C2C4-VIS03` `VERIFIED-FAMILY`" in handoff
-        and "advance the inventory" in handoff
-        and "complete Family 6" in handoff
-        and "merge to `main`" in handoff
-        and "begin another finding" in handoff,
+        "the Silent Grove closeout completes Family 6 without double-counting or platform policy",
+        "The formal inventory is now **29 of 36 completed**" in handoff
+        and "with **7 remaining**" in handoff
+        and "Family 6 is complete at four of four assignments" in handoff
+        and "| `C2C4-VIS03` | `8433392` | `VERIFIED-FAMILY` |" in handoff
+        and "hybrid `C2C3-VIS03` is not counted again" in handoff
+        and re.search(r"does not establish a\s+general platform policy", handoff),
     )
-
     passed = sum(1 for _, ok, _ in checks if ok)
     for name, ok, detail in checks:
         print(f"{'PASS' if ok else 'FAIL'}: {name}" + (f" — {detail}" if detail and not ok else ""))

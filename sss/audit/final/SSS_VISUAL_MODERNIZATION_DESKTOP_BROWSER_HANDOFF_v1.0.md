@@ -4,12 +4,11 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Unaccepted Family 6 completion candidate — Silent Grove schedule specification
+## Accepted Family 6 completion — Silent Grove schedule specification
 
-The successor to accepted Heavy Hands closeout
-`199d5d289947fe8402d6563067afa7d47be60cfb` implements `C2C4-VIS03` as the fourth and final
-Family 6 specification/verification candidate. It is not accepted, does not advance the 28/36
-inventory and does not complete Family 6.
+Candidate `84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2` advances `C2C4-VIS03` to
+`VERIFIED-FAMILY`, the fourth and final accepted Family 6 specification/verification finding. Its
+accepted prerequisite is `199d5d289947fe8402d6563067afa7d47be60cfb`.
 
 The frozen Task 8 structures remain semantic and source-controlled:
 
@@ -32,7 +31,7 @@ Constraint and Monitored trial/stop. The Answer Key mirrors those four states, a
 uncertainty note remains dotted. These labels add no learner action, numerical requirement,
 completed trial or recovery result.
 
-No Silent Grove source file changes. The candidate preserves these SHA-256 identities:
+No Silent Grove source file changes. The accepted implementation preserves these SHA-256 identities:
 
 - `content.html` — `38937cf5734185d820d597fdcb14fce41e29305f087d47b4a6b94f63a19c3c56`
 - `presentation.css` — `32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9`
@@ -40,7 +39,7 @@ No Silent Grove source file changes. The candidate preserves these SHA-256 ident
 - `case-package.json` — `b1739a3f1ad09d44208c3c0b362aeeb77868f9b46ae0a564744c0864227779b8`
 - `task-registry.js` — `d7f4f09af87f0a3bd7895c320fb530d25d7925aa8a59e2bd2bfd6556b6cf0860`
 
-The candidate scope is exactly the shared component CSS, browser harness, focused
+The accepted implementation scope is exactly the shared component CSS, browser harness, focused
 specification-family validator, production plan and this handoff. It changes no worksheet wording,
 case presentation, layout override, package metadata, task registry, response text, response
 dimensions, page count, persistence identity, Teacher content, source hash, release/history record
@@ -81,19 +80,22 @@ The monitored trial distinguishes a returning cycle from a rise in total output,
 and re-examine rule, and recovery remains an unreplicated prediction rather than a guaranteed
 result.
 
-External validation must run the complete Mac/Google Chrome harness twice. Canonical expectation
-is **2357/2357 PASS** with zero application JavaScript errors. If that Mac reproduces an inherited
-registration-count difference, run prerequisite `199d5d2…` in a throwaway worktree on the same
-machine. Require candidate delta exactly +3, all three named Case 04 assertions passing and zero
-JavaScript errors, then stop without pushing for separate candidate-specific disposition.
-Differential evidence does not itself authorize acceptance, does not change canonical 2357 and
-does not establish a general platform policy.
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance.
+On the same Mac, prerequisite `199d5d2…` passed **2353/2353 PASS**. Candidate Run 1 and Run 2 each
+passed **2356/2356 PASS** with zero application JavaScript errors. The candidate delta is exactly
++3 registered and +3 passed; all three Silent Grove assertions registered and passed; both
+candidate runs had identical assertion-name sets; no inherited assertion was removed or broken;
+and no assertion passing at the prerequisite now fails. All eight learner fields matched the
+Linux reference dimensions exactly. Canonical project registration remains 2357. This
+disposition does not establish a general platform policy and applies only to candidate
+`8433392…`.
 
-Run the focused specification validator, all five established family validators and
-`validate_layout_overrides.py --case SSS-C2-CASE04`. Inspect the same six target views. If every
-gate passes at the canonical total, push only by ordinary fast-forward. Otherwise stop without
-pushing. Do not mark `C2C4-VIS03` `VERIFIED-FAMILY`, advance the inventory, complete Family 6,
-merge to `main` or begin another finding.
+The focused specification validator passed 105/105; control 30/30; timeline 44/44; mechanism
+103/103; evidence convergence 60/60; telemetry 36/36; and the Silent Grove layout-override
+validator passed. `C2C4-VIS03` is accepted without changing the canonical project registration or
+creating a general environment exception. The formal inventory is now **29 of 36 completed**,
+with **7 remaining**. Family 6 is complete at four of four assignments. Do not mark any additional
+finding accepted or begin another finding without a separate candidate-production instruction.
 
 ## Accepted Family 6 finding — Heavy Hands across-bed specification
 
@@ -1047,25 +1049,26 @@ Family 5 is complete with its sole finding verified. The overall visual-moderniz
 | `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` | hybrid Family 2 + 6 finding; counted once in the unique inventory |
 | `C1C5-VIS03` | `22ab529` | `VERIFIED-FAMILY` | first standalone Family 6 finding |
 | `C2C1-VIS03` | `4d181aa` | `VERIFIED-FAMILY` | second standalone Family 6 finding; failed `4737224` retained in lineage |
+| `C2C4-VIS03` | `8433392` | `VERIFIED-FAMILY` | third standalone and final Family 6 finding |
 
-Family 6 has three of four assignments verified. Accepting `C2C1-VIS03` advances the unique
-visual-modernization inventory to 28 of 36 completed and 8 remaining; the previously accepted
-hybrid `C2C3-VIS03` is not counted again. Failed implementation `4737224…` remains an immutable
-intermediate commit beneath accepted corrective successor `4d181aa…`. The visual branch remains
-isolated from `main`.
+Family 6 is complete with four of four assignments verified. Accepting `C2C4-VIS03` advances the
+unique visual-modernization inventory to 29 of 36 completed and 7 remaining; the previously
+accepted hybrid `C2C3-VIS03` is not counted again. Failed implementation `4737224…` remains an
+immutable intermediate commit beneath accepted corrective successor `4d181aa…`. The visual
+branch remains isolated from `main`.
 
-## C2C1-VIS03 closeout integration prompt
+## C2C4-VIS03 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`4d181aa796591249bb4f989e091c646b22b3a3e8`. Confirm the pushed remote remains
-`4d181aa796591249bb4f989e091c646b22b3a3e8`, verify the checksum and bundle prerequisite, fetch it,
+`84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2`. Confirm the pushed remote remains
+`84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 70-check specification/verification validator and `git diff --check`. Confirm the
+files. Run the focused 105-check specification/verification validator and `git diff --check`. Confirm the
 closeout changes only this handoff, the production plan and the focused validator; records
-`C2C1-VIS03` as `VERIFIED-FAMILY`; records Family 6 at three of four verified assignments without
-double-counting hybrid `C2C3-VIS03`; preserves failed `4737224…` in the accepted lineage; records the
+`C2C4-VIS03` as `VERIFIED-FAMILY`; records Family 6 complete at four of four verified assignments
+without double-counting hybrid `C2C3-VIS03`; records the
 candidate-specific differential Mac/Chrome acceptance without changing the canonical project
-total; and advances the inventory to 28/36 completed and 8 remaining. Because the successor
+total; and advances the inventory to 29/36 completed and 7 remaining. Because the successor
 changes only documentation and the focused validator, do not rerun the Mac/Chrome harness or
 manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
 tracking and live remote SHAs. Do not mark any additional finding accepted.

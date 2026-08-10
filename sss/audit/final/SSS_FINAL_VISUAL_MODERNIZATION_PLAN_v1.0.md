@@ -451,8 +451,9 @@ convergence 60/60, telemetry 36/36 and the Case 01 layout-override validator pas
 `C2C1-VIS03` is therefore `VERIFIED-FAMILY`. Family 6 now has three of four assignments verified,
 including hybrid `C2C3-VIS03`, counted once in the unique-finding inventory.
 
-`C2C4-VIS03` is the fourth and final Family 6 specification/verification candidate. It preserves
-Silent Grove's frozen Student page 6, Answer Key page 4 and Accessible page 8 as the semantic
+`C2C4-VIS03` is the accepted fourth and final Family 6 specification/verification finding.
+Candidate `84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2` preserves Silent Grove's frozen Student page 6,
+Answer Key page 4 and Accessible page 8 as the semantic
 source of truth. The shared Case-04-scoped SV1 treatment exposes the existing progression as
 `EVIDENCE → SPECIFY → VERIFY`; the existing Table 7 is labeled
 `MINIMUM ≠ PREFERRED DESIGN`. The three table rows retain their exact evidence roles and use
@@ -461,7 +462,7 @@ record. The four existing learner responses use dashed / double / dotted / solid
 dark-hour criterion, cycle-stability criterion, constraint and monitored trial/stop rule. The
 Answer Key mirrors those four states and keeps its fifth uncertainty note distinct.
 
-The candidate changes no worksheet source, case presentation, layout override, package metadata,
+The accepted implementation changes no worksheet source, case presentation, layout override, package metadata,
 task registry, page count, response text, persistence identity, Teacher content, source hash,
 release/history record or accepted-family implementation. Student retains four blank fields:
 `t8-criterion-1 | t8-criterion-2 | t8-constraint | t8-test`. Accessible retains the parallel four
@@ -470,16 +471,26 @@ remains the recorded trial minimum rather than the preferred design; six hours r
 schedule with a two-year successful record in this grove; 40–80 ppb remains a range; and recovery
 remains an unreplicated prediction rather than a guaranteed result.
 
-The finished Linux Chromium 149 run registers the new canonical total of 2357 assertions and
+The external Mac/Chrome gate passed under a candidate-specific differential acceptance. On the
+same Mac, accepted prerequisite `199d5d289947fe8402d6563067afa7d47be60cfb` registered
+2353/2353 PASS. Candidate Run 1 and Run 2 each registered 2356/2356 PASS with zero application
+JavaScript errors. The candidate delta is exactly +3 registered and +3 passed, both runs have
+identical assertion-name sets, no inherited assertion was removed or broken, no assertion passing
+at the prerequisite now fails and all three new Silent Grove contracts passed. This does not
+create a general platform policy or change the canonical 2357-assertion registration.
+
+The finished Linux Chromium 149 run registers the canonical total of 2357 assertions and
 reports 2326/2357 because of the same 31 established platform/font/screenshot-smoke exceptions.
 All three new Case 04 assertions pass and application JavaScript errors remain zero. The candidate
 adds one six-state strict-fit contract plus normal and grayscale semantic/geometry contracts.
 Normal and grayscale inspection confirms fixed 816 × 1056 pages, exact
 `scrollHeight 936 == clientHeight 936`, Student 6 / Answer Key 4 / Accessible 8 page counts,
 contained panels, distinct border/pattern states, blank usable learner fields and no overflow,
-spill, clipping, collision or crowding. The focused specification validator passes 105/105.
-External Mac/Google Chrome acceptance remains required; the candidate is not accepted, does not
-advance the 28/36 inventory and does not complete Family 6.
+spill, clipping, collision or crowding. All eight learner fields matched the Linux reference
+dimensions exactly during independent Mac inspection. The focused specification validator passed
+105/105, control 30/30, timeline 44/44, mechanism 103/103, evidence convergence 60/60, telemetry
+36/36 and the Case 04 layout-override validator passed. `C2C4-VIS03` is therefore
+`VERIFIED-FAMILY`, completing Family 6 at four of four assignments.
 
 ## 3. Exact inventory reconciliation
 
@@ -490,12 +501,15 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the Heavy Hands specification/verification closeout is **28 of 36 completed**
-and **8 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**
+and **7 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
-both of its verified findings and Family 5 contributes its sole verified finding. Family 6 now has
-three of four assignments verified: hybrid `C2C3-VIS03`, already counted once among Family 2's unique
-findings, accepted standalone `C1C5-VIS03` and newly accepted standalone `C2C1-VIS03`.
+both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
+complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
+unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
+
+At the preceding Heavy Hands specification/verification closeout, accepted progress was 28 of 36
+completed and 8 of 36 remaining.
 
 At the preceding Europa specification/verification closeout, accepted progress was 27 of 36
 completed and 9 of 36 remaining.
@@ -603,7 +617,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C3-VIS03` | Wrong Color of Light; S T6 p4 + T8 p5, A T6 p6 + T8 p8, AK T6 p3 + T8 p4 | Generic five-stage mechanism and separate prose procurement task. | 2 + 6 · Mechanism/specification | Shared spectral-match grammar connects poor match → lower captured energy → reduced growth/pigment replacement, then spectrum criterion + intensity criterion + monitored validation. | Do not merge tasks or pages; use related panels across existing footprints and preserve all fields. | Total PAR 280 remains adequate; response outside 460–540 unspecified; prediction remains a trial hypothesis. | mechanism + SV1; cross-task consistency and full field tests | `VERIFIED-FAMILY · 85/85 FAMILY STATIC PASS · 2324/2324 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 79a7c80 ACCEPTED` |
 | `C2C4-VIS01` | Silent Grove; S T3 p3, A T3 p3 | Correct but plain same-total sleep-pattern teaching example. | 3 · Timeline/event log | Cleaner discrete 24-hour comparison with identical totals, distinct block patterns and an unmistakable “teaching example—not grove data” band. | Replace existing figure only; no new action or data. | Example values are illustrative, not grove measurements; no curve or biological claim. | TL1; status-label/alt and no-case-data confusion check | `VERIFIED-FAMILY · 44/44 TIMELINE STATIC PASS · 2339/2339 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 73e8496 ACCEPTED` |
 | `C2C4-VIS02` | Silent Grove; S T3 p3, A T3 p3, AK T3 p1 where summarized | The exact within-cycle record is a conventional table with little visual distinction among light, dark, reported and unreported blocks. | 1 · Technical telemetry/data | Preserve the semantic table as a discrete 24-hour telemetry panel; distinguish light/dark schedule blocks and reported/unreported signal states through pattern, border weight and direct text, with no connecting curve. | Restyle the existing S/A Table 5 in place; retain all six rows, exact table semantics and the concise AK explanation. | Current 24/0; previous 18/6; healthy 40–80 ppb; current 0.0 ppb is threshold result; unreported blocks stay missing. | D1 timeline hybrid; exact-value/missing-data checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C2C4-VIS03` | Silent Grove; S T8 p6, A T8 p8, AK T8 p4 | Schedule requirements and monitored trial are prose/table led. | 6 · Specification/verification | Specification panel separating minimum evidence, six-hour historical schedule, stability criterion, power constraint, monitoring and stop rule. | Preserve all design fields and accepted response space; synchronize AK. | Five-hour minimum ≠ preferred design; successful schedule has six dark hours; 40–80 remains a range; no guaranteed recovery. | SV1; cross-edition acceptance and numeric checks | `IMPLEMENTED-CANDIDATE · 105/105 SPECIFICATION STATIC PASS · 2326/2357 LINUX BROWSER · 3/3 CANDIDATE ASSERTIONS · 0 JS ERRORS · STRICT FIT 936/936 · EXTERNAL ACCEPTANCE PENDING` |
+| `C2C4-VIS03` | Silent Grove; S T8 p6, A T8 p8, AK T8 p4 | Schedule requirements and monitored trial are prose/table led. | 6 · Specification/verification | Specification panel separating minimum evidence, six-hour historical schedule, stability criterion, power constraint, monitoring and stop rule. | Preserve all design fields and accepted response space; synchronize AK. | Five-hour minimum ≠ preferred design; successful schedule has six dark hours; 40–80 remains a range; no guaranteed recovery. | SV1; cross-edition acceptance and numeric checks | `VERIFIED-FAMILY · 105/105 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 8433392 ACCEPTED` |
 | `C2C5-VIS01` | Too Clean a Room; S T2 p2, A T2 p2 | Accurate whole-mm rain-gauge analogy is visually basic. | 1 · Technical telemetry/data | Instrument-resolution figure with two sub-threshold inputs yielding the same reported bin and an explicit “teaching example—not vault data” status. | Replace figure at same height; preserve questions/table. | Detection bound analogy only; vault `<0.01 mGy/day` is not literal zero or exactly 0.01. | D1 instrument variant; inequality/status and alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C5-VIS02` | Too Clean a Room; S T3 p3, A T3 p3 | Accurate six discrete bars with limited production-monitor hierarchy. | 1 · Technical telemetry/data | Six-month SAA production-monitor display with direct values and no interpolation. | Replace existing repeated figure at same footprint; table remains. | Six discrete monthly values only; draw nothing between months; preserve baseline definition. | D1; exact-value/DOM and no-line checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C5-VIS03` | Too Clean a Room; S T5 p5 + T7 p7, A T5 p5 + T7 p7, AK T5 p4 + T7 p5 | Generic pathway and separate dense trial-requirements table. | 2 + 8 · Mechanism/trial workflow | Species-specific signal → pathway → product panel paired with high-level authorization → control → dosimetry/production → staged trial → stop workflow. | Keep tasks/pages separate; preserve diagnosis fields, pathway blanks and all trial requirements. | `<0.01 mGy/day` bound; homeworld ~8.4 and Rhessi ~12 are different contexts; mGy ≠ sievert; two conditions do not form a curve; non-operational only. | mechanism + IC1; unit, context, safety and response checks | `VERIFIED-FAMILY · 94/94 FAMILY STATIC PASS · 2327/2327 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 7be2f42 ACCEPTED` |
