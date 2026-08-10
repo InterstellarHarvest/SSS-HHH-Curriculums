@@ -2306,6 +2306,112 @@
               JSON.stringify(rendered)
             );
           }
+          const danceTrialPageFit = [];
+          const expectedDanceControlStates = "01 · RATE|02 · FORCE|03 · TIME|04 · TRANSFER";
+          const expectedDanceControlBorders = "solid|dashed|dotted|double";
+          const expectedDanceFieldBorders = "solid|dashed|double|double|dotted";
+          for (const grayscale of [false, true]) {
+            const renderedTrials = [];
+            for (const [role, pageId, expectedPageCount] of [["student", "student-mission-06", 6], ["answer", "answer-key-04", 4], ["accessible", "accessible-mission-08", 8]]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const heading = page?.querySelector('.task-heading[data-task-id="8"]');
+              const factorGrid = role === "answer" ? null : page?.querySelector(".factor-grid");
+              const factorCards = Array.from(factorGrid?.querySelectorAll(":scope > .factor-card") || []);
+              const factorGridRect = factorGrid?.getBoundingClientRect();
+              const factorRects = factorCards.map(card => card.getBoundingClientRect());
+              const factorsContained = factorCards.length === 0 || Boolean(factorGridRect) && factorCards.every(card => {
+                const rect = card.getBoundingClientRect();
+                return rect.left >= factorGridRect.left - 1 && rect.right <= factorGridRect.right + 1
+                  && rect.top >= factorGridRect.top - 1 && rect.bottom <= factorGridRect.bottom + 1;
+              });
+              const factorCollisions = factorRects.some((rect, index) => factorRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = Array.from(page?.querySelectorAll('[data-persist-id^="t8-"][data-response], [data-persist-id^="a8-"][data-response]') || []);
+              const answerParagraphs = Array.from(page?.querySelectorAll('.task-heading[data-task-id="8"] + .answer-block > p') || []);
+              const pageRect = page?.getBoundingClientRect();
+              const state = {
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                headingRail: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
+                controls: factorCards.map(card => card.querySelector("strong")?.textContent.trim() || "").join("|"),
+                controlStates: factorCards.map(card => win.getComputedStyle(card, "::after").content.replaceAll('"', "")).join("|"),
+                controlBorders: factorCards.map(card => win.getComputedStyle(card).borderLeftStyle).join("|"),
+                controlPatterns: factorCards.map(card => win.getComputedStyle(card).backgroundImage !== "none"),
+                fields: fields.map(field => ({
+                  id: field.dataset.persistId,
+                  text: field.textContent.trim().replace(/\s+/g, " "),
+                  response: field.hasAttribute("data-response"),
+                  size: dimensions(field),
+                  border: win.getComputedStyle(field).borderLeftStyle,
+                  labelBorder: field.previousElementSibling ? win.getComputedStyle(field.previousElementSibling).borderLeftStyle : "",
+                  labelClearance: field.previousElementSibling ? rounded(parseFloat(win.getComputedStyle(field.previousElementSibling).borderLeftWidth) + parseFloat(win.getComputedStyle(field.previousElementSibling).paddingLeft)) : 0
+                })),
+                answerParagraphs: answerParagraphs.map(paragraph => ({
+                  text: paragraph.textContent.trim().replace(/\s+/g, " "),
+                  border: win.getComputedStyle(paragraph).borderLeftStyle,
+                  pattern: win.getComputedStyle(paragraph).backgroundImage !== "none"
+                })),
+                pageText: page?.textContent.trim().replace(/\s+/g, " ") || "",
+                factorsContained,
+                factorCollisions
+              };
+              danceTrialPageFit.push(state);
+              renderedTrials.push(state);
+            }
+            const studentTrial = renderedTrials.find(state => state.role === "student");
+            const answerTrial = renderedTrials.find(state => state.role === "answer");
+            const accessibleTrial = renderedTrials.find(state => state.role === "accessible");
+            check(
+              `C2 Case 02 ${grayscale ? "grayscale" : "normal"} monitored vibration trial preserves four controls, measurement and stop gates`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && renderedTrials.length === 3
+                && renderedTrials.every(state => state.headingRail === "SET → MEASURE → STOP")
+                && [studentTrial, accessibleTrial].every(state => state.controls === "Frequency|Amplitude|Duration|Coupling")
+                && [studentTrial, accessibleTrial].every(state => state.controlStates === expectedDanceControlStates)
+                && [studentTrial, accessibleTrial].every(state => state.controlBorders === expectedDanceControlBorders && state.controlPatterns.every(Boolean))
+                && [studentTrial, accessibleTrial].every(state => state.factorsContained && !state.factorCollisions)
+                && studentTrial.fields.map(field => field.id).join("|") === "t8-first|t8-measure|t8-limit|t8-stop|t8-why"
+                && accessibleTrial.fields.map(field => field.id).join("|") === "a8-first|a8-measure|a8-limit|a8-stop|a8-why"
+                && [studentTrial, accessibleTrial].every(state => state.fields.every(field => field.response && field.text === "" && field.size[0] >= 108 && field.size[1] >= 30))
+                && [studentTrial, accessibleTrial].every(state => state.fields.map(field => field.border).join("|") === expectedDanceFieldBorders)
+                && [studentTrial, accessibleTrial].every(state => state.fields.map(field => field.labelBorder).join("|") === expectedDanceFieldBorders && state.fields.every(field => field.labelClearance >= 6))
+                && answerTrial.fields.length === 0
+                && answerTrial.answerParagraphs.length === 6
+                && answerTrial.answerParagraphs.map(paragraph => paragraph.border).join("|") === "solid|dashed|double|double|dotted|dotted"
+                && answerTrial.answerParagraphs.every(paragraph => paragraph.pattern)
+                && studentTrial.pageText.includes("strongest release near 124 Hz")
+                && accessibleTrial.pageText.includes("strongest release near 124 Hz")
+                && answerTrial.pageText.includes("Accept any of the four with a reason")
+                && answerTrial.pageText.includes("Pollen actually released")
+                && answerTrial.pageText.includes("immediate stop")
+                && answerTrial.pageText.includes("no measurable pollen release")
+                && answerTrial.pageText.includes("Frequency is one of four settings that have to be right together")
+                && answerTrial.pageText.includes("Full credit requires naming at least two of amplitude, duration and coupling")
+                && renderedTrials.every(state => !/amplitude\s*(?:=|of|at)\s*\d|duration\s*(?:=|of|at)\s*\d|guaranteed (?:release|recovery|fruit)/i.test(state.pageText)),
+              JSON.stringify(renderedTrials)
+            );
+          }
+          check(
+            "C2 Case 02 monitored vibration trial pages retain strict fit, page counts and geometry in normal and grayscale",
+            danceTrialPageFit.length === 6
+              && danceTrialPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.scrollHeight <= state.clientHeight),
+            JSON.stringify(danceTrialPageFit)
+          );
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

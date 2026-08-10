@@ -5370,6 +5370,269 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Intervention/trial family expansion: The Missing Dance.
+ *
+ * The frozen Task 8 structures already define frequency, amplitude, duration
+ * and coupling as four interdependent controls, then ask learners to select a
+ * variable, measure released pollen, enforce a damage limit and state a
+ * stop-and-revise rule. This Case-02-scoped layer exposes that set-measure-stop
+ * workflow without inventing an amplitude, duration, coupling method or
+ * universal frequency prescription.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE02"] {
+  --dance-trial-line: var(--ink, #18212b);
+  --dance-trial-panel: var(--paper, #fff);
+  --dance-trial-frequency-pattern:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+  --dance-trial-amplitude-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .075) 7px 8px);
+  --dance-trial-duration-pattern:
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(24, 33, 43, .055) 9px 10px);
+  --dance-trial-coupling-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .035) 6px 7px);
+  --dance-trial-measure-pattern:
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(24, 33, 43, .05) 10px 11px);
+  --dance-trial-limit-pattern:
+    repeating-linear-gradient(45deg, transparent 0 5px, rgba(24, 33, 43, .105) 5px 6px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"] .task-heading[data-task-id="8"],
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"],
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"]
+) {
+  position: relative;
+  padding-right: 1.42in !important;
+  border-bottom: 1.5px solid var(--dance-trial-line);
+  background: var(--dance-trial-measure-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"] .task-heading[data-task-id="8"],
+  .page[data-page-id="accessible-mission-08"] .task-heading[data-task-id="8"],
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"]
+)::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "SET → MEASURE → STOP";
+  font: 800 5.3pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-grid {
+  outline: 1.5px solid var(--dance-trial-line);
+  box-shadow: inset 4px 0 0 var(--dance-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card {
+  position: relative;
+  background-color: var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card::after {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  font: 800 4.6pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:first-child {
+  border-left: 4px solid var(--dance-trial-line);
+  background: var(--dance-trial-frequency-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:first-child::after {
+  content: "01 · RATE";
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:nth-child(2) {
+  border-left: 4px dashed var(--dance-trial-line);
+  background: var(--dance-trial-amplitude-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:nth-child(2)::after {
+  content: "02 · FORCE";
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:nth-child(3) {
+  border-left: 4px dotted var(--dance-trial-line);
+  background: var(--dance-trial-duration-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:nth-child(3)::after {
+  content: "03 · TIME";
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:nth-child(4) {
+  border-left: 4px double var(--dance-trial-line);
+  background: var(--dance-trial-coupling-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .factor-card:nth-child(4)::after {
+  content: "04 · TRANSFER";
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .response-label:has(+ :is([data-persist-id="t8-first"], [data-persist-id="a8-first"])) {
+  padding-left: 6px;
+  border-left: 4px solid var(--dance-trial-line);
+  background: var(--dance-trial-frequency-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  [data-persist-id="t8-first"],
+  [data-persist-id="a8-first"]
+) {
+  border-left: 4px solid var(--dance-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .response-label:has(+ :is([data-persist-id="t8-measure"], [data-persist-id="a8-measure"])) {
+  padding-left: 6px;
+  border-left: 4px dashed var(--dance-trial-line);
+  background: var(--dance-trial-measure-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  [data-persist-id="t8-measure"],
+  [data-persist-id="a8-measure"]
+) {
+  border-left: 4px dashed var(--dance-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .response-label:has(+ :is([data-persist-id="t8-limit"], [data-persist-id="a8-limit"])) {
+  padding-left: 6px;
+  border-left: 4px double var(--dance-trial-line);
+  background: var(--dance-trial-limit-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  [data-persist-id="t8-limit"],
+  [data-persist-id="a8-limit"]
+) {
+  border-left: 4px double var(--dance-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .response-label:has(+ :is([data-persist-id="t8-stop"], [data-persist-id="a8-stop"])) {
+  padding-left: 6px;
+  border-left: 4px double var(--dance-trial-line);
+  background: var(--dance-trial-limit-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  [data-persist-id="t8-stop"],
+  [data-persist-id="a8-stop"]
+) {
+  border-left: 4px double var(--dance-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-08"]
+) .response-label:has(+ :is([data-persist-id="t8-why"], [data-persist-id="a8-why"])) {
+  padding-left: 6px;
+  border-left: 4px dotted var(--dance-trial-line);
+  background: var(--dance-trial-duration-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"] :is(
+  [data-persist-id="t8-why"],
+  [data-persist-id="a8-why"]
+) {
+  border-left: 4px dotted var(--dance-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p {
+  background-color: var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:first-child {
+  border-left: 4px solid var(--dance-trial-line);
+  background: var(--dance-trial-frequency-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(2) {
+  border-left: 4px dashed var(--dance-trial-line);
+  background: var(--dance-trial-measure-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(3),
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(4) {
+  border-left: 4px double var(--dance-trial-line);
+  background: var(--dance-trial-limit-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(5),
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .page[data-page-id="answer-key-04"] .task-heading[data-task-id="8"] + .answer-block > p:nth-child(6) {
+  border-left: 4px dotted var(--dance-trial-line);
+  background: var(--dance-trial-duration-pattern), var(--dance-trial-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"] :is(
+  .page[data-page-id="student-mission-06"] .content-area,
+  .page[data-page-id="accessible-mission-08"] .content-area,
+  .page[data-page-id="answer-key-04"] .content-area
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* BEGIN SSS/HHH CUTAWAY-VISUAL EXTENSIONS */
 /*
  * Biological/structural cutaway family pilot: Heavy Hands.

@@ -15,6 +15,8 @@ CASE = ROOT / "sss/campaign-1/case-06-first-contact-protocol/source"
 CONTENT = CASE / "content.html"
 GIFT_CASE = ROOT / "sss/campaign-1/case-07-the-gift/source"
 GIFT_CONTENT = GIFT_CASE / "content.html"
+DANCE_CASE = ROOT / "sss/campaign-2/case-02-missing-dance/source"
+DANCE_CONTENT = DANCE_CASE / "content.html"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 HARNESS = ROOT / "apps/curriculum-editor/tests/browser-harness.html"
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
@@ -36,6 +38,14 @@ GIFT_FROZEN_HASHES = {
     "task-registry.js": "5d6e5fe1223b4faee4e5f49c41e0bd4e1ae7e92767027ee15dce5adc268eeaff",
 }
 
+DANCE_FROZEN_HASHES = {
+    "content.html": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
+    "presentation.css": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
+    "layout-overrides.json": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d",
+    "case-package.json": "59026d6c4f54b362700018e268f2892a7c837817b4e6ec14e06d810dd9a66881",
+    "task-registry.js": "8aaa2854d946f67e5c59261d314bf05764f4f4b21ccaa81009daa6ca4d51eda8",
+}
+
 
 def normalized(node) -> str:
     return " ".join(node.stripped_strings) if node else ""
@@ -55,6 +65,8 @@ def main() -> int:
     soup = BeautifulSoup(source, "html.parser")
     gift_source = GIFT_CONTENT.read_text(encoding="utf-8")
     gift_soup = BeautifulSoup(gift_source, "html.parser")
+    dance_source = DANCE_CONTENT.read_text(encoding="utf-8")
+    dance_soup = BeautifulSoup(dance_source, "html.parser")
     css = COMPONENTS.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")
     plan = " ".join(PLAN.read_text(encoding="utf-8").split())
@@ -162,6 +174,67 @@ def main() -> int:
     check("The Gift prediction remains modeled rather than replicated", "modeled/narrated prediction, not a replicated trial" in normalized(gift_pages["answer"]) and "modeled story outcomes, not repeated trials" in normalized(gift_pages["accessible"]))
     check("The Gift source adds no unsupported dose purity synthesis or safety result", not re.search(r"safe dose (?:is|of)\s*\d|purity (?:is|of)\s*\d|synthesis (?:is|was) safe|guaranteed|replicated (?:success|recovery)", normalized(gift_pages["student"]) + " " + normalized(gift_pages["accessible"]), re.I))
 
+    dance_pages = {
+        "student": dance_soup.select_one('[data-page-id="student-mission-06"]'),
+        "answer": dance_soup.select_one('[data-page-id="answer-key-04"]'),
+        "accessible": dance_soup.select_one('[data-page-id="accessible-mission-08"]'),
+    }
+    for name, expected in DANCE_FROZEN_HASHES.items():
+        actual = sha256(DANCE_CASE / name)
+        check(f"frozen The Missing Dance {name} hash remains exact", actual == expected, actual)
+    for role, page in dance_pages.items():
+        check(f"The Missing Dance {role} Task 8 target page remains present", page is not None)
+
+    dance_factor_names = ["Frequency", "Amplitude", "Duration", "Coupling"]
+    for role in ("student", "accessible"):
+        cards = dance_pages[role].select(".factor-grid > .factor-card")
+        check(f"The Missing Dance {role} retains exactly four trial controls", len(cards) == 4, len(cards))
+        check(
+            f"The Missing Dance {role} retains exact control order",
+            [normalized(card.select_one("strong")) for card in cards] == dance_factor_names,
+        )
+    dance_student_fields = dance_pages["student"].select('[data-persist-id^="t8-"][data-response]')
+    dance_accessible_fields = dance_pages["accessible"].select('[data-persist-id^="a8-"][data-response]')
+    check(
+        "The Missing Dance Student retains five exact blank Task 8 response identities",
+        [field.get("data-persist-id") for field in dance_student_fields]
+        == ["t8-first", "t8-measure", "t8-limit", "t8-stop", "t8-why"]
+        and all(not normalized(field) for field in dance_student_fields),
+    )
+    check(
+        "The Missing Dance Accessible retains five exact blank Task 8 response identities",
+        [field.get("data-persist-id") for field in dance_accessible_fields]
+        == ["a8-first", "a8-measure", "a8-limit", "a8-stop", "a8-why"]
+        and all(not normalized(field) for field in dance_accessible_fields),
+    )
+    check(
+        "The Missing Dance learner directions require all four settings together",
+        "All four of these settings have to be right together, so no single number is enough" in normalized(dance_pages["student"])
+        and "These four settings all have to be right together" in normalized(dance_pages["accessible"]),
+    )
+    check(
+        "The Missing Dance learner prompts preserve measurement damage and stop gates",
+        all(token in normalized(dance_pages["student"]) for token in ("What you would measure", "damage limit", "Stop-and-revise rule", "not a sufficient plan"))
+        and all(token in normalized(dance_pages["accessible"]) for token in ("What you would measure", "damage limit", "Stop-and-revise rule", "not enough")),
+    )
+    dance_answer = dance_pages["answer"].select_one('h2[data-shell-task-heading="8"] + .answer-block')
+    dance_answer_paragraphs = dance_answer.find_all("p", recursive=False) if dance_answer else []
+    check("The Missing Dance Answer Key retains exactly six Task 8 guidance paragraphs", len(dance_answer_paragraphs) == 6, len(dance_answer_paragraphs))
+    check("The Missing Dance Answer Key accepts any first setting only with a reason", "Accept any of the four with a reason" in normalized(dance_answer_paragraphs[0]))
+    check("The Missing Dance Answer Key measures released pollen rather than device state", all(token in normalized(dance_answer_paragraphs[1]) for token in ("Pollen actually released", "outcome, not the intervention")))
+    check("The Missing Dance Answer Key treats visible damage as an immediate stop", all(token in normalized(dance_answer_paragraphs[2]) for token in ("observable harm", "immediate stop")))
+    check("The Missing Dance Answer Key retains a named stop-and-revise condition", all(token in normalized(dance_answer_paragraphs[3]) for token in ("ends the trial", "no measurable pollen release", "any damage observed")))
+    check("The Missing Dance Answer Key keeps 124 Hz insufficient by itself", all(token in normalized(dance_answer_paragraphs[4]) for token in ("Frequency is one of four settings", "too weak", "too brief", "amplitude, duration and coupling")))
+    check("The Missing Dance Answer Key keeps conclusions species-and-garden bounded", all(token in normalized(dance_answer_paragraphs[5]) for token in ("this species in this garden", "promise recovery", "Earth flowers")))
+    check(
+        "The Missing Dance learner source authors no amplitude duration coupling setting or guaranteed result",
+        not re.search(
+            r"amplitude\s*(?:=|of|at)\s*\d|duration\s*(?:=|of|at)\s*\d|coupling\s*(?:=|of|at)\s*\d|guaranteed (?:release|recovery|fruit)",
+            normalized(dance_pages["student"]) + " " + normalized(dance_pages["accessible"]),
+            re.I,
+        ),
+    )
+
     marker = "Intervention-comparison family pilot: First Contact Protocol."
     css_start = css.index(marker)
     gift_marker = "Intervention-comparison family expansion: The Gift."
@@ -184,7 +257,8 @@ def main() -> int:
     check("grayscale treatment targets the same three Task 6 pages", '.worksheet-document.grayscale[data-case-id="SSS-C1-CASE06"]' in contact_css and all(token in contact_css for token in ("student-mission-03", "accessible-mission-05", "answer-key-03")))
     check("the shared layer does not author learner field dimensions", not re.search(r"(?:t6|a6)-(?:disable|unchanged|selective|recommend|monitor)[^}]*\b(?:width|height|min-height|max-height)\s*:", contact_css, re.S))
 
-    gift_css = css[css.index(gift_marker):]
+    dance_marker = "Intervention/trial family expansion: The Missing Dance."
+    gift_css = css[css.index(gift_marker):css.index(dance_marker)]
     check("The Gift intervention layer is strictly scoped to Case 07", 'data-case-id="SSS-C1-CASE07"' in gift_css and "SSS-C1-CASE0" not in gift_css.replace("SSS-C1-CASE07", ""))
     check("The Gift intervention layer declares five independent structural patterns", all(token in gift_css for token in ("--gift-intervention-supported-pattern", "--gift-intervention-qualified-pattern", "--gift-intervention-uncertain-pattern", "--gift-intervention-monitor-pattern", "--gift-intervention-prediction-pattern")))
     check("The Gift Task 7 heading exposes the evidence-control-monitor relationship", 'content: "EVIDENCE → CONTROL → MONITOR"' in gift_css)
@@ -204,6 +278,25 @@ def main() -> int:
     check("The Gift Answer Key mirrors recommendation monitoring and prediction gates", all(token in gift_css for token in (".answer-block:nth-of-type(1)", ".answer-block:nth-of-type(2)", ".answer-block:nth-of-type(3)")))
     check("The Gift grayscale treatment targets the same three Task 7 pages", '.worksheet-document.grayscale[data-case-id="SSS-C1-CASE07"]' in gift_css and all(token in gift_css for token in ("student-mission-05", "answer-key-05", "accessible-mission-07")))
     check("The Gift shared layer does not author learner field dimensions", not re.search(r"(?:t7|a7)-(?:recommend|monitor|predict)[^}]*\b(?:width|height|min-height|max-height)\s*:", gift_css, re.S))
+
+    cutaway_marker = "BEGIN SSS/HHH CUTAWAY-VISUAL EXTENSIONS"
+    dance_css = css[css.index(dance_marker):css.index(cutaway_marker, css.index(dance_marker))]
+    check("The Missing Dance trial layer is strictly scoped to Case 02", 'data-case-id="SSS-C2-CASE02"' in dance_css and "SSS-C2-CASE0" not in dance_css.replace("SSS-C2-CASE02", ""))
+    check("The Missing Dance trial layer declares six independent structural patterns", all(token in dance_css for token in ("--dance-trial-frequency-pattern", "--dance-trial-amplitude-pattern", "--dance-trial-duration-pattern", "--dance-trial-coupling-pattern", "--dance-trial-measure-pattern", "--dance-trial-limit-pattern")))
+    check("The Missing Dance Task 8 heading exposes the set-measure-stop relationship", 'content: "SET → MEASURE → STOP"' in dance_css)
+    check("The Missing Dance relationship rail targets all three synchronized editions", all(token in dance_css for token in ("student-mission-06", "answer-key-04", "accessible-mission-08")))
+    check("The Missing Dance control grids receive a structural outline and rail", "outline: 1.5px solid var(--dance-trial-line)" in dance_css and "box-shadow: inset 4px 0 0 var(--dance-trial-line)" in dance_css)
+    check("The Missing Dance four controls receive exact direct states", all(f'content: "{token}"' in dance_css for token in ("01 · RATE", "02 · FORCE", "03 · TIME", "04 · TRANSFER")))
+    check("The Missing Dance control states use solid dashed dotted and double borders", all(token in dance_css for token in ("border-left: 4px solid", "border-left: 4px dashed", "border-left: 4px dotted", "border-left: 4px double")))
+    check("The Missing Dance first-setting fields use a solid control rail", all(token in dance_css for token in ('data-persist-id="t8-first"', 'data-persist-id="a8-first"', "border-left: 4px solid var(--dance-trial-line)")))
+    check("The Missing Dance measurement fields use a dashed outcome rail", all(token in dance_css for token in ('data-persist-id="t8-measure"', 'data-persist-id="a8-measure"', "border-left: 4px dashed var(--dance-trial-line)")))
+    check("The Missing Dance damage-limit fields use a double safety rail", all(token in dance_css for token in ('data-persist-id="t8-limit"', 'data-persist-id="a8-limit"', "border-left: 4px double var(--dance-trial-line)")))
+    check("The Missing Dance stop-rule fields use a double safety rail", all(token in dance_css for token in ('data-persist-id="t8-stop"', 'data-persist-id="a8-stop"', "border-left: 4px double var(--dance-trial-line)")))
+    check("The Missing Dance evidence-limit fields use a dotted uncertainty rail", all(token in dance_css for token in ('data-persist-id="t8-why"', 'data-persist-id="a8-why"', "border-left: 4px dotted var(--dance-trial-line)")))
+    check("The Missing Dance learner response labels retain six-pixel rail clearance", "padding-left: 6px" in dance_css)
+    check("The Missing Dance Answer Key mirrors all six control measurement safety and evidence gates", all(token in dance_css for token in ("> p:first-child", "> p:nth-child(2)", "> p:nth-child(3)", "> p:nth-child(4)", "> p:nth-child(5)", "> p:nth-child(6)")))
+    check("The Missing Dance grayscale treatment targets the same three Task 8 pages", '.worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"]' in dance_css and all(token in dance_css for token in ("student-mission-06", "answer-key-04", "accessible-mission-08")))
+    check("The Missing Dance shared layer does not author learner field dimensions", not re.search(r"(?:t8|a8)-(?:first|measure|limit|stop|why)[^}]*\b(?:width|height|min-height|max-height)\s*:", dance_css, re.S))
 
     case_start = harness.index('if (item.id === "SSS-C1-CASE06")')
     case_end = harness.index('if (item.id === "SSS-C1-CASE07")', case_start)
@@ -251,6 +344,47 @@ def main() -> int:
     check("browser harness verifies The Gift response-gate rail clearance", "label.clearance >= 6" in gift_case_harness and '"solid|dashed|dotted"' in gift_case_harness)
     check("browser harness protects The Gift authorization stopping and evidence limits", all(token in gift_case_harness for token in ("joint SAA–Zhel'ii authorization", "loss of containment, unexpected material, adverse response, or failed verification", "not a replicated trial", "story rankings")))
     check("browser harness rejects The Gift route collision and overflow", "!state.routeCollisions" in gift_case_harness and "state.scrollHeight <= state.clientHeight" in gift_case_harness)
+
+    dance_case_start = harness.index('if (item.id === "SSS-C2-CASE02")')
+    dance_case_end = harness.index('if (item.id === "SSS-C2-CASE03")', dance_case_start)
+    dance_case_harness = harness[dance_case_start:dance_case_end]
+    check(
+        "browser harness adds exactly three The Missing Dance trial assertions",
+        dance_case_harness.count('`C2 Case 02 ${grayscale ? "grayscale" : "normal"} monitored vibration trial') == 1
+        and dance_case_harness.count('"C2 Case 02 monitored vibration trial pages retain strict fit') == 1,
+    )
+    check("browser harness measures all six The Missing Dance normal and grayscale Task 8 views", "danceTrialPageFit.length === 6" in dance_case_harness and "for (const grayscale of [false, true])" in dance_case_harness)
+    check("browser harness requires fixed The Missing Dance worksheet geometry and role page counts", 'state.pageSize === "816x1056"' in dance_case_harness and all(token in dance_case_harness for token in ('["student", "student-mission-06", 6]', '["answer", "answer-key-04", 4]', '["accessible", "accessible-mission-08", 8]')))
+    check("browser harness requires all four The Missing Dance control states and borders", all(token in dance_case_harness for token in ("01 · RATE|02 · FORCE|03 · TIME|04 · TRANSFER", "solid|dashed|dotted|double")))
+    check("browser harness verifies both exact five-field The Missing Dance learner sets", all(token in dance_case_harness for token in ("t8-first|t8-measure|t8-limit|t8-stop|t8-why", "a8-first|a8-measure|a8-limit|a8-stop|a8-why", "solid|dashed|double|double|dotted")))
+    check("browser harness protects The Missing Dance measurement stop and qualifier evidence", all(token in dance_case_harness for token in ("Pollen actually released", "immediate stop", "no measurable pollen release", "Frequency is one of four settings", "amplitude, duration and coupling")))
+    check("browser harness rejects The Missing Dance control collision overflow and invented settings", "!state.factorCollisions" in dance_case_harness and "state.scrollHeight <= state.clientHeight" in dance_case_harness and "guaranteed (?:release|recovery|fruit)" in dance_case_harness)
+
+    check(
+        "plan records C2C2-VIS03 as the 176-check browser-pending Family 8 candidate",
+        bool(re.search(
+            r"\| `C2C2-VIS03` .*\| 8 · Intervention comparison/trial workflow \|.*"
+            r"`IMPLEMENTED-CANDIDATE · 176/176 INTERVENTION STATIC PASS · MAC/CHROME PENDING`",
+            plan,
+        ))
+        and "`C2C2-VIS03` is the next Family 8 implementation candidate" in plan
+        and "`SET → MEASURE → STOP`" in plan
+        and "`01 · RATE | 02 · FORCE | 03 · TIME | 04 · TRANSFER`" in plan,
+    )
+    check(
+        "plan preserves The Missing Dance trial limits and does not advance accepted inventory",
+        all(token in plan for token in ("strongest release **near 124 Hz**", "does not supply an amplitude, duration or coupling setting", "measure pollen actually released", "Any observable harm is an immediate stop", "canonical Mac/Google Chrome target becomes **2372/2372 PASS", "Family 8 remains three of five verified", "**33 of 36 completed / 3 of 36 remaining**")),
+    )
+    check(
+        "handoff preserves The Missing Dance trial source ownership and all five frozen hashes",
+        "Pending Family 8 candidate — The Missing Dance monitored vibration trial" in handoff
+        and "changes no worksheet wording" in handoff
+        and all(value in handoff for value in DANCE_FROZEN_HASHES.values()),
+    )
+    check(
+        "handoff preserves exact The Missing Dance controls fields science and browser boundary",
+        all(token in handoff for token in ("`01 · RATE | 02 · FORCE | 03 · TIME | 04 · TRANSFER`", "`SET → MEASURE → STOP`", "t8-first | t8-measure | t8-limit | t8-stop | t8-why", "a8-first | a8-measure | a8-limit | a8-stop | a8-why", "strongest release is reported **near 124 Hz**", "no numeric setting", "Observable damage is an immediate stop", "**176/176 PASS**", "**2372/2372 PASS", "**2371/2371 PASS", "**2368/2368 PASS**", "no general Mac, Chrome, platform or environment")),
+    )
 
     check(
         "plan records C1C7-VIS03 as the accepted corrected Family 8 finding",
@@ -349,7 +483,7 @@ def main() -> int:
     for name, ok, detail in checks:
         print(f"{'PASS' if ok else 'FAIL'}: {name}" + (f" — {detail}" if detail and not ok else ""))
     print(f"\nIntervention/trial validator: {passed}/{len(checks)} PASS")
-    return 0 if passed == len(checks) == 125 else 1
+    return 0 if passed == len(checks) == 176 else 1
 
 
 if __name__ == "__main__":

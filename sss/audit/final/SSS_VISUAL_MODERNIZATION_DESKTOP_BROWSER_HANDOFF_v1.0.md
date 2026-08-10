@@ -4,6 +4,70 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Pending Family 8 candidate — The Missing Dance monitored vibration trial
+
+`C2C2-VIS03` is implemented locally as the next standalone Family 8 intervention/trial candidate
+on synchronized prerequisite `f41a4acff852355d30bb182415e53aa67ab7eb88`. It is not yet
+accepted, pushed or counted. Family 8 remains three of five verified and the accepted inventory
+remains **33 of 36 completed**, with **3 remaining**.
+
+The candidate changes only the shared component CSS, browser harness, focused intervention/trial
+validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+layout override, package metadata, task registry, response identity or geometry, page count,
+Teacher content, release/history record or accepted-family implementation. These The Missing Dance
+source hashes remain exact:
+
+- `content.html` — `56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a`
+- `presentation.css` — `ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d`
+- `layout-overrides.json` — `92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d`
+- `case-package.json` — `59026d6c4f54b362700018e268f2892a7c837817b4e6ec14e06d810dd9a66881`
+- `task-registry.js` — `8aaa2854d946f67e5c59261d314bf05764f4f4b21ccaa81009daa6ca4d51eda8`
+
+The frozen Task 8 source already provides the complete trial architecture. Student page 6 and
+Accessible page 8 retain the exact `Frequency | Amplitude | Duration | Coupling` cards and all ten
+blank learner fields. Answer Key page 4 retains its six exact guidance paragraphs. The new
+Case-02-scoped presentation exposes those existing relationships as:
+
+- direct control states `01 · RATE | 02 · FORCE | 03 · TIME | 04 · TRANSFER`;
+- one `SET → MEASURE → STOP` heading rail across Student, Accessible and Answer Key;
+- solid first-setting, dashed released-pollen measurement, double damage/stop and dotted
+  evidence-limit rails;
+- four distinct grayscale-safe control patterns and border states;
+- the same control, measurement, safety and uncertainty hierarchy on the completed Answer Key.
+
+Student fields remain exactly
+`t8-first | t8-measure | t8-limit | t8-stop | t8-why`; Accessible fields remain exactly
+`a8-first | a8-measure | a8-limit | a8-stop | a8-why`. Every field remains blank, editable and
+source-sized. No shared layer authors width, height or minimum-height values for them.
+
+The scientific limits are non-negotiable. The strongest release is reported **near 124 Hz**, not
+at one universal or sufficient setting. Amplitude, duration and coupling must also be right, but
+the source supplies no numeric setting for any of them. The trial measures pollen actually
+released, not device activation. Observable damage is an immediate stop; no measurable release or
+any damage can trigger revision. The trial promises no release, recovery or fruit set, and every
+conclusion remains bounded to this species in this garden.
+
+The focused intervention/trial validator is **176/176 PASS** locally. The candidate adds exactly
+three browser assertions: normal and grayscale semantic/rendering contracts plus one six-view
+strict-fit/page-count/geometry contract. Run the complete Mac/Google Chrome harness twice. The
+canonical target is **2372/2372 PASS with zero application JavaScript errors** in both runs, with
+identical assertion-name sequences, 2372 unique names and no duplicates. Require all three new
+assertions to register and pass; no inherited assertion may be removed or broken.
+
+Inspect Student page 6, Accessible page 8 and Answer Key page 4 in normal and grayscale. Require
+fixed 816 × 1056 pages, strict content fit, unchanged 6 / 8 / 4 role page counts, zero overflow,
+clipping, collision or crowding, all four control states and patterns legible, all ten learner
+fields blank/editable/unclipped, the six Answer Key gates distinct and normal/grayscale meaning
+equivalent. Do not run PDF automation or re-pin `validate_static.py`.
+
+If both candidate runs instead report exactly **2371/2371 PASS with zero application JavaScript
+errors**, run a fresh same-Mac prerequisite harness at `f41a4ac…`. Only an exact prerequisite
+**2368/2368 PASS** and exact +3/+3 candidate delta limited to the two semantic assertions and one
+strict-fit assertion is eligible for separate owner disposition. Stop without pushing. Any other
+total, failure, missing assertion, inherited regression or visual discrepancy also stops without
+pushing. Canonical registration remains 2372 and no general Mac, Chrome, platform or environment
+exception is created.
+
 ## Accepted Family 7 completion — The Missing Dance botanical cutaway
 
 Accepted second corrective `5ab152e919f16b8695c92c823c53ff82f3ecb31d` advances
