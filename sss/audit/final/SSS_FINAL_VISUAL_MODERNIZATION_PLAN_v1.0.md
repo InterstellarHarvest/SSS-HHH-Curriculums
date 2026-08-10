@@ -18,6 +18,61 @@ Teacher Editions.
 
 Only a new regression introduced by this branch may reopen a correctness question.
 
+### Implementation candidate — C2C6-VIS03 screened ecological trial
+
+`C2C6-VIS03` is the final planned Family 8 intervention/trial finding. Its synchronized accepted
+prerequisite is the C2C2-VIS03 closeout
+`d44467f517059788ebd9d4398c4cd517471c687e`. The candidate changes only the shared component
+presentation layer, browser harness, focused intervention/trial validator, this production plan
+and the desktop browser handoff. It changes no worksheet or case source, case presentation,
+layout override, package metadata, task registry, response wording or geometry, persistence
+identity, page count, Teacher or Answer Key content, release/history record or accepted-family
+implementation.
+
+The frozen Task 7 structure remains on Student page 6, Accessible page 7, Answer Key page 5 and
+Teacher support page 4. The new Case-06-scoped layer makes the existing screened ecological trial
+read as one workflow:
+
+- `IDENTIFY → SCREEN → APPROVE → TEST → MONITOR` appears across all four synchronized roles;
+- Student retains all six requirements in source order and Accessible retains all five;
+- authorization, identification, screening, compatibility/comparison and monitoring use distinct
+  grayscale-safe border and pattern states;
+- replicated treated plots remain paired with untreated control plots;
+- the four Student fields remain exactly
+  `t7-criterion-1 | t7-criterion-2 | t7-constraint | t7-approval`;
+- the four Accessible fields remain exactly
+  `a7-criterion-1 | a7-criterion-2 | a7-constraint | a7-approval`;
+- Answer Key comparison, control, constraint and safety gates mirror those four learner rails;
+- Teacher support retains the weather/season/slow-recovery control logic and the within-world
+  transfer-risk explanation; and
+- one explicit `EXPAND ONLY IF SUPPORTED` gate prevents the trial from reading as automatic
+  treatment or guaranteed rollout.
+
+The science and safety boundary is unchanged. The packet names no treatment, product, supplier or
+organism to add. Identification and screening precede authorization; within-world transfer is not
+risk-free; candidates that fail pathogen or invasion-risk screening are rejected; treated plots
+must be compared with untreated controls; colonisation, nutrient status, plant performance and
+spread are monitored; and expansion is conditional on evidence. Failed or incomplete compatible
+mycorrhizal re-establishment remains the best-supported **candidate cause**, not an established
+finding. The approximately **4–6 m** surveyed pattern remains a range, not an invented average.
+No cure, recovery, colonisation, improvement or expansion is guaranteed, and no wood-wide-web or
+mother-tree claim is introduced.
+
+The focused intervention/trial validator is **235/235 PASS**. It protects all five frozen The
+First Garden source hashes, exact cross-edition requirements and field identities, blank learner
+responses, the combined Student CER, Answer Key and Teacher parity, scoped CSS states, no authored
+learner-field dimensions and exactly three candidate browser assertions. Canonical external
+Mac/Google Chrome registration is expected to advance from 2372 to **2375** through exactly the
+normal semantic, grayscale semantic and eight-view strict-fit/page-count/geometry assertions.
+The implementation remains `IMPLEMENTED-CANDIDATE` pending those two complete browser runs and
+normal/grayscale inspection of Student page 6, Accessible page 7, Answer Key page 5 and Teacher
+page 4. No rendered acceptance is inferred from static validation.
+
+Accepted inventory deliberately remains **34 of 36 completed / 2 of 36 remaining**, and Family 8
+remains four of five verified, until the external rendered gate is accepted. `C1C1-GS01` is not
+begun. Do not merge to `main`, mark `C2C6-VIS03` `VERIFIED-FAMILY`, advance the inventory or create
+a general Mac/Chrome/platform exception from this candidate record.
+
 ## 2. Repository and branch verification
 
 Verification on 2026-08-07 established:
@@ -967,7 +1022,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C2C5-VIS03` | Too Clean a Room; S T5 p5 + T7 p7, A T5 p5 + T7 p7, AK T5 p4 + T7 p5 | Generic pathway and separate dense trial-requirements table. | 2 + 8 · Mechanism/trial workflow | Species-specific signal → pathway → product panel paired with high-level authorization → control → dosimetry/production → staged trial → stop workflow. | Keep tasks/pages separate; preserve diagnosis fields, pathway blanks and all trial requirements. | `<0.01 mGy/day` bound; homeworld ~8.4 and Rhessi ~12 are different contexts; mGy ≠ sievert; two conditions do not form a curve; non-operational only. | mechanism + IC1; unit, context, safety and response checks | `VERIFIED-FAMILY · 94/94 FAMILY STATIC PASS · 2327/2327 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 7be2f42 ACCEPTED` |
 | `C2C6-VIS01` | The First Garden; S T2 p2, A T2 p2 | Accurate simple plan-view patch diagram. | 1 · Technical telemetry/data | SAA soil-survey diagnostic with discrete abundance zones, sharp boundary and trace inter-patch ground. | Replace existing figure only; same caption/table backup and height. | Approximately 4–6 m remains a range; trace ≠ absent; pattern is not a map/not to scale; no patch spacing invented. | D1 spatial variant; range/status/alt checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C6-VIS02` | The First Garden; S T5 p5, A T5 p5, AK T5 p4 | Generic five-stage pathway. | 2 · Causal mechanism/pathway | Candidate pathway with an explicit persistent `CANDIDATE · NOT ESTABLISHED` status rail from construction history through possible partnership loss to surveyed pattern. | Preserve fixed stages, three blanks, exact bank and model-limit response; sync AK. | Best-supported candidate only; no wood-wide-web/mother-tree/guaranteed-inoculation claims. | mechanism/status primitive; bank, qualifier and persistence checks | `VERIFIED-FAMILY · 103/103 FAMILY STATIC PASS · 2330/2330 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · d8886b5 ACCEPTED` |
-| `C2C6-VIS03` | The First Garden; S T7 p6, A T7 p7, AK T7 p5, T support p4 | Trial requirements are a long table; decision sequence is implicit. | 8 · Intervention comparison/trial workflow | Screened ecological workflow: identify → screen → approve → replicated treated + untreated plots → monitor colonization/performance/spread → conditional expansion. | Preserve all requirement fields and no-product/no-species instruction; synchronize AK and Teacher explanation. | Do not name treatment/product/organism; within-world transfer is not risk-free; no guaranteed cure; expand only if evidence supports. | IC1; safety-language, field/parity and conditionality checks | `PLANNED` |
+| `C2C6-VIS03` | The First Garden; S T7 p6, A T7 p7, AK T7 p5, T support p4 | Trial requirements are a long table; decision sequence is implicit. | 8 · Intervention comparison/trial workflow | Screened ecological workflow: identify → screen → approve → replicated treated + untreated plots → monitor colonization/performance/spread → conditional expansion. | Preserve all requirement fields and no-product/no-species instruction; synchronize AK and Teacher explanation. | Do not name treatment/product/organism; within-world transfer is not risk-free; no guaranteed cure; expand only if evidence supports. | IC1; safety-language, field/parity and conditionality checks | `IMPLEMENTED-CANDIDATE · 235/235 INTERVENTION STATIC PASS · MAC/CHROME PENDING · STRICT FIT PENDING` |
 
 ## 8. Reusable visual grammar and smallest primitive set
 

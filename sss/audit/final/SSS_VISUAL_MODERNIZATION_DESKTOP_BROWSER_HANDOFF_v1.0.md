@@ -4,6 +4,90 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Candidate Family 8 completion — The First Garden screened ecological trial
+
+`C2C6-VIS03` is implemented as the final Family 8 intervention/trial candidate against exact
+accepted prerequisite `d44467f517059788ebd9d4398c4cd517471c687e`. It remains unaccepted and must
+not be pushed until the external Mac/Google Chrome gate below passes or receives a separate exact
+candidate-specific differential disposition.
+
+The candidate changes only the shared component CSS, browser harness, focused intervention/trial
+validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+layout override, package metadata, task registry, response identity or geometry, page count,
+Teacher or Answer Key content, release/history record or accepted-family implementation. These
+The First Garden source hashes remain exact:
+
+- `content.html` — `0e2f922eaecdd6b55846cef1c102ad7642470b81d616ee328f78f47b989ba26e`
+- `presentation.css` — `6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d`
+- `layout-overrides.json` — `b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481`
+- `case-package.json` — `ac46956154312298b7a3460efedf72d1882c28574810d96f431345049fa13764`
+- `task-registry.js` — `baeb1c6c91806fd148d1160500570e44c1a3a5b9f8695090fe42b37e88e24cbe`
+
+The frozen Task 7 source already provides the complete screened trial architecture. Student page 6
+retains six requirements, Accessible page 7 retains five, Answer Key page 5 retains four guidance
+gates and Teacher page 4 retains the control/risk explanation. The new Case-06-scoped presentation
+exposes those existing relationships as:
+
+- one `IDENTIFY → SCREEN → APPROVE → TEST → MONITOR` rail across all four roles;
+- double authorization, solid identification/comparison, dashed screening/monitoring and dotted
+  compatibility states, each reinforced by a distinct grayscale-safe pattern;
+- replicated treated plots paired with untreated control plots;
+- one explicit `EXPAND ONLY IF SUPPORTED` conditional gate;
+- solid comparison/control, double constraint and dashed approval/screening response rails; and
+- the same comparison, control, constraint and safety hierarchy on the completed Answer Key and
+  Teacher support.
+
+Student fields remain exactly
+`t7-criterion-1 | t7-criterion-2 | t7-constraint | t7-approval`; Accessible fields remain exactly
+`a7-criterion-1 | a7-criterion-2 | a7-constraint | a7-approval`. All eight fields remain blank,
+editable and source-sized. No shared layer authors width, height, minimum-height or maximum-height
+values for them. Student page 6's combined Task 6 CER remains complete and unchanged above Task 7.
+
+The science and safety limits are non-negotiable. Failed or incomplete re-establishment of
+compatible mycorrhizal partners remains a **candidate cause**, not an established finding. The
+approximately **4–6 m** survey result remains a range rather than an average. No treatment,
+product, supplier, organism or species to add is named. Within-world transfer is not risk-free;
+identification, pathogen/invasion screening and approval remain required; organisms that fail
+screening are rejected; treated plots require untreated controls; colonisation, nutrient status,
+plant performance and spread remain monitored; and expansion occurs only if evidence supports it.
+No cure, recovery, colonisation, improvement or expansion is guaranteed. Do not introduce a
+wood-wide-web, mother-tree-feeding or guaranteed-inoculation claim.
+
+The focused intervention/trial validator is **235/235 PASS** and the existing 103/103 mechanism
+contract must remain green. The candidate adds exactly three browser assertions:
+
+1. `C2 Case 06 normal screened ecological trial preserves approval, comparison, monitoring and conditional expansion`
+2. `C2 Case 06 grayscale screened ecological trial preserves approval, comparison, monitoring and conditional expansion`
+3. `C2 Case 06 screened ecological trial pages retain strict fit, page counts and geometry in normal and grayscale`
+
+The older `validate_case06_campaign2.py` is non-governing for this corrective visual candidate. It
+reports the identical inherited **219/230** result at prerequisite `d44467f…` and at this candidate,
+with the same eleven release-lifecycle/DOM-baseline failure names and no new failure. Do not repair
+or re-pin that validator during this visual finding.
+
+Run the complete browser harness twice. Canonical expectation is **2375/2375 PASS** with zero
+application JavaScript errors, byte-identical assertion-name sequences, 2375 unique names, no
+duplicates and exactly the three assertions above added and passing. If both candidate runs instead
+report exactly **2374/2374 PASS**, run a fresh same-Mac prerequisite at `d44467f…`. Only an exact
+prerequisite **2371/2371 PASS** and candidate **2374/2374 PASS ×2** differential—exactly +3
+registered/+3 passed, zero removed, no inherited assertion broken and no prerequisite-passing
+assertion failing—may be returned for owner disposition. Do not infer acceptance or create a
+general Mac, Chrome, browser, platform or environment exception. Canonical candidate registration
+remains 2375.
+
+Inspect Student page 6, Accessible page 7, Answer Key page 5 and Teacher page 4 in normal and
+grayscale. Require fixed 816 × 1056 geometry, exact 936/936 content fit, unchanged 6 / 7 / 5 / 7
+role page counts, zero overflow/clipping/collision/spill/crowding, a legible non-colliding workflow
+rail, contained non-overlapping requirement rows, distinct border/pattern states, all eight learner
+fields blank/editable/unclipped, all four Answer Key gates and the Teacher explanation intact, and
+normal/grayscale meaning equivalence. The full Student CER must remain visible. Do not run PDF
+automation or re-pin `validate_static.py`.
+
+Accepted inventory remains **34 of 36 completed**, with **2 remaining**, and Family 8 remains four
+of five until separate owner acceptance and documentation-only closeout. Do not begin
+`C1C1-GS01`, mark `C2C6-VIS03` `VERIFIED-FAMILY`, advance the inventory or merge to `main` in this
+candidate run.
+
 ## Accepted Family 8 finding — The Missing Dance monitored vibration trial
 
 Accepted implementation `f987bbb0c4c7fc34f07bc0f00fd4f38aeceb066b` advances `C2C2-VIS03` to

@@ -1742,6 +1742,131 @@
               JSON.stringify({ rendered, answerRows: answerRows.length, answerLimit: Boolean(answerLimit) })
             );
           }
+          const gardenTrialPageFit = [];
+          const expectedGardenWorkflow = "IDENTIFY → SCREEN → APPROVE → TEST → MONITOR";
+          const expectedStudentRequirementBorders = "double|solid|dashed|dotted|solid|dashed";
+          const expectedAccessibleRequirementBorders = "double|solid|dashed|solid|dashed";
+          const expectedGardenFieldBorders = "solid|solid|double|dashed";
+          for (const grayscale of [false, true]) {
+            const renderedTrials = [];
+            for (const [role, pageId, expectedPageCount] of [
+              ["student", "student-mission-06", 6],
+              ["answer", "answer-key-05", 5],
+              ["accessible", "accessible-mission-07", 7],
+              ["teacher", "teacher-guide-04", 7]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const heading = page?.querySelector('.task-heading[data-task-id="7"]');
+              const trialTable = ["student", "accessible"].includes(role) ? page?.querySelector(".trial-table") : null;
+              const requirementRows = Array.from(trialTable?.querySelectorAll("tbody > tr") || []);
+              const trialRect = trialTable?.getBoundingClientRect();
+              const rowRects = requirementRows.map(row => row.getBoundingClientRect());
+              const requirementsContained = requirementRows.length === 0 || Boolean(trialRect) && requirementRows.every(row => {
+                const rect = row.getBoundingClientRect();
+                return rect.left >= trialRect.left - 1 && rect.right <= trialRect.right + 1
+                  && rect.top >= trialRect.top - 1 && rect.bottom <= trialRect.bottom + 1;
+              });
+              const requirementCollisions = rowRects.some((rect, index) => rowRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = Array.from(page?.querySelectorAll('[data-persist-id^="t7-"][data-response], [data-persist-id^="a7-"][data-response]') || []);
+              const conditionalSupport = trialTable?.querySelector("caption");
+              const answerItems = Array.from(page?.querySelectorAll('.task-heading[data-task-id="7"] + .answer-block > ul > li') || []);
+              const teacherSupport = role === "teacher" ? heading?.nextElementSibling : null;
+              const pageRect = page?.getBoundingClientRect();
+              const state = {
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: pageRect ? `${rounded(pageRect.width)}x${rounded(pageRect.height)}` : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                headingRail: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
+                requirementCount: requirementRows.length,
+                requirementBorders: requirementRows.map(row => win.getComputedStyle(row.firstElementChild).borderLeftStyle).join("|"),
+                requirementPatterns: requirementRows.map(row => win.getComputedStyle(row.firstElementChild).backgroundImage !== "none"),
+                requirementText: requirementRows.map(row => row.textContent.trim().replace(/\s+/g, " ")),
+                requirementsContained,
+                requirementCollisions,
+                conditionalGate: conditionalSupport ? win.getComputedStyle(conditionalSupport, "::after").content.replaceAll('"', "") : "",
+                fields: fields.map(field => ({
+                  id: field.dataset.persistId,
+                  text: gardenLearnerText(field),
+                  response: field.hasAttribute("data-response"),
+                  size: dimensions(field),
+                  border: win.getComputedStyle(field).borderLeftStyle,
+                  labelBorder: field.previousElementSibling ? win.getComputedStyle(field.previousElementSibling).borderLeftStyle : "",
+                  labelClearance: field.previousElementSibling ? rounded(parseFloat(win.getComputedStyle(field.previousElementSibling).borderLeftWidth) + parseFloat(win.getComputedStyle(field.previousElementSibling).paddingLeft)) : 0
+                })),
+                answerItems: answerItems.map(item => ({
+                  text: item.textContent.trim().replace(/\s+/g, " "),
+                  border: win.getComputedStyle(item).borderLeftStyle,
+                  pattern: win.getComputedStyle(item).backgroundImage !== "none"
+                })),
+                teacherSupport: teacherSupport?.textContent.trim().replace(/\s+/g, " ") || "",
+                teacherBorder: teacherSupport ? win.getComputedStyle(teacherSupport).borderLeftStyle : "",
+                teacherPattern: teacherSupport ? win.getComputedStyle(teacherSupport).backgroundImage !== "none" : false,
+                pageText: page?.textContent.trim().replace(/\s+/g, " ") || ""
+              };
+              gardenTrialPageFit.push(state);
+              renderedTrials.push(state);
+            }
+            const studentTrial = renderedTrials.find(state => state.role === "student");
+            const answerTrial = renderedTrials.find(state => state.role === "answer");
+            const accessibleTrial = renderedTrials.find(state => state.role === "accessible");
+            const teacherTrial = renderedTrials.find(state => state.role === "teacher");
+            check(
+              `C2 Case 06 ${grayscale ? "grayscale" : "normal"} screened ecological trial preserves approval, comparison, monitoring and conditional expansion`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && renderedTrials.length === 4
+                && renderedTrials.every(state => state.headingRail === expectedGardenWorkflow)
+                && studentTrial.requirementCount === 6
+                && accessibleTrial.requirementCount === 5
+                && studentTrial.requirementBorders === expectedStudentRequirementBorders
+                && accessibleTrial.requirementBorders === expectedAccessibleRequirementBorders
+                && [studentTrial, accessibleTrial].every(state => state.requirementPatterns.every(Boolean) && state.requirementsContained && !state.requirementCollisions)
+                && [studentTrial, accessibleTrial].every(state => state.conditionalGate === "EXPAND ONLY IF SUPPORTED")
+                && studentTrial.fields.map(field => field.id).join("|") === "t7-criterion-1|t7-criterion-2|t7-constraint|t7-approval"
+                && accessibleTrial.fields.map(field => field.id).join("|") === "a7-criterion-1|a7-criterion-2|a7-constraint|a7-approval"
+                && [studentTrial, accessibleTrial].every(state => state.fields.every(field => field.response && field.text === "" && field.size[0] >= 108 && field.size[1] >= 30))
+                && [studentTrial, accessibleTrial].every(state => state.fields.map(field => field.border).join("|") === expectedGardenFieldBorders)
+                && [studentTrial, accessibleTrial].every(state => state.fields.map(field => field.labelBorder).join("|") === expectedGardenFieldBorders && state.fields.every(field => field.labelClearance >= 6))
+                && answerTrial.answerItems.length === 4
+                && answerTrial.answerItems.map(item => item.border).join("|") === expectedGardenFieldBorders
+                && answerTrial.answerItems.every(item => item.pattern)
+                && answerTrial.answerItems[0].text.includes("replicated treated plots against untreated control plots")
+                && answerTrial.answerItems[1].text.includes("weather, or the garden’s own slow recovery")
+                && answerTrial.answerItems[2].text.includes("pathogen and invasion screening")
+                && answerTrial.answerItems[3].text.includes("spread beyond where they are placed")
+                && teacherTrial.teacherBorder === "dashed" && teacherTrial.teacherPattern
+                && teacherTrial.teacherSupport.includes("within-world means risk-free. It does not")
+                && studentTrial.pageText.includes("You are not asked to name a supplier, a product, or a species to add")
+                && accessibleTrial.pageText.includes("You do not need to name a product, a supplier, or a species to add")
+                && studentTrial.pageText.includes("Replicated treated plots are run alongside untreated control plots")
+                && accessibleTrial.pageText.includes("Treat some plots. Leave other plots untreated for comparison")
+                && studentTrial.pageText.includes("spread beyond the trial boundary")
+                && accessibleTrial.pageText.includes("watch for spread outside the trial")
+                && studentTrial.pageText.includes("candidate cause")
+                && !renderedTrials.some(state => /guaranteed (?:cure|recovery|improvement)|expand(?:ed|sion)? automatically/i.test(state.pageText)),
+              JSON.stringify(renderedTrials)
+            );
+          }
+          check(
+            "C2 Case 06 screened ecological trial pages retain strict fit, page counts and geometry in normal and grayscale",
+            gardenTrialPageFit.length === 8
+              && gardenTrialPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.scrollHeight <= state.clientHeight),
+            JSON.stringify(gardenTrialPageFit)
+          );
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

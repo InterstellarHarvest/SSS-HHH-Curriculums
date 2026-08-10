@@ -17,6 +17,8 @@ GIFT_CASE = ROOT / "sss/campaign-1/case-07-the-gift/source"
 GIFT_CONTENT = GIFT_CASE / "content.html"
 DANCE_CASE = ROOT / "sss/campaign-2/case-02-missing-dance/source"
 DANCE_CONTENT = DANCE_CASE / "content.html"
+GARDEN_CASE = ROOT / "sss/campaign-2/case-06-first-garden/source"
+GARDEN_CONTENT = GARDEN_CASE / "content.html"
 COMPONENTS = ROOT / "shared/implementation/editor-shell/v1.0/curriculum-components.css"
 HARNESS = ROOT / "apps/curriculum-editor/tests/browser-harness.html"
 PLAN = ROOT / "sss/audit/final/SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md"
@@ -46,6 +48,14 @@ DANCE_FROZEN_HASHES = {
     "task-registry.js": "8aaa2854d946f67e5c59261d314bf05764f4f4b21ccaa81009daa6ca4d51eda8",
 }
 
+GARDEN_FROZEN_HASHES = {
+    "content.html": "0e2f922eaecdd6b55846cef1c102ad7642470b81d616ee328f78f47b989ba26e",
+    "presentation.css": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
+    "layout-overrides.json": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481",
+    "case-package.json": "ac46956154312298b7a3460efedf72d1882c28574810d96f431345049fa13764",
+    "task-registry.js": "baeb1c6c91806fd148d1160500570e44c1a3a5b9f8695090fe42b37e88e24cbe",
+}
+
 
 def normalized(node) -> str:
     return " ".join(node.stripped_strings) if node else ""
@@ -67,6 +77,8 @@ def main() -> int:
     gift_soup = BeautifulSoup(gift_source, "html.parser")
     dance_source = DANCE_CONTENT.read_text(encoding="utf-8")
     dance_soup = BeautifulSoup(dance_source, "html.parser")
+    garden_source = GARDEN_CONTENT.read_text(encoding="utf-8")
+    garden_soup = BeautifulSoup(garden_source, "html.parser")
     css = COMPONENTS.read_text(encoding="utf-8")
     harness = HARNESS.read_text(encoding="utf-8")
     plan = " ".join(PLAN.read_text(encoding="utf-8").split())
@@ -235,6 +247,98 @@ def main() -> int:
         ),
     )
 
+    garden_pages = {
+        "student": garden_soup.select_one('[data-page-id="student-mission-06"]'),
+        "answer": garden_soup.select_one('[data-page-id="answer-key-05"]'),
+        "accessible": garden_soup.select_one('[data-page-id="accessible-mission-07"]'),
+        "teacher": garden_soup.select_one('[data-page-id="teacher-guide-04"]'),
+    }
+    for name, expected in GARDEN_FROZEN_HASHES.items():
+        actual = sha256(GARDEN_CASE / name)
+        check(f"frozen The First Garden {name} hash remains exact", actual == expected, actual)
+    for role, page in garden_pages.items():
+        check(f"The First Garden {role} Task 7 target page remains present", page is not None)
+
+    garden_student_table = garden_pages["student"].select_one(".trial-table")
+    garden_accessible_table = garden_pages["accessible"].select_one(".trial-table")
+    garden_student_rows = garden_student_table.select("tbody > tr") if garden_student_table else []
+    garden_accessible_rows = garden_accessible_table.select("tbody > tr") if garden_accessible_table else []
+    check("The First Garden Student retains exactly six trial requirements", len(garden_student_rows) == 6, len(garden_student_rows))
+    check("The First Garden Accessible retains exactly five trial requirements", len(garden_accessible_rows) == 5, len(garden_accessible_rows))
+    check(
+        "The First Garden Student requirement order remains exact",
+        [normalized(row.select_one("td")) for row in garden_student_rows]
+        == ["Review and authorization", "Identification", "Screening", "Compatibility", "Comparison", "Monitoring"],
+    )
+    check(
+        "The First Garden Accessible requirement order remains exact",
+        [normalized(row.select_one("td")) for row in garden_accessible_rows]
+        == ["Approval", "Identification", "Screening", "Comparison", "Monitoring"],
+    )
+    check(
+        "The First Garden Student trial preserves approval identification and screening gates",
+        all(token in normalized(garden_student_table) for token in ("Section 14.7 requires prior Concord approval", "fungal communities in the thriving beds and in the failing beds are identified", "screened for pathogens and for invasion risk", "Organisms that fail screening are rejected")),
+    )
+    check(
+        "The First Garden Student trial preserves compatibility comparison and monitoring gates",
+        all(token in normalized(garden_student_table) for token in ("host plants actually growing in the garden", "Replicated treated plots are run alongside untreated control plots", "Colonisation, nutrient status, plant performance", "spread beyond the trial boundary")),
+    )
+    check(
+        "The First Garden Accessible trial preserves approval screening comparison and monitoring",
+        all(token in normalized(garden_accessible_table) for token in ("approve the trial before anything living is added", "disease and invasion risk", "Reject any that fail", "Leave other plots untreated for comparison", "watch for spread outside the trial")),
+    )
+
+    garden_student_fields = garden_pages["student"].select('[data-persist-id^="t7-"][data-response]')
+    garden_accessible_fields = garden_pages["accessible"].select('[data-persist-id^="a7-"][data-response]')
+    check(
+        "The First Garden Student retains four exact blank Task 7 response identities",
+        [field.get("data-persist-id") for field in garden_student_fields]
+        == ["t7-criterion-1", "t7-criterion-2", "t7-constraint", "t7-approval"]
+        and all(not normalized(field) for field in garden_student_fields),
+    )
+    check(
+        "The First Garden Accessible retains four exact blank Task 7 response identities",
+        [field.get("data-persist-id") for field in garden_accessible_fields]
+        == ["a7-criterion-1", "a7-criterion-2", "a7-constraint", "a7-approval"]
+        and all(not normalized(field) for field in garden_accessible_fields),
+    )
+    check(
+        "The First Garden learner directions preserve the no-product no-supplier no-species boundary",
+        "not asked to name a supplier, a product, or a species to add" in normalized(garden_pages["student"])
+        and "do not need to name a product, a supplier, or a species to add" in normalized(garden_pages["accessible"]),
+    )
+    check(
+        "The First Garden learner prompts retain comparison controls constraint and within-world safety reasoning",
+        all(token in normalized(garden_pages["student"]) for token in ("what the trial must compare", "untreated control plots are necessary", "One constraint", "fungi and the soil both come from Earth"))
+        and all(token in normalized(garden_pages["accessible"]) for token in ("what the trial must compare", "untreated control plots are needed", "One constraint", "fungi and the soil are both from Earth")),
+    )
+    student_cer = garden_pages["student"].select_one('[data-cer-contract="student-v1.0"]')
+    check(
+        "The First Garden Student combined CER remains complete before Task 7",
+        student_cer is not None
+        and [node.get("data-persist-id") for node in student_cer.select("[data-response]")] == ["t6c", "t6e", "t6r"]
+        and all(not normalized(node) for node in student_cer.select("[data-response]"))
+        and student_cer.find_next("h2", attrs={"data-shell-task-heading": "7"}) is not None,
+    )
+
+    garden_answer = garden_pages["answer"].select_one('h2[data-shell-task-heading="7"] + .answer-block')
+    garden_answer_items = garden_answer.select("ul > li") if garden_answer else []
+    check("The First Garden Answer Key retains exactly four Task 7 guidance gates", len(garden_answer_items) == 4, len(garden_answer_items))
+    check("The First Garden Answer Key compares replicated treated and untreated plots", all(token in normalized(garden_answer_items[0]) for token in ("replicated treated plots", "untreated control plots", "colonisation and plant performance")))
+    check("The First Garden Answer Key explains why untreated controls are necessary", all(token in normalized(garden_answer_items[1]) for token in ("weather", "garden’s own slow recovery", "proves nothing on its own")))
+    check("The First Garden Answer Key preserves approval screening provenance and compatibility constraints", all(token in normalized(garden_answer_items[2]) for token in ("prior Concord approval", "pathogen and invasion screening", "provenance", "host compatibility")))
+    check("The First Garden Answer Key preserves within-world spread and evidence risks", all(token in normalized(garden_answer_items[3]) for token in ("carry pathogens", "spread beyond where they are placed", "invalidate the evidence", "breach Section 14.7")))
+    garden_teacher_support = garden_pages["teacher"].select_one('h2[data-shell-task-heading="7"] + p')
+    check(
+        "The First Garden Teacher support preserves control logic and within-world risk",
+        all(token in normalized(garden_teacher_support) for token in ("weather, season, or the garden’s own slow recovery", "within-world means risk-free. It does not", "carry pathogens", "spread beyond where they were put", "invalidate the evidence")),
+    )
+    garden_learner_text = normalized(garden_pages["student"]) + " " + normalized(garden_pages["accessible"])
+    check(
+        "The First Garden learner source adds no named treatment organism guaranteed cure or automatic expansion",
+        not re.search(r"wood wide web|mother tree|guaranteed (?:cure|recovery|improvement)|expand(?:ed|sion)? automatically|treat(?:ment|ed) product\s+[A-Z]", garden_learner_text, re.I),
+    )
+
     marker = "Intervention-comparison family pilot: First Contact Protocol."
     css_start = css.index(marker)
     gift_marker = "Intervention-comparison family expansion: The Gift."
@@ -279,8 +383,9 @@ def main() -> int:
     check("The Gift grayscale treatment targets the same three Task 7 pages", '.worksheet-document.grayscale[data-case-id="SSS-C1-CASE07"]' in gift_css and all(token in gift_css for token in ("student-mission-05", "answer-key-05", "accessible-mission-07")))
     check("The Gift shared layer does not author learner field dimensions", not re.search(r"(?:t7|a7)-(?:recommend|monitor|predict)[^}]*\b(?:width|height|min-height|max-height)\s*:", gift_css, re.S))
 
+    garden_marker = "Intervention/trial family completion: The First Garden."
     cutaway_marker = "BEGIN SSS/HHH CUTAWAY-VISUAL EXTENSIONS"
-    dance_css = css[css.index(dance_marker):css.index(cutaway_marker, css.index(dance_marker))]
+    dance_css = css[css.index(dance_marker):css.index(garden_marker, css.index(dance_marker))]
     check("The Missing Dance trial layer is strictly scoped to Case 02", 'data-case-id="SSS-C2-CASE02"' in dance_css and "SSS-C2-CASE0" not in dance_css.replace("SSS-C2-CASE02", ""))
     check("The Missing Dance trial layer declares six independent structural patterns", all(token in dance_css for token in ("--dance-trial-frequency-pattern", "--dance-trial-amplitude-pattern", "--dance-trial-duration-pattern", "--dance-trial-coupling-pattern", "--dance-trial-measure-pattern", "--dance-trial-limit-pattern")))
     check("The Missing Dance Task 8 heading exposes the set-measure-stop relationship", 'content: "SET → MEASURE → STOP"' in dance_css)
@@ -297,6 +402,23 @@ def main() -> int:
     check("The Missing Dance Answer Key mirrors all six control measurement safety and evidence gates", all(token in dance_css for token in ("> p:first-child", "> p:nth-child(2)", "> p:nth-child(3)", "> p:nth-child(4)", "> p:nth-child(5)", "> p:nth-child(6)")))
     check("The Missing Dance grayscale treatment targets the same three Task 8 pages", '.worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"]' in dance_css and all(token in dance_css for token in ("student-mission-06", "answer-key-04", "accessible-mission-08")))
     check("The Missing Dance shared layer does not author learner field dimensions", not re.search(r"(?:t8|a8)-(?:first|measure|limit|stop|why)[^}]*\b(?:width|height|min-height|max-height)\s*:", dance_css, re.S))
+
+    garden_css = css[css.index(garden_marker):css.index(cutaway_marker, css.index(garden_marker))]
+    check("The First Garden trial layer is strictly scoped to Case 06", 'data-case-id="SSS-C2-CASE06"' in garden_css and "SSS-C2-CASE0" not in garden_css.replace("SSS-C2-CASE06", ""))
+    check("The First Garden trial layer declares six independent structural patterns", all(token in garden_css for token in ("--garden-trial-identify-pattern", "--garden-trial-screen-pattern", "--garden-trial-approval-pattern", "--garden-trial-compare-pattern", "--garden-trial-monitor-pattern", "--garden-trial-conditional-pattern")))
+    check("The First Garden Task 7 heading exposes the screened workflow", 'content: "IDENTIFY → SCREEN → APPROVE → TEST → MONITOR"' in garden_css)
+    check("The First Garden relationship rail targets Student Accessible Answer Key and Teacher", all(token in garden_css for token in ("student-mission-06", "accessible-mission-07", "answer-key-05", "teacher-guide-04")))
+    check("The First Garden learner tables receive a structural outline and rail", "outline: 1.5px solid var(--garden-trial-line)" in garden_css and "box-shadow: inset 4px 0 0 var(--garden-trial-line)" in garden_css)
+    check("The First Garden requirement states use double solid dashed dotted solid and dashed borders", all(token in garden_css for token in ("border-left: 4px double", "border-left: 4px solid", "border-left: 4px dashed", "border-left: 4px dotted")))
+    check("The First Garden conditional expansion gate remains explicit", 'content: "EXPAND ONLY IF SUPPORTED"' in garden_css and "--garden-trial-conditional-pattern" in garden_css)
+    check("The First Garden comparison fields use solid control rails", all(token in garden_css for token in ('data-persist-id="t7-criterion-1"', 'data-persist-id="a7-criterion-1"', 'data-persist-id="t7-criterion-2"', 'data-persist-id="a7-criterion-2"', "border-left: 4px solid var(--garden-trial-line)")))
+    check("The First Garden constraint fields use double authorization rails", all(token in garden_css for token in ('data-persist-id="t7-constraint"', 'data-persist-id="a7-constraint"', "border-left: 4px double var(--garden-trial-line)")))
+    check("The First Garden approval fields use dashed screening rails", all(token in garden_css for token in ('data-persist-id="t7-approval"', 'data-persist-id="a7-approval"', "border-left: 4px dashed var(--garden-trial-line)")))
+    check("The First Garden learner response labels retain six-pixel rail clearance", "padding-left: 6px" in garden_css)
+    check("The First Garden Answer Key mirrors all four response gates", all(token in garden_css for token in ("> ul > li:first-child", "> ul > li:nth-child(2)", "> ul > li:nth-child(3)", "> ul > li:nth-child(4)")))
+    check("The First Garden Teacher explanation receives the screening-risk state", ".page[data-page-id=\"teacher-guide-04\"] .task-heading[data-task-id=\"7\"] + p" in garden_css and "--garden-trial-screen-pattern" in garden_css)
+    check("The First Garden grayscale treatment targets all four synchronized pages", '.worksheet-document.grayscale[data-case-id="SSS-C2-CASE06"]' in garden_css and all(token in garden_css for token in ("student-mission-06", "accessible-mission-07", "answer-key-05", "teacher-guide-04")))
+    check("The First Garden shared layer does not author learner field dimensions", not re.search(r"(?:t7|a7)-(?:criterion-1|criterion-2|constraint|approval)[^}]*\b(?:width|height|min-height|max-height)\s*:", garden_css, re.S))
 
     case_start = harness.index('if (item.id === "SSS-C1-CASE06")')
     case_end = harness.index('if (item.id === "SSS-C1-CASE07")', case_start)
@@ -359,6 +481,53 @@ def main() -> int:
     check("browser harness verifies both exact five-field The Missing Dance learner sets", all(token in dance_case_harness for token in ("t8-first|t8-measure|t8-limit|t8-stop|t8-why", "a8-first|a8-measure|a8-limit|a8-stop|a8-why", "solid|dashed|double|double|dotted")))
     check("browser harness protects The Missing Dance measurement stop and qualifier evidence", all(token in dance_case_harness for token in ("Pollen actually released", "immediate stop", "no measurable pollen release", "Frequency is one of four settings", "amplitude, duration and coupling")))
     check("browser harness rejects The Missing Dance control collision overflow and invented settings", "!state.factorCollisions" in dance_case_harness and "state.scrollHeight <= state.clientHeight" in dance_case_harness and "guaranteed (?:release|recovery|fruit)" in dance_case_harness)
+
+    garden_case_start = harness.index('if (item.id === "SSS-C2-CASE06")')
+    garden_case_end = harness.index('if (item.id === "SSS-C1-CASE03")', garden_case_start)
+    garden_case_harness = harness[garden_case_start:garden_case_end]
+    check(
+        "browser harness adds exactly three The First Garden trial assertions",
+        garden_case_harness.count('`C2 Case 06 ${grayscale ? "grayscale" : "normal"} screened ecological trial') == 1
+        and garden_case_harness.count('"C2 Case 06 screened ecological trial pages retain strict fit') == 1,
+    )
+    check("browser harness measures all eight The First Garden normal and grayscale Task 7 views", "gardenTrialPageFit.length === 8" in garden_case_harness and "for (const grayscale of [false, true])" in garden_case_harness)
+    check("browser harness requires fixed The First Garden worksheet geometry", 'state.pageSize === "816x1056"' in garden_case_harness)
+    check("browser harness requires exact The First Garden role page counts", all(token in garden_case_harness for token in ('["student", "student-mission-06", 6]', '["answer", "answer-key-05", 5]', '["accessible", "accessible-mission-07", 7]', '["teacher", "teacher-guide-04", 7]')))
+    check("browser harness requires the exact The First Garden workflow and conditional gate", all(token in garden_case_harness for token in ("IDENTIFY → SCREEN → APPROVE → TEST → MONITOR", "EXPAND ONLY IF SUPPORTED")))
+    check("browser harness requires exact The First Garden requirement row counts and borders", all(token in garden_case_harness for token in ("studentTrial.requirementCount === 6", "accessibleTrial.requirementCount === 5", "double|solid|dashed|dotted|solid|dashed", "double|solid|dashed|solid|dashed")))
+    check("browser harness verifies both exact four-field The First Garden learner sets", all(token in garden_case_harness for token in ("t7-criterion-1|t7-criterion-2|t7-constraint|t7-approval", "a7-criterion-1|a7-criterion-2|a7-constraint|a7-approval", "solid|solid|double|dashed")))
+    check("browser harness protects minimum The First Garden learner field utility and rail clearance", "field.size[0] >= 108 && field.size[1] >= 30" in garden_case_harness and "field.labelClearance >= 6" in garden_case_harness)
+    check("browser harness protects The First Garden Answer Key comparison controls and safety", all(token in garden_case_harness for token in ("replicated treated plots against untreated control plots", "garden’s own slow recovery", "pathogen and invasion screening", "spread beyond where they are placed")))
+    check("browser harness protects The First Garden Teacher within-world risk explanation", "within-world means risk-free. It does not" in garden_case_harness and "teacherTrial.teacherBorder === \"dashed\"" in garden_case_harness)
+    check("browser harness protects The First Garden no-product and monitoring boundaries", all(token in garden_case_harness for token in ("not asked to name a supplier, a product, or a species to add", "do not need to name a product, a supplier, or a species to add", "spread beyond the trial boundary", "watch for spread outside the trial")))
+    check("browser harness rejects The First Garden row collision overflow and automatic cure claims", "!state.requirementCollisions" in garden_case_harness and "state.scrollHeight <= state.clientHeight" in garden_case_harness and "guaranteed (?:cure|recovery|improvement)" in garden_case_harness)
+
+    check(
+        "plan records C2C6-VIS03 as the 235-check pending Family 8 candidate",
+        bool(re.search(
+            r"\| `C2C6-VIS03` .*\| 8 · Intervention comparison/trial workflow \|.*"
+            r"`IMPLEMENTED-CANDIDATE · 235/235 INTERVENTION STATIC PASS · MAC/CHROME PENDING · STRICT FIT PENDING`",
+            plan,
+        ))
+        and "Implementation candidate — C2C6-VIS03 screened ecological trial" in plan
+        and "`IDENTIFY → SCREEN → APPROVE → TEST → MONITOR`" in plan
+        and "`EXPAND ONLY IF SUPPORTED`" in plan,
+    )
+    check(
+        "plan preserves The First Garden science limits and pending inventory boundary",
+        all(token in plan for token in ("approximately **4–6 m**", "best-supported **candidate cause**", "names no treatment, product, supplier or organism", "within-world transfer is not risk-free", "No cure, recovery, colonisation, improvement or expansion is guaranteed", "Accepted inventory deliberately remains **34 of 36 completed / 2 of 36 remaining**", "Family 8 remains four of five verified", "`C1C1-GS01` is not begun")),
+    )
+    check(
+        "handoff preserves The First Garden source ownership fields and all five frozen hashes",
+        "Candidate Family 8 completion — The First Garden screened ecological trial" in handoff
+        and "changes no worksheet wording" in handoff
+        and all(value in handoff for value in GARDEN_FROZEN_HASHES.values())
+        and all(token in handoff for token in ("t7-criterion-1 | t7-criterion-2 | t7-constraint | t7-approval", "a7-criterion-1 | a7-criterion-2 | a7-constraint | a7-approval", "All eight fields remain blank", "Student page 6's combined Task 6 CER remains complete")),
+    )
+    check(
+        "handoff preserves The First Garden external gate and safety boundary without inferring acceptance",
+        all(token in handoff for token in ("**235/235 PASS**", "existing 103/103 mechanism contract", "exactly three browser assertions", "**2375/2375 PASS**", "**2374/2374 PASS**", "**2371/2371 PASS**", "exactly +3", "Canonical candidate registration remains 2375", "Within-world transfer is not risk-free", "No cure, recovery, colonisation, improvement or expansion is guaranteed", "Accepted inventory remains **34 of 36 completed**", "Family 8 remains four of five", "Do not begin `C1C1-GS01`")),
+    )
 
     check(
         "plan records C2C2-VIS03 as the accepted 176-check Family 8 finding",
@@ -485,7 +654,7 @@ def main() -> int:
     for name, ok, detail in checks:
         print(f"{'PASS' if ok else 'FAIL'}: {name}" + (f" — {detail}" if detail and not ok else ""))
     print(f"\nIntervention/trial validator: {passed}/{len(checks)} PASS")
-    return 0 if passed == len(checks) == 176 else 1
+    return 0 if passed == len(checks) == 235 else 1
 
 
 if __name__ == "__main__":

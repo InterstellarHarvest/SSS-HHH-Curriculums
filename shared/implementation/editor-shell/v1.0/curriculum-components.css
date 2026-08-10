@@ -5633,6 +5633,239 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   background-color: var(--paper, #fff);
 }
 
+/*
+ * Intervention/trial family completion: The First Garden.
+ *
+ * The frozen Task 7 structures already require identification, screening,
+ * approval, treated-versus-untreated comparison and monitoring. This
+ * Case-06-scoped layer exposes those gates as one screened ecological trial
+ * without naming an organism, product or treatment, treating within-world
+ * transfer as risk-free, or implying that expansion follows automatically.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE06"] {
+  --garden-trial-line: var(--ink, #18212b);
+  --garden-trial-panel: var(--paper, #fff);
+  --garden-trial-identify-pattern:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .065) 8px 9px);
+  --garden-trial-screen-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .075) 7px 8px);
+  --garden-trial-approval-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .1) 6px 7px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .035) 6px 7px);
+  --garden-trial-compare-pattern:
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(24, 33, 43, .055) 9px 10px);
+  --garden-trial-monitor-pattern:
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(24, 33, 43, .05) 10px 11px);
+  --garden-trial-conditional-pattern:
+    repeating-linear-gradient(45deg, transparent 0 5px, rgba(24, 33, 43, .105) 5px 6px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"] .task-heading[data-task-id="7"],
+  .page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="7"],
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"],
+  .page[data-page-id="teacher-guide-04"] .task-heading[data-task-id="7"]
+) {
+  position: relative;
+  padding-right: 2.18in !important;
+  border-bottom: 1.5px solid var(--garden-trial-line) !important;
+  background: var(--garden-trial-monitor-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"] .task-heading[data-task-id="7"],
+  .page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="7"],
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"],
+  .page[data-page-id="teacher-guide-04"] .task-heading[data-task-id="7"]
+)::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "IDENTIFY → SCREEN → APPROVE → TEST → MONITOR";
+  font: 800 4.65pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .005em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .trial-table {
+  outline: 1.5px solid var(--garden-trial-line);
+  box-shadow: inset 4px 0 0 var(--garden-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .trial-table tbody > tr > * {
+  background-color: var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="student-mission-06"] .trial-table tbody > tr:first-child > *,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="accessible-mission-07"] .trial-table tbody > tr:first-child > * {
+  border-left: 4px double var(--garden-trial-line);
+  background: var(--garden-trial-approval-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="student-mission-06"] .trial-table tbody > tr:nth-child(2) > *,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="accessible-mission-07"] .trial-table tbody > tr:nth-child(2) > * {
+  border-left: 4px solid var(--garden-trial-line);
+  background: var(--garden-trial-identify-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="student-mission-06"] .trial-table tbody > tr:nth-child(3) > *,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="accessible-mission-07"] .trial-table tbody > tr:nth-child(3) > * {
+  border-left: 4px dashed var(--garden-trial-line);
+  background: var(--garden-trial-screen-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="student-mission-06"] .trial-table tbody > tr:nth-child(4) > * {
+  border-left: 4px dotted var(--garden-trial-line);
+  background: var(--garden-trial-identify-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="student-mission-06"] .trial-table tbody > tr:nth-child(5) > *,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="accessible-mission-07"] .trial-table tbody > tr:nth-child(4) > * {
+  border-left: 4px solid var(--garden-trial-line);
+  background: var(--garden-trial-compare-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="student-mission-06"] .trial-table tbody > tr:nth-child(6) > *,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="accessible-mission-07"] .trial-table tbody > tr:nth-child(5) > * {
+  border-left: 4px dashed var(--garden-trial-line);
+  background: var(--garden-trial-monitor-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .trial-table caption {
+  position: relative;
+  padding-right: 1.42in;
+  border-right: 4px double var(--garden-trial-line);
+  background: var(--garden-trial-conditional-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .trial-table caption::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "EXPAND ONLY IF SUPPORTED";
+  font: 800 4.55pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .response-label:has(+ :is([data-persist-id="t7-criterion-1"], [data-persist-id="a7-criterion-1"])),
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .response-label:has(+ :is([data-persist-id="t7-criterion-2"], [data-persist-id="a7-criterion-2"])) {
+  padding-left: 6px;
+  border-left: 4px solid var(--garden-trial-line);
+  background: var(--garden-trial-compare-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  [data-persist-id="t7-criterion-1"],
+  [data-persist-id="a7-criterion-1"],
+  [data-persist-id="t7-criterion-2"],
+  [data-persist-id="a7-criterion-2"]
+) {
+  border-left: 4px solid var(--garden-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .response-label:has(+ :is([data-persist-id="t7-constraint"], [data-persist-id="a7-constraint"])) {
+  padding-left: 6px;
+  border-left: 4px double var(--garden-trial-line);
+  background: var(--garden-trial-approval-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  [data-persist-id="t7-constraint"],
+  [data-persist-id="a7-constraint"]
+) {
+  border-left: 4px double var(--garden-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"],
+  .page[data-page-id="accessible-mission-07"]
+) .response-label:has(+ :is([data-persist-id="t7-approval"], [data-persist-id="a7-approval"])) {
+  padding-left: 6px;
+  border-left: 4px dashed var(--garden-trial-line);
+  background: var(--garden-trial-screen-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"] :is(
+  [data-persist-id="t7-approval"],
+  [data-persist-id="a7-approval"]
+) {
+  border-left: 4px dashed var(--garden-trial-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block > ul > li {
+  background-color: var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block > ul > li:first-child,
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block > ul > li:nth-child(2) {
+  border-left: 4px solid var(--garden-trial-line);
+  background: var(--garden-trial-compare-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block > ul > li:nth-child(3) {
+  border-left: 4px double var(--garden-trial-line);
+  background: var(--garden-trial-approval-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"] + .answer-block > ul > li:nth-child(4) {
+  border-left: 4px dashed var(--garden-trial-line);
+  background: var(--garden-trial-screen-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE06"]
+  .page[data-page-id="teacher-guide-04"] .task-heading[data-task-id="7"] + p {
+  border-left: 4px dashed var(--garden-trial-line);
+  background: var(--garden-trial-screen-pattern), var(--garden-trial-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE06"] :is(
+  .page[data-page-id="student-mission-06"] .content-area,
+  .page[data-page-id="accessible-mission-07"] .content-area,
+  .page[data-page-id="answer-key-05"] .content-area,
+  .page[data-page-id="teacher-guide-04"] .content-area
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+
 /* BEGIN SSS/HHH CUTAWAY-VISUAL EXTENSIONS */
 /*
  * Biological/structural cutaway family pilot: Heavy Hands.
