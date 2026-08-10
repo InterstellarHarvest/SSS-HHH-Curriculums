@@ -492,8 +492,8 @@ dimensions exactly during independent Mac inspection. The focused specification 
 36/36 and the Case 04 layout-override validator passed. `C2C4-VIS03` is therefore
 `VERIFIED-FAMILY`, completing Family 6 at four of four assignments.
 
-`C1C6-VIS03` is the implemented but unaccepted first standalone Family 8
-intervention-comparison candidate. It preserves First Contact Protocol's frozen Student page 3,
+`C1C6-VIS03` is the accepted first standalone Family 8 intervention-comparison finding. Candidate
+`8d6a51a58a18f1f4db51d7a25ea58317f1962408` preserves First Contact Protocol's frozen Student page 3,
 Answer Key page 3 and Accessible page 5 as the semantic source of truth. The strictly Case-06-
 scoped shared treatment exposes the existing Task 6 sequence as
 `COMPARE → SELECT → MONITOR`. Its three existing options retain their exact order and receive
@@ -502,7 +502,7 @@ independent hatch patterns. The existing life-support note remains a distinct sa
 recommendation and monitoring fields remain separate solid and dashed rails. The Answer Key
 mirrors the same option states and both response gates.
 
-The candidate changes no worksheet source, case presentation, layout override, package metadata,
+The accepted implementation changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response wording or dimensions, persistence identity, page count, Teacher content,
 source hash, release/history record or accepted-family implementation. Student retains five blank
 fields: `t6-disable | t6-unchanged | t6-selective | t6-recommend | t6-monitor`. Accessible retains
@@ -512,19 +512,28 @@ signal-loss diagnosis; and isolation or selective preservation remains a reversi
 monitored test rather than a completed treatment or guaranteed recovery. Pressure,
 breathable-gas control and contaminant protection remain active constraints.
 
-The finished Linux Chromium 143 run registers the new canonical total of 2360 assertions and
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. On
+the same Mac, accepted prerequisite `dab27208c6fa352a506fbf6a80a7b3071fcad286` registered
+2356/2356 PASS. Candidate Run 1 and Candidate Run 2 each registered 2359/2359 PASS with zero
+application JavaScript errors. The candidate delta is exactly +3 registered and +3 passed, both
+runs have identical assertion-name sets, no inherited assertion was removed or broken, no
+assertion passing at the prerequisite now fails and all three new First Contact contracts passed.
+This does not create a general platform policy or change the canonical 2360-assertion registration.
+
+The finished Linux Chromium 143 run registers the canonical total of 2360 assertions and
 reports **2329/2360** because of the same 31 established platform/font/screenshot-smoke exceptions.
 All three new Case 06 assertions pass and application JavaScript errors remain zero. The candidate
 adds one six-view strict-fit contract plus normal and grayscale semantic/geometry contracts.
 Normal and grayscale inspection confirms fixed 816 × 1056 pages, exact
 `scrollHeight 936 == clientHeight 936`, Student 5 / Answer Key 5 / Accessible 7 page counts,
 contained option panels, distinct border/pattern states, blank usable learner fields and no
-overflow, spill, clipping, collision or crowding. The focused intervention/trial validator passes
-63/63. External Mac/Google Chrome acceptance remains required.
-Until that gate passes and a separate documentation-only closeout is synchronized, `C1C6-VIS03`
-does not advance the accepted **29 of 36 completed / 7 of 36 remaining** inventory. Family 8
-retains one accepted assignment—hybrid `C2C5-VIS03`, already counted once in the unique inventory—
-and this new standalone candidate remains unaccepted.
+overflow, spill, clipping, collision or crowding. All ten learner fields matched the Linux
+reference dimensions exactly during independent Mac inspection. The focused intervention/trial
+validator passed 63/63, specification 105/105, control 30/30, timeline 44/44, mechanism 103/103,
+evidence convergence 60/60, telemetry 36/36 and the Case 06 layout-override validator passed.
+`C1C6-VIS03` is therefore `VERIFIED-FAMILY`. Family 8 now has two of five assignments verified:
+accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, and accepted standalone
+`C1C6-VIS03`.
 
 ## 3. Exact inventory reconciliation
 
@@ -535,12 +544,17 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**
-and **7 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**
+and **6 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
 complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
 unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
+Family 8 has two of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
+Family 2's unique findings, and newly accepted standalone `C1C6-VIS03`.
+
+Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**
+and **7 of 36 remaining**.
 
 At the preceding Heavy Hands specification/verification closeout, accepted progress was 28 of 36
 completed and 8 of 36 remaining.
@@ -631,7 +645,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 | `C1C5-VIS03` | Europa Bunker; S T8 p4, A T8 p7, AK T8 p4 | Need/criteria/constraints/verification organizer with ordinary panels. | 6 · Specification/verification | Compact mission requirements panel with Need, Criteria, Constraints, Verification and monitoring gate; deterministic HTML/CSS. | Preserve every existing writable field and page; sync AK completion. | No crop-safe threshold or guaranteed shielding solution may be invented. | P1–P5, SV1; field/parity and qualifier checks | `VERIFIED-FAMILY · 35/35 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 22ab529 ACCEPTED` |
 | `C1C6-VIS01` | First Contact Protocol; S T3 p2, A T3 p2; T/AK reference where present | Small three-block timing strip embedded with evidence. | 3 · Timeline/event log | Compact event/telemetry strip: docking at 72.4 h ago → 18 min → last signal at 72.1 h ago. | No new response control; preserve evidence-card footprint and all repeated values. | Larger “hours ago” is earlier; 0.3 h = 18 min; timing is correlation, not proof. | TL1; exact-text/numeric and page-fit assertions | `VERIFIED-FAMILY · 30/30 TIMELINE STATIC PASS · 2336/2336 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 66a3d1b ACCEPTED` |
 | `C1C6-VIS02` | First Contact Protocol; S T4 p2, A T4 p3, AK T4 p2 | Four generic stage cards. | 2 · Causal mechanism/pathway | Bounded four-channel systems model: atmosphere → signal persistence → fictional network response → partnership outcome, with labeled transitions and state markers. | Preserve exact phrase bank and response IDs; horizontal S/AK, vertical A. | Earth signalling context must remain distinct from fictional volatile/network dormancy system. | mechanism/system-boundary primitive; exact-bank, fiction-status and persistence checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · 2315/2315 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 11a0871 ACCEPTED` |
-| `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `PLANNED` |
+| `C1C6-VIS03` | First Contact Protocol; S T6 p3, A T6 p5, AK T6 p3 | Three-row intervention table. | 8 · Intervention comparison/trial workflow | Decision panel distinguishing unsafe shutdown, no change, and reversible selective treatment; include evidence fit, safety constraint and monitor rail. | Preserve recommendation and monitoring fields; identical option order across S/A/AK. | Do not imply disabling life support is safe; preserve pressure, breathable-gas and contaminant controls. | P1–P5, IC1; option/parity and response tests | `VERIFIED-FAMILY · 63/63 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 8d6a51a ACCEPTED` |
 | `C1C7-VIS01` | The Gift; S T2 p2, A T2 p2, AK T2 p2 | Primary-condition and trace-context information is tabular; `99.7%` visually dominates. | 4 · Evidence-convergence/diagnostic map | Matched diagnostic channels separating “primary targets match” from “trace biological context incomplete”, converging only on a qualified question. | Preserve evidence/limit writing areas and AK exemplar; no page-count change. | 99.7% is not complete ecosystem similarity; 12 and 847+ identifier sets differ and cannot be divided. | EC1 + comparison primitive; prohibited-inference checks | `VERIFIED-FAMILY · 60/60 FAMILY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 39325dc ACCEPTED` |
 | `C1C7-VIS02` | The Gift; S T4 p3, A T4 p4, T reference p4, AK T4 p3 | Six-stage generic chain with status fields. | 2 · Causal mechanism/pathway | Biological systems schematic: mature source → incidental cue → carrier/path → receptors → commitment → young symbiosis, with supply/status markers. | Preserve six phrases, every status/X control and AK completed statuses; horizontal/vertical variants. | Fictional system; under-3-m supported path; no safe dose/structure claim; commitment/reversibility distinction retained. | mechanism + status primitive; exact subpart, persistence and fiction checks | `VERIFIED-FAMILY · 68/68 FAMILY STATIC PASS · 2318/2318 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 812d5c3 ACCEPTED` |
 | `C1C7-VIS03` | The Gift; S T7 p5, A T7 p7, AK T7 p5 | Dense intervention matrix; story rank competes with evidence. | 8 · Intervention comparison/trial workflow | Three-route decision/monitoring matrix with explicit evidence fit, controls, reversibility/commitment, monitoring and uncertainty hierarchy. | Preserve route choice, evidence, monitor/stop and prediction fields; points remain subordinate story ranks. | Story scores are not scientific results; no inferred dose, purity, synthesis or safety. | IC1; response/AK parity and label hierarchy checks | `PLANNED` |

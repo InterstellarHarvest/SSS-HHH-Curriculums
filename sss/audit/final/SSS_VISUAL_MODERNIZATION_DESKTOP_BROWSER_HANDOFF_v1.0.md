@@ -4,13 +4,11 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Unaccepted Family 8 pilot — First Contact monitored response
+## Accepted Family 8 finding — First Contact monitored response
 
-The successor to accepted Silent Grove closeout
-`dab27208c6fa352a506fbf6a80a7b3071fcad286` implements `C1C6-VIS03` as the first standalone
-Family 8 intervention-comparison candidate. It is not accepted and does not advance the 29/36
-inventory. The previously accepted hybrid `C2C5-VIS03` remains Family 8's only verified
-assignment and remains counted once in the unique inventory.
+Candidate `8d6a51a58a18f1f4db51d7a25ea58317f1962408` advances `C1C6-VIS03` to
+`VERIFIED-FAMILY`, the first standalone accepted Family 8 intervention-comparison finding. Its
+accepted prerequisite is `dab27208c6fa352a506fbf6a80a7b3071fcad286`.
 
 The frozen Task 6 structures remain semantic and source-controlled:
 
@@ -30,7 +28,7 @@ decision rail; monitoring uses a dashed verification rail; every learner label r
 least 6 px clearance. These labels add no option, treatment setting, threshold, completed test,
 recovery result or learner action.
 
-No First Contact source file changes. The candidate preserves these SHA-256 identities:
+No First Contact source file changes. The accepted implementation preserves these SHA-256 identities:
 
 - `content.html` — `d171f9b4611e3c7bea4d9b401c7e59ad70defdd07376cdfb171c21568553ec07`
 - `presentation.css` — `666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d`
@@ -38,7 +36,7 @@ No First Contact source file changes. The candidate preserves these SHA-256 iden
 - `case-package.json` — `9bb008a795b641c057e93dbcc5778ae9dd00c04d103ac720fafd491551eb7b91`
 - `task-registry.js` — `5afe3f4b35e4b80ef544c86898ec0314787e831c37ac8e5396d58753f95ef774`
 
-The candidate scope is exactly the shared component CSS, browser harness, focused Family 8
+The accepted implementation scope is exactly the shared component CSS, browser harness, focused Family 8
 validator, production plan and this handoff. It changes no worksheet wording, case presentation,
 layout override, package metadata, task registry, response text, response dimensions, page count,
 persistence identity, Teacher content, source hash, release/history record or accepted-family
@@ -70,19 +68,22 @@ editable and unclipped:
 - Student `t6-recommend | t6-monitor`: 356 × 88.31 px each.
 - Accessible `a6-recommend | a6-monitor`: 720 × 107.52 px each.
 
-External Mac/Google Chrome acceptance remains required. Canonical expectation is **2360/2360
-PASS** with zero application JavaScript errors. If that Mac reproduces an inherited registration-
-count difference, run prerequisite `dab2720…` in a throwaway worktree on the same machine; require
-candidate delta exactly +3, all three named Case 06 assertions passing, identical candidate
-assertion-name sets, no inherited regression and zero JavaScript errors, then stop without pushing
-for separate candidate-specific disposition. Differential evidence does not itself authorize
-acceptance, change canonical 2360 or establish a general platform policy.
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. On
+the same Mac, prerequisite `dab27208…` passed **2356/2356 PASS**. Candidate Run 1 and Run 2 each
+passed **2359/2359 PASS** with zero application JavaScript errors. The candidate delta is exactly
++3 registered and +3 passed; all three First Contact assertions registered and passed; both
+candidate runs had identical assertion-name sets; no inherited assertion was removed or broken;
+and no assertion passing at the prerequisite now fails. All ten learner fields matched the Linux
+reference dimensions exactly. Canonical project registration remains 2360. This disposition does
+not establish a general platform policy and applies only to candidate `8d6a51a…`.
 
-Run the complete harness twice, the focused intervention/trial validator, all established family
-regressions and `validate_layout_overrides.py --case SSS-C1-CASE06`. Inspect Student page 3,
-Answer Key page 3 and Accessible page 5 in normal and grayscale. If every gate passes, push only by
-ordinary fast-forward. Do not mark `C1C6-VIS03` `VERIFIED-FAMILY`, advance the inventory, merge to
-`main` or begin another finding. A separate closeout is required after acceptance.
+The focused intervention/trial validator passed 63/63; specification 105/105; control 30/30;
+timeline 44/44; mechanism 103/103; evidence convergence 60/60; telemetry 36/36; and the First
+Contact layout-override validator passed. `C1C6-VIS03` is accepted without changing the canonical
+project registration or creating a general environment exception. The formal inventory is now
+**30 of 36 completed**, with **6 remaining**. Family 8 has two of five assignments verified. The
+hybrid `C2C5-VIS03` remains counted only once in the unique inventory. Do not mark any additional
+finding accepted or begin another finding without a separate candidate-production instruction.
 
 ## Accepted Family 6 completion — Silent Grove schedule specification
 
@@ -1137,18 +1138,29 @@ accepted hybrid `C2C3-VIS03` is not counted again. Failed implementation `473722
 immutable intermediate commit beneath accepted corrective successor `4d181aa…`. The visual
 branch remains isolated from `main`.
 
-## C2C4-VIS03 closeout integration prompt
+## Family 8 accepted register
+
+| Finding | Accepted implementation | Recorded state | Assignment note |
+|---|---|---|---|
+| `C2C5-VIS03` | `7be2f42` | `VERIFIED-FAMILY` | hybrid Family 2 + 8 finding; counted once in the unique inventory |
+| `C1C6-VIS03` | `8d6a51a` | `VERIFIED-FAMILY` | first standalone Family 8 finding |
+
+Family 8 has two of five assignments verified. Accepting `C1C6-VIS03` advances the unique
+visual-modernization inventory to 30 of 36 completed and 6 remaining; the previously accepted
+hybrid `C2C5-VIS03` is not counted again. The visual branch remains isolated from `main`.
+
+## C1C6-VIS03 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2`. Confirm the pushed remote remains
-`84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2`, verify the checksum and bundle prerequisite, fetch it,
+`8d6a51a58a18f1f4db51d7a25ea58317f1962408`. Confirm the pushed remote remains
+`8d6a51a58a18f1f4db51d7a25ea58317f1962408`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 105-check specification/verification validator and `git diff --check`. Confirm the
+files. Run the focused 63-check intervention/trial validator and `git diff --check`. Confirm the
 closeout changes only this handoff, the production plan and the focused validator; records
-`C2C4-VIS03` as `VERIFIED-FAMILY`; records Family 6 complete at four of four verified assignments
-without double-counting hybrid `C2C3-VIS03`; records the
+`C1C6-VIS03` as `VERIFIED-FAMILY`; records Family 8 at two of five verified assignments without
+double-counting hybrid `C2C5-VIS03`; records the
 candidate-specific differential Mac/Chrome acceptance without changing the canonical project
-total; and advances the inventory to 29/36 completed and 7 remaining. Because the successor
+total; and advances the inventory to 30/36 completed and 6 remaining. Because the successor
 changes only documentation and the focused validator, do not rerun the Mac/Chrome harness or
 manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
 tracking and live remote SHAs. Do not mark any additional finding accepted.

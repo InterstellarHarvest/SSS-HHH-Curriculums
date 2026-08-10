@@ -142,14 +142,51 @@ def main() -> int:
     check("browser harness protects Answer Key reversibility and monitoring", "Begin reversibly and at limited scale" in case_harness and "pressure, breathable gases, and hazardous contaminants" in case_harness)
     check("browser harness rejects row collision and overflow", "!state.collisions" in case_harness and "state.scrollHeight <= state.clientHeight" in case_harness)
 
-    check("plan records C1C6-VIS03 as implemented but unaccepted", "C1C6-VIS03" in plan and "implemented but unaccepted" in plan)
-    check("plan preserves the accepted 29-of-36 inventory", "29 of 36 completed" in plan and "7 of 36 remaining" in plan)
-    check("plan identifies Family 8 as one of five assignments with the accepted hybrid counted once", "Family 8" in plan and "C2C5-VIS03" in plan)
-    check("handoff names the First Contact Family 8 pilot", "Unaccepted Family 8 pilot" in handoff and "First Contact Protocol" in handoff)
+    check(
+        "plan records C1C6-VIS03 as the accepted 63-check Family 8 finding",
+        bool(re.search(
+            r"\| `C1C6-VIS03` .*\| 8 · Intervention comparison/trial workflow \|.*"
+            r"`VERIFIED-FAMILY · 63/63 INTERVENTION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 8d6a51a ACCEPTED`",
+            plan,
+        ))
+        and "accepted first standalone Family 8 intervention-comparison finding" in plan
+        and "`C1C6-VIS03` is therefore `VERIFIED-FAMILY`" in plan,
+    )
+    check(
+        "plan advances accepted inventory to 30 of 36 and Family 8 to two of five",
+        "Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**" in plan
+        and "**6 of 36 remaining**" in plan
+        and "Family 8 has two of five assignments verified" in plan
+        and "Accepted progress after the Silent Grove specification/verification closeout is **29 of 36 completed**" in plan,
+    )
+    check(
+        "plan identifies the accepted Family 8 hybrid without double-counting",
+        "accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory" in plan
+        and "newly accepted standalone `C1C6-VIS03`" in plan,
+    )
+    check(
+        "handoff accepts the First Contact Family 8 finding and preserves source ownership",
+        "Accepted Family 8 finding — First Contact monitored response" in handoff
+        and "8d6a51a58a18f1f4db51d7a25ea58317f1962408" in handoff
+        and "dab27208c6fa352a506fbf6a80a7b3071fcad286" in handoff
+        and "changes no worksheet wording" in handoff,
+    )
     check("handoff records all five frozen First Contact hashes", all(value in handoff for value in FROZEN_HASHES.values()))
     check("handoff preserves the three exact option states", all(token in handoff for token in ("UNSAFE", "NO CHANGE", "CONTROLLED TEST")))
     check("handoff preserves recommendation monitoring and safety semantics", all(token in handoff for token in ("recommendation", "monitoring", "pressure", "breathable-gas", "contaminant")))
-    check("handoff leaves external acceptance and inventory advancement pending", "does not advance the 29/36 inventory" in handoff and "External Mac/Google Chrome acceptance remains required" in handoff)
+    check(
+        "handoff records differential acceptance and advances inventory without platform policy",
+        "2356/2356 PASS" in handoff
+        and "Run 2 each passed **2359/2359 PASS**" in handoff
+        and "+3 registered and +3 passed" in handoff
+        and "Canonical project registration remains 2360" in handoff
+        and "does not establish a general platform policy" in handoff
+        and "The formal inventory is now **30 of 36 completed**" in handoff
+        and "with **6 remaining**" in handoff
+        and "Family 8 has two of five assignments verified" in handoff
+        and "hybrid `C2C5-VIS03` is not counted again" in handoff,
+    )
 
     passed = sum(1 for _, ok, _ in checks if ok)
     for name, ok, detail in checks:
