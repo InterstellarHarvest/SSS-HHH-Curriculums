@@ -4,16 +4,15 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Active unaccepted Family 6 candidate — Heavy Hands across-bed specification
+## Accepted Family 6 finding — Heavy Hands across-bed specification
 
-`C2C1-VIS03` is implemented locally as the second standalone Family 6
-specification/verification candidate. Its accepted lineage root is
+Corrected candidate `4d181aa796591249bb4f989e091c646b22b3a3e8` advances `C2C1-VIS03` to
+`VERIFIED-FAMILY`, the second standalone accepted Family 6 specification/verification finding.
+Its accepted lineage root is
 `b95563f181c0d442d40784bbe1a45d1794cfb256`; its failed first implementation is
 `473722443e0d6e03e3e7edf1c855cf68e7c8fbc8`, and the active candidate is an ordinary corrective
-successor to that commit. It remains `CORRECTED-CANDIDATE ·
-UNACCEPTED`: do not mark it `VERIFIED-FAMILY`, advance the 27/36 inventory or count Family 6 as
-three verified assignments unless the external browser and manual gates pass and a separate
-acceptance/closeout is authorized.
+successor to that commit. The failed implementation remains immutable evidence in the accepted
+lineage and is not itself granted visual acceptance.
 
 The frozen Task 8 structures remain semantic and source-controlled:
 
@@ -45,7 +44,7 @@ The corrective successor replaces the over-tight cross-platform field floor with
 response dimension changes. It also gives all ten affected labels 6 px of left clearance and
 extends both normal/grayscale browser contracts to require five clear labels per learner role.
 
-No Heavy Hands source file changes. The candidate preserves these SHA-256 identities:
+No Heavy Hands source file changes. The accepted implementation preserves these SHA-256 identities:
 
 - `content.html` — `da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a`
 - `presentation.css` — `89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea`
@@ -70,15 +69,13 @@ exceptions; all three new Heavy Hands assertions pass. Canonical project registr
 3. grayscale criterion, proposal comparison, field identity, Answer Key parity and monitored
    verification.
 
-The external Mac/Google Chrome gate must run the complete harness twice. The canonical target is
-**2354/2354 PASS** with zero application JavaScript errors on both runs. If that Mac again
-registers 2353 assertions, accepted prerequisite `b95563f…` may be reused because its 2350/2350
-result was captured on the same machine in this gate. Stop without pushing unless the candidate
-delta is exactly +3, all three new Heavy Hands assertions register and pass, no inherited
-assertion is removed, both candidate
-runs have identical assertion-name sets and JavaScript errors remain zero. Differential evidence
-does not itself authorize acceptance, change canonical 2354 or establish a general platform
-policy.
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance.
+On the same Mac, prerequisite `b95563f…` passed **2350/2350 PASS**. Corrected candidate Run 1 and
+Run 2 each passed **2353/2353 PASS** with zero application JavaScript errors. The candidate delta
+is exactly +3 registered and +3 passed; all three Heavy Hands assertions registered and passed;
+both candidate runs had identical assertion-name sets; and no inherited assertion was removed or
+broken. Canonical project registration remains 2354. This disposition does not establish a
+general platform policy and applies only to corrected candidate `4d181aa…`.
 
 Independent local normal and grayscale inspection of Student page 5, Answer Key page 4 and
 Accessible page 8 confirmed fixed 816 × 1056 geometry, exact
@@ -106,9 +103,10 @@ tolerance only when trial-justified; treats GC-1208 as one reported precedent; s
 proposal may promise recovery; requires an unchanged control, scheduled magnitude/deformation
 monitoring and a stop/revise observation; and bounds the claim to this crop in this habitat.
 
-The formal inventory remains **27 of 36 completed**, with **9 remaining**. Family 6 remains two of
-four verified assignments while this candidate is unaccepted. This section creates no general
-platform policy and does not authorize a push.
+`C2C1-VIS03` is accepted without changing the canonical project registration or creating a general
+environment exception. The formal inventory is now **28 of 36 completed**, with **8 remaining**.
+Family 6 has three of four assignments verified. Do not mark any additional finding accepted or
+begin another finding without a separate candidate-production instruction.
 
 ## Accepted Family 6 finding — Europa crop-protection specification
 
@@ -957,28 +955,26 @@ Family 5 is complete with its sole finding verified. The overall visual-moderniz
 |---|---|---|---|
 | `C2C3-VIS03` | `79a7c80` | `VERIFIED-FAMILY` | hybrid Family 2 + 6 finding; counted once in the unique inventory |
 | `C1C5-VIS03` | `22ab529` | `VERIFIED-FAMILY` | first standalone Family 6 finding |
+| `C2C1-VIS03` | `4d181aa` | `VERIFIED-FAMILY` | second standalone Family 6 finding; failed `4737224` retained in lineage |
 
-Family 6 has two of four assignments verified. Accepting `C1C5-VIS03` advances the unique
-visual-modernization inventory to 27 of 36 completed and 9 remaining; the previously accepted
-hybrid `C2C3-VIS03` is not counted again. The visual branch remains isolated from `main`.
+Family 6 has three of four assignments verified. Accepting `C2C1-VIS03` advances the unique
+visual-modernization inventory to 28 of 36 completed and 8 remaining; the previously accepted
+hybrid `C2C3-VIS03` is not counted again. Failed implementation `4737224…` remains an immutable
+intermediate commit beneath accepted corrective successor `4d181aa…`. The visual branch remains
+isolated from `main`.
 
-Active unaccepted assignment: `C2C1-VIS03` is `CORRECTED-CANDIDATE · UNACCEPTED`. Its accepted
-lineage root is `b95563f…`; failed implementation `4737224…` remains an immutable intermediate
-commit beneath the corrective successor. It is not part of the accepted register above and does
-not change the Family 6 or unique-inventory totals.
-
-## C1C5-VIS03 closeout integration prompt
+## C2C1-VIS03 closeout integration prompt
 
 Validate the supplied closeout bundle only from clean accepted implementation
-`22ab529c388ee4f33be97ce3150fc5b5c49cba0b`. Confirm the pushed remote remains
-`22ab529c388ee4f33be97ce3150fc5b5c49cba0b`, verify the checksum and bundle prerequisite, fetch it,
+`4d181aa796591249bb4f989e091c646b22b3a3e8`. Confirm the pushed remote remains
+`4d181aa796591249bb4f989e091c646b22b3a3e8`, verify the checksum and bundle prerequisite, fetch it,
 and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or edit
-files. Run the focused 35-check specification/verification validator and `git diff --check`. Confirm the
+files. Run the focused 70-check specification/verification validator and `git diff --check`. Confirm the
 closeout changes only this handoff, the production plan and the focused validator; records
-`C1C5-VIS03` as `VERIFIED-FAMILY`; records Family 6 at two of four verified assignments without
-double-counting hybrid `C2C3-VIS03`; records the
+`C2C1-VIS03` as `VERIFIED-FAMILY`; records Family 6 at three of four verified assignments without
+double-counting hybrid `C2C3-VIS03`; preserves failed `4737224…` in the accepted lineage; records the
 candidate-specific differential Mac/Chrome acceptance without changing the canonical project
-total; and advances the inventory to 27/36 completed and 9 remaining. Because the successor
+total; and advances the inventory to 28/36 completed and 8 remaining. Because the successor
 changes only documentation and the focused validator, do not rerun the Mac/Chrome harness or
 manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
 tracking and live remote SHAs. Do not mark any additional finding accepted.

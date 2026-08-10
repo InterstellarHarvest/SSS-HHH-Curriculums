@@ -399,8 +399,8 @@ guaranteed success and an in-game `apply the fix` step. The focused specificatio
 `VERIFIED-FAMILY`. Family 6 now has two of four assignments verified, including the previously
 accepted hybrid `C2C3-VIS03`; the unique-finding inventory counts that hybrid only once.
 
-`C2C1-VIS03` is the corrected but unaccepted second standalone Family 6
-specification/verification candidate. It preserves Heavy Hands Student page 5, Answer Key page 4
+`C2C1-VIS03` is the accepted second standalone Family 6 specification/verification finding.
+Corrected candidate `4d181aa796591249bb4f989e091c646b22b3a3e8` preserves Heavy Hands Student page 5, Answer Key page 4
 and Accessible page 8 as the semantic source of truth. The existing Task 8 sequence remains
 midpoint-only rule → missing across-bed criterion and reported constraint → compare two reported
 proposals → choose → monitored trial → stop/revise. The strictly Case-01-scoped shared treatment
@@ -413,7 +413,7 @@ independently observed 109.38 px Mac width, so no response dimension changes. Ea
 8 response labels has 6 px of left clearance so its inset rail cannot paint beneath the first
 glyph.
 
-The candidate changes no worksheet source, case presentation, layout override, package metadata,
+The accepted implementation changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response text, persistence identity, page count, Teacher content, source hash,
 release/history record or accepted-family implementation. Student retains blank fields
 `t8-criterion | t8-constraint | t8-o1 | t8-o2 | t8-choice | t8-trial | t8-stop`; Accessible
@@ -429,6 +429,14 @@ first glyph. Accepted prerequisite `b95563f…` passed 2350/2350 on that Mac, so
 three registered assertions but only one passing assertion. No differential exception applies to
 new failing contracts. The corrective successor preserves `4737224…` as immutable evidence.
 
+The external Mac/Chrome gate passed under a candidate-specific differential acceptance. On the
+same Mac, accepted prerequisite `b95563f181c0d442d40784bbe1a45d1794cfb256` registered
+2350/2350 PASS. Corrected candidate Run 1 and Run 2 each registered 2353/2353 PASS with zero
+application JavaScript errors. The candidate delta is exactly +3 registered and +3 passed, both
+runs have identical assertion-name sets, no inherited assertion was removed or broken and all
+three new Heavy Hands contracts passed. This does not create a general platform policy or change
+the canonical 2354-assertion registration.
+
 Linux Chromium registers the intended three new browser assertions and reports **2323/2354** with
 zero application JavaScript errors: exactly the 31 established platform/font/screenshot-smoke
 exceptions and no candidate-specific failure. All three new contracts pass. Six-view normal and
@@ -437,10 +445,11 @@ grayscale inspection confirms fixed 816 × 1056 geometry, strict
 counts, no overflow/spill/clipping/collision/crowding and preserved field dimensions. Earlier
 local reserve measurements were 24.27 / 73.41 / 193.22 px; an independent content-area method
 reported 39.59 / 150.05 / 211.36 px. Because the metric was not defined, neither numeric series is
-an acceptance gate; exact fit, positive clearance and no crowding govern. This evidence is local
-candidate evidence only; external Mac/Google Chrome validation and acceptance remain required.
-The formal inventory therefore remains 27 of 36 completed and 9 remaining, and Family 6 remains
-two of four verified assignments until a separate acceptance and documentation closeout.
+an acceptance gate; exact fit, positive clearance and no crowding govern. The focused
+specification validator passed 70/70, control 30/30, timeline 44/44, mechanism 103/103, evidence
+convergence 60/60, telemetry 36/36 and the Case 01 layout-override validator passed.
+`C2C1-VIS03` is therefore `VERIFIED-FAMILY`. Family 6 now has three of four assignments verified,
+including hybrid `C2C3-VIS03`, counted once in the unique-finding inventory.
 
 ## 3. Exact inventory reconciliation
 
@@ -451,12 +460,15 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after the Europa specification/verification closeout is **27 of 36 completed**
-and **9 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after the Heavy Hands specification/verification closeout is **28 of 36 completed**
+and **8 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 now has
-two of four assignments verified: hybrid `C2C3-VIS03`, already counted once among Family 2's unique
-findings, and the newly accepted standalone `C1C5-VIS03`.
+three of four assignments verified: hybrid `C2C3-VIS03`, already counted once among Family 2's unique
+findings, accepted standalone `C1C5-VIS03` and newly accepted standalone `C2C1-VIS03`.
+
+At the preceding Europa specification/verification closeout, accepted progress was 27 of 36
+completed and 9 of 36 remaining.
 
 At the preceding Hayes engineering-control-loop closeout, accepted progress was 26 of 36 completed
 and 10 of 36 remaining.
@@ -552,7 +564,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 |---|---|---|---|---|---|---|---|---|
 | `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `PLANNED` |
 | `C2C1-VIS02` | Heavy Hands; T reference p4 | Three-point radial profile is a basic Teacher-only schematic. | 1 · Technical telemetry/data | Centrifuge telemetry profile with three reported radii, outward direction arrows and direct exact magnitudes. | Teacher-only replacement; no learner workload/page changes. | Direction outward at all points; magnitude increases with radius; retain exact reported values and rounding note; no interpolation. | D1; exact-value/rounding and page-fit checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
-| `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `CORRECTED-CANDIDATE · UNACCEPTED · 70/70 SPECIFICATION STATIC PASS · 2323/2354 LINUX BROWSER · 3/3 NEW CONTRACTS PASS · 0 JS ERRORS · STRICT FIT 936/936` |
+| `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `VERIFIED-FAMILY · 70/70 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 4d181aa ACCEPTED` |
 | `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `PLANNED` |
 | `C2C2-VIS02` | The Missing Dance; S T6 p5, A T6 p6, AK T6 p3 | Generic condition/mechanism/effect stage model. | 2 · Causal mechanism/pathway | Failure path: sealed garden → no coupled vibration → pollen retained → buds abort → no fruit, with explicit missing-event node. | Preserve existing diagnosis, rejection and two model-stage fields; sync AK. | Near 124 Hz is insufficient without amplitude, duration and coupling; do not equate bee gripping with airborne coupling. | mechanism primitive; field/parity and boundary checks | `VERIFIED-FAMILY · 76/76 FAMILY STATIC PASS · 2321/2321 BROWSER PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · aa4eeac ACCEPTED` |
 | `C2C2-VIS03` | The Missing Dance; S T8 p6, A T8 p8, AK T8 p4 | Four setting prompts followed by trial prose. | 8 · Intervention comparison/trial workflow | Four-control engineering panel—frequency, amplitude, duration, coupling—feeding release measurement, damage limit and stop rule. | Preserve all setting and trial fields; keep high-level monitored-test footprint. | 124 Hz is “near strongest release,” not a universal or sufficient prescription; no invented amplitude/duration. | IC1/SV1; exact qualifier and response tests | `PLANNED` |

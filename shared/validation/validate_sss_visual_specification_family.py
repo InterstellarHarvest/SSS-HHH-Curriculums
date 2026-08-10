@@ -246,9 +246,9 @@ def main() -> int:
         and "`VERIFIED-FAMILY`. Family 6 now has two of four assignments verified" in plan,
     )
     check(
-        "the plan advances formal inventory to 27 of 36 with 9 remaining without double-counting the hybrid",
-        "Accepted progress after the Europa specification/verification closeout is **27 of 36 completed**" in plan
-        and "**9 of 36 remaining**" in plan
+        "the plan preserves the Europa 27-of-36 milestone without double-counting the hybrid",
+        "At the preceding Europa specification/verification closeout, accepted progress was 27 of 36" in plan
+        and "completed and 9 of 36 remaining" in plan
         and "At the preceding Hayes engineering-control-loop closeout, accepted progress was 26 of 36 completed" in plan
         and "hybrid `C2C3-VIS03`, already counted once" in plan,
     )
@@ -468,23 +468,28 @@ def main() -> int:
         )),
     )
     check(
-        "the production matrix freezes C2C1-VIS03 as the corrected unaccepted 70-check candidate",
+        "the production matrix accepts C2C1-VIS03 as the corrected 70-check Family 6 finding",
         bool(re.search(
             r"\| `C2C1-VIS03` .*\| 6 · Specification/verification \|.*"
-            r"`CORRECTED-CANDIDATE · UNACCEPTED · 70/70 SPECIFICATION STATIC PASS "
-            r"· 2323/2354 LINUX BROWSER · 3/3 NEW CONTRACTS PASS · 0 JS ERRORS · STRICT FIT 936/936`",
+            r"`VERIFIED-FAMILY · 70/70 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 4d181aa ACCEPTED`",
             plan,
         ))
-        and "corrected but unaccepted second standalone Family 6" in plan,
+        and "accepted second standalone Family 6 specification/verification finding" in plan
+        and "`C2C1-VIS03` is therefore `VERIFIED-FAMILY`" in plan,
     )
     check(
-        "the handoff records the Heavy Hands candidate gate hashes and canonical total",
-        "Active unaccepted Family 6 candidate — Heavy Hands across-bed specification" in handoff
+        "the handoff records the accepted Heavy Hands differential, hashes and canonical total",
+        "Accepted Family 6 finding — Heavy Hands across-bed specification" in handoff
+        and "4d181aa796591249bb4f989e091c646b22b3a3e8" in handoff
+        and "473722443e0d6e03e3e7edf1c855cf68e7c8fbc8" in handoff
         and "b95563f181c0d442d40784bbe1a45d1794cfb256" in handoff
         and all(expected_hash in handoff for expected_hash in HEAVY_FROZEN_HASHES.values())
         and "2323/2354" in handoff
-        and "2354/2354 PASS" in handoff
-        and "candidate delta is exactly +3" in handoff,
+        and "2350/2350 PASS" in handoff
+        and "Run 2 each passed **2353/2353 PASS**" in handoff
+        and "Canonical project registration remains 2354" in handoff
+        and re.search(r"The candidate delta\s+is exactly \+3 registered and \+3 passed", handoff),
     )
     check(
         "the handoff freezes Heavy Hands field dimensions and makes reserve metrics non-contractual",
@@ -499,11 +504,14 @@ def main() -> int:
         )),
     )
     check(
-        "Heavy Hands remains unaccepted without changing inventory or platform policy",
-        "The formal inventory remains **27 of 36 completed**, with **9 remaining**" in handoff
-        and re.search(r"Family 6 remains two of\s+four verified assignments while this candidate is unaccepted", handoff)
-        and re.search(r"creates no general\s+platform policy", handoff)
-        and "does not authorize a push" in handoff,
+        "the Heavy Hands closeout advances inventory and Family 6 without creating platform policy",
+        "Accepted progress after the Heavy Hands specification/verification closeout is **28 of 36 completed**" in plan
+        and "**8 of 36 remaining**" in plan
+        and "At the preceding Europa specification/verification closeout, accepted progress was 27 of 36" in plan
+        and "The formal inventory is now **28 of 36 completed**, with **8 remaining**" in handoff
+        and "Family 6 has three of four assignments verified" in handoff
+        and "| `C2C1-VIS03` | `4d181aa` | `VERIFIED-FAMILY` |" in handoff
+        and re.search(r"does not establish a\s+general platform policy", handoff),
     )
 
     passed = sum(1 for _, ok, _ in checks if ok)
