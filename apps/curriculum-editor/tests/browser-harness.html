@@ -4058,6 +4058,142 @@
               JSON.stringify(rendered)
             );
           }
+          const giftInterventionPageFit = [];
+          const expectedGiftRouteStates = "SUPPORTED|QUALIFIED|RESEARCH ONLY";
+          const expectedGiftRouteBorders = "solid|dashed|double";
+          for (const grayscale of [false, true]) {
+            const renderedInterventions = [];
+            for (const [role, pageId, pageCount] of [
+              ["student", "student-mission-05", 6],
+              ["answer", "answer-key-05", 6],
+              ["accessible", "accessible-mission-07", 8]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const heading = page?.querySelector('.task-heading[data-task-id="7"]');
+              const table = role === "student" ? page?.querySelector(".intervention-table") : null;
+              const rows = Array.from(table?.querySelectorAll("tbody tr") || []);
+              const cardGrid = role === "accessible" ? page?.querySelector(".three-col") : null;
+              const cards = Array.from(cardGrid?.querySelectorAll(":scope > .source-card") || []);
+              const routeNodes = role === "student" ? rows : cards;
+              const routeContainer = role === "student" ? table : cardGrid;
+              const routeContainerRect = routeContainer?.getBoundingClientRect();
+              const routeRects = routeNodes.map(node => node.getBoundingClientRect());
+              const routesContained = routeNodes.length === 0 || Boolean(routeContainerRect) && routeNodes.every(node => {
+                const rect = node.getBoundingClientRect();
+                return rect.left >= routeContainerRect.left - 1 && rect.right <= routeContainerRect.right + 1
+                  && rect.top >= routeContainerRect.top - 1 && rect.bottom <= routeContainerRect.bottom + 1;
+              });
+              const routeCollisions = routeRects.some((rect, index) => routeRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const fields = Array.from(page?.querySelectorAll('[data-persist-id^="t7-"][data-response], [data-persist-id^="a7-"][data-response]') || []);
+              const answerBlocks = Array.from(page?.querySelectorAll(":scope > .page-frame > .content-area > .answer-block") || []);
+              const state = {
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                headingRail: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
+                routeCount: routeNodes.length,
+                routes: role === "student"
+                  ? rows.map(row => row.querySelector("th")?.childNodes[0]?.textContent.trim().replace(/\s+/g, " ") || "").join("|")
+                  : cards.map(card => card.querySelector("h3")?.textContent.trim().replace(/\s+/g, " ") || "").join("|"),
+                routeStates: role === "student"
+                  ? rows.map(row => win.getComputedStyle(row.querySelector("th"), "::after").content.replaceAll('"', "")).join("|")
+                  : cards.map(card => win.getComputedStyle(card, "::after").content.replaceAll('"', "")).join("|"),
+                routeBorders: routeNodes.map(node => win.getComputedStyle(role === "student" ? node.children[0] : node).borderLeftStyle).join("|"),
+                routePatterns: routeNodes.flatMap(node => role === "student" ? Array.from(node.children) : [node]).map(node => win.getComputedStyle(node).backgroundImage !== "none"),
+                rankText: rows.map(row => row.children[3]?.textContent.trim().replace(/\s+/g, " ") || "").join("|"),
+                rankSize: rows.map(row => rounded(parseFloat(win.getComputedStyle(row.children[3]).fontSize))).join("|"),
+                fields: fields.map(field => ({
+                  id: field.dataset.persistId,
+                  text: field.textContent.trim().replace(/\s+/g, " "),
+                  response: field.hasAttribute("data-response"),
+                  size: dimensions(field),
+                  border: win.getComputedStyle(field).borderLeftStyle
+                })),
+                labels: fields.map(field => ({
+                  text: field.previousElementSibling?.textContent.trim().replace(/\s+/g, " ") || "",
+                  border: field.previousElementSibling ? win.getComputedStyle(field.previousElementSibling).borderLeftStyle : "",
+                  clearance: field.previousElementSibling ? rounded(parseFloat(win.getComputedStyle(field.previousElementSibling).borderLeftWidth) + parseFloat(win.getComputedStyle(field.previousElementSibling).paddingLeft)) : 0
+                })),
+                answerBlocks: answerBlocks.map(block => ({
+                  text: block.textContent.trim().replace(/\s+/g, " "),
+                  border: win.getComputedStyle(block).borderLeftStyle,
+                  pattern: win.getComputedStyle(block).backgroundImage !== "none"
+                })),
+                directions: page?.querySelector(".directions")?.textContent.trim().replace(/\s+/g, " ") || "",
+                safety: page?.querySelector(".science-note")?.textContent.trim().replace(/\s+/g, " ") || "",
+                pageText: page?.textContent.trim().replace(/\s+/g, " ") || "",
+                routesContained,
+                routeCollisions
+              };
+              giftInterventionPageFit.push(state);
+              renderedInterventions.push(state);
+            }
+            const studentIntervention = renderedInterventions.find(state => state.role === "student");
+            const answerIntervention = renderedInterventions.find(state => state.role === "answer");
+            const accessibleIntervention = renderedInterventions.find(state => state.role === "accessible");
+            check(
+              `C1 Case 07 ${grayscale ? "grayscale" : "normal"} intervention matrix preserves route evidence, controls and rank limits`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && renderedInterventions.length === 3
+                && renderedInterventions.every(state => state.headingRail === "EVIDENCE → CONTROL → MONITOR")
+                && studentIntervention.routeCount === 3
+                && studentIntervention.routes === "Sealed natural plume|Verified extraction|Validated synthesis"
+                && studentIntervention.routeStates === expectedGiftRouteStates
+                && studentIntervention.routeBorders === expectedGiftRouteBorders
+                && studentIntervention.routePatterns.every(Boolean)
+                && studentIntervention.rankText === "+10 best supported|+5 defensible|+0 most uncertain"
+                && studentIntervention.rankSize === "7.73|7.73|7.73"
+                && studentIntervention.directions.includes("story rankings; justify your choice with evidence, not points")
+                && accessibleIntervention.routeCount === 3
+                && accessibleIntervention.routes === "Sealed natural plume · +10|Verified extraction · +5|Validated synthesis · +0"
+                && accessibleIntervention.routeStates === expectedGiftRouteStates
+                && accessibleIntervention.routeBorders === expectedGiftRouteBorders
+                && accessibleIntervention.routePatterns.every(Boolean)
+                && accessibleIntervention.directions.includes("points are story rankings; use evidence to justify your answer")
+                && [studentIntervention, accessibleIntervention].every(state => state.routesContained && !state.routeCollisions)
+                && studentIntervention.fields.map(field => field.id).join("|") === "t7-recommend|t7-monitor|t7-predict"
+                && studentIntervention.fields.every(field => field.response && field.text === "" && field.size[0] >= 108 && field.size[1] >= 30)
+                && accessibleIntervention.fields.map(field => field.id).join("|") === "a7-recommend|a7-monitor|a7-predict"
+                && accessibleIntervention.fields.map(field => field.text).join("|") === "|Monitor cue identity and containment. I would stop if ________________________________.|"
+                && accessibleIntervention.fields.every(field => field.response && field.size[0] >= 108 && field.size[1] >= 30)
+                && [studentIntervention, accessibleIntervention].every(state => state.fields.map(field => field.border).join("|") === "solid|dashed|dotted")
+                && [studentIntervention, accessibleIntervention].every(state => state.labels.map(label => label.border).join("|") === "solid|dashed|dotted" && state.labels.every(label => label.clearance >= 6))
+                && accessibleIntervention.safety.includes("no safe numerical dose")
+                && accessibleIntervention.safety.includes("Exposure can stop before commitment; do not assume reversibility afterward")
+                && answerIntervention.fields.length === 0
+                && answerIntervention.answerBlocks.length === 3
+                && answerIntervention.answerBlocks.map(block => block.border).join("|") === "solid|dashed|dotted"
+                && answerIntervention.answerBlocks.every(block => block.pattern)
+                && answerIntervention.answerBlocks[0].text.includes("less-than-3-m range")
+                && answerIntervention.answerBlocks[0].text.includes("joint SAA–Zhel'ii authorization")
+                && answerIntervention.answerBlocks[1].text.includes("Stop for loss of containment, unexpected material, adverse response, or failed verification")
+                && answerIntervention.answerBlocks[1].text.includes("Do not claim reversibility after commitment")
+                && answerIntervention.answerBlocks[2].text.includes("not a replicated trial")
+                && renderedInterventions.every(state => state.pageText.includes("Task 7 · Choose and Monitor a Safe Intervention")),
+              JSON.stringify(renderedInterventions)
+            );
+          }
+          check(
+            "C1 Case 07 intervention pages retain strict fit, page counts and geometry in normal and grayscale",
+            giftInterventionPageFit.length === 6
+              && giftInterventionPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.scrollHeight <= state.clientHeight),
+            JSON.stringify(giftInterventionPageFit)
+          );
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

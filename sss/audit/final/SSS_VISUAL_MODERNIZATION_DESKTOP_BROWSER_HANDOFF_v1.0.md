@@ -4,6 +4,82 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Unaccepted Family 8 candidate — The Gift controlled response
+
+The successor to accepted First Contact closeout
+`e7e1b58f61899b0e53de5b7f07cba205fdb7797b` implements `C1C7-VIS03` as the second standalone
+Family 8 intervention-comparison candidate. It is not accepted and does not advance the 30/36
+inventory. Accepted hybrid `C2C5-VIS03` and standalone `C1C6-VIS03` remain Family 8's two verified
+assignments; the hybrid remains counted only once in the unique inventory.
+
+The frozen Task 7 structures remain semantic and source-controlled:
+
+- Student page 5 retains blank fields
+  `t7-recommend | t7-monitor | t7-predict`.
+- Accessible page 7 retains parallel fields
+  `a7-recommend | a7-monitor | a7-predict`; only its accepted monitoring/stopping scaffold remains
+  prefilled.
+- Answer Key page 5 retains the three completed recommendation/evidence,
+  monitoring/stopping-rule and prediction/challenge exemplars.
+
+The Case-07-scoped shared presentation labels the existing relationship
+`EVIDENCE → CONTROL → MONITOR`. The three existing routes retain their exact order and receive
+`SUPPORTED`, `QUALIFIED` and `RESEARCH ONLY` states with solid / dashed / double borders and
+independent patterns in both the Student matrix and Accessible route cards. The existing +10, +5
+and +0 story ranks remain visible but subordinate; they are not scientific measurements or grading
+criteria. Recommendation uses a solid evidence-selection rail, monitoring/stopping uses a dashed
+verification rail, and prediction/challenge uses a dotted uncertainty rail. Every learner label
+rail retains at least 6 px clearance. These labels add no route, dose, purity value, synthesis
+procedure, completed trial, recovery result or learner action.
+
+No The Gift source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11`
+- `presentation.css` — `259b76e2d7752680d58e01092e2bc3528956e13be7b79c3b453611b6c2d258a4`
+- `layout-overrides.json` — `0b3fc73e9baddf29e982f01841a66c41f2ae2a96f44d6fe72aadd5e83ebae6ea`
+- `case-package.json` — `fdd287d5b3874d20f49b94836f0bff3ccf24702eb3ee17093f60b2cc6f39871c`
+- `task-registry.js` — `5d6e5fe1223b4faee4e5f49c41e0bd4e1ae7e92767027ee15dce5adc268eeaff`
+
+The candidate scope is exactly the shared component CSS, browser harness, focused Family 8
+validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+layout override, package metadata, task registry, response text, response dimensions, page count,
+persistence identity, Teacher content, source hash, release/history record or accepted-family
+implementation.
+
+The evidence and safety contract remains exact. The sealed natural-plume route uses the verified
+mature source and supported less-than-3-m path with the least manipulation. Verified extraction
+adds purity, co-extraction, carrier, storage and dose uncertainty. A formula is insufficient for
+validated synthesis; complete structure, stereochemistry, carrier, authentic comparison, receptor
+response, containment and authorization remain required. The evidence supplies no safe numerical
+dose. Exposure can stop before commitment; reversibility must not be assumed afterward. The
+12/18/24-hour first responses and 24–36-hour stabilization remain modeled/narrated predictions,
+not replicated trials or guaranteed outcomes.
+
+The candidate adds exactly three browser assertions: six-view strict fit and one semantic/geometry
+contract in each of normal and grayscale. Canonical project registration is therefore 2363. The
+focused intervention/trial validator is **125/125 PASS** after the candidate record is included;
+all established family validators and The Gift layout overrides must remain green.
+
+This transferred production environment has no executable Chromium, so it makes no local browser-
+pass, rendered-dimension or manual-inspection claim. External Mac/Google Chrome acceptance remains
+required. Run the complete harness twice with canonical expectation **2363/2363 PASS** and zero
+application JavaScript errors. Inspect Student page 5, Answer Key page 5 and Accessible page 7 in
+normal and grayscale for fixed 816 × 1056 geometry, exact role page counts Student 6 / Answer Key
+6 / Accessible 8, `scrollHeight 936 == clientHeight 936`, no overflow/collision/crowding, distinct
+route and response-gate states without color, legible labels and usable unclipped learner fields.
+
+If that Mac reproduces an inherited one-registration difference, test prerequisite `e7e1b58…` in
+a throwaway worktree on the same machine. Require candidate delta exactly +3 registered and +3
+passed, all three named Case 07 assertions passing, identical candidate assertion-name sets, no
+inherited regression and zero application JavaScript errors; then stop without pushing for separate
+candidate-specific disposition. Differential evidence does not itself authorize acceptance,
+change canonical 2363 or establish a general platform policy.
+
+Run the focused intervention/trial validator, all established family regressions and
+`validate_layout_overrides.py --case SSS-C1-CASE07`. If every gate passes, push only by ordinary
+fast-forward. Do not mark `C1C7-VIS03` `VERIFIED-FAMILY`, advance the inventory, merge to `main` or
+begin another finding. A separate closeout is required after acceptance.
+
 ## Accepted Family 8 finding — First Contact monitored response
 
 Candidate `8d6a51a58a18f1f4db51d7a25ea58317f1962408` advances `C1C6-VIS03` to

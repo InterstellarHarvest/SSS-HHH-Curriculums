@@ -535,6 +535,39 @@ evidence convergence 60/60, telemetry 36/36 and the Case 06 layout-override vali
 accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, and accepted standalone
 `C1C6-VIS03`.
 
+`C1C7-VIS03` is the implemented but unaccepted second standalone Family 8
+intervention-comparison candidate. It preserves The Gift's frozen Student page 5, Answer Key
+page 5 and Accessible page 7 as the semantic source of truth. The strictly Case-07-scoped shared
+treatment exposes the existing Task 7 sequence as `EVIDENCE → CONTROL → MONITOR`. The three
+existing routes retain their exact order. Student matrix rows and Accessible route cards receive
+`SUPPORTED`, `QUALIFIED` and `RESEARCH ONLY` states with solid, dashed and double borders plus
+independent patterns. The existing +10, +5 and +0 story ranks remain visible but typographically
+subordinate to evidence, controls and uncertainty. Recommendation, monitoring/stopping and
+prediction/challenge fields remain separate solid, dashed and dotted rails. The Answer Key mirrors
+the same three response gates.
+
+The candidate changes no worksheet source, case presentation, layout override, package metadata,
+task registry, response wording or dimensions, persistence identity, page count, Teacher content,
+source hash, release/history record or accepted-family implementation. Student retains three blank
+fields: `t7-recommend | t7-monitor | t7-predict`. Accessible retains the parallel three fields and
+only its already accepted monitoring/stopping scaffold. The sealed natural-plume route remains the
+best-supported immediate route; verified extraction remains defensible only when its added
+uncertainties are controlled; and validated synthesis remains a longer research program rather
+than a safe immediate action. The evidence supplies no safe numerical dose, exposure is stoppable
+only before commitment, and the predicted first responses and stabilization remain modeled story
+outcomes rather than replicated trials.
+
+The candidate adds exactly three browser assertions: one six-view strict-fit contract plus normal
+and grayscale semantic/geometry contracts. Canonical registration after these additions is 2363.
+This transferred production environment has no executable Chromium, so it makes no browser-pass,
+manual-geometry or field-dimension claim. External Mac/Google Chrome acceptance must run the
+complete harness twice, inspect Student page 5, Answer Key page 5 and Accessible page 7 in normal
+and grayscale, and compare against prerequisite `e7e1b58…` on the same machine if an inherited
+registration difference appears. Until that gate passes and a separate documentation-only closeout
+is synchronized, `C1C7-VIS03` does not advance the accepted **30 of 36 completed / 6 of 36
+remaining** inventory. Family 8 retains two accepted assignments—hybrid `C2C5-VIS03` and
+standalone `C1C6-VIS03`—and this new candidate remains unaccepted.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified

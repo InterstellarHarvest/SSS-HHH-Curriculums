@@ -5123,3 +5123,249 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   color: var(--ink, #18212b);
   background-color: var(--paper, #fff);
 }
+
+/*
+ * Intervention-comparison family expansion: The Gift.
+ *
+ * The frozen Task 7 structures already compare three fictional routes, retain
+ * controls and uncertainty, ask for a monitored stopping rule, and separate a
+ * modeled prediction from replicated evidence. This Case-07-scoped layer makes
+ * that evidence-control-monitor hierarchy visible while keeping the +10/+5/+0
+ * story ranks subordinate to scientific reasoning.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE07"] {
+  --gift-intervention-line: var(--ink, #18212b);
+  --gift-intervention-panel: var(--paper, #fff);
+  --gift-intervention-supported-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 8px, rgba(24, 33, 43, .07) 8px 9px);
+  --gift-intervention-qualified-pattern:
+    repeating-linear-gradient(90deg, transparent 0 9px, rgba(24, 33, 43, .055) 9px 10px);
+  --gift-intervention-uncertain-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .11) 6px 7px),
+    repeating-linear-gradient(-45deg, transparent 0 6px, rgba(24, 33, 43, .045) 6px 7px);
+  --gift-intervention-monitor-pattern:
+    repeating-linear-gradient(135deg, transparent 0 10px, rgba(24, 33, 43, .05) 10px 11px);
+  --gift-intervention-prediction-pattern:
+    repeating-linear-gradient(0deg, transparent 0 8px, rgba(24, 33, 43, .045) 8px 9px);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .page[data-page-id="student-mission-05"] .task-heading[data-task-id="7"],
+  .page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="7"],
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"]
+) {
+  position: relative;
+  padding-right: 1.58in;
+  border-bottom: 1.5px solid var(--gift-intervention-line);
+  background: var(--gift-intervention-monitor-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .page[data-page-id="student-mission-05"] .task-heading[data-task-id="7"],
+  .page[data-page-id="accessible-mission-07"] .task-heading[data-task-id="7"],
+  .page[data-page-id="answer-key-05"] .task-heading[data-task-id="7"]
+)::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "EVIDENCE → CONTROL → MONITOR";
+  font: 800 5.3pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table {
+  outline: 1.5px solid var(--gift-intervention-line);
+  box-shadow: inset 4px 0 0 var(--gift-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody th {
+  position: relative;
+  padding-right: .72in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody th::after {
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+  font: 800 4.6pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody tr:first-child > * {
+  border-left: 4px solid var(--gift-intervention-line);
+  background: var(--gift-intervention-supported-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody tr:first-child th::after {
+  content: "SUPPORTED";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody tr:nth-child(2) > * {
+  border-left: 4px dashed var(--gift-intervention-line);
+  background: var(--gift-intervention-qualified-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody tr:nth-child(2) th::after {
+  content: "QUALIFIED";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody tr:nth-child(3) > * {
+  border-left: 4px double var(--gift-intervention-line);
+  background: var(--gift-intervention-uncertain-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table tbody tr:nth-child(3) th::after {
+  content: "RESEARCH ONLY";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="student-mission-05"] .intervention-table :is(th, td):last-child {
+  color: var(--gift-intervention-line);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 5.8pt;
+  font-weight: 650;
+  letter-spacing: .01em;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card {
+  position: relative;
+  box-shadow: inset 4px 0 0 var(--gift-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card::after {
+  position: absolute;
+  right: 4px;
+  bottom: 3px;
+  padding: 1px 3px;
+  background: var(--gift-intervention-panel);
+  font: 800 4.5pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .01em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card:first-child {
+  border-left: 4px solid var(--gift-intervention-line);
+  background: var(--gift-intervention-supported-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card:first-child::after {
+  content: "SUPPORTED";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card:nth-child(2) {
+  border-left: 4px dashed var(--gift-intervention-line);
+  background: var(--gift-intervention-qualified-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card:nth-child(2)::after {
+  content: "QUALIFIED";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card:nth-child(3) {
+  border-left: 4px double var(--gift-intervention-line);
+  background: var(--gift-intervention-uncertain-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .three-col > .source-card:nth-child(3)::after {
+  content: "RESEARCH ONLY";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .page[data-page-id="student-mission-05"] .two-col > div:first-child .response-label,
+  .page[data-page-id="accessible-mission-07"] .response-label:has(+ [data-persist-id="a7-recommend"])
+) {
+  padding-left: 6px;
+  border-left: 4px solid var(--gift-intervention-line);
+  background: var(--gift-intervention-supported-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  [data-persist-id="t7-recommend"],
+  [data-persist-id="a7-recommend"]
+) {
+  border-left: 4px solid var(--gift-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .page[data-page-id="student-mission-05"] .two-col > div:nth-child(2) .response-label,
+  .page[data-page-id="accessible-mission-07"] .response-label:has(+ [data-persist-id="a7-monitor"])
+) {
+  padding-left: 6px;
+  border-left: 4px dashed var(--gift-intervention-line);
+  background: var(--gift-intervention-monitor-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  [data-persist-id="t7-monitor"],
+  [data-persist-id="a7-monitor"]
+) {
+  border-left: 4px dashed var(--gift-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  .page[data-page-id="student-mission-05"] .response-label:has(+ [data-persist-id="t7-predict"]),
+  .page[data-page-id="accessible-mission-07"] .response-label:has(+ [data-persist-id="a7-predict"])
+) {
+  padding-left: 6px;
+  border-left: 4px dotted var(--gift-intervention-line);
+  background: var(--gift-intervention-prediction-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"] :is(
+  [data-persist-id="t7-predict"],
+  [data-persist-id="a7-predict"]
+) {
+  border-left: 4px dotted var(--gift-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="accessible-mission-07"] .science-note {
+  border-left: 4px double var(--gift-intervention-line);
+  background: var(--gift-intervention-uncertain-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="answer-key-05"] > .page-frame > .content-area > .answer-block:nth-of-type(1) {
+  border-left: 4px solid var(--gift-intervention-line);
+  background: var(--gift-intervention-supported-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="answer-key-05"] > .page-frame > .content-area > .answer-block:nth-of-type(2) {
+  border-left: 4px dashed var(--gift-intervention-line);
+  background: var(--gift-intervention-monitor-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE07"]
+  .page[data-page-id="answer-key-05"] > .page-frame > .content-area > .answer-block:nth-of-type(3) {
+  border-left: 4px dotted var(--gift-intervention-line);
+  background: var(--gift-intervention-prediction-pattern), var(--gift-intervention-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE07"] :is(
+  .page[data-page-id="student-mission-05"] .content-area,
+  .page[data-page-id="accessible-mission-07"] .content-area,
+  .page[data-page-id="answer-key-05"] .content-area
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
