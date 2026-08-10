@@ -1977,6 +1977,117 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        // Register the second Family 7 cutaway independently of the accepted
+        // Missing Dance mechanism contract. The frozen SVG remains the
+        // semantic source; these checks prove the Case-02-scoped technical
+        // section treatment, direct labels and grayscale-safe pore hierarchy.
+        if (item.id === ["SSS", "C2", "CASE02"].join("-")) {
+          const danceCutawayPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount, figureId] of [
+              ["student", "student-mission-03", 6, "fig-cone-s3"],
+              ["accessible", "accessible-mission-03", 8, "fig-cone-a3"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const figure = page?.querySelector(`figure[data-figure-id="${figureId}"]`);
+              danceCutawayPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                figure: Boolean(figure),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight,
+                figureFits: Boolean(figure) && figure.scrollWidth <= figure.clientWidth + 1 && figure.scrollHeight <= figure.clientHeight + 1
+              });
+            }
+          }
+          check(
+            "C2 Case 02 cutaway pages retain strict fit, page counts and geometry in normal and grayscale",
+            danceCutawayPageFit.length === 4
+              && danceCutawayPageFit.every(state => state.page && state.figure && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits && state.figureFits),
+            JSON.stringify(danceCutawayPageFit)
+          );
+
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, figureId] of [
+              ["student", "student-mission-03", "fig-cone-s3"],
+              ["accessible", "accessible-mission-03", "fig-cone-a3"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const figure = page?.querySelector(`figure[data-figure-id="${figureId}"]`);
+              const svg = figure?.querySelector(":scope > svg");
+              const cone = svg?.querySelector(":scope > path");
+              const pores = Array.from(svg?.querySelectorAll(":scope > rect") || []);
+              const leaders = Array.from(svg?.querySelectorAll(":scope > line") || []);
+              const coneBox = cone?.getBoundingClientRect();
+              const poreBoxes = pores.map(node => node.getBoundingClientRect());
+              const coneCenter = coneBox ? coneBox.left + coneBox.width / 2 : 0;
+              const caption = figure?.querySelector("figcaption");
+              const description = figure?.querySelector(".extended-description");
+              rendered.push({
+                role,
+                figure: Boolean(figure),
+                position: figure ? win.getComputedStyle(figure).position : "",
+                overflow: figure ? win.getComputedStyle(figure).overflow : "",
+                railWidth: figure ? px(win.getComputedStyle(figure).borderLeftWidth) : 0,
+                status: caption ? win.getComputedStyle(caption, "::before").content.replaceAll('"', "") : "",
+                svgBackground: svg ? win.getComputedStyle(svg).backgroundImage : "none",
+                coneWidth: rounded(coneBox?.width || 0),
+                coneHeight: rounded(coneBox?.height || 0),
+                coneTransform: cone ? win.getComputedStyle(cone).transform : "none",
+                coneStroke: cone ? px(win.getComputedStyle(cone).strokeWidth) : 0,
+                pollenPattern: cone?.getAttribute("fill") || "",
+                poreCount: pores.length,
+                poreWidths: poreBoxes.map(box => rounded(box.width)),
+                poreHeights: poreBoxes.map(box => rounded(box.height)),
+                leftPores: poreBoxes.filter((_, index) => index % 2 === 0).every(box => box.left + box.width / 2 < coneCenter),
+                rightPores: poreBoxes.filter((_, index) => index % 2 === 1).every(box => box.left + box.width / 2 > coneCenter),
+                poreFills: pores.map(node => win.getComputedStyle(node).fill),
+                leaderDashes: leaders.map(node => win.getComputedStyle(node).strokeDasharray),
+                labels: Array.from(svg?.querySelectorAll(".fig-axis") || []).map(node => node.textContent.trim()).join("|"),
+                figureText: figure?.textContent.trim().replace(/\s+/g, " ") || "",
+                captionText: caption?.textContent.trim().replace(/\s+/g, " ") || "",
+                descriptionText: description?.textContent.trim().replace(/\s+/g, " ") || ""
+              });
+            }
+            check(
+              `C2 Case 02 ${grayscale ? "grayscale" : "normal"} poricidal cutaway preserves open pores, retained mature pollen and evidence limits`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && rendered.length === 2
+                && rendered.every(state => state.figure && state.position === "relative" && state.overflow === "hidden" && state.railWidth >= 4)
+                && rendered.every(state => state.status === "BOTANICAL CUTAWAY · SECTION A–A" && state.svgBackground !== "none")
+                && rendered.every(state => state.coneWidth > 100 && state.coneHeight > 110 && state.coneTransform !== "none" && state.coneStroke >= 2)
+                && rendered.every(state => state.pollenPattern.startsWith("url(#pollen-") && state.poreCount === 8)
+                && rendered.every(state => state.poreWidths.every(value => value >= 6) && state.poreHeights.every(value => value >= 4) && state.leftPores && state.rightPores)
+                && rendered.every(state => state.poreFills.every(value => value === "rgb(255, 255, 255)"))
+                && rendered.every(state => state.leaderDashes.length === 2 && state.leaderDashes[0] === "none" && state.leaderDashes[1] !== "none")
+                && rendered.every(state => state.labels === "Pores|Mature pollen")
+                && rendered.every(state => state.figureText.includes("already present, not blocked") && state.figureText.includes("viable at 98%, still inside"))
+                && rendered.every(state => state.figureText.includes("Gentle contact releases almost none of it"))
+                && rendered.every(state => state.captionText.includes("nothing opens or unseals") && state.captionText.includes("reads without colour"))
+                && rendered.every(state => state.descriptionText.includes("dot-patterned for dense pollen") && state.descriptionText.includes("all drawn the same way")),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         // Register the second standalone Family 6 contract independently of
         // literal case-range markers used by accepted-family validators.
         if (item.id === ["SSS", "C2", "CASE01"].join("-")) {

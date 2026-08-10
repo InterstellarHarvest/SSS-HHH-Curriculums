@@ -5554,4 +5554,136 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   color: var(--ink, #18212b);
   background-color: var(--paper, #fff);
 }
+
+/*
+ * Biological/structural cutaway family completion: The Missing Dance.
+ *
+ * The frozen Task 3 SVGs remain the semantic source: one cone section, eight
+ * already-present pores, patterned mature pollen, direct labels and the exact
+ * 98% viability statement. This Case-02-scoped layer enlarges the existing
+ * section, strengthens the pore/leader hierarchy and adds technical-document
+ * framing. It does not create an opening event, pollen release or new datum.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] {
+  --dance-cutaway-line: var(--ink, #18212b);
+  --dance-cutaway-rule: var(--rule, #8c9aa8);
+  --dance-cutaway-paper: var(--paper, #fff);
+  --dance-cutaway-panel: var(--panel-light, #f7f9fa);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid var(--dance-cutaway-rule);
+  border-left: 4px solid var(--dance-cutaway-line);
+  border-radius: var(--radius, 3px);
+  background: var(--dance-cutaway-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 17px,
+      rgba(24, 33, 43, .035) 17px 18px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 39px,
+      rgba(24, 33, 43, .025) 39px 40px
+    ),
+    var(--dance-cutaway-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > path,
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > rect {
+  transform: scale(1.35, 1.08);
+  transform-box: view-box;
+  transform-origin: 150px 95px;
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > path {
+  stroke: var(--dance-cutaway-line);
+  stroke-width: 2.2px;
+  stroke-linejoin: round;
+  filter: drop-shadow(2px 2px 0 rgba(24, 33, 43, .12));
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > rect {
+  rx: 1.5px;
+  fill: var(--dance-cutaway-paper);
+  stroke: var(--dance-cutaway-line);
+  stroke-width: 1.45px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > line {
+  stroke: var(--dance-cutaway-line);
+  stroke-width: 1.35px;
+  vector-effect: non-scaling-stroke;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > line:nth-of-type(2) {
+  stroke-dasharray: 5 3;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > .fig-axis {
+  fill: var(--dance-cutaway-line);
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 8pt;
+  letter-spacing: .025em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] > svg > .fig-sub {
+  fill: var(--dance-cutaway-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] figcaption {
+  display: flow-root;
+  margin-top: 2px;
+  padding: 3px 4px;
+  border-top: 1px solid var(--dance-cutaway-rule);
+  background: var(--dance-cutaway-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] figcaption::before {
+  float: right;
+  margin: 0 0 2px 6px;
+  padding: 2px 4px;
+  content: "BOTANICAL CUTAWAY · SECTION A–A";
+  border: 1px solid var(--dance-cutaway-line);
+  background: var(--dance-cutaway-paper);
+  font: 700 5.4pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] .extended-description {
+  margin: 2px 0 0;
+  padding: 2px 4px 0;
+  border-top: 1px dotted var(--dance-cutaway-rule);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"] {
+  --dance-cutaway-line: var(--ink, #18212b);
+  --dance-cutaway-rule: var(--rule, #8c9aa8);
+  --dance-cutaway-paper: var(--paper, #fff);
+  --dance-cutaway-panel: var(--panel-light, #f7f9fa);
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
 /* END SSS/HHH CUTAWAY-VISUAL EXTENSIONS */

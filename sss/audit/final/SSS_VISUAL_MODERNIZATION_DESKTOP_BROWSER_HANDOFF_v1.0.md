@@ -4,6 +4,72 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Pending Family 7 completion — The Missing Dance botanical cutaway
+
+`C2C2-VIS01` is the implemented but unaccepted second Family 7 biological/structural cutaway
+candidate. Its required accepted prerequisite is the synchronized Heavy Hands closeout
+`26ab8e3bf164c98797304feaf2c58d8e9154295b`. Family 7 remains one of two verified assignments,
+and the accepted inventory remains **32/36** until the external browser gate and a separate
+closeout succeed.
+
+The frozen Student Task 3 page 3 and Accessible Task 3 page 3 SVGs remain the semantic source.
+Each retains one triangular cone section, eight already-present pore marks, a dot-patterned mature-
+pollen fill, direct `Pores | Mature pollen` labels, the exact `viable at 98%, still inside`
+statement, the gentle-contact observation, the no-opening/unsealing evidence limit and its
+non-color extended description. The Case-02-scoped shared presentation adds a mission-document
+frame, faint technical grid, coherent cone/pore enlargement, stronger open-pore outlines,
+solid-versus-dashed leader hierarchy and `BOTANICAL CUTAWAY · SECTION A–A`.
+
+No The Missing Dance source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a`
+- `presentation.css` — `ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d`
+- `layout-overrides.json` — `92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d`
+- `case-package.json` — `59026d6c4f54b362700018e268f2892a7c837817b4e6ec14e06d810dd9a66881`
+- `task-registry.js` — `8aaa2854d946f67e5c59261d314bf05764f4f4b21ccaa81009daa6ca4d51eda8`
+
+Student fields `t3-healthy | t3-missing` and Accessible fields
+`a3-healthy | a3-missing` remain blank, editable and source-controlled. Student retains 6 pages;
+Accessible retains 8. No Teacher or Answer Key structure is targeted. The cutaway adds no learner
+action, response, opening event, released-pollen result, universal frequency, new measurement or
+treatment claim. Pores remain already present, not blocked, sealed or newly opened; viable mature
+pollen remains retained; gentle contact releases almost none; and the established Earth buzz-
+pollination comparison remains distinct from the fictional lyre-moth airborne-coupling evidence.
+
+The candidate adds exactly three browser assertions: a four-view strict-fit/page-count/geometry
+contract plus one semantic/geometry contract in normal and one in grayscale. Canonical project
+registration is expected to become **2369/2369** with zero application JavaScript errors. Run the
+complete Mac/Google Chrome harness twice. Inspect Student page 3 and Accessible page 3 in normal
+and grayscale. Require fixed **816 × 1056** pages, unchanged Student 6 / Accessible 8 counts,
+strict fit, no overflow, clipping, collision or crowding, one enlarged coherent cone section,
+exactly eight visible pore marks split across both sides, patterned retained pollen, distinct
+solid/dashed leaders, direct labels, the exact 98% viability statement, the gentle-contact and
+no-opening limits, and a legible `BOTANICAL CUTAWAY · SECTION A–A` status.
+
+This Mac has a previously isolated inherited one-registration shortfall. If a fresh prerequisite
+run at `26ab8e3…` reports exactly **2365/2365 PASS** and both candidate runs report exactly
+**2368/2368 PASS**, all with zero application JavaScript errors, require byte-identical candidate
+assertion-name sequences, an exact +3 registered/+3 passed set delta, precisely the three new
+`C2C2-VIS01` assertions added and passed, zero removals, zero broken inherited assertions and no
+prerequisite-passing assertion failing at the candidate. Stop without pushing and return that
+candidate-specific differential for separate disposition. Do not infer acceptance or create a
+general Mac/platform policy; canonical registration remains 2369.
+
+The focused cutaway validator, every established family validator, The Missing Dance layout
+overrides, all governing system validators and `git diff --check` must pass. Do not run PDF
+automation. Do not mark `C2C2-VIS01` `VERIFIED-FAMILY`, complete Family 7, advance the accepted
+32/36 inventory, merge to `main` or begin another finding until the external gate is complete. A
+separate documentation-only closeout is required after acceptance.
+
+Local candidate validation is complete: cutaway **83/83**, intervention **125/125**,
+specification **105/105**, control **30/30**, timeline **44/44**, mechanism **103/103**, evidence
+convergence **60/60**, telemetry **36/36**, Case-02 and all-case layout overrides PASS,
+corrective-aware canonical structure PASS, release integrity **40/40**, quality v3 and
+accessibility v2 at zero failures, corrective lifecycle **25/25**, corrective-candidate contract
+at zero failures and `git diff --check` clean. The legacy aggregate's expected **516/545**
+release-baseline diagnostic is non-gating under the accepted remediation disposition and must not
+be re-pinned for this candidate.
+
 ## Accepted Family 7 finding — Heavy Hands radial-bed cutaway
 
 The accepted lineage root is The Gift closeout
