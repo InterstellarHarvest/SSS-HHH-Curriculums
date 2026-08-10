@@ -593,6 +593,35 @@ convergence 60/60; telemetry 36/36; and the Case 07 layout-override validator pa
 accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, accepted standalone
 `C1C6-VIS03` and accepted corrective standalone `C1C7-VIS03`.
 
+`C2C1-VIS01` is the implemented but unaccepted Family 7 pilot. It preserves Heavy Hands' frozen
+Student Task 4 page 3 and Accessible Task 4 page 4 SVGs as the semantic source of truth. Those two
+figures already contain the same 20 cm bed boundary, the qualitative small / medium / large size
+sequence, three independent patterns, the explicit no-deformation-quantity limit, an accessible
+SVG title and a non-color extended description. The strictly Case-01-scoped shared treatment
+repositions those existing marks as matched radial-bed cutaway panels. Equal dashed bed sections
+retain one common depth while the contained patterned tuber marks increase in both width and
+radial span. The generated status reads `RADIAL BED CUTAWAY · NOT TO SCALE`.
+
+The candidate changes no worksheet source, case presentation, layout override, package metadata,
+task registry, response wording or dimensions, persistence identity, page count, Teacher content,
+source hash, release/history record or accepted-family implementation. Student fields
+`t4-span | t4-rules-out` and Accessible fields `a4-span | a4-rules-out` remain blank and
+source-controlled. The specimen record remains bounded to gorlroot in this habitat: the tuber
+starts aligned with the outward primary roots, curves sideways across the row rather than toward
+or away from the axis, and deformation increases qualitatively with diameter. No organ dimension,
+deformation amount, cross-species rule or scale relationship is introduced.
+
+The candidate adds exactly three browser assertions: one four-view strict-fit/page-count/geometry
+contract plus normal and grayscale semantic/geometry contracts. Canonical project registration is
+therefore expected to become 2366. The focused contracts require fixed 816 × 1056 pages, unchanged
+Student 5 / Accessible 8 page counts, equal bed boundaries, strictly increasing contained tuber
+spans, three independent source patterns, exact direct labels, the qualitative/not-to-scale state,
+the 20 cm boundary and the no-deformation-quantity limitation. This production environment makes
+no executable-browser, rendered-fit or manual-inspection claim. Until the complete external
+browser harness passes twice and both pages are inspected in normal and grayscale,
+C2C1-VIS01 does not advance the accepted **31 of 36 completed / 5 of 36 remaining** inventory.
+Family 7 remains zero of two accepted assignments; this pilot remains `IMPLEMENTED-CANDIDATE`.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified
@@ -716,7 +745,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 
 | Finding | Case; editions; task/page | Current visual and problem | Family | Proposed modernization and method | Footprint / synchronization | Science/data constraints | Dependency and validation | Status |
 |---|---|---|---|---|---|---|---|---|
-| `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `PLANNED` |
+| `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `IMPLEMENTED-CANDIDATE` |
 | `C2C1-VIS02` | Heavy Hands; T reference p4 | Three-point radial profile is a basic Teacher-only schematic. | 1 · Technical telemetry/data | Centrifuge telemetry profile with three reported radii, outward direction arrows and direct exact magnitudes. | Teacher-only replacement; no learner workload/page changes. | Direction outward at all points; magnitude increases with radius; retain exact reported values and rounding note; no interpolation. | D1; exact-value/rounding and page-fit checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `VERIFIED-FAMILY · 70/70 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 4d181aa ACCEPTED` |
 | `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `PLANNED` |

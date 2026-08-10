@@ -5369,3 +5369,189 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   color: var(--ink, #18212b);
   background-color: var(--paper, #fff);
 }
+
+/* BEGIN SSS/HHH CUTAWAY-VISUAL EXTENSIONS */
+/*
+ * Biological/structural cutaway family pilot: Heavy Hands.
+ *
+ * The frozen Task 4 SVGs already carry the same 20 cm bed boundary, three
+ * qualitative tuber sizes, distinct patterns and the explicit no-quantity
+ * limit. This Case-01-scoped layer repositions those existing marks as matched
+ * radial-bed cutaway panels. No anatomical measurement, deformation amount or
+ * learner action is generated here.
+ */
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] {
+  --heavy-cutaway-line: var(--ink, #18212b);
+  --heavy-cutaway-rule: var(--rule, #8c9aa8);
+  --heavy-cutaway-paper: var(--paper, #fff);
+  --heavy-cutaway-bed: var(--panel-light, #f7f9fa);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--heavy-cutaway-rule);
+  border-left: 4px solid var(--heavy-cutaway-line);
+  border-radius: var(--radius, 3px);
+  background: var(--heavy-cutaway-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg {
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 17px,
+      rgba(24, 33, 43, .035) 17px 18px
+    ),
+    var(--heavy-cutaway-paper);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect {
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(1) {
+  x: 14px;
+  y: 25px;
+  width: 186px;
+  height: 52px;
+  rx: 7px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(3) {
+  x: 227px;
+  y: 25px;
+  width: 186px;
+  height: 52px;
+  rx: 7px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(5) {
+  x: 440px;
+  y: 25px;
+  width: 186px;
+  height: 52px;
+  rx: 7px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(odd) {
+  fill: var(--heavy-cutaway-bed);
+  stroke: var(--heavy-cutaway-line);
+  stroke-width: 1.5px;
+  stroke-dasharray: 5 3;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(2) {
+  x: 79px;
+  y: 46px;
+  width: 56px;
+  height: 12px;
+  rx: 6px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(4) {
+  x: 288px;
+  y: 39px;
+  width: 64px;
+  height: 26px;
+  rx: 13px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(6) {
+  x: 490px;
+  y: 31px;
+  width: 86px;
+  height: 42px;
+  rx: 21px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > rect:nth-of-type(even) {
+  stroke: var(--heavy-cutaway-line);
+  stroke-width: 1.5px;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text {
+  fill: var(--heavy-cutaway-line);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(2),
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(3) {
+  transform: translate(-54px, 35px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(4),
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(5) {
+  transform: translate(-41px, 35px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(6),
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(7) {
+  transform: translate(-28px, 35px);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(3),
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(5),
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] > svg > text:nth-of-type(7) {
+  transform-box: fill-box;
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  letter-spacing: .015em;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] figcaption {
+  display: flow-root;
+  margin-top: 2px;
+  padding: 3px 4px;
+  border-top: 1px solid var(--heavy-cutaway-rule);
+  background: var(--heavy-cutaway-bed);
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] figcaption::before {
+  float: right;
+  margin: 0 0 2px 6px;
+  padding: 2px 4px;
+  content: "RADIAL BED CUTAWAY · NOT TO SCALE";
+  border: 1px solid var(--heavy-cutaway-line);
+  background: var(--heavy-cutaway-paper);
+  font: 700 5.4pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] .extended-description {
+  margin: 2px 0 0;
+  padding: 2px 4px 0;
+  border-top: 1px dotted var(--heavy-cutaway-rule);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C2-CASE01"]
+  .figure[data-figure-id^="fig-span-"] {
+  --heavy-cutaway-line: var(--ink, #18212b);
+  --heavy-cutaway-rule: var(--rule, #8c9aa8);
+  --heavy-cutaway-paper: var(--paper, #fff);
+  --heavy-cutaway-bed: var(--panel-light, #f7f9fa);
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}
+/* END SSS/HHH CUTAWAY-VISUAL EXTENSIONS */

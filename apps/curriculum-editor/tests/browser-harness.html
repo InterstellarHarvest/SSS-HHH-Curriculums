@@ -1864,6 +1864,119 @@
           api.saveState({ grayscale: false });
           await wait(20);
         }
+        // Register the Family 7 cutaway pilot independently of the accepted
+        // Heavy Hands specification contract below. The frozen SVG remains the
+        // semantic source; these checks prove the Case-01-scoped geometry and
+        // grayscale-independent cutaway treatment actually render.
+        if (item.id === ["SSS", "C2", "CASE01"].join("-")) {
+          const heavyCutawayPageFit = [];
+          for (const grayscale of [false, true]) {
+            for (const [role, pageId, pageCount, figureId] of [
+              ["student", "student-mission-03", 5, "fig-span-s4"],
+              ["accessible", "accessible-mission-04", 8, "fig-span-a4"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const figure = page?.querySelector(`figure[data-figure-id="${figureId}"]`);
+              heavyCutawayPageFit.push({
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                figure: Boolean(figure),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                fits: Boolean(content) && content.scrollHeight <= content.clientHeight,
+                figureFits: Boolean(figure) && figure.scrollWidth <= figure.clientWidth + 1 && figure.scrollHeight <= figure.clientHeight + 1
+              });
+            }
+          }
+          check(
+            "C2 Case 01 cutaway pages retain strict fit, page counts and geometry in normal and grayscale",
+            heavyCutawayPageFit.length === 4
+              && heavyCutawayPageFit.every(state => state.page && state.figure && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.fits && state.figureFits),
+            JSON.stringify(heavyCutawayPageFit)
+          );
+
+          for (const grayscale of [false, true]) {
+            const rendered = [];
+            for (const [role, pageId, figureId] of [
+              ["student", "student-mission-03", "fig-span-s4"],
+              ["accessible", "accessible-mission-04", "fig-span-a4"]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const figure = page?.querySelector(`figure[data-figure-id="${figureId}"]`);
+              const svg = figure?.querySelector(":scope > svg");
+              const rects = Array.from(svg?.children || []).filter(node => node.tagName?.toLowerCase() === "rect");
+              const beds = [rects[0], rects[2], rects[4]];
+              const tubers = [rects[1], rects[3], rects[5]];
+              const bedBoxes = beds.map(node => node ? node.getBoundingClientRect() : null);
+              const tuberBoxes = tubers.map(node => node ? node.getBoundingClientRect() : null);
+              const contained = bedBoxes.every((bed, index) => {
+                const tuber = tuberBoxes[index];
+                return Boolean(bed && tuber)
+                  && tuber.left >= bed.left - .5
+                  && tuber.right <= bed.right + .5
+                  && tuber.top >= bed.top - .5
+                  && tuber.bottom <= bed.bottom + .5;
+              });
+              const caption = figure?.querySelector("figcaption");
+              const description = figure?.querySelector(".extended-description");
+              rendered.push({
+                role,
+                figure: Boolean(figure),
+                position: figure ? win.getComputedStyle(figure).position : "",
+                overflow: figure ? win.getComputedStyle(figure).overflow : "",
+                railWidth: figure ? px(win.getComputedStyle(figure).borderLeftWidth) : 0,
+                status: caption ? win.getComputedStyle(caption, "::before").content.replaceAll('"', "") : "",
+                svgBackground: svg ? win.getComputedStyle(svg).backgroundImage : "none",
+                bedWidths: bedBoxes.map(box => rounded(box?.width || 0)),
+                bedHeights: bedBoxes.map(box => rounded(box?.height || 0)),
+                tuberWidths: tuberBoxes.map(box => rounded(box?.width || 0)),
+                tuberHeights: tuberBoxes.map(box => rounded(box?.height || 0)),
+                bedDashes: beds.map(node => node ? win.getComputedStyle(node).strokeDasharray : ""),
+                tuberPatterns: tubers.map(node => node?.getAttribute("fill") || ""),
+                contained,
+                labels: Array.from(svg?.querySelectorAll(".fig-axis") || []).map(node => node.textContent.trim()).join("|"),
+                figureText: figure?.textContent.trim().replace(/\s+/g, " ") || "",
+                captionText: caption?.textContent.trim().replace(/\s+/g, " ") || "",
+                descriptionText: description?.textContent.trim().replace(/\s+/g, " ") || ""
+              });
+            }
+            check(
+              `C2 Case 01 ${grayscale ? "grayscale" : "normal"} tuber cutaway preserves matched bed depth, qualitative size order and evidence limits`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedVisualStyles === true
+                && rendered.length === 2
+                && rendered.every(state => state.figure && state.position === "relative" && state.overflow === "hidden" && state.railWidth >= 4)
+                && rendered.every(state => state.status === "RADIAL BED CUTAWAY · NOT TO SCALE" && state.svgBackground !== "none")
+                && rendered.every(state => state.bedWidths.length === 3 && Math.max(...state.bedWidths) - Math.min(...state.bedWidths) <= .5)
+                && rendered.every(state => state.bedHeights.length === 3 && Math.max(...state.bedHeights) - Math.min(...state.bedHeights) <= .5)
+                && rendered.every(state => state.tuberWidths[0] < state.tuberWidths[1] && state.tuberWidths[1] < state.tuberWidths[2])
+                && rendered.every(state => state.tuberHeights[0] < state.tuberHeights[1] && state.tuberHeights[1] < state.tuberHeights[2])
+                && rendered.every(state => state.bedDashes.every(value => value && value !== "none") && new Set(state.tuberPatterns).size === 3 && state.contained)
+                && rendered.every(state => state.labels === "Small tuber|Medium tuber|Large tuber")
+                && rendered.every(state => state.figureText.includes("Same 20 cm bed depth in all three panels"))
+                && rendered.every(state => state.figureText.includes("No deformation quantity is shown, because none is reported"))
+                && rendered.every(state => state.captionText.includes("qualitative, with no deformation quantity reported"))
+                && rendered.every(state => state.descriptionText.includes("same dashed outline for the 20 cm bed depth")),
+              JSON.stringify(rendered)
+            );
+          }
+          api.setRole("student");
+          api.saveState({ grayscale: false });
+          await wait(20);
+        }
         // Register the second standalone Family 6 contract independently of
         // literal case-range markers used by accepted-family validators.
         if (item.id === ["SSS", "C2", "CASE01"].join("-")) {

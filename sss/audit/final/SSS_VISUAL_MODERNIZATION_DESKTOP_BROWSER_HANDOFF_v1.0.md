@@ -4,6 +4,56 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Pending Family 7 pilot — Heavy Hands radial-bed cutaway
+
+The successor to accepted The Gift closeout
+`a9fd1b0fb2d0a5a3ff9c7a4b53c3961033ac4f57` implements `C2C1-VIS01` as the first Family 7
+biological/structural cutaway candidate. It is not accepted and does not advance the 31/36
+inventory. Family 7 remains zero of two accepted assignments until the external rendered gate and
+manual inspection pass.
+
+The frozen Student Task 4 page 3 and Accessible Task 4 page 4 figures remain the semantic source.
+Each retains the exact same 20 cm bed-depth boundary, the direct `Small tuber | Medium tuber |
+Large tuber` sequence, three independent source patterns, the qualitative caption and the explicit
+`No deformation quantity is shown, because none is reported` limit. The Case-01-scoped shared
+presentation repositions the six existing SVG marks into three equal dashed radial-bed cutaways.
+The contained tuber mark increases in both width and radial span across the ordered panels. The
+figure carries `RADIAL BED CUTAWAY · NOT TO SCALE`; its accessible SVG title and non-color extended
+description remain source-controlled.
+
+No Heavy Hands source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a`
+- `presentation.css` — `89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea`
+- `layout-overrides.json` — `c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605`
+- `case-package.json` — `f6244b5db18e7de66c32bc787792898612195cecb1927d23b5e52a8d5119a0c4`
+- `task-registry.js` — `a62376edaf946fc28f54527cd4c7d7190fd4b96826bc52b4d693a0ab6d543f51`
+
+Student fields `t4-span | t4-rules-out` and Accessible fields
+`a4-span | a4-rules-out` remain blank, editable and source-controlled. Student retains 5 pages;
+Accessible retains 8; the owner-accepted Teacher edition remains 9 pages and is not targeted. The
+specimen evidence remains bounded to gorlroot in this habitat: roots point outward; the tuber
+starts aligned with them and curves sideways across the row, neither toward nor away from the
+axis; deformation increases qualitatively with tuber diameter; and no deformation amount is
+reported. The cutaway adds no organ measurement, response, scale relation, engineering threshold,
+cross-species rule or learner action.
+
+The candidate adds exactly three browser assertions: a four-view strict-fit/page-count/geometry
+contract plus one semantic/geometry contract in normal and one in grayscale. Canonical project
+registration is expected to be **2366/2366** with zero application JavaScript errors. Run the
+complete harness twice. Inspect Student page 3 and Accessible page 4 in normal and grayscale.
+Require fixed 816 × 1056 geometry, exact page counts, strict fit, no overflow, clipping, collision
+or crowding, equal bed-section dimensions, increasing contained tuber spans, three distinct
+patterns without color, readable direct labels, a legible `RADIAL BED CUTAWAY · NOT TO SCALE`
+status, the exact same 20 cm bed depth and the explicit No deformation quantity limitation. The
+focused cutaway validator, every established family validator, Heavy Hands layout overrides and
+`git diff --check` must pass. Do not run PDF automation.
+
+This production environment makes no browser-pass, rendered-dimension or visual-inspection claim.
+Do not mark `C2C1-VIS01` `VERIFIED-FAMILY`, advance the accepted 31/36 inventory, record Family 7
+as one of two verified, push, merge to `main` or begin another finding until the external gate is
+complete. A separate documentation-only closeout is required after acceptance.
+
 ## Accepted Family 8 finding — The Gift controlled response
 
 Corrective candidate `917908cc6da875d33c953601f2ed565b53939dc5` advances `C1C7-VIS03` to
