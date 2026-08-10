@@ -593,8 +593,9 @@ convergence 60/60; telemetry 36/36; and the Case 07 layout-override validator pa
 accepted hybrid `C2C5-VIS03`, already counted once in the unique inventory, accepted standalone
 `C1C6-VIS03` and accepted corrective standalone `C1C7-VIS03`.
 
-`C2C1-VIS01` is the corrected but unaccepted Family 7 pilot. It preserves Heavy Hands' frozen
-Student Task 4 page 3 and Accessible Task 4 page 4 SVGs as the semantic source of truth. Those two
+`C2C1-VIS01` is the accepted first Family 7 biological/structural cutaway finding. Corrective
+candidate `95af208f713c15c84f9e5386c6c55ded8124755f` preserves Heavy Hands' frozen Student Task 4
+page 3 and Accessible Task 4 page 4 SVGs as the semantic source of truth. Those two
 figures already contain the same 20 cm bed boundary, the qualitative small / medium / large size
 sequence, three independent patterns, the explicit no-deformation-quantity limit, an accessible
 SVG title and a non-color extended description. The strictly Case-01-scoped shared treatment
@@ -602,7 +603,7 @@ repositions those existing marks as matched radial-bed cutaway panels. Equal das
 retain one common depth while the contained patterned tuber marks increase in both width and
 radial span. The generated status reads `RADIAL BED CUTAWAY · NOT TO SCALE`.
 
-The candidate changes no worksheet source, case presentation, layout override, package metadata,
+The accepted implementation changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response wording or dimensions, persistence identity, page count, Teacher content,
 source hash, release/history record or accepted-family implementation. Student fields
 `t4-span | t4-rules-out` and Accessible fields `a4-span | a4-rules-out` remain blank and
@@ -626,17 +627,33 @@ coverage. The corrective successor preserves `b6a56b9…` as immutable evidence 
 that one harness property token plus the focused validator and active lifecycle records that
 govern it. The frozen package must not be changed to satisfy the assertion.
 
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. A
+fresh same-Mac prerequisite run at accepted closeout
+`a9fd1b0fb2d0a5a3ff9c7a4b53c3961033ac4f57` registered 2362/2362 PASS with zero application
+JavaScript errors. Corrective candidate Run 1 and Run 2 each registered 2365/2365 PASS with zero
+application JavaScript errors, exit 0, byte-identical assertion-name sequences, 2365 unique names
+and no duplicates. The set delta is exactly +3 registered and +3 passed: precisely the normal
+semantic, grayscale semantic and four-view strict-fit/page-count/geometry contracts. All three new
+Heavy Hands assertions passed, including both that failed at `b6a56b9…`; zero assertions were
+removed, no inherited assertion was broken and no assertion passing at the prerequisite now fails.
+This disposition applies only to corrective candidate `95af208…`; it does not create a general
+platform policy or change the canonical 2366-assertion registration. Failed first implementation
+`b6a56b9…` remains immutable evidence in the accepted lineage and is not itself granted visual
+acceptance.
+
 The candidate adds exactly three browser assertions: one four-view strict-fit/page-count/geometry
-contract plus normal and grayscale semantic/geometry contracts. Canonical project registration is
-therefore expected to become 2366. The focused contracts require fixed 816 × 1056 pages, unchanged
-Student 5 / Accessible 8 page counts, equal bed boundaries, strictly increasing contained tuber
-spans, three independent source patterns, exact direct labels, the qualitative/not-to-scale state,
-the 20 cm boundary and the no-deformation-quantity limitation. The corrected candidate must rerun
-the complete external browser harness twice. The completed four-view manual inspection remains
-applicable because the corrective successor changes no CSS, source content, dimensions or
-rendering; its captured browser details must remain intact. Until the browser gate passes,
-C2C1-VIS01 does not advance the accepted **31 of 36 completed / 5 of 36 remaining** inventory.
-Family 7 remains zero of two accepted assignments; this pilot remains `IMPLEMENTED-CANDIDATE`.
+contract plus normal and grayscale semantic/geometry contracts. Captured normal and grayscale
+details for Student page 3 and Accessible page 4 confirm fixed 816 × 1056 pages, exact
+`scrollHeight 936 == clientHeight 936` fit, Student 5 / Accessible 8 page counts, equal dashed bed
+sections, strictly increasing contained tuber spans, three independent patterns, direct
+`Small tuber | Medium tuber | Large tuber` labels, a legible
+`RADIAL BED CUTAWAY · NOT TO SCALE` status, the same 20 cm boundary, the no-deformation-quantity
+limitation, bounded gorlroot language, blank editable learner fields and no overflow, spill,
+clipping, collision or crowding. The focused cutaway validator passed 41/41; intervention 125/125;
+specification 105/105; control 30/30; timeline 44/44; mechanism 103/103; evidence convergence
+60/60; telemetry 36/36; the Heavy Hands layout-override validator passed; and all six governing
+system validators reported zero failures. `C2C1-VIS01` is therefore `VERIFIED-FAMILY`. Family 7
+now has one of two assignments verified.
 
 ## 3. Exact inventory reconciliation
 
@@ -647,15 +664,19 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**
-and **5 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
+Accepted progress after the Heavy Hands radial-bed cutaway closeout is **32 of 36 completed**
+and **4 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
 complete at four of four assignments: hybrid `C2C3-VIS03`, already counted once among Family 2's
 unique findings, and accepted standalone findings `C1C5-VIS03`, `C2C1-VIS03` and `C2C4-VIS03`.
+Family 7 has one of two assignments verified: accepted corrective standalone `C2C1-VIS01`.
 Family 8 has three of five assignments verified: hybrid `C2C5-VIS03`, already counted once among
 Family 2's unique findings, accepted standalone `C1C6-VIS03` and accepted corrective standalone
 `C1C7-VIS03`.
+
+Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**
+and **5 of 36 remaining**.
 
 Accepted progress after the First Contact intervention-comparison closeout is **30 of 36 completed**
 and **6 of 36 remaining**.
@@ -761,7 +782,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 
 | Finding | Case; editions; task/page | Current visual and problem | Family | Proposed modernization and method | Footprint / synchronization | Science/data constraints | Dependency and validation | Status |
 |---|---|---|---|---|---|---|---|---|
-| `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `IMPLEMENTED-CANDIDATE` |
+| `C2C1-VIS01` | Heavy Hands; S T4 p3, A T4 p4 | Three simple tuber panels and span bars. | 7 · Biological/structural cutaway | Matched radial-bed cross-sections showing a small/medium/large organ spanning more of the same 20 cm bed depth; deterministic SVG. | Replace existing figure only; retain table/text support and exact height. | Qualitative size dependence only; no deformation amounts or invented organ dimensions. | P1–P6, CU1; not-to-scale/alt and no-new-number check | `VERIFIED-FAMILY · 41/41 CUTAWAY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 95af208 ACCEPTED` |
 | `C2C1-VIS02` | Heavy Hands; T reference p4 | Three-point radial profile is a basic Teacher-only schematic. | 1 · Technical telemetry/data | Centrifuge telemetry profile with three reported radii, outward direction arrows and direct exact magnitudes. | Teacher-only replacement; no learner workload/page changes. | Direction outward at all points; magnitude increases with radius; retain exact reported values and rounding note; no interpolation. | D1; exact-value/rounding and page-fit checks | `VERIFIED-FAMILY · 36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS` |
 | `C2C1-VIS03` | Heavy Hands; S T8 p5, A T8 p8, AK T8 p4 | Missing criterion and two design responses are mainly prose/table. | 6 · Specification/verification | Requirement flow: midpoint-only rule → missing across-bed criterion → two proposals → monitored verification. | Preserve criterion, constraint and comparison fields; synchronize AK. | Do not invent tolerance; GC-1445 is not universal; present readings are not completed tests. | SV1; field/parity and no-new-number checks | `VERIFIED-FAMILY · 70/70 SPECIFICATION STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 · 0 JS ERRORS · STRICT FIT 936/936 · 4d181aa ACCEPTED` |
 | `C2C2-VIS01` | The Missing Dance; S T3 p3, A T3 p3 | Accurate but basic poricidal-cone SVG. | 7 · Biological/structural cutaway | Cleaner technical botanical cross-section with cut plane, open pores and mature retained pollen directly labeled. | Same figure footprint and text/table backup; no new learner action. | Pores already present, not blocked/sealed; 98% viable pollen retained; Earth buzz pollination distinct from fictional coupling. | CU1; direct-label/alt and prohibited-claim checks | `PLANNED` |

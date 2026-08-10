@@ -4,14 +4,14 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
-## Pending Family 7 pilot — Heavy Hands radial-bed cutaway
+## Accepted Family 7 finding — Heavy Hands radial-bed cutaway
 
 The accepted lineage root is The Gift closeout
 `a9fd1b0fb2d0a5a3ff9c7a4b53c3961033ac4f57`. Failed first implementation
-`b6a56b9c7b8a24cdb41942a2d32705d95432e0c0` remains an immutable intermediate commit beneath the
-active corrective successor for `C2C1-VIS01`, the first Family 7 biological/structural cutaway
-candidate. It is not accepted and does not advance the 31/36 inventory. Family 7 remains zero of
-two accepted assignments until the external browser gate passes.
+`b6a56b9c7b8a24cdb41942a2d32705d95432e0c0` remains an immutable intermediate commit beneath
+accepted corrective successor `95af208f713c15c84f9e5386c6c55ded8124755f` for `C2C1-VIS01`,
+the first accepted Family 7 biological/structural cutaway finding. Failed `b6a56b9…` is not itself
+granted visual acceptance.
 
 The frozen Student Task 4 page 3 and Accessible Task 4 page 4 figures remain the semantic source.
 Each retains the exact same 20 cm bed-depth boundary, the direct `Small tuber | Medium tuber |
@@ -53,22 +53,34 @@ successor changes that one property token to `sharedComponentStyles` without alt
 worksheet content, package metadata, rendering or geometry. Failed `b6a56b9…` remains immutable
 evidence and is not itself granted visual acceptance.
 
-The candidate adds exactly three browser assertions: a four-view strict-fit/page-count/geometry
-contract plus one semantic/geometry contract in normal and one in grayscale. Canonical project
-registration is expected to be **2366/2366** with zero application JavaScript errors. Run the
-complete harness twice. The prior Student page 3 and Accessible page 4 inspection in normal and
-grayscale remains applicable because the corrective successor changes no rendering bytes; confirm
-its captured conditions remain intact.
-Require fixed 816 × 1056 geometry, exact page counts, strict fit, no overflow, clipping, collision
-or crowding, equal bed-section dimensions, increasing contained tuber spans, three distinct
-patterns without color, readable direct labels, a legible `RADIAL BED CUTAWAY · NOT TO SCALE`
-status, the exact same 20 cm bed depth and the explicit No deformation quantity limitation. The
-focused cutaway validator, every established family validator, Heavy Hands layout overrides and
-`git diff --check` must pass. Do not run PDF automation.
+The external Mac/Google Chrome gate passed under a candidate-specific differential acceptance. A
+fresh same-Mac prerequisite run at accepted closeout `a9fd1b0…` registered **2362/2362 PASS** with
+zero application JavaScript errors. Corrective candidate Run 1 and Run 2 each registered
+**2365/2365 PASS** with zero application JavaScript errors and exit 0. Their assertion-name
+sequences were byte-identical, with 2365 unique names and no duplicates. The set delta is exactly
++3 registered and +3 passed: precisely the normal semantic, grayscale semantic and four-view
+strict-fit/page-count/geometry contracts. All three new Heavy Hands assertions registered and
+passed, including both semantic assertions that failed at `b6a56b9…`; no assertion was removed,
+no inherited assertion was broken and no assertion passing at the prerequisite now fails.
 
-Do not mark `C2C1-VIS01` `VERIFIED-FAMILY`, advance the accepted 31/36 inventory, record Family 7
-as one of two verified, push, merge to `main` or begin another finding until the external gate is
-complete. A separate documentation-only closeout is required after acceptance.
+Canonical project registration remains 2366. This acceptance applies only to corrective candidate
+`95af208…`; the inherited one-registration difference does not establish a general Mac/platform
+policy or environment exception. Failed first implementation `b6a56b9…` remains immutable
+evidence in the accepted lineage and is not itself granted visual acceptance.
+
+Captured details from Student page 3 and Accessible page 4 in normal and grayscale confirm fixed
+816 × 1056 pages, exact `scrollHeight 936 == clientHeight 936` fit, Student 5 / Accessible 8 page
+counts, no overflow, equal 205.45 × 57.44 dashed beds, strictly increasing contained tubers,
+three independent patterns, direct `Small tuber | Medium tuber | Large tuber` labels, a legible
+`RADIAL BED CUTAWAY · NOT TO SCALE` status, the same 20 cm bed depth, the explicit no-deformation-
+quantity limitation, bounded gorlroot language and blank editable unclipped learner fields. The
+focused cutaway validator is **41/41 PASS**, all seven preceding visual-family validators pass,
+Heavy Hands layout overrides pass, all six governing system validators report zero failures and
+`git diff --check` is clean. PDF automation was not run.
+
+`C2C1-VIS01` is therefore `VERIFIED-FAMILY`. The formal inventory is now **32 of 36 completed**,
+with **4 remaining**. Family 7 has one of two assignments verified. Do not merge to `main` or begin
+another finding in the closeout integration run.
 
 ## Accepted Family 8 finding — The Gift controlled response
 
@@ -1296,6 +1308,17 @@ accepted hybrid `C2C3-VIS03` is not counted again. Failed implementation `473722
 immutable intermediate commit beneath accepted corrective successor `4d181aa…`. The visual
 branch remains isolated from `main`.
 
+## Family 7 accepted register
+
+| Finding | Accepted implementation | Recorded state | Assignment note |
+|---|---|---|---|
+| `C2C1-VIS01` | `95af208` | `VERIFIED-FAMILY` | first accepted Family 7 finding; failed `b6a56b9` retained in lineage |
+
+Family 7 has one of two assignments verified. Accepting `C2C1-VIS01` advances the unique
+visual-modernization inventory to 32 of 36 completed and 4 remaining. Failed implementation
+`b6a56b9…` remains an immutable intermediate commit beneath accepted corrective successor
+`95af208…`. The visual branch remains isolated from `main`.
+
 ## Family 8 accepted register
 
 | Finding | Accepted implementation | Recorded state | Assignment note |
@@ -1328,3 +1351,20 @@ changes only documentation and the focused validator, do not rerun the Mac/Chrom
 manual inspection. If both checks pass, push the branch by ordinary fast-forward and report local,
 tracking and live remote SHAs. Do not mark any additional finding accepted.
 Do not begin another finding in the same run.
+
+## C2C1-VIS01 closeout integration prompt
+
+Validate the supplied closeout bundle only from clean accepted corrective implementation
+`95af208f713c15c84f9e5386c6c55ded8124755f`. Confirm the pushed remote remains
+`a9fd1b0fb2d0a5a3ff9c7a4b53c3961033ac4f57`, verify the checksum and bundle prerequisite, fetch
+it, and integrate it with `git merge --ff-only`. Do not reset, rebase, amend, squash, force-push or
+edit files. Run the focused 41-check cutaway validator and the 125-check intervention/trial
+validator, then `git diff --check`. Confirm the closeout changes only this handoff, the production
+plan and the focused validator; records `C2C1-VIS01` as `VERIFIED-FAMILY`; records Family 7 at one
+of two verified assignments; records the candidate-specific differential Mac/Chrome acceptance
+without changing the canonical 2366-assertion project total; preserves failed `b6a56b9…` in the
+accepted lineage; and advances the inventory to 32/36 completed and 4 remaining. Because the
+successor changes only documentation and the focused validator, do not rerun the Mac/Chrome
+harness, manual inspection or PDF automation. If both checks pass, push the branch by ordinary
+fast-forward and report local, tracking and live remote SHAs. Do not mark any additional finding
+accepted. Do not begin another finding in the same run.

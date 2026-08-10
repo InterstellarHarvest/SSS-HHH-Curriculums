@@ -289,11 +289,17 @@ def main() -> int:
     )
 
     check(
-        "the plan records C2C1-VIS01 as corrected but unaccepted",
-        "`C2C1-VIS01` is the corrected but unaccepted Family 7 pilot" in plan
-        and re.search(r"\| `C2C1-VIS01` .*\| `IMPLEMENTED-CANDIDATE` \|", plan) is not None
+        "the plan records C2C1-VIS01 as the accepted corrected Family 7 finding",
+        "`C2C1-VIS01` is the accepted first Family 7 biological/structural cutaway finding" in plan
+        and re.search(
+            r"\| `C2C1-VIS01` .*\| 7 · Biological/structural cutaway \|.*"
+            r"`VERIFIED-FAMILY · 41/41 CUTAWAY STATIC PASS · DIFFERENTIAL MAC/CHROME PASS ×2 "
+            r"· 0 JS ERRORS · STRICT FIT 936/936 · 95af208 ACCEPTED`",
+            plan,
+        ) is not None
         and all(token in plan for token in (
             "b6a56b9c7b8a24cdb41942a2d32705d95432e0c0",
+            "95af208f713c15c84f9e5386c6c55ded8124755f",
             "2363/2365",
             "zero application JavaScript errors",
             "identical assertion-name sets",
@@ -304,21 +310,30 @@ def main() -> int:
         )),
     )
     check(
-        "the plan preserves 31/36 while the cutaway candidate awaits rendering",
-        "C2C1-VIS01 does not advance the accepted **31 of 36 completed / 5 of 36 remaining** inventory" in plan
-        and "Family 7 remains zero of two accepted assignments" in plan,
+        "the plan advances accepted inventory to 32 of 36 and Family 7 to one of two",
+        "Accepted progress after the Heavy Hands radial-bed cutaway closeout is **32 of 36 completed**" in plan
+        and "**4 of 36 remaining**" in plan
+        and "Family 7 has one of two assignments verified" in plan
+        and "Accepted progress after The Gift intervention-comparison closeout is **31 of 36 completed**" in plan,
     )
     check(
-        "the handoff records the pending Family 7 pilot and frozen Heavy Hands hashes",
-        "Pending Family 7 pilot — Heavy Hands radial-bed cutaway" in handoff
+        "the handoff records the accepted Family 7 finding and frozen Heavy Hands hashes",
+        "Accepted Family 7 finding — Heavy Hands radial-bed cutaway" in handoff
         and "C2C1-VIS01" in handoff
-        and "2366/2366" in handoff
+        and "Canonical project registration remains 2366" in handoff
         and "2363/2365" in handoff
         and "2362/2362 PASS" in handoff
+        and "2365/2365 PASS" in handoff
+        and "+3 registered and +3 passed" in handoff
+        and "All three new Heavy Hands assertions registered and" in handoff
+        and "no assertion was removed" in handoff
         and "all 2362 inherited assertions passed" in handoff
         and "not the anticipated inherited 2365/2365 differential" in handoff
         and "sharedComponentStyles" in handoff
-        and "31/36" in handoff
+        and "does not establish a general Mac/platform" in handoff
+        and "The formal inventory is now **32 of 36 completed**" in handoff
+        and "with **4 remaining**" in handoff
+        and "Family 7 has one of two assignments verified" in handoff
         and all(expected in handoff for expected in FROZEN_HASHES.values()),
     )
     check(
