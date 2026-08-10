@@ -664,6 +664,28 @@ extended description. The Case-02-scoped shared layer adds a mission-document fr
 technical grid, coherent enlargement of the cone and pore marks, stronger pore outlines, distinct
 solid/dashed leaders and the generated status `BOTANICAL CUTAWAY · SECTION A–A`.
 
+Failed first implementation `bab41352f413b5110c11c9e024722c720401f757` remains an immutable
+intermediate. Both complete Mac/Google Chrome runs reported **2365/2368 FAIL** with zero
+application JavaScript errors and identical assertion-name sequences. A fresh same-Mac run of
+accepted prerequisite `26ab8e3…` reported 2365/2365 PASS. The failed candidate added precisely
+the three intended C2C2 assertions, and both semantic assertions passed, but the new strict-fit
+assertion and two inherited assertions failed: `SSS-C2-CASE02 student Pages fit` and the Student
+source-default resize-area page-safety assertion. Student mission page 3 changed from exact
+936/936 fit at the prerequisite to **scrollHeight 939 against clientHeight 936**. The figure grew
+from 262.78 px to 265.95 px because the added caption and extended-description chrome consumed
+about 3.17 px of flow height. Accessible remained at exact 936/936 only because its floated status
+narrowed the caption into an additional line; its figure grew by 17.84 px. This is a real
+candidate rendering regression that breaks two inherited assertions, not the accepted same-Mac
+registration differential and not a source-package defect. `bab4135…` is preserved as the
+failed immutable first implementation and is not eligible for acceptance.
+
+The height-neutral corrective successor keeps the accepted cutaway treatment but moves the section
+status out of caption flow, restores the frozen case's caption and description vertical metrics,
+and renders the dotted description separator without layout height. It changes no cone, pore,
+pollen, leader, label, grid, response or frozen case-source byte. The corrective browser gate must
+confirm Student returns to strict 936/936 fit and Accessible gains positive reserve without a
+caption wrap; no page or response-area geometry may be recut to obtain that result.
+
 The candidate changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response wording or dimensions, persistence identity, page count, Teacher content,
 source hash, release/history record or accepted-family implementation. Student fields
@@ -697,7 +719,7 @@ platform policy. Until the browser gate passes, C2C2-VIS01 does not advance the 
 **32 of 36 completed / 4 of 36 remaining** inventory. Family 7 remains one of two accepted
 assignments; this completion candidate remains `IMPLEMENTED-CANDIDATE`.
 
-Local candidate validation passes the expanded cutaway family at 83/83, intervention 125/125,
+Local candidate validation passes the expanded cutaway family at 88/88, intervention 125/125,
 specification 105/105, control 30/30, timeline 44/44, mechanism 103/103, evidence convergence
 60/60, telemetry 36/36, The Missing Dance and full-system layout overrides, corrective-aware
 canonical structure, release integrity 40/40, quality v3 with zero failures, accessibility v2 with

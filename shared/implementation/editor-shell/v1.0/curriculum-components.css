@@ -5580,6 +5580,21 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE02"]
+  .figure[data-figure-id^="fig-cone-"]::before {
+  position: absolute;
+  z-index: 1;
+  top: 24px;
+  right: 5px;
+  padding: 2px 4px;
+  content: "BOTANICAL CUTAWAY · SECTION A–A";
+  border: 1px solid var(--dance-cutaway-line);
+  background: var(--dance-cutaway-paper);
+  font: 700 5.4pt/1.05 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C2-CASE02"]
   .figure[data-figure-id^="fig-cone-"] > svg {
   background:
     repeating-linear-gradient(
@@ -5650,31 +5665,23 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
 
 .worksheet-document[data-case-id="SSS-C2-CASE02"]
   .figure[data-figure-id^="fig-cone-"] figcaption {
-  display: flow-root;
-  margin-top: 2px;
-  padding: 3px 4px;
+  margin-top: 3px;
+  padding: 3px 0 0;
   border-top: 1px solid var(--dance-cutaway-rule);
   background: var(--dance-cutaway-panel);
 }
 
 .worksheet-document[data-case-id="SSS-C2-CASE02"]
-  .figure[data-figure-id^="fig-cone-"] figcaption::before {
-  float: right;
-  margin: 0 0 2px 6px;
-  padding: 2px 4px;
-  content: "BOTANICAL CUTAWAY · SECTION A–A";
-  border: 1px solid var(--dance-cutaway-line);
-  background: var(--dance-cutaway-paper);
-  font: 700 5.4pt/1.05 "JetBrains Mono", monospace;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-}
-
-.worksheet-document[data-case-id="SSS-C2-CASE02"]
   .figure[data-figure-id^="fig-cone-"] .extended-description {
-  margin: 2px 0 0;
-  padding: 2px 4px 0;
-  border-top: 1px dotted var(--dance-cutaway-rule);
+  margin: 3px 0 0;
+  padding: 0;
+  border-top: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      var(--dance-cutaway-rule) 0 2px,
+      transparent 2px 4px
+    ) top left / 100% 1px no-repeat;
 }
 
 .worksheet-document.grayscale[data-case-id="SSS-C2-CASE02"]

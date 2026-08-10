@@ -12,6 +12,26 @@ candidate. Its required accepted prerequisite is the synchronized Heavy Hands cl
 and the accepted inventory remains **32/36** until the external browser gate and a separate
 closeout succeed.
 
+Failed first implementation `bab41352f413b5110c11c9e024722c720401f757` is preserved as an
+immutable intermediate. Its two complete Mac/Google Chrome runs each reported **2365/2368 FAIL**
+with zero application JavaScript errors and identical assertion-name sequences. The fresh
+same-Mac prerequisite run at `26ab8e3…` was 2365/2365 PASS. Both new semantic assertions passed,
+but Student mission page 3 overflows by exactly 3 px: **scrollHeight 939 against clientHeight 936**.
+The figure grew from **262.78 px to 265.95 px** because the added frame/caption/description
+chrome consumed about 3.17 px on a page whose prerequisite reserve was zero. The new strict-fit
+assertion and two inherited assertions failed: Student page fit and Student source-default resize-
+area page safety. Accessible stayed at exact 936/936 only because the floated section status
+narrowed its larger caption into another line; Accessible figure grew by 17.84 px. This is a real
+rendering regression and disqualifies `bab4135…` from the differential path. It is the failed
+immutable first implementation and is not itself eligible for acceptance; that failed immutable first implementation remains part of the corrective lineage.
+
+The height-neutral corrective successor retains the validated visual treatment while moving the
+section status out of caption flow, restoring the frozen case caption and extended-description
+vertical metrics, and drawing the dotted description separator without consuming height. It must
+return Student page 3 to exact 936/936 and give Accessible positive bottom reserve without changing
+the frozen page, response geometry or package. Reconfirm the section status does not collide with
+the SVG's source sentence, cone, labels or leaders in any of the four rendered views.
+
 The frozen Student Task 3 page 3 and Accessible Task 3 page 3 SVGs remain the semantic source.
 Each retains one triangular cone section, eight already-present pore marks, a dot-patterned mature-
 pollen fill, direct `Pores | Mature pollen` labels, the exact `viable at 98%, still inside`
@@ -61,7 +81,7 @@ automation. Do not mark `C2C2-VIS01` `VERIFIED-FAMILY`, complete Family 7, advan
 32/36 inventory, merge to `main` or begin another finding until the external gate is complete. A
 separate documentation-only closeout is required after acceptance.
 
-Local candidate validation is complete: cutaway **83/83**, intervention **125/125**,
+Local candidate validation is complete: cutaway **88/88**, intervention **125/125**,
 specification **105/105**, control **30/30**, timeline **44/44**, mechanism **103/103**, evidence
 convergence **60/60**, telemetry **36/36**, Case-02 and all-case layout overrides PASS,
 corrective-aware canonical structure PASS, release integrity **40/40**, quality v3 and

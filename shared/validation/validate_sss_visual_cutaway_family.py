@@ -544,6 +544,27 @@ def main() -> int:
         and dance_css.count("var(--paper, #fff)") >= 2
         and "var(--panel-light, #f7f9fa)" in dance_css,
     )
+    check(
+        "the Missing Dance status is out of caption flow and consumes no figure height",
+        '.figure[data-figure-id^="fig-cone-"]::before' in dance_css
+        and "position: absolute" in dance_css
+        and "top: 24px" in dance_css
+        and "figcaption::before" not in dance_css
+        and "float: right" not in dance_css,
+    )
+    check(
+        "the Missing Dance caption restores the frozen case vertical metrics",
+        "margin-top: 3px" in dance_css
+        and "padding: 3px 0 0" in dance_css
+        and "display: flow-root" not in dance_css,
+    )
+    check(
+        "the Missing Dance description separator is height neutral",
+        "margin: 3px 0 0" in dance_css
+        and "padding: 0" in dance_css
+        and "border-top: 0" in dance_css
+        and "100% 1px no-repeat" in dance_css,
+    )
 
     dance_harness_start = harness.index("// Register the second Family 7 cutaway")
     dance_harness_end = harness.index("// Register the second standalone Family 6 contract", dance_harness_start)
@@ -605,6 +626,17 @@ def main() -> int:
         and re.search(r"Canonical project registration is\s+expected to become 2369", plan) is not None,
     )
     check(
+        "the plan preserves the failed first Missing Dance implementation and corrective fit diagnosis",
+        all(token in plan for token in (
+            "bab41352f413b5110c11c9e024722c720401f757",
+            "2365/2368 FAIL",
+            "scrollHeight 939 against clientHeight 936",
+            "failed immutable first implementation",
+            "height-neutral corrective successor",
+            "two inherited assertions",
+        )),
+    )
+    check(
         "the plan preserves 32/36 while the Missing Dance candidate awaits rendering",
         re.search(
             r"C2C2-VIS01 does not advance the accepted\s+\*\*32 of 36 completed / 4 of 36 remaining\*\* inventory",
@@ -620,6 +652,19 @@ def main() -> int:
         and "2368/2368" in handoff
         and "32/36" in handoff
         and all(expected in handoff for expected in DANCE_FROZEN_HASHES.values()),
+    )
+    check(
+        "the handoff binds the Missing Dance reissue to the measured Mac overflow defect",
+        all(token in handoff for token in (
+            "bab41352f413b5110c11c9e024722c720401f757",
+            "2365/2368 FAIL",
+            "262.78 px to 265.95 px",
+            "scrollHeight 939 against clientHeight 936",
+            "Student mission page 3 overflows by exactly 3 px",
+            "Accessible figure grew by 17.84 px",
+            "failed immutable first implementation",
+            "height-neutral corrective successor",
+        )),
     )
     check(
         "the handoff requires normal/grayscale Missing Dance geometry, fit and bounded-science inspection",
