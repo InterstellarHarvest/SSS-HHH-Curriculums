@@ -614,6 +614,11 @@ def main() -> int:
         )),
     )
     check(
+        "the Missing Dance browser status oracle samples the height-neutral figure badge",
+        'status: figure ? win.getComputedStyle(figure, "::before").content' in dance_harness
+        and 'getComputedStyle(caption, "::before")' not in dance_harness,
+    )
+    check(
         "the Missing Dance cutaway browser contract restores Student normal state",
         'api.setRole("student")' in dance_harness
         and 'api.saveState({ grayscale: false })' in dance_harness,
@@ -634,6 +639,18 @@ def main() -> int:
             "failed immutable first implementation",
             "height-neutral corrective successor",
             "two inherited assertions",
+        )),
+    )
+    check(
+        "the plan preserves the failed first corrective and exact browser-oracle mismatch",
+        all(token in plan for token in (
+            "e91aa32748392c9909a123898914f715288d3e1c",
+            "2366/2368 FAIL",
+            'getComputedStyle(caption, "::before").content',
+            'getComputedStyle(figure, "::before").content',
+            'computed to `"none"`',
+            "failed immutable first corrective",
+            "second corrective successor",
         )),
     )
     check(
@@ -664,6 +681,18 @@ def main() -> int:
             "Accessible figure grew by 17.84 px",
             "failed immutable first implementation",
             "height-neutral corrective successor",
+        )),
+    )
+    check(
+        "the handoff binds the second corrective to the failed badge-oracle relocation",
+        all(token in handoff for token in (
+            "e91aa32748392c9909a123898914f715288d3e1c",
+            "2366/2368 FAIL",
+            'getComputedStyle(caption, "::before").content',
+            'getComputedStyle(figure, "::before").content',
+            'computed to `"none"`',
+            "failed immutable first corrective",
+            "second corrective successor",
         )),
     )
     check(

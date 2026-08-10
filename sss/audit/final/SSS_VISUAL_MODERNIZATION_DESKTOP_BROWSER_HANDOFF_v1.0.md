@@ -27,10 +27,31 @@ immutable first implementation and is not itself eligible for acceptance; that f
 
 The height-neutral corrective successor retains the validated visual treatment while moving the
 section status out of caption flow, restoring the frozen case caption and extended-description
-vertical metrics, and drawing the dotted description separator without consuming height. It must
-return Student page 3 to exact 936/936 and give Accessible positive bottom reserve without changing
-the frozen page, response geometry or package. Reconfirm the section status does not collide with
-the SVG's source sentence, cone, labels or leaders in any of the four rendered views.
+vertical metrics, and drawing the dotted description separator without consuming height.
+
+Failed first corrective `e91aa32748392c9909a123898914f715288d3e1c` is preserved as an immutable
+intermediate. Its two complete Mac/Google Chrome runs each reported **2366/2368 FAIL** with zero
+application JavaScript errors, identical 2368-name sequences and no duplicates. The height defect
+was cured: Student and Accessible page 3 were exact 936/936 in normal and grayscale; the two
+inherited assertions broken by `bab4135…` passed; the new strict-fit assertion passed; Student
+figure height was 261.95 px; and the Accessible caption returned to its prerequisite one-line
+height. Accessible remained hairline at integer-exact 936/936 rather than gaining positive slack,
+but had no overflow or caption wrap. The absolutely positioned badge was legible and collision-
+free in all four captures.
+
+Only the normal and grayscale semantic assertions failed. The height-neutral status is generated
+on the figure pseudo-element, but the unchanged browser oracle sampled
+`getComputedStyle(caption, "::before").content`, which computed to `"none"`. All other captured
+semantic conditions passed. This is a deterministic static/browser oracle mismatch, not a
+rendering, source, science or platform defect. `e91aa32…` is the failed immutable first corrective
+and is not eligible for acceptance.
+
+The second corrective successor keeps the proven CSS and rendered geometry byte-identical while
+changing the browser status oracle to sample
+`getComputedStyle(figure, "::before").content`. Reconfirm exact 936/936 fit, the hairline but
+non-overflowing Accessible page, and the collision-free status in all four views. The focused
+validator and candidate records must agree with that same figure-node oracle; no frozen page,
+response geometry, package or presentation CSS may change.
 
 The frozen Student Task 3 page 3 and Accessible Task 3 page 3 SVGs remain the semantic source.
 Each retains one triangular cone section, eight already-present pore marks, a dot-patterned mature-
@@ -81,7 +102,7 @@ automation. Do not mark `C2C2-VIS01` `VERIFIED-FAMILY`, complete Family 7, advan
 32/36 inventory, merge to `main` or begin another finding until the external gate is complete. A
 separate documentation-only closeout is required after acceptance.
 
-Local candidate validation is complete: cutaway **88/88**, intervention **125/125**,
+Local candidate validation is complete: cutaway **91/91**, intervention **125/125**,
 specification **105/105**, control **30/30**, timeline **44/44**, mechanism **103/103**, evidence
 convergence **60/60**, telemetry **36/36**, Case-02 and all-case layout overrides PASS,
 corrective-aware canonical structure PASS, release integrity **40/40**, quality v3 and

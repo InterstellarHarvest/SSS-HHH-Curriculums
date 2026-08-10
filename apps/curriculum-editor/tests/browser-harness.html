@@ -2044,7 +2044,7 @@
                 position: figure ? win.getComputedStyle(figure).position : "",
                 overflow: figure ? win.getComputedStyle(figure).overflow : "",
                 railWidth: figure ? px(win.getComputedStyle(figure).borderLeftWidth) : 0,
-                status: caption ? win.getComputedStyle(caption, "::before").content.replaceAll('"', "") : "",
+                status: figure ? win.getComputedStyle(figure, "::before").content.replaceAll('"', "") : "",
                 svgBackground: svg ? win.getComputedStyle(svg).backgroundImage : "none",
                 coneWidth: rounded(coneBox?.width || 0),
                 coneHeight: rounded(coneBox?.height || 0),

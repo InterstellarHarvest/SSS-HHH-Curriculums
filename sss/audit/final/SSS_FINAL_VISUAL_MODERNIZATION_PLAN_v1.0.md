@@ -682,9 +682,30 @@ failed immutable first implementation and is not eligible for acceptance.
 The height-neutral corrective successor keeps the accepted cutaway treatment but moves the section
 status out of caption flow, restores the frozen case's caption and description vertical metrics,
 and renders the dotted description separator without layout height. It changes no cone, pore,
-pollen, leader, label, grid, response or frozen case-source byte. The corrective browser gate must
-confirm Student returns to strict 936/936 fit and Accessible gains positive reserve without a
-caption wrap; no page or response-area geometry may be recut to obtain that result.
+pollen, leader, label, grid, response or frozen case-source byte.
+
+Failed first corrective `e91aa32748392c9909a123898914f715288d3e1c` is also preserved as an
+immutable intermediate. Its two complete Mac/Google Chrome runs each reported **2366/2368 FAIL**
+with zero application JavaScript errors, identical 2368-name sequences and no duplicate names.
+The height correction itself passed: Student and Accessible page 3 were exact 936/936 in normal
+and grayscale, both inherited assertions broken by `bab4135…` passed, the new strict-fit assertion
+passed, Student figure height fell to 261.95 px, and the Accessible caption returned to its
+prerequisite one-line height. Accessible remained hairline at integer-exact 936/936 rather than
+gaining positive slack, but it did not overflow or wrap.
+
+The only failures were the normal and grayscale semantic cutaway assertions. The height-neutral
+CSS correctly generates the status on the figure pseudo-element, while the unchanged browser
+oracle still sampled `getComputedStyle(caption, "::before").content`; that obsolete caption value
+computed to `"none"`. Every other semantic sub-condition passed. This is a deterministic,
+candidate-authored static/browser oracle mismatch, not a rendering, source-package, science or
+platform defect. `e91aa32…` is the failed immutable first corrective and is not eligible for
+acceptance.
+
+The second corrective successor keeps the proven CSS and all rendered geometry unchanged and
+updates only the browser status oracle to sample
+`getComputedStyle(figure, "::before").content`. The focused validator and candidate records must
+bind that oracle to the same height-neutral figure node. No page or response-area geometry may be
+recut, and no case source, package metadata or presentation layer may change.
 
 The candidate changes no worksheet source, case presentation, layout override, package metadata,
 task registry, response wording or dimensions, persistence identity, page count, Teacher content,
@@ -719,7 +740,7 @@ platform policy. Until the browser gate passes, C2C2-VIS01 does not advance the 
 **32 of 36 completed / 4 of 36 remaining** inventory. Family 7 remains one of two accepted
 assignments; this completion candidate remains `IMPLEMENTED-CANDIDATE`.
 
-Local candidate validation passes the expanded cutaway family at 88/88, intervention 125/125,
+Local candidate validation passes the expanded cutaway family at 91/91, intervention 125/125,
 specification 105/105, control 30/30, timeline 44/44, mechanism 103/103, evidence convergence
 60/60, telemetry 36/36, The Missing Dance and full-system layout overrides, corrective-aware
 canonical structure, release integrity 40/40, quality v3 with zero failures, accessibility v2 with
