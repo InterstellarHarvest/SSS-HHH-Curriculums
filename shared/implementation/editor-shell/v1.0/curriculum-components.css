@@ -4933,3 +4933,193 @@ body.grayscale .worksheet-document[data-case-id="SSS-C2-CASE04"]
   background-color: var(--paper, #fff);
 }
 /* END SSS/HHH SPECIFICATION-VISUAL EXTENSIONS */
+
+/*
+ * Intervention-comparison family pilot: First Contact Protocol.
+ *
+ * The frozen Task 6 structures already compare unsafe shutdown, unchanged
+ * operation and a reversible selective treatment, then retain separate
+ * recommendation and monitoring responses. This Case-06-scoped layer exposes
+ * that compare-select-monitor sequence without adding a treatment setting,
+ * weakening life-support safeguards or implying a completed recovery test.
+ */
+.worksheet-document[data-case-id="SSS-C1-CASE06"] {
+  --contact-intervention-line: var(--ink, #18212b);
+  --contact-intervention-panel: var(--paper, #fff);
+  --contact-intervention-unsafe-pattern:
+    repeating-linear-gradient(45deg, transparent 0 6px, rgba(24, 33, 43, .12) 6px 7px);
+  --contact-intervention-hold-pattern:
+    repeating-linear-gradient(90deg, transparent 0 8px, rgba(24, 33, 43, .09) 8px 9px);
+  --contact-intervention-test-pattern:
+    repeating-linear-gradient(-45deg, transparent 0 7px, rgba(24, 33, 43, .075) 7px 8px);
+  --contact-intervention-monitor-pattern:
+    repeating-linear-gradient(135deg, transparent 0 9px, rgba(24, 33, 43, .055) 9px 10px);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"] .task-heading[data-task-id="6"],
+  .page[data-page-id="accessible-mission-05"] .task-heading[data-task-id="6"],
+  .page[data-page-id="answer-key-03"] .task-heading[data-task-id="6"]
+) {
+  position: relative;
+  padding-right: 1.55in;
+  border-bottom: 1.5px solid var(--contact-intervention-line);
+  background: var(--contact-intervention-monitor-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"] .task-heading[data-task-id="6"],
+  .page[data-page-id="accessible-mission-05"] .task-heading[data-task-id="6"],
+  .page[data-page-id="answer-key-03"] .task-heading[data-task-id="6"]
+)::after {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+  content: "COMPARE → SELECT → MONITOR";
+  font: 800 5.3pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table {
+  outline: 1.5px solid var(--contact-intervention-line);
+  box-shadow: inset 4px 0 0 var(--contact-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody th {
+  position: relative;
+  padding-right: .68in;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody th::after {
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+  font: 800 4.8pt/1 "JetBrains Mono", monospace;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody tr:first-child > * {
+  border-left: 4px double var(--contact-intervention-line);
+  background: var(--contact-intervention-unsafe-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody tr:first-child th::after {
+  content: "UNSAFE";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody tr:nth-child(2) > * {
+  border-left: 4px dotted var(--contact-intervention-line);
+  background: var(--contact-intervention-hold-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody tr:nth-child(2) th::after {
+  content: "NO CHANGE";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody tr:nth-child(3) > * {
+  border-left: 4px solid var(--contact-intervention-line);
+  background: var(--contact-intervention-test-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"],
+  .page[data-page-id="accessible-mission-05"],
+  .page[data-page-id="answer-key-03"]
+) .intervention-table tbody tr:nth-child(3) th::after {
+  content: "CONTROLLED TEST";
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"] .two-col > div:first-child .response-label,
+  .page[data-page-id="accessible-mission-05"] .response-label:has(+ [data-persist-id="a6-recommend"])
+) {
+  padding-left: 6px;
+  border-left: 4px solid var(--contact-intervention-line);
+  background: var(--contact-intervention-test-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  [data-persist-id="t6-recommend"],
+  [data-persist-id="a6-recommend"]
+) {
+  border-left: 4px solid var(--contact-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"] .two-col > div:nth-child(2) .response-label,
+  .page[data-page-id="accessible-mission-05"] .response-label:has(+ [data-persist-id="a6-monitor"])
+) {
+  padding-left: 6px;
+  border-left: 4px dashed var(--contact-intervention-line);
+  background: var(--contact-intervention-monitor-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  [data-persist-id="t6-monitor"],
+  [data-persist-id="a6-monitor"]
+) {
+  border-left: 4px dashed var(--contact-intervention-line);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"] .science-note,
+  .page[data-page-id="accessible-mission-05"] .science-note
+) {
+  border-left: 4px double var(--contact-intervention-line);
+  background: var(--contact-intervention-unsafe-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .page[data-page-id="answer-key-03"] .two-col > .answer-block:first-child {
+  border-left: 4px solid var(--contact-intervention-line);
+  background: var(--contact-intervention-test-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document[data-case-id="SSS-C1-CASE06"]
+  .page[data-page-id="answer-key-03"] .two-col > .answer-block:nth-child(2) {
+  border-left: 4px dashed var(--contact-intervention-line);
+  background: var(--contact-intervention-monitor-pattern), var(--contact-intervention-panel);
+}
+
+.worksheet-document.grayscale[data-case-id="SSS-C1-CASE06"] :is(
+  .page[data-page-id="student-mission-03"] .content-area,
+  .page[data-page-id="accessible-mission-05"] .content-area,
+  .page[data-page-id="answer-key-03"] .content-area
+) {
+  color: var(--ink, #18212b);
+  background-color: var(--paper, #fff);
+}

@@ -492,6 +492,40 @@ dimensions exactly during independent Mac inspection. The focused specification 
 36/36 and the Case 04 layout-override validator passed. `C2C4-VIS03` is therefore
 `VERIFIED-FAMILY`, completing Family 6 at four of four assignments.
 
+`C1C6-VIS03` is the implemented but unaccepted first standalone Family 8
+intervention-comparison candidate. It preserves First Contact Protocol's frozen Student page 3,
+Answer Key page 3 and Accessible page 5 as the semantic source of truth. The strictly Case-06-
+scoped shared treatment exposes the existing Task 6 sequence as
+`COMPARE → SELECT → MONITOR`. Its three existing options retain their exact order and receive
+`UNSAFE`, `NO CHANGE` and `CONTROLLED TEST` states with double, dotted and solid borders plus
+independent hatch patterns. The existing life-support note remains a distinct safety gate; the
+recommendation and monitoring fields remain separate solid and dashed rails. The Answer Key
+mirrors the same option states and both response gates.
+
+The candidate changes no worksheet source, case presentation, layout override, package metadata,
+task registry, response wording or dimensions, persistence identity, page count, Teacher content,
+source hash, release/history record or accepted-family implementation. Student retains five blank
+fields: `t6-disable | t6-unchanged | t6-selective | t6-recommend | t6-monitor`. Accessible retains
+the parallel five fields and only its already accepted unsafe-option scaffold. Disabling all
+atmospheric processing remains unsafe; unchanged operation remains inconsistent with the supported
+signal-loss diagnosis; and isolation or selective preservation remains a reversible, limited-scale,
+monitored test rather than a completed treatment or guaranteed recovery. Pressure,
+breathable-gas control and contaminant protection remain active constraints.
+
+The finished Linux Chromium 143 run registers the new canonical total of 2360 assertions and
+reports **2329/2360** because of the same 31 established platform/font/screenshot-smoke exceptions.
+All three new Case 06 assertions pass and application JavaScript errors remain zero. The candidate
+adds one six-view strict-fit contract plus normal and grayscale semantic/geometry contracts.
+Normal and grayscale inspection confirms fixed 816 × 1056 pages, exact
+`scrollHeight 936 == clientHeight 936`, Student 5 / Answer Key 5 / Accessible 7 page counts,
+contained option panels, distinct border/pattern states, blank usable learner fields and no
+overflow, spill, clipping, collision or crowding. The focused intervention/trial validator passes
+63/63. External Mac/Google Chrome acceptance remains required.
+Until that gate passes and a separate documentation-only closeout is synchronized, `C1C6-VIS03`
+does not advance the accepted **29 of 36 completed / 7 of 36 remaining** inventory. Family 8
+retains one accepted assignment—hybrid `C2C5-VIS03`, already counted once in the unique inventory—
+and this new standalone candidate remains unaccepted.
+
 ## 3. Exact inventory reconciliation
 
 The current remediation register contains exactly **36 findings classified

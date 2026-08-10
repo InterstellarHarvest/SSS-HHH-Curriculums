@@ -3642,6 +3642,116 @@
               JSON.stringify(rendered)
             );
           }
+          const interventionPageFit = [];
+          const expectedInterventionStatuses = "UNSAFE|NO CHANGE|CONTROLLED TEST";
+          const expectedInterventionBorders = "double|dotted|solid";
+          for (const grayscale of [false, true]) {
+            const renderedInterventions = [];
+            for (const [role, pageId, pageCount] of [
+              ["student", "student-mission-03", 5],
+              ["answer", "answer-key-03", 5],
+              ["accessible", "accessible-mission-05", 7]
+            ]) {
+              api.setRole(role);
+              api.saveState({ grayscale });
+              await wait(20);
+              const page = workspace.querySelector(`.page[data-role="${role}"][data-page-id="${pageId}"]`);
+              const content = page?.querySelector(".content-area");
+              const heading = page?.querySelector('.task-heading[data-task-id="6"]');
+              const table = page?.querySelector(".intervention-table");
+              const rows = Array.from(table?.querySelectorAll("tbody tr") || []);
+              const fields = Array.from(page?.querySelectorAll('[data-persist-id^="t6-"][data-response], [data-persist-id^="a6-"][data-response]') || []);
+              const rowRects = rows.map(row => row.getBoundingClientRect());
+              const tableRect = table?.getBoundingClientRect();
+              const contained = Boolean(tableRect) && rows.every(row => {
+                const rect = row.getBoundingClientRect();
+                return rect.left >= tableRect.left - 1 && rect.right <= tableRect.right + 1
+                  && rect.top >= tableRect.top - 1 && rect.bottom <= tableRect.bottom + 1;
+              });
+              const collisions = rowRects.some((rect, index) => rowRects.slice(index + 1).some(other =>
+                Math.min(rect.right, other.right) - Math.max(rect.left, other.left) > 1
+                  && Math.min(rect.bottom, other.bottom) - Math.max(rect.top, other.top) > 1
+              ));
+              const state = {
+                role,
+                pageId,
+                grayscale,
+                page: Boolean(page),
+                pageSize: page ? dimensions(page).join("x") : "",
+                pageCount: workspace.querySelectorAll(`.page[data-role="${role}"]`).length,
+                expectedPageCount: pageCount,
+                overflow: page?.classList.contains("has-overflow") || false,
+                scrollHeight: content?.scrollHeight ?? null,
+                clientHeight: content?.clientHeight ?? null,
+                headingRail: heading ? win.getComputedStyle(heading, "::after").content.replaceAll('"', "") : "",
+                table: Boolean(table),
+                rows: rows.length,
+                options: rows.map(row => row.querySelector("th")?.childNodes[0]?.textContent.trim().replace(/\s+/g, " ") || "").join("|"),
+                statuses: rows.map(row => win.getComputedStyle(row.querySelector("th"), "::after").content.replaceAll('"', "")).join("|"),
+                borders: rows.map(row => win.getComputedStyle(row.children[0]).borderLeftStyle).join("|"),
+                patterns: rows.flatMap(row => Array.from(row.children)).map(cell => win.getComputedStyle(cell).backgroundImage !== "none"),
+                fields: fields.map(field => ({
+                  id: field.dataset.persistId,
+                  text: field.textContent.trim().replace(/\s+/g, " "),
+                  response: field.hasAttribute("data-response"),
+                  size: dimensions(field),
+                  border: win.getComputedStyle(field).borderLeftStyle
+                })),
+                labels: fields.slice(-2).map(field => ({
+                  text: field.previousElementSibling?.textContent.trim().replace(/\s+/g, " ") || "",
+                  border: field.previousElementSibling ? win.getComputedStyle(field.previousElementSibling).borderLeftStyle : "",
+                  clearance: field.previousElementSibling ? rounded(parseFloat(win.getComputedStyle(field.previousElementSibling).borderLeftWidth) + parseFloat(win.getComputedStyle(field.previousElementSibling).paddingLeft)) : 0
+                })),
+                safety: page?.querySelector(".science-note")?.textContent.trim().replace(/\s+/g, " ") || "",
+                answerPanels: Array.from(page?.querySelectorAll(".two-col > .answer-block") || []).map(panel => ({
+                  text: panel.textContent.trim().replace(/\s+/g, " "),
+                  border: win.getComputedStyle(panel).borderLeftStyle,
+                  pattern: win.getComputedStyle(panel).backgroundImage !== "none"
+                })),
+                contained,
+                collisions
+              };
+              interventionPageFit.push(state);
+              renderedInterventions.push(state);
+            }
+            const studentIntervention = renderedInterventions.find(state => state.role === "student");
+            const answerIntervention = renderedInterventions.find(state => state.role === "answer");
+            const accessibleIntervention = renderedInterventions.find(state => state.role === "accessible");
+            check(
+              `C1 Case 06 ${grayscale ? "grayscale" : "normal"} intervention panel preserves options, safety gate and monitored response`,
+              worksheetDoc.dataset.caseId === item.id
+                && api.getPackage().presentation.sharedComponentStyles === true
+                && renderedInterventions.length === 3
+                && renderedInterventions.every(state => state.table && state.rows === 3 && state.headingRail === "COMPARE → SELECT → MONITOR")
+                && renderedInterventions.every(state => state.statuses === expectedInterventionStatuses && state.borders === expectedInterventionBorders && state.patterns.every(Boolean))
+                && renderedInterventions.every(state => state.contained && !state.collisions)
+                && studentIntervention.options === "Disable all atmospheric processing|Keep the current setting unchanged|Isolate the shared atmosphere or selectively preserve identified signals"
+                && accessibleIntervention.options === "Disable all processing|Keep unchanged|Isolate or selectively preserve signals"
+                && answerIntervention.options === "Disable all processing|Keep unchanged|Isolate or selectively preserve signals"
+                && studentIntervention.fields.map(field => field.id).join("|") === "t6-disable|t6-unchanged|t6-selective|t6-recommend|t6-monitor"
+                && studentIntervention.fields.every(field => field.response && field.text === "" && field.size[0] >= 108 && field.size[1] >= 30)
+                && accessibleIntervention.fields.map(field => field.id).join("|") === "a6-disable|a6-unchanged|a6-selective|a6-recommend|a6-monitor"
+                && accessibleIntervention.fields.map(field => field.text).join("|") === "UNSAFE — disabling all atmospheric processing would weaken pressure, breathable-gas, and contaminant protection.||||"
+                && accessibleIntervention.fields.every(field => field.response && field.size[0] >= 108 && field.size[1] >= 30)
+                && [studentIntervention, accessibleIntervention].every(state => state.fields.slice(-2).map(field => field.border).join("|") === "solid|dashed")
+                && [studentIntervention, accessibleIntervention].every(state => state.labels.map(label => label.border).join("|") === "solid|dashed" && state.labels.every(label => label.clearance >= 6))
+                && studentIntervention.safety.includes("Preserve pressure, breathable-gas control, and contaminant protection for both crews")
+                && accessibleIntervention.safety.includes("Keep pressure, breathable-gas control, and contaminant protection active")
+                && answerIntervention.fields.length === 0
+                && answerIntervention.answerPanels.length === 2
+                && answerIntervention.answerPanels.map(panel => panel.border).join("|") === "solid|dashed"
+                && answerIntervention.answerPanels.every(panel => panel.pattern)
+                && answerIntervention.answerPanels[0].text.includes("Begin reversibly and at limited scale")
+                && answerIntervention.answerPanels[1].text.includes("pressure, breathable gases, and hazardous contaminants"),
+              JSON.stringify(renderedInterventions)
+            );
+          }
+          check(
+            "C1 Case 06 intervention pages retain strict fit, page counts and geometry in normal and grayscale",
+            interventionPageFit.length === 6
+              && interventionPageFit.every(state => state.page && state.pageSize === "816x1056" && state.pageCount === state.expectedPageCount && !state.overflow && state.scrollHeight <= state.clientHeight),
+            JSON.stringify(interventionPageFit)
+          );
           api.setRole("student");
           api.saveState({ grayscale: false });
           await wait(20);

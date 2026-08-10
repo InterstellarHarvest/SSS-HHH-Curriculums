@@ -4,6 +4,86 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Unaccepted Family 8 pilot — First Contact monitored response
+
+The successor to accepted Silent Grove closeout
+`dab27208c6fa352a506fbf6a80a7b3071fcad286` implements `C1C6-VIS03` as the first standalone
+Family 8 intervention-comparison candidate. It is not accepted and does not advance the 29/36
+inventory. The previously accepted hybrid `C2C5-VIS03` remains Family 8's only verified
+assignment and remains counted once in the unique inventory.
+
+The frozen Task 6 structures remain semantic and source-controlled:
+
+- Student page 3 retains blank fields
+  `t6-disable | t6-unchanged | t6-selective | t6-recommend | t6-monitor`.
+- Accessible page 5 retains parallel fields
+  `a6-disable | a6-unchanged | a6-selective | a6-recommend | a6-monitor`; only its accepted
+  unsafe-option scaffold remains prefilled.
+- Answer Key page 3 retains the three completed option analyses plus separate reversible,
+  limited-scale recommendation and monitoring exemplars.
+
+The Case-06-scoped shared presentation labels the existing relationship
+`COMPARE → SELECT → MONITOR`. The existing options receive `UNSAFE`, `NO CHANGE` and
+`CONTROLLED TEST` states with double / dotted / solid borders and independent hatch patterns.
+The existing life-support note remains a separate safety gate. Recommendation uses a solid
+decision rail; monitoring uses a dashed verification rail; every learner label rail retains at
+least 6 px clearance. These labels add no option, treatment setting, threshold, completed test,
+recovery result or learner action.
+
+No First Contact source file changes. The candidate preserves these SHA-256 identities:
+
+- `content.html` — `d171f9b4611e3c7bea4d9b401c7e59ad70defdd07376cdfb171c21568553ec07`
+- `presentation.css` — `666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d`
+- `layout-overrides.json` — `7ce2fca0a49a949043cb5bae7513341add00cb409b546a5eef008a77b6be338d`
+- `case-package.json` — `9bb008a795b641c057e93dbcc5778ae9dd00c04d103ac720fafd491551eb7b91`
+- `task-registry.js` — `5afe3f4b35e4b80ef544c86898ec0314787e831c37ac8e5396d58753f95ef774`
+
+The candidate scope is exactly the shared component CSS, browser harness, focused Family 8
+validator, production plan and this handoff. It changes no worksheet wording, case presentation,
+layout override, package metadata, task registry, response text, response dimensions, page count,
+persistence identity, Teacher content, source hash, release/history record or accepted-family
+implementation.
+
+The safety contract remains exact. Disabling all atmospheric processing is not a safe fix because
+pressure, breathable-gas control and contaminant protection must remain active. Keeping the current
+setting unchanged continues the supported signal-removal problem. Isolation or selective
+preservation remains a reversible, limited-scale controlled test, not a completed intervention or
+guaranteed recovery. The Answer Key continues to monitor signal compounds, network activity,
+nutrient transfer, canopy/root efficiency, pressure, breathable gases and hazardous contaminants.
+
+The candidate adds exactly three browser assertions: six-view strict fit and one semantic/geometry
+contract in each of normal and grayscale. Linux Chromium 143 registers the new canonical total of
+2360 assertions. The finished run reports **2329/2360**, exactly the 31 established
+platform/font/screenshot-smoke exceptions, with all three new assertions passing and zero
+application JavaScript errors. The focused intervention/trial validator is **63/63 PASS**;
+specification remains 105/105, control 30/30, timeline 44/44, mechanism 103/103, evidence
+convergence 60/60, telemetry 36/36 and the First Contact layout-override validator passes.
+
+Independent normal and grayscale inspection of Student page 3, Answer Key page 3 and Accessible
+page 5 confirmed fixed 816 × 1056 geometry, exact `scrollHeight 936 == clientHeight 936` fit and
+exact Student 5 / Answer Key 5 / Accessible 7 page counts in all six views. No view had overflow,
+spill, clipping, collision or crowding. Every label rail has 10 px clearance from its first glyph;
+all option and response-gate states remain distinct without color. Learner fields remain visible,
+editable and unclipped:
+
+- Student and Accessible option analyses: 505.41 × 51.83 px each.
+- Student `t6-recommend | t6-monitor`: 356 × 88.31 px each.
+- Accessible `a6-recommend | a6-monitor`: 720 × 107.52 px each.
+
+External Mac/Google Chrome acceptance remains required. Canonical expectation is **2360/2360
+PASS** with zero application JavaScript errors. If that Mac reproduces an inherited registration-
+count difference, run prerequisite `dab2720…` in a throwaway worktree on the same machine; require
+candidate delta exactly +3, all three named Case 06 assertions passing, identical candidate
+assertion-name sets, no inherited regression and zero JavaScript errors, then stop without pushing
+for separate candidate-specific disposition. Differential evidence does not itself authorize
+acceptance, change canonical 2360 or establish a general platform policy.
+
+Run the complete harness twice, the focused intervention/trial validator, all established family
+regressions and `validate_layout_overrides.py --case SSS-C1-CASE06`. Inspect Student page 3,
+Answer Key page 3 and Accessible page 5 in normal and grayscale. If every gate passes, push only by
+ordinary fast-forward. Do not mark `C1C6-VIS03` `VERIFIED-FAMILY`, advance the inventory, merge to
+`main` or begin another finding. A separate closeout is required after acceptance.
+
 ## Accepted Family 6 completion — Silent Grove schedule specification
 
 Candidate `84333922c4e1e7cd7c7b4de248243c5ddd0c9ad2` advances `C2C4-VIS03` to
