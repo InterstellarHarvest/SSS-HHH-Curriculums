@@ -7,7 +7,7 @@
   "approvalDate": "2026-08-10",
   "owner": "Nate / Owner",
   "originalReleaseApprovalCommit": "16c53a4bd50e6b474fe476f6e1da09c61fc5fa13",
-  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "canonicalSourceApprovalCommit": "6aadbd118a5d4fde91caec58d176a661a00770d2",
   "correctiveReviewCommits": [
     {
       "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
@@ -32,6 +32,10 @@
     {
       "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
       "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    },
+    {
+      "commit": "6aadbd118a5d4fde91caec58d176a661a00770d2",
+      "role": "The release commit: lifecycle promotion to APPROVED_STABLE, the release and owner-approval records, the re-pinned frozen DOM baselines, and the conversion of the case validation estate from candidate mode to release mode."
     }
   ],
   "sourceHashes": {
@@ -53,14 +57,37 @@
     "accessible": 8
   },
   "acceptedValidation": {
-    "status": "PENDING_RELEASE_TREE"
+    "status": "PASS",
+    "static": "601/601",
+    "browser": "2374/2374 on the accepted same-Mac candidate-specific differential; canonical project registration remains 2375 and no general browser, Mac, Chrome, platform or environment exception exists",
+    "correctiveReleaseLifecycle": "25/25",
+    "releaseIntegrity": "PASS, all thirteen current releases fully certified",
+    "canonicalStructure": "PASS",
+    "layoutContracts": "PASS across 13 registered cases",
+    "qualityContractV3": "0 failures",
+    "accessibilityContractV2": "0 failures",
+    "correctiveCandidateContract": "n/a - retired at release; the candidate contract is a point-in-time DRAFT contract",
+    "pdf": "NOT A PROJECT GATE - production is HTML-only; no canonical PDF artifact exists and manually produced PDFs are noncanonical",
+    "gitDiffCheck": "clean",
+    "case01Scoped": "144/144",
+    "case02Scoped": "110/110",
+    "case03Scoped": "114/114",
+    "case04Scoped": "139/139",
+    "case05Scoped": "165/165",
+    "case06Scoped": "235/235",
+    "case01Mutations": "39/39; every mutation trips its named assertion",
+    "case02Mutations": "19/19; every mutation trips its named assertion",
+    "case03Mutations": "22/22; every mutation trips its named assertion",
+    "case04Mutations": "26/26; every mutation trips its named assertion",
+    "case05Mutations": "25/25; every mutation trips its named assertion",
+    "case06Mutations": "28/28; every mutation trips its named assertion"
   },
   "acceptedPrintStatus": "PASS at 100% / Actual Size",
   "formerArtifacts": {
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
   },
-  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "formerArtifactRecoveryCommit": "6aadbd118a5d4fde91caec58d176a661a00770d2",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [
     {

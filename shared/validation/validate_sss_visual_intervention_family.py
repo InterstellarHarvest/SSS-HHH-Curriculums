@@ -82,8 +82,8 @@ GARDEN_FROZEN_HASHES = {
     "content.html": "0e2f922eaecdd6b55846cef1c102ad7642470b81d616ee328f78f47b989ba26e",
     "presentation.css": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
     "layout-overrides.json": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481",
-    "case-package.json": "f511b5f87f993e09c25b2e0d8ec4face0bb82324d319f239be8de93139175175",
-    "task-registry.js": "25feb9b02814abecbede4b27449bce916df84d3e6f4b87a13a90eb39d43764cc",
+    "case-package.json": "ae6bd50960c5a593ba18e1a04c7cfb1be5e993dc2a9b88b6df2928a238575822",
+    "task-registry.js": "524bfe6383d268a2e0c8b5bfef9fa4e824ecbeea9d8d59c1462d3c76b0ce80a0",
 }
 # Acceptance-time record values: the plan/handoff are frozen historical acceptance
 # records and still cite the hashes as they were when the finding was accepted, before

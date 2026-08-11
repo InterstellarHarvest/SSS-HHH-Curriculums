@@ -178,7 +178,7 @@ class Results:
         return sum(1 for item in self.assertions if item["pass"])
 
 
-TOTAL_ASSERTIONS = 109
+TOTAL_ASSERTIONS = 114
 
 
 def role_dom_hash(soup: BeautifulSoup, role: str) -> str:
@@ -307,12 +307,47 @@ def main() -> int:
     accepted = release.get("acceptedValidation", {})
     results.check("the v1.2 release record records the accepted validation totals",
                   all(accepted.get(key, "").startswith(value) for key, value in
-                      (("static", "596/596"), ("browser", "2161/2161"), ("pdf", "316/316"),
+                      # PDF is no longer a project gate: production is HTML-only and no
+                      # canonical PDF artifact exists, so no PDF total is recorded.
+                      (("static", "601/601"), ("browser", "2374/2374"),
                        ("correctiveReleaseLifecycle", "25/25"), ("case03Mutations", "22/22"),
-                       ("case04Scoped", "82/82"), ("case05Scoped", "101/101"),
-                       ("case06Scoped", "153/153")))
+                       ("case04Scoped", "139/139"), ("case05Scoped", "165/165"),
+                       ("case06Scoped", "235/235")))
                   and accepted.get("gitDiffCheck") == "clean",
                   accepted)
+
+    # Canonical project registration is 2375. The accepted external gate observed 2374/2374
+    # twice on the same Mac under the owner's candidate-specific differential disposition.
+    # Those two numbers are different facts and the record must keep them distinguishable:
+    # the observed figure is what ran, 2375 is what the project registers, and 2375/2375 was
+    # never observed and may not be presented as though it had been.
+    results.check("the release record preserves canonical registration 2375 distinctly from the "
+                  "observed run",
+                  str(accepted.get("browser", "")).startswith("2374/2374")
+                  and "canonical project registration remains 2375" in str(accepted.get("browser", ""))
+                  and "same-Mac" in str(accepted.get("browser", "")),
+                  str(accepted.get("browser", ""))[:120])
+    results.check("no observed browser run is recorded as 2375/2375",
+                  "2375/2375" not in json.dumps(release),
+                  [v for v in [str(accepted.get("browser", ""))] if "2375/2375" in v])
+    results.check("the release record records no general platform exception",
+                  "no general browser, Mac, Chrome, platform or environment exception exists"
+                  in str(accepted.get("browser", "")))
+    # PDF stopped being a project gate: production is HTML-only, no canonical PDF artifact
+    # exists, and physical print is owner-manual. The record must say so rather than carry a
+    # current PDF total.
+    results.check("the release record records HTML-only canonical production and owner-manual print",
+                  "NOT A PROJECT GATE" in str(accepted.get("pdf", ""))
+                  and "HTML-only" in str(accepted.get("pdf", ""))
+                  and "noncanonical" in str(accepted.get("pdf", ""))
+                  and str(release.get("acceptedPrintStatus", "")).startswith("PASS at 100%"),
+                  str(accepted.get("pdf", ""))[:100])
+    # The historical records are immutable and keep the PDF evidence they were approved with;
+    # retiring the gate for the current release may not erase what the old releases recorded.
+    retained_pdf = read_record(CASE_ROOT / f"history/release-v{RETAINED_VERSION}.json") \
+        .get("acceptedValidation", {}).get("pdf", "")
+    results.check("the retained v1.1 record keeps the historical PDF evidence it was approved with",
+                  str(retained_pdf).startswith("316/316"), str(retained_pdf)[:60])
     # Three Campaign 2 release records were written with accepted-validation figures their own
     # suites did not produce. This case's figure is checked against the live total instead.
     results.check("the recorded Case 03 total is the total this validator actually produces",
