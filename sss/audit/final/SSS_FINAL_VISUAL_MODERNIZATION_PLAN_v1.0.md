@@ -1,6 +1,7 @@
 # SSS Final Visual Modernization Plan v1.0
 
-**Status:** `APPROVED-BASELINE-BOUND · PRODUCTION-IN-PROGRESS`  
+**Status:** `APPROVED-BASELINE-BOUND · PRODUCTION-COMPLETE`
+
 **Prepared:** 2026-08-07  
 **Correctness authority:** `5844b56fd10e4be068dc9049f6a743cd473de805`  
 **Working branch:** `visual/sss-final-modernization`  
@@ -17,6 +18,127 @@ fixed Letter geometry, and the owner-accepted eight-page C1 Case 01 and nine-pag
 Teacher Editions.
 
 Only a new regression introduced by this branch may reopen a correctness question.
+
+### Accepted final finding and program closeout — C1C1-GS01 grayscale-system correction
+
+Accepted implementation `f53fe15e2f0f173a1f556d507317fc2b9ac129d8` completes `C1C1-GS01`, the
+final formal finding in the 36-item visual-modernization inventory. Its synchronized accepted
+prerequisite is the First Garden family closeout `6a121a56f6d3a799c3f182a14f235651d2d8c1a3`; the
+accepted implementation lineage is exactly
+`6a121a56f6d3a799c3f182a14f235651d2d8c1a3 → f53fe15e2f0f173a1f556d507317fc2b9ac129d8`.
+
+Its terminal register classification is `VALIDATED`, the established terminal status this
+program's registers already apply to system findings (`C1C1-SYS01` through `C2C6-SYS01` in the
+final remediation register): the correction is structural rather than case-content work — it
+lives in the extracted shared visual layer while every frozen Case 01 source hash remains exact —
+and shared validation now enforces the zero-tint rendered rule repo-wide so the class cannot
+regress. `C1C1-GS01` is not a family finding; no family status applies and no new status token is
+introduced.
+
+The owner-granted acceptance is an exact candidate-specific same-Mac differential, recorded
+without creating a general Mac, Chrome, browser, platform or environment exception:
+
+- fresh prerequisite run at `6a121a5…`: **2374/2374 PASS**, 0 application JavaScript errors;
+- candidate `f53fe15…` Run 1 and Run 2: **2374/2374 PASS** each, 0 application JavaScript errors;
+- both candidate assertion-name sequences byte-identical; 2374 unique names per run, no
+  duplicates; prerequisite and candidate name sets and sequences identical; no assertion added,
+  removed, renamed or lost; no prerequisite-passing assertion failed;
+- the unchanged Case 01 rendered-fill assertion changed from the exact recorded tinted-fill set
+  to an empty observed set in all four roles;
+- all thirteen registered cases now report zero tinted rendered fills;
+- grayscale neutral/optional fills exactly `rgb(242, 242, 242)`; the grayscale success fill
+  exactly `rgb(230, 230, 230)`; success remains darker than neutral/optional;
+- color-mode backgrounds unchanged from the prerequisite;
+- all geometry, page-count, layout, static, family, governing-system and rendered inspection
+  gates passed.
+
+Canonical project registration remains 2375. The 2374 result is an exact candidate-specific
+same-Mac differential, not a general exception and not a replacement canonical baseline.
+
+The unique visual-modernization inventory is **36 of 36 completed** and **0 of 36 remaining**.
+Zero findings remain, and there is no remaining-finding identifier. All eight visual families
+remain complete, with Family 8 at five of five assignments. The historical 34/36 and 35/36
+checkpoints in this plan and the desktop browser handoff remain historical records; earlier
+counts are not rewritten. The two tracked grayscale token/fill maintenance notes for C1 Case 02
+and C1 Case 06 remain unnumbered backlog items, not findings, and do not change the formal count
+of 36.
+
+This closeout is documentation/system-only. No implementation, case content, presentation
+source, layout override, shared implementation CSS, browser harness, package, task registry,
+worksheet wording, response control, geometry, persistence identity, Teacher or Answer Key
+content, or release/history record changed; the closeout modifies only the two governing records
+and the focused rendered-surface validator, which now enforces the closed state at **57/57
+PASS** while retaining all 42 accepted implementation checks unweakened. The final whole-program
+cross-case regression passed at the closeout tree: telemetry 36/36, mechanism 103/103, timeline
+44/44, evidence 60/60, control 30/30, specification 105/105, cutaway 91/91, intervention/trial
+235/235; all-case layout PASS; corrective-aware canonical structure PASS; release integrity
+40/40; quality contract v3 zero failures with only established manual-review flags;
+accessibility contract v2 zero failures; corrective release lifecycle 25/25; corrective-candidate
+contract zero failures; `git diff --check` clean. The complete browser harness ran twice from the
+final closeout worktree under the accepted same-Mac disposition: **2374/2374 PASS** twice, 0
+application JavaScript errors, byte-identical unique sequences, all thirteen registered cases,
+all four printable roles, normal and grayscale states, exact package-declared page counts, fixed
+816 × 1056 pages and strict content fit, with zero overflow, clipping, collision, spill or
+hidden text.
+
+HTML-only canonical production remains in force. Grayscale remains a presentation state, not a
+fifth role. There is no canonical project PDF artifact and no PDF release gate. Owner physical
+browser-print testing at 100% / Actual Size remains a separate manual activity, and manually
+created PDFs remain noncanonical artifacts requiring their own accessibility review before
+distribution.
+
+Visual-modernization production is complete. No further visual production is authorized by this
+closeout. The branch remains isolated from `main`; no merge has occurred. The next evaluation is
+merge-readiness evaluation, a separate activity; merge readiness is not claimed by this record.
+
+#### Final closeout register — 36 of 36
+
+| Finding | Accepted implementation | Recorded terminal state |
+|---|---|---|
+| C1C1-GS01 | `f53fe15` | `VALIDATED` |
+| C1C1-VIS01 | `ceb632d` | `VERIFIED-FAMILY` |
+| C1C2-VIS01 | `a9dfecf` | `VERIFIED-FAMILY-PILOT` |
+| C1C3-VIS01 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C1C3-VIS02 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C1C3-VIS03 | `c532ac5` | `VERIFIED-FAMILY` |
+| C1C4-VIS01 | `d5ffe37` | `VERIFIED-FAMILY` |
+| C1C4-VIS02 | `d5b6c02` | `VERIFIED-FAMILY` |
+| C1C4-VIS03 | `4b0ef8b` | `VERIFIED-FAMILY` |
+| C1C5-VIS01 | `dcb2d91` | `VERIFIED-FAMILY` |
+| C1C5-VIS02 | `70375da` | `VERIFIED-FAMILY` |
+| C1C5-VIS03 | `22ab529` | `VERIFIED-FAMILY` |
+| C1C6-VIS01 | `66a3d1b` | `VERIFIED-FAMILY` |
+| C1C6-VIS02 | `11a0871` | `VERIFIED-FAMILY` |
+| C1C6-VIS03 | `8d6a51a` | `VERIFIED-FAMILY` |
+| C1C7-VIS01 | `39325dc` | `VERIFIED-FAMILY` |
+| C1C7-VIS02 | `812d5c3` | `VERIFIED-FAMILY` |
+| C1C7-VIS03 | `917908c` | `VERIFIED-FAMILY` |
+| C2C1-VIS01 | `95af208` | `VERIFIED-FAMILY` |
+| C2C1-VIS02 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C1-VIS03 | `4d181aa` | `VERIFIED-FAMILY` |
+| C2C2-VIS01 | `5ab152e` | `VERIFIED-FAMILY` |
+| C2C2-VIS02 | `aa4eeac` | `VERIFIED-FAMILY` |
+| C2C2-VIS03 | `f987bbb` | `VERIFIED-FAMILY` |
+| C2C3-VIS01 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C3-VIS02 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C3-VIS03 | `79a7c80` | `VERIFIED-FAMILY` |
+| C2C4-VIS01 | `73e8496` | `VERIFIED-FAMILY` |
+| C2C4-VIS02 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C4-VIS03 | `8433392` | `VERIFIED-FAMILY` |
+| C2C5-VIS01 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C5-VIS02 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C5-VIS03 | `7be2f42` | `VERIFIED-FAMILY` |
+| C2C6-VIS01 | 2298/2298 family record | `VERIFIED-FAMILY` |
+| C2C6-VIS02 | `d8886b5` | `VERIFIED-FAMILY` |
+| C2C6-VIS03 | `8a81fd0` | `VERIFIED-FAMILY` |
+
+The nine Family 1 telemetry findings were accepted as a family batch at the recorded
+**36/36 FAMILY STATIC PASS · 2298/2298 BROWSER PASS** gate; their register rows carry that batch
+record rather than a per-finding implementation SHA, exactly as originally recorded. Hybrid
+findings `C2C3-VIS03` (Families 2 + 6) and `C2C5-VIS03` (Families 2 + 8) appear once each in the
+unique inventory. Failed and intermediate implementations (`4737224…`, `d97fd46…`, `b6a56b9…`,
+`bab4135…`, `e91aa32…`, `71e555d…`, `8e27e61…`, `7ec465e…`) remain immutable commits in the
+accepted lineage history.
 
 ### Implementation candidate — C1C1-GS01 grayscale-system correction
 
@@ -949,7 +1071,11 @@ The current remediation register contains exactly **36 findings classified
   discovery catalog; none is missing and none is duplicated.
 - **1 numbered grayscale finding, `C1C1-GS01`**.
 
-Accepted progress after The First Garden screened-ecological-trial closeout is **35 of 36
+Accepted progress after the `C1C1-GS01` grayscale-system closeout is **36 of 36 completed** and
+**0 of 36 remaining**. The visual-modernization inventory is closed; every earlier count below is
+a historical checkpoint and is preserved unedited.
+
+Accepted progress after The First Garden screened-ecological-trial closeout was **35 of 36
 completed** and **1 of 36 remaining**. Family 1 contributes 9 completed findings, Family 2 contributes all 11
 of its verified findings, Family 3 contributes all 3 of its verified findings, Family 4 contributes
 both of its verified findings and Family 5 contributes its sole verified finding. Family 6 is
@@ -1048,7 +1174,7 @@ three accepted Hayes assertions verify its direct repeat loop, connector treatme
 
 | Finding / item | Case | Current state | Modernization | Method | Constraints and validation | Status |
 |---|---|---|---|---|---|---|
-| `C1C1-GS01` | C1 Case 01 — ISS Greenhouse | Grayscale variables change, but neutral/optional callouts retain tint and `.callout-success` uses hard-coded `#e9f3ed`. | Neutralize rendered callout surfaces in grayscale while retaining border/value hierarchy; update the inherited-tint browser expectation only after the rendered count reaches zero. | deterministic CSS | Do not rewrite dormant tokens without maintenance value; verify all four roles, color and grayscale, page geometry, contrast, and zero tint. | `IMPLEMENTED-CANDIDATE · 42/42 GRAYSCALE STATIC PASS · MAC/CHROME PENDING · ZERO-TINT RENDER PENDING` |
+| `C1C1-GS01` | C1 Case 01 — ISS Greenhouse | Grayscale variables change, but neutral/optional callouts retain tint and `.callout-success` uses hard-coded `#e9f3ed`. | Neutralize rendered callout surfaces in grayscale while retaining border/value hierarchy; update the inherited-tint browser expectation only after the rendered count reaches zero. | deterministic CSS | Do not rewrite dormant tokens without maintenance value; verify all four roles, color and grayscale, page geometry, contrast, and zero tint. | `VALIDATED · 42/42 GRAYSCALE STATIC PASS AT ACCEPTANCE · 2374/2374 MAC/CHROME DIFFERENTIAL PASS ×2 · 0 JS ERRORS · ZERO TINTED RENDERED FILLS · f53fe15 ACCEPTED` |
 | tracked status §5.3 | C1 Case 02 — Lunar Greenhouse | Rendered grayscale passes; some declared palette tokens are dormant and not neutralized. | Trace token reachability; neutralize only tokens that can reach printable components or consolidate them into governed grayscale values. | deterministic CSS audit | Must not turn a passing rendered state into blanket low-contrast gray; zero new tinted rendered surfaces. | `PLANNED · UNNUMBERED BACKLOG ITEM` |
 | tracked status §5.3 | C1 Case 06 — First Contact Protocol | Grayscale override exists, but the accepted handoff records token/fill coverage as visual backlog. | Audit all printable fills against the override set and close any reachable gap using Cool Mission Gray hierarchy. | deterministic CSS audit | Preserve timing/model/data distinction with value, border, label and pattern; no color-only meaning. | `PLANNED · UNNUMBERED BACKLOG ITEM` |
 

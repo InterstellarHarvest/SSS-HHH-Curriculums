@@ -4,6 +4,70 @@ Use this handoff with local Codex or Claude on a machine with installed Google C
 Correctness remediation is closed. Do not edit worksheet sources, regenerate release baselines,
 run PDF automation, or reopen accepted correctness findings.
 
+## Accepted final finding and program closeout — C1C1-GS01 grayscale-system correction
+
+Accepted implementation `f53fe15e2f0f173a1f556d507317fc2b9ac129d8` completes `C1C1-GS01`, the
+final formal finding. Its synchronized accepted prerequisite is the First Garden family closeout
+`6a121a56f6d3a799c3f182a14f235651d2d8c1a3`; the accepted implementation lineage is exactly
+`6a121a56f6d3a799c3f182a14f235651d2d8c1a3 → f53fe15e2f0f173a1f556d507317fc2b9ac129d8`. Its
+terminal register classification is `VALIDATED`, the established terminal status this program's
+registers already apply to system findings (`C1C1-SYS01` through `C2C6-SYS01`): the correction is
+structural, lives in the extracted shared visual layer while every frozen Case 01 source hash
+remains exact, and shared validation now enforces the zero-tint rendered rule repo-wide.
+`C1C1-GS01` is not a family finding; no family status applies and no new status token is
+introduced.
+
+The external Mac/Google Chrome gate closed under an exact candidate-specific same-Mac
+differential acceptance granted by the owner. A fresh prerequisite run at `6a121a5…` registered
+**2374/2374 PASS** with 0 application JavaScript errors. Candidate Run 1 and Run 2 at `f53fe15…`
+each registered **2374/2374 PASS** with 0 application JavaScript errors. Both candidate
+assertion-name sequences were byte-identical, with 2374 unique names per run and no duplicates;
+prerequisite and candidate name sets and sequences were identical; no assertion was added,
+removed, renamed or lost; and no prerequisite-passing assertion failed. The unchanged Case 01
+rendered-fill assertion changed from the exact recorded tinted-fill set to an empty observed set
+in all four roles, and all thirteen registered cases now report zero tinted rendered fills.
+Grayscale neutral/optional fills resolved exactly to `rgb(242, 242, 242)`, the grayscale success
+fill exactly to `rgb(230, 230, 230)`, success remained darker than neutral/optional, and
+color-mode backgrounds were unchanged from the prerequisite. All geometry, page-count, layout,
+static, family, governing-system and rendered inspection gates passed.
+
+Canonical project registration remains 2375. The 2374 result is an exact candidate-specific
+same-Mac differential, not a general exception and not a replacement canonical baseline; it
+creates no general Mac, Chrome, browser, platform or environment exception.
+
+The unique visual-modernization inventory is **36 of 36 completed** and **0 of 36 remaining**.
+Zero findings remain, and there is no remaining-finding identifier. All eight visual families
+remain complete, with Family 8 at five of five assignments. The historical 34/36 and 35/36
+checkpoints in this handoff and the production plan remain historical records; earlier counts
+are not rewritten, and every accepted finding, accepted implementation SHA, frozen case hash,
+accepted role page count and owner-accepted Teacher page-count exception is preserved unchanged.
+The full closeout register of all 36 findings and their recorded terminal states is in
+`SSS_FINAL_VISUAL_MODERNIZATION_PLAN_v1.0.md`.
+
+This closeout is documentation/system-only: no implementation, case content, presentation
+source, layout override, shared implementation CSS, browser harness, package, task registry,
+worksheet wording, response control, geometry, persistence identity, Teacher or Answer Key
+content, or release/history record changed. It modifies only the two governing records and the
+focused rendered-surface validator, which now enforces the closed state at **57/57 PASS** while
+retaining all 42 accepted implementation checks unweakened. The final whole-program cross-case
+regression passed at the closeout tree, and the complete browser harness ran twice from the
+final closeout worktree under the accepted same-Mac disposition: **2374/2374 PASS** twice, 0
+application JavaScript errors, byte-identical unique sequences, all thirteen registered cases,
+all four printable roles, normal and grayscale states, exact package-declared page counts, fixed
+816 × 1056 pages and strict content fit, with zero overflow, clipping, collision, spill or
+hidden text.
+
+HTML-only canonical production remains in force. Grayscale remains a presentation state, not a
+fifth role. There is no canonical project PDF artifact and no PDF release gate. Owner physical
+browser-print testing at 100% / Actual Size remains a separate manual activity, and manually
+created PDFs remain noncanonical artifacts requiring their own accessibility review before
+distribution.
+
+Visual-modernization production is complete. No further visual production is authorized by this
+closeout. The branch remains isolated from `main`; no merge has occurred. The next evaluation is
+merge-readiness evaluation, a separate activity; merge readiness is not claimed by this record.
+The candidate record below is retained as the historical pre-acceptance state of `C1C1-GS01`.
+
 ## Candidate final finding — C1C1-GS01 grayscale-system correction
 
 `C1C1-GS01` is implemented against exact synchronized accepted prerequisite
