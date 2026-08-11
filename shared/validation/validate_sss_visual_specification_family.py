@@ -26,6 +26,16 @@ FROZEN_HASHES = {
     "content.html": "8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d",
     "presentation.css": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
     "layout-overrides.json": "6667dec008f983f057c1bc56eec0ba5b1fd59b918c66b57f9872c418cd2578d2",
+    "case-package.json": "2f2a6faecaad0cbeabce76274ea63ca1aaa110e9c95f1761033912688b7c5f59",
+    "task-registry.js": "b1b8f858ebbdee5d5232bc9024e17c44c6fd43aef5b5d498eeb2d6b67e01f7a3",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+FROZEN_HASHES_AT_ACCEPTANCE = {
+    "content.html": "8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d",
+    "presentation.css": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
+    "layout-overrides.json": "6667dec008f983f057c1bc56eec0ba5b1fd59b918c66b57f9872c418cd2578d2",
     "case-package.json": "b1477d499fcb1bfb026f606bc0c5c8d9833f967950daba45dff2c9cdd0a9a200",
     "task-registry.js": "402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc",
 }
@@ -34,11 +44,31 @@ HEAVY_FROZEN_HASHES = {
     "content.html": "da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a",
     "presentation.css": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
     "layout-overrides.json": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605",
+    "case-package.json": "97d6b1cb9c02cb4137027bfe003baeed8d8e593ea478b2044f8e0fa7c49fe8e5",
+    "task-registry.js": "e3e4096f4861ee6cee6c361f9f09c11ef15b7f51db76786223316e6ee26e606b",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+HEAVY_FROZEN_HASHES_AT_ACCEPTANCE = {
+    "content.html": "da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a",
+    "presentation.css": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
+    "layout-overrides.json": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605",
     "case-package.json": "f6244b5db18e7de66c32bc787792898612195cecb1927d23b5e52a8d5119a0c4",
     "task-registry.js": "a62376edaf946fc28f54527cd4c7d7190fd4b96826bc52b4d693a0ab6d543f51",
 }
 
 GROVE_FROZEN_HASHES = {
+    "content.html": "38937cf5734185d820d597fdcb14fce41e29305f087d47b4a6b94f63a19c3c56",
+    "presentation.css": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
+    "layout-overrides.json": "7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c",
+    "case-package.json": "5dc33f2326aaf6d5f0cc7bc3ba2b45283816dc578dd9665187b868e5f45bb94e",
+    "task-registry.js": "a1192d9c7bfb31ddcfa5ecc00e7fae5eb467a47929d9d9d7490c91a7ce208a93",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+GROVE_FROZEN_HASHES_AT_ACCEPTANCE = {
     "content.html": "38937cf5734185d820d597fdcb14fce41e29305f087d47b4a6b94f63a19c3c56",
     "presentation.css": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
     "layout-overrides.json": "7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c",
@@ -269,7 +299,7 @@ def main() -> int:
         "Accepted Family 6 finding — Europa crop-protection specification" in handoff
         and "22ab529c388ee4f33be97ce3150fc5b5c49cba0b" in handoff
         and "3b19fcbcf7cabec08aadf303b41eb8168604c931" in handoff
-        and all(expected_hash in handoff for expected_hash in FROZEN_HASHES.values())
+        and all(expected_hash in handoff for expected_hash in FROZEN_HASHES_AT_ACCEPTANCE.values())
         and "2347/2347 PASS" in handoff
         and handoff.count("2350/2350 PASS") >= 2
         and "candidate delta is exactly +3" in handoff
@@ -496,7 +526,7 @@ def main() -> int:
         and "4d181aa796591249bb4f989e091c646b22b3a3e8" in handoff
         and "473722443e0d6e03e3e7edf1c855cf68e7c8fbc8" in handoff
         and "b95563f181c0d442d40784bbe1a45d1794cfb256" in handoff
-        and all(expected_hash in handoff for expected_hash in HEAVY_FROZEN_HASHES.values())
+        and all(expected_hash in handoff for expected_hash in HEAVY_FROZEN_HASHES_AT_ACCEPTANCE.values())
         and "2323/2354" in handoff
         and "2350/2350 PASS" in handoff
         and "Run 2 each passed **2353/2353 PASS**" in handoff
@@ -740,7 +770,7 @@ def main() -> int:
     )
     check(
         "the handoff records all frozen Silent Grove source identities",
-        all(expected_hash in handoff for expected_hash in GROVE_FROZEN_HASHES.values()),
+        all(expected_hash in handoff for expected_hash in GROVE_FROZEN_HASHES_AT_ACCEPTANCE.values()),
     )
     check(
         "the handoff records the completed local and external browser and static gates",

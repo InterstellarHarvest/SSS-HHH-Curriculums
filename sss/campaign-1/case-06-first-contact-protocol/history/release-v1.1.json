@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE06",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "a1a7308cdb6803e7567dfec6cc7346bed03310c1",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "5bf9e44e9559cdbea518ceb979fcc0eb0f9bed8d",
+      "role": "[auto-remediation] Reconcile final SSS response layout contracts"
+    },
+    {
+      "commit": "64e5c252674de9c9250699208bbb41982abb8a11",
+      "role": "Move remediation-inserted Teacher blocks back inside the content area"
+    },
+    {
+      "commit": "3f473ad3730b1e0d3415f66ad0612d16b8cbc527",
+      "role": "Make the screen-reader load announcement lifecycle-neutral"
+    },
+    {
+      "commit": "c9534e49a7badeb9a7a199016fa571ca39714b9c",
+      "role": "Expand mechanism visual family to First Contact"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "d171f9b4611e3c7bea4d9b401c7e59ad70defdd07376cdfb171c21568553ec07",
+    "presentation": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
+    "taskRegistry": "5ef90a76c7e251f12f024ebbe03087141391db1867946014da5c5870a90676ca",
+    "layoutOverrides": "7ce2fca0a49a949043cb5bae7513341add00cb409b546a5eef008a77b6be338d"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "577d7411d135232744aa1df7c9fb174bd30763f9f6fe60dfc25b343637a89a58",
+    "teacher": "19054a1c59c9c681bdd7ecafae8be953c80caf83af33a9f3da65d81ea8ec6b4b",
+    "answer": "134b05fd099ac7d168dc033efb181db987d2ade3b9577c4e3f540aed2d22f996",
+    "note": "Regenerated for v1.1. The student, teacher, answer baselines differ from the superseded v1.0 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for those roles."
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 8,
+    "answer": 5,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Case 06 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-03",
+      "approvalCommit": "a1a7308cdb6803e7567dfec6cc7346bed03310c1",
+      "recoveryCommit": "a1a7308cdb6803e7567dfec6cc7346bed03310c1",
+      "canonicalSourceApprovalCommit": "a1a7308cdb6803e7567dfec6cc7346bed03310c1",
+      "retainedRecords": [
+        "sss/campaign-1/case-06-first-contact-protocol/history/CASE06_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-1/case-06-first-contact-protocol/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "e274de80f331a95004aa49b6b03ba7f78009358e878a893cd16b2a461d7342af",
+        "presentation": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
+        "taskRegistry": "3ff9b0a5de05165a15063fa71b8ec74d360f7691357a40da22f4d765e34d37fe"
+      },
+      "rolePageCounts": {
+        "student": 5,
+        "teacher": 8,
+        "answer": 5,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Case 06 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+      },
+      "recoveryCommand": "git show a1a7308cdb6803e7567dfec6cc7346bed03310c1:sss/campaign-1/case-06-first-contact-protocol/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review. It is superseded by v1.1, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for First Contact Protocol.",
+    "corrections": [
+      "C1C6-T02 The Teacher assessment matrix did not use the common rubric contract and now does.",
+      "C1C6-UI01 The best-supported diagnosis selection had no persisted digital control.",
+      "C1C6-ACC01 Accessible diagnosis and intervention workload received targeted partial scaffolding.",
+      "C1C6-T01 Teacher structure is validated against the corrected functional set rather than a fixed page count.",
+      "C1C6-VIS01/VIS02/VIS03 Timing strip, coordination-system model and intervention decision panel modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Frozen game-source baseline: d723fb9b8085905a6048575a2cb3bb0fce1d312b. The game repository was not modified by this release.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"case06-v1.0\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place."
+  ],
+  "retiredArtifacts": [],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

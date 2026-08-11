@@ -33,54 +33,16 @@ concurrency:
   group: sss-final-remediation-${{ github.event_name }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-jobs:
-  remediate:
-    if: github.event_name == 'workflow_dispatch'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Verify protected branch scope
-        shell: bash
-        run: test "${GITHUB_REF_NAME}" = "remediate/sss-final-system"
-      - uses: actions/checkout@v4
-        with:
-          ref: remediate/sss-final-system
-          fetch-depth: 0
-          persist-credentials: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - run: python -m pip install --disable-pip-version-check beautifulsoup4
-      - name: Apply deterministic source remediations
-        run: python shared/remediation/apply_sss_final_remediation_v5.py --apply
-      - name: Move inserted printable blocks back inside their content area
-        run: python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
-      - name: Reflow Teacher editions toward the common seven-page architecture
-        run: python shared/remediation/reflow_teacher_editions.py --apply
-      - name: Keep load announcements lifecycle-neutral
-        run: python shared/remediation/normalize_load_announcements.py --apply
-      - name: Reconcile browser harness with corrective candidates
-        run: python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
-      - name: Classify final response controls in layout contracts
-        run: python shared/remediation/classify_sss_final_response_controls.py
-      - name: Transition remediated packages to corrective DRAFT candidates
-        run: python shared/remediation/transition_sss_final_corrective_candidates.py
-      - run: git diff --check
-      - name: Record corrective-candidate source and layout transition
-        shell: bash
-        run: |
-          if git diff --quiet; then exit 0; fi
-          git config user.name "sss-remediation-bot"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sss/campaign-1 sss/campaign-2 shared/implementation/case-registry.v2.json apps/curriculum-editor/tests/browser-harness.html
-          git commit -m "[auto-remediation] Reconcile final SSS candidate contracts"
-          git push origin HEAD:remediate/sss-final-system
-      - name: Candidate diagnostics
-        continue-on-error: true
-        run: |
-          python shared/validation/validate_final_quality_contract_v3.py
-          python shared/validation/validate_final_accessibility_contract_v2.py
-          python shared/validation/validate_sss_final_corrective_candidates.py
+# RETIRED JOB: remediate (workflow_dispatch on remediate/sss-final-system).
+#
+# The corrective-candidate transition is complete: all thirteen packages were promoted
+# to their owner-approved APPROVED_STABLE releases on release/sss-final-system. The
+# transition automation (shared/remediation/transition_sss_final_corrective_candidates.py)
+# demotes released packages back to DRAFT by design and must never run against a
+# released tree, so the dispatch job that invoked it is retired rather than left
+# armed. The remediation scripts remain in the repository as historical record.
 
+jobs:
   validate-pr:
     if: github.event_name == 'pull_request'
     permissions:
@@ -95,7 +57,11 @@ jobs:
         with:
           python-version: '3.12'
       - run: python -m pip install --disable-pip-version-check beautifulsoup4 jsonschema
-      - name: Verify source, layout, lifecycle, and browser remediation are idempotent
+      # The corrective-candidate transition step is retired: the thirteen packages are
+      # released APPROVED_STABLE and the transition script would demote them to DRAFT.
+      # The content remediation scripts stay asserted-idempotent on the released tree —
+      # the release conversion changed lifecycle metadata and records, never content.
+      - name: Verify source, layout, and browser remediation remain idempotent
         run: |
           python shared/remediation/apply_sss_final_remediation_v5.py --apply
           python shared/remediation/repair_misplaced_page_frame_blocks.py --apply
@@ -103,7 +69,6 @@ jobs:
           python shared/remediation/normalize_load_announcements.py --apply
           python shared/remediation/patch_curriculum_browser_harness_lifecycle.py
           python shared/remediation/classify_sss_final_response_controls.py
-          python shared/remediation/transition_sss_final_corrective_candidates.py
           git diff --check
           git diff --exit-code
       - name: Final cross-edition quality contract
@@ -112,16 +77,14 @@ jobs:
         run: python shared/validation/validate_final_accessibility_contract_v2.py
       - name: Corrective-release lifecycle unit tests
         run: python apps/curriculum-editor/tests/test_corrective_release_lifecycle.py
-      - name: Final corrective-candidate lifecycle contract
-        run: python shared/validation/validate_sss_final_corrective_candidates.py
       - name: Generic release-integrity validator
         run: python shared/validation/validate_release_integrity.py
-      - name: Corrective-aware canonical package and layout validators
+      - name: Canonical package structure and layout validators for the released system
         run: |
+          python shared/validation/validate_canonical_case_structure.py
           python shared/validation/validate_canonical_case_structure_corrective.py
           python shared/validation/validate_layout_overrides.py
-      - name: Legacy static suite diagnostic
-        continue-on-error: true
+      - name: Full static release suite
         timeout-minutes: 15
         run: python apps/curriculum-editor/tests/validate_static.py
 

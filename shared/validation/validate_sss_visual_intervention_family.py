@@ -28,11 +28,31 @@ FROZEN_HASHES = {
     "content.html": "d171f9b4611e3c7bea4d9b401c7e59ad70defdd07376cdfb171c21568553ec07",
     "presentation.css": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
     "layout-overrides.json": "7ce2fca0a49a949043cb5bae7513341add00cb409b546a5eef008a77b6be338d",
+    "case-package.json": "eba8c8e904ac889a1c6347af810889e476220f0797ff812388339d2a5f68d8a5",
+    "task-registry.js": "5ef90a76c7e251f12f024ebbe03087141391db1867946014da5c5870a90676ca",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+FROZEN_HASHES_AT_ACCEPTANCE = {
+    "content.html": "d171f9b4611e3c7bea4d9b401c7e59ad70defdd07376cdfb171c21568553ec07",
+    "presentation.css": "666799f312f1323432abc17fefff4f03dd65e380424fa19ce79b0173acf1369d",
+    "layout-overrides.json": "7ce2fca0a49a949043cb5bae7513341add00cb409b546a5eef008a77b6be338d",
     "case-package.json": "9bb008a795b641c057e93dbcc5778ae9dd00c04d103ac720fafd491551eb7b91",
     "task-registry.js": "5afe3f4b35e4b80ef544c86898ec0314787e831c37ac8e5396d58753f95ef774",
 }
 
 GIFT_FROZEN_HASHES = {
+    "content.html": "45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11",
+    "presentation.css": "259b76e2d7752680d58e01092e2bc3528956e13be7b79c3b453611b6c2d258a4",
+    "layout-overrides.json": "0b3fc73e9baddf29e982f01841a66c41f2ae2a96f44d6fe72aadd5e83ebae6ea",
+    "case-package.json": "fab83e4960d3913e43e0c344bba80cd1a4cfaa2b8d26f39fc37e40d05c300baa",
+    "task-registry.js": "24a1ab7e3b15bb986a3a0276361cb7ad67d2270e733adbd7a300674825cfa0a5",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+GIFT_FROZEN_HASHES_AT_ACCEPTANCE = {
     "content.html": "45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11",
     "presentation.css": "259b76e2d7752680d58e01092e2bc3528956e13be7b79c3b453611b6c2d258a4",
     "layout-overrides.json": "0b3fc73e9baddf29e982f01841a66c41f2ae2a96f44d6fe72aadd5e83ebae6ea",
@@ -44,11 +64,31 @@ DANCE_FROZEN_HASHES = {
     "content.html": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
     "presentation.css": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
     "layout-overrides.json": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d",
+    "case-package.json": "9c962080f8ada1f19628f4c4d861c933f68aaeab17a6c254e693be09c659c653",
+    "task-registry.js": "77490c526bec7d885bcdb4c4915ebd34811f0bf1411785f79cd46e211b1582b4",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+DANCE_FROZEN_HASHES_AT_ACCEPTANCE = {
+    "content.html": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
+    "presentation.css": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
+    "layout-overrides.json": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d",
     "case-package.json": "59026d6c4f54b362700018e268f2892a7c837817b4e6ec14e06d810dd9a66881",
     "task-registry.js": "8aaa2854d946f67e5c59261d314bf05764f4f4b21ccaa81009daa6ca4d51eda8",
 }
 
 GARDEN_FROZEN_HASHES = {
+    "content.html": "0e2f922eaecdd6b55846cef1c102ad7642470b81d616ee328f78f47b989ba26e",
+    "presentation.css": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
+    "layout-overrides.json": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481",
+    "case-package.json": "f511b5f87f993e09c25b2e0d8ec4face0bb82324d319f239be8de93139175175",
+    "task-registry.js": "25feb9b02814abecbede4b27449bce916df84d3e6f4b87a13a90eb39d43764cc",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+GARDEN_FROZEN_HASHES_AT_ACCEPTANCE = {
     "content.html": "0e2f922eaecdd6b55846cef1c102ad7642470b81d616ee328f78f47b989ba26e",
     "presentation.css": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
     "layout-overrides.json": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481",
@@ -524,7 +564,7 @@ def main() -> int:
         "Accepted Family 8 completion — The First Garden screened ecological trial" in handoff
         and "8a81fd02b83157dc7bebca443f294595d1eee6d3" in handoff
         and "changes no worksheet wording" in handoff
-        and all(value in handoff for value in GARDEN_FROZEN_HASHES.values())
+        and all(value in handoff for value in GARDEN_FROZEN_HASHES_AT_ACCEPTANCE.values())
         and all(token in handoff for token in ("t7-criterion-1 | t7-criterion-2 | t7-constraint | t7-approval", "a7-criterion-1 | a7-criterion-2 | a7-constraint | a7-approval", "All eight fields remain blank", "Student page 6's combined Task 6 CER remains complete")),
     )
     check(
@@ -553,7 +593,7 @@ def main() -> int:
         "Accepted Family 8 finding — The Missing Dance monitored vibration trial" in handoff
         and "f987bbb0c4c7fc34f07bc0f00fd4f38aeceb066b" in handoff
         and "changes no worksheet wording" in handoff
-        and all(value in handoff for value in DANCE_FROZEN_HASHES.values()),
+        and all(value in handoff for value in DANCE_FROZEN_HASHES_AT_ACCEPTANCE.values()),
     )
     check(
         "handoff preserves exact controls fields science rendered evidence and acceptance boundary",
@@ -584,7 +624,7 @@ def main() -> int:
         "handoff preserves The Gift source ownership and all five frozen hashes",
         "Accepted Family 8 finding — The Gift controlled response" in handoff
         and "changes no worksheet wording" in handoff
-        and all(value in handoff for value in GIFT_FROZEN_HASHES.values()),
+        and all(value in handoff for value in GIFT_FROZEN_HASHES_AT_ACCEPTANCE.values()),
     )
     check("handoff preserves exact The Gift route and response-gate states", all(token in handoff for token in ("`SUPPORTED`", "`QUALIFIED`", "`RESEARCH ONLY`", "solid evidence-selection rail", "dashed verification rail", "dotted uncertainty rail")))
     check("handoff preserves The Gift dose commitment and prediction limits", all(token in handoff for token in ("no safe numerical dose", "Exposure can stop before commitment", "not replicated trials or guaranteed outcomes", "formula is insufficient")))
@@ -637,7 +677,7 @@ def main() -> int:
         and "dab27208c6fa352a506fbf6a80a7b3071fcad286" in handoff
         and "changes no worksheet wording" in handoff,
     )
-    check("handoff records all five frozen First Contact hashes", all(value in handoff for value in FROZEN_HASHES.values()))
+    check("handoff records all five frozen First Contact hashes", all(value in handoff for value in FROZEN_HASHES_AT_ACCEPTANCE.values()))
     check("handoff preserves the three exact option states", all(token in handoff for token in ("UNSAFE", "NO CHANGE", "CONTROLLED TEST")))
     check("handoff preserves recommendation monitoring and safety semantics", all(token in handoff for token in ("recommendation", "monitoring", "pressure", "breathable-gas", "contaminant")))
     check(

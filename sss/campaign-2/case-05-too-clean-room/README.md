@@ -12,7 +12,7 @@ unchanged in `history/`.
 | Subtitle | Campaign 2 · Case 05 · Lagrange Point 5, Concord Neutral Zone |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
 | Version | 1.1 (corrective release) |
-| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-06, print gate PASS at 100% / Actual Size. Supersedes v1.0, approved 2026-08-05 |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-10, print gate PASS at 100% / Actual Size. Supersedes v1.1 (2026-08-06) and v1.0 (2026-08-05) |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -138,3 +138,7 @@ python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE05
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
+
+The v1.2 final-system release (owner approved 2026-08-10, physical print PASS at 100% / Actual Size on Google Chrome) closes the SSS correctness-remediation and visual-modernization program for this case. The prior release records are retained unchanged in `history/`.
+
+Retained releases: `history/release-v1.1.json` (owner approved 2026-08-06) and `history/release-v1.0.json`, both retained byte-identical alongside their owner-approval records. The current release record is `history/release-v1.2.json`.

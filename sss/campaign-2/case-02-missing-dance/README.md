@@ -15,7 +15,7 @@ withdrawn.
 | Subtitle | Campaign 2 · Case 02 · Olympia District, Mars |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
 | Version | 1.1 (corrective release; 1.0 retained in `history/`) |
-| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` · approved 2026-08-06 |
+| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` · approved 2026-08-10 |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## What v1.1 corrects
@@ -115,3 +115,7 @@ python3 apps/curriculum-editor/tests/validate_static.py
 python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE02
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 ```
+
+The v1.2 final-system release (owner approved 2026-08-10, physical print PASS at 100% / Actual Size on Google Chrome) closes the SSS correctness-remediation and visual-modernization program for this case. The prior release records are retained unchanged in `history/`.
+
+Retained releases: `history/release-v1.1.json` (owner approved 2026-08-06) and `history/release-v1.0.json`, both retained byte-identical alongside their owner-approval records. The current release record is `history/release-v1.2.json`.

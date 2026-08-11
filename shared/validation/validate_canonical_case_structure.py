@@ -121,6 +121,71 @@ HISTORICAL_INLINE_OWNER_APPROVAL = {
     "campaign-1/case-03",
 }
 
+# The frozen Campaign 1 tables above describe these historical release versions. The
+# final-system release superseded them, so the frozen expectations transfer to the
+# retained record of the frozen version — the protection is unchanged, it simply
+# follows the record it has always described — while the current corrective release
+# is validated by the generic corrective branch plus blob-level certification in
+# validate_release_integrity.py, exactly like every other corrective release.
+FROZEN_PIN_VERSIONS = {
+    "campaign-1/case-01": "1.1",
+    "campaign-1/case-02": "1.0",
+    "campaign-1/case-03": "1.1",
+    "campaign-1/case-04": "1.0",
+    "campaign-1/case-05": "1.0",
+    "campaign-1/case-06": "1.0",
+    "campaign-1/case-07": "1.0",
+}
+
+
+def enforce_expected_prior(label: str, case_key: str, release: dict, failures: list[str], totals: dict) -> None:
+    """Assert the frozen Campaign 1 prior-release table against the given record.
+
+    Applied to whichever record carries the frozen version: the current record while
+    that version is current, the retained record after a corrective release
+    supersedes it. Verbatim relocation of the historical table checks.
+    """
+    prior = release.get("priorApprovedReleases")
+    expected_prior = EXPECTED_PRIOR[case_key]
+    if expected_prior is None:
+        if prior != []:
+            failures.append(f"{label}: current v1.0 must explicitly have no earlier approved release")
+        return
+    if not isinstance(prior, list) or len(prior) != 1:
+        failures.append(f"{label}: exactly one prior approved release must be indexed")
+        return
+    item = prior[0]
+    totals["priorApprovedReleaseEntries"] += 1
+    if item.get("version") != expected_prior["version"]:
+        failures.append(f"{label}: prior approved version must be {expected_prior['version']}")
+    if item.get("approvalCommit") != expected_prior["commit"] or item.get("recoveryCommit") != expected_prior["commit"]:
+        failures.append(f"{label}: prior approval and recovery commits are incorrect")
+    for field in ["approvalCommit", "recoveryCommit"]:
+        verify_commit(f"{label} prior {field}", item.get(field), failures, totals)
+    expected_command = f"git show {item.get('recoveryCommit')}:<former path> > <destination>"
+    if item.get("recoveryCommand") != expected_command:
+        failures.append(f"{label}: prior release recovery command is incorrect")
+    prior_artifacts = item.get("formerArtifacts", {})
+    prior_roles = prior_artifacts.get("roles", {})
+    if prior_artifacts.get("complete", {}).get("path") != expected_prior["complete"]:
+        failures.append(f"{label}: prior complete-master path is incorrect")
+    if {role: artifact.get("path") for role, artifact in prior_roles.items()} != expected_prior["roles"]:
+        failures.append(f"{label}: prior role HTML index is incomplete or incorrect")
+    if "grayscale" in prior_roles:
+        failures.append(f"{label}: prior approved roles must not model Grayscale")
+    if case_key == "campaign-1/case-01":
+        unavailable = item.get("roleHtmlAvailability", {})
+        if set(unavailable) != set(ROLES) or set(unavailable.values()) != {"NOT_CREATED_AT_APPROVAL_COMMIT"}:
+            failures.append(f"{label}: absence of v1.0 standalone role HTML is not explicit")
+    verify_artifact(f"{label} prior complete", item.get("recoveryCommit"), prior_artifacts.get("complete", {}), failures, totals)
+    for role, artifact in prior_roles.items():
+        verify_artifact(f"{label} prior {role}", item.get("recoveryCommit"), artifact, failures, totals)
+    for legacy in item.get("legacyArtifacts", []):
+        path = legacy.get("path", "")
+        if "GRAYSCALE" in path.upper() and not legacy.get("classification", "").startswith("RETIRED_"):
+            failures.append(f"{label}: prior Grayscale artifact is not clearly retired: {path}")
+        verify_artifact(f"{label} prior retired artifact", item.get("recoveryCommit"), legacy, failures, totals)
+
 
 def registered_roster() -> tuple[list[tuple[str, str, Path]], list[str]]:
     """Return (campaign_id, case_id, case_root) per registered case, plus failures.
@@ -348,13 +413,41 @@ def main() -> int:
                 release = {}
 
             # Campaign 1's pins are frozen historical expectations and stay asserted
-            # literally. Later campaigns declare their pins and have them certified at
-            # the blob level by validate_release_integrity.py, which cannot be satisfied
-            # by copying a SHA into a table.
-            for field, expected_commit in COMMIT_FIELDS.get(case_key, {}).items():
-                commit = release.get(field)
-                if commit != expected_commit:
-                    failures.append(f"{label}: {field} must be {expected_commit}; found {commit}")
+            # literally — against the record of the version they were frozen for. While
+            # that version is the current release they bind the current record; once a
+            # later corrective release supersedes it they bind the retained record of
+            # the frozen version, which must remain on disk. Later campaigns declare
+            # their pins and have them certified at the blob level by
+            # validate_release_integrity.py, which cannot be satisfied by copying a SHA
+            # into a table.
+            is_frozen_current = release.get("curriculumVersion") == FROZEN_PIN_VERSIONS.get(case_key)
+            if is_frozen_current:
+                for field, expected_commit in COMMIT_FIELDS.get(case_key, {}).items():
+                    commit = release.get(field)
+                    if commit != expected_commit:
+                        failures.append(f"{label}: {field} must be {expected_commit}; found {commit}")
+            elif case_key in FROZEN_PIN_VERSIONS:
+                frozen_version = FROZEN_PIN_VERSIONS[case_key]
+                frozen_record_path = history / f"release-v{frozen_version}.json"
+                if frozen_record_path not in records:
+                    failures.append(f"{label}: frozen v{frozen_version} release record is no longer retained")
+                else:
+                    try:
+                        frozen_release = json.loads(frozen_record_path.read_text(encoding="utf-8"))
+                    except (OSError, json.JSONDecodeError) as error:
+                        failures.append(f"{label}: retained frozen release record is unreadable: {error}")
+                        frozen_release = {}
+                    for field, expected_commit in COMMIT_FIELDS.get(case_key, {}).items():
+                        commit = frozen_release.get(field)
+                        if commit != expected_commit:
+                            failures.append(f"{label}: retained v{frozen_version} {field} must be {expected_commit}; found {commit}")
+                    frozen_former = frozen_release.get("formerArtifacts", {})
+                    frozen_native = frozen_former.get("status") == NATIVE_NO_ARTIFACTS_STATUS if isinstance(frozen_former, dict) else False
+                    if frozen_native:
+                        frozen_expected_recovery = NATIVE_NO_RECOVERY.get(case_key, NATIVE_NO_RECOVERY_DEFAULT)
+                        if frozen_release.get("recovery") != frozen_expected_recovery:
+                            failures.append(f"{label}: retained v{frozen_version} recovery statement lost its frozen wording")
+                    enforce_expected_prior(f"{label} retained v{frozen_version}", case_key, frozen_release, failures, totals)
             for field in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit"):
                 verify_commit(f"{label} {field}", release.get(field), failures, totals)
 
@@ -363,7 +456,7 @@ def main() -> int:
             recovery_commit = release.get("formerArtifactRecoveryCommit")
             verify_commit(f"{label} formerArtifactRecoveryCommit", recovery_commit, failures, totals)
             if native_no_artifacts:
-                expected_recovery = NATIVE_NO_RECOVERY.get(case_key, NATIVE_NO_RECOVERY_DEFAULT)
+                expected_recovery = NATIVE_NO_RECOVERY.get(case_key, NATIVE_NO_RECOVERY_DEFAULT) if is_frozen_current else NATIVE_NO_RECOVERY_DEFAULT
             else:
                 expected_recovery = f"git show {recovery_commit}:<former path> > <destination>"
             if release.get("recovery") != expected_recovery:
@@ -391,8 +484,9 @@ def main() -> int:
                     totals["localUntrackedArtifactsExcluded"] += 1
 
             prior = release.get("priorApprovedReleases")
-            if case_key not in EXPECTED_PRIOR:
-                # Later campaigns: the prior index is validated against the records it
+            if case_key not in EXPECTED_PRIOR or not is_frozen_current:
+                # Later campaigns, and every corrective release that supersedes a frozen
+                # Campaign 1 version: the prior index is validated against the records it
                 # indexes rather than against a frozen table. Exactness of the indexed
                 # hashes, baselines and immutability is validate_release_integrity.py's.
                 corrective_of = release.get("correctiveOf")
@@ -424,46 +518,9 @@ def main() -> int:
                     if corrective_of not in {item.get("version") for item in prior}:
                         failures.append(f"{label}: the corrected version v{corrective_of} is not indexed as a prior release")
                 prior = []
-            elif (expected_prior := EXPECTED_PRIOR[case_key]) is None:
-                if prior != []:
-                    failures.append(f"{label}: current v1.0 must explicitly have no earlier approved release")
-                prior = prior if isinstance(prior, list) else []
             else:
-                if not isinstance(prior, list) or len(prior) != 1:
-                    failures.append(f"{label}: exactly one prior approved release must be indexed")
-                    prior = []
-                if prior:
-                    item = prior[0]
-                    totals["priorApprovedReleaseEntries"] += 1
-                    if item.get("version") != expected_prior["version"]:
-                        failures.append(f"{label}: prior approved version must be {expected_prior['version']}")
-                    if item.get("approvalCommit") != expected_prior["commit"] or item.get("recoveryCommit") != expected_prior["commit"]:
-                        failures.append(f"{label}: prior approval and recovery commits are incorrect")
-                    for field in ["approvalCommit", "recoveryCommit"]:
-                        verify_commit(f"{label} prior {field}", item.get(field), failures, totals)
-                    expected_command = f"git show {item.get('recoveryCommit')}:<former path> > <destination>"
-                    if item.get("recoveryCommand") != expected_command:
-                        failures.append(f"{label}: prior release recovery command is incorrect")
-                    prior_artifacts = item.get("formerArtifacts", {})
-                    prior_roles = prior_artifacts.get("roles", {})
-                    if prior_artifacts.get("complete", {}).get("path") != expected_prior["complete"]:
-                        failures.append(f"{label}: prior complete-master path is incorrect")
-                    if {role: artifact.get("path") for role, artifact in prior_roles.items()} != expected_prior["roles"]:
-                        failures.append(f"{label}: prior role HTML index is incomplete or incorrect")
-                    if "grayscale" in prior_roles:
-                        failures.append(f"{label}: prior approved roles must not model Grayscale")
-                    if case_key == "campaign-1/case-01":
-                        unavailable = item.get("roleHtmlAvailability", {})
-                        if set(unavailable) != set(ROLES) or set(unavailable.values()) != {"NOT_CREATED_AT_APPROVAL_COMMIT"}:
-                            failures.append(f"{label}: absence of v1.0 standalone role HTML is not explicit")
-                    verify_artifact(f"{label} prior complete", item.get("recoveryCommit"), prior_artifacts.get("complete", {}), failures, totals)
-                    for role, artifact in prior_roles.items():
-                        verify_artifact(f"{label} prior {role}", item.get("recoveryCommit"), artifact, failures, totals)
-                    for legacy in item.get("legacyArtifacts", []):
-                        path = legacy.get("path", "")
-                        if "GRAYSCALE" in path.upper() and not legacy.get("classification", "").startswith("RETIRED_"):
-                            failures.append(f"{label}: prior Grayscale artifact is not clearly retired: {path}")
-                        verify_artifact(f"{label} prior retired artifact", item.get("recoveryCommit"), legacy, failures, totals)
+                enforce_expected_prior(label, case_key, release, failures, totals)
+                prior = []
 
         case_prefix = case.relative_to(ROOT).as_posix() + "/"
         case_html = [path for path in tracked if path.startswith(case_prefix) and path.endswith(".html")]

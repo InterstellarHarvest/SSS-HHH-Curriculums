@@ -6,16 +6,16 @@ Canonical released SSS Campaign 1 Cases 01–07 and Campaign 2 Cases 01–06: `A
 
 SSS Campaign 1 contains seven released curriculum-sequenced cases. Cases 01–05 are the five core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the approved Campaign 1 culmination.
 
-SSS Campaign 2 is complete. All six cases are produced, owner-approved, print-approved and released. Each was reissued as a corrective v1.1 following the Campaign 2 completion audit; both the v1.0 and v1.1 records are retained, and the v1.0 records are unmodified. Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), was the first produced Campaign 2 package; it keeps its runtime case number and is not renumbered as Campaign 2 Case 01.
+SSS Campaign 2 is complete. All six cases are produced, owner-approved, print-approved and released. Each was reissued as a corrective v1.1 following the Campaign 2 completion audit and again as v1.2 by the final system release of 2026-08-10; the v1.0, v1.1 and v1.2 records are all retained, and every superseded record is unmodified. Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), was the first produced Campaign 2 package; it keeps its runtime case number and is not renumbered as Campaign 2 Case 01.
 
 | Case | Title | Version | Student | Teacher | Answer Key | Accessible |
 |---:|---|---:|---:|---:|---:|---:|
-| 01 | Heavy Hands | 1.1 | 5 | 9 | 4 | 8 |
-| 02 | The Missing Dance | 1.1 | 6 | 8 | 4 | 8 |
-| 03 | The Wrong Color of Light | 1.1 | 5 | 8 | 4 | 8 |
-| 04 | The Silent Grove | 1.1 | 6 | 8 | 4 | 8 |
-| 05 | Too Clean a Room | 1.1 | 7 | 9 | 5 | 7 |
-| 06 | The First Garden | 1.1 | 6 | 8 | 5 | 7 |
+| 01 | Heavy Hands | 1.2 | 5 | 9 | 4 | 8 |
+| 02 | The Missing Dance | 1.2 | 6 | 8 | 4 | 8 |
+| 03 | The Wrong Color of Light | 1.2 | 5 | 8 | 4 | 8 |
+| 04 | The Silent Grove | 1.2 | 6 | 8 | 4 | 8 |
+| 05 | Too Clean a Room | 1.2 | 7 | 9 | 5 | 7 |
+| 06 | The First Garden | 1.2 | 6 | 7 | 5 | 7 |
 
 The registry holds thirteen cases across two campaigns, which is 104 case/role/presentation states.
 
@@ -85,3 +85,16 @@ Retired validators are recorded in [`shared/validation/RETIRED_VALIDATORS.md`](s
 ## Governing documents
 
 Production work follows the current Curriculum Bible, Visual Style Guide and amendments, repository architecture, package schemas, and case package/history records. Versioned historical documents remain historical context; the canonical case-structure migration record supersedes earlier cleanup proposals without altering their original audit snapshots.
+
+## Final system release
+
+The SSS correctness-remediation and visual-modernization programs are complete. All thirteen
+registered cases are `APPROVED_STABLE` at their final versions (Campaign 1 Cases 01 and 03 at
+v1.2, Cases 02 and 04–07 at v1.1; Campaign 2 Cases 01–06 at v1.2), owner-approved 2026-08-10
+with physical print PASS at 100% / Actual Size. Every superseded release and owner-approval
+record is retained byte-identical and indexed through `priorApprovedReleases`.
+
+The visual-modernization inventory is 36 of 36 complete with zero findings remaining. Canonical
+browser registration remains 2375. Production is HTML-only: there is no canonical project PDF
+artifact and no PDF release gate, and manually produced PDFs remain noncanonical and require
+their own accessibility review before distribution.

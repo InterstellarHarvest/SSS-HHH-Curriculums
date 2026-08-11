@@ -36,23 +36,47 @@ CONTENT = SOURCE / "content.html"
 REGISTRY = SOURCE / "task-registry.js"
 PACKAGE = SOURCE / "case-package.json"
 README = CASE_ROOT / "README.md"
-RELEASE = CASE_ROOT / "history/release-v1.1.json"
-RELEASE_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.1.md"
-RETAINED_RELEASE = CASE_ROOT / "history/release-v1.0.json"
-RETAINED_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.0.md"
+RELEASE = CASE_ROOT / "history/release-v1.2.json"
+RELEASE_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.2.md"
+RETAINED_RELEASE = CASE_ROOT / "history/release-v1.1.json"
+RETAINED_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.1.md"
+LEGACY_RELEASE = CASE_ROOT / "history/release-v1.0.json"
+LEGACY_APPROVAL = CASE_ROOT / "history/CASE01_OWNER_APPROVAL_v1.0.md"
 VALIDATOR = ROOT / "apps/curriculum-editor/tests/validate_case01_campaign2.py"
 TRACKED = (CONTENT, REGISTRY, PACKAGE, README, RELEASE, RELEASE_APPROVAL,
-           RETAINED_RELEASE, RETAINED_APPROVAL)
+           RETAINED_RELEASE, RETAINED_APPROVAL, LEGACY_RELEASE, LEGACY_APPROVAL)
 
 # Failures that mean "something moved", not "the protection fired". A mutation whose only
 # effect is one of these has not proved anything.
 PLUMBING = {
     "package source hashes verify",
     "the shared corrective-release lifecycle rules are satisfied",
-    "the v1.1 release record certifies all four sources and they match the package",
-    "the v1.1 frozen DOM baselines match the released markup",
+    "the v1.2 release record certifies all four sources and they match the package",
+    "the v1.2 frozen DOM baselines match the released markup",
     "canonicalSourceApprovalCommit contains all four source blobs the record certifies",
 }
+
+# The release record cannot name the commit that certifies it: the lifecycle promotion changes
+# the approved task registry, so those sources exist only from the release commit onward. The
+# pin is therefore PENDING_RELEASE_COMMIT in the release commit and written by the narrow
+# follow-up. Exactly these assertions fail during that window. The tolerance is gated on the
+# placeholder still being present, so it evaporates the moment the pin lands and the baseline
+# must then be fully green.
+PENDING_PIN_PLACEHOLDER = "PENDING_RELEASE_COMMIT"
+PENDING_PIN_FAILURES = {
+    "the v1.2 release record records the physical print gate",
+    "every commit reference in the v1.2 release record exists",
+    "canonicalSourceApprovalCommit contains all four source blobs the record certifies",
+}
+
+
+def pin_is_pending() -> bool:
+    """True only while the release record still holds the placeholder pin."""
+    try:
+        record = json.loads(RELEASE.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    return record.get("canonicalSourceApprovalCommit") == PENDING_PIN_PLACEHOLDER
 
 
 def validator_result() -> tuple[bool, list[str]]:
@@ -72,6 +96,8 @@ class Case01Mutations(unittest.TestCase):
         self.original = {path: path.read_bytes() for path in TRACKED}
         self.addCleanup(self.restore)
         passed, failures = validator_result()
+        if not passed and pin_is_pending() and set(failures) <= PENDING_PIN_FAILURES:
+            passed = True
         self.assertTrue(passed, f"baseline must be green before mutating; failures: {failures}")
 
     def restore(self):
@@ -138,8 +164,11 @@ class Case01Mutations(unittest.TestCase):
         # The guard exists so a mutation is never scored as caught when it merely disturbed
         # integrity plumbing it was not aiming at. A mutation that deliberately targets one of
         # those checks — the certified-source pin is one — is exempted by name.
-        self.assertTrue(set(failures) - (PLUMBING - {assertion}),
-                        "the mutation was caught only by hash or lifecycle plumbing")
+        tolerated = PLUMBING - {assertion}
+        if pin_is_pending():
+            tolerated = tolerated | (PENDING_PIN_FAILURES - {assertion})
+        self.assertTrue(set(failures) - tolerated,
+                        "the mutation was caught only by hash, lifecycle or pending-pin plumbing")
 
     # ── 1-3 · unsupported historical controls ────────────────────────────────
 
@@ -284,15 +313,11 @@ class Case01Mutations(unittest.TestCase):
     def test_unscorable_precision_rubric_dimension_restored(self):
         """A rubric dimension may not grade values learners never receive."""
         self.edit(CONTENT,
-                  "<tr><td>Reported values only</td><td>Copies the printed values (2.10 g, "
-                  "±0.05 g, 20 cm, 600 m, the onset days) exactly, and adds no quantity the "
-                  "packet does not report.</td><td>Copies the printed values correctly but adds "
-                  "an unreported figure, such as an amount of bending.</td><td>Alters a printed "
-                  "value, or invents a number for the difference across the bed.</td></tr>",
-                  "<tr><td>Precision</td><td>Copies values at the precision given and treats "
-                  "0.00187 g and 0.0018 g as consistent.</td><td>Copies values correctly but "
-                  "cannot explain the difference in digits.</td><td>Alters reported values."
-                  "</td></tr>")
+                  "<tr><td>Transfer / design</td>",
+                  "<tr><td>Precision</td><td>Treats 0.00187 g and 0.0018 g as consistent.</td>"
+                  "<td>Copies values correctly but cannot explain the difference in digits.</td>"
+                  "<td>Alters reported values.</td><td>Invents a difference.</td></tr>"
+                  "<tr><td>Transfer / design</td>")
         self.assert_trips("no rubric dimension or success criterion grades a value learners "
                           "never receive")
 
@@ -345,18 +370,18 @@ class Case01Mutations(unittest.TestCase):
 
     def test_stray_history_record_added(self):
         """history/ holds exactly the canonical records for the two approved versions."""
-        stray = CASE_ROOT / "history/release-v1.2.json"
+        stray = CASE_ROOT / "history/release-v1.3.json"
         record = json.loads(RELEASE.read_text(encoding="utf-8"))
-        record["curriculumVersion"] = "1.2"
+        record["curriculumVersion"] = "1.3"
         stray.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         self.addCleanup(lambda: stray.unlink(missing_ok=True))
-        self.assert_trips("history holds exactly the four canonical records, two per approved version")
+        self.assert_trips("history holds exactly the six canonical records, two per approved version")
 
     def test_retained_v1_0_record_rewritten(self):
         """v1.0 history is frozen, including its historically inaccurate commit pin."""
-        record = json.loads(RETAINED_RELEASE.read_text(encoding="utf-8"))
+        record = json.loads(LEGACY_RELEASE.read_text(encoding="utf-8"))
         record["canonicalSourceApprovalCommit"] = "a4195913e7c2d98bd2174f2034a609d8e20f264c"
-        RETAINED_RELEASE.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n",
+        LEGACY_RELEASE.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n",
                                     encoding="utf-8")
         self.assert_trips("both retained v1.0 records are byte-identical to synchronised main")
 
@@ -374,38 +399,40 @@ class Case01Mutations(unittest.TestCase):
 
     # ── 23-28 · release-mode protections ─────────────────────────────────────
 
-    def test_v1_1_release_record_missing(self):
+    def test_v1_2_release_record_missing(self):
         """A released package must carry a release record for its own version."""
         RELEASE.unlink()
         self.addCleanup(self.restore_missing)
-        self.assert_trips("history holds exactly the four canonical records, two per approved version")
+        self.assert_trips("history holds exactly the six canonical records, two per approved version")
 
     def test_print_gate_downgraded(self):
         """The physical-print attestation may not be weakened after approval."""
         self.edit_record(RELEASE, lambda r: r.__setitem__("acceptedPrintStatus", "NOT_RUN"))
-        self.assert_trips("the v1.1 release record records the physical print gate")
+        self.assert_trips("the v1.2 release record records the physical print gate")
 
     def test_prior_v1_0_release_dropped(self):
         """v1.0 must stay represented as the prior approved release."""
         self.edit_record(RELEASE, lambda r: r.__setitem__("priorApprovedReleases", []))
-        self.assert_trips("the v1.1 record represents exactly one prior approved release, v1.0")
+        self.assert_trips("the v1.2 record represents exactly one prior approved release, v1.1")
 
-    def test_prior_release_rewritten_to_describe_v1_1(self):
-        """The prior-release block must keep v1.0's own page counts, not v1.1's."""
-        self.edit_record(RELEASE, lambda r: r["priorApprovedReleases"][0]["rolePageCounts"]
-                         .__setitem__("teacher", 9))
-        self.assert_trips("the prior release carries v1.0's own hashes, baselines and page counts")
+    def test_prior_release_rewritten_to_describe_v1_2(self):
+        """The prior-release block must keep v1.1's own baselines, not v1.2's."""
+        self.edit_record(RELEASE, lambda r: r["priorApprovedReleases"][0]
+                         ["frozenNonAccessibleDomBaselines"].__setitem__(
+                             "teacher",
+                             "acf03abaadde403426e766d4e6d2b56087a224f7497d084898ac9f119626e245"))
+        self.assert_trips("the prior release carries v1.1's own hashes, baselines and page counts")
 
-    def test_v1_1_baselines_reverted_to_v1_0(self):
-        """v1.0 markup must never be able to satisfy the v1.1 baselines."""
+    def test_v1_2_baselines_reverted_to_v1_1(self):
+        """Superseded v1.1 markup must never be able to satisfy the v1.2 baselines."""
         text = (ROOT / "apps/curriculum-editor/tests/validate_static.py").read_text(encoding="utf-8")
         static_path = ROOT / "apps/curriculum-editor/tests/validate_static.py"
         self.addCleanup(lambda: static_path.write_text(text, encoding="utf-8"))
         static_path.write_text(text.replace(
-            '"SSS-C2-CASE01": {"student": "6f02de8a1f56bada6ef119061ebe0c47335aaefd2a3fd6943f639409421aff4c", "teacher": "12df1cfccead45cb0c37441b433ff13feefc5b335defe1b6046b7f9235976e14", "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1"}',
-            '"SSS-C2-CASE01": {"student": "d423e389da2a3907a042430505aee6127a064d0c1231889a73a035d47000c425", "teacher": "b717bbc1b39df84b7006a5972d51a87057d35492f0add63c58676db941bed3b8", "answer": "52fe5e018b612d871193cdb9615af29303a86ea10552f745cf5ab38e85278afa"}'),
+            '"teacher": "acf03abaadde403426e766d4e6d2b56087a224f7497d084898ac9f119626e245", "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1"}',
+            '"teacher": "12df1cfccead45cb0c37441b433ff13feefc5b335defe1b6046b7f9235976e14", "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1"}'),
             encoding="utf-8")
-        self.assert_trips("the shared approved-baseline map holds the v1.1 baselines, not v1.0's")
+        self.assert_trips("the shared approved-baseline map holds the v1.2 baselines, not the superseded ones")
 
     def test_false_certified_source_pin(self):
         """A pin must contain the sources it certifies — the exact v1.0 defect."""
@@ -416,17 +443,60 @@ class Case01Mutations(unittest.TestCase):
 
     def test_retained_v1_0_record_deleted(self):
         """v1.0 history is frozen evidence and may not be removed."""
-        RETAINED_RELEASE.unlink()
+        LEGACY_RELEASE.unlink()
         self.addCleanup(self.restore_missing)
-        self.assert_trips("history holds exactly the four canonical records, two per approved version")
+        self.assert_trips("history holds exactly the six canonical records, two per approved version")
 
     def test_retained_v1_0_approval_rewritten_to_describe_v1_1(self):
         """The v1.0 approval record may not be edited to describe the corrective release."""
-        body = RETAINED_APPROVAL.read_text(encoding="utf-8")
-        mutated = body.replace("| Version | 1.0 |", "| Version | 1.0, superseded by v1.1 |")
+        body = LEGACY_APPROVAL.read_text(encoding="utf-8")
+        mutated = body.replace("| Version | 1.0 |", "| Version | 1.0, superseded by v1.2 |")
         self.assertNotEqual(mutated, body, "mutation anchor not found in the v1.0 approval record")
-        RETAINED_APPROVAL.write_text(mutated, encoding="utf-8")
+        LEGACY_APPROVAL.write_text(mutated, encoding="utf-8")
         self.assert_trips("both retained v1.0 records are byte-identical to synchronised main")
+
+    # ── 34-39 · v1.2 release-contract and retained-v1.1 protections ──────────
+
+    def test_retained_v1_1_record_rewritten_to_describe_v1_2(self):
+        """v1.1 became history the moment v1.2 released; it may not be restated."""
+        self.edit_record(RETAINED_RELEASE,
+                         lambda r: r.__setitem__("approvalDate", "2026-08-10"))
+        self.assert_trips("the retained v1.1 record still describes the v1.1 release, not v1.2")
+
+    def test_retained_v1_1_baselines_replaced_with_v1_2(self):
+        """The superseded record must keep the markup it was actually approved with."""
+        self.edit_record(RETAINED_RELEASE,
+                         lambda r: r["frozenNonAccessibleDomBaselines"].__setitem__(
+                             "teacher",
+                             "acf03abaadde403426e766d4e6d2b56087a224f7497d084898ac9f119626e245"))
+        self.assert_trips("the retained v1.1 record keeps its own hashes, baselines and page counts")
+
+    def test_retained_v1_1_approval_rewritten(self):
+        """The v1.1 approval record may not be edited to describe v1.2."""
+        body = RETAINED_APPROVAL.read_text(encoding="utf-8")
+        RETAINED_APPROVAL.write_text(body + "\n\nSuperseded by v1.2.\n", encoding="utf-8")
+        self.assert_trips("both retained v1.1 records are byte-identical to synchronised main")
+
+    def test_analytic_rubric_criterion_dropped(self):
+        """C2C1-T03 delivered all five criteria of the common 4/3/2/1 rubric."""
+        body = CONTENT.read_text(encoding="utf-8")
+        start = body.index("<tr><td>Mechanism / reasoning</td>")
+        end = body.index("<tr><td>Precision / boundaries</td>")
+        CONTENT.write_text(body[:start] + body[end:], encoding="utf-8")
+        self.assert_trips("the Teacher Guide prints the common 4/3/2/1 analytic rubric")
+
+    def test_editor_content_marker_restamped(self):
+        """Re-stamping the frozen marker would alter a digest the visual records certify."""
+        self.edit(CONTENT, 'data-editor-content="sss-c2-case01-v1.1"',
+                  'data-editor-content="sss-c2-case01-v1.2"')
+        self.assert_trips("the frozen editor-content contract marker is unchanged and recorded")
+
+    def test_correction_summary_defect_class_dropped(self):
+        """Every defect class this release closes must stay named in the record."""
+        self.edit_record(RELEASE, lambda r: r["correctionSummary"].__setitem__(
+            "corrections", [c for c in r["correctionSummary"]["corrections"]
+                            if "C2C1-T04" not in c]))
+        self.assert_trips("the v1.2 correction summary covers every corrected defect class")
 
 
 if __name__ == "__main__":

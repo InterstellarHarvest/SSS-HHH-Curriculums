@@ -29,19 +29,19 @@ FORMAL_STUDENT_IDENTITY_LABEL = re.compile(r"^(?:your\s+role|role|student\s+iden
 LEGACY_STUDENT_IDENTITY = re.compile(r"\b(?:pattern investigator|process modeler|data analyst|timeline analyst|risk assessor)\b", re.I)
 FORMAL_IDENTITY_MARKER_SELECTORS = ".label,.callout-label,.technical-label,.section-title,.response-label,label,h1,h2,h3,h4,h5,h6,.teacher-card > strong"
 EXPECTED = {
-    "SSS-C1-CASE01": {"version": "1.2", "status": "DRAFT", "tasks": 9, "counts": {"student": 3, "teacher": 8, "answer": 3}},
-    "SSS-C1-CASE02": {"version": "1.1", "status": "DRAFT", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3}},
-    "SSS-C1-CASE03": {"version": "1.2", "status": "DRAFT", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
-    "SSS-C1-CASE04": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
-    "SSS-C1-CASE05": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
-    "SSS-C1-CASE06": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
-    "SSS-C1-CASE07": {"version": "1.1", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
-    "SSS-C2-CASE01": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 9, "answer": 4}},
-    "SSS-C2-CASE02": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE03": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE04": {"version": "1.2", "status": "DRAFT", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
-    "SSS-C2-CASE05": {"version": "1.2", "status": "DRAFT", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
-    "SSS-C2-CASE06": {"version": "1.2", "status": "DRAFT", "tasks": 7, "counts": {"student": 6, "teacher": 7, "answer": 5}},
+    "SSS-C1-CASE01": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 8, "answer": 3}},
+    "SSS-C1-CASE02": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 3, "teacher": 7, "answer": 3}},
+    "SSS-C1-CASE03": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 9, "counts": {"student": 4, "teacher": 8, "answer": 4}},
+    "SSS-C1-CASE04": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 7, "answer": 4}},
+    "SSS-C1-CASE05": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 4, "teacher": 8, "answer": 4}},
+    "SSS-C1-CASE06": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 5}},
+    "SSS-C1-CASE07": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 6}},
+    "SSS-C2-CASE01": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 9, "answer": 4}},
+    "SSS-C2-CASE02": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE03": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 5, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE04": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 8, "counts": {"student": 6, "teacher": 8, "answer": 4}},
+    "SSS-C2-CASE05": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 7, "teacher": 9, "answer": 5}},
+    "SSS-C2-CASE06": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 7, "counts": {"student": 6, "teacher": 7, "answer": 5}},
 }
 # (eligible resize areas, locked areas) per Student edition. The final remediation added
 # response controls, and classify_sss_final_response_controls.py registered each new one as
@@ -64,31 +64,58 @@ STUDENT_LAYOUT_COUNTS = {
 }
 ACCESSIBLE_CER_SUBTITLE = "You may write sentences or use bullet points. Use evidence from more than one source."
 NON_ACCESSIBLE_BASELINE_HASHES = {
-    "SSS-C1-CASE01": {"student": "35560b98c86466c46ce4e3e695aa75b9158def2b46541ca99f8827616b35ec91", "teacher": "a280497aa8ec49e0ddfb55f3de1681b05f00ff62d158985aa7dd1d62d980f62f", "answer": "7dbaefd95a824dd4529ee4ad547604c1f2e9eada01350224103cbc050bbc5da0"},
-    "SSS-C1-CASE02": {"student": "5b714dd328c7e99ae2064499015137aa5633a329d76bef36abe040c21528613a", "teacher": "7ccdfde07f70e5919a1585af7b7cf908a4668e74fed61ebfd11428d62a3faaad", "answer": "f8e9efdb1c5103cd07e52183f0f8736a4ee96a05c32901553637b3a70a4a117d"},
-    "SSS-C1-CASE03": {"student": "0690d461f44e50a5f9ce2b1fd600b89324e1d3931bcf20024a0d110d5510b646", "teacher": "175f1623d60f1243cd119086547e4e8cc866ce6d3e9fac620ad1e3377609aba9", "answer": "01b4fb194cdaeb29b2bdb0dda87b0edc869016b354e90876a1722b337a858ef2"},
-    "SSS-C1-CASE04": {"student": "8fec5960a5e193cc6cbe963a060061f0f87aae9fd4f153a34c5ba831400e8239", "teacher": "97ea94a7200cabc057c5df0e23c47dd9f0dbd2eb82cc5aa5e25f66deea67b648", "answer": "48f8a053a17fe1230477e121fdec67f8b6dbf0dc5d30aaa0575e4469757a5d8a"},
-    "SSS-C1-CASE05": {"student": "d17cf55212afb64e7425c217c352f7a8d0d60f385240cd3c865dda1e2a025b4a", "teacher": "40ce5700fe2d1126797a5035a6f5f0070b9ab19961bb31e53a34e71f7d0b0a23", "answer": "8adb307362cd6668db5a9f636c463789c416065bfff5ac1835ca35ca970843e1"},
-    "SSS-C1-CASE06": {"student": "0bf75e4d4d43e343c83cc68350634f3345471365e99beef2b7e187b17d6cc868", "teacher": "5882a8c5860cf3f60a1a66d090b0e47eaf1a2371c19c5148e795db304d753509", "answer": "134b05fd099ac7d168dc033efb181db987d2ade3b9577c4e3f540aed2d22f996"},
-    "SSS-C1-CASE07": {"student": "5bfa52c1a3474cfb4db3391282e0d7c1589260b0d0c1c10701b43a4519dadbcf", "teacher": "ac55945f722443b78094d9661c23dbf4201ee59d71ab7a44db344c4432e8a17c", "answer": "c5dde681451cb406ed6c26c14c498a433f10da404da2ecf91703bf505b501be9"},
-    # Case 01 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
-    # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
-    "SSS-C2-CASE01": {"student": "6f02de8a1f56bada6ef119061ebe0c47335aaefd2a3fd6943f639409421aff4c", "teacher": "12df1cfccead45cb0c37441b433ff13feefc5b335defe1b6046b7f9235976e14", "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1"},
-    # Case 02 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
-    # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
-    "SSS-C2-CASE02": {"student": "6b1f309da4ee40ff780d93914458b75c430cded815bbef110db1f27bb792df65", "teacher": "d09818e93df75949a5d93fe1a1dfb89fe9a23732a1a844299cac933d21f5fc9f", "answer": "3bbd39fb4bbc1e9432eb130d770c5a6378037ffb2142823b65b04fc5132564fc"},
-    "SSS-C2-CASE03": {"student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493", "teacher": "c087aa117f87d991bd7b8039f6a189713833042720318007503b29792a1fd3a5", "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090"},
-    # Case 04 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
-    # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
-    "SSS-C2-CASE04": {"student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e", "teacher": "2996592b0846b12db62b1d6ee5c4d2e8844be4ceb72a70db5276a6733daccfdf", "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6"},
-    # Case 05 was reissued as v1.1; the Teacher and Answer baselines differ from the v1.0
-    # baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
-    # The Student baseline is deliberately identical to v1.0: no v1.1 correction touched the
-    # Student edition.
-    "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "05d797d8d47eee5e177f54bad6e5ffc7476b72caf04a58366536db2a14cda770", "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d"},
-    # Case 06 was reissued as v1.1; these are the v1.1 baselines, and they differ from the
-    # v1.0 baselines retained in its v1.0 release record, so v1.0 markup can never satisfy them.
-    "SSS-C2-CASE06": {"student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2", "teacher": "2720249b480c71e29b2dee472feaa90ddd990b51922459612a8f53e190b61bb3", "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C1-CASE01": {"student": "35560b98c86466c46ce4e3e695aa75b9158def2b46541ca99f8827616b35ec91", "teacher": "219f25b45a508bb1e10b7a8e87e1a25a2c14d671f1d6ed5281467a120f4caf88", "answer": "4f822c76a293c411b2d0882da4b3dcf138164ea5bbaea2aa5fe3d19bcbfd0205"},
+    # Re-pinned at the v1.1 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.1.
+    "SSS-C1-CASE02": {"student": "5b714dd328c7e99ae2064499015137aa5633a329d76bef36abe040c21528613a", "teacher": "84fa34457e2b7cbf2a7c4b751c60ed4c952736a11856af61a32432b690d67719", "answer": "f8e9efdb1c5103cd07e52183f0f8736a4ee96a05c32901553637b3a70a4a117d"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C1-CASE03": {"student": "c2bce0c8e81cba6733b7b7593145bb72b789e5341216be3176beac691d40a725", "teacher": "6c9c180e63e03f9913a6962bd08b216d06e92b4b58e693392d04bdbcf8295877", "answer": "37db96007f095cdc2a7024537888869f833cb9fc985134e074520a453b925d73"},
+    # Re-pinned at the v1.1 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.1.
+    "SSS-C1-CASE04": {"student": "5ec2de3055317dc561c71e162d1384dce5a74ffd81d59d9321d62e8c2a22d27c", "teacher": "33d882f329d98a5f9a3e673e3df1b94e7824c3df7fc71d0a77ef748c1c5171f7", "answer": "48f8a053a17fe1230477e121fdec67f8b6dbf0dc5d30aaa0575e4469757a5d8a"},
+    # Re-pinned at the v1.1 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.1.
+    "SSS-C1-CASE05": {"student": "f41462a53f77e18762f0f2510d4ba40a70e13ae8f649c566dbc6385c2ae9dac3", "teacher": "e6eb5141545690ec842755ab548adeb5506daced2a97fa24c6b787211cd7891d", "answer": "6a3e8a7b42d11d900636459571f8357dfb36c5c0416ad485d970702e63513b77"},
+    # Re-pinned at the v1.1 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.1.
+    "SSS-C1-CASE06": {"student": "577d7411d135232744aa1df7c9fb174bd30763f9f6fe60dfc25b343637a89a58", "teacher": "19054a1c59c9c681bdd7ecafae8be953c80caf83af33a9f3da65d81ea8ec6b4b", "answer": "134b05fd099ac7d168dc033efb181db987d2ade3b9577c4e3f540aed2d22f996"},
+    # Re-pinned at the v1.1 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.1.
+    "SSS-C1-CASE07": {"student": "796149a5e5eea1cc2e92c4d393bf73e9b052d0d3db94ab686520d0ac7dc5036e", "teacher": "f44ad0a98621e53d585c12c25276c686b96d11707a7055f4ca473d5b637e39cb", "answer": "9621dc007fd71182acbeef096c56af893de779e34d33ee9c54faf958b3c2140d"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C2-CASE01": {"student": "6f02de8a1f56bada6ef119061ebe0c47335aaefd2a3fd6943f639409421aff4c", "teacher": "acf03abaadde403426e766d4e6d2b56087a224f7497d084898ac9f119626e245", "answer": "b72e77f7d24f4c6c3ceaebd0bf8152fa0a0e1dc8996a980b2b68fc6a2e542ae1"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C2-CASE02": {"student": "09da81379605b47b6eaef3130f63b55c070931ea5daedb68200d335427bc6aac", "teacher": "22384f7fb44b6c7b9ca327b4fe8f8798a4a74684062466842d2f4ef223de20fd", "answer": "0014a645f17e55171b113149cc06a1b46214e466bbf2cf9ec8dcd4b4cf8e0e8d"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C2-CASE03": {"student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493", "teacher": "6613e8d68662c84a63740b0a63b886a1515c59db9d8c84218e81be1e0192fde7", "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C2-CASE04": {"student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e", "teacher": "1a58af684cb70ef02e02645eeda40d3159aafddd64eec93ac47902238aefa7e9", "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C2-CASE05": {"student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331", "teacher": "afbdbdb25a9f00c98a889b3036472b6569079cec8faa3256473d04662c620c78", "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d"},
+    # Re-pinned at the v1.2 final-system release: the owner-approved corrective and
+    # visually modernized markup. Superseded baselines are retained in the release records
+    # and cannot satisfy approved-baseline enforcement for v1.2.
+    "SSS-C2-CASE06": {"student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2", "teacher": "d1d8f6551ba78f6da00caf193145131f07ecc2605ae9e17ce8e6d7a8439e4daf", "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516"},
 }
 CASE04_TASK_TITLES = [
     "Initial Thinking — Identify the Variable",
@@ -516,8 +543,8 @@ def main() -> int:
             # only while the package is actually released. The corrective-candidate lifecycle
             # is validated by validate_sss_final_corrective_candidates.py instead.
             if expected_status == "APPROVED_STABLE":
-                results.check("Case 04 task registry records the completed release lifecycle", registry_data.get("version") == "1.0" and registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE")
-                results.check("Case 04 release history records a native release with no former generated artifacts", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and history.get("priorApprovedReleases") == [] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size")
+                results.check("Case 04 task registry records the completed release lifecycle", registry_data.get("version") == "1.1" and registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE")
+                results.check("Case 04 release history records a native release with the superseded v1.0 retained as its prior", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and [prior.get("version") for prior in history.get("priorApprovedReleases", [])] == ["1.0"] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size")
             owner_approval_path = package_path.parents[1] / "history/CASE04_OWNER_APPROVAL_v1.0.md"
             owner_approval = owner_approval_path.read_text(encoding="utf-8") if owner_approval_path.is_file() else ""
             results.check("Case 04 owner approval record captures release, review, merge, and no-artifact decisions", all(token in owner_approval for token in ["Nate / Owner", "2026-08-01", "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", "NO_GENERATED_ARTIFACTS_COMMITTED"]))
@@ -595,7 +622,7 @@ def main() -> int:
 
         if case_id == "SSS-C1-CASE05":
             task_titles = [task["title"] for task in registry_data["tasks"]]
-            results.check("Case 05 task registry records the completed release lifecycle", registry_data.get("version") == "1.0" and registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and package.get("approval", {}).get("printStatus") == "PASS" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
+            results.check("Case 05 task registry records the completed release lifecycle", registry_data.get("version") == "1.1" and registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and package.get("approval", {}).get("printStatus") == "PASS" and registry_data.get("gameCommit") == "a7a725121f261373df32a5366c70e7df73ddf8f3")
             results.check("Case 05 task registry uses the eight locked titles", task_titles == CASE05_TASK_TITLES, task_titles)
             role_task_orders = {
                 role: [int(node["data-shell-task-heading"]) for page in soup.select(f'.page[data-role="{role}"]') for node in page.select("[data-shell-task-heading]")]
@@ -673,7 +700,7 @@ def main() -> int:
             task_titles = [task["title"] for task in registry_data["tasks"]]
             results.check("Case 06 task registry records the completed release lifecycle and frozen game baseline", registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and registry_data.get("gameCommit") == "d723fb9b8085905a6048575a2cb3bb0fce1d312b" and package.get("approval", {}).get("printStatus") == "PASS")
             if expected_status == "APPROVED_STABLE":  # release history exists only for a released package
-                results.check("Case 06 release history records a native release, approved print gate, and frozen game baseline", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and history.get("priorApprovedReleases") == [] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size" and any("d723fb9b8085905a6048575a2cb3bb0fce1d312b" in note for note in history.get("migrationNotes", [])))
+                results.check("Case 06 release history records a native release, approved print gate, and frozen game baseline", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and [prior.get("version") for prior in history.get("priorApprovedReleases", [])] == ["1.0"] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size" and any("d723fb9b8085905a6048575a2cb3bb0fce1d312b" in note for note in history.get("migrationNotes", [])))
             owner_approval_path = package_path.parents[1] / "history/CASE06_OWNER_APPROVAL_v1.0.md"
             owner_approval = owner_approval_path.read_text(encoding="utf-8") if owner_approval_path.is_file() else ""
             results.check("Case 06 owner approval record captures all owner gates and no-artifact decision", all(token in owner_approval for token in ["Nate / Owner", "2026-08-03", "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", "On-screen content and visual review: **PASS**", "Generated PDF review: **PASS**", "Physical print at 100% / Actual Size: **PASS**", "NO_GENERATED_ARTIFACTS_COMMITTED"]))
@@ -744,9 +771,9 @@ def main() -> int:
 
         if case_id == "SSS-C1-CASE07":
             task_titles = [task["title"] for task in registry_data["tasks"]]
-            results.check("Case 07 task registry records the completed release lifecycle and exact frozen baselines", registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and registry_data.get("gameCommit") == "a813c209dfde00634103f74d6673e7d4433e0e63" and registry_data.get("auditCommit") == "76a908400eb53c1c81fe91ce52337f414ae2c591" and package.get("approval") == {"owner": "Nate / Owner", "date": "2026-08-03", "status": "APPROVED", "printStatus": "PASS"})
+            results.check("Case 07 task registry records the completed release lifecycle and exact frozen baselines", registry_data.get("status") == "APPROVED_STABLE" and registry_data.get("ownerReviewStatus") == "OWNER_REVIEW_PASS" and registry_data.get("mergeStatus") == "READY_TO_MERGE" and registry_data.get("gameCommit") == "a813c209dfde00634103f74d6673e7d4433e0e63" and registry_data.get("auditCommit") == "76a908400eb53c1c81fe91ce52337f414ae2c591" and package.get("approval") == {"date": "2026-08-10", "owner": "Nate / Owner", "status": "APPROVED", "printStatus": "PASS"})
             if expected_status == "APPROVED_STABLE":  # release history exists only for a released package
-                results.check("Case 07 release history records a native release, approved print gate, and frozen game/audit baselines", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and history.get("priorApprovedReleases") == [] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size" and any("a813c209dfde00634103f74d6673e7d4433e0e63" in note for note in history.get("migrationNotes", [])) and any("76a908400eb53c1c81fe91ce52337f414ae2c591" in note for note in history.get("migrationNotes", [])))
+                results.check("Case 07 release history records a native release, approved print gate, and frozen game/audit baselines", history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS" and [prior.get("version") for prior in history.get("priorApprovedReleases", [])] == ["1.0"] and history.get("acceptedPrintStatus") == "PASS at 100% / Actual Size" and any("a813c209dfde00634103f74d6673e7d4433e0e63" in note for note in history.get("migrationNotes", [])) and any("76a908400eb53c1c81fe91ce52337f414ae2c591" in note for note in history.get("migrationNotes", [])))
             owner_approval_path = package_path.parents[1] / "history/CASE07_OWNER_APPROVAL_v1.0.md"
             owner_approval = owner_approval_path.read_text(encoding="utf-8") if owner_approval_path.is_file() else ""
             results.check("Case 07 owner approval record captures all owner gates and no-artifact decision", all(token in owner_approval for token in ["Nate / Owner", "2026-08-03", "APPROVED_STABLE", "OWNER_REVIEW_PASS", "READY_TO_MERGE", "On-screen content and visual review: **PASS**", "Generated PDF review: **PASS**", "Physical print at 100% / Actual Size: **PASS**", "NO_GENERATED_ARTIFACTS_COMMITTED"]))

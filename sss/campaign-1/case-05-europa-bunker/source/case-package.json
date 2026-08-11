@@ -7,11 +7,12 @@
   "subtitle": "Campaign 1 · Case 05 · Europa, Sub-Surface Bunker",
   "location": "Europa, Sub-Surface Bunker",
   "version": "1.1",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-10",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -134,7 +135,7 @@
   "sourceHashes": {
     "content": "8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d",
     "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
-    "taskRegistry": "402161f3aed5b834cc6228321329655086f5d42bca362605fefe54fa1a0820fc",
+    "taskRegistry": "b1b8f858ebbdee5d5232bc9024e17c44c6fd43aef5b5d498eeb2d6b67e01f7a3",
     "layoutOverrides": "6667dec008f983f057c1bc56eec0ba5b1fd59b918c66b57f9872c418cd2578d2"
   },
   "phraseBank": {
@@ -165,5 +166,6 @@
       "answer",
       "accessible"
     ]
-  }
+  },
+  "releaseHistory": "sss/campaign-1/case-05-europa-bunker/history/release-v1.1.json"
 }

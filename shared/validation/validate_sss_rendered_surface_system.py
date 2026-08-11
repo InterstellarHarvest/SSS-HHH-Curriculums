@@ -22,6 +22,16 @@ FROZEN_HASHES = {
     "content.html": "ab4aece5aea687efa477148af920c96aa24208d9e428100b6f2c80d40fd774a1",
     "presentation.css": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
     "layout-overrides.json": "2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781",
+    "case-package.json": "c72321bb1c13d3bff4149822adeead05d1c652fc3a6fa35c00bc85008b469fc4",
+    "task-registry.js": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+FROZEN_HASHES_AT_ACCEPTANCE = {
+    "content.html": "ab4aece5aea687efa477148af920c96aa24208d9e428100b6f2c80d40fd774a1",
+    "presentation.css": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
+    "layout-overrides.json": "2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781",
     "case-package.json": "926b6bcbf0fdf59f234cd59527aab16a672650edc905cd61cbe1f7859dd454e8",
     "task-registry.js": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
 }
@@ -152,7 +162,7 @@ def main() -> int:
     )
     check("plan preserves the final-finding boundary pending rendered acceptance", "Do not advance the inventory to 36/36" in plan and "No rendered acceptance is inferred from static validation" in plan)
     check("plan preserves dormant-token audit scope", "Cases 01, 02 and 06" in plan and "dormant" in plan and "zero tinted rendered fills" in plan)
-    check("plan lists all five frozen Case 01 hashes", all(value in plan for value in FROZEN_HASHES.values()))
+    check("plan lists all five frozen Case 01 hashes", all(value in plan for value in FROZEN_HASHES_AT_ACCEPTANCE.values()))
     check(
         "handoff defines the exact GS01 rendered gate",
         all(token in handoff for token in ("Candidate final finding — C1C1-GS01 grayscale-system correction", "all four printable roles", "zero tinted rendered fills", "#f2f2f2", "#e6e6e6", "2375/2375 PASS")),
@@ -160,7 +170,7 @@ def main() -> int:
     check("handoff preserves canonical registration and same-Mac disposition boundary", "Canonical project registration remains 2375" in handoff and "do not infer acceptance" in handoff)
     check("handoff keeps the inventory at 35/36 pending acceptance", "inventory remains **35 of 36 completed**" in handoff and "`C1C1-GS01` remains unaccepted" in handoff)
     check("handoff prohibits PDF and static-baseline repinning", "Do not run PDF automation" in handoff and "do not run or re-pin `validate_static.py`" in handoff)
-    check("handoff lists all five frozen Case 01 hashes", all(value in handoff for value in FROZEN_HASHES.values()))
+    check("handoff lists all five frozen Case 01 hashes", all(value in handoff for value in FROZEN_HASHES_AT_ACCEPTANCE.values()))
 
     lineage = f"`{PREREQ_SHA} → {CANDIDATE_SHA}`"
     check(

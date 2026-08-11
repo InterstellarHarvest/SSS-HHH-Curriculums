@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE01",
+  "curriculumVersion": "1.2",
+  "correctiveOf": "1.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "547dc5edd1999471358d8421abc11ad3d78a0613",
+      "role": "Give four over-full Teacher Guide pages the page their content needs"
+    },
+    {
+      "commit": "ceb632dadb9461cae81086021b0727c2a2efad6a",
+      "role": "Expand mechanism visual family to ISS"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "ab4aece5aea687efa477148af920c96aa24208d9e428100b6f2c80d40fd774a1",
+    "presentation": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
+    "taskRegistry": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
+    "layoutOverrides": "2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781",
+    "icons": "a849e012e8ffec293643d083a778ba55d47b3ba4646246f92810d0226a40aef2"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "35560b98c86466c46ce4e3e695aa75b9158def2b46541ca99f8827616b35ec91",
+    "teacher": "219f25b45a508bb1e10b7a8e87e1a25a2c14d671f1d6ed5281467a120f4caf88",
+    "answer": "4f822c76a293c411b2d0882da4b3dcf138164ea5bbaea2aa5fe3d19bcbfd0205",
+    "note": "Regenerated for v1.2. The student, teacher, answer baselines differ from the superseded v1.1 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for those roles."
+  },
+  "rolePageCounts": {
+    "student": 3,
+    "teacher": 8,
+    "answer": 3,
+    "accessible": 6
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "complete": {
+      "path": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+      "sha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f"
+    },
+    "roles": {
+      "student": {
+        "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1.html",
+        "sha256": "0bc0a5cc945daac4c50e4c33cdf0036f900c62146209869974b51ed9c19ceef8"
+      },
+      "teacher": {
+        "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1.html",
+        "sha256": "7eb5f66b5a7ed31dc90ec23bd916a6a718cd00e27ab86c6cbd5a098755c78ae1"
+      },
+      "answer": {
+        "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1.html",
+        "sha256": "5b3bb048d6e34c3da9f21cf903f45139e760f5b8d59889c3a11e76c6a91d980b"
+      },
+      "accessible": {
+        "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html",
+        "sha256": "ca922c3cf2ec3284e85e1f8e3905c477ed59dfa667f454d10b9db226ad8e6af0"
+      }
+    }
+  },
+  "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "priorApprovedReleases": [
+    {
+      "version": "1.1",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-01",
+      "approvalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+      "recoveryCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+      "canonicalSourceApprovalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+      "retainedRecords": [
+        "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.1.json"
+      ],
+      "sourceHashes": {
+        "content": "c496d463f4d5b4b67e96c70a43caff10d90b0f828da4b952fa962aa931f0b3af",
+        "presentation": "3b1fd1313b0388ba754d9fc982aa9a401cb060be4169c7834a6bacc08778ad41",
+        "taskRegistry": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
+        "icons": "a849e012e8ffec293643d083a778ba55d47b3ba4646246f92810d0226a40aef2"
+      },
+      "rolePageCounts": {
+        "student": 3,
+        "teacher": 7,
+        "answer": 3,
+        "accessible": 6
+      },
+      "formerArtifacts": {
+        "complete": {
+          "path": "sss/campaign-1/case-01-iss-greenhouse/master/SSS_C1_CASE01_EDITABLE_MASTER_v1.1.html",
+          "sha256": "737239b53ae5af3f25cbaf037d0c9882f50d9e7e8d26b3d03408e469ced6b56f"
+        },
+        "roles": {
+          "student": {
+            "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_STUDENT_MISSION_v1.1.html",
+            "sha256": "0bc0a5cc945daac4c50e4c33cdf0036f900c62146209869974b51ed9c19ceef8"
+          },
+          "teacher": {
+            "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_TEACHER_GUIDE_v1.1.html",
+            "sha256": "7eb5f66b5a7ed31dc90ec23bd916a6a718cd00e27ab86c6cbd5a098755c78ae1"
+          },
+          "answer": {
+            "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ANSWER_KEY_v1.1.html",
+            "sha256": "5b3bb048d6e34c3da9f21cf903f45139e760f5b8d59889c3a11e76c6a91d980b"
+          },
+          "accessible": {
+            "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_ACCESSIBLE_MISSION_v1.1.html",
+            "sha256": "ca922c3cf2ec3284e85e1f8e3905c477ed59dfa667f454d10b9db226ad8e6af0"
+          }
+        }
+      },
+      "recoveryCommand": "git show e347370ed55913f04b54b8e942f191808f8e4aa9:sss/campaign-1/case-01-iss-greenhouse/source/<file> > <destination>",
+      "notes": [
+        "v1.1 was a genuine approved release with its own owner review. It is superseded by v1.2, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the SSS correctness-remediation and visual-modernization program for ISS Greenhouse.",
+    "corrections": [
+      "C1C1-T01 Teacher procedure skipped Student Task 5. The timed procedure now routes every numbered task.",
+      "C1C1-AK01 Answer Key Task 3 omitted the required observation/inference fields. The key now completes every keyable subpart.",
+      "C1C1-ACC01 Several Accessible tasks were insufficiently hand-holding. Chunked directions, evidence cues and partial completion were added without changing the accepted response space.",
+      "C1C1-SYS01 Teacher task coverage and Answer Key subfield coverage are now enforced repo-wide by shared validation rather than per case.",
+      "C1C1-GS01 Rendered grayscale retained tinted callout surfaces. The case-scoped shared visual layer now neutralises them to rgb(242, 242, 242) and rgb(230, 230, 230); no case source changed."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists."
+  ],
+  "retiredArtifacts": [
+    {
+      "classification": "RETIRED_PRESENTATION_SNAPSHOT",
+      "path": "sss/campaign-1/case-01-iss-greenhouse/published/v1.1/SSS_C1_CASE01_GRAYSCALE_MISSION_v1.1.html",
+      "sha256": "f8e2de4f12a9d4ee6c762a3cdda5c6defb7a5036b52c2efa6f844bfb64cd4f44"
+    },
+    {
+      "classification": "IGNORED_LOCAL_RELEASE_ARTIFACT_REMOVED",
+      "path": "sss/campaign-1/case-01-iss-greenhouse/validation-artifacts/teacher_v1.0_revalidated.pdf",
+      "sha256": "a7b4db344183939e160ed6188b40363b91e032cd1bebc3295034d9d6b5439dd3",
+      "bytes": 483312
+    }
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

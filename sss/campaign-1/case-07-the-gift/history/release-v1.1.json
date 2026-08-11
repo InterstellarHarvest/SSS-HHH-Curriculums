@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE07",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "f506eba2c86bdc37742fa8b49d0d49f54adb6b4c",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "5bf9e44e9559cdbea518ceb979fcc0eb0f9bed8d",
+      "role": "[auto-remediation] Reconcile final SSS response layout contracts"
+    },
+    {
+      "commit": "b8a5c7a8d1f35854a3cd1595b6e5f8ee9701fb64",
+      "role": "Stop Case 07 Task 4 status fields overlapping the stage responses"
+    },
+    {
+      "commit": "872a1c48320ac897d91ab45ace83e94ef4e9f0ef",
+      "role": "Give Case 07 Accessible page 4 cross-platform headroom"
+    },
+    {
+      "commit": "3f473ad3730b1e0d3415f66ad0612d16b8cbc527",
+      "role": "Make the screen-reader load announcement lifecycle-neutral"
+    },
+    {
+      "commit": "70da06af2ce20b9fbe1ec87b1aeabe5bb27a222e",
+      "role": "Complete Campaign 1 mechanism visual family"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "45d6c471eab166b5761b8c7de43d0352597eb9c4dafa15cb8951ec56783b6a11",
+    "presentation": "259b76e2d7752680d58e01092e2bc3528956e13be7b79c3b453611b6c2d258a4",
+    "taskRegistry": "24a1ab7e3b15bb986a3a0276361cb7ad67d2270e733adbd7a300674825cfa0a5",
+    "layoutOverrides": "0b3fc73e9baddf29e982f01841a66c41f2ae2a96f44d6fe72aadd5e83ebae6ea"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "796149a5e5eea1cc2e92c4d393bf73e9b052d0d3db94ab686520d0ac7dc5036e",
+    "teacher": "f44ad0a98621e53d585c12c25276c686b96d11707a7055f4ca473d5b637e39cb",
+    "answer": "9621dc007fd71182acbeef096c56af893de779e34d33ee9c54faf958b3c2140d",
+    "note": "Regenerated for v1.1. The student, teacher, answer baselines differ from the superseded v1.0 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for those roles."
+  },
+  "rolePageCounts": {
+    "student": 6,
+    "teacher": 8,
+    "answer": 6,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Case 07 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-03",
+      "approvalCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+      "recoveryCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+      "canonicalSourceApprovalCommit": "f08066c15c161c5961cc88adad86282329cd7609",
+      "retainedRecords": [
+        "sss/campaign-1/case-07-the-gift/history/CASE07_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-1/case-07-the-gift/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "892ae6ce8e23486a7400ab02e9bb62a3e3ee590bc53c1b905441bec745b52963",
+        "presentation": "533e9848052fa6be90c258ce855a3874da922b1a09365b380a60eb46cbad0b53",
+        "taskRegistry": "cf1fc8abbac1b604346572a310456e15fa5e000c42c7e9f1b97f67790a622602"
+      },
+      "rolePageCounts": {
+        "student": 6,
+        "teacher": 8,
+        "answer": 6,
+        "accessible": 8
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Case 07 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+      },
+      "recoveryCommand": "git show f08066c15c161c5961cc88adad86282329cd7609:sss/campaign-1/case-07-the-gift/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review. It is superseded by v1.1, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for The Gift.",
+    "corrections": [
+      "C1C7-UI01 The best-supported diagnosis selection had no persisted digital control.",
+      "C1C7-UI02 Required missing-stage X/status markings in Task 4 lacked persisted digital controls.",
+      "C1C7-AK01 The Answer Key omitted the required Task 4 missing-stage X/status subpart.",
+      "C1C7-T02 Teacher pacing placed the intervention before the CER, contrary to the registry and Student order.",
+      "C1C7-ACC01 Accessible Tasks 4, 5 and 7 received targeted scaffolding.",
+      "C1C7-SYS01 Answer Key validation now covers required visual and status subparts, not text fields only.",
+      "C1C7-VIS01/VIS02/VIS03 Diagnostic channels, biological-systems schematic and route/monitoring matrix modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Frozen game-source baseline: a813c209dfde00634103f74d6673e7d4433e0e63. The game repository was not modified by this release.",
+    "Frozen audit baseline: 76a908400eb53c1c81fe91ce52337f414ae2c591. Retained unchanged from the original release record.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"case07-v1.0\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place."
+  ],
+  "retiredArtifacts": [],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

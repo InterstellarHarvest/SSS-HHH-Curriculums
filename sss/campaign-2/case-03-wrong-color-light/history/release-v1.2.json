@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE03",
+  "curriculumVersion": "1.2",
+  "correctiveOf": "1.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "571c491ac54aa61788c7af991756b6da534fd506",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "9855b3b2e3c02e8e819119a68c4270cbd051614fa5fabce14ce211bf3949bc3e",
+    "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
+    "taskRegistry": "aad26ae2908952a6aebec1ec65a46c7a61d3ce074da5991f847f990f87f67bce",
+    "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493",
+    "teacher": "6613e8d68662c84a63740b0a63b886a1515c59db9d8c84218e81be1e0192fde7",
+    "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090",
+    "note": "Regenerated for v1.2. The teacher baseline differs from the superseded v1.1 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for that role. The student, answer baselines are deliberately identical to v1.1: no v1.2 correction touched those edition. An unchanged baseline is the correct record of an unchanged edition, not a missed regeneration."
+  },
+  "rolePageCounts": {
+    "student": 5,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 8
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.1",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-06",
+      "approvalCommit": "2d4a62eaf39458755b4ee0751bb8225bd219f105",
+      "recoveryCommit": "2d4a62eaf39458755b4ee0751bb8225bd219f105",
+      "canonicalSourceApprovalCommit": "2d4a62eaf39458755b4ee0751bb8225bd219f105",
+      "retainedRecords": [
+        "sss/campaign-2/case-03-wrong-color-light/history/CASE03_OWNER_APPROVAL_v1.1.md",
+        "sss/campaign-2/case-03-wrong-color-light/history/release-v1.1.json"
+      ],
+      "sourceHashes": {
+        "content": "1c860001db12dc47911885c4f9bc10c03b737c25b8f78bd3990851ec90591a9d",
+        "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
+        "taskRegistry": "0622cafbcd3a16f26c06e03dd9fdfde24175cd495935e46de419752de72e416e",
+        "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
+      },
+      "rolePageCounts": {
+        "student": 5,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 8
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+      },
+      "recoveryCommand": "git show 2d4a62eaf39458755b4ee0751bb8225bd219f105:sss/campaign-2/case-03-wrong-color-light/source/<file> > <destination>",
+      "notes": [
+        "v1.1 was a genuine approved release with its own owner review. It is superseded by v1.2, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": [],
+      "frozenNonAccessibleDomBaselines": {
+        "student": "7777ea321455a7b0e545a299b3b6e1b45f0afe4d24d37f92b6f397551a7e1493",
+        "teacher": "c087aa117f87d991bd7b8039f6a189713833042720318007503b29792a1fd3a5",
+        "answer": "c0fa5030e250b498f7f6ad32612886ecc73676e8f6d7859745e0a7b845d09090",
+        "note": "Regenerated for v1.1. All three differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+      }
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for The Wrong Color of Light.",
+    "corrections": [
+      "C2C3-PACE01 Declared class-period route. The undeclared 125-minute core route is now an explicitly declared multi-period route.",
+      "C2C3-T02 Rubric system. The Full/Partial rubric was replaced by the common quick rubric plus the full 4/3/2/1 analytic rubric.",
+      "C2C3-ACC01 Accessible workload. Accessible Task 5 required ten source-analysis responses plus synthesis; the writing load was reduced without changing the accepted response space.",
+      "C2C3-T01 Teacher structure is validated against the corrected functional set rather than a fixed page count.",
+      "C2C3-VIS01, VIS02 and VIS03 GRO-9 discrete spectral display, response-band overlay and the spectral-match mechanism/specification panel modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Campaign 2 Case 03 keeps its runtime case number and is not renumbered as Campaign 2 Case 01.",
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490. The game repository was not modified by this release.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"sss-c2-case03-v1.1\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place."
+  ],
+  "retiredArtifacts": [],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

@@ -1,9 +1,10 @@
 # SSS/HHH Current Project State
 
 Project state content verified from curriculum repository baseline
-`81eef7067268865fec368f50db2d363e0354ae1a`
+`105467f997b1425b7f40e8150749c70e09ed4771` (the visual-modernization closeout), with the
+thirteen-case final system release prepared on `release/sss-final-system` and held unpushed.
 
-Last updated: 2026-08-06
+Last updated: 2026-08-11
 
 ## Purpose and authority
 
@@ -37,25 +38,25 @@ Frozen Campaign 2 game-source baseline: `46b9387bca95736f164f905596e3dd8b1396866
 
 | Curriculum | Campaign | Case | Title | Version | Student | Teacher | Answer Key | Accessible | Status |
 |---|---:|---:|---|---:|---:|---:|---:|---:|---|
-| SSS | 1 | 01 | ISS Greenhouse Module | 1.1 | 3 | 7 | 3 | 6 | APPROVED_STABLE |
-| SSS | 1 | 02 | Lunar Greenhouse | 1.0 | 3 | 7 | 3 | 7 | APPROVED_STABLE |
-| SSS | 1 | 03 | Mars Habitat | 1.1 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
-| SSS | 1 | 04 | Hayes Orbital Station | 1.0 | 4 | 7 | 4 | 7 | APPROVED_STABLE |
-| SSS | 1 | 05 | Sub Surface Bunker | 1.0 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
-| SSS | 1 | 06 | First Contact Protocol | 1.0 | 5 | 8 | 5 | 7 | APPROVED_STABLE |
-| SSS | 1 | 07 | The Gift | 1.0 | 6 | 8 | 6 | 8 | APPROVED_STABLE |
-| SSS | 2 | 01 | Heavy Hands | 1.1 | 5 | 9 | 4 | 8 | APPROVED_STABLE |
-| SSS | 2 | 02 | The Missing Dance | 1.1 | 6 | 8 | 4 | 8 | APPROVED_STABLE |
-| SSS | 2 | 03 | The Wrong Color of Light | 1.1 | 5 | 8 | 4 | 8 | APPROVED_STABLE |
-| SSS | 2 | 04 | The Silent Grove | 1.1 | 6 | 8 | 4 | 8 | APPROVED_STABLE |
-| SSS | 2 | 05 | Too Clean a Room | 1.1 | 7 | 9 | 5 | 7 | APPROVED_STABLE |
-| SSS | 2 | 06 | The First Garden | 1.1 | 6 | 8 | 5 | 7 | APPROVED_STABLE |
+| SSS | 1 | 01 | ISS Greenhouse Module | 1.2 | 3 | 8 | 3 | 6 | APPROVED_STABLE |
+| SSS | 1 | 02 | Lunar Greenhouse | 1.1 | 3 | 7 | 3 | 7 | APPROVED_STABLE |
+| SSS | 1 | 03 | Mars Habitat | 1.2 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
+| SSS | 1 | 04 | Hayes Orbital Station | 1.1 | 4 | 7 | 4 | 7 | APPROVED_STABLE |
+| SSS | 1 | 05 | Sub Surface Bunker | 1.1 | 4 | 8 | 4 | 7 | APPROVED_STABLE |
+| SSS | 1 | 06 | First Contact Protocol | 1.1 | 5 | 8 | 5 | 7 | APPROVED_STABLE |
+| SSS | 1 | 07 | The Gift | 1.1 | 6 | 8 | 6 | 8 | APPROVED_STABLE |
+| SSS | 2 | 01 | Heavy Hands | 1.2 | 5 | 9 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 02 | The Missing Dance | 1.2 | 6 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 03 | The Wrong Color of Light | 1.2 | 5 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 04 | The Silent Grove | 1.2 | 6 | 8 | 4 | 8 | APPROVED_STABLE |
+| SSS | 2 | 05 | Too Clean a Room | 1.2 | 7 | 9 | 5 | 7 | APPROVED_STABLE |
+| SSS | 2 | 06 | The First Garden | 1.2 | 6 | 7 | 5 | 7 | APPROVED_STABLE |
 
 Cases 01–05 are the five released core cases. Case 06, **First Contact Protocol** (runtime `alien1`), is the first released first-contact bonus case. Case 07, **The Gift** (runtime `alien2`; former source-development label `Case 6b`), is the released Campaign 1 culmination. Cases 04–07 were produced natively through the mature canonical workflow. All registered Accessible editions use content-driven page counts and dedicated canonical CER pages; Student, Teacher, and Answer Key page counts remain fixed. The seven-case Campaign 1 curriculum sequence is approved and released.
 
 Campaign 2 curriculum production is complete. All six cases are produced, owner-approved, print-approved and released, and were produced against the frozen Campaign 2 game-source baseline `46b9387bca95736f164f905596e3dd8b13968661`. Case 03, **The Wrong Color of Light** (runtime `wrong_color_light`), was produced first; it remains Campaign 2 Case 03 and is not renumbered as Campaign 2 Case 01.
 
-Every Campaign 2 case was reissued as a corrective v1.1 following the Campaign 2 completion audit. Each package retains both its v1.0 and v1.1 release and owner-approval records; the v1.0 records are unmodified and are indexed inside the v1.1 record as prior approved releases.
+Every Campaign 2 case was reissued as a corrective v1.1, and every case in both campaigns has since been reissued again by the final system release following the Campaign 2 completion audit. Each package retains both its v1.0 and v1.1 release and owner-approval records; the v1.0 records are unmodified and are indexed inside the v1.1 record as prior approved releases.
 
 Accepted curriculum release commits for the current Campaign 2 v1.1 releases:
 
@@ -256,3 +257,24 @@ Every update must:
 - remove completed branch information;
 - distinguish current facts from future work;
 - remain concise enough to read at the beginning of a new conversation.
+
+## Final system release — thirteen cases
+
+The SSS correctness-remediation and visual-modernization programs are both complete. The final
+system release promotes all thirteen packages to `APPROVED_STABLE` at the versions in the table
+above, owner **Nate / Owner**, approval date **2026-08-10**, physical print **PASS at 100% /
+Actual Size** on Google Chrome against tested baseline `105467f997b1425b7f40e8150749c70e09ed4771`.
+
+Each case carries a new `history/release-vX.Y.json` and `CASENN_OWNER_APPROVAL_vX.Y.md`; every
+earlier release and owner-approval record is retained byte-identical, and each new record
+represents its immediate predecessor through `priorApprovedReleases`. The visual-modernization
+inventory is 36 of 36 complete with zero findings remaining, canonical browser registration
+remains 2375, and the recorded 2374 total remains the accepted candidate-specific same-Mac
+differential only — no general browser, Mac, Chrome, platform or environment exception exists.
+
+HTML-only canonical production is unchanged: there is no canonical project PDF artifact and no
+PDF release gate, and manually produced PDFs remain noncanonical and require their own
+accessibility review before distribution.
+
+The release is prepared on `release/sss-final-system` and is held unpushed for independent
+review. It is not merged, and merge readiness is a separate evaluation.

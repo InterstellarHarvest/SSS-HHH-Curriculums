@@ -5,8 +5,9 @@ window.SSS_CASE07_TASK_REGISTRY = {
   "traceabilityAlias": "Case6b",
   "title": "The Gift",
   "version": "1.1",
-  "status": "DRAFT",
-  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "status": "APPROVED_STABLE",
+  "ownerReviewStatus": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
   "editorShell": "1.0",
   "gameCommit": "a813c209dfde00634103f74d6673e7d4433e0e63",
   "auditCommit": "76a908400eb53c1c81fe91ce52337f414ae2c591",
@@ -365,5 +366,7 @@ window.SSS_CASE07_TASK_REGISTRY = {
     "Campaign 1 or Campaign 2 curriculum is complete"
   ],
   "correctiveOf": "1.0",
-  "printStatus": "NOT_RUN"
+  "approvalDate": "2026-08-10",
+  "approvedBy": "Nate / Owner",
+  "printStatus": "PASS"
 };

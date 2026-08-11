@@ -7,11 +7,12 @@
   "subtitle": "Campaign 1 · Case 03 · Arcadia Planitia, Mars",
   "location": "Arcadia Planitia, Mars",
   "version": "1.2",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-10",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -131,7 +132,7 @@
   "sourceHashes": {
     "content": "431e3d193979e52876fd5f167789b68f76cbc914688db120d3f3086190f4eb70",
     "presentation": "e684848f8a0271617d2ed740ad0682f428c5debfd2554cc3e03a5186b4b9d9ed",
-    "taskRegistry": "305e9db06ab4589172785a1c229700bca91800fcec704a30347263ea445fbdaa",
+    "taskRegistry": "013b9aac9787333735ae1438c521d2996a99864f3631ac03953625c8fb21f16e",
     "layoutOverrides": "4a032aa92937daa9a5dec271dc3d4d2ffc07c4e2260ba7abea553f6858f8e49e"
   },
   "phraseBank": {
@@ -158,5 +159,6 @@
       "answer",
       "accessible"
     ]
-  }
+  },
+  "releaseHistory": "sss/campaign-1/case-03-mars-habitat/history/release-v1.2.json"
 }

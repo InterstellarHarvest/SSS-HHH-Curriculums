@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE05",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "5bf9e44e9559cdbea518ceb979fcc0eb0f9bed8d",
+      "role": "[auto-remediation] Reconcile final SSS response layout contracts"
+    },
+    {
+      "commit": "64e5c252674de9c9250699208bbb41982abb8a11",
+      "role": "Move remediation-inserted Teacher blocks back inside the content area"
+    },
+    {
+      "commit": "3f473ad3730b1e0d3415f66ad0612d16b8cbc527",
+      "role": "Make the screen-reader load announcement lifecycle-neutral"
+    },
+    {
+      "commit": "df1ec0c75b28429021ef903754585d70466174a8",
+      "role": "Expand mechanism visual family to Europa"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "8b85088d048afb6e291e316995f2a159e7efea523d00fa2c040e86766b96601d",
+    "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
+    "taskRegistry": "b1b8f858ebbdee5d5232bc9024e17c44c6fd43aef5b5d498eeb2d6b67e01f7a3",
+    "layoutOverrides": "6667dec008f983f057c1bc56eec0ba5b1fd59b918c66b57f9872c418cd2578d2"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "f41462a53f77e18762f0f2510d4ba40a70e13ae8f649c566dbc6385c2ae9dac3",
+    "teacher": "e6eb5141545690ec842755ab548adeb5506daced2a97fa24c6b787211cd7891d",
+    "answer": "6a3e8a7b42d11d900636459571f8357dfb36c5c0416ad485d970702e63513b77",
+    "note": "Regenerated for v1.1. The student, teacher, answer baselines differ from the superseded v1.0 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for those roles."
+  },
+  "rolePageCounts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Case 05 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-02",
+      "approvalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+      "recoveryCommit": "c73140841559b1ef56f5088e759e41a253856723",
+      "canonicalSourceApprovalCommit": "c73140841559b1ef56f5088e759e41a253856723",
+      "retainedRecords": [
+        "sss/campaign-1/case-05-europa-bunker/history/CASE05_OWNER_APPROVAL_v1.0.md",
+        "sss/campaign-1/case-05-europa-bunker/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "fab4c0291dedb4cd284c017fbebd073dc7ef2723ef8b0f3f69362a4a7a1aa235",
+        "presentation": "5e4fb3d822dd337d593cc758436298a1103fa25d77638c07bebc723cacbe2aa8",
+        "taskRegistry": "e7d883f8d388fd3d94fd303c7b63b32d1e2f2ab9622de642373d076e492d745c"
+      },
+      "rolePageCounts": {
+        "student": 4,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Case 05 was produced natively under the canonical source model; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed."
+      },
+      "recoveryCommand": "git show c73140841559b1ef56f5088e759e41a253856723:sss/campaign-1/case-05-europa-bunker/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review. It is superseded by v1.1, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for Sub Surface Bunker.",
+    "corrections": [
+      "C1C5-T02 Detailed facilitation covered only Tasks 3, 5 and 7 and now covers the full route.",
+      "C1C5-T03 The full analytic rubric contract was absent and is now printed.",
+      "C1C5-UI01 The best-supported diagnosis selection had no persisted digital control.",
+      "C1C5-T04 Internal game-node navigation paths were printed in Teacher content and were removed.",
+      "C1C5-ACC01 Accessible mechanism sequencing gained partial completion.",
+      "C1C5-ID01 Learner-facing curriculum and game location identity drift was reconciled.",
+      "C1C5-SYS01 Internal game-node paths are now rejected from Teacher-facing content repo-wide.",
+      "C1C5-VIS01/VIS02/VIS03 Hazard pathway, evidence-convergence map and specification panel modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Frozen game-source baseline: a7a725121f261373df32a5366c70e7df73ddf8f3. The game repository was not modified by this release.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"case05-v1.0\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place."
+  ],
+  "retiredArtifacts": [],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

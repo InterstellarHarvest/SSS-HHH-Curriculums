@@ -1,6 +1,7 @@
 # SSS Final Unified Audit — Remediation Register
 
-**Status:** `CASE_AUDIT_COMPLETE — REMEDIATION_OPEN`  
+**Status:** `CASE_AUDIT_COMPLETE — REMEDIATION_RELEASED`
+
 **Audit branch:** `audit/sss-final-c1-c2`  
 **Completed:** 2026-08-07  
 **Scope:** Space Sprout Sleuth Campaign 1 Cases 01–07 and Campaign 2 Cases 01–06
@@ -476,7 +477,7 @@ terminal classification. Statuses mean:
 | --- | --- | --- |
 | PDF export and physical print validation | **OWNER-MANUAL** | Removed from automated scope by owner decision 2026-08-07. Nate tests printing manually. Page fit is still enforced in the browser harness as a DOM-geometry contract, independently of PDF rendering. |
 | 10 `ACCESSIBLE_WORKLOAD` / `ACCESSIBLE_HIGH_RESPONSE_COUNT` flags | **OWNER-MANUAL** | Raised at `REVIEW` severity, not `FAIL`. They are a blunt count heuristic and do not map 1:1 to the audit's ACC findings, all of which the audit-specific accessibility contract now passes. Owner judgement. |
-| 29 frozen-release static assertions | **RELEASE-BASELINE-PENDING** | Frozen Student/Teacher/Answer DOM baselines, completed-release-lifecycle records, the superseded non-corrective canonical validator, and the per-case mutation suites, all pinned to the approved releases. Deliberately left failing: they exist to detect drift against the approved release, and re-pinning them now would erase that protection. |
+| 29 frozen-release static assertions | **CLOSED** | Re-pinned to the approved tree by the final system release of 2026-08-10; the static suite has zero failures. Formerly `RELEASE-BASELINE-PENDING` and deliberately left failing while the packages were DRAFT candidates |
 | Seven-page Teacher normalisation | **VALIDATED** | See 13.3. |
 
 ## 13.4 OWNER-ACCEPTED PAGE-COUNT EXCEPTIONS (2026-08-07)

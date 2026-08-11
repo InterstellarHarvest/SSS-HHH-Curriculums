@@ -1,0 +1,197 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE03",
+  "curriculumVersion": "1.2",
+  "correctiveOf": "1.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "3ab584ccdf3fe30ab2a1a34ed25b7584fa279b23",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "a19845f3d0db7d554242bd36168bdecf409d8b4b",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "73f4a029356f7408f20119702a4538c626f46bb6",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "03309925d4caff3181061600c89dfea1639df4b7",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "242d2e2c461c7f7e435d2556ef5f3dfb8b5c1028",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "5bf9e44e9559cdbea518ceb979fcc0eb0f9bed8d",
+      "role": "[auto-remediation] Reconcile final SSS response layout contracts"
+    },
+    {
+      "commit": "8e27e611265aa7b9d16365ca1ee3e41f4c414943",
+      "role": "Repair telemetry visual delivery gates"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "431e3d193979e52876fd5f167789b68f76cbc914688db120d3f3086190f4eb70",
+    "presentation": "e684848f8a0271617d2ed740ad0682f428c5debfd2554cc3e03a5186b4b9d9ed",
+    "taskRegistry": "013b9aac9787333735ae1438c521d2996a99864f3631ac03953625c8fb21f16e",
+    "layoutOverrides": "4a032aa92937daa9a5dec271dc3d4d2ffc07c4e2260ba7abea553f6858f8e49e"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "c2bce0c8e81cba6733b7b7593145bb72b789e5341216be3176beac691d40a725",
+    "teacher": "6c9c180e63e03f9913a6962bd08b216d06e92b4b58e693392d04bdbcf8295877",
+    "answer": "37db96007f095cdc2a7024537888869f833cb9fc985134e074520a453b925d73",
+    "note": "Regenerated for v1.2. The student, teacher, answer baselines differ from the superseded v1.1 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for those roles."
+  },
+  "rolePageCounts": {
+    "student": 4,
+    "teacher": 8,
+    "answer": 4,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "complete": {
+      "path": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
+      "sha256": "097f3c59efd1a90d4a5ce63274fee83e1bf1bde3dcbf69e427a29e953c913c09"
+    },
+    "roles": {
+      "student": {
+        "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_STUDENT_MISSION_v1.1.html",
+        "sha256": "64a688532502f9da6b0026819e57b13bd15c4a0b34aa07db8d2f6e65cc3dc56e"
+      },
+      "teacher": {
+        "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_TEACHER_GUIDE_v1.1.html",
+        "sha256": "d70a8c45a58de865277b8661244992ab97b8b0973699e83041d87636c1568176"
+      },
+      "answer": {
+        "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ANSWER_KEY_v1.1.html",
+        "sha256": "c3e846c13c67aa1a4fe4b472726df5f4f49a6a951e6feef3049125280bcce6f8"
+      },
+      "accessible": {
+        "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1.html",
+        "sha256": "70029188b8cd7a1d38435f0f6971340ac0856a3a071379359fd4ac1e6965d387"
+      }
+    }
+  },
+  "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "priorApprovedReleases": [
+    {
+      "version": "1.1",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-07-31",
+      "approvalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+      "recoveryCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+      "canonicalSourceApprovalCommit": "7b5b724b4941a7ad926fe1b0d644f6905ff55067",
+      "retainedRecords": [
+        "sss/campaign-1/case-03-mars-habitat/history/release-v1.1.json"
+      ],
+      "sourceHashes": {
+        "content": "f2477cb3ff26cd3e08f1396bb8d4c1c029cef4c61e9b96f599ced4f408245979",
+        "presentation": "ca910a4c7151983825c2fec7c609a04eceee8f8dde0268f89dba1822a19a68c4",
+        "taskRegistry": "b2bb31ff09359e6436e98ddb920df25141cb3e580407967373586e80920020e3"
+      },
+      "rolePageCounts": {
+        "student": 4,
+        "teacher": 8,
+        "answer": 4,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "complete": {
+          "path": "sss/campaign-1/case-03-mars-habitat/master/SSS_C1_CASE03_EDITABLE_MASTER_v1.1.html",
+          "sha256": "097f3c59efd1a90d4a5ce63274fee83e1bf1bde3dcbf69e427a29e953c913c09"
+        },
+        "roles": {
+          "student": {
+            "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_STUDENT_MISSION_v1.1.html",
+            "sha256": "64a688532502f9da6b0026819e57b13bd15c4a0b34aa07db8d2f6e65cc3dc56e"
+          },
+          "teacher": {
+            "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_TEACHER_GUIDE_v1.1.html",
+            "sha256": "d70a8c45a58de865277b8661244992ab97b8b0973699e83041d87636c1568176"
+          },
+          "answer": {
+            "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ANSWER_KEY_v1.1.html",
+            "sha256": "c3e846c13c67aa1a4fe4b472726df5f4f49a6a951e6feef3049125280bcce6f8"
+          },
+          "accessible": {
+            "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_ACCESSIBLE_MISSION_v1.1.html",
+            "sha256": "70029188b8cd7a1d38435f0f6971340ac0856a3a071379359fd4ac1e6965d387"
+          }
+        }
+      },
+      "recoveryCommand": "git show 7b5b724b4941a7ad926fe1b0d644f6905ff55067:sss/campaign-1/case-03-mars-habitat/source/<file> > <destination>",
+      "notes": [
+        "v1.1 was a genuine approved release with its own owner review. It is superseded by v1.2, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for Mars Habitat.",
+    "corrections": [
+      "C1C3-T02 The Teacher procedure skipped Tasks 4 and 5 and now routes every numbered task.",
+      "C1C3-T03 The complete analytic rubric was missing and is now printed alongside the quick rubric.",
+      "C1C3-UI01 The required diagnosis selection had no persistent fill-mode representation and now carries a persisted control.",
+      "C1C3-AK01 The Task 4 key did not visibly mirror every Student response field.",
+      "C1C3-AK02 Accepted-alternative guidance was too thin for several open responses.",
+      "C1C3-ACC01 Targeted Accessible hand-holding was added.",
+      "C1C3-DATA01 The 700 nm boundary ambiguity against the 400-700 nm task was corrected.",
+      "C1C3-T04 Production and release-management material was removed from the Teacher Guide.",
+      "C1C3-META01 Stale editor resize labels were corrected; C1C3-META02 package identity drift was reconciled.",
+      "C1C3-VIS01/VIS02/VIS03 Transmission scan, dual-channel diagnostic and spectral-loss chain modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Frozen game-source baseline: c6c17be57880b365793fdf99ff4ad09b62ecacce. The game repository was not modified by this release.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"case03-v1.0\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place."
+  ],
+  "retiredArtifacts": [
+    {
+      "classification": "RETIRED_PRESENTATION_SNAPSHOT",
+      "path": "sss/campaign-1/case-03-mars-habitat/published/SSS_C1_CASE03_GRAYSCALE_MISSION_v1.1.html",
+      "sha256": "86a9f18fa59c547b96818f1dc06e543d747ee3c0191ddbaa5f636fb11672cd29"
+    }
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

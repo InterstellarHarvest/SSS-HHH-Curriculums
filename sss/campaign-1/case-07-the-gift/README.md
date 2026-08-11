@@ -4,7 +4,7 @@ Canonical package-source implementation for the approved Case 07 curriculum rele
 
 - Status: `APPROVED_STABLE · OWNER_REVIEW_PASS · READY_TO_MERGE`
 - Physical print acceptance: `PASS at 100% / Actual Size`
-- Version: `1.0`
+- Version: `1.1`
 - Runtime identifier: `alien2` (production metadata only; never printed for learners)
 - Location: `SAA Xenobiology Lab`
 - Location subtitle: `L2 Station Hayes — Secure Cultivation Wing`
@@ -18,3 +18,5 @@ Students integrate four essential evidence channels, distinguish viable dormancy
 The Zhel'ii cue, receptor system, measurements, formula, transport carrier, response timing, and narrated intervention outcomes are fictional. Earth germination and signaling research supplies qualified background only and does not prove the alien mechanism. The worksheet never invents a safe numerical dose, never treats the 99.7% composite as a reproducible calculation, and never presents intervention scores as science results or grades.
 
 Canonical sources are under `source/`. Editable copies, role exports, PDFs, screenshots, and validation output are temporary and are not committed. The compact release record under `history/` records the approved preview baseline, frozen game and audit baselines, page counts, owner gates, and native `NO_FORMER_GENERATED_ARTIFACTS` status.
+
+The v1.1 final-system release (owner approved 2026-08-10, physical print PASS at 100% / Actual Size on Google Chrome) closes the SSS correctness-remediation and visual-modernization program for this case. The prior release records are retained unchanged in `history/`.

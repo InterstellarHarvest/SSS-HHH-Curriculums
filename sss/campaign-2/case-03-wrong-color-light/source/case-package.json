@@ -7,11 +7,12 @@
   "subtitle": "Campaign 2 · Case 03 · Trench Shelf IV, Kepler-186f (Ocean)",
   "location": "Oolian Mariculture Dome",
   "version": "1.2",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-10",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -132,7 +133,8 @@
   "sourceHashes": {
     "content": "9855b3b2e3c02e8e819119a68c4270cbd051614fa5fabce14ce211bf3949bc3e",
     "presentation": "e6835caf177a21722a1bc0e52347e5d7e1fa31c3dfbd8de882f79ac1954d4bb3",
-    "taskRegistry": "4f963b3b1269157d9684ffa98e5285ddadbecfeecf338a1482785e24e70d78f9",
+    "taskRegistry": "aad26ae2908952a6aebec1ec65a46c7a61d3ce074da5991f847f990f87f67bce",
     "layoutOverrides": "0baea41633647609df3b75cf05c2be7325cdf85aa1d9cb834e968c68aea5b71a"
-  }
+  },
+  "releaseHistory": "sss/campaign-2/case-03-wrong-color-light/history/release-v1.2.json"
 }

@@ -4,8 +4,9 @@ window.SSS_CASE04_TASK_REGISTRY = {
   "runtimeId": "orbital",
   "title": "Hayes Orbital Station",
   "version": "1.1",
-  "status": "DRAFT",
-  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "status": "APPROVED_STABLE",
+  "ownerReviewStatus": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
   "editorShell": "1.0",
   "gameCommit": "2bfdb0aadf6ce33b6664cd104b11a891cb55efaf",
   "roles": {
@@ -109,5 +110,7 @@ window.SSS_CASE04_TASK_REGISTRY = {
     "figures": "curriculum-original qualitative models"
   },
   "correctiveOf": "1.0",
-  "printStatus": "NOT_RUN"
+  "approvalDate": "2026-08-10",
+  "approvedBy": "Nate / Owner",
+  "printStatus": "PASS"
 };

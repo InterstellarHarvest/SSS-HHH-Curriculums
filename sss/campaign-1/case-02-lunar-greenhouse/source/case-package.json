@@ -7,11 +7,12 @@
   "subtitle": "Campaign 1 · Case 02 · Pollination sequence failure",
   "location": "Lunar Greenhouse",
   "version": "1.1",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-10",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -127,5 +128,6 @@
     "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
     "layoutOverrides": "9dc762f6b9ff68e0b9dd3def161f53aeb4941ec4d05938a1c128c2a8dcc67420",
     "icons": "4893dd86224a349520e9ac1fa16a2a369a4e24099924280f65d49b629cf003dd"
-  }
+  },
+  "releaseHistory": "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.1.json"
 }

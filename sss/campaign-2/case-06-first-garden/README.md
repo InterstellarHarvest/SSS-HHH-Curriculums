@@ -13,8 +13,8 @@ records are retained unchanged.
 | Campaign position | Campaign 2, case 6 of 6 — bonus finale, hidden until the five main cases are complete |
 | Institutional identity | Solar Agricultural Agency (SAA) |
 | Version | 1.1 (corrective release) |
-| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` — owner approved 2026-08-06 |
-| Prior approved release | 1.0, owner approved 2026-08-05, print gate PASS at 100% / Actual Size |
+| Lifecycle | `APPROVED_STABLE` · `OWNER_REVIEW_PASS` · print `PASS` — owner approved 2026-08-10 |
+| Prior approved releases | 1.1 (owner approved 2026-08-06) and 1.0 (2026-08-05), both print gate PASS at 100% / Actual Size |
 | Retained history | `history/release-v1.0.json` and `history/CASE06_OWNER_APPROVAL_v1.0.md`, unchanged |
 | Frozen game baseline | `29c3b222c53f51de11a3aa83e896a6d0ef6fb490` |
 
@@ -54,7 +54,7 @@ Task 7 asks what the trial must include and why, and stops there. The runtime's 
 proposing risk-tiered biosafety standards — turns on Concord politics rather than the garden's evidence, so it is
 carried as Teacher-facing discussion rather than a written student prompt.
 
-Role page counts: Student 6, Teacher 8, Answer Key 5, Accessible 7. Only Student changed, from 5, to carry
+Role page counts: Student 6, Teacher 7, Answer Key 5, Accessible 7. At v1.1 only Student changed, from 5, to carry
 the evidence Task 4 is graded on (see "What v1.1 corrects"). The Accessible CER is
 a dedicated page carrying `data-accessible-cer-page="canonical-v1.0"`. In the Student edition the CER shares its
 page with Task 7 under `data-student-cer-page="combined-v1.0"`, the same combined form Campaign 1 Case 07 uses:
@@ -156,3 +156,7 @@ python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE06
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
+
+The v1.2 final-system release (owner approved 2026-08-10, physical print PASS at 100% / Actual Size on Google Chrome) closes the SSS correctness-remediation and visual-modernization program for this case. The prior release records are retained unchanged in `history/`.
+
+Retained releases: `history/release-v1.1.json` (owner approved 2026-08-06) and `history/release-v1.0.json`, both retained byte-identical alongside their owner-approval records. The current release record is `history/release-v1.2.json`.

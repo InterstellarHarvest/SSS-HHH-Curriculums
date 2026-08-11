@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE06",
+  "curriculumVersion": "1.2",
+  "correctiveOf": "1.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "59005a86cbaf858fe68684aedb2607dd773e3f2c",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "64e5c252674de9c9250699208bbb41982abb8a11",
+      "role": "Move remediation-inserted Teacher blocks back inside the content area"
+    },
+    {
+      "commit": "547dc5edd1999471358d8421abc11ad3d78a0613",
+      "role": "Give four over-full Teacher Guide pages the page their content needs"
+    },
+    {
+      "commit": "ee777aad128d461fd96ed5e1b697f2891e39b3c2",
+      "role": "Reflow Teacher editions toward the common seven-page architecture"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "0e2f922eaecdd6b55846cef1c102ad7642470b81d616ee328f78f47b989ba26e",
+    "presentation": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
+    "taskRegistry": "524bfe6383d268a2e0c8b5bfef9fa4e824ecbeea9d8d59c1462d3c76b0ce80a0",
+    "layoutOverrides": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2",
+    "teacher": "d1d8f6551ba78f6da00caf193145131f07ecc2605ae9e17ce8e6d7a8439e4daf",
+    "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516",
+    "note": "Regenerated for v1.2. The teacher baseline differs from the superseded v1.1 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for that role. The student, answer baselines are deliberately identical to v1.1: no v1.2 correction touched those edition. An unchanged baseline is the correct record of an unchanged edition, not a missed regeneration."
+  },
+  "rolePageCounts": {
+    "student": 6,
+    "teacher": 7,
+    "answer": 5,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.1",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-06",
+      "approvalCommit": "f3e3ed7fefb375a97594be99d9744fff4d8f6f0b",
+      "recoveryCommit": "f3e3ed7fefb375a97594be99d9744fff4d8f6f0b",
+      "canonicalSourceApprovalCommit": "f3e3ed7fefb375a97594be99d9744fff4d8f6f0b",
+      "retainedRecords": [
+        "sss/campaign-2/case-06-first-garden/history/CASE06_OWNER_APPROVAL_v1.1.md",
+        "sss/campaign-2/case-06-first-garden/history/release-v1.1.json"
+      ],
+      "sourceHashes": {
+        "content": "8e66f5700268c295c0d2d1d397d4951addc1c676b0d5ae6284e5240a1e44abb9",
+        "presentation": "6e3a18bfa050cb4b2900606d30052430eaf03d57c21cffe439c264099c39622d",
+        "taskRegistry": "959b0f082f53ca430edf17c8167d679b764a096b47c99c71ab5bf3877aa1f8a8",
+        "layoutOverrides": "b76d24211f032b404f8418f6bf862580f19b0f5e383d5f97b9f5e949e996a481"
+      },
+      "rolePageCounts": {
+        "student": 6,
+        "teacher": 8,
+        "answer": 5,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Authored natively as a case package, and reissued the same way. No PDF, role document or screenshot was ever generated or tracked for this case at v1.0 or v1.1."
+      },
+      "recoveryCommand": "git show f3e3ed7fefb375a97594be99d9744fff4d8f6f0b:sss/campaign-2/case-06-first-garden/source/<file> > <destination>",
+      "notes": [
+        "v1.1 was a genuine approved release with its own owner review. It is superseded by v1.2, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": [],
+      "frozenNonAccessibleDomBaselines": {
+        "student": "747115744832d18302d5cb8b2ed7b900cd6bc5c61a36a7161fe9b642a605fde2",
+        "teacher": "2720249b480c71e29b2dee472feaa90ddd990b51922459612a8f53e190b61bb3",
+        "answer": "db18da7f4a28beef54e88d4e61bfaaa6cc8654b66dab932a973fba34a379b516",
+        "note": "Regenerated for v1.1. All three differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup."
+      }
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for The First Garden.",
+    "corrections": [
+      "C2C6-T02 Timed procedure. The Teacher Guide carried task notes but no coherent timed procedure or class-flow route; a usable route is now printed.",
+      "C2C6-T03 Rubric system. The guide carried no common quick rubric and no 4/3/2/1 analytic rubric; both are now printed.",
+      "C2C6-T04 Authoritative sources. The guide had science-boundary prose but no printed authoritative reference list; the list is now printed.",
+      "C2C6-ACC01 Accessible workload. Accessible Task 4 required ten source-analysis responses plus synthesis and was reduced without changing the accepted response space.",
+      "C2C6-ACC02 Accessible Task 3 still required four B/R marks plus three written alternative rejections despite useful context; the load was reduced with partial completion.",
+      "Teacher page architecture. The Teacher Guide was reflowed from eight pages to the common seven-page architecture. Student, Answer Key and Accessible page counts are unchanged.",
+      "C2C6-SYS01 Teacher package validation now requires the common functional set of usable procedure, rubric system and authoritative source function rather than merely a fixed page count.",
+      "C2C6-VIS01, VIS02 and VIS03 Site-survey patch diagnostic, candidate mycorrhizal pathway and the screened ecological trial panel modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Case 06 is the Campaign 2 bonus finale. The runtime hides it from level select until the five main cases are complete and then numbers it case 6 of 6, applying no bonus, epilogue, or special-investigation wording, so the package registers positionally as 6 - The First Garden. It keeps its runtime case number and is not renumbered.",
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490. The game repository was not modified by this release.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"sss-c2-case06-v1.1\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place.",
+    "Figure A is a plan view of circular patches where the surveyed compounds are abundant, drawn inside ground where the same compounds fall to trace levels. It is not to scale, it draws no distance between patches, and it assigns no measurement to any individual patch. Its caption and extended description both state that it shows the reported pattern rather than mapping the garden.",
+    "The Student CER shares its page with Task 7 under data-student-cer-page=combined-v1.0, the form Campaign 1 Case 07 established. On a page of its own the CER left roughly half the page empty. The Accessible CER remains a dedicated page under data-accessible-cer-page=canonical-v1.0.",
+    "The Accessible edition carries the same evidence as the Student edition and presents it differently: one task per page, every record rewritten in plainer register and shortened, sentence frames or a word bank on each page, and a dedicated CER page. Its evidence tables carry the same numbers as the Student edition's wherever they hold the same record, so a Teacher or Answer Key direction naming a table resolves in either hand.",
+    "Teacher page architecture: C2C6-T02, T03 and T04 reflowed the Teacher Guide from the eight pages approved at v1.1 to the common seven-page architecture, adding a usable timed procedure, the common quick plus 4/3/2/1 analytic rubric and a printed authoritative reference list. Student, Answer Key and Accessible page counts are unchanged at 6 / 5 / 7."
+  ],
+  "retiredArtifacts": [],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

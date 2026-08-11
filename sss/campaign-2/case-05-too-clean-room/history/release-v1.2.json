@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C2-CASE05",
+  "curriculumVersion": "1.2",
+  "correctiveOf": "1.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "7f07ccb37c6ece9dace3ffe4487cff21a2f8030a",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "64e5c252674de9c9250699208bbb41982abb8a11",
+      "role": "Move remediation-inserted Teacher blocks back inside the content area"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "504e6c47aa742a4778dc8cd5b6f5e3d667f50e9178a44a066c81dd914d0f8e8d",
+    "presentation": "9f0485afcd377792aeb676f3e4ca1afa169c291c04399295d8defbab3cc1195b",
+    "taskRegistry": "c8c56095c4484ea4e5c55c5d2b0055abb2b4cb39a104462dcba3e8447de82f06",
+    "layoutOverrides": "81ef2a25198424d29637e3946bb431c4a605021fc95dd178d9a98571142eccbd"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+    "teacher": "afbdbdb25a9f00c98a889b3036472b6569079cec8faa3256473d04662c620c78",
+    "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d",
+    "note": "Regenerated for v1.2. The teacher baseline differs from the superseded v1.1 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for that role. The student, answer baselines are deliberately identical to v1.1: no v1.2 correction touched those edition. An unchanged baseline is the correct record of an unchanged edition, not a missed regeneration."
+  },
+  "rolePageCounts": {
+    "student": 7,
+    "teacher": 9,
+    "answer": 5,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE",
+    "accessibleDifferentiation": "PASS; 54.3% similar to the Student edition at 1909 words against 2108, measured by the repository's difflib method. Re-measured at v1.2 after the C2C5-ACC01 and C2C5-ACC02 workload reductions; recorded as a measurement, not a campaign ranking."
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Campaign 2 Case 05 was produced natively under the canonical source model at v1.0 and corrected in place at v1.1; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed at either version."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [
+    {
+      "version": "1.1",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-06",
+      "approvalCommit": "7c69585eff2bb2f40f8d307b45472bcc225260f1",
+      "recoveryCommit": "7c69585eff2bb2f40f8d307b45472bcc225260f1",
+      "canonicalSourceApprovalCommit": "7c69585eff2bb2f40f8d307b45472bcc225260f1",
+      "retainedRecords": [
+        "sss/campaign-2/case-05-too-clean-room/history/CASE05_OWNER_APPROVAL_v1.1.md",
+        "sss/campaign-2/case-05-too-clean-room/history/release-v1.1.json"
+      ],
+      "sourceHashes": {
+        "content": "32c12425e25a23e1a57aa2472e0dd7c90ada22f5d5167f7b2d5f10295e7b11c9",
+        "presentation": "9f0485afcd377792aeb676f3e4ca1afa169c291c04399295d8defbab3cc1195b",
+        "taskRegistry": "911c63f51a772bd1727e404c84a85be0d12624d77bb727df161c8dd7a10c51b3",
+        "layoutOverrides": "81ef2a25198424d29637e3946bb431c4a605021fc95dd178d9a98571142eccbd"
+      },
+      "rolePageCounts": {
+        "student": 7,
+        "teacher": 9,
+        "answer": 5,
+        "accessible": 7
+      },
+      "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Campaign 2 Case 05 was produced natively under the canonical source model at v1.0 and corrected in place at v1.1; no master, published role HTML, PDF, screenshot, or other generated release artifact was created or committed at either version."
+      },
+      "recoveryCommand": "git show 7c69585eff2bb2f40f8d307b45472bcc225260f1:sss/campaign-2/case-05-too-clean-room/source/<file> > <destination>",
+      "notes": [
+        "v1.1 was a genuine approved release with its own owner review. It is superseded by v1.2, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": [],
+      "frozenNonAccessibleDomBaselines": {
+        "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+        "teacher": "05d797d8d47eee5e177f54bad6e5ffc7476b72caf04a58366536db2a14cda770",
+        "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d",
+        "note": "Regenerated for v1.1. The Teacher and Answer Key baselines both differ from the v1.0 baselines retained in release-v1.0.json, so approved-baseline enforcement cannot be satisfied by the superseded v1.0 markup for those roles. The Student baseline is deliberately unchanged and identical to v1.0: no v1.1 correction touched the Student edition. The four corrections landed in the Teacher Guide, the Accessible edition twice, and the Answer Key, and the Accessible edition carries no frozen baseline. An unchanged Student baseline is the correct record of an unchanged Student edition, not a missed regeneration."
+      }
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for Too Clean a Room.",
+    "corrections": [
+      "C2C5-T02 Rubric system. The Teacher Guide carried no common quick rubric and no 4/3/2/1 analytic rubric; both are now printed.",
+      "C2C5-T03 Authoritative sources. The guide had source-status prose but no printed authoritative reference list; the list is now printed.",
+      "C2C5-ACC01 Accessible workload. Accessible Task 4 required ten source-analysis responses plus synthesis and was reduced without changing the accepted response space.",
+      "C2C5-ACC02 Accessible Task 5 still required four B/R marks, three written rejections and all three mechanism stages despite useful supports; the load was reduced with partial completion.",
+      "C2C5-T01 Teacher structure is validated against the corrected functional set rather than a fixed page count; nine Teacher pages are retained.",
+      "C2C5-VIS01, VIS02 and VIS03 Detection-limit teaching graphic, six-month production monitor and the mechanism/trial workflow modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "Campaign 2 Case 05 keeps its runtime case number and is not renumbered.",
+    "Frozen game-source baseline: 29c3b222c53f51de11a3aa83e896a6d0ef6fb490. The game repository was not modified by this release.",
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists.",
+    "Editor-content contract marker: content.html carries data-editor-content=\"sss-c2-case05-v1.0\". That marker identifies the worksheet content contract, not the package version, and has never tracked it; approved releases have shipped with it trailing the package version before. It is deliberately not re-stamped at this release: the marker is not printable, and rewriting it would alter the content.html digest that the accepted visual-modernization records certify as unchanged. Recorded here rather than corrected in place."
+  ],
+  "retiredArtifacts": [],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

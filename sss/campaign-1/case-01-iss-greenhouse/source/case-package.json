@@ -7,11 +7,12 @@
   "subtitle": "Campaign 1 · Case 01 · Low Earth Orbit",
   "location": "International Space Station",
   "version": "1.2",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-10",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "SAA",
@@ -128,5 +129,6 @@
     "taskRegistry": "4c16e90619c69599721e766a9a8f8637f92ab431441c4b685a6458197265340d",
     "layoutOverrides": "2f611b019f9b78f231d2bd91410560da4fd49a4f7abd095d0ce3120536500781",
     "icons": "a849e012e8ffec293643d083a778ba55d47b3ba4646246f92810d0226a40aef2"
-  }
+  },
+  "releaseHistory": "sss/campaign-1/case-01-iss-greenhouse/history/release-v1.2.json"
 }

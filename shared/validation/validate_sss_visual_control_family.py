@@ -22,8 +22,8 @@ FROZEN_HASHES = {
     "content.html": "7725f9b5cd204171eae9d3a77158307ed4e9f6f66691cdd8dd27c0132d0bc061",
     "presentation.css": "be6192cd9401105d8978b59be3204432e5e095f58da2b2f349a8099a9cfb9d2f",
     "layout-overrides.json": "11653245ad346f9ccb67c938dbd4b021c8278601b154403bf25ded97d7ab754f",
-    "case-package.json": "8cab25b388b5a6d7c371cf083acc7339a0bd81d11fc1d923f5d0e683b339ee37",
-    "task-registry.js": "afb3e989647a2eb03e354800ee8413c0783f4f1f2ce723cd802bd0e5c9c6dfd7",
+    "case-package.json": "647c708ef270717a3e1bc00356225d8bfcb2db03004bbd162c6cb90cda063a1f",
+    "task-registry.js": "f80cfef16e3b59ea39b71e13dc0a6dfbaae2579cf9c3986da3638b3bd526f95f",
 }
 
 

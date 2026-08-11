@@ -167,7 +167,7 @@ def source_repo_paths(package: dict) -> dict[str, str]:
 
 
 def check_prior_release(results: Results, case_id: str, case_root: Path,
-                        entry: dict, current_hashes: dict) -> None:
+                        entry: dict, current_hashes: dict, current_pin: str | None = None) -> None:
     """A retained prior release must still be exactly what it was on its day."""
     version = entry.get("version")
     label = f"{case_id} prior release v{version}"
@@ -197,14 +197,28 @@ def check_prior_release(results: Results, case_id: str, case_root: Path,
                           entry[field] == retained[field],
                           json.dumps({"inline": entry[field], "retained": retained[field]}))
 
-    # Unchanged means unchanged: one commit introduced it, and nothing since.
+    # Unchanged means unchanged. A record written before the two-commit release
+    # pattern was introduced in exactly one commit; a record released under that
+    # pattern was legitimately touched twice — its release commit and the narrow
+    # follow-up that pinned canonicalSourceApprovalCommit. Either way, every commit
+    # that ever touched the retained record must predate the current release's
+    # certified source commit; a touch after that pin is tampering.
     touching = commits_touching(str(record_path.relative_to(ROOT)))
-    results.check(f"{label} retained record is unmodified since the commit that wrote it",
-                  len(touching) == 1, f"{len(touching)} commits: {[c[:8] for c in touching]}")
+    if isinstance(current_pin, str) and COMMIT_RE.match(current_pin) and commit_exists(current_pin):
+        untampered = bool(touching) and all(
+            git("merge-base", "--is-ancestor", touch, current_pin).returncode == 0
+            for touch in touching
+        )
+        results.check(f"{label} retained record is unmodified since the current release certified its source",
+                      untampered, f"{len(touching)} commits: {[c[:8] for c in touching]}")
+    else:
+        results.check(f"{label} retained record is unmodified since the commit that wrote it",
+                      len(touching) <= 2, f"{len(touching)} commits: {[c[:8] for c in touching]}")
 
-    approval = case_root / "history" / owner_approval_name(case_id, version)
-    results.check(f"{label} retains its owner-approval record", approval.is_file() and approval.stat().st_size > 0,
-                  approval.name)
+    if not is_inline_approval_case(case_root):
+        approval = case_root / "history" / owner_approval_name(case_id, version)
+        results.check(f"{label} retains its owner-approval record", approval.is_file() and approval.stat().st_size > 0,
+                      approval.name)
 
     prior_hashes = entry.get("sourceHashes")
     if isinstance(prior_hashes, dict) and isinstance(current_hashes, dict):
@@ -212,6 +226,20 @@ def check_prior_release(results: Results, case_id: str, case_root: Path,
         results.check(f"{label} is genuinely superseded -- the current release changed source",
                       any(prior_hashes[key] != current_hashes[key] for key in shared_keys),
                       "current sourceHashes are identical to the prior release")
+
+
+# The three oldest Campaign 1 releases predate the standalone owner-approval record;
+# their approval is captured inside the release record itself. Mirrors the identical
+# exemption in validate_canonical_case_structure.py.
+HISTORICAL_INLINE_OWNER_APPROVAL = {
+    "campaign-1/case-01-iss-greenhouse",
+    "campaign-1/case-02-lunar-greenhouse",
+    "campaign-1/case-03-mars-habitat",
+}
+
+
+def is_inline_approval_case(case_root: Path) -> bool:
+    return f"{case_root.parent.name}/{case_root.name}" in HISTORICAL_INLINE_OWNER_APPROVAL
 
 
 def owner_approval_name(case_id: str, version: str) -> str:
@@ -368,7 +396,8 @@ def validate_case(results: Results, campaign_id: str, entry: dict) -> str | None
                           any(item.get("version") == record["correctiveOf"] for item in prior),
                           record["correctiveOf"])
             for item in prior:
-                check_prior_release(results, case_id, case_root, item, certified)
+                check_prior_release(results, case_id, case_root, item, certified,
+                                    record.get("canonicalSourceApprovalCommit"))
     elif contract_format:
         # Legacy-format records predate priorApprovedReleases entirely; Campaign 1
         # Case 01 and Case 03 reissued as v1.1 without indexing v1.0 in the record.

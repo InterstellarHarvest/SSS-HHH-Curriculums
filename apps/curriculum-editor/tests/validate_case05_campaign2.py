@@ -33,13 +33,34 @@ CASE_ID = "SSS-C2-CASE05"
 CASE_ROOT = ROOT / "sss/campaign-2/case-05-too-clean-room"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
-RELEASE_VERSION = "1.1"
-CORRECTIVE_OF = "1.0"
-RETAINED_VERSION = "1.0"
-APPROVAL_DATE = "2026-08-06"
-RETAINED_APPROVAL_DATE = "2026-08-05"
+RELEASE_VERSION = "1.2"
+CORRECTIVE_OF = "1.1"
+# v1.1 is the release v1.2 corrects and indexes as its prior approved release.
+RETAINED_VERSION = "1.1"
+APPROVAL_DATE = "2026-08-10"
+RETAINED_APPROVAL_DATE = "2026-08-06"
+RETAINED_PINNED_COMMIT = "7c69585eff2bb2f40f8d307b45472bcc225260f1"
+V11_SOURCE_HASHES = {
+    "content": "32c12425e25a23e1a57aa2472e0dd7c90ada22f5d5167f7b2d5f10295e7b11c9",
+    "presentation": "9f0485afcd377792aeb676f3e4ca1afa169c291c04399295d8defbab3cc1195b",
+    "taskRegistry": "911c63f51a772bd1727e404c84a85be0d12624d77bb727df161c8dd7a10c51b3",
+    "layoutOverrides": "81ef2a25198424d29637e3946bb431c4a605021fc95dd178d9a98571142eccbd",
+}
+V12_DOM_BASELINES = {
+    "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+    "teacher": "afbdbdb25a9f00c98a889b3036472b6569079cec8faa3256473d04662c620c78",
+    "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d",
+}
+V11_DOM_BASELINES = {
+    "student": "4f18b96e52bfef44919c40bca9668b95e61430e7ad77735c3d146c1669a5d331",
+    "teacher": "05d797d8d47eee5e177f54bad6e5ffc7476b72caf04a58366536db2a14cda770",
+    "answer": "cb541ae8d92cad0c1e8bd916b943c7561d6fbab1ce52959347a7f00d8c3a0d8d",
+}
+# v1.0 remains retained beneath v1.1 as the case's first approved release.
+LEGACY_VERSION = "1.0"
+LEGACY_APPROVAL_DATE = "2026-08-05"
 OWNER = "Nate / Owner"
-RELEASE_RECORD = "sss/campaign-2/case-05-too-clean-room/history/release-v1.1.json"
+RELEASE_RECORD = "sss/campaign-2/case-05-too-clean-room/history/release-v1.2.json"
 # v1.1 frozen non-Accessible DOM baselines. The Student baseline is deliberately identical to
 # v1.0: no v1.1 correction touched the Student edition. The corrections landed in the Teacher
 # Guide, the Accessible edition (which carries no frozen baseline) and the Answer Key, so the
@@ -66,7 +87,7 @@ V10_FROZEN_METADATA = {
 V10_STALE_VALIDATION_FIGURE = "101/101"
 V10_SUPERLATIVE = "the most differentiated Accessible edition in Campaign 2"
 PREVIEW_BASELINE = "5c1453328ac40a7f7a653efa18ef70bf73759f69"
-SYNCHRONISED_MAIN = "f5eb8885be4ae8f49c745c8e5e1c38ffd2067c0d"
+SYNCHRONISED_MAIN = "f7a24423f802a095aa149f923d05475ba2837599"
 # The v1.0 release record certifies four source blobs against a commit that does not contain
 # one of them. The pin is frozen history and is not rewritten; both commits are pinned here so
 # the discrepancy is a recorded fact and the eventual v1.1 record cannot inherit it.
@@ -399,7 +420,7 @@ def main() -> int:
                   and package["content"]["source"].startswith("sss/campaign-2/case-05-too-clean-room/"))
 
     # ── Approved v1.1 corrective release, retained v1.0 history ─────
-    results.check("the package records the approved v1.1 corrective release lifecycle",
+    results.check("the package records the approved v1.2 corrective release lifecycle",
                   package["status"] == "APPROVED_STABLE"
                   and package["version"] == RELEASE_VERSION
                   and package["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
@@ -420,12 +441,13 @@ def main() -> int:
                   and f"v{RELEASE_VERSION}" in package["accessibility"]["documentTitle"]
                   and f"v{RELEASE_VERSION}" in package["accessibility"]["loadAnnouncement"],
                   [package["documentKey"], sorted(package["outputs"].values())])
-    results.check("the approved package names its own v1.1 release-history record",
+    results.check("the approved package names its own v1.2 release-history record",
                   package.get("releaseHistory") == RELEASE_RECORD, package.get("releaseHistory"))
-    results.check("history holds exactly the four canonical records for v1.0 and v1.1",
+    results.check("history holds exactly the six canonical records for v1.0, v1.1 and v1.2",
                   sorted(path.name for path in (CASE_ROOT / "history").iterdir())
                   == ["CASE05_OWNER_APPROVAL_v1.0.md", "CASE05_OWNER_APPROVAL_v1.1.md",
-                      "release-v1.0.json", "release-v1.1.json"],
+                      "CASE05_OWNER_APPROVAL_v1.2.md",
+                      "release-v1.0.json", "release-v1.1.json", "release-v1.2.json"],
                   sorted(path.name for path in (CASE_ROOT / "history").iterdir()))
     # Scoped to the two v1.0 records by name: history/ also holds the v1.1 records, which do
     # not exist at the synchronised baseline and must not make this check fail.
@@ -445,7 +467,7 @@ def main() -> int:
     history = json.loads(history_path.read_text(encoding="utf-8")) if history_path.exists() else {}
     results.check("the release history records a native release with no former generated artifacts",
                   history.get("caseId") == CASE_ID and history.get("status") == "APPROVED_STABLE"
-                  and history.get("approvalDate") == RETAINED_APPROVAL_DATE and history.get("owner") == OWNER
+                  and history.get("approvalDate") == LEGACY_APPROVAL_DATE and history.get("owner") == OWNER
                   and history.get("formerArtifacts", {}).get("status") == "NO_FORMER_GENERATED_ARTIFACTS"
                   and history.get("priorApprovedReleases") == []
                   and history.get("retiredArtifacts") == [])
@@ -502,9 +524,11 @@ def main() -> int:
                   sorted(path.name for path in CASE_ROOT.rglob("*.html")) == ["content.html"],
                   sorted(path.name for path in CASE_ROOT.rglob("*.html")))
     results.check("the case folder uses the canonical lean layout",
-                  sorted(path.name for path in CASE_ROOT.iterdir())
+                  sorted(path.name for path in CASE_ROOT.iterdir()
+                         if path.name != ".DS_Store")
                   == ["README.md", "history", "source"]
-                  and sorted(path.name for path in SOURCE.iterdir())
+                  and sorted(path.name for path in SOURCE.iterdir()
+                             if path.name != ".DS_Store")
                   == ["case-package.json", "content.html", "layout-overrides.json",
                       "presentation.css", "task-registry.js"],
                   sorted(path.name for path in CASE_ROOT.iterdir()))
@@ -524,7 +548,7 @@ def main() -> int:
                   campaigns["campaign-2"][4]["id"] == CASE_ID
                   and campaigns["campaign-2"][4]["displayLabel"] == "5 - Too Clean a Room")
     entry = campaigns["campaign-2"][4]
-    results.check("the Case 05 registry entry is the approved v1.1 corrective release",
+    results.check("the Case 05 registry entry is the approved v1.2 corrective release",
                   entry["status"] == "APPROVED_STABLE" and entry["version"] == RELEASE_VERSION
                   and entry["packageStatus"] == "APPROVED"
                   and entry.get("historyRecord") == RELEASE_RECORD
@@ -1114,9 +1138,9 @@ def main() -> int:
                   and "most differentiated" not in json.dumps(registry))
 
     # ── v1.1 release record and certification ────────────────────────
-    release_path = CASE_ROOT / "history/release-v1.1.json"
+    release_path = CASE_ROOT / "history/release-v1.2.json"
     release = json.loads(release_path.read_text(encoding="utf-8")) if release_path.exists() else {}
-    results.check("the v1.1 release record exists and records the approved corrective release",
+    results.check("the v1.2 release record exists and records the approved corrective release",
                   release.get("caseId") == CASE_ID
                   and release.get("curriculumVersion") == RELEASE_VERSION
                   and release.get("correctiveOf") == CORRECTIVE_OF
@@ -1124,37 +1148,41 @@ def main() -> int:
                   and release.get("approvalDate") == APPROVAL_DATE
                   and release.get("owner") == OWNER,
                   [release.get("curriculumVersion"), release.get("status")])
-    results.check("the v1.1 release record keeps the physical print gate at PASS",
+    results.check("the v1.2 release record keeps the physical print gate at PASS",
                   release.get("acceptedPrintStatus", "").startswith("PASS at 100%")
                   and release.get("acceptedValidation", {}).get("status") == "PASS",
                   release.get("acceptedPrintStatus"))
-    results.check("the v1.1 release record certifies all four sources and they match the package",
+    results.check("the v1.2 release record certifies all four sources and they match the package",
                   sorted(release.get("sourceHashes", {})) == ["content", "layoutOverrides",
                                                               "presentation", "taskRegistry"]
                   and release.get("sourceHashes") == package["sourceHashes"],
                   sorted(release.get("sourceHashes", {})))
-    results.check("the v1.1 release record page counts match the release",
+    results.check("the v1.2 release record page counts match the release",
                   release.get("rolePageCounts") == ROLE_PAGES, release.get("rolePageCounts"))
-    results.check("the v1.1 release record pins the frozen game baseline",
+    results.check("the v1.2 release record pins the frozen game baseline",
                   any(GAME_COMMIT in note for note in release.get("migrationNotes", [])), GAME_COMMIT)
-    results.check("the v1.1 release record records the measured Accessible similarity "
+    results.check("the v1.2 release record records the measured Accessible similarity "
                   "without a campaign superlative",
-                  "55.4%" in json.dumps(release)
+                  # Re-measured at v1.2: the C2C5-ACC01/ACC02 workload reductions moved the
+                  # figure from v1.1's 55.4% to 54.3%. The record carries the measurement, and
+                  # still carries no campaign-wide superlative.
+                  "54.3%" in json.dumps(release)
+                  and "55.4%" not in json.dumps(release)
                   and V10_SUPERLATIVE not in json.dumps(release))
-    results.check("the v1.1 release record names the corrective review commits",
+    results.check("the v1.2 release record names the corrective review commits",
                   len(release.get("correctiveReviewCommits", [])) >= 4
                   and all(subprocess.run(["git", "cat-file", "-e", f"{item['commit']}^{{commit}}"],
                                          cwd=ROOT, capture_output=True).returncode == 0
                           for item in release.get("correctiveReviewCommits", [])),
                   [item["commit"][:8] for item in release.get("correctiveReviewCommits", [])])
-    results.check("the v1.1 release record summarises the Teacher corruption and the three "
+    results.check("the v1.2 correction summary names every corrected defect class and the "
                   "learner and Answer Key evidence corrections",
-                  len(release.get("correctionSummary", {}).get("corrections", [])) == 4
-                  and "teacher-guide-09" in json.dumps(release.get("correctionSummary", {}))
+                  len(release.get("correctionSummary", {}).get("corrections", [])) >= 5
                   and all(token in json.dumps(release.get("correctionSummary", {})) for token in
-                          ["uptake", "supplies are running out", "staff exposure limits"]),
+                          ["C2C5-T02", "C2C5-T03", "C2C5-ACC01", "C2C5-ACC02",
+                           "shared visual layer"]),
                   len(release.get("correctionSummary", {}).get("corrections", [])))
-    results.check("the v1.1 release record declares no generated artifacts",
+    results.check("the v1.2 release record declares no generated artifacts",
                   release.get("artifactPolicy") == "NO_GENERATED_ARTIFACTS_COMMITTED"
                   and release.get("formerArtifacts", {}).get("status")
                   == "NO_FORMER_GENERATED_ARTIFACTS"
@@ -1172,20 +1200,21 @@ def main() -> int:
         return hashlib.sha256(fragment.decode(formatter="minimal").encode("utf-8")).hexdigest()
 
     current_baselines = {role: role_dom_hash(role) for role in ("student", "teacher", "answer")}
-    results.check("the v1.1 frozen DOM baselines match the released markup",
-                  current_baselines == V11_DOM_BASELINES,
+    results.check("the v1.2 frozen DOM baselines match the released markup",
+                  current_baselines == V12_DOM_BASELINES,
                   {role: value[:12] for role, value in current_baselines.items()})
-    results.check("the release record carries the same v1.1 baselines the validator pins",
+    results.check("the release record carries the same v1.2 baselines the validator pins",
                   {role: release.get("frozenNonAccessibleDomBaselines", {}).get(role)
-                   for role in ("student", "teacher", "answer")} == V11_DOM_BASELINES,
+                   for role in ("student", "teacher", "answer")} == V12_DOM_BASELINES,
                   release.get("frozenNonAccessibleDomBaselines"))
-    results.check("the Teacher and Answer Key baselines cannot be satisfied by v1.0 markup",
-                  V11_DOM_BASELINES["teacher"] != V10_DOM_BASELINES["teacher"]
-                  and V11_DOM_BASELINES["answer"] != V10_DOM_BASELINES["answer"])
+    results.check("the corrected Teacher edition cannot be satisfied by superseded markup",
+                  V12_DOM_BASELINES["teacher"] not in
+                  {V11_DOM_BASELINES["teacher"], V10_DOM_BASELINES["teacher"]})
     results.check("the unchanged Student baseline is recorded as deliberate, not as an oversight",
-                  V11_DOM_BASELINES["student"] == V10_DOM_BASELINES["student"]
-                  and "Student" in release.get("frozenNonAccessibleDomBaselines", {}).get("note", "")
-                  and "unchanged" in release.get("frozenNonAccessibleDomBaselines", {}).get("note", ""),
+                  V12_DOM_BASELINES["student"] == V11_DOM_BASELINES["student"]
+                  and "student" in release.get("frozenNonAccessibleDomBaselines", {}).get("note", "").lower()
+                  and "deliberately identical"
+                  in release.get("frozenNonAccessibleDomBaselines", {}).get("note", ""),
                   release.get("frozenNonAccessibleDomBaselines", {}).get("note", "")[:120])
 
     # ── Record-to-commit source certification ────────────────────────
@@ -1194,7 +1223,7 @@ def main() -> int:
                  (("content", "content.html"), ("presentation", "presentation.css"),
                   ("taskRegistry", "task-registry.js"),
                   ("layoutOverrides", "layout-overrides.json"))}
-    results.check("the v1.1 canonicalSourceApprovalCommit contains the exact four blobs "
+    results.check("the v1.2 canonicalSourceApprovalCommit contains the exact four blobs "
                   "the record certifies",
                   bool(release.get("sourceHashes")) and certified == release["sourceHashes"],
                   {name: value[:12] for name, value in certified.items()})
@@ -1202,27 +1231,27 @@ def main() -> int:
     # ── Canonical prior-release representation ───────────────────────
     prior = release.get("priorApprovedReleases", [])
     entry_v10 = prior[0] if prior else {}
-    results.check("the v1.1 record represents v1.0 as a genuine superseded approved release",
+    results.check("the v1.2 record represents v1.1 as a genuine superseded approved release",
                   len(prior) == 1 and entry_v10.get("version") == RETAINED_VERSION
                   and entry_v10.get("status") == "APPROVED_STABLE"
                   and entry_v10.get("approvalDate") == RETAINED_APPROVAL_DATE
                   and entry_v10.get("rolePageCounts") == ROLE_PAGES
                   and sorted(entry_v10.get("retainedRecords", [])) ==
-                  ["sss/campaign-2/case-05-too-clean-room/history/CASE05_OWNER_APPROVAL_v1.0.md",
-                   "sss/campaign-2/case-05-too-clean-room/history/release-v1.0.json"],
+                  ["sss/campaign-2/case-05-too-clean-room/history/CASE05_OWNER_APPROVAL_v1.1.md",
+                   "sss/campaign-2/case-05-too-clean-room/history/release-v1.1.json"],
                   prior)
-    results.check("the prior-release entry preserves the false v1.0 pin and names the real "
-                  "source-bearing commit as recovery provenance",
-                  entry_v10.get("canonicalSourceApprovalCommit") == V10_INACCURATE_PIN
-                  and entry_v10.get("recoveryCommit") == SOURCE_BEARING_COMMIT
+    results.check("the prior-release entry carries v1.1's own certified pin, while the deeper "
+                  "v1.0 source-bearing commit stays verifiable",
+                  entry_v10.get("canonicalSourceApprovalCommit") == RETAINED_PINNED_COMMIT
+                  and entry_v10.get("recoveryCommit") == RETAINED_PINNED_COMMIT
                   and blob_hash(SOURCE_BEARING_COMMIT, "task-registry.js")
                   == V10_PINNED_TASK_REGISTRY_HASH,
                   [entry_v10.get("canonicalSourceApprovalCommit"),
                    entry_v10.get("recoveryCommit")])
-    results.check("the prior-release entry carries the v1.0 baselines and v1.0 source hashes",
-                  entry_v10.get("frozenNonAccessibleDomBaselines") == V10_DOM_BASELINES
-                  and entry_v10.get("sourceHashes", {}).get("taskRegistry")
-                  == V10_PINNED_TASK_REGISTRY_HASH,
+    results.check("the prior-release entry carries the v1.1 baselines and v1.1 source hashes",
+                  {r: entry_v10.get("frozenNonAccessibleDomBaselines", {}).get(r)
+                   for r in V11_DOM_BASELINES} == V11_DOM_BASELINES
+                  and entry_v10.get("sourceHashes") == V11_SOURCE_HASHES,
                   entry_v10.get("sourceHashes"))
 
     # ── Frozen v1.0 metadata may not be silently rewritten ───────────

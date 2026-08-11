@@ -11,8 +11,8 @@ unchanged in `history/`.
 | Location | Drift Vessel Thal-Oren |
 | Subtitle | Campaign 2 · Case 04 · Drift Vessel Thal-Oren, Inter-system Transit |
 | Institutional identity | Space Sprout Sleuth / Solar Agricultural Agency (SAA) |
-| Version | 1.1 (corrective release of 1.0) |
-| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-06, print gate PASS at 100% / Actual Size. The superseded v1.0 was approved 2026-08-05 and its records are retained unchanged |
+| Version | 1.2 (corrective release of 1.1) |
+| Lifecycle | `APPROVED_STABLE` — owner approved 2026-08-10, print gate PASS at 100% / Actual Size. The superseded v1.1 (2026-08-06) and v1.0 (2026-08-05) records are retained unchanged |
 | Frozen game baseline | recorded in `source/task-registry.js` as `gameCommit` |
 
 ## Contents
@@ -119,3 +119,7 @@ python3 shared/validation/validate_layout_overrides.py --case SSS-C2-CASE04
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
+
+The v1.2 final-system release (owner approved 2026-08-10, physical print PASS at 100% / Actual Size on Google Chrome) closes the SSS correctness-remediation and visual-modernization program for this case. The prior release records are retained unchanged in `history/`.
+
+Retained releases: `history/release-v1.1.json` (owner approved 2026-08-06) and `history/release-v1.0.json`, both retained byte-identical alongside their owner-approval records. The current release record is `history/release-v1.2.json`.

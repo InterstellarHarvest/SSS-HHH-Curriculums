@@ -22,11 +22,31 @@ HEAVY_FROZEN_HASHES = {
     "content.html": "da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a",
     "presentation.css": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
     "layout-overrides.json": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605",
+    "case-package.json": "97d6b1cb9c02cb4137027bfe003baeed8d8e593ea478b2044f8e0fa7c49fe8e5",
+    "task-registry.js": "e3e4096f4861ee6cee6c361f9f09c11ef15b7f51db76786223316e6ee26e606b",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+HEAVY_FROZEN_HASHES_AT_ACCEPTANCE = {
+    "content.html": "da20f3c12b1762ec1a2de57e170f707525d10e9f0ad740765a0b732395a86a1a",
+    "presentation.css": "89fb9e784fae5ddec39bb5139c9254bf4b35ed2aa1596f4fe60622149ffb40ea",
+    "layout-overrides.json": "c003ea05f6ad7dd2d9085c0f0e60e6471e9207f2401784d4e413637348edc605",
     "case-package.json": "f6244b5db18e7de66c32bc787792898612195cecb1927d23b5e52a8d5119a0c4",
     "task-registry.js": "a62376edaf946fc28f54527cd4c7d7190fd4b96826bc52b4d693a0ab6d543f51",
 }
 
 DANCE_FROZEN_HASHES = {
+    "content.html": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
+    "presentation.css": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
+    "layout-overrides.json": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d",
+    "case-package.json": "9c962080f8ada1f19628f4c4d861c933f68aaeab17a6c254e693be09c659c653",
+    "task-registry.js": "77490c526bec7d885bcdb4c4915ebd34811f0bf1411785f79cd46e211b1582b4",
+}
+# Acceptance-time record values: the plan/handoff are frozen historical acceptance
+# records and still cite the hashes as they were when the finding was accepted, before
+# the release-lifecycle promotion touched case-package.json / task-registry.js.
+DANCE_FROZEN_HASHES_AT_ACCEPTANCE = {
     "content.html": "56338f5db3e89c9187f61fcf130f13c572f00f82173744cade9db810c627c57a",
     "presentation.css": "ed0fd67a1433a4c035e3f1b1a3c61065fee064fdc18d392985f285b8e378f28d",
     "layout-overrides.json": "92c3b314b05261245fe923cd278edfcaf7a1695fe526cdf2223e9509f897b49d",
@@ -343,7 +363,7 @@ def main() -> int:
         and "The formal inventory is now **32 of 36 completed**" in handoff
         and "with **4 remaining**" in handoff
         and "Family 7 has one of two assignments verified" in handoff
-        and all(expected in handoff for expected in HEAVY_FROZEN_HASHES.values()),
+        and all(expected in handoff for expected in HEAVY_FROZEN_HASHES_AT_ACCEPTANCE.values()),
     )
     check(
         "the handoff requires normal/grayscale geometry, fit and bounded-science inspection",
@@ -694,7 +714,7 @@ def main() -> int:
             r"\| `C2C2-VIS01` \| `5ab152e` \| `VERIFIED-FAMILY` \|",
             handoff,
         ) is not None
-        and all(expected in handoff for expected in DANCE_FROZEN_HASHES.values()),
+        and all(expected in handoff for expected in DANCE_FROZEN_HASHES_AT_ACCEPTANCE.values()),
     )
     check(
         "the handoff binds the Missing Dance reissue to the measured Mac overflow defect",

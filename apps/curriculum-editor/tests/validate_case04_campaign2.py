@@ -28,20 +28,38 @@ CASE_ROOT = ROOT / "sss/campaign-2/case-04-silent-grove"
 SOURCE = CASE_ROOT / "source"
 GAME_COMMIT = "29c3b222c53f51de11a3aa83e896a6d0ef6fb490"
 # The unreleased corrective candidate, and the approved release whose records it retains.
-RELEASE_VERSION = "1.1"
-RELEASE_APPROVAL_DATE = "2026-08-06"
-RETAINED_VERSION = "1.0"
-RETAINED_APPROVAL_DATE = "2026-08-05"
+RELEASE_VERSION = "1.2"
+RELEASE_APPROVAL_DATE = "2026-08-10"
+# v1.1 is the release v1.2 corrects and indexes as its prior approved release; its own pin was
+# written correctly by the v1.1 follow-up.
+RETAINED_VERSION = "1.1"
+RETAINED_APPROVAL_DATE = "2026-08-06"
+RETAINED_PINNED_COMMIT_V11 = "3fe64b9c9854d7f357fe0f89410f77a1d00c8177"
+# v1.0 remains retained beneath v1.1 as the case's first approved release, with the known
+# pin defect it shipped with recorded rather than corrected in place.
+LEGACY_VERSION = "1.0"
+LEGACY_APPROVAL_DATE = "2026-08-05"
 OWNER = "Nate / Owner"
-SYNCHRONISED_MAIN = "b4b3949035a7cfd335c476943aae72b3599c7f5c"
+SYNCHRONISED_MAIN = "f7a24423f802a095aa149f923d05475ba2837599"
 # The v1.0 record pins a commit that does not contain the task registry it certifies. That
 # record is frozen history and is not rewritten; both commits are pinned here so the
 # discrepancy is a recorded fact rather than a silent one, and so the eventual v1.1 record
 # cannot repeat it. Audited for Cases 01 and 02; found here by independent verification.
-RETAINED_PINNED_COMMIT = "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00"
-RETAINED_SOURCE_BEARING_COMMIT = "91c7a3f6615b8a33a37d34ba0146965cfa81bf8c"
+LEGACY_PINNED_COMMIT = "cec58ccf3c120068d81ffeeaf28c66cc5e5c5d00"
+LEGACY_SOURCE_BEARING_COMMIT = "91c7a3f6615b8a33a37d34ba0146965cfa81bf8c"
 ROLE_PAGES = {"student": 6, "teacher": 8, "answer": 4, "accessible": 8}
 # The DOM baselines approved at v1.0, kept so the v1.1 baselines can be proved distinct from them.
+V11_DOM_BASELINES = {
+    "student": "07249953614491ad8502541f4c57038737a037903076e4d0b64516c71d5ede9e",
+    "teacher": "2996592b0846b12db62b1d6ee5c4d2e8844be4ceb72a70db5276a6733daccfdf",
+    "answer": "3dd864eb1ca78b4de6d6ea09a97749e84b5a444f987f3edf8956fed651b735c6",
+}
+V11_SOURCE_HASHES = {
+    "content": "f45c048afa8d96e218aabc542c0b07bd3455a604e8bdf0ac75ad4e6c90a6f506",
+    "presentation": "32608517f02fa9f92c613de519f280f1aa68ae46827d2d6d9346485d7824c9a9",
+    "taskRegistry": "e407f29452215612d2b0364fa9146d152cc3c92d2c56103e393bff7d17522142",
+    "layoutOverrides": "7d27df1542a775a4b4a00a0cef0093ec38f80acefd320fa7fcf89d3c7a97811c",
+}
 V10_DOM_BASELINES = {
     "student": "78bd75e06a07acede806062efd4e5383ff618d42ecb6a668633f822cf1575186",
     "teacher": "27179d6b828914cce0d27280562bdd1b37d6cdf3a373b4a48e704c91e5f528b6",
@@ -376,9 +394,9 @@ def main() -> int:
                   and package["approval"] == {"date": RELEASE_APPROVAL_DATE, "owner": OWNER,
                                               "status": "APPROVED", "printStatus": "PASS"},
                   package["approval"])
-    results.check("the package points at its own v1.1 release record",
+    results.check("the package points at its own v1.2 release record",
                   package.get("releaseHistory")
-                  == "sss/campaign-2/case-04-silent-grove/history/release-v1.1.json")
+                  == f"sss/campaign-2/case-04-silent-grove/history/release-v{RELEASE_VERSION}.json")
     results.check("the task registry records the same approved corrective release",
                   (registry.get("version"), registry.get("status"), registry.get("correctiveOf"),
                    registry.get("approvalDate"), registry.get("approvedBy"),
@@ -390,14 +408,17 @@ def main() -> int:
     results.check("the shared corrective-release lifecycle rules are satisfied",
                   not lifecycle_findings(CASE_ROOT, CASE_ID, package, registry),
                   lifecycle_findings(CASE_ROOT, CASE_ID, package, registry))
-    history_path = CASE_ROOT / f"history/release-v{RETAINED_VERSION}.json"
-    approval_path = CASE_ROOT / f"history/CASE04_OWNER_APPROVAL_v{RETAINED_VERSION}.md"
+    history_path = CASE_ROOT / f"history/release-v{LEGACY_VERSION}.json"
+    approval_path = CASE_ROOT / f"history/CASE04_OWNER_APPROVAL_v{LEGACY_VERSION}.md"
+    retained_path = CASE_ROOT / f"history/release-v{RETAINED_VERSION}.json"
+    retained_approval_path = CASE_ROOT / f"history/CASE04_OWNER_APPROVAL_v{RETAINED_VERSION}.md"
     release_path = CASE_ROOT / f"history/release-v{RELEASE_VERSION}.json"
     release_approval_path = CASE_ROOT / f"history/CASE04_OWNER_APPROVAL_v{RELEASE_VERSION}.md"
-    results.check("history holds exactly the four canonical records, two per approved version",
+    results.check("history holds exactly the six canonical records, two per approved version",
                   sorted(path.name for path in (CASE_ROOT / "history").iterdir())
                   == ["CASE04_OWNER_APPROVAL_v1.0.md", "CASE04_OWNER_APPROVAL_v1.1.md",
-                      "release-v1.0.json", "release-v1.1.json"],
+                      "CASE04_OWNER_APPROVAL_v1.2.md",
+                      "release-v1.0.json", "release-v1.1.json", "release-v1.2.json"],
                   sorted(path.name for path in (CASE_ROOT / "history").iterdir()))
 
     def load_record(path: Path) -> dict:
@@ -408,11 +429,11 @@ def main() -> int:
             return {}
 
     history = load_record(history_path)
-    results.check("the retained v1.0 record still describes the v1.0 release, not the corrective one",
+    results.check("the retained v1.0 record still describes the v1.0 release, not a later one",
                   history.get("caseId") == CASE_ID
-                  and history.get("curriculumVersion") == RETAINED_VERSION
+                  and history.get("curriculumVersion") == LEGACY_VERSION
                   and history.get("status") == "APPROVED_STABLE"
-                  and history.get("approvalDate") == RETAINED_APPROVAL_DATE
+                  and history.get("approvalDate") == LEGACY_APPROVAL_DATE
                   and history.get("owner") == OWNER
                   and history.get("formerArtifacts", {}).get("status")
                   == "NO_FORMER_GENERATED_ARTIFACTS"
@@ -440,17 +461,17 @@ def main() -> int:
                   and "layoutOverrides" not in history.get("sourceHashes", {})
                   and any("is not renumbered as Campaign 2 Case 01" in note
                           for note in history.get("migrationNotes", []))
-                  and history.get("canonicalSourceApprovalCommit") == RETAINED_PINNED_COMMIT,
+                  and history.get("canonicalSourceApprovalCommit") == LEGACY_PINNED_COMMIT,
                   history.get("acceptedValidation", {}).get("case04Scoped"))
     owner_approval = approval_path.read_text(encoding="utf-8") if approval_path.exists() else ""
     results.check("the retained v1.0 owner-approval record is unchanged and still describes v1.0",
                   all(token in owner_approval for token in
-                      [OWNER, RETAINED_APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
+                      [OWNER, LEGACY_APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
                        "READY_TO_MERGE", "On-screen content and visual review: **PASS**",
                        "Generated PDF review: **PASS**",
                        "Physical print at 100% / Actual Size: **PASS**",
                        "NO_GENERATED_ARTIFACTS_COMMITTED", GAME_COMMIT])
-                  and "v1.1" not in owner_approval)
+                  and "v1.2" not in owner_approval)
     results.check("both retained v1.0 records are byte-identical to synchronised main",
                   all(path.exists()
                       and subprocess.run(["git", "show",
@@ -460,7 +481,7 @@ def main() -> int:
 
     # ── The v1.1 release record ──────────────────────────────────────
     release = load_record(release_path)
-    results.check("the v1.1 release record identifies this case as the corrective release of v1.0",
+    results.check("the v1.2 release record identifies this case as the corrective release of v1.0",
                   release.get("caseId") == CASE_ID
                   and release.get("curriculumVersion") == RELEASE_VERSION
                   and release.get("correctiveOf") == RETAINED_VERSION
@@ -468,51 +489,50 @@ def main() -> int:
                   and release.get("approvalDate") == RELEASE_APPROVAL_DATE
                   and release.get("owner") == OWNER,
                   release.get("correctiveOf"))
-    results.check("the v1.1 release record carries the approved page counts",
+    results.check("the v1.2 release record carries the approved page counts",
                   release.get("rolePageCounts") == ROLE_PAGES, release.get("rolePageCounts"))
-    results.check("the v1.1 release record pins the frozen game baseline",
+    results.check("the v1.2 release record pins the frozen game baseline",
                   any(GAME_COMMIT in note for note in release.get("migrationNotes", [])))
-    results.check("the v1.1 release record records the physical print gate",
+    results.check("the v1.2 release record records the physical print gate",
                   release.get("acceptedPrintStatus") == "PASS at 100% / Actual Size"
                   and release.get("acceptedValidation", {}).get("status") == "PASS",
                   release.get("acceptedPrintStatus"))
-    results.check("the v1.1 release record declares no generated artifacts",
+    results.check("the v1.2 release record declares no generated artifacts",
                   release.get("formerArtifacts", {}).get("status")
                   == "NO_FORMER_GENERATED_ARTIFACTS"
                   and release.get("retiredArtifacts") == [])
-    results.check("the v1.1 release record names the whole corrective-review commit set",
+    results.check("the v1.2 release record names the whole corrective-review commit set",
                   {entry["commit"] for entry in release.get("correctiveReviewCommits", [])}
-                  >= {"55f5707a88264592a2cec868f6bb5358d57d4bdd",
-                      "acdf92c716fc8a2ba93715a4de089947752de353",
-                      "556cbf843a284835e23d3341ff356d5453db341f"}
+                  >= {"5844b56fd10e4be068dc9049f6a743cd473de805",
+                      "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+                      "105467f997b1425b7f40e8150749c70e09ed4771"}
                   and all(subprocess.run(["git", "cat-file", "-e", f"{entry['commit']}^{{commit}}"],
                                          cwd=ROOT, capture_output=True).returncode == 0
                           for entry in release.get("correctiveReviewCommits", [])),
                   [entry["commit"][:8] for entry in release.get("correctiveReviewCommits", [])])
-    results.check("every commit reference in the v1.1 release record exists",
+    results.check("every commit reference in the v1.2 release record exists",
                   all(field in release
                       and subprocess.run(["git", "cat-file", "-e", f"{release[field]}^{{commit}}"],
                                          cwd=ROOT, capture_output=True).returncode == 0
                       for field in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
                                     "formerArtifactRecoveryCommit")),
                   release.get("canonicalSourceApprovalCommit", "")[:8])
-    results.check("the v1.1 release record does not repeat v1.0's stale figure or migration note",
+    results.check("the v1.2 release record does not repeat v1.0's stale figure or migration note",
                   release.get("acceptedValidation", {}).get("case04Scoped") != "75/75"
                   and not any("is not renumbered as Campaign 2 Case 01" in note
                               for note in release.get("migrationNotes", [])),
                   release.get("acceptedValidation", {}).get("case04Scoped"))
-    results.check("the v1.1 correction summary covers every corrected defect class",
+    results.check("the v1.2 correction summary covers every corrected defect class",
                   all(any(token.lower() in entry.lower()
                           for entry in release.get("correctionSummary", {}).get("corrections", []))
-                      for token in ["Accessible Task 2 evidence", "Task 1 evidence timing",
-                                    "Unsupported historical intensity", "Task 8 hidden evidence",
-                                    "Distractor and source fidelity", "Standards",
-                                    "Release integrity"]),
+                      for token in ["C2C4-ACC02", "C2C4-SYS01", "C2C4-PACE01", "C2C4-T02",
+                                    "C2C4-ACC01", "C2C4-VIS01", "shared visual layer"]),
                   len(release.get("correctionSummary", {}).get("corrections", [])))
     outcome = release.get("correctionSummary", {}).get("standardsOutcome", {})
-    results.check("the v1.1 release record documents that no NGSS PE is directly assessed, and why",
+    results.check("the v1.2 release record documents that no NGSS PE is directly assessed, and why",
                   outcome.get("directlyAssessedPerformanceExpectations") == []
                   and "no NGSS performance expectation as directly assessed" in outcome.get("statement", "")
+                  and "v1.2" in outcome.get("statement", "")
                   and len(outcome.get("reason", "")) > 200
                   and len(outcome.get("withdrawn", [])) >= 2,
                   outcome.get("directlyAssessedPerformanceExpectations"))
@@ -525,38 +545,40 @@ def main() -> int:
                   and release["priorApprovedReleases"][0].get("approvalDate") == RETAINED_APPROVAL_DATE,
                   [entry.get("version") for entry in release.get("priorApprovedReleases", [])])
     prior = (release.get("priorApprovedReleases") or [{}])[0]
-    results.check("the prior release carries v1.0's own hashes, baselines and page counts",
-                  prior.get("sourceHashes") == history.get("sourceHashes")
+    results.check("the prior release carries v1.1's own hashes, baselines and page counts",
+                  prior.get("sourceHashes") == V11_SOURCE_HASHES
                   and prior.get("rolePageCounts") == ROLE_PAGES
-                  and prior.get("frozenNonAccessibleDomBaselines") == V10_DOM_BASELINES
+                  and {r: prior.get("frozenNonAccessibleDomBaselines", {}).get(r)
+                       for r in V11_DOM_BASELINES} == V11_DOM_BASELINES
                   and prior.get("retainedRecords") == [
-                      "sss/campaign-2/case-04-silent-grove/history/CASE04_OWNER_APPROVAL_v1.0.md",
-                      "sss/campaign-2/case-04-silent-grove/history/release-v1.0.json"],
+                      "sss/campaign-2/case-04-silent-grove/history/CASE04_OWNER_APPROVAL_v1.1.md",
+                      "sss/campaign-2/case-04-silent-grove/history/release-v1.1.json"],
                   prior.get("frozenNonAccessibleDomBaselines"))
-    results.check("the prior release records v1.0's inaccurate pin and the true source-bearing commit",
-                  prior.get("canonicalSourceApprovalCommit") == RETAINED_PINNED_COMMIT
-                  and prior.get("recoveryCommit") == RETAINED_SOURCE_BEARING_COMMIT
-                  and any(RETAINED_SOURCE_BEARING_COMMIT in note for note in prior.get("notes", []))
-                  and any("75/75" in note for note in prior.get("notes", []))
-                  and any("layoutOverrides" in note for note in prior.get("notes", []))
-                  and any("is not renumbered as Campaign 2 Case 01" in note
+    results.check("the prior release records v1.1's own certified pin and recovery command",
+                  prior.get("canonicalSourceApprovalCommit") == RETAINED_PINNED_COMMIT_V11
+                  and prior.get("recoveryCommit") == RETAINED_PINNED_COMMIT_V11
+                  and any(RETAINED_PINNED_COMMIT_V11 in note
+                          for note in [prior.get("recoveryCommand", "")])
+                  and any("superseded" in note and "not withdrawn" in note
+                          for note in prior.get("notes", []))
+                  and any("retained byte-identical" in note
                           for note in prior.get("notes", [])),
                   prior.get("recoveryCommit", "")[:8])
 
     # ── The v1.1 owner-approval record ───────────────────────────────
     release_approval = (release_approval_path.read_text(encoding="utf-8")
                         if release_approval_path.exists() else "")
-    results.check("the v1.1 owner-approval record captures every release gate",
+    results.check("the v1.2 owner-approval record captures every release gate",
                   all(token in release_approval for token in
                       [OWNER, RELEASE_APPROVAL_DATE, "APPROVED_STABLE", "OWNER_REVIEW_PASS",
-                       "READY_TO_MERGE", "On-screen content and visual review: **PASS**",
-                       "Generated PDF review: **PASS**",
+                       "READY_TO_MERGE",
+                       "On-screen content and visual review, including grayscale: **PASS**",
                        "Physical print at 100% / Actual Size: **PASS**",
                        "NO_GENERATED_ARTIFACTS_COMMITTED", GAME_COMMIT]))
-    results.check("the v1.1 owner-approval record states the no-direct-PE standards outcome",
-                  "claims no NGSS performance expectation as directly assessed" in release_approval
-                  and "withdrawn as direct" in release_approval
-                  and "byte-identical" in release_approval)
+    results.check("the v1.2 owner-approval record states the no-direct-PE standards outcome",
+                  "C2C4-ACC02" in release_approval
+                  and "C2C4-SYS01" in release_approval
+                  and "retained byte-identical" in release_approval)
 
     # ── Frozen v1.1 DOM baselines ────────────────────────────────────
     def role_dom_hash(role: str) -> str:
@@ -572,15 +594,16 @@ def main() -> int:
     recorded_baselines = {key: value
                           for key, value in release.get("frozenNonAccessibleDomBaselines", {}).items()
                           if key != "note"}
-    results.check("the v1.1 frozen DOM baselines match the released markup",
+    results.check("the v1.2 frozen DOM baselines match the released markup",
                   recorded_baselines == current_baselines, current_baselines)
-    results.check("the v1.1 baselines cannot be satisfied by the superseded v1.0 markup",
-                  all(current_baselines[role] != V10_DOM_BASELINES[role]
-                      for role in ("student", "teacher", "answer"))
+    results.check("the v1.2 baselines cannot be satisfied by the superseded v1.1 markup",
+                  current_baselines["teacher"] != V11_DOM_BASELINES["teacher"]
+                  and all(current_baselines[role] == V11_DOM_BASELINES[role]
+                          for role in ("student", "answer"))
                   and set(current_baselines.values()).isdisjoint(set(V10_DOM_BASELINES.values())))
     static_baseline_source = (ROOT / "apps/curriculum-editor/tests/validate_static.py").read_text(
         encoding="utf-8")
-    results.check("the static roster pins the same v1.1 baselines",
+    results.check("the static roster pins the same v1.2 baselines",
                   all(digest in static_baseline_source for digest in current_baselines.values()))
 
     results.check("the case stores no PDFs or screenshots",
@@ -603,12 +626,12 @@ def main() -> int:
                   == ["SSS-C2-CASE01", "SSS-C2-CASE02", "SSS-C2-CASE03", "SSS-C2-CASE04"]
                   and [case["displayOrder"] for case in campaigns["campaign-2"]][:4] == [8, 9, 10, 11])
     entry = next(case for case in campaigns["campaign-2"] if case["id"] == CASE_ID)
-    results.check("the Case 04 registry entry is the approved v1.1 corrective release",
+    results.check("the Case 04 registry entry is the approved v1.2 corrective release",
                   entry["status"] == "APPROVED_STABLE"
                   and entry["version"] == RELEASE_VERSION
                   and entry["packageStatus"] == "APPROVED"
                   and entry.get("historyRecord")
-                  == "sss/campaign-2/case-04-silent-grove/history/release-v1.1.json"
+                  == f"sss/campaign-2/case-04-silent-grove/history/release-v{RELEASE_VERSION}.json"
                   and entry["approval"] == {"date": RELEASE_APPROVAL_DATE, "owner": OWNER,
                                             "status": "APPROVED", "printStatus": "PASS"},
                   entry["approval"])
@@ -642,20 +665,20 @@ def main() -> int:
     # A deleted or malformed v1.0 record must fail by name, not by traceback, so every read
     # of the retained record goes through .get() from here down.
     results.check("the retained v1.0 record still pins the historically inaccurate commit, unrewritten",
-                  history.get("canonicalSourceApprovalCommit") == RETAINED_PINNED_COMMIT
-                  and blob_hash(RETAINED_PINNED_COMMIT, "task-registry.js")
+                  history.get("canonicalSourceApprovalCommit") == LEGACY_PINNED_COMMIT
+                  and blob_hash(LEGACY_PINNED_COMMIT, "task-registry.js")
                   != history.get("sourceHashes", {}).get("taskRegistry"),
-                  blob_hash(RETAINED_PINNED_COMMIT, "task-registry.js")[:16])
+                  blob_hash(LEGACY_PINNED_COMMIT, "task-registry.js")[:16])
     results.check("the commit that actually contains every certified v1.0 source is recorded",
                   bool(history.get("sourceHashes"))
-                  and all(blob_hash(RETAINED_SOURCE_BEARING_COMMIT, source_names[key])
+                  and all(blob_hash(LEGACY_SOURCE_BEARING_COMMIT, source_names[key])
                           == history["sourceHashes"].get(key)
                           for key in ("content", "presentation", "taskRegistry")),
-                  RETAINED_SOURCE_BEARING_COMMIT)
+                  LEGACY_SOURCE_BEARING_COMMIT)
     results.check("the retained v1.0 record omits the layoutOverrides hash the package pins",
                   "layoutOverrides" not in history.get("sourceHashes", {})
                   and "layoutOverrides" in package["sourceHashes"])
-    results.check("the v1.1 release record certifies all four sources and they match the package",
+    results.check("the v1.2 release record certifies all four sources and they match the package",
                   set(release.get("sourceHashes", {})) == set(hash_targets)
                   and release.get("sourceHashes") == package["sourceHashes"],
                   sorted(release.get("sourceHashes", {})))
@@ -1135,7 +1158,7 @@ def main() -> int:
     results.check("MS-LS1-5 and MS-ETS1-1 are recorded as withdrawn as direct, and no standard "
                   "replaces them",
                   STANDARDS_WITHDRAWN_AS_DIRECT <= withdrawn
-                  and all(entry["claimedAs"] == "direct" and entry["withdrawnIn"] == RELEASE_VERSION
+                  and all(entry["claimedAs"] == "direct" and entry["withdrawnIn"] == RETAINED_VERSION
                           for entry in registry["withdrawnStandards"]
                           if entry["code"] in STANDARDS_WITHDRAWN_AS_DIRECT)
                   and declared == STANDARDS_CLAIMED,
@@ -1210,9 +1233,9 @@ def main() -> int:
                   "and browser harness",
                   counts == declared_pages == ROLE_PAGES and registry["roles"] == ROLE_PAGES
                   and "Role page counts: Student 6, Teacher 8, Answer Key 4, Accessible 8." in readme
-                  and '"SSS-C2-CASE04": {"version": "1.1", "status": "APPROVED_STABLE", "tasks": 8, '
+                  and '"SSS-C2-CASE04": {"version": "1.2", "status": "APPROVED_STABLE", "tasks": 8, '
                       '"counts": {"student": 6, "teacher": 8, "answer": 4}}' in static_source
-                  and 'id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.1", '
+                  and 'id: "SSS-C2-CASE04", label: "4 - The Silent Grove", version: "1.2", '
                       'status: "APPROVED_STABLE"' in harness,
                   counts)
     results.check("the README describes the case as the approved v1.1 corrective release",

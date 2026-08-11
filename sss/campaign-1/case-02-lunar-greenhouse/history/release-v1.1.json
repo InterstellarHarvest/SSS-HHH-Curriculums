@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "caseId": "SSS-C1-CASE02",
+  "curriculumVersion": "1.1",
+  "correctiveOf": "1.0",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-10",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "e524d333f28a1515571f038e3ed494d87aa812d3",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "correctiveReviewCommits": [
+    {
+      "commit": "b85ac5996365fa7f2954fb12549818892bea2c34",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "d0f912610ff12386ae49de64144316ee8946533d",
+      "role": "[auto-remediation] Apply final SSS source corrections"
+    },
+    {
+      "commit": "1d2c15ff8e80ff8e0b2e127bdeb7b928d745c4e4",
+      "role": "[auto-remediation] Open final SSS corrective candidates"
+    },
+    {
+      "commit": "64e5c252674de9c9250699208bbb41982abb8a11",
+      "role": "Move remediation-inserted Teacher blocks back inside the content area"
+    },
+    {
+      "commit": "547dc5edd1999471358d8421abc11ad3d78a0613",
+      "role": "Give four over-full Teacher Guide pages the page their content needs"
+    },
+    {
+      "commit": "ee777aad128d461fd96ed5e1b697f2891e39b3c2",
+      "role": "Reflow Teacher editions toward the common seven-page architecture"
+    },
+    {
+      "commit": "a9dfecfd58adb0506bbe8e78254ae85b5b558acc",
+      "role": "Establish mechanism visual family pilot"
+    },
+    {
+      "commit": "5844b56fd10e4be068dc9049f6a743cd473de805",
+      "role": "Whole-program correctness-phase closure: the corrective remediation estate for all thirteen cases was closed at this commit with CI green."
+    },
+    {
+      "commit": "f53fe15e2f0f173a1f556d507317fc2b9ac129d8",
+      "role": "Accepted visual-modernization implementation baseline: the 36-of-36 visual inventory, including the shared-layer presentation this case renders through, was accepted at this commit."
+    },
+    {
+      "commit": "105467f997b1425b7f40e8150749c70e09ed4771",
+      "role": "Visual-modernization documentation/system closeout: 36/36 complete, zero findings remaining, canonical browser registration 2375, no platform exception."
+    }
+  ],
+  "sourceHashes": {
+    "content": "acb2c5fdbc5ab0adcfb3c8b1c2fbb38de127dc639dae4f6f8d4abab6cb7e028c",
+    "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
+    "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
+    "layoutOverrides": "9dc762f6b9ff68e0b9dd3def161f53aeb4941ec4d05938a1c128c2a8dcc67420",
+    "icons": "4893dd86224a349520e9ac1fa16a2a369a4e24099924280f65d49b629cf003dd"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "5b714dd328c7e99ae2064499015137aa5633a329d76bef36abe040c21528613a",
+    "teacher": "84fa34457e2b7cbf2a7c4b751c60ed4c952736a11856af61a32432b690d67719",
+    "answer": "f8e9efdb1c5103cd07e52183f0f8736a4ee96a05c32901553637b3a70a4a117d",
+    "note": "Regenerated for v1.1. The student, teacher, answer baselines differ from the superseded v1.0 baselines retained in the prior release record, so approved-baseline enforcement cannot be satisfied by superseded markup for those roles."
+  },
+  "rolePageCounts": {
+    "student": 3,
+    "teacher": 7,
+    "answer": 3,
+    "accessible": 7
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size",
+  "formerArtifacts": {
+    "complete": {
+      "path": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
+      "sha256": "4e5d03a62cba494ae09604194f69578b4c4bcceeeca1f9d53d818109e132fd0d"
+    },
+    "roles": {
+      "student": {
+        "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.html",
+        "sha256": "fe5519e9e1cee55bb6d40299e0f0fc84b40dfd8ad81a677286ef6f5d6e5225e1"
+      },
+      "teacher": {
+        "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html",
+        "sha256": "09ed396de48801e6f1b82b7f54895bd761447319011f2b32c76b91b54f322558"
+      },
+      "answer": {
+        "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
+        "sha256": "dd95ec6fe8f818541fee20723ea773990b0b16cfeb1ce513d78698c6dff8bb32"
+      },
+      "accessible": {
+        "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html",
+        "sha256": "ecb56f7e4cba24e2da99744f1ff5a9cb1cfd6607821cec30e960030d4d478d1b"
+      }
+    }
+  },
+  "formerArtifactRecoveryCommit": "c79bdc1f5b69bee9efb86998b375c5583542764f",
+  "recovery": "git show c79bdc1f5b69bee9efb86998b375c5583542764f:<former path> > <destination>",
+  "priorApprovedReleases": [
+    {
+      "version": "1.0",
+      "status": "APPROVED_STABLE",
+      "approvalDate": "2026-08-01",
+      "approvalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+      "recoveryCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+      "canonicalSourceApprovalCommit": "e347370ed55913f04b54b8e942f191808f8e4aa9",
+      "retainedRecords": [
+        "sss/campaign-1/case-02-lunar-greenhouse/history/release-v1.0.json"
+      ],
+      "sourceHashes": {
+        "content": "5f79f0853c312fec1291036afe7d8f864f38131e093fefceb905e3ca39fce541",
+        "presentation": "86c2b107297c288c1968108bab0d2a919b1dd563ce920a047048a81bfc01ac0e",
+        "taskRegistry": "331ad987f8eefff8e994732c5a8151808bb0f3d0b76b02fa660633c33985f760",
+        "icons": "4893dd86224a349520e9ac1fa16a2a369a4e24099924280f65d49b629cf003dd"
+      },
+      "rolePageCounts": {
+        "student": 3,
+        "teacher": 7,
+        "answer": 3,
+        "accessible": 5
+      },
+      "formerArtifacts": {
+        "complete": {
+          "path": "sss/campaign-1/case-02-lunar-greenhouse/master/SSS_C1_CASE02_EDITABLE_MASTER_v1.0.html",
+          "sha256": "4e5d03a62cba494ae09604194f69578b4c4bcceeeca1f9d53d818109e132fd0d"
+        },
+        "roles": {
+          "student": {
+            "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_STUDENT_MISSION_v1.0.html",
+            "sha256": "fe5519e9e1cee55bb6d40299e0f0fc84b40dfd8ad81a677286ef6f5d6e5225e1"
+          },
+          "teacher": {
+            "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_TEACHER_PACKET_v1.0.html",
+            "sha256": "09ed396de48801e6f1b82b7f54895bd761447319011f2b32c76b91b54f322558"
+          },
+          "answer": {
+            "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ANSWER_KEY_v1.0.html",
+            "sha256": "dd95ec6fe8f818541fee20723ea773990b0b16cfeb1ce513d78698c6dff8bb32"
+          },
+          "accessible": {
+            "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_ACCESSIBLE_MISSION_v1.0.html",
+            "sha256": "ecb56f7e4cba24e2da99744f1ff5a9cb1cfd6607821cec30e960030d4d478d1b"
+          }
+        }
+      },
+      "recoveryCommand": "git show e347370ed55913f04b54b8e942f191808f8e4aa9:sss/campaign-1/case-02-lunar-greenhouse/source/<file> > <destination>",
+      "notes": [
+        "v1.0 was a genuine approved release with its own owner review. It is superseded by v1.1, not withdrawn.",
+        "Its release record is retained byte-identical; nothing in it was edited to describe the current version, and no known historical defect was corrected in place."
+      ],
+      "legacyArtifacts": []
+    }
+  ],
+  "correctionSummary": {
+    "reason": "Final system release closing the correctness-remediation and visual-modernization program for Lunar Greenhouse.",
+    "corrections": [
+      "C1C2-T02 The full 4/3/2/1 analytic rubric was missing. The common quick rubric plus the analytic rubric are now printed.",
+      "C1C2-T03 Runtime clue identifiers were visible in Teacher content and have been removed from printable text.",
+      "C1C2-ACC01 The Accessible edition was insufficiently hand-holding and gained targeted scaffolding.",
+      "C1C2-META01 The Accessible Task 8 resize label was wrong and now matches the control it governs.",
+      "C1C2-META02 Package identity metadata drift was reconciled against the canonical registry.",
+      "C1C2-T01 Teacher structure is validated against the corrected functional set rather than a fixed page count.",
+      "C1C2-VIS01 The reproductive telemetry rail was modernized through the shared visual layer."
+    ],
+    "unchanged": [
+      "Curriculum wording beyond the corrections listed above, scientific conclusions, task order, response controls and persistence identities, presentation CSS, layout overrides, fixed Letter page geometry and learner-field sizing are unchanged from the owner-approved corrective and visually modernized state. The release conversion itself changed lifecycle metadata and records only."
+    ]
+  },
+  "migrationNotes": [
+    "HTML-only canonical production: the canonical source at the approval commit is the complete release. There is no canonical project PDF artifact and no PDF release gate; manually produced PDFs remain noncanonical and require their own accessibility review before distribution.",
+    "NO_GENERATED_ARTIFACTS_COMMITTED: no master, published role HTML, PDF, screenshot, or generated release file is committed at this version.",
+    "Owner physical print PASS — Google Chrome at 100% / Actual Size, owner-reported 2026-08-10, tested baseline 105467f997b1425b7f40e8150749c70e09ed4771.",
+    "Canonical browser registration remains 2375; the recorded 2374 result is the accepted candidate-specific same-Mac differential only, and no general browser, Mac, Chrome, platform, or environment exception exists."
+  ],
+  "retiredArtifacts": [
+    {
+      "classification": "RETIRED_PRESENTATION_SNAPSHOT",
+      "path": "sss/campaign-1/case-02-lunar-greenhouse/published/SSS_C1_CASE02_GRAYSCALE_MISSION_v1.0.html",
+      "sha256": "f668612b18d91f5bd53b23c6231c3336c15b6181ec52893c87968ee6b1f23c46"
+    }
+  ],
+  "artifactPolicy": "NO_GENERATED_ARTIFACTS_COMMITTED"
+}

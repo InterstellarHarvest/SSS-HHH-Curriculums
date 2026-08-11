@@ -3,7 +3,7 @@ window.SSS_CASE03_TASK_REGISTRY = {
   "case": "SSS-C1-CASE03",
   "title": "Mars Habitat",
   "version": "1.2",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "editorShell": "1.0",
   "gameCommit": "c6c17be57880b365793fdf99ff4ad09b62ecacce",
   "roles": {
@@ -114,6 +114,9 @@ window.SSS_CASE03_TASK_REGISTRY = {
     "figures": "curriculum-original"
   },
   "correctiveOf": "1.1",
-  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
-  "printStatus": "NOT_RUN"
+  "approvalDate": "2026-08-10",
+  "approvedBy": "Nate / Owner",
+  "ownerReviewStatus": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
+  "printStatus": "PASS"
 };

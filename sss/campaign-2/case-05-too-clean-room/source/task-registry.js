@@ -3,9 +3,12 @@ window.SSS_C2_CASE05_TASK_REGISTRY = {
   "case": "SSS-C2-CASE05",
   "title": "Too Clean a Room",
   "version": "1.2",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "correctiveOf": "1.1",
-  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "approvalDate": "2026-08-10",
+  "approvedBy": "Nate / Owner",
+  "ownerReviewStatus": "OWNER_REVIEW_PASS",
+  "mergeStatus": "READY_TO_MERGE",
   "editorShell": "1.0",
   "gameCommit": "29c3b222c53f51de11a3aa83e896a6d0ef6fb490",
   "runtimeCaseId": "too_clean_room",
@@ -332,5 +335,5 @@ window.SSS_C2_CASE05_TASK_REGISTRY = {
     "The Rhessi comparison is modeled and belongs to a different species. It may support a comparison and must never be used as a measured value for the bloom.",
     "MS-LS1-5 is recorded as supporting rather than direct. The performance expectation names growth, and the records show growth and tissue health were unaffected; the affected output is a compound, and the mechanism is a regulated pathway that falls outside the standard's assessment boundary."
   ],
-  "printStatus": "NOT_RUN"
+  "printStatus": "PASS"
 };

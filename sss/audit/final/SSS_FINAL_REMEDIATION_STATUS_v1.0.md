@@ -2,7 +2,9 @@
 
 **Branch:** `remediate/sss-final-system`
 **Baseline:** `f7a24423f802a095aa149f923d05475ba2837599` (curriculum), `29c3b222c53f51de11a3aa83e896a6d0ef6fb490` (game)
-**Status:** ready for owner review. Not merged. All thirteen packages are corrective DRAFT candidates.
+**Status:** owner-approved and released. Not merged. All thirteen packages are `APPROVED_STABLE`
+at their corrective versions, released by the final system release on `release/sss-final-system`
+(owner Nate / Owner, 2026-08-10, physical print PASS at 100% / Actual Size).
 **Owner acceptances recorded:** Teacher page-count exceptions for SSS-C1-CASE01 (8 pages) and SSS-C2-CASE01 (9 pages), 2026-08-07.
 
 This records what the automated validation covers, what it deliberately does not, and
@@ -43,7 +45,7 @@ DOM-geometry contract, independent of PDF rendering.
 | Corrective-aware canonical case structure | PASS |
 | Layout overrides | PASS, 13 cases |
 | **Curriculum-editor browser harness (Chromium)** | **PASS 2292/2292, 0 JavaScript errors** |
-| Legacy static suite (CI diagnostic, continue-on-error) | 516/545 — see §4 |
+| Full static release suite (blocking in CI at the release) | zero failures — see §4 |
 
 The harness gained 13 assertions in the cleanup wave (load-announcement lifecycle neutrality), so the total moved 2279 -> 2292. Every assertion passes.
 
@@ -118,12 +120,16 @@ corrected so it now runs and reports 516/545. Every remaining failure is one cla
 - per-case scoped validators and mutation suites whose baselines assert the approved v1.1
   release state (12).
 
-These are **deliberately left failing.** They exist to detect drift against the approved
-release, and the remediation intentionally changed that DOM and reopened those packages as
-DRAFT candidates. Re-pinning them now would erase the protection. They are re-pinned when
-the owner approves this candidate as a release — that is a release step, not a remediation
-step. Every substantive science, standards, clue, figure and prohibited-claim assertion
-inside those case-scoped validators passes.
+**These are now closed.** They existed to detect drift against the approved release while
+the remediation held the packages as DRAFT candidates; re-pinning them during remediation
+would have erased the protection. The owner approved the candidates on 2026-08-10 and the
+final system release re-pinned every one of them to the approved tree: the thirteen frozen
+DOM baselines, the completed-release lifecycle records, the non-corrective canonical
+structure validator, and the per-case scoped validators and mutation suites, which now
+certify the released v1.2/v1.1 state and retain their v1.1 and v1.0 protections alongside
+it. The static suite has zero failures at the release. Every substantive science, standards,
+clue, figure and prohibited-claim assertion inside those case-scoped validators continues to
+pass.
 
 **4.2 Case 07 keeps its own rubric heading.** Case 07 is excluded from `RUBRIC_TARGETS`
 because the audit records that it already ships a complete four-level analytic rubric under
@@ -225,11 +231,13 @@ function — rubric, route, or source ledger. The owner accepted 9 pages instead
   unchanged this wave; three of thirteen sit at seven pages.
 - **PDF and print testing** is yours. Nothing automated covers it. The reflowed Teacher
   Guides (C1-02, C2-01, C2-06) and Case 07's Accessible page 4 are where geometry changed.
-- **Approve the candidate for release**, which is what closes the 29
-  `RELEASE-BASELINE-PENDING` assertions; they are re-pinned at that point, not before.
+- **Approving the candidate for release closed the 29 `RELEASE-BASELINE-PENDING` assertions.**
+  The owner approved on 2026-08-10 and the final system release re-pinned them to the approved
+  tree, so the static suite now has zero failures.
 
 ## 8. Out of scope, by decision
 
 - 35 `VIS` findings and the grayscale token/fill gaps — `DEFERRED-VISUAL`, next branch.
 - PDF/print — `OWNER-MANUAL`.
-- Frozen-release static assertions — `RELEASE-BASELINE-PENDING`.
+- Frozen-release static assertions — closed by the final system release; formerly
+  `RELEASE-BASELINE-PENDING`.
