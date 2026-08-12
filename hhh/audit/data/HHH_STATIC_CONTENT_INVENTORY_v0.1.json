@@ -1,0 +1,3801 @@
+{
+  "document": "HHH_STATIC_CONTENT_INVENTORY_v0.1",
+  "version": "0.1",
+  "audit_date": "2026-08-11",
+  "authority": {
+    "curriculum_repository": "InterstellarHarvest/SSS-HHH-Curriculums",
+    "curriculum_authorized_sha": "f61b77a63020254c8729d63c9960492cff0dc948",
+    "curriculum_live_remote_verified_sha": "f61b77a63020254c8729d63c9960492cff0dc948",
+    "game_repository": "InterstellarHarvest/Hunger-Harvest-History",
+    "game_authorized_sha": "9b8545ed6ecf98b337326390400076e36789e056",
+    "game_live_remote_verified_sha": "9b8545ed6ecf98b337326390400076e36789e056",
+    "game_local_audit_sha": "9b8545ed6ecf98b337326390400076e36789e056",
+    "baseline_divergence": false
+  },
+  "measurement_note": "direct_route_reading_burden_words is an approximate sum of shortest source-dialogue/reveal paths needed for the direct evidence route, not a timed student reading estimate. C2 L2 includes the structurally mandatory clue siege_witnessed even though runtime marks it insight:true.",
+  "levels": [
+    {
+      "campaign": "C1",
+      "runtime_level": 0,
+      "id": "L0",
+      "runtime_title": "Temporal Agricultural Archive Facility",
+      "audit_title": "TAA Orientation",
+      "date_or_period": "2387",
+      "location": "TAA Orientation",
+      "source_count": 4,
+      "required_clues": [
+        "briefed",
+        "met_zelketh",
+        "read_records",
+        "resonance_scanned"
+      ],
+      "optional_or_insight_evidence": [],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "briefing_chamber",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "thread_console",
+          "requires": {
+            "clueFound": "briefed"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "briefing_chamber",
+          "source_id": "nova",
+          "clue": "briefed",
+          "path": [
+            "start",
+            "preview_oolian",
+            "chose",
+            "brief_premise",
+            "brief_task"
+          ],
+          "route_words": 260
+        },
+        {
+          "location": "briefing_chamber",
+          "source_id": "zelketh",
+          "clue": "met_zelketh",
+          "path": [
+            "start",
+            "deep_current"
+          ],
+          "route_words": 79
+        },
+        {
+          "location": "briefing_chamber",
+          "source_id": "taa_records",
+          "clue": "read_records",
+          "path": [
+            "start",
+            "entry_begin"
+          ],
+          "route_words": 83
+        },
+        {
+          "location": "thread_console",
+          "source_id": "scan_resonance",
+          "clue": "resonance_scanned",
+          "path": [
+            "start"
+          ],
+          "route_words": 27
+        }
+      ],
+      "direct_route_reading_burden_words": 449,
+      "final_validation_or_diagnosis_structure": "Special orientation completion: collect all four required orientation clues, return to the thread console/anchor, then initialize the thread; no ordinary historical diagnosis.",
+      "distractors_or_false_records": [],
+      "central_concept": "Distinguish archive procedure, record status, and source handling from the fictional institutional story that frames the game.",
+      "primary_reasoning_operation": "provenance/source-status orientation",
+      "genuine_reasoning_demand": "Students must decide what different record types can establish and understand that an archive preserves claims rather than automatically guaranteeing their truth.",
+      "likely_stumbling_point": "Treating the fictional TAA, Concord, Zhel’ii, or resonance/thread technology as real historical authority.",
+      "source_status_boundaries": "Entire setting and institution are fictional; only the archival reasoning vocabulary should be treated as real-world transferable practice.",
+      "candidate_curriculum_task_family": "archive orientation / source-status sorting",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.1.6-8 (source gathering/evaluation, if explicitly built into task)",
+          "CCSS RH.6-8.1"
+        ],
+        "supporting": [
+          "CCSS RH.6-8.6"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "archive",
+        "record",
+        "provenance",
+        "corroboration",
+        "source status",
+        "accession"
+      ],
+      "candidate_source_or_provenance_task": "Classify an in-game testimony, archive record, and scan by what each can and cannot establish.",
+      "chronology_map_data_opportunity": "A simple provenance/source-type diagram; no historical geographic map is needed.",
+      "candidate_synthesis_product": "Short archive-procedure explanation rather than a diagnosis.",
+      "candidate_transfer_exit_question": "Given a newly discovered record, what would you verify before treating it as reliable evidence?",
+      "no_game_fallback_requirements": "A compact TAA orientation dossier reproducing the four required source texts with explicit FICTIONAL CONTEXT labeling.",
+      "standalone_lesson_assessment": "CONDITIONAL — useful as a short program orientation, not strong enough for a full historical case by itself.",
+      "accessibility_concerns": "High lore density and unfamiliar institutional/species names before students have historical context.",
+      "evidence_sources": [
+        {
+          "location_id": "briefing_chamber",
+          "source_id": "nova",
+          "label": "Speak to Nova",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "briefed",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "preview_oolian",
+            "chose",
+            "brief_premise",
+            "brief_task"
+          ],
+          "shortest_reveal_words": 260,
+          "contribution_excerpt": "Nova: the human record is fraying.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "briefing_chamber",
+          "source_id": "zelketh",
+          "label": "Hear Zel'keth",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "met_zelketh",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "deep_current"
+          ],
+          "shortest_reveal_words": 79,
+          "contribution_excerpt": "Zel'keth: the 'deep current' of their network carries signals across time.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "briefing_chamber",
+          "source_id": "taa_records",
+          "label": "Read TAA Records",
+          "source_type": "archive",
+          "evidence_type": null,
+          "clue_tag": "read_records",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "entry_begin"
+          ],
+          "shortest_reveal_words": 83,
+          "contribution_excerpt": "Archive: the human chain runs from the first planted seed to humanity's journey to the stars.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "thread_console",
+          "source_id": "scan_resonance",
+          "label": "Scan Resonance Map",
+          "source_type": "terminal",
+          "evidence_type": null,
+          "clue_tag": "resonance_scanned",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 27,
+          "contribution_excerpt": "Resonance map locked: first fray point is a river-valley crescent, roughly 9,700 BCE.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [],
+      "audit_disposition": "READY_WITH_BOUNDARY_NOTE"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 1,
+      "id": "L1",
+      "runtime_title": "The Fertile Crescent",
+      "audit_title": "Fertile Crescent / Early Grain Domestication",
+      "date_or_period": "9,700 BCE",
+      "location": "a river valley",
+      "source_count": 4,
+      "required_clues": [
+        "replanting_seen",
+        "nonshatter_trait",
+        "seed_selection",
+        "knowledge_spreading"
+      ],
+      "optional_or_insight_evidence": [],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "grain_field",
+          "requires": null,
+          "anchor_point": true
+        },
+        {
+          "location_id": "storage_pit",
+          "requires": {
+            "clueFound": "nonshatter_trait"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "settlement_edge",
+          "requires": {
+            "clueFound": "seed_selection"
+          },
+          "anchor_point": false
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "grain_field",
+          "source_id": "woman",
+          "clue": "replanting_seen",
+          "path": [
+            "start",
+            "observe",
+            "replant_reveal"
+          ],
+          "route_words": 183
+        },
+        {
+          "location": "grain_field",
+          "source_id": "handle_grain",
+          "clue": "nonshatter_trait",
+          "path": [
+            "start"
+          ],
+          "route_words": 85
+        },
+        {
+          "location": "storage_pit",
+          "source_id": "examine_stores",
+          "clue": "seed_selection",
+          "path": [
+            "start"
+          ],
+          "route_words": 64
+        },
+        {
+          "location": "settlement_edge",
+          "source_id": "neighbor",
+          "clue": "knowledge_spreading",
+          "path": [
+            "start",
+            "examine",
+            "share"
+          ],
+          "route_words": 172
+        }
+      ],
+      "direct_route_reading_burden_words": 504,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 4 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The sturdy-headed grain happened to thrive on its own near her camp, and the plant essentially domesticated itself without any real choice on her part.",
+        "An outsider arrived and taught her the whole method of farming at once. Planting, selecting, and storing as a finished system she simply adopted."
+      ],
+      "central_concept": "Explain cereal domestication as a cumulative selection process produced by repeated human harvesting, seed saving, and replanting, while distinguishing cultivation from later morphological domestication.",
+      "primary_reasoning_operation": "chronology + cause/change over time + inference from archaeobotanical traits",
+      "genuine_reasoning_demand": "Students must connect harvesting/replanting behavior to selection pressure and decide what non-shattering remains do—and do not—prove about a specific moment or person.",
+      "likely_stumbling_point": "Reading domestication as a single intentional invention at exactly 9700 BCE rather than a long, geographically varied process.",
+      "source_status_boundaries": "The woman, dialogue, and exact event are reconstructed/fictionalized; the non-shattering domestication pattern is archaeobotanically documented but gradual.",
+      "candidate_curriculum_task_family": "chronology + evidence chain + documented/reconstructed status comparison",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D2.His.1.6-8",
+          "C3 D2.His.2.6-8",
+          "CCSS RH.6-8.7"
+        ],
+        "supporting": [
+          "C3 D3.2.6-8",
+          "CCSS WHST.6-8.2"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "domestication",
+        "cultivation",
+        "selection",
+        "non-shattering",
+        "rachis",
+        "wild type"
+      ],
+      "candidate_source_or_provenance_task": "Compare the game vignette with archaeobotanical evidence; mark which parts are documented population-level evidence and which are narrative reconstruction.",
+      "chronology_map_data_opportunity": "Sourced Fertile Crescent map plus a broad archaeological timeline/range; do not plot a fabricated exact “first domestication” point.",
+      "candidate_synthesis_product": "Historical explanation of how repeated human choices create selection pressure over generations.",
+      "candidate_transfer_exit_question": "What evidence would distinguish early cultivation from a population that had already become morphologically domesticated?",
+      "no_game_fallback_requirements": "Evidence cards using archaeobotanical shattering/non-shattering data and a clearly labeled reconstructed harvesting vignette.",
+      "standalone_lesson_assessment": "YES after game-text/reconstruction remediation.",
+      "accessibility_concerns": "Chronology spans millennia; the game’s single-person narrative can overpower the slower process unless source status is explicit.",
+      "evidence_sources": [
+        {
+          "location_id": "grain_field",
+          "source_id": "woman",
+          "label": "The Woman",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "replanting_seen",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "observe",
+            "replant_reveal"
+          ],
+          "shortest_reveal_words": 183,
+          "contribution_excerpt": "She deliberately replants only the grain heads that held their seed instead of shattering, season after season.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "grain_field",
+          "source_id": "handle_grain",
+          "label": "Handle the Grain",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "nonshatter_trait",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 85,
+          "contribution_excerpt": "In these grain heads they does not shatter, so the seed stays fixed on the stalk instead of scattering to sow itself.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "storage_pit",
+          "source_id": "examine_stores",
+          "label": "Examine the Stores",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "seed_selection",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 64,
+          "contribution_excerpt": "She sets aside only the non-shattering heads as next year's seed.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "settlement_edge",
+          "source_id": "neighbor",
+          "label": "The Neighbor",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "knowledge_spreading",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "examine",
+            "share"
+          ],
+          "shortest_reveal_words": 172,
+          "contribution_excerpt": "A visitor leaves carrying the kept seed — the practice crosses to the next settlement.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C1L1-001",
+        "HHH-GAME-C1L1-002"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 2,
+      "id": "L2",
+      "runtime_title": "Sumer",
+      "audit_title": "Sumer / Irrigation and Salinization",
+      "date_or_period": "~2000 BCE",
+      "location": "the southern floodplain",
+      "source_count": 10,
+      "required_clues": [
+        "irrigation_practice",
+        "salt_crust",
+        "no_drainage",
+        "river_comparison",
+        "scribe_record"
+      ],
+      "optional_or_insight_evidence": [
+        "crops_examined",
+        "water_sampled",
+        "plants_examined",
+        "room_examined",
+        "archive_queried"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "irrigated_fields",
+          "requires": null,
+          "anchor_point": true
+        },
+        {
+          "location_id": "river_bank",
+          "requires": {
+            "clueFound": "salt_crust"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "scribes_room",
+          "requires": {
+            "clueFound": "river_comparison"
+          },
+          "anchor_point": false
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "irrigated_fields",
+          "source_id": "overseer",
+          "clue": "irrigation_practice",
+          "path": [
+            "start",
+            "method_intro",
+            "drainage"
+          ],
+          "route_words": 189
+        },
+        {
+          "location": "irrigated_fields",
+          "source_id": "sample_soil",
+          "clue": "salt_crust",
+          "path": [
+            "start",
+            "survey"
+          ],
+          "route_words": 116
+        },
+        {
+          "location": "irrigated_fields",
+          "source_id": "trace_channels",
+          "clue": "no_drainage",
+          "path": [
+            "start"
+          ],
+          "route_words": 62
+        },
+        {
+          "location": "river_bank",
+          "source_id": "river_worker",
+          "clue": "river_comparison",
+          "path": [
+            "start",
+            "soil",
+            "compare"
+          ],
+          "route_words": 196
+        },
+        {
+          "location": "scribes_room",
+          "source_id": "read_records",
+          "clue": "scribe_record",
+          "path": [
+            "start",
+            "cause"
+          ],
+          "route_words": 121
+        }
+      ],
+      "direct_route_reading_burden_words": 684,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The gods truly have withdrawn their favour — or, in plainer terms, the rivers' flood has been failing and the fields are simply starved of water.",
+        "A blight or pest is spreading through the crop, the way disease moved through the wild grain upstream."
+      ],
+      "central_concept": "Explain how irrigation, shallow groundwater, inadequate drainage, and evaporation can contribute to soil salinization while evaluating the limits of using salinity as a single explanation for broad historical decline.",
+      "primary_reasoning_operation": "cause and consequence + systems reasoning + source comparison",
+      "genuine_reasoning_demand": "Students must combine field observations, hydrology, comparison evidence, and written records; no single clue independently establishes the whole causal chain.",
+      "likely_stumbling_point": "Assuming more irrigation always helps, or treating salinization as the sole cause of Sumerian political/economic change.",
+      "source_status_boundaries": "Irrigation salinization is real and historically important; exact overseer/scribe dialogue is reconstructed, and the extent of salinity’s role in state/economic decline is debated.",
+      "candidate_curriculum_task_family": "cause-effect systems diagram + evidence/source comparison",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D2.His.14.6-8",
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.1"
+        ],
+        "supporting": [
+          "CCSS RH.6-8.7",
+          "CCSS WHST.6-8.2"
+        ],
+        "contextual": [
+          "NGSS Earth/human-impact systems as supporting context only unless explicitly assessed"
+        ]
+      },
+      "vocabulary": [
+        "irrigation",
+        "salinization",
+        "water table",
+        "drainage",
+        "evaporation",
+        "fallow",
+        "alluvial plain"
+      ],
+      "candidate_source_or_provenance_task": "Compare physical evidence with the in-game scribe record and identify where the record’s explanation diverges from the inferred physical mechanism.",
+      "chronology_map_data_opportunity": "Sourced lower-Mesopotamia map/canal context plus deterministic water-table → evaporation → salt accumulation schematic.",
+      "candidate_synthesis_product": "Qualified causal explanation of field salinization, explicitly separated from claims about civilization-wide collapse.",
+      "candidate_transfer_exit_question": "What additional evidence would be needed to distinguish salinization from other causes of a crop shift or settlement decline?",
+      "no_game_fallback_requirements": "No-game packet with field profile, irrigation/drainage schematic, crop-tolerance comparison, and translated/secondary source excerpts with status labels.",
+      "standalone_lesson_assessment": "YES after the truncated required clue is corrected; broader decline language requires qualification.",
+      "accessibility_concerns": "Several sources mix physical process and historical interpretation; students need a visible “local field mechanism vs. broader historical claim” distinction.",
+      "evidence_sources": [
+        {
+          "location_id": "irrigated_fields",
+          "source_id": "overseer",
+          "label": "The Overseer",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "irrigation_practice",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "method_intro",
+            "drainage"
+          ],
+          "shortest_reveal_words": 189,
+          "contribution_excerpt": "The overseer floods the fields from the channels again and again, and crops the land every season without the old fallow res.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "irrigated_fields",
+          "source_id": "sample_soil",
+          "label": "Sample the Soil",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "salt_crust",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "survey"
+          ],
+          "shortest_reveal_words": 116,
+          "contribution_excerpt": "The pale crust scabbing the dying plots is salt drawn up to the surface and left behind as the standing water evaporates in the sun.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "irrigated_fields",
+          "source_id": "trace_channels",
+          "label": "Trace the Channels",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "no_drainage",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 62,
+          "contribution_excerpt": "Every channel feeds water onto the fields and not one drains it off again.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "irrigated_fields",
+          "source_id": "examine_crops",
+          "label": "Examine Crops",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "crops_examined",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 60,
+          "contribution_excerpt": "The wheat dies in the same salted ground the barley still stands.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "river_bank",
+          "source_id": "river_worker",
+          "label": "The Marsh Fisher",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "river_comparison",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "soil",
+            "compare"
+          ],
+          "shortest_reveal_words": 196,
+          "contribution_excerpt": "Where the river and the marsh keep the water moving, the ground stays sweet as the current carries the salt away.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "river_bank",
+          "source_id": "sample_water",
+          "label": "Sample Water",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "water_sampled",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 56,
+          "contribution_excerpt": "The river water carries only a faint trace of salt, and never stops moving, so it never gets the chance to leave that salt behind the way the trapped fields do.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "river_bank",
+          "source_id": "examine_plants",
+          "label": "Examine Plants",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "plants_examined",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 71,
+          "contribution_excerpt": "The reeds and levee plants grow thick and green in black, sweet soil.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "scribes_room",
+          "source_id": "read_records",
+          "label": "Read the Records",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "scribe_record",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "cause"
+          ],
+          "shortest_reveal_words": 121,
+          "contribution_excerpt": "The temple tallies track the harvest falling year on year and the salt-tolerant barley quietly replacing the failing wheat.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "scribes_room",
+          "source_id": "examine_room",
+          "label": "Examine the Room",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "room_examined",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 67,
+          "contribution_excerpt": "The room has turned its mind to the gods, not the soil.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "scribes_room",
+          "source_id": "query_archive",
+          "label": "Query TAA Archive",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "archive_queried",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 76,
+          "contribution_excerpt": "The TAA Archive names what the scribes can't: salinization.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C1L2-001",
+        "HHH-GAME-C1L2-002",
+        "HHH-GAME-C1L2-003"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 3,
+      "id": "L3",
+      "runtime_title": "County Cork",
+      "audit_title": "Ireland 1845 / Blight and Famine",
+      "date_or_period": "1845",
+      "location": "the Irish countryside",
+      "source_count": 9,
+      "required_clues": [
+        "sudden_collapse",
+        "blight_agent",
+        "monoculture",
+        "sole_food",
+        "spreading"
+      ],
+      "optional_or_insight_evidence": [
+        "soil_clear",
+        "exports_continue",
+        "oomycete",
+        "displacement"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "potato_field",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "cottage_interior",
+          "requires": {
+            "clueFound": "blight_agent"
+          },
+          "anchor_point": true
+        },
+        {
+          "location_id": "the_road",
+          "requires": {
+            "clueFound": "sole_food"
+          },
+          "anchor_point": false
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "potato_field",
+          "source_id": "farmer",
+          "clue": "sudden_collapse",
+          "path": [
+            "start",
+            "speed",
+            "recap"
+          ],
+          "route_words": 178
+        },
+        {
+          "location": "potato_field",
+          "source_id": "blight",
+          "clue": "blight_agent",
+          "path": [
+            "start",
+            "device"
+          ],
+          "route_words": 100
+        },
+        {
+          "location": "potato_field",
+          "source_id": "survey_field",
+          "clue": "monoculture",
+          "path": [
+            "start",
+            "resist"
+          ],
+          "route_words": 126
+        },
+        {
+          "location": "cottage_interior",
+          "source_id": "woman",
+          "clue": "sole_food",
+          "path": [
+            "start",
+            "diet",
+            "now"
+          ],
+          "route_words": 194
+        },
+        {
+          "location": "the_road",
+          "source_id": "traveler",
+          "clue": "spreading",
+          "path": [
+            "start",
+            "reach",
+            "record"
+          ],
+          "route_words": 175
+        }
+      ],
+      "direct_route_reading_burden_words": 773,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "It is a judgment on the land — or, in plainer terms, the soil has finally failed after too many years of the same crop worked too hard.",
+        "It is simply the cold, wet season rotting the crop in the wet ground — bad weather, nothing more."
+      ],
+      "central_concept": "Evaluate why potato late blight became a famine by integrating plant disease, crop dependence, poverty/land systems, food access, exports, relief, and historical context rather than treating one factor as sufficient.",
+      "primary_reasoning_operation": "multiple causation + contextualization + corroboration",
+      "genuine_reasoning_demand": "Students must distinguish a biological crop failure trigger from the social and political conditions that turned crop loss into mass hunger.",
+      "likely_stumbling_point": "“Blight alone caused the famine” or the opposite simplification that every Irish field was one genetically identical Lumper and no other food existed.",
+      "source_status_boundaries": "The pathogen is documented science; the game characters are reconstructed. Famine causation is social, political, economic, and biological, not a one-variable diagnosis.",
+      "candidate_curriculum_task_family": "multi-causal evidence map / source contribution-and-limitation matrix",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D2.His.14.6-8",
+          "C3 D3.1.6-8",
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.1"
+        ],
+        "supporting": [
+          "CCSS RH.6-8.9",
+          "CCSS WHST.6-8.1"
+        ],
+        "contextual": [
+          "Plant-pathology science supports the history task but need not be a direct NGSS alignment"
+        ]
+      },
+      "vocabulary": [
+        "late blight",
+        "oomycete",
+        "Phytophthora infestans",
+        "Lumper",
+        "clonal propagation",
+        "subsistence",
+        "tenant farming"
+      ],
+      "candidate_source_or_provenance_task": "Separate pathogen evidence from evidence about dependence, food movement, and social conditions; state what each source cannot establish alone.",
+      "chronology_map_data_opportunity": "Sourced Ireland map showing regional context plus a 1845–1852 chronology; any export or crop data must be sourced and dated.",
+      "candidate_synthesis_product": "Multi-causal historical explanation that identifies the pathogen as crop-failure mechanism without reducing famine mortality to biology alone.",
+      "candidate_transfer_exit_question": "What evidence would you need to distinguish “crop failure” from “famine” as historical explanations?",
+      "no_game_fallback_requirements": "Primary/secondary evidence dossier with blight evidence, dependence statistics, land/relief context, and export records; no invented peasant dialogue as primary source.",
+      "standalone_lesson_assessment": "YES after universalizing game language is corrected and teacher context is locked.",
+      "accessibility_concerns": "Emotionally heavy content, many causal layers, and potential misconception that a single “correct diagnosis” is the full historical explanation.",
+      "evidence_sources": [
+        {
+          "location_id": "potato_field",
+          "source_id": "farmer",
+          "label": "The Farmer",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "sudden_collapse",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "speed",
+            "recap"
+          ],
+          "shortest_reveal_words": 178,
+          "contribution_excerpt": "The crop stood green and sound a week ago; he woke to a stench and a field gone black overnight.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "potato_field",
+          "source_id": "blight",
+          "label": "Examine the Blight",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "blight_agent",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "device"
+          ],
+          "shortest_reveal_words": 100,
+          "contribution_excerpt": "On the cool underside of the dying leaves grows a fine white down, fruiting along the lesion edges.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "potato_field",
+          "source_id": "survey_field",
+          "label": "Survey the Field",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "monoculture",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "resist"
+          ],
+          "shortest_reveal_words": 126,
+          "contribution_excerpt": "Every plant in the field is the one variety: the Lumper, grown from cuttings of cuttings until each is the twin of the last.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "potato_field",
+          "source_id": "sample_soil",
+          "label": "Sample the Soil",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "soil_clear",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 58,
+          "contribution_excerpt": "The ground itself is sound: good dirt, no exhaustion, no poison, no salt.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "cottage_interior",
+          "source_id": "woman",
+          "label": "The Woman",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "sole_food",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "diet",
+            "now"
+          ],
+          "shortest_reveal_words": 194,
+          "contribution_excerpt": "The family lives on the potato and almost nothing else.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "cottage_interior",
+          "source_id": "records",
+          "label": "Read the Records",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "exports_continue",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 54,
+          "contribution_excerpt": "The estate ledger and the parish book tell two halves of one truth: the potato has failed and the first hunger is setting in — while the same season's grain, butter, and cattle are logged leaving for the ports, sold…",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "the_road",
+          "source_id": "traveler",
+          "label": "The Traveler",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "spreading",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "reach",
+            "record"
+          ],
+          "shortest_reveal_words": 175,
+          "contribution_excerpt": "The same rot stands in every field from here to the coast — the next parish, the next county, the far side of the island, all in the one season.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "the_road",
+          "source_id": "survey_region",
+          "label": "Survey the Region",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "oomycete",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 75,
+          "contribution_excerpt": "The regional scan maps the spread onto the weather: the organism rides cool, wet wind, fruiting in damp and stalling in drought, leaping farm to farm on rain and breeze.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "the_road",
+          "source_id": "examine_evidence",
+          "label": "Examine the Evidence",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "displacement",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 84,
+          "contribution_excerpt": "The verge is strewn with the leavings of flight — a dropped pot, a child's shoe, the cold ash of roadside fires, cart-ruts worn deep by traffic all going one way.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C1L3-001"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 4,
+      "id": "L4",
+      "runtime_title": "Karlsruhe",
+      "audit_title": "Karlsruhe 1909 / Haber Process",
+      "date_or_period": "1909",
+      "location": "Fritz Haber's laboratory",
+      "source_count": 6,
+      "required_clues": [
+        "equilibrium_stall",
+        "pressure_yield",
+        "heat_paradox",
+        "catalyst_rate",
+        "recycle_yield"
+      ],
+      "optional_or_insight_evidence": [
+        "fertilizer_future"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "reactor_chamber",
+          "requires": null,
+          "anchor_point": true
+        },
+        {
+          "location_id": "habers_office",
+          "requires": {
+            "clueFound": "equilibrium_stall"
+          },
+          "anchor_point": false
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "reactor_chamber",
+          "source_id": "examine_apparatus",
+          "clue": "equilibrium_stall",
+          "path": [
+            "start",
+            "device"
+          ],
+          "route_words": 169
+        },
+        {
+          "location": "reactor_chamber",
+          "source_id": "measure_readings",
+          "clue": "pressure_yield",
+          "path": [
+            "start",
+            "climb"
+          ],
+          "route_words": 88
+        },
+        {
+          "location": "reactor_chamber",
+          "source_id": "run_analysis",
+          "clue": "heat_paradox",
+          "path": [
+            "start",
+            "hot"
+          ],
+          "route_words": 99
+        },
+        {
+          "location": "habers_office",
+          "source_id": "haber",
+          "clue": "catalyst_rate",
+          "path": [
+            "start",
+            "bind",
+            "catalyst"
+          ],
+          "route_words": 258
+        },
+        {
+          "location": "habers_office",
+          "source_id": "review_notebooks",
+          "clue": "recycle_yield",
+          "path": [
+            "start",
+            "margin"
+          ],
+          "route_words": 164
+        }
+      ],
+      "direct_route_reading_burden_words": 778,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The apparatus is at fault — there is a leak in the high-pressure vessel, and the ammonia is escaping before it can ever be collected. Seal the steel and the yield will come.",
+        "He is simply not pushing hard enough — drive the temperature far higher and the reaction will be forced to completion, the way heat hurries any sluggish process along."
+      ],
+      "central_concept": "Explain the pressure/temperature/catalyst/recycle tradeoffs that made ammonia synthesis workable and place Haber’s laboratory result and Bosch’s industrial scale-up in correct historical relationship.",
+      "primary_reasoning_operation": "technological change + mechanism/tradeoff reasoning",
+      "genuine_reasoning_demand": "Students must distinguish equilibrium effects from reaction-rate effects and use multiple conditions together rather than retrieve one “magic” variable.",
+      "likely_stumbling_point": "Believing a catalyst shifts equilibrium or that simply maximizing temperature produces the highest ammonia equilibrium yield.",
+      "source_status_boundaries": "Haber’s laboratory synthesis and Bosch’s industrial high-pressure engineering are distinct contributions. “Moderate” temperature is a compromise relative to the reaction, not an everyday low temperature.",
+      "candidate_curriculum_task_family": "condition–mechanism–effect matrix / process-flow analysis",
+      "candidate_standards": {
+        "directly_assessed": [
+          "CCSS RH.6-8.7",
+          "CCSS RH.6-8.1"
+        ],
+        "supporting": [
+          "C3 D2.His.2.6-8",
+          "CCSS WHST.6-8.2"
+        ],
+        "contextual": [
+          "NGSS chemical-reaction/engineering concepts are supporting; do not claim a middle-school PE if equilibrium is not directly assessed"
+        ]
+      },
+      "vocabulary": [
+        "ammonia",
+        "equilibrium",
+        "catalyst",
+        "pressure",
+        "yield",
+        "reaction rate",
+        "recycle"
+      ],
+      "candidate_source_or_provenance_task": "Compare lab observations, Haber testimony/notebook evidence, and later historical reference on industrialization; identify which evidence supports chemistry versus historical attribution.",
+      "chronology_map_data_opportunity": "Deterministic Haber-process flow with pressure/temperature/catalyst/recycle labels; optional sourced 1908–1913 timeline.",
+      "candidate_synthesis_product": "Explain why a compromise operating condition plus high pressure, catalyst, and recycling works better than “just make it hotter.”",
+      "candidate_transfer_exit_question": "Which changes affect equilibrium position, which affect rate, and which improve overall process yield without changing equilibrium?",
+      "no_game_fallback_requirements": "No-game lab evidence sheet with controlled qualitative equilibrium/rate data and a short Haber/Bosch historical source set.",
+      "standalone_lesson_assessment": "YES, though it is science-heavy and needs careful middle-school framing.",
+      "accessibility_concerns": "Dense technical vocabulary and abstract equilibrium/rate distinction; diagrams should reduce rather than add cognitive load.",
+      "evidence_sources": [
+        {
+          "location_id": "reactor_chamber",
+          "source_id": "examine_apparatus",
+          "label": "Examine the Apparatus",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "equilibrium_stall",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "device"
+          ],
+          "shortest_reveal_words": 169,
+          "contribution_excerpt": "The apparatus is sound — the high-pressure vessel holds, the seals are tight, nothing is leaking.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "reactor_chamber",
+          "source_id": "measure_readings",
+          "label": "Measure the Readings",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "pressure_yield",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "climb"
+          ],
+          "shortest_reveal_words": 88,
+          "contribution_excerpt": "The pressure tells the story the bench can't reach.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "reactor_chamber",
+          "source_id": "run_analysis",
+          "label": "Run the Analysis",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "heat_paradox",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "hot"
+          ],
+          "shortest_reveal_words": 99,
+          "contribution_excerpt": "The reaction gives off heat as it makes ammonia.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "habers_office",
+          "source_id": "haber",
+          "label": "Fritz Haber",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "catalyst_rate",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "bind",
+            "catalyst"
+          ],
+          "shortest_reveal_words": 258,
+          "contribution_excerpt": "Haber is caught between cold yield and hot speed, and has been trying to break the bind not with heat but with a catalyst: a substance that hurries the reaction along without being consumed.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "habers_office",
+          "source_id": "review_notebooks",
+          "label": "Review the Notebooks",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "recycle_yield",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "margin"
+          ],
+          "shortest_reveal_words": 164,
+          "contribution_excerpt": "The notebooks are columns of disappointment — every run yields only a few parts in a hundred, whatever the setting.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "habers_office",
+          "source_id": "query_archive",
+          "label": "Query TAA Archive",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "fertilizer_future",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 115,
+          "contribution_excerpt": "Within a few years Carl Bosch turns this bench into industry, and in time the trickle of ammonia becomes an ocean of fertilizer.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C1L4-001",
+        "HHH-GAME-C1L4-002"
+      ],
+      "audit_disposition": "READY_AFTER_POLISH_AND_QUALIFICATION"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 5,
+      "id": "L5",
+      "runtime_title": "The Dust Bowl",
+      "audit_title": "Dust Bowl 1935",
+      "date_or_period": "1935",
+      "location": "Oklahoma & Washington, DC",
+      "source_count": 10,
+      "required_clues": [
+        "grass_plowed",
+        "no_root_structure",
+        "grass_control",
+        "profile_stripped",
+        "conservation_answer"
+      ],
+      "optional_or_insight_evidence": [
+        "extent",
+        "dead_soil",
+        "scale",
+        "political_contest",
+        "soil_act"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "dust_bowl_farm",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "eroded_gully",
+          "requires": {
+            "clueFound": "no_root_structure"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "committee_room",
+          "requires": {
+            "clueFound": "profile_stripped"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "dust_bowl_farm",
+          "source_id": "farmer",
+          "clue": "grass_plowed",
+          "path": [
+            "start",
+            "plough"
+          ],
+          "route_words": 146
+        },
+        {
+          "location": "dust_bowl_farm",
+          "source_id": "sample_soil",
+          "clue": "no_root_structure",
+          "path": [
+            "start",
+            "reading"
+          ],
+          "route_words": 148
+        },
+        {
+          "location": "dust_bowl_farm",
+          "source_id": "examine_evidence",
+          "clue": "grass_control",
+          "path": [
+            "start",
+            "compare"
+          ],
+          "route_words": 105
+        },
+        {
+          "location": "eroded_gully",
+          "source_id": "examine_strata",
+          "clue": "profile_stripped",
+          "path": [
+            "start",
+            "topsoil"
+          ],
+          "route_words": 124
+        },
+        {
+          "location": "committee_room",
+          "source_id": "bennett",
+          "clue": "conservation_answer",
+          "path": [
+            "start",
+            "case",
+            "answer"
+          ],
+          "route_words": 178
+        }
+      ],
+      "direct_route_reading_burden_words": 701,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "This is only a drought — a natural disaster, an act of God. The rains failed and the land dried out; no human hand caused it and none can cure it but the return of the rain. There is nothing to be done but wait and endure.",
+        "The soil is simply worn out — too many seasons of wheat have used up its richness. Feed it back with fertilizer and rotate the crops, and the land will recover its strength in time."
+      ],
+      "central_concept": "Explain the Dust Bowl as an interaction among drought, removal of prairie cover, soil erosion, land use, and conservation/policy responses.",
+      "primary_reasoning_operation": "multiple cause/consequence + human-environment systems + policy response",
+      "genuine_reasoning_demand": "Students must compare damaged and protected land, connect root structure to erosion, and distinguish contributing causes from overly simple “drought only” or “soil nutrients only” explanations.",
+      "likely_stumbling_point": "Treating drought as irrelevant because the game rejects a drought-only diagnosis, or treating exposed subsoil as literally sterile/devoid of life.",
+      "source_status_boundaries": "Drought and land use both matter. Subsoil can have lower organic matter, fertility, roots, and microbial biomass without being literally biologically dead.",
+      "candidate_curriculum_task_family": "before/after land-cover comparison + causal chain + policy/source corroboration",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D2.His.14.6-8",
+          "CCSS RH.6-8.7",
+          "CCSS RH.6-8.1"
+        ],
+        "supporting": [
+          "C3 D2.His.2.6-8",
+          "CCSS WHST.6-8.2"
+        ],
+        "contextual": [
+          "NGSS Earth-surface/human-impact systems supporting context"
+        ]
+      },
+      "vocabulary": [
+        "topsoil",
+        "erosion",
+        "prairie sod",
+        "drought",
+        "shelterbelt",
+        "contour farming",
+        "soil conservation"
+      ],
+      "candidate_source_or_provenance_task": "Compare farmer testimony, soil-profile evidence, control vegetation, and Bennett/policy records; identify which sources support mechanism and which support response.",
+      "chronology_map_data_opportunity": "Sourced Dust Bowl region map; deterministic soil-profile/erosion comparison; optional 1933–1935 policy chronology.",
+      "candidate_synthesis_product": "Qualified explanation: severe drought interacted with exposed, erosion-prone soils created by land-use practices; conservation reduced vulnerability.",
+      "candidate_transfer_exit_question": "Why can the same drought produce different erosion outcomes on intact grassland and recently plowed soil?",
+      "no_game_fallback_requirements": "Photo/map/soil-profile/policy dossier using USDA/NRCS sources and clear source dates.",
+      "standalone_lesson_assessment": "YES after biological-zero claims are corrected.",
+      "accessibility_concerns": "Strong rhetoric can turn a systems explanation into a moral blame story; students need explicit distinction between contributing conditions and individual culpability.",
+      "evidence_sources": [
+        {
+          "location_id": "dust_bowl_farm",
+          "source_id": "farmer",
+          "label": "The Farmer",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "grass_plowed",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "plough"
+          ],
+          "shortest_reveal_words": 146,
+          "contribution_excerpt": "The farmer broke the native prairie sod and sowed it all to wheat in the boom years, fence to fence, the way everyone did.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "dust_bowl_farm",
+          "source_id": "sample_soil",
+          "label": "Sample the Soil",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "no_root_structure",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "reading"
+          ],
+          "shortest_reveal_words": 148,
+          "contribution_excerpt": "The field soil is fine as flour and just as loose.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "dust_bowl_farm",
+          "source_id": "examine_evidence",
+          "label": "Examine the Evidence",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "grass_control",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "compare"
+          ],
+          "shortest_reveal_words": 105,
+          "contribution_excerpt": "Along the fence line a narrow strip of native grass was never plowed, and it has kept its soil through the same drought that stripped the field bare beside it.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "dust_bowl_farm",
+          "source_id": "survey_land",
+          "label": "Survey the Land",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "extent",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "extent"
+          ],
+          "shortest_reveal_words": 124,
+          "contribution_excerpt": "From a rise you can see how far the ruin runs.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "eroded_gully",
+          "source_id": "examine_strata",
+          "label": "Examine the Strata",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "profile_stripped",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "topsoil"
+          ],
+          "shortest_reveal_words": 124,
+          "contribution_excerpt": "The cut wall of the gully reads like a ruined book: a dark band of topsoil that should run many inches deep is worn to barely one, and below it only pale, lifeless subsoil that will grow nothing.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "eroded_gully",
+          "source_id": "sample_core",
+          "label": "Sample the Core",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "dead_soil",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "verdict"
+          ],
+          "shortest_reveal_words": 108,
+          "contribution_excerpt": "A core driven through the gully floor confirms the wound runs deeper than the eye: beneath the last residual topsoil, the subsoil is biologically dead — no organic matter, no microbial life, nothing for a root to take hold in.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "eroded_gully",
+          "source_id": "survey_region",
+          "label": "Survey the Region",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "scale",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 104,
+          "contribution_excerpt": "A regional dust survey puts numbers to the catastrophe: erosion like this gully repeated across a hundred million acres, tens of thousands of farms abandoned, soil from these plains falling on cities a thousand miles away.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "committee_room",
+          "source_id": "bennett",
+          "label": "Hugh Bennett",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "conservation_answer",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "case",
+            "answer"
+          ],
+          "shortest_reveal_words": 178,
+          "contribution_excerpt": "Bennett has the answer and the patience to land it: the land can be saved by never leaving it bare — keeping crop residue and grass cover, plowing along the contours, planting shelter-belts to break the wind.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "committee_room",
+          "source_id": "review_testimony",
+          "label": "Review the Testimony",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "political_contest",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 90,
+          "contribution_excerpt": "Bennett's testimony draft and the papers beside it show the fight he's walking into: land and agricultural interests have spent years insisting the soil is an endless resource and the dusters a passing act of weather.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "committee_room",
+          "source_id": "query_archive",
+          "label": "Query TAA Archive",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "soil_act",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 114,
+          "contribution_excerpt": "The forward thread is bright, for once: weeks after this testimony Congress passes the Soil Conservation Act and builds a permanent service to carry the work nationwide — contour plowing, terracing, cover crops, and shelter-belts of trees by the hundreds…",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C1L5-001",
+        "HHH-GAME-C1L5-002"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 6,
+      "id": "L6",
+      "runtime_title": "The Vertical Farm",
+      "audit_title": "Vertical Farm 2041",
+      "date_or_period": "2041",
+      "location": "A commercial vertical farm",
+      "source_count": 10,
+      "required_clues": [
+        "starved_while_fed",
+        "ammonia_burn",
+        "hardware_to_spec",
+        "consortium_crash",
+        "false_verdict"
+      ],
+      "optional_or_insight_evidence": [
+        "systems_running",
+        "facility_scale",
+        "trigger_event",
+        "regulatory_stakes",
+        "public_record"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "failed_farm_floor",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "control_room",
+          "requires": {
+            "clueFound": "ammonia_burn"
+          },
+          "anchor_point": true
+        },
+        {
+          "location_id": "press_briefing",
+          "requires": {
+            "clueFound": "consortium_crash"
+          },
+          "anchor_point": false
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "failed_farm_floor",
+          "source_id": "farm_researcher",
+          "clue": "starved_while_fed",
+          "path": [
+            "start",
+            "symptom",
+            "reveal"
+          ],
+          "route_words": 176
+        },
+        {
+          "location": "failed_farm_floor",
+          "source_id": "examine_crops",
+          "clue": "ammonia_burn",
+          "path": [
+            "start",
+            "reading"
+          ],
+          "route_words": 171
+        },
+        {
+          "location": "control_room",
+          "source_id": "systems_engineer",
+          "clue": "hardware_to_spec",
+          "path": [
+            "start",
+            "logs"
+          ],
+          "route_words": 107
+        },
+        {
+          "location": "control_room",
+          "source_id": "query_systems",
+          "clue": "consortium_crash",
+          "path": [
+            "start",
+            "microbes",
+            "reveal"
+          ],
+          "route_words": 208
+        },
+        {
+          "location": "press_briefing",
+          "source_id": "facility_spokesperson",
+          "clue": "false_verdict",
+          "path": [
+            "start",
+            "finding"
+          ],
+          "route_words": 174
+        }
+      ],
+      "direct_route_reading_burden_words": 836,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The failure was human error: the nutrient-cycling system was flawed as it was designed, and the engineer who built it is to blame. Tighten the oversight on the engineering and the technology itself is sound.",
+        "The nutrient solution was simply wrong — the formula was mis-mixed or a key nutrient ran dry, and the crops starved of nitrogen. Correct the recipe, refill the tanks, and the farm recovers."
+      ],
+      "central_concept": "Distinguish hardware performance from failure of a biological nitrogen-cycling subsystem and evaluate how an institution can misattribute a complex system failure.",
+      "primary_reasoning_operation": "systems causation + evidence audit + accountability",
+      "genuine_reasoning_demand": "Students must combine plant symptoms, chemistry, engineering logs, microbial evidence, and public claims to reject both “hardware broke” and “recipe was simply wrong.”",
+      "likely_stumbling_point": "Assuming “all hardware in spec” means the whole farm is healthy; treating nitrate as the only plant-usable nitrogen form or the microbial consortium as exactly two universal species.",
+      "source_status_boundaries": "2041 facility and institutional events are fictional. Nitrification is real; the game simplifies microbial diversity and nitrogen uptake/toxicity chemistry.",
+      "candidate_curriculum_task_family": "systems trace comparison + competing explanations + source/audit table",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.7"
+        ],
+        "supporting": [
+          "C3 D2.His.14.6-8",
+          "CCSS WHST.6-8.2"
+        ],
+        "contextual": [
+          "NGSS ecosystem/nitrogen-cycle and engineering systems concepts supporting only"
+        ]
+      },
+      "vocabulary": [
+        "nitrification",
+        "biofilter",
+        "microbial consortium",
+        "ammonium",
+        "ammonia",
+        "nitrite",
+        "nitrate",
+        "system boundary"
+      ],
+      "candidate_source_or_provenance_task": "Compare machine logs with biological/chemical evidence and the public verdict; ask what each source measures and what it leaves invisible.",
+      "chronology_map_data_opportunity": "Deterministic nitrogen-cycle control-loop schematic and time/event log; fictional values must be labeled as fictional case data.",
+      "candidate_synthesis_product": "Explain how a living subsystem can fail while engineered hardware remains within specification.",
+      "candidate_transfer_exit_question": "What monitoring would detect biological nitrification failure before visible crop collapse?",
+      "no_game_fallback_requirements": "Fiction-labeled vertical-farm dossier with system diagram, chemistry trend cards, and public-record comparison.",
+      "standalone_lesson_assessment": "YES as a fictional future systems-history case with science qualifications.",
+      "accessibility_concerns": "Dense systems vocabulary and multiple nitrogen forms; accessible edition should prestructure the pathway rather than require repeated free writing.",
+      "evidence_sources": [
+        {
+          "location_id": "failed_farm_floor",
+          "source_id": "farm_researcher",
+          "label": "The Researcher",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "starved_while_fed",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "symptom",
+            "reveal"
+          ],
+          "shortest_reveal_words": 176,
+          "contribution_excerpt": "The researcher has documented the failure floor by floor: the crops showed nitrogen starvation and caustic root burn at once — yet the feed system never stopped dosing nutrient.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "failed_farm_floor",
+          "source_id": "examine_crops",
+          "label": "Examine the Crops",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "ammonia_burn",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "reading"
+          ],
+          "shortest_reveal_words": 171,
+          "contribution_excerpt": "The dead crops carry a contradiction that resolves into a single cause: nitrogen starvation and ammonia burn together.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "failed_farm_floor",
+          "source_id": "scan_systems",
+          "label": "Scan Systems",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "systems_running",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 89,
+          "contribution_excerpt": "A full scan of the facility's machinery comes back clean: pumps, dosers, climate, circulation, sensors — every mechanical system operational, no faults.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "failed_farm_floor",
+          "source_id": "survey_floor",
+          "label": "Survey the Floor",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "facility_scale",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 113,
+          "contribution_excerpt": "Seen whole, the floor is vast — ten storeys of soilless fields meant to feed a city, lit and circulating and immaculate, and entirely dead.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "control_room",
+          "source_id": "systems_engineer",
+          "label": "The Engineer",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "hardware_to_spec",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "logs"
+          ],
+          "shortest_reveal_words": 107,
+          "contribution_excerpt": "The engineer walks you through the operational history: dosing to the gram, pumps at pressure, temperature held, every setpoint he designed met to the final hour.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "control_room",
+          "source_id": "query_systems",
+          "label": "Query Systems",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "consortium_crash",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "microbes",
+            "reveal"
+          ],
+          "shortest_reveal_words": 208,
+          "contribution_excerpt": "The system logged its living loop as well as its machinery, and the two traces tell the whole story: the microbial consortium in the biofilter held steady for fifty-eight days, then collapsed over seventy-two hours and flatlined.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "control_room",
+          "source_id": "review_records",
+          "label": "Review Records",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "trigger_event",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 133,
+          "contribution_excerpt": "The maintenance log holds the trigger, buried under 'within tolerance': in the days before the collapse a sanitizer flush, a pH dip, a warm spell from a cycling chiller — none of them alarming to the machinery, every one of…",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "press_briefing",
+          "source_id": "facility_spokesperson",
+          "label": "The Spokesperson",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "false_verdict",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "finding"
+          ],
+          "shortest_reveal_words": 174,
+          "contribution_excerpt": "The spokesperson will tell the cameras the failure was human error — a flawed nutrient-cycling design, a named engineer, tighter oversight to come — because it is the version investors can act on and the inquiry can close.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "press_briefing",
+          "source_id": "query_archive",
+          "label": "Query TAA Archive",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "regulatory_stakes",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 135,
+          "contribution_excerpt": "The forward trace lays two futures side by side.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "press_briefing",
+          "source_id": "press_records",
+          "label": "Review Records",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "public_record",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 103,
+          "contribution_excerpt": "The media archive runs the whole arc: the ribbon-cutting eighteen months ago — 'The Farm That Feeds the City,' a mayor, schoolchildren with seedlings — to the timelapse of the building browning from the inside while the lights stayed on.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C1L6-001"
+      ],
+      "audit_disposition": "READY_WITH_TEACHER_QUALIFICATION"
+    },
+    {
+      "campaign": "C1",
+      "runtime_level": 7,
+      "id": "L7",
+      "runtime_title": "The Temporal Agricultural Archive",
+      "audit_title": "Home / Campaign 1 Finale",
+      "date_or_period": "2387",
+      "location": "home, at the end of the thread",
+      "source_count": 4,
+      "required_clues": [
+        "nova_speaks_of_it",
+        "witnessed_growth"
+      ],
+      "optional_or_insight_evidence": [
+        "companion_present",
+        "chain_intact"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "briefing_chamber_return",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "grove_viewing",
+          "requires": {
+            "clueFound": "nova_speaks_of_it"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "briefing_chamber_return",
+          "source_id": "nova",
+          "clue": "nova_speaks_of_it",
+          "path": [
+            "start",
+            "held",
+            "the_plant"
+          ],
+          "route_words": 259
+        },
+        {
+          "location": "grove_viewing",
+          "source_id": "observe_grove",
+          "clue": "witnessed_growth",
+          "path": [
+            "start",
+            "closer"
+          ],
+          "route_words": 204
+        }
+      ],
+      "direct_route_reading_burden_words": 463,
+      "final_validation_or_diagnosis_structure": "Special finale stabilization: collect two required finale clues, return to grove anchor, stabilize/close the record; no ordinary diagnosis.",
+      "distractors_or_false_records": [],
+      "central_concept": "Synthesize the idea that agricultural knowledge accumulates through preserved records and human choices across the campaign.",
+      "primary_reasoning_operation": "cross-case synthesis + continuity/change",
+      "genuine_reasoning_demand": "The value is retrospective: students connect earlier cases into a long chain rather than solve a new independent historical problem.",
+      "likely_stumbling_point": "Treating finale lore as new historical evidence or expecting another diagnosis when runtime intentionally removes one.",
+      "source_status_boundaries": "Entire finale setting is fictional; historical claims should be sourced back to the earlier cases rather than to finale dialogue.",
+      "candidate_curriculum_task_family": "campaign synthesis / continuity map / reflection",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D2.His.2.6-8",
+          "CCSS WHST.6-8.1"
+        ],
+        "supporting": [
+          "CCSS RH.6-8.1"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "continuity",
+        "change",
+        "record",
+        "stewardship",
+        "historical memory"
+      ],
+      "candidate_source_or_provenance_task": "Trace one idea or practice from two earlier cases and explain how the finale reframes it.",
+      "chronology_map_data_opportunity": "Cross-case chronology/continuity rail; no fabricated historical source is needed.",
+      "candidate_synthesis_product": "Short synthesis argument about what is gained by preserving agricultural records.",
+      "candidate_transfer_exit_question": "Which earlier case most changed what later societies could know or do, and what evidence supports that judgment?",
+      "no_game_fallback_requirements": "Campaign evidence recap cards plus finale excerpt.",
+      "standalone_lesson_assessment": "NO — strongest as a Campaign 1 debrief/synthesis, not an independent case.",
+      "accessibility_concerns": "Depends on prior story and case memory; provide thumbnails/brief evidence recaps rather than require recall.",
+      "evidence_sources": [
+        {
+          "location_id": "briefing_chamber_return",
+          "source_id": "nova",
+          "label": "Speak to Nova",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "nova_speaks_of_it",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "held",
+            "the_plant"
+          ],
+          "shortest_reveal_words": 259,
+          "contribution_excerpt": "Nova: the chain held, every link.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "briefing_chamber_return",
+          "source_id": "companion",
+          "label": "companion",
+          "source_type": "conversation",
+          "evidence_type": null,
+          "clue_tag": "companion_present",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [],
+          "shortest_reveal_words": null,
+          "contribution_excerpt": "",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "briefing_chamber_return",
+          "source_id": "taa_archive",
+          "label": "Query TAA Archive",
+          "source_type": "archive",
+          "evidence_type": null,
+          "clue_tag": "chain_intact",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 20,
+          "contribution_excerpt": "Archive: the human chain is whole — six moments from the first chosen seed to a grove between the stars, every link stabilized.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "grove_viewing",
+          "source_id": "observe_grove",
+          "label": "Observe the Grove",
+          "source_type": "examination",
+          "evidence_type": null,
+          "clue_tag": "witnessed_growth",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "closer"
+          ],
+          "shortest_reveal_words": 204,
+          "contribution_excerpt": "You witnessed it: a small new growth in the grove, grown from the connection between species — answering nothing in any record.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [],
+      "audit_disposition": "READY_AS_SYNTHESIS_NOT_CORE_CASE"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 0,
+      "id": "C2L0",
+      "runtime_title": "The Audit",
+      "audit_title": "Archive Audit / Forged Record",
+      "date_or_period": "2387",
+      "location": "TAA Facility",
+      "source_count": 4,
+      "required_clues": [
+        "audit_briefed",
+        "audit_current",
+        "audit_logged",
+        "memo_examined"
+      ],
+      "optional_or_insight_evidence": [],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "briefing_chamber",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "thread_console",
+          "requires": {
+            "clueFound": "audit_briefed"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "briefing_chamber",
+          "source_id": "nova",
+          "clue": "audit_briefed",
+          "path": [
+            "start",
+            "findings",
+            "deliberate",
+            "task"
+          ],
+          "route_words": 184
+        },
+        {
+          "location": "briefing_chamber",
+          "source_id": "zelketh",
+          "clue": "audit_current",
+          "path": [
+            "start",
+            "pattern"
+          ],
+          "route_words": 91
+        },
+        {
+          "location": "briefing_chamber",
+          "source_id": "audit_log",
+          "clue": "audit_logged",
+          "path": [
+            "disfavoredStart",
+            "start",
+            "signature"
+          ],
+          "route_words": 114
+        },
+        {
+          "location": "thread_console",
+          "source_id": "memo_pair",
+          "clue": "memo_examined",
+          "path": [
+            "disfavoredStart",
+            "start",
+            "compare"
+          ],
+          "route_words": 156
+        }
+      ],
+      "direct_route_reading_burden_words": 545,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 4 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "Copy A — the pristine report: no amendments, immaculate custody, your signature clean on every page.",
+        "Neither — both copies are forgeries, planted to discredit the audit itself."
+      ],
+      "central_concept": "Evaluate authenticity by comparing provenance, transmission, discrepancies, and corroboration rather than treating surface neatness as proof of forgery.",
+      "primary_reasoning_operation": "source criticism + provenance + corroboration",
+      "genuine_reasoning_demand": "Students must decide between records using a chain of evidence; the central historical skill is validating a record, not copying a suspicious feature.",
+      "likely_stumbling_point": "Believing one “too clean” document is automatically forged or that working records must always contain corrections.",
+      "source_status_boundaries": "Mabillon/diplomatics are real; the TAA audit and memo pair are fictional. Cleanliness/corrections are clues at most, not authenticity tests by themselves.",
+      "candidate_curriculum_task_family": "record comparison + provenance chain + authenticity argument",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.1.6-8",
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.6",
+          "CCSS RH.6-8.9"
+        ],
+        "supporting": [
+          "CCSS WHST.6-8.1"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "diplomatics",
+        "provenance",
+        "authenticity",
+        "integrity",
+        "transmission",
+        "corroboration"
+      ],
+      "candidate_source_or_provenance_task": "Compare audit testimony, logging metadata, and two record copies; identify independent indicators and rank their evidentiary weight.",
+      "chronology_map_data_opportunity": "Provenance relationship diagram with documented/inferred labels and exact change log.",
+      "candidate_synthesis_product": "Argument for which record is better supported, with explicit statement that no single cosmetic feature proves authenticity.",
+      "candidate_transfer_exit_question": "What additional evidence would most increase or decrease confidence that a suspicious record is authentic?",
+      "no_game_fallback_requirements": "Four-record dossier reproducing the game’s audit log/memo comparison, plus a short real-world diplomatics/provenance reference.",
+      "standalone_lesson_assessment": "YES after the “too clean” heuristic is corrected.",
+      "accessibility_concerns": "Students may overfocus on formatting differences; organizer should force multiple-source corroboration.",
+      "evidence_sources": [
+        {
+          "location_id": "briefing_chamber",
+          "source_id": "nova",
+          "label": "Speak to Nova",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "audit_briefed",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "findings",
+            "deliberate",
+            "task"
+          ],
+          "shortest_reveal_words": 184,
+          "contribution_excerpt": "Nova: the audit found a second corruption layer beneath your own repairs.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "briefing_chamber",
+          "source_id": "zelketh",
+          "label": "Hear Zel'keth",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "audit_current",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "pattern"
+          ],
+          "shortest_reveal_words": 91,
+          "contribution_excerpt": "Zel'keth: the flagged nodes are not random — every one sits where agricultural knowledge crossed a boundary.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "briefing_chamber",
+          "source_id": "audit_log",
+          "label": "Read the Audit Log",
+          "source_type": "archive",
+          "evidence_type": "provenance",
+          "clue_tag": "audit_logged",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start",
+            "signature"
+          ],
+          "shortest_reveal_words": 114,
+          "contribution_excerpt": "Audit log: the buried layer reads non-random and expert — five nodes, one hand.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "thread_console",
+          "source_id": "memo_pair",
+          "label": "Examine the Memo Pair",
+          "source_type": "archive",
+          "evidence_type": "forensics",
+          "clue_tag": "memo_examined",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start",
+            "compare"
+          ],
+          "shortest_reveal_words": 156,
+          "contribution_excerpt": "The memo pair: the genuine report keeps your amendments — a re-logged timestamp, a crossed-out coordinate.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C2L0-001"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 1,
+      "id": "C2L1",
+      "runtime_title": "The Floating Gardens",
+      "audit_title": "Tenochtitlan / Chinampas",
+      "date_or_period": "1487",
+      "location": "Tenochtitlan",
+      "source_count": 7,
+      "required_clues": [
+        "gardens_thriving",
+        "soil_alive",
+        "salinity_engineered",
+        "harvest_counted"
+      ],
+      "optional_or_insight_evidence": [
+        "surplus_seen",
+        "keeper_heard",
+        "collapse_read"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "chinampa_field",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "lake_causeway",
+          "requires": {
+            "clueFound": "gardens_thriving"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "codex_house",
+          "requires": {
+            "clueFound": "salinity_engineered"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "chinampa_field",
+          "source_id": "farmer",
+          "clue": "gardens_thriving",
+          "path": [
+            "start",
+            "yields"
+          ],
+          "route_words": 144
+        },
+        {
+          "location": "chinampa_field",
+          "source_id": "soil",
+          "clue": "soil_alive",
+          "path": [
+            "start",
+            "probe"
+          ],
+          "route_words": 82
+        },
+        {
+          "location": "lake_causeway",
+          "source_id": "waterworks",
+          "clue": "salinity_engineered",
+          "path": [
+            "start",
+            "overlay"
+          ],
+          "route_words": 131
+        },
+        {
+          "location": "codex_house",
+          "source_id": "codex",
+          "clue": "harvest_counted",
+          "path": [
+            "start",
+            "crossref"
+          ],
+          "route_words": 103
+        }
+      ],
+      "direct_route_reading_burden_words": 460,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 4 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The Collapse Account — salt crept into the plots, the canals fouled, and the gardens farmed the valley to death.",
+        "The Untouched Lake — the valley’s waters never suffered at all; the gardens were simply perfect, forever."
+      ],
+      "central_concept": "Explain chinampas as an engineered wetland/raised-field agricultural system integrating canals, soil renewal, intensive cultivation, and hydrologic management, while evaluating the source status of the game’s records.",
+      "primary_reasoning_operation": "geographic reasoning + systems/contextualization + source limitation",
+      "genuine_reasoning_demand": "Students must integrate soil, waterworks, harvest records, and testimony rather than treat “floating gardens” as a literal construction description.",
+      "likely_stumbling_point": "Imagining chinampas as floating rafts or treating the game’s codex/keeper dialogue as literal surviving Aztec primary records.",
+      "source_status_boundaries": "Chinampas are historical; exact 1487 characters, codex entries, and TAA interactions are game reconstructions. “Floating gardens” is a conventional but potentially misleading label.",
+      "candidate_curriculum_task_family": "sourced map + agroecosystem diagram + source-status comparison",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D2.His.1.6-8",
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.7"
+        ],
+        "supporting": [
+          "CCSS RH.6-8.9",
+          "CCSS WHST.6-8.2"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "chinampa",
+        "raised field",
+        "canal",
+        "dike/causeway",
+        "salinity",
+        "intensive agriculture",
+        "agrobiodiversity"
+      ],
+      "candidate_source_or_provenance_task": "Compare physical-system evidence with the in-game codex and oral testimony; flag what requires external historical corroboration.",
+      "chronology_map_data_opportunity": "Sourced Basin of Mexico/Tenochtitlan map and chinampa cross-section; clearly label reconstructed features.",
+      "candidate_synthesis_product": "Explain how chinampas manage water/soil and support intensive production without calling them literal floating islands unless the source uses that conventional nickname.",
+      "candidate_transfer_exit_question": "Which physical feature addresses water, soil fertility, or salinity, and what source would verify that historical use?",
+      "no_game_fallback_requirements": "FAO/archaeological secondary-source excerpts, sourced map, and a clearly reconstructed chinampa schematic.",
+      "standalone_lesson_assessment": "YES with Teacher qualification on terminology/source status.",
+      "accessibility_concerns": "Spatial system is easier with a cross-section and map; avoid dense prose-only treatment.",
+      "evidence_sources": [
+        {
+          "location_id": "chinampa_field",
+          "source_id": "farmer",
+          "label": "Speak to the Farmer",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "gardens_thriving",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "yields"
+          ],
+          "shortest_reveal_words": 144,
+          "contribution_excerpt": "Xochitl: the plots yield several harvests a year and never rest — canal mud re-laid each season feeds them continuously.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "chinampa_field",
+          "source_id": "soil",
+          "label": "Examine the Soil",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "soil_alive",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "probe"
+          ],
+          "shortest_reveal_words": 82,
+          "contribution_excerpt": "The plot soil is layered lake mud and green matter, actively cycling nutrients.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "lake_causeway",
+          "source_id": "waterworks",
+          "label": "Survey the Waterworks",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "salinity_engineered",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "overlay"
+          ],
+          "shortest_reveal_words": 131,
+          "contribution_excerpt": "The lake is managed: a long dike and gated sluices hold the brackish eastern water apart from the spring-fed west.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "lake_causeway",
+          "source_id": "canoes",
+          "label": "Watch the Canoe Traffic",
+          "source_type": "examination",
+          "evidence_type": "testimony",
+          "clue_tag": "surplus_seen",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 57,
+          "contribution_excerpt": "Insight: an unbroken stream of canoes hauls produce toward the city markets — the surplus of a system that feeds a capital, not one collapsing.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "codex_house",
+          "source_id": "codex",
+          "label": "Read the Harvest Codex",
+          "source_type": "examination",
+          "evidence_type": "provenance",
+          "clue_tag": "harvest_counted",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "crossref"
+          ],
+          "shortest_reveal_words": 103,
+          "contribution_excerpt": "The harvest codex: plot-by-plot, season-by-season counts, generations deep — the same named gardens, yielding steadily, in an unbroken painted record.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "codex_house",
+          "source_id": "keeper",
+          "label": "Speak to the Keeper",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "keeper_heard",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "method"
+          ],
+          "shortest_reveal_words": 82,
+          "contribution_excerpt": "Insight: the tlacuilo counts every harvest three times — field, canoe, and market — and paints only what agrees.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "codex_house",
+          "source_id": "collapse_record",
+          "label": "Read the Collapse Account",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "collapse_read",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "shortest_reveal_words": 119,
+          "contribution_excerpt": "Insight: the collapse account is beautifully made and cites nothing — no plot names, no seasons, no keepers.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C2L1-001"
+      ],
+      "audit_disposition": "READY_WITH_TEACHER_QUALIFICATION"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 2,
+      "id": "C2L2",
+      "runtime_title": "The Seeds They Kept",
+      "audit_title": "Leningrad / Seed Bank",
+      "date_or_period": "1941",
+      "location": "Leningrad",
+      "source_count": 6,
+      "required_clues": [
+        "keeper_testimony",
+        "collection_intact",
+        "accessions_continuous",
+        "vavilov_fate",
+        "report_read"
+      ],
+      "optional_or_insight_evidence": [
+        "siege_witnessed"
+      ],
+      "effective_required_exception": "siege_witnessed is tagged insight:true but gates seed_vault",
+      "location_gating": [
+        {
+          "location_id": "besieged_street",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "seed_vault",
+          "requires": {
+            "clueFound": "siege_witnessed"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "institute_office",
+          "requires": {
+            "clueFound": "keeper_testimony"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "besieged_street",
+          "source_id": "street",
+          "clue": "siege_witnessed",
+          "path": [
+            "start"
+          ],
+          "route_words": 64
+        },
+        {
+          "location": "seed_vault",
+          "source_id": "keeper",
+          "clue": "keeper_testimony",
+          "path": [
+            "start",
+            "testimony"
+          ],
+          "route_words": 114
+        },
+        {
+          "location": "seed_vault",
+          "source_id": "collection",
+          "clue": "collection_intact",
+          "path": [
+            "start",
+            "scan"
+          ],
+          "route_words": 92
+        },
+        {
+          "location": "institute_office",
+          "source_id": "ledger",
+          "clue": "accessions_continuous",
+          "path": [
+            "start",
+            "crossref"
+          ],
+          "route_words": 91
+        },
+        {
+          "location": "institute_office",
+          "source_id": "vavilov",
+          "clue": "vavilov_fate",
+          "path": [
+            "start",
+            "fate"
+          ],
+          "route_words": 99
+        },
+        {
+          "location": "institute_office",
+          "source_id": "report",
+          "clue": "report_read",
+          "path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "route_words": 127
+        }
+      ],
+      "direct_route_reading_burden_words": 587,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The Rationed Collection — the staff ate some accessions to survive and preserved the rest.",
+        "The Consumption Report — under emergency authorization, the collections were consumed; the post-war bank was rebuilt later."
+      ],
+      "central_concept": "Explain why preserving crop genetic diversity during the Siege of Leningrad mattered and evaluate testimony, accession continuity, and later reports as evidence for what happened to the collection.",
+      "primary_reasoning_operation": "provenance + continuity/change + ethical historical reasoning",
+      "genuine_reasoning_demand": "Students must corroborate a dramatic story with collection continuity and records; heroic testimony alone cannot establish every count or detail.",
+      "likely_stumbling_point": "Treating one legendary death count as universally settled, or assuming Vavilov himself was present during the siege.",
+      "source_status_boundaries": "Siege, collection, Vavilov arrest/death, and preservation are historical. Individual dialogue is reconstructed; published counts of staff deaths vary by source/definition.",
+      "candidate_curriculum_task_family": "siege timeline + accession/provenance chain + corroboration matrix",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.1.6-8",
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.9"
+        ],
+        "supporting": [
+          "C3 D2.His.1.6-8",
+          "CCSS WHST.6-8.1"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "accession",
+        "germplasm",
+        "seed bank",
+        "siege",
+        "ex situ conservation",
+        "provenance",
+        "collection continuity"
+      ],
+      "candidate_source_or_provenance_task": "Use ledger continuity, collection examination, testimony, Vavilov’s fate, and post-event reporting to test competing archival claims.",
+      "chronology_map_data_opportunity": "1940–1944 timeline distinguishing Vavilov’s arrest/death from siege events; provenance/collection continuity diagram.",
+      "candidate_synthesis_product": "Evidence-based explanation of how the collection was preserved and why exact heroic-story details require source qualification.",
+      "candidate_transfer_exit_question": "What evidence best demonstrates that a collection after a crisis is continuous with the pre-crisis collection rather than rebuilt from scratch?",
+      "no_game_fallback_requirements": "VIR/Crop Trust source excerpts, accession-chain diagram, siege timeline, and game testimony clearly labeled as reconstructed.",
+      "standalone_lesson_assessment": "YES after the `insight`/gate semantics defect is fixed or explicitly normalized.",
+      "accessibility_concerns": "Emotional content and many record types; timeline should make Vavilov’s absence and staff actions distinct.",
+      "evidence_sources": [
+        {
+          "location_id": "besieged_street",
+          "source_id": "street",
+          "label": "Take In the Street",
+          "source_type": "examination",
+          "evidence_type": "testimony",
+          "clue_tag": "siege_witnessed",
+          "runtime_insight": true,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 64,
+          "contribution_excerpt": "Insight: the city is starving — the bread ration is 125 grams.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "seed_vault",
+          "source_id": "keeper",
+          "label": "Speak to the Keeper",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "keeper_testimony",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "testimony"
+          ],
+          "shortest_reveal_words": 114,
+          "contribution_excerpt": "Dr.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "seed_vault",
+          "source_id": "collection",
+          "label": "Examine the Collection",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "collection_intact",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "scan"
+          ],
+          "shortest_reveal_words": 92,
+          "contribution_excerpt": "The collection is intact: pre-war seals unbroken, counts matching the catalogue, seed aged in place through the siege winters.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "institute_office",
+          "source_id": "ledger",
+          "label": "Read the Accession Ledger",
+          "source_type": "examination",
+          "evidence_type": "provenance",
+          "clue_tag": "accessions_continuous",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "crossref"
+          ],
+          "shortest_reveal_words": 91,
+          "contribution_excerpt": "The ledger runs unbroken through the siege.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "institute_office",
+          "source_id": "vavilov",
+          "label": "Play the Vavilov Record",
+          "source_type": "archive",
+          "evidence_type": "provenance",
+          "clue_tag": "vavilov_fate",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "fate"
+          ],
+          "shortest_reveal_words": 99,
+          "contribution_excerpt": "The recovered record: Vavilov was arrested in August 1940 and died in prison in January 1943.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "institute_office",
+          "source_id": "report",
+          "label": "Read the Consumption Report",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "report_read",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "shortest_reveal_words": 127,
+          "contribution_excerpt": "The Consumption Report: typed, complete, materially perfect — staff 'consumed the collections under emergency authorization, witnessed by Director Vavilov at the Institute.' Its perfection, and that signature, are the tells.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-IMP-C2L2-001",
+        "HHH-GAME-C2L2-001"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 3,
+      "id": "C2L3",
+      "runtime_title": "The Quiet Billion",
+      "audit_title": "Green Revolution / Mexico and South Asia",
+      "date_or_period": "1968",
+      "location": "Mexico",
+      "source_count": 6,
+      "required_clues": [
+        "trials_succeeded",
+        "lodging_resistance",
+        "pedigree_verified",
+        "real_yields"
+      ],
+      "optional_or_insight_evidence": [
+        "forgery_read",
+        "harvest_scale"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "trial_plots",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "research_station",
+          "requires": {
+            "clueFound": "lodging_resistance"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "deployment_field",
+          "requires": {
+            "clueFound": "pedigree_verified"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "trial_plots",
+          "source_id": "borlaug",
+          "clue": "trials_succeeded",
+          "path": [
+            "start",
+            "trait"
+          ],
+          "route_words": 144
+        },
+        {
+          "location": "trial_plots",
+          "source_id": "wheat",
+          "clue": "lodging_resistance",
+          "path": [
+            "start",
+            "scan"
+          ],
+          "route_words": 144
+        },
+        {
+          "location": "research_station",
+          "source_id": "pedigree",
+          "clue": "pedigree_verified",
+          "path": [
+            "start",
+            "crossref"
+          ],
+          "route_words": 129
+        },
+        {
+          "location": "deployment_field",
+          "source_id": "agronomist",
+          "clue": "real_yields",
+          "path": [
+            "start",
+            "yields"
+          ],
+          "route_words": 99
+        }
+      ],
+      "direct_route_reading_burden_words": 516,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 4 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The Failure Report — the semi-dwarf trials lodged and were quietly abandoned; the green revolution was a buried disaster.",
+        "The Reckoning — the wheat worked, but the green revolution was an ecological and social catastrophe not worth keeping in the record."
+      ],
+      "central_concept": "Evaluate Green Revolution claims using experimental results, pedigree, lodging/rust traits, yield evidence, and broader production context rather than accepting either triumphalist or wholly dismissive records.",
+      "primary_reasoning_operation": "corroboration + quantitative evidence + cause/consequence + competing interpretation",
+      "genuine_reasoning_demand": "Students must test a forged/oversimplified account against independent trial, pedigree, and field evidence and separate varietal effects from the larger technology/input system.",
+      "likely_stumbling_point": "Reducing yield changes to one seed variety alone, or treating popular “saved a billion lives” language as a directly measurable case fact.",
+      "source_status_boundaries": "Borlaug, Mexican research, semi-dwarf wheat, and South Asian adoption are historical; exact game dialogue/yield numbers and forged record are constructed for gameplay.",
+      "candidate_curriculum_task_family": "claim-evidence audit + before/after data interpretation + provenance check",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.7",
+          "CCSS RH.6-8.8"
+        ],
+        "supporting": [
+          "C3 D2.His.14.6-8",
+          "CCSS WHST.6-8.1"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "semi-dwarf",
+        "lodging",
+        "rust resistance",
+        "pedigree",
+        "yield",
+        "Green Revolution",
+        "input package"
+      ],
+      "candidate_source_or_provenance_task": "Compare trial evidence, pedigree, field testimony/data, and the optional forged report; identify what each supports and what remains contextual.",
+      "chronology_map_data_opportunity": "Sourced Mexico → South Asia map, 1940s–1960s timeline, and sourced yield data where used.",
+      "candidate_synthesis_product": "Qualified explanation of how improved varieties contributed to yield gains alongside irrigation, fertilizer, agronomy, institutions, and policy.",
+      "candidate_transfer_exit_question": "What additional evidence would separate the effect of the variety from fertilizer, irrigation, or policy changes?",
+      "no_game_fallback_requirements": "Nobel/CIMMYT-style secondary sources plus sourced trial/yield excerpts and a labeled fictional forgery record.",
+      "standalone_lesson_assessment": "YES with contextual qualification.",
+      "accessibility_concerns": "Quantitative and causal complexity; accessible edition should model one claim-evidence comparison and reduce repetitive rows.",
+      "evidence_sources": [
+        {
+          "location_id": "trial_plots",
+          "source_id": "borlaug",
+          "label": "Play the Borlaug Record",
+          "source_type": "archive",
+          "evidence_type": "testimony",
+          "clue_tag": "trials_succeeded",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "trait"
+          ],
+          "shortest_reveal_words": 144,
+          "contribution_excerpt": "The recovered record: Borlaug bred the wheat SHORT on purpose — a stiff dwarf straw that stands under a heavy, well-fed head instead of falling.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "trial_plots",
+          "source_id": "wheat",
+          "label": "Compare the Trial Wheat",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "lodging_resistance",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "scan"
+          ],
+          "shortest_reveal_words": 144,
+          "contribution_excerpt": "The short-strawed wheat stands under the same heavy head that flattens the tall wheat beside it.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "research_station",
+          "source_id": "pedigree",
+          "label": "Read the Pedigree Records",
+          "source_type": "examination",
+          "evidence_type": "provenance",
+          "clue_tag": "pedigree_verified",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "crossref"
+          ],
+          "shortest_reveal_words": 129,
+          "contribution_excerpt": "The variety pedigree runs unbroken from the dwarf parent to the seed going out by the ton, every cross dated and the recorded yields RISE across seasons in both Mexico and South Asia.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "research_station",
+          "source_id": "report",
+          "label": "Read the Failure Report",
+          "source_type": "examination",
+          "evidence_type": "provenance",
+          "clue_tag": "forgery_read",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "shortest_reveal_words": 113,
+          "contribution_excerpt": "Insight: the buried 'trial failure' report is professionally forged — real letterhead, yet it describes the wheat being abandoned, and recommends the seed stock be destroyed.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "deployment_field",
+          "source_id": "agronomist",
+          "label": "Speak to the Agronomist",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "real_yields",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "yields"
+          ],
+          "shortest_reveal_words": 99,
+          "contribution_excerpt": "Dr.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "deployment_field",
+          "source_id": "survey",
+          "label": "Survey the Deployment",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "harvest_scale",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 60,
+          "contribution_excerpt": "Insight: the new crop runs to the horizon in every direction — one variety, one height, heavy-headed, standing.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C2L3-001"
+      ],
+      "audit_disposition": "READY_WITH_TEACHER_QUALIFICATION"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 4,
+      "id": "C2L4",
+      "runtime_title": "The Bloom That Needed Poison",
+      "audit_title": "Concord / Karreth Bloom",
+      "date_or_period": "2301",
+      "location": "Concord space",
+      "source_count": 6,
+      "required_clues": [
+        "bloom_failing",
+        "vault_starved",
+        "diagnosis_recovered",
+        "protocol_ratified"
+      ],
+      "optional_or_insight_evidence": [
+        "station_scale",
+        "ratification_examined"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "karreth_vault",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "transit_corridor",
+          "requires": {
+            "clueFound": "vault_starved"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "regulation_office",
+          "requires": {
+            "clueFound": "diagnosis_recovered"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "karreth_vault",
+          "source_id": "bloom",
+          "clue": "bloom_failing",
+          "path": [
+            "start",
+            "scan"
+          ],
+          "route_words": 128
+        },
+        {
+          "location": "karreth_vault",
+          "source_id": "telemetry",
+          "clue": "vault_starved",
+          "path": [
+            "start",
+            "crossref"
+          ],
+          "route_words": 119
+        },
+        {
+          "location": "transit_corridor",
+          "source_id": "nova",
+          "clue": "diagnosis_recovered",
+          "path": [
+            "start",
+            "diagnosis"
+          ],
+          "route_words": 150
+        },
+        {
+          "location": "regulation_office",
+          "source_id": "regulator",
+          "clue": "protocol_ratified",
+          "path": [
+            "start",
+            "amended"
+          ],
+          "route_words": 87
+        }
+      ],
+      "direct_route_reading_burden_words": 484,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 4 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The Ratification Record — the Universal Shielding Protocol was ratified permanent and universal before any diagnosis; no exemption was ever needed or made.",
+        "The Falsified Exemption — the bloom's own keepers fabricated the radiation diagnosis to win themselves an exemption from Concord safety law."
+      ],
+      "central_concept": "Practice archival/source reasoning in a clearly fictional case where a universal safety rule harms an organism with different requirements, while separating the fictional mechanism from real analogies about radiation-tolerant life.",
+      "primary_reasoning_operation": "competing interpretation + policy revision + source-status reasoning",
+      "genuine_reasoning_demand": "Students must use telemetry, recovered diagnosis, and ratification history to decide whether the policy record was amended and why.",
+      "likely_stumbling_point": "Treating karreth biology as real Earth history or treating fungal “radiosynthesis” as a settled, direct analogue.",
+      "source_status_boundaries": "Karreth, Concord, and protocol history are fictional. Melanized-fungus radiation responses are real research, but “gamma radiation converted into usable metabolic energy” remains a hypothesis/interpretation rather than settled equivalent biology.",
+      "candidate_curriculum_task_family": "source-status matrix + policy chronology + competing-record evaluation",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.8"
+        ],
+        "supporting": [
+          "C3 D2.His.14.6-8",
+          "CCSS WHST.6-8.1"
+        ],
+        "contextual": [
+          "Radiobiology is analogy/context, not direct historical evidence"
+        ]
+      },
+      "vocabulary": [
+        "protocol",
+        "ratification",
+        "exemption",
+        "symbiosis",
+        "ionizing radiation",
+        "source status",
+        "analogy"
+      ],
+      "candidate_source_or_provenance_task": "Distinguish fictional direct evidence about karreth from real-world scientific analogy; evaluate policy records separately from biological claims.",
+      "chronology_map_data_opportunity": "Deterministic fictional protocol timeline plus explicitly FICTIONAL VISUALIZATION organism/system diagram.",
+      "candidate_synthesis_product": "Explain why the fictional protocol was revised using in-world evidence, then separately state the limits of Earth-life analogies.",
+      "candidate_transfer_exit_question": "When can a real scientific analogy support interpretation of a fictional system, and when does it become overclaiming?",
+      "no_game_fallback_requirements": "Fully fiction-labeled dossier with protocol records and a short real-source sidebar on melanized fungi/radiation tolerance.",
+      "standalone_lesson_assessment": "CONDITIONAL — strong source-reasoning lesson if fictional status is foregrounded.",
+      "accessibility_concerns": "Two truth layers (in-world truth and real-world science) can blur; use explicit status labels on every source/figure.",
+      "evidence_sources": [
+        {
+          "location_id": "karreth_vault",
+          "source_id": "bloom",
+          "label": "Examine the Bloom",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "bloom_failing",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "scan"
+          ],
+          "shortest_reveal_words": 128,
+          "contribution_excerpt": "The karreth bloom is dying in a flawless vault.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "karreth_vault",
+          "source_id": "telemetry",
+          "label": "Read the Vault Telemetry",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "vault_starved",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "crossref"
+          ],
+          "shortest_reveal_words": 119,
+          "contribution_excerpt": "The vault holds ambient radiation at ZERO — the Universal Shielding Protocol scrubs it flawlessly.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "transit_corridor",
+          "source_id": "nova",
+          "label": "Query the Nova Archive",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "diagnosis_recovered",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "diagnosis"
+          ],
+          "shortest_reveal_words": 150,
+          "contribution_excerpt": "A recovered archive of Dr.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "transit_corridor",
+          "source_id": "viewport",
+          "label": "Look Out the Viewport",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "station_scale",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 99,
+          "contribution_excerpt": "Insight: through the corridor viewport, the Concord station sprawls across deep space — docking arms, habitat rings, ships of a dozen species moving between them.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "regulation_office",
+          "source_id": "regulator",
+          "label": "Speak to the Regulator",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "protocol_ratified",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "amended"
+          ],
+          "shortest_reveal_words": 87,
+          "contribution_excerpt": "Regulator Vess administered the Universal Shielding Protocol — and states plainly that after the karreth was diagnosed, the Protocol was AMENDED to grant the bloom a formal exemption.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "regulation_office",
+          "source_id": "ratification",
+          "label": "Read the Ratification Record",
+          "source_type": "examination",
+          "evidence_type": "provenance",
+          "clue_tag": "ratification_examined",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "shortest_reveal_words": 178,
+          "contribution_excerpt": "Insight: the buried record is a formal ratification of the Universal Shielding Protocol as PERMANENT and universal — dated before the karreth diagnosis, and containing no exemption at all.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        }
+      ],
+      "finding_ids": [
+        "HHH-DOC-C2L4-001",
+        "HHH-GAME-C2L4-001"
+      ],
+      "audit_disposition": "READY_WITH_QUALIFICATION_AND_DOC_FIX"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 5,
+      "id": "C2L5",
+      "runtime_title": "The Living Record",
+      "audit_title": "First Garden / Mycorrhizal Record",
+      "date_or_period": "2387",
+      "location": "First Garden, Earth",
+      "source_count": 6,
+      "required_clues": [
+        "garden_ailing",
+        "network_severed",
+        "fungal_named",
+        "chemistry_islands",
+        "live_forgery"
+      ],
+      "optional_or_insight_evidence": [
+        "skeptic_convinced"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "terraced_garden",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "soil_zone",
+          "requires": {
+            "clueFound": "garden_ailing"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "summit_pavilion",
+          "requires": {
+            "clueFound": "network_severed"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "terraced_garden",
+          "source_id": "nova",
+          "clue": "garden_ailing",
+          "path": [
+            "start",
+            "ailing"
+          ],
+          "route_words": 164
+        },
+        {
+          "location": "soil_zone",
+          "source_id": "mycorrhizal",
+          "clue": "network_severed",
+          "path": [
+            "start",
+            "scan"
+          ],
+          "route_words": 132
+        },
+        {
+          "location": "soil_zone",
+          "source_id": "kess",
+          "clue": "fungal_named",
+          "path": [
+            "start",
+            "names"
+          ],
+          "route_words": 202
+        },
+        {
+          "location": "summit_pavilion",
+          "source_id": "shael",
+          "clue": "chemistry_islands",
+          "path": [
+            "start",
+            "maps"
+          ],
+          "route_words": 121
+        },
+        {
+          "location": "summit_pavilion",
+          "source_id": "liverecord",
+          "clue": "live_forgery",
+          "path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "route_words": 163
+        }
+      ],
+      "direct_route_reading_burden_words": 782,
+      "final_validation_or_diagnosis_structure": "Standard evidence gate: all 5 non-insight required clues → return to anchor → choose among 3 final records/diagnoses (1 runtime-correct).",
+      "distractors_or_false_records": [
+        "The Inconclusive Summit — the delegates’ alien methods proved incompatible with Earth soil; no fix was found; the garden’s decline is natural and beyond cross-species help.",
+        "A Routine Revision — nothing is being erased; the record is simply updating itself as new data arrives, the ordinary way any live document corrects in real time."
+      ],
+      "central_concept": "Evaluate a biological/historical claim by separating direct observation of mycorrhizal symbiosis, fossil evidence, inferred network function, debated common-mycorrhizal-network claims, and the fictional First Garden mechanism.",
+      "primary_reasoning_operation": "source contribution/limitation + contested interpretation + documented/inferred/fictional status",
+      "genuine_reasoning_demand": "Students must decide which claims are directly observed, which are supported in some systems, which remain contested/generalized, and which exist only inside the game.",
+      "likely_stumbling_point": "Treating the popular “wood-wide web” idea—one network moving water, nutrients, and warning signals among essentially all plants—as a settled universal mechanism.",
+      "source_status_boundaries": "First Garden and its severing/inoculation event are fictional. Mycorrhizal symbiosis is established; common-network resource/signal transfer exists in some systems but broad forest-wide claims are actively debated. Direct fossil evidence is ~407 Ma, not a precise 450-Ma observation.",
+      "candidate_curriculum_task_family": "documented/inferred/fictional status table + evidence-convergence/limitation analysis",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.8",
+          "CCSS RH.6-8.9"
+        ],
+        "supporting": [
+          "CCSS WHST.6-8.1"
+        ],
+        "contextual": [
+          "Life-science symbiosis/evolution supports the source-reasoning task"
+        ]
+      },
+      "vocabulary": [
+        "mycorrhiza",
+        "hyphae",
+        "symbiosis",
+        "arbuscular mycorrhiza",
+        "common mycorrhizal network",
+        "inference",
+        "fossil evidence"
+      ],
+      "candidate_source_or_provenance_task": "Compare the game scan/testimony/chemistry with peer-reviewed sources that disagree about how broadly CMN transfer claims can be generalized.",
+      "chronology_map_data_opportunity": "Evidence-status convergence diagram: established symbiosis → fossil evidence → contested network-transfer claims → fictional First Garden mechanism.",
+      "candidate_synthesis_product": "Qualified claim distinguishing “mycorrhizal symbiosis is ancient and widespread” from stronger interplant sharing/signaling claims.",
+      "candidate_transfer_exit_question": "Which statement is directly documented, which is inferred, and what new evidence would be required to support the strongest network claim?",
+      "no_game_fallback_requirements": "Peer-reviewed pro/con CMN excerpts, 407-Ma fossil source, and fully FICTIONAL CONTEXT game evidence packet.",
+      "standalone_lesson_assessment": "YES after game science is corrected/qualified; potentially one of the strongest HHH source-status lessons.",
+      "accessibility_concerns": "Requires students to hold several confidence/status categories at once; use explicit labels and reduce repeated prose.",
+      "evidence_sources": [
+        {
+          "location_id": "terraced_garden",
+          "source_id": "nova",
+          "label": "Speak with Dr. Nova",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "garden_ailing",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "ailing"
+          ],
+          "shortest_reveal_words": 164,
+          "contribution_excerpt": "Dr.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "soil_zone",
+          "source_id": "mycorrhizal",
+          "label": "Examine the Soil",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "network_severed",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "scan"
+          ],
+          "shortest_reveal_words": 132,
+          "contribution_excerpt": "A TAA scan of the terrace edge finds the cause the surface hides.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "soil_zone",
+          "source_id": "kess",
+          "label": "Consult Kess",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "fungal_named",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "names"
+          ],
+          "shortest_reveal_words": 202,
+          "contribution_excerpt": "Delegate Kess — a preserved mind of a species that left soil-farming a thousand generations ago but carries a fragmented ancestral sense for it, kept alive in a sensing-vessel whose filaments read the failing terrace directly.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "summit_pavilion",
+          "source_id": "shael",
+          "label": "Consult Vorn-Shael",
+          "source_type": "conversation",
+          "evidence_type": "forensics",
+          "clue_tag": "chemistry_islands",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "maps"
+          ],
+          "shortest_reveal_words": 121,
+          "contribution_excerpt": "Delegate Vorn-Shael — a chemist, pure observation.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "summit_pavilion",
+          "source_id": "liverecord",
+          "label": "Watch the Record Being Written",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "live_forgery",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "disfavoredStart",
+            "start"
+          ],
+          "shortest_reveal_words": 163,
+          "contribution_excerpt": "The summit display shows the record forming in real time — and a second version overwriting it as you watch.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        },
+        {
+          "location_id": "summit_pavilion",
+          "source_id": "ilreth",
+          "label": "Consult Ilreth-Mar",
+          "source_type": "conversation",
+          "evidence_type": "provenance",
+          "clue_tag": "skeptic_convinced",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start"
+          ],
+          "shortest_reveal_words": 56,
+          "contribution_excerpt": "Insight: Delegate Ilreth-Mar came to the summit a reform skeptic — to observe and, they expected, to record that cross-species knowledge-sharing does not work.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C2L5-001",
+        "HHH-GAME-C2L5-002"
+      ],
+      "audit_disposition": "GAME_REMEDIATION_REQUIRED"
+    },
+    {
+      "campaign": "C2",
+      "runtime_level": 6,
+      "id": "C2L6",
+      "runtime_title": "The Source",
+      "audit_title": "ARS Chamber / Campaign 2 Finale",
+      "date_or_period": "2389",
+      "location": "Concord space, the ARS Chamber",
+      "source_count": 7,
+      "required_clues": [
+        "trace_followed",
+        "reachback_mapped",
+        "study_identified",
+        "works_assembled",
+        "thesis_heard"
+      ],
+      "optional_or_insight_evidence": [
+        "concord_shadow",
+        "quarantine_seen"
+      ],
+      "effective_required_exception": null,
+      "location_gating": [
+        {
+          "location_id": "archive_return",
+          "requires": null,
+          "anchor_point": false
+        },
+        {
+          "location_id": "thread_console",
+          "requires": {
+            "clueFound": "trace_followed"
+          },
+          "anchor_point": false
+        },
+        {
+          "location_id": "ars_chamber",
+          "requires": {
+            "clueFound": "study_identified"
+          },
+          "anchor_point": true
+        }
+      ],
+      "direct_evidence_routes": [
+        {
+          "location": "archive_return",
+          "source_id": "nova",
+          "clue": "trace_followed",
+          "path": [
+            "start",
+            "trace"
+          ],
+          "route_words": 125
+        },
+        {
+          "location": "thread_console",
+          "source_id": "trace_scan",
+          "clue": "reachback_mapped",
+          "path": [
+            "start",
+            "scan"
+          ],
+          "route_words": 98
+        },
+        {
+          "location": "thread_console",
+          "source_id": "charter_query",
+          "clue": "study_identified",
+          "path": [
+            "start",
+            "charter"
+          ],
+          "route_words": 122
+        },
+        {
+          "location": "ars_chamber",
+          "source_id": "evidence_dais",
+          "clue": "works_assembled",
+          "path": [
+            "start",
+            "works"
+          ],
+          "route_words": 147
+        },
+        {
+          "location": "ars_chamber",
+          "source_id": "ars_delegate",
+          "clue": "thesis_heard",
+          "path": [
+            "start",
+            "thesis",
+            "conviction"
+          ],
+          "route_words": 232
+        }
+      ],
+      "direct_route_reading_burden_words": 724,
+      "final_validation_or_diagnosis_structure": "Special confrontation: collect five required clues, return to ARS Chamber, confront source, then choose one of three value/record outcomes; no academically unique “correct” moral choice.",
+      "distractors_or_false_records": [
+        "No false-record diagnosis at the end; three final archival/value choices intentionally remain morally open."
+      ],
+      "central_concept": "Synthesize provenance, evidence, uncertainty, and archive ethics when competing interpretations cannot be reduced to a single academically correct moral verdict.",
+      "primary_reasoning_operation": "cross-case synthesis + argumentation + archive ethics + competing values",
+      "genuine_reasoning_demand": "Students must assemble prior evidence, represent the opposing thesis fairly, and justify a record-keeping decision without pretending one moral choice is factually mandated.",
+      "likely_stumbling_point": "Treating one of the three finale choices as the teacher’s “correct answer,” or confusing fictional conspiracy evidence with real archival history.",
+      "source_status_boundaries": "ARS, Virel, Concord politics, and all three choices are fictional. The Svalbard analogy is real but its sample count is time-sensitive.",
+      "candidate_curriculum_task_family": "capstone argument / competing-values deliberation / evidence ledger",
+      "candidate_standards": {
+        "directly_assessed": [
+          "C3 D4.1.6-8",
+          "CCSS WHST.6-8.1"
+        ],
+        "supporting": [
+          "C3 D3.2.6-8",
+          "CCSS RH.6-8.1"
+        ],
+        "contextual": []
+      },
+      "vocabulary": [
+        "archive ethics",
+        "disclosure",
+        "quarantine",
+        "stewardship",
+        "provenance",
+        "uncertainty",
+        "public record"
+      ],
+      "candidate_source_or_provenance_task": "Trace the final thesis back to earlier case records and identify which claims are established in-world, contested in-world, or purely value judgments.",
+      "chronology_map_data_opportunity": "Cross-campaign evidence/provenance map; optional decision matrix that keeps evidence separate from values.",
+      "candidate_synthesis_product": "Evidence-based capstone argument with no single keyed moral verdict; scoring should assess use of evidence, counterargument, and source precision.",
+      "candidate_transfer_exit_question": "When an archive cannot settle a contested policy question, what does it still owe future users of the record?",
+      "no_game_fallback_requirements": "Assembled cross-case dossier plus finale excerpts and an explicit rubric that scores reasoning rather than choice.",
+      "standalone_lesson_assessment": "NO as a normal case; CONDITIONAL as a formal capstone after prior cases.",
+      "accessibility_concerns": "Very high prior-knowledge burden; provide case recaps and avoid requiring memory of lore names to demonstrate historical reasoning.",
+      "evidence_sources": [
+        {
+          "location_id": "archive_return",
+          "source_id": "nova",
+          "label": "Speak with Dr. Nova",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "trace_followed",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "trace"
+          ],
+          "shortest_reveal_words": 125,
+          "contribution_excerpt": "Dr.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "archive_return",
+          "source_id": "zelketh",
+          "label": "Consult Zel'keth",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "concord_shadow",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "inside"
+          ],
+          "shortest_reveal_words": 86,
+          "contribution_excerpt": "Zel'keth's counsel: whatever is at the end of the trace operates INSIDE Concord officialdom — chartered, funded, procedurally clean.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "thread_console",
+          "source_id": "trace_scan",
+          "label": "Trace the Signature",
+          "source_type": "archive",
+          "evidence_type": "forensics",
+          "clue_tag": "reachback_mapped",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "scan"
+          ],
+          "shortest_reveal_words": 98,
+          "contribution_excerpt": "The write-path, mapped.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "thread_console",
+          "source_id": "charter_query",
+          "label": "Resolve the Credentials",
+          "source_type": "archive",
+          "evidence_type": "provenance",
+          "clue_tag": "study_identified",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "charter"
+          ],
+          "shortest_reveal_words": 122,
+          "contribution_excerpt": "The credentials resolve.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "ars_chamber",
+          "source_id": "evidence_dais",
+          "label": "Examine the Platform",
+          "source_type": "examination",
+          "evidence_type": "provenance",
+          "clue_tag": "works_assembled",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "works"
+          ],
+          "shortest_reveal_words": 147,
+          "contribution_excerpt": "The Study's own display: all five forgeries, hung in holographic array beside the severed thread-diagrams of the chain — Tenochtitlan, Leningrad, the Green Revolution, the karreth vault, the First Garden.",
+          "cannot_establish": "In-game record/provenance evidence; chronology or transmission still requires authenticity/context corroboration."
+        },
+        {
+          "location_id": "ars_chamber",
+          "source_id": "ars_delegate",
+          "label": "Face the Delegate",
+          "source_type": "conversation",
+          "evidence_type": "testimony",
+          "clue_tag": "thesis_heard",
+          "runtime_insight": false,
+          "effective_required": true,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "thesis",
+            "conviction"
+          ],
+          "shortest_reveal_words": 232,
+          "contribution_excerpt": "The Study's delegate, in their own words: cross-species agricultural exchange is an existential hazard — when biospheres teach each other to farm, they contaminate each other, and the long arc ends in collapse across worlds.",
+          "cannot_establish": "In-game testimony/perspective; cannot alone establish system-wide prevalence, authenticity, motive, or causation."
+        },
+        {
+          "location_id": "ars_chamber",
+          "source_id": "viewport",
+          "label": "Look Through the Viewport",
+          "source_type": "examination",
+          "evidence_type": "forensics",
+          "clue_tag": "quarantine_seen",
+          "runtime_insight": true,
+          "effective_required": false,
+          "source_requires": null,
+          "shortest_reveal_path": [
+            "start",
+            "virel"
+          ],
+          "shortest_reveal_words": 160,
+          "contribution_excerpt": "Virel, seen with your own eyes: a quarantined world, ninety years silent, its farmlands dead of a blight that crossed during an early cross-species seed exchange.",
+          "cannot_establish": "In-game observation/analysis of a local case state; cannot by itself establish broader historical generalization or external real-world truth."
+        }
+      ],
+      "finding_ids": [
+        "HHH-GAME-C2L6-001"
+      ],
+      "audit_disposition": "MINOR_GAME_UPDATE_AND_OWNER_CASE_DECISION_REQUIRED"
+    }
+  ]
+}
