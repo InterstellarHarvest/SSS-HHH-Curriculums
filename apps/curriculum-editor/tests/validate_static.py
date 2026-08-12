@@ -381,6 +381,84 @@ def partition_operational(registry: dict) -> tuple[list[tuple[str, dict]], list[
     return sss, hhh
 
 
+# The one ordinary lifecycle for a package-backed HHH unit:
+# registry status -> (registry packageStatus, shared approval status, shared print status).
+# APPROVED_STABLE additionally requires a matching historyRecord/releaseHistory pair;
+# every other state must carry neither pointer.
+HHH_LIFECYCLE_CONTRACT = {
+    "DRAFT": ("DRAFT", "OWNER_REVIEW_NOT_STARTED", "NOT_RUN"),
+    "VALIDATION_BUILD": ("VALIDATION", "OWNER_REVIEW_NOT_STARTED", "NOT_RUN"),
+    "OWNER_GATE_OPEN": ("OWNER_REVIEW", "OWNER_REVIEW_IN_PROGRESS", "NOT_RUN"),
+    "APPROVED_STABLE": ("APPROVED", "APPROVED", "PASS"),
+}
+HHH_PACKAGE_PATH_RE = re.compile(r"^hhh/(campaign-\d+)/([a-z0-9][a-z0-9-]*)/source/case-package\.json$")
+HHH_PACKAGE_SOURCES = {
+    "content": "content.html",
+    "presentation": "presentation.css",
+    "taskRegistry": "task-registry.js",
+    "layoutOverrides": "layout-overrides.json",
+}
+
+
+def hhh_lifecycle_findings(entry: dict, package: dict) -> list[str]:
+    """Every registry/package lifecycle violation for one HHH operational unit.
+
+    Rejects any status outside the four canonical states and any internally
+    inconsistent combination across the registry entry and the package.
+    """
+    findings: list[str] = []
+    status = entry.get("status")
+    if package.get("status") != status:
+        findings.append(f"registry status {status!r} and package status {package.get('status')!r} disagree")
+    contract = HHH_LIFECYCLE_CONTRACT.get(status)
+    if contract is None:
+        findings.append(f"unsupported lifecycle status {status!r}")
+        return findings
+    package_status, approval_status, print_status = contract
+    if entry.get("packageStatus") != package_status:
+        findings.append(f"{status} requires registry packageStatus {package_status!r}; found {entry.get('packageStatus')!r}")
+    entry_approval = entry.get("approval") or {}
+    package_approval = package.get("approval") or {}
+    if not (entry_approval.get("status") == package_approval.get("status") == approval_status):
+        findings.append(f"{status} requires registry and package approval status {approval_status!r}; "
+                        f"found registry {entry_approval.get('status')!r}, package {package_approval.get('status')!r}")
+    if not (entry_approval.get("printStatus") == package_approval.get("printStatus") == print_status):
+        findings.append(f"{status} requires registry and package print status {print_status!r}; "
+                        f"found registry {entry_approval.get('printStatus')!r}, package {package_approval.get('printStatus')!r}")
+    if status == "APPROVED_STABLE":
+        if not entry.get("historyRecord") or package.get("releaseHistory") != entry.get("historyRecord"):
+            findings.append("APPROVED_STABLE requires a matching historyRecord/releaseHistory pair; "
+                            f"found registry {entry.get('historyRecord')!r}, package {package.get('releaseHistory')!r}")
+    else:
+        if "historyRecord" in entry:
+            findings.append(f"{status} entry must not declare a historyRecord")
+        if "releaseHistory" in package:
+            findings.append(f"{status} package must not declare a releaseHistory")
+    return findings
+
+
+def hhh_source_path_findings(editor_package: str, package: dict) -> list[str]:
+    """Every canonical-ownership violation among an HHH package's declared sources.
+
+    The four package-pinned sources must be exactly the registered unit's own
+    ``source/`` files, as normalized repository-relative paths. Exact equality is
+    the rule, so absolute paths, ``..`` traversal, another unit's or an SSS
+    unit's sources, and alternate filenames or locations that merely satisfy the
+    schema suffix all fail identically.
+    """
+    match = HHH_PACKAGE_PATH_RE.match(str(editor_package))
+    if not match:
+        return [f"editorPackage is not a canonical HHH unit package path: {editor_package!r}"]
+    unit_source = editor_package[: -len("case-package.json")]
+    findings: list[str] = []
+    for key, filename in HHH_PACKAGE_SOURCES.items():
+        declared = (package.get(key) or {}).get("source")
+        expected = f"{unit_source}{filename}"
+        if declared != expected:
+            findings.append(f"{key} source must be the package-owned {expected!r}; declared {declared!r}")
+    return findings
+
+
 def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dict, package_schema: dict) -> None:
     """Generic shared-system checks for one package-backed HHH unit.
 
@@ -409,25 +487,17 @@ def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dic
                   list(package["outputs"]) == ["complete", *ROLES]
                   and all("GRAYSCALE" not in name.upper() for name in package["outputs"].values())
                   and '"grayscale": {' not in package_path.read_text(encoding="utf-8"))
-    lifecycle_ok = (
-        entry["status"] == "APPROVED_STABLE"
-        and package.get("releaseHistory") == entry.get("historyRecord")
-        and package["approval"].get("status") == entry["approval"].get("status") == "APPROVED"
-        and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "PASS"
-    ) or (
-        entry["status"] == "DRAFT"
-        and "releaseHistory" not in package and "historyRecord" not in entry
-        and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_NOT_STARTED"
-        and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
-    ) or (
-        entry["status"] == "OWNER_GATE_OPEN"
-        and "releaseHistory" not in package and "historyRecord" not in entry
-        and entry.get("packageStatus") == "OWNER_REVIEW"
-        and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_IN_PROGRESS"
-        and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
-    )
-    results.check(f"{case_id} lifecycle metadata matches release policy", lifecycle_ok)
+    lifecycle_violations = hhh_lifecycle_findings(entry, package)
+    results.check(f"{case_id} lifecycle metadata matches release policy across registry and package",
+                  not lifecycle_violations, lifecycle_violations)
 
+    results.check(f"{case_id} editorPackage lives under its registered campaign",
+                  str(entry["editorPackage"]).startswith(f"hhh/{campaign_id}/"), entry["editorPackage"])
+    ownership_violations = hhh_source_path_findings(entry["editorPackage"], package)
+    results.check(f"{case_id} package-pinned sources are exactly the registered unit's own canonical paths",
+                  not ownership_violations, ownership_violations)
+    if ownership_violations:
+        return
     paths = {
         "content": ROOT / package["content"]["source"],
         "presentation": ROOT / package["presentation"]["source"],
