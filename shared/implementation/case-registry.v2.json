@@ -274,8 +274,276 @@
     },
     {
       "id": "HHH",
-      "title": "History's Harvest",
-      "campaigns": []
+      "title": "Hunger, Harvest, & History",
+      "campaigns": [
+        {
+          "id": "campaign-1",
+          "title": "Campaign 1",
+          "cases": [
+            {
+              "id": "HHH-C1-CASE00",
+              "displayOrder": 1,
+              "displayLabel": "Archive Orientation",
+              "title": "Temporal Agricultural Archive Facility",
+              "instructionalType": "ORIENTATION",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-CASE01",
+              "displayOrder": 2,
+              "displayLabel": "1 - The Fertile Crescent",
+              "title": "The Fertile Crescent",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-CASE02",
+              "displayOrder": 3,
+              "displayLabel": "2 - Sumer",
+              "title": "Sumer",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-CASE03",
+              "displayOrder": 4,
+              "displayLabel": "3 - County Cork",
+              "title": "County Cork",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-CASE04",
+              "displayOrder": 5,
+              "displayLabel": "4 - Karlsruhe",
+              "title": "Karlsruhe",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-CASE05",
+              "displayOrder": 6,
+              "displayLabel": "5 - The Dust Bowl",
+              "title": "The Dust Bowl",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-CASE06",
+              "displayOrder": 7,
+              "displayLabel": "6 - The Vertical Farm",
+              "title": "The Vertical Farm",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C1-SYNTHESIS",
+              "displayOrder": 8,
+              "displayLabel": "Campaign 1 Synthesis",
+              "title": "The Temporal Agricultural Archive",
+              "instructionalType": "SYNTHESIS",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            }
+          ]
+        },
+        {
+          "id": "campaign-2",
+          "title": "Campaign 2",
+          "cases": [
+            {
+              "id": "HHH-C2-CASE07",
+              "displayOrder": 9,
+              "displayLabel": "7 - The Audit",
+              "title": "The Audit",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C2-CASE08",
+              "displayOrder": 10,
+              "displayLabel": "8 - The Floating Gardens",
+              "title": "The Floating Gardens",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C2-CASE09",
+              "displayOrder": 11,
+              "displayLabel": "9 - The Seeds They Kept",
+              "title": "The Seeds They Kept",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C2-CASE10",
+              "displayOrder": 12,
+              "displayLabel": "10 - The Quiet Billion",
+              "title": "The Quiet Billion",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C2-CASE11",
+              "displayOrder": 13,
+              "displayLabel": "11 - The Bloom That Needed Poison",
+              "title": "The Bloom That Needed Poison",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C2-CASE12",
+              "displayOrder": 14,
+              "displayLabel": "12 - The Living Record",
+              "title": "The Living Record",
+              "instructionalType": "CORE_CASE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            },
+            {
+              "id": "HHH-C2-CAPSTONE",
+              "displayOrder": 15,
+              "displayLabel": "Program Capstone",
+              "title": "The Source",
+              "instructionalType": "CAPSTONE",
+              "version": "0.1",
+              "status": "DRAFT",
+              "editorShell": "1.0",
+              "centralWorkflow": "CANONICAL",
+              "packageStatus": "DRAFT",
+              "approval": {
+                "owner": "Nate / Owner",
+                "status": "OWNER_REVIEW_NOT_STARTED",
+                "printStatus": "NOT_RUN"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

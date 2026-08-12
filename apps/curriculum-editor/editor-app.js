@@ -301,6 +301,13 @@ function validatePackage(pkg) {
       throw new Error("Phrase-bank display order must differ from the answer sequence.");
     }
   }
+  const instructionalTypes = ["ORIENTATION", "CORE_CASE", "SYNTHESIS", "CAPSTONE"];
+  if (pkg.curriculum === "HHH" && !instructionalTypes.includes(pkg.instructionalType)) {
+    throw new Error("An HHH case package must declare a valid instructionalType.");
+  }
+  if (pkg.instructionalType !== undefined && !instructionalTypes.includes(pkg.instructionalType)) {
+    throw new Error(`Unsupported instructional type: ${pkg.instructionalType}`);
+  }
   requireFields(pkg.approval, ["owner", "status", "printStatus"], "Approval summary");
   const lifecycle = ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN", "APPROVED_STABLE"];
   if (!lifecycle.includes(pkg.status)) throw new Error(`Unsupported package lifecycle status: ${pkg.status}`);
@@ -1298,6 +1305,9 @@ async function loadCase(selected, initial = false, options = {}) {
   validatePackage(casePackage);
   if (selected.caseEntry.version !== casePackage.version || selected.caseEntry.status !== casePackage.status) {
     throw new Error("Registry and package version/status do not match.");
+  }
+  if (casePackage.curriculum === "HHH" && selected.caseEntry.instructionalType !== casePackage.instructionalType) {
+    throw new Error("Registry and package instructional type do not match.");
   }
   const sourcePaths = [
     casePackage.shell.toolbar,

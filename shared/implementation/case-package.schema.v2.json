@@ -12,8 +12,9 @@
   ],
   "properties": {
     "schemaVersion": {"const": 2},
-    "id": {"type": "string", "pattern": "^[A-Z]{3}-C[0-9]+-CASE[0-9]{2}$"},
+    "id": {"type": "string", "pattern": "^(?:[A-Z]{3}-C[0-9]+-CASE[0-9]{2}|HHH-C1-SYNTHESIS|HHH-C2-CAPSTONE)$"},
     "curriculum": {"enum": ["SSS", "HHH"]},
+    "instructionalType": {"enum": ["ORIENTATION", "CORE_CASE", "SYNTHESIS", "CAPSTONE"]},
     "campaign": {"type": "string", "minLength": 1},
     "title": {"type": "string", "minLength": 1},
     "subtitle": {"type": "string", "minLength": 1},
@@ -197,6 +198,10 @@
     }
   },
   "allOf": [
+    {
+      "if": {"properties": {"curriculum": {"const": "HHH"}}},
+      "then": {"required": ["instructionalType"]}
+    },
     {
       "if": {"properties": {"status": {"const": "APPROVED_STABLE"}}},
       "then": {

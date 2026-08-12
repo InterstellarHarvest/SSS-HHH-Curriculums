@@ -615,8 +615,11 @@ def main() -> int:
     # ── Registry entry, positional numbering, and display label ──────
     case_registry = json.loads((ROOT / "shared/implementation/case-registry.v2.json")
                                .read_text(encoding="utf-8"))
+    # SSS-scoped: HHH instantiates campaigns of the same ids, so an unscoped
+    # comprehension would shadow the SSS campaigns this validator asserts.
     campaigns = {campaign["id"]: campaign["cases"]
-                 for curriculum in case_registry["curricula"] for campaign in curriculum["campaigns"]}
+                 for curriculum in case_registry["curricula"] if curriculum["id"] == "SSS"
+                 for campaign in curriculum["campaigns"]}
     results.check("Campaign 1 still registers exactly seven cases", len(campaigns["campaign-1"]) == 7,
                   len(campaigns["campaign-1"]))
     results.check("Campaign 2 registers exactly Cases 01 to 06 in numerical display order",

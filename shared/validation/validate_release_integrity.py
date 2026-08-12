@@ -76,12 +76,14 @@ ROLES = ("student", "teacher", "answer", "accessible")
 # the three fixed roles are exact. This mirrors validate_static.py.
 FIXED_ROLES = ("student", "teacher", "answer")
 BASELINE_ROLES = ("student", "teacher", "answer")
-# The one campaign released before the current release contract existed.
-LEGACY_CONTRACT_CAMPAIGN = "campaign-1"
+# The one campaign released before the current release contract existed. The
+# exemption is curriculum-qualified: HHH also numbers its campaigns from 1, and an
+# HHH campaign-1 release must never inherit SSS Campaign 1's legacy allowance.
+LEGACY_CONTRACT_SCOPE = ("SSS", "campaign-1")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 VERSION_RE = re.compile(r"^(\d+)\.(\d+)$")
-CASE_ID_RE = re.compile(r"^SSS-C\d-CASE(\d{2})$")
+CASE_ID_RE = re.compile(r"^[A-Z]{3}-C\d-CASE(\d{2})$")
 # Generated artifacts are recoverable from Git and are never committed. Anything
 # matching these is a build output that escaped .gitignore.
 GENERATED_ARTIFACT_RE = re.compile(
@@ -138,14 +140,20 @@ def safe_repo_path(raw: object, *, suffix: str) -> Path:
     return candidate
 
 
-def registered_cases() -> list[tuple[str, dict]]:
-    """Every registered case, paired with the campaign it belongs to."""
+def registered_cases() -> list[tuple[str, str, dict]]:
+    """Every operational registered case, with its curriculum and campaign.
+
+    Registry entries without an ``editorPackage`` are planned reservations: they
+    have no canonical package, so there is no release to certify. They are skipped
+    here and validated by validate_hhh_activation.py instead.
+    """
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     return [
-        (campaign["id"], case)
+        (curriculum["id"], campaign["id"], case)
         for curriculum in registry["curricula"]
         for campaign in curriculum["campaigns"]
         for case in campaign["cases"]
+        if "editorPackage" in case
     ]
 
 
@@ -248,7 +256,7 @@ def owner_approval_name(case_id: str, version: str) -> str:
     return f"CASE{number}_OWNER_APPROVAL_v{version}.md"
 
 
-def validate_case(results: Results, campaign_id: str, entry: dict) -> str | None:
+def validate_case(results: Results, curriculum_id: str, campaign_id: str, entry: dict) -> str | None:
     """Validate one registered case. Returns its record format, or None if unreleased."""
     case_id = entry["id"]
     package_path = safe_repo_path(entry.get("editorPackage"), suffix="/source/case-package.json")
@@ -289,8 +297,8 @@ def validate_case(results: Results, campaign_id: str, entry: dict) -> str | None
     contract_format = isinstance(record.get("frozenNonAccessibleDomBaselines"), dict)
     results.check(
         f"{case_id} current release is contract-format, or belongs to the one campaign that predates the contract",
-        contract_format or campaign_id == LEGACY_CONTRACT_CAMPAIGN,
-        f"{campaign_id} release record declares no frozenNonAccessibleDomBaselines")
+        contract_format or (curriculum_id, campaign_id) == LEGACY_CONTRACT_SCOPE,
+        f"{curriculum_id}/{campaign_id} release record declares no frozenNonAccessibleDomBaselines")
 
     results.check(f"{case_id} release record identity matches the package",
                   record.get("caseId") == case_id == package.get("id")
@@ -418,19 +426,19 @@ def main() -> int:
     args = parser.parse_args()
 
     entries = registered_cases()
-    known = {entry["id"] for _, entry in entries}
+    known = {entry["id"] for _, _, entry in entries}
     selected = args.cases or sorted(known)
     unknown = [case_id for case_id in selected if case_id not in known]
     if unknown:
-        print(f"FAIL: unregistered case id(s): {', '.join(unknown)}")
+        print(f"FAIL: unregistered or planned (package-less) case id(s): {', '.join(unknown)}")
         return 2
 
     results = Results()
     formats: dict[str, list[str]] = {"contract": [], "legacy": []}
-    for campaign_id, entry in entries:
+    for curriculum_id, campaign_id, entry in entries:
         if entry["id"] not in selected:
             continue
-        record_format = validate_case(results, campaign_id, entry)
+        record_format = validate_case(results, curriculum_id, campaign_id, entry)
         if record_format:
             formats[record_format].append(entry["id"])
     validate_repository(results)

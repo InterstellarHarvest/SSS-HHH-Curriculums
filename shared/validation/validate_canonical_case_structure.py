@@ -187,24 +187,43 @@ def enforce_expected_prior(label: str, case_key: str, release: dict, failures: l
         verify_artifact(f"{label} prior retired artifact", item.get("recoveryCommit"), legacy, failures, totals)
 
 
-def registered_roster() -> tuple[list[tuple[str, str, Path]], list[str]]:
-    """Return (campaign_id, case_id, case_root) per registered case, plus failures.
+# The registry curriculum ID controls which repository subtree holds a curriculum's
+# canonical case packages. Hard-coding sss/ was correct only while SSS was the sole
+# instantiated curriculum.
+CURRICULUM_ROOTS = {"SSS": "sss", "HHH": "hhh"}
 
-    Cross-checked against the filesystem in both directions so neither an
-    unregistered case directory nor a registered case without one can hide.
+
+def registered_roster() -> tuple[list[tuple[str, str, str, Path]], list[str]]:
+    """Return (curriculum_id, campaign_id, case_id, case_root) per operational case, plus failures.
+
+    Registry entries without an ``editorPackage`` are planned reservations with no
+    canonical package yet; they are skipped here and validated by
+    validate_hhh_activation.py instead. Operational cases are cross-checked against
+    the filesystem in both directions so neither an unregistered case directory nor
+    a registered case without one can hide.
     """
     failures: list[str] = []
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
-    roster: list[tuple[str, str, Path]] = []
-    registered_campaigns: dict[str, set[str]] = {}
+    roster: list[tuple[str, str, str, Path]] = []
+    registered_campaigns: dict[tuple[str, str], set[str]] = {}
     for curriculum in registry["curricula"]:
+        curriculum_id = curriculum["id"]
+        subtree = CURRICULUM_ROOTS.get(curriculum_id)
+        if subtree is None:
+            failures.append(f"{curriculum_id}: registered curriculum has no canonical repository subtree")
+            continue
         for campaign in curriculum["campaigns"]:
             campaign_id = campaign["id"]
-            campaign_root = ROOT / "sss" / campaign_id
-            if not campaign_root.is_dir():
-                failures.append(f"{campaign_id}: registered campaign has no directory")
+            campaign_root = ROOT / subtree / campaign_id
+            operational = [case for case in campaign["cases"] if "editorPackage" in case]
+            if not operational:
+                # A campaign holding only planned reservations legitimately has no
+                # directory until its first package is produced.
                 continue
-            for case in campaign["cases"]:
+            if not campaign_root.is_dir():
+                failures.append(f"{subtree}/{campaign_id}: registered campaign has no directory")
+                continue
+            for case in operational:
                 package = ROOT / case["editorPackage"]
                 case_root = package.parent.parent
                 if not case_root.is_dir():
@@ -213,23 +232,33 @@ def registered_roster() -> tuple[list[tuple[str, str, Path]], list[str]]:
                 if case_root.parent != campaign_root:
                     failures.append(f"{case['id']}: package lives outside its registered campaign: {case_root}")
                     continue
-                roster.append((campaign_id, case["id"], case_root))
-                registered_campaigns.setdefault(campaign_id, set()).add(case_root.name)
+                roster.append((curriculum_id, campaign_id, case["id"], case_root))
+                registered_campaigns.setdefault((subtree, campaign_id), set()).add(case_root.name)
 
-    for campaign_root in sorted((ROOT / "sss").glob("campaign-*")):
-        if not campaign_root.is_dir():
-            continue
-        on_disk = {path.name for path in campaign_root.glob("case-*") if path.is_dir()}
-        registered = registered_campaigns.get(campaign_root.name, set())
-        unregistered = sorted(on_disk - registered)
-        if unregistered:
-            failures.append(f"{campaign_root.name}: case directories that no registry entry names: {unregistered}")
+    for subtree in sorted(set(CURRICULUM_ROOTS.values())):
+        for campaign_root in sorted((ROOT / subtree).glob("campaign-*")):
+            if not campaign_root.is_dir():
+                continue
+            on_disk = {path.name for path in campaign_root.glob("case-*") if path.is_dir()}
+            registered = registered_campaigns.get((subtree, campaign_root.name), set())
+            unregistered = sorted(on_disk - registered)
+            if unregistered:
+                failures.append(f"{subtree}/{campaign_root.name}: case directories that no registry entry names: {unregistered}")
     return roster, failures
 
 
-def case_key_of(campaign_id: str, case_root: Path) -> str:
-    """Collision-free key. Bare ``case-NN`` aliases Campaign 1 onto Campaign 2."""
-    return f"{campaign_id}/{case_root.name[:7]}"
+def case_key_of(curriculum_id: str, campaign_id: str, case_root: Path) -> str:
+    """Collision-free key. Bare ``case-NN`` aliases Campaign 1 onto Campaign 2.
+
+    SSS keys keep the historical ``campaign-N/case-NN`` form verbatim because the
+    frozen Campaign 1 expectation tables above are keyed by it. Every other
+    curriculum is prefixed with its repository subtree so that an HHH
+    ``campaign-1/case-01`` can never alias the SSS case of the same name.
+    """
+    slug = case_root.name[:7] if case_root.name.startswith("case-") else case_root.name
+    if curriculum_id == "SSS":
+        return f"{campaign_id}/{slug}"
+    return f"{CURRICULUM_ROOTS[curriculum_id]}/{campaign_id}/{slug}"
 
 
 def tracked_files() -> list[str]:
@@ -291,15 +320,15 @@ def main() -> int:
     }
     roster, roster_failures = registered_roster()
     failures.extend(roster_failures)
-    campaigns = sorted({campaign_id for campaign_id, _, _ in roster})
+    campaigns = sorted({f"{CURRICULUM_ROOTS[curriculum_id]}/{campaign_id}" for curriculum_id, campaign_id, _, _ in roster})
 
     tracked = tracked_files()
     pdfs = [path for path in tracked if path.lower().endswith(".pdf")]
     if pdfs:
         failures.append(f"tracked PDFs are prohibited: {pdfs}")
 
-    for campaign_id, case_id, case in roster:
-        case_key = case_key_of(campaign_id, case)
+    for curriculum_id, campaign_id, case_id, case in roster:
+        case_key = case_key_of(curriculum_id, campaign_id, case)
         # Every message names the campaign, because two campaigns now have a case-01.
         label = case_key
         top_entries = {path.name for path in case.iterdir() if path.name != ".DS_Store"}

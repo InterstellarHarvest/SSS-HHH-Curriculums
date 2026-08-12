@@ -46,12 +46,13 @@
   "$defs": {
     "case": {
       "type": "object",
-      "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"],
+      "required": ["id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "centralWorkflow", "packageStatus", "approval"],
       "properties": {
         "id": {"type": "string", "minLength": 1},
         "displayOrder": {"type": "integer", "minimum": 1},
-        "displayLabel": {"type": "string", "pattern": "^[0-9]+ - .+"},
+        "displayLabel": {"type": "string", "pattern": "^(?:[0-9]+ - .+|Archive Orientation|Campaign 1 Synthesis|Program Capstone)$"},
         "title": {"type": "string", "minLength": 1},
+        "instructionalType": {"enum": ["ORIENTATION", "CORE_CASE", "SYNTHESIS", "CAPSTONE"]},
         "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+$"},
         "status": {"enum": ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN", "APPROVED_STABLE"]},
         "editorShell": {"const": "1.0"},
@@ -98,6 +99,13 @@
         {
           "if": {"properties": {"status": {"enum": ["DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"]}}},
           "then": {"not": {"required": ["historyRecord"]}}
+        },
+        {
+          "if": {"not": {"required": ["editorPackage"]}},
+          "then": {
+            "properties": {"status": {"const": "DRAFT"}},
+            "not": {"required": ["historyRecord"]}
+          }
         }
       ],
       "additionalProperties": false

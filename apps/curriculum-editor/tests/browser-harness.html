@@ -275,10 +275,12 @@
       // resize-eligibility, layout-panel and invalid-default coverage.
       const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20 };
       const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10 };
+      // Planned registry reservations (no editorPackage) are not operational cases and
+      // receive no layout coverage; the operational roster is the editor-compatible one.
       const registeredCaseIds = (await (await fetch("/shared/implementation/case-registry.v2.json")).json())
-        .curricula.flatMap(curriculum => curriculum.campaigns).flatMap(campaign => campaign.cases).map(entry => entry.id).sort();
-      check("Accessible resize-eligibility coverage names exactly the registered cases", JSON.stringify(Object.keys(accessibleEligibleCounts).sort()) === JSON.stringify(registeredCaseIds), JSON.stringify({ covered: Object.keys(accessibleEligibleCounts).sort(), registered: registeredCaseIds }));
-      check("Student resize-eligibility coverage names exactly the registered cases", JSON.stringify(Object.keys(studentEligibleCounts).sort()) === JSON.stringify(registeredCaseIds), JSON.stringify({ covered: Object.keys(studentEligibleCounts).sort(), registered: registeredCaseIds }));
+        .curricula.flatMap(curriculum => curriculum.campaigns).flatMap(campaign => campaign.cases).filter(entry => entry.editorPackage).map(entry => entry.id).sort();
+      check("Accessible resize-eligibility coverage names exactly the registered editor-compatible cases", JSON.stringify(Object.keys(accessibleEligibleCounts).sort()) === JSON.stringify(registeredCaseIds), JSON.stringify({ covered: Object.keys(accessibleEligibleCounts).sort(), registered: registeredCaseIds }));
+      check("Student resize-eligibility coverage names exactly the registered editor-compatible cases", JSON.stringify(Object.keys(studentEligibleCounts).sort()) === JSON.stringify(registeredCaseIds), JSON.stringify({ covered: Object.keys(studentEligibleCounts).sort(), registered: registeredCaseIds }));
       for (const [caseId, expectedAccessible] of Object.entries(accessibleEligibleCounts)) {
         await api.selectCase(caseId);
         await wait(80);
@@ -931,14 +933,20 @@
                 editorPackage: "sss/campaign-2/case-03-wrong-color-light/source/case-package.json" }] }
             ]
           },
-          { id: "HHH", title: "History's Harvest", campaigns: [] }
+          { id: "HHH", title: "Hunger, Harvest, & History", campaigns: [
+            { id: "campaign-1", title: "Campaign 1", cases: [
+              { id: "HHH-C1-CASE00", displayOrder: 1, displayLabel: "Archive Orientation", title: "Temporal Agricultural Archive Facility", instructionalType: "ORIENTATION" },
+              { id: "HHH-C1-CASE01", displayOrder: 2, displayLabel: "1 - The Fertile Crescent", title: "The Fertile Crescent", instructionalType: "CORE_CASE" }
+            ] }
+          ] }
         ]
       };
       const fixtureCases = libraryCasesFromRegistry(twoCampaignRegistry);
       const fixtureCampaign1 = casesForCampaign(fixtureCases, "SSS", "campaign-1");
       const fixtureCampaign2 = casesForCampaign(fixtureCases, "SSS", "campaign-2");
       check("registry flattening keeps only registered editor-compatible cases in display order", fixtureCases.length === 8 && JSON.stringify(fixtureCases.map(item => item.caseEntry.displayOrder)) === JSON.stringify([1, 2, 3, 4, 5, 6, 7, 8]));
-      check("a curriculum with no registered case is never offered", JSON.stringify(curriculaWithCases(fixtureCases).map(item => item.id)) === JSON.stringify(["SSS"]));
+      check("planned registry reservations without an editorPackage are never editor-compatible", !fixtureCases.some(item => item.curriculum.id === "HHH"));
+      check("a curriculum with only planned reservations is never offered", JSON.stringify(curriculaWithCases(fixtureCases).map(item => item.id)) === JSON.stringify(["SSS"]));
       check("both registered campaigns are offered for the curriculum", JSON.stringify(campaignsForCurriculum(fixtureCases, "SSS").map(item => item.id)) === JSON.stringify(["campaign-1", "campaign-2"]));
       check("Campaign 1 scope exposes exactly its seven registered cases", fixtureCampaign1.length === 7 && fixtureCampaign1.every(item => item.campaign.id === "campaign-1"), JSON.stringify(fixtureCampaign1.map(item => item.caseEntry.id)));
       check("Campaign 2 scope exposes exactly one registered case", fixtureCampaign2.length === 1 && fixtureCampaign2[0].caseEntry.id === "SSS-C2-CASE03", JSON.stringify(fixtureCampaign2.map(item => item.caseEntry.id)));
@@ -951,6 +959,58 @@
       check("a Campaign 2 case id resolves to the Campaign 2 scope", scopeForCase(fixtureCases, "SSS-C2-CASE03")?.campaign.id === "campaign-2" && scopeForCase(fixtureCases, "SSS-C2-CASE03")?.curriculum.id === "SSS");
       check("a Campaign 1 case id resolves to the Campaign 1 scope", scopeForCase(fixtureCases, "SSS-C1-CASE04")?.campaign.id === "campaign-1");
       check("an unregistered case id resolves to no scope", scopeForCase(fixtureCases, "SSS-C2-CASE99") === undefined);
+
+      // ── HHH activation scoping ───────────────────────────────────────────────
+      // displayOrder is curriculum-local: an editor-compatible HHH case may reuse an
+      // order value SSS already uses, planned HHH reservations stay invisible, the
+      // three locked nonnumeric special-unit labels survive flattening unchanged, and
+      // ordering is registry curriculum order first, then curriculum-local order.
+      const hhhActivationRegistry = {
+        schemaVersion: 2,
+        curricula: [
+          {
+            id: "SSS",
+            title: "Space Sprout Sleuth",
+            campaigns: [
+              { id: "campaign-1", title: "Campaign 1", cases: [{
+                id: "SSS-C1-CASE01", displayOrder: 1, displayLabel: "1 - ISS Greenhouse",
+                editorPackage: "sss/campaign-1/case-01-iss-greenhouse/source/case-package.json" }] }
+            ]
+          },
+          {
+            id: "HHH",
+            title: "Hunger, Harvest, & History",
+            campaigns: [
+              { id: "campaign-1", title: "Campaign 1", cases: [
+                { id: "HHH-C1-CASE00", displayOrder: 1, displayLabel: "Archive Orientation", instructionalType: "ORIENTATION",
+                  editorPackage: "hhh/campaign-1/case-00-archive-orientation/source/case-package.json" },
+                { id: "HHH-C1-CASE01", displayOrder: 2, displayLabel: "1 - The Fertile Crescent", instructionalType: "CORE_CASE" },
+                { id: "HHH-C1-SYNTHESIS", displayOrder: 8, displayLabel: "Campaign 1 Synthesis", instructionalType: "SYNTHESIS",
+                  editorPackage: "hhh/campaign-1/synthesis-campaign-1/source/case-package.json" }
+              ] },
+              { id: "campaign-2", title: "Campaign 2", cases: [
+                { id: "HHH-C2-CAPSTONE", displayOrder: 15, displayLabel: "Program Capstone", instructionalType: "CAPSTONE",
+                  editorPackage: "hhh/campaign-2/program-capstone/source/case-package.json" }
+              ] }
+            ]
+          }
+        ]
+      };
+      const hhhFixtureCases = libraryCasesFromRegistry(hhhActivationRegistry);
+      check("an editor-compatible HHH case may reuse a display order SSS already uses", JSON.stringify(hhhFixtureCases.map(item => item.caseEntry.id)) === JSON.stringify(["SSS-C1-CASE01", "HHH-C1-CASE00", "HHH-C1-SYNTHESIS", "HHH-C2-CAPSTONE"]), JSON.stringify(hhhFixtureCases.map(item => item.caseEntry.id)));
+      check("planned HHH reservations stay invisible while operational HHH cases appear", scopeForCase(hhhFixtureCases, "HHH-C1-CASE01") === undefined && scopeForCase(hhhFixtureCases, "HHH-C1-CASE00")?.curriculum.id === "HHH");
+      check("special nonnumeric display labels survive flattening unchanged", JSON.stringify(hhhFixtureCases.filter(item => item.curriculum.id === "HHH").map(item => item.caseEntry.displayLabel)) === JSON.stringify(["Archive Orientation", "Campaign 1 Synthesis", "Program Capstone"]));
+      check("both curricula are offered when each holds an editor-compatible case", JSON.stringify(curriculaWithCases(hhhFixtureCases).map(item => item.id)) === JSON.stringify(["SSS", "HHH"]));
+      check("HHH campaigns are scoped to their own curriculum", JSON.stringify(campaignsForCurriculum(hhhFixtureCases, "HHH").map(item => item.id)) === JSON.stringify(["campaign-1", "campaign-2"]) && JSON.stringify(campaignsForCurriculum(hhhFixtureCases, "SSS").map(item => item.id)) === JSON.stringify(["campaign-1"]));
+      check("an HHH campaign scope exposes only its own cases", JSON.stringify(casesForCampaign(hhhFixtureCases, "HHH", "campaign-1").map(item => item.caseEntry.id)) === JSON.stringify(["HHH-C1-CASE00", "HHH-C1-SYNTHESIS"]) && JSON.stringify(casesForCampaign(hhhFixtureCases, "SSS", "campaign-1").map(item => item.caseEntry.id)) === JSON.stringify(["SSS-C1-CASE01"]));
+      let duplicateWithinCurriculumRejected = false;
+      try {
+        libraryCasesFromRegistry({ schemaVersion: 2, curricula: [{ id: "HHH", title: "Hunger, Harvest, & History", campaigns: [{ id: "campaign-1", title: "Campaign 1", cases: [
+          { id: "HHH-C1-CASE00", displayOrder: 1, displayLabel: "Archive Orientation", editorPackage: "hhh/campaign-1/case-00-archive-orientation/source/case-package.json" },
+          { id: "HHH-C1-CASE01", displayOrder: 1, displayLabel: "1 - The Fertile Crescent", editorPackage: "hhh/campaign-1/case-01-fertile-crescent/source/case-package.json" }
+        ] }] }] });
+      } catch { duplicateWithinCurriculumRejected = true; }
+      check("duplicate display orders within one curriculum are still rejected", duplicateWithinCurriculumRejected);
 
       const registryDocument = await (await fetch("/shared/implementation/case-registry.v2.json")).json();
       const registeredCases = libraryCasesFromRegistry(registryDocument);

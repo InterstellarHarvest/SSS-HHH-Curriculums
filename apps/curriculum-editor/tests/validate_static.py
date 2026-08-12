@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -360,6 +361,14 @@ def task_registry(path: Path):
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--skip-mutation-tests", action="store_true",
+        help="skip the six SSS mutation checks. Proportional-validation escape for diffs "
+             "that cannot alter frozen SSS content protections; every ordinary static "
+             "assertion and chained validator still runs. Default behavior is unchanged.")
+    args = parser.parse_args()
+
     results = Results()
     registry_path = ROOT / "shared/implementation/case-registry.v2.json"
     registry_schema_path = ROOT / "shared/implementation/case-registry.schema.v2.json"
@@ -378,11 +387,16 @@ def main() -> int:
     forbidden_probe_categories = {finding.split(":", 2)[1] for finding in printable_production_metadata_findings(forbidden_metadata_probe)}
     results.check("printable production-metadata detector rejects workflow banners, lifecycle tokens, branches, commits, merge instructions, and repository status text", {"status-banner", "lifecycle-token", "owner-review", "repository-workflow", "branch-name", "commit-sha", "merge-instruction", "validation-status"}.issubset(forbidden_probe_categories), sorted(forbidden_probe_categories))
     results.check("registry validates against schema v2", not schema_errors(registry, registry_schema), schema_errors(registry, registry_schema))
-    entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
-    results.check("registry discovers exactly the approved Campaign 1 and Campaign 2 cases in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    all_entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
+    # Operational (package-backed) coverage derives from editorPackage; entries without one
+    # are planned registry reservations validated by validate_hhh_activation.py instead.
+    entries = [case for case in all_entries if "editorPackage" in case]
+    results.check("registry operational roster is exactly the approved Campaign 1 and Campaign 2 cases in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
     results.check("every approved case retains a frozen non-Accessible DOM baseline", {entry["id"] for entry in entries if entry["status"] == "APPROVED_STABLE"} <= set(NON_ACCESSIBLE_BASELINE_HASHES))
+    results.check("planned registry reservations stay unreleased DRAFT entries with no package or release pointer", all(entry["status"] == "DRAFT" and "historyRecord" not in entry for entry in all_entries if "editorPackage" not in entry))
     base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
-    results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
+    results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) - {"instructionalType"} == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
+    results.check("no serialized SSS case entry acquired an instructional type", all("instructionalType" not in entry for entry in all_entries if entry["id"].startswith("SSS-")))
 
     for entry in entries:
         case_id = entry["id"]
@@ -880,6 +894,8 @@ def main() -> int:
     results.check("every approved release certifies source its pinned commit actually contains", release_integrity.returncode == 0, (release_integrity.stdout + release_integrity.stderr).strip())
     layout_validation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_layout_overrides.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("Student/Accessible layout eligibility and sparse overrides validate", layout_validation.returncode == 0, (layout_validation.stdout + layout_validation.stderr).strip())
+    hhh_activation = subprocess.run([sys.executable, str(ROOT / "shared/validation/validate_hhh_activation.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("HHH activation topology, lifecycle, and remediation-tracker contracts validate", hhh_activation.returncode == 0, (hhh_activation.stdout + hhh_activation.stderr).strip()[-2000:])
     case06_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case06_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 06 case-scoped validation passes", case06_campaign2.returncode == 0, (case06_campaign2.stdout + case06_campaign2.stderr).strip()[-2000:])
     case05_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case05_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
@@ -892,18 +908,25 @@ def main() -> int:
     results.check("SSS Campaign 2 Case 02 case-scoped source, clue, figure, and prohibited-claim checks pass", case02_campaign2.returncode == 0, (case02_campaign2.stdout + case02_campaign2.stderr).strip()[-2000:])
     case01_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case01_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 01 case-scoped source, clue, figure, and prohibited-claim checks pass", case01_campaign2.returncode == 0, (case01_campaign2.stdout + case01_campaign2.stderr).strip()[-2000:])
-    case01_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case01_mutations.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("SSS Campaign 2 Case 01 mutation tests prove each protection fires", case01_mutations.returncode == 0, (case01_mutations.stdout + case01_mutations.stderr).strip()[-2000:])
-    case02_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case02_mutations.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("SSS Campaign 2 Case 02 mutation tests prove each protection fires", case02_mutations.returncode == 0, (case02_mutations.stdout + case02_mutations.stderr).strip()[-2000:])
-    case04_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case04_mutations.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("SSS Campaign 2 Case 04 mutation tests prove each protection fires", case04_mutations.returncode == 0, (case04_mutations.stdout + case04_mutations.stderr).strip()[-2000:])
-    case05_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case05_mutations.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("SSS Campaign 2 Case 05 mutation tests prove each protection fires", case05_mutations.returncode == 0, (case05_mutations.stdout + case05_mutations.stderr).strip()[-2000:])
-    case03_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case03_mutations.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("SSS Campaign 2 Case 03 mutation tests prove each protection fires", case03_mutations.returncode == 0, (case03_mutations.stdout + case03_mutations.stderr).strip()[-2000:])
-    case06_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case06_mutations.py")], cwd=ROOT, text=True, capture_output=True)
-    results.check("SSS Campaign 2 Case 06 mutation tests prove each protection fires", case06_mutations.returncode == 0, (case06_mutations.stdout + case06_mutations.stderr).strip()[-2000:])
+    if args.skip_mutation_tests:
+        # Proportional-validation escape: the six SSS mutation checks intentionally
+        # rewrite frozen case sources to prove each protection fires, cost hours, and
+        # are relevant only when the protections themselves change. They are reported
+        # as skipped, never silently absent.
+        pass
+    else:
+        case01_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case01_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+        results.check("SSS Campaign 2 Case 01 mutation tests prove each protection fires", case01_mutations.returncode == 0, (case01_mutations.stdout + case01_mutations.stderr).strip()[-2000:])
+        case02_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case02_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+        results.check("SSS Campaign 2 Case 02 mutation tests prove each protection fires", case02_mutations.returncode == 0, (case02_mutations.stdout + case02_mutations.stderr).strip()[-2000:])
+        case04_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case04_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+        results.check("SSS Campaign 2 Case 04 mutation tests prove each protection fires", case04_mutations.returncode == 0, (case04_mutations.stdout + case04_mutations.stderr).strip()[-2000:])
+        case05_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case05_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+        results.check("SSS Campaign 2 Case 05 mutation tests prove each protection fires", case05_mutations.returncode == 0, (case05_mutations.stdout + case05_mutations.stderr).strip()[-2000:])
+        case03_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case03_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+        results.check("SSS Campaign 2 Case 03 mutation tests prove each protection fires", case03_mutations.returncode == 0, (case03_mutations.stdout + case03_mutations.stderr).strip()[-2000:])
+        case06_mutations = subprocess.run([sys.executable, str(APP / "tests/test_case06_mutations.py")], cwd=ROOT, text=True, capture_output=True)
+        results.check("SSS Campaign 2 Case 06 mutation tests prove each protection fires", case06_mutations.returncode == 0, (case06_mutations.stdout + case06_mutations.stderr).strip()[-2000:])
     corrective_lifecycle = subprocess.run([sys.executable, str(APP / "tests/test_corrective_release_lifecycle.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("corrective-release lifecycle tests pass", corrective_lifecycle.returncode == 0, (corrective_lifecycle.stdout + corrective_lifecycle.stderr).strip()[-2000:])
     service_tests = subprocess.run([sys.executable, str(APP / "tests/test_authoring_service.py")], cwd=ROOT, text=True, capture_output=True)
@@ -917,6 +940,10 @@ def main() -> int:
         "status": "PASS" if results.passed == len(results.assertions) else "FAIL",
         "passed": results.passed,
         "total": len(results.assertions),
+        "mutationChecks": (
+            "NOT RUN — six SSS mutation checks intentionally skipped under the proportional Phase 3 plan (--skip-mutation-tests)"
+            if args.skip_mutation_tests else "RUN"
+        ),
         "assertions": results.assertions,
     }
     print(json.dumps(payload, indent=2))

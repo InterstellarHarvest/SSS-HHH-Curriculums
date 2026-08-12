@@ -1,0 +1,522 @@
+{
+  "document": "HHH_GAME_REMEDIATION_DEPENDENCY_TRACKER",
+  "version": "1.0",
+  "created": "2026-08-11",
+  "purpose": "Production dependency index binding each HHH curriculum unit to the Phase 1 audit findings that constrain its production. This is not a new audit: every finding ID, wording, register class, severity, evidence location, and recommended disposition is copied verbatim from Section 6 of the committed Phase 1 audit. Case production consults this tracker so that no blocking game remediation, teacher qualification, or polish item is lost between audit and finalization.",
+  "authority": {
+    "phase1Audit": "hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md",
+    "staticContentInventory": "hhh/audit/data/HHH_STATIC_CONTENT_INVENTORY_v0.1.json",
+    "auditedGameRepository": "InterstellarHarvest/Hunger-Harvest-History",
+    "auditedGameCommit": "9b8545ed6ecf98b337326390400076e36789e056",
+    "blueprint": "hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md",
+    "activationBaselineCommit": "d47003c34650a465aea81dbc2da5b5fc9dc4cd47"
+  },
+  "dependencyClassifications": {
+    "GAME_REMEDIATION_BLOCKS_FINALIZATION": "The affected curriculum unit cannot be finalized against game wording the Phase 1 audit rejected. The game issue must be remediated in an inspected game commit, or the audit-supported bounded in-world treatment applied, before the unit's release gate.",
+    "CURRICULUM_QUALIFICATION_REQUIRED": "The game may ship as audited, but the curriculum unit must carry the audit's teacher qualification, source-status boundary, or causal/terminological qualification. Optional game softening remains available but is not required for finalization.",
+    "NONBLOCKING_POLISH": "Wording, typo, or documentation defect that must not be quoted into curriculum material uncorrected, but that does not block unit finalization. Smaller wording fixes ride the same controlled remediation phase as the blocking items."
+  },
+  "statusValues": {
+    "OPEN_AT_AUDITED_GAME_BASELINE": "The finding is unresolved at the audited game commit. No remediation commit has been inspected.",
+    "RESOLVED_VERIFIED": "A remediation commit has been inspected and every resolution field is completed."
+  },
+  "resolutionRule": "A game dependency may not be marked resolved without an inspected remediation commit recorded in resolvedGameCommit together with completed resolutionEvidence, verificationDate, verifier, and verificationStatus. Activation itself resolves only the registry/readiness findings HHH-SYS-001 and HHH-SYS-002, recorded separately below.",
+  "gameDependencies": [
+    {
+      "findingId": "HHH-GAME-C1L1-001",
+      "curriculumUnit": "HHH-C1-CASE01",
+      "unitDisplayLabel": "1 - The Fertile Crescent",
+      "gameLevel": "C1 L1",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major historical precision",
+      "finding": "Exact 9700 BCE vignette presents a single deliberate non-shattering selection event as the beginning of domestication; current archaeobotany supports a long, mosaic process and later gradual rise of non-shattering traits.",
+      "evidence": "C1 L1 runtime + [H1]",
+      "recommendedDisposition": "Reframe as reconstructed/composite early cultivation/selection scene; avoid claiming a documented first individual/event at 9700 BCE.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L1-002",
+      "curriculumUnit": "HHH-C1-CASE01",
+      "unitDisplayLabel": "1 - The Fertile Crescent",
+      "gameLevel": "C1 L1",
+      "registerClass": "Nonblocking polish",
+      "severity": "Minor",
+      "finding": "Grammar defect: “In these grain heads they does not shatter…”",
+      "evidence": "`hhh_data.js:490`",
+      "recommendedDisposition": "Correct grammar before any curriculum quotation.",
+      "dependencyClass": "NONBLOCKING_POLISH",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L2-001",
+      "curriculumUnit": "HHH-C1-CASE02",
+      "unitDisplayLabel": "2 - Sumer",
+      "gameLevel": "C1 L2",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major textual integrity",
+      "finding": "Required clue summary is truncated: “without the old fallow res.”",
+      "evidence": "`hhh_data.js:695`",
+      "recommendedDisposition": "Restore intended phrase/sentence before case production.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L2-002",
+      "curriculumUnit": "HHH-C1-CASE02",
+      "unitDisplayLabel": "2 - Sumer",
+      "gameLevel": "C1 L2",
+      "registerClass": "Teacher qualification / optional game softening",
+      "severity": "Moderate",
+      "finding": "Salinization mechanism is credible, but wording that implies a uniquely first human-made agricultural crisis or broad decline from one cause overstates historical certainty.",
+      "evidence": "C1 L2 + [H2]",
+      "recommendedDisposition": "Keep local mechanism; qualify broader historical causation and debated crop-shift interpretation.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L2-003",
+      "curriculumUnit": "HHH-C1-CASE02",
+      "unitDisplayLabel": "2 - Sumer",
+      "gameLevel": "C1 L2",
+      "registerClass": "Nonblocking polish",
+      "severity": "Minor",
+      "finding": "Scribe clue contains broken syntax around “Yet, wrote the cause down…”",
+      "evidence": "C1 L2 `scribe_record` learned text",
+      "recommendedDisposition": "Repair prose before direct reuse.",
+      "dependencyClass": "NONBLOCKING_POLISH",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L3-001",
+      "curriculumUnit": "HHH-C1-CASE03",
+      "unitDisplayLabel": "3 - County Cork",
+      "gameLevel": "C1 L3",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major historical distortion risk",
+      "finding": "Correct diagnosis/explanation universalizes dependence: “whole country,” “every field was the same plant repeated,” and “nothing else grown to fall back on.”",
+      "evidence": "`hhh_data.js:1067,1070,1076` + [H3][H4]",
+      "recommendedDisposition": "Retain severe Lumper/dependence vulnerability but remove universals; separate crop disease from famine’s social/political/economic causes.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L4-001",
+      "curriculumUnit": "HHH-C1-CASE04",
+      "unitDisplayLabel": "4 - Karlsruhe",
+      "gameLevel": "C1 L4",
+      "registerClass": "Nonblocking polish",
+      "severity": "Minor",
+      "finding": "Required pressure clue contains typo “Mdeled up…”",
+      "evidence": "`hhh_data.js:1488`",
+      "recommendedDisposition": "Correct to “Modeled” (or intended wording).",
+      "dependencyClass": "NONBLOCKING_POLISH",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L4-002",
+      "curriculumUnit": "HHH-C1-CASE04",
+      "unitDisplayLabel": "4 - Karlsruhe",
+      "gameLevel": "C1 L4",
+      "registerClass": "Teacher qualification",
+      "severity": "Moderate",
+      "finding": "Temperature wording can sound “gentle/merely warm” despite Haber conditions near ~500 °C; lab Haber and industrial Bosch roles also require distinction.",
+      "evidence": "C1 L4 + [H5][H6]",
+      "recommendedDisposition": "Use “compromise temperature for this equilibrium/rate tradeoff”; distinguish Haber laboratory synthesis from Bosch scale-up.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L5-001",
+      "curriculumUnit": "HHH-C1-CASE05",
+      "unitDisplayLabel": "5 - The Dust Bowl",
+      "gameLevel": "C1 L5",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major scientific overstatement",
+      "finding": "Required/optional evidence describes subsoil as “lifeless,” “will grow nothing,” “biologically dead — no organic matter, no microbial life.”",
+      "evidence": "`hhh_data.js:1861,1885–1890` + [H8]",
+      "recommendedDisposition": "Replace zero-life/zero-growth language with severe topsoil loss, low organic matter/fertility/biological activity, and greatly reduced crop suitability.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L5-002",
+      "curriculumUnit": "HHH-C1-CASE05",
+      "unitDisplayLabel": "5 - The Dust Bowl",
+      "gameLevel": "C1 L5",
+      "registerClass": "Teacher qualification / optional game softening",
+      "severity": "Moderate",
+      "finding": "Correct diagnosis rhetorically opposes drought too strongly; the historical mechanism is drought interacting with exposed/erodible land, not “drought irrelevant.”",
+      "evidence": "C1 L5 + [H7]",
+      "recommendedDisposition": "Teach interaction of drought + land cover/land use + wind erosion + policy response.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C1L6-001",
+      "curriculumUnit": "HHH-C1-CASE06",
+      "unitDisplayLabel": "6 - The Vertical Farm",
+      "gameLevel": "C1 L6",
+      "registerClass": "Teacher qualification",
+      "severity": "Moderate science simplification",
+      "finding": "Nitrification and microbial-biofilter failure are sound as a model, but the game simplifies microbial diversity and plant nitrogen use/toxicity chemistry.",
+      "evidence": "C1 L6 + [H9]",
+      "recommendedDisposition": "Keep as fictional systems case; qualify consortium composition and ammonium/ammonia/nitrate language.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L0-001",
+      "curriculumUnit": "HHH-C2-CASE07",
+      "unitDisplayLabel": "7 - The Audit",
+      "gameLevel": "C2 L0",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major historical-method overstatement",
+      "finding": "Fun fact says modern examiners treat “too clean” as a warning because genuine working records accumulate corrections and forgeries rarely do.",
+      "evidence": "`hhh_campaign_2_data.js:439` + [H10][H11]",
+      "recommendedDisposition": "Replace with multi-factor authenticity rule: unexplained neatness can prompt questions, but form/corrections alone do not prove authenticity or forgery.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L1-001",
+      "curriculumUnit": "HHH-C2-CASE08",
+      "unitDisplayLabel": "8 - The Floating Gardens",
+      "gameLevel": "C2 L1",
+      "registerClass": "Teacher qualification",
+      "severity": "Moderate terminology/source-status",
+      "finding": "“Floating Gardens” can be read literally; game codex/keeper testimony is reconstructed rather than a literal surviving 1487 source.",
+      "evidence": "C2 L1 + [H12]",
+      "recommendedDisposition": "Use “chinampas/raised-field wetland agriculture”; explain conventional “floating gardens” label and mark reconstructed game sources.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-IMP-C2L2-001",
+      "curriculumUnit": "HHH-C2-CASE09",
+      "unitDisplayLabel": "9 - The Seeds They Kept",
+      "gameLevel": "C2 L2",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major implementation semantics",
+      "finding": "`siege_witnessed` is marked `insight:true` but `seed_vault` requires that clue, making an “optional” insight structurally mandatory.",
+      "evidence": "`hhh_campaign_2_data.js:834–858`",
+      "recommendedDisposition": "Either mark the clue required or remove the gate; keep intended street-first flow explicit and test completion semantics.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L2-001",
+      "curriculumUnit": "HHH-C2-CASE09",
+      "unitDisplayLabel": "9 - The Seeds They Kept",
+      "gameLevel": "C2 L2",
+      "registerClass": "Teacher qualification",
+      "severity": "Minor/Moderate source precision",
+      "finding": "Popular accounts disagree on exact number/category of institute staff who died protecting the collection; Vavilov himself had been arrested before the siege.",
+      "evidence": "C2 L2 + [H13][H14]",
+      "recommendedDisposition": "Use sourced, qualified count language; distinguish Vavilov’s fate from siege staff actions.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L3-001",
+      "curriculumUnit": "HHH-C2-CASE10",
+      "unitDisplayLabel": "10 - The Quiet Billion",
+      "gameLevel": "C2 L3",
+      "registerClass": "Teacher qualification",
+      "severity": "Moderate historical causation",
+      "finding": "Core semidwarf/lodging/rust story is sound, but exact field-yield claims and any “one seed saved a billion” shorthand should not replace broader irrigation/fertilizer/institutional context.",
+      "evidence": "C2 L3 + [H15]",
+      "recommendedDisposition": "Treat exact game figures as game evidence unless externally sourced; contextualize Green Revolution as a package of varieties, agronomy, inputs, institutions, and policy.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L4-001",
+      "curriculumUnit": "HHH-C2-CASE11",
+      "unitDisplayLabel": "11 - The Bloom That Needed Poison",
+      "gameLevel": "C2 L4",
+      "registerClass": "Teacher qualification / optional game softening",
+      "severity": "Moderate science precision",
+      "finding": "Fun fact says melanized fungus “appears to use melanin to convert gamma radiation into usable energy,” which risks presenting “radiosynthesis” as established mechanism.",
+      "evidence": "`hhh_campaign_2_data.js:1690` + [H16]",
+      "recommendedDisposition": "Describe radiation-associated melanin effects/growth as research evidence and energy-harvesting interpretation/hypothesis, not a settled direct analogue to karreth.",
+      "dependencyClass": "CURRICULUM_QUALIFICATION_REQUIRED",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-DOC-C2L4-001",
+      "curriculumUnit": "HHH-C2-CASE11",
+      "unitDisplayLabel": "11 - The Bloom That Needed Poison",
+      "gameLevel": "C2 L4",
+      "registerClass": "Nonblocking polish / documentation",
+      "severity": "Moderate",
+      "finding": "README describes Campaign 2 as including “radiation hormesis,” while shipped C2 L4 is the fictional karreth-bloom/protocol case.",
+      "evidence": "`README.md:54` vs shipped C2 L4",
+      "recommendedDisposition": "Synchronize README to runtime before curriculum extraction.",
+      "dependencyClass": "NONBLOCKING_POLISH",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L5-001",
+      "curriculumUnit": "HHH-C2-CASE12",
+      "unitDisplayLabel": "12 - The Living Record",
+      "gameLevel": "C2 L5",
+      "registerClass": "Game correction before affected case",
+      "severity": "Major scientific precision",
+      "finding": "Required evidence and explanation assert one mycorrhizal web carries water, nutrients, and chemical signals among plants across the whole slope, and dialogue generalizes this to “every healthy garden.”",
+      "evidence": "`hhh_campaign_2_data.js:1849,1860,1890,2055` + [H17][H18]",
+      "recommendedDisposition": "Separate fictional First Garden network behavior from established mycorrhizal symbiosis; explicitly label broad interplant transfer/signaling claims as system-dependent/debated.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L5-002",
+      "curriculumUnit": "HHH-C2-CASE12",
+      "unitDisplayLabel": "12 - The Living Record",
+      "gameLevel": "C2 L5",
+      "registerClass": "Game correction before affected case",
+      "severity": "Moderate chronology/source-status",
+      "finding": "Fun fact frames “450 million years ago” plant–fungus partnership as if directly fossil-documented; fine-detail arbuscular-mycorrhizal fossil evidence is ~407 Ma, while older origins are inference.",
+      "evidence": "`hhh_campaign_2_data.js:2056` + [H19]",
+      "recommendedDisposition": "Distinguish direct fossil evidence (~407 Ma) from broader evolutionary inference about earlier land-plant symbioses.",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    },
+    {
+      "findingId": "HHH-GAME-C2L6-001",
+      "curriculumUnit": "HHH-C2-CAPSTONE",
+      "unitDisplayLabel": "Program Capstone",
+      "gameLevel": "C2 L6",
+      "registerClass": "Game correction before affected case",
+      "severity": "Minor time-sensitive factual drift",
+      "finding": "Svalbard fun fact says “over 1.2 million” samples; still technically true but stale and likely to age poorly. Official total reached 1,401,285 in June 2026.",
+      "evidence": "`hhh_campaign_2_data.js:2531` + [H20][H21]",
+      "recommendedDisposition": "Use “more than 1.4 million as of June 2026” with date, or future-proof as “more than one million.”",
+      "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
+      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": null,
+        "verificationDate": null,
+        "verifier": null,
+        "verificationStatus": null
+      }
+    }
+  ],
+  "sharedSystemFindings": [
+    {
+      "findingId": "HHH-SYS-001",
+      "registerClass": "Shared-system/readiness",
+      "severity": "Moderate",
+      "finding": "Curriculum registry display title is stale: `History's Harvest` rather than canonical *Hunger, Harvest, & History*.",
+      "evidence": "`shared/implementation/case-registry.v2.json` @ curriculum SHA",
+      "recommendedDisposition": "Correct before first HHH package registration/release; does not block Blueprint.",
+      "status": "RESOLVED_BY_ACTIVATION",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": "shared/implementation/case-registry.v2.json corrects the HHH curriculum title to `Hunger, Harvest, & History` in the HHH Phase 3 production-activation commit on this repository (not a game change).",
+        "verificationDate": "2026-08-11",
+        "verifier": "HHH Phase 3 production activation (agent), enforced by shared/validation/validate_hhh_activation.py",
+        "verificationStatus": "RESOLVED_VERIFIED"
+      }
+    },
+    {
+      "findingId": "HHH-SYS-002",
+      "registerClass": "Shared-system/readiness",
+      "severity": "Expected pre-production gap",
+      "finding": "HHH registry entry has `campaigns: []`; no HHH campaign/case packages are registered yet.",
+      "evidence": "same registry",
+      "recommendedDisposition": "Populate only after Blueprint/case architecture is approved; not a defect in the game.",
+      "status": "RESOLVED_BY_ACTIVATION",
+      "resolution": {
+        "resolvedGameCommit": null,
+        "resolutionEvidence": "shared/implementation/case-registry.v2.json instantiates campaign-1 and campaign-2 with the Blueprint's 15-unit planned topology in the HHH Phase 3 production-activation commit (planned reservations only; no case package is created by activation).",
+        "verificationDate": "2026-08-11",
+        "verifier": "HHH Phase 3 production activation (agent), enforced by shared/validation/validate_hhh_activation.py",
+        "verificationStatus": "RESOLVED_VERIFIED"
+      }
+    }
+  ],
+  "blueprintDecisionFindings": [
+    {
+      "findingId": "HHH-DEC-001",
+      "registerClass": "Curriculum design decision",
+      "severity": "Owner/Blueprint",
+      "finding": "HHH needs a governing synthesis/argument rule: shared Claim–Evidence–Reasoning can be used, but not every HHH lesson should imitate SSS scientific diagnosis/CER structure.",
+      "evidence": "Curriculum Bible + HHH identity rules",
+      "recommendedDisposition": "Blueprint should define HHH historical argument products and when canonical CER is appropriate.",
+      "status": "CLOSED_BY_APPROVED_BLUEPRINT",
+      "closure": "Locked by HHH_CURRICULUM_BLUEPRINT_v1.0.md §3.2 and §9 (historical argument / CER policy)."
+    },
+    {
+      "findingId": "HHH-DEC-002",
+      "registerClass": "Curriculum design decision",
+      "severity": "Owner/Blueprint",
+      "finding": "Decide whether C2 L6 is a formal numbered curriculum case or an optional culminating capstone.",
+      "evidence": "Cross-campaign audit",
+      "recommendedDisposition": "Recommendation: 12 core cases; C2 L6 as capstone unless owner wants 13 formal cases.",
+      "status": "CLOSED_BY_APPROVED_BLUEPRINT",
+      "closure": "Locked by HHH_CURRICULUM_BLUEPRINT_v1.0.md §3.1: C2 L6 is the Program Capstone (`HHH-C2-CAPSTONE`); there is no Core Case 13."
+    },
+    {
+      "findingId": "HHH-DEC-003",
+      "registerClass": "Curriculum design decision",
+      "severity": "Owner/Blueprint",
+      "finding": "Decide formal placement of heavily fictional C2 L4 and mixed-fiction C2 L5.",
+      "evidence": "Cross-campaign audit",
+      "recommendedDisposition": "Recommendation: retain both if source-status reasoning is explicit; C2 L5 must be scientifically remediated first.",
+      "status": "CLOSED_BY_APPROVED_BLUEPRINT",
+      "closure": "Locked by HHH_CURRICULUM_BLUEPRINT_v1.0.md §3.3 and §12: Core Cases 11 and 12 remain in the core sequence under the two-layer truth policy; the C2 L5 remediation dependency remains open above (HHH-GAME-C2L5-001/-002)."
+    },
+    {
+      "findingId": "HHH-DEC-004",
+      "registerClass": "Curriculum design decision / access",
+      "severity": "Owner/Blueprint",
+      "finding": "Campaign 2 classroom independence needs a defined no-game/direct-launch strategy because game progression is narratively gated by prior campaign state.",
+      "evidence": "Runtime/menu behavior + shared fallback contract",
+      "recommendedDisposition": "Blueprint should require complete no-game evidence fallback and define approved classroom launch/save-state method if direct play is expected.",
+      "status": "CLOSED_BY_APPROVED_BLUEPRINT",
+      "closure": "Locked by HHH_CURRICULUM_BLUEPRINT_v1.0.md §3.4 and §13.4: no Campaign 2 launch bypass; every Campaign 2 Core Case carries a complete no-game evidence fallback."
+    }
+  ]
+}

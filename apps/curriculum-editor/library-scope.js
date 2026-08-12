@@ -8,11 +8,15 @@
 
 /**
  * Flatten a registry document into the editor-compatible case selections, in display order.
- * Only cases that declare an editorPackage are compatible.
+ * Only cases that declare an editorPackage are compatible; entries without one are planned
+ * registry reservations and are never offered. displayOrder is curriculum-local: it must be
+ * unique within one curriculum, and each curriculum numbers its own sequence independently.
+ * Ordering is registry curriculum order first, then curriculum-local displayOrder.
  */
 export function libraryCasesFromRegistry(registry) {
   if (registry?.schemaVersion !== 2) throw new Error(`Unsupported registry schema: ${registry?.schemaVersion}`);
   const cases = [];
+  const curriculumRank = new Map((registry.curricula ?? []).map((curriculum, index) => [curriculum.id, index]));
   for (const curriculum of registry.curricula ?? []) {
     for (const campaign of curriculum.campaigns ?? []) {
       for (const caseEntry of campaign.cases ?? []) {
@@ -20,15 +24,21 @@ export function libraryCasesFromRegistry(registry) {
       }
     }
   }
-  for (const { caseEntry } of cases) {
+  const ordersByCurriculum = new Map();
+  for (const { curriculum, caseEntry } of cases) {
     if (!Number.isInteger(caseEntry.displayOrder) || !caseEntry.displayLabel) {
       throw new Error(`Case registry display metadata is missing: ${caseEntry.id}`);
     }
+    const orders = ordersByCurriculum.get(curriculum.id) ?? new Set();
+    if (orders.has(caseEntry.displayOrder)) {
+      throw new Error(`Case registry display order values must be unique within curriculum ${curriculum.id}.`);
+    }
+    orders.add(caseEntry.displayOrder);
+    ordersByCurriculum.set(curriculum.id, orders);
   }
-  if (new Set(cases.map(item => item.caseEntry.displayOrder)).size !== cases.length) {
-    throw new Error("Case registry display order values must be unique.");
-  }
-  cases.sort((a, b) => a.caseEntry.displayOrder - b.caseEntry.displayOrder);
+  cases.sort((a, b) =>
+    (curriculumRank.get(a.curriculum.id) - curriculumRank.get(b.curriculum.id))
+    || (a.caseEntry.displayOrder - b.caseEntry.displayOrder));
   return cases;
 }
 
