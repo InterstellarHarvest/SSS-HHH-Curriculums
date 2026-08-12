@@ -1,3 +1,4 @@
 .venv-case01-validation/
 __pycache__/
 *.py[cod]
+Icon?
