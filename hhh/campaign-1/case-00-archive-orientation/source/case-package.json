@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE00",
+  "curriculum": "HHH",
+  "instructionalType": "ORIENTATION",
+  "campaign": "campaign-1",
+  "title": "Temporal Agricultural Archive Facility",
+  "subtitle": "Campaign 1 · Archive Orientation · Temporal Agricultural Archive Facility, 2387",
+  "location": "TAA Orientation",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE00:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-00-archive-orientation/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-00-archive-orientation/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-00-archive-orientation/source/task-registry.js",
+    "global": "HHH_CASE00_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-00-archive-orientation/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case00-provenance-chain",
+      "type": "html-css-diagrams",
+      "selector": "[data-provenance-contract]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 4
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 3
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 5
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE00_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE00_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE00_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE00_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE00_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Archive Orientation v0.1 — Temporal Agricultural Archive Facility Curriculum Editor",
+    "loadAnnouncement": "Archive Orientation v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "06a173f0baa3b89cad0636504c9edf830594deddb21e634a84053ab15e24e97f",
+    "presentation": "f1aca9dfdfecb4e9934d1ab52f03cbf1f9f4d6bf06b038d879a26d9e8f88be3c",
+    "taskRegistry": "747e299616f3850f69a922a2335c68056d2c381293bb96df365bfcb446eb3afe",
+    "layoutOverrides": "8fbc2132d0dd52d6ed8982fb0d7f26d290b6b1a00e2361465fd74a1f1dd4da63"
+  }
+}

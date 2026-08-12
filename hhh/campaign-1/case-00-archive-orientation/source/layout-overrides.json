@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE00",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE00:accessible:t2:a2-risk",
+      "persistId": "a2-risk",
+      "pageId": "accessible-orientation-02",
+      "taskId": 2,
+      "label": "Accessible Task 2 unearned-weight explanation",
+      "minPx": 72,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE00:accessible:t4:a4-inworld",
+      "persistId": "a4-inworld",
+      "pageId": "accessible-orientation-04",
+      "taskId": 4,
+      "label": "Accessible Task 4 preserved claim response",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE00:accessible:t4:a4-realworld",
+      "persistId": "a4-realworld",
+      "pageId": "accessible-orientation-04",
+      "taskId": 4,
+      "label": "Accessible Task 4 transferable habit response",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE00:accessible:t5:a5-procedure",
+      "persistId": "a5-procedure",
+      "pageId": "accessible-orientation-05",
+      "taskId": 5,
+      "label": "Accessible Task 5 archive procedure response",
+      "minPx": 176,
+      "maxPx": 420
+    },
+    {
+      "id": "HHH-C1-CASE00:accessible:t6:a6-check-1",
+      "persistId": "a6-check-1",
+      "pageId": "accessible-orientation-05",
+      "taskId": 6,
+      "label": "Accessible Task 6 first check response",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE00:accessible:t6:a6-check-2",
+      "persistId": "a6-check-2",
+      "pageId": "accessible-orientation-05",
+      "taskId": 6,
+      "label": "Accessible Task 6 second check response",
+      "minPx": 56,
+      "maxPx": 240
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a2-stage-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a3-zelketh-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-zelketh-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-records-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-records-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-console-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-console-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a4-mark-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-mark-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-mark-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-mark-4",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-mark-5",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-mark-6",
+      "reason": "classification"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE00:student:t2:t2-risk",
+        "persistId": "t2-risk",
+        "pageId": "student-orientation-02",
+        "taskId": 2,
+        "label": "Task 2 unearned-weight explanation",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE00:student:t4:t4-inworld",
+        "persistId": "t4-inworld",
+        "pageId": "student-orientation-03",
+        "taskId": 4,
+        "label": "Task 4 preserved claim response",
+        "minPx": 60,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE00:student:t4:t4-realworld",
+        "persistId": "t4-realworld",
+        "pageId": "student-orientation-03",
+        "taskId": 4,
+        "label": "Task 4 transferable habit response",
+        "minPx": 60,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE00:student:t5:t5-procedure",
+        "persistId": "t5-procedure",
+        "pageId": "student-orientation-04",
+        "taskId": 5,
+        "label": "Task 5 archive procedure response",
+        "minPx": 160,
+        "maxPx": 520
+      },
+      {
+        "id": "HHH-C1-CASE00:student:t6:t6-exit",
+        "persistId": "t6-exit",
+        "pageId": "student-orientation-04",
+        "taskId": 6,
+        "label": "Task 6 verification checks response",
+        "minPx": 64,
+        "maxPx": 280
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t2-stage-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t2-stage-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t3-nova-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-nova-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-zelketh-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-zelketh-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-records-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-records-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-console-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-console-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-mark-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-mark-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-mark-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-mark-4",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-mark-5",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-mark-6",
+        "reason": "classification"
+      }
+    ],
+    "overrides": {}
+  }
+}

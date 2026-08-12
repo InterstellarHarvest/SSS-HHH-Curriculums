@@ -273,8 +273,8 @@
       // asserted to cover the canonical roster exactly, because the failure this replaces
       // was SSS-C1-CASE07 being absent from both and therefore silently receiving zero
       // resize-eligibility, layout-panel and invalid-default coverage.
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20, "HHH-C1-CASE00": 6 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10, "HHH-C1-CASE00": 5 };
       // Planned registry reservations (no editorPackage) are not operational cases and
       // receive no layout coverage; the operational roster is the editor-compatible one.
       const registeredCaseIds = (await (await fetch("/shared/implementation/case-registry.v2.json")).json())
@@ -910,7 +910,14 @@
       api = win.__curriculumEditor;
       check("switching back to Campaign 1 restores its seven options and reloads a Campaign 1 case", JSON.stringify(caseOptionValues()) === JSON.stringify(campaign1Cases.map(item => item.id)) && api.getPackage().id.startsWith("SSS-C1-") && doc.querySelector("#caseSelect").value === api.getPackage().id, JSON.stringify(caseOptionValues()));
       check("returning to Campaign 1 preserves the case that was selected there", doc.querySelector("#caseSelect").value === campaign1CaseBeforeSwitch, JSON.stringify({ before: campaign1CaseBeforeSwitch, after: doc.querySelector("#caseSelect").value }));
-      check("the single-curriculum selector stays disabled and non-interactive", doc.querySelector("#curriculumSelect").disabled && doc.querySelector("#curriculumSelect").getAttribute("aria-disabled") === "true");
+      // The Curriculum selector follows the same rule as the Campaign and Case selectors:
+      // it is interactive exactly when the scope offers a real choice. Asserting the
+      // literal disabled state encoded the transient world in which SSS was the only
+      // curriculum holding a package, and broke the moment the first HHH package was
+      // registered. The contract is the rule, not that state.
+      const curriculumOptionCount = api.getLibraryScope().curriculumOptions.length;
+      const curriculumSelector = doc.querySelector("#curriculumSelect");
+      check("the curriculum selector is interactive exactly when more than one curriculum holds a registered case", curriculumSelector.disabled === (curriculumOptionCount < 2) && curriculumSelector.getAttribute("aria-disabled") === String(curriculumOptionCount < 2) && (curriculumOptionCount < 2 || curriculumSelector.tabIndex >= 0), JSON.stringify({ curriculumOptionCount, disabled: curriculumSelector.disabled }));
       check("the multi-campaign selector is enabled and keyboard-operable", !doc.querySelector("#campaignSelect").disabled && doc.querySelector("#campaignSelect").getAttribute("aria-disabled") === "false" && doc.querySelector("#campaignSelect").tabIndex >= 0);
 
       // ── Campaign-scoped Case selector ────────────────────────────────────────
