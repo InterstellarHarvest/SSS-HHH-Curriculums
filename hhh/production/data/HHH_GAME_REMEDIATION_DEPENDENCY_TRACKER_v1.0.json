@@ -33,13 +33,13 @@
       "evidence": "C1 L1 runtime + [H1]",
       "recommendedDisposition": "Reframe as reconstructed/composite early cultivation/selection scene; avoid claiming a documented first individual/event at 9700 BCE.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_data.js` C1 L1 briefing and `Record Stabilized` body, rewritten in chain commit 35e8ad4. The briefing now states that no record names the first hand that bent wild grain toward harvest, that the change took thousands of years and countless hands across many valleys, and that the Archive has woven them into one woman and one field so the practice can be witnessed; the explanation names her “the Archive's reconstruction — a composite standing for generations of harvesters across the region,” whose repeated choices raised the non-shattering trait “slowly, over many centuries, from rare accident to whole crop.” The 9,700 BCE date survives only as scene setting, no longer as a documented first individual or event, satisfying the disposition's reconstructed/composite reframing.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -73,13 +73,13 @@
       "evidence": "`hhh_data.js:695`",
       "recommendedDisposition": "Restore intended phrase/sentence before case production.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_data.js` C1 L2 required clue `irrigation_practice` (The Overseer), corrected in chain commit 35e8ad4: “without the old fallow res.” now reads “without the old fallow rest.” The intended phrase is restored, so the required clue summary is quotable in Core Case 02 without textual repair.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -133,13 +133,13 @@
       "evidence": "`hhh_data.js:1067,1070,1076` + [H3][H4]",
       "recommendedDisposition": "Retain severe Lumper/dependence vulnerability but remove universals; separate crop disease from famine’s social/political/economic causes.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_data.js` C1 L3 correct diagnosis, `full` comms hint, and `Record Stabilized` body, rewritten in chain commit 35e8ad4. All three audited universals are gone: “whole country” → “around a third of Ireland's people — its poorest tenant families above all — lived mainly on the potato”; “every field was the same plant repeated” → “field after field held the same plant repeated”; “nothing else grown to fall back on” → “Other food was grown in Ireland all through the hunger, but the poorest had no claim to it.” Causation is now explicitly split — “The blight killed the potato; poverty, the land system, and the choices of those in power made the deaths” — while the severe Lumper clonal-dependence vulnerability is retained, as the disposition requires.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -193,13 +193,13 @@
       "evidence": "`hhh_data.js:1861,1885–1890` + [H8]",
       "recommendedDisposition": "Replace zero-life/zero-growth language with severe topsoil loss, low organic matter/fertility/biological activity, and greatly reduced crop suitability.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_data.js` C1 L5 required source `examine_strata` and insight source `sample_core` — learned text, dialogue nodes, and both TAA terminal readouts — rewritten in chain commit 35e8ad4. “Pale, lifeless subsoil that will grow nothing” → “pale, starved subsoil — poor in the organic matter, fertility, and living activity a crop depends on”; “biologically dead — no organic matter, no microbial life” → “severely degraded — organic matter down to a trace, biological activity a fraction of living topsoil's”; the core terminal's “organic carbon near zero / microbial activity none detected” → “trace below surface / far below living-topsoil range,” and its viability verdict now reads “far too little to carry a crop” rather than absolute sterility. Severe topsoil loss with greatly reduced crop suitability replaces every zero-life/zero-growth absolute; the internal `dead_soil` clueTag is a non-player-facing identifier and was left unchanged.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -253,13 +253,13 @@
       "evidence": "`hhh_campaign_2_data.js:439` + [H10][H11]",
       "recommendedDisposition": "Replace with multi-factor authenticity rule: unexplained neatness can prompt questions, but form/corrections alone do not prove authenticity or forgery.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_campaign_2_data.js` C2 L0 `The Record Validates` funFact, rewritten in chain commit d9fc16b. The single-signal heuristic is replaced by the multi-factor authenticity rule the disposition specifies: examiners “weigh many signs together — materials and ink, handwriting, provenance, chain of custody, and whether independent records corroborate a document's story,” and “Unexplained neatness can prompt a closer look, but no single surface feature proves a record genuine or forged: real working documents can be clean, and good forgeries can fake corrections.” The audited claim that forgeries rarely accumulate corrections is gone.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -293,13 +293,13 @@
       "evidence": "`hhh_campaign_2_data.js:834–858`",
       "recommendedDisposition": "Either mark the clue required or remove the gate; keep intended street-first flow explicit and test completion semantics.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_campaign_2_data.js` C2 L2 source `street`, corrected in chain commit fc793e3: the `insight: true` flag is removed from the source carrying clueTag `siege_witnessed`. The engine derives `requiredClueTags = clues.filter(c => !c.insight)` (`index.html`), so `siege_witnessed` now enters the required set and C2 L2 gates Stabilize on all six clues (`siege_witnessed`, `keeper_testimony`, `collection_intact`, `accessions_continuous`, `vavilov_fate`, `report_read`) — no insight-tagged source remains in the level, so the tag no longer contradicts the gate. The intended street-first structure is preserved and now structurally honest: `besieged_street` has `requires: null`, `seed_vault` still requires `{ clueFound: 'siege_witnessed' }`, and the anchor `institute_office` requires `keeper_testimony`. The reveal node keeps `bonusInsight: true`, which the engine scores independently of the `insight` flag, so the cold-open bonus survives; the “Insight:” prefix was dropped from the learned line to match. The disposition's “mark the clue required” branch is taken with the unlock gate retained.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -393,13 +393,13 @@
       "evidence": "`hhh_campaign_2_data.js:1849,1860,1890,2055` + [H17][H18]",
       "recommendedDisposition": "Separate fictional First Garden network behavior from established mycorrhizal symbiosis; explicitly label broad interplant transfer/signaling claims as system-dependent/debated.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_campaign_2_data.js` C2 L5 required source `network_severed` (learned text and TAA soil-scan terminal), Nova's `names` dialogue node, and the `The Record Validates` body, rewritten in chain commit d9fc16b. The network is now explicitly the First Garden's cultivated artifact — “the restoration cultivated into one continuous system,” with the scan adding “origin: cultivated — First Garden restoration design (wild networks vary; this one was built continuous).” The audited “every healthy garden” generalization is replaced by “Beneath most living ground run fungal threads … How much passes onward, plant to plant, differs soil to soil; even your own scientists still argue how far the sharing reaches in the wild,” and the explanation carries the same system-dependent/debated caveat. Fictional First Garden behavior is separated from established mycorrhizal symbiosis as the disposition requires.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -413,13 +413,13 @@
       "evidence": "`hhh_campaign_2_data.js:2056` + [H19]",
       "recommendedDisposition": "Distinguish direct fossil evidence (~407 Ma) from broader evolutionary inference about earlier land-plant symbioses.",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_campaign_2_data.js` C2 L5 `The Record Validates` funFact, rewritten in chain commit d9fc16b. The asserted “some 450 million years ago” becomes “likely more than 450 million years ago, a date scientists infer rather than observe”; direct evidence is dated and labelled as such — “The oldest direct proof is younger: in plants preserved in fine detail from about 407 million years ago, fungal threads run inside the tissue itself” — and the inferential basis is named: “Everything earlier rests on inference: fossil spores that look fungal, chemistry, and the family trees of living species.” Direct ~407 Ma fossil evidence and broader evolutionary inference are now distinguished.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     },
     {
@@ -433,13 +433,13 @@
       "evidence": "`hhh_campaign_2_data.js:2531` + [H20][H21]",
       "recommendedDisposition": "Use “more than 1.4 million as of June 2026” with date, or future-proof as “more than one million.”",
       "dependencyClass": "GAME_REMEDIATION_BLOCKS_FINALIZATION",
-      "status": "OPEN_AT_AUDITED_GAME_BASELINE",
+      "status": "RESOLVED_VERIFIED",
       "resolution": {
-        "resolvedGameCommit": null,
-        "resolutionEvidence": null,
-        "verificationDate": null,
-        "verifier": null,
-        "verificationStatus": null
+        "resolvedGameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
+        "resolutionEvidence": "`hhh_campaign_2_data.js` C2 L6 (Program Capstone) `The Source, On the Record` funFact, corrected in chain commit d9fc16b: “over 1.2 million seed samples” → “more than 1.4 million of them as of June 2026, and the vault is still filling.” This adopts the disposition's dated form, removing the time-sensitive drift before capstone extraction.",
+        "verificationDate": "2026-08-12",
+        "verifier": "HHH Phase 4 curriculum dependency resolution verification (agent)",
+        "verificationStatus": "RESOLVED_VERIFIED"
       }
     }
   ],
