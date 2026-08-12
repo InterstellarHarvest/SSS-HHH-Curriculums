@@ -21,7 +21,7 @@ from pathlib import Path
 APP = Path(__file__).resolve().parents[1]
 ROOT = APP.parents[1]
 SERVE = APP / "serve.py"
-LAUNCHER = ROOT / "Open Curriculum Editor.command"
+LAUNCHER = APP / "Open Curriculum Editor.command"
 
 
 def free_port() -> int:

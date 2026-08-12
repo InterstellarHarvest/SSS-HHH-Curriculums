@@ -10,7 +10,7 @@ Status: all thirteen registered SSS cases are `APPROVED_STABLE`. The library is 
 
 ## Launch
 
-Double-click **`Open Curriculum Editor.command`** at the repository root. It starts the local server (unless a Curriculum Editor is already serving), opens <http://127.0.0.1:8000/apps/curriculum-editor/> in your default browser, and stays responsible for the server it started. When the editor tab closes, the server notices the missing heartbeat and exits on its own, so nothing needs to be stopped manually. If port 8000 is occupied by something that is not the Curriculum Editor, the launcher reports that and leaves the other program untouched (`CURRICULUM_EDITOR_PORT` selects a different port).
+Double-click **`apps/curriculum-editor/launcher.app`** for the normal no-Terminal launch, or **`apps/curriculum-editor/Open Curriculum Editor.command`** when you want the server output visible for debugging (the `.app` simply invokes the `.command` beside it and writes its output to `~/Library/Logs/SSS-HHH-Curriculum-Editor/launcher.log`). Either starts the local server (unless a Curriculum Editor is already serving), opens <http://127.0.0.1:8000/apps/curriculum-editor/> in your default browser, and stays responsible for the server it started. When the editor tab closes, the server notices the missing heartbeat and exits on its own, so nothing needs to be stopped manually. If port 8000 is occupied by something that is not the Curriculum Editor, the launcher reports that and leaves the other program untouched (`CURRICULUM_EDITOR_PORT` selects a different port). Because `launcher.app` is locally built and unsigned, the very first launch may require right-click → Open.
 
 The direct development command remains available as a fallback:
 

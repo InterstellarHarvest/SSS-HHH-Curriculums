@@ -1,0 +1,24 @@
+#!/bin/bash
+set -u
+
+# This .app lives in apps/curriculum-editor/ inside SSS-HHH-Curriculums and
+# invokes the tested .command launcher sitting beside it.
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+APP_PARENT_DIR="$(cd "$SCRIPT_DIR/../../.." && pwd)"
+COMMAND_LAUNCHER="$APP_PARENT_DIR/Open Curriculum Editor.command"
+
+LOG_DIR="$HOME/Library/Logs/SSS-HHH-Curriculum-Editor"
+LOG_FILE="$LOG_DIR/launcher.log"
+
+mkdir -p "$LOG_DIR"
+
+if [ ! -x "$COMMAND_LAUNCHER" ]; then
+  /usr/bin/osascript -e 'display alert "Curriculum Editor could not start" message "Open Curriculum Editor.command was not found or is not executable beside launcher.app in apps/curriculum-editor." as critical'
+  exit 1
+fi
+
+# Execute the tested .command launcher directly instead of asking Finder to open it.
+# Because Finder is not opening the .command file, Terminal never appears.
+nohup "$COMMAND_LAUNCHER" >>"$LOG_FILE" 2>&1 </dev/null &
+
+exit 0

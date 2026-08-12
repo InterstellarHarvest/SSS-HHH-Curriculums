@@ -1,14 +1,16 @@
 #!/bin/bash
 # One-click launcher for the SSS/HHH Curriculum Editor.
 #
+# Lives in apps/curriculum-editor/ (repository root is two levels up).
 # Double-click this file in Finder: it starts the local editor server (unless
 # one is already running), opens the editor in your default browser, and stays
 # responsible for the server it started until that server exits. The server
 # shuts itself down automatically once the editor tab closes (heartbeat loss),
-# so this window closes on its own when you are done.
+# so this window closes on its own when you are done. For a launch with no
+# Terminal window at all, use launcher.app beside this file instead.
 set -u
 
-REPO_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 SERVE_SCRIPT="$REPO_DIR/apps/curriculum-editor/serve.py"
 PORT="${CURRICULUM_EDITOR_PORT:-8000}"
 OPEN_COMMAND="${CURRICULUM_EDITOR_OPEN:-open}"
@@ -24,7 +26,7 @@ fail() {
 }
 
 command -v python3 >/dev/null 2>&1 || fail "python3 was not found. Install the macOS Command Line Tools (xcode-select --install) and try again."
-[ -f "$SERVE_SCRIPT" ] || fail "Could not find apps/curriculum-editor/serve.py relative to this launcher. Keep this file at the repository root."
+[ -f "$SERVE_SCRIPT" ] || fail "Could not find serve.py relative to this launcher. Keep this file in apps/curriculum-editor/ inside the repository."
 
 # Positively identify what is on the port before doing anything:
 #   exit 0 = this Curriculum Editor is already serving
