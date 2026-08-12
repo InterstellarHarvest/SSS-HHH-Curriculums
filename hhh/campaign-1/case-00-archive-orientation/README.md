@@ -29,15 +29,19 @@ and the name the Blueprint uses for the unit. The registry `title`
 (*Temporal Agricultural Archive Facility*) is the in-fiction facility name and appears in
 the page subtitle and in the package `title` field, where registry/package parity requires it.
 
-**Fiction boundary, scoped honestly.** TAA, the Concord, the Zhel'ii, and resonance
-threading are all named as invented, as the Blueprint boundary requires. The Concord and
-the Zhel'ii do **not** appear in the orientation level, so the framing says they belong to
-the wider story and appear later rather than implying students will meet them here.
+**Fiction boundary, scoped honestly.** TAA, the Concord, the Zhel’ii, and resonance
+threading are all named as invented, as the Blueprint boundary requires. The two peoples
+sit differently in this level and the framing says so: the **Concord** does not appear in
+the orientation and belongs to the wider story, while the **Zhel’ii** do appear — Zel'keth
+is Zhel’ii, and Zel'keth's testimony is one of the four orientation sources students weigh
+in Task 3. Both are marked fictional in Task 4; being present in the level is not the same
+as being real.
 
 **Dossier placement.** The compact orientation dossier is Student page 2 and Accessible
-page 2, not a Teacher appendix. That makes the packet independently teachable and
+page 3, not a Teacher appendix. That makes the packet independently teachable and
 assessable with no device in the room, and keeps the fallback inside the four-role package
-without creating a fifth role.
+without creating a fifth role. The Accessible dossier is an intentionally shortened form
+of the same four sources.
 
 ## Source provenance
 

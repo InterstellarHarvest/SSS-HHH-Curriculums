@@ -94,6 +94,11 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .response.medium { min-height: 1.5in; }
 .response.large { min-height: 1.35in; }
 .response.extended { min-height: 4.2in; }
+/* Task 6 asks for two checks AND a justification for each, which the shared `large`
+   step (sized for one explanation) under-serves. Balanced Page Fill v1.0.2: the
+   surplus below this task on Student page 4 goes to the task that needs it.
+   Scoped to the exit so Task 2's `large` area on page 2 is untouched. */
+.response.large.exit { min-height: 2.5in; }
 .table-response { min-height: .55in; }
 .compact-response { min-height: .28in; text-align: center; }
 .response:focus, .table-response:focus, .compact-response:focus, .chain-response:focus, .inline-response:focus, .mark-response:focus, .id-field:focus { outline: 2px solid var(--primary); outline-offset: 1px; }

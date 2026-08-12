@@ -206,7 +206,7 @@ window.HHH_CASE00_TASK_REGISTRY = {
   "fictionBoundary": [
     "Temporal Agricultural Archive",
     "Concord",
-    "Zhel'ii",
+    "Zhel’ii",
     "resonance threading and the thread"
   ],
   "standards": {
