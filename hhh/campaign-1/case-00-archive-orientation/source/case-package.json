@@ -8,11 +8,12 @@
   "subtitle": "Campaign 1 · Archive Orientation · Temporal Agricultural Archive Facility, 2387",
   "location": "TAA Orientation",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-12",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
   "institutionalIdentity": {
     "id": "TAA",
@@ -131,10 +132,11 @@
     ],
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
+  "releaseHistory": "hhh/campaign-1/case-00-archive-orientation/history/release-v0.1.json",
   "sourceHashes": {
     "content": "b9feb532883ec8af45f431400f29d6599938bde6b655de2f7940a1fd36797209",
     "presentation": "5ffe0190ce1fc83c10d529217920d4a30272025d71f263624902b914a4f95ad0",
-    "taskRegistry": "3987077d52d40c289c5a729f63b73abfc4df0f455de0ef2beefe34f8554d871f",
+    "taskRegistry": "6b4481b3f7eada59d46118779f723c9bda8960b28d6d31574140494a1f6ba2e9",
     "layoutOverrides": "8fbc2132d0dd52d6ed8982fb0d7f26d290b6b1a00e2361465fd74a1f1dd4da63"
   }
 }

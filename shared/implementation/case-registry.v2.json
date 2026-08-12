@@ -287,16 +287,18 @@
               "title": "Temporal Agricultural Archive Facility",
               "instructionalType": "ORIENTATION",
               "version": "0.1",
-              "status": "VALIDATION_BUILD",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "hhh/campaign-1/case-00-archive-orientation/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "VALIDATION",
+              "packageStatus": "APPROVED",
               "approval": {
+                "date": "2026-08-12",
                 "owner": "Nate / Owner",
-                "status": "OWNER_REVIEW_NOT_STARTED",
-                "printStatus": "NOT_RUN"
-              }
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
+              "historyRecord": "hhh/campaign-1/case-00-archive-orientation/history/release-v0.1.json"
             },
             {
               "id": "HHH-C1-CASE01",

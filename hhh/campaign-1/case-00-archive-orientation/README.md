@@ -67,11 +67,24 @@ source/layout-overrides.json response eligibility and lock classification
 Roles and page counts: Student 4 · Teacher 7 · Answer Key 3 · Accessible 5.
 Grayscale is a presentation state on every role, never a fifth role.
 
-`history/` is intentionally absent. This package has no release record and no approval
-record, and must not acquire either before owner review.
+```
+history/release-v0.1.json               canonical release record
+history/CASE00_OWNER_APPROVAL_v0.1.md    owner approval for v0.1
+```
 
 ## Lifecycle
 
-Current state is a validation candidate: `status: VALIDATION_BUILD`,
-registry `packageStatus: VALIDATION`, approval `OWNER_REVIEW_NOT_STARTED`, print
-`NOT_RUN`. It is **not** approved, and the print gate has not been run.
+Released. `status: APPROVED_STABLE`, registry `packageStatus: APPROVED`, approval
+`APPROVED` by Nate / Owner on 2026-08-12, print `PASS` at 100% / Actual Size.
+
+This is the first release of v0.1 — not a corrective reissue. There is no prior approved
+release and no former generated artifact: the case was authored natively as a package
+source, so `formerArtifacts` is `NO_FORMER_GENERATED_ARTIFACTS`.
+
+The owner reviewed and printed the content at
+`05f2b5353b8779d9c5769172d94cd10e9049180f`. Release conversion changed no printable
+source — only `task-registry.js` moved, to carry the lifecycle stamp — so the approved
+pages and the released pages are the same pages.
+
+Production is HTML-only. No canonical PDF artifact exists and PDF generation is not a
+release gate.

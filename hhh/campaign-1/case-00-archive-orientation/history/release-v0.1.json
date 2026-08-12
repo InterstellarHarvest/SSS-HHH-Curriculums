@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE00",
+  "curriculumVersion": "0.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-12",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "sourceHashes": {
+    "content": "b9feb532883ec8af45f431400f29d6599938bde6b655de2f7940a1fd36797209",
+    "presentation": "5ffe0190ce1fc83c10d529217920d4a30272025d71f263624902b914a4f95ad0",
+    "taskRegistry": "6b4481b3f7eada59d46118779f723c9bda8960b28d6d31574140494a1f6ba2e9",
+    "layoutOverrides": "8fbc2132d0dd52d6ed8982fb0d7f26d290b6b1a00e2361465fd74a1f1dd4da63"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "e0be97b5b177007935484431f950e65835937bcfbb9021dc35dbc53088ac26ee",
+    "teacher": "612b16b955822a7ddcc3d7adf0f3d688368be5112ce9c2bccfbf6e8263b17eea",
+    "answer": "1d5e8292fc7b7e27f246666e571f34fa54e289b36439ef7868aa39b3cf6a5a2a",
+    "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only."
+  },
+  "rolePageCounts": {
+    "student": 4,
+    "teacher": 7,
+    "answer": 3,
+    "accessible": 5
+  },
+  "acceptedValidation": {
+    "status": "PENDING_RELEASE_TREE"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-12. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Archive Orientation was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "NOT_APPLICABLE: Archive Orientation was produced natively under the canonical source model; no generated release artifacts exist. The canonical package source at the approval commit is the whole release.",
+  "priorApprovedReleases": [],
+  "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+  "migrationNotes": [
+    "First HHH release. Archive Orientation is the first operational Hunger, Harvest, & History package and the production-architecture smoke test the approved Blueprint requires before Core Case 01.",
+    "Frozen game-source baseline: 9b8545ed6ecf98b337326390400076e36789e056. Every dossier quotation is reproduced from the orientation level at that commit, and each quoted source is one of the four the Phase 1 audit records as required. The game repository has since advanced; this release remains pinned to the audited baseline.",
+    "Runtime case identity: L0, Temporal Agricultural Archive Facility, TAA Orientation, 2387. instructionalType ORIENTATION; not a numbered Core Case.",
+    "Owner-approved printable content baseline: 05f2b5353b8779d9c5769172d94cd10e9049180f. The owner reviewed and physically printed that byte set. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp. Rendered Student, Teacher, Answer Key and Accessible output is unchanged, so the owner's print approval carries forward without a repeat print.",
+    "Six tasks teach archive, record, source status, provenance, corroboration and accession, and separate a claim an archive has preserved from a claim history has verified. The culminating product is a short archive-procedure and source-status explanation; the exit transfers it to a record the unit never supplied.",
+    "Canonical CER is deliberately not used. The Blueprint fixes this unit's product as a procedure rather than a historical diagnosis, and there is no competing interpretation for a Claim-Evidence-Reasoning frame to adjudicate. Teacher page 4 states the rationale for classroom readers.",
+    "The compact orientation dossier is Student page 2 and Accessible page 3 under explicit Fictional Context labelling, so the packet is independently teachable and assessable with no device in the room and no fifth role.",
+    "Fiction boundary: TAA, the Concord, the Zhel’ii and resonance threading are all named as invented. The Concord does not appear in the orientation and belongs to the wider story; the Zhel’ii do appear, because Zel'keth is Zhel’ii and Zel'keth's testimony is one of the four orientation sources. Both are marked fictional in Task 4: presence in the level is not the same as reality.",
+    "Independent review record: the package was reviewed three times against this baseline. The first review required six corrections and returned CORRECTIONS_REQUIRED, the bounded re-review required one, and the final bounded verification returned INDEPENDENT_REREVIEW_PASS. Owner gate followed.",
+    "The unit carries no game-remediation dependency: the Phase 1 audit records finding_ids [] and disposition READY_WITH_BOUNDARY_NOTE for this level.",
+    "The release-history schema's caseId pattern was corrected in the immediately preceding commit so an HHH identity can be represented at all; it previously admitted only SSS identities."
+  ],
+  "retiredArtifacts": []
+}
