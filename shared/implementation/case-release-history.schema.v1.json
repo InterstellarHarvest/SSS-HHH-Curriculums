@@ -12,7 +12,7 @@
   ],
   "properties": {
     "schemaVersion": {"const": 1},
-    "caseId": {"type": "string", "pattern": "^SSS-C[0-9]+-CASE[0-9]{2}$"},
+    "caseId": {"type": "string", "pattern": "^(?:[A-Z]{3}-C[0-9]+-CASE[0-9]{2}|HHH-C1-SYNTHESIS|HHH-C2-CAPSTONE)$"},
     "curriculumVersion": {"$ref": "#/$defs/version"},
     "correctiveOf": {
       "$ref": "#/$defs/version",
