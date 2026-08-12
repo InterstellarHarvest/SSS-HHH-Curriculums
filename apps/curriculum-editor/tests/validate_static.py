@@ -425,6 +425,13 @@ def hhh_lifecycle_findings(entry: dict, package: dict) -> list[str]:
     if not (entry_approval.get("printStatus") == package_approval.get("printStatus") == print_status):
         findings.append(f"{status} requires registry and package print status {print_status!r}; "
                         f"found registry {entry_approval.get('printStatus')!r}, package {package_approval.get('printStatus')!r}")
+    # Beyond the state-specific fields, the two approval records must be the same
+    # record: owner, date when present, and any other schema-allowed field. A
+    # package approved by one owner/date and registered under another is divergence,
+    # not a formatting difference.
+    if entry_approval != package_approval:
+        findings.append("registry and package approval objects must be identical; "
+                        f"registry {entry_approval!r}, package {package_approval!r}")
     if status == "APPROVED_STABLE":
         if not entry.get("historyRecord") or package.get("releaseHistory") != entry.get("historyRecord"):
             findings.append("APPROVED_STABLE requires a matching historyRecord/releaseHistory pair; "

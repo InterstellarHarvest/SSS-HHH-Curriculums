@@ -34,6 +34,7 @@ def registry_entry(status: str = "DRAFT", **overrides) -> dict:
         "editorPackage": CASE00_PACKAGE_PATH,
     }
     if status == "APPROVED_STABLE":
+        entry["approval"]["date"] = "2026-08-12"
         entry["historyRecord"] = "hhh/campaign-1/case-00-archive-orientation/history/release-v1.0.json"
     entry.update(overrides)
     return entry
@@ -133,6 +134,25 @@ class LifecycleStates(unittest.TestCase):
         entry = registry_entry("APPROVED_STABLE")
         package = matching_package(entry, releaseHistory="hhh/campaign-1/other/history/release-v1.0.json")
         self.assertViolates(entry, package, "matching historyRecord/releaseHistory")
+
+    def test_diverging_approval_owner_is_rejected(self):
+        for status in ("DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN", "APPROVED_STABLE"):
+            entry = registry_entry(status)
+            package = matching_package(entry)
+            package["approval"]["owner"] = "Someone Else"
+            self.assertViolates(entry, package, "approval objects must be identical")
+
+    def test_diverging_approved_date_is_rejected(self):
+        entry = registry_entry("APPROVED_STABLE")
+        package = matching_package(entry)
+        package["approval"]["date"] = "2026-08-01"
+        self.assertViolates(entry, package, "approval objects must be identical")
+
+    def test_matching_approved_owner_and_date_pass(self):
+        entry = registry_entry("APPROVED_STABLE")
+        package = matching_package(entry)
+        self.assertEqual(entry["approval"]["date"], package["approval"]["date"], "fixture must carry the date")
+        self.assertClean(entry, package)
 
     def test_unreleased_states_must_not_carry_release_pointers(self):
         for status in ("DRAFT", "VALIDATION_BUILD", "OWNER_GATE_OPEN"):
