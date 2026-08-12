@@ -1428,4 +1428,162 @@ async function loadCase(selected, initial = false, options = {}) {
   window.dispatchEvent(new CustomEvent(initial ? "curriculum-editor-ready" : "curriculum-editor-case-ready", { detail: { caseId: casePackage.id, version: casePackage.version } }));
 }
 
-initialize().catch(showError);
+/**
+ * Local-server lifecycle client. While the editor tab is open it sends a tiny
+ * heartbeat to the loopback server so a launcher-started server can shut down
+ * on its own once the tab is gone. The row stays hidden (and no heartbeat is
+ * ever sent) unless /__health identifies a lifecycle-aware Curriculum Editor
+ * server, so static hosting and the browser test harness remain silent.
+ */
+const SERVER_HEARTBEAT_INTERVAL_MS = 5000;
+const SERVER_RECONNECT_PROBE_MS = 2000;
+const SERVER_RESTART_PROBE_MS = 750;
+const SERVER_RECONNECT_WINDOW_MS = 120000;
+const SERVER_RESTART_WINDOW_MS = 30000;
+
+const serverLifecycle = (() => {
+  const row = $("#serverStatusRow");
+  const status = $("#serverStatus");
+  const restartButton = $("#serverRestart");
+  const stopButton = $("#serverStop");
+  let mode = "checking";
+  let heartbeatTimer = 0;
+  let probeTimer = 0;
+  let probeDeadline = 0;
+  let started = false;
+
+  const setMode = (next, text) => {
+    mode = next;
+    status.dataset.state = next;
+    const dot = document.createElement("span");
+    dot.className = "server-dot";
+    dot.setAttribute("aria-hidden", "true");
+    status.replaceChildren(dot, document.createTextNode(text));
+    restartButton.disabled = next !== "running" && next !== "reconnecting" && next !== "offline";
+    stopButton.disabled = next !== "running";
+  };
+
+  const stopTimers = () => {
+    clearInterval(heartbeatTimer);
+    clearTimeout(probeTimer);
+    heartbeatTimer = 0;
+    probeTimer = 0;
+  };
+
+  const tabState = () => (document.visibilityState === "hidden" ? "hidden" : "visible");
+
+  const postHeartbeat = async () => {
+    const response = await fetch("/__server/heartbeat", {
+      method: "POST",
+      cache: "no-store",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ state: tabState() })
+    });
+    if (!response.ok) throw new Error(`heartbeat ${response.status}`);
+  };
+
+  const probeHealth = async () => {
+    const response = await fetch("/__health", { cache: "no-store" });
+    if (!response.ok) throw new Error(`health ${response.status}`);
+    const payload = await response.json();
+    if (!payload || payload.status !== "ok" || payload.application !== "curriculum-editor") return null;
+    return payload;
+  };
+
+  const beat = async () => {
+    try {
+      await postHeartbeat();
+      if (mode !== "running") setMode("running", "Running");
+    } catch {
+      beginReconnect();
+    }
+  };
+
+  const resumeHeartbeat = () => {
+    stopTimers();
+    setMode("running", "Running");
+    void beat();
+    heartbeatTimer = setInterval(() => { void beat(); }, SERVER_HEARTBEAT_INTERVAL_MS);
+  };
+
+  const probeUntilHealthy = async intervalMs => {
+    try {
+      if (await probeHealth()) {
+        resumeHeartbeat();
+        return;
+      }
+      throw new Error("unidentified server on editor port");
+    } catch {
+      if (performance.now() > probeDeadline) {
+        stopTimers();
+        setMode("offline", "Server offline");
+        return;
+      }
+      probeTimer = setTimeout(() => { void probeUntilHealthy(intervalMs); }, intervalMs);
+    }
+  };
+
+  const beginReconnect = () => {
+    if (mode === "stopped" || mode === "reconnecting" || mode === "restarting") return;
+    stopTimers();
+    probeDeadline = performance.now() + SERVER_RECONNECT_WINDOW_MS;
+    setMode("reconnecting", "Reconnecting…");
+    void probeUntilHealthy(SERVER_RECONNECT_PROBE_MS);
+  };
+
+  const requestRestart = async () => {
+    stopTimers();
+    setMode("restarting", "Restarting…");
+    try {
+      await fetch("/__server/restart", { method: "POST", cache: "no-store" });
+    } catch {
+      /* The server may drop the connection while it restarts; probing recovers. */
+    }
+    probeDeadline = performance.now() + SERVER_RESTART_WINDOW_MS;
+    void probeUntilHealthy(SERVER_RESTART_PROBE_MS);
+  };
+
+  const requestStop = async () => {
+    stopTimers();
+    try {
+      await fetch("/__server/stop", { method: "POST", cache: "no-store" });
+    } catch {
+      /* Already unreachable; stopping is still the intended end state. */
+    }
+    setMode("stopped", "Stopped");
+  };
+
+  const onVisibilityChange = () => {
+    if (mode === "running") void beat();
+  };
+
+  const onPageHide = () => {
+    if (mode !== "running" && mode !== "reconnecting") return;
+    // Optional fast hint only; server-side heartbeat expiry stays authoritative.
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon("/__server/heartbeat", new Blob([JSON.stringify({ state: "closing" })], { type: "application/json" }));
+    }
+  };
+
+  const start = async () => {
+    if (started) return;
+    started = true;
+    let payload = null;
+    try {
+      payload = await probeHealth();
+    } catch {
+      payload = null;
+    }
+    if (!payload || !payload.lifecycle) return;
+    row.hidden = false;
+    restartButton.addEventListener("click", () => { void requestRestart(); });
+    stopButton.addEventListener("click", () => { void requestStop(); });
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    window.addEventListener("pagehide", onPageHide);
+    resumeHeartbeat();
+  };
+
+  return { start };
+})();
+
+initialize().catch(showError).finally(() => { void serverLifecycle.start(); });

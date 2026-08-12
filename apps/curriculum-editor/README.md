@@ -10,11 +10,21 @@ Status: all thirteen registered SSS cases are `APPROVED_STABLE`. The library is 
 
 ## Launch
 
+Double-click **`Open Curriculum Editor.command`** at the repository root. It starts the local server (unless a Curriculum Editor is already serving), opens <http://127.0.0.1:8000/apps/curriculum-editor/> in your default browser, and stays responsible for the server it started. When the editor tab closes, the server notices the missing heartbeat and exits on its own, so nothing needs to be stopped manually. If port 8000 is occupied by something that is not the Curriculum Editor, the launcher reports that and leaves the other program untouched (`CURRICULUM_EDITOR_PORT` selects a different port).
+
+The direct development command remains available as a fallback:
+
 ```bash
 python3 apps/curriculum-editor/serve.py
 ```
 
-Open <http://127.0.0.1:8000/apps/curriculum-editor/>. `file://` is unsupported because package resources are fetched independently.
+Open <http://127.0.0.1:8000/apps/curriculum-editor/>. `file://` is unsupported because package resources are fetched independently. A directly launched server never exits on its own; stop it with Ctrl-C or the editor's Stop control.
+
+### Server heartbeat, Restart, and Stop
+
+While the editor page is open it posts a tiny heartbeat (an in-memory timestamp update only) to loopback `POST /__server/heartbeat` about every 5 seconds. A launcher-started server (`--auto-shutdown`) shuts down cleanly roughly 15 seconds after heartbeats stop — page reloads reconnect well inside that window — and a hidden background tab is given a longer allowance because browsers throttle its timers. A freshly launched server waits about 60 seconds for the first editor tab before giving up and exiting.
+
+The Editor Status area shows a subordinate `Server` row with the connection state and two small controls. **Restart** cleanly restarts the same server process (the process re-executes itself in place, so the launcher keeps ownership and no other process is ever touched) and the page reconnects automatically once `/__health` answers again. **Stop** shuts the server down intentionally; relaunch with the `.command` file. If the connection drops unexpectedly the row shows a reconnecting state and retries without reloading the worksheet or discarding local responses. The row never appears in print output, editable copies, or worksheet exports, and it stays hidden entirely when the page is not served by a lifecycle-aware Curriculum Editor server. All `/__server/*` endpoints are loopback-only under the same request protection as the authoring endpoints.
 
 ## Roles and Grayscale
 
@@ -70,6 +80,7 @@ python3 shared/validation/validate_release_integrity.py
 python3 shared/validation/validate_layout_overrides.py
 python3 apps/curriculum-editor/tests/validate_static.py
 python3 apps/curriculum-editor/tests/test_authoring_service.py
+python3 apps/curriculum-editor/tests/test_server_lifecycle.py
 python3 apps/curriculum-editor/tests/run_browser_tests.py
 python3 apps/curriculum-editor/tests/run_pdf_tests.py
 ```
