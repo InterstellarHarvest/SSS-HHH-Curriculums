@@ -80,18 +80,42 @@ TRACKER_AUTHORITY = {
     "activationBaselineCommit": "d47003c34650a465aea81dbc2da5b5fc9dc4cd47",
 }
 
-# Finalization-blocking coverage: finding ID -> the one curriculum unit it blocks.
-REQUIRED_BLOCKING = {
-    "HHH-GAME-C1L1-001": "HHH-C1-CASE01",
-    "HHH-GAME-C1L2-001": "HHH-C1-CASE02",
-    "HHH-GAME-C1L3-001": "HHH-C1-CASE03",
-    "HHH-GAME-C1L5-001": "HHH-C1-CASE05",
-    "HHH-GAME-C2L0-001": "HHH-C2-CASE07",
-    "HHH-IMP-C2L2-001": "HHH-C2-CASE09",
-    "HHH-GAME-C2L5-001": "HHH-C2-CASE12",
-    "HHH-GAME-C2L5-002": "HHH-C2-CASE12",
-    "HHH-GAME-C2L6-001": "HHH-C2-CAPSTONE",
+# The complete audit-§6 game-dependency census: finding ID -> (curriculum unit,
+# dependency class). Independently verified field-for-field against the committed
+# Phase 1 audit. The tracker must carry exactly these 21 — no additions, no losses.
+EXPECTED_DEPENDENCIES = {
+    "HHH-GAME-C1L1-001": ("HHH-C1-CASE01", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C1L1-002": ("HHH-C1-CASE01", "NONBLOCKING_POLISH"),
+    "HHH-GAME-C1L2-001": ("HHH-C1-CASE02", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C1L2-002": ("HHH-C1-CASE02", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-GAME-C1L2-003": ("HHH-C1-CASE02", "NONBLOCKING_POLISH"),
+    "HHH-GAME-C1L3-001": ("HHH-C1-CASE03", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C1L4-001": ("HHH-C1-CASE04", "NONBLOCKING_POLISH"),
+    "HHH-GAME-C1L4-002": ("HHH-C1-CASE04", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-GAME-C1L5-001": ("HHH-C1-CASE05", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C1L5-002": ("HHH-C1-CASE05", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-GAME-C1L6-001": ("HHH-C1-CASE06", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-GAME-C2L0-001": ("HHH-C2-CASE07", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C2L1-001": ("HHH-C2-CASE08", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-IMP-C2L2-001": ("HHH-C2-CASE09", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C2L2-001": ("HHH-C2-CASE09", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-GAME-C2L3-001": ("HHH-C2-CASE10", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-GAME-C2L4-001": ("HHH-C2-CASE11", "CURRICULUM_QUALIFICATION_REQUIRED"),
+    "HHH-DOC-C2L4-001": ("HHH-C2-CASE11", "NONBLOCKING_POLISH"),
+    "HHH-GAME-C2L5-001": ("HHH-C2-CASE12", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C2L5-002": ("HHH-C2-CASE12", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
+    "HHH-GAME-C2L6-001": ("HHH-C2-CAPSTONE", "GAME_REMEDIATION_BLOCKS_FINALIZATION"),
 }
+EXPECTED_CLASS_TOTALS = {
+    "GAME_REMEDIATION_BLOCKS_FINALIZATION": 9,
+    "CURRICULUM_QUALIFICATION_REQUIRED": 8,
+    "NONBLOCKING_POLISH": 4,
+}
+# Finalization-blocking coverage, derived from the census above.
+REQUIRED_BLOCKING = {finding_id: unit for finding_id, (unit, dependency_class) in EXPECTED_DEPENDENCIES.items()
+                     if dependency_class == "GAME_REMEDIATION_BLOCKS_FINALIZATION"}
+# Blueprint decision findings closed by the approved Blueprint, not by activation.
+EXPECTED_BLUEPRINT_CLOSURES = {"HHH-DEC-001", "HHH-DEC-002", "HHH-DEC-003", "HHH-DEC-004"}
 RESOLUTION_FIELDS = ("resolvedGameCommit", "resolutionEvidence", "verificationDate", "verifier", "verificationStatus")
 OPEN_STATUS = "OPEN_AT_AUDITED_GAME_BASELINE"
 
@@ -209,16 +233,32 @@ def main() -> int:
     for item in dependencies:
         by_finding.setdefault(str(item.get("findingId")), []).append(item)
 
-    for finding_id, unit_id in REQUIRED_BLOCKING.items():
+    # Complete census: exactly the 21 audit-§6 game dependencies, each exactly once,
+    # each mapped to its unit and class. Missing and extra IDs are both failures.
+    if len(dependencies) != len(EXPECTED_DEPENDENCIES):
+        failures.append(f"tracker must hold exactly {len(EXPECTED_DEPENDENCIES)} game dependencies; found {len(dependencies)}")
+    missing = sorted(set(EXPECTED_DEPENDENCIES) - set(by_finding))
+    extra = sorted(set(by_finding) - set(EXPECTED_DEPENDENCIES))
+    if missing:
+        failures.append(f"tracker lost audited game dependencies: {missing}")
+    if extra:
+        failures.append(f"tracker holds dependency IDs the audit register does not: {extra}")
+    for finding_id, (unit_id, dependency_class) in EXPECTED_DEPENDENCIES.items():
         matches = by_finding.get(finding_id, [])
         if len(matches) != 1:
-            failures.append(f"tracker must record blocking finding {finding_id} exactly once; found {len(matches)}")
+            if matches:
+                failures.append(f"tracker must record {finding_id} exactly once; found {len(matches)}")
             continue
         item = matches[0]
         if item.get("curriculumUnit") != unit_id:
-            failures.append(f"{finding_id}: must block {unit_id}; tracker maps it to {item.get('curriculumUnit')}")
-        if item.get("dependencyClass") != "GAME_REMEDIATION_BLOCKS_FINALIZATION":
-            failures.append(f"{finding_id}: required blocking finding is classed {item.get('dependencyClass')}")
+            failures.append(f"{finding_id}: must map to {unit_id}; tracker maps it to {item.get('curriculumUnit')}")
+        if item.get("dependencyClass") != dependency_class:
+            failures.append(f"{finding_id}: must be classed {dependency_class}; tracker classes it {item.get('dependencyClass')}")
+    actual_totals: dict[str, int] = {}
+    for item in dependencies:
+        actual_totals[str(item.get("dependencyClass"))] = actual_totals.get(str(item.get("dependencyClass")), 0) + 1
+    if actual_totals != EXPECTED_CLASS_TOTALS:
+        failures.append(f"tracker class totals must be {EXPECTED_CLASS_TOTALS}; found {actual_totals}")
 
     for item in dependencies:
         finding_id = item.get("findingId")
@@ -250,6 +290,14 @@ def main() -> int:
     if resolved_at_activation != {"HHH-SYS-001", "HHH-SYS-002"}:
         failures.append(f"activation resolves exactly HHH-SYS-001 and HHH-SYS-002; tracker resolves {sorted(resolved_at_activation)}")
 
+    blueprint_closures = {str(item.get("findingId")): str(item.get("status"))
+                          for item in tracker.get("blueprintDecisionFindings", [])}
+    if set(blueprint_closures) != EXPECTED_BLUEPRINT_CLOSURES:
+        failures.append(f"tracker must carry exactly the four Blueprint decision findings {sorted(EXPECTED_BLUEPRINT_CLOSURES)}; found {sorted(blueprint_closures)}")
+    for finding_id, status in blueprint_closures.items():
+        if status != "CLOSED_BY_APPROVED_BLUEPRINT":
+            failures.append(f"{finding_id}: Blueprint decision finding must be CLOSED_BY_APPROVED_BLUEPRINT; found {status}")
+
     return report(failures, len(editor_ready))
 
 
@@ -259,6 +307,7 @@ def report(failures: list[str], editor_ready: int) -> int:
         "status": "PASS" if not failures else "FAIL",
         "units": len(EXPECTED_UNITS),
         "editorReadyEntries": editor_ready,
+        "trackedGameDependencies": len(EXPECTED_DEPENDENCIES),
         "requiredBlockingFindings": len(REQUIRED_BLOCKING),
         "failures": failures,
     }

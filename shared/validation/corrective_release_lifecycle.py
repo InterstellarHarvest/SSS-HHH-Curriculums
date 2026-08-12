@@ -22,9 +22,41 @@ import re
 from pathlib import Path
 
 RELEASE_RE = re.compile(r"^release-v(\d+)\.(\d+)\.json$")
-APPROVAL_RE = re.compile(r"^CASE(\d{2})_OWNER_APPROVAL_v(\d+)\.(\d+)\.md$")
+APPROVAL_RE = re.compile(r"^(CASE\d{2}|SYNTHESIS|CAPSTONE)_OWNER_APPROVAL_v(\d+)\.(\d+)\.md$")
 VERSION_RE = re.compile(r"^(\d+)\.(\d+)$")
 IGNORED = {".DS_Store"}
+
+# Owner-approval filename stems. Ordinary numeric package identities — including
+# Orientation's CASE00 — keep their zero-padded case number; the two special HHH
+# unit identities carry their own stems. There is no fallback: an identity this
+# table and pattern cannot resolve has no canonical approval filename at all.
+NUMERIC_CASE_ID_RE = re.compile(r"^[A-Z]{3}-C\d+-CASE(\d{2})$")
+SPECIAL_APPROVAL_STEMS = {
+    "HHH-C1-SYNTHESIS": "SYNTHESIS",
+    "HHH-C2-CAPSTONE": "CAPSTONE",
+}
+
+
+def approval_stem(case_id: object) -> str:
+    """Canonical owner-approval filename stem for a package identity.
+
+    ``...-CASE07`` → ``CASE07``; ``HHH-C1-SYNTHESIS`` → ``SYNTHESIS``;
+    ``HHH-C2-CAPSTONE`` → ``CAPSTONE``. Raises ValueError for anything else —
+    silently defaulting (the old ``CASE00`` fallback) would let a special unit's
+    approval record bind to the wrong identity.
+    """
+    special = SPECIAL_APPROVAL_STEMS.get(case_id)
+    if special:
+        return special
+    match = NUMERIC_CASE_ID_RE.match(case_id) if isinstance(case_id, str) else None
+    if match:
+        return f"CASE{match.group(1)}"
+    raise ValueError(f"no canonical owner-approval stem for case identity {case_id!r}")
+
+
+def approval_record_name(case_id: object, version: str) -> str:
+    """Canonical owner-approval filename for one identity and version."""
+    return f"{approval_stem(case_id)}_OWNER_APPROVAL_v{version}.md"
 
 
 def parse_version(value: object) -> tuple[int, int] | None:
@@ -39,14 +71,19 @@ def parse_version(value: object) -> tuple[int, int] | None:
     return (int(match.group(1)), int(match.group(2))) if match else None
 
 
-def classify(name: str) -> tuple[str, tuple[int, int]] | None:
-    """Classify a ``history/`` filename as a canonical record, or None."""
+def classify(name: str) -> tuple[str, tuple[int, int], str | None] | None:
+    """Classify a ``history/`` filename as (kind, version, approval-stem), or None.
+
+    The stem is the approval record's identity prefix (``CASE07``, ``SYNTHESIS``,
+    ``CAPSTONE``) and is None for release records. Unknown or noncanonical stems
+    do not classify at all.
+    """
     release = RELEASE_RE.match(name)
     if release:
-        return "release", (int(release.group(1)), int(release.group(2)))
+        return "release", (int(release.group(1)), int(release.group(2))), None
     approval = APPROVAL_RE.match(name)
     if approval:
-        return "approval", (int(approval.group(2)), int(approval.group(3)))
+        return "approval", (int(approval.group(2)), int(approval.group(3))), approval.group(1)
     return None
 
 
@@ -87,6 +124,12 @@ def history_findings(case_root: Path, case_id: str, package: dict,
     entries = ([p for p in sorted(history.iterdir()) if p.name not in IGNORED]
                if history.is_dir() else [])
 
+    try:
+        expected_stem = approval_stem(case_id)
+    except ValueError:
+        findings.append(f"case identity {case_id!r} has no canonical owner-approval stem")
+        expected_stem = None
+
     releases: dict[tuple[int, int], Path] = {}
     approvals: dict[tuple[int, int], Path] = {}
     for entry in entries:
@@ -97,7 +140,12 @@ def history_findings(case_root: Path, case_id: str, package: dict,
         if kind is None:
             findings.append(f"history/{entry.name} is not a canonical release or approval record")
             continue
-        label, version = kind
+        label, version, stem = kind
+        if label == "approval" and expected_stem is not None and stem != expected_stem:
+            findings.append(
+                f"history/{entry.name} carries owner-approval stem {stem}, "
+                f"not this case's canonical {expected_stem}")
+            continue
         (releases if label == "release" else approvals)[version] = entry
 
     for version, path in releases.items():
@@ -138,4 +186,4 @@ def history_findings(case_root: Path, case_id: str, package: dict,
     return findings
 
 
-__all__ = ["parse_version", "classify", "history_findings"]
+__all__ = ["parse_version", "classify", "history_findings", "approval_stem", "approval_record_name"]

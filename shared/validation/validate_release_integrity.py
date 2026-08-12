@@ -83,7 +83,6 @@ LEGACY_CONTRACT_SCOPE = ("SSS", "campaign-1")
 SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 COMMIT_RE = re.compile(r"^[0-9a-f]{40}$")
 VERSION_RE = re.compile(r"^(\d+)\.(\d+)$")
-CASE_ID_RE = re.compile(r"^[A-Z]{3}-C\d-CASE(\d{2})$")
 # Generated artifacts are recoverable from Git and are never committed. Anything
 # matching these is a build output that escaped .gitignore.
 GENERATED_ARTIFACT_RE = re.compile(
@@ -224,9 +223,13 @@ def check_prior_release(results: Results, case_id: str, case_root: Path,
                       len(touching) <= 2, f"{len(touching)} commits: {[c[:8] for c in touching]}")
 
     if not is_inline_approval_case(case_root):
-        approval = case_root / "history" / owner_approval_name(case_id, version)
-        results.check(f"{label} retains its owner-approval record", approval.is_file() and approval.stat().st_size > 0,
-                      approval.name)
+        try:
+            approval = case_root / "history" / owner_approval_name(case_id, version)
+        except ValueError as error:
+            results.check(f"{label} identity maps to a canonical owner-approval stem", False, error)
+        else:
+            results.check(f"{label} retains its owner-approval record", approval.is_file() and approval.stat().st_size > 0,
+                          approval.name)
 
     prior_hashes = entry.get("sourceHashes")
     if isinstance(prior_hashes, dict) and isinstance(current_hashes, dict):
@@ -251,9 +254,12 @@ def is_inline_approval_case(case_root: Path) -> bool:
 
 
 def owner_approval_name(case_id: str, version: str) -> str:
-    match = CASE_ID_RE.match(case_id)
-    number = match.group(1) if match else "00"
-    return f"CASE{number}_OWNER_APPROVAL_v{version}.md"
+    """Canonical approval filename via the shared lifecycle helper.
+
+    Raises ValueError for an identity with no canonical stem — the old silent
+    ``CASE00`` fallback would have bound special-unit approvals to the wrong name.
+    """
+    return corrective_release_lifecycle.approval_record_name(case_id, version)
 
 
 def validate_case(results: Results, curriculum_id: str, campaign_id: str, entry: dict) -> str | None:
@@ -326,10 +332,14 @@ def validate_case(results: Results, curriculum_id: str, campaign_id: str, entry:
     # oldest Campaign 1 releases capture owner approval inline instead, which the
     # owner/date/print checks above verify for all thirteen either way.
     if contract_format:
-        approval_record = case_root / "history" / owner_approval_name(case_id, str(version))
-        results.check(f"{case_id} current release carries its owner-approval record",
-                      approval_record.is_file() and approval_record.stat().st_size > 0,
-                      approval_record.name)
+        try:
+            approval_record = case_root / "history" / owner_approval_name(case_id, str(version))
+        except ValueError as error:
+            results.check(f"{case_id} identity maps to a canonical owner-approval stem", False, error)
+        else:
+            results.check(f"{case_id} current release carries its owner-approval record",
+                          approval_record.is_file() and approval_record.stat().st_size > 0,
+                          approval_record.name)
 
     # --- source certification -------------------------------------------------
     paths = source_repo_paths(package)

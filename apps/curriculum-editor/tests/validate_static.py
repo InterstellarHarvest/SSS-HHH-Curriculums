@@ -360,6 +360,113 @@ def task_registry(path: Path):
     return json.loads(payload)
 
 
+def partition_operational(registry: dict) -> tuple[list[tuple[str, dict]], list[tuple[str, dict]]]:
+    """Split operational (editorPackage-declaring) entries by curriculum.
+
+    The frozen SSS expectation maps in this module (EXPECTED, STUDENT_LAYOUT_COUNTS,
+    NON_ACCESSIBLE_BASELINE_HASHES, exact task/page/CER assertions) bind ONLY to the
+    SSS partition. HHH operational packages must never be indexed through them: they
+    receive the generic shared checks in validate_hhh_operational_case instead, and
+    their instructional products are governed by HHH package validation, not SSS
+    diagnosis/CER assumptions. Returns (sss, hhh) of (campaign_id, entry) pairs.
+    """
+    sss: list[tuple[str, dict]] = []
+    hhh: list[tuple[str, dict]] = []
+    for curriculum in registry["curricula"]:
+        for campaign in curriculum["campaigns"]:
+            for case in campaign["cases"]:
+                if "editorPackage" not in case:
+                    continue
+                (sss if curriculum["id"] == "SSS" else hhh).append((campaign["id"], case))
+    return sss, hhh
+
+
+def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dict, package_schema: dict) -> None:
+    """Generic shared-system checks for one package-backed HHH unit.
+
+    Covers the shared operational contract only. It does not require canonical CER —
+    the Blueprint's instructional products vary by unit — but when a package does use
+    the shared CER component, the structural and page-atomicity contracts still hold.
+    """
+    case_id = entry["id"]
+    package_path = ROOT / entry["editorPackage"]
+    package = load_json(package_path)
+    errors = schema_errors(package, package_schema)
+    results.check(f"{case_id} package validates against schema v2", not errors, errors)
+    results.check(
+        f"{case_id} registry and package identity, curriculum, campaign, and instructional type agree",
+        package["id"] == case_id and package.get("curriculum") == "HHH"
+        and package.get("campaign") == campaign_id
+        and package.get("version") == entry["version"] and package.get("status") == entry["status"]
+        and package.get("title") == entry["title"]
+        and package.get("instructionalType") == entry.get("instructionalType")
+        and package.get("instructionalType") in {"ORIENTATION", "CORE_CASE", "SYNTHESIS", "CAPSTONE"},
+        json.dumps({"registry": {key: entry.get(key) for key in ("id", "version", "status", "title", "instructionalType")},
+                    "package": {key: package.get(key) for key in ("id", "curriculum", "campaign", "version", "status", "title", "instructionalType")}}))
+    results.check(f"{case_id} has exactly four instructional roles",
+                  package["supportedRoles"] == ROLES and list(package["rolePageStructure"]) == ROLES)
+    results.check(f"{case_id} keeps Grayscale a presentation state, not an output or role",
+                  list(package["outputs"]) == ["complete", *ROLES]
+                  and all("GRAYSCALE" not in name.upper() for name in package["outputs"].values())
+                  and '"grayscale": {' not in package_path.read_text(encoding="utf-8"))
+    lifecycle_ok = (
+        entry["status"] == "APPROVED_STABLE"
+        and package.get("releaseHistory") == entry.get("historyRecord")
+        and package["approval"].get("status") == entry["approval"].get("status") == "APPROVED"
+        and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "PASS"
+    ) or (
+        entry["status"] == "DRAFT"
+        and "releaseHistory" not in package and "historyRecord" not in entry
+        and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_NOT_STARTED"
+        and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
+    ) or (
+        entry["status"] == "OWNER_GATE_OPEN"
+        and "releaseHistory" not in package and "historyRecord" not in entry
+        and entry.get("packageStatus") == "OWNER_REVIEW"
+        and package["approval"].get("status") == entry["approval"].get("status") == "OWNER_REVIEW_IN_PROGRESS"
+        and package["approval"].get("printStatus") == entry["approval"].get("printStatus") == "NOT_RUN"
+    )
+    results.check(f"{case_id} lifecycle metadata matches release policy", lifecycle_ok)
+
+    paths = {
+        "content": ROOT / package["content"]["source"],
+        "presentation": ROOT / package["presentation"]["source"],
+        "taskRegistry": ROOT / package["taskRegistry"]["source"],
+        "layoutOverrides": ROOT / package["layoutOverrides"]["source"],
+    }
+    if "icons" in package["sourceHashes"]:
+        paths["icons"] = ROOT / package["shell"]["icons"]
+    results.check(f"{case_id} all package-controlled sources exist", all(path.is_file() for path in paths.values()), paths)
+    if not all(path.is_file() for path in paths.values()):
+        return
+    results.check(f"{case_id} source hashes verify",
+                  all(sha256(path) == package["sourceHashes"][name] for name, path in paths.items()))
+    registry_data = task_registry(paths["taskRegistry"])
+    lifecycle_findings = corrective_release_lifecycle.history_findings(
+        package_path.parents[1], case_id, package, registry_data)
+    results.check(f"{case_id} history satisfies the shared corrective-release lifecycle", not lifecycle_findings, lifecycle_findings)
+
+    soup = BeautifulSoup(paths["content"].read_text(encoding="utf-8"), "html.parser")
+    counts = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
+    actual_counts = {role: len(soup.select(f'.page[data-role="{role}"]')) for role in ROLES}
+    results.check(f"{case_id} worksheet DOM page counts match package declarations", actual_counts == counts, actual_counts)
+    page_ids = [node.get("data-page-id") for node in soup.select(".page[data-page-id]")]
+    persist_ids = [node.get("data-persist-id") for node in soup.select("[data-persist-id]")]
+    results.check(f"{case_id} page and persistence IDs are unique",
+                  len(page_ids) == len(set(page_ids)) and len(persist_ids) == len(set(persist_ids)) and None not in persist_ids)
+    results.check(f"{case_id} response fields have accessible names",
+                  all(node.get("aria-label") or node.get("aria-labelledby") for node in soup.select("[data-response]")))
+    cer_roots = soup.select("[data-cer-contract],.canonical-cer,.cer-stack")
+    if cer_roots:
+        results.check(f"{case_id} CER components are page-atomic",
+                      all(all(child.find_parent(class_="page") is root.find_parent(class_="page")
+                              for child in root.select("*")) for root in cer_roots))
+        canonical_labels = [[label.get_text(strip=True) for label in root.select(":scope > .canonical-cer-box > .canonical-cer-label")]
+                            for root in soup.select(".canonical-cer[data-cer-contract]")]
+        results.check(f"{case_id} declared canonical CER keeps the Claim/Evidence/Reasoning structure",
+                      all(labels == ["CLAIM", "EVIDENCE", "REASONING"] for labels in canonical_labels), canonical_labels)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -390,13 +497,39 @@ def main() -> int:
     all_entries = [case for curriculum in registry["curricula"] for campaign in curriculum["campaigns"] for case in campaign["cases"]]
     # Operational (package-backed) coverage derives from editorPackage; entries without one
     # are planned registry reservations validated by validate_hhh_activation.py instead.
-    entries = [case for case in all_entries if "editorPackage" in case]
-    results.check("registry operational roster is exactly the approved Campaign 1 and Campaign 2 cases in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
-    results.check("every approved case retains a frozen non-Accessible DOM baseline", {entry["id"] for entry in entries if entry["status"] == "APPROVED_STABLE"} <= set(NON_ACCESSIBLE_BASELINE_HASHES))
+    # Frozen SSS expectation maps bind only to the SSS partition; HHH operational
+    # packages take the generic shared checks.
+    sss_operational, hhh_operational = partition_operational(registry)
+    entries = [case for _, case in sss_operational]
+
+    # Routing probe: an editor-ready HHH-C1-CASE00 must reach the generic HHH checks
+    # and must never be indexed through an SSS-only expectation map. Fixture-driven so
+    # the guarantee holds while the live registry still has zero editor-ready HHH units.
+    probe_sss, probe_hhh = partition_operational({"curricula": [
+        {"id": "SSS", "campaigns": [{"id": "campaign-1", "cases": [
+            {"id": "SSS-C1-CASE01", "editorPackage": "sss/campaign-1/case-01-iss-greenhouse/source/case-package.json"},
+            {"id": "SSS-C1-CASE99"}]}]},
+        {"id": "HHH", "campaigns": [{"id": "campaign-1", "cases": [
+            {"id": "HHH-C1-CASE00", "editorPackage": "hhh/campaign-1/case-00-archive-orientation/source/case-package.json"},
+            {"id": "HHH-C1-CASE01"}]}]},
+    ]})
+    results.check("an editor-ready HHH-C1-CASE00 routes to the generic HHH checks and never into SSS-only expectation maps",
+                  [case["id"] for _, case in probe_hhh] == ["HHH-C1-CASE00"]
+                  and [case["id"] for _, case in probe_sss] == ["SSS-C1-CASE01"]
+                  and all(case["id"] not in EXPECTED and case["id"] not in STUDENT_LAYOUT_COUNTS
+                          and case["id"] not in NON_ACCESSIBLE_BASELINE_HASHES for _, case in probe_hhh),
+                  json.dumps({"sss": [case["id"] for _, case in probe_sss], "hhh": [case["id"] for _, case in probe_hhh]}))
+
+    results.check("SSS operational roster is exactly the approved Campaign 1 and Campaign 2 cases in display order", [entry["id"] for entry in entries] == list(EXPECTED), [entry["id"] for entry in entries])
+    results.check("every approved SSS case retains a frozen non-Accessible DOM baseline", {entry["id"] for entry in entries if entry["status"] == "APPROVED_STABLE"} <= set(NON_ACCESSIBLE_BASELINE_HASHES))
     results.check("planned registry reservations stay unreleased DRAFT entries with no package or release pointer", all(entry["status"] == "DRAFT" and "historyRecord" not in entry for entry in all_entries if "editorPackage" not in entry))
     base_fields = {"id", "displayOrder", "displayLabel", "title", "version", "status", "editorShell", "editorPackage", "centralWorkflow", "packageStatus", "approval"}
-    results.check("registry contains lifecycle-appropriate operational case fields", all(set(entry) - {"instructionalType"} == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
+    results.check("SSS registry contains lifecycle-appropriate operational case fields", all(set(entry) == (base_fields | ({"historyRecord"} if entry["status"] == "APPROVED_STABLE" else set())) for entry in entries))
+    results.check("HHH operational entries carry exactly the operational fields plus instructionalType", all(set(case) == (base_fields | {"instructionalType"} | ({"historyRecord"} if case["status"] == "APPROVED_STABLE" else set())) for _, case in hhh_operational))
     results.check("no serialized SSS case entry acquired an instructional type", all("instructionalType" not in entry for entry in all_entries if entry["id"].startswith("SSS-")))
+
+    for hhh_campaign_id, hhh_entry in hhh_operational:
+        validate_hhh_operational_case(results, hhh_campaign_id, hhh_entry, package_schema)
 
     for entry in entries:
         case_id = entry["id"]

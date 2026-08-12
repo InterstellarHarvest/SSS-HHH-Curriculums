@@ -392,7 +392,10 @@ def main() -> int:
 
         history = case / "history"
         records = sorted(history.glob("release-v*.json")) if history.is_dir() else []
-        approval_records = sorted(history.glob("CASE*_OWNER_APPROVAL_v*.md")) if history.is_dir() else []
+        approval_records = sorted(
+            path for path in history.iterdir()
+            if path.is_file() and corrective_release_lifecycle.APPROVAL_RE.match(path.name)
+        ) if history.is_dir() else []
         extra_history = sorted(path.name for path in history.iterdir() if path.is_file() and path not in records + approval_records) if history.is_dir() else []
         if extra_history:
             failures.append(f"{label}: unexpected history files: {extra_history}")
@@ -413,16 +416,23 @@ def main() -> int:
                 failures.append(f"{label}: package releaseHistory does not name its own version's record")
             else:
                 current_record = expected_record
-            if case_key not in HISTORICAL_INLINE_OWNER_APPROVAL:
-                expected_approval = f"CASE{case.name[5:7]}_OWNER_APPROVAL_v{version}.md"
+            # Approval filenames derive from the registered case identity through the
+            # shared lifecycle helper — never from folder-name slices, which have no
+            # answer for the special HHH unit folders.
+            try:
+                expected_approval = corrective_release_lifecycle.approval_record_name(case_id, version)
+            except ValueError as error:
+                failures.append(f"{label}: {error}")
+                expected_approval = None
+            if case_key not in HISTORICAL_INLINE_OWNER_APPROVAL and expected_approval is not None:
                 if expected_approval not in {path.name for path in approval_records}:
                     failures.append(f"{label}: approved v{version} requires history/{expected_approval}")
             # Every retained record must be accompanied by its owner-approval record.
             for record in records:
                 retained_version = record.name[len("release-v"):-len(".json")]
-                if case_key in HISTORICAL_INLINE_OWNER_APPROVAL:
+                if case_key in HISTORICAL_INLINE_OWNER_APPROVAL or expected_approval is None:
                     continue
-                companion = f"CASE{case.name[5:7]}_OWNER_APPROVAL_v{retained_version}.md"
+                companion = corrective_release_lifecycle.approval_record_name(case_id, retained_version)
                 if companion not in {path.name for path in approval_records}:
                     failures.append(f"{label}: retained v{retained_version} release record has no history/{companion}")
         else:

@@ -31,10 +31,12 @@ def release_record(version: str, case_id: str = CASE_ID, status: str = "APPROVED
 class LifecycleFixture:
     """A synthetic case root with a package and an optional history/ directory."""
 
-    def __init__(self, root: Path, version: str, status: str, *, release_history: bool = False):
+    def __init__(self, root: Path, version: str, status: str, *,
+                 case_id: str = CASE_ID, release_history: bool = False):
         self.root = root
         self.root.mkdir(parents=True, exist_ok=True)
-        self.package = {"id": CASE_ID, "version": version, "status": status}
+        self.case_id = case_id
+        self.package = {"id": case_id, "version": version, "status": status}
         if release_history:
             self.package["releaseHistory"] = f"x/history/release-v{version}.json"
 
@@ -44,13 +46,14 @@ class LifecycleFixture:
         return path
 
     def add_release(self, version: str, *, record: dict | None = None, name: str | None = None):
-        body = record if record is not None else release_record(version)
+        body = record if record is not None else release_record(version, case_id=self.case_id)
         (self.history() / (name or f"release-v{version}.json")).write_text(
             json.dumps(body), encoding="utf-8")
         return self
 
-    def add_approval(self, version: str, case_number: str = "02"):
-        (self.history() / f"CASE{case_number}_OWNER_APPROVAL_v{version}.md").write_text(
+    def add_approval(self, version: str, stem: str | None = None):
+        stem = stem or lifecycle.approval_stem(self.case_id)
+        (self.history() / f"{stem}_OWNER_APPROVAL_v{version}.md").write_text(
             f"# Owner approval v{version}\n", encoding="utf-8")
         return self
 
@@ -59,7 +62,7 @@ class LifecycleFixture:
         return self
 
     def findings(self, registry: dict | None = None) -> list[str]:
-        return lifecycle.history_findings(self.root, CASE_ID, self.package, registry)
+        return lifecycle.history_findings(self.root, self.case_id, self.package, registry)
 
 
 class TempCaseTest(unittest.TestCase):
@@ -192,6 +195,100 @@ class InvalidStates(TempCaseTest):
         f = self.fixture("o", "1.0", "APPROVED_STABLE").add_release("1.0").add_release("1.1")
         f.package["releaseHistory"] = "x/history/release-v1.0.json"
         self.assertFails(f.findings(), "above the package version")
+
+
+class ApprovalStems(TempCaseTest):
+    """The shared identity-to-approval-stem helper and special-unit filenames."""
+
+    def test_numeric_identities_keep_their_zero_padded_case_number(self):
+        self.assertEqual(lifecycle.approval_stem("HHH-C1-CASE00"), "CASE00")
+        self.assertEqual(lifecycle.approval_stem("SSS-C1-CASE01"), "CASE01")
+        self.assertEqual(lifecycle.approval_stem("HHH-C2-CASE07"), "CASE07")
+        self.assertEqual(lifecycle.approval_stem("SSS-C2-CASE02"), "CASE02")
+
+    def test_special_hhh_identities_map_to_their_own_stems(self):
+        self.assertEqual(lifecycle.approval_stem("HHH-C1-SYNTHESIS"), "SYNTHESIS")
+        self.assertEqual(lifecycle.approval_stem("HHH-C2-CAPSTONE"), "CAPSTONE")
+
+    def test_canonical_approval_filenames(self):
+        self.assertEqual(lifecycle.approval_record_name("HHH-C1-CASE00", "0.1"),
+                         "CASE00_OWNER_APPROVAL_v0.1.md")
+        self.assertEqual(lifecycle.approval_record_name("HHH-C1-SYNTHESIS", "1.0"),
+                         "SYNTHESIS_OWNER_APPROVAL_v1.0.md")
+        self.assertEqual(lifecycle.approval_record_name("HHH-C2-CAPSTONE", "1.0"),
+                         "CAPSTONE_OWNER_APPROVAL_v1.0.md")
+
+    def test_unknown_identities_are_rejected_not_defaulted(self):
+        for identity in ("HHH-C1-FINALE", "SYNTHESIS", "HHH-C1-CASE1", "SSS-C1-CASE001", "", None):
+            with self.assertRaises(ValueError, msg=identity):
+                lifecycle.approval_stem(identity)
+
+    def test_classification_recognizes_exactly_the_canonical_stems(self):
+        self.assertEqual(lifecycle.classify("SYNTHESIS_OWNER_APPROVAL_v1.0.md"),
+                         ("approval", (1, 0), "SYNTHESIS"))
+        self.assertEqual(lifecycle.classify("CAPSTONE_OWNER_APPROVAL_v1.0.md"),
+                         ("approval", (1, 0), "CAPSTONE"))
+        self.assertEqual(lifecycle.classify("CASE00_OWNER_APPROVAL_v0.1.md"),
+                         ("approval", (0, 1), "CASE00"))
+        for malformed in ("SYNTH_OWNER_APPROVAL_v1.0.md", "CASE0A_OWNER_APPROVAL_v1.0.md",
+                          "PROGRAM-CAPSTONE_OWNER_APPROVAL_v1.0.md", "capstone_OWNER_APPROVAL_v1.0.md"):
+            self.assertIsNone(lifecycle.classify(malformed), malformed)
+
+
+class SpecialUnitLifecycle(TempCaseTest):
+    """Special HHH units flow through the one common lifecycle, not a parallel one."""
+
+    def assertFails(self, findings: list[str], fragment: str):
+        self.assertTrue(findings, "expected at least one finding")
+        self.assertTrue(any(fragment in f for f in findings),
+                        f"expected a finding containing {fragment!r}, got {findings}")
+
+    def test_orientation_case00_first_release_draft_is_clean(self):
+        f = self.fixture("a", "0.1", "DRAFT", case_id="HHH-C1-CASE00")
+        self.assertEqual(f.findings(), [])
+
+    def test_ordinary_core_case_corrective_candidate_retains_records(self):
+        f = (self.fixture("b", "1.1", "DRAFT", case_id="HHH-C2-CASE07")
+             .add_release("1.0").add_approval("1.0"))
+        self.assertEqual(f.findings(), [])
+
+    def test_approved_synthesis_with_its_own_release_and_stem_approval(self):
+        f = (self.fixture("c", "1.0", "APPROVED_STABLE", case_id="HHH-C1-SYNTHESIS")
+             .add_release("1.0").add_approval("1.0"))
+        f.package["releaseHistory"] = "x/history/release-v1.0.json"
+        self.assertEqual(f.findings(), [])
+        self.assertTrue((f.history() / "SYNTHESIS_OWNER_APPROVAL_v1.0.md").is_file())
+
+    def test_capstone_corrective_candidate_retains_capstone_records(self):
+        f = (self.fixture("d", "1.1", "DRAFT", case_id="HHH-C2-CAPSTONE")
+             .add_release("1.0").add_approval("1.0"))
+        self.assertEqual(f.findings(), [])
+        self.assertTrue((f.history() / "CAPSTONE_OWNER_APPROVAL_v1.0.md").is_file())
+
+    def test_capstone_candidate_approving_its_own_version_is_rejected(self):
+        f = (self.fixture("e", "1.1", "DRAFT", case_id="HHH-C2-CAPSTONE")
+             .add_release("1.0").add_approval("1.1"))
+        self.assertFails(f.findings(), "approves the candidate's own version")
+
+    def test_malformed_special_approval_name_is_not_a_canonical_record(self):
+        f = (self.fixture("f", "1.1", "DRAFT", case_id="HHH-C1-SYNTHESIS")
+             .add_release("1.0").add_raw("SYNTH_OWNER_APPROVAL_v1.0.md"))
+        self.assertFails(f.findings(), "not a canonical release or approval record")
+
+    def test_approval_with_another_units_stem_is_rejected(self):
+        f = (self.fixture("g", "1.1", "DRAFT", case_id="HHH-C1-SYNTHESIS")
+             .add_release("1.0").add_approval("1.0", stem="CASE00"))
+        self.assertFails(f.findings(), "not this case's canonical SYNTHESIS")
+
+    def test_numeric_case_rejects_a_special_stem_approval(self):
+        f = (self.fixture("h", "1.1", "DRAFT", case_id="SSS-C2-CASE02")
+             .add_release("1.0").add_approval("1.0").add_approval("1.0", stem="CAPSTONE"))
+        self.assertFails(f.findings(), "not this case's canonical CASE02")
+
+    def test_unresolvable_identity_is_reported_not_defaulted(self):
+        f = self.fixture("i", "1.0", "DRAFT", case_id="HHH-C1-FINALE")
+        f.history()
+        self.assertFails(f.findings(), "has no canonical owner-approval stem")
 
 
 if __name__ == "__main__":
