@@ -4750,6 +4750,54 @@
         }
       }
 
+      // ── General operational page-fit coverage ─────────────────────────────────
+      // The fit loop above walks `canonicalCases`, which is the frozen SSS roster and
+      // stays that way because its sibling assertions encode frozen SSS release
+      // expectations. The consequence was that an operational package outside that
+      // roster received no page-count or overflow protection at all: Archive
+      // Orientation had only manual visual review, and the first HHH Core Case
+      // overflowed three pages while this harness stayed green.
+      //
+      // Coverage is derived from the live registry through `libraryCasesFromRegistry`,
+      // the same helper the editor's own library scope uses. That helper admits only
+      // entries declaring an editorPackage, so a planned DRAFT reservation is never
+      // treated as renderable, and a future unit gains this gate the moment it
+      // acquires a package — with no edit to this file. Nothing here names a unit.
+      const frozenFitRoster = new Set(canonicalCases.map(item => item.id));
+      const generalFitCases = registeredCases.map(item => item.caseEntry.id).filter(id => !frozenFitRoster.has(id));
+      const plannedReservationIds = registryDocument.curricula
+        .flatMap(curriculum => curriculum.campaigns).flatMap(campaign => campaign.cases)
+        .filter(entry => !entry.editorPackage).map(entry => entry.id);
+      check("every registered operational package outside the frozen SSS fit roster receives general page-fit coverage",
+        generalFitCases.length > 0
+        && registeredCases.every(item => frozenFitRoster.has(item.caseEntry.id) || generalFitCases.includes(item.caseEntry.id)),
+        JSON.stringify({ general: generalFitCases, frozen: [...frozenFitRoster] }));
+      check("general page-fit coverage is registry-derived and admits no planned reservation",
+        plannedReservationIds.length > 0 && !generalFitCases.some(id => plannedReservationIds.includes(id)),
+        JSON.stringify({ planned: plannedReservationIds, general: generalFitCases }));
+      check("general page-fit coverage currently reaches both operational HHH packages, Archive Orientation included",
+        ["HHH-C1-CASE00", "HHH-C1-CASE01"].every(id => generalFitCases.includes(id)), JSON.stringify(generalFitCases));
+      for (const caseId of generalFitCases) {
+        await api.selectCase(caseId);
+        await wait(80);
+        api = win.__curriculumEditor;
+        workspace = api.getWorkspace();
+        const declaredFitCounts = Object.fromEntries(Object.entries(api.getPackage().rolePageStructure)
+          .map(([role, structure]) => [role, structure.pageCount]));
+        for (const [role, expected] of Object.entries(declaredFitCounts)) {
+          api.setRole(role);
+          await wait(40);
+          check(`${caseId} ${role} page count`, visiblePages(frame).length === expected, visiblePages(frame).length);
+          const overflowCount = api.checkOverflow();
+          const overflowDetail = Array.from(workspace.querySelectorAll(".page.has-overflow")).map(page => {
+            const pageFrame = page.querySelector(".page-frame");
+            const content = page.querySelector(".content-area");
+            return { page: page.dataset.pageId, frame: [pageFrame?.scrollHeight, pageFrame?.clientHeight], content: [content?.scrollHeight, content?.clientHeight] };
+          });
+          check(`${caseId} ${role} Pages fit`, overflowCount === 0 && doc.querySelector("#overflowStatus").textContent === "Pages fit", JSON.stringify(overflowDetail));
+        }
+      }
+
       const approvedMatrixStates = matrixStates.filter(state => ["SSS-C1-CASE01", "SSS-C1-CASE02", "SSS-C1-CASE03"].includes(state.caseId));
       const case04MatrixStates = matrixStates.filter(state => state.caseId === "SSS-C1-CASE04");
       const case05MatrixStates = matrixStates.filter(state => state.caseId === "SSS-C1-CASE05");
