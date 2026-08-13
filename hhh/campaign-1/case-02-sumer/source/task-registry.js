@@ -325,6 +325,20 @@ window.HHH_CASE02_TASK_REGISTRY = {
       "limitation": "Each pressure is separately argued and none is quantified here. The panel establishes that more than one explanation is on the table, not how much any of them mattered.",
       "gameCorrespondence": "None. The level presents one cause.",
       "fallbackCorrespondence": "What else was going on panel on Student page 7 and Accessible page 9."
+    },
+    {
+      "id": "salt-profile-model",
+      "displayLabel": "The two soil cross-sections",
+      "creator": "Curriculum-original schematic authored for this case",
+      "period": "no period; the model is not dated and depicts no dated field",
+      "sourceType": "teaching model",
+      "sourceOrigin": "curriculum-original schematic",
+      "evidentiaryStatus": "modeled",
+      "limitationClass": "model",
+      "contribution": "A controlled comparison in which two soils receive the same river water under the same sun and differ in one thing only: whether the water can leave. It makes the departure of water, rather than the quality of the water, the visible cause of salt accumulation, which is the reasoning Task 4 Part B assesses.",
+      "limitation": "It is a drawing made to teach a mechanism, not evidence of anything. It is not a surviving ancient diagram, not a measured profile of any field ancient or modern, and no proof that any particular Sumerian field had this geometry. Its depths and proportions are not to scale and it measures no salt amount; it illustrates a mechanism the documented soil and water science independently supports.",
+      "gameCorrespondence": "None. The level states the outcome; it supplies no cross-section and no comparison figure.",
+      "fallbackCorrespondence": "Task 4 figure on Student page 4 and Accessible page 5."
     }
   ],
   "scaleBoundary": {

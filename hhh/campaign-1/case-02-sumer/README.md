@@ -74,6 +74,13 @@ where the released Case 01 carries it and where validation can already reach it:
 set including `contribution`, `limitation`, `gameCorrespondence` and `fallbackCorrespondence`,
 plus the Teacher Guide source ledger on page 6. No shared schema was changed for this case.
 
+`caseSources` carries **seven** entries, one per Teacher-ledger row. The seventh is the
+curriculum-original cross-section model itself: it is registered at
+`evidentiaryStatus: modeled` and its limitation states plainly that it is a teaching drawing
+rather than a surviving ancient diagram, a measured field profile, or proof that any
+particular ancient field had that geometry. A figure the case reasons from is a source, and
+it is declared like one.
+
 ## Source provenance
 
 **Game material.** Dossier cards A and B quote HHH Level 2 at the integrated game baseline
