@@ -5352,6 +5352,66 @@
         && /without the old fallow rest/i.test(c02TextFor("accessible"))
         && !/old fallow res\b/i.test(workspace.textContent),
         "");
+      // Source status, checked against the canonical metadata rather than against a list
+      // of expected sentences. Independent review proved that all six learner dossier
+      // labels could be relabelled from "reconstructed" to "documented", or to
+      // "primary source · eyewitness testimony", with the whole suite still green: every
+      // status assertion tested the *shape* of the line, never its value. Each learner
+      // block that prints a STATUS line now names the caseSources entry it belongs to,
+      // so the printed word is compared with the declared evidentiary status. Relabelling
+      // a reconstructed game scene is then a contradiction between two files, which is
+      // exactly what a validator can see and a proofreader cannot.
+      const c02Declared = Object.fromEntries((c02Registry?.caseSources || []).map(source => [source.id, source.evidentiaryStatus]));
+      // The registry records the controlled concept ("debated / uncertain"); the page
+      // prints its first word. Compare on that, not on the whole phrase.
+      const c02StatusWord = value => String(value || "").toLowerCase().split("/")[0].trim();
+      const c02StatusBlocks = ["student", "accessible"].flatMap(role =>
+        Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-source-id]`)).map(node => {
+          const printed = node.querySelector(".source-status")?.textContent?.trim() || "";
+          return {
+            role,
+            id: node.dataset.sourceId,
+            printed: (/^STATUS:\s*([a-z]+)/i.exec(printed) || [])[1]?.toLowerCase() || null,
+            declared: c02StatusWord(c02Declared[node.dataset.sourceId]) || null
+          };
+        }));
+      check("Case 02 prints every learner source status exactly as its canonical source entry declares it",
+        c02StatusBlocks.length === 14
+        && c02StatusBlocks.every(item => item.declared && item.printed && item.printed === item.declared)
+        && ["student", "accessible"].every(role =>
+          c02StatusBlocks.filter(item => item.role === role && item.id === "archive-scenes").length === 3
+          && c02StatusBlocks.filter(item => item.role === role && item.printed === "reconstructed").length === 3),
+        JSON.stringify(c02StatusBlocks));
+      check("Case 02 binds every learner status block to a canonical source entry that exists",
+        c02StatusBlocks.length > 0 && c02StatusBlocks.every(item => Object.prototype.hasOwnProperty.call(c02Declared, item.id)),
+        JSON.stringify({ declared: Object.keys(c02Declared), used: Array.from(new Set(c02StatusBlocks.map(item => item.id))) }));
+      // No status line anywhere may promote reconstructed material to first-hand evidence.
+      const c02StatusLines = Array.from(workspace.querySelectorAll(".page[data-role] .source-status")).map(node => node.textContent.trim());
+      check("Case 02 never labels any source a primary source or eyewitness testimony",
+        c02StatusLines.length > 0 && !c02StatusLines.some(text => /primary source|eyewitness|first-?hand|verbatim testimony/i.test(text)),
+        JSON.stringify(c02StatusLines.filter(text => /primary source|eyewitness|first-?hand|verbatim testimony/i.test(text))));
+
+      // Load-bearing no-game facts. Independent review proved that deleting both rainfall
+      // statements from the Accessible edition leaves Task 3 Part B unanswerable while the
+      // suite stayed green. These are the few facts an assessed answer actually needs, and
+      // each is required in the editions whose tasks depend on it. This is deliberately a
+      // short list keyed to assessed prompts, not an assertion over every sentence.
+      const c02NoGameFacts = [
+        { fact: "rainfall below 100 mm", task: "3", test: /(under|less than|below)\s*100\s*mm/i },
+        { fact: "barley salt-tolerance threshold", task: "5", test: /\b8\.0\b/ },
+        { fact: "wheat salt-tolerance threshold", task: "5", test: /\b6\.0\b/ },
+        { fact: "565 km outfall drain", task: "3 and 9", test: /\b565\s*km\b/i }
+      ];
+      const c02FactAvailability = c02NoGameFacts.map(item => ({
+        fact: item.fact,
+        task: item.task,
+        student: item.test.test(c02TextFor("student")),
+        accessible: item.test.test(c02TextFor("accessible"))
+      }));
+      check("Case 02 keeps every fact an assessed task depends on available in both learner editions",
+        c02FactAvailability.every(item => item.student && item.accessible),
+        JSON.stringify(c02FactAvailability));
+
       check("Case 02 gives every dossier card a visible textual status line rather than colour alone",
         ["student", "accessible"].every(role => {
           const cards = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .dossier-card`));

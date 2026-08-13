@@ -503,6 +503,75 @@ def hhh_readme_page_count_findings(unit_dir: Path, package: dict) -> list[str]:
     return []
 
 
+PAGE_COUNT_WORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8,
+    "nine": 9, "ten": 10, "eleven": 11, "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+}
+HHH_PAGE_PROSE_RE = re.compile(r"\b(?P<count>[A-Za-z]+|\d+)-page\b")
+HHH_ROLE_PROSE = {
+    "student": "Student Mission",
+    "teacher": "Teacher Guide",
+    "answer": "Answer Key",
+    "accessible": "Accessible Mission",
+}
+
+
+def hhh_page_count_prose_findings(soup: BeautifulSoup, package: dict) -> list[str]:
+    """Every printable sentence that advertises a role page count the package contradicts.
+
+    Case 02 shipped a Teacher Guide telling teachers to print "the ten-page
+    Accessible Mission" against an eleven-page Accessible edition, on two
+    separate pages. Nothing caught it: the package, the registry, the DOM and the
+    README all agreed with each other, and no gate had ever read the *body prose*
+    that a teacher actually follows. The README check closes the same drift one
+    file over; this closes it inside the printed documents.
+
+    The scan is deliberately narrow. An ``N-page`` token binds to whichever role
+    name sits *adjacent* to it, ahead or behind, and only when that role is within
+    a few words. Adjacency rather than direction is what the prose actually uses:
+    "the eight-page Student Mission or the eleven-page Accessible Mission" binds
+    each count forwards, while "the Accessible Mission is an eleven-page packet
+    built alongside the Student Mission" binds backwards, and a rule that always
+    looked forwards would read that second sentence as a claim about the Student
+    edition. A token whose nearest role is further off than that is ordinary prose
+    and is not treated as a page-count claim at all. Counts written as words and as
+    digits resolve the same way.
+    """
+    adjacency = 14
+    findings: list[str] = []
+    for page in soup.select(".page[data-role]"):
+        text = " ".join(page.get_text(" ").split())
+        matches = list(HHH_PAGE_PROSE_RE.finditer(text))
+        for index, match in enumerate(matches):
+            raw = match.group("count")
+            count = int(raw) if raw.isdigit() else PAGE_COUNT_WORDS.get(raw.lower())
+            if count is None:
+                continue
+            # Neither span may cross a neighbouring page-count token, so one claim
+            # can never borrow the role belonging to the next or previous one.
+            stop = matches[index + 1].start() if index + 1 < len(matches) else len(text)
+            start = matches[index - 1].end() if index else 0
+            ahead = text[match.end():min(stop, match.end() + 80)]
+            behind = text[max(start, match.start() - 80):match.start()]
+            candidates = []
+            for role, label in HHH_ROLE_PROSE.items():
+                if label in ahead:
+                    candidates.append((ahead.index(label), role))
+                if label in behind:
+                    candidates.append((len(behind) - (behind.rindex(label) + len(label)), role))
+            candidates = [item for item in candidates if item[0] <= adjacency]
+            if not candidates:
+                continue
+            role = min(candidates)[1]
+            declared = package["rolePageStructure"][role]["pageCount"]
+            if count != declared:
+                findings.append(
+                    f"{page.get('data-page-id')} advertises a {count}-page {HHH_ROLE_PROSE[role]} "
+                    f"against a package count of {declared}: "
+                    f"{text[max(0, match.start() - 40):match.end() + 60].strip()!r}")
+    return findings
+
+
 def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dict, package_schema: dict) -> None:
     """Generic shared-system checks for one package-backed HHH unit.
 
@@ -578,6 +647,9 @@ def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dic
     counts = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
     actual_counts = {role: len(soup.select(f'.page[data-role="{role}"]')) for role in ROLES}
     results.check(f"{case_id} worksheet DOM page counts match package declarations", actual_counts == counts, actual_counts)
+    page_prose_findings = hhh_page_count_prose_findings(soup, package)
+    results.check(f"{case_id} printable prose never advertises a role page count the package contradicts",
+                  not page_prose_findings, page_prose_findings)
     page_ids = [node.get("data-page-id") for node in soup.select(".page[data-page-id]")]
     persist_ids = [node.get("data-persist-id") for node in soup.select("[data-persist-id]")]
     results.check(f"{case_id} page and persistence IDs are unique",
