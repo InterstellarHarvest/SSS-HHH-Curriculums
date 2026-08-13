@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE01",
+  "curriculumVersion": "0.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-13",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "0000000000000000000000000000000000000000",
+  "canonicalSourceApprovalCommit": "0000000000000000000000000000000000000000",
+  "sourceHashes": {
+    "content": "c51c95977481d65339c4e1a293c78f45dda6254c40507aae61ea0ea44bdd48af",
+    "presentation": "d552f457acc00073387c0afcab198dce00bae464b35f07700b7f6b3ff724077c",
+    "taskRegistry": "d0f2f66f8f3e1e5f5c3116d230b6d53e0380324a49236567545edaf90c65c493",
+    "layoutOverrides": "a5f37b56f960a31bda8e3d33870f08ad689d4ba1816b750a48202434a8eb93c5"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "2978fec2f1269d4514f786f80db93d5f7e49ccbfe49f09fef557fc4202b16c38",
+    "teacher": "f422bac747040b5d34277acb4b02e23c10c54836f213d15406a4812b83365439",
+    "answer": "8e2f0dd2e3b1a8cc1bc5b1fcb84ec07fef8bbb29fb934504c2e2d0bb7fd62687",
+    "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only."
+  },
+  "rolePageCounts": {
+    "student": 7,
+    "teacher": 7,
+    "answer": 4,
+    "accessible": 9
+  },
+  "acceptedValidation": {
+    "status": "PENDING"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-13. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Core Case 01 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
+  },
+  "formerArtifactRecoveryCommit": "0000000000000000000000000000000000000000",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [],
+  "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+  "migrationNotes": [
+    "First HHH Core Case release, and the prototype the approved Blueprint requires before Core Cases 02-12 scale sequentially. Archive Orientation (HHH-C1-CASE00) preceded it as the production-architecture smoke test; this is the first full historical case.",
+    "Owner-approved printable content baseline: 8683277d3654eeea492be28daa85a6632499e431. The owner reviewed that byte set on screen and printed it at 100% / Actual Size. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing. Rendered Student, Teacher, Answer Key and Accessible output is unchanged, so the owner's print approval carries forward without a repeat print.",
+    "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. Dossier cards A and B quote Level 1 at that commit. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056; the blocking dependency HHH-GAME-C1L1-001 is RESOLVED_VERIFIED at d9fc16b, and HHH-GAME-C1L1-002 (a grammar defect in the runtime grain-examination line) remains open, nonblocking, and is handled by paraphrase - the malformed sentence appears nowhere in this package and a browser assertion prevents its reuse.",
+    "Runtime case identity: C1 L1, The Fertile Crescent, a river valley in southwest Asia, 9,700 BCE. instructionalType CORE_CASE.",
+    "Eight tasks carry the Core Case spine: vocabulary, first reading, chronology placement, source contribution and limitation, the generation trace, competing accounts and rate, the qualified historical explanation, and a transfer exit on a dig report the case never supplied.",
+    "Canonical CER is deliberately not used. The Blueprint fixes this case's product as a qualified historical explanation, and the position students reach is not seriously contested; what is contested is rate and mechanism, which belongs inside the explanation as a qualification. Teacher page 4 states the rationale for classroom readers.",
+    "Reconstruction boundary: the woman, her words, her field and her season are the Archive's composite reconstruction, and 9,700 BCE is scene setting rather than a dated find. Both learner editions open with a labelled Reconstruction notice, every dossier card carries a STATUS line, and Task 4 gives the reconstruction its own status and its own limit.",
+    "Chronology is one coherent calibrated scale. Task 3 plots five dated evidence bars on a single 10,000-6,000 BCE axis: A and B, C and E from Arranz-Otaegui et al. 2016 in calibrated BP, and D from Allaby et al. 2017 in calibrated BC. Tanno and Willcox 2006 report noncalibrated radiocarbon years, so their dates are deliberately kept off the timeline and never converted to BCE; the paper is used for the counted wild-to-domesticated trend only. Bars B, D and E overlap in time and the figure says so, because they come from different regions, crops and studies.",
+    "Evidence bounding: of 9,844 charred spikelets examined by Tanno and Willcox, 804 were identifiable well enough to classify as wild or domesticated type. Both learner editions, the Teacher references and the Answer Key state the distinction, and a browser assertion rejects any wording that assigns classification to all 9,844.",
+    "Independent review record: the package was reviewed four times against main baseline 3364fe9a0dbd545703f1ba1959dabc8f1e118da2. The full review returned INDEPENDENT_CASE01_REVIEW_CORRECTIONS_REQUIRED with four required corrections; the bounded re-review returned CORRECTIONS_REQUIRED with two; the micro-rereview returned INDEPENDENT_CASE01_MICRO_REREVIEW_PASS - READY_FOR_OWNER_GATE. An owner clarity pass followed the gate, replacing the Task 3 rail with a plotted timeline and removing rail wording from learner text.",
+    "Regression protection added with this case and retained by the release: chronology containment against the plotted bars, cross-role band-claim consistency, calibrated-scale enforcement, source-status scope for the documented Background block, the examined-versus-identifiable relationship, timeline framing and plotted-bar structure, general HHH page-fit coverage derived from the registry, and a registry-derived README role-count guard in validate_static.py.",
+    "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines."
+  ],
+  "retiredArtifacts": []
+}

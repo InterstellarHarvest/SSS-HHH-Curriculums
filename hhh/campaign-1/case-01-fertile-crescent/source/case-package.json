@@ -8,12 +8,14 @@
   "subtitle": "Campaign 1 · Case 01 · A river valley in southwest Asia",
   "location": "A river valley in southwest Asia",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-13",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-1/case-01-fertile-crescent/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -146,7 +148,7 @@
   "sourceHashes": {
     "content": "c51c95977481d65339c4e1a293c78f45dda6254c40507aae61ea0ea44bdd48af",
     "presentation": "d552f457acc00073387c0afcab198dce00bae464b35f07700b7f6b3ff724077c",
-    "taskRegistry": "1b7075afcdb317296df08eb0535e3e8dcf02dc38e3ebc86240217b7e8d63d76c",
+    "taskRegistry": "d0f2f66f8f3e1e5f5c3116d230b6d53e0380324a49236567545edaf90c65c493",
     "layoutOverrides": "a5f37b56f960a31bda8e3d33870f08ad689d4ba1816b750a48202434a8eb93c5"
   }
 }
