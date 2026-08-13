@@ -5,8 +5,8 @@
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-08-13",
   "owner": "Nate / Owner",
-  "originalReleaseApprovalCommit": "0000000000000000000000000000000000000000",
-  "canonicalSourceApprovalCommit": "0000000000000000000000000000000000000000",
+  "originalReleaseApprovalCommit": "e716e0ab8be6fd1715b7569ff8753444f27b1306",
+  "canonicalSourceApprovalCommit": "e716e0ab8be6fd1715b7569ff8753444f27b1306",
   "sourceHashes": {
     "content": "c51c95977481d65339c4e1a293c78f45dda6254c40507aae61ea0ea44bdd48af",
     "presentation": "d552f457acc00073387c0afcab198dce00bae464b35f07700b7f6b3ff724077c",
@@ -26,14 +26,32 @@
     "accessible": 9
   },
   "acceptedValidation": {
-    "status": "PENDING"
+    "status": "PASS",
+    "releaseHistorySchema": "PASS; release-v0.1.json validates against case-release-history.schema.v1.json with zero errors. The schema's caseId pattern already admitted HHH Case identities and was not modified.",
+    "releaseIntegrity": "PASS 655/655 across 15 registered cases; all 15 fully certified against their pinned commit, including HHH-C1-CASE01. The estate grew by one release record.",
+    "canonicalStructure": "PASS; 15 cases, 88 commit references checked, 25 artifact recoveries and 25 artifact hashes verified, 15 prior-approved-release entries, zero failures",
+    "static": "628/628",
+    "browser": "2464/2464 across every case/role/presentation state; 0 JavaScript errors",
+    "hhhActivation": "PASS; 15 Blueprint units, exactly 2 editor-ready packages, 21 tracked game dependencies, zero failures",
+    "hhhOperationalValidation": "27/27",
+    "correctiveReleaseLifecycle": "39/39",
+    "serverLifecycle": "11/11",
+    "authoringSecurity": "13/13",
+    "layoutContracts": "PASS across 15 registered cases; Accessible 221 eligible and 337 locked, Student 133 eligible and 435 locked response areas",
+    "rolePageCountsAndFit": "PASS; all 27 pages fit in colour and grayscale across all four roles with zero overflow and zero clipping, at Student 7, Teacher 7, Answer Key 4, Accessible 9",
+    "ownerApprovedRenderParity": "PASS; Student, Teacher, Answer Key and Accessible DOM hash identically to the owner-approved baseline 8683277d3654eeea492be28daa85a6632499e431, the 75 learner response controls are unchanged, and all 54 rendered page views (27 pages in colour and grayscale) are byte-identical PNGs to the owner-approved render",
+    "sssMutationSuites": "NOT RUN - out of scope. The release changes no validation logic, no release-integrity behaviour and no shared curriculum architecture the mutation suites exercise, and sss/** is byte-identical to main.",
+    "pdf": "NOT A PROJECT GATE - production is HTML-only, no canonical PDF artifact exists, and any browser-exported PDF is noncanonical with no accessibility guarantee",
+    "gitDiffCheck": "clean",
+    "independentReview": "INDEPENDENT_CASE01_MICRO_REREVIEW_PASS - READY_FOR_OWNER_GATE, after a full review (four required corrections), a bounded re-review (two required corrections) and a micro-rereview, all against main baseline 3364fe9a0dbd545703f1ba1959dabc8f1e118da2",
+    "visualReview": "PASS; owner on-screen review of the rendered pages including grayscale, and owner physical print at 100% / Actual Size on 2026-08-13"
   },
   "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-13. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
   "formerArtifacts": {
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Core Case 01 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
   },
-  "formerArtifactRecoveryCommit": "0000000000000000000000000000000000000000",
+  "formerArtifactRecoveryCommit": "e716e0ab8be6fd1715b7569ff8753444f27b1306",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [],
   "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
