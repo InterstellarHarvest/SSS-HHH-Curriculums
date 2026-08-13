@@ -561,6 +561,18 @@ def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dic
     results.check(f"{case_id} history satisfies the shared corrective-release lifecycle", not lifecycle_findings, lifecycle_findings)
     readme_findings = hhh_readme_page_count_findings(package_path.parents[1], package)
     results.check(f"{case_id} README role page counts match the package", not readme_findings, readme_findings)
+    # The task registry is the authoritative record of the case's own shape, and it
+    # states the role page counts a second time. Nothing compared the two, so a
+    # registry could name a page count the package contradicts and every other gate
+    # would still pass — the same class of drift the README check closes, one file
+    # over. Registry-derived through the operational walk, so every HHH unit gains it
+    # with no edit here.
+    registry_roles = registry_data.get("roles")
+    packaged_roles = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
+    results.check(f"{case_id} task registry identity and role page counts match the package",
+                  registry_data.get("case") == case_id and registry_roles == packaged_roles,
+                  json.dumps({"registryCase": registry_data.get("case"),
+                              "registryRoles": registry_roles, "package": packaged_roles}))
 
     soup = BeautifulSoup(paths["content"].read_text(encoding="utf-8"), "html.parser")
     counts = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}

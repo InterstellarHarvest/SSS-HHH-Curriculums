@@ -273,8 +273,8 @@
       // asserted to cover the canonical roster exactly, because the failure this replaces
       // was SSS-C1-CASE07 being absent from both and therefore silently receiving zero
       // resize-eligibility, layout-panel and invalid-default coverage.
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20, "HHH-C1-CASE00": 6, "HHH-C1-CASE01": 13 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10, "HHH-C1-CASE00": 5, "HHH-C1-CASE01": 10 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20, "HHH-C1-CASE00": 6, "HHH-C1-CASE01": 13, "HHH-C1-CASE02": 14 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10, "HHH-C1-CASE00": 5, "HHH-C1-CASE01": 10, "HHH-C1-CASE02": 11 };
       // Planned registry reservations (no editorPackage) are not operational cases and
       // receive no layout coverage; the operational roster is the editor-compatible one.
       const registeredCaseIds = (await (await fetch("/shared/implementation/case-registry.v2.json")).json())
@@ -4775,8 +4775,8 @@
       check("general page-fit coverage is registry-derived and admits no planned reservation",
         plannedReservationIds.length > 0 && !generalFitCases.some(id => plannedReservationIds.includes(id)),
         JSON.stringify({ planned: plannedReservationIds, general: generalFitCases }));
-      check("general page-fit coverage currently reaches both operational HHH packages, Archive Orientation included",
-        ["HHH-C1-CASE00", "HHH-C1-CASE01"].every(id => generalFitCases.includes(id)), JSON.stringify(generalFitCases));
+      check("general page-fit coverage currently reaches every operational HHH package, Archive Orientation included",
+        ["HHH-C1-CASE00", "HHH-C1-CASE01", "HHH-C1-CASE02"].every(id => generalFitCases.includes(id)), JSON.stringify(generalFitCases));
       for (const caseId of generalFitCases) {
         await api.selectCase(caseId);
         await wait(80);
@@ -5214,6 +5214,390 @@
       check("Case 01 reports Pages fit in all four roles with no page content crossing its footer",
         c01Fit.every(entry => entry.overflowCount === 0 && entry.fitStatus === "Pages fit" && entry.bad.length === 0),
         JSON.stringify(c01Fit));
+      api.setRole("student");
+      await wait(40);
+
+      // ── HHH Core Case 02 · Sumer ─────────────────────────────────────────────
+      // The second full HHH historical Core Case. The generic HHH checks above prove
+      // the package loads, isolates and fits; these assertions protect what makes this
+      // case correct rather than merely renderable. Case 02's central risk is not
+      // chronology, as in Case 01, but *scale*: the field mechanism is well supported
+      // and the region-wide claim is not, and the audited game finding
+      // (HHH-GAME-C1L2-002) makes keeping them apart a curriculum obligation rather
+      // than a stylistic preference. The prohibited region-scale formulations and the
+      // keyed claim marks are read from the task registry, so a later edit cannot
+      // loosen the boundary by editing prose alone.
+      await api.selectCase("HHH-C1-CASE02");
+      await wait(80);
+      api = win.__curriculumEditor;
+      workspace = api.getWorkspace();
+      const c02Package = api.getPackage();
+      const c02Registry = window.HHH_CASE02_TASK_REGISTRY || api.getTaskRegistry();
+      const c02Roles = ["student", "teacher", "answer", "accessible"];
+      const c02TaskNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      const c02TaskTitles = Object.fromEntries((c02Registry?.tasks || []).map(task => [task.number, task.title]));
+      const c02PageCounts = { student: 8, teacher: 7, answer: 5, accessible: 11 };
+      const c02Count = selector => workspace.querySelectorAll(selector).length;
+      const c02HeadingsFor = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`))
+        .map(node => ({ number: node.dataset.taskId, title: node.dataset.taskTitle, rendered: node.querySelector(".section-title")?.textContent }));
+      const c02AnswerBodyFor = number => {
+        const heading = workspace.querySelector(`.page[data-role="answer"] .task-heading[data-task-id="${number}"]`);
+        if (!heading) return [];
+        const collected = [];
+        for (let node = heading.nextElementSibling; node && !node.classList.contains("task-heading"); node = node.nextElementSibling) {
+          if (node.querySelector?.(".task-heading")) break;
+          collected.push(node);
+        }
+        return collected;
+      };
+      const c02TextFor = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`)).map(page => page.textContent).join(" ");
+
+      check("Case 02 is the registered Core Case package with four instructional roles",
+        c02Package.id === "HHH-C1-CASE02" && c02Package.curriculum === "HHH" && c02Package.instructionalType === "CORE_CASE"
+        && JSON.stringify(c02Package.supportedRoles) === JSON.stringify(c02Roles)
+        && JSON.stringify(Object.keys(c02Package.rolePageStructure)) === JSON.stringify(c02Roles),
+        JSON.stringify({ id: c02Package.id, type: c02Package.instructionalType, roles: c02Package.supportedRoles }));
+      check("Case 02 declares no canonical CER component, matching its qualified-explanation product",
+        !workspace.querySelector("[data-cer-contract],.canonical-cer,.cer-stack"));
+      check("Case 02 page counts match the package in every role",
+        c02Roles.every(role => c02Count(`.page[data-role="${role}"]`) === c02PageCounts[role]
+          && c02Package.rolePageStructure[role].pageCount === c02PageCounts[role]),
+        JSON.stringify(Object.fromEntries(c02Roles.map(role => [role, c02Count(`.page[data-role="${role}"]`)]))));
+      check("Case 02 task registry supplies all nine task titles",
+        c02TaskNumbers.every(number => typeof c02TaskTitles[number] === "string" && c02TaskTitles[number].length > 0),
+        JSON.stringify(c02TaskTitles));
+
+      // Task parity across the three task-numbered roles, against the registry.
+      const c02HeadingRoles = ["student", "answer", "accessible"];
+      const c02Parity = Object.fromEntries(c02HeadingRoles.map(role => [role, c02HeadingsFor(role)]));
+      check("Case 02 expands all nine registry tasks in Student, Answer Key and Accessible with the exact numbers and titles",
+        c02HeadingRoles.every(role => JSON.stringify(c02Parity[role].map(item => item.number)) === JSON.stringify(c02TaskNumbers)
+          && c02Parity[role].every(item => item.title === c02TaskTitles[item.number]
+            && item.rendered === `${item.number} · ${c02TaskTitles[item.number]}`)),
+        JSON.stringify(c02Parity));
+      check("Case 02 Teacher Guide prints no numbered task heading of its own, so the learner numbering stays canonical",
+        c02HeadingsFor("teacher").length === 0);
+      const c02UnkeyedTasks = c02TaskNumbers.filter(number =>
+        !c02AnswerBodyFor(number).some(node => node.classList.contains("answer-block") || node.classList.contains("matrix-table")));
+      check("Case 02 Answer Key carries a completed exemplar under every one of the nine tasks",
+        c02Parity.answer.length === 9 && c02UnkeyedTasks.length === 0, JSON.stringify(c02UnkeyedTasks));
+      check("Case 02 Answer Key completes the whole twelve-cell evidence table and leaves no blank field",
+        c02Count('.page[data-role="answer"] .matrix-table tbody tr') === 4
+        && ["reconstructed", "documented", "debated", "inferred"].every(status =>
+          workspace.querySelector('.page[data-role="answer"] .matrix-table').textContent.includes(status))
+        && !workspace.querySelector('.page[data-role="answer"] [data-response]'),
+        workspace.querySelector('.page[data-role="answer"] .matrix-table')?.textContent?.slice(0, 240));
+
+      // Teacher reference contract.
+      const c02TeacherRefs = Array.from(workspace.querySelectorAll('.page[data-role="teacher"] strong.task-reference'))
+        .map(node => node.textContent.trim());
+      check("Case 02 Teacher task references are complete bolded number-and-title pairs from the registry",
+        c02TeacherRefs.length > 0 && c02TeacherRefs.every(text =>
+          Object.entries(c02TaskTitles).some(([number, title]) => text === `${number} · ${title}`)),
+        JSON.stringify(Array.from(new Set(c02TeacherRefs)).sort()));
+      check("Case 02 Teacher procedure accounts for every one of the nine Student tasks",
+        c02TaskNumbers.every(number => c02TeacherRefs.includes(`${number} · ${c02TaskTitles[number]}`)),
+        JSON.stringify({ referenced: Array.from(new Set(c02TeacherRefs)).sort() }));
+      check("Case 02 Teacher carries the route, both rubrics and the authoritative reference list",
+        ["data-final-task-route", "data-final-quick-rubric", "data-final-reference-list"]
+          .every(marker => workspace.querySelector(`.page[data-role="teacher"] [${marker}]`))
+        && c02Count('.page[data-role="teacher"] .final-analytic-rubric[data-rubric-contract="4-3-2-1-v1.0"] tbody tr') === 4
+        && c02Count('.page[data-role="teacher"] .final-reference-list > li') === 7);
+
+      // The reconstruction AND scale boundary. This is HHH-GAME-C1L2-002 made testable.
+      // Both statements must be present in both learner editions: the scenes are
+      // reconstructions, and the region-scale question is not settled by this packet.
+      check("Case 02 learner editions both open with a labelled reconstruction and scale boundary",
+        ["student", "accessible"].every(role => {
+          const note = workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`);
+          return note && note.getAttribute("data-scale-boundary") === "field-and-region"
+            && note.querySelector(".label").textContent.trim() === "Reconstruction and scale notice";
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary] .label`)?.textContent)));
+      check("Case 02 learner editions both name the two scales and say the region question is unsettled",
+        ["student", "accessible"].every(role => {
+          const note = workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`).textContent;
+          return /one field/i.test(note) && /(whole region|a region)/i.test(note)
+            && /(does not settle|still argue|not settled)/i.test(note);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`).textContent.slice(0, 200))));
+      // The prohibited region-scale formulations, taken from the registry rather than
+      // hard-coded here, so the contract lives with the case. These are the wordings
+      // the Phase 1 audit rejected; none may appear in any role.
+      const c02Prohibited = c02Registry?.scaleBoundary?.prohibitedClaims || [];
+      const c02ProhibitedHits = c02Prohibited.filter(phrase =>
+        workspace.textContent.toLowerCase().includes(String(phrase).toLowerCase()));
+      check("Case 02 prints none of the audit-rejected single-cause formulations in any role",
+        c02Prohibited.length >= 4 && c02ProhibitedHits.length === 0,
+        JSON.stringify({ declared: c02Prohibited, found: c02ProhibitedHits }));
+      // Where a single-cause sentence does appear it is a claim students must judge or
+      // a response the key rejects, never an assertion the packet makes.
+      const c02SingleCausePages = Array.from(workspace.querySelectorAll(".page[data-role]"))
+        .filter(page => /(destroyed Sumer|one and only cause|main reason power moved)/i.test(page.textContent))
+        .map(page => ({
+          page: page.dataset.pageId,
+          framed: /(Claim \d|marked|mark each|fails component|should be returned|goes against it|cannot decide)/i.test(page.textContent)
+        }));
+      check("Case 02 prints a single-cause claim only as something to judge or reject, never as a finding",
+        c02SingleCausePages.length > 0 && c02SingleCausePages.every(item => item.framed),
+        JSON.stringify(c02SingleCausePages));
+      // HHH-GAME-C1L2-003: the defective scribe wording is never reproduced, and the
+      // HHH-GAME-C1L2-001 correction is genuinely used rather than worked around.
+      check("Case 02 never reproduces the uncorrected runtime scribe-record wording",
+        !/Yet,\s*wrote the cause down/i.test(workspace.textContent));
+      check("Case 02 quotes the corrected fallow-rest clue and never the truncated form",
+        /without the old fallow rest/i.test(c02TextFor("student"))
+        && /without the old fallow rest/i.test(c02TextFor("accessible"))
+        && !/old fallow res\b/i.test(workspace.textContent),
+        "");
+      check("Case 02 gives every dossier card a visible textual status line rather than colour alone",
+        ["student", "accessible"].every(role => {
+          const cards = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .dossier-card`));
+          return cards.length === 4 && cards.every(card => /^STATUS:/.test(card.querySelector(".source-status")?.textContent?.trim() || ""));
+        }),
+        JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="student"] .dossier-card .source-status')).map(node => node.textContent.trim())));
+
+      // The mechanism figure is a controlled comparison, and the control is geometric.
+      // Prose asserting "only one thing is different" is exactly the sentence a careless
+      // edit would leave standing while breaking the drawing, so the water-table
+      // positions are measured off the rendered sections rather than read out of the
+      // caption beside them — the Case 01 chronology lesson applied to a cross-section.
+      const c02Profiles = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-mechanism-contract]`);
+        const sections = Array.from(figure.querySelectorAll(".profile"));
+        const tableOffset = section => {
+          const box = section.querySelector(".profile-figure").getBoundingClientRect();
+          const line = section.querySelector(".profile-table").getBoundingClientRect();
+          return Math.round(line.top - box.top);
+        };
+        const noDrain = sections.find(section => section.dataset.profile === "no-drain");
+        const drained = sections.find(section => section.dataset.profile === "drained");
+        c02Profiles.push({
+          role,
+          sections: sections.length,
+          sharedWater: /same river water/i.test(figure.querySelector(".profile-control")?.textContent || ""),
+          figureHeight: Math.round(noDrain?.querySelector(".profile-figure").getBoundingClientRect().height || 0),
+          noDrainTable: noDrain ? tableOffset(noDrain) : null,
+          drainedTable: drained ? tableOffset(drained) : null,
+          blockedExit: Boolean(noDrain?.querySelector(".profile-out-blocked")),
+          drainedExit: Boolean(drained?.querySelector(".profile-out")) && !drained?.querySelector(".profile-out-blocked"),
+          saltInRoots: /salt collects/i.test(noDrain?.querySelector(".profile-roots")?.textContent || ""),
+          noCrust: /no crust/i.test(drained?.querySelector(".profile-crust")?.textContent || "")
+        });
+      }
+      check("Case 02 holds the water constant across both soil sections in both learner editions",
+        c02Profiles.every(item => item.sections === 2 && item.sharedWater), JSON.stringify(c02Profiles));
+      check("Case 02 really draws the undrained water table nearer the surface than the drained one",
+        c02Profiles.length === 2 && c02Profiles.every(item => item.figureHeight > 0
+          && Number.isFinite(item.noDrainTable) && Number.isFinite(item.drainedTable)
+          && item.noDrainTable < item.drainedTable),
+        JSON.stringify(c02Profiles.map(item => ({ role: item.role, noDrain: item.noDrainTable, drained: item.drainedTable }))));
+      check("Case 02 marks the blocked exit, the salted root zone and the clear drained surface in both learner editions",
+        c02Profiles.every(item => item.blockedExit && item.drainedExit && item.saltInRoots && item.noCrust),
+        JSON.stringify(c02Profiles));
+      check("Case 02 makes the water-and-salt path a student organizer with the ends supplied in both learner editions",
+        ["student", "accessible"].every(role => {
+          const path = workspace.querySelector(`.page[data-role="${role}"] [data-mechanism-path]`);
+          const stages = Array.from(path.querySelectorAll(".stage"));
+          return stages.length === 5 && stages[0].querySelector(".stage-fixed") && stages[4].querySelector(".stage-fixed")
+            && path.querySelectorAll("[data-response]").length >= 2;
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelectorAll(`.page[data-role="${role}"] [data-mechanism-path] [data-response]`).length)));
+
+      // The measured comparison. Both bars must encode the registry's own values, and
+      // the case must never claim an ancient soil-salinity measurement — the specific
+      // false-precision failure this case was required to avoid.
+      const c02Tolerance = c02Registry?.cropTolerance?.values || {};
+      const c02Bars = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-tolerance-contract]`);
+        const rows = Array.from(figure.querySelectorAll(".tolerance-row")).map(row => ({
+          name: row.querySelector(".tolerance-name").textContent.trim(),
+          width: Math.round(row.querySelector(".tolerance-bar").getBoundingClientRect().width),
+          value: row.querySelector(".tolerance-value").textContent.trim()
+        }));
+        const barley = rows.find(row => row.name === "barley"), wheat = rows.find(row => row.name === "wheat");
+        c02Bars.push({
+          role, rows: rows.length, barley, wheat,
+          ordered: Boolean(barley && wheat && barley.width > 0 && barley.width > wheat.width),
+          unitsNamed: /dS\/m/.test(figure.textContent),
+          modernStated: /modern measurement/i.test(figure.closest("figure").textContent)
+        });
+      }
+      check("Case 02 tolerance bars print the registry's own threshold values in both learner editions",
+        c02Bars.every(item => item.rows === 2
+          && item.barley?.value === String(c02Tolerance.barley?.thresholdDsPerM?.toFixed(1))
+          && item.wheat?.value === String(c02Tolerance.wheat?.thresholdDsPerM?.toFixed(1))),
+        JSON.stringify({ registry: c02Tolerance, rendered: c02Bars.map(item => ({ role: item.role, barley: item.barley, wheat: item.wheat })) }));
+      check("Case 02 draws the more tolerant grain's bar longer, names its unit, and labels the values modern",
+        c02Bars.length === 2 && c02Bars.every(item => item.ordered && item.unitsNamed && item.modernStated), JSON.stringify(c02Bars));
+      check("Case 02 claims no ancient soil-salinity measurement in any role",
+        !/(ancient|Sumerian|Mesopotamian)[^.]{0,80}\b\d+(\.\d+)?\s*dS\/m/i.test(workspace.textContent)
+        && ["student", "accessible"].every(role => /nobody has measured|no one has measured/i.test(c02TextFor(role))),
+        "");
+
+      // The setting diagram, and the Answer Key agreeing with what it actually names.
+      const c02Outlet = ["student", "accessible"].map(role => {
+        const map = workspace.querySelector(`.page[data-role="${role}"] [data-setting-contract]`);
+        const bands = Array.from(map.querySelectorAll(".map-band"));
+        const outlet = map.querySelector(".map-band-outlet .map-band-name");
+        return { role, bands: bands.length, outlet: outlet?.textContent.trim(),
+                 notToScale: /(not|nothing)[^.]{0,40}\bto scale\b/i.test(map.closest("figure").textContent) };
+      });
+      check("Case 02 setting diagram carries four named bands and one marked outlet in both learner editions",
+        c02Outlet.every(item => item.bands === 4 && item.outlet === "The Gulf" && item.notToScale), JSON.stringify(c02Outlet));
+      check("Case 02 Answer Key names the same outlet band the diagram marks",
+        /Part A\s*—\s*<?\s*.{0,20}The Gulf/i.test(workspace.querySelector('.page[data-role="answer"] .answer-block').textContent)
+        || /The Gulf/.test(c02AnswerBodyFor("3").map(node => node.textContent).join(" ")),
+        c02AnswerBodyFor("3").map(node => node.textContent).join(" ").slice(0, 200));
+
+      // Scale discipline: three marks, and the key agreeing with the registry.
+      const c02Claims = c02Registry?.claimJudgments?.claims || [];
+      const c02KeyMarks = (c02AnswerBodyFor("7").map(node => node.textContent).join(" ").match(/Claim\s+\d\s*:\s*([YN?])/g) || [])
+        .map(text => text.replace(/.*:\s*/, ""));
+      check("Case 02 keys all five claim marks and keys exactly one as undecidable by this case",
+        c02Claims.length === 5 && c02KeyMarks.length === 5
+        && c02KeyMarks.join("") === c02Claims.map(claim => claim.mark).join("")
+        && c02KeyMarks.filter(mark => mark === "?").length === 1,
+        JSON.stringify({ registry: c02Claims.map(claim => claim.mark), key: c02KeyMarks }));
+      check("Case 02 offers learners all three marks, including one for claims this case cannot decide",
+        ["student", "accessible"].every(role => {
+          const key = workspace.querySelector(`.page[data-role="${role}"] .mark-key`);
+          return key && /cannot decide/i.test(key.textContent)
+            && c02Count(`.page[data-role="${role}"] .account-item [data-response]`) === 5;
+        }),
+        JSON.stringify(["student", "accessible"].map(role => c02Count(`.page[data-role="${role}"] .account-item [data-response]`))));
+
+      // Real science must not sit under a reconstructed status line, and the modern
+      // report must not read as an ancient one.
+      check("Case 02 carries the salinization mechanism as documented background outside the reconstructed dossier",
+        ["student", "accessible"].every(role => {
+          const background = workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"]`);
+          const cards = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .dossier-card`));
+          return Boolean(background)
+            && /^STATUS: documented/.test(background.querySelector(".source-status")?.textContent?.trim() || "")
+            && !background.closest(".dossier")
+            && /water table rises/i.test(background.textContent)
+            && cards.every(card => !/^STATUS: reconstructed/.test(card.querySelector(".source-status")?.textContent?.trim() || "")
+              || !/water table rises/i.test(card.textContent));
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"] .source-status`)?.textContent?.trim())));
+      check("Case 02 labels the modern plain report as modern documented reporting in both learner editions",
+        ["student", "accessible"].every(role => {
+          const panel = workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-modern"]`);
+          return panel && /^STATUS: documented/.test(panel.querySelector(".source-status")?.textContent?.trim() || "")
+            && /modern/i.test(panel.querySelector(".source-status").textContent);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-modern"] .source-status`)?.textContent?.trim())));
+      check("Case 02 marks the competing-pressures panel debated and weighs none of them",
+        ["student", "accessible"].every(role => {
+          const panel = workspace.querySelector(`.page[data-role="${role}"] [data-competing-pressures]`);
+          return panel && /^STATUS: debated/.test(panel.querySelector(".source-status")?.textContent?.trim() || "")
+            && /(none of (them|these) is measured|not measured here)/i.test(panel.textContent);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-competing-pressures] .source-status`)?.textContent?.trim())));
+
+      // Fallback, scaffolding and exact-match banks.
+      check("Case 02 no-game evidence route lives inside the learner packets, not a fifth role",
+        c02Count('.page[data-role="student"] .dossier-card') === 4
+        && c02Count('.page[data-role="accessible"] .dossier-card') === 4
+        && ["student", "accessible"].every(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-setting-contract]`)
+          && workspace.querySelector(`.page[data-role="${role}"] [data-mechanism-contract]`)
+          && workspace.querySelector(`.page[data-role="${role}"] [data-tolerance-contract]`))
+        && JSON.stringify(c02Package.supportedRoles) === JSON.stringify(c02Roles));
+      check("Case 02 Accessible scaffolds repetition without removing the assessed reasoning",
+        c02Count('.page[data-role="accessible"] .modeled-row') === 1
+        && c02Count('.page[data-role="accessible"] .stage.modeled') === 1
+        && c02Count('.page[data-role="accessible"] .matrix-table tbody [data-response]') === 9
+        && c02Count('.page[data-role="student"] .matrix-table tbody [data-response]') === 12
+        && c02Count('.page[data-role="accessible"] [data-response]') < c02Count('.page[data-role="student"] [data-response]'),
+        JSON.stringify({
+          accessibleCells: c02Count('.page[data-role="accessible"] .matrix-table tbody [data-response]'),
+          studentCells: c02Count('.page[data-role="student"] .matrix-table tbody [data-response]'),
+          accessibleTotal: c02Count('.page[data-role="accessible"] [data-response]'),
+          studentTotal: c02Count('.page[data-role="student"] [data-response]')
+        }));
+      check("Case 02 exact-match banks carry one entry per blank with no decoys",
+        c02Count('.page[data-role="student"] .word-bank') === 2
+        && c02Count('.page[data-role="student"] .word-bank-item') === 10
+        && c02Count('.page[data-role="student"] .status-bank-items .word-bank-item') === 4
+        && c02Count('.page[data-role="student"] .term-list [data-response]') === 6
+        && c02Count('.page[data-role="accessible"] .status-bank-items .word-bank-item') === 3
+        && c02Count('.page[data-role="accessible"] .term-list [data-response]') === 6
+        && (c02Registry?.vocabulary || []).length === 6,
+        JSON.stringify({
+          studentBankItems: c02Count('.page[data-role="student"] .word-bank-item'),
+          accessibleStatusItems: c02Count('.page[data-role="accessible"] .status-bank-items .word-bank-item'),
+          vocabulary: c02Registry?.vocabulary
+        }));
+
+      // Page identity, persistence and layout classification.
+      check("Case 02 page identity is role-specific and correctly numbered on every page",
+        c02Roles.every(role => {
+          const label = { student: "Student Mission", teacher: "Teacher Guide", answer: "Answer Key", accessible: "Accessible Mission" }[role];
+          const footers = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-publication-footer] span`)).map(node => node.textContent.trim());
+          return footers.length === c02PageCounts[role]
+            && footers.every((text, index) => text === `${label} ${index + 1} of ${c02PageCounts[role]}`);
+        }),
+        JSON.stringify(Object.fromEntries(c02Roles.map(role =>
+          [role, Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-publication-footer] span`)).map(node => node.textContent.trim())]))));
+      check("Case 02 identification row appears only on learner page 1 and never in Teacher or Answer Key",
+        ["student", "accessible"].every(role => c02Count(`.page[data-role="${role}"] .student-id`) === 1
+          && workspace.querySelector(`.page[data-role="${role}"] .student-id`).closest(".page").dataset.pageId.endsWith("-01"))
+        && !workspace.querySelector('.page[data-role="teacher"] .student-id, .page[data-role="answer"] .student-id'));
+      check("Case 02 makes every required learner action a persistent labelled control",
+        ["student", "accessible"].every(role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-response]`))
+          .every(node => node.dataset.persistId && (node.getAttribute("aria-label") || node.getAttribute("aria-labelledby"))))
+        && Boolean(workspace.querySelector('[data-persist-id="t3-outlet"][data-response]'))
+        && Boolean(workspace.querySelector('[data-persist-id="a3-outlet"][data-response]'))
+        && Boolean(workspace.querySelector('[data-persist-id="t5-grain"][data-response]'))
+        && Boolean(workspace.querySelector('[data-persist-id="a5-grain"][data-response]')));
+      const c02LayoutOverrides = await (await fetch("/hhh/campaign-1/case-02-sumer/source/layout-overrides.json")).json();
+      const c02Classified = new Set([
+        ...c02LayoutOverrides.areas.map(area => area.persistId),
+        ...c02LayoutOverrides.lockedAreas.map(area => area.persistId),
+        ...c02LayoutOverrides.student.areas.map(area => area.persistId),
+        ...c02LayoutOverrides.student.lockedAreas.map(area => area.persistId)
+      ]);
+      const c02Unclassified = Array.from(workspace.querySelectorAll('.page[data-role="student"] [data-response], .page[data-role="accessible"] [data-response]'))
+        .map(node => node.dataset.persistId).filter(id => !c02Classified.has(id));
+      check("Case 02 leaves no learner response outside the layout classification", c02Unclassified.length === 0, JSON.stringify(c02Unclassified));
+      check("Case 02 Teacher and Answer Key expose no learner response control",
+        !workspace.querySelector('.page[data-role="teacher"] [data-response], .page[data-role="answer"] [data-response]'));
+
+      // Page fit, measured from the last content element to the footer in every role.
+      const c02Fit = [];
+      for (const role of c02Roles) {
+        api.setRole(role);
+        await wait(60);
+        const overflowCount = api.checkOverflow();
+        const pages = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`)).map(page => {
+          const content = page.querySelector(".content-area");
+          const footer = page.querySelector("[data-publication-footer]");
+          const last = content.lastElementChild;
+          return {
+            page: page.dataset.pageId,
+            flagged: page.classList.contains("has-overflow"),
+            slack: Math.round(footer.getBoundingClientRect().top - (last ? last.getBoundingClientRect().bottom : 0))
+          };
+        });
+        c02Fit.push({ role, overflowCount, fitStatus: doc.querySelector("#overflowStatus").textContent, bad: pages.filter(item => item.flagged || item.slack < 0) });
+      }
+      check("Case 02 reports Pages fit in all four roles with no page content crossing its footer",
+        c02Fit.every(entry => entry.overflowCount === 0 && entry.fitStatus === "Pages fit" && entry.bad.length === 0),
+        JSON.stringify(c02Fit));
       api.setRole("student");
       await wait(40);
 
