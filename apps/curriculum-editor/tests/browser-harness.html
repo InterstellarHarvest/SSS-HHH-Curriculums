@@ -4781,6 +4781,240 @@
         // re-release rather than needing to be revised again at each transition.
         check(`${item.id} announcement claims no package lifecycle it does not hold`, !/\b(approved|draft|unreleased|release[ds]?)\b/i.test(doc.querySelector("#loadStatus").textContent), doc.querySelector("#loadStatus").textContent);
       }
+      // ── HHH Core Case 01 · The Fertile Crescent ──────────────────────────────
+      // The first full HHH historical Core Case. The generic HHH checks above prove
+      // the package loads, isolates and fits; these assertions protect what makes it a
+      // *historical* case rather than a package that renders — task parity across four
+      // roles, the Teacher reference contract, a completed Answer Key, and the
+      // reconstruction boundary the Phase 1 audit made blocking. Non-selected roles are
+      // display:none inside the Shadow DOM, so text assertions read textContent rather
+      // than innerText, which would be empty for every hidden page.
+      await api.selectCase("HHH-C1-CASE01");
+      await wait(80);
+      api = win.__curriculumEditor;
+      workspace = api.getWorkspace();
+      const c01Package = api.getPackage();
+      const c01Roles = ["student", "teacher", "answer", "accessible"];
+      const c01TaskNumbers = ["1", "2", "3", "4", "5", "6", "7", "8"];
+      const c01TaskTitles = {
+        "1": "Build the Domestication Vocabulary",
+        "2": "Make a First Reading of the Field",
+        "3": "Place the Scene on the Evidence Rail",
+        "4": "Decide What Each Source Can Carry",
+        "5": "Trace the Trait Across Generations",
+        "6": "Weigh Three Accounts of the Change",
+        "7": "Write the Qualified Explanation",
+        "8": "Test a New Claim"
+      };
+      const c01PageCounts = { student: 7, teacher: 7, answer: 4, accessible: 9 };
+      const c01Count = selector => workspace.querySelectorAll(selector).length;
+      const c01HeadingsFor = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`))
+        .map(node => ({ number: node.dataset.taskId, title: node.dataset.taskTitle, rendered: node.querySelector(".section-title")?.textContent }));
+      // Everything between one Answer Key task heading and the next, so a keyed
+      // exemplar cannot be credited to the task above or below it.
+      const c01AnswerBodyFor = number => {
+        const heading = workspace.querySelector(`.page[data-role="answer"] .task-heading[data-task-id="${number}"]`);
+        if (!heading) return [];
+        const collected = [];
+        for (let node = heading.nextElementSibling; node && !node.classList.contains("task-heading"); node = node.nextElementSibling) {
+          if (node.querySelector?.(".task-heading")) break;
+          collected.push(node);
+        }
+        return collected;
+      };
+
+      check("Case 01 is the registered Core Case package with four instructional roles",
+        c01Package.id === "HHH-C1-CASE01" && c01Package.curriculum === "HHH" && c01Package.instructionalType === "CORE_CASE"
+        && JSON.stringify(c01Package.supportedRoles) === JSON.stringify(c01Roles)
+        && JSON.stringify(Object.keys(c01Package.rolePageStructure)) === JSON.stringify(c01Roles),
+        JSON.stringify({ id: c01Package.id, type: c01Package.instructionalType, roles: c01Package.supportedRoles }));
+      check("Case 01 declares no canonical CER component, matching its historical-explanation product",
+        !workspace.querySelector("[data-cer-contract],.canonical-cer,.cer-stack"));
+      check("Case 01 page counts match the package in every role",
+        c01Roles.every(role => c01Count(`.page[data-role="${role}"]`) === c01PageCounts[role]
+          && c01Package.rolePageStructure[role].pageCount === c01PageCounts[role]),
+        JSON.stringify(Object.fromEntries(c01Roles.map(role => [role, c01Count(`.page[data-role="${role}"]`)]))));
+
+      // Task parity: the registry is authoritative, and all four roles must expand the
+      // same eight numbered headings with identical titles. A keyed Answer Key section
+      // that quietly renumbers is the SSS defect class this replaces.
+      // Task headings are printed by the three task-numbered roles. The Teacher Guide
+      // carries the same identifiers as bolded in-prose references instead, which the
+      // two Teacher assertions below check against the same registry titles.
+      const c01HeadingRoles = ["student", "answer", "accessible"];
+      const c01Parity = Object.fromEntries(c01HeadingRoles.map(role => [role, c01HeadingsFor(role)]));
+      check("Case 01 expands all eight registry tasks in Student, Answer Key and Accessible with the exact numbers and titles",
+        c01HeadingRoles.every(role => JSON.stringify(c01Parity[role].map(item => item.number)) === JSON.stringify(c01TaskNumbers)
+          && c01Parity[role].every(item => item.title === c01TaskTitles[item.number]
+            && item.rendered === `${item.number} \u00b7 ${c01TaskTitles[item.number]}`)),
+        JSON.stringify(c01Parity));
+      check("Case 01 Teacher Guide prints no numbered task heading of its own, so the learner numbering stays canonical",
+        c01HeadingsFor("teacher").length === 0);
+      const c01UnkeyedTasks = c01TaskNumbers.filter(number =>
+        !c01AnswerBodyFor(number).some(node => node.classList.contains("answer-block") || node.classList.contains("matrix-table")));
+      check("Case 01 Answer Key carries a completed exemplar under every one of the eight tasks",
+        c01Parity.answer.length === 8 && c01UnkeyedTasks.length === 0, JSON.stringify(c01UnkeyedTasks));
+      check("Case 01 Answer Key completes the whole twelve-cell source matrix and leaves no blank field",
+        c01Count('.page[data-role="answer"] .matrix-table tbody tr') === 4
+        && ["reconstructed", "documented", "inferred", "debated"].every(status =>
+          workspace.querySelector('.page[data-role="answer"] .matrix-table').textContent.includes(status))
+        && !workspace.querySelector('.page[data-role="answer"] [data-response]'),
+        workspace.querySelector('.page[data-role="answer"] .matrix-table')?.textContent?.slice(0, 240));
+
+      // Teacher reference contract: every direct reference is a complete bolded
+      // number-and-title pair drawn from the registry, and every task is referenced.
+      const c01TeacherRefs = Array.from(workspace.querySelectorAll('.page[data-role="teacher"] strong.task-reference'))
+        .map(node => node.textContent.trim());
+      check("Case 01 Teacher task references are complete bolded number-and-title pairs from the registry",
+        c01TeacherRefs.length > 0 && c01TeacherRefs.every(text =>
+          Object.entries(c01TaskTitles).some(([number, title]) => text === `${number} \u00b7 ${title}`)),
+        JSON.stringify(Array.from(new Set(c01TeacherRefs)).sort()));
+      check("Case 01 Teacher procedure accounts for every one of the eight Student tasks",
+        c01TaskNumbers.every(number => c01TeacherRefs.includes(`${number} \u00b7 ${c01TaskTitles[number]}`)),
+        JSON.stringify({ referenced: Array.from(new Set(c01TeacherRefs)).sort() }));
+      check("Case 01 Teacher carries the route, both rubrics and the authoritative reference list",
+        ["data-final-task-route", "data-final-quick-rubric", "data-final-reference-list"]
+          .every(marker => workspace.querySelector(`.page[data-role="teacher"] [${marker}]`))
+        && c01Count('.page[data-role="teacher"] .final-analytic-rubric[data-rubric-contract="4-3-2-1-v1.0"] tbody tr') === 4
+        && c01Count('.page[data-role="teacher"] .final-reference-list > li') === 6);
+
+      // Reconstruction boundary. This is the blocking Phase 1 finding made testable:
+      // both learner editions must name the scene as a reconstruction, and no role may
+      // print a first-individual or dated-invention domestication claim.
+      const c01LearnerText = Object.fromEntries(["student", "accessible"].map(role =>
+        [role, Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`)).map(page => page.textContent).join(" ")]));
+      check("Case 01 learner editions both open with a labelled reconstruction boundary",
+        ["student", "accessible"].every(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`)
+          && workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary] .label`).textContent.trim() === "Reconstruction notice"),
+        JSON.stringify(["student", "accessible"].map(role => workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary] .label`)?.textContent)));
+      check("Case 01 learner editions state that no record names a first farmer, and bound the scene year",
+        ["student", "accessible"].every(role => /no record names a first farmer/i.test(c01LearnerText[role])
+          && /9,700 BCE/.test(c01LearnerText[role])),
+        JSON.stringify(Object.fromEntries(["student", "accessible"].map(role => [role, /no record names a first farmer/i.test(c01LearnerText[role])]))));
+      check("Case 01 asserts no first individual anywhere: the scene's people are never named as the first",
+        c01Roles.every(role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`))
+          .every(page => !/\bthe first (?:farmer|harvester|woman|person|field) (?:was|is)\b/i.test(page.textContent))),
+        "");
+      // The 9,700 BCE domestication claim appears on purpose — it is the misconception
+      // Task 3 Part C exists to refute. It must never appear without its refutation
+      // framing, which is exactly what a careless later edit would strip.
+      const c01DatedClaimPages = Array.from(workspace.querySelectorAll(".page[data-role]"))
+        .filter(page => /wheat was domesticated in 9,?700 BCE/i.test(page.textContent))
+        .map(page => ({ page: page.dataset.pageId, framed: /A classmate says|says wheat was domesticated/i.test(page.textContent) }));
+      check("Case 01 prints the 9,700 BCE domestication claim only as an attributed claim students must refute",
+        c01DatedClaimPages.length > 0 && c01DatedClaimPages.every(item => item.framed),
+        JSON.stringify(c01DatedClaimPages));
+      check("Case 01 never reproduces the uncorrected runtime grain-examination wording",
+        !/they does not shatter/i.test(workspace.textContent));
+      check("Case 01 gives every dossier card a visible textual status line rather than colour alone",
+        ["student", "accessible"].every(role => {
+          const cards = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .dossier-card`));
+          return cards.length === 4 && cards.every(card => /^STATUS:/.test(card.querySelector(".source-status")?.textContent?.trim() || ""));
+        }),
+        JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="student"] .dossier-card .source-status')).map(node => node.textContent.trim())));
+
+      // Evidence visuals and the no-game route.
+      check("Case 01 carries the chronology rail and generation trace in both learner editions with extended descriptions",
+        ["student", "accessible"].every(role =>
+          c01Count(`.page[data-role="${role}"] [data-chronology-contract] .rail-band`) === 5
+          && c01Count(`.page[data-role="${role}"] [data-selection-contract] .trace-stage`) === 5
+          && c01Count(`.page[data-role="${role}"] figure.case-figure .extended-description`) >= 2),
+        JSON.stringify(["student", "accessible"].map(role => ({
+          role,
+          bands: c01Count(`.page[data-role="${role}"] [data-chronology-contract] .rail-band`),
+          stages: c01Count(`.page[data-role="${role}"] [data-selection-contract] .trace-stage`)
+        }))));
+      check("Case 01 no-game evidence route lives inside the learner packets, not a fifth role",
+        c01Count('.page[data-role="student"] .dossier-card') === 4
+        && c01Count('.page[data-role="accessible"] .dossier-card') === 4
+        && JSON.stringify(c01Package.supportedRoles) === JSON.stringify(c01Roles));
+      check("Case 01 Accessible scaffolds repetition without removing the assessed reasoning",
+        c01Count('.page[data-role="accessible"] .modeled-row') === 1
+        && c01Count('.page[data-role="accessible"] .trace-stage.modeled') === 1
+        && c01Count('.page[data-role="accessible"] .matrix-table tbody [data-response]') === 9
+        && c01Count('.page[data-role="student"] .matrix-table tbody [data-response]') === 12,
+        JSON.stringify({
+          accessibleCells: c01Count('.page[data-role="accessible"] .matrix-table tbody [data-response]'),
+          studentCells: c01Count('.page[data-role="student"] .matrix-table tbody [data-response]')
+        }));
+      check("Case 01 exact-match banks carry one entry per blank with no decoys",
+        c01Count('.page[data-role="student"] .word-bank') === 2
+        && c01Count('.page[data-role="student"] .word-bank-item') === 10
+        && c01Count('.page[data-role="student"] .status-bank-items .word-bank-item') === 4
+        && c01Count('.page[data-role="student"] .term-list [data-response]') === 6
+        && c01Count('.page[data-role="accessible"] .status-bank-items .word-bank-item') === 3
+        && c01Count('.page[data-role="accessible"] .term-list [data-response]') === 6,
+        JSON.stringify({
+          studentBankItems: c01Count('.page[data-role="student"] .word-bank-item'),
+          studentStatusItems: c01Count('.page[data-role="student"] .status-bank-items .word-bank-item'),
+          accessibleStatusItems: c01Count('.page[data-role="accessible"] .status-bank-items .word-bank-item')
+        }));
+
+      // Page identity, persistence and layout classification.
+      check("Case 01 page identity is role-specific and correctly numbered on every page",
+        c01Roles.every(role => {
+          const label = { student: "Student Mission", teacher: "Teacher Guide", answer: "Answer Key", accessible: "Accessible Mission" }[role];
+          const footers = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-publication-footer] span`)).map(node => node.textContent.trim());
+          return footers.length === c01PageCounts[role]
+            && footers.every((text, index) => text === `${label} ${index + 1} of ${c01PageCounts[role]}`);
+        }),
+        JSON.stringify(Object.fromEntries(c01Roles.map(role =>
+          [role, Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-publication-footer] span`)).map(node => node.textContent.trim())]))));
+      check("Case 01 identification row appears only on learner page 1 and never in Teacher or Answer Key",
+        ["student", "accessible"].every(role => c01Count(`.page[data-role="${role}"] .student-id`) === 1
+          && workspace.querySelector(`.page[data-role="${role}"] .student-id`).closest(".page").dataset.pageId.endsWith("-01"))
+        && !workspace.querySelector('.page[data-role="teacher"] .student-id, .page[data-role="answer"] .student-id'));
+      check("Case 01 makes every required learner action a persistent labelled control",
+        ["student", "accessible"].every(role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-response]`))
+          .every(node => node.dataset.persistId && (node.getAttribute("aria-label") || node.getAttribute("aria-labelledby"))))
+        && c01Count('.page[data-role="student"] .account-item [data-response]') === 3
+        && c01Count('.page[data-role="accessible"] .account-item [data-response]') === 3
+        && Boolean(workspace.querySelector('[data-persist-id="t3-band"][data-response]'))
+        && Boolean(workspace.querySelector('[data-persist-id="a3-band"][data-response]')));
+      const c01LayoutOverrides = await (await fetch("/hhh/campaign-1/case-01-fertile-crescent/source/layout-overrides.json")).json();
+      const c01Classified = new Set([
+        ...c01LayoutOverrides.areas.map(area => area.persistId),
+        ...c01LayoutOverrides.lockedAreas.map(area => area.persistId),
+        ...c01LayoutOverrides.student.areas.map(area => area.persistId),
+        ...c01LayoutOverrides.student.lockedAreas.map(area => area.persistId)
+      ]);
+      const c01Unclassified = Array.from(workspace.querySelectorAll('.page[data-role="student"] [data-response], .page[data-role="accessible"] [data-response]'))
+        .map(node => node.dataset.persistId).filter(id => !c01Classified.has(id));
+      check("Case 01 leaves no learner response outside the layout classification", c01Unclassified.length === 0, JSON.stringify(c01Unclassified));
+      check("Case 01 Teacher and Answer Key expose no learner response control",
+        !workspace.querySelector('.page[data-role="teacher"] [data-response], .page[data-role="answer"] [data-response]'));
+
+      // Page fit. The per-role Pages-fit loop above walks `canonicalCases`, which is the
+      // SSS roster, so no HHH package has ever been overflow-checked by this harness.
+      // Three Case 01 pages overflowed during production and were caught only by manual
+      // rendering; this assertion closes that gap for the case it belongs to. `slack` is
+      // measured from the last content element to the footer, because `.content` is a
+      // flex child whose scrollHeight is clamped to the frame and therefore cannot
+      // report the overrun on its own.
+      const c01Fit = [];
+      for (const role of c01Roles) {
+        api.setRole(role);
+        await wait(60);
+        const overflowCount = api.checkOverflow();
+        const pages = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`)).map(page => {
+          const content = page.querySelector(".content-area");
+          const footer = page.querySelector("[data-publication-footer]");
+          const last = content.lastElementChild;
+          return {
+            page: page.dataset.pageId,
+            flagged: page.classList.contains("has-overflow"),
+            slack: Math.round(footer.getBoundingClientRect().top - (last ? last.getBoundingClientRect().bottom : 0))
+          };
+        });
+        c01Fit.push({ role, overflowCount, fitStatus: doc.querySelector("#overflowStatus").textContent, bad: pages.filter(item => item.flagged || item.slack < 0) });
+      }
+      check("Case 01 reports Pages fit in all four roles with no page content crossing its footer",
+        c01Fit.every(entry => entry.overflowCount === 0 && entry.fitStatus === "Pages fit" && entry.bad.length === 0),
+        JSON.stringify(c01Fit));
+      api.setRole("student");
+      await wait(40);
+
       const documentIds = Array.from(doc.querySelectorAll("[id]")).map(node => node.id);
       check("case cycling leaves no duplicate IDs in the application document", documentIds.length === new Set(documentIds).size);
       check("case cycling leaves one current worksheet main and no stale light-DOM worksheet", doc.querySelector("#worksheetHost").shadowRoot.querySelectorAll("main#worksheetWorkspace").length === 1 && !doc.querySelector("main#worksheetWorkspace"));
