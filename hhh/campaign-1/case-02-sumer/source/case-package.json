@@ -8,12 +8,14 @@
   "subtitle": "Campaign 1 · Case 02 · The southern floodplain of Mesopotamia",
   "location": "The southern floodplain of Mesopotamia",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-13",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-1/case-02-sumer/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -152,7 +154,7 @@
   "sourceHashes": {
     "content": "16138ecd38789efd23200c15e51540f866667c0428a44e4528dbdd09bddac0c5",
     "presentation": "f029bd0bb900c131e15d605673c7457137281008b99b8271fae5f8fc13c39382",
-    "taskRegistry": "8196bea27999a9f5a9e1f7eb88e70aa2d36e6d05bdd222b2b6776a9f455c4ec0",
+    "taskRegistry": "7fa42e256b48a1c2d92d6d1d689e08732ab63fe0936f3c1b250aadd41d088867",
     "layoutOverrides": "c27f5c96e8ec6f7514845df2002d9cdcc96e3ce97ef90587d5df1388a8d9bd23"
   }
 }

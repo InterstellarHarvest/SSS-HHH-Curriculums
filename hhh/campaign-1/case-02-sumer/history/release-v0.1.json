@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE02",
+  "curriculumVersion": "0.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-13",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "sourceHashes": {
+    "content": "16138ecd38789efd23200c15e51540f866667c0428a44e4528dbdd09bddac0c5",
+    "presentation": "f029bd0bb900c131e15d605673c7457137281008b99b8271fae5f8fc13c39382",
+    "taskRegistry": "7fa42e256b48a1c2d92d6d1d689e08732ab63fe0936f3c1b250aadd41d088867",
+    "layoutOverrides": "c27f5c96e8ec6f7514845df2002d9cdcc96e3ce97ef90587d5df1388a8d9bd23"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "6e8f85dfe85116f3b21ec4d59b883f77e6ee4a69e31ade0ee32079e1a185ff57",
+    "teacher": "c3bc111107cba98383496bd721cbc958424aa9e9fda6b0c4da8c6b529ab12029",
+    "answer": "1dacffa5fdeb8a60a5ab33d95fb5bf51fd5532f9648a355cef10f76be67376ea",
+    "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only."
+  },
+  "rolePageCounts": {
+    "student": 8,
+    "teacher": 7,
+    "answer": 5,
+    "accessible": 11
+  },
+  "acceptedValidation": {
+    "status": "PASS",
+    "releaseHistorySchema": "PASS; release-v0.1.json validates against case-release-history.schema.v1.json with zero errors. The schema was not modified.",
+    "releaseIntegrity": "PASS across 16 registered cases with all 16 fully certified against their pinned commit, including HHH-C1-CASE02. The estate grew by one release record.",
+    "canonicalStructure": "PASS; 16 cases, zero failures. The case directory carries README.md, source/ and history/ only.",
+    "static": "648/648",
+    "browser": "2531/2531 across every case/role/presentation state; 0 JavaScript errors",
+    "hhhActivation": "PASS; 15 Blueprint units, 3 editor-ready packages, 21 tracked game dependencies, zero failures",
+    "hhhOperationalValidation": "27/27",
+    "correctiveReleaseLifecycle": "39/39",
+    "serverLifecycle": "11/11",
+    "authoringSecurity": "13/13",
+    "layoutContracts": "PASS across 16 registered cases; Student 144 eligible and 466 locked, Accessible 235 eligible and 364 locked response areas",
+    "rolePageCountsAndFit": "PASS; all 31 pages fit in colour and grayscale across all four roles with zero overflow and zero clipping, at Student 8, Teacher 7, Answer Key 5, Accessible 11",
+    "sssMutationSuites": "NOT RUN - out of scope. The release changes no validation logic, no release-integrity behaviour and no shared curriculum architecture the mutation suites exercise, and sss/** is byte-identical to main.",
+    "pdf": "NOT A PROJECT GATE - production is HTML-only, no canonical PDF artifact exists, and any browser-exported PDF is noncanonical with no accessibility guarantee",
+    "gitDiffCheck": "clean",
+    "independentReview": "INDEPENDENT_CASE02_BOUNDED_REREVIEW_PASS - READY_FOR_OWNER_GATE at candidate 3bbac2bc34e6d0379ec3c884f4f552bf08037948, after a full review returning two blocking findings and five promoted observations, all against main baseline b220461becc4fa7aadbbbabbb226aa0564c3c685. One nonblocking observation was left open for the owner: the Answer Key Claim 4 rationale cites the 1970 degradation finding, which is present in the Student modern-report panel but not in the Accessible one; no assessed response depends on it.",
+    "postGateOwnerArtDirection": "Three commits followed the bounded re-review at the owner's direction and were not independently re-reviewed: 998469c, 0b09d59 and ea2eab2. They changed the Task 3 setting figure and the repeated Student status tail only. The owner reviewed and printed the resulting pages personally, which is the gate those commits pass through. Every automated suite above was rerun at the released tree.",
+    "visualReview": "PASS; owner on-screen review of the rendered pages including grayscale, and owner physical print at 100% / Actual Size on 2026-08-13"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-13. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Core Case 02 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
+  },
+  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [],
+  "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+  "migrationNotes": [
+    "Second HHH Core Case release, produced against the released Core Case 01 baseline b220461becc4fa7aadbbbabbb226aa0564c3c685 and the approved Blueprint.",
+    "Owner-approved printable content baseline: ea2eab2041a76c2f5d19d5d3b2c9d700af80a663. The owner reviewed that byte set on screen and printed it at 100% / Actual Size. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing.",
+    "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. Dossier cards A and B quote Level 2 at that commit. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056.",
+    "Game dependencies at release: HHH-GAME-C1L2-001 is RESOLVED_VERIFIED at d9fc16b - the required clue reads 'without the old fallow rest.' and is quoted verbatim, with a browser assertion rejecting the truncated form. HHH-GAME-C1L2-002 is CURRICULUM_QUALIFICATION_REQUIRED and is delivered as mandatory curriculum treatment rather than a disclaimer. HHH-GAME-C1L2-003 remains open and nonblocking; the malformed scribe-record wording appears nowhere and a browser assertion prevents its reuse.",
+    "Runtime case identity: C1 L2, Sumer, the southern floodplain, about 2000 BCE. instructionalType CORE_CASE.",
+    "Nine tasks carry the Core Case spine, and the case's organising idea is scale rather than chronology: vocabulary, first reading, setting, the water-and-salt mechanism, what the crop change proves, evidence status, five claims of deliberately different sizes, a qualified causal explanation, and a transfer exit on an invented district.",
+    "Canonical CER is deliberately not used. A frame built for defending one position would push students toward the single-cause overclaim the audit required qualifying, because the honest answer to the region-scale dispute is that the packet's evidence does not decide it. Teacher page 4 states the rationale for classroom readers.",
+    "Scale boundary: the page-1 Reconstruction and scale notice names both questions the case asks and states which one the packet settles. Task 5 separates consistency from proof and supplies the rival explanation published in 1985. Task 6 row four separates a measurement from an inference drawn from it. Task 7 marks the single-cause claim N and the power-moved-north claim as undecidable by this case. Task 8's fourth required component is a claim pitched at the right strength. The four audit-rejected formulations are recorded in task-registry.js under scaleBoundary.prohibitedClaims and a browser assertion keeps them out of every role.",
+    "No ancient measurement appears in the packet. Every number is modern and sourced: two FAO crop salt-tolerance thresholds (barley 8.0 dS/m, wheat 6.0 dS/m), an FAO rainfall figure, a 565 km drain length, and dated FAO survey findings. The 1958 Jacobsen and Adams crop-shift study appears as a reading of records, never as a dataset, because its specific figures are precisely what the 1985 Powell critique disputes and they could not be verified from an accessible copy during production.",
+    "Source model: seven canonical caseSources entries, one per Teacher-ledger row, including the curriculum-original cross-section model registered at evidentiaryStatus 'modeled'. No source/evidence-ledger.json was created; the registered package schema is closed and the evidence model lives where Case 01 carries it.",
+    "Regression protection added with this case and retained by the release: registry-driven learner source-status parity against caseSources.evidentiaryStatus, a primary-source/eyewitness prohibition on every status line, load-bearing no-game fact availability in both learner editions, prohibited single-cause formulations read from the task registry, corrected-clue quotation with truncation rejection, salt-profile water-table geometry parsed from the rendered figure, tolerance-bar values checked against the registry, setting-figure label containment and collision measurement, and two cross-case guards in validate_static.py - task-registry-to-package role page counts, and printable prose that advertises a role page count.",
+    "The Task 3 setting figure was rebuilt after the owner gate opened. It was a four-band stack that read as a table: the Gulf and the marshes were rows rather than places, nothing showed water travelling anywhere, and the near-level ground Part C asks about was asserted only in words. It is now a schematic side view with one flow direction and one marked outlet. It still draws no coastline, no channel courses and no boundaries, because none are settled for this period; the extended description carries that disclaimer and states that the height is exaggerated and nothing is to scale.",
+    "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines."
+  ],
+  "retiredArtifacts": []
+}

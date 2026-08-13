@@ -6,8 +6,8 @@ window.HHH_CASE02_TASK_REGISTRY = {
   "title": "Sumer",
   "displayLabel": "2 - Sumer",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
-  "ownerReviewStatus": "OWNER_REVIEW_NOT_STARTED",
+  "status": "APPROVED_STABLE",
+  "ownerReviewStatus": "OWNER_REVIEW_PASS",
   "editorShell": "1.0",
   "gameCommit": "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
   "auditBaseline": "hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md",
@@ -73,14 +73,14 @@ window.HHH_CASE02_TASK_REGISTRY = {
       "semanticLabel": "THE SETTING",
       "icon": "ph-flow",
       "title": "Place the Fields in Their Setting",
-      "description": "Read the setting map and the modern report, then say why farming here needed irrigation and what the setting means for drainage.",
-      "instructionalPurpose": "Family H3 sourced setting map. Establishes that irrigation was necessary rather than careless, and that the same plain still has a shallow salty water table today, so the mechanism is not a story about ancient incompetence.",
+      "description": "Read the setting diagram and the modern report, then say why farming here needed irrigation and what the setting means for drainage.",
+      "instructionalPurpose": "Family H3 sourced setting figure, drawn as a schematic side view. Establishes that irrigation was necessary rather than careless, and that the same plain still has a shallow salty water table today, so the mechanism is not a story about ancient incompetence.",
       "provenance": [
         "FAO AQUASTAT Iraq country profile, 2008 survey",
-        "Curriculum-created schematic setting map"
+        "Curriculum-created schematic setting figure"
       ],
       "responseType": "one marked selection plus two short constructed responses",
-      "answerScope": "The place where water leaves the plain marked on the map, one reason rainfall alone could not grow the crop, and one thing the flat setting means for getting water back off a field.",
+      "answerScope": "The one place where water leaves the plain, named from the diagram, one reason rainfall alone could not grow the crop, and one thing the flat setting means for getting water back off a field.",
       "pagePlacement": {
         "student": "student-sumer-03",
         "teacher": "teacher-guide-03",

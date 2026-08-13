@@ -2,8 +2,8 @@
 
 **Identity:** `HHH-C1-CASE02` · instructional type `CORE_CASE` · registry title *Sumer* · learner-facing label **2 - Sumer**
 
-The second full historical Core Case in Hunger, Harvest, & History, produced against the
-released Core Case 01 baseline and the approved Blueprint.
+The second full historical Core Case in Hunger, Harvest, & History, released at v0.1 on
+2026-08-13. Produced against the released Core Case 01 baseline and the approved Blueprint.
 
 ## What this case teaches
 
@@ -168,10 +168,17 @@ Grayscale is a presentation state on every role, never a fifth role.
 
 ## Lifecycle
 
-Unreleased validated candidate. `status: VALIDATION_BUILD`, registry
-`packageStatus: VALIDATION`, approval `OWNER_REVIEW_NOT_STARTED`, print `NOT_RUN`.
-Version 0.1.
+Released. `status: APPROVED_STABLE`, registry `packageStatus: APPROVED`, approval
+`APPROVED` by Nate / Owner on 2026-08-13, print `PASS` at 100% / Actual Size. Version 0.1.
 
-There is no release record, no history directory and no owner-approval record, because
-nothing has been approved. Physical print has not been run and is an owner gate. Production is
-HTML-only; no canonical PDF artifact exists and PDF generation is not a release gate.
+Release record: `history/release-v0.1.json`.
+Owner approval record: `history/CASE02_OWNER_APPROVAL_v0.1.md`.
+
+The owner-approved printable content baseline is `ea2eab2041a76c2f5d19d5d3b2c9d700af80a663`.
+Release conversion changed no printable source — `content.html`, `presentation.css` and
+`layout-overrides.json` are byte-identical to that commit, and only `task-registry.js` moved,
+to carry the lifecycle stamp, which renders nothing.
+
+Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a
+release gate. A PDF exported from the browser is noncanonical and carries no accessibility
+guarantee.
