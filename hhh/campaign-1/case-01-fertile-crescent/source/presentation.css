@@ -142,15 +142,28 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
    and the printed dates, not by position or colour. Bands stack downward so a
    long date range never has to be compressed into a narrow column. */
 .chronology-rail { display: flex; flex-direction: column; gap: 3px; margin: 4px 0; }
-.rail-head { display: flex; justify-content: space-between; padding: 0 2px 1px; border-bottom: 1.4px solid var(--ink); }
+.rail-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; padding: 0 2px 1px; border-bottom: 1.4px solid var(--ink); }
 .rail-axis-label { color: var(--muted); font: 800 6.4pt/1.1 monospace; letter-spacing: .08em; }
+/* The middle axis label carries the non-sequence reading. It must not be the only
+   place that reading appears, so `.rail-framing` states it in plain sentences above
+   the rail and the figcaption and extended description repeat it. */
+.rail-axis-label:nth-child(2) { flex: 1; text-align: center; letter-spacing: .04em; }
+
+/* Overlap disclosure. These are dated evidence windows from different regions,
+   crops and studies, and B, D and E cover partly the same centuries — so the rail
+   must not read as five consecutive eras. Solid rule and panel tint distinguish it
+   from a band without relying on colour. */
+.rail-framing { margin: 0 0 4px; padding: 4px 7px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--panel-light); }
+.rail-framing p { margin: 1px 0 0; font-size: 7.4pt; line-height: 1.2; }
+.accessible .rail-framing { padding: 4px 8px; }
+.accessible .rail-framing p { font-size: 9.2pt; line-height: 1.22; }
 .rail-band { display: grid; grid-template-columns: .28in minmax(0, 1fr); gap: 5px; align-items: stretch; padding: 4px; border: 1px solid var(--rule); border-left: 3px solid var(--institution); background: var(--panel-light); }
 .rail-tag { display: flex; align-items: center; justify-content: center; border: 1.4px solid var(--ink); background: var(--paper); font: 800 10pt/1 Arial, sans-serif; }
 .rail-body { min-width: 0; font-size: 7.6pt; line-height: 1.16; }
 .rail-body p { margin: 2px 0 0; }
 .rail-date { display: block; font: 700 7.2pt/1.15 monospace; color: var(--accent-dark); }
 .rail-region { display: block; margin-top: 1px; color: var(--muted); font-size: 7pt; font-style: italic; }
-.rail-marker { display: flex; align-items: flex-end; gap: 8px; margin: 6px 0 4px; padding: 5px 6px; border: 1px solid var(--rule); background: var(--neutral-field); }
+.rail-marker { display: flex; align-items: center; gap: 8px; margin: 4px 0 3px; padding: 4px 6px; border: 1px solid var(--rule); background: var(--neutral-field); }
 .rail-marker .response-label { flex: 1; margin: 0; }
 .mark-response { flex: 0 0 .36in; min-height: .24in; text-align: center; }
 .mark-response.wide { flex: 0 0 .7in; min-height: .3in; }
@@ -223,7 +236,8 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .accessible .task-heading .section-title { font-size: 12.7pt; }
 .accessible .response.medium { min-height: .82in; }
 .accessible .response.large { min-height: 1.05in; }
-.accessible .alt-support { font-size: 9.6pt; }
+.accessible .alt-support { margin: 3px 0; padding: 4px 8px; font-size: 9.4pt; }
+.accessible .alt-support p { margin: 1px 0; }
 .accessible .data-table { font-size: 8.8pt; }
 
 .accessible .extended-description { font-size: 8.2pt; }
@@ -256,8 +270,8 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .accessible .report-list { font-size: 10.6pt; }
 /* The accessible rail drops the region strip and widens the tag so the letter a
    student has to copy into Part A is the largest thing in the band. */
-.accessible .chronology-rail { gap: 2px; }
-.accessible .rail-band { grid-template-columns: .36in minmax(0, 1fr); padding: 4px 5px; }
+.accessible .chronology-rail { gap: 1px; }
+.accessible .rail-band { grid-template-columns: .36in minmax(0, 1fr); padding: 3px 5px; }
 .accessible .rail-tag { font-size: 12pt; }
 .accessible .rail-body { font-size: 9.2pt; }
 .accessible .rail-date { font-size: 8.4pt; }

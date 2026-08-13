@@ -251,16 +251,21 @@ window.HHH_CASE01_TASK_REGISTRY = {
   ],
   "chronologyScale": {
     "system": "calibrated calendar dates",
+    "model": "overlapping-evidence-windows",
+    "modelNote": "The rail is five dated evidence windows drawn from different regions, crops and studies, not five consecutive eras. Bands B, D and E cover partly the same centuries. Band D is a selection-rate window rather than a regional threshold. Both learner editions must disclose this above the rail.",
     "railBands": {
-      "A": { "range": "about 9,750-8,750 BCE / about 11,700-10,700 cal BP", "source": "Arranz-Otaegui et al. 2016" },
-      "B": { "range": "about 8,750-8,250 BCE / about 10,700-10,200 cal BP", "source": "Arranz-Otaegui et al. 2016" },
-      "C": { "range": "about 400-1,000 years later than band B", "source": "Arranz-Otaegui et al. 2016" },
-      "D": { "range": "about 8,500-7,500 BCE", "source": "Allaby et al. 2017, reported in calibrated BC" },
-      "E": { "range": "about 8,250-6,350 BCE / about 10,200-8,300 cal BP", "source": "Arranz-Otaegui et al. 2016" }
+      "A": { "range": "about 9,750-8,750 BCE / about 11,700-10,700 cal BP", "kind": "regional-cultivation", "source": "Arranz-Otaegui et al. 2016" },
+      "B": { "range": "about 8,750-8,250 BCE / about 10,700-10,200 cal BP", "kind": "regional-threshold", "source": "Arranz-Otaegui et al. 2016" },
+      "C": { "range": "about 400-1,000 years later than band B", "kind": "regional-threshold", "source": "Arranz-Otaegui et al. 2016" },
+      "D": { "range": "about 8,500-7,500 BCE", "kind": "selection-rate", "overlaps": ["B", "E"], "source": "Allaby et al. 2017, reported in calibrated BC" },
+      "E": { "range": "about 8,250-6,350 BCE / about 10,200-8,300 cal BP", "kind": "regional-threshold", "source": "Arranz-Otaegui et al. 2016" }
     },
     "sceneDate": "9,700 BCE",
     "sceneBand": "A",
     "excludedFromRail": "Tanno and Willcox 2006 report noncalibrated radiocarbon years BP. Their numerical dates are deliberately not placed on the rail and are never converted to BCE. The paper is used for the counted wild-to-domesticated trend only.",
+    "evidenceCounts": {
+      "tanno-willcox-2006": { "examined": 9844, "identifiable": 804, "note": "9,844 spikelets examined; 804 identifiable well enough to classify as wild or domesticated type. The trend claim belongs to the 804, never to the 9,844." }
+    },
     "caseSourceStatuses": {
       "reconstructed": "the Archive's scene and the Archivist's in-scene observations",
       "documented": "the Background block on how the grain works, and the counted charred grain"
