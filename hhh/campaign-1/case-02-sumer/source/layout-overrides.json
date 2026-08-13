@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE02",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE02:accessible:t2:a2-pattern",
+      "persistId": "a2-pattern",
+      "pageId": "accessible-sumer-03",
+      "taskId": 2,
+      "label": "Accessible Task 2 the pattern the field survey shows",
+      "minPx": 72,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t2:a2-check",
+      "persistId": "a2-check",
+      "pageId": "accessible-sumer-03",
+      "taskId": 2,
+      "label": "Accessible Task 2 the check the pattern would still need",
+      "minPx": 72,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t3:a3-rain",
+      "persistId": "a3-rain",
+      "pageId": "accessible-sumer-04",
+      "taskId": 3,
+      "label": "Accessible Task 3 why rainfall alone could not grow the crop",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t3:a3-flat",
+      "persistId": "a3-flat",
+      "pageId": "accessible-sumer-04",
+      "taskId": 3,
+      "label": "Accessible Task 3 what a level plain makes hard to do with water",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t4:a4-difference",
+      "persistId": "a4-difference",
+      "pageId": "accessible-sumer-06",
+      "taskId": 4,
+      "label": "Accessible Task 4 what makes the difference between the field and the marsh",
+      "minPx": 72,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t5:a5-notproof",
+      "persistId": "a5-notproof",
+      "pageId": "accessible-sumer-07",
+      "taskId": 5,
+      "label": "Accessible Task 5 why the crop change does not prove rising salinity",
+      "minPx": 56,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t5:a5-alternative",
+      "persistId": "a5-alternative",
+      "pageId": "accessible-sumer-07",
+      "taskId": 5,
+      "label": "Accessible Task 5 the chosen rival reason for planting more barley",
+      "minPx": 56,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t7:a7-settle",
+      "persistId": "a7-settle",
+      "pageId": "accessible-sumer-09",
+      "taskId": 7,
+      "label": "Accessible Task 7 evidence that would settle Claim 5",
+      "minPx": 56,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t8:a8-part-1",
+      "persistId": "a8-part-1",
+      "pageId": "accessible-sumer-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 1 the field mechanism",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t8:a8-part-2",
+      "persistId": "a8-part-2",
+      "pageId": "accessible-sumer-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 2 two named sources and what kind of evidence each is",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t8:a8-part-3",
+      "persistId": "a8-part-3",
+      "pageId": "accessible-sumer-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 3 what the evidence cannot show",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t8:a8-part-4",
+      "persistId": "a8-part-4",
+      "pageId": "accessible-sumer-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 4 the claim at the right strength",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t9:a9-match",
+      "persistId": "a9-match",
+      "pageId": "accessible-sumer-11",
+      "taskId": 9,
+      "label": "Accessible Task 9 what matches and what the report cannot establish",
+      "minPx": 72,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C1-CASE02:accessible:t9:a9-test",
+      "persistId": "a9-test",
+      "pageId": "accessible-sumer-11",
+      "taskId": 9,
+      "label": "Accessible Task 9 the change to test first and why",
+      "minPx": 72,
+      "maxPx": 320
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-outlet",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-stage-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-stage-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-grain",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-science-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-science-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-science-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-record-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-record-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-record-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-infer-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-infer-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-infer-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-mark-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-4",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-5",
+      "reason": "classification"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE02:student:t2:t2-pattern",
+        "persistId": "t2-pattern",
+        "pageId": "student-sumer-02",
+        "taskId": 2,
+        "label": "Task 2 the pattern the field survey shows",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t2:t2-check",
+        "persistId": "t2-check",
+        "pageId": "student-sumer-02",
+        "taskId": 2,
+        "label": "Task 2 the check the pattern would still need",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t3:t3-rain",
+        "persistId": "t3-rain",
+        "pageId": "student-sumer-03",
+        "taskId": 3,
+        "label": "Task 3 why rainfall alone could not grow the crop",
+        "minPx": 64,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t3:t3-flat",
+        "persistId": "t3-flat",
+        "pageId": "student-sumer-03",
+        "taskId": 3,
+        "label": "Task 3 what a level plain makes hard to do with water",
+        "minPx": 64,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t4:t4-difference",
+        "persistId": "t4-difference",
+        "pageId": "student-sumer-04",
+        "taskId": 4,
+        "label": "Task 4 what makes the difference between the field and the marsh",
+        "minPx": 96,
+        "maxPx": 360
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t5:t5-notproof",
+        "persistId": "t5-notproof",
+        "pageId": "student-sumer-05",
+        "taskId": 5,
+        "label": "Task 5 why the crop change does not prove rising salinity",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t5:t5-alternative",
+        "persistId": "t5-alternative",
+        "pageId": "student-sumer-05",
+        "taskId": 5,
+        "label": "Task 5 a rival reason for planting more barley",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t7:t7-settle",
+        "persistId": "t7-settle",
+        "pageId": "student-sumer-07",
+        "taskId": 7,
+        "label": "Task 7 evidence that would settle the undecided claim",
+        "minPx": 96,
+        "maxPx": 420
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t8:t8-explanation",
+        "persistId": "t8-explanation",
+        "pageId": "student-sumer-08",
+        "taskId": 8,
+        "label": "Task 8 qualified causal explanation across both scales",
+        "minPx": 200,
+        "maxPx": 520
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t9:t9-match",
+        "persistId": "t9-match",
+        "pageId": "student-sumer-08",
+        "taskId": 9,
+        "label": "Task 9 what matches the mechanism and what the report cannot establish",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE02:student:t9:t9-test",
+        "persistId": "t9-test",
+        "pageId": "student-sumer-08",
+        "taskId": 9,
+        "label": "Task 9 the change to test first and why",
+        "minPx": 64,
+        "maxPx": 260
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t3-outlet",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-stage-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-grain",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-scenes-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-scenes-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-scenes-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-science-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-science-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-science-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-record-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-record-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-record-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-infer-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-infer-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-infer-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-mark-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-4",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-5",
+        "reason": "classification"
+      }
+    ],
+    "overrides": {}
+  }
+}

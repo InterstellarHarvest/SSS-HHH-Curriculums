@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE02",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-1",
+  "title": "Sumer",
+  "subtitle": "Campaign 1 · Case 02 · The southern floodplain of Mesopotamia",
+  "location": "The southern floodplain of Mesopotamia",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE02:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-02-sumer/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-02-sumer/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-02-sumer/source/task-registry.js",
+    "global": "HHH_CASE02_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-02-sumer/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case02-setting-map",
+      "type": "html-css-diagrams",
+      "selector": "[data-setting-contract]",
+      "embed": true
+    },
+    {
+      "id": "case02-salt-profile",
+      "type": "html-css-diagrams",
+      "selector": "[data-mechanism-contract]",
+      "embed": true
+    },
+    {
+      "id": "case02-crop-tolerance",
+      "type": "html-css-diagrams",
+      "selector": "[data-tolerance-contract]",
+      "embed": true
+    },
+    {
+      "id": "case02-reconstruction-and-scale-boundary",
+      "type": "html-css-diagrams",
+      "selector": "[data-reconstruction-boundary]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 8
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 5
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 11
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE02_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE02_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE02_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE02_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE02_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Case 02 v0.1 — Sumer Curriculum Editor",
+    "loadAnnouncement": "Case 02 Sumer v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "440e37bdd0878452fe6564a0f8559e3465282ec348d705c1bf92d06c699bb8b3",
+    "presentation": "5db54dec864870062daf7b58adc55c8a7202dc9b17b917aa81e551c50f18cdd2",
+    "taskRegistry": "af35b2475101226b677c63bbf0ba657e672cbb27e8826c0d8035ab6984b444d1",
+    "layoutOverrides": "c27f5c96e8ec6f7514845df2002d9cdcc96e3ce97ef90587d5df1388a8d9bd23"
+  }
+}
