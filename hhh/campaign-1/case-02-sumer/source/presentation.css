@@ -155,20 +155,18 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
    and no boundaries, because none of those are settled for this period; the caption
    and the on-figure note both say the height is exaggerated.
 
-   The plate is built to be complete without artwork. An illustrative backdrop may be
-   dropped in behind the overlay later; every place name, the rainfall figure, the
-   outlet marker and the flow direction live in this deterministic layer and never in
-   the picture, so the figure prints and greys the same either way. */
+   Everything the figure asserts is drawn here: the place names, the rainfall figure,
+   the outlet marker and the flow direction. Nothing is carried by imagery, so the
+   figure prints and greys exactly as authored. */
 .transect { margin: 4px 0; }
 .transect-plate { position: relative; height: 1.62in; border: 1px solid var(--rule); background: var(--panel-light); overflow: hidden; }
-.transect-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .transect-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
 .tr-ground { fill: var(--panel); stroke: none; }
 .tr-surface { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .tr-sea { fill: var(--neutral-field); }
 .tr-sealevel { stroke: var(--secondary); stroke-width: 1.8; vector-effect: non-scaling-stroke; }
-/* The worked ground is a hatched strip so it reads as fields rather than as a bar. */
-.tr-fields { fill: none; stroke: var(--ink); stroke-width: 1.1; stroke-dasharray: 3 2.4; vector-effect: non-scaling-stroke; }
+/* Reeds mark the marshes, so the wetland reads as a place rather than as a label. */
+.tr-reeds { fill: none; stroke: var(--secondary); stroke-width: 1.3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
 .tr-flow { fill: none; stroke: var(--institution); stroke-width: 2; stroke-dasharray: 7 4; vector-effect: non-scaling-stroke; }
 .tr-flow-head { fill: var(--institution); }
 /* The one outlet is marked on the drawing, because Part A asks the learner to name it. */
@@ -178,7 +176,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .tr-label-uplands { left: 1.5%; top: 4%; max-width: 24%; }
 .tr-label-plain   { left: 28%; top: 4%; max-width: 34%; }
 .tr-label-marsh   { left: 63%; top: 27%; max-width: 15%; }
-.tr-label-gulf    { right: 1.5%; bottom: 26%; max-width: 20%; border-width: 1.6px; border-color: var(--ink); }
+.tr-label-gulf    { right: 1.5%; bottom: 45%; max-width: 20%; border-width: 1.6px; border-color: var(--ink); }
 .tr-note { position: absolute; color: var(--accent-dark); font: 700 6.4pt/1.15 monospace; }
 .tr-note-flow  { left: 25%; bottom: 17%; }
 .tr-note-scale { left: 1.5%; bottom: 3%; color: var(--muted); font-weight: 400; }
@@ -368,7 +366,7 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .accessible .tr-label-uplands { max-width: 26%; }
 .accessible .tr-label-plain   { left: 30%; max-width: 32%; }
 .accessible .tr-label-marsh   { left: 64%; top: 24%; max-width: 14%; }
-.accessible .tr-label-gulf    { bottom: 28%; max-width: 21%; }
+.accessible .tr-label-gulf    { bottom: 45%; max-width: 21%; }
 .accessible .tr-note { font-size: 7.6pt; }
 .accessible .tr-compass { font-size: 7.2pt; }
 /* The accessible sections are taller so the two band labels inside each one stay

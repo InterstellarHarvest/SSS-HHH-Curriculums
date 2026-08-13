@@ -42,16 +42,9 @@ Part C asks about was only ever asserted in words. It is now a schematic long pr
 mountains at the left, the almost-flat plain with the worked fields, the marshes, and the
 Gulf at the right-hand end, with one arrow carrying the direction and one marked outlet.
 Flatness is visible rather than described. It still draws no coastline, no channel courses
-and no boundaries, because none of those are settled for this period, and both the caption
-and an on-figure note say the height is exaggerated.
-
-The plate carries an **illustrative backdrop slot**. Artwork may be dropped in behind the
-overlay, but every place name, the rainfall figure, the outlet marker and the flow
-direction live in the deterministic SVG layer and never in the picture, so the figure
-prints and greys identically with or without art, and the harness can still check it. Any
-commissioned image belongs in `assets/` at the case root — the canonical structure
-validator allows `README.md`, `source`, `history` and `assets`, and forbids nested
-directories under `source/`.
+and no boundaries, because none of those are settled for this period; an on-figure note and
+the extended description both say the height is exaggerated and nothing is to scale. The
+figure is drawn entirely in deterministic SVG — no imagery carries any of its claims.
 
 **A measurement is not the same as an inference drawn from it.** Task 6 row two is the
 documented soil science; row four is *using the modern crop measurements to judge an ancient
