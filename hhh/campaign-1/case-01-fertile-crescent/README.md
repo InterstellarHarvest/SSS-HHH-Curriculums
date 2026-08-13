@@ -23,16 +23,19 @@ Task 8 transfers the reasoning to a dig report the case never supplied.
 The position students reach is not seriously contested — everyone agrees people did this —
 so a Claim–Evidence–Reasoning frame would push them to manufacture a dispute. What *is*
 contested, the rate and the mechanism, belongs inside the explanation as a qualification
-rather than as the thing being argued. Teacher page 5 states the rationale for classroom
+rather than as the thing being argued. Teacher page 4 states the rationale for classroom
 readers.
 
-**The chronology rail is the misconception fix.** The single most likely wrong takeaway
+**The evidence timeline is the misconception fix.** The single most likely wrong takeaway
 from this level is that archaeologists documented one woman inventing domesticated wheat in
-9,700 BCE. Task 3 makes that impossible to hold: the scene year (9,700 BCE, about 11,650
-years ago) falls inside band A, about 9,750–8,750 BCE — people cultivating grain that is
-still the wild type — and every band in which the domesticated form is even present is
-later, in one case by more than three thousand years. Every rail date is calibrated. The rail carries no band for a first farmer or a first field, because no
-excavated evidence identifies one.
+9,700 BCE. Task 3 makes that impossible to hold: five dated evidence bars are plotted on one
+calibrated axis running 10,000–6,000 BCE, and the scene year 9,700 BCE falls inside bar A,
+about 9,750–8,750 BCE — people cultivating grain that is still the wild type. Every bar in
+which the domesticated form is even present is later, in one case by more than three
+thousand years. Bars B, D and E visibly overlap, because they come from different regions,
+crops and studies, so the figure shows a gradual process rather than five consecutive eras.
+The timeline carries no bar for a first farmer or a first field, because no excavated
+evidence identifies one.
 
 **Four statuses, not one.** Task 4 gives the reconstruction, the counted charred grain, the
 multi-site chronology and the scholarly account four different statuses and four different
@@ -49,7 +52,7 @@ period. Period 1 ends after Task 3; period 2 covers Tasks 4 to 8. The Teacher Gu
 the assessed route rather than compressing it.
 
 **Dossier placement.** The case dossier is Student page 2 and Accessible page 3, and the
-dated rail is Student page 3 and Accessible page 4. Together they carry every source the
+dated evidence timeline is Student page 3 and Accessible page 4. Together they carry every source the
 case assesses, so the packet is independently teachable and assessable with no device in
 the room, and the fallback stays inside the four-role package without creating a fifth role.
 
@@ -74,7 +77,7 @@ the six references listed on Teacher page 7:
 
 - Arranz-Otaegui et al. 2016, *PNAS* 113(49):14001–14006 — bands A, B, C and E, in calibrated dates; the regional offset.
 - Allaby et al. 2017, *Phil. Trans. R. Soc. B* 372:20160429 — band D, in calibrated BC; low and varying selection coefficients; the audit's own source [H1].
-- Tanno & Willcox 2006, *Science* 311:1886 — dossier card C: 9,844 spikelets examined, 804 identifiable, showing the gradual wild-to-domesticated trend. Its own dates are noncalibrated radiocarbon years and are deliberately kept off the rail.
+- Tanno & Willcox 2006, *Science* 311:1886 — dossier card C: 9,844 spikelets examined, 804 identifiable, showing the gradual wild-to-domesticated trend. Its own dates are noncalibrated radiocarbon years and are deliberately kept off the timeline.
 - Fuller 2007, *Annals of Botany* 100(5):903–924 — cultivation before domestication; the arable-weed indicator used in Task 8.
 - Purugganan & Fuller 2009, *Nature* 457:843–848 — the selection mechanism; the superseded rapid-fixation expectation; the two-to-four-thousand-year figure.
 - Zeder 2015, *PNAS* 112(11):3191–3198 — the working cultivation/domestication distinction.
@@ -106,16 +109,35 @@ source/layout-overrides.json response eligibility and lock classification
 Roles and page counts: Student 7 · Teacher 7 · Answer Key 4 · Accessible 9.
 Grayscale is a presentation state on every role, never a fifth role.
 
+```
+history/release-v0.1.json                canonical release record
+history/CASE01_OWNER_APPROVAL_v0.1.md    owner approval for v0.1
+```
+
 All seven Teacher contract functions are present across the seven pages; the teaching
 procedure for eight tasks across two periods occupies two pages, and the source set plus
 the complete fallback occupies the last.
 
 ## Lifecycle
 
-Unreleased validated candidate. `status: VALIDATION_BUILD`, registry
-`packageStatus: VALIDATION`, approval `OWNER_REVIEW_NOT_STARTED`, print `NOT_RUN`.
-Version 0.1.
+Released at v0.1. `status: APPROVED_STABLE`, registry `packageStatus: APPROVED`, approval
+`APPROVED` by Nate / Owner on 2026-08-13, print `PASS` at 100% / Actual Size. The task
+registry carries the matching stamp, `ownerReviewStatus: OWNER_REVIEW_PASS`.
 
-There is no release record, no history directory and no owner-approval record, because
-nothing has been approved. Production is HTML-only; no canonical PDF artifact exists and
-PDF generation is not a release gate.
+Records:
+
+- `history/release-v0.1.json` — canonical release record
+- `history/CASE01_OWNER_APPROVAL_v0.1.md` — owner approval for v0.1
+
+This is the first release of v0.1 — not a corrective reissue. There is no prior approved
+release and no former generated artifact: the case was authored natively as a package
+source, so `formerArtifacts` is `NO_FORMER_GENERATED_ARTIFACTS`.
+
+The owner reviewed and printed the content at
+`8683277d3654eeea492be28daa85a6632499e431`. Release conversion changed no printable source
+— `content.html`, `presentation.css` and `layout-overrides.json` are byte-identical to that
+commit, and only `task-registry.js` moved, to carry the lifecycle stamp — so the approved
+pages and the released pages are the same pages.
+
+Production is HTML-only. No canonical PDF artifact exists and PDF generation is not a
+release gate.
