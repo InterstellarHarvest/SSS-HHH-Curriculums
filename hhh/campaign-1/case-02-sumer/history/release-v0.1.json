@@ -5,8 +5,8 @@
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-08-13",
   "owner": "Nate / Owner",
-  "originalReleaseApprovalCommit": "PENDING_RELEASE_COMMIT",
-  "canonicalSourceApprovalCommit": "PENDING_RELEASE_COMMIT",
+  "originalReleaseApprovalCommit": "e89968d51339cbad3d88350c9bd1b6765d8c15a0",
+  "canonicalSourceApprovalCommit": "e89968d51339cbad3d88350c9bd1b6765d8c15a0",
   "sourceHashes": {
     "content": "16138ecd38789efd23200c15e51540f866667c0428a44e4528dbdd09bddac0c5",
     "presentation": "f029bd0bb900c131e15d605673c7457137281008b99b8271fae5f8fc13c39382",
@@ -28,7 +28,7 @@
   "acceptedValidation": {
     "status": "PASS",
     "releaseHistorySchema": "PASS; release-v0.1.json validates against case-release-history.schema.v1.json with zero errors. The schema was not modified.",
-    "releaseIntegrity": "PASS across 16 registered cases with all 16 fully certified against their pinned commit, including HHH-C1-CASE02. The estate grew by one release record.",
+    "releaseIntegrity": "PASS 688/688 across 16 registered cases with all 16 fully certified against their pinned commit, including HHH-C1-CASE02. The estate grew by one release record.",
     "canonicalStructure": "PASS; 16 cases, zero failures. The case directory carries README.md, source/ and history/ only.",
     "static": "648/648",
     "browser": "2531/2531 across every case/role/presentation state; 0 JavaScript errors",
@@ -51,7 +51,7 @@
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Core Case 02 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
   },
-  "formerArtifactRecoveryCommit": "PENDING_RELEASE_COMMIT",
+  "formerArtifactRecoveryCommit": "e89968d51339cbad3d88350c9bd1b6765d8c15a0",
   "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [],
   "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
