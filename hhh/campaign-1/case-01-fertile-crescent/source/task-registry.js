@@ -74,11 +74,10 @@ window.HHH_CASE01_TASK_REGISTRY = {
       "icon": "ph-flow",
       "title": "Place the Scene on the Evidence Rail",
       "description": "Mark where the reconstructed scene falls against the dated archaeobotanical record and say what that placement rules out.",
-      "instructionalPurpose": "Family H2 chronology rail. The scene date sits inside the cultivation window and centuries to millennia before domesticated-type grain becomes common anywhere.",
+      "instructionalPurpose": "Family H2 chronology rail. The scene date, 9,700 BCE, sits inside band A (about 9,750-8,750 BCE), the cultivation window, and centuries to millennia before domesticated-type grain becomes common anywhere. Every band is a calibrated calendar date.",
       "provenance": [
-        "Arranz-Otaegui et al. 2016 regional chronology",
-        "Tanno and Willcox 2006 spikelet series",
-        "Allaby et al. 2017 rate analysis",
+        "Arranz-Otaegui et al. 2016 regional chronology, calibrated (bands A, B, C, E)",
+        "Allaby et al. 2017 calibrated-BC selection-rate analysis (band D)",
         "Curriculum-created rail"
       ],
       "responseType": "one marked placement plus two short constructed responses",
@@ -150,7 +149,7 @@ window.HHH_CASE01_TASK_REGISTRY = {
       "instructionalPurpose": "Competing interpretation. Rejects both the single-inventor account and the no-human-role account, and makes the live scholarly disagreement about rate visible rather than hidden.",
       "provenance": [
         "Fuller 2007 rate analysis",
-        "Purugganan and Fuller 2009 model expectations",
+        "Purugganan and Fuller 2009 model expectations and the two-to-four-thousand-year fixation figure",
         "Allaby et al. 2017 measured selection coefficients",
         "Curriculum-created accounts"
       ],
@@ -250,6 +249,23 @@ window.HHH_CASE01_TASK_REGISTRY = {
       "limitationClass": "interpretation"
     }
   ],
+  "chronologyScale": {
+    "system": "calibrated calendar dates",
+    "railBands": {
+      "A": { "range": "about 9,750-8,750 BCE / about 11,700-10,700 cal BP", "source": "Arranz-Otaegui et al. 2016" },
+      "B": { "range": "about 8,750-8,250 BCE / about 10,700-10,200 cal BP", "source": "Arranz-Otaegui et al. 2016" },
+      "C": { "range": "about 400-1,000 years later than band B", "source": "Arranz-Otaegui et al. 2016" },
+      "D": { "range": "about 8,500-7,500 BCE", "source": "Allaby et al. 2017, reported in calibrated BC" },
+      "E": { "range": "about 8,250-6,350 BCE / about 10,200-8,300 cal BP", "source": "Arranz-Otaegui et al. 2016" }
+    },
+    "sceneDate": "9,700 BCE",
+    "sceneBand": "A",
+    "excludedFromRail": "Tanno and Willcox 2006 report noncalibrated radiocarbon years BP. Their numerical dates are deliberately not placed on the rail and are never converted to BCE. The paper is used for the counted wild-to-domesticated trend only.",
+    "caseSourceStatuses": {
+      "reconstructed": "the Archive's scene and the Archivist's in-scene observations",
+      "documented": "the Background block on how the grain works, and the counted charred grain"
+    }
+  },
   "reconstructionBoundary": [
     "the woman and her words",
     "the single field and the single season",

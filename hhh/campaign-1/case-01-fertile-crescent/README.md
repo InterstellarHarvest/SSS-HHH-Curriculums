@@ -28,10 +28,10 @@ readers.
 
 **The chronology rail is the misconception fix.** The single most likely wrong takeaway
 from this level is that archaeologists documented one woman inventing domesticated wheat in
-9,700 BCE. Task 3 makes that impossible to hold: the scene year (about 11,650 years ago)
-falls inside band A — people cultivating grain that is still the wild type — and every band
-in which the domesticated form is even present is later, in one case by roughly four
-thousand years. The rail carries no band for a first farmer or a first field, because no
+9,700 BCE. Task 3 makes that impossible to hold: the scene year (9,700 BCE, about 11,650
+years ago) falls inside band A, about 9,750–8,750 BCE — people cultivating grain that is
+still the wild type — and every band in which the domesticated form is even present is
+later, in one case by more than three thousand years. Every rail date is calibrated. The rail carries no band for a first farmer or a first field, because no
 excavated evidence identifies one.
 
 **Four statuses, not one.** Task 4 gives the reconstruction, the counted charred grain, the
@@ -41,7 +41,7 @@ particular day, and that is exactly the distinction the matrix assesses.
 
 **The open argument is taught, not resolved.** Student page 6 states plainly that models
 once expected the change to finish inside a hundred generations, that the excavated grain
-shows roughly three thousand years, and that the rate is still argued. Part C asks what
+shows two to four thousand years, and that the rate is still argued. Part C asks what
 that unsettles and what it leaves standing. The packet takes no side.
 
 **Two periods, stated.** Eight tasks with this evidence load do not honestly fit one
@@ -57,28 +57,31 @@ the room, and the fallback stays inside the four-role package without creating a
 
 **Game material.** Dossier cards A and B quote HHH Level 1 at the integrated game baseline
 `d9fc16baf272cb543c29cbd0c06ec85efad60be8`. Those quotations are labelled `STATUS:
-reconstructed` on the page and are never presented as testimony. The description of the
-grain in card B, the account of what archaeobotanists read from a charred joint in card C,
-and the summary of the open argument in card D are curriculum-authored from the references
-below. Cards C and D contain no game material.
+reconstructed` on the page and are never presented as testimony. Card B carries only
+reconstructed material. How the grain itself works is **not** in the dossier at all: it sits
+in its own **Background** block carrying `STATUS: documented`, so that no card mixes two
+evidentiary origins under one status line. The account of what archaeobotanists read from a
+charred joint in card C and the summary of the open argument in card D are
+curriculum-authored from the references below. Card C, card D and the Background block
+contain no game material.
 
 The Level 1 examination line about the grain heads is deliberately **paraphrased rather
 than quoted**, because its published wording is not grammatical. The packet states the same
 observation in curriculum voice. No change was made to the game in this workstream.
 
 **Real-world evidence.** Every dated band, count and span in the packet traces to one of
-the six references listed on Teacher page 8:
+the six references listed on Teacher page 7:
 
-- Tanno & Willcox 2006, *Science* 311:1886 — bands D and E; the 9,844 counted spikelet bases.
-- Arranz-Otaegui et al. 2016, *PNAS* 113(49):14001–14006 — bands A, B and C; the regional offset.
-- Allaby et al. 2017, *Phil. Trans. R. Soc. B* 372:20160429 — the ~3,000-year span; the audit's own source [H1].
+- Arranz-Otaegui et al. 2016, *PNAS* 113(49):14001–14006 — bands A, B, C and E, in calibrated dates; the regional offset.
+- Allaby et al. 2017, *Phil. Trans. R. Soc. B* 372:20160429 — band D, in calibrated BC; low and varying selection coefficients; the audit's own source [H1].
+- Tanno & Willcox 2006, *Science* 311:1886 — dossier card C: 9,844 spikelets examined, 804 identifiable, showing the gradual wild-to-domesticated trend. Its own dates are noncalibrated radiocarbon years and are deliberately kept off the rail.
 - Fuller 2007, *Annals of Botany* 100(5):903–924 — cultivation before domestication; the arable-weed indicator used in Task 8.
-- Purugganan & Fuller 2009, *Nature* 457:843–848 — the selection mechanism; the superseded rapid-fixation expectation.
+- Purugganan & Fuller 2009, *Nature* 457:843–848 — the selection mechanism; the superseded rapid-fixation expectation; the two-to-four-thousand-year figure.
 - Zeder 2015, *PNAS* 112(11):3191–3198 — the working cultivation/domestication distinction.
 
 No quotation is fabricated, no contested date is presented as settled, and the earliest
 claimed cultivation (Abu Hureyra) is deliberately excluded from the packet because it is
-itself disputed; Teacher page 8 says so.
+itself disputed; Teacher page 7 says so.
 
 ## Game-remediation dependencies
 
@@ -100,12 +103,12 @@ source/task-registry.js      eight tasks, authoritative for numbers and titles
 source/layout-overrides.json response eligibility and lock classification
 ```
 
-Roles and page counts: Student 7 · Teacher 8 · Answer Key 4 · Accessible 9.
+Roles and page counts: Student 7 · Teacher 7 · Answer Key 4 · Accessible 9.
 Grayscale is a presentation state on every role, never a fifth role.
 
-The Teacher Guide uses eight pages rather than the preferred seven. All seven contract
-functions are present; the teaching procedure for eight tasks across two periods occupies
-three pages, and the source set plus the complete fallback occupies the last.
+All seven Teacher contract functions are present across the seven pages; the teaching
+procedure for eight tasks across two periods occupies two pages, and the source set plus
+the complete fallback occupies the last.
 
 ## Lifecycle
 

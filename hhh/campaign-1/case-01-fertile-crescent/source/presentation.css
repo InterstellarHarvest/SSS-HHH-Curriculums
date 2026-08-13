@@ -162,7 +162,10 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .trace-stage.modeled { border-style: dashed; background: var(--panel-light); }
 .trace-step { display: block; margin-bottom: 2px; color: var(--institution); font: 800 6.9pt/1.1 monospace; letter-spacing: .04em; text-transform: uppercase; }
 .trace-fixed { margin: 0; }
-.trace-response { min-height: .5in; }
+/* Three ruled lines rather than two. Student page 5 carries enough unused reserve
+   to pay for this, and the Answer Key exemplar for each stage runs to a sentence
+   or two, which .5in did not comfortably hold in handwriting. */
+.trace-response { min-height: .72in; }
 .trace-arrow { align-self: center; font-size: 10pt; line-height: 1; }
 .modeled-flag { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--rule); background: var(--neutral-field); color: var(--muted); font: 700 5.8pt monospace; letter-spacing: .04em; text-transform: uppercase; }
 
@@ -175,6 +178,16 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .dossier-card p { margin: 2px 0; }
 .quoted { margin: 2px 0; font-family: Georgia, serif; line-height: 1.2; }
 .alt-note { margin-top: 3px; padding-top: 3px; border-top: 1px dotted var(--rule); }
+
+/* Documented background. This block exists so that real archaeobotany never sits
+   under a reconstructed STATUS line. It is visually distinct from a dossier card
+   (solid double rule, no card grid) and carries its own STATUS line, so the scope
+   of "reconstructed" is unmistakable in grayscale as well as colour. */
+.background-note { margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px double var(--secondary); background: var(--paper); font-size: 7.6pt; }
+.background-note p { margin: 2px 0; }
+.background-note .source-status { display: block; margin: 1px 0 2px; color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.accessible .background-note { padding: 8px 10px; font-size: 11pt; }
+.accessible .background-note .source-status { font-size: 8pt; }
 
 /* Competing accounts. The mark field sits beside the account text so the
    judgment and the statement it applies to stay on one line of reading. */
