@@ -35,6 +35,24 @@ is why the shared-water statement is printed above both sections rather than ins
 The water table is drawn high in one and low in the other, so the difference the task assesses
 is visible before any paragraph is read.
 
+**The setting figure is a side view, not a plan.** The first version stacked four
+labelled bands and read as a table: "The Gulf" and "The marshes" were rows rather than
+places, nothing showed water travelling anywhere, and the near-level ground that Task 3
+Part C asks about was only ever asserted in words. It is now a schematic long profile —
+mountains at the left, the almost-flat plain with the worked fields, the marshes, and the
+Gulf at the right-hand end, with one arrow carrying the direction and one marked outlet.
+Flatness is visible rather than described. It still draws no coastline, no channel courses
+and no boundaries, because none of those are settled for this period, and both the caption
+and an on-figure note say the height is exaggerated.
+
+The plate carries an **illustrative backdrop slot**. Artwork may be dropped in behind the
+overlay, but every place name, the rainfall figure, the outlet marker and the flow
+direction live in the deterministic SVG layer and never in the picture, so the figure
+prints and greys identically with or without art, and the harness can still check it. Any
+commissioned image belongs in `assets/` at the case root — the canonical structure
+validator allows `README.md`, `source`, `history` and `assets`, and forbids nested
+directories under `source/`.
+
 **A measurement is not the same as an inference drawn from it.** Task 6 row two is the
 documented soil science; row four is *using the modern crop measurements to judge an ancient
 field*. Merging them is the specific error the task exists to catch, and the Teacher Guide

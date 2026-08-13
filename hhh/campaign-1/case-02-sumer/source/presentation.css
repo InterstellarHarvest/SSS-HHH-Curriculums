@@ -145,34 +145,44 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .figure.case-figure figcaption { margin-top: 3px; padding-top: 3px; font-size: 7.4pt; color: var(--muted); }
 .extended-description { margin: 3px 0 0; font-size: 7pt; color: var(--muted); }
 
-/* Family H3 — sourced setting diagram. Deliberately a schematic rather than a
-   drawn map: the ancient coastline and the ancient channel positions are not
-   settled, so drawing them would claim a precision the evidence does not carry.
-   What the reasoning actually needs is the order of things from north to south
-   and the fact that the plain has exactly one outlet, and both survive as bands.
-   Every band is named in words; nothing depends on reading a shape. */
-.setting-map { position: relative; margin: 4px 0; border: 1px solid var(--rule); background: var(--panel-light); }
-.map-north { position: absolute; top: 2px; right: 4px; z-index: 2; color: var(--muted); font: 700 6.4pt/1 monospace; }
-.map-band { display: grid; grid-template-columns: minmax(0, 2.25in) minmax(0, 1fr); gap: 7px; align-items: center; padding: 3px 6px; border-bottom: 1px solid var(--rule); }
-.map-band:last-child { border-bottom: 0; }
-.map-band-copy { min-width: 0; }
-.map-band-name { display: block; font-size: 7.9pt; line-height: 1.15; }
-.map-band-note { display: block; margin-top: 1px; color: var(--muted); font-size: 7pt; line-height: 1.14; }
-.map-band-plain { background: var(--paper); }
-.map-band-plain .map-band-name { font-size: 8.2pt; }
-/* The outlet band is the answer to Task 3 Part A, so it is set apart by a solid
-   double rule as well as by its printed name. */
-.map-band-outlet { border-top: 2px double var(--ink); background: var(--neutral-field); }
-.map-rivers { position: relative; height: .62in; padding-bottom: .11in; border: 1px solid var(--rule); background: repeating-linear-gradient(135deg, var(--paper) 0 4px, var(--panel-light) 4px 8px); }
-/* The rivers stop short of the box floor so their names sit in clear ground beneath
-   them rather than across the bars they label. */
-.map-river { position: absolute; top: 0; bottom: .11in; width: .07in; border-left: 1.4px solid var(--secondary); border-right: 1.4px solid var(--secondary); background: var(--panel); }
-.map-river-west { left: 20%; }
-.map-river-east { left: 76%; }
-.map-river-name { position: absolute; bottom: -.105in; left: 50%; transform: translateX(-50%); white-space: nowrap; color: var(--accent-dark); font: 700 6pt/1 monospace; }
-.map-city { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; color: var(--muted); font: 700 5.9pt/1 monospace; }
-.map-city-dot { display: inline-block; width: 4px; height: 4px; margin-right: 2px; border: 1px solid var(--ink); border-radius: 50%; background: var(--ink); vertical-align: middle; }
-.map-flow { display: block; color: var(--accent-dark); font: 700 6.8pt/1.2 monospace; }
+/* Family H3 — sourced setting figure, rebuilt as a schematic long profile.
+   The first version stacked four labelled bands, which read as a table: "The Gulf"
+   and "The marshes" were rows rather than places, nothing showed water travelling
+   anywhere, and the flatness Task 3 Part C asks about was only ever asserted in
+   words. A side view fixes exactly those three things — the outlet is literally the
+   end of the line, one arrow carries the direction, and the near-level ground is
+   visible rather than described. It still claims no coastline, no channel courses
+   and no boundaries, because none of those are settled for this period; the caption
+   and the on-figure note both say the height is exaggerated.
+
+   The plate is built to be complete without artwork. An illustrative backdrop may be
+   dropped in behind the overlay later; every place name, the rainfall figure, the
+   outlet marker and the flow direction live in this deterministic layer and never in
+   the picture, so the figure prints and greys the same either way. */
+.transect { margin: 4px 0; }
+.transect-plate { position: relative; height: 1.62in; border: 1px solid var(--rule); background: var(--panel-light); overflow: hidden; }
+.transect-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.transect-overlay { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tr-ground { fill: var(--panel); stroke: none; }
+.tr-surface { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.tr-sea { fill: var(--neutral-field); }
+.tr-sealevel { stroke: var(--secondary); stroke-width: 1.8; vector-effect: non-scaling-stroke; }
+/* The worked ground is a hatched strip so it reads as fields rather than as a bar. */
+.tr-fields { fill: none; stroke: var(--ink); stroke-width: 1.1; stroke-dasharray: 3 2.4; vector-effect: non-scaling-stroke; }
+.tr-flow { fill: none; stroke: var(--institution); stroke-width: 2; stroke-dasharray: 7 4; vector-effect: non-scaling-stroke; }
+.tr-flow-head { fill: var(--institution); }
+/* The one outlet is marked on the drawing, because Part A asks the learner to name it. */
+.tr-outlet { stroke: var(--institution); stroke-width: 1.6; stroke-dasharray: 3 2; vector-effect: non-scaling-stroke; }
+.tr-label { position: absolute; display: flex; flex-direction: column; gap: 0; padding: 2px 4px; border: 1px solid var(--rule); background: var(--paper); font-size: 7.4pt; line-height: 1.14; }
+.tr-label em { font-style: normal; color: var(--muted); font-size: 6.6pt; }
+.tr-label-uplands { left: 1.5%; top: 4%; max-width: 24%; }
+.tr-label-plain   { left: 28%; top: 4%; max-width: 34%; }
+.tr-label-marsh   { left: 63%; top: 27%; max-width: 15%; }
+.tr-label-gulf    { right: 1.5%; bottom: 26%; max-width: 20%; border-width: 1.6px; border-color: var(--ink); }
+.tr-note { position: absolute; color: var(--accent-dark); font: 700 6.4pt/1.15 monospace; }
+.tr-note-flow  { left: 25%; bottom: 17%; }
+.tr-note-scale { left: 1.5%; bottom: 3%; color: var(--muted); font-weight: 400; }
+.tr-compass { position: absolute; right: 1.5%; top: 3%; color: var(--muted); font: 700 6.2pt/1 monospace; }
 
 /* Family H8 — the mechanism figure. Two soil sections drawn from the same water
    under the same sun, differing in exactly one thing: whether the water can
@@ -350,17 +360,17 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .accessible .account-item .mark-response { flex: 0 0 .5in; min-height: .36in; }
 .accessible .mark-response.wide { flex: 0 0 .9in; min-height: .36in; }
 .accessible .report-list { font-size: 10.2pt; }
-/* The accessible setting diagram widens the band names and drops the third city
-   marker, so the band a student has to name in Part A is the largest thing in it. */
-.accessible .map-band { grid-template-columns: minmax(0, 2.7in) minmax(0, 1fr); padding: 4px 7px; }
-.accessible .map-band-name { font-size: 9.6pt; }
-.accessible .map-band-note { font-size: 8.4pt; }
-.accessible .map-band-plain .map-band-name { font-size: 10pt; }
-.accessible .map-rivers { height: .68in; }
-.accessible .map-river-name { font-size: 7pt; }
-.accessible .map-city { font-size: 7pt; }
-.accessible .map-flow { font-size: 8pt; }
-.accessible .map-north { font-size: 7.4pt; }
+/* The accessible transect is taller and its labels are set at reading size, so the
+   place a learner has to name in Part A is the most prominent thing on the plate. */
+.accessible .transect-plate { height: 1.66in; }
+.accessible .tr-label { font-size: 9pt; padding: 3px 5px; }
+.accessible .tr-label em { font-size: 8pt; }
+.accessible .tr-label-uplands { max-width: 26%; }
+.accessible .tr-label-plain   { left: 30%; max-width: 32%; }
+.accessible .tr-label-marsh   { left: 64%; top: 24%; max-width: 14%; }
+.accessible .tr-label-gulf    { bottom: 28%; max-width: 21%; }
+.accessible .tr-note { font-size: 7.6pt; }
+.accessible .tr-compass { font-size: 7.2pt; }
 /* The accessible sections are taller so the two band labels inside each one stay
    at reading size; the geometry, and therefore the comparison, is unchanged. */
 .accessible .profile-control { font-size: 9pt; }

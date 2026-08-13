@@ -5504,19 +5504,57 @@
         && ["student", "accessible"].every(role => /nobody has measured|no one has measured/i.test(c02TextFor(role))),
         "");
 
-      // The setting diagram, and the Answer Key agreeing with what it actually names.
-      const c02Outlet = ["student", "accessible"].map(role => {
-        const map = workspace.querySelector(`.page[data-role="${role}"] [data-setting-contract]`);
-        const bands = Array.from(map.querySelectorAll(".map-band"));
-        const outlet = map.querySelector(".map-band-outlet .map-band-name");
-        return { role, bands: bands.length, outlet: outlet?.textContent.trim(),
-                 notToScale: /(not|nothing)[^.]{0,40}\bto scale\b/i.test(map.closest("figure").textContent) };
-      });
-      check("Case 02 setting diagram carries four named bands and one marked outlet in both learner editions",
-        c02Outlet.every(item => item.bands === 4 && item.outlet === "The Gulf" && item.notToScale), JSON.stringify(c02Outlet));
-      check("Case 02 Answer Key names the same outlet band the diagram marks",
-        /Part A\s*—\s*<?\s*.{0,20}The Gulf/i.test(workspace.querySelector('.page[data-role="answer"] .answer-block').textContent)
-        || /The Gulf/.test(c02AnswerBodyFor("3").map(node => node.textContent).join(" ")),
+      // The setting figure. It is a schematic side view: four named places along one
+      // ground line, one marked outlet at the end, and a single flow direction. The
+      // first version stacked labelled bands and read as a table, so the checks that
+      // matter are that the places are still all named, that the outlet the learner is
+      // asked to name is marked on the drawing, that the drawing disclaims scale, and
+      // that the labels do not collide — a figure whose labels overprint each other is
+      // the failure mode this design traded into, and prose cannot catch it.
+      const c02Setting = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-setting-contract]`);
+        const plate = figure.querySelector(".transect-plate");
+        const pr = plate.getBoundingClientRect();
+        const boxes = Array.from(plate.querySelectorAll(".tr-label, .tr-note, .tr-compass")).map(node => {
+          const b = node.getBoundingClientRect();
+          return { name: node.className, x: b.left - pr.left, y: b.top - pr.top, w: b.width, h: b.height,
+                   inside: b.left >= pr.left - 1 && b.right <= pr.right + 1 && b.top >= pr.top - 1 && b.bottom <= pr.bottom + 1 };
+        });
+        const collisions = [];
+        for (let i = 0; i < boxes.length; i += 1) {
+          for (let j = i + 1; j < boxes.length; j += 1) {
+            const a = boxes[i], c = boxes[j];
+            const ox = Math.min(a.x + a.w, c.x + c.w) - Math.max(a.x, c.x);
+            const oy = Math.min(a.y + a.h, c.y + c.h) - Math.max(a.y, c.y);
+            if (ox > 0.5 && oy > 0.5) collisions.push(`${a.name} / ${c.name}`);
+          }
+        }
+        c02Setting.push({
+          role,
+          places: Array.from(plate.querySelectorAll(".tr-label")).map(node => node.textContent.replace(/\s+/g, " ").trim()),
+          outletMarked: Boolean(plate.querySelector(".tr-outlet")) && /THE GULF/i.test(plate.querySelector(".tr-label-gulf")?.textContent || ""),
+          flowMarked: Boolean(plate.querySelector(".tr-flow")) && Boolean(plate.querySelector(".tr-flow-head")),
+          notToScale: /(not|nothing)[^.]{0,40}\bto scale\b/i.test(figure.closest("figure").textContent),
+          heightDisclaimed: /height is exaggerated/i.test(figure.closest("figure").textContent),
+          allInside: boxes.every(item => item.inside),
+          collisions
+        });
+      }
+      check("Case 02 setting figure names all four places, marks the one outlet and one flow direction, in both learner editions",
+        c02Setting.length === 2 && c02Setting.every(item => item.places.length === 4 && item.outletMarked && item.flowMarked
+          && ["Mountains", "flat alluvial plain", "marshes", "THE GULF"].every(place =>
+            item.places.some(text => text.includes(place)))),
+        JSON.stringify(c02Setting.map(item => ({ role: item.role, places: item.places }))));
+      check("Case 02 setting figure disclaims scale and states that its height is exaggerated",
+        c02Setting.every(item => item.notToScale && item.heightDisclaimed), JSON.stringify(c02Setting));
+      check("Case 02 setting figure keeps every label inside the plate and free of collisions in both learner editions",
+        c02Setting.every(item => item.allInside && item.collisions.length === 0),
+        JSON.stringify(c02Setting.map(item => ({ role: item.role, inside: item.allInside, collisions: item.collisions }))));
+      check("Case 02 Answer Key names the same outlet the setting figure marks",
+        /The Gulf/.test(c02AnswerBodyFor("3").map(node => node.textContent).join(" ")),
         c02AnswerBodyFor("3").map(node => node.textContent).join(" ").slice(0, 200));
 
       // Scale discipline: three marks, and the key agreeing with the registry.

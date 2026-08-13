@@ -76,18 +76,18 @@
       <p class="directions" data-editable data-persist-id="student-sumer-02-instruction-001">Four sources. Each one carries a <strong>STATUS</strong> line. The status is part of the source — read it every time.</p>
       <div class="dossier">
         <section class="dossier-card" data-source-id="archive-scenes">
-          <h3>A · At the fields <span class="source-status">STATUS: reconstructed · a scene written for the game</span></h3>
+          <h3>A · At the fields <span class="source-status">STATUS: reconstructed</span></h3>
           <p class="quoted">“The overseer floods the fields from the channels again and again, and crops the land every season without the old fallow rest.”</p>
           <p class="quoted">“Every channel feeds water onto the fields and not one drains it off again.”</p>
           <p>Walking the plots, the Archivist finds a pattern: <span class="quoted-inline">“By the channel-heads, where the water runs fast and sinks and is gone, the soil is nearly clean and the grain still stands. Out at the far flats, where the water pools and lies and waits for the sun to take it, the crust is thickest and the crop is dead.”</span> The device reads the pale crust as salt.</p>
         </section>
         <section class="dossier-card" data-source-id="archive-scenes">
-          <h3>B · At the river and the marsh <span class="source-status">STATUS: reconstructed · a scene written for the game</span></h3>
+          <h3>B · At the river and the marsh <span class="source-status">STATUS: reconstructed</span></h3>
           <p class="quoted">“Where the river and the marsh keep the water moving, the ground stays sweet as the current carries the salt away.”</p>
           <p>The device samples the river: only a faint trace of salt, and the flow never stops. <strong>It is the same water the channels carry inland.</strong> The reeds on the bank stand thick and green in dark, almost salt-free soil.</p>
         </section>
         <section class="dossier-card" data-source-id="archive-scenes">
-          <h3>C · In the scribes' room <span class="source-status">STATUS: reconstructed · a scene written for the game</span></h3>
+          <h3>C · In the scribes' room <span class="source-status">STATUS: reconstructed</span></h3>
           <p>The Archive reads the temple tallies: harvests falling year on year, and baskets of wheat giving way to barley season on season. Beside each falling yield the scribes set down a reason — the gods' favour withdrawn, the offerings too small — and prescribe more grain to the temple and more prayer.</p>
           <p class="alt-note">Nowhere in the clay: salt, standing water, or a field that will not drain.</p>
         </section>
@@ -137,47 +137,37 @@
       </header>
 
       <h2 data-shell-task-heading="3"></h2>
-      <p class="directions" data-editable data-persist-id="student-sumer-03-instruction-001">The map below is a diagram of the setting, not a scale drawing. It shows the order of things from north to south.</p>
-      <figure class="figure case-figure" data-figure-id="fig-setting-student" data-setting-contract="southern-plain-v1.0">
-        <div class="setting-map" role="img" aria-label="Schematic north-to-south diagram of southern Mesopotamia in four bands. At the top, the mountains and upper valleys where the Tigris and Euphrates rise. Below that, the flat alluvial plain, with the Euphrates on the west and the Tigris on the east and the irrigated fields between them; three city markers are shown on the plain. Below that, the marshes, where water keeps moving. At the bottom, the Gulf, labelled as the only place where water finally leaves the plain. A note states that rainfall across the south is under 100 millimetres a year.">
-          <span class="map-north" aria-hidden="true">N ↑</span>
-          <div class="map-band" data-band="uplands">
-            <div class="map-band-copy">
-              <span class="map-band-name">Mountains and upper valleys</span>
-              <span class="map-band-note">Rain and snow fall here. The two rivers start here and run south.</span>
-            </div>
-            <span class="map-flow">&darr;&nbsp;&darr;&nbsp; both rivers run south</span>
-          </div>
-          <div class="map-band map-band-plain" data-band="plain">
-            <div class="map-band-copy">
-              <span class="map-band-name">The flat alluvial plain — <strong>the fields are here</strong></span>
-              <span class="map-band-note">Silt dropped by the rivers, almost level. Under 100 mm of rain a year.</span>
-            </div>
-            <div class="map-rivers" aria-hidden="true">
-            <span class="map-river map-river-west"><span class="map-river-name">Euphrates</span></span>
-            <span class="map-river map-river-east"><span class="map-river-name">Tigris</span></span>
-            <span class="map-city" style="left: 34%; top: 30%;"><span class="map-city-dot"></span>city</span>
-            <span class="map-city" style="left: 52%; top: 58%;"><span class="map-city-dot"></span>city</span>
-            <span class="map-city" style="left: 68%; top: 22%;"><span class="map-city-dot"></span>city</span>
-          </div>
-          </div>
-          <div class="map-band" data-band="marsh">
-            <div class="map-band-copy">
-              <span class="map-band-name">The marshes</span>
-              <span class="map-band-note">Water keeps moving through here and carries what it holds onward.</span>
-            </div>
-            <span class="map-flow">water keeps moving&nbsp;&rarr;</span>
-          </div>
-          <div class="map-band map-band-outlet" data-band="gulf">
-            <div class="map-band-copy">
-              <span class="map-band-name">The Gulf</span>
-              <span class="map-band-note">The one place water finally leaves the plain.</span>
-            </div>
-            <span class="map-flow">&rarr;&nbsp;water leaves the plain here</span>
+      <p class="directions" data-editable data-persist-id="student-sumer-03-instruction-001">The diagram below is a side view of the setting, not a scale drawing. It runs from north on the left to south on the right, and follows the water.</p>
+      <figure class="figure case-figure" data-figure-id="fig-setting-student" data-setting-contract="southern-plain-v2.0">
+        <div class="transect" role="img" aria-label="Schematic side view of southern Mesopotamia running from north on the left to south on the right. On the left, mountains and upper valleys where the Tigris and the Euphrates rise. Across the middle, the flat alluvial plain where the fields are, marked as receiving under 100 millimetres of rain a year. Towards the right, the marshes. At the right-hand end, the Gulf, marked as the one place water finally leaves the plain. An arrow runs along the ground from the mountains to the Gulf, showing that water travels one way and leaves once. A note states that the height is exaggerated and the real fall across the plain is very gentle.">
+          <div class="transect-plate">
+            <!-- Illustrative backdrop slot. An artwork layer may be added here as
+                 <img class="transect-art" src="../assets/…" alt=""> once commissioned.
+                 The plate is complete without it: every place name, the rainfall
+                 figure, the outlet marker and the flow direction live in the
+                 deterministic overlay below and never in the picture, so the figure
+                 prints and greys identically either way. -->
+            <svg class="transect-overlay" viewBox="0 0 640 168" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <polygon class="tr-sea" points="566,120 640,120 640,168 566,168"></polygon>
+              <polygon class="tr-ground" points="0,44 26,20 52,46 74,30 96,58 150,92 300,104 470,112 566,120 566,168 0,168"></polygon>
+              <polyline class="tr-surface" points="0,44 26,20 52,46 74,30 96,58 150,92 300,104 470,112 566,120"></polyline>
+              <line class="tr-sealevel" x1="566" y1="120" x2="640" y2="120"></line>
+              <rect class="tr-fields" x="182" y="94" width="244" height="11" rx="2"></rect>
+              <path class="tr-flow" d="M 112 70 L 548 120"></path>
+              <polygon class="tr-flow-head" points="558,123 540,116 542,126"></polygon>
+              <line class="tr-outlet" x1="600" y1="102" x2="600" y2="140"></line>
+            </svg>
+            <span class="tr-label tr-label-uplands">Mountains and upper valleys<em>where both rivers rise</em></span>
+            <span class="tr-label tr-label-plain">The flat alluvial plain — <strong>the fields are here</strong><em>under 100 mm of rain a year</em></span>
+            <span class="tr-label tr-label-marsh">The marshes<em>water keeps moving</em></span>
+            <span class="tr-label tr-label-gulf"><strong>THE GULF</strong><em>water leaves the plain here</em></span>
+            <span class="tr-note tr-note-flow">water travels this way, and leaves once &rarr;</span>
+            <span class="tr-note tr-note-scale">Height exaggerated &middot; the real fall across the plain is very gentle</span>
+            <span class="tr-compass">north &larr; &middot; &rarr; south</span>
           </div>
         </div>
-        <figcaption>Curriculum-created diagram of the setting. City positions are markers, not surveyed locations; nothing here is drawn to scale. Rainfall and river setting after the FAO country report on Iraq.</figcaption>
-        <p class="extended-description">Extended description: four bands stacked from north at the top to south at the bottom. Band one, mountains and upper valleys, where both rivers rise. Band two, the flat alluvial plain, crossed by the Euphrates on the west and the Tigris on the east, with the fields between them and three city markers; a note gives rainfall as under 100 millimetres a year. Band three, the marshes, where water keeps moving. Band four, the Gulf, named as the only place water finally leaves the plain. The diagram carries no boundaries, no coastline and no scale, because the ancient shoreline and the ancient channel positions are not settled.</p>
+        <figcaption>Curriculum-created schematic side view, after the FAO country report on Iraq. <strong>Height is exaggerated</strong> and nothing is to scale. It shows the order of places and the direction water travels; it draws no coastline, no channel courses and no boundaries, because the ancient shoreline and channel positions are not settled.</figcaption>
+        <p class="extended-description">Extended description: a side view from north on the left to south on the right. Mountains at the left, where both rivers rise. Then the flat alluvial plain, which is where the fields are and which receives under 100 millimetres of rain a year; the ground falls only very slightly across it, and the height in the drawing is exaggerated. Then the marshes. At the right-hand end, the Gulf, labelled as the one place water finally leaves the plain. A single arrow runs the length of the ground, showing water travelling one way and leaving once.</p>
       </figure>
 
       <div class="background-note" data-source-status-scope="documented-modern" data-source-id="southern-plain-today">
@@ -187,8 +177,8 @@
       </div>
 
       <div class="rail-marker">
-        <span class="response-label"><span class="part">Part A —</span> Which band is the one place water finally leaves the plain?</span>
-        <span class="mark-response wide" data-persist-id="t3-outlet" data-response role="textbox" aria-label="Task 3 the band where water finally leaves the plain"></span>
+        <span class="response-label"><span class="part">Part A —</span> Name the one place where water finally leaves the plain.</span>
+        <span class="mark-response wide" data-persist-id="t3-outlet" data-response role="textbox" aria-label="Task 3 the place where water finally leaves the plain"></span>
       </div>
       <div class="two-col">
         <div>
@@ -659,7 +649,7 @@
           <strong class="task-reference">2 · Read the Field Before You Explain It</strong> · about 8 minutes. Students state the pattern from the field walk and name one check. Deliberately placed before the Background block is needed, so it records a starting point rather than a conclusion. The pattern is that the crust is worst where water stands longest and nearly absent where water runs through. Accept any genuine outside check — testing the soil, comparing with ground that is watered differently, looking at more than one field. Do not correct a first reading for being incomplete; that is what it is for.
         </li>
         <li>
-          <strong class="task-reference">3 · Place the Fields in Their Setting</strong> · about 15 minutes. Part A is the Gulf, the band the diagram names as the one place water finally leaves the plain. Part B wants rainfall under 100 mm a year, which will not grow a grain crop, so the river had to be led to the field. Part C wants the consequence of a nearly level plain: there is no slope to carry water off again, so water that arrives tends to stay.
+          <strong class="task-reference">3 · Place the Fields in Their Setting</strong> · about 15 minutes. Part A is the Gulf, the place the diagram marks at the end of the plain as the one outlet. Part B wants rainfall under 100 mm a year, which will not grow a grain crop, so the river had to be led to the field. Part C wants the consequence of a nearly level plain: there is no slope to carry water off again, so water that arrives tends to stay.
           <p>This task exists to stop the reading that the farmers were careless. Irrigation there was not a choice. Point at the rainfall figure rather than saying so.</p>
         </li>
         <li>
@@ -765,7 +755,7 @@
       <ul>
         <li><strong class="task-reference">1 · Build the Salinization Vocabulary</strong> — the same six-term bank, unchanged, each statement chunked onto its own line with a larger field beneath it.</li>
         <li><strong class="task-reference">2 · Read the Field Before You Explain It</strong> — two labelled fields with sentence starters, so the second half is not lost.</li>
-        <li><strong class="task-reference">3 · Place the Fields in Their Setting</strong> — the same four-band diagram and the same modern report, with the report reduced to four labelled facts.</li>
+        <li><strong class="task-reference">3 · Place the Fields in Their Setting</strong> — the same side-view diagram at a larger size and the same modern report, with the report reduced to four labelled facts.</li>
         <li><strong class="task-reference">4 · Trace the Water and the Salt</strong> — stage 2 is worked as a model alongside the fixed first and last stages. Students write stages 3 and 4 and the full Part B explanation, with a starter for Part B only.</li>
         <li><strong class="task-reference">5 · Test What the Crop Change Proves</strong> — the same bars and the same three parts, with two candidate rival explanations offered in Part C so the learner justifies a choice rather than generating one from nothing.</li>
         <li><strong class="task-reference">6 · Decide What Each Kind of Evidence Can Show</strong> — the first row is modelled. Students complete three rows, still producing three statuses and three distinct limits.</li>
@@ -965,11 +955,11 @@
       <h2 data-shell-task-heading="3"></h2>
       <p class="key-note">Completed exemplar. All three parts are required.</p>
       <div class="answer-block">
-        <p><strong>Part A —</strong> <strong>The Gulf</strong>. It is the bottom band of the diagram and the one the diagram names as the only place water finally leaves the plain.</p>
+        <p><strong>Part A —</strong> <strong>The Gulf</strong>. It sits at the right-hand end of the diagram, where the ground finally meets the sea, and it is the one place the diagram marks as water leaving the plain.</p>
         <p><strong>Part B —</strong> rain across the south is under 100 mm a year, which will not grow a grain crop. If farmers wanted grain there at all, the water had to be brought to the fields from the rivers. Irrigating was not a careless choice; it was the only way to farm that plain.</p>
         <p><strong>Part C —</strong> on land that is almost level there is no slope to carry water back off a field once it has been let on. Water runs downhill, and there is very little downhill. So water that arrives tends to stay and soak in, which makes draining a field hard and makes the water underneath rise.</p>
       </div>
-      <p class="key-note"><strong>Acceptable variation.</strong> Part A is exact: only the Gulf band is correct. In Part B credit any answer using the rainfall figure or the statement that crops there need irrigation; “it was a desert” is creditable if the answer connects dryness to needing to bring water. In Part C credit any answer naming the absence of slope, or of anywhere for the water to go, as the reason drainage is hard. An answer saying only “the land is flat”, with no consequence drawn, is developing rather than proficient.</p>
+      <p class="key-note"><strong>Acceptable variation.</strong> Part A is exact: only the Gulf is correct. In Part B credit any answer using the rainfall figure or the statement that crops there need irrigation; “it was a desert” is creditable if the answer connects dryness to needing to bring water. In Part C credit any answer naming the absence of slope, or of anywhere for the water to go, as the reason drainage is hard. An answer saying only “the land is flat”, with no consequence drawn, is developing rather than proficient.</p>
 
       <div class="task-block">
         <h2 data-shell-task-heading="4"></h2>
@@ -1249,48 +1239,38 @@
       </header>
 
       <h2 data-shell-task-heading="3"></h2>
-      <p class="directions">This map is a <strong>diagram</strong>, not a scale drawing. It shows the order of things from north (top) to south (bottom).</p>
-      <figure class="figure case-figure" data-figure-id="fig-setting-accessible" data-setting-contract="southern-plain-accessible-v1.0">
-        <div class="setting-map accessible-map" role="img" aria-label="Schematic north-to-south diagram of southern Mesopotamia in four bands. At the top, the mountains where the Tigris and Euphrates rise. Below that, the flat alluvial plain, with the Euphrates on the west and the Tigris on the east and the fields between them. Below that, the marshes, where water keeps moving. At the bottom, the Gulf, labelled as the only place where water finally leaves the plain.">
-          <span class="map-north" aria-hidden="true">N ↑</span>
-          <div class="map-band" data-band="uplands">
-            <div class="map-band-copy">
-              <span class="map-band-name">Mountains</span>
-              <span class="map-band-note">Rain and snow fall here. Both rivers start here.</span>
-            </div>
-            <span class="map-flow">&darr;&nbsp;&darr;&nbsp; both rivers run south</span>
-          </div>
-          <div class="map-band map-band-plain" data-band="plain">
-            <div class="map-band-copy">
-              <span class="map-band-name">The flat plain — <strong>the fields are here</strong></span>
-              <span class="map-band-note">Almost level. Under 100 mm of rain a year.</span>
-            </div>
-            <div class="map-rivers" aria-hidden="true">
-            <span class="map-river map-river-west"><span class="map-river-name">Euphrates</span></span>
-            <span class="map-river map-river-east"><span class="map-river-name">Tigris</span></span>
-            <span class="map-city" style="left: 36%; top: 34%;"><span class="map-city-dot"></span>city</span>
-            <span class="map-city" style="left: 62%; top: 56%;"><span class="map-city-dot"></span>city</span>
-          </div>
-          </div>
-          <div class="map-band" data-band="marsh">
-            <div class="map-band-copy">
-              <span class="map-band-name">The marshes</span>
-              <span class="map-band-note">Water keeps moving through here.</span>
-            </div>
-            <span class="map-flow">water keeps moving&nbsp;&rarr;</span>
-          </div>
-          <div class="map-band map-band-outlet" data-band="gulf">
-            <div class="map-band-copy">
-              <span class="map-band-name">The Gulf</span>
-              <span class="map-band-note">The one place water finally leaves the plain.</span>
-            </div>
-            <span class="map-flow">&rarr;&nbsp;water leaves the plain here</span>
+      <p class="directions">This is a <strong>side view</strong>, not a scale drawing. It runs from north on the <strong>left</strong> to south on the <strong>right</strong>, and follows the water.</p>
+      <figure class="figure case-figure" data-figure-id="fig-setting-accessible" data-setting-contract="southern-plain-accessible-v2.0">
+        <div class="transect accessible-transect" role="img" aria-label="Schematic side view of southern Mesopotamia running from north on the left to south on the right. On the left, mountains and upper valleys where the Tigris and the Euphrates rise. Across the middle, the flat alluvial plain where the fields are, marked as receiving under 100 millimetres of rain a year. Towards the right, the marshes. At the right-hand end, the Gulf, marked as the one place water finally leaves the plain. An arrow runs along the ground from the mountains to the Gulf, showing that water travels one way and leaves once. A note states that the height is exaggerated and the real fall across the plain is very gentle.">
+          <div class="transect-plate">
+            <!-- Illustrative backdrop slot. An artwork layer may be added here as
+                 <img class="transect-art" src="../assets/…" alt=""> once commissioned.
+                 The plate is complete without it: every place name, the rainfall
+                 figure, the outlet marker and the flow direction live in the
+                 deterministic overlay below and never in the picture, so the figure
+                 prints and greys identically either way. -->
+            <svg class="transect-overlay" viewBox="0 0 640 168" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <polygon class="tr-sea" points="566,120 640,120 640,168 566,168"></polygon>
+              <polygon class="tr-ground" points="0,44 26,20 52,46 74,30 96,58 150,92 300,104 470,112 566,120 566,168 0,168"></polygon>
+              <polyline class="tr-surface" points="0,44 26,20 52,46 74,30 96,58 150,92 300,104 470,112 566,120"></polyline>
+              <line class="tr-sealevel" x1="566" y1="120" x2="640" y2="120"></line>
+              <rect class="tr-fields" x="182" y="94" width="244" height="11" rx="2"></rect>
+              <path class="tr-flow" d="M 112 70 L 548 120"></path>
+              <polygon class="tr-flow-head" points="558,123 540,116 542,126"></polygon>
+              <line class="tr-outlet" x1="600" y1="102" x2="600" y2="140"></line>
+            </svg>
+            <span class="tr-label tr-label-uplands">Mountains and upper valleys<em>where both rivers rise</em></span>
+            <span class="tr-label tr-label-plain">The flat alluvial plain — <strong>the fields are here</strong><em>under 100 mm of rain a year</em></span>
+            <span class="tr-label tr-label-marsh">The marshes<em>water keeps moving</em></span>
+            <span class="tr-label tr-label-gulf"><strong>THE GULF</strong><em>water leaves the plain here</em></span>
+            <span class="tr-note tr-note-flow">water travels this way, and leaves once &rarr;</span>
+            <span class="tr-note tr-note-scale">Height exaggerated &middot; the real fall across the plain is very gentle</span>
+            <span class="tr-compass">north &larr; &middot; &rarr; south</span>
           </div>
         </div>
-        <figcaption>Curriculum-created diagram. City markers are not surveyed locations. Nothing is to scale.</figcaption>
-        <p class="extended-description">Extended description: four bands from north at the top to south at the bottom — mountains, the flat plain with both rivers and the fields, the marshes, and the Gulf, which the diagram names as the only place water finally leaves the plain.</p>
+        <figcaption>Curriculum-created schematic side view. <strong>Height is exaggerated.</strong> Nothing is to scale. It shows the order of places and which way the water travels. It is not a real coastline.</figcaption>
+        <p class="extended-description">Extended description: a side view from north on the left to south on the right. Mountains at the left, where both rivers rise. Then the flat alluvial plain, which is where the fields are and which receives under 100 millimetres of rain a year; the ground falls only very slightly across it, and the height in the drawing is exaggerated. Then the marshes. At the right-hand end, the Gulf, labelled as the one place water finally leaves the plain. A single arrow runs the length of the ground, showing water travelling one way and leaving once.</p>
       </figure>
-
       <div class="background-note" data-source-status-scope="documented-modern" data-source-id="southern-plain-today">
         <span class="label">The same plain today</span>
         <span class="source-status">STATUS: documented · modern reporting by a United Nations agency</span>
@@ -1303,8 +1283,8 @@
       </div>
 
       <div class="rail-marker">
-        <span class="response-label"><span class="part">Part A —</span> Which band is the one place water finally leaves the plain?</span>
-        <span class="mark-response wide" data-accessible-response="compact" data-persist-id="a3-outlet" data-response role="textbox" aria-label="Accessible Task 3 the band where water finally leaves the plain"></span>
+        <span class="response-label"><span class="part">Part A —</span> Name the one place where water finally leaves the plain.</span>
+        <span class="mark-response wide" data-accessible-response="compact" data-persist-id="a3-outlet" data-response role="textbox" aria-label="Accessible Task 3 the place where water finally leaves the plain"></span>
       </div>
       <span class="response-label"><span class="part">Part B —</span> Why could farmers here not just rely on rain?</span>
       <div class="response medium" data-accessible-response="substantial" data-persist-id="a3-rain" data-response role="textbox" aria-label="Accessible Task 3 why rainfall alone could not grow the crop"></div>
