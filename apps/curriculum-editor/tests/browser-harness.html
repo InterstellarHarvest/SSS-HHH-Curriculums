@@ -4963,6 +4963,81 @@
         JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="student"] .dossier-card .source-status')).map(node => node.textContent.trim())));
 
       // Evidence visuals and the no-game route.
+      // Chronology containment. The scene year must actually fall inside the band the
+      // keys claim contains it. Case 01 shipped a rail whose band A began at 9,650 BCE
+      // while the scene is set at 9,700 BCE, so the Student prompt, the Teacher
+      // procedure, the Accessible support line and the Answer Key all asserted a
+      // containment the printed dates contradicted. Parsing the rendered BCE ranges is
+      // what makes that unfalsifiable-by-prose: the numbers on the page are the source
+      // of truth, not the sentence next to them.
+      const c01BceRange = text => {
+        const match = /([\d,]+)\s*[\u2013\u2014-]\s*([\d,]+)\s*BCE/.exec(text || "");
+        if (!match) return null;
+        const older = Number(match[1].replace(/,/g, "")), younger = Number(match[2].replace(/,/g, ""));
+        return older >= younger ? { older, younger } : null;
+      };
+      // The scene year the game sets and the packet bounds. Fixed by the runtime level,
+      // so it is a constant here rather than something the packet could redefine.
+      const c01SceneYear = 9700;
+      const c01RailBands = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-chronology-contract] .rail-band`))
+        .map(band => ({
+          tag: band.querySelector(".rail-tag")?.textContent?.trim(),
+          range: c01BceRange(band.querySelector(".rail-date")?.textContent)
+        }));
+      const c01SceneBand = (window.HHH_CASE01_TASK_REGISTRY || api.getTaskRegistry())?.chronologyScale?.sceneBand || "A";
+      const c01Containment = ["student", "accessible"].map(role => {
+        const bands = c01RailBands(role);
+        const target = bands.find(band => band.tag === c01SceneBand);
+        return {
+          role,
+          bands: bands.map(band => band.tag),
+          dated: bands.filter(band => band.range).length,
+          target: target?.range || null,
+          contains: Boolean(target?.range && target.range.older >= c01SceneYear && c01SceneYear >= target.range.younger)
+        };
+      });
+      check(`Case 01 rail band ${c01SceneBand} really contains the ${c01SceneYear} BCE reconstructed scene year in both learner editions`,
+        c01Containment.every(item => item.bands.length === 5 && item.dated >= 4 && item.contains),
+        JSON.stringify(c01Containment));
+      // No key, prompt or procedure may claim a band that the rail does not date around
+      // the scene year. Any role naming a scene band must name the same one.
+      const c01ClaimedBands = Array.from(workspace.querySelectorAll(".page[data-role]"))
+        .flatMap(page => Array.from(page.textContent.matchAll(/falls inside\s*(?:<[^>]*>)?\s*band\s+([A-E])/gi)).map(match => match[1].toUpperCase()));
+      check("Case 01 never claims the scene falls inside a band other than the one the rail dates around it",
+        c01ClaimedBands.every(band => band === c01SceneBand), JSON.stringify(c01ClaimedBands));
+      // Calibration: the rail is one coherent calibrated scale, and the noncalibrated
+      // Tanno & Willcox figures must never be reintroduced as rail dates.
+      check("Case 01 declares its rail calibrated in both learner editions and keeps noncalibrated radiocarbon dates off it",
+        ["student", "accessible"].every(role => {
+          const figure = workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`).closest("figure");
+          const rail = workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`).textContent;
+          return /calibrated/i.test(figure.textContent) && !/7,550 BCE|5,550 BCE/.test(rail);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`).closest("figure").textContent.includes("calibrated"))));
+      // R2: real archaeobotany must not sit under a reconstructed status line.
+      check("Case 01 carries the grain mechanism as documented background outside the reconstructed dossier in both learner editions",
+        ["student", "accessible"].every(role => {
+          const background = workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"]`);
+          const cards = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .dossier-card`));
+          return Boolean(background)
+            && /^STATUS: documented/.test(background.querySelector(".source-status")?.textContent?.trim() || "")
+            && !background.closest(".dossier")
+            && /cannot (?:drop its own seed|sow itself)/i.test(background.textContent)
+            && cards.every(card => !/^STATUS: reconstructed/.test(card.querySelector(".source-status")?.textContent?.trim() || "")
+              || !/cannot sow itself|cannot reseed itself/i.test(card.textContent));
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"] .source-status`)?.textContent?.trim())));
+      // R4: the counted-grain figure must carry its identifiable subset wherever it appears.
+      check("Case 01 never states the 9,844 spikelet figure without the 804 identifiable subset",
+        Array.from(workspace.querySelectorAll(".page[data-role]"))
+          .filter(page => /9,844/.test(page.textContent))
+          .every(page => /\b804\b/.test(page.textContent)),
+        JSON.stringify(Array.from(workspace.querySelectorAll(".page[data-role]"))
+          .filter(page => /9,844/.test(page.textContent))
+          .map(page => ({ page: page.dataset.pageId, has804: /\b804\b/.test(page.textContent) }))));
+
       check("Case 01 carries the chronology rail and generation trace in both learner editions with extended descriptions",
         ["student", "accessible"].every(role =>
           c01Count(`.page[data-role="${role}"] [data-chronology-contract] .rail-band`) === 5

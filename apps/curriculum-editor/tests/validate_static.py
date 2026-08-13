@@ -466,6 +466,43 @@ def hhh_source_path_findings(editor_package: str, package: dict) -> list[str]:
     return findings
 
 
+HHH_README_COUNTS_RE = re.compile(
+    r"^Roles and page counts:\s*"
+    r"Student\s+(?P<student>\d+)\s*[\u00b7\u2022]\s*"
+    r"Teacher\s+(?P<teacher>\d+)\s*[\u00b7\u2022]\s*"
+    r"Answer Key\s+(?P<answer>\d+)\s*[\u00b7\u2022]\s*"
+    r"Accessible\s+(?P<accessible>\d+)\s*\.\s*$",
+    re.MULTILINE)
+
+
+def hhh_readme_page_count_findings(unit_dir: Path, package: dict) -> list[str]:
+    """Disagreements between an HHH package README's declared role page counts and the package.
+
+    Case 01 shipped a README claiming eight Teacher pages against a seven-page
+    Teacher Guide, and cross-referenced a "Teacher page 8" that did not exist.
+    Nothing caught it: every other validator compares the package to the DOM and
+    the registry, and no gate had ever read a README. This closes that gap for
+    every package-backed HHH unit at once.
+
+    The parse is deliberately narrow. It matches one standardized declaration
+    line and nothing else, so it cannot drift into guessing at prose. A missing
+    or unparseable line is a contract failure rather than a silent pass, which is
+    what makes the guard meaningful for units that do not exist yet.
+    """
+    readme = unit_dir / "README.md"
+    if not readme.is_file():
+        return ["README.md is required and was not found"]
+    matches = HHH_README_COUNTS_RE.findall(readme.read_text(encoding="utf-8"))
+    if len(matches) != 1:
+        return [f"README must carry exactly one 'Roles and page counts:' declaration line; found {len(matches)}"]
+    match = HHH_README_COUNTS_RE.search(readme.read_text(encoding="utf-8"))
+    declared = {role: int(match.group(role)) for role in ROLES}
+    packaged = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
+    if declared != packaged:
+        return [f"README role page counts {declared} disagree with the package {packaged}"]
+    return []
+
+
 def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dict, package_schema: dict) -> None:
     """Generic shared-system checks for one package-backed HHH unit.
 
@@ -522,6 +559,8 @@ def validate_hhh_operational_case(results: Results, campaign_id: str, entry: dic
     lifecycle_findings = corrective_release_lifecycle.history_findings(
         package_path.parents[1], case_id, package, registry_data)
     results.check(f"{case_id} history satisfies the shared corrective-release lifecycle", not lifecycle_findings, lifecycle_findings)
+    readme_findings = hhh_readme_page_count_findings(package_path.parents[1], package)
+    results.check(f"{case_id} README role page counts match the package", not readme_findings, readme_findings)
 
     soup = BeautifulSoup(paths["content"].read_text(encoding="utf-8"), "html.parser")
     counts = {role: package["rolePageStructure"][role]["pageCount"] for role in ROLES}
