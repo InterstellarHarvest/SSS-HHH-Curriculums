@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE01",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-1",
+  "title": "The Fertile Crescent",
+  "subtitle": "Campaign 1 · Core Case 01 · A river valley in southwest Asia",
+  "location": "A river valley in southwest Asia",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE01:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-01-fertile-crescent/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-01-fertile-crescent/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-01-fertile-crescent/source/task-registry.js",
+    "global": "HHH_CASE01_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-01-fertile-crescent/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case01-chronology-rail",
+      "type": "html-css-diagrams",
+      "selector": "[data-chronology-contract]",
+      "embed": true
+    },
+    {
+      "id": "case01-generation-trace",
+      "type": "html-css-diagrams",
+      "selector": "[data-selection-contract]",
+      "embed": true
+    },
+    {
+      "id": "case01-reconstruction-boundary",
+      "type": "html-css-diagrams",
+      "selector": "[data-reconstruction-boundary]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 7
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 9
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE01_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE01_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE01_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE01_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE01_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Core Case 01 v0.1 — The Fertile Crescent Curriculum Editor",
+    "loadAnnouncement": "Core Case 01 The Fertile Crescent v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "45166ae6015e603f91ad1d3d711cef91074eb36da7cc5a31d9cb5dcb06ffbddf",
+    "presentation": "8bb7c880ed762dcde24d148100f458ec87cca11820df3cb3bd45e96cf7ebad68",
+    "taskRegistry": "db35a6f487a3b7fba386e5963a81c9babe17ee2f4fe793ca4b6345f484a64c20",
+    "layoutOverrides": "a5f37b56f960a31bda8e3d33870f08ad689d4ba1816b750a48202434a8eb93c5"
+  }
+}

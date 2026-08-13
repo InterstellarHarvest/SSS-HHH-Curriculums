@@ -1,0 +1,278 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE01",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE01:accessible:t2:a2-shows",
+      "persistId": "a2-shows",
+      "pageId": "accessible-crescent-02",
+      "taskId": 2,
+      "label": "Accessible Task 2 first reading of the scene",
+      "minPx": 72,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t2:a2-need",
+      "persistId": "a2-need",
+      "pageId": "accessible-crescent-02",
+      "taskId": 2,
+      "label": "Accessible Task 2 evidence needed from outside the scene",
+      "minPx": 72,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t3:a3-shows",
+      "persistId": "a3-shows",
+      "pageId": "accessible-crescent-04",
+      "taskId": 3,
+      "label": "Accessible Task 3 what the rail shows",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t3:a3-wrong",
+      "persistId": "a3-wrong",
+      "pageId": "accessible-crescent-04",
+      "taskId": 3,
+      "label": "Accessible Task 3 correcting the 9,700 BCE claim",
+      "minPx": 56,
+      "maxPx": 240
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t5:a5-why",
+      "persistId": "a5-why",
+      "pageId": "accessible-crescent-06",
+      "taskId": 5,
+      "label": "Accessible Task 5 mechanism explanation",
+      "minPx": 72,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t6:a6-reject",
+      "persistId": "a6-reject",
+      "pageId": "accessible-crescent-07",
+      "taskId": 6,
+      "label": "Accessible Task 6 evidence rejecting Account 1",
+      "minPx": 56,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t6:a6-speed",
+      "persistId": "a6-speed",
+      "pageId": "accessible-crescent-07",
+      "taskId": 6,
+      "label": "Accessible Task 6 open argument about rate",
+      "minPx": 56,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t7:a7-part-1",
+      "persistId": "a7-part-1",
+      "pageId": "accessible-crescent-08",
+      "taskId": 7,
+      "label": "Accessible Task 7 part 1 practice and mechanism",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t7:a7-part-2",
+      "persistId": "a7-part-2",
+      "pageId": "accessible-crescent-08",
+      "taskId": 7,
+      "label": "Accessible Task 7 part 2 two named sources and what kind of evidence each is",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t7:a7-part-3",
+      "persistId": "a7-part-3",
+      "pageId": "accessible-crescent-08",
+      "taskId": 7,
+      "label": "Accessible Task 7 part 3 what the evidence cannot establish",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t7:a7-part-4",
+      "persistId": "a7-part-4",
+      "pageId": "accessible-crescent-08",
+      "taskId": 7,
+      "label": "Accessible Task 7 part 4 cultivation and domestication in time",
+      "minPx": 56,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t8:a8-support",
+      "persistId": "a8-support",
+      "pageId": "accessible-crescent-09",
+      "taskId": 8,
+      "label": "Accessible Task 8 what the dig report supports",
+      "minPx": 72,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C1-CASE01:accessible:t8:a8-settle",
+      "persistId": "a8-settle",
+      "pageId": "accessible-crescent-09",
+      "taskId": 8,
+      "label": "Accessible Task 8 evidence that would settle it",
+      "minPx": 72,
+      "maxPx": 320
+    }
+  ],
+  "lockedAreas": [
+    { "persistId": "a-name", "reason": "identity" },
+    { "persistId": "a-date", "reason": "identity" },
+    { "persistId": "a-class", "reason": "identity" },
+    { "persistId": "a1-term-1", "reason": "single-line" },
+    { "persistId": "a1-term-2", "reason": "single-line" },
+    { "persistId": "a1-term-3", "reason": "single-line" },
+    { "persistId": "a1-term-4", "reason": "single-line" },
+    { "persistId": "a1-term-5", "reason": "single-line" },
+    { "persistId": "a1-term-6", "reason": "single-line" },
+    { "persistId": "a3-band", "reason": "classification" },
+    { "persistId": "a4-grain-status", "reason": "table-cell" },
+    { "persistId": "a4-grain-can", "reason": "table-cell" },
+    { "persistId": "a4-grain-cannot", "reason": "table-cell" },
+    { "persistId": "a4-rail-status", "reason": "table-cell" },
+    { "persistId": "a4-rail-can", "reason": "table-cell" },
+    { "persistId": "a4-rail-cannot", "reason": "table-cell" },
+    { "persistId": "a4-account-status", "reason": "table-cell" },
+    { "persistId": "a4-account-can", "reason": "table-cell" },
+    { "persistId": "a4-account-cannot", "reason": "table-cell" },
+    { "persistId": "a5-stage-3", "reason": "fixed-organizer" },
+    { "persistId": "a5-stage-4", "reason": "fixed-organizer" },
+    { "persistId": "a6-mark-1", "reason": "classification" },
+    { "persistId": "a6-mark-2", "reason": "classification" },
+    { "persistId": "a6-mark-3", "reason": "classification" }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE01:student:t2:t2-shows",
+        "persistId": "t2-shows",
+        "pageId": "student-crescent-02",
+        "taskId": 2,
+        "label": "Task 2 first reading of the scene",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t2:t2-need",
+        "persistId": "t2-need",
+        "pageId": "student-crescent-02",
+        "taskId": 2,
+        "label": "Task 2 evidence needed from outside the scene",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t3:t3-shows",
+        "persistId": "t3-shows",
+        "pageId": "student-crescent-03",
+        "taskId": 3,
+        "label": "Task 3 what the rail shows",
+        "minPx": 64,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t3:t3-wrong",
+        "persistId": "t3-wrong",
+        "pageId": "student-crescent-03",
+        "taskId": 3,
+        "label": "Task 3 correcting the 9,700 BCE claim",
+        "minPx": 64,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t5:t5-why",
+        "persistId": "t5-why",
+        "pageId": "student-crescent-05",
+        "taskId": 5,
+        "label": "Task 5 mechanism explanation",
+        "minPx": 96,
+        "maxPx": 360
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t6:t6-reject",
+        "persistId": "t6-reject",
+        "pageId": "student-crescent-06",
+        "taskId": 6,
+        "label": "Task 6 evidence rejecting one account",
+        "minPx": 96,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t6:t6-speed",
+        "persistId": "t6-speed",
+        "pageId": "student-crescent-06",
+        "taskId": 6,
+        "label": "Task 6 open argument about rate",
+        "minPx": 96,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t7:t7-explanation",
+        "persistId": "t7-explanation",
+        "pageId": "student-crescent-07",
+        "taskId": 7,
+        "label": "Task 7 qualified historical explanation",
+        "minPx": 200,
+        "maxPx": 520
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t8:t8-support",
+        "persistId": "t8-support",
+        "pageId": "student-crescent-07",
+        "taskId": 8,
+        "label": "Task 8 what the dig report supports",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE01:student:t8:t8-settle",
+        "persistId": "t8-settle",
+        "pageId": "student-crescent-07",
+        "taskId": 8,
+        "label": "Task 8 evidence that would settle it",
+        "minPx": 64,
+        "maxPx": 260
+      }
+    ],
+    "lockedAreas": [
+      { "persistId": "student-name", "reason": "identity" },
+      { "persistId": "student-date", "reason": "identity" },
+      { "persistId": "student-class", "reason": "identity" },
+      { "persistId": "t1-term-1", "reason": "single-line" },
+      { "persistId": "t1-term-2", "reason": "single-line" },
+      { "persistId": "t1-term-3", "reason": "single-line" },
+      { "persistId": "t1-term-4", "reason": "single-line" },
+      { "persistId": "t1-term-5", "reason": "single-line" },
+      { "persistId": "t1-term-6", "reason": "single-line" },
+      { "persistId": "t3-band", "reason": "classification" },
+      { "persistId": "t4-recon-status", "reason": "table-cell" },
+      { "persistId": "t4-recon-can", "reason": "table-cell" },
+      { "persistId": "t4-recon-cannot", "reason": "table-cell" },
+      { "persistId": "t4-grain-status", "reason": "table-cell" },
+      { "persistId": "t4-grain-can", "reason": "table-cell" },
+      { "persistId": "t4-grain-cannot", "reason": "table-cell" },
+      { "persistId": "t4-rail-status", "reason": "table-cell" },
+      { "persistId": "t4-rail-can", "reason": "table-cell" },
+      { "persistId": "t4-rail-cannot", "reason": "table-cell" },
+      { "persistId": "t4-account-status", "reason": "table-cell" },
+      { "persistId": "t4-account-can", "reason": "table-cell" },
+      { "persistId": "t4-account-cannot", "reason": "table-cell" },
+      { "persistId": "t5-stage-2", "reason": "fixed-organizer" },
+      { "persistId": "t5-stage-3", "reason": "fixed-organizer" },
+      { "persistId": "t5-stage-4", "reason": "fixed-organizer" },
+      { "persistId": "t6-mark-1", "reason": "classification" },
+      { "persistId": "t6-mark-2", "reason": "classification" },
+      { "persistId": "t6-mark-3", "reason": "classification" }
+    ],
+    "overrides": {}
+  }
+}
