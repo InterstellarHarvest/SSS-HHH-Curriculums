@@ -5,7 +5,7 @@
   "instructionalType": "CORE_CASE",
   "campaign": "campaign-1",
   "title": "The Fertile Crescent",
-  "subtitle": "Campaign 1 · Core Case 01 · A river valley in southwest Asia",
+  "subtitle": "Campaign 1 · Case 01 · A river valley in southwest Asia",
   "location": "A river valley in southwest Asia",
   "version": "0.1",
   "status": "VALIDATION_BUILD",
@@ -76,7 +76,7 @@
       "embed": true
     },
     {
-      "id": "case01-chronology-rail",
+      "id": "case01-chronology-timeline",
       "type": "html-css-diagrams",
       "selector": "[data-chronology-contract]",
       "embed": true
@@ -134,8 +134,8 @@
   },
   "accessibility": {
     "language": "en",
-    "documentTitle": "HHH Campaign 1 Core Case 01 v0.1 — The Fertile Crescent Curriculum Editor",
-    "loadAnnouncement": "Core Case 01 The Fertile Crescent v0.1 curriculum package loaded. Student Mission selected.",
+    "documentTitle": "HHH Campaign 1 Case 01 v0.1 — The Fertile Crescent Curriculum Editor",
+    "loadAnnouncement": "Case 01 The Fertile Crescent v0.1 curriculum package loaded. Student Mission selected.",
     "extendedDescriptionSelectors": [
       ".extended-description",
       ".alt-support",
@@ -144,9 +144,9 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "b45b79f7b4c7883a4387b05a817cea08b232b5601871ca3b8b2e567609f784f0",
-    "presentation": "01e627a5a155b24c50b012737e1321469b456f3bb14bc4c2222b31921c88315b",
-    "taskRegistry": "95fafd91ad86d4d40f27541b2ea7160a5d021d5537acb1e2d045a01d2354b7b8",
+    "content": "c51c95977481d65339c4e1a293c78f45dda6254c40507aae61ea0ea44bdd48af",
+    "presentation": "d552f457acc00073387c0afcab198dce00bae464b35f07700b7f6b3ff724077c",
+    "taskRegistry": "1b7075afcdb317296df08eb0535e3e8dcf02dc38e3ebc86240217b7e8d63d76c",
     "layoutOverrides": "a5f37b56f960a31bda8e3d33870f08ad689d4ba1816b750a48202434a8eb93c5"
   }
 }

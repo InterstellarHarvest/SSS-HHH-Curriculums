@@ -70,18 +70,18 @@ window.HHH_CASE01_TASK_REGISTRY = {
     {
       "id": "C01-T3",
       "number": "3",
-      "semanticLabel": "CHRONOLOGY RAIL",
+      "semanticLabel": "CHRONOLOGY TIMELINE",
       "icon": "ph-flow",
-      "title": "Place the Scene on the Evidence Rail",
-      "description": "Mark where the reconstructed scene falls against the dated archaeobotanical record and say what that placement rules out.",
-      "instructionalPurpose": "Family H2 chronology rail. The scene date, 9,700 BCE, sits inside band A (about 9,750-8,750 BCE), the cultivation window, and centuries to millennia before domesticated-type grain becomes common anywhere. Every band is a calibrated calendar date.",
+      "title": "Place the Scene on the Evidence Timeline",
+      "description": "Place the reconstructed scene on a dated timeline of archaeobotanical evidence and say what that placement rules out.",
+      "instructionalPurpose": "Family H2 chronology. A single calibrated timeline carries five overlapping evidence bars, so no row order implies sequence. The scene date, 9,700 BCE, sits inside bar A (about 9,750-8,750 BCE), the cultivation window, and centuries to millennia before domesticated-type grain becomes common anywhere.",
       "provenance": [
         "Arranz-Otaegui et al. 2016 regional chronology, calibrated (bands A, B, C, E)",
         "Allaby et al. 2017 calibrated-BC selection-rate analysis (band D)",
-        "Curriculum-created rail"
+        "Curriculum-created timeline"
       ],
       "responseType": "one marked placement plus two short constructed responses",
-      "answerScope": "The scene marker placed in the cultivation band, one statement of what no band supports, and one statement of what the rail does show.",
+      "answerScope": "The scene placed in the cultivation bar, one pair of bars read for how domestication developed over time, and one bar used to refute a single-date domestication claim.",
       "pagePlacement": {
         "student": "student-crescent-03",
         "teacher": "teacher-guide-03",
@@ -253,7 +253,7 @@ window.HHH_CASE01_TASK_REGISTRY = {
     "system": "calibrated calendar dates",
     "model": "overlapping-evidence-windows",
     "modelNote": "The rail is five dated evidence windows drawn from different regions, crops and studies, not five consecutive eras. Bands B, D and E cover partly the same centuries. Band D is a selection-rate window rather than a regional threshold. Both learner editions must disclose this above the rail.",
-    "railBands": {
+    "timelineBars": {
       "A": { "range": "about 9,750-8,750 BCE / about 11,700-10,700 cal BP", "kind": "regional-cultivation", "source": "Arranz-Otaegui et al. 2016" },
       "B": { "range": "about 8,750-8,250 BCE / about 10,700-10,200 cal BP", "kind": "regional-threshold", "source": "Arranz-Otaegui et al. 2016" },
       "C": { "range": "about 400-1,000 years later than band B", "kind": "regional-threshold", "source": "Arranz-Otaegui et al. 2016" },

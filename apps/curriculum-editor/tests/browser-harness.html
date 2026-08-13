@@ -4847,7 +4847,7 @@
       const c01TaskTitles = {
         "1": "Build the Domestication Vocabulary",
         "2": "Make a First Reading of the Field",
-        "3": "Place the Scene on the Evidence Rail",
+        "3": "Place the Scene on the Evidence Timeline",
         "4": "Decide What Each Source Can Carry",
         "5": "Trace the Trait Across Generations",
         "6": "Weigh Three Accounts of the Change",
@@ -5015,9 +5015,11 @@
       const c01ChronologyModel = (window.HHH_CASE01_TASK_REGISTRY || api.getTaskRegistry())?.chronologyScale?.model;
       const c01Framing = ["student", "accessible"].map(role => {
         const figure = workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`).closest("figure");
-        const disclosure = figure.querySelector('[data-chronology-framing="overlap-disclosure"]');
+        // The disclosure is task directions above the figure, so scope to the page.
+        const page = figure.closest(".page");
+        const disclosure = page.querySelector('[data-chronology-framing="overlap-disclosure"]');
         const label = disclosure?.querySelector(".label")?.textContent?.trim();
-        const text = figure.textContent;
+        const text = page.textContent;
         return {
           role,
           model: figure.dataset.chronologyModel,
@@ -5031,16 +5033,23 @@
             figure.querySelector('.rail-band[data-window-kind="selection-rate"]')?.textContent || ""),
           // and the discarded sequential phrasings stay gone, including in the aria-label
           noSequentialClaim: !/ordered from oldest to most recent|running from oldest to most recent|oldest first|oldest at the top/i.test(
-            text + " " + (figure.querySelector("[aria-label]")?.getAttribute("aria-label") || ""))
+            text + " " + (figure.querySelector("[aria-label]")?.getAttribute("aria-label") || "")),
+          // Owner clarity pass: the learner reads "timeline" and "bars", never "rail".
+          noRailWording: !/\brail\b/i.test(text + " " + (figure.querySelector("[aria-label]")?.getAttribute("aria-label") || "")),
+          // The figure is a real x-axis with positioned bars, so overlap is visible
+          // and row order carries no meaning.
+          plottedBars: figure.querySelectorAll(".tl-bar").length === 5 && figure.querySelectorAll(".tl-tick").length >= 4
         };
       });
       check("Case 01 declares an overlapping-evidence-windows chronology rather than a sequential-era rail",
         c01ChronologyModel === "overlapping-evidence-windows"
         && c01Framing.every(item => item.model === "overlapping-evidence-windows" && item.hasDisclosure && item.label),
         JSON.stringify({ registry: c01ChronologyModel, figures: c01Framing.map(item => ({ role: item.role, model: item.model, label: item.label })) }));
-      check("Case 01 tells learners in both editions that the bands overlap and are not five consecutive eras",
+      check("Case 01 tells learners in both editions that the bars overlap and are not five consecutive eras",
         c01Framing.every(item => item.saysNotConsecutive && item.saysOverlap && item.bandDQualified && item.noSequentialClaim),
         JSON.stringify(c01Framing));
+      check("Case 01 presents Task 3 as a plotted timeline in learner wording, with no 'rail' left in either edition",
+        c01Framing.every(item => item.plottedBars && item.noRailWording), JSON.stringify(c01Framing));
 
       // Calibration: the rail is one coherent calibrated scale, and the noncalibrated
       // Tanno & Willcox figures must never be reintroduced as rail dates.

@@ -142,12 +142,35 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
    and the printed dates, not by position or colour. Bands stack downward so a
    long date range never has to be compressed into a narrow column. */
 .chronology-rail { display: flex; flex-direction: column; gap: 3px; margin: 4px 0; }
-.rail-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; padding: 0 2px 1px; border-bottom: 1.4px solid var(--ink); }
-.rail-axis-label { color: var(--muted); font: 800 6.4pt/1.1 monospace; letter-spacing: .08em; }
-/* The middle axis label carries the non-sequence reading. It must not be the only
-   place that reading appears, so `.rail-framing` states it in plain sentences above
-   the rail and the figcaption and extended description repeat it. */
-.rail-axis-label:nth-child(2) { flex: 1; text-align: center; letter-spacing: .04em; }
+/* Task 3 timeline. A real x-axis carries the time, so row order no longer implies
+   sequence and overlapping ranges are visible at a glance — which is the whole point
+   of the task. Bars are positioned as percentages of a fixed 10,000-6,000 BCE span:
+   left = (10000 - startBCE) / 4000, width = (startBCE - endBCE) / 4000. Every bar is
+   also labelled in words, so nothing depends on reading the geometry, or on colour. */
+.timeline { display: block; margin: 3px 0 2px; }
+.timeline .tl-head, .timeline .rail-band, .timeline .tl-axis { display: grid; grid-template-columns: .2in minmax(0, 2.25in) minmax(0, 1fr); gap: 5px; align-items: center; }
+.timeline .tl-head, .timeline .tl-axis { grid-template-columns: .2in minmax(0, 2.25in) minmax(0, 1fr); }
+.timeline .tl-head .tl-gutter, .timeline .tl-axis .tl-gutter { grid-column: 1 / 3; }
+.timeline .tl-head { padding-bottom: 2px; }
+.tl-head-label { color: var(--muted); font: 800 6.4pt/1.1 monospace; letter-spacing: .06em; text-transform: uppercase; }
+.timeline .rail-band { padding: 2px 0; border: 0; background: none; }
+.timeline .rail-tag { border: 1.4px solid var(--ink); background: var(--paper); font: 800 8.4pt/1 Arial, sans-serif; align-self: stretch; }
+.tl-gutter { min-width: 0; }
+.tl-name { display: block; font-size: 7.5pt; line-height: 1.16; }
+.timeline .rail-date { display: block; font: 700 6.6pt/1.15 monospace; color: var(--accent-dark); }
+.tl-track { position: relative; height: .17in; border-left: 1px solid var(--rule); border-right: 1px solid var(--rule); background: repeating-linear-gradient(to right, transparent 0 24.98%, var(--rule) 24.98% 25%); }
+.tl-head-track { height: auto; min-height: .13in; background: none; border: 0; }
+.tl-axis { margin-top: 1px; }
+.tl-axis .tl-track { height: .17in; background: none; border-left: 0; border-right: 0; }
+.tl-bar { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; border: 1.2px solid var(--ink); border-radius: 2px; background: var(--panel); }
+.tl-bar-approx { border-style: dashed; background: repeating-linear-gradient(135deg, var(--panel-light) 0 3px, var(--panel) 3px 6px); }
+.tl-bar-tag { font: 800 6.8pt/1 Arial, sans-serif; color: var(--ink); }
+.tl-scene { position: absolute; top: -2px; bottom: -2px; width: 0; border-left: 1.4px dashed var(--institution); }
+.tl-scene-flag { position: absolute; bottom: 0; white-space: nowrap; font: 700 6.4pt/1.1 monospace; color: var(--accent-dark); }
+.tl-tick { position: absolute; top: 2px; transform: translateX(-50%); white-space: nowrap; font: 700 6.2pt/1.1 monospace; color: var(--muted); }
+.tl-tick-start { transform: translateX(0); }
+.tl-tick-end { transform: translateX(-100%); }
+.timeline .tl-axis .tl-track { border-top: 1.4px solid var(--ink); }
 
 /* Overlap disclosure. These are dated evidence windows from different regions,
    crops and studies, and B, D and E cover partly the same centuries — so the rail
@@ -271,6 +294,13 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 /* The accessible rail drops the region strip and widens the tag so the letter a
    student has to copy into Part A is the largest thing in the band. */
 .accessible .chronology-rail { gap: 1px; }
+.accessible .timeline .tl-head, .accessible .timeline .rail-band, .accessible .timeline .tl-axis { grid-template-columns: .26in minmax(0, 2.5in) minmax(0, 1fr); }
+.accessible .tl-name { font-size: 9pt; }
+.accessible .timeline .rail-date { font-size: 7.6pt; }
+.accessible .tl-track { height: .2in; }
+.accessible .tl-bar-tag { font-size: 8pt; }
+.accessible .tl-tick { font-size: 7.2pt; }
+.accessible .tl-head-label, .accessible .tl-scene-flag { font-size: 7.2pt; }
 .accessible .rail-band { grid-template-columns: .36in minmax(0, 1fr); padding: 3px 5px; }
 .accessible .rail-tag { font-size: 12pt; }
 .accessible .rail-body { font-size: 9.2pt; }
