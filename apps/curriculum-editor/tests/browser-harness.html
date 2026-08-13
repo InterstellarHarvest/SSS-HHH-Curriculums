@@ -5005,6 +5005,43 @@
         .flatMap(page => Array.from(page.textContent.matchAll(/falls inside\s*(?:<[^>]*>)?\s*band\s+([A-E])/gi)).map(match => match[1].toUpperCase()));
       check("Case 01 never claims the scene falls inside a band other than the one the rail dates around it",
         c01ClaimedBands.every(band => band === c01SceneBand), JSON.stringify(c01ClaimedBands));
+      // F1: the rail is five overlapping evidence windows, not five consecutive eras.
+      // Band B/D and D/E overlap by 250 and 750 years, and C once resolved begins after
+      // D although it prints before it — so any text asserting a strict A-to-E ordering
+      // is teaching the wrong chronology in the one artifact the case calls its spine.
+      // Structure first: both learner editions must carry the model declaration and a
+      // labelled disclosure block. Language second: the old sequential phrasings must
+      // not come back.
+      const c01ChronologyModel = (window.HHH_CASE01_TASK_REGISTRY || api.getTaskRegistry())?.chronologyScale?.model;
+      const c01Framing = ["student", "accessible"].map(role => {
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`).closest("figure");
+        const disclosure = figure.querySelector('[data-chronology-framing="overlap-disclosure"]');
+        const label = disclosure?.querySelector(".label")?.textContent?.trim();
+        const text = figure.textContent;
+        return {
+          role,
+          model: figure.dataset.chronologyModel,
+          hasDisclosure: Boolean(disclosure),
+          label,
+          // states the non-sequence and the overlap in learner-visible prose
+          saysNotConsecutive: /not five steps in a row|not five consecutive eras|not consecutive eras/i.test(text),
+          saysOverlap: /overlap|cover the same (?:years|centuries)|partly the same (?:years|centuries)/i.test(text),
+          // band D is marked as a different kind of window, not a stage
+          bandDQualified: /a different kind of window|not a new stage/i.test(
+            figure.querySelector('.rail-band[data-window-kind="selection-rate"]')?.textContent || ""),
+          // and the discarded sequential phrasings stay gone, including in the aria-label
+          noSequentialClaim: !/ordered from oldest to most recent|running from oldest to most recent|oldest first|oldest at the top/i.test(
+            text + " " + (figure.querySelector("[aria-label]")?.getAttribute("aria-label") || ""))
+        };
+      });
+      check("Case 01 declares an overlapping-evidence-windows chronology rather than a sequential-era rail",
+        c01ChronologyModel === "overlapping-evidence-windows"
+        && c01Framing.every(item => item.model === "overlapping-evidence-windows" && item.hasDisclosure && item.label),
+        JSON.stringify({ registry: c01ChronologyModel, figures: c01Framing.map(item => ({ role: item.role, model: item.model, label: item.label })) }));
+      check("Case 01 tells learners in both editions that the bands overlap and are not five consecutive eras",
+        c01Framing.every(item => item.saysNotConsecutive && item.saysOverlap && item.bandDQualified && item.noSequentialClaim),
+        JSON.stringify(c01Framing));
+
       // Calibration: the rail is one coherent calibrated scale, and the noncalibrated
       // Tanno & Willcox figures must never be reintroduced as rail dates.
       check("Case 01 declares its rail calibrated in both learner editions and keeps noncalibrated radiocarbon dates off it",
@@ -5029,14 +5066,47 @@
         }),
         JSON.stringify(["student", "accessible"].map(role =>
           workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"] .source-status`)?.textContent?.trim())));
-      // R4: the counted-grain figure must carry its identifiable subset wherever it appears.
-      check("Case 01 never states the 9,844 spikelet figure without the 804 identifiable subset",
-        Array.from(workspace.querySelectorAll(".page[data-role]"))
-          .filter(page => /9,844/.test(page.textContent))
-          .every(page => /\b804\b/.test(page.textContent)),
-        JSON.stringify(Array.from(workspace.querySelectorAll(".page[data-role]"))
-          .filter(page => /9,844/.test(page.textContent))
-          .map(page => ({ page: page.dataset.pageId, has804: /\b804\b/.test(page.textContent) }))));
+      // R4: examined total versus identifiable subset. The first version of this check
+      // only asked whether 9,844 and 804 both appeared on a page, which a decoy passed
+      // — "9,844 classified spikelet bases ... across 804 excavated contexts" was green.
+      // The relationship is what matters, so the learner block now declares it as data
+      // and the assertion tests the declaration, the arithmetic, and the sentence that
+      // would contradict it.
+      const c01CountBlocks = Array.from(workspace.querySelectorAll('[data-evidence-counts="tanno-willcox-2006"]'));
+      const c01Counts = c01CountBlocks.map(node => {
+        const text = node.textContent;
+        const examined = Number(node.dataset.examined), identifiable = Number(node.dataset.identifiable);
+        return {
+          role: node.closest(".page")?.dataset.role,
+          examined, identifiable,
+          subsetSmaller: identifiable < examined,
+          // the identifiable figure must be presented AS the identifiable subset
+          subsetQualified: /\b804\b[^.]{0,90}(identifiab|identified|clear enough|sorted|classif)/i.test(text)
+            || /(identifiab|identified|clear enough|sorted|classif)[^.]{0,90}\b804\b/i.test(text),
+          // and the examined total must never be the thing that was classified
+          totalNotClassified: !/9,844\s+(classified|identifiable|identified|sorted)/i.test(text)
+            && !/(classified|identifiable|identified|sorted)\s+9,844/i.test(text)
+            && !/(those|these|the)\s+9,844\s+(show|prove|are)/i.test(text)
+        };
+      });
+      check("Case 01 declares the Tanno and Willcox examined total and identifiable subset as data in both learner editions",
+        c01CountBlocks.length === 2
+        && ["student", "accessible"].every(role => c01Counts.some(item => item.role === role))
+        && c01Counts.every(item => item.examined === 9844 && item.identifiable === 804 && item.subsetSmaller),
+        JSON.stringify(c01Counts));
+      check("Case 01 presents 804 as the identifiable subset and never presents all 9,844 as classified",
+        c01Counts.length > 0 && c01Counts.every(item => item.subsetQualified && item.totalNotClassified),
+        JSON.stringify(c01Counts));
+      // Any other role repeating the figure must repeat the subset with it.
+      const c01CountEchoes = Array.from(workspace.querySelectorAll(".page[data-role]"))
+        .filter(page => /9,844/.test(page.textContent))
+        .map(page => ({
+          page: page.dataset.pageId,
+          ok: /\b804\b/.test(page.textContent)
+            && !/9,844\s+(classified|identifiable|identified|sorted)/i.test(page.textContent)
+        }));
+      check("Case 01 repeats the 9,844 figure only alongside its identifiable subset in every role",
+        c01CountEchoes.length >= 3 && c01CountEchoes.every(item => item.ok), JSON.stringify(c01CountEchoes));
 
       check("Case 01 carries the chronology rail and generation trace in both learner editions with extended descriptions",
         ["student", "accessible"].every(role =>
