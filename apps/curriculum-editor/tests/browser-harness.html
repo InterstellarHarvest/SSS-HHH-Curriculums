@@ -273,8 +273,8 @@
       // asserted to cover the canonical roster exactly, because the failure this replaces
       // was SSS-C1-CASE07 being absent from both and therefore silently receiving zero
       // resize-eligibility, layout-panel and invalid-default coverage.
-      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20, "HHH-C1-CASE00": 6, "HHH-C1-CASE01": 13, "HHH-C1-CASE02": 14 };
-      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10, "HHH-C1-CASE00": 5, "HHH-C1-CASE01": 10, "HHH-C1-CASE02": 11 };
+      const accessibleEligibleCounts = { "SSS-C1-CASE01": 10, "SSS-C1-CASE02": 13, "SSS-C1-CASE03": 8, "SSS-C1-CASE04": 9, "SSS-C1-CASE05": 15, "SSS-C1-CASE06": 17, "SSS-C1-CASE07": 23, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 20, "SSS-C2-CASE04": 23, "SSS-C2-CASE05": 23, "SSS-C2-CASE06": 20, "HHH-C1-CASE00": 6, "HHH-C1-CASE01": 13, "HHH-C1-CASE02": 14, "HHH-C1-CASE03": 13 };
+      const studentEligibleCounts = { "SSS-C1-CASE01": 9, "SSS-C1-CASE02": 9, "SSS-C1-CASE03": 6, "SSS-C1-CASE04": 5, "SSS-C1-CASE05": 8, "SSS-C1-CASE06": 8, "SSS-C1-CASE07": 11, "SSS-C2-CASE01": 11, "SSS-C2-CASE02": 10, "SSS-C2-CASE03": 8, "SSS-C2-CASE04": 10, "SSS-C2-CASE05": 13, "SSS-C2-CASE06": 10, "HHH-C1-CASE00": 5, "HHH-C1-CASE01": 10, "HHH-C1-CASE02": 11, "HHH-C1-CASE03": 10 };
       // Planned registry reservations (no editorPackage) are not operational cases and
       // receive no layout coverage; the operational roster is the editor-compatible one.
       const registeredCaseIds = (await (await fetch("/shared/implementation/case-registry.v2.json")).json())
@@ -4776,7 +4776,7 @@
         plannedReservationIds.length > 0 && !generalFitCases.some(id => plannedReservationIds.includes(id)),
         JSON.stringify({ planned: plannedReservationIds, general: generalFitCases }));
       check("general page-fit coverage currently reaches every operational HHH package, Archive Orientation included",
-        ["HHH-C1-CASE00", "HHH-C1-CASE01", "HHH-C1-CASE02"].every(id => generalFitCases.includes(id)), JSON.stringify(generalFitCases));
+        ["HHH-C1-CASE00", "HHH-C1-CASE01", "HHH-C1-CASE02", "HHH-C1-CASE03"].every(id => generalFitCases.includes(id)), JSON.stringify(generalFitCases));
       for (const caseId of generalFitCases) {
         await api.selectCase(caseId);
         await wait(80);
@@ -5696,6 +5696,528 @@
       check("Case 02 reports Pages fit in all four roles with no page content crossing its footer",
         c02Fit.every(entry => entry.overflowCount === 0 && entry.fitStatus === "Pages fit" && entry.bad.length === 0),
         JSON.stringify(c02Fit));
+      api.setRole("student");
+      await wait(40);
+
+
+      // ── HHH Core Case 03 · County Cork ───────────────────────────────────────
+      // The third full HHH historical Core Case. The generic HHH checks above prove
+      // the package loads, isolates and fits; these assertions protect what makes
+      // this case correct rather than merely renderable. Case 03's central risk is
+      // *sufficiency*: a documented biological trigger is available and is not the
+      // explanation of the death toll, and the audited game finding
+      // (HHH-GAME-C1L3-001) makes keeping those apart a curriculum obligation. The
+      // second risk is source status, because this is the first HHH case that puts
+      // a real 1846 primary source on the same page as written-for-the-game
+      // dialogue. Prohibited formulations, keyed marks and comparison values are
+      // read from the task registry, so a later edit cannot loosen the boundary by
+      // editing prose alone.
+      await api.selectCase("HHH-C1-CASE03");
+      await wait(80);
+      api = win.__curriculumEditor;
+      workspace = api.getWorkspace();
+      const c03Package = api.getPackage();
+      const c03Registry = window.HHH_CASE03_TASK_REGISTRY || api.getTaskRegistry();
+      const c03Roles = ["student", "teacher", "answer", "accessible"];
+      const c03TaskNumbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+      const c03TaskTitles = Object.fromEntries((c03Registry?.tasks || []).map(task => [task.number, task.title]));
+      const c03PageCounts = { student: 8, teacher: 7, answer: 6, accessible: 13 };
+      const c03Count = selector => workspace.querySelectorAll(selector).length;
+      const c03HeadingsFor = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .task-heading`))
+        .map(node => ({ number: node.dataset.taskId, title: node.dataset.taskTitle, rendered: node.querySelector(".section-title")?.textContent }));
+      const c03AnswerBodyFor = number => {
+        const heading = workspace.querySelector(`.page[data-role="answer"] .task-heading[data-task-id="${number}"]`);
+        if (!heading) return [];
+        const collected = [];
+        for (let node = heading.nextElementSibling; node && !node.classList.contains("task-heading"); node = node.nextElementSibling) {
+          if (node.querySelector?.(".task-heading")) break;
+          collected.push(node);
+        }
+        return collected;
+      };
+      const c03TextFor = role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`)).map(page => page.textContent).join(" ");
+
+      check("Case 03 is the registered Core Case package with four instructional roles",
+        c03Package.id === "HHH-C1-CASE03" && c03Package.curriculum === "HHH" && c03Package.instructionalType === "CORE_CASE"
+        && JSON.stringify(c03Package.supportedRoles) === JSON.stringify(c03Roles)
+        && JSON.stringify(Object.keys(c03Package.rolePageStructure)) === JSON.stringify(c03Roles),
+        JSON.stringify({ id: c03Package.id, type: c03Package.instructionalType, roles: c03Package.supportedRoles }));
+      check("Case 03 declares no canonical CER component, matching its multi-causal explanation product",
+        !workspace.querySelector("[data-cer-contract],.canonical-cer,.cer-stack"));
+      check("Case 03 page counts match the package in every role",
+        c03Roles.every(role => c03Count(`.page[data-role="${role}"]`) === c03PageCounts[role]
+          && c03Package.rolePageStructure[role].pageCount === c03PageCounts[role]),
+        JSON.stringify(Object.fromEntries(c03Roles.map(role => [role, c03Count(`.page[data-role="${role}"]`)]))));
+      check("Case 03 task registry supplies all nine task titles",
+        c03TaskNumbers.every(number => typeof c03TaskTitles[number] === "string" && c03TaskTitles[number].length > 0),
+        JSON.stringify(c03TaskTitles));
+
+      // Task parity across the three task-numbered roles, against the registry.
+      const c03HeadingRoles = ["student", "answer", "accessible"];
+      const c03Parity = Object.fromEntries(c03HeadingRoles.map(role => [role, c03HeadingsFor(role)]));
+      check("Case 03 expands all nine registry tasks in Student, Answer Key and Accessible with the exact numbers and titles",
+        c03HeadingRoles.every(role => JSON.stringify(c03Parity[role].map(item => item.number)) === JSON.stringify(c03TaskNumbers)
+          && c03Parity[role].every(item => item.title === c03TaskTitles[item.number]
+            && item.rendered === `${item.number} · ${c03TaskTitles[item.number]}`)),
+        JSON.stringify(c03Parity));
+      check("Case 03 Teacher Guide prints no numbered task heading of its own, so the learner numbering stays canonical",
+        c03HeadingsFor("teacher").length === 0);
+      const c03UnkeyedTasks = c03TaskNumbers.filter(number =>
+        !c03AnswerBodyFor(number).some(node => node.classList.contains("answer-block") || node.classList.contains("matrix-table")));
+      check("Case 03 Answer Key carries a completed exemplar under every one of the nine tasks",
+        c03Parity.answer.length === 9 && c03UnkeyedTasks.length === 0, JSON.stringify(c03UnkeyedTasks));
+      check("Case 03 Answer Key completes the whole fifteen-cell evidence table and leaves no blank field",
+        c03Count('.page[data-role="answer"] .matrix-table tbody tr') === 5
+        && ["reconstructed", "documented", "debated", "inferred", "modeled"].every(status =>
+          workspace.querySelector('.page[data-role="answer"] .matrix-table').textContent.includes(status))
+        && !workspace.querySelector('.page[data-role="answer"] [data-response]'),
+        workspace.querySelector('.page[data-role="answer"] .matrix-table')?.textContent?.slice(0, 240));
+
+      // Teacher reference contract.
+      const c03TeacherRefs = Array.from(workspace.querySelectorAll('.page[data-role="teacher"] strong.task-reference'))
+        .map(node => node.textContent.trim());
+      check("Case 03 Teacher task references are complete bolded number-and-title pairs from the registry",
+        c03TeacherRefs.length > 0 && c03TeacherRefs.every(text =>
+          Object.entries(c03TaskTitles).some(([number, title]) => text === `${number} · ${title}`)),
+        JSON.stringify(Array.from(new Set(c03TeacherRefs)).sort()));
+      check("Case 03 Teacher procedure accounts for every one of the nine Student tasks",
+        c03TaskNumbers.every(number => c03TeacherRefs.includes(`${number} · ${c03TaskTitles[number]}`)),
+        JSON.stringify({ referenced: Array.from(new Set(c03TeacherRefs)).sort() }));
+      check("Case 03 Teacher carries the route, both rubrics and the authoritative reference list",
+        ["data-final-task-route", "data-final-quick-rubric", "data-final-reference-list"]
+          .every(marker => workspace.querySelector(`.page[data-role="teacher"] [${marker}]`))
+        && c03Count('.page[data-role="teacher"] .final-analytic-rubric[data-rubric-contract="4-3-2-1-v1.0"] tbody tr') === 4
+        && c03Count('.page[data-role="teacher"] .final-reference-list > li') === 11);
+
+      // The reconstruction AND causation boundary. This is HHH-GAME-C1L3-001 made
+      // testable: both statements must be present in both learner editions — the
+      // scenes are reconstructions, and no single answer to the death-toll question
+      // fits the evidence in the packet.
+      check("Case 03 learner editions both open with a labelled reconstruction and causation boundary",
+        ["student", "accessible"].every(role => {
+          const note = workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`);
+          return note && note.getAttribute("data-causation-boundary") === "trigger-and-conditions"
+            && note.querySelector(".label").textContent.trim() === "Reconstruction and causation notice";
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary] .label`)?.textContent)));
+      check("Case 03 learner editions both separate the crop question from the death-toll question and refuse a single answer to the second",
+        ["student", "accessible"].every(role => {
+          const note = workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`).textContent;
+          return /a crop/i.test(note) && /people/i.test(note)
+            && /no single answer/i.test(note)
+            && /not the disease alone/i.test(note) && /not any one decision alone/i.test(note);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-reconstruction-boundary]`).textContent.slice(0, 260))));
+      // The prohibited formulations, taken from the registry rather than hard-coded
+      // here, so the contract lives with the case. The first three are the exact
+      // universals the Phase 1 audit rejected in the game; the last three are the
+      // single-cause readings this case exists to prevent in either direction.
+      const c03Prohibited = c03Registry?.causationBoundary?.prohibitedClaims || [];
+      const c03ProhibitedHits = c03Prohibited.filter(phrase =>
+        workspace.textContent.toLowerCase().includes(String(phrase).toLowerCase()));
+      check("Case 03 prints none of the audit-rejected universals or single-cause formulations in any role",
+        c03Prohibited.length >= 6 && c03ProhibitedHits.length === 0,
+        JSON.stringify({ declared: c03Prohibited, found: c03ProhibitedHits }));
+      // Where a single-cause sentence does appear it is a claim students must judge
+      // or a response the key rejects, never an assertion the packet makes.
+      const c03SingleCausePages = Array.from(workspace.querySelectorAll(".page[data-role]"))
+        .filter(page => /(nothing else<\/strong> needs explaining|nothing else needs explaining|cannot<\/strong> have affected|by itself<\/strong>, have prevented|by itself, have prevented|The blight caused the famine|British government caused the famine)/i.test(page.innerHTML))
+        .map(page => ({
+          page: page.dataset.pageId,
+          framed: /(Claim \d|mark each|marked|fails outright|should be returned|goes against it|cannot decide|under-explains|rejects single causation)/i.test(page.textContent)
+        }));
+      check("Case 03 prints a single-cause account only as something to judge or reject, never as a finding",
+        c03SingleCausePages.length > 0 && c03SingleCausePages.every(item => item.framed),
+        JSON.stringify(c03SingleCausePages));
+      // The corrected game framing is used and the audited universals are not
+      // reintroduced by quotation. The packet keeps the severe dependence the
+      // disposition requires — a third of the population, ninety per cent of what
+      // they ate — without any whole-country claim.
+      check("Case 03 keeps severe dependence without restoring a whole-country universal",
+        ["student", "accessible"].every(role => {
+          const text = c03TextFor(role);
+          return /a third of the population/i.test(text)
+            && /(ninety per cent|90%)/i.test(text)
+            && /Other food (<em>)?was(<\/em>)? grown|Other food was grown/i.test(text)
+            && !/whole country/i.test(text) && !/every field in Ireland/i.test(text);
+        }),
+        JSON.stringify(["student", "accessible"].map(role => ({
+          role, third: /a third of the population/i.test(c03TextFor(role)),
+          wholeCountry: /whole country/i.test(c03TextFor(role))
+        }))));
+
+      // Source status, checked against the canonical metadata rather than against a
+      // list of expected sentences. Each learner block that prints a STATUS line
+      // names the caseSources entry it belongs to, so the printed word is compared
+      // with the declared evidentiary status; relabelling a reconstructed game scene
+      // is then a contradiction between two files.
+      const c03Declared = Object.fromEntries((c03Registry?.caseSources || []).map(source => [source.id, source.evidentiaryStatus]));
+      const c03Origins = Object.fromEntries((c03Registry?.caseSources || []).map(source => [source.id, source.sourceOrigin]));
+      const c03StatusWord = value => String(value || "").toLowerCase().split("/")[0].trim();
+      const c03StatusBlocks = ["student", "accessible"].flatMap(role =>
+        Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-source-id]`)).map(node => {
+          const printed = node.querySelector(".source-status")?.textContent?.trim() || "";
+          return {
+            role,
+            id: node.dataset.sourceId,
+            line: printed,
+            printed: (/^STATUS:\s*([a-z]+)/i.exec(printed) || [])[1]?.toLowerCase() || null,
+            declared: c03StatusWord(c03Declared[node.dataset.sourceId]) || null
+          };
+        }));
+      check("Case 03 prints every learner source status exactly as its canonical source entry declares it",
+        c03StatusBlocks.length === 24
+        && c03StatusBlocks.every(item => item.declared && item.printed && item.printed === item.declared)
+        && ["student", "accessible"].every(role =>
+          c03StatusBlocks.filter(item => item.role === role && item.id === "archive-scenes").length === 3
+          && c03StatusBlocks.filter(item => item.role === role && item.printed === "reconstructed").length === 3),
+        JSON.stringify(c03StatusBlocks.map(item => ({ role: item.role, id: item.id, printed: item.printed, declared: item.declared }))));
+      check("Case 03 binds every learner status block to a canonical source entry that exists",
+        c03StatusBlocks.length > 0 && c03StatusBlocks.every(item => Object.prototype.hasOwnProperty.call(c03Declared, item.id)),
+        JSON.stringify({ declared: Object.keys(c03Declared), used: Array.from(new Set(c03StatusBlocks.map(item => item.id))) }));
+      // No game-reconstructed block may ever be promoted to first-hand evidence.
+      // This case cannot use the blanket Case 02 rule, because it deliberately
+      // carries a real published eyewitness letter; the rule is therefore scoped to
+      // blocks whose declared origin is the game.
+      const c03GameBlocks = c03StatusBlocks.filter(item => /game reconstruction/i.test(c03Origins[item.id] || ""));
+      check("Case 03 never labels a game-reconstructed block a primary source, eyewitness account or testimony",
+        c03GameBlocks.length === 6
+        && !c03GameBlocks.some(item => /primary source|eyewitness|first-?hand|testimony|verbatim/i.test(item.line)),
+        JSON.stringify(c03GameBlocks.map(item => item.line)));
+      // The real 1846 document is identified as a real document with its publication
+      // and date, in both learner editions, and is never called a reconstruction.
+      check("Case 03 identifies the Skibbereen letter as a real dated published document in both learner editions",
+        ["student", "accessible"].every(role => {
+          const card = workspace.querySelector(`.page[data-role="${role}"] [data-source-id="cummins-letter"]`);
+          const line = card?.querySelector(".source-status")?.textContent || "";
+          return card && /^STATUS: documented/.test(line.trim()) && /real letter/i.test(line)
+            && /Nicholas Cummins/.test(card.textContent) && /The Times/.test(card.textContent)
+            && /24 December 1846/.test(card.textContent) && !/reconstruct/i.test(line);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-source-id="cummins-letter"] .source-status`)?.textContent?.trim())));
+
+      // Load-bearing no-game facts. These are the few facts an assessed answer
+      // actually needs, and each is required in both learner editions. The first
+      // four are the controlled comparison that Task 4 Part B, Task 6 Part B and
+      // Task 7 Claim 2 all depend on: delete them and three assessed prompts become
+      // unanswerable while every structural assertion above stays green.
+      const c03NoGameFacts = [
+        // Bound to the printed comparison values, not to a bare "90%": the causes
+        // map also prints 90% for the share of the diet, and a loose test there
+        // would stay green with the Belgian bar's own value deleted.
+        { fact: "Belgium 1845 crop loss", task: "4", test: /~90%/ },
+        { fact: "Ireland 1845 crop loss", task: "4", test: /~30%/ },
+        { fact: "Belgian mortality above normal", task: "4 and 7", test: /30[–-]40%\s*above normal/i },
+        { fact: "Irish mortality about three times normal", task: "4 and 7", test: /about three times normal/i },
+        { fact: "dependence share of the population", task: "5, 6 and 8", test: /a third of the population/i },
+        { fact: "dependence share of the diet", task: "6 and 8", test: /(ninety per cent|90%)/i },
+        { fact: "cottier population", task: "6", test: /three million people/i },
+        { fact: "public works peak", task: "7", test: /over\s*(<strong>)?700,000/i },
+        { fact: "soup kitchen peak", task: "7", test: /(over\s*)?3 million|three million/i },
+        { fact: "quarter-acre rule", task: "6 and 7", test: /quarter-acre rule/i },
+        { fact: "the 1846 crop failure share", task: "3", test: /three quarters/i },
+        { fact: "food leaving Irish ports", task: "5, 6, 7 and 8", test: /(four thousand (vessels|ships))/i }
+      ];
+      const c03FactAvailability = c03NoGameFacts.map(item => ({
+        fact: item.fact,
+        task: item.task,
+        student: item.test.test(c03TextFor("student")),
+        accessible: item.test.test(c03TextFor("accessible"))
+      }));
+      check("Case 03 keeps every fact an assessed task depends on available in both learner editions",
+        c03FactAvailability.every(item => item.student && item.accessible),
+        JSON.stringify(c03FactAvailability.filter(item => !item.student || !item.accessible)));
+
+      check("Case 03 gives every dossier card a visible textual status line rather than colour alone",
+        ["student", "accessible"].every(role => {
+          const cards = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] .dossier-card`));
+          return cards.length === 6 && cards.every(card => /^STATUS:/.test(card.querySelector(".source-status")?.textContent?.trim() || ""));
+        }),
+        JSON.stringify(Array.from(workspace.querySelectorAll('.page[data-role="student"] .dossier-card .source-status')).map(node => node.textContent.trim())));
+
+      // The controlled comparison. The whole case turns on Belgium having lost the
+      // LARGER share of its crop, so the bar geometry is measured off the rendered
+      // figure rather than read out of the caption beside it, and the printed values
+      // are compared with the registry. A figure that silently drew Ireland's bar
+      // longer would invert the argument while every prose assertion stayed true.
+      const c03Values = c03Registry?.cropLossComparison?.values || {};
+      const c03Bars = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-comparison-contract]`);
+        const rows = Array.from(figure.querySelectorAll(".compare-row")).map(row => ({
+          name: row.querySelector(".compare-name").textContent.replace(/\s+/g, " ").trim(),
+          width: Math.round(row.querySelector(".compare-bar").getBoundingClientRect().width),
+          value: row.querySelector(".compare-value").textContent.trim()
+        }));
+        c03Bars.push({
+          role, rows: rows.length, widths: rows.map(row => row.width), values: rows.map(row => row.value),
+          belgiumLongest: rows.length === 3 && rows[0].width > rows[1].width && rows[0].width > rows[2].width,
+          outcomeCells: figure.querySelectorAll(".compare-cell").length,
+          bothOutcomes: /40,000/.test(figure.textContent) && /1,000,000/.test(figure.textContent),
+          notMeasurement: /not measurements of any field or parish/i.test(figure.closest("figure").textContent)
+        });
+      }
+      check("Case 03 comparison bars print the registry's own crop-loss values in both learner editions",
+        c03Bars.every(item => item.rows === 3
+          && item.values[0] === `~${c03Values.belgium1845?.lossPercent}%`
+          && item.values[1] === `~${c03Values.ireland1845?.lossPercent}%`
+          && item.values[2] === `>${c03Values.ireland1846?.lossPercent}%`),
+        JSON.stringify({ registry: c03Values, rendered: c03Bars.map(item => ({ role: item.role, values: item.values })) }));
+      check("Case 03 really draws Belgium's 1845 bar longer than either Irish bar, so the control is visible not asserted",
+        c03Bars.length === 2 && c03Bars.every(item => item.belgiumLongest && item.outcomeCells === 2
+          && item.bothOutcomes && item.notMeasurement),
+        JSON.stringify(c03Bars));
+
+      // The multiple-causation map. The Blueprint's own warning is that arrow
+      // geometry must not imply unsupported certainty, and nothing in this packet
+      // ranks the four conditions. So the four condition boxes are measured for
+      // equal width, the four converging arrows are counted, and the printed
+      // "contributed to" disclaimer is required inside the figure itself.
+      const c03Maps = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-causation-contract]`);
+        const conditions = Array.from(figure.querySelectorAll(".cm-cond"));
+        const widths = conditions.map(node => Math.round(node.getBoundingClientRect().width));
+        c03Maps.push({
+          role,
+          conditions: conditions.length,
+          letters: conditions.map(node => node.dataset.cond),
+          equalWidth: widths.length > 0 && Math.max(...widths) - Math.min(...widths) <= 1,
+          widths,
+          arrows: figure.querySelectorAll(".cm-converge > span").length,
+          trigger: Boolean(figure.querySelector(".cm-trigger")) && /late blight/i.test(figure.querySelector(".cm-trigger").textContent),
+          contributedTo: /every arrow[^.]*means[^.]*contributed to/i.test(figure.textContent.replace(/\s+/g, " ")),
+          noRanking: /ranks these four conditions/i.test(figure.textContent.replace(/\s+/g, " ")),
+          repeated: /1845[\s\S]{0,40}1846[\s\S]{0,40}1847[\s\S]{0,40}1848/.test(figure.querySelector(".cm-repeat")?.textContent || "")
+        });
+      }
+      check("Case 03 causes map holds four equally weighted conditions between the trigger and the outcome, in both learner editions",
+        c03Maps.length === 2 && c03Maps.every(item => item.conditions === 4 && item.arrows === 4
+          && JSON.stringify(item.letters) === JSON.stringify(["A", "B", "C", "D"])
+          && item.equalWidth && item.trigger && item.repeated),
+        JSON.stringify(c03Maps));
+      check("Case 03 causes map states in print that every arrow means contributed to and that nothing ranks the conditions",
+        c03Maps.every(item => item.contributedTo && item.noRanking), JSON.stringify(c03Maps.map(item => ({ role: item.role, contributedTo: item.contributedTo, noRanking: item.noRanking }))));
+
+      // Chronology. The two strands must both survive, each row must print its own
+      // strand word rather than relying on the tint, and the relief entries must
+      // still sit after the second crop failure — the sequence Task 7 Claim 5 reads.
+      const c03Timelines = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`);
+        const rows = Array.from(figure.querySelectorAll(".tl-row")).map(row => ({
+          year: row.querySelector(".tl-year").textContent.trim(),
+          tag: row.querySelector(".tl-tag").textContent.trim(),
+          strand: row.dataset.strand
+        }));
+        c03Timelines.push({
+          role, rows: rows.length, years: rows.map(row => row.year), tags: rows.map(row => row.tag),
+          everyRowTagged: rows.every(row => row.tag.length > 0),
+          reliefAfterSecondFailure: rows.findIndex(row => row.tag === "RELIEF" && row.year === "1847")
+            > rows.findIndex(row => row.tag === "CROP" && row.year === "1846"),
+          learnerWording: !/\brail\b/i.test(figure.textContent)
+        });
+      }
+      check("Case 03 timeline carries both strands with a printed tag on every row in both learner editions",
+        c03Timelines.length === 2 && c03Timelines.every(item => item.rows === 6 && item.everyRowTagged
+          && item.tags.includes("CROP") && item.tags.includes("RELIEF") && item.reliefAfterSecondFailure
+          && item.learnerWording),
+        JSON.stringify(c03Timelines));
+
+      // The place figure. It is deliberately not a drawn map, so the checks that
+      // matter are that every named place is still printed, that the disclaimer is
+      // present, and that no label collides with another — the Case 02 lesson that
+      // important geographic names must survive in print, not only in the
+      // accessibility description.
+      const c03Places = [];
+      for (const role of ["student", "accessible"]) {
+        api.setRole(role);
+        await wait(60);
+        const figure = workspace.querySelector(`.page[data-role="${role}"] [data-place-contract]`);
+        const plate = figure.querySelector(".place-nest");
+        const pr = plate.getBoundingClientRect();
+        const boxes = Array.from(plate.querySelectorAll(".pn-name, .pn-point, .pn-aside")).map(node => {
+          const b = node.getBoundingClientRect();
+          return { name: node.className, text: node.textContent.replace(/\s+/g, " ").trim(),
+                   x: b.left - pr.left, y: b.top - pr.top, w: b.width, h: b.height,
+                   inside: b.left >= pr.left - 1 && b.right <= pr.right + 1 && b.top >= pr.top - 1 && b.bottom <= pr.bottom + 1 };
+        });
+        const collisions = [];
+        for (let i = 0; i < boxes.length; i += 1) {
+          for (let j = i + 1; j < boxes.length; j += 1) {
+            const a = boxes[i], c = boxes[j];
+            const ox = Math.min(a.x + a.w, c.x + c.w) - Math.max(a.x, c.x);
+            const oy = Math.min(a.y + a.h, c.y + c.h) - Math.max(a.y, c.y);
+            if (ox > 0.5 && oy > 0.5) collisions.push(`${a.text} / ${c.text}`);
+          }
+        }
+        c03Places.push({
+          role,
+          printed: boxes.map(item => item.text),
+          notAMap: /not a map/i.test(plate.textContent) && /(to scale|true position)/i.test(plate.textContent),
+          allInside: boxes.every(item => item.inside),
+          collisions
+        });
+      }
+      check("Case 03 place figure prints every named place in both learner editions",
+        c03Places.length === 2 && c03Places.every(item =>
+          ["EUROPE", "IRELAND", "MUNSTER", "COUNTY CORK", "Cork", "Skibbereen", "Belgium"].every(place =>
+            item.printed.some(text => text.includes(place)))),
+        JSON.stringify(c03Places.map(item => ({ role: item.role, printed: item.printed }))));
+      check("Case 03 place figure disclaims that it is a map and keeps every label inside the plate and free of collisions",
+        c03Places.every(item => item.notAMap && item.allInside && item.collisions.length === 0),
+        JSON.stringify(c03Places.map(item => ({ role: item.role, notAMap: item.notAMap, inside: item.allInside, collisions: item.collisions }))));
+
+      // Competing claims: three marks, and the key agreeing with the registry. The
+      // undecidable mark belongs to the export claim, which is the specific place
+      // this case is required to permit uncertainty rather than force a verdict.
+      const c03Claims = c03Registry?.claimJudgments?.claims || [];
+      const c03KeyMarks = (c03AnswerBodyFor("7").map(node => node.textContent).join(" ").match(/Claim\s+\d\s*:\s*([YN?])/g) || [])
+        .map(text => text.replace(/.*:\s*/, ""));
+      check("Case 03 keys all five claim marks and keys exactly one as undecidable by this packet",
+        c03Claims.length === 5 && c03KeyMarks.length === 5
+        && c03KeyMarks.join("") === c03Claims.map(claim => claim.mark).join("")
+        && c03KeyMarks.filter(mark => mark === "?").length === 1
+        && c03Claims[3].mark === "?",
+        JSON.stringify({ registry: c03Claims.map(claim => claim.mark), key: c03KeyMarks }));
+      check("Case 03 offers learners all three marks, including one for claims this packet cannot decide",
+        ["student", "accessible"].every(role => {
+          const key = workspace.querySelector(`.page[data-role="${role}"] .mark-key`);
+          return key && /cannot decide/i.test(key.textContent)
+            && c03Count(`.page[data-role="${role}"] .account-item [data-response]`) === 5;
+        }),
+        JSON.stringify(["student", "accessible"].map(role => c03Count(`.page[data-role="${role}"] .account-item [data-response]`))));
+      // Both published positions on the export question are carried, so the
+      // undecidable mark is grounded rather than asserted.
+      check("Case 03 carries both published readings of the food-export record in both learner editions",
+        ["student", "accessible"].every(role => {
+          const panel = workspace.querySelector(`.page[data-role="${role}"] [data-food-export-panel]`);
+          return panel && /^STATUS: debated/.test(panel.querySelector(".source-status")?.textContent?.trim() || "")
+            && /Bourke/.test(panel.textContent) && /Kinealy/.test(panel.textContent)
+            && /weighs (the food that left|nothing)/i.test(panel.textContent);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-food-export-panel] .source-status`)?.textContent?.trim())));
+      // Real plant science must not sit under a reconstructed status line, and the
+      // variety qualification the audit requires must survive in both editions.
+      check("Case 03 carries the blight science as documented background outside the reconstructed dossier",
+        ["student", "accessible"].every(role => {
+          const background = workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"]`);
+          return Boolean(background)
+            && /^STATUS: documented/.test(background.querySelector(".source-status")?.textContent?.trim() || "")
+            && !background.closest(".dossier")
+            && /oomycete/i.test(background.textContent) && /not a true fungus/i.test(background.textContent);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-source-status-scope="documented-background"] .source-status`)?.textContent?.trim())));
+      check("Case 03 keeps the variety qualification that a different potato would not by itself have saved the crop",
+        ["student", "accessible"].every(role => {
+          const note = workspace.querySelector(`.page[data-role="${role}"] [data-variety-note]`);
+          return note && /every potato variety commonly grown in Ireland/i.test(note.textContent)
+            && /also fell to the blight/i.test(note.textContent)
+            && /would not by itself have saved the crop/i.test(note.textContent);
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-variety-note]`)?.textContent?.slice(0, 160))));
+
+      // Fallback, scaffolding and exact-match banks.
+      check("Case 03 no-game evidence route lives inside the learner packets, not a fifth role",
+        c03Count('.page[data-role="student"] .dossier-card') === 6
+        && c03Count('.page[data-role="accessible"] .dossier-card') === 6
+        && ["student", "accessible"].every(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`)
+          && workspace.querySelector(`.page[data-role="${role}"] [data-place-contract]`)
+          && workspace.querySelector(`.page[data-role="${role}"] [data-comparison-contract]`)
+          && workspace.querySelector(`.page[data-role="${role}"] [data-causation-contract]`))
+        && JSON.stringify(c03Package.supportedRoles) === JSON.stringify(c03Roles));
+      check("Case 03 Accessible scaffolds repetition without removing the assessed reasoning",
+        c03Count('.page[data-role="accessible"] .modeled-row') === 1
+        && c03Count('.page[data-role="accessible"] .stage.modeled') === 1
+        && c03Count('.page[data-role="accessible"] .matrix-table tbody [data-response]') === 12
+        && c03Count('.page[data-role="student"] .matrix-table tbody [data-response]') === 15
+        && c03Count('.page[data-role="accessible"] [data-response]') < c03Count('.page[data-role="student"] [data-response]') + 6,
+        JSON.stringify({
+          accessibleCells: c03Count('.page[data-role="accessible"] .matrix-table tbody [data-response]'),
+          studentCells: c03Count('.page[data-role="student"] .matrix-table tbody [data-response]'),
+          accessibleTotal: c03Count('.page[data-role="accessible"] [data-response]'),
+          studentTotal: c03Count('.page[data-role="student"] [data-response]')
+        }));
+      check("Case 03 exact-match banks carry one entry per blank with no decoys",
+        c03Count('.page[data-role="student"] .word-bank') === 2
+        && c03Count('.page[data-role="student"] .word-bank-item') === 11
+        && c03Count('.page[data-role="student"] .status-bank-items .word-bank-item') === 5
+        && c03Count('.page[data-role="student"] .term-list [data-response]') === 6
+        && c03Count('.page[data-role="accessible"] .status-bank-items .word-bank-item') === 4
+        && c03Count('.page[data-role="accessible"] .term-list [data-response]') === 6
+        && (c03Registry?.vocabulary || []).length === 6,
+        JSON.stringify({
+          studentBankItems: c03Count('.page[data-role="student"] .word-bank-item'),
+          accessibleStatusItems: c03Count('.page[data-role="accessible"] .status-bank-items .word-bank-item'),
+          vocabulary: c03Registry?.vocabulary
+        }));
+
+      // Page identity, persistence and layout classification.
+      check("Case 03 page identity is role-specific and correctly numbered on every page",
+        c03Roles.every(role => {
+          const label = { student: "Student Mission", teacher: "Teacher Guide", answer: "Answer Key", accessible: "Accessible Mission" }[role];
+          const footers = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-publication-footer] span`)).map(node => node.textContent.trim());
+          return footers.length === c03PageCounts[role]
+            && footers.every((text, index) => text === `${label} ${index + 1} of ${c03PageCounts[role]}`);
+        }),
+        JSON.stringify(Object.fromEntries(c03Roles.map(role =>
+          [role, Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-publication-footer] span`)).map(node => node.textContent.trim())]))));
+      check("Case 03 identification row appears only on learner page 1 and never in Teacher or Answer Key",
+        ["student", "accessible"].every(role => c03Count(`.page[data-role="${role}"] .student-id`) === 1
+          && workspace.querySelector(`.page[data-role="${role}"] .student-id`).closest(".page").dataset.pageId.endsWith("-01"))
+        && !workspace.querySelector('.page[data-role="teacher"] .student-id, .page[data-role="answer"] .student-id'));
+      check("Case 03 makes every required learner action a persistent labelled control",
+        ["student", "accessible"].every(role => Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] [data-response]`))
+          .every(node => node.dataset.persistId && (node.getAttribute("aria-label") || node.getAttribute("aria-labelledby"))))
+        && ["t3-worst", "t3-county", "t6-cond-1", "t6-cond-2", "a3-worst", "a3-county", "a6-cond-1", "a6-cond-2"]
+          .every(id => Boolean(workspace.querySelector(`[data-persist-id="${id}"][data-response]`))));
+      const c03LayoutOverrides = await (await fetch("/hhh/campaign-1/case-03-county-cork/source/layout-overrides.json")).json();
+      const c03Classified = new Set([
+        ...c03LayoutOverrides.areas.map(area => area.persistId),
+        ...c03LayoutOverrides.lockedAreas.map(area => area.persistId),
+        ...c03LayoutOverrides.student.areas.map(area => area.persistId),
+        ...c03LayoutOverrides.student.lockedAreas.map(area => area.persistId)
+      ]);
+      const c03Unclassified = Array.from(workspace.querySelectorAll('.page[data-role="student"] [data-response], .page[data-role="accessible"] [data-response]'))
+        .map(node => node.dataset.persistId).filter(id => !c03Classified.has(id));
+      check("Case 03 leaves no learner response outside the layout classification", c03Unclassified.length === 0, JSON.stringify(c03Unclassified));
+      check("Case 03 Teacher and Answer Key expose no learner response control",
+        !workspace.querySelector('.page[data-role="teacher"] [data-response], .page[data-role="answer"] [data-response]'));
+
+      // Page fit, measured from the last content element to the footer in every role.
+      const c03Fit = [];
+      for (const role of c03Roles) {
+        api.setRole(role);
+        await wait(60);
+        const overflowCount = api.checkOverflow();
+        const pages = Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`)).map(page => {
+          const content = page.querySelector(".content-area");
+          const footer = page.querySelector("[data-publication-footer]");
+          const last = content.lastElementChild;
+          return {
+            page: page.dataset.pageId,
+            flagged: page.classList.contains("has-overflow"),
+            slack: Math.round(footer.getBoundingClientRect().top - (last ? last.getBoundingClientRect().bottom : 0))
+          };
+        });
+        c03Fit.push({ role, overflowCount, fitStatus: doc.querySelector("#overflowStatus").textContent, bad: pages.filter(item => item.flagged || item.slack < 0) });
+      }
+      check("Case 03 reports Pages fit in all four roles with no page content crossing its footer",
+        c03Fit.every(entry => entry.overflowCount === 0 && entry.fitStatus === "Pages fit" && entry.bad.length === 0),
+        JSON.stringify(c03Fit));
       api.setRole("student");
       await wait(40);
 
