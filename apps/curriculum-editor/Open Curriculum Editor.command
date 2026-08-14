@@ -15,6 +15,7 @@ REPO_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 SERVE_SCRIPT="$REPO_DIR/apps/curriculum-editor/serve.py"
 PORT="${CURRICULUM_EDITOR_PORT:-8000}"
 EDITOR_URL="http://127.0.0.1:$PORT/apps/curriculum-editor/"
+FIREFOX_BIN="/Applications/Firefox.app/Contents/MacOS/firefox"
 
 fail() {
   echo "" >&2
@@ -28,16 +29,20 @@ fail() {
 command -v python3 >/dev/null 2>&1 || fail "python3 was not found. Install the macOS Command Line Tools (xcode-select --install) and try again."
 [ -f "$SERVE_SCRIPT" ] || fail "Could not find serve.py relative to this launcher. Keep this file in apps/curriculum-editor/ inside the repository."
 
-# Open the editor in Firefox and explicitly bring Firefox forward. Tests and
-# headless smoke checks may override the opener with CURRICULUM_EDITOR_OPEN.
-# If Firefox is unavailable, fall back to the macOS default-browser opener.
+# Open the editor in a real Firefox tab and explicitly bring Firefox forward.
+# Calling Firefox's executable with -new-tab reliably hands the URL to an
+# already-running Firefox instance; macOS `open -a Firefox URL` can activate
+# Firefox without surfacing a new tab on some installations/session states.
+# Tests and headless smoke checks may override the opener with
+# CURRICULUM_EDITOR_OPEN. If Firefox is unavailable, use the default browser.
 open_editor() {
   if [ -n "${CURRICULUM_EDITOR_OPEN:-}" ]; then
     "$CURRICULUM_EDITOR_OPEN" "$EDITOR_URL"
     return $?
   fi
 
-  if /usr/bin/open -a "Firefox" "$EDITOR_URL" >/dev/null 2>&1; then
+  if [ -x "$FIREFOX_BIN" ]; then
+    "$FIREFOX_BIN" -new-tab "$EDITOR_URL" >/dev/null 2>&1 &
     /usr/bin/osascript -e 'tell application "Firefox" to activate' >/dev/null 2>&1 || true
     return 0
   fi
