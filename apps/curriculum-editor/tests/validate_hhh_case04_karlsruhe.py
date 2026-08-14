@@ -40,44 +40,144 @@ ALL_ROLES = ("student", "teacher", "answer", "accessible")
 GAME_TYPO_PATTERN = re.compile(r"\bmdeled\b|\bmdelled\b|\bmodeld\b", re.I)
 
 
-# Refusal vocabulary. A prohibited phrase may legitimately appear in the Teacher
-# Guide's misconceptions table or in an Answer Key floor, because those documents
-# exist partly to name the error and reject it. It may never appear in a learner
-# edition, where there is nothing to mark it as wrong. So the learner editions are
-# scanned strictly, and the two teaching documents are scanned for phrases that
-# are *asserted* rather than refused.
-REFUSAL_MARKERS = (
-    "not accepted", "do not accept", "is wrong", "are wrong", "incorrect",
-    "misconception", "error", "refus", "cannot be scored", "not proficient",
-    "catch", "wrongly", "not negotiable", "trap", "goes against",
-)
+# ---------------------------------------------------------------------------
+# Semantic engine.
+#
+# The first version of this validator matched prohibited *phrases*. Independent
+# review showed that conceptually identical wording slipped through: a sentence
+# can put the catalyst in charge of the final balance without ever using the
+# word "equilibrium", and can reduce the scale-up to copying without ever saying
+# "Haber alone". Phrase lists cannot be completed, so this version stops trying.
+#
+# Instead the registry declares, per concept, the SUBJECT terms, the OUTCOME
+# terms that subject may not be given, the terms that make such a statement
+# permissible, and the negations that defuse it. The check is co-occurrence
+# inside a single sentence. That catches paraphrase while leaving truthful
+# alternative wording free, and it stays a bounded lexical contract rather than
+# becoming a parser.
+#
+# Evaluative context is declared in the markup, not guessed from wording: a
+# competing claim under test, a Teacher misconception row and an Answer Key
+# floor all legitimately contain the error they exist to refuse, and each is
+# marked with a data attribute the registry names. Everything else is scanned in
+# every role, including the learner editions.
+# ---------------------------------------------------------------------------
+
+SENTENCE_SPLIT = re.compile(r"(?<=[.;:!?])\s+|(?<=\u2014)\s+")
 
 
-def asserted_occurrences(soup: BeautifulSoup, phrase: str) -> list[str]:
-    """Occurrences of `phrase` that are not inside a block that also refuses it.
+def sentences(text: str) -> list[str]:
+    return [part.strip() for part in SENTENCE_SPLIT.split(text) if part.strip()]
 
-    Learner editions are strict: any occurrence counts. Teacher and Answer Key
-    occurrences are excused when the enclosing row, list item, cell or paragraph
-    also carries refusal language.
+
+def scannable_blocks(raw_html: str, exempt_selectors: list[str]) -> list[tuple[str, str]]:
+    """(role, text) for every page block, with declared evaluative contexts removed.
+
+    Exempt subtrees are deleted from a working copy before collection, so a marked
+    clause is excluded whether it is the block itself or sits inside a larger one.
     """
-    findings: list[str] = []
-    needle = phrase.lower()
-    for page in soup.select(".page[data-role]"):
+    work = BeautifulSoup(raw_html, "html.parser")
+    for selector in exempt_selectors:
+        for node in work.select(selector):
+            node.decompose()
+    blocks: list[tuple[str, str]] = []
+    for page in work.select(".page[data-role]"):
         role = page.get("data-role")
-        if needle not in page.get_text(" ", strip=True).lower():
-            continue
-        if role in LEARNER_ROLES:
-            findings.append(f"{role}: {phrase}")
-            continue
-        for block in page.select("tr, li, td, p, div"):
-            text = block.get_text(" ", strip=True).lower()
-            if needle not in text:
+        for node in page.find_all(["p", "li", "td", "th", "span", "div"], recursive=True):
+            if node.find(["p", "li", "td", "th"]):
+                continue  # only leaf-ish blocks, so text is not counted twice
+            text = node.get_text(" ", strip=True)
+            if text:
+                blocks.append((role, text))
+    return blocks
+
+
+def has_any(text: str, terms: list[str]) -> bool:
+    return any(term.lower() in text for term in terms)
+
+
+def catalyst_violations(blocks, spec) -> list[str]:
+    out = []
+    for role, text in blocks:
+        for sentence in sentences(text):
+            low = sentence.lower()
+            if not has_any(low, spec["subjectTerms"]):
                 continue
-            if any(marker in text for marker in REFUSAL_MARKERS):
-                break
-        else:
-            findings.append(f"{role}: {phrase} (asserted, not refused)")
-    return findings
+            if not has_any(low, spec["prohibitedOutcomeTerms"]):
+                continue
+            # Mentioning the balance is not a claim about it. The sentence only
+            # offends when it also asserts a change in, or a larger amount at,
+            # that outcome -- which is what "the catalyst changes the final
+            # balance" and "settles with extra ammonia" both do, and what
+            # "reaches its balance quickly" does not.
+            if not has_any(low, spec["changeOrAmountTerms"]):
+                continue
+            if has_any(low, spec["negationTerms"]):
+                continue
+            out.append(f"{role}: catalyst given an equilibrium-position or final-amount outcome -> {sentence[:150]}")
+    return out
+
+
+def temperature_violations(blocks, spec) -> list[str]:
+    out = []
+    for role, text in blocks:
+        for sentence in sentences(text):
+            low = sentence.lower()
+            if not has_any(low, spec["subjectTerms"]):
+                continue
+            if not has_any(low, spec["warmthTerms"]):
+                continue
+            if has_any(low, spec["hotAnchorTerms"]):
+                continue
+            if has_any(low, spec.get("negationTerms", [])):
+                continue
+            out.append(f"{role}: operating temperature carries warmth language with no hot anchor -> {sentence[:150]}")
+    return out
+
+
+def attribution_violations(blocks, spec) -> list[str]:
+    out = []
+    industrial_nouns = ["industrial", "factory", "factories", "plant", "works", "scale", "scale-up", "commercial"]
+    for role, text in blocks:
+        for sentence in sentences(text):
+            low = sentence.lower()
+            lab = has_any(low, [a.lower() for a in spec["laboratoryActors"]])
+            ind = has_any(low, [a.lower() for a in spec["industrialActors"]])
+            if lab and has_any(low, spec["completionTerms"]) and has_any(low, industrial_nouns):
+                out.append(f"{role}: laboratory work described as already-complete industrial work -> {sentence[:150]}")
+                continue
+            if ind and has_any(low, spec["diminutiveTerms"]) and has_any(low, spec["reproductionTerms"]):
+                out.append(f"{role}: industrial scale-up reduced to copying -> {sentence[:150]}")
+    return out
+
+
+def recycle_violations(blocks, spec) -> list[str]:
+    """Two failures: an unqualified block, and a universality claim anywhere.
+
+    The block check alone is not enough. A paragraph can keep its qualifying
+    sentence and still gain a second sentence asserting the figure is what the
+    process always does, so universality is checked per sentence and is not
+    excused by a qualification sitting elsewhere in the same block.
+    """
+    out = []
+    share_words = ["parts in", "per cent", "percent", "%", "convert"]
+    for role, text in blocks:
+        low = text.lower()
+        carries_figure = any(f in text for f in spec["figures"])
+        if not carries_figure or not has_any(low, share_words):
+            continue
+        for sentence in sentences(text):
+            slow = sentence.lower()
+            if not any(f in sentence for f in spec["figures"]):
+                continue
+            if has_any(slow, spec.get("universalityTerms", [])):
+                out.append(f"{role}: conversion figure asserted as universal -> {sentence[:150]}")
+        if role not in LEARNER_ROLES:
+            continue
+        if has_any(low, spec["qualificationTerms"]):
+            continue
+        out.append(f"{role}: conversion figure printed without a reported/example qualification -> {text[:150]}")
+    return out
 
 
 class Results:
@@ -134,15 +234,18 @@ def main() -> int:
         "")
 
     # ---- HHH-GAME-C1L4-002, temperature ------------------------------------
+    inv = registry["semanticInvariants"]
+    blocks = scannable_blocks(raw, [c["selector"] for c in inv["scanScope"]["exemptContexts"]])
+    results.check("declared evaluative contexts exist, so the scan has something to exempt",
+                  all(soup.select(c["selector"]) for c in inv["scanScope"]["exemptContexts"]),
+                  [c["selector"] for c in inv["scanScope"]["exemptContexts"] if not soup.select(c["selector"])])
+    temp_findings = temperature_violations(blocks, inv["temperature"])
+    results.check("no role characterises the operating temperature as ordinary warmth", not temp_findings, temp_findings)
     temperature = registry["temperatureQualification"]
-    banned_temp = [f for phrase in temperature["prohibitedFramings"]
-                   for f in asserted_occurrences(soup, phrase)]
-    results.check("no role asserts the operating temperature is ordinary warmth", not banned_temp, banned_temp)
     for role in ALL_ROLES:
         results.check(
             f"the {role} edition frames the operating temperature as a compromise",
             "compromise" in lowered[role], "")
-    # Both learner editions must carry an anchored value, not merely the word.
     anchors = ("400", "500", "327", "600")
     for role in LEARNER_ROLES:
         present = [a for a in anchors if a in texts[role]]
@@ -153,15 +256,25 @@ def main() -> int:
         results.check(
             f"the {role} edition places the operating range against a fixed point a reader knows",
             "lead" in lowered[role] and "327" in texts[role], "")
+        # Both directions are required evidence, not just the compromise word.
+        equilibrium_direction = ("toward ammonia" in lowered[role] or "towards ammonia" in lowered[role])
+        rate_direction = ("slow" in lowered[role] or "creep" in lowered[role] or "speed" in lowered[role])
+        results.check(
+            f"the {role} edition states both the equilibrium direction and the rate direction",
+            equilibrium_direction and rate_direction,
+            {"equilibriumDirection": equilibrium_direction, "rateDirection": rate_direction})
     results.check(
         "both learner editions carry the temperature ladder",
         all(soup.select(f'.page[data-role="{role}"] [data-temperature-ruler]') for role in LEARNER_ROLES), "")
 
     # ---- catalyst boundary --------------------------------------------------
     catalyst = registry["catalystBoundary"]
-    banned_catalyst = [f for phrase in catalyst["prohibitedClaims"]
-                       for f in asserted_occurrences(soup, phrase)]
-    results.check("no role asserts that the catalyst moves the equilibrium", not banned_catalyst, banned_catalyst)
+    cat_findings = catalyst_violations(blocks, inv["catalyst"])
+    results.check("no role gives the catalyst an equilibrium-position or final-amount outcome",
+                  not cat_findings, cat_findings)
+    results.check("the registry states the catalyst has no effect on equilibrium position",
+                  inv["catalyst"]["equilibriumPositionEffect"] == "NONE"
+                  and inv["catalyst"]["cannotBePresentedAsChangingFinalEquilibriumBalance"] is True, "")
     for role in LEARNER_ROLES:
         text = lowered[role]
         states_boundary = ("no effect on where the balance sits" in text
@@ -176,13 +289,30 @@ def main() -> int:
 
     # ---- attribution boundary ----------------------------------------------
     attribution = registry["attributionBoundary"]
-    banned_attr = [f for phrase in attribution["prohibitedClaims"]
-                   for f in asserted_occurrences(soup, phrase)]
-    results.check("no role asserts a single-actor account of the industrial process",
-                  not banned_attr, banned_attr)
+    attr_findings = attribution_violations(blocks, inv["attribution"])
+    results.check("no role collapses laboratory work and industrial scale-up into one",
+                  not attr_findings, attr_findings)
+    results.check("the registry keeps laboratory work and industrial scale-up distinct",
+                  inv["attribution"]["laboratoryWorkIsNotIndustrialScaleUp"] is True
+                  and inv["attribution"]["industrialProcessMayNotBeDescribedAsCompleteBeforeScaleUp"] is True, "")
     for role in ALL_ROLES:
         missing = [name for name in ("Haber", "Bosch", "Mittasch", "Le Rossignol") if name not in texts[role]]
         results.check(f"the {role} edition names all four contributors", not missing, missing)
+    # R1: contributions may not exceed the strength the cited source supports.
+    overcredit = []
+    for role, text in blocks:
+        low = text.lower()
+        if "le rossignol" in low and re.search(r"le rossignol[^.;]{0,80}\b(built|made|constructed|invented)\b[^.;]{0,40}compressor", low):
+            overcredit.append(f"{role}: Le Rossignol credited with building the compressor -> {text[:140]}")
+        if "le rossignol" in low and re.search(r"le rossignol[^.;]{0,60}\bbuilt the (complete|whole) apparatus", low):
+            overcredit.append(f"{role}: Le Rossignol credited with building the complete apparatus -> {text[:140]}")
+    results.check("no role credits Le Rossignol beyond the strength the source supports", not overcredit, overcredit)
+    results.check("the compressor's provenance is stated in both learner editions",
+                  all(("bought by haber" in lowered[r] or "acquired by haber" in lowered[r]
+                       or "haber had bought" in lowered[r]) for r in LEARNER_ROLES),
+                  {r: ("bought by haber" in lowered[r]) for r in LEARNER_ROLES})
+    results.check("the registry records source-strength rules for attribution",
+                  len(attribution.get("sourceStrengthRules", [])) >= 4, "")
     results.check(
         "the Answer Key refuses a single-actor account explicitly",
         "not accepted at any level" in lowered["answer"]
@@ -195,16 +325,29 @@ def main() -> int:
     results.check(
         "the sequence figure states in print why its lanes are drawn at equal weight",
         everything.count("no one of them was optional") >= 2, "")
+    # P4: the embrittlement diagnosis belongs to Bosch; Lappe aided the solution.
+    results.check("the embrittlement diagnosis is not awarded jointly against the source",
+                  not re.search(r"bosch and (franz )?lappe (found|discovered|established|worked out)", everything, re.I),
+                  "")
+    results.check("Lappe's contribution is recorded as aiding the solution",
+                  "aided by" in " ".join(lowered.values()), "")
 
     # ---- recycle boundary ---------------------------------------------------
     recycle = registry["recycleBoundary"]
-    banned_recycle = [f for phrase in recycle["prohibitedClaims"]
-                      for f in asserted_occurrences(soup, phrase)]
-    results.check("no role asserts that a single pass converts the whole feed", not banned_recycle, banned_recycle)
+    rec_findings = recycle_violations(blocks, inv["recycle"])
+    results.check("every printed conversion figure carries its reported/example qualification",
+                  not rec_findings, rec_findings)
+    results.check("the registry marks both conversion figures as reported examples",
+                  recycle["printedQualificationRequired"] is True
+                  and recycle["singlePass"]["status"] == "reported example"
+                  and recycle["overallWithRecycle"]["status"] == "reported example", "")
     for role in LEARNER_ROLES:
         results.check(
             f"the {role} edition prints the single-pass share and the recycled whole-plant share",
             "15" in texts[role] and "98" in texts[role], "")
+        results.check(
+            f"the {role} edition says the conversion figures vary from plant to plant",
+            "varies from plant to plant" in lowered[role], "")
 
     # ---- demonstration date -------------------------------------------------
     date_boundary = registry["demonstrationDateBoundary"]
@@ -267,6 +410,79 @@ def main() -> int:
     for role in LEARNER_ROLES:
         missing = [name for name, test in fallback_facts.items() if not test(texts[role], lowered[role])]
         results.check(f"every load-bearing no-game fact is present in the {role} edition", not missing, missing)
+
+    # ---- R2: the Teacher source ledger must cover the canonical estate -----
+    ledger_rows = soup.select('[data-source-ledger] tbody tr[data-ledger-source]')
+    covered: list[str] = []
+    for row in ledger_rows:
+        covered.extend(row["data-ledger-source"].split())
+    declared_ids = [src["id"] for src in registry["caseSources"]]
+    missing_from_ledger = [i for i in declared_ids if i not in covered]
+    unregistered_in_ledger = [i for i in covered if i not in declared_ids]
+    results.check("the Teacher source ledger covers every canonical caseSource",
+                  not missing_from_ledger, missing_from_ledger)
+    results.check("the Teacher source ledger introduces no source the estate does not declare",
+                  not unregistered_in_ledger, unregistered_in_ledger)
+    results.check("no ledger row covers a source twice",
+                  len(covered) == len(set(covered)), covered)
+    grouped_rows = soup.select('[data-source-ledger] tr[data-ledger-grouping]')
+    for row in grouped_rows:
+        ids = row["data-ledger-source"].split()
+        results.check(f"grouped ledger row {row['data-ledger-grouping']} declares the sources it groups",
+                      len(ids) > 1 and "Grouped" in row.get_text(" ", strip=True), ids)
+    results.check("the ledger's coverage claim is true of the estate it actually lists",
+                  "traces to one of these" in lowered["teacher"]
+                  and str(len(declared_ids)) in texts["teacher"], len(declared_ids))
+    # Any supporting reference must be printed inside the row of the source it supports.
+    for src in registry["caseSources"]:
+        for ref in src.get("supportingReferences", []):
+            owner_rows = [r for r in ledger_rows if src["id"] in r["data-ledger-source"].split()]
+            label_head = ref["label"].split(",")[0]
+            results.check(f"supporting reference '{label_head}' sits inside the {src['id']} ledger row",
+                          any(label_head.split()[0] in r.get_text(" ", strip=True) for r in owner_rows), "")
+
+    # ---- R3: Accessible adaptation must be documented where it is scored ---
+    prefilled = soup.select('.page[data-role="accessible"] td.prefilled')
+    adaptation_notes = soup.select('[data-accessible-adaptation]')
+    if prefilled:
+        results.check("a prefilled Accessible response is declared as an adaptation in the markup",
+                      len(adaptation_notes) >= 2, len(adaptation_notes))
+        results.check("the Accessible page itself labels the prefilled row as a worked model",
+                      any(n.find_parent(class_="page") is not None
+                          and n.find_parent(class_="page").get("data-role") == "accessible"
+                          for n in adaptation_notes), "")
+        results.check("the Teacher Guide states the prefilled row rather than claiming nothing is disclosed",
+                      any(n.find_parent(class_="page") is not None
+                          and n.find_parent(class_="page").get("data-role") == "teacher"
+                          for n in adaptation_notes), "")
+        results.check("no role claims that no keyed answer is disclosed in the Accessible edition",
+                      not re.search(r"does\s+<strong>not</strong>\s+give away any keyed", raw, re.I)
+                      and "never gives away any keyed" not in " ".join(lowered.values()), "")
+        results.check("the Answer Key records the Student/Accessible completion difference",
+                      "edition difference" in lowered["answer"]
+                      and "twelve" in lowered["answer"] and "fifteen" in lowered["answer"], "")
+        results.check("the scored count is stated for both editions in the Teacher Guide",
+                      "twelve" in lowered["teacher"] and "four" in lowered["teacher"], "")
+
+    # ---- R4: Accessible response space may not fall below Student capacity -
+    css = (UNIT / "source/presentation.css").read_text(encoding="utf-8")
+
+    def min_height_in(selector_fragment: str) -> float:
+        m = re.search(re.escape(selector_fragment) + r"\s*\{[^}]*min-height:\s*([0-9.]+)in", css)
+        return float(m.group(1)) if m else 0.0
+
+    pairs = [
+        (".response.medium.fill-sequence", ".accessible .response.roomy.fill-sequence", "Task 5 Part B"),
+    ]
+    ACCESSIBLE_TYPE_RATIO = 1.21  # 11.35pt Accessible body against 9.35pt Student
+    for student_sel, accessible_sel, label in pairs:
+        student_h = min_height_in(student_sel)
+        accessible_h = min_height_in(accessible_sel)
+        floor = round(student_h * ACCESSIBLE_TYPE_RATIO, 3)
+        results.check(
+            f"Accessible {label} response space is at least Student-equivalent for its type size",
+            student_h > 0 and accessible_h >= floor,
+            {"student": student_h, "accessible": accessible_h, "requiredFloor": floor})
 
     # ---- cross-edition task parity -----------------------------------------
     keyed = [task for task in registry["tasks"] if task.get("keyed")]
