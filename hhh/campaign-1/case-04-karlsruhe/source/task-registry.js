@@ -522,26 +522,46 @@ window.HHH_CASE04_TASK_REGISTRY = {
       "role": "rate and pathway",
       "equilibriumPositionEffect": "NONE",
       "protectedProposition": "A catalyst may change the rate, the pathway, or the time taken to approach the final state. It may not change the amount, proportion, concentration, composition or yield established by the equilibrium state under the same conditions.",
-      "subjectTerms": ["catalyst", "catalysts", "catalytic", "promoted iron"],
-      "productTerms": ["ammonia", "nh3", "product", "mixture", "yield"],
-      "finalStateTerms": [
-        "equilibrium", "balance", "final", "finally", "settle", "settles", "settled", "settling",
-        "stops changing", "stopped changing", "stop changing", "no longer changing",
-        "at rest", "comes to rest", "steady", "steadies",
-        "ends", "ends up", "end up", "ended", "end state", "final state", "outcome",
-        "finished", "finish", "finishes", "complete", "completed",
-        "resulting", "result", "results", "left", "leaves", "remains", "remaining",
-        "once the reaction", "after the reaction", "when the reaction", "once it stops",
-        "when it stops", "present", "afterwards", "in the end"
+      "subjectTerms": [
+        "catalyst", "catalysts", "catalytic", "catalytic surface", "catalyst material",
+        "iron catalyst", "promoted iron", "osmium", "uranium"
       ],
+      "namesInEvidence": ["osmium", "uranium", "promoted iron", "iron catalyst"],
+      "namesInEvidenceRule": "Every catalyst this package actually names in learner evidence must resolve to the catalyst subject concept. Osmium was silently dropped from the subject list during an earlier hardening pass and three misconceptions escaped; a guard now reconciles this list against subjectTerms so the same regression cannot recur.",
+      "productTerms": ["ammonia", "product", "mixture", "yield"],
+      "chemicalAliases": {
+        "ammonia": ["NH3", "NH\u2083", "NH<sub>3</sub>", "NH 3"],
+        "rule": "The normaliser folds every rendering of the ammonia formula - ASCII, Unicode subscript, and the HTML markup as the browser extracts it - onto the ammonia product concept, so a misconception cannot hide behind notation."
+      },
+      "finalStateStrongTerms": [
+        "equilibrium", "balance", "at rest", "come to rest", "settle", "settle down",
+        "settled", "settling", "resting", "stop changing", "no longer changing",
+        "steady", "end state", "final state", "equilibrium mixture",
+        "once the reaction", "after the reaction", "when the reaction",
+        "once it stops", "when it stops", "once everything"
+      ],
+      "finalStateContextualTerms": [
+        "final", "finally", "finished", "resulting", "remaining", "remains",
+        "left", "ends", "ends up", "end up", "ended", "present", "outcome",
+        "in the end", "afterwards", "result", "results"
+      ],
+      "mixtureContextTerms": [
+        "mixture", "composition", "gas", "gases", "vessel", "reactor", "share",
+        "proportion", "fraction", "amount", "ammonia", "product", "yield", "reaction"
+      ],
+      "finalStateRule": "A strong term denotes the settled state on its own. A contextual term - finished, resulting, left, present - counts only when the sentence also names a mixture or reaction context, so ordinary uses such as finishing a building programme cannot satisfy it.",
       "increaseRelationTerms": [
         "increase", "increases", "increased", "increasing", "raise", "raises", "raised", "raising",
         "boost", "boosts", "boosted", "boosting", "more", "extra", "richer", "rich",
         "larger", "bigger", "greater", "higher", "improve", "improves", "improved",
         "change", "changes", "changed", "changing", "shift", "shifts", "shifted", "shifting",
         "move", "moves", "moved", "moving", "tip", "tips", "tipped", "favour", "favours",
-        "produce more", "make more", "give more", "leaves more", "leave more"
+        "alter", "alters", "altering", "push", "pushes", "pushing",
+        "enrich", "enriches", "enriching", "drive", "drives", "driving",
+        "steer", "steers", "nudge", "nudges", "lift", "lifts", "lifting",
+        "produce more", "make more", "give more", "leaves more", "leave more", "adds to"
       ],
+      "resultReportMarkers": ["bar", "atm", "atmospheres", "by volume", "vol", "degrees", "grams", "per cent"],
       "functionVerbTerms": [
         "helps", "help", "lets", "let", "allows", "allow", "enables", "enable",
         "makes", "make", "produces", "produce", "gives", "give", "works by", "does the work"
@@ -559,8 +579,10 @@ window.HHH_CASE04_TASK_REGISTRY = {
         "without raising", "does not raise", "not balance", "not the balance",
         "rate, not", "not where the balance", "never moves the balance", "not how much",
         "not the final", "not the amount", "not the share", "not the composition",
-        "does not decide", "not the yield"
+        "does not decide", "not the yield", "did not change", "did not move",
+        "did not alter", "does not affect", "did not affect", "no effect"
       ],
+      "negationPattern": "\\b(?:not|never|without)\\b[^.]{0,40}\\b(?:chang|mov|shift|alter|rais|increas|affect|effect|tip|push|boost|enrich|improv)",
       "rules": [
         "NEGATIVE RELATION: a sentence naming the catalyst, a product term, an increase relation and a final-state term asserts that the catalyst changes the settled amount. The word equilibrium is not required for the contradiction to count.",
         "POSITIVE BOUNDARY: a learner sentence that assigns a function to the catalyst must resolve into a permitted role - rate, pathway, time to approach - or state that it does not change the equilibrium position. A bare function claim is insufficient."

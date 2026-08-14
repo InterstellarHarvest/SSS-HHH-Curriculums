@@ -66,6 +66,28 @@ GAME_TYPO_PATTERN = re.compile(r"\bmdeled\b|\bmdelled\b|\bmodeld\b", re.I)
 
 SENTENCE_SPLIT = re.compile(r"(?<=[.;:!?])\s+|(?<=\u2014)\s+")
 WORDISH = re.compile(r"[a-z0-9%°]+")
+SUBSCRIPTS = {ord("\u2080") + i: str(i) for i in range(10)}
+
+# Every rendering of the ammonia formula folds onto one concept token. The HTML
+# form NH<sub>3</sub> reaches this layer as "NH 3" once the DOM text is
+# extracted, which is how a misconception previously hid behind notation.
+AMMONIA_FORMULA = re.compile(r"\bnh\s*3\b")
+
+# Deterministic suffix stripping so a family term matches its ordinary
+# inflections without the registry listing each one. Applied identically to the
+# sentence and to the family terms, so the comparison stays consistent.
+IRREGULAR = {"came": "come", "comes": "come", "held": "hold", "holds": "hold",
+             "went": "go", "gone": "go", "lay": "lie", "lies": "lie"}
+SUFFIXES = ("ing", "ed", "es", "s")
+
+
+def stem(token: str) -> str:
+    if token in IRREGULAR:
+        return IRREGULAR[token]
+    for suffix in SUFFIXES:
+        if token.endswith(suffix) and len(token) - len(suffix) >= 3:
+            return token[: -len(suffix)]
+    return token
 
 
 def sentences(text: str) -> list[str]:
@@ -73,9 +95,23 @@ def sentences(text: str) -> list[str]:
 
 
 def normalise(text: str) -> str:
-    """Lowercase and collapse punctuation so families match across inflection."""
+    """Lowercase, fold chemical notation, and pad for word-boundary matching.
+
+    Deliberately NOT stemmed. The temperature, attribution and recycle contracts
+    closed at 20ebcc0 against this exact behaviour, and stemming their families
+    would change what they match - collapsing the noun "works" onto "work", for
+    one. Only the catalyst contract, the sole concept in scope, uses the stemmed
+    variant below.
+    """
     low = text.lower().replace("\u2019", "'").replace("\u2014", " ").replace("\u2013", " ")
+    low = low.translate(SUBSCRIPTS)
+    low = AMMONIA_FORMULA.sub(" ammonia ", low)
     return " " + " ".join(WORDISH.findall(low)) + " "
+
+
+def normalise_stemmed(text: str) -> str:
+    """Catalyst-only: normalise, then stem, so inflections match without listing."""
+    return " " + " ".join(stem(t) for t in normalise(text).split()) + " "
 
 
 def has_any(norm: str, terms: list[str]) -> list[str]:
@@ -83,11 +119,38 @@ def has_any(norm: str, terms: list[str]) -> list[str]:
     hits = []
     for term in terms:
         needle = normalise(term).strip()
-        if not needle:
-            continue
-        if f" {needle} " in norm:
+        if needle and f" {needle} " in norm:
             hits.append(term)
     return hits
+
+
+def has_any_stemmed(norm: str, terms: list[str]) -> list[str]:
+    """As has_any, with both sides stemmed. Catalyst contract only."""
+    hits = []
+    for term in terms:
+        needle = normalise_stemmed(term).strip()
+        if needle and f" {needle} " in norm:
+            hits.append(term)
+    return hits
+
+
+def negated(norm: str, spec: dict) -> bool:
+    """Explicit denial phrases, plus a deterministic negation-of-change pattern."""
+    if has_any_stemmed(norm, spec.get("negationTerms", [])):
+        return True
+    pattern = spec.get("negationPattern")
+    return bool(pattern and re.search(pattern, norm))
+
+
+def final_state_hits(norm: str, spec: dict) -> list[str]:
+    """Strong terms stand alone; contextual terms need a mixture/reaction context."""
+    strong = has_any_stemmed(norm, spec["finalStateStrongTerms"])
+    if strong:
+        return strong
+    contextual = has_any_stemmed(norm, spec["finalStateContextualTerms"])
+    if contextual and has_any_stemmed(norm, spec["mixtureContextTerms"]):
+        return contextual
+    return []
 
 
 def accessible_name(node) -> str:
@@ -246,26 +309,35 @@ def catalyst_violations(blocks, spec) -> list[str]:
     """Two rules: the catalyst may not own the settled amount, and a bare
     function claim must resolve into a permitted rate/pathway role."""
     out = []
+    result_markers = spec.get("resultReportMarkers", [])
     for role, text in blocks:
         for sentence in sentences(text):
-            norm = normalise(sentence)
-            if not has_any(norm, spec["subjectTerms"]):
+            norm = normalise_stemmed(sentence)
+            if not has_any_stemmed(norm, spec["subjectTerms"]):
                 continue
-            if has_any(norm, spec["negationTerms"]):
+            if negated(norm, spec):
                 continue
-            increase = has_any(norm, spec["increaseRelationTerms"])
-            final_state = has_any(norm, spec["finalStateTerms"])
-            product = has_any(norm, spec["productTerms"])
+            increase = has_any_stemmed(norm, spec["increaseRelationTerms"])
+            final_state = final_state_hits(norm, spec)
+            product = has_any_stemmed(norm, spec["productTerms"])
             if increase and final_state and product:
                 out.append(
                     f"{role}: catalyst asserted to change the settled amount "
                     f"[{increase[0]} / {final_state[0]}] -> {sentence[:140]}")
                 continue
-            if role in LEARNER_ROLES and has_any(norm, spec["functionVerbTerms"]):
-                if not has_any(norm, spec["permittedRateTerms"]):
-                    out.append(
-                        f"{role}: catalyst given a function that does not resolve into a "
-                        f"rate or pathway role -> {sentence[:140]}")
+            if role not in LEARNER_ROLES:
+                continue
+            if not has_any_stemmed(norm, spec["functionVerbTerms"]):
+                continue
+            # A sentence reporting a measured result under stated conditions is a
+            # historical report, not a functional claim about what a catalyst does.
+            # The negative relation rule above still governs it.
+            if has_any_stemmed(norm, result_markers) or re.search(r"\b\d", sentence):
+                continue
+            if not has_any_stemmed(norm, spec["permittedRateTerms"]):
+                out.append(
+                    f"{role}: catalyst given a function that does not resolve into a "
+                    f"rate or pathway role -> {sentence[:140]}")
     return out
 
 
@@ -444,6 +516,34 @@ def main() -> int:
     results.check("the registry states the catalyst has no effect on equilibrium position",
                   inv["catalyst"]["equilibriumPositionEffect"] == "NONE"
                   and "may not change the amount" in inv["catalyst"]["protectedProposition"], "")
+    # A catalyst this package actually names in learner evidence must resolve to
+    # the catalyst subject concept. Osmium was silently dropped from that list in
+    # an earlier hardening pass and three misconceptions escaped; this closes it.
+    cat_spec = inv["catalyst"]
+    named = cat_spec.get("namesInEvidence", [])
+    unresolved = [n for n in named
+                  if not has_any_stemmed(normalise_stemmed(n), cat_spec["subjectTerms"])]
+    results.check("every catalyst named in the evidence estate resolves to the catalyst subject concept",
+                  named and not unresolved, unresolved)
+    learner_text = " ".join(lowered[r] for r in LEARNER_ROLES)
+    absent = [n for n in named if n.lower() not in learner_text]
+    results.check("every catalyst name the registry claims is in evidence is actually printed to learners",
+                  not absent, absent)
+    results.check("the catalyst subject list still carries the aliases an earlier pass dropped",
+                  all(a in cat_spec["subjectTerms"] for a in ("osmium", "promoted iron")),
+                  cat_spec["subjectTerms"])
+    results.check("the final-state contract separates strong terms from context-dependent ones",
+                  cat_spec.get("finalStateStrongTerms") and cat_spec.get("finalStateContextualTerms")
+                  and cat_spec.get("mixtureContextTerms")
+                  and "cannot satisfy it" in cat_spec.get("finalStateRule", ""), "")
+    results.check("the ammonia formula is folded to one concept regardless of notation",
+                  normalise("NH3").strip() == "ammonia"
+                  and normalise("NH\u2083").strip() == "ammonia"
+                  and normalise("NH 3").strip() == "ammonia"
+                  and "ammonia" in normalise(
+                      BeautifulSoup("<p>makes more NH<sub>3</sub> here</p>", "html.parser").get_text(" ")),
+                  {"ascii": normalise("NH3").strip(), "subscript": normalise("NH\u2083").strip(),
+                   "extracted": normalise("NH 3").strip()})
     results.check("the catalyst contract declares both a negative relation and a positive boundary",
                   len(inv["catalyst"]["rules"]) == 2
                   and any("NEGATIVE RELATION" in r for r in inv["catalyst"]["rules"])
