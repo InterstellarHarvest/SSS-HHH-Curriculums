@@ -43,140 +43,304 @@ GAME_TYPO_PATTERN = re.compile(r"\bmdeled\b|\bmdelled\b|\bmodeld\b", re.I)
 # ---------------------------------------------------------------------------
 # Semantic engine.
 #
-# The first version of this validator matched prohibited *phrases*. Independent
-# review showed that conceptually identical wording slipped through: a sentence
-# can put the catalyst in charge of the final balance without ever using the
-# word "equilibrium", and can reduce the scale-up to copying without ever saying
-# "Haber alone". Phrase lists cannot be completed, so this version stops trying.
+# Phrase lists cannot be completed. A sentence can put the catalyst in charge of
+# the settled amount without ever saying "equilibrium", finish the industrial
+# engineering in Haber's laboratory without the bigram "finished industrial",
+# and universalise a worked figure without the literal string "every plant". So
+# the registry declares CONCEPT FAMILIES and the checks look for a RELATION
+# between them inside one sentence, in any word order.
 #
-# Instead the registry declares, per concept, the SUBJECT terms, the OUTCOME
-# terms that subject may not be given, the terms that make such a statement
-# permissible, and the negations that defuse it. The check is co-occurrence
-# inside a single sentence. That catches paraphrase while leaving truthful
-# alternative wording free, and it stays a bounded lexical contract rather than
-# becoming a parser.
+# Two design rules matter more than the vocabulary:
 #
-# Evaluative context is declared in the markup, not guessed from wording: a
-# competing claim under test, a Teacher misconception row and an Answer Key
-# floor all legitimately contain the error they exist to refuse, and each is
-# marked with a data attribute the registry names. Everything else is scanned in
-# every role, including the learner editions.
+#   * A numeric temperature is EVIDENCE that mild language is wrong, never a
+#     waiver for it. "a comfortable 450 C" fails because of the 450, not
+#     despite it.
+#
+#   * Exemption is a closed contract. A node may be excused only by naming a
+#     registered exemption id that resolves, for that role, through the
+#     selector the registry declares, in the number the registry declares.
+#     Adding an attribute cannot make a bad learner sentence disappear.
+#
+# Deterministic, no external dependencies, no probabilistic behaviour.
 # ---------------------------------------------------------------------------
 
 SENTENCE_SPLIT = re.compile(r"(?<=[.;:!?])\s+|(?<=\u2014)\s+")
+WORDISH = re.compile(r"[a-z0-9%°]+")
 
 
 def sentences(text: str) -> list[str]:
     return [part.strip() for part in SENTENCE_SPLIT.split(text) if part.strip()]
 
 
-def scannable_blocks(raw_html: str, exempt_selectors: list[str]) -> list[tuple[str, str]]:
-    """(role, text) for every page block, with declared evaluative contexts removed.
+def normalise(text: str) -> str:
+    """Lowercase and collapse punctuation so families match across inflection."""
+    low = text.lower().replace("\u2019", "'").replace("\u2014", " ").replace("\u2013", " ")
+    return " " + " ".join(WORDISH.findall(low)) + " "
 
-    Exempt subtrees are deleted from a working copy before collection, so a marked
-    clause is excluded whether it is the block itself or sits inside a larger one.
+
+def has_any(norm: str, terms: list[str]) -> list[str]:
+    """Terms present in a normalised sentence, matched on word boundaries."""
+    hits = []
+    for term in terms:
+        needle = normalise(term).strip()
+        if not needle:
+            continue
+        if f" {needle} " in norm:
+            hits.append(term)
+    return hits
+
+
+def accessible_name(node) -> str:
+    """The accessible name a screen reader would receive for a figure region."""
+    if node.get("aria-label"):
+        return node["aria-label"]
+    inner = node.select_one("[aria-label]")
+    return inner["aria-label"] if inner else ""
+
+
+def figure_accessibility_findings(soup, contract, chronology) -> list[str]:
+    """Check figure accessibility text against canonical chronology metadata.
+
+    Metadata-driven: the sourced conditions, their units and their epistemic
+    status come from the registry, so correcting the visible figure without
+    correcting the accessible name is caught, and so is the reverse.
     """
+    findings: list[str] = []
+    for figure in contract["figures"]:
+        entry = next((c for c in chronology
+                      if c.get("year") == figure["chronologyYear"]
+                      and c.get("lane") == figure["chronologyLane"]
+                      and c.get("sourcedConditions")), None)
+        if entry is None:
+            findings.append(f"{figure['id']}: no chronology entry with sourced conditions to check against")
+            continue
+        names: dict[str, str] = {}
+        for node in soup.select(figure["selector"]):
+            page = node.find_parent(class_="page")
+            role = page.get("data-role") if page else None
+            if role not in figure["roles"]:
+                continue
+            name = accessible_name(node)
+            if not name:
+                findings.append(f"{figure['id']} ({role}): figure has no accessible name")
+                continue
+            names[role] = name
+            low = name.lower()
+            for pattern in figure["prohibitedPatterns"]:
+                if re.search(pattern["regex"], low):
+                    findings.append(f"{figure['id']} ({role}): {pattern['id']} - {pattern['why']}")
+            for cond in entry["sourcedConditions"]:
+                value, unit = cond["pressure"]["value"], cond["pressure"]["unit"]
+                if not re.search(rf"{value}\s*{unit[:3]}", low):
+                    findings.append(
+                        f"{figure['id']} ({role}): sourced condition {cond['id']} missing its own "
+                        f"pressure {value} {unit}")
+                    continue
+                window = low[max(0, low.find(str(value)) - 260): low.find(str(value)) + 260]
+                if not any(v.lower() in window for v in cond["verbFamily"]):
+                    findings.append(
+                        f"{figure['id']} ({role}): {cond['id']} is not marked "
+                        f"{cond['epistemicStatus']} near its own value")
+                for bad in cond["prohibitedVerbFamily"]:
+                    if re.search(rf"{bad}\w*\s+(?:about\s+)?eight per cent[^.]*{value}\s*{unit[:3]}", low) or \
+                       re.search(rf"{value}\s*{unit[:3]}[^.]*\b{bad}\b", low):
+                        findings.append(
+                            f"{figure['id']} ({role}): {cond['id']} described with the wrong "
+                            f"epistemic verb {bad!r}")
+        if figure.get("requiresRolePartity") and len(names) > 1:
+            facts = {}
+            for role, name in names.items():
+                low = name.lower()
+                facts[role] = tuple(sorted(
+                    (str(c["pressure"]["value"]), c["pressure"]["unit"], c["epistemicStatus"])
+                    for c in entry["sourcedConditions"]
+                    if re.search(rf"{c['pressure']['value']}\s*{c['pressure']['unit'][:3]}", low)
+                    and any(v.lower() in low for v in c["verbFamily"])))
+            distinct = set(facts.values())
+            if len(distinct) > 1:
+                findings.append(f"{figure['id']}: Student and Accessible accessible names disagree: {facts}")
+        for pattern in contract["attributionParity"]["prohibitedPatterns"]:
+            for role, name in names.items():
+                if re.search(pattern["regex"], name.lower()):
+                    findings.append(f"{figure['id']} ({role}): {pattern['id']} - {pattern['why']}")
+    return findings
+
+
+
+def exemption_findings(raw_html: str, spec: dict) -> tuple[list[str], list]:
+    """Validate the closed exemption contract; return (findings, exempt nodes).
+
+    Every marker in the DOM must name a registered id; every registered id must
+    resolve through its own declared selector, in its declared role, in its
+    declared count. Any of those failing is a validation failure, not a silent
+    exemption.
+    """
+    soup = BeautifulSoup(raw_html, "html.parser")
+    attr = spec["scanScope"]["exemptionAttribute"]
+    registered = {e["id"]: e for e in spec["exemptions"]}
+    findings: list[str] = []
+    exempt_nodes: list = []
+
+    marked = soup.select(f"[{attr}]")
+    for node in marked:
+        value = node.get(attr)
+        if value not in registered:
+            findings.append(f"unregistered exemption id in DOM: {value!r}")
+            continue
+        page = node.find_parent(class_="page")
+        role = page.get("data-role") if page else None
+        if role not in registered[value]["roles"]:
+            findings.append(f"exemption {value!r} used in role {role!r}, which the registry does not permit")
+
+    for entry in spec["exemptions"]:
+        resolved = soup.select(entry["selector"])
+        if len(resolved) != entry["expectedCount"]:
+            findings.append(
+                f"exemption {entry['id']!r} resolves to {len(resolved)} node(s) through its declared "
+                f"selector, registry expects {entry['expectedCount']}")
+        for node in resolved:
+            page = node.find_parent(class_="page")
+            role = page.get("data-role") if page else None
+            if role not in entry["roles"]:
+                findings.append(f"exemption {entry['id']!r} resolved in role {role!r}")
+            exempt_nodes.append(node)
+
+    # Every marker must also be reachable through its own registered selector,
+    # so moving a valid marker to an unrelated node is caught even if the count
+    # elsewhere happens to balance.
+    resolved_ids = {id(n) for n in exempt_nodes}
+    for node in marked:
+        value = node.get(attr)
+        if value in registered and id(node) not in resolved_ids:
+            findings.append(
+                f"exemption {value!r} is attached to a node its registered selector does not match")
+    return findings, exempt_nodes
+
+
+def scannable_blocks(raw_html: str, spec: dict) -> list[tuple[str, str]]:
+    """(role, text) for every page block, with registered exemptions removed."""
     work = BeautifulSoup(raw_html, "html.parser")
-    for selector in exempt_selectors:
-        for node in work.select(selector):
+    attr = spec["scanScope"]["exemptionAttribute"]
+    registered = {e["id"]: e for e in spec["exemptions"]}
+    for entry in spec["exemptions"]:
+        for node in work.select(entry["selector"]):
+            node.decompose()
+    # An unregistered or misplaced marker removes nothing: it is reported by
+    # exemption_findings and its text stays in the scan.
+    for structural in spec.get("structuralExemptSelectors", []):
+        for node in work.select(structural["selector"]):
             node.decompose()
     blocks: list[tuple[str, str]] = []
     for page in work.select(".page[data-role]"):
         role = page.get("data-role")
         for node in page.find_all(["p", "li", "td", "th", "span", "div"], recursive=True):
             if node.find(["p", "li", "td", "th"]):
-                continue  # only leaf-ish blocks, so text is not counted twice
+                continue
             text = node.get_text(" ", strip=True)
             if text:
                 blocks.append((role, text))
     return blocks
 
 
-def has_any(text: str, terms: list[str]) -> bool:
-    return any(term.lower() in text for term in terms)
-
-
 def catalyst_violations(blocks, spec) -> list[str]:
+    """Two rules: the catalyst may not own the settled amount, and a bare
+    function claim must resolve into a permitted rate/pathway role."""
     out = []
     for role, text in blocks:
         for sentence in sentences(text):
-            low = sentence.lower()
-            if not has_any(low, spec["subjectTerms"]):
+            norm = normalise(sentence)
+            if not has_any(norm, spec["subjectTerms"]):
                 continue
-            if not has_any(low, spec["prohibitedOutcomeTerms"]):
+            if has_any(norm, spec["negationTerms"]):
                 continue
-            # Mentioning the balance is not a claim about it. The sentence only
-            # offends when it also asserts a change in, or a larger amount at,
-            # that outcome -- which is what "the catalyst changes the final
-            # balance" and "settles with extra ammonia" both do, and what
-            # "reaches its balance quickly" does not.
-            if not has_any(low, spec["changeOrAmountTerms"]):
+            increase = has_any(norm, spec["increaseRelationTerms"])
+            final_state = has_any(norm, spec["finalStateTerms"])
+            product = has_any(norm, spec["productTerms"])
+            if increase and final_state and product:
+                out.append(
+                    f"{role}: catalyst asserted to change the settled amount "
+                    f"[{increase[0]} / {final_state[0]}] -> {sentence[:140]}")
                 continue
-            if has_any(low, spec["negationTerms"]):
-                continue
-            out.append(f"{role}: catalyst given an equilibrium-position or final-amount outcome -> {sentence[:150]}")
+            if role in LEARNER_ROLES and has_any(norm, spec["functionVerbTerms"]):
+                if not has_any(norm, spec["permittedRateTerms"]):
+                    out.append(
+                        f"{role}: catalyst given a function that does not resolve into a "
+                        f"rate or pathway role -> {sentence[:140]}")
     return out
 
 
 def temperature_violations(blocks, spec) -> list[str]:
+    """Warmth language about the operating condition fails even with a hot value."""
+    value_pattern = re.compile(spec["subjectValuePattern"])
     out = []
     for role, text in blocks:
         for sentence in sentences(text):
-            low = sentence.lower()
-            if not has_any(low, spec["subjectTerms"]):
+            norm = normalise(sentence)
+            is_temperature_sentence = bool(has_any(norm, spec["subjectTerms"])) or bool(
+                value_pattern.search(norm))
+            if not is_temperature_sentence:
                 continue
-            if not has_any(low, spec["warmthTerms"]):
+            warmth = has_any(norm, spec["warmthTerms"])
+            if not warmth:
                 continue
-            if has_any(low, spec["hotAnchorTerms"]):
+            if has_any(norm, spec["negationTerms"]):
                 continue
-            if has_any(low, spec.get("negationTerms", [])):
-                continue
-            out.append(f"{role}: operating temperature carries warmth language with no hot anchor -> {sentence[:150]}")
+            out.append(
+                f"{role}: operating temperature characterised as {warmth[0]!r} "
+                f"(a numeric value does not excuse this) -> {sentence[:140]}")
     return out
 
 
 def attribution_violations(blocks, spec) -> list[str]:
+    """Relation logic across families, not adjacent-word bigrams."""
     out = []
-    industrial_nouns = ["industrial", "factory", "factories", "plant", "works", "scale", "scale-up", "commercial"]
     for role, text in blocks:
         for sentence in sentences(text):
-            low = sentence.lower()
-            lab = has_any(low, [a.lower() for a in spec["laboratoryActors"]])
-            ind = has_any(low, [a.lower() for a in spec["industrialActors"]])
-            if lab and has_any(low, spec["completionTerms"]) and has_any(low, industrial_nouns):
-                out.append(f"{role}: laboratory work described as already-complete industrial work -> {sentence[:150]}")
+            norm = normalise(sentence)
+            if has_any(norm, spec["negationTerms"]):
                 continue
-            if ind and has_any(low, spec["diminutiveTerms"]) and has_any(low, spec["reproductionTerms"]):
-                out.append(f"{role}: industrial scale-up reduced to copying -> {sentence[:150]}")
+            lab = has_any(norm, spec["laboratorySubjectTerms"])
+            ind_subject = has_any(norm, spec["industrialSubjectTerms"])
+            completion = has_any(norm, spec["completionTerms"])
+            ind_noun = has_any(norm, spec["industrialNounTerms"])
+            if lab and completion and ind_noun:
+                out.append(
+                    f"{role}: laboratory work asserted to have completed the industrial "
+                    f"engineering [{lab[0]} / {completion[0]} / {ind_noun[0]}] -> {sentence[:140]}")
+                continue
+            diminutive = has_any(norm, spec["diminutiveTerms"])
+            reproduction = has_any(norm, spec["reproductionTerms"])
+            if ind_subject and diminutive and reproduction:
+                out.append(
+                    f"{role}: industrial scale-up reduced to copying "
+                    f"[{ind_subject[0]} / {diminutive[0]} / {reproduction[0]}] -> {sentence[:140]}")
     return out
 
 
 def recycle_violations(blocks, spec) -> list[str]:
-    """Two failures: an unqualified block, and a universality claim anywhere.
-
-    The block check alone is not enough. A paragraph can keep its qualifying
-    sentence and still gain a second sentence asserting the figure is what the
-    process always does, so universality is checked per sentence and is not
-    excused by a qualification sitting elsewhere in the same block.
-    """
+    """An unqualified learner block, and a universality claim in any role."""
     out = []
-    share_words = ["parts in", "per cent", "percent", "%", "convert"]
+    share_words = ["parts in", "per cent", "percent", "%", "convert", "converts", "conversion"]
     for role, text in blocks:
-        low = text.lower()
+        norm_block = normalise(text)
         carries_figure = any(f in text for f in spec["figures"])
-        if not carries_figure or not has_any(low, share_words):
+        if not carries_figure or not has_any(norm_block, share_words):
             continue
         for sentence in sentences(text):
-            slow = sentence.lower()
             if not any(f in sentence for f in spec["figures"]):
                 continue
-            if has_any(slow, spec.get("universalityTerms", [])):
-                out.append(f"{role}: conversion figure asserted as universal -> {sentence[:150]}")
+            norm = normalise(sentence)
+            quantifier = has_any(norm, spec["universalQuantifierTerms"])
+            context = has_any(norm, spec["plantContextTerms"])
+            if quantifier and context:
+                out.append(
+                    f"{role}: conversion figure universalised [{quantifier[0]} / {context[0]}] "
+                    f"-> {sentence[:140]}")
         if role not in LEARNER_ROLES:
             continue
-        if has_any(low, spec["qualificationTerms"]):
+        if has_any(norm_block, spec["qualificationTerms"]):
             continue
-        out.append(f"{role}: conversion figure printed without a reported/example qualification -> {text[:150]}")
+        out.append(f"{role}: conversion figure printed without a reported/example qualification -> {text[:140]}")
     return out
 
 
@@ -235,10 +399,15 @@ def main() -> int:
 
     # ---- HHH-GAME-C1L4-002, temperature ------------------------------------
     inv = registry["semanticInvariants"]
-    blocks = scannable_blocks(raw, [c["selector"] for c in inv["scanScope"]["exemptContexts"]])
-    results.check("declared evaluative contexts exist, so the scan has something to exempt",
-                  all(soup.select(c["selector"]) for c in inv["scanScope"]["exemptContexts"]),
-                  [c["selector"] for c in inv["scanScope"]["exemptContexts"] if not soup.select(c["selector"])])
+    exempt_problems, _exempt_nodes = exemption_findings(raw, inv)
+    results.check("every exemption marker is registered, in-role, and resolves through its declared selector",
+                  not exempt_problems, exempt_problems)
+    results.check("the exemption contract is closed and accounted for",
+                  len(inv["exemptions"]) >= 8
+                  and sum(e["expectedCount"] for e in inv["exemptions"]) == len(BeautifulSoup(raw, "html.parser").select(f'[{inv["scanScope"]["exemptionAttribute"]}]')),
+                  {"registered": sum(e["expectedCount"] for e in inv["exemptions"]),
+                   "inDom": len(BeautifulSoup(raw, "html.parser").select(f'[{inv["scanScope"]["exemptionAttribute"]}]'))})
+    blocks = scannable_blocks(raw, inv)
     temp_findings = temperature_violations(blocks, inv["temperature"])
     results.check("no role characterises the operating temperature as ordinary warmth", not temp_findings, temp_findings)
     temperature = registry["temperatureQualification"]
@@ -274,7 +443,19 @@ def main() -> int:
                   not cat_findings, cat_findings)
     results.check("the registry states the catalyst has no effect on equilibrium position",
                   inv["catalyst"]["equilibriumPositionEffect"] == "NONE"
-                  and inv["catalyst"]["cannotBePresentedAsChangingFinalEquilibriumBalance"] is True, "")
+                  and "may not change the amount" in inv["catalyst"]["protectedProposition"], "")
+    results.check("the catalyst contract declares both a negative relation and a positive boundary",
+                  len(inv["catalyst"]["rules"]) == 2
+                  and any("NEGATIVE RELATION" in r for r in inv["catalyst"]["rules"])
+                  and any("POSITIVE BOUNDARY" in r for r in inv["catalyst"]["rules"]), "")
+    results.check("the temperature contract treats a numeric anchor as evidence, not a waiver",
+                  inv["temperature"]["numericAnchorIsEvidenceNotWaiver"] is True
+                  and "never a waiver" in inv["temperature"]["rule"], "")
+    results.check("the attribution contract uses family relations rather than adjacency",
+                  len(inv["attribution"]["rules"]) == 2
+                  and "adjacency are irrelevant" in inv["attribution"]["rules"][0], "")
+    results.check("the recycle contract declares a non-adjacent universality rule",
+                  any("need not be adjacent" in r for r in inv["recycle"]["rules"]), "")
     for role in LEARNER_ROLES:
         text = lowered[role]
         states_boundary = ("no effect on where the balance sits" in text
@@ -410,6 +591,28 @@ def main() -> int:
     for role in LEARNER_ROLES:
         missing = [name for name, test in fallback_facts.items() if not test(texts[role], lowered[role])]
         results.check(f"every load-bearing no-game fact is present in the {role} edition", not missing, missing)
+
+    # ---- B3: figure accessibility text against canonical chronology ---------
+    access = registry["figureAccessibilityContract"]
+    access_findings = figure_accessibility_findings(soup, access, registry["chronology"])
+    results.check("figure accessibility text matches the canonical sourced conditions",
+                  not access_findings, access_findings)
+    demo = next(c for c in registry["chronology"]
+                if c.get("year") == "1909" and c.get("sourcedConditions"))
+    results.check("the chronology keeps the two 1909 conditions as separate sourced facts",
+                  len(demo["sourcedConditions"]) == 2
+                  and {c["epistemicStatus"] for c in demo["sourcedConditions"]} == {"calculated", "obtained"}
+                  and {c["pressure"]["unit"] for c in demo["sourcedConditions"]} == {"atmospheres", "bar"}
+                  and demo.get("unitConflationProhibited") is True,
+                  [(c["id"], c["epistemicStatus"], c["pressure"]) for c in demo["sourcedConditions"]])
+    # Scoped to the factual fields: conflationNote deliberately names the pattern
+    # it forbids, and must not be read as an instance of it.
+    factual = json.dumps([{k: v for k, v in c.items() if k not in ("conflationNote",)}
+                          for c in registry["chronology"]])
+    results.check("no chronology entry merges the two pressures into one range",
+                  not re.search(r"175\s*(?:to|-|\u2013|\u2014)\s*200", factual), "")
+    results.check("the chronology records why the two conditions may not be merged",
+                  "conflationNote" in demo and "never be merged" in demo["conflationNote"], "")
 
     # ---- R2: the Teacher source ledger must cover the canonical estate -----
     ledger_rows = soup.select('[data-source-ledger] tbody tr[data-ledger-source]')
