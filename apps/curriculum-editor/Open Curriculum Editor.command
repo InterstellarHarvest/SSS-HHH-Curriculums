@@ -3,17 +3,17 @@
 #
 # Lives in apps/curriculum-editor/ (repository root is two levels up).
 # Double-click this file in Finder: it starts the local editor server (unless
-# one is already running), opens the editor in your default browser, and stays
-# responsible for the server it started until that server exits. The server
-# shuts itself down automatically once the editor tab closes (heartbeat loss),
-# so this window closes on its own when you are done. For a launch with no
-# Terminal window at all, use launcher.app beside this file instead.
+# one is already running), opens the editor in Firefox and brings Firefox to
+# the foreground, and stays responsible for the server it started until that
+# server exits. The server shuts itself down automatically once the editor tab
+# closes (heartbeat loss), so this window closes on its own when you are done.
+# For a launch with no Terminal window at all, use launcher.app beside this
+# file instead.
 set -u
 
 REPO_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
 SERVE_SCRIPT="$REPO_DIR/apps/curriculum-editor/serve.py"
 PORT="${CURRICULUM_EDITOR_PORT:-8000}"
-OPEN_COMMAND="${CURRICULUM_EDITOR_OPEN:-open}"
 EDITOR_URL="http://127.0.0.1:$PORT/apps/curriculum-editor/"
 
 fail() {
@@ -27,6 +27,23 @@ fail() {
 
 command -v python3 >/dev/null 2>&1 || fail "python3 was not found. Install the macOS Command Line Tools (xcode-select --install) and try again."
 [ -f "$SERVE_SCRIPT" ] || fail "Could not find serve.py relative to this launcher. Keep this file in apps/curriculum-editor/ inside the repository."
+
+# Open the editor in Firefox and explicitly bring Firefox forward. Tests and
+# headless smoke checks may override the opener with CURRICULUM_EDITOR_OPEN.
+# If Firefox is unavailable, fall back to the macOS default-browser opener.
+open_editor() {
+  if [ -n "${CURRICULUM_EDITOR_OPEN:-}" ]; then
+    "$CURRICULUM_EDITOR_OPEN" "$EDITOR_URL"
+    return $?
+  fi
+
+  if /usr/bin/open -a "Firefox" "$EDITOR_URL" >/dev/null 2>&1; then
+    /usr/bin/osascript -e 'tell application "Firefox" to activate' >/dev/null 2>&1 || true
+    return 0
+  fi
+
+  /usr/bin/open "$EDITOR_URL"
+}
 
 # Positively identify what is on the port before doing anything:
 #   exit 0 = this Curriculum Editor is already serving
@@ -53,7 +70,7 @@ probe_health
 state=$?
 if [ "$state" -eq 0 ]; then
   echo "Curriculum Editor is already running at $EDITOR_URL - opening it."
-  "$OPEN_COMMAND" "$EDITOR_URL"
+  open_editor || fail "Could not open the Curriculum Editor in Firefox or the default browser."
   exit 0
 fi
 if [ "$state" -ne 3 ]; then
@@ -91,8 +108,8 @@ if [ -z "$ready" ]; then
   fail "The server did not become ready on port $PORT within 30 seconds."
 fi
 
-echo "Opening $EDITOR_URL in your default browser."
-"$OPEN_COMMAND" "$EDITOR_URL"
+echo "Opening $EDITOR_URL in Firefox."
+open_editor || fail "Could not open the Curriculum Editor in Firefox or the default browser."
 echo ""
 echo "Leave this window open; it closes on its own after the editor tab closes."
 wait "$SERVER_PID"
