@@ -345,7 +345,14 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
    prompts expect by hand. */
 .accessible .response.roomy.fill-tradeoff { min-height: 2.55in; }
 .accessible .response.roomy.fill-loop { min-height: 2.75in; }
-.accessible .response.roomy.fill-sequence { min-height: .82in; }
+/* R4 response-space floor. Task 5 Part B has its own Accessible page with ample
+   slack, so the field is sized well above the Student equivalent rather than
+   below it. Accessible body type runs about 1.21x the Student size, so matching
+   Student pixels would still hand an Accessible writer less usable line count;
+   the floor below is set from the Student height scaled for type and then given
+   the page's surplus, and no other Accessible support was compressed to pay
+   for it. */
+.accessible .response.roomy.fill-sequence { min-height: 3.05in; }
 .accessible .response.roomy.fill-claims { min-height: 2.05in; }
 .accessible .alt-support { margin: 3px 0; padding: 5px 8px; font-size: 9.6pt; }
 .accessible .alt-support p { margin: 1px 0; }
@@ -440,9 +447,31 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 [data-page-id="teacher-guide-02"] .data-table th, [data-page-id="teacher-guide-02"] .data-table td { padding: 2px 4px; }
 [data-page-id="teacher-guide-02"] ol { margin: 3px 0 4px; }
 [data-page-id="teacher-guide-02"] li { margin: 1px 0; }
-[data-page-id="teacher-guide-04"] .data-table { font-size: 7.2pt; }
+[data-page-id="teacher-guide-04"] .data-table { font-size: 6.75pt; line-height: 1.13; }
 [data-page-id="teacher-guide-04"] .data-table th, [data-page-id="teacher-guide-04"] .data-table td { padding: 2px 4px; }
-[data-page-id="teacher-guide-04"] .procedure > li { margin: 6px 0; }
+[data-page-id="teacher-guide-04"] .procedure > li { margin: 5px 0; }
+[data-page-id="teacher-guide-04"] .teacher-card { font-size: 7.9pt; padding: 5px; }
+[data-page-id="teacher-guide-04"] ul { margin: 3px 0 4px; }
+[data-page-id="teacher-guide-04"] li { margin: 1px 0; }
+[data-page-id="teacher-guide-04"] .procedure { font-size: 8.1pt; }
+[data-page-id="teacher-guide-04"] .support-heading { margin: .04in 0 .02in; }
+[data-page-id="teacher-guide-04"] p { margin: 3px 0; }
+/* Teacher page 7 carries the full eight-row source ledger, the game-defect note
+   and the whole no-game fallback map. The ledger is reference matter a teacher
+   consults rather than reads through, so it is set tighter here than the body
+   tables while staying above the readable floor the rest of the guide uses. */
+[data-page-id="teacher-guide-07"] .source-table { font-size: 5.9pt; line-height: 1.12; }
+[data-page-id="teacher-guide-07"] .source-table th, [data-page-id="teacher-guide-07"] .source-table td { padding: 2px 3px; }
+[data-page-id="teacher-guide-07"] .source-table th:first-child { width: 1.72in; }
+[data-page-id="teacher-guide-07"] .source-table .small { font-size: 5.6pt; }
+[data-page-id="teacher-guide-07"] .fallback-map { margin: 2px 0; font-size: 6.55pt; }
+[data-page-id="teacher-guide-07"] .fallback-map li { margin: 1px 0; }
+[data-page-id="teacher-guide-07"] .support-heading { margin: .04in 0 .02in; }
+[data-page-id="teacher-guide-07"] .data-table { font-size: 7.1pt; }
+[data-page-id="teacher-guide-07"] .data-table th, [data-page-id="teacher-guide-07"] .data-table td { padding: 2px 4px; }
+[data-page-id="teacher-guide-07"] .science-note { font-size: 7.5pt; padding: 4px 7px; }
+[data-page-id="teacher-guide-07"] .alt-note { font-size: 6.6pt; line-height: 1.14; }
+[data-page-id="teacher-guide-07"] p { margin: 3px 0; }
 [data-page-id="accessible-karlsruhe-10"] .seq { padding: 4px; }
 [data-page-id="accessible-karlsruhe-10"] .figure.case-figure { margin: 3px 0; padding: 2px; }
 [data-page-id="accessible-karlsruhe-10"] .word-bank { margin: 2px 0; }

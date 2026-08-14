@@ -60,7 +60,7 @@ single claim-evidence-reasoning frame would collapse that.
 
 | Role | Pages | Why |
 | --- | --- | --- |
-| Student | 8 | 1 vocabulary, 2 dossier (six sources, one a real patent), 4 task pages one per reasoning operation with its figure, 1 culminating |
+| Student | 8 | 1 vocabulary, 2 dossier pages carrying the six learner-facing sources (one of them a real patent), 4 task pages one per reasoning operation with its figure, 1 culminating |
 | Teacher | 7 | the shared seven-function Teacher contract |
 | Answer Key | 6 | completed exemplars for all eight keyed tasks, with the two boundary floors written out |
 | Accessible | 14 | content-driven: the dossier chunks across three pages, and Tasks 3, 4 and 5 each split their figure from their constructed responses so no answer requires a page-flip |
@@ -85,6 +85,18 @@ Three, all curriculum-original, all grayscale-safe, none requiring colour.
   argument; a figure that drew the plant lane as a footnote would make the claim
   the packet spends two tasks refuting.
 
+## Declared Accessible adaptation
+
+In **6 · Decide What Each Source Can Show**, the Accessible edition supplies row
+one complete as a worked model. The Accessible learner therefore classifies
+**four** rows and completes **twelve** cells independently; the Student learner
+classifies five and completes fifteen. This is a modelled row under the
+Accessible Adaptation Contract, not a disclosed answer, and it is documented
+everywhere it is scored: on the Accessible page itself, in the Teacher access
+supports, in the Teacher scoring note, and in the Answer Key. No Student answer
+space was reduced to pay for it, and a guard prevents any role from claiming
+that nothing is disclosed while the prefill exists.
+
 ## Game dependencies
 
 Both Case 04 entries in the game-remediation dependency tracker are addressed
@@ -103,8 +115,19 @@ Both Case 04 entries in the game-remediation dependency tracker are addressed
 
 ## Source estate
 
-Eight canonical sources in `task-registry.js` under `caseSources`, carrying five
-distinct evidentiary statuses. The learner-facing STATUS lines are bound to them.
+**Eight** canonical sources in `task-registry.js` under `caseSources`, carrying
+**four** distinct evidentiary statuses across them — `documented` (4),
+`modeled` (2), `reconstructed` (1) and `estimated` (1). Every learner-facing
+STATUS line is bound to one of them, and the Teacher source ledger covers all
+eight in **seven printed rows**: the two curriculum-original figures share a
+single row under a declared grouping rule (`data-ledger-grouping`), because they
+have the same author, the same status and the same limitation class. A parity
+guard checks ledger coverage against the canonical estate in both directions.
+
+One **supporting reference** is carried: BASF's own corporate chronology for
+1913, which corroborates the attribution split from the industrial party's side.
+It supplies no learner-facing evidence, so it is printed inside the Travis row
+rather than registered as a canonical source of its own.
 
 | Source | Origin | Status |
 | --- | --- | --- |
@@ -120,6 +143,17 @@ distinct evidentiary statuses. The learner-facing STATUS lines are bound to them
 The two scholarly sources **disagree on the date of the 1909 demonstration**.
 That disagreement is real, is printed on both cards, and is the evidence for
 Task 6 row three and Task 7 Claim 5. The year is documented; the date is not.
+
+They also use **8%** differently, and the packet keeps the two apart: Travis
+reports a figure Haber **calculated** in advance (about 8% at 600 °C and 200
+atmospheres); Appl reports a result **obtained** with osmium (about 8% by volume
+at 175 bar and 600 °C). Bar and atmospheres are not treated as interchangeable
+and no conversion is performed between them.
+
+The **15 / 98** conversion figures are printed as **reported worked examples for
+one typical plant**, never as constants: the source supplying them states that
+the single-pass figure varies from plant to plant, and the packet says so in
+both learner editions.
 
 ## No-game fallback
 

@@ -162,9 +162,9 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "e4005b9ffca54e47a0de8703024c55dfe2c3ae0f9d7b1bbd7b09f8962dc7f20e",
-    "presentation": "a7bd71da28b7da4ff5786ec186c1cb2708da0a1ef8b7f2454f3194087a5b34b8",
-    "taskRegistry": "50ded1674c455247b9642036f5d7d3314c1db0a83f6b9ca3631d12616313145f",
+    "content": "bf9423c09d5d574ee79faa794bdc459335a6d1569d347995030be93e2ee41bd3",
+    "presentation": "2390622bbed53fd6ee8c403f2952eaf85f165e7bbbd1d01f4ef56e637a4d0019",
+    "taskRegistry": "7e45e0d63928d1b6f7fbbe6aad4c1864db0230a09484b1faa2a1077eefa1df07",
     "layoutOverrides": "6c582a63645e323d6e9469b65c2e174096363c3616e11fa21e32597598feaf8e"
   }
 }

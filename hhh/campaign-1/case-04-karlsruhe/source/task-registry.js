@@ -268,8 +268,17 @@ window.HHH_CASE04_TASK_REGISTRY = {
       "sourceOrigin": "real modern secondary and scholarly source",
       "evidentiaryStatus": "documented",
       "limitationClass": "observation",
-      "contribution": "The named people and the sequence. Haber calculated that about eight per cent ammonia could be reached at 600 degrees and 200 atmospheres. Robert Le Rossignol built the steel apparatus and the compressor and invented the valve that held the pressure, and designed the complete apparatus. Manganese, iron, chromium and nickel gave little; osmium and uranium worked, and about 100 grams of osmium, probably most of the world supply, was bought. Alwin Mittasch screened catalysts until promoted iron proved ideal in 1910. Bosch and Franz Lappe found that hydrogen was diffusing into the steel and embrittling it, and answered it in February 1911 with a double-walled converter vented through small holes. Production at Oppau began on 9 September 1913 at about twenty tonnes a day, soon about thirty.",
+      "contribution": "The named people and the sequence, each at the strength this source states. Haber opted for an apparatus of steel and calculated an estimated eight per cent equilibrium yield at 600 degrees and 200 atmospheres; the high-pressure work was then assigned to Robert Le Rossignol, who carried it out and introduced improvements throughout. Le Rossignol designed the complete ammonia apparatus - the arrangement through which the compressed gases passed to the steel converter, were cooled, and had the ammonia liquefied and separated from the unreacted gas - and his own first major contribution was the valve that withstood the pressure and controlled the flow of hot gases. The custom-made steel apparatus used a novel 200-atmosphere compressor newly acquired by Haber, and the help of the laboratory technician Friedrich Kirchenbauer was critical. Manganese, iron, chromium and nickel gave little; osmium and uranium carbide worked, and about 100 grams of osmium, probably most of the world supply, was bought. Alwin Mittasch screened catalysts until promoted iron proved ideal in 1910. Bosch used his metallographic training to establish that hydrogen was diffusing into the steel and embrittling it by decarbonization, and, aided by chief engineer Franz Lappe, answered it in February 1911 with a double-walled converter vented through small holes. Production at Oppau began on 9 September 1913 at about twenty tonnes a day, soon about thirty.",
       "limitation": "A historian's reconstruction from records, not the records themselves. On the date of the decisive demonstration this account is explicitly cautious, giving 1 July 1909 as one version of events, and it does not settle the question against the other published date.",
+      "supportingReferences": [
+        {
+          "label": "BASF corporate chronology, entry for 1913",
+          "role": "corroboration of the attribution split, from the industrial party itself",
+          "states": "that a BASF team headed by Carl Bosch worked from 1908 on realising ammonia synthesis at industrial scale, starting from the laboratory procedures of Haber, and describes it as cooperation between academia and industry",
+          "limitation": "a company's account of its own history, written for the public; it credits its own team and is not an independent measure",
+          "printedIn": "Teacher source ledger only; it supplies no learner-facing evidence and is therefore a supporting reference under this source rather than a canonical source of its own"
+        }
+      ],
       "gameCorrespondence": "The osmium and uranium the reconstructed Haber names, and his not yet knowing why iron failed.",
       "fallbackCorrespondence": "Dossier card C on Student page 2 and Accessible page 3, and the technology sequence in Task 5."
     },
@@ -282,7 +291,7 @@ window.HHH_CASE04_TASK_REGISTRY = {
       "sourceOrigin": "real modern institutional and technical source",
       "evidentiaryStatus": "documented",
       "limitationClass": "observation",
-      "contribution": "The process as an industry states it. The reaction reduces the volume of gas and gives off heat, so the ammonia at the balance is higher at high pressure and at low temperature. The amount formed in a single pass is far too small to be worth producing, which is why Haber recycled the unconverted gas. Early in 1909 finely divided osmium gave about eight per cent ammonia at 175 bar and 600 degrees. Mittasch tested more than 2,500 formulas in 6,500 runs by 1910. Test reactors ruptured after only eighty hours. Modern plants run an iron catalyst at 400 to 500 degrees, above 100 bar, and 87 per cent of ammonia production goes to fertilizer.",
+      "contribution": "The process as an industry states it. The reaction reduces the volume of gas and gives off heat, so the ammonia at the balance is higher at high pressure and at low temperature. The amount formed in a single pass is far too small to be worth producing, which is why Haber recycled the unconverted gas. Early in 1909 finely divided osmium was found to yield about 8 volume per cent ammonia at 175 bar and 600 degrees - an obtained result, and stated in bar, which is not the same statement as the 200-atmosphere figure Haber had calculated beforehand. Mittasch tested more than 2,500 formulas in 6,500 runs by 1910. Test reactors ruptured after only eighty hours. Modern plants run an iron catalyst at 400 to 500 degrees, above 100 bar, and 87 per cent of ammonia production goes to fertilizer.",
       "limitation": "A technical conference review written for industry, summarising rather than reproducing the laboratory record. It dates the successful BASF demonstration to April 1909, which is not the date the other scholarly account in this packet gives.",
       "gameCorrespondence": "The level's balance reading, its pressure model, its thermal model and its recycling note.",
       "fallbackCorrespondence": "Dossier card D on Student page 3 and Accessible page 3, and the process loop in Task 4."
@@ -296,7 +305,7 @@ window.HHH_CASE04_TASK_REGISTRY = {
       "sourceOrigin": "real modern institutional and scientific source",
       "evidentiaryStatus": "documented",
       "limitationClass": "observation",
-      "contribution": "Nitrogen and hydrogen combine reversibly into ammonia, giving off about 92 kilojoules for every two moles of ammonia formed. Four molecules of gas go in and two come out, so raising the pressure moves the balance toward ammonia. Lowering the temperature also moves the balance toward ammonia, and slows the reaction down. A catalyst has no effect on where the balance sits; it makes the reaction reach that balance fast enough to be worth running. About fifteen parts in a hundred convert on a single pass, and with the leftover gas recycled the overall conversion is about ninety-eight parts in a hundred. Nitrogen is 78 per cent of air by volume, and lead melts at 327 degrees Celsius.",
+      "contribution": "Nitrogen and hydrogen combine reversibly into ammonia, giving off about 92 kilojoules for every two moles of ammonia formed. Four molecules of gas go in and two come out, so raising the pressure moves the balance toward ammonia. Lowering the temperature also moves the balance toward ammonia, and slows the reaction down. A catalyst has no effect on where the balance sits; it makes the reaction reach that balance fast enough to be worth running. This source also reports worked operating figures for a typical plant - about fifteen parts in a hundred converting on a single pass, and about ninety-eight parts in a hundred overall once the leftover gas is recycled - and states in the same breath that the pressure varies from one manufacturing plant to another and that the single-pass figure also varies from plant to plant. They are reported example figures, not constants of the process. Nitrogen is 78 per cent of air by volume, and lead melts at 327 degrees Celsius.",
       "limitation": "It says which way each change pushes. It does not say what a plant costs, what steel will hold, how much pressure is worth buying, or which compromise any company should choose. Those are engineering and economic questions and this source does not answer them.",
       "gameCorrespondence": "The level's balance reading, its four-parts-to-two-parts pressure query and its cold and hot thermal models.",
       "fallbackCorrespondence": "Dossier card E on Student page 3 and Accessible page 4, and the tradeoff panel in Task 3."
@@ -377,18 +386,29 @@ window.HHH_CASE04_TASK_REGISTRY = {
     "requiredQualification": "No role may state or accept that the catalyst changes where the balance sits. Wording about the catalyst producing more ammonia is acceptable only where it plainly refers to production in a practical operating time."
   },
   "attributionBoundary": {
-    "haber": "Directed the laboratory work that showed the synthesis could be made to run, calculated the conditions it needed, and introduced the principle of recycling the unconverted gas. Named first on the patent.",
-    "leRossignol": "Built the steel apparatus and the compression that made the demonstration physically possible, and invented the valve that held the pressure. Named with Haber as co-inventor on the patent, and usually left out of the process's name.",
+    "haber": "Directed the laboratory programme: opted for an apparatus of steel, calculated the conditions the reaction would need, acquired the 200-atmosphere compressor the work depended on, and introduced the principle of recycling the unconverted gas. Named first on the patent.",
+    "leRossignol": "Was assigned the high-pressure experimental work and carried it out, improving the process throughout. Designed the complete ammonia apparatus - the arrangement through which the compressed gases passed to the converter, were cooled, and had the ammonia liquefied and separated - and invented the valve that withstood the pressure and controlled the flow of hot gases. Named with Haber as co-inventor on the patent, and usually left out of the process's name.",
+    "kirchenbauer": "Laboratory technician whose help the source calls critical to the enterprise. Named in the Teacher Guide only.",
     "mittasch": "Ran the BASF catalyst search that replaced osmium, which was too rare to buy, with promoted iron that could be made in quantity.",
-    "bosch": "Led the BASF engineering that turned a bench result into a plant: steel that would not be destroyed by hydrogen, compressors of a kind not previously built, and the works at Oppau.",
+    "bosch": "Led the BASF engineering that turned a bench result into a plant. Used his metallographic training to establish why the high-pressure steel was failing, and led the works at Oppau.",
+    "lappe": "Chief engineer who aided Bosch on the pilot-plant design and on the double-walled converter of February 1911.",
+    "sourceStrengthRules": [
+      "The 200-atmosphere compressor was newly acquired by Haber. It may not be described as built, made or invented by Le Rossignol.",
+      "The choice of a steel apparatus is Haber's. Le Rossignol designed the apparatus arrangement and invented the valve.",
+      "Le Rossignol designed the complete ammonia apparatus; he is not described as having built the compressor.",
+      "The diagnosis of hydrogen embrittlement is Bosch's. Lappe aided the solution and is not credited with the diagnosis.",
+      "No single person may be credited with both diagnosing and solving the high-pressure materials problem alone."
+    ],
     "prohibitedClaims": [
       "Haber alone created the industrial process",
       "Haber invented the Haber process and factories simply copied it",
       "Bosch merely copied Haber's laboratory apparatus",
       "the factory was a scaled-up copy of the bench",
-      "Haber's laboratory work alone made ammonia available to farmers"
+      "Haber's laboratory work alone made ammonia available to farmers",
+      "Le Rossignol built the compressor",
+      "Le Rossignol built the complete apparatus"
     ],
-    "requiredQualification": "Every role must keep laboratory demonstration and industrial engineering distinct, must credit both, and must not present either as the whole of the achievement."
+    "requiredQualification": "Every role must keep laboratory demonstration and industrial engineering distinct, must credit both, must not present either as the whole of the achievement, and must not credit any contributor beyond the strength the cited source supports."
   },
   "demonstrationDateBoundary": {
     "certifiedYear": "1909",
@@ -401,14 +421,119 @@ window.HHH_CASE04_TASK_REGISTRY = {
     "settlementEvidence": "Only a dated contemporary record — a laboratory notebook entry, a BASF internal report, correspondence, or a travel or expense record placing the BASF party at Karlsruhe — could settle it."
   },
   "recycleBoundary": {
-    "singlePass": { "value": 15, "units": "parts converted per hundred fed, approximate", "status": "reported", "source": "Chemistry LibreTexts, corroborated qualitatively by Appl 1997" },
-    "overallWithRecycle": { "value": 98, "units": "parts converted per hundred fed, approximate", "status": "reported", "source": "Chemistry LibreTexts" },
+    "singlePass": { "value": 15, "units": "parts converted per hundred fed", "qualifier": "about", "status": "reported example", "source": "Chemistry LibreTexts, The Haber Process", "variability": "the source states that this figure also varies from plant to plant" },
+    "overallWithRecycle": { "value": 98, "units": "parts converted per hundred fed", "qualifier": "about", "status": "reported example", "source": "Chemistry LibreTexts, The Haber Process", "variability": "quoted for the same worked plant; operating pressure is stated to vary from one manufacturing plant to another" },
+    "printedQualificationRequired": true,
+    "printedQualificationRule": "Wherever either figure is printed in a learner edition it must be marked as a reported example for a typical plant that varies from plant to plant, never as a constant of the process. The conceptual point - that one pass leaves most of the feed unreacted, and that recycling raises what the whole plant converts - is what is assessed.",
     "prohibitedClaims": [
       "one pass converts all the gas",
       "recycling makes a single pass complete",
-      "the recycle increases the share converted in one pass"
+      "the recycle increases the share converted in one pass",
+      "the Haber process always converts 15% per pass",
+      "every plant converts 98% after recycling"
     ],
-    "requiredQualification": "Recycling changes what the whole plant achieves over many passes. It does not change what one pass does."
+    "requiredQualification": "Recycling changes what the whole plant achieves over many passes. It does not change what one pass does. The two figures are reported examples, not universal constants."
+  },
+  "semanticInvariants": {
+    "scanScope": {
+      "roles": ["student", "teacher", "answer", "accessible"],
+      "unit": "sentence",
+      "exemptContexts": [
+        { "selector": "[data-claim-under-test]", "why": "a competing claim is a proposition offered to the learner for judgment, not an assertion of the packet" },
+        { "selector": "[data-misconception]", "why": "the Teacher misconceptions table names an error in order to reject it" },
+        { "selector": "[data-refuted-claim]", "why": "an Answer Key floor, a Teacher warning or a learner prompt quotes the error it exists to refuse" },
+        { "selector": ".word-bank", "why": "a word bank is a list of terms offered for placement, not a sentence asserting anything" },
+        { "selector": "[data-term-list]", "why": "an enumeration of the case vocabulary is a term list, not a claim about any of the terms" },
+        { "selector": "[data-quoted-wording]", "why": "scoring guidance quoting a learner phrasing in order to bound when it is acceptable" }
+      ],
+      "rule": "Every sentence outside an exempt context is scanned in every role. Exemption is granted by declared markup, not by lexical guesswork."
+    },
+    "catalyst": {
+      "role": "rate and pathway",
+      "equilibriumPositionEffect": "NONE",
+      "cannotBePresentedAsChangingFinalEquilibriumBalance": true,
+      "subjectTerms": ["catalyst", "catalysts", "promoted iron", "osmium"],
+      "prohibitedOutcomeTerms": [
+        "balance", "equilibrium", "equilibrium position", "final balance", "final amount",
+        "settle", "settles", "settling", "settled", "left with", "ends up", "end up",
+        "extra ammonia", "more ammonia", "higher yield", "greater yield", "bigger yield"
+      ],
+      "changeOrAmountTerms": [
+        "change", "changes", "changing", "shift", "shifts", "shifting",
+        "move", "moves", "moving", "alter", "alters", "altering",
+        "raise", "raises", "raising", "increase", "increases", "increasing",
+        "more", "extra", "higher", "greater", "bigger", "further", "improve",
+        "improves", "better", "push", "pushes", "tip", "tips", "favour", "favours"
+      ],
+      "permittedRateTerms": [
+        "faster", "fast enough", "quickly", "speed", "speeds", "rate", "sooner",
+        "in a working time", "practical", "route", "pathway", "barrier", "activation"
+      ],
+      "negationTerms": [
+        "no effect on", "does not change", "do not change", "without changing",
+        "does not move", "without moving", "does not shift", "without shifting",
+        "not change where", "never changes", "cannot change", "not the position",
+        "without altering", "does not alter", "not by moving", "rather than moving",
+        "without raising", "does not raise", "not balance", "not the balance",
+        "rate, not", "not where the balance", "never moves the balance", "not how much"
+      ],
+      "rule": "A sentence whose subject is the catalyst may not also assert an equilibrium-position or final-amount outcome unless that assertion is negated in the same sentence. Rate language is always permitted."
+    },
+    "temperature": {
+      "industrialTemperatureCharacterization": "compromise",
+      "ordinaryWarmthCharacterization": "prohibited",
+      "requiredDirectionsInLearnerEvidence": ["equilibriumDirection", "rateDirection"],
+      "subjectTerms": [
+        "operating temperature", "compromise temperature", "the temperature",
+        "reactor runs", "runs at", "plants run", "plant runs", "process runs", "it runs at"
+      ],
+      "warmthTerms": [
+        "warm", "warmth", "warmly", "mild", "mildly", "gentle", "gently", "lukewarm",
+        "tepid", "room temperature", "body temperature", "comfortable", "barely hot",
+        "moderate heat", "slightly hot", "a little hot", "not very hot", "hardly hot"
+      ],
+      "hotAnchorTerms": [
+        "327", "400", "450", "500", "600", "1000", "hundreds of degrees",
+        "melt", "melts", "molten", "hotter than"
+      ],
+      "negationTerms": [
+        "not ordinary warmth", "not warm", "does not mean warm", "do not mean warm",
+        "is not gentle", "not merely warm", "not mildly warm", "rather than warm",
+        "not gently warm", "never warm", "is wrong", "are wrong", "incorrect",
+        "not much hotter", "cannot be read as ordinary warmth", "cannot be read as warm"
+      ],
+      "rule": "A sentence about the operating temperature may not carry warmth language unless the same sentence also carries an anchored hot value or an explicit hotter-than comparison. Both learner editions must additionally state the equilibrium direction and the rate direction, and the word compromise, in print."
+    },
+    "attribution": {
+      "laboratoryWorkIsNotIndustrialScaleUp": true,
+      "industrialProcessMayNotBeDescribedAsCompleteBeforeScaleUp": true,
+      "laboratoryActors": ["Haber", "Le Rossignol"],
+      "industrialActors": ["Bosch", "BASF", "Mittasch", "Lappe"],
+      "completionTerms": [
+        "already complete", "already-complete", "already solved", "already finished",
+        "already worked out", "complete industrial", "finished industrial",
+        "ready to build", "nothing left to solve", "fully designed"
+      ],
+      "diminutiveTerms": ["simply", "merely", "only", "just", "no more than", "nothing more than"],
+      "reproductionTerms": [
+        "reproduced", "reproduce", "copied", "copy", "constructed", "construct",
+        "built", "build", "followed", "scaled up a copy", "replicated", "replicate"
+      ],
+      "rule": "Two patterns are prohibited outside an exempt context. First, a sentence naming a laboratory actor together with a completion term applied to industrial, factory, plant or scale work. Second, a sentence naming an industrial actor together with a diminutive term and a reproduction term, which reduces the scale-up to copying."
+    },
+    "recycle": {
+      "figuresAreReportedExamples": true,
+      "figures": ["15", "98"],
+      "qualificationTerms": [
+        "reported", "example", "typical", "varies from plant to plant", "varies from one",
+        "for one worked plant", "not a constant", "not constants", "a worked figure"
+      ],
+      "universalityTerms": [
+        "always", "every plant", "all plants", "invariably", "in all cases",
+        "is fixed at", "constant", "never varies", "must convert"
+      ],
+      "rule": "Two checks. A learner block printing either figure as a share of conversion must carry a qualification term. And no sentence anywhere may attach a universality term to either figure, even if a qualification appears elsewhere in the same block."
+    }
   },
   "claimJudgments": {
     "markScheme": {
