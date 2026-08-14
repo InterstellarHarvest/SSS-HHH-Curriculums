@@ -53,7 +53,9 @@ packet says in print that what follows is severe and is not reproduced.
 
 **The export question is left undecided, because it is.** Task 7 Claim 4 asks whether keeping
 the exported food in Ireland would *by itself* have prevented the famine, and the keyed mark
-is **?**. Both published positions are carried: Bourke's tabulation of the official grain
+is **?**. Neither learner edition names it: the Accessible scaffold points at the one source
+whose status is *debated* and asks which claim rests on it, so the learner still has to find
+the undecidable claim rather than being handed it. Both published positions are carried: Bourke's tabulation of the official grain
 returns showing imports exceeding exports by 1847, and Kinealy's argument that those returns
 are flawed, under-record what left, cover only grain and cannot gauge food loss, with imports
 becoming significant only after spring 1847. Nothing in the packet weighs food that left
@@ -146,7 +148,8 @@ references listed on Teacher page 7:
 - O'Keeffe (University College Cork), RTÉ — a third of the population taking about 90% of its
   food from the potato by the 1830s; 10–14 lb a day for a labourer in the west; nearly six
   tonnes from an acre of ridged beds; a quarter of a million acres under potatoes in County
-  Cork; 8.2 million people in 1841 with nearly half of rural families in one-room cabins.
+  Cork, which O'Keeffe gives citing John Feehan in the *Atlas of the Great Irish Famine*;
+  8.2 million people in 1841 with nearly half of rural families in one-room cabins.
 - Reilly (Maynooth University), RTÉ — the cottier class at more than three million in the early
   1840s; about 200 days' labour a year under unwritten agreements terminable at a moment's
   notice; almost no cash and persistent debt.
@@ -155,7 +158,9 @@ references listed on Teacher page 7:
 - Bourke, *Irish Historical Studies* 20/78 (1976) — the grain-trade tabulation showing imports
   exceeding exports by 1847, carried as one published reading rather than a settled figure.
 - Kinealy, *History Ireland* — almost 4,000 vessels in 1847; over three million live animals
-  1846–50; the argument that the official returns are flawed and cannot gauge food loss.
+  1846–50; the argument that the official returns are flawed and cannot gauge food loss. Both
+  learner editions state on the page that a vessel count measures ship movements, not the
+  quantity or calorific value of what was carried.
 - Gray (Queen's University Belfast), RTÉ *Famine Ireland* — the relief chronology: Indian corn
   to Cork in early 1846, public works over 700,000 in March 1847, soup kitchens over three
   million in July 1847 and discontinued in August, then the Poor Law.
@@ -260,13 +265,28 @@ registry including exactly one undecidable; both export positions carried; the v
 qualification preserved; and twelve load-bearing no-game facts required in both learner
 editions.
 
-Eight negative controls were run against these assertions — an audited universal restored, the
-1846 letter relabelled a reconstruction, a game scene relabelled eyewitness testimony, the
-comparison inverted, the Belgian value deleted from the Accessible edition, one condition box
-weighted, the no-ranking disclaimer deleted, and a prohibited phrase removed from the registry
-contract. All eight were caught. The first run of the Belgian-value control was **not** caught,
-because the fact test matched the causes map's unrelated "90%"; the test was bound to the
-printed comparison value and the control then failed as it should.
+A bounded independent-review correction pass added five more guards, each closing a hole the
+reviewer proved was open:
+
+- the Bourke grain-trade citation must carry its correct DOI and the superseded wrong one must
+  appear nowhere, and the 2024 *Nature Communications* paper must appear under its published
+  title — both bound to the reference entry rather than to page prose;
+- the Accessible Task 7 scaffold must not disclose which claim is undecidable or how any claim
+  is marked;
+- the reconstructed traveller's report must stay bounded to the journey actually walked, and no
+  block whose declared origin is the game reconstruction may conclude nationwide or system-wide
+  disease extent. The rule and its prohibited conclusions are carried as `observationExtent`
+  metadata on the `archive-scenes` source, so the guard is semantic rather than a list of the
+  old audited literals. It is deliberately **scoped**: a documented source may establish
+  national extent, the Task 3 timeline does, and a companion assertion proves the guard has not
+  quietly banned that.
+
+Fourteen negative controls have been run against the whole assertion set and all fourteen were
+caught. Two of them failed to catch on their first run and the tests, not the content, were
+strengthened: the Belgian-value control, because the fact test matched the causes map's
+unrelated "90%"; and the soup-kitchen control, because a global "three million" test also
+matched the cottier figure in dossier card F. The first is now bound to the printed comparison
+value and the second to the timeline's own 1847 relief row.
 
 ## Lifecycle
 

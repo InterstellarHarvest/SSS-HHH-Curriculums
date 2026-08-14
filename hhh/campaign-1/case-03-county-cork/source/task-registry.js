@@ -292,7 +292,7 @@ window.HHH_CASE03_TASK_REGISTRY = {
     {
       "id": "potato-dependence",
       "displayLabel": "What the poorest households in Ireland lived on",
-      "creator": "Helene O'Keeffe, University College Cork, for the RTE Great Irish Famine series; Ciaran Reilly, Maynooth University",
+      "creator": "Helene O'Keeffe, University College Cork, for the RTE Great Irish Famine series, giving the County Cork acreage figure after John Feehan in the Atlas of the Great Irish Famine; Ciaran Reilly, Maynooth University",
       "period": "conditions of the 1830s and early 1840s",
       "sourceType": "scholarly summary of documented conditions",
       "sourceOrigin": "real modern secondary and scholarly source",
@@ -341,7 +341,7 @@ window.HHH_CASE03_TASK_REGISTRY = {
       "evidentiaryStatus": "debated / uncertain",
       "limitationClass": "interpretation",
       "contribution": "Food kept leaving Ireland while people starved. Almost four thousand vessels carried food from Ireland to British ports in 1847, and more than three million live animals were exported between 1846 and 1850, along with grain, butter, fish and vegetables. Bourke's tabulation of the official grain returns found that by 1847 grain imports exceeded grain exports.",
-      "limitation": "The two positions are not settled. Kinealy holds that the official returns are flawed, under-represent what left, cover grain rather than the whole food trade, and cannot gauge calorie losses, and that imports only became significant after the spring of 1847, leaving a gap over the winter of 1846-47. Nothing in this packet weighs the food that left against the food that was needed, so it cannot show that retaining exports would by itself have prevented the famine, and it cannot show that exports made no difference either.",
+      "limitation": "The vessel figure counts ship movements, not the quantity or calorific value of what was carried. The two positions are not settled. Kinealy holds that the official returns are flawed, under-represent what left, cover grain rather than the whole food trade, and cannot gauge calorie losses, and that imports only became significant after the spring of 1847, leaving a gap over the winter of 1846-47. Nothing in this packet weighs the food that left against the food that was needed, so it cannot show that retaining exports would by itself have prevented the famine, and it cannot show that exports made no difference either.",
       "gameCorrespondence": "The estate ledger and parish register, which record the potato gone on one side and the season's grain, butter and cattle consigned to the ports on the other.",
       "fallbackCorrespondence": "The food that left panel, Source G, on Student page 2 and Accessible page 5."
     },
@@ -400,6 +400,25 @@ window.HHH_CASE03_TASK_REGISTRY = {
       "Ireland exported enough food to feed everyone, so exports alone caused the famine"
     ],
     "requiredQualification": "Every role must keep the biological trigger and the wider famine causation apart, must present more than one contributing condition, and must not present any single condition, biological or political, as the whole cause."
+  },
+  "observationExtent": {
+    "scopeSourceId": "archive-scenes",
+    "appliesTo": "learner blocks marked data-traveller-evidence, inside the reconstructed Archive scenes",
+    "rule": "A reconstructed traveller may report only the extent actually observed on the journey. Reconstructed testimony cannot establish nationwide or system-wide disease extent. Documented sources may establish national extent, and the Task 3 timeline does; this bound applies to the game reconstruction alone.",
+    "journeyBound": "four days",
+    "requiredQualifier": "not a survey of Ireland",
+    "prohibitedExtentConclusions": [
+      "every parish in Ireland",
+      "every field in Ireland",
+      "the whole country",
+      "the whole island",
+      "the whole of Ireland",
+      "all of Ireland",
+      "the entire country",
+      "nationwide",
+      "system-wide",
+      "throughout Ireland"
+    ]
   },
   "cropLossComparison": {
     "units": "per cent of the national potato harvest lost",

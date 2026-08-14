@@ -107,6 +107,12 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .ledger-table { table-layout: fixed; font-size: 6.2pt; line-height: 1.16; }
 .ledger-table th, .ledger-table td { padding: 1.5px 3px; }
 .ledger-table th:first-child, .ledger-table td:first-child { width: .88in; }
+/* The misconceptions table shares Teacher page 4 with the period-2 procedure and
+   the Accessible-adaptation list. Correcting the Task 7 adaptation description after
+   independent review lengthened that list, so this table is set one step down to
+   keep the page inside its frame without cutting a redirect a teacher may need. */
+.misconception-table { font-size: 7.3pt; }
+.misconception-table th:first-child, .misconception-table td:first-child { width: 1.5in; }
 .rubric { font-size: 7.4pt; }
 .rubric th:first-child, .rubric td:first-child { width: 1.05in; }
 
