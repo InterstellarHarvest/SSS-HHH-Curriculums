@@ -5915,17 +5915,28 @@
         { fact: "dependence share of the population", task: "5, 6 and 8", test: /a third of the population/i },
         { fact: "dependence share of the diet", task: "6 and 8", test: /(ninety per cent|90%)/i },
         { fact: "cottier population", task: "6", test: /three million people/i },
-        { fact: "public works peak", task: "7", test: /over\s*(<strong>)?700,000/i },
-        { fact: "soup kitchen peak", task: "7", test: /(over\s*)?3 million|three million/i },
+        { fact: "public works peak", task: "7", test: /over\s*700,000/i },
+        // Bound to the timeline's own 1847 relief row. A global "three million" test
+        // also matched the unrelated cottier figure in dossier card F, so deleting the
+        // soup-kitchen fact outright left the suite green.
+        { fact: "soup kitchens at their July 1847 peak", task: "6 and 7",
+          within: '[data-chronology-contract]',
+          test: /1847[\s\S]{0,220}soup kitchens feed over 3 million/i },
         { fact: "quarter-acre rule", task: "6 and 7", test: /quarter-acre rule/i },
         { fact: "the 1846 crop failure share", task: "3", test: /three quarters/i },
         { fact: "food leaving Irish ports", task: "5, 6, 7 and 8", test: /(four thousand (vessels|ships))/i }
       ];
+      const c03ScopedText = (role, within) => {
+        const nodes = within
+          ? Array.from(workspace.querySelectorAll(`.page[data-role="${role}"] ${within}`))
+          : Array.from(workspace.querySelectorAll(`.page[data-role="${role}"]`));
+        return nodes.map(node => node.textContent).join(" ").replace(/\s+/g, " ");
+      };
       const c03FactAvailability = c03NoGameFacts.map(item => ({
         fact: item.fact,
         task: item.task,
-        student: item.test.test(c03TextFor("student")),
-        accessible: item.test.test(c03TextFor("accessible"))
+        student: item.test.test(c03ScopedText("student", item.within)),
+        accessible: item.test.test(c03ScopedText("accessible", item.within))
       }));
       check("Case 03 keeps every fact an assessed task depends on available in both learner editions",
         c03FactAvailability.every(item => item.student && item.accessible),
@@ -6128,6 +6139,98 @@
         }),
         JSON.stringify(["student", "accessible"].map(role =>
           workspace.querySelector(`.page[data-role="${role}"] [data-variety-note]`)?.textContent?.slice(0, 160))));
+
+      // R1/R2 — citation correctness, bounded to the reference list rather than to
+      // page prose. The shipped candidate printed a Bourke DOI that resolves to
+      // Buckley, "The fixing of rents by agreement in co. Galway, 1881-5", IHS 7(27)
+      // 1951, and gave the 2024 Nature Communications paper an earlier working title.
+      // Both were correct in every other field, so the guards are field-level.
+      const c03References = Array.from(workspace.querySelectorAll('.page[data-role="teacher"] .final-reference-list > li'))
+        .map(node => node.textContent.replace(/\s+/g, " ").trim());
+      const c03BourkeEntry = c03References.find(text => /Bourke/.test(text)) || "";
+      const c03NatureEntry = c03References.find(text => /Nature Communications/.test(text)) || "";
+      check("Case 03 cites the Bourke grain-trade article at its correct DOI and never at the superseded wrong one",
+        /doi\.org\/10\.1017\/S0021121400024093/.test(c03BourkeEntry)
+        && /Irish Historical Studies/.test(c03BourkeEntry) && /1976/.test(c03BourkeEntry)
+        && !/S0021121400031278/.test(workspace.textContent),
+        JSON.stringify({ bourke: c03BourkeEntry, wrongDoiPresent: /S0021121400031278/.test(workspace.textContent) }));
+      check("Case 03 cites the 2024 Phytophthora infestans paper under its published title",
+        /Evolution of Phytophthora infestans on its potato host since the Irish potato famine/.test(c03NatureEntry)
+        && /10\.1038\/s41467-024-50749-4/.test(c03NatureEntry)
+        && !/Evolution of effectors of/i.test(workspace.textContent)
+        && !/Solanum host since the Irish/i.test(workspace.textContent),
+        JSON.stringify({ nature: c03NatureEntry }));
+
+      // R3 — the Accessible scaffold for Task 7 Part B must not hand over a keyed
+      // mark. The shipped candidate named Claim 4 outright while the rubric still
+      // scored all five, so an Accessible learner was given one answer free.
+      const c03AccessibleT7 = (() => {
+        const heading = workspace.querySelector('.page[data-role="accessible"] .task-heading[data-task-id="7"]');
+        if (!heading) return "";
+        const page = heading.closest(".page");
+        return page.textContent.replace(/\s+/g, " ");
+      })();
+      const c03ClaimDisclosures = [
+        /It is\s+Claim\s*\d/i,
+        /Claim\s*\d\s+(is|cannot be|is the one)/i,
+        /the answer is\s+Claim/i,
+        /mark\s+Claim\s*\d/i,
+        /Claim\s*\d[^.]{0,30}(gets|takes|is marked)\s*(a\s*)?[YN?]/i
+      ].filter(pattern => pattern.test(c03AccessibleT7));
+      check("Case 03 Accessible Task 7 never discloses which claim is undecidable or how any claim is marked",
+        c03AccessibleT7.length > 0 && c03ClaimDisclosures.length === 0
+        && /cannot be decided/i.test(c03AccessibleT7)
+        && c03Count('.page[data-role="accessible"] .account-item [data-response]') === 5,
+        JSON.stringify({ disclosures: c03ClaimDisclosures.map(String), excerpt: c03AccessibleT7.slice(-320) }));
+
+      // R4 — semantic extent guard. The shipped traveller treatment was correct but
+      // the protection was literal: rewriting the traveller as "confirms the blight
+      // has struck every parish in Ireland, so the disease was nationwide" avoided
+      // every audited phrase and passed. The rule is now carried as bounded-extent
+      // metadata on the archive-scenes source and enforced structurally.
+      //
+      // Scope matters: documented sources may legitimately establish national extent,
+      // and the Task 3 timeline does exactly that ("Across the whole of Ireland by
+      // mid-September"). The prohibition therefore binds only to blocks whose declared
+      // source origin is the game reconstruction.
+      const c03Extent = c03Registry?.observationExtent || {};
+      const c03ExtentBlocks = ["student", "accessible"].map(role => {
+        const scoped = Array.from(workspace.querySelectorAll(
+          `.page[data-role="${role}"] [data-source-id="${c03Extent.scopeSourceId}"]`));
+        const scopedText = scoped.map(node => node.textContent).join(" ").replace(/\s+/g, " ");
+        const traveller = Array.from(workspace.querySelectorAll(
+          `.page[data-role="${role}"] [data-traveller-evidence]`));
+        const travellerText = traveller.map(node => node.textContent).join(" ").replace(/\s+/g, " ");
+        return {
+          role,
+          scopedBlocks: scoped.length,
+          travellerBlocks: traveller.length,
+          journeyBounded: new RegExp(String(c03Extent.journeyBound), "i").test(travellerText),
+          qualified: new RegExp(String(c03Extent.requiredQualifier).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "i").test(travellerText),
+          violations: (c03Extent.prohibitedExtentConclusions || [])
+            .filter(phrase => scopedText.toLowerCase().includes(String(phrase).toLowerCase())),
+          travellerExcerpt: travellerText.slice(0, 200)
+        };
+      });
+      check("Case 03 keeps the reconstructed traveller's report bounded to the journey actually walked",
+        (c03Extent.prohibitedExtentConclusions || []).length >= 8
+        && c03ExtentBlocks.length === 2
+        && c03ExtentBlocks.every(item => item.scopedBlocks === 3 && item.travellerBlocks === 1
+          && item.journeyBounded && item.qualified),
+        JSON.stringify(c03ExtentBlocks));
+      check("Case 03 lets no reconstructed Archive block conclude nationwide or system-wide disease extent",
+        c03ExtentBlocks.every(item => item.violations.length === 0),
+        JSON.stringify(c03ExtentBlocks.map(item => ({ role: item.role, violations: item.violations }))));
+      // The same phrases must remain permitted where a documented source establishes
+      // them, or the guard would have quietly banned correct history.
+      check("Case 03 still allows a documented source to establish national extent, so the extent guard is scoped not global",
+        ["student", "accessible"].every(role => {
+          const timeline = workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`);
+          return timeline && /whole of Ireland/i.test(timeline.textContent)
+            && timeline.closest("[data-source-id]")?.dataset.sourceId === "relief-chronology";
+        }),
+        JSON.stringify(["student", "accessible"].map(role =>
+          workspace.querySelector(`.page[data-role="${role}"] [data-chronology-contract]`)?.closest("[data-source-id]")?.dataset.sourceId)));
 
       // Fallback, scaffolding and exact-match banks.
       check("Case 03 no-game evidence route lives inside the learner packets, not a fifth role",
