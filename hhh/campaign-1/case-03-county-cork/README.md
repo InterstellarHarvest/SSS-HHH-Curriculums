@@ -2,9 +2,9 @@
 
 **Identity:** `HHH-C1-CASE03` · instructional type `CORE_CASE` · registry title *County Cork* · learner-facing label **3 - County Cork**
 
-The third full historical Core Case in Hunger, Harvest, & History. Produced against the
-released Core Case 02 baseline `ca21e3eda282c1d46b53abe7966e9e0176db96bc` and the approved
-Blueprint.
+The third full historical Core Case in Hunger, Harvest, & History, released at v0.1 on
+2026-08-14. Produced against the released Core Case 02 baseline
+`ca21e3eda282c1d46b53abe7966e9e0176db96bc` and the approved Blueprint.
 
 ## What this case teaches
 
@@ -290,12 +290,21 @@ value and the second to the timeline's own 1847 relief row.
 
 ## Lifecycle
 
-Production candidate. `status: VALIDATION_BUILD`, registry `packageStatus: VALIDATION`,
-approval `OWNER_REVIEW_NOT_STARTED`, print `NOT_RUN`. Version 0.1.
+**Released.** `status: APPROVED_STABLE`, registry `packageStatus: APPROVED`, approval
+`APPROVED` by Nate / Owner on **2026-08-14**, print **PASS** at 100% / Actual Size. Version 0.1.
 
-No owner approval has been given. There is no `history/` directory, no release record and no
-`APPROVED_STABLE` state, and the registry entry carries no `historyRecord`. This package has
-not been reviewed independently, has not been printed, and is not released.
+This is a **first release**, not a corrective reissue: it supersedes nothing, indexes no prior
+approved release, and retires no artifact.
+
+Release record: `history/release-v0.1.json`.
+Owner approval record: `history/CASE03_OWNER_APPROVAL_v0.1.md`.
+
+The owner-approved printable baseline is `384bd5790bcc760b6b692c4a872451073e1c0dbb` — the same
+commit the independent reviewer passed. Release conversion changed no printable source:
+`content.html`, `presentation.css` and `layout-overrides.json` are byte-identical to that commit,
+and only `task-registry.js` moved, to carry the lifecycle stamp, which renders nothing. **No
+post-review art-direction commits exist**, so the owner's print approval covers exactly the byte
+set the reviewer passed.
 
 Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a release
 gate. A PDF exported from the browser is noncanonical and carries no accessibility guarantee.

@@ -8,12 +8,14 @@
   "subtitle": "Campaign 1 · Case 03 · The south of Ireland, 1845",
   "location": "The south of Ireland",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-14",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-1/case-03-county-cork/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -158,7 +160,7 @@
   "sourceHashes": {
     "content": "11f9b857084d4ec1c53260db874e1c7f3486b1a9f4f8ec3a01d2734051d13fb0",
     "presentation": "487a97ee03fc24dc7082d99cef73d75960b11b7b17ec27e4f9efa46064bbdae9",
-    "taskRegistry": "4cccd5d3a97882433f3e461bcb588152beb0d929e3e4961291b13d391fe701ae",
+    "taskRegistry": "b320f1e34ead16b0fb3db375685ce11e860c225a5dc6e9f7e23141e0cf9b7546",
     "layoutOverrides": "b7c7404c88932515a2a260c41cdcbdb12d5abd52bc7821deee401c2a60c4eed0"
   }
 }
