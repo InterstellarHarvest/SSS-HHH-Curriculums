@@ -5,8 +5,8 @@
   "status": "APPROVED_STABLE",
   "approvalDate": "2026-08-14",
   "owner": "Nate / Owner",
-  "originalReleaseApprovalCommit": "0000000000000000000000000000000000000000",
-  "canonicalSourceApprovalCommit": "0000000000000000000000000000000000000000",
+  "originalReleaseApprovalCommit": "aba9768fd00d7cad67a20a167ac90491e865987b",
+  "canonicalSourceApprovalCommit": "aba9768fd00d7cad67a20a167ac90491e865987b",
   "sourceHashes": {
     "content": "11f9b857084d4ec1c53260db874e1c7f3486b1a9f4f8ec3a01d2734051d13fb0",
     "presentation": "487a97ee03fc24dc7082d99cef73d75960b11b7b17ec27e4f9efa46064bbdae9",
@@ -26,17 +26,51 @@
     "accessible": 13
   },
   "acceptedValidation": {
-    "status": "PENDING_COMMIT_B"
+    "status": "PASS",
+    "releaseHistorySchema": "PASS; release-v0.1.json validates against case-release-history.schema.v1.json with zero errors. The schema was not modified.",
+    "releaseIntegrity": "PASS 721/721 across 17 registered cases with all 17 fully certified against their pinned commit, including HHH-C1-CASE03. The estate grew by one release record.",
+    "canonicalStructure": "PASS; 17 cases, zero failures. The case directory carries README.md, source/ and history/ only.",
+    "static": "664/664",
+    "browser": "2602/2602 across every case/role/presentation state; 0 JavaScript errors",
+    "hhhActivation": "PASS; 15 Blueprint units, 4 editor-ready packages, 21 tracked game dependencies, zero failures",
+    "hhhOperationalValidation": "27/27",
+    "correctiveReleaseLifecycle": "39/39",
+    "serverLifecycle": "11/11",
+    "authoringSecurity": "13/13",
+    "layoutContracts": "PASS across 17 registered cases; Student 154 eligible and 502 locked, Accessible 248 eligible and 396 locked response areas",
+    "rolePageCountsAndFit": "PASS; all 34 pages fit in colour and grayscale across all four roles with zero overflow and zero clipping, at Student 8, Teacher 7, Answer Key 6, Accessible 13",
+    "printableParity": "PASS. content.html, presentation.css and layout-overrides.json at the release tip are byte-identical to the owner-approved printable baseline 384bd5790bcc760b6b692c4a872451073e1c0dbb; task-registry.js differs only in its two lifecycle keys, status and ownerReviewStatus, neither of which renders. All 34 pages were re-rendered in colour and grayscale at both trees and all 68 page images are byte-identical. Role page counts, per-role persistent response-control counts (Student 46, Accessible 45, Teacher 0, Answer Key 0) and the three frozen non-Accessible DOM hashes are unchanged.",
+    "sssMutationSuites": "NOT RUN - out of scope. The release changes no validation logic, no release-integrity behaviour and no shared curriculum architecture the mutation suites exercise, and sss/** is byte-identical to main.",
+    "pdf": "NOT A PROJECT GATE - production is HTML-only, no canonical PDF artifact exists, and any browser-exported PDF is noncanonical with no accessibility guarantee",
+    "gitDiffCheck": "clean",
+    "independentReview": "INDEPENDENT_CASE03_REVIEW_PASS - READY_FOR_OWNER_GATE at candidate 384bd5790bcc760b6b692c4a872451073e1c0dbb. A first review of candidate 59780c898ff926bb9047d9740ebb8b85f125db63 returned four blocking findings and six promoted observations; the bounded correction pass closed all ten and was itself reviewed and passed. Both reviews ran against main baseline ca21e3eda282c1d46b53abe7966e9e0176db96bc.",
+    "postGateOwnerArtDirection": "NONE. No commit exists between the close of independent review and owner approval. The commit the reviewer passed and the commit the owner reviewed on screen and printed are the same commit, so the owner's print approval covers exactly the reviewed byte set.",
+    "visualReview": "PASS; owner on-screen review of the rendered pages including grayscale, and owner physical print at 100% / Actual Size on 2026-08-14"
   },
   "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-14. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
   "formerArtifacts": {
     "status": "NO_FORMER_GENERATED_ARTIFACTS",
     "reason": "Core Case 03 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
   },
-  "formerArtifactRecoveryCommit": "0000000000000000000000000000000000000000",
-  "recovery": "No artifact recovery applies. The canonical source at the certification commit is the whole release.",
+  "formerArtifactRecoveryCommit": "aba9768fd00d7cad67a20a167ac90491e865987b",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
   "priorApprovedReleases": [],
   "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
-  "migrationNotes": [],
+  "migrationNotes": [
+    "Third HHH Core Case release, produced against the released Core Case 02 baseline ca21e3eda282c1d46b53abe7966e9e0176db96bc and the approved Blueprint.",
+    "Owner-approved printable baseline: 384bd5790bcc760b6b692c4a872451073e1c0dbb. The owner reviewed that byte set on screen and printed it at 100% / Actual Size. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing. All 34 pages were re-rendered in colour and grayscale at both trees and all 68 page images are byte-identical.",
+    "Certified release-source commit: aba9768fd00d7cad67a20a167ac90491e865987b. The released task-registry.js bytes first exist there, because the lifecycle stamp is created by release conversion, so the three commit pins identify that commit rather than the owner printable baseline. The two are recorded separately and deliberately.",
+    "No post-review art-direction commits exist for this case. Case 02 acquired three owner-directed art commits after independent review and before approval; Case 03 was refined before the review candidate instead, which is why the reviewed commit and the approved commit are the same commit.",
+    "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. Dossier cards A, B and C quote or paraphrase Level 3 at that commit. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056.",
+    "Game dependency HHH-GAME-C1L3-001 is RESOLVED_VERIFIED at d9fc16b, verified by direct byte inspection of the level rather than from the tracker summary. All three audited universals are gone from the game's authoritative framing. The three of them plus three single-cause formulations are recorded in task-registry.js under causationBoundary.prohibitedClaims, and a browser assertion keeps every phrase out of every role.",
+    "Runtime case identity: C1 L3, County Cork, the south of Ireland, 1845. instructionalType CORE_CASE.",
+    "Nine tasks carry the Core Case spine, and the case's organising idea is sufficiency rather than chronology or scale: a documented biological trigger is available, is correct, and does not explain the death toll. Task 4 settles that with a real historical control - the same organism took almost 90% of Belgium's 1845 potato harvest against about 30% of Ireland's, and Belgian famine mortality ran 30-40% above normal against about three times normal in Ireland.",
+    "Canonical CER is deliberately not used. The culminating product must hold several conditions together and state what it cannot settle, and a frame built for defending one position would push toward the single-cause account the case exists to prevent. Teacher page 5 states the reasoning architecture for classroom readers.",
+    "Causation boundary: the Family H5 causes map puts four separately evidenced conditions between the crop failure and the outcome at identical width with identical arrows, and states in print that every arrow means only contributed to and that nothing in the packet ranks them. Task 6 assesses interaction rather than enumeration. Task 7 marks the biological single cause N, the political single cause N, and the export counterfactual undecidable, carrying both published readings of the trade record.",
+    "Source model: ten canonical caseSources entries, including a real 1846 primary source - Nicholas Cummins's letter from Skibbereen, published in The Times on 24 December 1846 - placed beside written-for-the-game dialogue so Task 5 can make the difference assessable across five evidentiary statuses. No source/evidence-ledger.json was created; the registered package schema is closed and the evidence model lives where Cases 01 and 02 carry it.",
+    "Regression protection added with this case and retained by the release: registry-driven learner source-status parity against caseSources.evidentiaryStatus, a primary-source and eyewitness prohibition scoped to game-origin blocks only, load-bearing no-game fact availability in both learner editions, prohibited universals and single-cause formulations read from the task registry, comparison-bar geometry measured off the rendered figure, causes-map condition widths measured for equality with the no-ranking disclaimer required inside the figure, timeline strand tags and relief ordering, place-name presence with collision measurement, keyed claim marks checked against the registry, citation guards bound to the reference entries, an answer-disclosure guard on Accessible Task 7, and semantic bounded-extent guards driven by observationExtent on the archive-scenes source.",
+    "Fourteen negative controls were run against the assertion set and all fourteen were caught. Two failed to catch on their first run and the tests, not the content, were strengthened: a Belgian-value control that matched the causes map's unrelated 90%, and a soup-kitchen control that matched the unrelated cottier three-million figure.",
+    "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines."
+  ],
   "retiredArtifacts": []
 }
