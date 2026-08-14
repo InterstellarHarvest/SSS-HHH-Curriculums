@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE04",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-1",
+  "title": "Karlsruhe",
+  "subtitle": "Campaign 1 \u00b7 Case 04 \u00b7 A laboratory in Germany, 1909",
+  "location": "Fritz Haber's laboratory, Karlsruhe",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE04:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-04-karlsruhe/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-04-karlsruhe/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-04-karlsruhe/source/task-registry.js",
+    "global": "HHH_CASE04_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-04-karlsruhe/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case04-tradeoff-panel",
+      "type": "html-css-diagrams",
+      "selector": "[data-tradeoff-contract]",
+      "embed": true
+    },
+    {
+      "id": "case04-temperature-ruler",
+      "type": "html-css-diagrams",
+      "selector": "[data-temperature-ruler]",
+      "embed": true
+    },
+    {
+      "id": "case04-process-loop",
+      "type": "html-css-diagrams",
+      "selector": "[data-process-contract]",
+      "embed": true
+    },
+    {
+      "id": "case04-technology-sequence",
+      "type": "html-css-diagrams",
+      "selector": "[data-sequence-contract]",
+      "embed": true
+    },
+    {
+      "id": "case04-reaction-equation",
+      "type": "html-css-diagrams",
+      "selector": "[data-reaction-equation]",
+      "embed": true
+    },
+    {
+      "id": "case04-reconstruction-and-attribution-boundary",
+      "type": "html-css-diagrams",
+      "selector": "[data-reconstruction-boundary]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 8
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 6
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 14
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE04_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE04_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE04_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE04_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE04_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Case 04 v0.1 \u2014 Karlsruhe Curriculum Editor",
+    "loadAnnouncement": "Case 04 Karlsruhe v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "e4005b9ffca54e47a0de8703024c55dfe2c3ae0f9d7b1bbd7b09f8962dc7f20e",
+    "presentation": "a7bd71da28b7da4ff5786ec186c1cb2708da0a1ef8b7f2454f3194087a5b34b8",
+    "taskRegistry": "50ded1674c455247b9642036f5d7d3314c1db0a83f6b9ca3631d12616313145f",
+    "layoutOverrides": "6c582a63645e323d6e9469b65c2e174096363c3616e11fa21e32597598feaf8e"
+  }
+}

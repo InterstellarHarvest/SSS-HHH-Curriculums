@@ -1,0 +1,463 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE04",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE04:accessible:t2:a2-first",
+      "persistId": "a2-first",
+      "pageId": "accessible-karlsruhe-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 the provisional explanation",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t2:a2-check",
+      "persistId": "a2-check",
+      "pageId": "accessible-karlsruhe-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 the check that explanation would need",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t3:a3-between",
+      "persistId": "a3-between",
+      "pageId": "accessible-karlsruhe-07",
+      "taskId": 3,
+      "label": "Accessible Task 3 what the temperature is a compromise between",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t3:a3-howhot",
+      "persistId": "a3-howhot",
+      "pageId": "accessible-karlsruhe-07",
+      "taskId": 3,
+      "label": "Accessible Task 3 the value showing the compromise is not warmth",
+      "minPx": 72,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t4:a4-catalyst",
+      "persistId": "a4-catalyst",
+      "pageId": "accessible-karlsruhe-09",
+      "taskId": 4,
+      "label": "Accessible Task 4 what the catalyst contributes and does not do",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t4:a4-recycle",
+      "persistId": "a4-recycle",
+      "pageId": "accessible-karlsruhe-09",
+      "taskId": 4,
+      "label": "Accessible Task 4 why a small single-pass conversion is not fatal",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t5:a5-notyet",
+      "persistId": "a5-notyet",
+      "pageId": "accessible-karlsruhe-11",
+      "taskId": 5,
+      "label": "Accessible Task 5 what still had to be solved",
+      "minPx": 72,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE04:accessible:t7:a7-settle",
+      "persistId": "a7-settle",
+      "pageId": "accessible-karlsruhe-13",
+      "taskId": 7,
+      "label": "Accessible Task 7 the evidence that would settle the undecided claim",
+      "minPx": 72,
+      "maxPx": 400
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-pressure",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-temp",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a4-stage-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-stage-5",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-stage-6",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-who-1",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a5-who-2",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a5-who-3",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a5-who-4",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a6-patent-status",
+      "reason": "status"
+    },
+    {
+      "persistId": "a6-patent-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-patent-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-date-status",
+      "reason": "status"
+    },
+    {
+      "persistId": "a6-date-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-date-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-fed-status",
+      "reason": "status"
+    },
+    {
+      "persistId": "a6-fed-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-fed-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-loop-status",
+      "reason": "status"
+    },
+    {
+      "persistId": "a6-loop-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-loop-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-mark-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-4",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-5",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a8-explanation",
+      "reason": "horizontal-reflow"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE04:student:t2:t2-first",
+        "persistId": "t2-first",
+        "pageId": "student-karlsruhe-03",
+        "taskId": 2,
+        "label": "Task 2 the provisional explanation",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t2:t2-check",
+        "persistId": "t2-check",
+        "pageId": "student-karlsruhe-03",
+        "taskId": 2,
+        "label": "Task 2 the check that explanation would need",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t3:t3-between",
+        "persistId": "t3-between",
+        "pageId": "student-karlsruhe-04",
+        "taskId": 3,
+        "label": "Task 3 what the operating temperature is a compromise between",
+        "minPx": 72,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t3:t3-howhot",
+        "persistId": "t3-howhot",
+        "pageId": "student-karlsruhe-04",
+        "taskId": 3,
+        "label": "Task 3 the value showing the compromise is not ordinary warmth",
+        "minPx": 56,
+        "maxPx": 220
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t4:t4-catalyst",
+        "persistId": "t4-catalyst",
+        "pageId": "student-karlsruhe-05",
+        "taskId": 4,
+        "label": "Task 4 what the catalyst contributes and does not do",
+        "minPx": 56,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t4:t4-recycle",
+        "persistId": "t4-recycle",
+        "pageId": "student-karlsruhe-05",
+        "taskId": 4,
+        "label": "Task 4 why a small single-pass conversion is not fatal",
+        "minPx": 56,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t5:t5-notyet",
+        "persistId": "t5-notyet",
+        "pageId": "student-karlsruhe-06",
+        "taskId": 5,
+        "label": "Task 5 what still had to be solved after the demonstration",
+        "minPx": 72,
+        "maxPx": 340
+      },
+      {
+        "id": "HHH-C1-CASE04:student:t7:t7-settle",
+        "persistId": "t7-settle",
+        "pageId": "student-karlsruhe-07",
+        "taskId": 7,
+        "label": "Task 7 the evidence that would settle the undecided claim",
+        "minPx": 64,
+        "maxPx": 280
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-pressure",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-temp",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t4-stage-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-5",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-6",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-who-1",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t5-who-2",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t5-who-3",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t5-who-4",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t6-scene-status",
+        "reason": "status"
+      },
+      {
+        "persistId": "t6-scene-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-scene-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-patent-status",
+        "reason": "status"
+      },
+      {
+        "persistId": "t6-patent-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-patent-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-date-status",
+        "reason": "status"
+      },
+      {
+        "persistId": "t6-date-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-date-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-fed-status",
+        "reason": "status"
+      },
+      {
+        "persistId": "t6-fed-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-fed-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-loop-status",
+        "reason": "status"
+      },
+      {
+        "persistId": "t6-loop-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-loop-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-mark-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-4",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-5",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t8-explanation",
+        "reason": "horizontal-reflow"
+      }
+    ],
+    "overrides": {}
+  }
+}
