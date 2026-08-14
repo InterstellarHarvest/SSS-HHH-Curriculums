@@ -1,0 +1,476 @@
+* { box-sizing: border-box; }
+
+/* HHH / TAA presentation tokens, carried forward from Archive Orientation and
+   Core Cases 01 and 02 so the units read as one institution. Archive Amber is the
+   institutional accent and Record Cyan the secondary. Archive Amber shares a
+   value with the shared caution token, so no state in this package is signalled
+   by colour alone: every status, band, bar, box and timeline entry carries a
+   printed text label, the two comparison bars are distinguished by pattern as
+   well as by length, and the timeline's two strands each print their own tag. */
+:root {
+  --paper: #fff;
+  --ink: #18212b;
+  --muted: #4f5a64;
+  --rule: #8c959c;
+  --panel: #efe4d0;
+  --panel-light: #faf6ef;
+  --neutral-field: #f0efec;
+  --institution: #8a5a00;
+  --record-cyan: #0b6f82;
+  --accent-dark: #6a4600;
+  --accent-pale: #f5eddd;
+  --caution: #715d21;
+  --caution-field: #f6f1dc;
+  --primary: var(--institution);
+  --secondary: var(--record-cyan);
+  --soft: var(--accent-pale);
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --margin-top: .5in;
+  --margin-right: .5in;
+  --margin-bottom: .5in;
+  --margin-left: .5in;
+  --radius: 3px;
+}
+
+html, body { min-height: 100%; margin: 0; color: var(--ink); background: #dedad3; font: 9.35pt/1.23 Arial, sans-serif; }
+body { padding: 82px 18px 36px; }
+body[data-standalone="true"] { padding-top: 22px; }
+.workspace { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.page { position: relative; width: var(--page-w); height: var(--page-h); overflow: hidden; background: var(--paper); box-shadow: 0 8px 24px #23303a44; }
+.page .page-frame { position: absolute; inset: var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left); display: flex; flex-direction: column; padding: 0; }
+.content { flex: 1; min-height: 0; }
+.content-area > :first-child { margin-top: 0; }
+p { margin: 4px 0; }
+ul, ol { margin: 4px 0 6px; padding-left: 20px; }
+li { margin: 2px 0; }
+h2 { margin: 7px 0 5px; padding-bottom: 3px; border-bottom: 2px solid var(--primary); font-size: 13pt; }
+h3 { margin: 5px 0 3px; font-size: 10pt; }
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* TAA insignia. The shared protected sheet sizes only .saa-insignia, so the HHH
+   identity supplies the mirrored geometry at the same dimensions. */
+.taa-insignia { width: .58in; height: .58in; flex: 0 0 .58in; object-fit: contain; }
+.continuation-identity .taa-insignia { width: .34in; height: .34in; flex: 0 0 .34in; }
+.grayscale .taa-insignia { filter: grayscale(1); }
+
+.label { color: var(--muted); font: 800 7pt/1.1 monospace; letter-spacing: .06em; text-transform: uppercase; }
+/* Response labels in this case are whole prompts, not two-word captions, so they
+   are set as readable sentence text rather than compact uppercase captions. */
+.response-label { display: block; margin: 5px 0 2px; font-size: 8.8pt; }
+.response-label .part { font-weight: 700; }
+.support-heading { margin: .06in 0 .03in; padding: 0; border: 0; font-size: 10.5pt; }
+.directions { margin: 0 0 4px; font-size: 8.8pt; }
+.directions .part { font-weight: 700; }
+.small { font-weight: 400; font-size: 7.2pt; color: var(--muted); }
+
+.callout, .science-note, .alt-support, .recon-note { margin: 5px 0; padding: 6px 8px; border-left: 4px solid var(--primary); background: var(--soft); }
+.callout p { margin: 2px 0; }
+.science-note { border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--panel-light); font-size: 8.2pt; }
+.science-note p { margin: 3px 0 0; }
+.science-note .source-status { display: block; margin-bottom: 2px; color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.science-note .alt-note { margin-top: 4px; }
+.alt-support { border: 1px dashed var(--rule); background: var(--neutral-field); font-size: 8.6pt; }
+.alt-support p { margin: 2px 0; }
+
+/* Reconstruction and causation boundary. Identified by its printed notice label
+   and dotted rule, never by colour alone. This case's boundary is doubled: the
+   scenes are reconstructions while one source is a real 1846 document, and the
+   case's two questions — what killed the crop, and why a million people died —
+   have answers of very different kinds. Both statements live in this one block
+   on every learner page 1, because separating them invites a reader to take only
+   the first. */
+.recon-note { border: 1px dotted var(--rule); border-left: 4px dotted var(--institution); background: var(--panel-light); }
+.recon-note p { margin: 2px 0; font-size: 8.4pt; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.two-col > div { min-width: 0; }
+.two-col-narrow-right { grid-template-columns: 1.25fr 1fr; }
+.teacher-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.teacher-card { padding: 6px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8.35pt; }
+.teacher-card p { margin: 2px 0; }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+.data-table caption { padding: 2px 0; color: var(--muted); font-weight: 700; text-align: left; }
+.data-table th, .data-table td { padding: 2px 4px; border: 1px solid var(--rule); vertical-align: top; }
+.data-table th { background: var(--panel); text-align: left; }
+.matrix-table { table-layout: fixed; }
+.matrix-table th:first-child, .matrix-table td:first-child { width: 1.35in; }
+.matrix-table th:nth-child(2), .matrix-table td:nth-child(2) { width: .85in; }
+.vocab-table td:first-child, .vocab-table th:first-child { width: 1.05in; }
+.vocab-table th[scope="row"] { font-family: monospace; }
+/* The source ledger carries nine rows against Case 02's seven, because this case
+   assesses five evidentiary statuses rather than four and pairs a real 1846
+   document against the game reconstruction. It is set a step smaller so all nine
+   stay on the evidence-architecture page rather than splitting the ledger across
+   a page break, which would separate a source from its limitation. */
+.ledger-table { table-layout: fixed; font-size: 6.2pt; line-height: 1.16; }
+.ledger-table th, .ledger-table td { padding: 1.5px 3px; }
+.ledger-table th:first-child, .ledger-table td:first-child { width: .88in; }
+.rubric { font-size: 7.4pt; }
+.rubric th:first-child, .rubric td:first-child { width: 1.05in; }
+
+.response, .table-response, .compact-response, .stage-response, .inline-response, .mark-response { min-height: .38in; padding: 4px; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); outline: none; }
+.response.short { min-height: .34in; }
+.response.medium { min-height: 1.05in; }
+.response.medium.fill-compare { min-height: 1.95in; }
+.response.medium.fill-interaction { min-height: 2.25in; }
+.response.large { min-height: 1.5in; }
+.response.extended { min-height: 4.3in; }
+/* Balanced Page Fill v1.0.2, Student edition only: pages whose only flexible
+   components are writing areas give the surplus to those areas rather than
+   spreading it. `roomy` is the two-to-four-sentence step these prompts expect by
+   hand; `tall` is the evidence-plus-reasoning step Task 7 Part B asks for. */
+.response.roomy { min-height: 1.55in; }
+.response.roomy.tall { min-height: 1.85in; }
+.response.roomy.tall.fill-claims { min-height: 5.4in; }
+.table-response { min-height: .58in; }
+.table-response.status-cell { min-height: .34in; }
+/* Task 5 is the only content on its Student page and each open cell takes a full
+   handwritten sentence, so the surplus below the table goes to the cells that
+   need it. Five rows rather than four means each cell is shorter than Case 02's
+   equivalent; the status cell stays compact because it holds one banked word. */
+.matrix-table .table-response { min-height: 1.14in; }
+.matrix-table .table-response.status-cell { min-height: .32in; }
+.compact-response { min-height: .28in; text-align: center; }
+.response:focus, .table-response:focus, .compact-response:focus, .stage-response:focus, .inline-response:focus, .mark-response:focus, .id-field:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+/* The term goes on its own line beneath its statement, because inline placement
+   wrapped raggedly whenever a statement ran past one line. */
+.term-list { margin: 6px 0 8px; }
+.term-list li { margin: 8px 0; }
+.inline-response { display: block; min-width: 2.2in; max-width: 2.6in; min-height: .28in; margin-top: 4px; padding: 2px 4px; }
+
+.task-heading { display: grid !important; grid-template-columns: 20px minmax(0, 1fr); gap: .07in; align-items: start; margin: .055in 0 .035in !important; padding: 0 0 .035in !important; border-bottom: 1px solid var(--rule) !important; }
+.task-heading .ph-icon { width: 20px; height: 20px; margin-top: 1px; color: var(--institution); fill: none; stroke: currentColor; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+.task-heading-copy { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.task-heading .technical-label { color: var(--institution); font: 700 6.7pt/1.05 monospace; letter-spacing: .07em; }
+.task-heading .section-title { font: 800 10.7pt/1.14 Arial, sans-serif; }
+.task-block { margin-top: .09in; break-inside: avoid; page-break-inside: avoid; }
+
+.figure.case-figure { margin: 4px 0; padding: 4px; break-inside: avoid; page-break-inside: avoid; }
+.figure.case-figure figcaption { margin-top: 3px; padding-top: 3px; font-size: 7.4pt; color: var(--muted); }
+/* Figures that are themselves a status-bearing source print their STATUS line
+   above the drawing, in the same monospace form as a dossier card, so a reader
+   never has to infer a figure's standing from its caption. */
+.figure.case-figure > .source-status { display: block; margin-bottom: 2px; color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.extended-description { margin: 3px 0 0; font-size: 7pt; color: var(--muted); }
+
+/* ── Family H2 — chronology ────────────────────────────────────────────────
+   A vertical timeline with a year gutter, a strand tag and the event text.
+   Vertical because six dated entries carrying real sentences cannot be labelled
+   along a horizontal axis at this width without collisions, and because the two
+   strands have to stay legible beside one another: the case's Claim 5 turns on a
+   learner being able to see that the largest relief measures sit *after* the
+   second and worst crop failure. Every row prints its own strand word, so the
+   distinction survives grayscale and photocopying; the tint is redundant.
+   Learner-facing pages call this object a timeline and nothing else. */
+.timeline { margin: 3px 0; border: 1px solid var(--rule); background: var(--panel-light); }
+.tl-key { display: flex; flex-wrap: wrap; gap: 4px 12px; padding: 3px 6px; border-bottom: 1px solid var(--rule); background: var(--neutral-field); font-size: 7pt; }
+.tl-list { margin: 0; padding: 0; list-style: none; }
+.tl-list li { margin: 0; }
+.tl-row { display: grid; grid-template-columns: .38in .44in minmax(0, 1fr); gap: 5px; align-items: start; padding: 3px 6px; border-top: 1px solid var(--rule); font-size: 7.4pt; line-height: 1.17; }
+.tl-list > .tl-row:first-child { border-top: 0; }
+.tl-year { font: 800 8pt/1.25 monospace; }
+.tl-tag { padding: 1px 0; border: 1px solid var(--rule); background: var(--paper); font: 700 5.6pt/1.25 monospace; letter-spacing: .03em; text-align: center; }
+.tl-row[data-strand="relief"] { background: var(--accent-pale); }
+.tl-row[data-strand="relief"] .tl-tag { border-width: 1.5px; border-color: var(--ink); }
+.tl-body { min-width: 0; }
+
+/* ── Family H3 — place ─────────────────────────────────────────────────────
+   Deliberately NOT a drawn map. A historical map of Ireland would have to claim
+   a coastline, and famine intensity drawn onto it would claim a geography this
+   packet cannot source; the Case 02 lesson also requires that every important
+   place name survive in print rather than only in the description. Nested frames
+   assert exactly one relation — what is inside what — carry all five names at
+   printable size, and cannot imply a distance, a route or an extent. The note
+   says in print that nothing is to scale or in position. */
+.place-nest { margin: 3px 0; padding: 5px; border: 1px solid var(--rule); background: var(--panel-light); }
+.pn-level { position: relative; padding: 12px 5px 5px; border: 1.4px solid var(--rule); background: var(--paper); }
+.pn-europe { padding-top: 17px; }
+.pn-level .pn-level { margin-top: 4px; }
+.pn-name { position: absolute; top: 2px; left: 5px; color: var(--institution); font: 800 6.6pt/1.15 monospace; letter-spacing: .05em; }
+.pn-name em { font-style: normal; font-weight: 400; color: var(--muted); letter-spacing: 0; }
+.pn-name em::before { content: " · "; }
+.pn-county { border-width: 1.8px; border-color: var(--ink); }
+.pn-point { display: block; margin-top: 3px; padding: 2px 4px; border: 1px solid var(--rule); background: var(--neutral-field); font: 700 7.2pt/1.15 Arial, sans-serif; }
+.pn-point em { display: block; font-style: normal; font-weight: 400; color: var(--muted); font-size: 6.4pt; }
+.pn-aside { position: absolute; z-index: 2; top: 2px; right: 5px; max-width: 2.1in; padding: 1px 4px; border: 1px dashed var(--rule); background: var(--neutral-field); font: 700 6.6pt/1.2 Arial, sans-serif; text-align: right; white-space: nowrap; }
+.pn-aside em { font-style: normal; font-weight: 400; color: var(--muted); font-size: 6.2pt; }
+.pn-aside em::before { content: " — "; }
+.pn-note { display: block; margin-top: 4px; color: var(--muted); font-size: 6.5pt; }
+
+/* ── Family H7 — the controlled comparison ─────────────────────────────────
+   Three bars on one scale plus the two death panels beneath them. This is the
+   single figure the case's central argument rests on, and it is built as a
+   control: the organism is the same in both countries and in both years, so the
+   only things that vary are the share of crop lost and the share of people lost.
+   The bars carry different fills as well as different lengths and each prints its
+   own value, so nothing depends on colour or on comparing two lengths by eye. */
+.compare { margin: 3px 0; }
+.compare-title { display: block; margin-bottom: 3px; font: 800 7.9pt/1.15 Arial, sans-serif; }
+.compare-row, .compare-axis { display: grid; grid-template-columns: .74in minmax(0, 1fr) .5in; gap: 6px; align-items: center; }
+.compare-row { margin-bottom: 3px; }
+.compare-name { font: 700 7.4pt/1.1 Arial, sans-serif; }
+.compare-name em { display: block; font-style: normal; font-weight: 400; color: var(--muted); font-size: 6.4pt; }
+.compare-track { position: relative; height: .19in; border: 1px solid var(--rule); background: repeating-linear-gradient(to right, transparent 0 24.98%, var(--rule) 24.98% 25%); }
+.compare-bar { position: absolute; left: 0; top: 0; bottom: 0; border: 1.2px solid var(--ink); border-radius: 2px; background: var(--panel); }
+.compare-bar-alt { background: repeating-linear-gradient(135deg, var(--panel-light) 0 3px, var(--panel) 3px 6px); }
+.compare-value { font: 700 7.4pt/1.1 monospace; text-align: right; }
+.compare-axis .compare-track { height: .17in; border: 0; border-top: 1.4px solid var(--ink); background: none; }
+.compare-axis .compare-value { color: var(--muted); font-size: 6.4pt; }
+.compare-tick { position: absolute; top: 2px; transform: translateX(-50%); white-space: nowrap; color: var(--muted); font: 700 6.2pt/1.1 monospace; }
+.compare-tick-start { transform: translateX(0); }
+.compare-tick-end { transform: translateX(-100%); }
+.compare-outcome { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 5px; }
+.compare-cell { min-width: 0; padding: 4px 6px; border: 1.4px solid var(--rule); background: var(--paper); font-size: 7.4pt; }
+.compare-cell p { margin: 2px 0 0; line-height: 1.18; }
+.compare-cell-name { display: block; color: var(--institution); font: 800 6.8pt/1.1 monospace; letter-spacing: .06em; }
+
+/* ── Family H5 — multiple-causation map ────────────────────────────────────
+   The figure the case is built around, and the one most able to lie. Arrow
+   geometry is the risk the Blueprint names: a heavier stroke, a shorter path or
+   a more central position all read as "this one mattered more", and no source in
+   this packet ranks these four conditions. So the four condition boxes are laid
+   out on one row at identical width, their four converging arrows are drawn
+   identically, and a printed note inside the figure states that every arrow means
+   only "contributed to". The only visual hierarchy that survives is the one the
+   evidence supports: the trigger is separated from the conditions, and the
+   conditions sit between the crop failure and the outcome. */
+.causes { margin: 3px 0; padding: 5px; border: 1px solid var(--rule); background: var(--panel-light); }
+.cm-trigger { padding: 4px 6px; border: 1.6px solid var(--ink); background: var(--paper); text-align: center; }
+.cm-kicker { display: block; color: var(--institution); font: 800 6.4pt/1.15 monospace; letter-spacing: .07em; }
+.cm-trigger p { margin: 1px 0 0; font-size: 8.2pt; }
+.cm-status { display: block; font-style: normal; color: var(--muted); font: 700 6.2pt/1.25 monospace; }
+.cm-arrow { text-align: center; font-size: 10pt; line-height: 1.1; }
+.cm-event { padding: 3px 6px; border: 1.4px solid var(--ink); background: var(--panel); font: 800 8.2pt/1.2 Arial, sans-serif; letter-spacing: .03em; text-align: center; }
+.cm-gap { margin: 4px 0; padding: 2px 6px; border: 1px dashed var(--rule); background: var(--neutral-field); font-size: 7.1pt; text-align: center; }
+.cm-conditions { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.cm-cond { position: relative; min-width: 0; padding: 4px 4px 4px 4px; border: 1.4px solid var(--rule); background: var(--paper); font-size: 6.9pt; line-height: 1.16; }
+.cm-cond p { margin: 2px 0 0; }
+.cm-letter { position: absolute; top: 3px; left: 3px; width: .16in; height: .16in; border: 1.3px solid var(--ink); background: var(--paper); font: 800 6.6pt/.145in monospace; text-align: center; }
+.cm-cond-name { display: block; min-height: .16in; margin-left: .19in; color: var(--institution); font: 800 6.3pt/1.25 monospace; letter-spacing: .03em; }
+.cm-converge { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; text-align: center; font-size: 9pt; line-height: 1.2; }
+.cm-outcome { padding: 4px 6px; border: 1.8px solid var(--ink); background: var(--panel); font-size: 7.9pt; text-align: center; }
+.cm-repeat { display: flex; flex-wrap: wrap; align-items: center; gap: 3px 8px; margin-top: 4px; padding: 2px 6px; border: 1px solid var(--rule); background: var(--neutral-field); font: 700 6.7pt/1.3 monospace; }
+.cm-repeat-label { color: var(--institution); letter-spacing: .05em; }
+.cm-note { margin: 4px 0 0; font-size: 6.9pt; line-height: 1.18; }
+
+/* The stage path is the student's own organizer for the mechanism. Stages run
+   downward and each carries a numbered step label, so the arrows are decorative
+   only and the order survives without them. */
+.stage-path { display: flex; flex-direction: column; gap: 1px; margin: 4px 0; }
+.stage { padding: 3px 6px; border: 1.4px solid var(--ink); background: var(--paper); font-size: 7.6pt; line-height: 1.16; }
+.stage.modeled { border-style: dashed; background: var(--panel-light); }
+.stage-step { display: block; margin-bottom: 2px; color: var(--institution); font: 800 6.8pt/1.1 monospace; letter-spacing: .04em; text-transform: uppercase; }
+.stage-fixed { margin: 0; }
+.stage-response { min-height: .5in; }
+.stage-arrow { align-self: center; font-size: 9pt; line-height: 1; }
+.modeled-flag { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--rule); background: var(--neutral-field); color: var(--muted); font: 700 5.8pt monospace; letter-spacing: .04em; text-transform: uppercase; }
+
+/* The three-mark key for Task 7. Three marks rather than two, because the case
+   turns on the difference between a claim the evidence contradicts and a claim
+   two historians actively dispute. */
+.mark-key { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; margin: 4px 0; padding: 4px 6px; border: 1px solid var(--rule); background: var(--neutral-field); font-size: 7.6pt; }
+
+.rail-marker { display: flex; align-items: center; gap: 8px; margin: 4px 0 3px; padding: 4px 6px; border: 1px solid var(--rule); background: var(--neutral-field); }
+.rail-marker .response-label { flex: 1; margin: 0; }
+.mark-response { flex: 0 0 .36in; min-height: .24in; text-align: center; }
+.mark-response.wide { flex: 0 0 .8in; min-height: .3in; }
+
+/* No-game case dossier. Every card carries a visible STATUS line naming its
+   evidentiary status in text. Card D is a real 1846 document sitting beside three
+   scenes written for a game; the STATUS lines are the only thing that keeps that
+   difference visible on a printed page, so they are never optional. */
+.dossier { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin: 4px 0; }
+.dossier-card { min-width: 0; padding: 6px 7px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 7.9pt; }
+.dossier-card h3 { margin: 0 0 2px; font-size: 8.6pt; }
+.dossier-card .source-status { display: block; margin-top: 1px; color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.dossier-card p { margin: 2px 0; }
+.quoted { margin: 2px 0; font-family: Georgia, serif; line-height: 1.2; }
+.quoted-inline { font-family: Georgia, serif; }
+.alt-note { margin-top: 3px; padding-top: 3px; border-top: 1px dotted var(--rule); }
+
+/* Documented background. This block exists so that real plant science never sits
+   under a reconstructed STATUS line. It is visually distinct from a dossier card
+   — solid double rule, no card grid — and carries its own STATUS line, so the
+   scope of "reconstructed" is unmistakable in grayscale as well as in colour. */
+.background-note { margin: 4px 0; padding: 6px 9px; border: 1px solid var(--rule); border-left: 4px double var(--secondary); background: var(--paper); font-size: 7.9pt; }
+.background-note p { margin: 2px 0; }
+.background-note .source-status { display: block; margin: 1px 0 2px; color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.background-note .report-list { margin: 2px 0 0; }
+.accessible .background-note { padding: 8px 10px; font-size: 10.4pt; }
+.accessible .background-note .source-status { font-size: 8pt; }
+
+/* Competing claims. The mark field sits beside the claim text so the judgment and
+   the statement it applies to stay on one line of reading. */
+.account-list { display: flex; flex-direction: column; gap: 7px; margin: 5px 0; }
+.account-item { display: flex; align-items: flex-start; gap: 7px; padding: 5px 7px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8.3pt; }
+.accessible .account-list { gap: 5px; }
+.accessible .account-item { padding: 4px 7px; }
+.account-item p { margin: 0; }
+.account-item .mark-response { flex: 0 0 .38in; min-height: .3in; }
+
+.parts-list { margin: 4px 0 6px; font-size: 8.6pt; }
+.parts-list li { margin: 3px 0; }
+.report-list { margin: 5px 0 6px; }
+
+.answer-block { margin: 5px 0; padding: 6px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--paper); }
+.answer-block p { margin: 2px 0; }
+.answer-block ol { margin: 3px 0; }
+.answer-list li { margin: 3px 0; }
+.key-note { margin: 3px 0; color: var(--muted); font-size: 7.8pt; }
+
+.procedure { font-size: 8.5pt; }
+.procedure > li { margin: 8px 0; }
+.procedure p { margin: 2px 0 0; }
+.references { font-size: 7.05pt; }
+.references li { margin: 3px 0; }
+.source-url { font: 6.5pt/1.1 "Courier New", monospace; color: var(--muted); overflow-wrap: anywhere; }
+
+.modeled-row > * { background: var(--panel-light); }
+
+/* Accessible edition — lower density, larger targets, same task order. */
+.accessible { font-size: 11.35pt; line-height: 1.28; }
+.accessible .directions, .accessible .response-label { font-size: 10.4pt; }
+.accessible .task-heading { grid-template-columns: 23px minmax(0, 1fr); margin-top: .09in !important; }
+.accessible .task-heading .ph-icon { width: 23px; height: 23px; }
+.accessible .task-heading .section-title { font-size: 12.7pt; }
+.accessible .support-heading { font-size: 11.6pt; }
+.accessible .response.medium { min-height: 1.05in; }
+.accessible .response.medium.fill-first { min-height: 3.35in; }
+.accessible .response.medium.fill-compare { min-height: 3.4in; }
+.accessible .response.medium.fill-settle { min-height: 2.7in; }
+.accessible .response.large { min-height: 1.3in; }
+/* Task 8 is four labelled components alone on one page and Task 9 is two
+   responses alone on the next. Each field is sized to the two-to-four-sentence
+   step the prompt expects by hand, and the two tasks were separated rather than
+   compressed onto a shared page — an accessible learner writing the culminating
+   product should not be rationed to make room for the exit. */
+.accessible .response.short-block { min-height: 1.68in; }
+.accessible .response.tall-block { min-height: 2.95in; }
+.accessible .alt-support { margin: 3px 0; padding: 5px 8px; font-size: 9.6pt; }
+.accessible .alt-support p { margin: 1px 0; }
+.accessible .alt-support .report-list { margin: 2px 0 0; }
+.accessible .data-table { font-size: 8.8pt; }
+.accessible .extended-description { font-size: 8.2pt; }
+.accessible .figure.case-figure figcaption { font-size: 8.4pt; }
+.accessible .figure.case-figure > .source-status { font-size: 8pt; }
+.accessible .recon-note p { font-size: 9.2pt; }
+/* Task 1 is six one-word placements under six one-line statements. At the
+   accessible type size the default step left page 1 — which also carries the
+   framing and the reconstruction and causation boundary — overfull, and the
+   honest fix is a field sized to its answer rather than an extra page holding
+   one task. */
+.accessible .term-list { margin: 4px 0 5px; }
+.accessible .term-list li { margin: 0; }
+.accessible .inline-response { display: block; min-width: 0; max-width: none; min-height: .22in; margin-top: 2px; }
+.accessible .word-bank { margin: 3px 0; padding: 3px 6px; }
+/* The guiding question is set one step down on the Accessible page so the
+   reconstruction and causation boundary directly beneath it keeps full reading
+   size. */
+.accessible .callout p { font-size: 10.2pt; }
+/* The Accessible dossier stacks full width: source cards at reading size, each
+   an unbroken column, rather than narrow columns of short wrapped lines. */
+.accessible .dossier { grid-template-columns: 1fr; gap: 6px; }
+.accessible .dossier-card { padding: 8px 10px; font-size: 10.4pt; }
+.accessible .dossier-card h3 { font-size: 11.2pt; }
+.accessible .dossier-card .source-status { font-size: 8pt; }
+.accessible .word-bank-item { font-size: 8.8pt; }
+.accessible .word-bank-instruction { font-size: 8.8pt; }
+.accessible .science-note { font-size: 9.6pt; }
+.accessible .science-note .source-status { font-size: 8pt; }
+.accessible .mark-key { font-size: 9pt; }
+.accessible .account-item { font-size: 10pt; }
+.accessible .account-item .mark-response { flex: 0 0 .5in; min-height: .36in; }
+.accessible .mark-response.wide { flex: 0 0 .9in; min-height: .36in; }
+.accessible .report-list { font-size: 10.2pt; }
+/* The accessible timeline is set at reading size throughout. Its year gutter and
+   strand tag both grow, because a learner who cannot read the tag cannot see the
+   two strands, and seeing the two strands is what Task 3 Part C and Task 7
+   Claim 5 depend on. */
+.accessible .tl-key { font-size: 8.4pt; }
+.accessible .tl-row { grid-template-columns: .52in .62in minmax(0, 1fr); font-size: 8.9pt; line-height: 1.22; padding: 4px 7px; }
+.accessible .tl-year { font-size: 9.6pt; }
+.accessible .tl-tag { font-size: 6.8pt; }
+/* The accessible place figure keeps every name at reading size; the five place
+   names are the whole content of the figure and must not shrink. */
+.accessible .pn-level { padding: 16px 7px 7px; }
+.accessible .pn-europe { padding-top: 22px; }
+.accessible .pn-name { font-size: 8.6pt; }
+.accessible .pn-point { font-size: 9.4pt; }
+.accessible .pn-point em { font-size: 8pt; }
+.accessible .pn-aside { max-width: 2.9in; font-size: 8.4pt; }
+.accessible .pn-aside em { font-size: 7.4pt; }
+.accessible .pn-note { font-size: 8pt; }
+/* The accessible comparison keeps the same bar geometry — the ratio is the
+   argument — and grows only its labels and its two outcome panels. */
+.accessible .compare-title { font-size: 9.6pt; }
+.accessible .compare-row, .accessible .compare-axis { grid-template-columns: .92in minmax(0, 1fr) .6in; }
+.accessible .compare-name { font-size: 9pt; }
+.accessible .compare-name em { font-size: 7.6pt; }
+.accessible .compare-value { font-size: 9pt; }
+.accessible .compare-track { height: .24in; }
+.accessible .compare-tick { font-size: 7.4pt; }
+.accessible .compare-cell { font-size: 9pt; }
+.accessible .compare-cell-name { font-size: 8pt; }
+/* The accessible causes map keeps all four condition boxes on one row, because
+   reflowing them into a grid would introduce a reading order the figure does not
+   mean and would make one box look prior to another. Only the type grows. */
+.accessible .cm-kicker { font-size: 7.4pt; }
+.accessible .cm-trigger p { font-size: 9.6pt; }
+.accessible .cm-status { font-size: 7.4pt; }
+.accessible .cm-event { font-size: 9.6pt; }
+.accessible .cm-gap { font-size: 8.4pt; }
+.accessible .cm-cond { font-size: 7.8pt; }
+.accessible .cm-cond-name { font-size: 7.2pt; }
+.accessible .cm-letter { width: .19in; height: .19in; font-size: 7.6pt; line-height: .17in; }
+.accessible .cm-cond-name { margin-left: .22in; min-height: .19in; }
+.accessible .cm-outcome { font-size: 9pt; }
+.accessible .cm-repeat { font-size: 7.8pt; }
+.accessible .cm-note { font-size: 8pt; }
+.accessible .stage { font-size: 9.2pt; }
+.accessible .stage-step { font-size: 7.6pt; }
+.accessible .stage-response { min-height: 1.25in; }
+.accessible .table-response { min-height: .58in; }
+.accessible .table-response.status-cell { min-height: .4in; }
+.accessible .matrix-table .table-response { min-height: 1.0in; }
+.accessible .matrix-table .table-response.status-cell { min-height: .4in; }
+.accessible .matrix-table th:first-child, .accessible .matrix-table td:first-child { width: 1.5in; }
+.accessible .matrix-table th:nth-child(2), .accessible .matrix-table td:nth-child(2) { width: 1in; }
+
+.word-bank { display: grid; grid-template-columns: 1fr; gap: 3px; margin: 5px 0; padding: 5px 6px; border: 1px solid var(--rule); background: var(--neutral-field); }
+.word-bank-label { color: var(--muted); font: 800 7pt/1.1 monospace; letter-spacing: .06em; }
+.word-bank-instruction { font-size: 7.7pt; }
+.word-bank-items { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.status-bank-items { grid-template-columns: repeat(5, 1fr); }
+.accessible .status-bank-items { grid-template-columns: repeat(4, 1fr); }
+.word-bank-item { padding: 4px; border: 1px solid var(--rule); background: var(--paper); font-size: 7.6pt; line-height: 1.15; text-align: center; }
+
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.overflow-warning { display: none; }
+.page.has-overflow .overflow-warning { display: block; position: absolute; z-index: 4; right: 0; top: 0; padding: 2px 4px; color: #fff; background: #a61c1c; font: 700 7pt monospace; }
+.page:not([data-role="none"]) { display: none; }
+body[data-role="student"] .page[data-role="student"], body[data-role="teacher"] .page[data-role="teacher"], body[data-role="answer"] .page[data-role="answer"], body[data-role="accessible"] .page[data-role="accessible"], body[data-role="all"] .page { display: block; }
+body.hide-boundaries .page { box-shadow: none; }
+body.show-guides .page-frame { outline: 1px dashed #8c9aa0; }
+[data-editable][contenteditable="true"] { outline: 1px dashed var(--institution); outline-offset: 2px; }
+[data-response][contenteditable="true"] { cursor: text; }
+body:not(.edit-mode) [data-editable] { outline: none; }
+
+body.grayscale { --panel: #e4e4e4; --panel-light: #f3f3f3; --neutral-field: #ededed; --institution: #4b4b4b; --record-cyan: #666; --accent-dark: #3b3b3b; --accent-pale: #ededed; --primary: #4b4b4b; --secondary: #666; --soft: #ededed; --caution: #555; --caution-field: #efefef; }
+body.density-compact .content-area { font-size: 96%; line-height: 1.19; }
+body.density-spacious .content-area { line-height: 1.35; }
+
+@media (max-width: 900px) { body { padding: 10px 4px; } .page { max-width: 100%; height: auto; min-height: calc(100vw * 11 / 8.5); } }
+@page { size: Letter portrait; margin: 0; }
+@media print {
+  html, body { padding: 0 !important; background: #fff; }
+  .workspace { display: block; gap: 0; }
+  .page { width: 8.5in; height: 11in; margin: 0; box-shadow: none; break-after: page; page-break-after: always; }
+  .page:last-of-type { break-after: auto; page-break-after: auto; }
+  .overflow-warning { display: none !important; }
+  .page-frame { outline: none !important; }
+  body[data-role="student"] .page:not([data-role="student"]), body[data-role="teacher"] .page:not([data-role="teacher"]), body[data-role="answer"] .page:not([data-role="answer"]), body[data-role="accessible"] .page:not([data-role="accessible"]) { display: none !important; }
+  body[data-role="all"] .page { display: block !important; }
+}

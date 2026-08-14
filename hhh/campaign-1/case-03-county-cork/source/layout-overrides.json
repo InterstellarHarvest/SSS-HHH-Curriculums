@@ -1,0 +1,498 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE03",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE03:accessible:t2:a2-first",
+      "persistId": "a2-first",
+      "pageId": "accessible-cork-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 the provisional explanation",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t2:a2-check",
+      "persistId": "a2-check",
+      "pageId": "accessible-cork-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 the check that explanation would need",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t3:a3-repeat",
+      "persistId": "a3-repeat",
+      "pageId": "accessible-cork-06",
+      "taskId": 3,
+      "label": "Accessible Task 3 what repeated failures meant for a household",
+      "minPx": 72,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t4:a4-compare",
+      "persistId": "a4-compare",
+      "pageId": "accessible-cork-08",
+      "taskId": 4,
+      "label": "Accessible Task 4 what the two-country comparison shows",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t6:a6-interaction",
+      "persistId": "a6-interaction",
+      "pageId": "accessible-cork-10",
+      "taskId": 6,
+      "label": "Accessible Task 6 how two conditions made each other worse",
+      "minPx": 72,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t6:a6-trigger-only",
+      "persistId": "a6-trigger-only",
+      "pageId": "accessible-cork-10",
+      "taskId": 6,
+      "label": "Accessible Task 6 what a trigger-only account fails to explain",
+      "minPx": 64,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t7:a7-settle",
+      "persistId": "a7-settle",
+      "pageId": "accessible-cork-11",
+      "taskId": 7,
+      "label": "Accessible Task 7 evidence that would settle Claim 4",
+      "minPx": 72,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t8:a8-part-1",
+      "persistId": "a8-part-1",
+      "pageId": "accessible-cork-12",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 1 what the blight did and explains",
+      "minPx": 60,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t8:a8-part-2",
+      "persistId": "a8-part-2",
+      "pageId": "accessible-cork-12",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 2 two conditions with sourced evidence",
+      "minPx": 60,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t8:a8-part-3",
+      "persistId": "a8-part-3",
+      "pageId": "accessible-cork-12",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 3 how two causes worked on each other",
+      "minPx": 60,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t8:a8-part-4",
+      "persistId": "a8-part-4",
+      "pageId": "accessible-cork-12",
+      "taskId": 8,
+      "label": "Accessible Task 8 part 4 the limit and the closing sentence",
+      "minPx": 60,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t9:a9-findout",
+      "persistId": "a9-findout",
+      "pageId": "accessible-cork-13",
+      "taskId": 9,
+      "label": "Accessible Task 9 two things to find out, with reasons",
+      "minPx": 60,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE03:accessible:t9:a9-most",
+      "persistId": "a9-most",
+      "pageId": "accessible-cork-13",
+      "taskId": 9,
+      "label": "Accessible Task 9 which one would tell you the most and why",
+      "minPx": 60,
+      "maxPx": 400
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-worst",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a3-county",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-cond-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-cond-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-stage-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-stage-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-letter-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-letter-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-letter-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-exports-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-exports-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-exports-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-compare-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-compare-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-compare-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-map-status",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-map-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-map-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-mark-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-4",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-mark-5",
+      "reason": "classification"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE03:student:t2:t2-first",
+        "persistId": "t2-first",
+        "pageId": "student-cork-03",
+        "taskId": 2,
+        "label": "Task 2 the provisional explanation",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t2:t2-check",
+        "persistId": "t2-check",
+        "pageId": "student-cork-03",
+        "taskId": 2,
+        "label": "Task 2 the check that explanation would need",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t3:t3-repeat",
+        "persistId": "t3-repeat",
+        "pageId": "student-cork-03",
+        "taskId": 3,
+        "label": "Task 3 what repeated failures meant for a household",
+        "minPx": 64,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t4:t4-compare",
+        "persistId": "t4-compare",
+        "pageId": "student-cork-04",
+        "taskId": 4,
+        "label": "Task 4 what the two-country comparison shows",
+        "minPx": 72,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t6:t6-interaction",
+        "persistId": "t6-interaction",
+        "pageId": "student-cork-06",
+        "taskId": 6,
+        "label": "Task 6 how two conditions made each other worse",
+        "minPx": 72,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t6:t6-trigger-only",
+        "persistId": "t6-trigger-only",
+        "pageId": "student-cork-06",
+        "taskId": 6,
+        "label": "Task 6 what a trigger-only account fails to explain",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t7:t7-settle",
+        "persistId": "t7-settle",
+        "pageId": "student-cork-07",
+        "taskId": 7,
+        "label": "Task 7 evidence that would settle the undecided claim",
+        "minPx": 96,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t8:t8-explanation",
+        "persistId": "t8-explanation",
+        "pageId": "student-cork-08",
+        "taskId": 8,
+        "label": "Task 8 multi-causal historical explanation",
+        "minPx": 200,
+        "maxPx": 520
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t9:t9-findout",
+        "persistId": "t9-findout",
+        "pageId": "student-cork-08",
+        "taskId": 9,
+        "label": "Task 9 two things to find out, with reasons",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE03:student:t9:t9-most",
+        "persistId": "t9-most",
+        "pageId": "student-cork-08",
+        "taskId": 9,
+        "label": "Task 9 which one would tell you the most and why",
+        "minPx": 64,
+        "maxPx": 260
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t3-worst",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t3-county",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-cond-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-cond-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-stage-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-scenes-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-scenes-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-scenes-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-letter-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-letter-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-letter-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-exports-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-exports-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-exports-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-compare-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-compare-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-compare-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-map-status",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-map-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-map-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-mark-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-4",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-mark-5",
+        "reason": "classification"
+      }
+    ],
+    "overrides": {}
+  }
+}

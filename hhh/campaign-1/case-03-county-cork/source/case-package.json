@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE03",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-1",
+  "title": "County Cork",
+  "subtitle": "Campaign 1 · Case 03 · The south of Ireland, 1845",
+  "location": "The south of Ireland",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE03:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-03-county-cork/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-03-county-cork/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-03-county-cork/source/task-registry.js",
+    "global": "HHH_CASE03_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-03-county-cork/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case03-chronology",
+      "type": "html-css-diagrams",
+      "selector": "[data-chronology-contract]",
+      "embed": true
+    },
+    {
+      "id": "case03-place-figure",
+      "type": "html-css-diagrams",
+      "selector": "[data-place-contract]",
+      "embed": true
+    },
+    {
+      "id": "case03-two-country-comparison",
+      "type": "html-css-diagrams",
+      "selector": "[data-comparison-contract]",
+      "embed": true
+    },
+    {
+      "id": "case03-causes-map",
+      "type": "html-css-diagrams",
+      "selector": "[data-causation-contract]",
+      "embed": true
+    },
+    {
+      "id": "case03-reconstruction-and-causation-boundary",
+      "type": "html-css-diagrams",
+      "selector": "[data-reconstruction-boundary]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 8
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 6
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 13
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE03_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE03_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE03_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE03_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE03_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Case 03 v0.1 — County Cork Curriculum Editor",
+    "loadAnnouncement": "Case 03 County Cork v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "56dc7ab3f7eba5787d6943a960c5778526fad218f9bdf763709f0f88ce027b06",
+    "presentation": "a0a13791acbd818fb39f80c08e73c2b38634c4d01b271f2b10cb54800dc8dbba",
+    "taskRegistry": "4735363a35121c0cdb783c44bf34eec41836f005ba4d1e04ec6a7b4c54df941a",
+    "layoutOverrides": "b7c7404c88932515a2a260c41cdcbdb12d5abd52bc7821deee401c2a60c4eed0"
+  }
+}
