@@ -438,36 +438,118 @@ window.HHH_CASE04_TASK_REGISTRY = {
     "scanScope": {
       "roles": ["student", "teacher", "answer", "accessible"],
       "unit": "sentence",
-      "exemptContexts": [
-        { "selector": "[data-claim-under-test]", "why": "a competing claim is a proposition offered to the learner for judgment, not an assertion of the packet" },
-        { "selector": "[data-misconception]", "why": "the Teacher misconceptions table names an error in order to reject it" },
-        { "selector": "[data-refuted-claim]", "why": "an Answer Key floor, a Teacher warning or a learner prompt quotes the error it exists to refuse" },
-        { "selector": ".word-bank", "why": "a word bank is a list of terms offered for placement, not a sentence asserting anything" },
-        { "selector": "[data-term-list]", "why": "an enumeration of the case vocabulary is a term list, not a claim about any of the terms" },
-        { "selector": "[data-quoted-wording]", "why": "scoring guidance quoting a learner phrasing in order to bound when it is acceptable" }
-      ],
-      "rule": "Every sentence outside an exempt context is scanned in every role. Exemption is granted by declared markup, not by lexical guesswork."
+      "rule": "Every sentence in every role is scanned unless the node carries a registered exemption id. Exemption is granted only by the closed contract below: markup cannot self-authorize.",
+      "exemptionAttribute": "data-semantic-exemption"
     },
+    "exemptions": [
+      {
+        "id": "claim-under-test-learner",
+        "roles": ["student", "accessible"],
+        "selector": ".account-item[data-semantic-exemption=\"claim-under-test-learner\"]",
+        "expectedCount": 10,
+        "purpose": "Task 7 competing claims are propositions offered to the learner for judgment, not assertions of the packet.",
+        "allowedConcepts": ["catalyst", "temperature", "attribution", "recycle"]
+      },
+      {
+        "id": "claim-under-test-key",
+        "roles": ["answer"],
+        "selector": ".claims-key tbody tr[data-semantic-exemption=\"claim-under-test-key\"]",
+        "expectedCount": 5,
+        "purpose": "The Answer Key restates each competing claim beside the mark that decides it.",
+        "allowedConcepts": ["catalyst", "temperature", "attribution", "recycle"]
+      },
+      {
+        "id": "teacher-misconception",
+        "roles": ["teacher"],
+        "selector": "[data-semantic-exemption=\"teacher-misconception\"]",
+        "expectedCount": 10,
+        "purpose": "The Teacher misconceptions table and the prose warnings name an error in order to reject it.",
+        "allowedConcepts": ["catalyst", "temperature", "attribution", "recycle"]
+      },
+      {
+        "id": "teacher-rubric-floor",
+        "roles": ["teacher"],
+        "selector": "[data-semantic-exemption=\"teacher-rubric-floor\"]",
+        "expectedCount": 4,
+        "purpose": "Rubric descriptors that quote the disqualifying answer in order to place a floor under it.",
+        "allowedConcepts": ["catalyst", "temperature", "attribution", "recycle"]
+      },
+      {
+        "id": "answer-key-floor",
+        "roles": ["answer"],
+        "selector": "[data-semantic-exemption=\"answer-key-floor\"]",
+        "expectedCount": 5,
+        "purpose": "Answer Key floors that quote the answer they refuse to accept at any level.",
+        "allowedConcepts": ["catalyst", "temperature", "attribution", "recycle"]
+      },
+      {
+        "id": "game-wording-quoted",
+        "roles": ["teacher"],
+        "selector": "[data-semantic-exemption=\"game-wording-quoted\"]",
+        "expectedCount": 3,
+        "purpose": "Places where the runtime level's own faulty wording is reported so the teacher can correct it.",
+        "allowedConcepts": ["temperature"]
+      },
+      {
+        "id": "learner-refutation-prompt",
+        "roles": ["student", "accessible"],
+        "selector": "[data-semantic-exemption=\"learner-refutation-prompt\"]",
+        "expectedCount": 2,
+        "purpose": "Task 3 Part D quotes a wrong belief and asks the learner to refute it with a value.",
+        "allowedConcepts": ["temperature"]
+      },
+      {
+        "id": "scoring-quoted-wording",
+        "roles": ["answer"],
+        "selector": "[data-semantic-exemption=\"scoring-quoted-wording\"]",
+        "expectedCount": 1,
+        "purpose": "Scoring guidance quoting a learner phrasing in order to bound when it is acceptable.",
+        "allowedConcepts": ["catalyst"]
+      },
+      {
+        "id": "vocabulary-term-list",
+        "roles": ["teacher"],
+        "selector": "[data-semantic-exemption=\"vocabulary-term-list\"]",
+        "expectedCount": 1,
+        "purpose": "An enumeration of the case vocabulary is a term list, not a claim about any term in it.",
+        "allowedConcepts": ["catalyst", "temperature", "attribution", "recycle"]
+      }
+    ],
+    "structuralExemptSelectors": [
+      { "selector": ".word-bank", "why": "a word bank is a list of terms offered for placement; it asserts nothing about any of them" }
+    ],
     "catalyst": {
       "role": "rate and pathway",
       "equilibriumPositionEffect": "NONE",
-      "cannotBePresentedAsChangingFinalEquilibriumBalance": true,
-      "subjectTerms": ["catalyst", "catalysts", "promoted iron", "osmium"],
-      "prohibitedOutcomeTerms": [
-        "balance", "equilibrium", "equilibrium position", "final balance", "final amount",
-        "settle", "settles", "settling", "settled", "left with", "ends up", "end up",
-        "extra ammonia", "more ammonia", "higher yield", "greater yield", "bigger yield"
+      "protectedProposition": "A catalyst may change the rate, the pathway, or the time taken to approach the final state. It may not change the amount, proportion, concentration, composition or yield established by the equilibrium state under the same conditions.",
+      "subjectTerms": ["catalyst", "catalysts", "catalytic", "promoted iron"],
+      "productTerms": ["ammonia", "nh3", "product", "mixture", "yield"],
+      "finalStateTerms": [
+        "equilibrium", "balance", "final", "finally", "settle", "settles", "settled", "settling",
+        "stops changing", "stopped changing", "stop changing", "no longer changing",
+        "at rest", "comes to rest", "steady", "steadies",
+        "ends", "ends up", "end up", "ended", "end state", "final state", "outcome",
+        "finished", "finish", "finishes", "complete", "completed",
+        "resulting", "result", "results", "left", "leaves", "remains", "remaining",
+        "once the reaction", "after the reaction", "when the reaction", "once it stops",
+        "when it stops", "present", "afterwards", "in the end"
       ],
-      "changeOrAmountTerms": [
-        "change", "changes", "changing", "shift", "shifts", "shifting",
-        "move", "moves", "moving", "alter", "alters", "altering",
-        "raise", "raises", "raising", "increase", "increases", "increasing",
-        "more", "extra", "higher", "greater", "bigger", "further", "improve",
-        "improves", "better", "push", "pushes", "tip", "tips", "favour", "favours"
+      "increaseRelationTerms": [
+        "increase", "increases", "increased", "increasing", "raise", "raises", "raised", "raising",
+        "boost", "boosts", "boosted", "boosting", "more", "extra", "richer", "rich",
+        "larger", "bigger", "greater", "higher", "improve", "improves", "improved",
+        "change", "changes", "changed", "changing", "shift", "shifts", "shifted", "shifting",
+        "move", "moves", "moved", "moving", "tip", "tips", "tipped", "favour", "favours",
+        "produce more", "make more", "give more", "leaves more", "leave more"
+      ],
+      "functionVerbTerms": [
+        "helps", "help", "lets", "let", "allows", "allow", "enables", "enable",
+        "makes", "make", "produces", "produce", "gives", "give", "works by", "does the work"
       ],
       "permittedRateTerms": [
-        "faster", "fast enough", "quickly", "speed", "speeds", "rate", "sooner",
-        "in a working time", "practical", "route", "pathway", "barrier", "activation"
+        "faster", "fast", "quick", "quickly", "quicker", "speed", "speeds", "rate", "sooner",
+        "time", "route", "pathway", "path", "barrier", "activation", "approach", "reach",
+        "reaches", "reached", "practical", "working time", "in practice"
       ],
       "negationTerms": [
         "no effect on", "does not change", "do not change", "without changing",
@@ -475,64 +557,94 @@ window.HHH_CASE04_TASK_REGISTRY = {
         "not change where", "never changes", "cannot change", "not the position",
         "without altering", "does not alter", "not by moving", "rather than moving",
         "without raising", "does not raise", "not balance", "not the balance",
-        "rate, not", "not where the balance", "never moves the balance", "not how much"
+        "rate, not", "not where the balance", "never moves the balance", "not how much",
+        "not the final", "not the amount", "not the share", "not the composition",
+        "does not decide", "not the yield"
       ],
-      "rule": "A sentence whose subject is the catalyst may not also assert an equilibrium-position or final-amount outcome unless that assertion is negated in the same sentence. Rate language is always permitted."
+      "rules": [
+        "NEGATIVE RELATION: a sentence naming the catalyst, a product term, an increase relation and a final-state term asserts that the catalyst changes the settled amount. The word equilibrium is not required for the contradiction to count.",
+        "POSITIVE BOUNDARY: a learner sentence that assigns a function to the catalyst must resolve into a permitted role - rate, pathway, time to approach - or state that it does not change the equilibrium position. A bare function claim is insufficient."
+      ]
     },
     "temperature": {
       "industrialTemperatureCharacterization": "compromise",
       "ordinaryWarmthCharacterization": "prohibited",
+      "numericAnchorIsEvidenceNotWaiver": true,
       "requiredDirectionsInLearnerEvidence": ["equilibriumDirection", "rateDirection"],
       "subjectTerms": [
         "operating temperature", "compromise temperature", "the temperature",
-        "reactor runs", "runs at", "plants run", "plant runs", "process runs", "it runs at"
+        "reactor runs", "reactor operates", "runs at", "operates at", "operating at",
+        "plants run", "plant runs", "plant operates", "process runs", "it runs at", "reactor"
       ],
+      "subjectValuePattern": "\\b\\d{2,4}\\s*(?:°\\s*c|degrees)",
       "warmthTerms": [
-        "warm", "warmth", "warmly", "mild", "mildly", "gentle", "gently", "lukewarm",
-        "tepid", "room temperature", "body temperature", "comfortable", "barely hot",
-        "moderate heat", "slightly hot", "a little hot", "not very hot", "hardly hot"
-      ],
-      "hotAnchorTerms": [
-        "327", "400", "450", "500", "600", "1000", "hundreds of degrees",
-        "melt", "melts", "molten", "hotter than"
+        "warm", "warmth", "warmly", "mild", "mildly", "mildness", "gentle", "gently",
+        "lukewarm", "tepid", "comfortable", "comfortably", "comfort", "cosy", "cozy",
+        "balmy", "temperate", "mellow", "pleasant", "room temperature", "body temperature",
+        "not especially hot", "not very hot", "not that hot", "not too hot", "hardly hot",
+        "barely hot", "a little hot", "slightly hot", "no hotter than", "no fiercer than",
+        "moderate setting", "moderate warmth", "merely moderate", "just moderate",
+        "nothing extreme", "not extreme"
       ],
       "negationTerms": [
-        "not ordinary warmth", "not warm", "does not mean warm", "do not mean warm",
-        "is not gentle", "not merely warm", "not mildly warm", "rather than warm",
-        "not gently warm", "never warm", "is wrong", "are wrong", "incorrect",
-        "not much hotter", "cannot be read as ordinary warmth", "cannot be read as warm"
+        "not ordinary warmth", "does not mean warm", "do not mean warm", "not merely warm",
+        "not mildly warm", "rather than warm", "not gently warm", "never warm",
+        "cannot be read as ordinary warmth", "cannot be read as warm", "is not gentle",
+        "is wrong", "are wrong", "incorrect"
       ],
-      "rule": "A sentence about the operating temperature may not carry warmth language unless the same sentence also carries an anchored hot value or an explicit hotter-than comparison. Both learner editions must additionally state the equilibrium direction and the rate direction, and the word compromise, in print."
+      "rule": "A numeric temperature makes a sentence a temperature sentence. Warmth or mildness language about the operating condition fails even when a high numeric value is present in the same sentence: the value is evidence that the mild characterisation is wrong, never a waiver. Only an explicit denial of the warmth reading clears it."
     },
     "attribution": {
       "laboratoryWorkIsNotIndustrialScaleUp": true,
       "industrialProcessMayNotBeDescribedAsCompleteBeforeScaleUp": true,
-      "laboratoryActors": ["Haber", "Le Rossignol"],
-      "industrialActors": ["Bosch", "BASF", "Mittasch", "Lappe"],
+      "laboratorySubjectTerms": ["haber", "le rossignol", "laboratory", "bench"],
+      "industrialSubjectTerms": ["bosch", "basf", "factory", "factories", "plant", "works", "industry"],
       "completionTerms": [
-        "already complete", "already-complete", "already solved", "already finished",
-        "already worked out", "complete industrial", "finished industrial",
-        "ready to build", "nothing left to solve", "fully designed"
+        "already", "finished", "finish", "completed", "complete", "solved", "solve",
+        "fully developed", "made ready", "ready", "production-ready", "factory-ready",
+        "had everything needed", "nothing left", "worked out the industrial",
+        "sorted out", "settled the engineering"
+      ],
+      "industrialNounTerms": [
+        "industrial", "industry", "factory", "factories", "plant-scale", "plant scale",
+        "production-scale", "production scale", "scale-up", "scale up", "at scale",
+        "engineering", "production", "works", "plant"
       ],
       "diminutiveTerms": ["simply", "merely", "only", "just", "no more than", "nothing more than"],
       "reproductionTerms": [
-        "reproduced", "reproduce", "copied", "copy", "constructed", "construct",
-        "built", "build", "followed", "scaled up a copy", "replicated", "replicate"
+        "copied", "copy", "copies", "copying", "reproduced", "reproduce", "reproducing",
+        "built", "build", "building", "constructed", "construct", "constructing",
+        "replicated", "replicate", "followed", "follow"
       ],
-      "rule": "Two patterns are prohibited outside an exempt context. First, a sentence naming a laboratory actor together with a completion term applied to industrial, factory, plant or scale work. Second, a sentence naming an industrial actor together with a diminutive term and a reproduction term, which reduces the scale-up to copying."
+      "negationTerms": [
+        "not yet", "was not", "were not", "had not", "did not", "does not", "nothing about",
+        "not complete", "not finished", "not solved", "still had to", "had to solve",
+        "had to invent", "could not", "never"
+      ],
+      "rules": [
+        "A sentence naming a laboratory actor, a completion term and an industrial noun asserts that the industrial engineering was finished before the scale-up. Word order and adjacency are irrelevant.",
+        "A sentence naming an industrial actor, a diminutive and a reproduction term reduces the scale-up to copying."
+      ]
     },
     "recycle": {
       "figuresAreReportedExamples": true,
       "figures": ["15", "98"],
       "qualificationTerms": [
         "reported", "example", "typical", "varies from plant to plant", "varies from one",
-        "for one worked plant", "not a constant", "not constants", "a worked figure"
+        "for one worked plant", "not a constant", "not constants", "a worked figure", "worked plant"
       ],
-      "universalityTerms": [
-        "always", "every plant", "all plants", "invariably", "in all cases",
-        "is fixed at", "constant", "never varies", "must convert"
+      "universalQuantifierTerms": [
+        "every", "any", "all ", "always", "invariably", "universal", "universally",
+        "in all cases", "without exception", "never varies", "regardless of plant"
       ],
-      "rule": "Two checks. A learner block printing either figure as a share of conversion must carry a qualification term. And no sentence anywhere may attach a universality term to either figure, even if a qualification appears elsewhere in the same block."
+      "plantContextTerms": [
+        "plant", "plants", "factory", "factories", "works", "process", "manufacturing",
+        "haber-bosch", "haber bosch", "ammonia plant"
+      ],
+      "rules": [
+        "A learner block printing either figure as a share of conversion must carry a qualification term.",
+        "UNIVERSALITY: a sentence printing either figure together with a universal quantifier and a plant or process context asserts the figure is what every plant does. The quantifier and the plant word need not be adjacent."
+      ]
     }
   },
   "claimJudgments": {
@@ -551,13 +663,66 @@ window.HHH_CASE04_TASK_REGISTRY = {
   },
   "chronology": [
     { "year": "1908", "lane": "laboratory", "entry": "BASF and Haber agree to pursue the direct combination of nitrogen and hydrogen.", "source": "travis-2015" },
-    { "year": "1909", "lane": "laboratory", "entry": "The Karlsruhe demonstration, with Le Rossignol's apparatus and an osmium catalyst: about eight per cent ammonia at roughly 600 degrees and about 175 to 200 atmospheres. Published accounts differ on the exact date.", "source": "travis-2015; appl-1997" },
+    { "year": "1909", "lane": "laboratory",
+      "entry": "The Karlsruhe demonstration, with the apparatus Le Rossignol designed and an osmium catalyst. Published accounts differ on the exact date.",
+      "source": "travis-2015; appl-1997",
+      "unitConflationProhibited": true,
+      "conflationNote": "The two sources report about eight per cent under different conditions, in different units, with different epistemic status. They are two sourced facts about one milestone and must never be merged into a single 175 to 200 atmospheres condition.",
+      "sourcedConditions": [
+        {
+          "id": "haber-calculated",
+          "epistemicStatus": "calculated",
+          "verbFamily": ["calculated", "predicted", "expected", "should be reachable"],
+          "prohibitedVerbFamily": ["obtained", "achieved", "produced", "gave", "measured"],
+          "ammonia": "about eight per cent",
+          "temperature": { "value": 600, "unit": "degrees Celsius" },
+          "pressure": { "value": 200, "unit": "atmospheres" },
+          "note": "a prediction made before the experiments",
+          "source": "travis-2015"
+        },
+        {
+          "id": "osmium-obtained",
+          "epistemicStatus": "obtained",
+          "verbFamily": ["obtained", "gave", "yielded", "achieved", "was obtained"],
+          "prohibitedVerbFamily": ["calculated", "predicted", "expected"],
+          "ammonia": "about eight per cent by volume",
+          "temperature": { "value": 600, "unit": "degrees Celsius" },
+          "pressure": { "value": 175, "unit": "bar" },
+          "note": "a result obtained with a finely divided osmium catalyst",
+          "source": "appl-1997"
+        }
+      ] },
     { "year": "1909", "lane": "laboratory", "entry": "Haber and Le Rossignol file the ammonia patent on 13 August, assigned to BASF.", "source": "haber-patent" },
     { "year": "1910", "lane": "catalyst", "entry": "Mittasch's screening at BASF finds promoted iron, after thousands of tests.", "source": "travis-2015; appl-1997" },
     { "year": "1911", "lane": "plant", "entry": "Bosch and Lappe answer the hydrogen embrittlement of the steel with a double-walled converter, in February.", "source": "travis-2015" },
     { "year": "1913", "lane": "plant", "entry": "Oppau begins production on 9 September, at about twenty tonnes a day, soon about thirty.", "source": "travis-2015; appl-1997" },
     { "year": "1916", "lane": "laboratory", "entry": "The Haber and Le Rossignol patent is granted on 31 October.", "source": "haber-patent" }
   ],
+  "figureAccessibilityContract": {
+    "rule": "Critical figure accessibility text carries the same distinctions the visible figure carries. It is checked against canonical chronology metadata, not against one hard-coded sentence.",
+    "figures": [
+      {
+        "id": "technology-sequence",
+        "selector": "[data-sequence-contract]",
+        "roles": ["student", "accessible"],
+        "chronologyYear": "1909",
+        "chronologyLane": "laboratory",
+        "requiresSourcedConditionParity": true,
+        "requiresRolePartity": true,
+        "prohibitedPatterns": [
+          { "id": "merged-pressure-range", "regex": "175\\s*(?:to|-|\\u2013|\\u2014)\\s*200", "why": "merges Appl's obtained 175 bar with Travis's calculated 200 atmospheres into one false condition" },
+          { "id": "bar-atm-substitution", "regex": "175\\s*(?:atm|atmospheres)", "why": "Appl states 175 in bar; restating it in atmospheres performs an unmarked conversion" },
+          { "id": "atm-bar-substitution", "regex": "200\\s*bar", "why": "Travis states 200 in atmospheres; restating it in bar performs an unmarked conversion" }
+        ]
+      }
+    ],
+    "attributionParity": {
+      "rule": "Where the visible figure distinguishes who diagnosed a failure from who aided the solution, the accessibility text must make the same distinction.",
+      "prohibitedPatterns": [
+        { "id": "joint-embrittlement-diagnosis", "regex": "bosch and (?:franz )?lappe (?:answer|find|found|discover|discovered|establish|established|work out|worked out)", "why": "the diagnosis is Bosch's; Lappe aided the solution" }
+      ]
+    }
+  },
   "standards": {
     "directlyAssessed": [
       "C3 D2.His.14.6-8",
