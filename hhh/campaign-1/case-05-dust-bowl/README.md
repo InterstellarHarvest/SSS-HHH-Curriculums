@@ -167,7 +167,7 @@ both marked **N**.
 ## Source estate
 
 **Twelve** canonical sources in `task-registry.js` under `caseSources`, carrying
-**four** distinct evidentiary statuses — `documented` (6), `modeled` (5),
+**four** distinct evidentiary statuses — `documented` (5), `modeled` (5),
 `reconstructed` (1) and `debated` (1). Every learner-facing STATUS line is bound to
 one of them by `data-source-id`, and the Teacher source ledger covers all twelve in
 **nine printed rows**: the four curriculum-original figures share a single row under
