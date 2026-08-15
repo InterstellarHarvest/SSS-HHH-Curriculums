@@ -993,15 +993,41 @@ def main() -> int:
     results.check("no source reference invents a date the registry does not carry",
                   "13 August 1909" in everything and "31 October 1916" in everything, "")
 
-    # ---- lifecycle: this is a candidate, not a release ----------------------
-    results.check("the package is a validation candidate with no owner approval",
-                  package["status"] == "VALIDATION_BUILD"
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN"
-                  and "releaseHistory" not in package,
-                  json.dumps({"status": package["status"], "approval": package["approval"]}))
-    results.check("no release or approval record exists on disk",
-                  not (UNIT / "history").exists(), "")
+    # ---- lifecycle: this is a released package ------------------------------
+    # Until the owner gate this block asserted the opposite — that the package was a
+    # candidate carrying no approval and no history/ directory. Release conversion
+    # flips the obligation rather than removing it: the package must now be released
+    # *consistently*, in every place the lifecycle is written down.
+    release_record = UNIT / "history" / "release-v0.1.json"
+    approval_record = UNIT / "history" / "CASE04_OWNER_APPROVAL_v0.1.md"
+    results.check("the package carries the owner-approved released lifecycle",
+                  package["status"] == "APPROVED_STABLE"
+                  and package["approval"]["status"] == "APPROVED"
+                  and package["approval"]["printStatus"] == "PASS"
+                  and package["approval"]["date"] == "2026-08-15"
+                  and package["approval"]["owner"] == "Nate / Owner"
+                  and package.get("releaseHistory") == str(release_record.relative_to(ROOT)),
+                  json.dumps({"status": package["status"], "approval": package["approval"],
+                              "releaseHistory": package.get("releaseHistory")}))
+    results.check("the release and approval records exist on disk",
+                  release_record.is_file() and release_record.stat().st_size > 0
+                  and approval_record.is_file() and approval_record.stat().st_size > 0, "")
+    release = json.loads(release_record.read_text(encoding="utf-8"))
+    results.check("the release record agrees with the package on identity and approval",
+                  release["caseId"] == package["id"]
+                  and release["curriculumVersion"] == package["version"]
+                  and release["status"] == package["status"]
+                  and release["approvalDate"] == package["approval"]["date"]
+                  and release["owner"] == package["approval"]["owner"]
+                  and release["acceptedPrintStatus"].startswith("PASS"),
+                  json.dumps({"caseId": release["caseId"], "version": release["curriculumVersion"]}))
+    results.check("the release record certifies the four source hashes the package pins",
+                  release["sourceHashes"] == package["sourceHashes"],
+                  json.dumps({"record": release["sourceHashes"], "package": package["sourceHashes"]}))
+    results.check("the release record page counts match the declared role structure",
+                  all(release["rolePageCounts"][role] == package["rolePageStructure"][role]["pageCount"]
+                      for role in ("student", "teacher", "answer", "accessible")),
+                  json.dumps(release["rolePageCounts"]))
     results.check("no printable role claims an approved or released state",
                   "approved_stable" not in " ".join(lowered.values()), "")
 
