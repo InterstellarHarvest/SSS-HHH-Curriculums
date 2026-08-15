@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE05",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-1",
+  "title": "The Dust Bowl",
+  "subtitle": "Campaign 1 · Case 05 · The southern plains and Washington, 1935",
+  "location": "Oklahoma and Washington, DC",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE05:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-05-dust-bowl/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-05-dust-bowl/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-05-dust-bowl/source/task-registry.js",
+    "global": "HHH_CASE05_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-05-dust-bowl/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case05-region-diagram",
+      "type": "html-css-diagrams",
+      "selector": "[data-region-contract]",
+      "embed": true
+    },
+    {
+      "id": "case05-erosion-system",
+      "type": "html-css-diagrams",
+      "selector": "[data-erosion-contract]",
+      "embed": true
+    },
+    {
+      "id": "case05-causation-map",
+      "type": "html-css-diagrams",
+      "selector": "[data-causation-contract]",
+      "embed": true
+    },
+    {
+      "id": "case05-policy-sequence",
+      "type": "html-css-diagrams",
+      "selector": "[data-sequence-contract]",
+      "embed": true
+    },
+    {
+      "id": "case05-fence-comparison",
+      "type": "html-css-diagrams",
+      "selector": ".fence-table",
+      "embed": true
+    },
+    {
+      "id": "case05-reconstruction-and-causation-boundary",
+      "type": "html-css-diagrams",
+      "selector": "[data-reconstruction-boundary]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 10
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 8
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 6
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 17
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE05_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE05_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE05_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE05_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE05_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Case 05 v0.1 — The Dust Bowl Curriculum Editor",
+    "loadAnnouncement": "Case 05 The Dust Bowl v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "9e9596c241be925da3b7a227368b28c9afb917c7a908addcaf26ec5700c8763a",
+    "presentation": "207177a824284f71ef860f271bcc8d193be84f3864d644753f85aa268703f616",
+    "taskRegistry": "8c8ced45d5cff653b366e78e157e00866c3ad96ebe619d6c42e1acb69704efc6",
+    "layoutOverrides": "a82e8c79c1470c44e7a137526a3693ec35f6f8b1cf6a901adfaceaf019d7c679"
+  }
+}

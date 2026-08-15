@@ -1,0 +1,589 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE05",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE05:accessible:t2:a2-first",
+      "persistId": "a2-first",
+      "pageId": "accessible-dust-bowl-06",
+      "taskId": 2,
+      "label": "Accessible Task 2 the provisional explanation",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t2:a2-check",
+      "persistId": "a2-check",
+      "pageId": "accessible-dust-bowl-06",
+      "taskId": 2,
+      "label": "Accessible Task 2 the check that explanation would need",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t3:a3-span",
+      "persistId": "a3-span",
+      "pageId": "accessible-dust-bowl-08",
+      "taskId": 3,
+      "label": "Accessible Task 3 the span of the drought and the longest dry stretch",
+      "minPx": 72,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t3:a3-gap",
+      "persistId": "a3-gap",
+      "pageId": "accessible-dust-bowl-08",
+      "taskId": 3,
+      "label": "Accessible Task 3 why the drought record alone does not explain the soil loss",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t4:a4-sub-does",
+      "persistId": "a4-sub-does",
+      "pageId": "accessible-dust-bowl-10",
+      "taskId": 4,
+      "label": "Accessible Task 4 what the core readings establish",
+      "minPx": 72,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t4:a4-sub-not",
+      "persistId": "a4-sub-not",
+      "pageId": "accessible-dust-bowl-10",
+      "taskId": 4,
+      "label": "Accessible Task 4 what the core readings do not establish",
+      "minPx": 72,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t5:a5-establishes",
+      "persistId": "a5-establishes",
+      "pageId": "accessible-dust-bowl-12",
+      "taskId": 5,
+      "label": "Accessible Task 5 what the fence-line comparison establishes",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t5:a5-limits",
+      "persistId": "a5-limits",
+      "pageId": "accessible-dust-bowl-12",
+      "taskId": 5,
+      "label": "Accessible Task 5 what it does not establish and the regional check",
+      "minPx": 72,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t6:a6-feedback",
+      "persistId": "a6-feedback",
+      "pageId": "accessible-dust-bowl-14",
+      "taskId": 6,
+      "label": "Accessible Task 6 the feedback relation",
+      "minPx": 72,
+      "maxPx": 380
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t6:a6-remove-cond",
+      "persistId": "a6-remove-cond",
+      "pageId": "accessible-dust-bowl-14",
+      "taskId": 6,
+      "label": "Accessible Task 6 removing the condition",
+      "minPx": 72,
+      "maxPx": 380
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t6:a6-remove-vuln",
+      "persistId": "a6-remove-vuln",
+      "pageId": "accessible-dust-bowl-14",
+      "taskId": 6,
+      "label": "Accessible Task 6 removing the vulnerability",
+      "minPx": 72,
+      "maxPx": 380
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t6:a6-limit",
+      "persistId": "a6-limit",
+      "pageId": "accessible-dust-bowl-14",
+      "taskId": 6,
+      "label": "Accessible Task 6 one thing the map does not explain",
+      "minPx": 72,
+      "maxPx": 380
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t7:a7-confound",
+      "persistId": "a7-confound",
+      "pageId": "accessible-dust-bowl-15",
+      "taskId": 7,
+      "label": "Accessible Task 7 why the timeline cannot credit the Act alone",
+      "minPx": 72,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE05:accessible:t8:a8-settle",
+      "persistId": "a8-settle",
+      "pageId": "accessible-dust-bowl-16",
+      "taskId": 8,
+      "label": "Accessible Task 8 the evidence that would settle the undecided claim",
+      "minPx": 72,
+      "maxPx": 400
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-band-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a3-band-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a3-band-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-stage-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-stage-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-cond-landuse",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a4-cond-drought",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a5-roots-field",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-roots-strip",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-dry-field",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-dry-strip",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-soil-field",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-soil-strip",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-wind-field",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-wind-strip",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-cond-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-vuln-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-vuln-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-mech-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-mech-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a6-resp-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-slot-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-slot-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-slot-4",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a7-slot-5",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a8-mark-1",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a8-mark-2",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a8-mark-3",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a8-mark-4",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a8-mark-5",
+      "reason": "classification"
+    },
+    {
+      "persistId": "a9-explanation",
+      "reason": "horizontal-reflow"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE05:student:t2:t2-first",
+        "persistId": "t2-first",
+        "pageId": "student-dust-bowl-03",
+        "taskId": 2,
+        "label": "Task 2 the provisional explanation",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t2:t2-check",
+        "persistId": "t2-check",
+        "pageId": "student-dust-bowl-03",
+        "taskId": 2,
+        "label": "Task 2 the check that explanation would need",
+        "minPx": 64,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t3:t3-span",
+        "persistId": "t3-span",
+        "pageId": "student-dust-bowl-04",
+        "taskId": 3,
+        "label": "Task 3 the span of the drought and the longest dry stretch",
+        "minPx": 56,
+        "maxPx": 220
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t3:t3-gap",
+        "persistId": "t3-gap",
+        "pageId": "student-dust-bowl-04",
+        "taskId": 3,
+        "label": "Task 3 why the drought record alone does not explain the soil loss",
+        "minPx": 72,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t4:t4-sub-does",
+        "persistId": "t4-sub-does",
+        "pageId": "student-dust-bowl-05",
+        "taskId": 4,
+        "label": "Task 4 what the core readings establish about the subsoil",
+        "minPx": 56,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t4:t4-sub-not",
+        "persistId": "t4-sub-not",
+        "pageId": "student-dust-bowl-05",
+        "taskId": 4,
+        "label": "Task 4 what the core readings do not establish about the subsoil",
+        "minPx": 56,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t5:t5-establishes",
+        "persistId": "t5-establishes",
+        "pageId": "student-dust-bowl-06",
+        "taskId": 5,
+        "label": "Task 5 what the fence-line comparison establishes",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t5:t5-limits",
+        "persistId": "t5-limits",
+        "pageId": "student-dust-bowl-06",
+        "taskId": 5,
+        "label": "Task 5 what it does not establish and the regional check",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t6:t6-remove",
+        "persistId": "t6-remove",
+        "pageId": "student-dust-bowl-07",
+        "taskId": 6,
+        "label": "Task 6 the two removal answers",
+        "minPx": 56,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t6:t6-limit",
+        "persistId": "t6-limit",
+        "pageId": "student-dust-bowl-07",
+        "taskId": 6,
+        "label": "Task 6 one thing the map does not explain",
+        "minPx": 56,
+        "maxPx": 240
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t7:t7-confound",
+        "persistId": "t7-confound",
+        "pageId": "student-dust-bowl-08",
+        "taskId": 7,
+        "label": "Task 7 why the timeline cannot credit the Act alone",
+        "minPx": 72,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C1-CASE05:student:t8:t8-settle",
+        "persistId": "t8-settle",
+        "pageId": "student-dust-bowl-09",
+        "taskId": 8,
+        "label": "Task 8 the evidence that would settle the undecided claim",
+        "minPx": 64,
+        "maxPx": 300
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-band-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t3-band-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t3-band-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-stage-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-cond-landuse",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t4-cond-drought",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t5-cover-field",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-cover-strip",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-roots-field",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-roots-strip",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-dry-field",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-dry-strip",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-soil-field",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-soil-strip",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-wind-field",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-wind-strip",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-cond-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-cond-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-vuln-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-vuln-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-mech-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-mech-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-resp-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t6-resp-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-slot-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-slot-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-slot-4",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t7-slot-5",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t8-mark-1",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t8-mark-2",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t8-mark-3",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t8-mark-4",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t8-mark-5",
+        "reason": "classification"
+      },
+      {
+        "persistId": "t9-explanation",
+        "reason": "horizontal-reflow"
+      }
+    ],
+    "overrides": {}
+  }
+}
