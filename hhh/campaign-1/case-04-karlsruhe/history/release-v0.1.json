@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE04",
+  "curriculumVersion": "0.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-15",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "0000000000000000000000000000000000000000",
+  "canonicalSourceApprovalCommit": "0000000000000000000000000000000000000000",
+  "sourceHashes": {
+    "content": "5fa9709f67389bab28f8d7ee9c7843c0043d3578215879abb768ae8b377fe1a6",
+    "presentation": "2390622bbed53fd6ee8c403f2952eaf85f165e7bbbd1d01f4ef56e637a4d0019",
+    "taskRegistry": "677176a22ebe3bd3dd35604e839852346dccc2fcaba4e45220f359b16acaf24d",
+    "layoutOverrides": "6c582a63645e323d6e9469b65c2e174096363c3616e11fa21e32597598feaf8e"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "c3960e4d4079ce36a9d829c192ecc1bd7c0db4d98718b39ad27bca6848864c07",
+    "teacher": "da3e9e39f140a61f0630d3a5ff6ac85e6485efe04f050299e2fd108d4a4e01bd",
+    "answer": "7226fc01ae610153f31cf8d8a620b925ca2ed3e1f20e2d6d90e9ac962e5b1b5f",
+    "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only."
+  },
+  "rolePageCounts": {
+    "student": 8,
+    "teacher": 7,
+    "answer": 6,
+    "accessible": 14
+  },
+  "acceptedValidation": {
+    "status": "PENDING_COMMIT_B"
+  },
+  "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-15. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Core Case 04 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
+  },
+  "formerArtifactRecoveryCommit": "0000000000000000000000000000000000000000",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [],
+  "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+  "migrationNotes": [
+    "Fourth HHH Core Case release, produced against the released Core Case 03 baseline 674052ac6935a4a386281ba6542cbb522ed75d04 and the approved Blueprint.",
+    "Owner-approved printable baseline: 29b34b31ab5b553093e134fcedb5a41b07b2c4f8. The owner reviewed that byte set on screen and printed it at 100% / Actual Size. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing. All 35 pages were re-rendered in colour and grayscale at both trees and all 70 page images are byte-identical.",
+    "Certified release-source commit: recorded in the three commit pins. The released task-registry.js bytes first exist at the release-conversion commit, because the lifecycle stamp is created by release conversion, so the pins identify that commit rather than the owner printable baseline. The two are recorded separately and deliberately, following the Case 03 precedent.",
+    "No post-review art-direction commits exist for this case. The commit the independent reviewer passed and the commit the owner approved and printed are the same commit, so the owner's print approval covers exactly the reviewed byte set.",
+    "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056.",
+    "Both Case 04 game dependencies are addressed curriculum-side and no game edit was made. HHH-GAME-C1L4-001, the malformed word in the Level 4 pressure field-note summary, was verified still present in the game bytes at d9fc16b; the faulty wording is reproduced nowhere in this package and Teacher page 3 tells the teacher what a student on the game route may see. HHH-GAME-C1L4-002, the temperature qualification, was treated as a design requirement rather than a disclaimer and shapes the tradeoff figure and its ladder, Task 3, Task 4, Task 5, Task 7, the Teacher qualification note, both Answer Key floors and rubric criteria 1 to 3.",
+    "Runtime case identity: C1 L4, Karlsruhe, Fritz Haber's laboratory in Germany, 1909. instructionalType CORE_CASE.",
+    "Eight tasks carry the Core Case spine, and the case's organising idea is neither chronology nor scale nor sufficiency but workability: a scientifically possible reaction is not automatically an industrially workable technology. Task 8 Part D carries transfer rather than a ninth task, because the transfer operation is the operation Parts A to C already assess.",
+    "Canonical CER is deliberately not used. The culminating product must hold four contributions together and distinguish laboratory result from industrial scale-up; a claim-evidence-reasoning frame would collapse the attribution reasoning into a single claim. Teacher page 5 states that reasoning for classroom readers under Evidence, mechanism and attribution architecture.",
+    "Source model: eight canonical caseSources entries across four evidentiary statuses - documented (4), modeled (2), reconstructed (1) and estimated (1) - including a real historical primary source, Haber and Le Rossignol's US Patent 1,202,995. The Teacher source ledger covers all eight in seven printed rows under a declared grouping rule, and a parity guard checks ledger coverage against the canonical estate in both directions.",
+    "The two scholarly sources disagree on the date of the 1909 demonstration: Travis 2015 gives 1 July 1909 as one version of events, Appl 1997 gives April 1909. The disagreement is real, is printed on both dossier cards, and is the evidence for Task 6 row three and Task 7 Claim 5. The year is documented; the date is not.",
+    "The two sources also use 8% differently and the packet keeps them apart. Travis reports a figure Haber calculated in advance, about 8% at 600 degrees Celsius and 200 atmospheres; Appl reports a result obtained with osmium, about 8% by volume at 175 bar and 600 degrees Celsius. Bar and atmospheres are not treated as interchangeable and no conversion is performed between them. The 15 and 98 per cent conversion figures are printed as reported worked examples for one typical plant, never as constants, because the source supplying them states that the single-pass figure varies from plant to plant.",
+    "Declared Accessible adaptation: in Task 6 the Accessible edition supplies row one complete as a worked model, so the Accessible learner classifies four rows and completes twelve cells independently against the Student learner's five and fifteen. It is documented on the Accessible page, in the Teacher access supports, in the Teacher scoring note and in the Answer Key, no Student answer space was reduced to pay for it, and a guard prevents any role from claiming that nothing is disclosed while the prefill exists.",
+    "Regression protection added with this case and retained by the release: a case-scoped validator carrying five bounded semantic contracts - temperature, catalyst, attribution, recycle and demonstration date - plus registry-driven learner source-status parity, ledger coverage parity in both directions, figure-accessibility parity between rendered aria-labels and the canonical chronology metadata, keyed claim marks checked against the registry, citation guards bound to the reference entries, and an answer-disclosure guard on the Accessible prefill.",
+    "The catalyst contract is fail-closed and is the most consequential thing this release carries. Any sentence naming a catalyst and naming ammonia must resolve to an approved function, a registered descriptive claim identified by the SHA-256 fingerprint of its normalised text, or a registered evaluative exemption; anything else fails regardless of the verb it uses. That design replaced an open blacklist of wrong verbs which could not converge, and it is why six review rounds were needed. Registration is by fingerprint rather than by markup, so no attribute in content.html can authorise its own sentence. Sentences are split on terminal punctuation only, with decimal and initial guards, so internal punctuation cannot sever a catalyst from the product claim it governs. The no-shift function requires a bound invariant rather than a bare condition qualifier, so a sentence must identify what stays unchanged.",
+    "One nonblocking observation is carried forward as future validator maintenance and was deliberately not reopened during release conversion: an attribution sentence form that the attribution contract does not currently catch. It affects no released classroom byte.",
+    "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines."
+  ],
+  "retiredArtifacts": []
+}

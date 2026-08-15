@@ -367,16 +367,18 @@
               "title": "Karlsruhe",
               "instructionalType": "CORE_CASE",
               "version": "0.1",
-              "status": "VALIDATION_BUILD",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "hhh/campaign-1/case-04-karlsruhe/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "VALIDATION",
+              "packageStatus": "APPROVED",
               "approval": {
+                "date": "2026-08-15",
                 "owner": "Nate / Owner",
-                "status": "OWNER_REVIEW_NOT_STARTED",
-                "printStatus": "NOT_RUN"
-              }
+                "status": "APPROVED",
+                "printStatus": "PASS"
+              },
+              "historyRecord": "hhh/campaign-1/case-04-karlsruhe/history/release-v0.1.json"
             },
             {
               "id": "HHH-C1-CASE05",

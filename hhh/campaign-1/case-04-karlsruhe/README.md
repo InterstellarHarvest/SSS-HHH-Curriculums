@@ -5,24 +5,32 @@
 **Instructional type:** `CORE_CASE`
 **Game source:** Campaign 1 · Level 4
 **Version:** 0.1
-**Status:** `VALIDATION_BUILD` — production candidate, not a release
+**Status:** `APPROVED_STABLE` — released 2026-08-15
 
-## Candidate state
+The fourth full historical Core Case in Hunger, Harvest, & History, released at v0.1 on
+2026-08-15. Produced against the released Core Case 03 baseline
+`674052ac6935a4a386281ba6542cbb522ed75d04` and the approved Blueprint.
 
-This package is a **production candidate awaiting independent review**. It is
-not approved, not released, and not frozen.
+## Release state
 
 | Gate | State |
 | --- | --- |
-| Package status | `VALIDATION` |
-| Owner review | `OWNER_REVIEW_NOT_STARTED` |
-| Print status | `NOT_RUN` — physical print testing is owner-only and has not been performed |
-| Release record | none; no `history/` directory exists |
-| Approval record | none |
+| Package status | `APPROVED` |
+| Owner review | `OWNER_REVIEW_PASS` — Nate / Owner, 2026-08-15 |
+| Print status | `PASS` — owner physical print at 100% / Actual Size |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/CASE04_OWNER_APPROVAL_v0.1.md`](history/CASE04_OWNER_APPROVAL_v0.1.md) |
 
-No `APPROVED_STABLE` claim is made anywhere in this package. Rendering,
-screenshot and browser validation have been performed; **a print PASS has not
-been claimed and cannot be claimed from this side.**
+**Owner-approved printable baseline:** `29b34b31ab5b553093e134fcedb5a41b07b2c4f8`.
+Release conversion left `content.html`, `presentation.css` and `layout-overrides.json`
+byte-identical to that commit; only `task-registry.js` moved, and only in its two lifecycle
+keys, neither of which renders. The release record pins the commit whose tree first carries
+the released certified bytes, which is the release-conversion commit rather than the
+printable baseline; the two are recorded separately and deliberately.
+
+Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a release
+gate, and any PDF exported from the browser is noncanonical and carries no accessibility
+guarantee.
 
 ## Central learning goal
 
@@ -105,7 +113,7 @@ Both Case 04 entries in the game-remediation dependency tracker are addressed
 - **`HHH-GAME-C1L4-001`** (nonblocking polish) — the malformed word in the Level 4
   pressure field-note summary was verified as still present in the game bytes at
   `d9fc16b`. The faulty wording is **not reproduced anywhere in this package**;
-  where the idea is needed it is paraphrased accurately. Teacher page 7 tells the
+  where the idea is needed it is paraphrased accurately. Teacher page 3 tells the
   teacher what a student on the game route may see and that it is a typing error.
 - **`HHH-GAME-C1L4-002`** (curriculum qualification required) — treated as a
   design requirement rather than a disclaimer. It shapes the tradeoff figure and
@@ -160,6 +168,25 @@ both learner editions.
 Complete. Every assessed task is answerable from the printed dossier and the
 three figures. Teacher page 7 carries the task-by-task fallback map and the list
 of load-bearing facts that are carried in **both** learner editions.
+
+## Semantic regression contract
+
+The case carries a scoped validator,
+[`apps/curriculum-editor/tests/validate_hhh_case04_karlsruhe.py`](../../../apps/curriculum-editor/tests/validate_hhh_case04_karlsruhe.py),
+chained into static validation. Beyond the ordinary structural guards it enforces five
+bounded semantic contracts — temperature, catalyst, attribution, recycle and demonstration
+date — and the catalyst contract is the strictest of them.
+
+The catalyst guard is **fail-closed**. Any sentence in any role that names a catalyst and
+names ammonia must resolve to one of exactly three things: an approved function (rate,
+pathway, or a bound-invariant no-shift statement), a registered descriptive claim identified
+by the SHA-256 fingerprint of its normalised text, or a registered evaluative exemption.
+Anything else fails, whatever verb it uses. That design replaced an open blacklist of wrong
+verbs, which could not converge: reviewers kept finding new ways to say *increases the yield*.
+Internal punctuation cannot create a safety boundary — sentences are split on terminal
+punctuation only, with decimal and initial guards — so a semicolon or an em dash cannot sever
+a catalyst from the product claim it governs. Registration is by fingerprint rather than by
+markup, so no attribute in `content.html` can authorise its own sentence.
 
 ## Preservation
 
