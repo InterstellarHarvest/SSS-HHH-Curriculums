@@ -95,6 +95,52 @@ def sentences(text: str) -> list[str]:
     return [part.strip() for part in SENTENCE_SPLIT.split(text) if part.strip()]
 
 
+# --- proposition splitting, catalyst contract only -------------------------
+#
+# A semicolon, colon or dash is internal punctuation, not a safety boundary.
+# Splitting on them let one proposition evade the catalyst gate by a single
+# character: "The catalyst does its work; the ammonia total climbs as a result."
+# So the catalyst gate analyses PROPOSITIONS, which break only on true terminal
+# punctuation.
+#
+# This is deliberately NOT applied to temperature, attribution or recycle. Those
+# contracts closed against sentence-level analysis, and merging clauses there
+# would manufacture false positives on legitimate two-clause prose - "Haber's
+# laboratory established that it could be done; Bosch and BASF then had to solve
+# the plant engineering" would read as one lab-completed-industrial claim. The
+# catalyst gate is safe to merge precisely because it fails closed: a correct
+# sentence carries its approved function inside the merged proposition.
+#
+# DOM blocks still bound the unit. scannable_blocks() yields one text per leaf
+# block, so unrelated regions are never concatenated merely because neither ends
+# in a period.
+TERMINAL_SPLIT = re.compile(r"(?<=[.?!])[\"\u201d\u2019)\]]*\s+")
+INITIAL_OR_ABBREV = re.compile(
+    r"(?:\b[A-Z]\.|\b(?:Dr|Mr|Mrs|Ms|Prof|St|No|vol|Vol|approx|cf|eg|ie|e\.g|i\.e|Fig|fig|pp|ca)\.)\s*$")
+
+
+def propositions(text: str) -> list[str]:
+    """Split on true terminal punctuation only, guarding decimals and initials."""
+    parts: list[str] = []
+    start = 0
+    for match in TERMINAL_SPLIT.finditer(text):
+        cut = match.start()
+        head = text[start:cut]
+        # a decimal point, an initial or a known abbreviation is not a boundary
+        if re.search(r"\d\.$", head) and re.match(r"\s*\d", text[match.end():]):
+            continue
+        if INITIAL_OR_ABBREV.search(head):
+            continue
+        chunk = head.strip()
+        if chunk:
+            parts.append(chunk)
+        start = match.end()
+    tail = text[start:].strip()
+    if tail:
+        parts.append(tail)
+    return parts
+
+
 def normalise(text: str) -> str:
     """Lowercase, fold chemical notation, and pad for word-boundary matching.
 
@@ -306,6 +352,28 @@ def scannable_blocks(raw_html: str, spec: dict) -> list[tuple[str, str]]:
     return blocks
 
 
+def approved_function_hits(sentence: str, norm_stemmed: str, approved: list[dict]) -> list[str]:
+    """Which approved catalyst functions a proposition actually states.
+
+    Term-list functions (rate, pathway) match on the stemmed form. The no-shift
+    function is different: it must identify WHAT stays invariant, so it is
+    matched by bounded patterns that tie an invariance word to an invariant
+    object. A bare condition qualifier - "under the same conditions" - names
+    what was held constant, not what stayed unchanged in the product, and so
+    proves nothing.
+    """
+    hits = []
+    plain = normalise(sentence)
+    for entry in approved:
+        if entry.get("requires") == "bound-invariant":
+            if any(re.search(pattern, plain) for pattern in entry["boundPatterns"]):
+                hits.append(entry["id"])
+            continue
+        if has_any_stemmed(norm_stemmed, entry.get("terms", [])):
+            hits.append(entry["id"])
+    return hits
+
+
 def sentence_fingerprint(normalised_sentence: str) -> str:
     """Stable identity for a registered descriptive claim.
 
@@ -337,14 +405,13 @@ def catalyst_violations(blocks, spec) -> list[str]:
     registered = spec.get("registeredDescriptiveClaims", [])
     by_fingerprint = {entry["fingerprint"]: entry for entry in registered}
     for role, text in blocks:
-        for sentence in sentences(text):
+        for sentence in propositions(text):
             norm = normalise_stemmed(sentence)
             subject = has_any_stemmed(norm, spec["subjectTerms"])
             product = has_any_stemmed(norm, spec["productTerms"])
             if not (subject and product):
                 continue
-            function = [f["id"] for f in approved if has_any_stemmed(norm, f["terms"])]
-            if function:
+            if approved_function_hits(sentence, norm, approved):
                 continue
             entry = by_fingerprint.get(sentence_fingerprint(norm))
             if entry and role in entry["roles"]:
@@ -375,7 +442,7 @@ def descriptive_registration_findings(blocks, spec) -> list[str]:
         findings.append(f"duplicate registered descriptive claim id: {ids}")
     seen: dict[str, list[str]] = {}
     for role, text in blocks:
-        for sentence in sentences(text):
+        for sentence in propositions(text):
             norm = normalise_stemmed(sentence)
             if not (has_any_stemmed(norm, spec["subjectTerms"])
                     and has_any_stemmed(norm, spec["productTerms"])):
@@ -579,8 +646,19 @@ def main() -> int:
                   and len(inv["catalyst"].get("approvedFunctions", [])) == 3
                   and {f["id"] for f in inv["catalyst"]["approvedFunctions"]} == {"rate", "pathway", "no-shift"},
                   inv["catalyst"].get("policy"))
+    ns = next(f for f in inv["catalyst"]["approvedFunctions"] if f["id"] == "no-shift")
+    results.check("no-shift requires a bound invariant, not a bare condition qualifier",
+                  ns.get("requires") == "bound-invariant" and ns.get("boundPatterns")
+                  and "same conditions" not in ns.get("terms", [])
+                  and "same conditions" in ns.get("insufficientAloneTerms", []), "")
+    results.check("catalyst propositions are not severed by internal punctuation",
+                  propositions("The catalyst works; more ammonia remains.") ==
+                  ["The catalyst works; more ammonia remains."]
+                  and len(propositions("One thing. Another thing.")) == 2
+                  and propositions("It cost 92.4 kJ. Then it stopped.") ==
+                  ["It cost 92.4 kJ.", "Then it stopped."], "")
     results.check("approved catalyst functions exclude bare approval words",
-                  not any(t in f["terms"] for f in inv["catalyst"]["approvedFunctions"]
+                  not any(t in f.get("terms", []) for f in inv["catalyst"]["approvedFunctions"]
                           for t in ("helps", "help", "lets", "allows", "works")),
                   "")
     results.check("the registry states the catalyst has no effect on equilibrium position",

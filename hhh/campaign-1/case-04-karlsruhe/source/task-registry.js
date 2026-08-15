@@ -607,20 +607,26 @@ window.HHH_CASE04_TASK_REGISTRY = {
         {
           "id": "no-shift",
           "why": "the catalyst explicitly does not move the equilibrium position or the settled amount",
-          "terms": [
-            "no effect on", "does not change", "do not change", "did not change",
-            "without changing", "does not move", "did not move", "without moving",
-            "does not shift", "without shifting", "does not alter", "did not alter",
-            "without altering", "cannot change", "cannot move", "never changes",
-            "leaves unchanged", "leaves it unchanged", "stays exactly", "stayed exactly",
-            "same equilibrium", "same settled", "same share", "same composition",
-            "same conditions", "with or without", "not the position", "not the amount",
-            "not the share", "not the composition", "not the final", "not how much",
-            "rate, not", "no say in"
+          "requires": "bound-invariant",
+          "requiresRule": "A no-shift assertion must identify WHAT stays invariant. A condition qualifier names what was held constant, not what stayed unchanged in the product, so it cannot satisfy no-shift on its own. The patterns below bind an invariance word to an invariant object within a bounded distance.",
+          "insufficientAloneTerms": [
+            "same conditions", "same pressure and temperature", "identical conditions",
+            "everything else held constant", "conditions are unchanged", "held constant",
+            "same operating conditions", "all else equal"
+          ],
+          "boundPatterns": [
+            "(?:equilibrium|settled|final|balance)\\s+(?:\\w+\\s+){0,2}(?:position|composition|share|amount|fraction|mixture|endpoint|point)\\s+(?:\\w+\\s+){0,4}(?:unchanged|untouched|exactly as it was|as it was|stays the same|stay the same|remains the same|remain the same|the same)",
+            "(?:same|unchanged|identical|untouched)\\s+(?:\\w+\\s+){0,2}(?:equilibrium|composition|share|amount|fraction|endpoint|position|settled)",
+            "(?:does not|do not|did not|cannot|can not|never|without)\\s+(?:\\w+\\s+){0,3}(?:chang\\w*|mov\\w*|shift\\w*|alter\\w*|affect\\w*|rais\\w*|increas\\w*)\\s+(?:\\w+\\s+){0,4}(?:equilibrium|balance|composition|share|amount|position|settled|endpoint|final)",
+            "(?:no effect on|no say in)\\s+(?:\\w+\\s+){0,4}(?:equilibrium|balance|composition|share|amount|position|settled|where)",
+            "with or without\\s+(?:\\w+\\s+){0,6}(?:same|unchanged)",
+            "(?:equilibrium|settled|balance)\\s+(?:\\w+\\s+){0,3}(?:stays|stay|stayed|remains|remain|remained)\\s+(?:exactly\\s+)?(?:the same|unchanged|as it was|put)",
+            "(?:equilibrium|balance|composition|share|amount|settled|endpoint)[^.]{0,90}?(?:does not|do not|did not|cannot|can not|never)\\s+(?:\\w+\\s+){0,3}(?:chang\\w*|mov\\w*|shift\\w*|alter\\w*|affect\\w*)"
           ]
         }
       ],
       "approvedFunctionRule": "Bare approval words such as helps, lets, allows or works are deliberately absent. 'The catalyst helps make ammonia' underspecifies the function and fails.",
+      "registeredDescriptiveClaimsNote": "Fingerprints are computed over the PROPOSITION as the catalyst parser now bounds it. When internal punctuation stopped severing propositions, six of these fingerprints changed mechanically and four further propositions surfaced that colons and semicolons had previously hidden from the gate. Each is a non-causal historical, certification or pedagogical statement; none asserts anything about what a catalyst does to the amount of ammonia. One earlier registration, the Teacher central-resolution summary, now resolves as an approved rate function and has been removed rather than kept as a stale entry.",
       "registeredDescriptiveClaims": [
         {
           "id": "patent-recycle-learner",
@@ -631,19 +637,19 @@ window.HHH_CASE04_TASK_REGISTRY = {
           "sourceCorrespondence": "haber-patent"
         },
         {
-          "id": "patent-recycle-teacher",
+          "id": "patent-certification-teacher",
           "roles": ["teacher"],
           "expectedCount": 1,
-          "fingerprint": "2ecde1ec286025a2",
-          "purpose": "The same patent recycle statement in the Teacher source ledger.",
+          "fingerprint": "ea72ea3613e5bcf7",
+          "purpose": "The Teacher source ledger row listing what the 1909 patent certifies. A semicolon-separated certification list in which catalyst and ammonia co-occur incidentally.",
           "sourceCorrespondence": "haber-patent"
         },
         {
           "id": "patent-recycle-answer",
           "roles": ["answer"],
           "expectedCount": 1,
-          "fingerprint": "27599ca344ddb7fb",
-          "purpose": "The same patent recycle statement in the Answer Key exemplar for Task 4 stage 6.",
+          "fingerprint": "616ec83cb7e69730",
+          "purpose": "The Answer Key exemplar for Task 4 stage 6, citing the patent's recycle statement.",
           "sourceCorrespondence": "haber-patent"
         },
         {
@@ -663,20 +669,44 @@ window.HHH_CASE04_TASK_REGISTRY = {
           "sourceCorrespondence": "appl-1997"
         },
         {
-          "id": "conditions-summary-teacher",
+          "id": "appl-certification-teacher",
           "roles": ["teacher"],
           "expectedCount": 1,
-          "fingerprint": "f421c52ddbc145fc",
-          "purpose": "The Teacher central-resolution summary, which names the catalyst's contribution as rate and explicitly not balance.",
-          "sourceCorrespondence": "equilibrium-science"
+          "fingerprint": "fbf398d226b0a86c",
+          "purpose": "The Teacher source ledger row listing what Appl certifies, including the osmium result. Surfaced by the parser change; a certification list, not a causal claim.",
+          "sourceCorrespondence": "appl-1997"
+        },
+        {
+          "id": "sequence-demonstration-student",
+          "roles": ["student"],
+          "expectedCount": 2,
+          "fingerprint": "585033cd40e6f18a",
+          "purpose": "The Student technology-sequence cell for the 1909 demonstration, naming the osmium catalyst and the ammonia obtained. Surfaced by the parser change, which stopped a colon from severing it. Counted twice because the row and the cell are both leaf text blocks.",
+          "sourceCorrespondence": "appl-1997"
+        },
+        {
+          "id": "sequence-demonstration-accessible",
+          "roles": ["accessible"],
+          "expectedCount": 2,
+          "fingerprint": "a0f8e9d588f2bc41",
+          "purpose": "The Accessible technology-sequence entry for the same demonstration.",
+          "sourceCorrespondence": "appl-1997"
         },
         {
           "id": "synthesis-conditions-answer",
           "roles": ["answer"],
           "expectedCount": 1,
-          "fingerprint": "8ceaca9303393023",
+          "fingerprint": "f96ec63a94b0ae50",
           "purpose": "The Answer Key statement that under pressure, with a catalyst and with recycling, nitrogen and hydrogen will give ammonia. States that the synthesis runs, not that the catalyst raises the settled amount.",
           "sourceCorrespondence": "haber-patent"
+        },
+        {
+          "id": "success-criteria-teacher",
+          "roles": ["teacher"],
+          "expectedCount": 1,
+          "fingerprint": "5c22502e42c8cfa0",
+          "purpose": "The Teacher success criteria, a semicolon list of what learners should be able to say. Pedagogical description; the catalyst clause states that learners must refuse what a catalyst does not do.",
+          "sourceCorrespondence": "equilibrium-science"
         }
       ],
       "registeredDescriptiveClaimRule": "Identity is a fingerprint of the normalised sentence, not an HTML attribute, so classroom markup carries no authority to exempt itself and content.html stays byte-identical. Reconciled both ways: every registered fingerprint must resolve in its declared roles at its declared count, and every catalyst-and-product sentence in the package must be an approved function, a registered fingerprint, or a registered evaluative exemption.",
