@@ -583,6 +583,104 @@ window.HHH_CASE04_TASK_REGISTRY = {
         "did not alter", "does not affect", "did not affect", "no effect"
       ],
       "negationPattern": "\\b(?:not|never|without)\\b[^.]{0,40}\\b(?:chang|mov|shift|alter|rais|increas|affect|effect|tip|push|boost|enrich|improv)",
+      "policy": "FAIL_CLOSED",
+      "policyRule": "A non-exempt sentence naming a canonical catalyst subject together with a product concept must resolve to an approved catalyst function, a registered descriptive claim, or a registered evaluative exemption. Anything else fails. Correctness therefore does not depend on recognising the verb that carries the wrong relationship, so no future synonym for 'increase' can evade it.",
+      "approvedFunctions": [
+        {
+          "id": "rate",
+          "why": "the catalyst changes how fast the reaction gets there",
+          "terms": [
+            "speed", "speeds", "speeded", "sped", "speeding", "faster", "fast enough",
+            "quick", "quickly", "quicker", "rate", "rates", "reaction time", "sooner",
+            "in hours", "practical time", "working time", "in practice", "how fast",
+            "how long", "how soon", "time the gases", "waiting time", "shortens the wait"
+          ]
+        },
+        {
+          "id": "pathway",
+          "why": "the catalyst offers another or lower-energy route",
+          "terms": [
+            "pathway", "path", "route", "activation", "energy barrier", "barrier",
+            "lower-energy", "lower energy", "energy hill", "easier route", "easier path"
+          ]
+        },
+        {
+          "id": "no-shift",
+          "why": "the catalyst explicitly does not move the equilibrium position or the settled amount",
+          "terms": [
+            "no effect on", "does not change", "do not change", "did not change",
+            "without changing", "does not move", "did not move", "without moving",
+            "does not shift", "without shifting", "does not alter", "did not alter",
+            "without altering", "cannot change", "cannot move", "never changes",
+            "leaves unchanged", "leaves it unchanged", "stays exactly", "stayed exactly",
+            "same equilibrium", "same settled", "same share", "same composition",
+            "same conditions", "with or without", "not the position", "not the amount",
+            "not the share", "not the composition", "not the final", "not how much",
+            "rate, not", "no say in"
+          ]
+        }
+      ],
+      "approvedFunctionRule": "Bare approval words such as helps, lets, allows or works are deliberately absent. 'The catalyst helps make ammonia' underspecifies the function and fails.",
+      "registeredDescriptiveClaims": [
+        {
+          "id": "patent-recycle-learner",
+          "roles": ["student", "accessible"],
+          "expectedCount": 2,
+          "fingerprint": "4800faa689c3283f",
+          "purpose": "The patent's own recycle statement: it describes where the gas is routed, not what the catalyst does to the amount of ammonia.",
+          "sourceCorrespondence": "haber-patent"
+        },
+        {
+          "id": "patent-recycle-teacher",
+          "roles": ["teacher"],
+          "expectedCount": 1,
+          "fingerprint": "2ecde1ec286025a2",
+          "purpose": "The same patent recycle statement in the Teacher source ledger.",
+          "sourceCorrespondence": "haber-patent"
+        },
+        {
+          "id": "patent-recycle-answer",
+          "roles": ["answer"],
+          "expectedCount": 1,
+          "fingerprint": "27599ca344ddb7fb",
+          "purpose": "The same patent recycle statement in the Answer Key exemplar for Task 4 stage 6.",
+          "sourceCorrespondence": "haber-patent"
+        },
+        {
+          "id": "osmium-obtained-student",
+          "roles": ["student"],
+          "expectedCount": 1,
+          "fingerprint": "f44e25881c65fc2f",
+          "purpose": "Appl's historical result: osmium was found to give about 8 volume per cent ammonia at 175 bar and 600 degrees. A dated measurement, not a claim about equilibrium.",
+          "sourceCorrespondence": "appl-1997"
+        },
+        {
+          "id": "osmium-obtained-accessible",
+          "roles": ["accessible"],
+          "expectedCount": 1,
+          "fingerprint": "20ebe9bad89e1cee",
+          "purpose": "The same Appl historical result in the Accessible dossier.",
+          "sourceCorrespondence": "appl-1997"
+        },
+        {
+          "id": "conditions-summary-teacher",
+          "roles": ["teacher"],
+          "expectedCount": 1,
+          "fingerprint": "f421c52ddbc145fc",
+          "purpose": "The Teacher central-resolution summary, which names the catalyst's contribution as rate and explicitly not balance.",
+          "sourceCorrespondence": "equilibrium-science"
+        },
+        {
+          "id": "synthesis-conditions-answer",
+          "roles": ["answer"],
+          "expectedCount": 1,
+          "fingerprint": "8ceaca9303393023",
+          "purpose": "The Answer Key statement that under pressure, with a catalyst and with recycling, nitrogen and hydrogen will give ammonia. States that the synthesis runs, not that the catalyst raises the settled amount.",
+          "sourceCorrespondence": "haber-patent"
+        }
+      ],
+      "registeredDescriptiveClaimRule": "Identity is a fingerprint of the normalised sentence, not an HTML attribute, so classroom markup carries no authority to exempt itself and content.html stays byte-identical. Reconciled both ways: every registered fingerprint must resolve in its declared roles at its declared count, and every catalyst-and-product sentence in the package must be an approved function, a registered fingerprint, or a registered evaluative exemption.",
+      "diagnosticOnlyRule": "The increase-relation and final-state families below are retained for diagnostics and for the more specific message they produce. The correctness gate no longer depends on them, so a missing synonym degrades the error text rather than opening a hole.",
       "rules": [
         "NEGATIVE RELATION: a sentence naming the catalyst, a product term, an increase relation and a final-state term asserts that the catalyst changes the settled amount. The word equilibrium is not required for the contradiction to count.",
         "POSITIVE BOUNDARY: a learner sentence that assigns a function to the catalyst must resolve into a permitted role - rate, pathway, time to approach - or state that it does not change the equilibrium position. A bare function claim is insufficient."

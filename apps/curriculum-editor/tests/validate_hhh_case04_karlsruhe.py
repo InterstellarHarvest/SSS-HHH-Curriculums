@@ -23,6 +23,7 @@ Usage:
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -305,40 +306,97 @@ def scannable_blocks(raw_html: str, spec: dict) -> list[tuple[str, str]]:
     return blocks
 
 
+def sentence_fingerprint(normalised_sentence: str) -> str:
+    """Stable identity for a registered descriptive claim.
+
+    Deliberately derived from the sentence itself rather than from an HTML
+    attribute: classroom markup then carries no authority to exempt itself, and
+    content.html needs no marker to register a legitimate historical statement.
+    """
+    return hashlib.sha256(normalised_sentence.encode()).hexdigest()[:16]
+
+
 def catalyst_violations(blocks, spec) -> list[str]:
-    """Two rules: the catalyst may not own the settled amount, and a bare
-    function claim must resolve into a permitted rate/pathway role."""
+    """Fail closed.
+
+    A non-exempt sentence naming a catalyst subject together with a product
+    concept must resolve to one of three things: an approved catalyst function,
+    a registered descriptive claim, or a registered evaluative exemption (those
+    are already removed from `blocks` upstream). Anything else fails.
+
+    The point is that correctness no longer depends on recognising the verb that
+    carries the wrong relationship. "Osmium tilts the mixture toward ammonia"
+    fails not because "tilts" is known, but because the sentence never says what
+    the catalyst actually does. No future synonym for "increase" can evade it.
+
+    The relation families are still consulted, but only to say something more
+    useful in the message.
+    """
     out = []
-    result_markers = spec.get("resultReportMarkers", [])
+    approved = spec.get("approvedFunctions", [])
+    registered = spec.get("registeredDescriptiveClaims", [])
+    by_fingerprint = {entry["fingerprint"]: entry for entry in registered}
     for role, text in blocks:
         for sentence in sentences(text):
             norm = normalise_stemmed(sentence)
-            if not has_any_stemmed(norm, spec["subjectTerms"]):
+            subject = has_any_stemmed(norm, spec["subjectTerms"])
+            product = has_any_stemmed(norm, spec["productTerms"])
+            if not (subject and product):
                 continue
-            if negated(norm, spec):
+            function = [f["id"] for f in approved if has_any_stemmed(norm, f["terms"])]
+            if function:
                 continue
+            entry = by_fingerprint.get(sentence_fingerprint(norm))
+            if entry and role in entry["roles"]:
+                continue
+            # Diagnostics only: name the wrong relation when we happen to
+            # recognise it, so the message is useful. Never required to fail.
             increase = has_any_stemmed(norm, spec["increaseRelationTerms"])
             final_state = final_state_hits(norm, spec)
-            product = has_any_stemmed(norm, spec["productTerms"])
-            if increase and final_state and product:
-                out.append(
-                    f"{role}: catalyst asserted to change the settled amount "
-                    f"[{increase[0]} / {final_state[0]}] -> {sentence[:140]}")
-                continue
-            if role not in LEARNER_ROLES:
-                continue
-            if not has_any_stemmed(norm, spec["functionVerbTerms"]):
-                continue
-            # A sentence reporting a measured result under stated conditions is a
-            # historical report, not a functional claim about what a catalyst does.
-            # The negative relation rule above still governs it.
-            if has_any_stemmed(norm, result_markers) or re.search(r"\b\d", sentence):
-                continue
-            if not has_any_stemmed(norm, spec["permittedRateTerms"]):
-                out.append(
-                    f"{role}: catalyst given a function that does not resolve into a "
-                    f"rate or pathway role -> {sentence[:140]}")
+            if increase and final_state:
+                why = (f"asserts the catalyst changes the settled amount "
+                       f"[{increase[0]} / {final_state[0]}]")
+            elif entry:
+                why = (f"matches registered descriptive claim {entry['id']!r}, "
+                       f"which is not registered for role {role!r}")
+            else:
+                why = ("names a catalyst and a product but states no approved catalyst "
+                       "function, and is not a registered descriptive claim")
+            out.append(f"{role}: {why} [{subject[0]} + {product[0]}] -> {sentence[:130]}")
     return out
+
+
+def descriptive_registration_findings(blocks, spec) -> list[str]:
+    """Reconcile registered descriptive claims against the package, both ways."""
+    findings: list[str] = []
+    registered = spec.get("registeredDescriptiveClaims", [])
+    ids = [e["id"] for e in registered]
+    if len(ids) != len(set(ids)):
+        findings.append(f"duplicate registered descriptive claim id: {ids}")
+    seen: dict[str, list[str]] = {}
+    for role, text in blocks:
+        for sentence in sentences(text):
+            norm = normalise_stemmed(sentence)
+            if not (has_any_stemmed(norm, spec["subjectTerms"])
+                    and has_any_stemmed(norm, spec["productTerms"])):
+                continue
+            seen.setdefault(sentence_fingerprint(norm), []).append(role)
+    for entry in registered:
+        roles_found = seen.get(entry["fingerprint"], [])
+        if not roles_found:
+            findings.append(
+                f"registered descriptive claim {entry['id']!r} resolves to no sentence in the package")
+            continue
+        if len(roles_found) != entry["expectedCount"]:
+            findings.append(
+                f"registered descriptive claim {entry['id']!r} resolves {len(roles_found)} time(s), "
+                f"registry expects {entry['expectedCount']}")
+        wrong = [r for r in roles_found if r not in entry["roles"]]
+        if wrong:
+            findings.append(
+                f"registered descriptive claim {entry['id']!r} resolves in role(s) {wrong}, "
+                f"which the registry does not permit")
+    return findings
 
 
 def temperature_violations(blocks, spec) -> list[str]:
@@ -513,6 +571,18 @@ def main() -> int:
     cat_findings = catalyst_violations(blocks, inv["catalyst"])
     results.check("no role gives the catalyst an equilibrium-position or final-amount outcome",
                   not cat_findings, cat_findings)
+    reg_findings = descriptive_registration_findings(blocks, inv["catalyst"])
+    results.check("registered descriptive catalyst claims reconcile with the package in both directions",
+                  not reg_findings, reg_findings)
+    results.check("the catalyst contract fails closed rather than enumerating wrong relations",
+                  inv["catalyst"].get("policy") == "FAIL_CLOSED"
+                  and len(inv["catalyst"].get("approvedFunctions", [])) == 3
+                  and {f["id"] for f in inv["catalyst"]["approvedFunctions"]} == {"rate", "pathway", "no-shift"},
+                  inv["catalyst"].get("policy"))
+    results.check("approved catalyst functions exclude bare approval words",
+                  not any(t in f["terms"] for f in inv["catalyst"]["approvedFunctions"]
+                          for t in ("helps", "help", "lets", "allows", "works")),
+                  "")
     results.check("the registry states the catalyst has no effect on equilibrium position",
                   inv["catalyst"]["equilibriumPositionEffect"] == "NONE"
                   and "may not change the amount" in inv["catalyst"]["protectedProposition"], "")
