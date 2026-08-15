@@ -387,10 +387,11 @@
               "title": "The Dust Bowl",
               "instructionalType": "CORE_CASE",
               "version": "0.1",
-              "status": "DRAFT",
+              "status": "VALIDATION_BUILD",
               "editorShell": "1.0",
+              "editorPackage": "hhh/campaign-1/case-05-dust-bowl/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "DRAFT",
+              "packageStatus": "VALIDATION",
               "approval": {
                 "owner": "Nate / Owner",
                 "status": "OWNER_REVIEW_NOT_STARTED",
