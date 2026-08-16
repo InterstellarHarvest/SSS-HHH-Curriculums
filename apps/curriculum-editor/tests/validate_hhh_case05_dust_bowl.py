@@ -374,18 +374,57 @@ def main() -> int:
 
     results.check("package, registry and layout agree on the case identity",
                   package["id"] == registry["case"] == layout["caseId"] == "HHH-C1-CASE05")
-    results.check("the candidate keeps its unreleased lifecycle in package and registry alike",
-                  package["status"] == "VALIDATION_BUILD"
-                  and registry["status"] == "VALIDATION_BUILD"
-                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN"
-                  and "date" not in package["approval"],
+    # RELEASED-STATE LIFECYCLE. The two candidate-state assertions that stood here
+    # were converted by release conversion rather than deleted: the protection is
+    # the same, aimed at the state the package is actually in.
+    results.check("the package and task registry both carry the approved lifecycle",
+                  package["status"] == "APPROVED_STABLE"
+                  and registry["status"] == "APPROVED_STABLE"
+                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_PASS"
+                  and package["approval"]["status"] == "APPROVED"
+                  and package["approval"]["printStatus"] == "PASS"
+                  and package["approval"]["date"] == "2026-08-16"
+                  and package["approval"]["owner"] == "Nate / Owner",
                   json.dumps({"package": package["status"], "registry": registry["status"],
                               "approval": package["approval"]}))
-    results.check("no release or approval history exists at candidate stage",
-                  not (UNIT / "history").exists() and "releaseHistory" not in package,
-                  sorted(p.name for p in UNIT.iterdir()))
+    history = UNIT / "history"
+    release_path = history / "release-v0.1.json"
+    approval_path = history / "CASE05_OWNER_APPROVAL_v0.1.md"
+    results.check("both owner-approval and release history records exist",
+                  release_path.is_file() and approval_path.is_file()
+                  and package.get("releaseHistory") == release_path.relative_to(ROOT).as_posix(),
+                  sorted(x.name for x in history.iterdir()) if history.exists() else "no history dir")
+    release = json.loads(release_path.read_text(encoding="utf-8")) if release_path.is_file() else {}
+    results.check("the release record agrees with the package on identity and approval",
+                  release.get("caseId") == package["id"]
+                  and release.get("curriculumVersion") == package["version"]
+                  and release.get("status") == package["status"]
+                  and release.get("approvalDate") == package["approval"]["date"]
+                  and release.get("owner") == package["approval"]["owner"],
+                  json.dumps({k: release.get(k) for k in
+                              ("caseId", "curriculumVersion", "status", "approvalDate", "owner")}))
+    results.check("the release record certifies the same source bytes the package declares",
+                  release.get("sourceHashes") == package["sourceHashes"],
+                  json.dumps(release.get("sourceHashes")))
+    results.check("the release record agrees with the package on role page counts",
+                  release.get("rolePageCounts") == {r: v["pageCount"]
+                                                    for r, v in package["rolePageStructure"].items()},
+                  json.dumps(release.get("rolePageCounts")))
+    results.check("every release commit pin is resolved to a real commit, with no placeholder left",
+                  all(isinstance(release.get(k), str) and re.fullmatch(r"[0-9a-f]{40}", release.get(k, ""))
+                      for k in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                "formerArtifactRecoveryCommit")),
+                  json.dumps({k: release.get(k) for k in
+                              ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                               "formerArtifactRecoveryCommit")}))
+    # The lifecycle stamp must never reach a classroom page.
+    printable = normalise(" ".join(page.get_text(" ", strip=True) for page in soup.select("section.page")))
+    leaked_lifecycle = [token for token in
+                        ("APPROVED_STABLE", "OWNER_REVIEW_PASS", "VALIDATION_BUILD",
+                         "packageStatus", "releaseHistory", "release-v0.1")
+                        if token in printable]
+    results.check("no printable role displays release, approval or lifecycle metadata",
+                  not leaked_lifecycle, leaked_lifecycle)
     results.check("the package is pinned to the integrated game baseline",
                   registry["gameCommit"] == "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
                   registry["gameCommit"])
