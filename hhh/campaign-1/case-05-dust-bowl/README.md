@@ -277,6 +277,31 @@ figure's `aria-label` is checked against the same contracts as its visible conte
 so the causation map's description must name all four roles and the feedback, and
 the erosion figure's description may not describe the subsoil in absolutes.
 
+### The subsoil guard is self-sufficient, and the registry drives it
+
+The subsoil contract's negative half is declared in
+`subsoilBoundary.prohibitedConceptClasses` as two classes — **biological zero**
+and **universal growth zero** — and marked `selfSufficient`. That word carries the
+correction: a biological-zero predicate *is itself* the boundary violation when the
+subject is the protected layer, so no second life-or-growth token is required. An
+earlier form of this guard demanded subject **and** a separate life token **and**
+an absolute, and every direct characterization walked through it — "the subsoil is
+dead" carries no second life token, because the predicate is the claim.
+
+The eighteen phrases in `subsoilBoundary.prohibitedFramings` are a diagnostic
+register, not the matcher; a phrase list cannot be completed. They are
+**reconciled** instead: the validator binds each declared phrase to a protected
+subject and asserts the concept classes catch it, so the declared contract and the
+enforced contract cannot drift apart. There is no second, hand-maintained list in
+the validator — the removal of that duplicate is itself asserted.
+
+The positive half, `BOUNDED`, is deliberately **permissive** and asymmetric to the
+negative half: it fires only when a life-or-growth claim about the protected layer
+carries no comparative frame at all, and any `comparativeMarkers` entry clears it.
+A marker missing from that list therefore weakens a secondary diagnostic and can
+never open the zero-class hole. Scope stays on the protected subject: a *dead
+field* at the surface is outside this contract and is not a violation of it.
+
 ## Preservation
 
 This package adds files under `hhh/campaign-1/case-05-dust-bowl/`, adds one

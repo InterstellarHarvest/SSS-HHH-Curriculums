@@ -542,6 +542,42 @@ window.HHH_CASE05_TASK_REGISTRY = {
       "no life at all",
       "completely dead"
     ],
+    "prohibitedConceptClasses": {
+      "rule": "These two classes are the enforced contract. A proposition whose subject is the protected subsoil fails if it carries either class, WITHOUT needing any second life-or-growth token: in 'the subsoil is dead' the predicate already is the biological claim. The first candidate's guard required subject AND a separate life token AND an absolute, which is why seven direct characterizations escaped it.",
+      "selfSufficient": true,
+      "biologicalZero": {
+        "meaning": "Asserts that life, biological activity or organic matter is absent from the protected layer, rather than reduced.",
+        "patterns": [
+          "\\bdead\\b(?!\\s+(?:field|fields|crop|crops|plant|plants|grass|animal|animals|wood|weight|end|reckoning|heat|centre|center))",
+          "\\blifeless\\b",
+          "\\bsterile\\b|\\bsterilis\\w*\\b|\\bsteriliz\\w*\\b",
+          "\\bdevoid\\b",
+          "\\bbarren of life\\b",
+          "\\bempty of life\\b",
+          "\\bno\\s+(?:life|living|micro\\w*|organisms?|biology|biological\\s+activity|organic\\s+matter|organic\\s+carbon)\\b",
+          "\\bnothing\\s+(?:is\\s+|was\\s+)?(?:alive|living|lives|live|survives|survive)\\b",
+          "\\bnothing\\s+(?:can|will|could|would)\\s+(?:live|survive)\\b",
+          "\\bnot\\s+(?:a\\s+)?(?:single\\s+)?(?:living\\s+thing|organism|microbe)\\w*\\b",
+          "\\bzero\\s+(?:life|living|organic|microbial|biological)\\b",
+          "\\bwithout\\s+(?:any\\s+)?(?:life|living|microbial|biological)\\b",
+          "\\bno\\s+longer\\s+alive\\b"
+        ]
+      },
+      "universalGrowthZero": {
+        "meaning": "Asserts that the protected layer can grow nothing at all, rather than that it is greatly reduced in crop suitability.",
+        "patterns": [
+          "\\bnothing\\s+(?:can|will|could|would|ever)?\\s*grow\\w*\\b",
+          "\\bgrows?\\s+nothing\\b",
+          "\\bcan\\s?not\\s+grow\\s+anything\\b|\\bcannot\\s+grow\\s+anything\\b",
+          "\\bcan\\s?not\\s+support\\s+(?:any\\s+)?(?:growth|life|plants?|crops?)\\b|\\bcannot\\s+support\\s+(?:any\\s+)?(?:growth|life|plants?|crops?)\\b",
+          "\\bnever\\s+grow\\w*\\b",
+          "\\bunable\\s+to\\s+grow\\b",
+          "\\bincapable\\s+of\\s+(?:growing|supporting)\\b",
+          "\\bno\\s+(?:crop|plant|seed)s?\\s+(?:can|will|could)\\s+(?:ever\\s+)?grow\\b"
+        ]
+      }
+    },
+    "prohibitedFramingsRole": "DIAGNOSTIC REGISTER, RECONCILED. The eighteen phrases below are the wordings this boundary exists to refuse. They are not themselves the matcher - a phrase list cannot be completed - but the validator asserts that every one of them is caught by the concept classes above when bound to a protected subject. That reconciliation is what stops the declared contract and the enforced contract from drifting apart, which is exactly what had happened in the first candidate: these eighteen entries were declared and the validator referenced them zero times.",
     "requiredQualification": "Every role must state the subsoil's condition as a comparison against living topsoil, and both learner editions must carry at least one printed reading that says how much less rather than none. Task 4 Part C and Task 8 Claim 4 assess the boundary directly.",
     "gameResolution": "HHH-GAME-C1L5-001 is RESOLVED_VERIFIED at the integrated game baseline. The zero-life and zero-growth absolutes the Phase 1 audit rejected were replaced in the game before this package was authored, and this package neither reproduces the old wording nor relies on the game for the boundary: the readings it prints are bounded comparatives and the boundary is taught as an assessed task rather than carried as a disclaimer.",
     "internalIdentifierRule": "The runtime clue identifier for the core source is a non-player-facing internal string and was deliberately left unchanged in the game. It is prohibited from every role of this package, along with every other runtime clue tag, node id and route."
@@ -830,16 +866,7 @@ window.HHH_CASE05_TASK_REGISTRY = {
         "grow", "grows", "grown", "growing", "growth", "crop", "crops",
         "organic matter", "organic carbon", "fertility", "fertile"
       ],
-      "absoluteTerms": [
-        "dead", "deadness", "lifeless", "sterile", "sterilised", "sterilized",
-        "devoid", "barren of life", "no life", "none at all", "nothing at all",
-        "nothing lives", "nothing can live", "nothing will live",
-        "nothing grows", "nothing will grow", "nothing can grow",
-        "grow nothing", "grows nothing", "will grow nothing",
-        "cannot grow anything", "can never grow", "never grow again",
-        "zero", "absent entirely", "completely gone", "entirely gone",
-        "no microbial", "no organic matter", "no living"
-      ],
+      "absoluteTermsRemoved": "The hand-maintained absolute list that used to sit here is gone. It was a second authority beside subsoilBoundary.prohibitedFramings and the two could drift apart silently - they had. The enforced matcher is now built from subsoilBoundary.prohibitedConceptClasses, and that block is the only authority.",
       "approvedQualifierTerms": [
         "a trace", "trace", "traces", "far below", "well below", "below the range",
         "a fraction", "fraction of", "much less", "far less", "greatly reduced",
@@ -847,12 +874,22 @@ window.HHH_CASE05_TASK_REGISTRY = {
         "poor in", "starved", "too little", "far too little", "not enough",
         "how much less", "reduced", "diminished", "depleted", "thin", "little left"
       ],
+      "comparativeMarkers": [
+        "less", "lower", "fewer", "reduced", "down to", "only", "barely",
+        "hardly", "compared", "comparison", "than", "sparse", "poor", "thin",
+        "degraded", "depleted", "starved", "trace", "fraction", "too little",
+        "not enough", "little left", "diminished", "below", "worn"
+      ],
+      "comparativeMarkerRule": "The BOUNDED rule is the permissive half of this contract and is deliberately shaped that way. It fires only when a life-or-growth claim about the protected layer carries no comparative frame at all; any comparative marker clears it. A marker missing from this list therefore weakens a secondary diagnostic and can never open the zero-class hole, which prohibitedConceptClasses enforces independently. The two halves are asymmetric on purpose: the class that must not leak is closed and strict, the class that must not over-fire is open and permissive.",
       "negationTerms": [
         "not dead", "is not dead", "are not dead", "not lifeless", "not sterile",
         "does not mean nothing", "do not mean nothing", "not that nothing",
         "rather than none", "not none", "says how much less", "not zero",
         "goes past the evidence", "beyond what the readings", "the readings do not say",
-        "cannot be read as", "is wrong", "are wrong", "incorrect", "not accepted"
+        "cannot be read as", "is wrong", "are wrong", "incorrect", "not accepted",
+        "do not establish", "does not establish", "not establish",
+        "do not measure", "does not measure", "is not none", "not zero",
+        "gone further than", "not dead", "degraded, not"
       ],
       "positiveRequirement": {
         "rule": "Both learner editions must print at least one bounded reading of the subsoil, and Task 4 Part C must be present in both, so that the boundary is taught rather than merely policed.",
@@ -861,8 +898,9 @@ window.HHH_CASE05_TASK_REGISTRY = {
         "minimumPerRole": 1
       },
       "rules": [
-        "ABSOLUTE: a sentence naming a subsoil subject, a life-or-growth predicate and an absolute term asserts biological or agronomic zero. It fails unless it is a registered exemption or carries an explicit negation of that reading.",
-        "BOUNDED: a sentence naming a subsoil subject and a life-or-growth predicate in a learner or key role must also carry an approved bounded qualifier, so that every statement of the subsoil's condition is a comparison rather than an absence."
+        "ZERO-CLASS: a proposition naming a subsoil subject together with any biological-zero or universal-growth-zero concept fails. No second life-or-growth token is required, because the concept classes already carry that meaning. It clears only through a registered exemption or an explicit clearing term.",
+        "BOUNDED: a proposition naming a subsoil subject and a separate life-or-growth predicate in a learner or key role must also carry an approved bounded qualifier, so that every statement of the subsoil's condition is a comparison rather than an absence.",
+        "SUBJECT SCOPE: both rules apply only to the protected subject - the subsoil, the ground below or beneath the topsoil, and the exposed lower layer. The adjective dead applied to anything else, including a dead field at the surface, is outside this contract and is not a violation of it."
       ]
     },
     "drought": {

@@ -219,10 +219,41 @@ SUBSOIL_SUBJECT = re.compile(
 )
 
 
-def subsoil_violations(soup: BeautifulSoup, contract: dict, structural: list[str]) -> list[tuple]:
-    absolutes = [t.lower() for t in contract["absoluteTerms"]]
+def zero_class_matchers(boundary: dict) -> list[tuple[str, re.Pattern]]:
+    """Compile the canonical concept classes the registry declares.
+
+    There is exactly one authority. The matcher is built here from
+    ``subsoilBoundary.prohibitedConceptClasses`` and nowhere else; the eighteen
+    ``prohibitedFramings`` phrases are reconciled against it by an assertion
+    rather than duplicated into a second list this file would then have to keep
+    in step. The first candidate had both a registry list and a validator list,
+    and they diverged without anything noticing.
+    """
+    compiled = []
+    for class_id, spec in boundary["prohibitedConceptClasses"].items():
+        if not isinstance(spec, dict) or "patterns" not in spec:
+            continue
+        for pattern in spec["patterns"]:
+            compiled.append((class_id, re.compile(pattern, re.I)))
+    return compiled
+
+
+def subsoil_violations(soup: BeautifulSoup, contract: dict, structural: list[str],
+                       boundary: dict) -> list[tuple]:
+    """Two rules, both scoped to the protected subject.
+
+    ZERO-CLASS is the rule the first candidate got wrong. It required a subsoil
+    subject AND a separate life-or-growth token AND an absolute, so every direct
+    characterization escaped: "the subsoil is dead" carries no second life token
+    because the predicate *is* the biological claim. A concept class is now
+    sufficient on its own.
+
+    BOUNDED is unchanged: where a life-or-growth predicate does appear, the
+    proposition must also carry an approved comparative qualifier.
+    """
     predicates = [t.lower() for t in contract["predicateTerms"]]
     negations = [t.lower() for t in contract["negationTerms"]]
+    matchers = zero_class_matchers(boundary)
     out = []
     for role in ALL_ROLES:
         for page in pages_for(soup, role):
@@ -234,13 +265,17 @@ def subsoil_violations(soup: BeautifulSoup, contract: dict, structural: list[str
                     low = prop.lower()
                     if not SUBSOIL_SUBJECT.search(low):
                         continue
-                    if not contains_any(low, predicates):
-                        continue
                     if contains_any(low, negations):
                         continue
-                    hits = contains_any(low, absolutes)
+                    hits = [f"{class_id}:{m.search(low).group(0)}"
+                            for class_id, m in matchers if m.search(low)]
                     if hits:
-                        out.append((role, page_id, hits, prop))
+                        out.append((role, page_id, hits[:2], prop))
+                        continue
+                    bounded_ok = contains_any(low, [q.lower() for q in contract["approvedQualifierTerms"]]) \
+                        or contains_any(low, [q.lower() for q in contract["comparativeMarkers"]])
+                    if contains_any(low, predicates) and not bounded_ok:
+                        out.append((role, page_id, ["unbounded-life-claim"], prop))
     return out
 
 
@@ -323,6 +358,7 @@ def main() -> int:
     results = Results()
     package, registry, layout, soup = load()
     structural = [entry["selector"] for entry in registry["semanticInvariants"]["structuralExemptSelectors"]]
+    boundary = registry["subsoilBoundary"]
 
     # --- source integrity ---------------------------------------------------
     for key, filename in (("content", "content.html"), ("presentation", "presentation.css"),
@@ -488,7 +524,7 @@ def main() -> int:
     # --- NEGATIVE SEMANTIC GUARDS, on the real package ---------------------
     invariants = registry["semanticInvariants"]
     for label, violations in (
-        ("subsoil biological-zero", subsoil_violations(soup, invariants["subsoil"], structural)),
+        ("subsoil biological-zero", subsoil_violations(soup, invariants["subsoil"], structural, boundary)),
         ("drought denial", drought_violations(soup, invariants["drought"], structural)),
         ("land-use sole cause", landuse_violations(soup, invariants["landuse"], structural)),
         ("policy single-cause cure", policy_violations(soup, invariants["policy"], structural)),
@@ -508,6 +544,9 @@ def main() -> int:
         ("subsoil (bare absolute)", subsoil_violations,
          probe("answer", "<p>The subsoil has no microbial life left in it at all.</p>"),
          invariants["subsoil"]),
+        ("subsoil (direct predicate, no second life token)", subsoil_violations,
+         probe("student", "<p>The subsoil is dead.</p>"),
+         invariants["subsoil"]),
         ("drought", drought_violations,
          probe("student", "<p>The drought did not cause the Dust Bowl.</p>"),
          invariants["drought"]),
@@ -522,8 +561,9 @@ def main() -> int:
          invariants["policy"]),
     )
     for label, fn, sample, contract in controls:
+        args = (sample, contract, structural, boundary) if fn is subsoil_violations else (sample, contract, structural)
         results.check(f"negative control: the {label} guard flags a synthetic violation",
-                      bool(fn(sample, contract, structural)), label)
+                      bool(fn(*args)), label)
 
     # A registered exemption must clear the same sentence, and an unregistered
     # attribute value must not.
@@ -531,7 +571,7 @@ def main() -> int:
                      '<div class="account-item" data-semantic-exemption="claim-under-test-learner">'
                      "<p>Below the topsoil the subsoil is biologically dead and nothing can grow in it.</p></div>")
     results.check("registered exemption clears an otherwise-failing claim under test",
-                  not subsoil_violations(exempted, invariants["subsoil"], structural))
+                  not subsoil_violations(exempted, invariants["subsoil"], structural, boundary))
     registered_ids = {e["id"] for e in invariants["exemptions"]}
     used_ids = {n.get("data-semantic-exemption") for n in soup.select("[data-semantic-exemption]")}
     results.check("every exemption used in the package is registered in the contract",
@@ -544,6 +584,96 @@ def main() -> int:
         results.check(f"exemption {exemption['id']} is used only in its declared roles",
                       roles_used <= set(exemption["roles"]),
                       json.dumps({"declared": exemption["roles"], "used": sorted(roles_used)}))
+
+    # --- R2: THE DECLARED PROHIBITED FRAMINGS ARE ACTUALLY ENFORCED --------
+    # The first candidate declared eighteen prohibited framings and referenced
+    # them zero times. Rather than copy them into a second hand-maintained list,
+    # each declared phrase is bound to a protected subject and must be caught by
+    # the concept classes. That is what keeps the declared and enforced
+    # contracts from drifting apart again.
+    uncaught = []
+    for phrase in boundary["prohibitedFramings"]:
+        sample = probe("student", f"<p>The subsoil is {phrase}.</p>")
+        alt = probe("student", f"<p>Beneath the topsoil the ground {phrase}.</p>")
+        if not (subsoil_violations(sample, invariants["subsoil"], structural, boundary)
+                or subsoil_violations(alt, invariants["subsoil"], structural, boundary)):
+            uncaught.append(phrase)
+    results.check("every prohibited framing the registry declares is caught by the enforced concept classes",
+                  not uncaught, uncaught)
+    results.check("the registry carries no second, hand-maintained absolute list to drift from",
+                  "absoluteTerms" not in invariants["subsoil"]
+                  and "absoluteTermsRemoved" in invariants["subsoil"])
+    results.check("the concept classes are declared self-sufficient, needing no second life token",
+                  boundary["prohibitedConceptClasses"].get("selfSufficient") is True)
+
+    # The seven direct characterizations independent review proved escaped the
+    # first candidate. Each must now fail.
+    REVIEWER_ESCAPES = [
+        "The subsoil is dead.",
+        "Beneath the topsoil the ground is dead.",
+        "Below the topsoil lies dead ground.",
+        "The subsoil is dead soil.",
+        "Beneath the topsoil the ground is completely dead.",
+        "The subsoil is sterile.",
+        "Beneath the topsoil nothing is alive.",
+    ]
+    # Fresh blind variants in ordinary middle-school wording, not permutations
+    # of the seven above.
+    FRESH_ZERO_VARIANTS = [
+        "The subsoil below has no life in it whatsoever.",
+        "Under the topsoil the soil is devoid of microbes.",
+        "The gully floor cannot support any growth at all.",
+        "Beneath the topsoil there is zero organic matter.",
+        "The subsoil will never grow a crop again.",
+        "Below the topsoil the pale sand grows nothing.",
+        "The mineral layer below is barren of life.",
+        "Beneath the topsoil not a single organism remains.",
+        "The subsoil is without any biological activity.",
+        "Under the topsoil the ground is unable to grow plants.",
+        "The subsoil is no longer alive.",
+        "Below the topsoil nothing can survive.",
+    ]
+    still_escaping = [s for s in REVIEWER_ESCAPES
+                      if not subsoil_violations(probe("student", f"<p>{s}</p>"),
+                                                invariants["subsoil"], structural, boundary)]
+    results.check("all seven characterizations independent review found escaping are now caught",
+                  not still_escaping, still_escaping)
+    fresh_escaping = [s for s in FRESH_ZERO_VARIANTS
+                      if not subsoil_violations(probe("accessible", f"<p>{s}</p>"),
+                                                invariants["subsoil"], structural, boundary)]
+    results.check(f"all {len(FRESH_ZERO_VARIANTS)} fresh biological-zero and growth-zero variants are caught",
+                  not fresh_escaping, fresh_escaping)
+
+    # Truthful bounded statements must survive. A guard that fails these has
+    # made the boundary unteachable.
+    BOUNDED_POSITIVES = [
+        "Below the topsoil the subsoil holds only a trace of organic matter.",
+        "The subsoil's microbial activity is much lower than in living topsoil.",
+        "Beneath the topsoil the biological activity is sparse.",
+        "The subsoil below is severely degraded compared with the band above it.",
+        "Under the topsoil the fertility is poor and the structure has broken down.",
+        "The gully floor has far too little organic matter to carry a crop.",
+        "Beneath the topsoil the crop suitability is greatly reduced.",
+        "The subsoil holds much less living activity than the topsoil did.",
+        "Below the topsoil the organic carbon is down to a trace.",
+        "The mineral layer below has sharply lower fertility than living soil.",
+        "The subsoil is starved of the organic matter a crop depends on.",
+        "Beneath the topsoil the microbial biomass is a fraction of what it was.",
+    ]
+    false_positives = [s for s in BOUNDED_POSITIVES
+                       if subsoil_violations(probe("student", f"<p>{s}</p>"),
+                                             invariants["subsoil"], structural, boundary)]
+    results.check(f"all {len(BOUNDED_POSITIVES)} truthful bounded statements pass",
+                  not false_positives, false_positives)
+
+    # Subject scope: the boundary is about the protected layer, not the word.
+    results.check("a dead field at the surface is outside the subsoil contract",
+                  not subsoil_violations(probe("student", "<p>You crouch at the edge of the dead field.</p>"),
+                                         invariants["subsoil"], structural, boundary))
+    unknown = probe("student", '<div data-semantic-exemption="invented-id"><p>The subsoil is dead.</p></div>')
+    unknown_ids = {n.get("data-semantic-exemption") for n in unknown.select("[data-semantic-exemption]")}
+    results.check("an exemption id absent from the registry is not a valid excuse",
+                  not (unknown_ids <= registered_ids), sorted(unknown_ids))
 
     # --- FIGURE ACCESSIBILITY PARITY ---------------------------------------
     # Accessibility text is a factual curriculum surface, not a caption. It is
