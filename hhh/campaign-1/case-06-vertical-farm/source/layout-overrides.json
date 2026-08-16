@@ -77,37 +77,37 @@
       "maxPx": 440
     },
     {
-      "id": "HHH-C1-CASE06:accessible:t8:a8-engineer",
-      "persistId": "a8-engineer",
+      "id": "HHH-C1-CASE06:accessible:t7:a7-engineer",
+      "persistId": "a7-engineer",
       "pageId": "accessible-vertical-farm-16",
-      "taskId": 8,
+      "taskId": 7,
       "label": "Accessible Task 8 what the evidence establishes about the named engineer",
       "minPx": 80,
       "maxPx": 340
     },
     {
-      "id": "HHH-C1-CASE06:accessible:t8:a8-open-question",
-      "persistId": "a8-open-question",
+      "id": "HHH-C1-CASE06:accessible:t7:a7-open-question",
+      "persistId": "a7-open-question",
       "pageId": "accessible-vertical-farm-16",
-      "taskId": 8,
+      "taskId": 7,
       "label": "Accessible Task 8 one open institutional question",
       "minPx": 80,
       "maxPx": 340
     },
     {
-      "id": "HHH-C1-CASE06:accessible:t8:a8-open-record",
-      "persistId": "a8-open-record",
+      "id": "HHH-C1-CASE06:accessible:t7:a7-open-record",
+      "persistId": "a7-open-record",
       "pageId": "accessible-vertical-farm-16",
-      "taskId": 8,
+      "taskId": 7,
       "label": "Accessible Task 8 the record that raised the open institutional question",
       "minPx": 80,
       "maxPx": 340
     },
     {
-      "id": "HHH-C1-CASE06:accessible:t9:a9-explanation",
-      "persistId": "a9-explanation",
+      "id": "HHH-C1-CASE06:accessible:t8:a8-explanation",
+      "persistId": "a8-explanation",
       "pageId": "accessible-vertical-farm-17",
-      "taskId": 9,
+      "taskId": 8,
       "label": "Accessible Task 9 the four-part systems and evidence audit explanation",
       "minPx": 200,
       "maxPx": 620
@@ -255,15 +255,15 @@
       "reason": "compact-answer"
     },
     {
-      "persistId": "a8-claim-1",
+      "persistId": "a7-claim-1",
       "reason": "table-cell"
     },
     {
-      "persistId": "a8-claim-2",
+      "persistId": "a7-claim-2",
       "reason": "table-cell"
     },
     {
-      "persistId": "a8-claim-3",
+      "persistId": "a7-claim-3",
       "reason": "table-cell"
     }
   ],
@@ -344,28 +344,28 @@
         "maxPx": 420
       },
       {
-        "id": "HHH-C1-CASE06:student:t8:t8-engineer",
-        "persistId": "t8-engineer",
+        "id": "HHH-C1-CASE06:student:t7:t7-engineer",
+        "persistId": "t7-engineer",
         "pageId": "student-vertical-farm-10",
-        "taskId": 8,
+        "taskId": 7,
         "label": "Task 8 what the evidence establishes about the named engineer",
         "minPx": 72,
         "maxPx": 300
       },
       {
-        "id": "HHH-C1-CASE06:student:t8:t8-open",
-        "persistId": "t8-open",
+        "id": "HHH-C1-CASE06:student:t7:t7-open",
+        "persistId": "t7-open",
         "pageId": "student-vertical-farm-10",
-        "taskId": 8,
+        "taskId": 7,
         "label": "Task 8 one open institutional question and the record that raised it",
         "minPx": 72,
         "maxPx": 300
       },
       {
-        "id": "HHH-C1-CASE06:student:t9:t9-explanation",
-        "persistId": "t9-explanation",
+        "id": "HHH-C1-CASE06:student:t8:t8-explanation",
+        "persistId": "t8-explanation",
         "pageId": "student-vertical-farm-11",
-        "taskId": 9,
+        "taskId": 8,
         "label": "Task 9 the four-part systems and evidence audit explanation",
         "minPx": 240,
         "maxPx": 720
@@ -525,15 +525,15 @@
         "reason": "compact-answer"
       },
       {
-        "persistId": "t8-claim-1",
+        "persistId": "t7-claim-1",
         "reason": "table-cell"
       },
       {
-        "persistId": "t8-claim-2",
+        "persistId": "t7-claim-2",
         "reason": "table-cell"
       },
       {
-        "persistId": "t8-claim-3",
+        "persistId": "t7-claim-3",
         "reason": "table-cell"
       }
     ],

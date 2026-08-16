@@ -65,7 +65,7 @@ text (a `STATUS` line on every evidence object).
 
 **The non-merger rule** is printed on page 1 of both learner editions: getting the
 2041 case right proves nothing about the real world, and a real scientific finding
-proves nothing about 2041. **Task 9 Part A makes it assessable** — every piece of
+proves nothing about 2041. **Task 8 Part A makes it assessable** — every piece of
 evidence a learner cites must carry its source letter *and* its layer, and rubric
 criterion 3 scores it.
 
@@ -75,9 +75,9 @@ such values — prints the words `FICTIONAL CASE DATA` in its own status line.
 
 ## Structure
 
-Nine tasks. The count is not inherited from Case 05; it is what this case's ten
+Eight tasks. The count is not inherited from Case 05; it is what this case's ten
 required instructional functions collapse to once transfer is folded into the
-culminating product.
+culminating product and the two claim-audits are folded into one task.
 
 | # | Title | Function | Family |
 | --- | --- | --- | --- |
@@ -87,9 +87,23 @@ culminating product.
 | 4 | Trace the Nitrogen Pathway | systems trace | H8 |
 | 5 | Order the Failure | event chronology | H2 |
 | 6 | Audit the Records | source / evidence audit | H9 |
-| 7 | Weigh Five Accounts | competing explanations | H9 |
-| 8 | Audit the Public Record | institutional accountability | H9 |
-| 9 | Explain the Failure | culminating product **+ transfer (Part D)** | — |
+| 7 | Weigh the Accounts, Audit the Record | competing explanations **(A–B)** + institutional accountability **(C–E)** | H9 |
+| 8 | Explain the Failure | culminating product **+ transfer (Part D)** | — |
+
+### Task 7 is one task, and it runs over two pages
+
+Parts A and B (five competing accounts) and Parts C to E (the public record) were
+authored as two tasks and folded into one at owner review. They are one judgment
+made twice on the same evidence, and split they double-counted it: the learner
+marked the inquiry's verdict as Account 2 and then marked the same verdict again
+as statement claim 2. Both audit-mandated items survive the fold intact —
+**Account 4**, which discharges `HHH-GAME-C1L6-001` as an assessed judgment, and
+**Account 5**, the case's uncertainty requirement.
+
+The task spans Student pages 9–10 and Accessible pages 14–16. Each continuation
+page is declared in `continuationPages` and must print `Task 7 · continued`; the
+scoped validator resolves both directions, so a continuation page cannot lose its
+heading and an undeclared one cannot appear.
 
 ### Task 2 comes before the science file, on purpose
 
@@ -111,7 +125,7 @@ claim and demote the rest to support, which is the move the case exists to refus
 
 ### Role page counts
 
-Roles and page counts: Student 11 · Teacher 10 · Answer Key 6 · Accessible 17.
+Roles and page counts: Student 11 · Teacher 10 · Answer Key 5 · Accessible 17.
 
 The Student edition is longer than Case 05's because it carries two complete
 evidence layers: five fictional case records and five real scientific sources,
@@ -124,8 +138,8 @@ sources separately. The Teacher Guide
 runs to ten pages because the source ledger is split by layer across two of them,
 which is what makes the two-layer boundary teachable rather than merely stated.
 The Accessible edition gives the first audit question a page of its own and
-splits every multi-part task across pages, so Tasks 5, 6 and 8 each run across
-two. It was recomposed rather than allowed to grow: one dossier card per page
+splits every multi-part task across pages, so Tasks 5 and 6 each run across two
+and Task 7 across three. It was recomposed rather than allowed to grow: one dossier card per page
 left more than half of several pages empty, which the Accessible Adaptation
 Contract treats as page count without accessibility gain.
 
@@ -153,7 +167,7 @@ microbes, *Nitrosomonas* and *Nitrospira*. That was standard textbook framing an
 is no longer adequate. **The finding is discharged as design, not as disclaimer:**
 
 - **Consortium composition.** Source G is in the packet for this.
-  **Task 7 Account 4** — *a nitrifying community is always exactly two species* —
+  **Task 7 Part A, Account 4** — *a nitrifying community is always exactly two species* —
   is an account the learner marks **N** using the packet's own printed evidence.
   The learner refuses the simplification; the teacher does not correct it.
 - **Plant-usable forms.** The boundary note is printed on the Task 4 figure in
@@ -218,8 +232,8 @@ collapse was undetectable; that no person or body could have chosen differently
 about what to monitor or how to commission a living subsystem; that the
 institution's choice of public account was reasonable.
 
-**Task 8 Part C** requires an open institutional question with the record that
-raised it. **A blank Part C is scored as the no-accountability overcorrection**,
+**Task 7 Part E** requires an open institutional question with the record that
+raised it. **A blank Part E is scored as the no-accountability overcorrection**,
 because the task prints the requirement explicitly. Rubric criterion 4 carries
 floors in **both** directions: adopting the statement's verdict fails, and
 concluding that no responsibility arises fails.
@@ -234,9 +248,9 @@ edition, not retrofitted.
 | `t4-modelled-stage` | 4 | The first open conversion stage is supplied complete as a worked model. | Accessible completes **1** stage; Student completes 2. |
 | `t6-modelled-row` | 6 | The first record row is supplied complete in both cells. | Accessible completes **8** cells; Student completes 10. |
 | `t5-dated-cards` | 5 | The four chronology cards carry their day labels. | Ordering becomes matching. No response-count change. |
-| `t7-source-pointers` | 7 | Each account carries a pointer to the source that bears on it. | No response-count change. |
+| `t7-source-pointers` | 7 | Each account in Part A carries a pointer to the source that bears on it. | No response-count change. |
 
-One **chunking** split, which is not a scored difference: Task 8 Part C is
+One **chunking** split, which is not a scored difference: Task 7 Part E is
 collected as two steps in the Accessible edition (the question, then the record)
 where the Student edition collects both in one field. The obligation is identical
 and the Answer Key models both halves for both editions.
@@ -261,7 +275,7 @@ with a positive structural requirement:
 | `universalTwoSpecies` | *always / exactly two species* claims about a nitrifying community | the diversity note must be printed in both learner editions |
 | `nitrateOnly` | *nitrate is the only usable form* | the both-forms note must be printed in both learner editions |
 | `universalToxicityThreshold` | a printed numeric plant toxicity level | the no-threshold rationale must be stated in Teacher and Answer Key |
-| `noAccountability` | *no one was responsible for anything* | Task 8 Part C must exist and demand an open question |
+| `noAccountability` | *no one was responsible for anything* | Task 7 Part E must exist and demand an open question |
 | `verdictAdopted` | stating the fictional statement's verdict as a finding | the statement must be marked NOT SUPPORTED in the key |
 
 **Case 05's zero-boundary machinery is deliberately not reproduced.** That guard

@@ -16,7 +16,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
   "roles": {
     "student": 11,
     "teacher": 10,
-    "answer": 6,
+    "answer": 5,
     "accessible": 17
   },
   "culminatingProduct": "Systems and evidence-audit explanation. The learner must name which subsystem failed and the evidence for it, state what the engineering records do and do not establish, say what the public record claimed and what accountability the evidence actually supports, and then apply the same audit to an unfamiliar automated-system failure. Canonical CER is deliberately not used: the product requires two findings that a single claim cannot hold at once - that a biological subsystem failed, and that the record which named the cause was wrong about it - and the Blueprint names a systems/evidence-audit explanation as this case's product rather than a claim-evidence-reasoning frame. See the Teacher Guide reasoning architecture.",
@@ -72,7 +72,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
         "rule": "Drawn for this packet. A diagram that organises evidence is not itself evidence, and every figure says so in print."
       }
     ],
-    "nonMergerRule": "A correct conclusion about the 2041 facility proves nothing about the real world, and a real scientific finding proves nothing about the 2041 facility. Both learner editions carry this sentence on page 1, and Task 9 Part A requires the learner to name the layer of every piece of evidence they use.",
+    "nonMergerRule": "A correct conclusion about the 2041 facility proves nothing about the real world, and a real scientific finding proves nothing about the 2041 facility. Both learner editions carry this sentence on page 1, and Task 8 Part A requires the learner to name the layer of every piece of evidence they use.",
     "enforcedRoles": ["student", "teacher", "answer", "accessible"]
   },
   "systemsFrame": {
@@ -220,7 +220,10 @@ window.HHH_CASE06_TASK_REGISTRY = {
         "student": "student-vertical-farm-07",
         "teacher": "teacher-guide-05",
         "answer": "answer-key-03",
-        "accessible": "accessible-vertical-farm-11"
+        "accessible": "accessible-vertical-farm-10"
+      },
+      "continuationPages": {
+        "accessible": ["accessible-vertical-farm-11"]
       },
       "editions": ["student", "teacher", "answer", "accessible"],
       "keyed": true
@@ -244,7 +247,10 @@ window.HHH_CASE06_TASK_REGISTRY = {
         "student": "student-vertical-farm-08",
         "teacher": "teacher-guide-06",
         "answer": "answer-key-03",
-        "accessible": "accessible-vertical-farm-13"
+        "accessible": "accessible-vertical-farm-12"
+      },
+      "continuationPages": {
+        "accessible": ["accessible-vertical-farm-13"]
       },
       "editions": ["student", "teacher", "answer", "accessible"],
       "keyed": true
@@ -252,55 +258,36 @@ window.HHH_CASE06_TASK_REGISTRY = {
     {
       "id": "C06-T7",
       "number": "7",
-      "semanticLabel": "COMPETING ACCOUNTS",
-      "icon": "ph-diagnosis",
-      "title": "Weigh Five Accounts",
-      "description": "Mark five accounts of the failure against the evidence in this packet, then say what would settle the one you could not decide.",
-      "instructionalPurpose": "Competing explanations with three marks rather than two. Account 2 is the inquiry's verdict, Account 3 is the runtime level's second distractor, and Account 4 is the science qualification made assessable rather than announced: the packet's own real-world sources show that a nitrifying community is not universally two named species, so a learner who has read them can refuse that account on evidence. Account 5 is undecidable from this packet on purpose and is not a manufactured puzzle - three candidate triggers are logged within three days of each other and nothing printed here separates them.",
+      "semanticLabel": "ACCOUNTS AND PUBLIC RECORD",
+      "icon": "ph-scales",
+      "title": "Weigh the Accounts, Audit the Record",
+      "description": "Mark five accounts of the failure against the evidence in this packet and say what would settle the one you could not decide, then mark three claims from the company's public statement against the same evidence, state what it establishes about the named engineer, and name one institutional question it leaves open.",
+      "instructionalPurpose": "One judgment, made twice on the same evidence: first against explanations offered to the learner, then against the explanation the institution published. It was authored as two tasks and folded into one at owner review, because splitting it had the learner mark the inquiry's verdict as Account 2 and then mark the same verdict again as statement claim 2 - the second pass measured nothing the first had not. Parts A and B are the competing-explanations half. Account 2 is the inquiry's verdict, Account 3 is the runtime level's second distractor, and Account 4 is the science qualification made assessable rather than announced: the packet's own real-world sources show that a nitrifying community is not universally two named species, so a learner who has read them can refuse that account on evidence. Account 5 is undecidable from this packet on purpose and is not a manufactured puzzle - three candidate triggers are logged within three days of each other and nothing printed here separates them. Parts C to E are the accountability boundary, and the reason this case exists as much as for the chemistry. Part D is the exoneration the evidence actually supports and it is bounded: the records clear the engineer of the failure the statement describes, which is not the same as establishing that nothing could have been done differently by anyone. Part E is the other half and it is required, because a case that ends at the machinery worked has taught a learner that a complex failure with no individual culprit is a failure with no accountability at all. The evidence in this packet does support institutional questions - about what was monitored, about what was commissioned, about what a public statement is for - and Part E makes the learner name one and cite the record that raised it.",
       "provenance": [
-        "The Archive's fictional case file",
+        "The Archive's fictional case file, public statement, media archive and forward regulatory trace",
+        "The fictional engineering logs and consortium trace",
         "Daims and colleagues 2015 and van Kessel and colleagues 2015 on complete nitrification",
         "Bartelme, McLellan and Newton 2017 on the nitrifying community of a working biofilter",
-        "Curriculum-created accounts"
+        "Curriculum-created accounts and public-record comparison"
       ],
-      "responseType": "five marked judgments plus one short constructed response",
-      "answerScope": "One supported account, three contradicted accounts, one account this packet cannot decide, and a named kind of evidence that would move the undecided one.",
+      "responseType": "eight marked judgments plus three short constructed responses",
+      "answerScope": "One supported account, three contradicted accounts, one account this packet cannot decide, a named kind of evidence that would move the undecided one, each of three public claims marked against the packet's evidence, a bounded statement of what the evidence establishes about the named engineer, and one open institutional question with the record that raised it.",
       "pagePlacement": {
         "student": "student-vertical-farm-09",
         "teacher": "teacher-guide-06",
         "answer": "answer-key-04",
         "accessible": "accessible-vertical-farm-14"
       },
-      "editions": ["student", "teacher", "answer", "accessible"],
-      "keyed": true
-    },
-    {
-      "id": "C06-T8",
-      "number": "8",
-      "semanticLabel": "PUBLIC RECORD",
-      "icon": "ph-nodes",
-      "title": "Audit the Public Record",
-      "description": "Mark three claims from the company's public statement against the evidence, state what the evidence establishes about the named engineer, then name one institutional question the evidence leaves open.",
-      "instructionalPurpose": "The accountability boundary, and the task this case exists for as much as for the chemistry. Part B is the exoneration the evidence actually supports and it is bounded: the records clear the engineer of the failure the statement describes, which is not the same as establishing that nothing could have been done differently by anyone. Part C is the other half and it is required, because a case that ends at the machinery worked has taught a learner that a complex failure with no individual culprit is a failure with no accountability at all. The evidence in this packet does support institutional questions - about what was monitored, about what was commissioned, about what a public statement is for - and Part C makes the learner name one and cite the record that raised it.",
-      "provenance": [
-        "The Archive's fictional public statement, media archive and forward regulatory trace",
-        "The fictional engineering logs and consortium trace",
-        "Curriculum-created public-record comparison"
-      ],
-      "responseType": "three marked judgments plus two short constructed responses",
-      "answerScope": "Each of three public claims marked against the packet's evidence, a bounded statement of what the evidence establishes about the named engineer, and one open institutional question with the record that raised it.",
-      "pagePlacement": {
-        "student": "student-vertical-farm-10",
-        "teacher": "teacher-guide-06",
-        "answer": "answer-key-05",
-        "accessible": "accessible-vertical-farm-15"
+      "continuationPages": {
+        "student": ["student-vertical-farm-10"],
+        "accessible": ["accessible-vertical-farm-15", "accessible-vertical-farm-16"]
       },
       "editions": ["student", "teacher", "answer", "accessible"],
       "keyed": true
     },
     {
       "id": "C06-T9",
-      "number": "9",
+      "number": "8",
       "semanticLabel": "SYSTEMS EXPLANATION",
       "icon": "ph-wrench",
       "title": "Explain the Failure",
@@ -317,7 +304,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "pagePlacement": {
         "student": "student-vertical-farm-11",
         "teacher": "teacher-guide-06",
-        "answer": "answer-key-06",
+        "answer": "answer-key-05",
         "accessible": "accessible-vertical-farm-17"
       },
       "editions": ["student", "teacher", "answer", "accessible"],
@@ -407,7 +394,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "The record the case exists to audit. A spokesperson attributes the failure to human error in the nutrient-cycling design, names an engineer, and promises tighter oversight of the engineering; the media archive runs the arc from ribbon-cutting to the building browning from the inside; and the forward trace sets out what follows from sealing the record either way.",
       "limitation": "A public statement is evidence of what an institution said, and of nothing else. It is not an investigation, it reports no measurement, and inside the fiction it is chosen for what an industry can absorb rather than for what the records show. The forward trace is a projection inside a fiction and is not a prediction about anything. Reading this source as the answer is the error the case is built to catch; reading it as worthless is the opposite error, because what an institution chose to say is itself a finding.",
       "gameCorrespondence": "C1 L6 sources facility_spokesperson, query_archive and press_records at the current game baseline.",
-      "fallbackCorrespondence": "Dossier card E on Student page 3 and Accessible page 4, and the Task 8 comparison figure."
+      "fallbackCorrespondence": "Dossier card E on Student page 3 and Accessible page 4, and the Task 7 comparison figure."
     },
     {
       "id": "epa-ammonia",
@@ -562,7 +549,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "It sets the three claims of the fictional public statement against the packet's own evidence, claim by claim, and holds a third column open for the questions the evidence raises but does not answer, so that clearing a named person and closing an institutional question do not become the same act.",
       "limitation": "A comparison of a fictional statement with fictional and real evidence. It decides nothing about any real company, any real regulator or any real technology, and its third column is a set of questions rather than a set of findings.",
       "gameCorrespondence": "The level's spokesperson and forward archive, which are presented as scenes rather than as a comparison.",
-      "fallbackCorrespondence": "Task 8 figure on Student page 10 and Accessible page 15. Parts B and C of the task continue overleaf."
+      "fallbackCorrespondence": "Task 7 figure on Student page 10 and Accessible page 15. Parts D and E of the task continue overleaf."
     }
   ],
   "scienceQualification": {
@@ -701,7 +688,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
   },
   "accountabilityBoundary": {
     "id": "vertical-farm-accountability-v1.0",
-    "rule": "The evidence clears the named engineer of the failure the public statement describes. It does not establish that a complex failure with no individual culprit raises no institutional question. Both halves are required in every role, and Task 8 assesses both.",
+    "rule": "The evidence clears the named engineer of the failure the public statement describes. It does not establish that a complex failure with no individual culprit raises no institutional question. Both halves are required in every role, and Task 7 Parts C to E assess both.",
     "establishedByEvidence": [
       "The engineering records show the machinery met its designed setpoints through the failure.",
       "The biological trace shows the living subsystem failed before the chemistry moved and before the crops died.",
@@ -720,7 +707,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "What is a public statement for, when the investigation it reports has not been done?"
     ],
     "requiredFraming": "two-sided",
-    "assessedIn": ["C06-T8", "C06-T9"]
+    "assessedIn": ["C06-T7", "C06-T9"]
   },
   "sourceStatusContract": {
     "rule": "Every learner-facing evidence object carries a printed STATUS line bound to a canonical source in this registry, and every such object declares its truth layer in markup as well as in print.",
@@ -821,7 +808,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "status": "not established",
       "whatIsDocumented": "That the monitoring in place watched the engineered zone and reported no fault throughout.",
       "whatIsNot": "That biological monitoring would have caught the collapse in time, or that any particular intervention would have worked. The packet supports the question, not the answer.",
-      "rule": "Task 8 Part C asks for an open institutional question and does not accept a counterfactual stated as a finding.",
+      "rule": "Task 7 Part E asks for an open institutional question and does not accept a counterfactual stated as a finding.",
       "printedIn": ["teacher", "answer"]
     }
   ],
@@ -972,27 +959,27 @@ window.HHH_CASE06_TASK_REGISTRY = {
         "differenceClass": "parity"
       },
       {
-        "task": "C06-T8",
+        "task": "C06-T7",
         "id": "statement-marks",
         "obligation": "Mark the three public claims against the packet's evidence.",
-        "student": ["t8-claim-1", "t8-claim-2", "t8-claim-3"],
-        "accessible": ["a8-claim-1", "a8-claim-2", "a8-claim-3"],
+        "student": ["t7-claim-1", "t7-claim-2", "t7-claim-3"],
+        "accessible": ["a7-claim-1", "a7-claim-2", "a7-claim-3"],
         "differenceClass": "parity"
       },
       {
-        "task": "C06-T8",
+        "task": "C06-T7",
         "id": "engineer-finding",
         "obligation": "State what the evidence establishes about the named engineer.",
-        "student": ["t8-engineer"],
-        "accessible": ["a8-engineer"],
+        "student": ["t7-engineer"],
+        "accessible": ["a7-engineer"],
         "differenceClass": "parity"
       },
       {
-        "task": "C06-T8",
+        "task": "C06-T7",
         "id": "open-question",
         "obligation": "Name one institutional question the evidence leaves open, and the record that raised it.",
-        "student": ["t8-open"],
-        "accessible": ["a8-open-question", "a8-open-record"],
+        "student": ["t7-open"],
+        "accessible": ["a7-open-question", "a7-open-record"],
         "differenceClass": "chunking",
         "chunkingNote": "One Student field collects the question and the record it came from; the Accessible edition asks for them as two steps. The assessed obligation is identical and the Answer Key models both halves for both editions."
       },
@@ -1000,8 +987,8 @@ window.HHH_CASE06_TASK_REGISTRY = {
         "task": "C06-T9",
         "id": "culminating-explanation",
         "obligation": "Write the four-part systems and evidence-audit explanation.",
-        "student": ["t9-explanation"],
-        "accessible": ["a9-explanation"],
+        "student": ["t8-explanation"],
+        "accessible": ["a8-explanation"],
         "differenceClass": "parity"
       }
     ]
@@ -1100,7 +1087,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       {
         "id": "accountability-notice",
         "roles": ["student", "accessible"],
-        "purpose": "The Task 8 framing names the no-accountability overcorrection in order to warn a learner away from it. It is the one place in a learner edition that has to say the wrong thing out loud.",
+        "purpose": "The Task 7 framing names the no-accountability overcorrection in order to warn a learner away from it. It is the one place in a learner edition that has to say the wrong thing out loud.",
         "allowedConcepts": ["noAccountability"]
       },
       {
@@ -1215,7 +1202,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "NGSS MS-LS2-3",
       "NGSS MS-ETS1-1"
     ],
-    "ngss": "Both NGSS references are contextual only. Tasks 3, 4 and 5 do reason about the cycling of matter through a system that contains living components, and Task 8 does reason about how a designed system's monitoring defined what could be noticed. But the assessed product is an evidence audit of competing records and an accountability judgment about a public statement, not a science or engineering practice: no learner develops a model from data, designs or tests a solution, or defines an engineering problem against criteria and constraints in the way those performance expectations describe. The real science in this packet is supplied to the learner as sourced reading and is used to qualify a fictional model, which is source reasoning rather than science practice. No NGSS alignment is claimed as directly assessed.",
-    "rationale": "C3 D3.2.6-8 is the case's directly assessed home because Task 6 is a five-record contribution-and-limitation audit and Task 8 evaluates a public claim against the evidence behind it. CCSS RH.6-8.7 is directly assessed because five curriculum figures are read against the written sources at Tasks 3, 4, 5, 6 and 8. CCSS RH.6-8.8 is directly assessed because distinguishing a claim from the evidence that supports it is the entire operation of Tasks 7 and 8. The Phase 1 planning candidate C3 D3.2.6-8 is confirmed and promoted; the planning candidate CCSS RH.6-8.7 is confirmed; C3 D2.His.14.6-8 is demoted to supporting because this case's causation reasoning is about a technical system rather than about historical causation, and CCSS WHST.6-8.2 remains supporting because Task 9 is scored for reasoning rather than for craft."
+    "ngss": "Both NGSS references are contextual only. Tasks 3, 4 and 5 do reason about the cycling of matter through a system that contains living components, and Task 7 does reason about how a designed system's monitoring defined what could be noticed. But the assessed product is an evidence audit of competing records and an accountability judgment about a public statement, not a science or engineering practice: no learner develops a model from data, designs or tests a solution, or defines an engineering problem against criteria and constraints in the way those performance expectations describe. The real science in this packet is supplied to the learner as sourced reading and is used to qualify a fictional model, which is source reasoning rather than science practice. No NGSS alignment is claimed as directly assessed.",
+    "rationale": "C3 D3.2.6-8 is the case's directly assessed home because Task 6 is a five-record contribution-and-limitation audit and Task 7 evaluates a public claim against the evidence behind it. CCSS RH.6-8.7 is directly assessed because five curriculum figures are read against the written sources at Tasks 3, 4, 5, 6 and 8. CCSS RH.6-8.8 is directly assessed because distinguishing a claim from the evidence that supports it is the entire operation of Task 7. The Phase 1 planning candidate C3 D3.2.6-8 is confirmed and promoted; the planning candidate CCSS RH.6-8.7 is confirmed; C3 D2.His.14.6-8 is demoted to supporting because this case's causation reasoning is about a technical system rather than about historical causation, and CCSS WHST.6-8.2 remains supporting because Task 8 is scored for reasoning rather than for craft."
   }
 };

@@ -104,6 +104,10 @@ class Results:
         return ok
 
 
+# "Task 7 · continued" after normalise(), which replaces the middot with a space.
+CONTINUED = re.compile(r"Task \d+\s+continued")
+
+
 def normalise(text: str) -> str:
     text = text.replace("’", "'").replace("‘", "'")
     text = text.replace("“", '"').replace("”", '"')
@@ -354,7 +358,7 @@ def main() -> int:
                       not missing_frame, missing_frame)
 
     # --- TASK COVERAGE ------------------------------------------------------
-    results.check("the registry declares nine tasks", len(tasks) == 9, len(tasks))
+    results.check("the registry declares eight tasks", len(tasks) == 8, len(tasks))
     for task in tasks:
         number = task["number"]
         for role in task["editions"]:
@@ -373,6 +377,49 @@ def main() -> int:
             page = soup.select_one(f'section.page[data-role="{role}"][data-page-id="{placement[role]}"]')
             results.check(f"{role}: declared page for task {number} exists", page is not None,
                           placement[role])
+            # The declared page is where the task starts, and existing was all this
+            # ever checked. Two Accessible placements named the task's continuation
+            # page instead and nothing noticed, so require the heading to be there.
+            if page is not None and role in LEARNER_ROLES:
+                results.check(
+                    f"{role}: task {number} starts on its declared page",
+                    page.select_one(f'[data-shell-task-heading="{number}"]') is not None,
+                    placement[role])
+
+        # A task that runs past its own page says so, and every page it runs onto
+        # has to pick the task back up by name. Task 7 was folded from two tasks at
+        # owner review and now spans two Student and three Accessible pages; a
+        # continuation page that lost its heading would read as an unlabelled
+        # orphan, which is exactly what the printed run of a spanning task cannot be.
+        for role, page_ids in task.get("continuationPages", {}).items():
+            for page_id in page_ids:
+                page = soup.select_one(
+                    f'section.page[data-role="{role}"][data-page-id="{page_id}"]')
+                results.check(f"{role}: continuation page {page_id} for task {number} exists",
+                              page is not None, page_id)
+                results.check(f"{role}: {page_id} does not restate the task's own start page",
+                              page_id != placement.get(role), page_id)
+                if page is None:
+                    continue
+                body = normalise(page.get_text(" ", strip=True))
+                results.check(f"{role}: {page_id} picks task {number} back up by name",
+                              re.search(rf"Task {number}\s+continued", body) is not None,
+                              body[:120])
+                results.check(f"{role}: {page_id} does not open a second shell heading",
+                              not page.select("[data-shell-task-heading]"), page_id)
+
+    # A spanning task is the exception, so it has to be declared rather than
+    # discovered: any page printing a continued-task heading must be a page some
+    # task claims as a continuation.
+    declared_continuations = {(role, page_id) for task in tasks
+                              for role, ids in task.get("continuationPages", {}).items()
+                              for page_id in ids}
+    for page in soup.select("section.page"):
+        text = normalise(page.get_text(" ", strip=True))
+        if CONTINUED.search(text):
+            key = (page.get("data-role"), page.get("data-page-id"))
+            results.check(f"{key[1]}: a continued-task page is declared by its task",
+                          key in declared_continuations, key)
 
     # --- TWO-LAYER TRUTH ----------------------------------------------------
     two_layer = registry["twoLayerTruth"]
@@ -534,7 +581,7 @@ def main() -> int:
         both = figure.select_one("[data-semantic-exemption='accountability-notice']")
         results.check(f"{role}: the comparison prints both halves of the finding",
                       both is not None, "missing both-halves notice")
-    # Task 8 Part C must exist as a graded demand in both learner editions.
+    # Task 7 Part E must exist as a graded demand in both learner editions.
     erc = registry["editionResponseContract"]
     open_sub = next(s for s in erc["subparts"] if s["id"] == "open-question")
     for edition in ("student", "accessible"):

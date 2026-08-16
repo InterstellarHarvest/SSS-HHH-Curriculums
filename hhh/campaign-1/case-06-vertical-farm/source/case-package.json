@@ -123,7 +123,7 @@
     },
     "answer": {
       "documentRole": "Answer Key",
-      "pageCount": 6
+      "pageCount": 5
     },
     "accessible": {
       "documentRole": "Accessible Mission",
@@ -162,9 +162,9 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "b67fd8ea08c4b5a1bc39f9e151296c260be237212b950ab502ca302aa3ee1211",
+    "content": "2eb399e4f958063be572d9d660c28eccc319b55d26f8ea81c1a6d40f114d4f56",
     "presentation": "db63f27b17745d618cb8edd97520db891b99612a2739b4c7acb739e406c9b238",
-    "taskRegistry": "ec31ad1cf090b5ecc6477b21b782455fddbac2d771f2a88f48a9803406605581",
-    "layoutOverrides": "c69544f4a890319d0b597f4f0efa3bd044304b0b31c0383a994c2eb765821017"
+    "taskRegistry": "a218391dc5b7d5b782f85d28161a4307abaffdaaf09fff5c1857cb12579455c7",
+    "layoutOverrides": "e5c5173694ce87bb9da403a9615bac77c9a98769b1abe7793684cb2343db3516"
   }
 }
