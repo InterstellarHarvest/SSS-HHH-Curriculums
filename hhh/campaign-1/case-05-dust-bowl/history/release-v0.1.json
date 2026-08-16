@@ -1,0 +1,40 @@
+{
+    "schemaVersion": 1,
+    "caseId": "HHH-C1-CASE05",
+    "curriculumVersion": "0.1",
+    "status": "APPROVED_STABLE",
+    "approvalDate": "2026-08-16",
+    "owner": "Nate / Owner",
+    "originalReleaseApprovalCommit": "COMMIT_A_PENDING",
+    "canonicalSourceApprovalCommit": "COMMIT_A_PENDING",
+    "sourceHashes": {
+        "content": "373b3ee728b0c4d170c52af14edd7928a253bbdf7ef08d382869d1edbdfa1cba",
+        "presentation": "acbff3daa000d4dfcb9afafe0b7d1d44ee607c2da2054a2b07ecad25c532d28c",
+        "taskRegistry": "f2a9f47d5444f800a4bc2688883906b69d119c930ccd16b3f27dfedb9ebb94a4",
+        "layoutOverrides": "d4c93cc782d6709b0f6fb19d4b70908825f265e8d0bf5441c7a9888fb9b6903e"
+    },
+    "frozenNonAccessibleDomBaselines": {
+        "student": "7b1bd914744f2d8ada8ed2f02ac19c290aebfd33d9a76fc3f18d8fb9e825669c",
+        "teacher": "4b2f7e8363bc667a37817f62c8e50c18383ecf86e8e9d32b013fe3c030a3c1ba",
+        "answer": "182a17f803e925a48b6ccfc1704127cc0ed6c5de08e1c89c03a0036708ac7e26",
+        "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only. For this release the Accessible DOM hash was nevertheless computed at both trees and compared, as 33d2204405c91006fd790de7b5680bfd8129f4b378af10e149ff3a44d152abee, to prove printable parity across all four roles."
+    },
+    "rolePageCounts": {
+        "student": 10,
+        "teacher": 8,
+        "answer": 6,
+        "accessible": 17
+    },
+    "acceptedValidation": {},
+    "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-16. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+    "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Core Case 05 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
+    },
+    "formerArtifactRecoveryCommit": "COMMIT_A_PENDING",
+    "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+    "priorApprovedReleases": [],
+    "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+    "migrationNotes": [],
+    "retiredArtifacts": []
+}

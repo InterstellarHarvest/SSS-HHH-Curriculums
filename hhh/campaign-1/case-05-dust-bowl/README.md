@@ -5,22 +5,34 @@
 **Instructional type:** `CORE_CASE`
 **Game source:** Campaign 1 · Level 5
 **Version:** 0.1
-**Status:** `VALIDATION_BUILD` — first reviewable candidate, not released
+**Status:** `APPROVED_STABLE` — released 2026-08-16
 
-The fifth full historical Core Case in Hunger, Harvest, & History. Produced against
-the released Core Case 04 baseline `661c5c0caad2e6996dff20f86c7565d19116b1ec` and
-the approved Blueprint, and against the integrated game baseline
-`d9fc16baf272cb543c29cbd0c06ec85efad60be8`.
+The fifth full historical Core Case in Hunger, Harvest, & History, released at v0.1
+on 2026-08-16. Produced against the released Core Case 04 baseline
+`661c5c0caad2e6996dff20f86c7565d19116b1ec` and the approved Blueprint, and against
+the integrated game baseline `d9fc16baf272cb543c29cbd0c06ec85efad60be8`.
 
-## Candidate state
+## Release state
 
 | Gate | State |
 | --- | --- |
-| Package status | `VALIDATION` |
-| Owner review | `OWNER_REVIEW_NOT_STARTED` |
-| Print status | `NOT_RUN` |
-| Release record | none — no `release-v0.1.json` exists at candidate stage |
-| Approval record | none |
+| Package status | `APPROVED` |
+| Owner review | `OWNER_REVIEW_PASS` — Nate / Owner, 2026-08-16 |
+| Print status | `PASS` — owner physical print at 100% / Actual Size |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/CASE05_OWNER_APPROVAL_v0.1.md`](history/CASE05_OWNER_APPROVAL_v0.1.md) |
+
+**Owner-approved printable baseline:** `8bf2d6a299f96228fc0f1bbdb6e50000074e7298`.
+Release conversion left `content.html`, `presentation.css` and
+`layout-overrides.json` byte-identical to that commit; only `task-registry.js`
+moved, and only in its two lifecycle keys, neither of which renders. The release
+record pins the commit whose tree first carries the released certified bytes,
+which is the release-conversion commit rather than the printable baseline; the two
+are recorded separately and deliberately.
+
+No classroom-content or artwork change was made after independent review closed.
+The commit the reviewer passed, the commit the owner reviewed on screen, and the
+commit the owner printed are the same commit.
 
 Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a
 release gate, and any PDF exported from the browser is noncanonical and carries no

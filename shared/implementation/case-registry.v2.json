@@ -387,15 +387,17 @@
               "title": "The Dust Bowl",
               "instructionalType": "CORE_CASE",
               "version": "0.1",
-              "status": "VALIDATION_BUILD",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "hhh/campaign-1/case-05-dust-bowl/source/case-package.json",
+              "historyRecord": "hhh/campaign-1/case-05-dust-bowl/history/release-v0.1.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "VALIDATION",
+              "packageStatus": "APPROVED",
               "approval": {
+                "date": "2026-08-16",
                 "owner": "Nate / Owner",
-                "status": "OWNER_REVIEW_NOT_STARTED",
-                "printStatus": "NOT_RUN"
+                "status": "APPROVED",
+                "printStatus": "PASS"
               }
             },
             {
