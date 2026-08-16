@@ -1235,6 +1235,8 @@ def main() -> int:
     results.check("HHH Campaign 1 Case 04 case-scoped temperature, catalyst, attribution, recycle, source-status and parity checks pass", hhh_case04.returncode == 0, (hhh_case04.stdout + hhh_case04.stderr).strip()[-2000:])
     hhh_case05 = subprocess.run([sys.executable, str(APP / "tests/validate_hhh_case05_dust_bowl.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("HHH Campaign 1 Case 05 case-scoped subsoil, drought, land-use, policy, source-status and parity checks pass", hhh_case05.returncode == 0, (hhh_case05.stdout + hhh_case05.stderr).strip()[-2000:])
+    hhh_case06 = subprocess.run([sys.executable, str(APP / "tests/validate_hhh_case06_vertical_farm.py")], cwd=ROOT, text=True, capture_output=True)
+    results.check("HHH Campaign 1 Case 06 case-scoped two-layer truth, science-qualification, accountability, source-status and parity checks pass", hhh_case06.returncode == 0, (hhh_case06.stdout + hhh_case06.stderr).strip()[-2000:])
     case05_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case05_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
     results.check("SSS Campaign 2 Case 05 case-scoped source, clue, figure, dose-precision, and prohibited-claim checks pass", case05_campaign2.returncode == 0, (case05_campaign2.stdout + case05_campaign2.stderr).strip()[-2000:])
     case04_campaign2 = subprocess.run([sys.executable, str(APP / "tests/validate_case04_campaign2.py")], cwd=ROOT, text=True, capture_output=True)
