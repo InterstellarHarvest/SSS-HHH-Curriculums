@@ -77,15 +77,6 @@
       "maxPx": 440
     },
     {
-      "id": "HHH-C1-CASE05:accessible:t6:a6-feedback",
-      "persistId": "a6-feedback",
-      "pageId": "accessible-dust-bowl-14",
-      "taskId": 6,
-      "label": "Accessible Task 6 the feedback relation",
-      "minPx": 72,
-      "maxPx": 380
-    },
-    {
       "id": "HHH-C1-CASE05:accessible:t6:a6-remove-cond",
       "persistId": "a6-remove-cond",
       "pageId": "accessible-dust-bowl-14",

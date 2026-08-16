@@ -387,7 +387,14 @@ a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2p
 .accessible .response.roomy.fill-region { min-height: 2.05in; }
 .accessible .response.roomy.fill-erosion { min-height: 1.85in; }
 .accessible .response.roomy.fill-fence { min-height: 2.55in; }
-.accessible .response.roomy.fill-cause { min-height: 1.45in; }
+/* Task 6 Part B and Part C. Removing the Accessible feedback demand freed
+   about 1.8in on this page; under Balanced Page Fill it goes back to the
+   three fields the learner actually writes in, not to the margin. Part C is
+   given the larger share because it is one field against the Student
+   edition's one, where Part B is two Accessible steps against one Student
+   field and is already well clear of the type-scaled floor. */
+.accessible .response.roomy.fill-cause { min-height: 1.88in; }
+.accessible .response.roomy.fill-cause[data-persist-id="a6-limit"] { min-height: 2.26in; }
 /* Task 7 Part B: 1.75in against the Student edition's 1.42in. Accessible body
    type runs about 1.21x the Student size, so this is the type-scaled floor
    almost exactly (1.75 / 1.42 = 1.23) and the field still gives an

@@ -626,9 +626,110 @@ def main() -> int:
     results.check("the Teacher scoring note states the modelled and pre-placed counts",
                   "eight" in teacher_text and "six" in teacher_text
                   and soup.select_one('[data-accessible-adaptation]') is not None)
-    results.check("the Answer Key states the Accessible cell and placement counts it does not credit",
-                  "supplies the COVER row" in answer_text and "pre-places two cards" in answer_text,
-                  answer_text[:0])
+    # Checked against the declared reduction counts rather than a fixed phrase,
+    # so rewording the key cannot silently drop the disclosure.
+    WORDS = {6: "six", 8: "eight", 10: "ten"}
+    for sub in [x for x in registry["editionResponseContract"]["subparts"]
+                if x["differenceClass"] == "declared-reduction"]:
+        ns, na = len(sub["student"]), len(sub["accessible"])
+        results.check(f"the Answer Key discloses both edition counts for {sub['task']} {sub['id']}",
+                      WORDS[ns] in answer_text.lower() and WORDS[na] in answer_text.lower(),
+                      f"expected {WORDS[ns]} and {WORDS[na]}")
+
+    # --- R1: EDITION RESPONSE PARITY, AGAINST DECLARED OBLIGATIONS ----------
+    # Compared against canonical per-subpart obligations rather than prose. The
+    # first candidate's Accessible edition acquired a required feedback response
+    # the Student edition never asked for - a fifth, undeclared, demand-raising
+    # adaptation - and nothing text-level caught it.
+    erc = registry["editionResponseContract"]
+    subparts = erc["subparts"]
+    declared = {"student": [], "accessible": []}
+    for sub in subparts:
+        declared["student"].extend(sub["student"])
+        declared["accessible"].extend(sub["accessible"])
+    for edition, prefix in (("student", "student"), ("accessible", "accessible")):
+        live = [n.get("data-persist-id") for n in
+                soup.select(f'section.page[data-role="{prefix}"] [data-response][data-persist-id]')]
+        identity = set(erc["identityFields"][edition])
+        assessed = [i for i in live if i not in identity]
+        listed = declared[edition]
+        results.check(f"{edition}: every assessed response belongs to exactly one declared subpart",
+                      sorted(assessed) == sorted(listed),
+                      json.dumps({"unlisted": sorted(set(assessed) - set(listed)),
+                                  "listed-but-absent": sorted(set(listed) - set(assessed))}))
+        results.check(f"{edition}: no response id is claimed by two subparts",
+                      len(listed) == len(set(listed)))
+        results.check(f"{edition}: declared identity fields exist and are not assessed",
+                      identity <= set(live) and not (identity & set(listed)))
+
+    adaptation_ids = {a["id"] for a in registry["accessibleAdaptations"]}
+    for sub in subparts:
+        label = f"{sub['task']} {sub['id']}"
+        klass, ns, na = sub["differenceClass"], len(sub["student"]), len(sub["accessible"])
+        results.check(f"{label}: has no Accessible-only obligation", ns > 0,
+                      "an Accessible response with no Student counterpart is a demand increase")
+        if klass == "parity":
+            results.check(f"{label}: declared parity holds", ns == na, f"{ns} vs {na}")
+        elif klass == "declared-reduction":
+            results.check(f"{label}: reduction is real and registered",
+                          na < ns and sub.get("governedBy") in adaptation_ids,
+                          f"{ns} -> {na}, governedBy={sub.get('governedBy')}")
+        elif klass == "chunking":
+            results.check(f"{label}: chunking splits rather than adds demand",
+                          na >= ns and "chunkingNote" in sub, f"{ns} -> {na}")
+        else:
+            results.check(f"{label}: declares a known difference class", False, klass)
+        if na > ns:
+            results.check(f"{label}: an Accessible field increase is only ever a declared chunking split",
+                          klass == "chunking", klass)
+
+    reductions = [s for s in subparts if s["differenceClass"] == "declared-reduction"]
+    results.check("every registered Accessible adaptation is either a declared reduction or a route support",
+                  {s["governedBy"] for s in reductions} <= adaptation_ids,
+                  sorted({s.get("governedBy") for s in reductions}))
+    results.check("exactly four Accessible adaptations are declared, and no fifth has appeared",
+                  len(registry["accessibleAdaptations"]) == 4,
+                  sorted(adaptation_ids))
+    results.check("the Teacher scoring note still claims exactly four scored differences",
+                  "Four scored differences, and only four" in teacher_text)
+
+    # Supplied-but-not-assessed material must carry no response control anywhere
+    # and must be printed in every edition that declares it.
+    for task in tasks:
+        for supplied in task.get("suppliedNotAssessed", []):
+            results.check(f"{task['id']} {supplied['id']}: supplied material is graded in no edition",
+                          supplied["gradedIn"] == [], supplied["gradedIn"])
+            for role in supplied["printedIn"]:
+                marked = soup.select(f'section.page[data-role="{role}"] [data-causal-relation="feedback"]')
+                results.check(f"{task['id']} {supplied['id']}: printed in {role}", bool(marked))
+                for node in marked:
+                    results.check(f"{task['id']} {supplied['id']}: carries no response control in {role}",
+                                  not node.select("[data-response]"))
+    results.check("Task 6 asks for no feedback response in either learner edition",
+                  not soup.select('[data-persist-id*="feedback"]'),
+                  [n.get("data-persist-id") for n in soup.select('[data-persist-id*="feedback"]')])
+
+    # Task 6 lettering parity: the shared assessed parts use the same letters.
+    def part_letters(role: str, page_ids: list[str]) -> list[str]:
+        found = []
+        for page_id in page_ids:
+            page = soup.select_one(f'section.page[data-role="{role}"][data-page-id="{page_id}"]')
+            for node in page.select(".part"):
+                m = re.match(r"Part ([A-Z])", normalise(node.get_text(" ", strip=True)))
+                if m and m.group(1) not in found:
+                    found.append(m.group(1))
+        return found
+    student_letters = part_letters("student", ["student-dust-bowl-07"])
+    accessible_letters = part_letters("accessible", ["accessible-dust-bowl-13", "accessible-dust-bowl-14"])
+    results.check("Task 6 uses the same part lettering in both learner editions",
+                  student_letters == accessible_letters,
+                  f"student {student_letters} vs accessible {accessible_letters}")
+
+    # Teacher and Answer Key may not require work no learner role collects.
+    for role_text, label in ((teacher_text, "Teacher"), (answer_text, "Answer Key")):
+        results.check(f"{label} does not present the supplied feedback as required learner work",
+                      not re.search(r"feedback relation[^.]{0,40}(?:is required|must be|are required)", role_text, re.I),
+                      label)
 
     # --- RESPONSE SPACE -----------------------------------------------------
     # No Accessible response may be smaller than the Student equivalent, and

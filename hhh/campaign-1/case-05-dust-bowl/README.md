@@ -220,7 +220,9 @@ in the Teacher scoring note:
    learner's in both editions.
 2. **Task 6** — two of the eight factor cards are pre-placed, one in CONDITION and
    one in RESPONSE. The Accessible learner places **six**. No role is completed for
-   them, and the condition-against-vulnerability judgement is untouched.
+   them, and the condition-against-vulnerability judgement is untouched. The
+   feedback relation is printed on the map in **both** editions and is graded in
+   neither, so it is not a difference between them; Parts B and C are identical.
 3. **Task 7** — the Accessible rail repeats each slot's date, so ordering is a
    matching operation rather than a recall one. Part B is unchanged.
 4. **Task 8** — each claim carries a printed pointer to the source that bears on
@@ -228,6 +230,15 @@ in the Teacher scoring note:
 
 No Student answer space was reduced anywhere to pay for these supports, and every
 Accessible response field is sized above its Student equivalent.
+
+Parity between the editions is not asserted in prose. `task-registry.js` carries an
+`editionResponseContract` naming, for every assessed subpart, the exact response
+ids each edition collects and which of four difference classes applies —
+`parity`, `declared-reduction` (registered against one of the four adaptations
+above), `chunking` (a presentation split with an identical obligation), or
+`accessible-only`, which is prohibited. The validator checks live markup against
+that contract in both directions, so an Accessible edition cannot acquire a
+required response the Student edition never asks for.
 
 ## No-game fallback
 

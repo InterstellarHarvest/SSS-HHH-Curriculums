@@ -197,8 +197,8 @@ window.HHH_CASE05_TASK_REGISTRY = {
       "semanticLabel": "MULTIPLE CAUSATION",
       "icon": "ph-nodes",
       "title": "Build the Causation Map",
-      "description": "Place eight factors in the four causal roles, mark the feedback relation, then run the two removal tests and name one thing the map does not explain.",
-      "instructionalPurpose": "Family H5 multiple-causation map and the organizer the culminating product is written from. The four roles are the case's answer to the audit finding: drought occupies a labelled slot, so it cannot quietly disappear, and land use occupies a different one, so it cannot quietly become the whole cause. Part B is the interaction test — remove either side and the dust does not follow — and Part C is the map's own limit, because a map of why soil blew does not explain who left the plains.",
+      "description": "Place eight factors in the four causal roles, then run the two removal tests and name one thing the map does not explain.",
+      "instructionalPurpose": "Family H5 multiple-causation map and the organizer the culminating product is written from. The four roles are the case's answer to the audit finding: drought occupies a labelled slot, so it cannot quietly disappear, and land use occupies a different one, so it cannot quietly become the whole cause. Part B is the interaction test — remove either side and the dust does not follow — and Part C is the map's own limit, because a map of why soil blew does not explain who left the plains. The feedback relation is SUPPLIED on the map in both learner editions and is graded in neither: it is a modelled result reported by one source rather than something a learner can derive from the packet, and asking for it would have made the Accessible edition demand work the Student edition never asks for.",
       "provenance": [
         "NOAA National Centers for Environmental Information on the drought",
         "Cook, Miller and Seager 2009 on sea-surface forcing and land degradation",
@@ -207,8 +207,17 @@ window.HHH_CASE05_TASK_REGISTRY = {
         "Mullins, Okie Migrations, Oklahoma Historical Society",
         "Curriculum-created causation map"
       ],
-      "responseType": "eight marked placements plus constructed responses for the feedback relation, both removal tests and the map's limit",
-      "answerScope": "Two factors in each of the four roles, the feedback relation identified, both removal answers, and one named limit of the map drawn from the migration record. The Student edition collects the two removal answers in one field and the Accessible edition splits them into two; the required reasoning is identical.",
+      "responseType": "eight marked placements plus two short constructed responses",
+      "answerScope": "Two factors in each of the four roles; both removal answers; and one named limit of the map drawn from the migration record. The Accessible edition places six factors rather than eight, because two are pre-placed under a declared adaptation, and it collects the two removal answers as two steps where the Student edition collects them in one field - a presentation split, not a change in what is demanded. Neither edition is asked for the feedback relation, which is printed on the map in both.",
+      "suppliedNotAssessed": [
+        {
+          "id": "feedback-relation",
+          "what": "The modelled feedback running from the mechanism back to the condition.",
+          "printedIn": ["student", "accessible"],
+          "gradedIn": [],
+          "why": "A model result from a single source rather than an inference this packet supports, printed identically in both learner editions. It carries no response control in either edition and earns no Answer Key credit."
+        }
+      ],
       "pagePlacement": {
         "student": "student-dust-bowl-07",
         "teacher": "teacher-guide-05",
@@ -656,6 +665,38 @@ window.HHH_CASE05_TASK_REGISTRY = {
       "printedIn": ["teacher"]
     }
   ],
+  "editionResponseContract": {
+    "rule": "Every learner response control in either edition belongs to exactly one assessed subpart, and every subpart declares what each edition is obliged to produce. Parity is checked against these canonical obligations rather than against prose, so an Accessible edition cannot acquire a required response the Student edition never asks for.",
+    "whyItExists": "The first Case 05 candidate did exactly that: the Accessible edition asked for the feedback relation as its Part B while the Student edition was given the same relation on the map. That is a fifth, undeclared, demand-INCREASING adaptation, and no text-level check caught it. Comparing declared obligations per subpart does.",
+    "differenceClasses": {
+      "parity": "Both editions produce the same number of responses for the same obligation.",
+      "declared-reduction": "The Accessible edition produces fewer, under a registered entry in accessibleAdaptations. This is a scored difference and must be disclosed to the teacher and the key.",
+      "chunking": "The Accessible edition splits one Student field into several, or merges none, with an identical assessed obligation. Support under the Accessible Adaptation Contract; not a scored difference, because nothing more is demanded.",
+      "accessible-only": "PROHIBITED. A required Accessible response with no Student counterpart is a demand increase and fails validation."
+    },
+    "subparts": [
+      { "task": "C05-T1", "id": "vocabulary-placements", "obligation": "Place six exact-match terms.", "student": ["t1-term-1","t1-term-2","t1-term-3","t1-term-4","t1-term-5","t1-term-6"], "accessible": ["a1-term-1","a1-term-2","a1-term-3","a1-term-4","a1-term-5","a1-term-6"], "differenceClass": "parity" },
+      { "task": "C05-T2", "id": "first-explanation", "obligation": "One provisional explanation and one named check.", "student": ["t2-first","t2-check"], "accessible": ["a2-first","a2-check"], "differenceClass": "parity" },
+      { "task": "C05-T3", "id": "band-placements", "obligation": "Place three statements against the three bands.", "student": ["t3-band-1","t3-band-2","t3-band-3"], "accessible": ["a3-band-1","a3-band-2","a3-band-3"], "differenceClass": "parity" },
+      { "task": "C05-T3", "id": "drought-span", "obligation": "State the drought's span and the longest unbroken stretch.", "student": ["t3-span"], "accessible": ["a3-span"], "differenceClass": "parity" },
+      { "task": "C05-T3", "id": "scale-gap", "obligation": "Explain why the drought record alone does not explain the soil loss.", "student": ["t3-gap"], "accessible": ["a3-gap"], "differenceClass": "parity" },
+      { "task": "C05-T4", "id": "transport-stages", "obligation": "Complete the two open transport stages.", "student": ["t4-stage-2","t4-stage-4"], "accessible": ["a4-stage-2","a4-stage-4"], "differenceClass": "parity" },
+      { "task": "C05-T4", "id": "condition-assignment", "obligation": "Assign one wind-erosion condition to land use and a different one to the drought.", "student": ["t4-cond-landuse","t4-cond-drought"], "accessible": ["a4-cond-landuse","a4-cond-drought"], "differenceClass": "parity" },
+      { "task": "C05-T4", "id": "subsoil-boundary", "obligation": "State what the core readings do and do not establish.", "student": ["t4-sub-does","t4-sub-not"], "accessible": ["a4-sub-does","a4-sub-not"], "differenceClass": "parity" },
+      { "task": "C05-T5", "id": "comparison-cells", "obligation": "Complete the fence-line comparison.", "student": ["t5-cover-field","t5-cover-strip","t5-roots-field","t5-roots-strip","t5-dry-field","t5-dry-strip","t5-soil-field","t5-soil-strip","t5-wind-field","t5-wind-strip"], "accessible": ["a5-roots-field","a5-roots-strip","a5-dry-field","a5-dry-strip","a5-soil-field","a5-soil-strip","a5-wind-field","a5-wind-strip"], "differenceClass": "declared-reduction", "governedBy": "t5-modelled-cover-row" },
+      { "task": "C05-T5", "id": "control-establishes", "obligation": "State what the comparison establishes.", "student": ["t5-establishes"], "accessible": ["a5-establishes"], "differenceClass": "parity" },
+      { "task": "C05-T5", "id": "control-limits", "obligation": "State what it cannot establish and the regional check needed.", "student": ["t5-limits"], "accessible": ["a5-limits"], "differenceClass": "parity" },
+      { "task": "C05-T6", "id": "factor-placements", "obligation": "Place the factor cards in the four causal roles.", "student": ["t6-cond-1","t6-cond-2","t6-vuln-1","t6-vuln-2","t6-mech-1","t6-mech-2","t6-resp-1","t6-resp-2"], "accessible": ["a6-cond-2","a6-vuln-1","a6-vuln-2","a6-mech-1","a6-mech-2","a6-resp-2"], "differenceClass": "declared-reduction", "governedBy": "t6-preplaced-factors" },
+      { "task": "C05-T6", "id": "removal-test", "obligation": "Answer both removal tests: what happens to the dust without the condition, and without the vulnerability.", "student": ["t6-remove"], "accessible": ["a6-remove-cond","a6-remove-vuln"], "differenceClass": "chunking", "chunkingNote": "One Student field collects both halves; the Accessible edition asks for them as two steps. The assessed obligation is identical and the Answer Key models both halves for both editions." },
+      { "task": "C05-T6", "id": "map-limit", "obligation": "Name one thing the map does not explain, using the migration record.", "student": ["t6-limit"], "accessible": ["a6-limit"], "differenceClass": "parity" },
+      { "task": "C05-T7", "id": "sequence-order", "obligation": "Order the four middle entries.", "student": ["t7-slot-2","t7-slot-3","t7-slot-4","t7-slot-5"], "accessible": ["a7-slot-2","a7-slot-3","a7-slot-4","a7-slot-5"], "differenceClass": "parity", "supportNote": "The Accessible rail repeats each slot's date under t7-fixed-ends. That changes the route, not the number of responses, so it is not a field-count difference." },
+      { "task": "C05-T7", "id": "policy-confound", "obligation": "Explain why the timeline cannot credit the Act alone.", "student": ["t7-confound"], "accessible": ["a7-confound"], "differenceClass": "parity" },
+      { "task": "C05-T8", "id": "claim-marks", "obligation": "Mark five claims Y, N or question mark.", "student": ["t8-mark-1","t8-mark-2","t8-mark-3","t8-mark-4","t8-mark-5"], "accessible": ["a8-mark-1","a8-mark-2","a8-mark-3","a8-mark-4","a8-mark-5"], "differenceClass": "parity", "supportNote": "The Accessible claims carry source pointers under t8-source-pointers. That names where to look, not what to write, and changes no response count." },
+      { "task": "C05-T8", "id": "settle-undecided", "obligation": "Name evidence that would settle the undecided claim.", "student": ["t8-settle"], "accessible": ["a8-settle"], "differenceClass": "parity" },
+      { "task": "C05-T9", "id": "culminating-explanation", "obligation": "Write the four-part qualified multi-causal explanation.", "student": ["t9-explanation"], "accessible": ["a9-explanation"], "differenceClass": "parity" }
+    ],
+    "identityFields": { "student": ["student-name","student-date","student-class"], "accessible": ["a-name","a-date","a-class"] }
+  },
   "accessibleAdaptations": [
     {
       "id": "t5-modelled-cover-row",
@@ -669,7 +710,7 @@ window.HHH_CASE05_TASK_REGISTRY = {
       "id": "t6-preplaced-factors",
       "task": "C05-T6",
       "what": "Two of the eight factor cards are pre-placed in the map as worked models, one in the condition role and one in the response role.",
-      "effect": "The Accessible learner places six factors independently rather than eight. The feedback relation, both removal answers and the limit of the map remain entirely the learner's.",
+      "effect": "The Accessible learner places six factors independently rather than eight. Both removal answers and the limit of the map remain entirely the learner's, and are the same two assessed parts the Student edition requires.",
       "whyNotALeak": "One card is placed in each of two different roles, so no role is completed for the learner and the condition-against-vulnerability judgement the task assesses is untouched.",
       "declaredIn": ["accessible", "teacher", "answer"]
     },
