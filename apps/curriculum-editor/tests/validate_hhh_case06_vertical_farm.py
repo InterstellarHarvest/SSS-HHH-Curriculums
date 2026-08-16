@@ -692,6 +692,46 @@ def main() -> int:
                       len(source.get("contribution", "")) > 40
                       and len(source.get("limitation", "")) > 40, source["id"])
 
+    # --- FALLBACK CORRESPONDENCE RESOLVES TO REAL PAGES ---------------------
+    # Every source states where a learner without the game finds it. Those page
+    # numbers are the no-game route's index, and they drift silently whenever a
+    # page is added, split or recomposed - which happened twice during this
+    # build and was caught by eye rather than by a gate. Checking the declared
+    # numbers against the pages the source actually appears on turns that into a
+    # failure. Roman-numbered figure rows and teacher-only pointers are ignored;
+    # only "Student page N" and "Accessible page(s) N" claims are resolved.
+    PAGE_CLAIM = re.compile(r"(Student|Accessible) pages? ((?:\d+)(?:(?:,| and| to) \d+)*)", re.I)
+    for source in registry["caseSources"]:
+        claim = source.get("fallbackCorrespondence", "")
+        for role_word, numbers in PAGE_CLAIM.findall(claim):
+            role = role_word.lower()
+            declared = {int(n) for n in re.findall(r"\d+", numbers)}
+            actual = {int(page.get("data-page-id").rsplit("-", 1)[1])
+                      for page in pages_for(soup, role)
+                      if page.select(f'[data-source-id~="{source["id"]}"]')}
+            results.check(
+                f"{source['id']}: declared {role} fallback page(s) {sorted(declared)} carry the source",
+                declared <= actual,
+                f"declared {sorted(declared)}, source actually appears on {sorted(actual)}")
+
+    # Teacher page pointers must name a page that exists and, where the pointer
+    # names a section, a page that actually carries it.
+    teacher_pages = {page.get("data-page-id"): normalise(page.get_text(" ", strip=True))
+                     for page in pages_for(soup, "teacher")}
+    POINTERS = [
+        (r"[Ff]ull citations are on pages (\d+) and (\d+)", ("Authoritative sources", "Source ledger")),
+        (r"the scoring rule are on page (\d+)", ("Scoring the Accessible edition",)),
+        (r"science-qualification note on page (\d+)", ("What this case must carry from the audit",)),
+    ]
+    for pattern, needles in POINTERS:
+        for match in re.finditer(pattern, texts["teacher"]):
+            for number in match.groups():
+                page_id = f"teacher-guide-{int(number):02d}"
+                body = teacher_pages.get(page_id, "")
+                results.check(f"Teacher pointer to page {number} names a page that carries it",
+                              bool(body) and any(n in body for n in needles),
+                              f"{page_id}: expected one of {needles}")
+
     # --- ACCESSIBLE ADAPTATIONS ARE TRUE AND DECLARED -----------------------
     declared_adaptations = registry["accessibleAdaptations"]
     adaptation_ids = {a["id"] for a in declared_adaptations}
