@@ -557,23 +557,126 @@ window.HHH_CASE05_TASK_REGISTRY = {
           "\\bno\\s+(?:life|living|micro\\w*|organisms?|biology|biological\\s+activity|organic\\s+matter|organic\\s+carbon)\\b",
           "\\bnothing\\s+(?:is\\s+|was\\s+)?(?:alive|living|lives|live|survives|survive)\\b",
           "\\bnothing\\s+(?:can|will|could|would)\\s+(?:live|survive)\\b",
-          "\\bnot\\s+(?:a\\s+)?(?:single\\s+)?(?:living\\s+thing|organism|microbe)\\w*\\b",
+          "\\bnot\\s+(?:a|an|one)\\s+(?:single\\s+)?(?:\\w+\\s+){0,2}?(?:living\\s+thing|thing|organism|organisms|microbe|microbes|microorganism|bacterium|bacteria|creature|root)s?\\b",
+          "\\bnot\\s+(?:a|an|one)?\\s*(?:single\\s+)?traces?\\s+of\\s+(?:life|living)\\b",
+          "\\bnot\\s+(?:a|an|one)\\s+(?:single\\s+)?(?:\\w+\\s+){0,2}?(?:survives?|remains?|lives?|is\\s+alive)\\b",
           "\\bzero\\s+(?:life|living|organic|microbial|biological)\\b",
           "\\bwithout\\s+(?:any\\s+)?(?:life|living|microbial|biological)\\b",
-          "\\bno\\s+longer\\s+alive\\b"
+          "\\bno\\s+longer\\s+alive\\b",
+          "\\b(?:life|living|microbial|biological|microbes?|organisms?)\\w*\\s+(?:\\w+\\s+){0,2}?(?:is|are|was|were)\\s+(?:completely\\s+|entirely\\s+|totally\\s+|wholly\\s+)?absent\\b",
+          "\\b(?:completely|entirely|totally|wholly)\\s+absent\\b"
         ]
       },
       "universalGrowthZero": {
         "meaning": "Asserts that the protected layer can grow nothing at all, rather than that it is greatly reduced in crop suitability.",
+        "arityNote": "The modal and the adverb are INDEPENDENTLY optional. The prior compilation put them in one alternation, so it accepted a modal or an ever but not both, and 'nothing will ever grow' - the most natural way a learner would write the prohibited idea - walked through. Each slot is now its own optional group.",
         "patterns": [
-          "\\bnothing\\s+(?:can|will|could|would|ever)?\\s*grow\\w*\\b",
+          "\\bnothing\\s+(?:can|will|could|would|shall|may)?\\s*(?:ever\\s+)?grow\\w*\\b",
+          "\\bnothing\\s+(?:is|was)\\s+(?:ever\\s+)?going\\s+to\\s+grow\\w*\\b",
           "\\bgrows?\\s+nothing\\b",
           "\\bcan\\s?not\\s+grow\\s+anything\\b|\\bcannot\\s+grow\\s+anything\\b",
+          "\\bwill\\s+not\\s+grow\\s+anything\\b|\\bwon't\\s+grow\\s+anything\\b",
           "\\bcan\\s?not\\s+support\\s+(?:any\\s+)?(?:growth|life|plants?|crops?)\\b|\\bcannot\\s+support\\s+(?:any\\s+)?(?:growth|life|plants?|crops?)\\b",
-          "\\bnever\\s+grow\\w*\\b",
-          "\\bunable\\s+to\\s+grow\\b",
+          "\\b(?:can|will|could|would)\\s?not\\s+(?:ever\\s+)?grow\\w*\\b",
+          "\\bnever\\s+(?:again\\s+)?grow\\w*\\b",
+          "\\bunable\\s+to\\s+(?:grow|support)\\w*\\b",
           "\\bincapable\\s+of\\s+(?:growing|supporting)\\b",
-          "\\bno\\s+(?:crop|plant|seed)s?\\s+(?:can|will|could)\\s+(?:ever\\s+)?grow\\b"
+          "\\b(?:no|not\\s+(?:a|one))\\s+(?:crop|plant|seed|thing)s?\\s+(?:can|will|could|would)?\\s*(?:ever\\s+)?grow\\w*\\b"
+        ]
+      }
+    },
+    "boundaryCorpus": {
+      "rule": "Shipped with the contract rather than held privately in the validator, so a mutation to the registry moves the tests with it and the corpus can never drift from the boundary it exercises. Every sentence binds the protected subject explicitly, because a sentence without one tests nothing: subject scoping is part of the accepted architecture.",
+      "mustFailZero": {
+        "reviewerEscapes": [
+          "The subsoil is dead.",
+          "Beneath the topsoil the ground is dead.",
+          "Below the topsoil lies dead ground.",
+          "The subsoil is dead soil.",
+          "Beneath the topsoil the ground is completely dead.",
+          "The subsoil is sterile.",
+          "Beneath the topsoil nothing is alive."
+        ],
+        "modalAdverbArity": [
+          "Nothing will ever grow in the subsoil.",
+          "Nothing can ever grow in the subsoil.",
+          "Nothing could ever grow below the topsoil.",
+          "Nothing would ever grow beneath the topsoil.",
+          "Nothing ever grows in this subsoil.",
+          "Nothing can grow in the lower soil layer."
+        ],
+        "modalAdverbArityFresh": [
+          "Nothing will ever grow beneath the topsoil again.",
+          "Nothing could grow in the subsoil now.",
+          "Nothing would grow below the topsoil even with rain.",
+          "Nothing is ever going to grow in the subsoil.",
+          "The subsoil can never again grow a crop.",
+          "Below the topsoil no plant will ever grow.",
+          "Beneath the topsoil no seeds can grow.",
+          "The subsoil will not ever grow wheat."
+        ],
+        "quantifierGrammar": [
+          "Not one microbe survives below the topsoil.",
+          "Not one organism survives in the subsoil.",
+          "Below the topsoil not one living thing remains.",
+          "There is not one microbe alive in the subsoil.",
+          "Not one living organism remains beneath the topsoil."
+        ],
+        "quantifierGrammarFresh": [
+          "Not one bacterium is left in the subsoil.",
+          "Beneath the topsoil not one root survives.",
+          "Not one single microbe lives below the topsoil.",
+          "In the subsoil not one creature remains.",
+          "Below the topsoil there is not a single living thing.",
+          "Not one tiny organism survives in the subsoil.",
+          "Beneath the topsoil not one trace of life is left.",
+          "The subsoil holds not one living microorganism."
+        ],
+        "mixedClause": [
+          "The subsoil is sterile even though fertility is low.",
+          "No microbes live below the topsoil, where organic matter is scarce.",
+          "Nothing will ever grow in the subsoil, although its structure is poor.",
+          "The ground beneath the topsoil is dead, with low fertility.",
+          "Not one organism survives in the subsoil, even though crop suitability is limited."
+        ],
+        "mixedClauseFresh": [
+          "Microbial life in the subsoil is completely absent, although fertility is low.",
+          "Below the topsoil the layer is lifeless, though some structure is weak rather than gone.",
+          "The subsoil has scarce organic matter and not one surviving microbe.",
+          "Beneath the topsoil biological activity is limited and nothing can ever grow.",
+          "The subsoil is degraded, poor, thin - and devoid of life."
+        ]
+      },
+      "mustPassBounded": {
+        "required": [
+          "The subsoil has low fertility.",
+          "Biological activity in the subsoil is weak.",
+          "Organic matter below the topsoil is scarce.",
+          "Microbial life in the subsoil is limited.",
+          "Fertility in the layer below the topsoil is minimal.",
+          "Living activity beneath the topsoil is slight.",
+          "Crop growth in the degraded subsoil is difficult.",
+          "Crop suitability in the subsoil is low.",
+          "Microbial activity in the subsoil is far below healthy topsoil.",
+          "The subsoil has sparse living activity.",
+          "The remaining subsoil is severely degraded.",
+          "The layer below the topsoil can support some growth, but poorly."
+        ],
+        "fresh": [
+          "The subsoil holds only a trace of organic matter.",
+          "Beneath the topsoil the microbial biomass is a fraction of what it was.",
+          "Below the topsoil the organic carbon is down to a trace.",
+          "The subsoil is starved of the organic matter a crop depends on.",
+          "Biological activity in the subsoil is much lower than in living topsoil.",
+          "The subsoil's structure has broken down and its fertility is poor.",
+          "Beneath the topsoil the living community is thin.",
+          "Crop suitability below the topsoil is greatly reduced.",
+          "The subsoil is impoverished compared with the band above it.",
+          "Below the topsoil there is too little organic matter to carry a crop.",
+          "A seed in the subsoil would struggle for anchor and for feeding.",
+          "Beneath the topsoil the biological activity is far below the living-topsoil range.",
+          "The subsoil is depleted, and what growth it supports is marginal.",
+          "Living activity in the subsoil is diminished rather than gone."
         ]
       }
     },
@@ -853,13 +956,27 @@ window.HHH_CASE05_TASK_REGISTRY = {
     ],
     "subsoil": {
       "policy": "FAIL_CLOSED_ON_ABSOLUTES",
+      "enforcedRoles": ["student", "teacher", "answer", "accessible"],
+      "enforcedRolesRule": "Both rules apply in all four roles. The declared scope once read 'a learner or key role' while the implementation already covered Teacher as well; the wording was the thing that was wrong, and it has been corrected to match. Teacher prose that names the prohibited claim in order to reject it passes through the registered exemption mechanism, not through a narrower scope.",
       "policyRule": "A non-exempt sentence naming a subsoil subject together with a life-or-growth predicate must carry an approved bounded qualifier. An absolute term from the closed list below fails outright. The prohibited class here is genuinely closed - absolutes are a small finite class in English, unlike synonyms for an ordinary verb - which is why this guard converges where an open blacklist would not.",
       "subjectTerms": [
         "subsoil", "sub-soil", "the ground below", "the ground beneath",
         "below the topsoil", "beneath the topsoil", "under the topsoil",
         "what is left below", "the pale sand", "the sand below",
-        "the mineral layer", "the layer below", "the core", "the gully floor"
+        "the mineral layer", "the layer below", "the lower layer",
+        "the lower soil layer", "the exposed lower layer", "the core",
+        "the gully floor"
       ],
+      "subjectPatterns": [
+        "\\bsub-?soil\\b",
+        "\\b(?:below|beneath|under|underneath)\\b[^.]{0,40}?\\btopsoil\\b",
+        "\\bthe ground (?:below|beneath|underneath)\\b",
+        "\\bthe (?:pale |mineral |starved |exposed )?(?:sand|layer|soil layer) below\\b",
+        "\\bthe (?:lower|exposed) (?:soil )?layer\\b",
+        "\\bthe mineral layer\\b",
+        "\\bgully floor\\b"
+      ],
+      "subjectPatternRule": "The protected subject is declared HERE, not in the validator. It used to be a module-level regex constant in the test file - a second authority of exactly the kind this contract exists to prevent - and it silently excluded ordinary names for the same layer, so 'nothing can grow in the lower soil layer' fell outside the guard entirely. subjectTerms above stays as the readable register; subjectPatterns is what compiles.",
       "predicateTerms": [
         "life", "living", "lives", "live", "alive", "biological", "biology",
         "microbial", "microbes", "organism", "organisms", "activity",
@@ -874,13 +991,45 @@ window.HHH_CASE05_TASK_REGISTRY = {
         "poor in", "starved", "too little", "far too little", "not enough",
         "how much less", "reduced", "diminished", "depleted", "thin", "little left"
       ],
-      "comparativeMarkers": [
-        "less", "lower", "fewer", "reduced", "down to", "only", "barely",
-        "hardly", "compared", "comparison", "than", "sparse", "poor", "thin",
-        "degraded", "depleted", "starved", "trace", "fraction", "too little",
-        "not enough", "little left", "diminished", "below", "worn"
-      ],
-      "comparativeMarkerRule": "The BOUNDED rule is the permissive half of this contract and is deliberately shaped that way. It fires only when a life-or-growth claim about the protected layer carries no comparative frame at all; any comparative marker clears it. A marker missing from this list therefore weakens a secondary diagnostic and can never open the zero-class hole, which prohibitedConceptClasses enforces independently. The two halves are asymmetric on purpose: the class that must not leak is closed and strict, the class that must not over-fire is open and permissive.",
+      "boundedQualifierFamilies": {
+        "rule": "The permissive half of the contract, and the ONLY half that may be widened. Each family is a way of saying LESS, DEGRADED or DIFFICULT - never NONE or IMPOSSIBLE. Matching is word-bounded regex so 'low' no longer matches inside 'below' and 'flow', which was making statements pass for the wrong reason.",
+        "orderingRule": "A bounded qualifier can NEVER clear a matched zero-class concept. Zero-class detection runs first and is independently decisive; the bounded families only reduce false positives on statements that carry no prohibited zero concept at all. 'Microbial life is completely absent, although fertility is low' still fails.",
+        "quantityActivity": {
+          "meaning": "There is less of it than in living topsoil.",
+          "patterns": [
+            "\\blow\\b", "\\blower\\b", "\\bless\\b", "\\bfewer\\b", "\\breduced\\b",
+            "\\bsparse(?:ly)?\\b", "\\bscarce(?:ly)?\\b", "\\blimited\\b", "\\bminimal\\b",
+            "\\bslight(?:ly)?\\b", "\\btraces?\\b", "\\bfractions?\\b", "\\bdepleted\\b",
+            "\\bdiminished\\b", "\\bbarely\\b", "\\bhardly\\b", "\\bthin(?:ner)?\\b",
+            "\\bonly\\b", "\\bfar below\\b", "\\bwell below\\b", "\\bbelow the range\\b",
+            "\\bdown to\\b", "\\blittle left\\b", "\\bnot enough\\b", "\\btoo little\\b",
+            "\\bmuch less\\b", "\\bfar less\\b", "\\bsome\\b"
+          ]
+        },
+        "conditionFunction": {
+          "meaning": "Its condition is worse than living topsoil's.",
+          "patterns": [
+            "\\bweak(?:ly|er)?\\b", "\\bpoor(?:ly|er)?\\b", "\\bdegraded\\b",
+            "\\bstarved\\b", "\\bbroken down\\b", "\\bworn\\b", "\\bdamaged\\b",
+            "\\bimpoverished\\b", "\\bexhausted\\b"
+          ]
+        },
+        "agronomicSuitability": {
+          "meaning": "Growing in it is harder, not impossible.",
+          "patterns": [
+            "\\bdifficult\\b", "\\bhard to grow\\b", "\\bgreatly reduced\\b",
+            "\\bseverely reduced\\b", "\\bseverely degraded\\b", "\\bmarginal\\b",
+            "\\bstruggles?\\b", "\\bstruggling\\b"
+          ]
+        },
+        "comparisonFrame": {
+          "meaning": "The statement is explicitly framed as a comparison, including meta statements about the boundary itself.",
+          "patterns": [
+            "\\bcompared\\b", "\\bcomparison\\b", "\\bthan\\b", "\\brelative to\\b",
+            "\\bagainst living\\b", "\\bhow much less\\b"
+          ]
+        }
+      },
       "negationTerms": [
         "not dead", "is not dead", "are not dead", "not lifeless", "not sterile",
         "does not mean nothing", "do not mean nothing", "not that nothing",
@@ -899,7 +1048,7 @@ window.HHH_CASE05_TASK_REGISTRY = {
       },
       "rules": [
         "ZERO-CLASS: a proposition naming a subsoil subject together with any biological-zero or universal-growth-zero concept fails. No second life-or-growth token is required, because the concept classes already carry that meaning. It clears only through a registered exemption or an explicit clearing term.",
-        "BOUNDED: a proposition naming a subsoil subject and a separate life-or-growth predicate in a learner or key role must also carry an approved bounded qualifier, so that every statement of the subsoil's condition is a comparison rather than an absence.",
+        "BOUNDED: a proposition naming a subsoil subject and a separate life-or-growth predicate must also carry an approved bounded qualifier, so that every statement of the subsoil's condition is a comparison rather than an absence.",
         "SUBJECT SCOPE: both rules apply only to the protected subject - the subsoil, the ground below or beneath the topsoil, and the exposed lower layer. The adjective dead applied to anything else, including a dead field at the surface, is outside this contract and is not a violation of it."
       ]
     },

@@ -297,10 +297,20 @@ the validator — the removal of that duplicate is itself asserted.
 
 The positive half, `BOUNDED`, is deliberately **permissive** and asymmetric to the
 negative half: it fires only when a life-or-growth claim about the protected layer
-carries no comparative frame at all, and any `comparativeMarkers` entry clears it.
-A marker missing from that list therefore weakens a secondary diagnostic and can
-never open the zero-class hole. Scope stays on the protected subject: a *dead
-field* at the surface is outside this contract and is not a violation of it.
+carries no bounded frame at all, and any pattern in
+`boundedQualifierFamilies` clears it — four families saying *less*, *degraded* or
+*difficult*, never *none* or *impossible*. A pattern missing from those families
+weakens a secondary diagnostic and can never open the zero-class hole, because
+zero-class detection runs **first and is independently decisive**: a bounded
+qualifier in the same sentence cannot clear a matched zero concept.
+
+Both the protected subject (`subjectPatterns`) and the test corpus
+(`boundaryCorpus`) live in the registry too, so the validator holds no private
+matcher and no private fixtures — a mutation to the contract carries its own tests
+with it. Scope stays on the protected subject: a *dead field* at the surface is
+outside this contract and is not a violation of it. Enforcement covers all four
+roles, and the declared `enforcedRoles` is reconciled against the roles the
+validator actually walks.
 
 ## Preservation
 

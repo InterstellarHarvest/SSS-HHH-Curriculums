@@ -210,13 +210,15 @@ def contains_any(haystack: str, needles) -> list[str]:
 # canonical package source and not in this file.
 # ---------------------------------------------------------------------------
 
-SUBSOIL_SUBJECT = re.compile(
-    r"\bsub-?soil\b"
-    r"|\b(?:below|beneath|under|underneath)\b[^.]{0,40}?\btopsoil\b"
-    r"|\bthe ground (?:below|beneath|underneath)\b"
-    r"|\bthe (?:pale |mineral |starved )?(?:sand|layer) below\b"
-    r"|\bgully floor\b"
-)
+def subject_matchers(contract: dict) -> list[re.Pattern]:
+    """The protected subject, compiled from the registry.
+
+    This used to be a module-level constant in this file - a private second
+    authority beside the registry's declared subject register, and it diverged:
+    it had no pattern for "the lower soil layer", so the prohibited claim simply
+    fell outside the guard when a learner used that ordinary name for the layer.
+    """
+    return [re.compile(pattern, re.I) for pattern in contract["subjectPatterns"]]
 
 
 def zero_class_matchers(boundary: dict) -> list[tuple[str, re.Pattern]]:
@@ -238,6 +240,22 @@ def zero_class_matchers(boundary: dict) -> list[tuple[str, re.Pattern]]:
     return compiled
 
 
+def bounded_qualifier_matchers(contract: dict) -> list[re.Pattern]:
+    """Compile the permissive half from the registry's declared families.
+
+    Word-bounded, which the previous flat substring list was not: "low" used to
+    match inside "below" and "flow", so several truthful statements were passing
+    for the wrong reason while others with no accidental substring failed.
+    """
+    compiled = []
+    for family, spec in contract["boundedQualifierFamilies"].items():
+        if not isinstance(spec, dict) or "patterns" not in spec:
+            continue
+        for pattern in spec["patterns"]:
+            compiled.append(re.compile(pattern, re.I))
+    return compiled
+
+
 def subsoil_violations(soup: BeautifulSoup, contract: dict, structural: list[str],
                        boundary: dict) -> list[tuple]:
     """Two rules, both scoped to the protected subject.
@@ -254,6 +272,8 @@ def subsoil_violations(soup: BeautifulSoup, contract: dict, structural: list[str
     predicates = [t.lower() for t in contract["predicateTerms"]]
     negations = [t.lower() for t in contract["negationTerms"]]
     matchers = zero_class_matchers(boundary)
+    bounded = bounded_qualifier_matchers(contract)
+    subjects = subject_matchers(contract)
     out = []
     for role in ALL_ROLES:
         for page in pages_for(soup, role):
@@ -263,17 +283,22 @@ def subsoil_violations(soup: BeautifulSoup, contract: dict, structural: list[str
                     continue
                 for prop in propositions(text):
                     low = prop.lower()
-                    if not SUBSOIL_SUBJECT.search(low):
+                    if not any(subject.search(low) for subject in subjects):
                         continue
                     if contains_any(low, negations):
                         continue
+                    # ZERO-CLASS FIRST, AND DECISIVE. The bounded families below
+                    # can never clear a matched zero concept: a statement that
+                    # carries one is appended and the proposition is done. That
+                    # ordering is what stops the permissive half from becoming an
+                    # escape hatch as it widens.
                     hits = [f"{class_id}:{m.search(low).group(0)}"
                             for class_id, m in matchers if m.search(low)]
                     if hits:
                         out.append((role, page_id, hits[:2], prop))
                         continue
                     bounded_ok = contains_any(low, [q.lower() for q in contract["approvedQualifierTerms"]]) \
-                        or contains_any(low, [q.lower() for q in contract["comparativeMarkers"]])
+                        or any(m.search(low) for m in bounded)
                     if contains_any(low, predicates) and not bounded_ok:
                         out.append((role, page_id, ["unbounded-life-claim"], prop))
     return out
@@ -606,65 +631,142 @@ def main() -> int:
     results.check("the concept classes are declared self-sufficient, needing no second life token",
                   boundary["prohibitedConceptClasses"].get("selfSufficient") is True)
 
-    # The seven direct characterizations independent review proved escaped the
-    # first candidate. Each must now fail.
-    REVIEWER_ESCAPES = [
-        "The subsoil is dead.",
-        "Beneath the topsoil the ground is dead.",
-        "Below the topsoil lies dead ground.",
-        "The subsoil is dead soil.",
-        "Beneath the topsoil the ground is completely dead.",
-        "The subsoil is sterile.",
-        "Beneath the topsoil nothing is alive.",
-    ]
-    # Fresh blind variants in ordinary middle-school wording, not permutations
-    # of the seven above.
-    FRESH_ZERO_VARIANTS = [
-        "The subsoil below has no life in it whatsoever.",
-        "Under the topsoil the soil is devoid of microbes.",
-        "The gully floor cannot support any growth at all.",
-        "Beneath the topsoil there is zero organic matter.",
-        "The subsoil will never grow a crop again.",
-        "Below the topsoil the pale sand grows nothing.",
-        "The mineral layer below is barren of life.",
-        "Beneath the topsoil not a single organism remains.",
-        "The subsoil is without any biological activity.",
-        "Under the topsoil the ground is unable to grow plants.",
-        "The subsoil is no longer alive.",
-        "Below the topsoil nothing can survive.",
-    ]
-    still_escaping = [s for s in REVIEWER_ESCAPES
-                      if not subsoil_violations(probe("student", f"<p>{s}</p>"),
-                                                invariants["subsoil"], structural, boundary)]
-    results.check("all seven characterizations independent review found escaping are now caught",
-                  not still_escaping, still_escaping)
-    fresh_escaping = [s for s in FRESH_ZERO_VARIANTS
-                      if not subsoil_violations(probe("accessible", f"<p>{s}</p>"),
-                                                invariants["subsoil"], structural, boundary)]
-    results.check(f"all {len(FRESH_ZERO_VARIANTS)} fresh biological-zero and growth-zero variants are caught",
-                  not fresh_escaping, fresh_escaping)
+    # The corpus ships in the registry, so a mutation to the contract carries its
+    # own tests with it. Every sentence binds the protected subject explicitly.
+    corpus = boundary["boundaryCorpus"]
 
-    # Truthful bounded statements must survive. A guard that fails these has
-    # made the boundary unteachable.
-    BOUNDED_POSITIVES = [
-        "Below the topsoil the subsoil holds only a trace of organic matter.",
-        "The subsoil's microbial activity is much lower than in living topsoil.",
-        "Beneath the topsoil the biological activity is sparse.",
-        "The subsoil below is severely degraded compared with the band above it.",
-        "Under the topsoil the fertility is poor and the structure has broken down.",
-        "The gully floor has far too little organic matter to carry a crop.",
-        "Beneath the topsoil the crop suitability is greatly reduced.",
-        "The subsoil holds much less living activity than the topsoil did.",
-        "Below the topsoil the organic carbon is down to a trace.",
-        "The mineral layer below has sharply lower fertility than living soil.",
-        "The subsoil is starved of the organic matter a crop depends on.",
-        "Beneath the topsoil the microbial biomass is a fraction of what it was.",
-    ]
-    false_positives = [s for s in BOUNDED_POSITIVES
-                       if subsoil_violations(probe("student", f"<p>{s}</p>"),
-                                             invariants["subsoil"], structural, boundary)]
-    results.check(f"all {len(BOUNDED_POSITIVES)} truthful bounded statements pass",
+    def fails(sentence: str, role: str = "student") -> bool:
+        return bool(subsoil_violations(probe(role, f"<p>{sentence}</p>"),
+                                       invariants["subsoil"], structural, boundary))
+
+    for group, sentences in corpus["mustFailZero"].items():
+        if not isinstance(sentences, list):
+            continue
+        escaping = [x for x in sentences if not fails(x)]
+        results.check(f"zero-class corpus '{group}': all {len(sentences)} sentences fail",
+                      not escaping, escaping)
+
+    passing_total, false_positives = 0, []
+    for group, sentences in corpus["mustPassBounded"].items():
+        if not isinstance(sentences, list):
+            continue
+        passing_total += len(sentences)
+        hit = [x for x in sentences if fails(x)]
+        false_positives.extend(hit)
+        results.check(f"bounded corpus '{group}': all {len(sentences)} truthful sentences pass",
+                      not hit, hit)
+    results.check(f"the bounded corpus produces zero false positives across {passing_total} sentences",
                   not false_positives, false_positives)
+
+    # A bounded qualifier must never mask a zero claim, in either clause order.
+    results.check("a bounded qualifier cannot clear a co-occurring zero concept",
+                  fails("Fertility below the topsoil is low, but the subsoil is sterile.")
+                  and fails("The subsoil is sterile, but fertility is low."))
+
+    # Declared scope must equal enforced scope.
+    results.check("the declared enforcement scope matches the four roles the validator walks",
+                  tuple(invariants["subsoil"]["enforcedRoles"]) == ALL_ROLES,
+                  invariants["subsoil"]["enforcedRoles"])
+    results.check("the declared BOUNDED rule no longer narrows itself to learner or key roles",
+                  not any("learner or key role" in rule for rule in invariants["subsoil"]["rules"]))
+    for role in ALL_ROLES:
+        results.check(f"the zero-class boundary is enforced in {role}",
+                      fails("The subsoil is dead.", role))
+
+    # Single authority: no private validator list, and every declared bounded
+    # pattern is actually compiled and reachable.
+    declared_bounded = sum(len(spec["patterns"]) for spec in
+                           invariants["subsoil"]["boundedQualifierFamilies"].values()
+                           if isinstance(spec, dict) and "patterns" in spec)
+    results.check("every declared bounded qualifier pattern compiles",
+                  len(bounded_qualifier_matchers(invariants["subsoil"])) == declared_bounded,
+                  declared_bounded)
+    results.check("the flat comparative-marker list is gone, leaving one bounded authority",
+                  "comparativeMarkers" not in invariants["subsoil"])
+
+    # --- MUTATION CONTROLS -------------------------------------------------
+    # Each mutation is applied to a COPY of the registry contract; if the guard
+    # still passes its corpus under the mutation, the control is not protecting
+    # anything and this run fails.
+    import copy as _copy
+
+    def mutated(mutate) -> dict:
+        clone = _copy.deepcopy(boundary)
+        inner = _copy.deepcopy(invariants["subsoil"])
+        mutate(clone, inner)
+        return {"boundary": clone, "contract": inner}
+
+    def corpus_holds(state: dict) -> bool:
+        """True when every zero sentence still fails and every bounded one passes."""
+        for group, sentences in corpus["mustFailZero"].items():
+            if not isinstance(sentences, list):
+                continue
+            for sentence in sentences:
+                if not subsoil_violations(probe("student", f"<p>{sentence}</p>"),
+                                          state["contract"], structural, state["boundary"]):
+                    return False
+        for group, sentences in corpus["mustPassBounded"].items():
+            if not isinstance(sentences, list):
+                continue
+            for sentence in sentences:
+                if subsoil_violations(probe("student", f"<p>{sentence}</p>"),
+                                      state["contract"], structural, state["boundary"]):
+                    return False
+        return True
+
+    def drop_quantifier(b, c):
+        cls = b["prohibitedConceptClasses"]["biologicalZero"]
+        cls["patterns"] = [x for x in cls["patterns"] if "not\\s+(?:a|an|one)" not in x]
+
+    def break_modal_ever(b, c):
+        cls = b["prohibitedConceptClasses"]["universalGrowthZero"]
+        cls["patterns"] = [x.replace("(?:can|will|could|would|shall|may)?\\s*(?:ever\\s+)?",
+                                     "(?:can|will|could|would|ever)?\\s*") for x in cls["patterns"]]
+
+    def drop_bounded_family(b, c):
+        c["boundedQualifierFamilies"]["quantityActivity"]["patterns"] = [
+            x for x in c["boundedQualifierFamilies"]["quantityActivity"]["patterns"]
+            if x != "\\blow\\b"]
+
+    for label, mutate in (("removing the 'not one' quantifier grammar", drop_quantifier),
+                          ("collapsing the modal and adverb back into one alternation", break_modal_ever),
+                          ("removing one required bounded qualifier", drop_bounded_family)):
+        results.check(f"mutation control: {label} breaks the corpus",
+                      not corpus_holds(mutated(mutate)), label)
+    results.check("mutation control: the unmutated contract holds the whole corpus",
+                  corpus_holds({"boundary": boundary, "contract": invariants["subsoil"]}))
+
+    # A registry qualifier that is declared but not compiled, and a validator
+    # qualifier that is compiled but not declared, must both be detectable.
+    phantom = _copy.deepcopy(invariants["subsoil"])
+    phantom["boundedQualifierFamilies"]["quantityActivity"]["patterns"].append("\\bnot-a-real-marker\\b")
+    results.check("a registry qualifier added without recompiling would be detected",
+                  len(bounded_qualifier_matchers(phantom))
+                  != len(bounded_qualifier_matchers(invariants["subsoil"])))
+
+    # Scope drift: narrowing the DECLARED scope back to learner-and-key while the
+    # validator keeps walking four roles must break the reconciliation assertion,
+    # not pass quietly.
+    narrowed = _copy.deepcopy(invariants["subsoil"])
+    narrowed["enforcedRoles"] = ["student", "accessible", "answer"]
+    narrowed["rules"] = [r.replace("a proposition naming a subsoil subject and a separate",
+                                   "a proposition in a learner or key role naming a subsoil subject and a separate")
+                         for r in narrowed["rules"]]
+    results.check("mutation control: narrowing the declared role scope breaks reconciliation",
+                  tuple(narrowed["enforcedRoles"]) != ALL_ROLES
+                  and any("learner or key role" in r for r in narrowed["rules"]))
+
+    # A validator-only qualifier with no registry entry must be detectable by the
+    # same count reconciliation, in the other direction.
+    smuggled = _copy.deepcopy(invariants["subsoil"])
+    smuggled["boundedQualifierFamilies"]["quantityActivity"]["patterns"] = [
+        x for x in smuggled["boundedQualifierFamilies"]["quantityActivity"]["patterns"]
+        if x != "\\bminimal\\b"]
+    results.check("mutation control: a qualifier compiled but no longer declared is detected",
+                  len(bounded_qualifier_matchers(smuggled))
+                  < len(bounded_qualifier_matchers(invariants["subsoil"]))
+                  and any(subsoil_violations(probe("student", f"<p>{x}</p>"), smuggled, structural, boundary)
+                          for x in corpus["mustPassBounded"]["required"]))
 
     # Subject scope: the boundary is about the protected layer, not the word.
     results.check("a dead field at the surface is outside the subsoil contract",
