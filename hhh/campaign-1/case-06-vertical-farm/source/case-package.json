@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-CASE06",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-1",
+  "title": "The Vertical Farm",
+  "subtitle": "Campaign 1 · Case 06 · A commercial vertical farm, 2041",
+  "location": "A commercial vertical farm",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-CASE06:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/case-06-vertical-farm/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/case-06-vertical-farm/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/case-06-vertical-farm/source/task-registry.js",
+    "global": "HHH_CASE06_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/case-06-vertical-farm/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case06-system-boundary",
+      "type": "html-css-diagrams",
+      "selector": "[data-boundary-contract]",
+      "embed": true
+    },
+    {
+      "id": "case06-nitrogen-pathway",
+      "type": "html-css-diagrams",
+      "selector": "[data-pathway-contract]",
+      "embed": true
+    },
+    {
+      "id": "case06-chronology",
+      "type": "html-css-diagrams",
+      "selector": "[data-chronology-contract]",
+      "embed": true
+    },
+    {
+      "id": "case06-record-audit",
+      "type": "html-css-diagrams",
+      "selector": "[data-audit-contract]",
+      "embed": true
+    },
+    {
+      "id": "case06-public-record",
+      "type": "html-css-diagrams",
+      "selector": "[data-verdict-contract]",
+      "embed": true
+    },
+    {
+      "id": "case06-two-layer-truth-notice",
+      "type": "html-css-diagrams",
+      "selector": "[data-two-layer-notice]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 12
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 10
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 6
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 17
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_CASE06_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_CASE06_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_CASE06_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_CASE06_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_CASE06_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Case 06 v0.1 — The Vertical Farm Curriculum Editor",
+    "loadAnnouncement": "Case 06 The Vertical Farm v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "911b20580d28cce7cfc55c7673ecc837b4e4cf7779c4fc9d38aec3513e59cf6b",
+    "presentation": "fdad8eb18ce8e1a93ef0998fd5645b1e6f07e9aaae2f76c02add353c56781228",
+    "taskRegistry": "e608410c5cbea92caa47ffb1a93b0cab36bffff6ea5fdbfd100ca99112f7288c",
+    "layoutOverrides": "4d47018a91c1fcacd279ff40cf1996aeebfdacb0cb70ac4cfd5874b37876e990"
+  }
+}

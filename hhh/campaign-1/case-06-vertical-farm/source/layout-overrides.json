@@ -1,0 +1,542 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-CASE06",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-CASE06:accessible:t2:a2-verdict",
+      "persistId": "a2-verdict",
+      "pageId": "accessible-vertical-farm-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 the inquiry's conclusion and whether the case file supports it",
+      "minPx": 96,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t2:a2-question",
+      "persistId": "a2-question",
+      "pageId": "accessible-vertical-farm-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 the first audit question and what a good answer would tell you",
+      "minPx": 96,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t3:a3-gap",
+      "persistId": "a3-gap",
+      "pageId": "accessible-vertical-farm-08",
+      "taskId": 3,
+      "label": "Accessible Task 3 how full mechanical compliance and system failure can both be true",
+      "minPx": 96,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t4:a4-living-step",
+      "persistId": "a4-living-step",
+      "pageId": "accessible-vertical-farm-09",
+      "taskId": 4,
+      "label": "Accessible Task 4 the step that is not a machine and what the dosing records could not detect",
+      "minPx": 80,
+      "maxPx": 340
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t5:a5-first",
+      "persistId": "a5-first",
+      "pageId": "accessible-vertical-farm-11",
+      "taskId": 5,
+      "label": "Accessible Task 5 which zone failed first and how the order shows it",
+      "minPx": 88,
+      "maxPx": 360
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t5:a5-trigger",
+      "persistId": "a5-trigger",
+      "pageId": "accessible-vertical-farm-11",
+      "taskId": 5,
+      "label": "Accessible Task 5 why the chronology cannot establish which logged event collapsed the microbes",
+      "minPx": 88,
+      "maxPx": 360
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t6:a6-converge",
+      "persistId": "a6-converge",
+      "pageId": "accessible-vertical-farm-13",
+      "taskId": 6,
+      "label": "Accessible Task 6 the two records that together rule out a hardware failure",
+      "minPx": 96,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t7:a7-settle",
+      "persistId": "a7-settle",
+      "pageId": "accessible-vertical-farm-14",
+      "taskId": 7,
+      "label": "Accessible Task 7 evidence that would settle the undecided account",
+      "minPx": 96,
+      "maxPx": 440
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t8:a8-engineer",
+      "persistId": "a8-engineer",
+      "pageId": "accessible-vertical-farm-16",
+      "taskId": 8,
+      "label": "Accessible Task 8 what the evidence establishes about the named engineer",
+      "minPx": 80,
+      "maxPx": 340
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t8:a8-open-question",
+      "persistId": "a8-open-question",
+      "pageId": "accessible-vertical-farm-16",
+      "taskId": 8,
+      "label": "Accessible Task 8 one open institutional question",
+      "minPx": 80,
+      "maxPx": 340
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t8:a8-open-record",
+      "persistId": "a8-open-record",
+      "pageId": "accessible-vertical-farm-16",
+      "taskId": 8,
+      "label": "Accessible Task 8 the record that raised the open institutional question",
+      "minPx": 80,
+      "maxPx": 340
+    },
+    {
+      "id": "HHH-C1-CASE06:accessible:t9:a9-explanation",
+      "persistId": "a9-explanation",
+      "pageId": "accessible-vertical-farm-17",
+      "taskId": 9,
+      "label": "Accessible Task 9 the four-part systems and evidence audit explanation",
+      "minPx": 200,
+      "maxPx": 620
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-7",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-zone-1",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-zone-2",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-zone-3",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-zone-4",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a3-watched",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a4-stage-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a4-toxic",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a4-usable",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a5-order-1",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-order-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-order-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-order-4",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-r2-measures",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r2-blind",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r3-measures",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r3-blind",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r4-measures",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r4-blind",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r5-measures",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r5-blind",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-mark-1",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a7-mark-2",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a7-mark-3",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a7-mark-4",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a7-mark-5",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a8-claim-1",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a8-claim-2",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a8-claim-3",
+      "reason": "table-cell"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-CASE06:student:t2:t2-verdict",
+        "persistId": "t2-verdict",
+        "pageId": "student-vertical-farm-03",
+        "taskId": 2,
+        "label": "Task 2 the inquiry's conclusion and whether the case file supports it",
+        "minPx": 88,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t2:t2-question",
+        "persistId": "t2-question",
+        "pageId": "student-vertical-farm-03",
+        "taskId": 2,
+        "label": "Task 2 the first audit question and what a good answer would tell you",
+        "minPx": 88,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t3:t3-gap",
+        "persistId": "t3-gap",
+        "pageId": "student-vertical-farm-06",
+        "taskId": 3,
+        "label": "Task 3 how full mechanical compliance and system failure can both be true",
+        "minPx": 96,
+        "maxPx": 400
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t4:t4-living-step",
+        "persistId": "t4-living-step",
+        "pageId": "student-vertical-farm-07",
+        "taskId": 4,
+        "label": "Task 4 the step that is not a machine and what the dosing records could not detect",
+        "minPx": 72,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t5:t5-first",
+        "persistId": "t5-first",
+        "pageId": "student-vertical-farm-08",
+        "taskId": 5,
+        "label": "Task 5 which zone failed first and how the order shows it",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t5:t5-trigger",
+        "persistId": "t5-trigger",
+        "pageId": "student-vertical-farm-08",
+        "taskId": 5,
+        "label": "Task 5 why the chronology cannot establish which logged event collapsed the microbes",
+        "minPx": 64,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t6:t6-converge",
+        "persistId": "t6-converge",
+        "pageId": "student-vertical-farm-09",
+        "taskId": 6,
+        "label": "Task 6 the two records that together rule out a hardware failure",
+        "minPx": 80,
+        "maxPx": 340
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t7:t7-settle",
+        "persistId": "t7-settle",
+        "pageId": "student-vertical-farm-10",
+        "taskId": 7,
+        "label": "Task 7 evidence that would settle the undecided account",
+        "minPx": 96,
+        "maxPx": 420
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t8:t8-engineer",
+        "persistId": "t8-engineer",
+        "pageId": "student-vertical-farm-11",
+        "taskId": 8,
+        "label": "Task 8 what the evidence establishes about the named engineer",
+        "minPx": 72,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t8:t8-open",
+        "persistId": "t8-open",
+        "pageId": "student-vertical-farm-11",
+        "taskId": 8,
+        "label": "Task 8 one open institutional question and the record that raised it",
+        "minPx": 72,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C1-CASE06:student:t9:t9-explanation",
+        "persistId": "t9-explanation",
+        "pageId": "student-vertical-farm-12",
+        "taskId": 9,
+        "label": "Task 9 the four-part systems and evidence audit explanation",
+        "minPx": 240,
+        "maxPx": 720
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-7",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t3-zone-1",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-zone-2",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-zone-3",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-zone-4",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t3-watched",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t4-stage-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-stage-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t4-toxic",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t4-usable",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t5-order-1",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-order-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-order-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-order-4",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6-r1-measures",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r1-blind",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r2-measures",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r2-blind",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r3-measures",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r3-blind",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r4-measures",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r4-blind",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r5-measures",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r5-blind",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-mark-1",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t7-mark-2",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t7-mark-3",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t7-mark-4",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t7-mark-5",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t8-claim-1",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t8-claim-2",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t8-claim-3",
+        "reason": "table-cell"
+      }
+    ],
+    "overrides": {}
+  }
+}

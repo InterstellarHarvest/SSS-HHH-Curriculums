@@ -1,0 +1,386 @@
+* { box-sizing: border-box; }
+
+/* HHH / TAA presentation tokens, carried forward from Archive Orientation and
+   Core Cases 01 to 05 so the units read as one institution. Archive Amber is the
+   institutional accent and Record Cyan the secondary. No state in this package is
+   signalled by colour alone: every truth layer prints its own word, every source
+   prints a STATUS line, the two system zones print their names and their glosses,
+   the monitoring band prints where it stops, every given or modelled element
+   prints GIVEN, WORKED EXAMPLE or EXAMPLE, and every fictional value sits under a
+   figure that prints the words FICTIONAL CASE DATA. */
+:root {
+  --paper: #fff;
+  --ink: #18212b;
+  --muted: #4f5a64;
+  --rule: #8c959c;
+  --panel: #efe4d0;
+  --panel-light: #faf6ef;
+  --neutral-field: #f0efec;
+  --institution: #8a5a00;
+  --record-cyan: #0b6f82;
+  --accent-dark: #6a4600;
+  --accent-pale: #f5eddd;
+  --caution: #715d21;
+  --caution-field: #f6f1dc;
+  /* Layer tokens. The fictional layer is the caution family and the real layer
+     the record family, but neither is ever the only carrier of the distinction:
+     the chip prints its own word and every card prints a STATUS line. */
+  --layer-fiction: #7a4a12;
+  --layer-fiction-field: #f7efe3;
+  --layer-real: #0b5f70;
+  --layer-real-field: #e9f2f4;
+  --primary: var(--institution);
+  --secondary: var(--record-cyan);
+  --soft: var(--accent-pale);
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --margin-top: .5in;
+  --margin-right: .5in;
+  --margin-bottom: .5in;
+  --margin-left: .5in;
+  --radius: 3px;
+}
+
+html, body { min-height: 100%; margin: 0; color: var(--ink); background: #dedad3; font: 9.35pt/1.23 Arial, sans-serif; }
+body { padding: 82px 18px 36px; }
+body[data-standalone="true"] { padding-top: 22px; }
+.workspace { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.page { position: relative; width: var(--page-w); height: var(--page-h); overflow: hidden; background: var(--paper); box-shadow: 0 8px 24px #23303a44; }
+.page .page-frame { position: absolute; inset: var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left); display: flex; flex-direction: column; padding: 0; }
+.content { flex: 1; min-height: 0; }
+.content-area > :first-child { margin-top: 0; }
+p { margin: 4px 0; }
+ul, ol { margin: 4px 0 6px; padding-left: 20px; }
+li { margin: 2px 0; }
+h2 { margin: 7px 0 5px; padding-bottom: 3px; border-bottom: 2px solid var(--primary); font-size: 13pt; }
+h3 { margin: 5px 0 3px; font-size: 10pt; }
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+sub, sup { line-height: 0; font-size: .72em; }
+
+/* TAA insignia. The shared protected sheet sizes only .saa-insignia, so the HHH
+   mark is sized here. */
+.taa-insignia { width: .58in; height: .58in; flex: 0 0 .58in; object-fit: contain; }
+.grayscale .taa-insignia { filter: grayscale(1); }
+
+.label { color: var(--muted); font: 800 7pt/1.1 monospace; letter-spacing: .06em; text-transform: uppercase; }
+.response-label { display: block; margin: 5px 0 2px; font-size: 8.8pt; }
+.response-label .part { font-weight: 700; }
+.support-heading { margin: .06in 0 .03in; padding: 0; border: 0; font-size: 10.5pt; }
+.directions { margin: 0 0 4px; font-size: 8.8pt; }
+.directions .part { font-weight: 700; }
+.small { font-weight: 400; font-size: 7.2pt; color: var(--muted); }
+.quoted { margin: 3px 0; padding: 3px 8px; border-left: 3px solid var(--rule); font-style: italic; }
+.quoted-inline { font-style: italic; }
+
+.callout { margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--primary); background: var(--accent-pale); }
+.callout p { margin: 2px 0; }
+.science-note { margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--panel-light); font-size: 8.2pt; }
+.science-note p { margin: 2px 0; }
+.science-note ul { margin: 3px 0; }
+.alt-support { margin: 4px 0; padding: 5px 8px; border: 1px dashed var(--rule); background: var(--neutral-field); font-size: 8.6pt; }
+.alt-support p { margin: 2px 0; }
+.alt-support .report-list { margin: 3px 0; }
+.alt-note { margin: 3px 0 0; font-size: 8.1pt; color: var(--muted); }
+.report-list { margin: 3px 0 4px; }
+
+/* ── The two-layer truth notice ────────────────────────────────────────────
+   The one structure this case cannot be taught without. Identified by its
+   printed notice label and by the two layer chips, both of which carry their
+   own words, so the separation survives grayscale and survives a reader who
+   never sees the tints at all. */
+.layer-note { margin: 4px 0; padding: 5px 8px; border: 1px dotted var(--rule); border-left: 4px dotted var(--institution); background: var(--panel-light); font-size: 8.3pt; }
+.layer-note p { margin: 2px 0; }
+.layer-note .report-list { margin: 3px 0; }
+.layer-note .report-list .report-list { margin: 2px 0 2px 4px; }
+.layer-rule { margin-top: 4px !important; padding-top: 3px; border-top: 1px solid var(--rule); }
+.layer-index { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; margin-top: 5px; padding-top: 4px; border-top: 1px solid var(--rule); }
+.layer-col { min-width: 0; }
+.layer-col-tag { display: block; margin-bottom: 2px; padding: 0 4px; border: 1px solid currentColor; border-radius: 2px; font: 700 6.2pt/1.6 monospace; letter-spacing: .04em; text-align: center; }
+.layer-index .report-list { margin: 2px 0 0; padding-left: 15px; font-size: 7.8pt; }
+.layer-index .report-list li { margin: 2px 0; }
+.layer-recap { margin-top: 6px; }
+.layer-chip { display: inline-block; padding: 0 4px; border: 1px solid currentColor; border-radius: 2px; font: 700 6.4pt/1.5 monospace; letter-spacing: .04em; vertical-align: .5px; }
+.layer-fictional { color: var(--layer-fiction); background: var(--layer-fiction-field); }
+.layer-real { color: var(--layer-real); background: var(--layer-real-field); }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.two-col > div { min-width: 0; }
+.teacher-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 4px 0; }
+.teacher-card { min-width: 0; padding: 6px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8.35pt; }
+.teacher-card p { margin: 2px 0 0; }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 8pt; margin: 4px 0; }
+.data-table caption { margin-bottom: 3px; color: var(--muted); font-size: 7.4pt; text-align: left; }
+.data-table th, .data-table td { padding: 3px 5px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.data-table thead th { background: var(--panel); font-size: 7.6pt; }
+.vocab-table th:first-child { width: 1.15in; }
+/* Teacher tables are reference matter a teacher scans rather than reads through,
+   and this guide carries eight of them. Tightening the cell padding there buys
+   the vertical room the misconception and rubric tables need without touching
+   the learner editions, where the same tables are answer spaces. */
+.page[data-role="teacher"] .data-table th,
+.page[data-role="teacher"] .data-table td { padding: 2px 4px; }
+.page[data-role="teacher"] .data-table:not(.source-table):not(.analytic-rubric) { font-size: 7.7pt; line-height: 1.17; }
+.page[data-role="teacher"] .procedure { font-size: 8.1pt; }
+.page[data-role="teacher"] .procedure > li { margin: 3px 0; }
+.page[data-role="teacher"] ul > li { margin: 1px 0; }
+/* The source ledgers carry full citations across two pages. They are set smaller
+   than the body tables because a citation is reference matter a teacher consults
+   rather than reads through. */
+.source-table { font-size: 6.5pt; line-height: 1.16; }
+.source-table th:first-child { width: 2.25in; }
+.data-table.quick-rubric th:first-child { width: 1.5in; }
+.analytic-rubric { font-size: 6.9pt; line-height: 1.15; }
+.analytic-rubric th:first-child { width: 1.02in; }
+.claims-key { font-size: 7.4pt; }
+.claims-key th:first-child { width: 2.7in; }
+.claims-key .key-mark { width: .42in; text-align: center; font-size: 9pt; }
+.key-matrix { font-size: 7.2pt; }
+.key-matrix th:first-child { width: 1.25in; }
+
+.response, .table-response, .compact-response, .pw-response, .inline-response, .mark-response { min-height: .38in; padding: 4px; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); outline: none; }
+.response.short { min-height: .62in; }
+.response.medium { min-height: 1.05in; }
+.response.large { min-height: 1.5in; }
+.response.roomy { min-height: 1.15in; }
+.response.roomy.fill-audit-question { min-height: 2.05in; }
+/* Response sizing. Each fill class is set from the response the task actually
+   expects - a mark, a phrase, a few sentences, an extended product - and not from
+   the space left on the page. An earlier pass tuned these to close every tail gap
+   and printed a four-inch box for a three-sentence answer, which is the practice
+   the Accessible Adaptation Contract's writing-load policy exists to forbid.
+   Reference and figure pages are therefore allowed to end short. */
+.response.medium.fill-boundary { min-height: 1.95in; }
+.response.short.fill-pathway { min-height: 1.15in; }
+.response.short.fill-chrono { min-height: 1.30in; }
+.response.short.fill-audit { min-height: 1.75in; }
+.response.medium.fill-accounts { min-height: 2.20in; }
+.response.short.fill-verdict { min-height: 1.45in; }
+.response.extended { min-height: 6.55in; }
+/* Accessible fills. Every Accessible short-answer area is taller than its
+   Student counterpart, because the Accessible pages carry one task each and the
+   surplus goes to the writing. The one exception is the culminating field: the
+   Accessible page prints four framed prompts with sentence openers above it, so
+   the field itself is necessarily shorter than the Student edition's full-page
+   box. The obligation is identical; only the page geometry differs. */
+.accessible .response.roomy.fill-first { min-height: 2.35in; }
+.accessible .response.roomy.fill-boundary { min-height: 2.05in; }
+.accessible .response.roomy.fill-pathway { min-height: 1.55in; }
+.accessible .response.roomy.fill-chrono { min-height: 1.95in; }
+.accessible .response.roomy.fill-audit { min-height: 2.20in; }
+.accessible .response.roomy.fill-accounts { min-height: 2.45in; }
+.accessible .response.roomy.fill-verdict { min-height: 1.75in; }
+.accessible .response.extended { min-height: 5.05in; }
+.table-response { min-height: .56in; }
+.compact-response { min-height: .28in; text-align: center; }
+.response:focus, .table-response:focus, .compact-response:focus, .pw-response:focus, .inline-response:focus, .mark-response:focus, .id-field:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+/* The term goes on its own line beneath its statement, because inline placement
+   wrapped raggedly whenever a statement ran past one line. */
+.term-list { margin: 6px 0 8px; }
+.term-list li { margin: 9px 0; }
+.term-list-roomy li { margin: 8px 0; }
+.inline-response { display: block; min-width: 2.2in; max-width: 2.6in; min-height: .28in; margin-top: 4px; padding: 2px 4px; }
+
+.word-bank { display: block; margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); background: var(--accent-pale); }
+.word-bank-label { display: inline-block; margin-right: 8px; color: var(--institution); font: 800 7pt/1.1 monospace; letter-spacing: .06em; }
+.word-bank-instruction { font-size: 7.6pt; color: var(--muted); }
+.word-bank-items { display: block; margin-top: 3px; }
+.word-bank-item { display: inline-block; margin: 2px 6px 2px 0; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 2px; background: var(--paper); font-size: 8.2pt; }
+
+.student-id { display: grid; grid-template-columns: 2.1fr 1.2fr 1fr; gap: 8px; margin-bottom: 6px; }
+.id-field { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 5px; align-items: end; font-size: 8.2pt; }
+.id-field span { min-height: .22in; padding: 1px 3px; border-bottom: 1px solid var(--ink); }
+
+.mission-title-block { display: grid; grid-template-columns: 4px minmax(0, 1fr) auto; gap: 9px; align-items: center; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 2px solid var(--primary); }
+.mission-rail { align-self: stretch; background: var(--primary); }
+.hero-title { margin: 0; font: 800 21pt/1.05 Arial, sans-serif; letter-spacing: -.01em; }
+.mission-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 8.4pt; }
+.identity-mark, .continuation-identity { display: flex; align-items: center; gap: 6px; }
+.identity-copy { display: flex; flex-direction: column; }
+.institution { display: flex; flex-direction: column; color: var(--institution); font: 800 6.4pt/1.08 monospace; letter-spacing: .07em; text-transform: uppercase; }
+.document-role { margin-top: 2px; font: 700 8pt/1.1 Arial, sans-serif; }
+.continuation-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
+.continuation-copy h1 { margin: 0; font: 800 11.5pt/1.1 Arial, sans-serif; }
+.continuation-role { color: var(--muted); font-size: 7.6pt; }
+.publication-footer { display: flex; justify-content: flex-end; padding-top: 3px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 7pt; }
+
+.task-heading { display: grid !important; grid-template-columns: 20px minmax(0, 1fr); gap: .07in; align-items: start; margin: .055in 0 .035in !important; padding: 0 0 .035in !important; border-bottom: 1px solid var(--rule) !important; }
+.task-heading .ph-icon { width: 20px; height: 20px; margin-top: 1px; color: var(--institution); fill: none; stroke: currentColor; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+.task-heading-copy { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.task-heading .technical-label { color: var(--institution); font: 700 6.7pt/1.05 monospace; letter-spacing: .07em; }
+.task-heading .section-title { font: 800 10.7pt/1.14 Arial, sans-serif; }
+.task-block { margin-top: .09in; break-inside: avoid; page-break-inside: avoid; }
+.task-reference { color: var(--institution); }
+
+/* ── Dossier cards ─────────────────────────────────────────────────────────
+   Every card prints its STATUS line in the same monospace form, whichever layer
+   it belongs to. The left rule differs by layer, but the STATUS text always
+   names the layer in words, so the rule is redundancy rather than signal. */
+.dossier { display: flex; flex-direction: column; gap: 5px; }
+.dossier-card { padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--rule); background: var(--panel-light); font-size: 8.35pt; break-inside: avoid; page-break-inside: avoid; }
+.dossier-card h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0 0 3px; }
+.dossier-card[data-evidence-layer="fictional"] { border-left-color: var(--layer-fiction); background: var(--layer-fiction-field); }
+.dossier-card[data-evidence-layer="real"] { border-left-color: var(--layer-real); background: var(--layer-real-field); }
+.source-status { color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.dossier-card[data-evidence-layer="real"] .source-status { color: var(--layer-real); }
+.dossier-card .report-list .report-list { margin: 2px 0 2px 2px; }
+.statement-claims li { margin: 3px 0; }
+
+.figure.case-figure { margin: 4px 0; padding: 4px; break-inside: avoid; page-break-inside: avoid; }
+.figure.case-figure figcaption { margin-top: 3px; padding-top: 3px; font-size: 7.4pt; color: var(--muted); }
+/* Figures that are themselves a status-bearing source print their STATUS line
+   above the drawing, in the same monospace form as a dossier card. */
+.figure.case-figure > .source-status { display: block; margin-bottom: 2px; }
+.extended-description { margin: 3px 0 0; font-size: 7pt; color: var(--muted); }
+
+/* ── Family H8 — the system boundary figure ────────────────────────────────
+   One loop, two zones, and a monitoring band that stops. The band stopping is
+   the argument of the whole case, so it is drawn as a physical edge with a
+   printed marker at the stopping point rather than as a change of colour. */
+.boundary { border: 1px solid var(--rule); background: var(--paper); }
+.bnd-outer { margin: 5px; padding: 5px 6px 6px; border: 2px solid var(--institution); background: var(--panel-light); }
+.bnd-outer-tag { display: block; margin-bottom: 4px; color: var(--institution); font: 800 6.9pt/1.15 monospace; letter-spacing: .05em; }
+.bnd-zones { display: grid; grid-template-columns: 1.18fr 1fr; gap: 6px; }
+.bnd-zone { padding: 4px 6px; border: 1px solid var(--ink); background: var(--paper); }
+.bnd-engineered { border-style: solid; }
+.bnd-living { border-style: double; border-width: 3px; }
+.bnd-zone-tag { display: block; font: 800 8.4pt/1.15 Arial, sans-serif; letter-spacing: .03em; }
+.bnd-zone-gloss { display: block; margin-bottom: 2px; color: var(--muted); font-size: 7.3pt; font-style: italic; }
+.bnd-list { margin: 0; padding-left: 15px; font-size: 7.8pt; }
+.bnd-list li { margin: 1px 0; }
+.bnd-mid { margin: 5px 0 4px !important; padding: 3px 5px; border: 1px dashed var(--rule); background: var(--paper); font-size: 7.9pt; text-align: center; }
+.bnd-watched { position: relative; display: grid; grid-template-columns: 1.18fr 1fr; gap: 6px; align-items: start; }
+.bnd-watched .bnd-zone-tag { grid-column: 1; padding: 3px 6px 0; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); background: var(--accent-pale); font-size: 7.6pt; }
+.bnd-watch-list { grid-column: 1; padding: 0 6px 4px; border-bottom: 1px solid var(--ink); border-left: 1px solid var(--ink); border-right: 1px solid var(--ink); background: var(--accent-pale); font-size: 7.5pt; }
+.bnd-gap { grid-column: 2; grid-row: 1 / span 2; align-self: center; padding: 3px 5px; border: 1px dotted var(--layer-fiction); font-size: 7.4pt; font-style: italic; }
+.bnd-note { margin: 5px !important; font-size: 7.2pt; color: var(--muted); }
+
+/* ── Family H8 — the nitrogen pathway figure ───────────────────────────────
+   Four stages beside the control panel that doses them. The blank stages carry
+   a hint that names the source rather than the answer; the modelled stage in
+   the Accessible edition prints WORKED EXAMPLE. */
+.pathway { display: grid; grid-template-columns: 1.62fr 1fr; gap: 6px; padding: 5px; border: 1px solid var(--rule); background: var(--paper); }
+.pw-panel { min-width: 0; padding: 4px 6px; border: 1px solid var(--rule); background: var(--panel-light); }
+.pw-title { display: block; margin-bottom: 3px; color: var(--institution); font: 800 7pt/1.15 monospace; letter-spacing: .05em; }
+.pw-chain { margin: 0; padding: 0; list-style: none; }
+.pw-stage { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 2px 5px; margin: 3px 0; padding: 3px 5px; border: 1px solid var(--rule); background: var(--paper); font-size: 7.9pt; }
+.pw-stage p { margin: 1px 0; }
+.pw-num { grid-row: 1 / span 3; align-self: start; width: 16px; height: 16px; border: 1px solid var(--ink); border-radius: 50%; font: 800 8pt/15px Arial, sans-serif; text-align: center; }
+.pw-sname { font: 800 7.7pt/1.15 Arial, sans-serif; letter-spacing: .02em; }
+.pw-blank { border-style: dashed; border-width: 1.5px; }
+.pw-modelled { border-left: 4px solid var(--record-cyan); }
+.pw-hint { color: var(--muted); font-size: 7.4pt; font-style: italic; }
+.pw-given, .pw-example { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--rule); font: 700 6.1pt/1.4 monospace; letter-spacing: .04em; vertical-align: 1px; }
+.pw-example { color: var(--record-cyan); border-color: var(--record-cyan); }
+.pw-response { min-height: .44in; margin-top: 2px; }
+.pw-boundaries { margin-top: 4px; }
+.pw-bound { margin: 3px 0 !important; padding: 3px 5px; border: 1px solid var(--rule); border-left: 3px solid var(--secondary); background: var(--paper); font-size: 7.5pt; }
+.pw-measured { margin: 0 0 3px; padding-left: 15px; font-size: 7.8pt; }
+.pw-blindspot { margin: 3px 0 0 !important; padding: 3px 5px; border: 1px dashed var(--layer-fiction); background: var(--paper); font-size: 7.6pt; }
+.pw-note { grid-column: 1 / -1; margin: 2px 0 0 !important; font-size: 7.2pt; color: var(--muted); }
+
+/* ── Family H2 — the chronology figure ─────────────────────────────────────
+   A rail of six slots with the engineering running unbroken beneath all of
+   them. The unbroken band is the point: it is the one row on the figure that
+   never changes, and it is drawn as a continuous strip for exactly that reason. */
+.chrono { padding: 3px; border: 1px solid var(--rule); background: var(--paper); }
+.chrono-rail { display: flex; flex-direction: column; gap: 1px; }
+.chrono-slot { display: grid; grid-template-columns: .82in minmax(0, 1fr); gap: 5px; align-items: center; padding: 1px 4px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 7.3pt; line-height: 1.16; }
+.chrono-fixed { background: var(--accent-pale); }
+.chrono-day { font: 800 7pt/1.15 monospace; letter-spacing: .02em; }
+.chrono-what { min-width: 0; }
+.chrono-given { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--rule); font: 700 5.9pt/1.35 monospace; letter-spacing: .04em; vertical-align: 1px; }
+.chrono-mark { min-width: .48in; max-width: .58in; min-height: .22in; text-align: center; }
+/* The four cards sit two-up. Ordering needs them all visible at once, and a
+   single stacked column cost this page more height than the rail it feeds. */
+.chrono-cards { margin-top: 3px; padding: 3px 5px; border: 1px solid var(--rule); background: var(--paper); }
+.chrono-cards-title { display: block; margin-bottom: 2px; color: var(--institution); font: 800 6.6pt/1.15 monospace; letter-spacing: .05em; }
+.chrono-card-list { display: grid; grid-template-columns: 1fr 1fr; gap: 3px 5px; margin: 0; padding: 0; list-style: none; font-size: 7.2pt; line-height: 1.16; }
+.chrono-card-list li { display: grid; grid-template-columns: .24in minmax(0, 1fr); gap: 4px; margin: 0; padding: 2px 4px; border: 1px solid var(--rule); background: var(--panel-light); }
+.chrono-card-body { min-width: 0; }
+.chrono-letter { align-self: start; width: .24in; border: 1px solid var(--ink); font: 800 7.8pt/1.4 Arial, sans-serif; text-align: center; }
+.chrono-card-day { display: block; font: 700 6.5pt/1.3 monospace; }
+.chrono-engineering { display: grid; grid-template-columns: 1.75in minmax(0, 1fr); gap: 5px; margin-top: 3px; padding: 2px 5px; border: 2px solid var(--institution); background: var(--accent-pale); font-size: 7.2pt; line-height: 1.16; }
+.chrono-eng-tag { font: 800 6.7pt/1.2 monospace; letter-spacing: .04em; }
+.chrono-note { margin: 3px 0 0 !important; font-size: 7pt; }
+
+/* ── Family H9 — the record-audit matrix ───────────────────────────────────
+   Two identical columns for every record, so no record's authority comes from
+   its format. The modelled row prints EXAMPLE in words. */
+.audit-table th:first-child { width: 1.55in; }
+.audit-table td { padding: 2px 4px; }
+.audit-table .table-response { min-height: .82in; }
+.accessible .audit-table .table-response { min-height: 1.05in; }
+.audit-src { display: block; margin-top: 1px; color: var(--muted); font: 700 6.4pt/1.2 monospace; }
+.model-row .prefilled { background: var(--neutral-field); font-size: 7.6pt; }
+.audit-example { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--record-cyan); color: var(--record-cyan); font: 700 6.1pt/1.4 monospace; letter-spacing: .04em; }
+
+/* ── Competing accounts ────────────────────────────────────────────────────*/
+.account-list { margin: 4px 0; padding: 0; list-style: none; }
+.account-item { display: grid; grid-template-columns: .26in minmax(0, 1fr) .52in; gap: 4px 6px; align-items: start; margin: 4px 0; padding: 4px 6px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8.2pt; }
+.account-item p { margin: 0; }
+.account-num { width: .26in; border: 1px solid var(--ink); font: 800 8.4pt/1.5 Arial, sans-serif; text-align: center; }
+.account-pointer { grid-column: 2; color: var(--record-cyan); font: 700 7.1pt/1.2 monospace; }
+.account-mark { grid-column: 3; grid-row: 1 / span 2; align-self: start; min-width: .5in; min-height: .3in; text-align: center; }
+
+/* ── The public-record comparison ──────────────────────────────────────────
+   Three columns, and the third one is the reason the figure exists: it holds
+   questions rather than findings, and it is drawn open-ended on purpose. */
+.verdict { padding: 5px; border: 1px solid var(--rule); background: var(--paper); }
+.verdict-table { width: 100%; border-collapse: collapse; font-size: 7.7pt; }
+.verdict-caption { margin-bottom: 3px; color: var(--muted); font-size: 7.3pt; text-align: left; }
+.verdict-table th, .verdict-table td { padding: 3px 5px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.verdict-table thead th { background: var(--panel); font-size: 7.4pt; }
+.verdict-table tbody th { width: 1.95in; background: var(--layer-fiction-field); font-weight: 700; }
+.vd-layer { display: inline-block; margin-left: 4px; padding: 0 3px; border: 1px solid var(--layer-fiction); color: var(--layer-fiction); font: 700 6.1pt/1.4 monospace; letter-spacing: .04em; }
+.vd-evidence { width: 2.55in; }
+.vd-open { background: var(--panel-light); font-style: italic; }
+.vd-mark-label { display: block; margin-top: 3px; color: var(--muted); font: 700 6.5pt/1.2 monospace; letter-spacing: .04em; }
+.vd-mark { display: block; min-width: 1in; min-height: .28in; margin-top: 1px; }
+.vd-both { margin: 5px 0 0 !important; padding: 4px 6px; border: 1px solid var(--institution); border-left: 4px solid var(--institution); background: var(--accent-pale); font-size: 7.9pt; }
+
+/* ── Marked placements and rails ───────────────────────────────────────────*/
+.zone-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; margin: 3px 0 4px; }
+.rail-marker { display: grid; grid-template-columns: minmax(0, 1fr) 1.15in; gap: 6px; align-items: center; padding: 2px 0; }
+.rail-marker .response-label { margin: 0; }
+.mark-response { display: inline-block; min-height: .3in; padding: 2px 4px; }
+.mark-response.wide { min-width: 1.05in; }
+
+/* ── The culminating prompt stack ──────────────────────────────────────────*/
+.prompt-stack { display: flex; flex-direction: column; gap: 3px; margin: 4px 0 5px; }
+.prompt-item { display: grid; grid-template-columns: .24in minmax(0, 1fr); gap: 6px; padding: 3px 6px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8.1pt; }
+.prompt-item p { margin: 0; }
+.prompt-tag { align-self: start; width: .24in; border: 1px solid var(--ink); background: var(--accent-pale); font: 800 8.4pt/1.5 Arial, sans-serif; text-align: center; }
+.prompt-stack-accessible .prompt-item { font-size: 8pt; }
+.prompt-frame { display: block; margin-top: 2px; padding: 2px 5px; border-left: 3px solid var(--secondary); background: var(--paper); font-size: 7.5pt; font-style: italic; }
+
+/* ── Answer Key ────────────────────────────────────────────────────────────*/
+.key-note { margin: 3px 0; font-size: 7.9pt; }
+.answer-block { margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--panel-light); font-size: 8.2pt; }
+.answer-block p { margin: 3px 0; }
+.answer-list { margin: 0; padding-left: 18px; }
+.answer-list li { margin: 3px 0; }
+
+/* ── Teacher procedure ─────────────────────────────────────────────────────*/
+.procedure { padding-left: 18px; font-size: 8.3pt; }
+.procedure > li { margin: 4px 0; }
+.procedure p { margin: 2px 0 0; }
+.fallback-map li { margin: 2px 0; }
+
+/* ── Grayscale ─────────────────────────────────────────────────────────────
+   Nothing in this package depends on hue, so grayscale removes decoration and
+   not information. The layer chips, the STATUS lines, the zone names, the
+   GIVEN / WORKED EXAMPLE / EXAMPLE markers and the FICTIONAL CASE DATA labels
+   are all printed words and all survive. The border styles that distinguish
+   the two zones - solid against double - and the dashed blank stages are
+   likewise geometry rather than colour. */
+.grayscale .layer-chip,
+.grayscale .vd-layer,
+.grayscale .pw-example,
+.grayscale .audit-example { color: var(--ink); border-color: var(--ink); background: var(--neutral-field); }
+.grayscale .dossier-card[data-evidence-layer="fictional"],
+.grayscale .dossier-card[data-evidence-layer="real"] { background: var(--panel-light); border-left-color: var(--ink); }
+.grayscale .dossier-card[data-evidence-layer="real"] .source-status,
+.grayscale .account-pointer,
+.grayscale .source-status { color: var(--ink); }
