@@ -277,7 +277,7 @@ figure's `aria-label` is checked against the same contracts as its visible conte
 so the causation map's description must name all four roles and the feedback, and
 the erosion figure's description may not describe the subsoil in absolutes.
 
-### The subsoil guard is self-sufficient, and the registry drives it
+### The subsoil boundary: one blocking rule, registry-owned
 
 The subsoil contract's negative half is declared in
 `subsoilBoundary.prohibitedConceptClasses` as two classes — **biological zero**
@@ -295,22 +295,37 @@ subject and asserts the concept classes catch it, so the declared contract and t
 enforced contract cannot drift apart. There is no second, hand-maintained list in
 the validator — the removal of that duplicate is itself asserted.
 
-The positive half, `BOUNDED`, is deliberately **permissive** and asymmetric to the
-negative half: it fires only when a life-or-growth claim about the protected layer
-carries no bounded frame at all, and any pattern in
-`boundedQualifierFamilies` clears it — four families saying *less*, *degraded* or
-*difficult*, never *none* or *impossible*. A pattern missing from those families
-weakens a secondary diagnostic and can never open the zero-class hole, because
-zero-class detection runs **first and is independently decisive**: a bounded
-qualifier in the same sentence cannot clear a matched zero concept.
+**The zero classes are the whole blocking contract.** There is no second rule.
+A proposition naming the protected layer together with a declared zero concept
+fails; a proposition that carries no zero concept passes. Prose is never failed
+for describing the layer in wording the contract has not seen before.
 
-Both the protected subject (`subjectPatterns`) and the test corpus
-(`boundaryCorpus`) live in the registry too, so the validator holds no private
-matcher and no private fixtures — a mutation to the contract carries its own tests
-with it. Scope stays on the protected subject: a *dead field* at the surface is
-outside this contract and is not a violation of it. Enforcement covers all four
-roles, and the declared `enforcedRoles` is reconciled against the roles the
-validator actually walks.
+That is a deliberate retirement. A blocking rule used to require any life-or-growth
+claim about the layer to contain a listed comparative adjective, and a finite
+vocabulary decided which. It could not converge — each review round found more
+truthful prose it rejected (*a small amount*, *has dropped*, *hard without help*,
+*has fallen sharply*), because there are indefinitely many ways to say a layer
+holds less. Safety was never coming from that list. The retirement is recorded in
+the registry as `retiredBoundedGate` rather than left as dead metadata, and a guard
+asserts the gate has not crept back.
+
+What protects truthful prose instead is `boundaryCorpus.mustPassSafeProse` — 44
+representative sentences proving the zero classifier does not overmatch. It is a
+**regression probe, not a whitelist**: nothing needs to appear there, or resemble
+anything there, in order to pass. Against it sit 109 must-fail sentences across
+fifteen groups, including 18 mixed sentences that pair a zero claim with ordinary
+safe wording in both clause orders — those exist to show that zero detection, not
+any vocabulary list, is carrying safety.
+
+The protected subject (`subjectPatterns`), the concept classes, the corpus and the
+enforced roles all live in the registry, so the validator holds no private matcher
+and no private fixtures — a mutation to the contract carries its own tests with it.
+Scope stays on the protected subject: a *dead field* at the surface is outside this
+contract and is not a violation of it. Enforcement covers all four roles, and the
+declared `enforcedRoles` is reconciled against the roles the validator walks.
+Intentional false claims — a misconception a teacher must name, an answer the key
+refuses — pass only through the registered exemption mechanism, in their registered
+locations.
 
 ## Preservation
 
