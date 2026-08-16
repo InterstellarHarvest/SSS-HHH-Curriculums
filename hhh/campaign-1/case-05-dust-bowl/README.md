@@ -309,13 +309,22 @@ holds less. Safety was never coming from that list. The retirement is recorded i
 the registry as `retiredBoundedGate` rather than left as dead metadata, and a guard
 asserts the gate has not crept back.
 
-What protects truthful prose instead is `boundaryCorpus.mustPassSafeProse` — 44
+What protects truthful prose instead is `boundaryCorpus.mustPassSafeProse` — 53
 representative sentences proving the zero classifier does not overmatch. It is a
 **regression probe, not a whitelist**: nothing needs to appear there, or resemble
-anything there, in order to pass. Against it sit 109 must-fail sentences across
-fifteen groups, including 18 mixed sentences that pair a zero claim with ordinary
+anything there, in order to pass. Against it sit 129 must-fail sentences across
+eighteen groups, including 28 mixed sentences that pair a zero claim with ordinary
 safe wording in both clause orders — those exist to show that zero detection, not
 any vocabulary list, is carrying safety.
+
+Two of the must-pass groups exist to police the *subject*. `bareLayerSubjectScope`
+holds sentences about a bare "the layer", which is not the protected subsoil
+subject: the layer pattern requires at least one real modifier — exposed, lower or
+soil — enforced by a lookahead rather than by making every group optional, because
+all-optional silently reduced it to "the layer" and began rejecting *"the layer is
+degraded but not empty of life"*. `nonSubsoilDead` holds ordinary surface and crop
+uses of the word *dead* — a dead field, a dead wheat crop, dead grass — and is the
+standing proof that subject scoping keeps them outside this contract.
 
 The protected subject (`subjectPatterns`), the concept classes, the corpus and the
 enforced roles all live in the registry, so the validator holds no private matcher

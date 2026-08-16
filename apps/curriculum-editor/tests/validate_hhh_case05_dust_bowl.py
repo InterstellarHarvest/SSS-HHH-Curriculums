@@ -730,12 +730,29 @@ def main() -> int:
     def drop_subject_pattern(b, c):
         c["subjectPatterns"] = [x for x in c["subjectPatterns"] if "lower" not in x]
 
+    def bare_layer_subject(b, c):
+        """B1 regression: make every layer modifier optional again."""
+        c["subjectPatterns"] = ["\\bthe (?:exposed\\s+)?(?:lower\\s+)?(?:soil\\s+)?layer\\b"
+                                if "(?=(?:exposed|lower|soil)" in x else x
+                                for x in c["subjectPatterns"]]
+
+    def drop_no_single(b, c):
+        cls = b["prohibitedConceptClasses"]["biologicalZero"]
+        cls["patterns"] = [x for x in cls["patterns"] if "no\\s+single" not in x]
+
+    def dead_without_subject(b, c):
+        """B3 regression: treat dead as a zero predicate regardless of subject."""
+        c["subjectPatterns"] = c["subjectPatterns"] + ["(?:)"]
+
     for label, mutate in (("removing the 'not one' quantifier grammar", drop_quantifier),
                           ("collapsing the modal and adverb back into one alternation", break_modal_ever),
                           ("removing the 'never support' grammar", drop_never_support),
                           ("removing the 'at all' and 'whatsoever' intensifier slot", drop_intensifiers),
                           ("removing 'grew' and 'grown' from the growth verb family", drop_grew_grown),
-                          ("dropping a declared subject pattern", drop_subject_pattern)):
+                          ("dropping a declared subject pattern", drop_subject_pattern),
+                          ("making every layer modifier optional again", bare_layer_subject),
+                          ("removing the 'no single' quantifier grammar", drop_no_single),
+                          ("scoping the guard to every subject, so surface 'dead' counts", dead_without_subject)):
         results.check(f"mutation control: {label} breaks the must-fail corpus",
                       not corpus_holds(mutated(mutate)), label)
     results.check("mutation control: the unmutated contract holds the whole corpus",
@@ -751,6 +768,20 @@ def main() -> int:
         return contains_any(low, predicates) and not contains_any(low, markers)
     rejected = [x for group in corpus["mustPassSafeProse"].values() if isinstance(group, list)
                 for x in group if reintroduce_bounded_gate(x)]
+    def safe_half_holds(state: dict) -> bool:
+        for group, sentences in corpus["mustPassSafeProse"].items():
+            if not isinstance(sentences, list):
+                continue
+            for sentence in sentences:
+                if subsoil_violations(probe("student", f"<p>{sentence}</p>"),
+                                      state["contract"], structural, state["boundary"]):
+                    return False
+        return True
+    results.check("mutation control: a bare-layer subject breaks the safe regression corpus",
+                  not safe_half_holds(mutated(bare_layer_subject)))
+    results.check("mutation control: an unscoped subject turns surface 'dead' into a violation",
+                  not safe_half_holds(mutated(dead_without_subject)))
+
     results.check("mutation control: reintroducing the blocking safe-vocabulary gate rejects truthful prose",
                   bool(rejected), f"{len(rejected)} truthful sentences would be failed again")
 

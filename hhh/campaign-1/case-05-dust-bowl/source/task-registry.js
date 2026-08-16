@@ -558,6 +558,7 @@ window.HHH_CASE05_TASK_REGISTRY = {
           "\\bnothing\\s+(?:at all|whatsoever)?\\s*(?:is\\s+|was\\s+)?(?:alive|living|lives|live|survives|survive|remains|remain)\\b",
           "\\bnothing\\s+(?:at all|whatsoever)?\\s*(?:can|will|could|would|has|have|had)\\s+(?:ever\\s+)?(?:live|lived|survive|survived|remain|remained)\\b",
           "\\bnot\\s+(?:a|an|one)\\s+(?:single\\s+)?(?:\\w+\\s+){0,2}?(?:living\\s+thing|thing|organism|organisms|microbe|microbes|microorganism|bacterium|bacteria|creature|root)s?\\b",
+          "\\bno\\s+single\\s+(?:\\w+\\s+){0,2}?(?:living\\s+thing|thing|organism|organisms|microbe|microbes|microorganism|bacterium|bacteria|creature|root)s?\\b",
           "\\bnot\\s+(?:a|an|one)?\\s*(?:single\\s+)?traces?\\s+of\\s+(?:life|living)\\b",
           "\\bnot\\s+(?:a|an|one)\\s+(?:single\\s+)?(?:\\w+\\s+){0,2}?(?:survives?|remains?|lives?|is\\s+alive)\\b",
           "\\bzero\\s+(?:life|living|organic|microbial|biological)\\b",
@@ -593,6 +594,7 @@ window.HHH_CASE05_TASK_REGISTRY = {
     },
     "boundaryCorpus": {
       "rule": "Shipped with the contract rather than held privately in the validator, so a mutation to the registry moves the tests with it and the corpus can never drift from the boundary it exercises. Every sentence binds the protected subject explicitly, because a sentence without one tests nothing: subject scoping is part of the accepted architecture.",
+      "nonSubsoilDeadRole": "The nonSubsoilDead group is the standing proof that subject scoping works: ordinary surface and crop uses of the word dead - a dead field, a dead wheat crop, dead grass - are not subsoil claims and must never be treated as violations. That coverage existed implicitly before the bounded whitelist was retired and was lost with it; it is now explicit and registry-owned, so it cannot disappear again as a side effect of unrelated work.",
       "mustPassRole": "REPRESENTATIVE REGRESSION PROBES, NOT A WHITELIST. The must-pass sentences exist to prove the zero classifier does not overmatch truthful prose. They confer no authority: prose does not need to appear here, or to resemble anything here, in order to pass. Authored wording this corpus has never seen is expected to pass, and does.",
       "mustFailZero": {
         "reviewerEscapes": [
@@ -698,6 +700,32 @@ window.HHH_CASE05_TASK_REGISTRY = {
           "Nothing at all has grown in the exposed lower layer.",
           "Beneath the topsoil nothing would ever have grown."
         ],
+        "layerSubjectScope": [
+          "The lower layer is sterile.",
+          "The lower soil layer is dead.",
+          "The exposed layer contains no life.",
+          "The exposed soil layer will grow nothing.",
+          "The exposed lower layer is biologically dead.",
+          "The exposed lower soil layer can never support growth."
+        ],
+        "noSingleQuantifier": [
+          "No single living organism remains below the topsoil.",
+          "No single organism survives in the subsoil.",
+          "No single microbe remains beneath the topsoil.",
+          "No single living thing survives in the lower soil layer.",
+          "The subsoil contains no single living organism.",
+          "Below the topsoil no single microbe remains."
+        ],
+        "noSingleQuantifierFresh": [
+          "No single microbial organism is left in the subsoil.",
+          "Beneath the topsoil no single creature survives.",
+          "In the exposed lower layer no single bacterium remains.",
+          "The gully floor holds no single living thing.",
+          "Under the topsoil no single root survives.",
+          "No single living microbe remains in the subsoil.",
+          "Below the topsoil there is no single organism left.",
+          "The mineral layer contains no single microbe."
+        ],
         "mixedZeroFirst": [
           "The subsoil can never support growth, though fertility is low.",
           "Nothing at all can grow in the subsoil, where fertility is low.",
@@ -787,6 +815,19 @@ window.HHH_CASE05_TASK_REGISTRY = {
           "Beneath the topsoil the soil has lost most of what a seed feeds on.",
           "Under the topsoil what is left is mineral, with a little organic matter mixed in.",
           "The exposed lower layer would grow a cover crop only with help."
+        ],
+        "bareLayerSubjectScope": [
+          "The layer is degraded but not empty of life.",
+          "The layer is difficult to farm.",
+          "The layer contains some organisms.",
+          "The layer has low fertility."
+        ],
+        "nonSubsoilDead": [
+          "The soil analysis, at the edge of the dead field.",
+          "The dead field is bare.",
+          "The wheat crop is dead.",
+          "Dead grass lies on the surface.",
+          "Nothing grew on the dead field that year."
         ]
       }
     },
@@ -1082,10 +1123,11 @@ window.HHH_CASE05_TASK_REGISTRY = {
         "\\b(?:below|beneath|under|underneath)\\b[^.]{0,40}?\\btopsoil\\b",
         "\\bthe ground (?:below|beneath|underneath)\\b",
         "\\bthe (?:pale |mineral |starved |exposed )?(?:sand|layer|soil layer) below\\b",
-        "\\bthe (?:exposed\\s+)?(?:lower\\s+)?(?:soil\\s+)?layer\\b",
+        "\\bthe\\s+(?=(?:exposed|lower|soil)\\b)(?:exposed\\s+)?(?:lower\\s+)?(?:soil\\s+)?layer\\b",
         "\\bthe mineral layer\\b",
         "\\bgully floor\\b"
       ],
+      "subjectModifierRule": "The layer pattern requires AT LEAST ONE modifier - exposed, lower or soil - enforced by a lookahead rather than by making every group optional. With all three optional the pattern silently reduced to bare 'the layer', which is not the protected subsoil subject at all, and it began rejecting the truthful sentence 'the layer is degraded but not empty of life'. The fix belongs in the subject scope, not in the negation vocabulary: widening negations would have hidden an over-broad subject instead of correcting it.",
       "subjectPatternRule": "The protected subject is declared HERE, not in the validator. It used to be a module-level regex constant in the test file - a second authority of exactly the kind this contract exists to prevent - and it silently excluded ordinary names for the same layer, so 'nothing can grow in the lower soil layer' fell outside the guard entirely. subjectTerms above stays as the readable register; subjectPatterns is what compiles.",
       "predicateTerms": [
         "life", "living", "lives", "live", "alive", "biological", "biology",
