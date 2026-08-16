@@ -114,6 +114,10 @@ sub, sup { line-height: 0; font-size: .72em; }
 .data-table th, .data-table td { padding: 3px 5px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
 .data-table thead th { background: var(--panel); font-size: 7.6pt; }
 .vocab-table th:first-child { width: 1.15in; }
+/* Standard codes are identifiers and must not break mid-code: "CCSS RH.6-8.7"
+   was wrapping after the hyphen in the default column width. */
+.standards-table th[scope="row"] { width: 1.08in; white-space: nowrap; }
+.standards-table td:nth-child(2) { width: .72in; }
 /* Teacher tables are reference matter a teacher scans rather than reads through,
    and this guide carries eight of them. Tightening the cell padding there buys
    the vertical room the misconception and rubric tables need without touching
