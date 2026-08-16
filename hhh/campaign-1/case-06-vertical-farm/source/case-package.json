@@ -115,7 +115,7 @@
   "rolePageStructure": {
     "student": {
       "documentRole": "Student Mission",
-      "pageCount": 12
+      "pageCount": 11
     },
     "teacher": {
       "documentRole": "Teacher Guide",
@@ -162,9 +162,9 @@
     "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
   },
   "sourceHashes": {
-    "content": "a9f202ff6e12de6c70176918e68f59be1b08904b95c65dc0b7c0712373f05349",
+    "content": "b67fd8ea08c4b5a1bc39f9e151296c260be237212b950ab502ca302aa3ee1211",
     "presentation": "db63f27b17745d618cb8edd97520db891b99612a2739b4c7acb739e406c9b238",
-    "taskRegistry": "ba927aab680dd7af74100cffa86518c5c794f1ec49415bf11f4032c8b77b719b",
-    "layoutOverrides": "4d47018a91c1fcacd279ff40cf1996aeebfdacb0cb70ac4cfd5874b37876e990"
+    "taskRegistry": "ec31ad1cf090b5ecc6477b21b782455fddbac2d771f2a88f48a9803406605581",
+    "layoutOverrides": "c69544f4a890319d0b597f4f0efa3bd044304b0b31c0383a994c2eb765821017"
   }
 }

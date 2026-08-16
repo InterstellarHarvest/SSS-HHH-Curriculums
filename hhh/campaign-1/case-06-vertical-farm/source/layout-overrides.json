@@ -292,7 +292,7 @@
       {
         "id": "HHH-C1-CASE06:student:t3:t3-gap",
         "persistId": "t3-gap",
-        "pageId": "student-vertical-farm-06",
+        "pageId": "student-vertical-farm-05",
         "taskId": 3,
         "label": "Task 3 how full mechanical compliance and system failure can both be true",
         "minPx": 96,
@@ -301,7 +301,7 @@
       {
         "id": "HHH-C1-CASE06:student:t4:t4-living-step",
         "persistId": "t4-living-step",
-        "pageId": "student-vertical-farm-07",
+        "pageId": "student-vertical-farm-06",
         "taskId": 4,
         "label": "Task 4 the step that is not a machine and what the dosing records could not detect",
         "minPx": 72,
@@ -310,7 +310,7 @@
       {
         "id": "HHH-C1-CASE06:student:t5:t5-first",
         "persistId": "t5-first",
-        "pageId": "student-vertical-farm-08",
+        "pageId": "student-vertical-farm-07",
         "taskId": 5,
         "label": "Task 5 which zone failed first and how the order shows it",
         "minPx": 64,
@@ -319,7 +319,7 @@
       {
         "id": "HHH-C1-CASE06:student:t5:t5-trigger",
         "persistId": "t5-trigger",
-        "pageId": "student-vertical-farm-08",
+        "pageId": "student-vertical-farm-07",
         "taskId": 5,
         "label": "Task 5 why the chronology cannot establish which logged event collapsed the microbes",
         "minPx": 64,
@@ -328,7 +328,7 @@
       {
         "id": "HHH-C1-CASE06:student:t6:t6-converge",
         "persistId": "t6-converge",
-        "pageId": "student-vertical-farm-09",
+        "pageId": "student-vertical-farm-08",
         "taskId": 6,
         "label": "Task 6 the two records that together rule out a hardware failure",
         "minPx": 80,
@@ -337,7 +337,7 @@
       {
         "id": "HHH-C1-CASE06:student:t7:t7-settle",
         "persistId": "t7-settle",
-        "pageId": "student-vertical-farm-10",
+        "pageId": "student-vertical-farm-09",
         "taskId": 7,
         "label": "Task 7 evidence that would settle the undecided account",
         "minPx": 96,
@@ -346,7 +346,7 @@
       {
         "id": "HHH-C1-CASE06:student:t8:t8-engineer",
         "persistId": "t8-engineer",
-        "pageId": "student-vertical-farm-11",
+        "pageId": "student-vertical-farm-10",
         "taskId": 8,
         "label": "Task 8 what the evidence establishes about the named engineer",
         "minPx": 72,
@@ -355,7 +355,7 @@
       {
         "id": "HHH-C1-CASE06:student:t8:t8-open",
         "persistId": "t8-open",
-        "pageId": "student-vertical-farm-11",
+        "pageId": "student-vertical-farm-10",
         "taskId": 8,
         "label": "Task 8 one open institutional question and the record that raised it",
         "minPx": 72,
@@ -364,7 +364,7 @@
       {
         "id": "HHH-C1-CASE06:student:t9:t9-explanation",
         "persistId": "t9-explanation",
-        "pageId": "student-vertical-farm-12",
+        "pageId": "student-vertical-farm-11",
         "taskId": 9,
         "label": "Task 9 the four-part systems and evidence audit explanation",
         "minPx": 240,

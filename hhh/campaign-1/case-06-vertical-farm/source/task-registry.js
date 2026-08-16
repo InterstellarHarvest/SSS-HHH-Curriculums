@@ -14,7 +14,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
   "staticContentInventory": "hhh/audit/data/HHH_STATIC_CONTENT_INVENTORY_v0.1.json",
   "blueprint": "hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md",
   "roles": {
-    "student": 12,
+    "student": 11,
     "teacher": 10,
     "answer": 6,
     "accessible": 17
@@ -169,7 +169,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "four marked placements plus two short constructed responses",
       "answerScope": "Each of four components assigned to the engineered or the living zone, the zone the monitoring watched, and an explanation of how full mechanical compliance and system failure can be true at the same time.",
       "pagePlacement": {
-        "student": "student-vertical-farm-06",
+        "student": "student-vertical-farm-05",
         "teacher": "teacher-guide-04",
         "answer": "answer-key-02",
         "accessible": "accessible-vertical-farm-08"
@@ -194,7 +194,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "two organizer stages, two form identifications and one short constructed response",
       "answerScope": "The two open conversion stages, the form that burned the roots, the form the crops could not get enough of, and a statement of which step is biological and what the dosing records could not have detected.",
       "pagePlacement": {
-        "student": "student-vertical-farm-07",
+        "student": "student-vertical-farm-06",
         "teacher": "teacher-guide-05",
         "answer": "answer-key-02",
         "accessible": "accessible-vertical-farm-09"
@@ -217,7 +217,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "four ordered placements plus two short constructed responses",
       "answerScope": "The four middle entries in order, a statement of which subsystem failed first and how the order shows it, and an explanation of why no single logged event can be named as the trigger from this record.",
       "pagePlacement": {
-        "student": "student-vertical-farm-08",
+        "student": "student-vertical-farm-07",
         "teacher": "teacher-guide-05",
         "answer": "answer-key-03",
         "accessible": "accessible-vertical-farm-11"
@@ -241,7 +241,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "ten matrix cells plus one short constructed response",
       "answerScope": "What each of five records measures and what it leaves invisible, and a named pair of records that together exclude a mechanical failure with a reason why one alone cannot.",
       "pagePlacement": {
-        "student": "student-vertical-farm-09",
+        "student": "student-vertical-farm-08",
         "teacher": "teacher-guide-06",
         "answer": "answer-key-03",
         "accessible": "accessible-vertical-farm-13"
@@ -266,7 +266,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "five marked judgments plus one short constructed response",
       "answerScope": "One supported account, three contradicted accounts, one account this packet cannot decide, and a named kind of evidence that would move the undecided one.",
       "pagePlacement": {
-        "student": "student-vertical-farm-10",
+        "student": "student-vertical-farm-09",
         "teacher": "teacher-guide-06",
         "answer": "answer-key-04",
         "accessible": "accessible-vertical-farm-14"
@@ -290,7 +290,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "three marked judgments plus two short constructed responses",
       "answerScope": "Each of three public claims marked against the packet's evidence, a bounded statement of what the evidence establishes about the named engineer, and one open institutional question with the record that raised it.",
       "pagePlacement": {
-        "student": "student-vertical-farm-11",
+        "student": "student-vertical-farm-10",
         "teacher": "teacher-guide-06",
         "answer": "answer-key-05",
         "accessible": "accessible-vertical-farm-15"
@@ -315,7 +315,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "responseType": "extended constructed response with four required parts",
       "answerScope": "What failed and the labelled evidence for it, what the engineering records do and do not establish, what the public record claimed against what accountability the evidence supports, and two questions to ask about an unfamiliar automated-system failure.",
       "pagePlacement": {
-        "student": "student-vertical-farm-12",
+        "student": "student-vertical-farm-11",
         "teacher": "teacher-guide-06",
         "answer": "answer-key-06",
         "accessible": "accessible-vertical-farm-17"
@@ -438,7 +438,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "The reason the two-species story cannot be taught as a universal rule. Two groups reported independently, in the same issue of the same journal, the enrichment and characterisation of Nitrospira that encode all the enzymes needed to catalyse complete nitrification - ammonia all the way to nitrate in one organism - a phenotype named comammox. Until then the two oxidation steps had always been observed in two separate microorganisms in a cross-feeding interaction, and the split had puzzled microbiologists for decades. Phylogenetic analysis in those papers indicates comammox Nitrospira occur in a range of environments.",
       "limitation": "Two enrichment cultures, from a deep oil-exploration well and from an aquaculture recirculation system, characterised in the laboratory. They establish that complete nitrification by one organism happens; they do not establish how much of the nitrification in any particular system it accounts for, and they do not make comammox the new universal answer in place of the old one. What they retire is the word always.",
       "gameCorrespondence": "None. The runtime level's closing note names two partner microbes as the real-world case; these are the papers that show that framing is a simplification.",
-      "fallbackCorrespondence": "Dossier card G on Student page 4 and Accessible page 6.",
+      "fallbackCorrespondence": "Dossier card G on Student page 4 and Accessible page 6, sharing that card with the biofilter-community study.",
       "rights": "Nature 528 (2015). Cited and summarised, not reproduced."
     },
     {
@@ -454,7 +454,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "The single most useful check on overreach in this case, because it measures a real working version of the fictional system. The authors sampled the fluidized-sand biofilter of a commercial-scale freshwater recirculating aquaculture system raising yellow perch. They note that in recirculating-system process engineering, designers typically cite the principle nitrifying taxa as Nitrosomonas species for ammonia oxidation and Nitrobacter species for nitrite oxidation. What they found was not that: ammonia-oxidizing archaea dominated, present at roughly six hundred thousand times the abundance of Nitrosomonas, and comammox Nitrospira carried the most abundant ammonia-oxidising gene. Comammox and nitrite-oxidising Nitrospira co-existed at relatively equivalent and stable abundances, and the dominant nitrifying organisms changed little in composition or abundance over time while the rest of the bacterial community shifted with normal operations.",
       "limitation": "One biofilter, one system, one time series, in aquaculture rather than in crop production. It cannot establish what lives in any other biofilter, and it is not a claim that archaea dominate everywhere. What it does establish is that the organisms a designer expects and the organisms actually doing the work in a running system were, in this measured case, not the same - which is why a curriculum may not teach the expected pair as the universal fact.",
       "gameCorrespondence": "None. The runtime level's biofilter is fictional; this is a measurement of a real one.",
-      "fallbackCorrespondence": "Dossier card H on Student page 4 and Accessible page 6, and Account 4 of Task 7.",
+      "fallbackCorrespondence": "Dossier card G on Student page 4 and Accessible page 6, sharing that card with the comammox discovery, and Account 4 of Task 7.",
       "rights": "Frontiers in Microbiology 8:101 (2017). Open access; cited and summarised, not reproduced."
     },
     {
@@ -470,7 +470,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "The correction that keeps this case honest. Plants acquire inorganic nitrogen mainly in the form of nitrate and ammonium - both of them, through separate transporters - and the review reports that mixtures of the two are beneficial for growth compared with either alone. Nitrate is the major form in most aerated soils and ammonium is prevalent in acidic or water-saturated ones.",
       "limitation": "A review of plant physiology, largely in soil and laboratory systems. It describes what plants can take up; it does not describe any particular growing system, it sets no concentration for any crop, and it is not a statement about what happened in any farm.",
       "gameCorrespondence": "None. The runtime level speaks of nitrate as the form the plants can finally drink; this source is why that must not become the claim that nitrate is the only usable form.",
-      "fallbackCorrespondence": "Dossier card I on Student page 5 and Accessible page 7, and the Task 4 pathway figure boundary note.",
+      "fallbackCorrespondence": "Dossier card H on Student page 4 and Accessible page 7, sharing that card with the ammonium-tolerance review, and the Task 4 pathway figure boundary note.",
       "rights": "Journal of Experimental Botany 68 (2017). Cited and summarised, not reproduced."
     },
     {
@@ -486,7 +486,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "The reason this packet prints no toxicity number. Ammonium stress affects virtually every plant species, but the degree of stress it generates is variable: the review reports high intraspecific and interspecific variability in response to ammonium nutrition, with some species and genotypes showing a preference for ammonium and others extreme sensitivity, and it reports that the threshold for ammonium toxicity depends on the species, the ecotype and even the cultivar, and on the growing conditions.",
       "limitation": "It establishes that no universal threshold exists, which is a statement about the absence of a number rather than a number. It cannot be used to say how much ammonium harmed any particular crop, and it does not describe recirculating hydroponic production.",
       "gameCorrespondence": "None. The runtime level says ammonia burned the roots without stating a level; this source is why no level is supplied here either.",
-      "fallbackCorrespondence": "Dossier card J on Student page 5 and Accessible page 7, and the Teacher science-qualification note.",
+      "fallbackCorrespondence": "Dossier card H on Student page 4 and Accessible page 7, sharing that card with the plant-uptake review, and the Teacher science-qualification note.",
       "rights": "Plant Science 248 (2016). Cited and summarised, not reproduced."
     },
     {
@@ -502,7 +502,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "It puts the engineered parts and the living parts inside one loop and draws the monitoring as a separate band across only one of them, so the gap between what the system was and what the system watched can be seen rather than asserted.",
       "limitation": "A schematic of membership, not a plan. It is not a drawing of any facility, nothing on it is to scale, no pipe route, flow rate, tank volume or floor layout may be read from it, and it does not represent the design of any real recirculating system.",
       "gameCorrespondence": "The level's three locations, which fix no system architecture beyond their names.",
-      "fallbackCorrespondence": "Task 3 figure on Student page 6 and Accessible page 8."
+      "fallbackCorrespondence": "Task 3 figure on Student page 5 and Accessible page 8."
     },
     {
       "id": "pathway-figure",
@@ -517,7 +517,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "It sets the four stages of the loop beside the control panel that doses it, so that the one step performed by organisms rather than by machinery can be located, and so that a learner can see that a device measuring total nutrient would read the same whether the conversion was happening or not.",
       "limitation": "A drawing made to explain an order and a division of labour. No rate, concentration, residence time or organism is measurable from it. It shows the two-step conversion because that is the framing the real sources describe as conventional, and it prints alongside them that a single organism can perform both steps and that the community doing the work is not a fixed pair.",
       "gameCorrespondence": "The level's account of the loop, which gives the chemistry as narration without separating the biological step.",
-      "fallbackCorrespondence": "Task 4 figure on Student page 7 and Accessible page 9."
+      "fallbackCorrespondence": "Task 4 figure on Student page 6 and Accessible page 9."
     },
     {
       "id": "chronology-figure",
@@ -532,7 +532,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "It puts the biological trace, the maintenance events, the chemistry and the crop deaths on one timeline, with the engineering rail running unbroken beneath all of them, so that what changed and what did not can be read in one look.",
       "limitation": "An ordering of fictional case data, and every date and day number on it is fictional case data and is labelled as such. It shows what followed what inside a story; it does not show what caused what, and the three logged events it carries are candidates for a trigger and are printed as candidates.",
       "gameCorrespondence": "The level's consortium trace and maintenance log, which give the same sequence as narration without a timeline.",
-      "fallbackCorrespondence": "Task 5 figure on Student page 8 and Accessible page 10."
+      "fallbackCorrespondence": "Task 5 figure on Student page 7 and Accessible page 10."
     },
     {
       "id": "audit-matrix",
@@ -547,7 +547,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "It gives every record in the case the same two columns - what it measures, and what it cannot show - so that no record's authority comes from its format, and so that the difference between an honest record and a sufficient one has somewhere to be written down.",
       "limitation": "An organizer, not an evaluation. It ranks no record above another, it assigns no reliability score, and nothing on it says which record is right. It sets out what each one can carry.",
       "gameCorrespondence": "None. The level presents its sources one at a time and never side by side.",
-      "fallbackCorrespondence": "Task 6 matrix on Student page 9 and Accessible pages 12 and 13."
+      "fallbackCorrespondence": "Task 6 matrix on Student page 8 and Accessible pages 12 and 13."
     },
     {
       "id": "verdict-comparison",
@@ -562,7 +562,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
       "contribution": "It sets the three claims of the fictional public statement against the packet's own evidence, claim by claim, and holds a third column open for the questions the evidence raises but does not answer, so that clearing a named person and closing an institutional question do not become the same act.",
       "limitation": "A comparison of a fictional statement with fictional and real evidence. It decides nothing about any real company, any real regulator or any real technology, and its third column is a set of questions rather than a set of findings.",
       "gameCorrespondence": "The level's spokesperson and forward archive, which are presented as scenes rather than as a comparison.",
-      "fallbackCorrespondence": "Task 8 figure on Student page 11 and Accessible page 15. Parts B and C of the task continue overleaf."
+      "fallbackCorrespondence": "Task 8 figure on Student page 10 and Accessible page 15. Parts B and C of the task continue overleaf."
     }
   ],
   "scienceQualification": {

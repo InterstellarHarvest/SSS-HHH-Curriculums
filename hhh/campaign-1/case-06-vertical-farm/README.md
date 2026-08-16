@@ -111,11 +111,16 @@ claim and demote the rest to support, which is the move the case exists to refus
 
 ### Role page counts
 
-Roles and page counts: Student 12 · Teacher 10 · Answer Key 6 · Accessible 17.
+Roles and page counts: Student 11 · Teacher 10 · Answer Key 6 · Accessible 17.
 
 The Student edition is longer than Case 05's because it carries two complete
 evidence layers: five fictional case records and five real scientific sources,
-each with its own status line and its own printed limitation. The Teacher Guide
+each with its own status line and its own printed limitation. The real estate is
+printed on three learner cards rather than five — the two papers that retired the
+two-species rule share card G, and the two plant reviews share card H — because
+each pair answers one question and reads as one card. No claim and no printed
+limitation was dropped to do it, and the Teacher ledger still cites all five
+sources separately. The Teacher Guide
 runs to ten pages because the source ledger is split by layer across two of them,
 which is what makes the two-layer boundary teachable rather than merely stated.
 The Accessible edition gives the first audit question a page of its own and
@@ -147,7 +152,7 @@ The runtime level's closing note presents the real-world biology as two partner
 microbes, *Nitrosomonas* and *Nitrospira*. That was standard textbook framing and
 is no longer adequate. **The finding is discharged as design, not as disclaimer:**
 
-- **Consortium composition.** Sources G and H are in the packet for this.
+- **Consortium composition.** Source G is in the packet for this.
   **Task 7 Account 4** — *a nitrifying community is always exactly two species* —
   is an account the learner marks **N** using the packet's own printed evidence.
   The learner refuses the simplification; the teacher does not correct it.
@@ -155,7 +160,7 @@ is no longer adequate. **The finding is discharged as design, not as disclaimer:
   both learner editions: plants take up nitrate **and** ammonium, through separate
   transporters. The Answer Key carries a floor against the nitrate-only claim.
 - **Toxicity threshold.** **No number appears anywhere in this packet**, because
-  Source J establishes that the threshold varies with species, ecotype, cultivar
+  Source H establishes that the threshold varies with species, ecotype, cultivar
   and conditions. EPA's ammonia toxicity material is about aquatic animals and is
   scoped as such wherever it is used.
 - **Ammonia vs ammonium.** Both terms are printed with their formulas in every
@@ -189,9 +194,9 @@ published source before authoring.
 ### Things this packet deliberately does not print
 
 - **Any ammonia or ammonium toxicity threshold for plants.** No source supports a
-  universal one, and Source J establishes that none exists.
+  universal one, and Source H establishes that none exists.
 - **Any species composition for the fictional consortium.** The fictional record
-  names none, and Sources G and H are why the textbook pair is not substituted.
+  names none, and Source G is why the textbook pair is not substituted.
 - **Any named trigger for the collapse.** Three candidates are logged inside three
   days and nothing separates them.
 - **Any counterfactual about whether better monitoring would have saved the crop.**
@@ -242,7 +247,7 @@ Student counterpart, checked structurally against `editionResponseContract`.
 ## No-game fallback
 
 Complete. A learner who never launches the game can perform **every assessed
-task** from Sources A–J and the five figures. Nothing is held back for players,
+task** from Sources A–H and the five figures. Nothing is held back for players,
 and no task requires an optional game clue.
 
 ## Semantic regression contract
