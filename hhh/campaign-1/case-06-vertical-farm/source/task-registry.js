@@ -29,7 +29,7 @@ window.HHH_CASE06_TASK_REGISTRY = {
         "id": "fictional",
         "label": "FICTIONAL CASE EVIDENCE",
         "attribute": "fictional",
-        "statusMarker": "fictional case evidence",
+        "statusMarker": "fictional / hypothetical",
         "covers": [
           "the 2041 facility and everything in it",
           "the failed crops and the floors they stood on",
