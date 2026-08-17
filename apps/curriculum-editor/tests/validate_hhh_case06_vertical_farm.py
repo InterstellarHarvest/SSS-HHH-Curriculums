@@ -82,6 +82,22 @@ CASE_ID = "HHH-C1-CASE06"
 LEARNER_ROLES = ("student", "accessible")
 ALL_ROLES = ("student", "teacher", "answer", "accessible")
 
+# The commit the owner reviewed on screen and physically printed. It is NOT the
+# certified release-source commit: release conversion restamps task-registry.js
+# with the lifecycle keys, so the released four-file byte set first exists one
+# commit later. The two are deliberately separate provenance facts.
+OWNER_PRINTABLE_BASELINE = "865cae7177cafdcc19dcff1a6b13340d14e0f393"
+# Independent review passed 781c6f6; the owner then drove five bounded correction
+# commits before approving. Unlike Case 05, the reviewed candidate and the approved
+# candidate are different commits here, so the lineage is part of the release.
+OWNER_CORRECTION_LINEAGE = (
+    "c80c11f74051a350866bff52fcd82a1999f9b5a4",
+    "ef9c90189e6636ed484a0008fb100c2da6de38b9",
+    "bcf92ae9eb95c288af8c3b9a3e49731d14d21539",
+    "a4e60d518ebd3b3e635e72dc3e196c414399980a",
+    "865cae7177cafdcc19dcff1a6b13340d14e0f393",
+)
+
 # Propositions break on terminal punctuation only. A semicolon, colon or dash is
 # internal punctuation and not a safety boundary: splitting on them would let
 # "the community is diverse; it is always exactly two species" evade the gate by
@@ -296,17 +312,69 @@ def main() -> int:
                   (package["id"], package["version"], package["instructionalType"],
                    package["curriculum"], package["campaign"])
                   == (CASE_ID, "0.1", "CORE_CASE", "HHH", "campaign-1"))
-    results.check("package lifecycle is an unapproved validation build",
-                  package["status"] == "VALIDATION_BUILD"
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN",
-                  json.dumps({"status": package["status"], "approval": package["approval"]}))
-    results.check("package declares no release history", "releaseHistory" not in package)
-    results.check("no history directory exists for an unreleased package",
-                  not (UNIT / "history").exists())
-    results.check("registry lifecycle agrees with the package",
-                  (registry["status"], registry["ownerReviewStatus"], registry["version"])
-                  == ("VALIDATION_BUILD", "OWNER_REVIEW_NOT_STARTED", "0.1"))
+    # RELEASED-STATE LIFECYCLE. The candidate-state assertions that stood here were
+    # converted by release conversion rather than deleted: the protection is the
+    # same obligation, aimed at the state the package is actually in.
+    results.check("the package and task registry both carry the approved lifecycle",
+                  package["status"] == "APPROVED_STABLE"
+                  and registry["status"] == "APPROVED_STABLE"
+                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_PASS"
+                  and registry["version"] == "0.1"
+                  and package["approval"]["status"] == "APPROVED"
+                  and package["approval"]["printStatus"] == "PASS"
+                  and package["approval"]["date"] == "2026-08-16"
+                  and package["approval"]["owner"] == "Nate / Owner",
+                  json.dumps({"package": package["status"], "registry": registry["status"],
+                              "approval": package["approval"]}))
+    history = UNIT / "history"
+    release_path = history / "release-v0.1.json"
+    approval_path = history / "CASE06_OWNER_APPROVAL_v0.1.md"
+    results.check("both owner-approval and release history records exist",
+                  release_path.is_file() and approval_path.is_file()
+                  and package.get("releaseHistory") == release_path.relative_to(ROOT).as_posix(),
+                  sorted(x.name for x in history.iterdir()) if history.exists() else "no history dir")
+    release = json.loads(release_path.read_text(encoding="utf-8")) if release_path.is_file() else {}
+    results.check("the release record agrees with the package on identity and approval",
+                  release.get("caseId") == package["id"]
+                  and release.get("curriculumVersion") == package["version"]
+                  and release.get("status") == package["status"]
+                  and release.get("approvalDate") == package["approval"]["date"]
+                  and release.get("owner") == package["approval"]["owner"],
+                  json.dumps({k: release.get(k) for k in
+                              ("caseId", "curriculumVersion", "status", "approvalDate", "owner")}))
+    results.check("the release record certifies the same source bytes the package declares",
+                  release.get("sourceHashes") == package["sourceHashes"],
+                  json.dumps(release.get("sourceHashes")))
+    results.check("the release record agrees with the package on role page counts",
+                  release.get("rolePageCounts") == {r: v["pageCount"]
+                                                    for r, v in package["rolePageStructure"].items()},
+                  json.dumps(release.get("rolePageCounts")))
+    results.check("every release commit pin is resolved to a real commit, with no placeholder left",
+                  all(isinstance(release.get(k), str)
+                      and re.fullmatch(r"[0-9a-f]{40}", release.get(k, ""))
+                      for k in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                "formerArtifactRecoveryCommit")),
+                  json.dumps({k: release.get(k) for k in
+                              ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                               "formerArtifactRecoveryCommit")}))
+    # No placeholder may survive anywhere in the record, including the prose notes,
+    # because the pins are quoted there as well as held in their own fields.
+    results.check("no placeholder token remains anywhere in the release record",
+                  "PENDING" not in json.dumps(release), "PENDING found in release record")
+    # The owner printed 865cae7. The release record must keep that separate from the
+    # certified byte-set commit, or the provenance claim silently becomes false.
+    results.check("the release record records the owner-approved printable baseline",
+                  any(OWNER_PRINTABLE_BASELINE in note for note in release.get("migrationNotes", [])),
+                  OWNER_PRINTABLE_BASELINE)
+    results.check("the owner approval record names the printable baseline the owner printed",
+                  approval_path.is_file()
+                  and OWNER_PRINTABLE_BASELINE in approval_path.read_text(encoding="utf-8"))
+    # This case's five owner-correction commits are provenance, not decoration: the
+    # reviewed candidate and the approved candidate are different commits here.
+    approval_text = approval_path.read_text(encoding="utf-8") if approval_path.is_file() else ""
+    results.check("the approval record carries the full five-commit owner-correction lineage",
+                  all(sha in approval_text for sha in OWNER_CORRECTION_LINEAGE),
+                  [s[:9] for s in OWNER_CORRECTION_LINEAGE if s not in approval_text])
     results.check("task registry pins the current game baseline",
                   registry["gameCommit"] == "d9fc16baf272cb543c29cbd0c06ec85efad60be8",
                   registry["gameCommit"])
@@ -321,19 +389,25 @@ def main() -> int:
     shared = json.loads(REGISTRY_FILE.read_text(encoding="utf-8"))
     entry = next(c for cur in shared["curricula"] if cur["id"] == "HHH"
                  for camp in cur["campaigns"] for c in camp["cases"] if c["id"] == CASE_ID)
-    results.check("shared registry entry is an editor-ready validation package",
-                  entry["status"] == "VALIDATION_BUILD" and entry["packageStatus"] == "VALIDATION"
+    results.check("shared registry entry is an approved released package",
+                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
                   and entry["editorPackage"] == "hhh/campaign-1/case-06-vertical-farm/source/case-package.json",
                   json.dumps(entry))
-    results.check("shared registry entry declares no history record and no approval",
-                  "historyRecord" not in entry
-                  and entry["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and entry["approval"]["printStatus"] == "NOT_RUN")
+    results.check("shared registry entry points at the release record and carries the approval",
+                  entry.get("historyRecord") == package["releaseHistory"]
+                  and entry["approval"]["status"] == "APPROVED"
+                  and entry["approval"]["printStatus"] == "PASS"
+                  and entry["approval"]["date"] == package["approval"]["date"]
+                  and entry["approval"]["owner"] == package["approval"]["owner"],
+                  json.dumps(entry.get("approval")))
 
-    # Lifecycle and repository metadata must never reach a printable page.
+    # Lifecycle and repository metadata must never reach a printable page. The
+    # release stamp adds new ways for that to happen, so the token set grows with it.
     LIFECYCLE_TOKENS = ("VALIDATION_BUILD", "OWNER_REVIEW", "packageStatus", "sourceHashes",
                         "case-package.json", "task-registry.js", "APPROVED_STABLE",
-                        "d9fc16ba", "9b8545ed")
+                        "d9fc16ba", "9b8545ed", "releaseHistory", "release-v0.1",
+                        "historyRecord", "Nate / Owner", "canonicalSourceApprovalCommit",
+                        "865cae71", "cb6021fb")
     for role in ALL_ROLES:
         found = [t for t in LIFECYCLE_TOKENS if t.lower() in texts[role].lower()]
         results.check(f"{role}: no lifecycle or repository metadata is printed", not found, found)
