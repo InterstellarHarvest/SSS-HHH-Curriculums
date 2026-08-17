@@ -1,0 +1,62 @@
+{
+    "schemaVersion": 1,
+    "caseId": "HHH-C1-CASE06",
+    "curriculumVersion": "0.1",
+    "status": "APPROVED_STABLE",
+    "approvalDate": "2026-08-16",
+    "owner": "Nate / Owner",
+    "originalReleaseApprovalCommit": "COMMIT_A_PENDING",
+    "canonicalSourceApprovalCommit": "COMMIT_A_PENDING",
+    "sourceHashes": {
+        "content": "ab7cd44ce5d49f529ba03553fb22732636d0c6c0bcb8249b990275b3c143a2c7",
+        "presentation": "db63f27b17745d618cb8edd97520db891b99612a2739b4c7acb739e406c9b238",
+        "taskRegistry": "41fcdf4e532817789e4b81dae69b1cbe70c0565f165880ca2693e7d48a635beb",
+        "layoutOverrides": "e5c5173694ce87bb9da403a9615bac77c9a98769b1abe7793684cb2343db3516"
+    },
+    "frozenNonAccessibleDomBaselines": {
+        "student": "3e621b66a01c5588b0fa2db3762e624e4ef447abee5902400b78fcdca942eb69",
+        "teacher": "3d717488ec758d1fca2dbca913b9369d10bc0a114134d7d3751bda1c476161a8",
+        "answer": "06d5f8c98566f24e50563b48865b948a7227149cfd216b6305e6dbf7aed0eaa4",
+        "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only. For this release the Accessible DOM hash was nevertheless computed at both trees and compared, as 525b4980b02d7ac7d9b5debd1cabf10f65108b3f17c817ef1eee17d7d78317c4, to prove printable parity across all four roles."
+    },
+    "rolePageCounts": {
+        "student": 11,
+        "teacher": 10,
+        "answer": 5,
+        "accessible": 17
+    },
+    "acceptedValidation": {},
+    "acceptedPrintStatus": "PASS at 100% / Actual Size, confirmed by the owner through the browser print dialog on 2026-08-16. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+    "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "Core Case 06 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this case, so there is nothing to recover."
+    },
+    "formerArtifactRecoveryCommit": "COMMIT_A_PENDING",
+    "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+    "priorApprovedReleases": [],
+    "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+    "migrationNotes": [
+        "Sixth HHH Core Case release, and the first fictional one, produced against the released Core Case 05 baseline 6b0e060adb54fd6b91adff766bb537f1a40b8798 and the approved Blueprint.",
+        "Owner-approved printable baseline: 865cae7177cafdcc19dcff1a6b13340d14e0f393. The owner reviewed that byte set on screen through the local Curriculum Editor and printed it at 100% / Actual Size. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing. All 43 pages were re-rendered in colour and grayscale at both trees and all 86 page images are byte-identical.",
+        "Certified release-source commit: COMMIT_A_PENDING. The released task-registry.js bytes first exist at the release-conversion commit, because the lifecycle stamp is created by release conversion, so the pins identify that commit rather than the owner printable baseline. This was proven by walking every commit in the feature range and testing the full released four-file byte set at each, not assumed. The two are recorded separately and deliberately, following the Case 03, Case 04 and Case 05 precedent.",
+        "Unlike Case 05, the commit that passed the first full independent review and the commit the owner approved are NOT the same commit for this case. The original full independent review passed candidate 781c6f633558e6f188b39458d10099b43c68e986. Owner review then produced bounded classroom corrections - the owner's own direction on packet length and task structure, not defects found against him. A correction rereview found three remapping defects; those were corrected; the final microfix rereview passed; the owner made one last STATUS-tail trim while the owner gate was still open; and the owner reviewed and physically printed the resulting commit 865cae7177cafdcc19dcff1a6b13340d14e0f393 before approving it.",
+        "The five owner-correction commits after the originally reviewed candidate, linear with zero merges: c80c11f74051a350866bff52fcd82a1999f9b5a4 trimmed the STATUS suffixes and lifted Part A above its figure; ef9c90189e6636ed484a0008fb100c2da6de38b9 merged the science file onto three learner cards and dropped Student to 11 pages; bcf92ae9eb95c288af8c3b9a3e49731d14d21539 folded Task 7 into Task 8 as one five-part task and cut the Answer Key to 5 pages; a4e60d518ebd3b3e635e72dc3e196c414399980a corrected the source spans and the fallback task map; 865cae7177cafdcc19dcff1a6b13340d14e0f393 trimmed the redundant tail from the fictional STATUS line.",
+        "The exact commit the owner approved was independently confirmed after approval with no modifications - the post-owner trim confirmation was read-only and changed no bytes - and no commit exists after the owner-approved printable baseline before release conversion begins. Final independent disposition: INDEPENDENT_CASE06_POST_OWNER_TRIM_PASS - READY_FOR_RELEASE_CONVERSION.",
+        "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056. C1 L6 did not change between those two commits.",
+        "Runtime case identity: C1 L6, The Vertical Farm, a commercial vertical farm in a fictional 2041. instructionalType CORE_CASE.",
+        "This is the Blueprint's fictional case, and its organising problem is that a fictional setting must not become a source of real-world claims. The case's answer is the two-layer truth architecture, which is mandatory here under Blueprint section 12 and is assessed rather than announced: every learner-facing evidence object declares its layer in markup and in printed text, no role converts a Layer 1 figure, date, actor or measurement into a Layer 2 claim about the real world, both learner editions carry the non-merger rule on page 1, and Task 8 Part A requires the learner to label the layer of every piece of evidence they use.",
+        "Eight visible tasks carry the Core Case spine. Task 7, Weigh the Accounts, Audit the Record, is a five-part task folded from two at owner review: Parts A and B weigh five competing accounts, and Parts C to E audit the company's public statement. Split, it double-counted one judgment - the learner marked the inquiry's verdict as Account 2 and then marked the same verdict again as statement claim 2. The culminating task keeps its internal id C06-T9 and prints as Task 8, carrying transfer in Part D rather than as a ninth task.",
+        "Source model: fifteen canonical caseSources across three truth layers - five fictional (A-E), five real (six published works, printed on three learner cards F, G and H), and five curriculum-model figures. The two 2015 comammox papers and the 2017 measured biofilter share card G because all three exist to refute the two-species story; the two plant reviews share card H because both concern what plants can take up and how much. No claim and no printed limitation was dropped in that consolidation, and the Teacher Layer-2 ledger still cites all five real sources separately, its row letters naming the learner card each appears on.",
+        "HHH-GAME-C1L6-001 is classified CURRICULUM_QUALIFICATION_REQUIRED and is discharged as design rather than as disclaimer. The runtime level's closing note names two partner microbes as the real-world fact behind the fiction; that was standard textbook framing and is no longer adequate. The packet corrects it in print without editing the game: the two-species claim becomes Task 7 Account 4, which the learner refuses on the packet's own real sources, and the Answer Key carries a floor against marking it Y.",
+        "Three things the packet deliberately does not print, because the sources do not support them: any ammonia or ammonium toxicity threshold for plants, since the real review establishes that the threshold varies with species, ecotype and cultivar; any species composition for the fictional consortium, since the fictional record names none and the real sources are why the textbook pair is not substituted for it; and any named trigger for the collapse, since three candidates are logged inside three days and nothing separates them.",
+        "The accountability boundary is two-sided and both sides are required in every role. The evidence clears the named engineer of the failure the public statement describes; it does not establish that a complex failure with no individual culprit raises no institutional question. Task 7 Part E makes the learner name one open institutional question and cite the record that raised it, and rubric criterion 4 carries floors in both directions.",
+        "Declared Accessible adaptations: exactly four, and no fifth. A worked model stage in Task 4, a worked model row in Task 6, day labels on the Task 5 chronology cards, and source pointers on the Task 7 accounts. One chunking split, which is not a scored difference: Task 7 Part E is collected as two steps in the Accessible edition where the Student edition collects both in one field.",
+        "Edition parity is enforced structurally rather than in prose. task-registry.js carries an editionResponseContract naming, for all twenty assessed subparts, the exact response ids each edition collects and which difference class applies - parity, declared reduction registered against one of the four adaptations, chunking with an identical obligation, or accessible-only, which is prohibited. Student collects 49 assessed obligations and Accessible 47.",
+        "Spanning a task is declared rather than incidental. continuationPages lists every page a task runs onto, and the scoped validator resolves it in both directions: each declared page must exist, must print Task N - continued, and must open no second shell heading; and any page printing a continued-task heading must be claimed by some task. That gate caught a pre-existing defect during the build - the Accessible pagePlacement for Tasks 5 and 6 named each task's continuation page rather than its start page - and the check now also requires a task's shell heading to be on its declared page.",
+        "Regression protection retained by the release: five closed-class semantic guards each paired with a positive structural requirement, two-layer truth enforcement across all four roles, fictional-data labelling, the source-status contract, the F/G/H learner-card architecture, figure accessibility parity, ledger coverage parity, claim marks checked against the registry, the edition response contract, cross-reference resolution against real pages, and the accountability boundary.",
+        "Two nonblocking observations are carried forward as future validator maintenance and were deliberately not reopened during release conversion: the toxicity-number guard has a regex adjacency gap, which is moot because the packet contains no concentration; and the cross-reference validator's coverage is narrower than the whole reference surface. Neither affects a released classroom byte.",
+        "One owner-preference item was reviewed and left as authored: the Accessible opening question asks why did the farm die? where the Student opening also asks why the record said it was one man's fault. Accountability remains fully assessed later, at Task 7 Parts C to E. The owner approved the packet with that difference in place.",
+        "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines; the Accessible DOM hash was additionally computed and compared at both trees to prove parity across all four roles."
+    ],
+    "retiredArtifacts": []
+}

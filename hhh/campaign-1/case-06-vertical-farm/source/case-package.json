@@ -8,12 +8,14 @@
   "subtitle": "Campaign 1 · Case 06 · A commercial vertical farm, 2041",
   "location": "A commercial vertical farm",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-16",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-1/case-06-vertical-farm/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -164,7 +166,7 @@
   "sourceHashes": {
     "content": "ab7cd44ce5d49f529ba03553fb22732636d0c6c0bcb8249b990275b3c143a2c7",
     "presentation": "db63f27b17745d618cb8edd97520db891b99612a2739b4c7acb739e406c9b238",
-    "taskRegistry": "a218391dc5b7d5b782f85d28161a4307abaffdaaf09fff5c1857cb12579455c7",
+    "taskRegistry": "41fcdf4e532817789e4b81dae69b1cbe70c0565f165880ca2693e7d48a635beb",
     "layoutOverrides": "e5c5173694ce87bb9da403a9615bac77c9a98769b1abe7793684cb2343db3516"
   }
 }

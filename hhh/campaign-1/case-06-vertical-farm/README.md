@@ -5,23 +5,44 @@
 **Setting:** a commercial vertical farm, 2041 — **fictional**
 **Instructional type:** `CORE_CASE`
 **Version:** 0.1
+**Status:** `APPROVED_STABLE` — released 2026-08-16
 **Blueprint:** `hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md`, Core Case 06
 **Audit baseline:** `hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md`
 **Game commit:** `d9fc16baf272cb543c29cbd0c06ec85efad60be8`
 
+The sixth full Core Case in Hunger, Harvest, & History, and the first fictional
+one, released at v0.1 on 2026-08-16. Produced against the released Core Case 05
+baseline `6b0e060adb54fd6b91adff766bb537f1a40b8798` and the approved Blueprint.
+
 ## Release state
 
-| Field | Value |
+| Gate | State |
 | --- | --- |
-| `status` | `VALIDATION_BUILD` |
-| `packageStatus` | `VALIDATION` |
-| `ownerReviewStatus` | `OWNER_REVIEW_NOT_STARTED` |
-| `printStatus` | `NOT_RUN` |
-| release record | none — this package has never been released |
-| approval record | none |
+| Package status | `APPROVED` |
+| Owner review | `OWNER_REVIEW_PASS` — Nate / Owner, 2026-08-16 |
+| Print status | `PASS` — owner physical print at 100% / Actual Size |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/CASE06_OWNER_APPROVAL_v0.1.md`](history/CASE06_OWNER_APPROVAL_v0.1.md) |
 
-This is a validation candidate. It has not been approved, released, printed or
-owner-reviewed, and it carries no history directory.
+**Owner-approved printable baseline:** `865cae7177cafdcc19dcff1a6b13340d14e0f393`.
+Release conversion left `content.html`, `presentation.css` and
+`layout-overrides.json` byte-identical to that commit; only `task-registry.js`
+moved, and only in its two lifecycle keys, neither of which renders. The release
+record pins the commit whose tree first carries the released certified bytes,
+which is the release-conversion commit rather than the printable baseline; the two
+are recorded separately and deliberately.
+
+**The commit that passed the first full independent review and the commit the
+owner approved are not the same commit for this case.** Independent review passed
+candidate `781c6f6`; owner review then produced five bounded correction commits,
+the last of which the owner reviewed on screen and printed. A read-only
+post-owner confirmation then passed against that same commit, changing no bytes,
+and no commit exists between owner approval and release conversion. The five
+correction commits are recorded in the approval record and the release record.
+
+Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a
+release gate, and any PDF exported from the browser is noncanonical and carries no
+accessibility guarantee.
 
 ## Game-baseline note
 
