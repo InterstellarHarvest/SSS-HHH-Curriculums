@@ -420,7 +420,7 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
     }
   ],
   "chronologyScale": {
-    "system": "cross-case rail, not a single continuous timeline",
+    "system": "cross-case timeline with nonuniform spans, not a single continuous-scale timeline",
     "rule": "The rail places six investigations in order and supplies their dates and identities so that no task depends on recall. The spans are of different kinds and different precisions - a set of overlapping archaeological evidence windows, a scene date, a famine period, a five-year industrial sequence, a decade with an instrumental drought record, and a fictional year - and both learner editions disclose that above the rail.",
     "disclosure": "These six spans are not measured the same way. Case 01's range is a set of overlapping evidence windows from different regions, crops and studies, not one continuous event. Case 02's date is the setting of a reconstructed scene. Case 06's year belongs to an invented case.",
     "case01Note": "Case 01's span is given as the range of its dated evidence windows, about 9,750 to 6,350 BCE. Those windows overlap and come from different regions and studies. The unit does not place Case 01 on a single date."
