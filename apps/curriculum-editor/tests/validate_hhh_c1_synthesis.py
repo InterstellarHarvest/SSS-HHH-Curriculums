@@ -705,6 +705,40 @@ def main() -> int:  # noqa: C901 - one linear contract walk
                        r"|\bimproved every\b|\bsteadily improv\w+|\binevitab\w+\s+(?:improv\w+|progress)\b",
             "stands_down": r"\bnot\b|\bnever\b|\bearn no\b|\bno credit\b|\btruism\b|\bmisconception\b",
         },
+        {
+            "id": "case04ScaleAndInterval",
+            "boundary": "Case 04 source certification - the released case documents a 1909 laboratory "
+                        "result becoming industrial production at Oppau on 9 September 1913, about four "
+                        "years later, at about twenty tonnes a day. It certifies no national or "
+                        "continental agricultural supply at that date, and it states the interval from "
+                        "the bench result as four more years, not five",
+            # Bound to the Karlsruhe transition itself. Ordinary uses of "nation",
+            # "continent", "agriculture" or "five" elsewhere in the packet are not in
+            # scope, because the subject must name this case, its plant, its dates or
+            # its reaction before the guard can fire at all.
+            "subject": r"\bOppau\b|\bKarlsruhe\b|\bCase 04\b|\bbench (?:result|demonstration)\b"
+                       r"|\bammonia\b|\b19(?:09|10|11|12|13|14)\b|\bfactory\b"
+                       r"|\blaborator\w+ (?:result|demonstration|process)\b"
+                       r"|\bindustrial(?:[- ]scale)? (?:production|ammonia)\b|\bindustrial production\b",
+            "asserts": r"\bfive more years\b"
+                       r"|\bwithin five years\b"
+                       r"|\bfive years (?:of|after|from|later)\b"
+                       r"|\bfive for a factory\b"
+                       r"|\btook five years\b"
+                       r"|\bfive (?:more )?years (?:passed|elapsed|went by)\b"
+                       r"|\bnational agricultur\w+\b|\bnational[- ]scale agricultur\w+\b"
+                       r"|\bsuppl\w+ (?:the )?(?:nitrogen (?:needs|supply) of )?a continent\b"
+                       r"|\bnitrogen supply of a continent\b"
+                       r"|\bcontinental (?:nitrogen|agricultur\w+|supply)\b"
+                       r"|\bsuppl\w+ (?:nitrogen to )?whole (?:national )?agricultures?\b"
+                       r"|\bsuppl\w+ national agricultur\w+\b",
+            # A passage may name the refused claim in order to refuse it, and the
+            # certified long-term consequence stays available when it carries its own
+            # estimate-and-date qualification.
+            "stands_down": r"\bnot\b|\bnever\b|\bno national\b|\bno continental\b|\bdoes not\b"
+                           r"|\bcannot\b|\bis refused\b|\bcaps criterion\b"
+                           r"|\bErisman\b|\bestimat\w+\b",
+        },
     ]
     for guard in STRUCTURAL_GUARDS:
         subject = re.compile(guard["subject"], re.I)
@@ -730,10 +764,35 @@ def main() -> int:  # noqa: C901 - one linear contract walk
             "fictionAsHistory": "The 2041 failure is documented history.",
             "case01FirstOrigin": "The first farmer domesticated wheat at Abu Hureyra in 9,500 BCE.",
             "progressNarrative": "Each case shows farming getting better than the one before.",
+            "case04ScaleAndInterval": "By 1913 the Oppau process supplied national agriculture within five years.",
         }[guard["id"]]
         results.check(f"the {guard['id']} structural guard still fires on its own canonical violation",
                       bool(subject.search(control) and asserts.search(control))
                       and not stands_down.search(control), control)
+
+    # The negative half above forbids the overstatement. This is its positive half:
+    # wherever the packet explains the Karlsruhe scale-up, the source-safe facts have
+    # to be the ones on the page, or the guard could be satisfied by deleting the
+    # explanation instead of correcting it.
+    scaleup_nodes = [part for role in ALL_ROLES for _, part in propositions(soup, role)
+                     if re.search(r"\bOppau\b", part)]
+    results.check("the packet explains the Karlsruhe scale-up somewhere it can be read",
+                  len(scaleup_nodes) >= 3, len(scaleup_nodes))
+    joined = " ".join(scaleup_nodes)
+    results.check("Case 04 source certification - the scale-up is dated to industrial production at "
+                  "Oppau in September 1913",
+                  bool(re.search(r"9 Sept(?:ember)? 1913|September 1913|9 Sep 1913", joined)), joined[:220])
+    results.check("Case 04 source certification - the interval from the 1909 laboratory result is "
+                  "stated as about four years, the figure the released case states",
+                  bool(re.search(r"about four (?:more )?years|four more years|about four for a factory", joined))
+                  and not re.search(r"\bfive (?:more )?years\b", joined), joined[:220])
+    # If the packet ever reaches for the long-term population figure, it may only do so
+    # as the estimate the released case certifies, with its dates attached.
+    impact = [part for role in ALL_ROLES for _, part in propositions(soup, role)
+              if re.search(r"\b4[48]%|\bworld's population\b|\bworld population\b", part)]
+    results.check("any long-term food-supply figure keeps its estimate status and its 2000/2008 dates",
+                  all(re.search(r"estimat\w+", part, re.I) and re.search(r"\b2000\b", part)
+                      and re.search(r"\b2008\b", part) for part in impact), impact[:3])
 
     # The five named misconceptions must be present as misconceptions.
     misconceptions = normalize(soup.select_one('.page[data-role="teacher"] .misconception-table').get_text(" ")) \
