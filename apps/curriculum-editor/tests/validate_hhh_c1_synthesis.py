@@ -73,6 +73,19 @@ BLOCK_TAGS = ("p", "li", "td", "th", "dd", "figcaption", "caption", "h1", "h2", 
 # internal punctuation and not a safety boundary.
 PROPOSITION_SPLIT = re.compile(r"(?<=[.!?])\s+")
 DECIMAL_GUARD = re.compile(r"(\d)\.(\d)")
+# Task 4's machine-readable stage sequence and its learner-visible prompts. Both are
+# anchored to literals here rather than read from the task registry, because the
+# registry is authored by the same candidate: checking the rendered organizer against
+# it would pass a rename applied to both at once. Stage 3 is the unit's instructional
+# contract - a correct local mechanism is not automatically a complete explanation of
+# a broader historical outcome - so it is the one prompt that may not drift silently.
+MECHANISM_STAGE_SEQUENCE = ["local-mechanism", "explains", "does-not-explain-alone", "additional-context"]
+VISIBLE_MECHANISM_STAGE_LABELS = [
+    "Local mechanism",
+    "What it explains",
+    "What it does not explain alone",
+    "Additional context or evidence needed",
+]
 
 
 class Results:
@@ -261,7 +274,9 @@ def main() -> int:  # noqa: C901 - one linear contract walk
         "01": [("cultivation is not domestication",
                 [r"cultivation is not domestication", r"not domestication"]),
                ("the counted subset carries the trend",
-                [r"\b804\b"])],
+                [r"\b804\b"]),
+               ("the evidence fixes no first person, no first field and no starting date",
+                [r"no first person", r"names no first", r"identifies no first"])],
         "02": [("the region-scale claim is unsettled",
                 [r"argued among scholars", r"does not settle", r"not settled"]),
                ("the tablet reading is contested",
@@ -402,7 +417,39 @@ def main() -> int:  # noqa: C901 - one linear contract walk
         for organizer in organizers:
             stages = [stage["data-mechanism-stage"] for stage in organizer.select("[data-mechanism-stage]")]
             results.check(f"{role} Task 4 organizer {organizer.get('data-mechanism-slot')} runs the four stages in order",
-                          stages == limits["requiredStages"], stages)
+                          stages == limits["requiredStages"] == MECHANISM_STAGE_SEQUENCE, stages)
+            # The attributes above are machine-readable and invisible to a learner.
+            # The prompt the learner actually answers is the instructional contract,
+            # so it is asserted against literals in its own right: an organizer whose
+            # stage 3 stops asking what the mechanism cannot explain is a different
+            # task, however intact its markup.
+            labels = [normalize(label.get_text(" ")) for label in organizer.select(".mech-label")]
+            results.check(f"{role} Task 4 organizer {organizer.get('data-mechanism-slot')} prints the four "
+                          f"learner-visible stage prompts, including the limit prompt at stage 3",
+                          labels == VISIBLE_MECHANISM_STAGE_LABELS, labels)
+    # The directions carry the same boundary in prose. Student and Accessible word it
+    # differently, and place it differently - the Accessible edition states it on the
+    # page that carries the Task 4 heading and choices, one page ahead of its first
+    # organizer - so the page is found from the task heading, not from the organizer.
+    for role in LEARNER_ROLES:
+        heading = soup.select_one(f'.page[data-role="{role}"] [data-shell-task-heading="4"]')
+        page = heading.find_parent(class_="page") if heading else None
+        directions = normalize(page.select_one(".directions").get_text(" ")) if page and page.select_one(".directions") else ""
+        results.check(f"{role} Task 4 directions state that a correct mechanism is not a complete explanation",
+                      bool(re.search(r"not automatically a complete explanation|none of them is the whole story"
+                                     r"|none of them explains the whole thing|where each one stops", directions, re.I)),
+                      directions[:200])
+    # The Answer Key reproduces the same four stages as the structure it keys. This is
+    # parity with the learner prompt, not a check on the exemplar prose beneath it.
+    pathways = [block for block in soup.select('.page[data-role="answer"] .answer-block')
+                if "Model pathway" in normalize(block.get_text(" "))]
+    results.check("the Answer Key carries one Task 4 model pathway for each of the four permitted cases",
+                  len(pathways) == 4, len(pathways))
+    for pathway in pathways:
+        labels = [normalize(item.select_one("strong").get_text(" ")).rstrip(".")
+                  for item in pathway.select("ol.answer-list > li") if item.select_one("strong")]
+        results.check("each Answer Key Task 4 model pathway reproduces the learner-visible stage prompts",
+                      labels == VISIBLE_MECHANISM_STAGE_LABELS, labels)
 
     # ── 9. CER is declined ────────────────────────────────────────────────
     cer_hits = [selector for selector in registry["cerDecision"]["prohibitedSelectors"] if soup.select(selector)]
@@ -487,6 +534,13 @@ def main() -> int:  # noqa: C901 - one linear contract walk
     extra = sorted(accessible_ids - student_ids)
     results.check("the only Accessible response with no Student counterpart is the declared Task 6 chunking",
                   extra == ["6-missing"], extra)
+    # The check above reads one direction only - it catches an Accessible edition that
+    # grows an extra obligation, but not one that quietly loses an assessed field. The
+    # Accessible contract is parity of what is assessed, so the omission direction has
+    # to be asserted too: a support may change how a learner answers, never whether.
+    dropped = sorted(student_ids - accessible_ids)
+    results.check("no Student assessed response is missing from the Accessible edition",
+                  not dropped, dropped)
     results.check("the Accessible edition is not one task per page",
                   len(role_pages(soup, "accessible")) == package["rolePageStructure"]["accessible"]["pageCount"]
                   and any(len(page.select("[data-recap-case]")) > 1 for page in role_pages(soup, "accessible")),
@@ -597,6 +651,89 @@ def main() -> int:  # noqa: C901 - one linear contract walk
                 for node in soup.select(f'[data-exemption~="{exemption_id}"]')]
         results.check(f"the {exemption_id} exemption is used only in the roles it is registered for",
                       used and set(used).issubset(set(exemption["roles"])), sorted(set(used)))
+
+    # ── 16b. Structural boundary guards ───────────────────────────────────
+    # The closed registers above catch a wording a released case already named and
+    # wrote down. These three catch the proposition *shape* instead, because the
+    # boundary each protects can be crossed by a sentence nobody enumerated in
+    # advance - which is exactly how each of them was crossed under probe.
+    #
+    # Every guard is bound to a named subject, requires that subject to carry an
+    # asserted predicate before it fires, and stands down when the same proposition
+    # carries the qualification that makes the statement legitimate. None polices an
+    # ordinary verb, and none is satisfied or bypassed by metadata: they read the
+    # same rendered propositions as the closed classes, so an inline span cannot
+    # split a claim out of scope. Exemptions resolve through the same registered
+    # contract, so the Teacher misconception register and the Answer Key floors can
+    # still state a refused claim in order to refuse it.
+    STRUCTURAL_GUARDS = [
+        {
+            "id": "fictionAsHistory",
+            "boundary": "the invented 2041 vertical farm may never be asserted to be documented, "
+                        "verified or real history",
+            "subject": r"\b2041\b|\bvertical farm\b",
+            "asserts": r"\b(?:documented|verified|real|actual|genuine)\s+(?:histor\w+|events?|records?)\b"
+                       r"|\bhistorical (?:fact|event|record)\b"
+                       r"|\b(?:actually|really|genuinely)\s+happened\b"
+                       r"|\bpart of (?:the )?historical record\b"
+                       r"|\bdocumented (?:future )?history\b",
+            "stands_down": r"\bfiction\w*|\binvent\w*|\bhypothetic\w*|\bin-world\b"
+                           r"|\b(?:is|are|was|were)\s+not\b|\bnot\s+(?:a\s+)?documented\b|\bnot history\b"
+                           r"|\bnever\b|\bcannot\b|\bmay not\b|\bdoes not\b|\bproves nothing\b",
+        },
+        {
+            "id": "case01FirstOrigin",
+            "boundary": "Case 01's evidence establishes no first farmer, no first field or place and "
+                        "no exact first date for domestication",
+            "subject": r"\bfirst (?:farmer|person|field|place|site|village)\b|\bfirst domesticat\w*"
+                       r"|\bdomestication (?:began|started)\b|\bfarming (?:began|started)\b"
+                       r"|\bfirst to domesticate\b",
+            "asserts": r"\bBCE\b|\bBP\b|\bdomesticat\w+|\bbegan\b|\bstarted\b|\b(?:was|were|is|are)\b",
+            "stands_down": r"\bno first\b|\bnames no\b|\bidentifies no\b|\bfixes no\b|\bnames neither\b"
+                           r"|\bnot\b|\bnever\b|\bcannot\b|\bno record\b|\bno one\b",
+        },
+        {
+            "id": "progressNarrative",
+            "boundary": "Campaign 1 does not show agricultural change as automatic, steady or "
+                        "case-by-case improvement",
+            "subject": r"\beach case\b|\bevery case\b|\bcase by case\b|\ball six cases\b"
+                       r"|\bthe one before\b|\bthe last one\b|\bacross the campaign\b|\bcampaign 1\b"
+                       r"|\bfarming\b|\bagriculture\b",
+            "asserts": r"\bgett?ing better\b|\bgets better\b|\bgot better\b"
+                       r"|\bbetter than the (?:one before|last|previous)\b"
+                       r"|\balways (?:improv\w+|better)\b|\bonly (?:improv\w+|got better)\b"
+                       r"|\bimproved every\b|\bsteadily improv\w+|\binevitab\w+\s+(?:improv\w+|progress)\b",
+            "stands_down": r"\bnot\b|\bnever\b|\bearn no\b|\bno credit\b|\btruism\b|\bmisconception\b",
+        },
+    ]
+    for guard in STRUCTURAL_GUARDS:
+        subject = re.compile(guard["subject"], re.I)
+        asserts = re.compile(guard["asserts"], re.I)
+        stands_down = re.compile(guard["stands_down"], re.I)
+        violations = []
+        for role in ALL_ROLES:
+            for node, part in propositions(soup, role):
+                if not (subject.search(part) and asserts.search(part)) or stands_down.search(part):
+                    continue
+                excused = any(
+                    (exemptions.get(exemption_id) or {}).get("roles") and
+                    role in exemptions[exemption_id]["roles"] and
+                    guard["id"] in exemptions[exemption_id]["classes"]
+                    for exemption_id in exemption_ids(node))
+                if not excused:
+                    violations.append(f"{role}: {part[:130]}")
+        results.check(f"no unexcused node crosses the {guard['id']} boundary - {guard['boundary']}",
+                      not violations, violations)
+        # NEGATIVE CONTROL: the guard must still fire on a canonical violation of its
+        # own boundary, so a guard that has quietly stopped matching fails the run.
+        control = {
+            "fictionAsHistory": "The 2041 failure is documented history.",
+            "case01FirstOrigin": "The first farmer domesticated wheat at Abu Hureyra in 9,500 BCE.",
+            "progressNarrative": "Each case shows farming getting better than the one before.",
+        }[guard["id"]]
+        results.check(f"the {guard['id']} structural guard still fires on its own canonical violation",
+                      bool(subject.search(control) and asserts.search(control))
+                      and not stands_down.search(control), control)
 
     # The five named misconceptions must be present as misconceptions.
     misconceptions = normalize(soup.select_one('.page[data-role="teacher"] .misconception-table').get_text(" ")) \
