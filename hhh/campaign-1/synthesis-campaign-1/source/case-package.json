@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C1-SYNTHESIS",
+  "curriculum": "HHH",
+  "instructionalType": "SYNTHESIS",
+  "campaign": "campaign-1",
+  "title": "The Temporal Agricultural Archive",
+  "subtitle": "Campaign 1 Synthesis · The Long Yield",
+  "location": "The Temporal Agricultural Archive",
+  "version": "0.1",
+  "status": "VALIDATION_BUILD",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C1-SYNTHESIS:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-1/synthesis-campaign-1/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-1/synthesis-campaign-1/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-1/synthesis-campaign-1/source/task-registry.js",
+    "global": "HHH_C1_SYNTHESIS_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-1/synthesis-campaign-1/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "synthesis-evidence-recaps",
+      "type": "html-css-diagrams",
+      "selector": "[data-recap-case]",
+      "embed": true
+    },
+    {
+      "id": "synthesis-chronology-rail",
+      "type": "html-css-diagrams",
+      "selector": "[data-chronology-contract]",
+      "embed": true
+    },
+    {
+      "id": "synthesis-comparison-organizer",
+      "type": "html-css-diagrams",
+      "selector": "[data-comparison-contract]",
+      "embed": true
+    },
+    {
+      "id": "synthesis-mechanism-organizer",
+      "type": "html-css-diagrams",
+      "selector": "[data-mechanism-contract]",
+      "embed": true
+    },
+    {
+      "id": "synthesis-source-status-key",
+      "type": "html-css-diagrams",
+      "selector": "[data-source-status-key]",
+      "embed": true
+    },
+    {
+      "id": "synthesis-finale-framing",
+      "type": "html-css-diagrams",
+      "selector": "[data-game-framing]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 7
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 5
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 11
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C1_SYNTHESIS_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C1_SYNTHESIS_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C1_SYNTHESIS_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C1_SYNTHESIS_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C1_SYNTHESIS_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 1 Synthesis v0.1 — The Temporal Agricultural Archive Curriculum Editor",
+    "loadAnnouncement": "Campaign 1 Synthesis The Temporal Agricultural Archive v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "915f74a12d81a33f5c90050d86c7297f0dbb313a2ae1d3af4a2a96338580a04a",
+    "presentation": "101dbad6acdcaf5eba57ac7f2189eaaf6f7953b6d9e214d29d3315eb04a3a365",
+    "taskRegistry": "749823e7b20d2ab869347cdcc51f86e45bcdce85462ce5271c5324af67dfed3d",
+    "layoutOverrides": "28f32b8e51e5317b72ec51d46717dd7868c5377b3ddffac78a3aee5a65b70033"
+  }
+}

@@ -1,0 +1,408 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C1-SYNTHESIS",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t2:a2-continuity",
+      "persistId": "a2-continuity",
+      "pageId": "accessible-synthesis-05",
+      "taskId": 2,
+      "label": "Task 2 one meaningful continuity with the cases it rests on",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t2:a2-change",
+      "persistId": "a2-change",
+      "pageId": "accessible-synthesis-05",
+      "taskId": 2,
+      "label": "Task 2 one meaningful change with the cases it rests on",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t3:a3-evidence",
+      "persistId": "a3-evidence",
+      "pageId": "accessible-synthesis-06",
+      "taskId": 3,
+      "label": "Task 3 specific supporting evidence from both cases",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t3:a3-qualification",
+      "persistId": "a3-qualification",
+      "pageId": "accessible-synthesis-06",
+      "taskId": 3,
+      "label": "Task 3 important qualification or evidence limit",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-a-mechanism",
+      "persistId": "a4-a-mechanism",
+      "pageId": "accessible-synthesis-08",
+      "taskId": 4,
+      "label": "Task 4 organizer A Local mechanism",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-a-explains",
+      "persistId": "a4-a-explains",
+      "pageId": "accessible-synthesis-08",
+      "taskId": 4,
+      "label": "Task 4 organizer A What it explains",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-a-notalone",
+      "persistId": "a4-a-notalone",
+      "pageId": "accessible-synthesis-08",
+      "taskId": 4,
+      "label": "Task 4 organizer A What it does not explain alone",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-a-context",
+      "persistId": "a4-a-context",
+      "pageId": "accessible-synthesis-08",
+      "taskId": 4,
+      "label": "Task 4 organizer A Additional context or evidence needed",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-b-mechanism",
+      "persistId": "a4-b-mechanism",
+      "pageId": "accessible-synthesis-09",
+      "taskId": 4,
+      "label": "Task 4 organizer B Local mechanism",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-b-explains",
+      "persistId": "a4-b-explains",
+      "pageId": "accessible-synthesis-09",
+      "taskId": 4,
+      "label": "Task 4 organizer B What it explains",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-b-notalone",
+      "persistId": "a4-b-notalone",
+      "pageId": "accessible-synthesis-09",
+      "taskId": 4,
+      "label": "Task 4 organizer B What it does not explain alone",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t4:a4-b-context",
+      "persistId": "a4-b-context",
+      "pageId": "accessible-synthesis-09",
+      "taskId": 4,
+      "label": "Task 4 organizer B Additional context or evidence needed",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t5:a5-synthesis",
+      "persistId": "a5-synthesis",
+      "pageId": "accessible-synthesis-10",
+      "taskId": 5,
+      "label": "Task 5 the Archive Synthesis",
+      "minPx": 160,
+      "maxPx": 960
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t6:a6-missing",
+      "persistId": "a6-missing",
+      "pageId": "accessible-synthesis-11",
+      "taskId": 6,
+      "label": "Task 6 step 1 what disappears from the record",
+      "minPx": 64,
+      "maxPx": 560
+    },
+    {
+      "id": "HHH-C1-SYNTHESIS:accessible:t6:a6-loss",
+      "persistId": "a6-loss",
+      "pageId": "accessible-synthesis-11",
+      "taskId": 6,
+      "label": "Task 6 step 2 what a later reader could misunderstand",
+      "minPx": 64,
+      "maxPx": 560
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "accessible-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "accessible-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "accessible-period",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a3-early",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-late",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-knowledge-early",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-knowledge-late",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-preserved-early",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-preserved-late",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-changed-early",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-changed-late",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-consequence-early",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-consequence-late",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a4-a-case",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a4-b-case",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a6-case",
+      "reason": "single-line"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t2:s2-continuity",
+        "persistId": "s2-continuity",
+        "pageId": "student-synthesis-03",
+        "taskId": 2,
+        "label": "Task 2 one meaningful continuity with the cases it rests on",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t2:s2-change",
+        "persistId": "s2-change",
+        "pageId": "student-synthesis-03",
+        "taskId": 2,
+        "label": "Task 2 one meaningful change with the cases it rests on",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t3:s3-evidence",
+        "persistId": "s3-evidence",
+        "pageId": "student-synthesis-04",
+        "taskId": 3,
+        "label": "Task 3 specific supporting evidence from both cases",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t3:s3-qualification",
+        "persistId": "s3-qualification",
+        "pageId": "student-synthesis-04",
+        "taskId": 3,
+        "label": "Task 3 important qualification or evidence limit",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-a-mechanism",
+        "persistId": "s4-a-mechanism",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer A Local mechanism",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-a-explains",
+        "persistId": "s4-a-explains",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer A What it explains",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-a-notalone",
+        "persistId": "s4-a-notalone",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer A What it does not explain alone",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-a-context",
+        "persistId": "s4-a-context",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer A Additional context or evidence needed",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-b-mechanism",
+        "persistId": "s4-b-mechanism",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer B Local mechanism",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-b-explains",
+        "persistId": "s4-b-explains",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer B What it explains",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-b-notalone",
+        "persistId": "s4-b-notalone",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer B What it does not explain alone",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t4:s4-b-context",
+        "persistId": "s4-b-context",
+        "pageId": "student-synthesis-05",
+        "taskId": 4,
+        "label": "Task 4 organizer B Additional context or evidence needed",
+        "minPx": 64,
+        "maxPx": 560
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t5:s5-synthesis",
+        "persistId": "s5-synthesis",
+        "pageId": "student-synthesis-06",
+        "taskId": 5,
+        "label": "Task 5 the Archive Synthesis",
+        "minPx": 160,
+        "maxPx": 960
+      },
+      {
+        "id": "HHH-C1-SYNTHESIS:student:t6:s6-loss",
+        "persistId": "s6-loss",
+        "pageId": "student-synthesis-07",
+        "taskId": 6,
+        "label": "Task 6 what disappears and what a later reader could misunderstand",
+        "minPx": 64,
+        "maxPx": 560
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-period",
+        "reason": "identity"
+      },
+      {
+        "persistId": "s3-early",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "s3-late",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "s3-knowledge-early",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-knowledge-late",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-preserved-early",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-preserved-late",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-changed-early",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-changed-late",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-consequence-early",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s3-consequence-late",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "s4-a-case",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "s4-b-case",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "s6-case",
+        "reason": "single-line"
+      }
+    ],
+    "overrides": {}
+  }
+}

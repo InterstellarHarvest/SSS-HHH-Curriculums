@@ -427,10 +427,11 @@
               "title": "The Temporal Agricultural Archive",
               "instructionalType": "SYNTHESIS",
               "version": "0.1",
-              "status": "DRAFT",
+              "status": "VALIDATION_BUILD",
               "editorShell": "1.0",
+              "editorPackage": "hhh/campaign-1/synthesis-campaign-1/source/case-package.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "DRAFT",
+              "packageStatus": "VALIDATION",
               "approval": {
                 "owner": "Nate / Owner",
                 "status": "OWNER_REVIEW_NOT_STARTED",
