@@ -505,6 +505,22 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
             results.check(f"{page_id}: the STATUS line names the {declared} band",
                           marker in normalise(status.get_text(" ", strip=True)).lower(),
                           normalise(status.get_text(" ", strip=True)))
+    # Student-Facing Metadata and Visual Hierarchy v1.0.1: a learner-visible status band
+    # states WHAT a thing is, in the shortest controlled label, and never explains how it
+    # came to exist. The classification vocabulary itself is unchanged and is still
+    # enforced above against the registry's declared bands.
+    # normalise() turns the middot into a space, so the band form is matched against
+    # whitespace-collapsed RAW text, which is where the separator actually lives.
+    BAND_FORM = re.compile(r"^SOURCE STATUS \u00b7 [A-Z][A-Z -]*[A-Z]$")
+    raw = lambda node: re.sub(r"\s+", " ", node.get_text(" ", strip=True)).strip()
+    stray = [f"{page.get('data-page-id')}: {raw(node)}"
+             for role in LEARNER_ROLES
+             for page in pages_for(soup, role)
+             for node in page.select(".source-status")
+             if not BAND_FORM.fullmatch(raw(node))]
+    results.check("every learner-visible status band uses the controlled SOURCE STATUS form",
+                  not stray, stray)
+
     for role in LEARNER_ROLES:
         notice = soup.select_one(f'section.page[data-role="{role}"] [data-source-status-notice]')
         results.check(f"{role}: page 1 carries the source-status notice", notice is not None)
@@ -670,8 +686,14 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                           family in text.upper(), family)
         results.check(f"{role}: the framework figure prints the governing rule",
                       normalise(rule["printedRule"]).lower() in text.lower(), text[:200])
-        results.check(f"{role}: the framework figure refuses a plan reading of itself",
-                      "not evidence about any particular record" in text.lower(), text[:200])
+        # Student-Facing Metadata and Visual Hierarchy v1.0.1: the clarification is
+        # required, and is required exactly once, in the caption rather than as a
+        # defensive note repeated inside the drawing.
+        caption = figure.select_one("figcaption")
+        results.check(f"{role}: the framework figure carries its evidence-boundary clarification",
+                      caption is not None
+                      and "not evidence about" in normalise(caption.get_text(" ", strip=True)).lower(),
+                      normalise(caption.get_text(" ", strip=True)) if caption else "no caption")
     # Task 3 must carry an item about neatness and an item about corrections, and
     # neither may be presented as deciding anything.
     for role in LEARNER_ROLES:
@@ -910,7 +932,7 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                               "not a score" in alt.lower(), alt[:200])
             if spec.get("requiresSchematicDisclaimer"):
                 results.check(f"{role}: {spec['id']} accessibility text refuses to be read as evidence",
-                              "not evidence about any particular record" in alt.lower(), alt[:200])
+                              "not evidence about" in alt.lower(), alt[:200])
     results.check("no figure in the package uses generated imagery",
                   not soup.select('figure.case-figure img:not(.taa-insignia)'))
 

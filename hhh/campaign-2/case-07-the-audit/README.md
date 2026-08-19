@@ -70,8 +70,8 @@ multi-factor route.
 
 ## Source status
 
-Three bands, marked in markup (`data-evidence-layer`) and in printed text (a `STATUS`
-line on every evidence object).
+Three bands, marked in markup (`data-evidence-layer`) and in printed text as a
+`SOURCE STATUS · <CLASSIFICATION>` band on every evidence object.
 
 | Band | Marked | What it covers |
 | --- | --- | --- |
@@ -85,6 +85,13 @@ nothing about the TAA.
 
 Every deterministic invented value sits inside a node carrying `data-fictional-data`,
 and every such node sits inside a fictional or curriculum-model evidence object.
+
+Visible provenance follows
+[`STUDENT_FACING_METADATA_AND_VISUAL_HIERARCHY_v1.0.1.md`](../../../shared/visual-style-guide/amendments/STUDENT_FACING_METADATA_AND_VISUAL_HIERARCHY_v1.0.1.md):
+the band carries the classification and nothing else, and the one place a learner could
+mistake an organiser for case evidence — the multi-factor framework figure — carries a
+single short caption saying so. The machine-readable evidence-layer markup is unchanged
+and is still what validation binds to.
 
 ### No new source certification was performed
 
