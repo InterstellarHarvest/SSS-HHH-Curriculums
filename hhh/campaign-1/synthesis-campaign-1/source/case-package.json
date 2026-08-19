@@ -8,12 +8,14 @@
   "subtitle": "Campaign 1 Synthesis · The Long Yield",
   "location": "The Temporal Agricultural Archive",
   "version": "0.1",
-  "status": "VALIDATION_BUILD",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-18",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-1/synthesis-campaign-1/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -164,7 +166,7 @@
   "sourceHashes": {
     "content": "941d652a90e5ac8ddd879d9d587d8d556548cbccde8d74543754dc5a8b99ccf2",
     "presentation": "101dbad6acdcaf5eba57ac7f2189eaaf6f7953b6d9e214d29d3315eb04a3a365",
-    "taskRegistry": "c6bf63a26a6c810f51cf50ef80ca6c35c2cee686c68fc10cc1fd160ee49adc7f",
+    "taskRegistry": "2ca5655abdd3ec28049953637ebb57d204eed9eaf027c7805beccbd272b8bba5",
     "layoutOverrides": "28f32b8e51e5317b72ec51d46717dd7868c5377b3ddffac78a3aee5a65b70033"
   }
 }

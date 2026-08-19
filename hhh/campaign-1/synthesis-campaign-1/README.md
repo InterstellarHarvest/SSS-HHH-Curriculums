@@ -5,12 +5,14 @@
 **Instructional type:** `SYNTHESIS`
 **Display label:** Campaign 1 Synthesis
 **Version:** 0.1
-**Status:** `VALIDATION_BUILD` — implementation candidate, pre-owner-review
+**Status:** `APPROVED_STABLE` — released 2026-08-18
 **Blueprint:** `hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md`, §8.2 and Campaign 1 Synthesis — C1 L7
 **Audit baseline:** `hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md`
 **Game commit:** `d9fc16baf272cb543c29cbd0c06ec85efad60be8`
 
-The Campaign 1 Synthesis. Produced against the released Core Case 06 baseline
+The Campaign 1 Synthesis, and the closing unit of Campaign 1. The first released
+HHH special unit that is not a numbered Core Case, released at v0.1 on
+2026-08-18. Produced against the released Core Case 06 baseline
 `1109e5f13e5a59718e7ba08d5bb93b7bc0ecc318` and the approved Blueprint.
 
 ## This is not a numbered Core Case
@@ -30,13 +32,30 @@ its finale card.
 
 | Gate | State |
 | --- | --- |
-| Package status | `VALIDATION` |
-| Owner review | `OWNER_REVIEW_NOT_STARTED` |
-| Print status | `NOT_RUN` |
-| Release record | none — a release record is created only at approval |
+| Package status | `APPROVED` |
+| Owner review | `OWNER_REVIEW_PASS` — Nate / Owner, 2026-08-18 |
+| Print status | `PASS` |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/SYNTHESIS_OWNER_APPROVAL_v0.1.md`](history/SYNTHESIS_OWNER_APPROVAL_v0.1.md) |
 
-No owner-approval record, no release-history record and no PDF exists. Production
-is HTML-only and package-source based.
+**Owner-approved printable baseline:** `f14797872f22fc13d4d0999871b081f88fb1e848`.
+Release conversion left `content.html`, `presentation.css` and
+`layout-overrides.json` byte-identical to that commit; only `task-registry.js`
+moved, and only in its two lifecycle keys, neither of which renders. The release
+record pins the commit whose tree first carries the released certified bytes,
+which is the release-conversion commit rather than the printable baseline; the two
+are recorded separately and deliberately.
+
+**The commit first built as a candidate and the commit the owner approved are not
+the same commit.** Candidate 1 `2f8ffd6` underwent independent review, bounded
+remediation at `05f3eee`, a focused re-review that found one remaining blocking
+source-certification failure, its correction at `a6b08c5`, and three owner
+terminology commits ending at `f147978`, which the owner approved. The full
+sequence is recorded in the approval record and the release record.
+
+Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a
+release gate, and any PDF exported from the browser is noncanonical and carries no
+accessibility guarantee.
 
 ## Learning goal and guiding question
 

@@ -1,0 +1,58 @@
+{
+    "schemaVersion": 1,
+    "caseId": "HHH-C1-SYNTHESIS",
+    "curriculumVersion": "0.1",
+    "status": "APPROVED_STABLE",
+    "approvalDate": "2026-08-18",
+    "owner": "Nate / Owner",
+    "originalReleaseApprovalCommit": "COMMIT_A_PENDING",
+    "canonicalSourceApprovalCommit": "COMMIT_A_PENDING",
+    "sourceHashes": {
+        "content": "941d652a90e5ac8ddd879d9d587d8d556548cbccde8d74543754dc5a8b99ccf2",
+        "presentation": "101dbad6acdcaf5eba57ac7f2189eaaf6f7953b6d9e214d29d3315eb04a3a365",
+        "taskRegistry": "2ca5655abdd3ec28049953637ebb57d204eed9eaf027c7805beccbd272b8bba5",
+        "layoutOverrides": "28f32b8e51e5317b72ec51d46717dd7868c5377b3ddffac78a3aee5a65b70033"
+    },
+    "frozenNonAccessibleDomBaselines": {
+        "student": "6542aea6a02f62bcab772975f62b2ba1565d1522850e5b42a01dc435f97ae3c3",
+        "teacher": "f421efbbdd3ae440064675a5e6024352d4193630df8403f10c149aa58bd1e3ab",
+        "answer": "80bdd6a625b66e575500bf916f21374685ae9c3a3595a1a0edfc1e8470888473",
+        "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 1 is a full current-contract release and claims no part of SSS Campaign 1's legacy exemption. The Accessible edition is deliberately not frozen; the current contract freezes the three fixed-count roles only. For this release the Accessible DOM hash was nevertheless computed at both trees and compared, as 4cda98b2e328caee3bfff838e919907f5e200fc1349deea512366ecd34f2a0dd, to prove printable parity across all four roles."
+    },
+    "rolePageCounts": {
+        "student": 7,
+        "teacher": 7,
+        "answer": 5,
+        "accessible": 11
+    },
+    "acceptedValidation": {},
+    "acceptedPrintStatus": "PASS, confirmed by the owner on 2026-08-18. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+    "formerArtifacts": {
+        "status": "NO_FORMER_GENERATED_ARTIFACTS",
+        "reason": "The Campaign 1 Synthesis was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this unit, so there is nothing to recover."
+    },
+    "formerArtifactRecoveryCommit": "COMMIT_A_PENDING",
+    "recovery": "No artifact recovery applies. The canonical source at the release-conversion commit is the whole release.",
+    "priorApprovedReleases": [],
+    "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical and carries no accessibility guarantee.",
+    "migrationNotes": [
+        "First released HHH special unit that is not a numbered Core Case, and the closing unit of Campaign 1. Produced against the released Core Case 06 baseline 1109e5f13e5a59718e7ba08d5bb93b7bc0ecc318 and the approved Blueprint sections 8.2 and Campaign 1 Synthesis - C1 L7.",
+        "Owner-approved printable baseline: f14797872f22fc13d4d0999871b081f88fb1e848. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing.",
+        "Certified release-source commit: recorded as canonicalSourceApprovalCommit. The released task-registry.js bytes first exist at the release-conversion commit, because the lifecycle stamp is created by release conversion, so the pins identify that commit rather than the owner printable baseline. The two are recorded separately and deliberately, following the Case 03, Case 04, Case 05 and Case 06 precedent.",
+        "instructionalType SYNTHESIS. This unit is not a numbered Core Case and is not Case 07; Campaign 2 Core Case 07, The Audit, is a separate later unit. The shared schemas and the registry reserved HHH-C1-SYNTHESIS, the SYNTHESIS instructional type and the Campaign 1 Synthesis display label before this package existed, so activation added an editorPackage pointer rather than inventing an identity. No shared schema was modified to release this unit.",
+        "Runtime identity: C1 L7, The Temporal Agricultural Archive, 2387. The audit disposition READY_AS_SYNTHESIS_NOT_CORE_CASE is carried through: C1 L7 is framing, not an evidence base. The single finale excerpt is printed once per learner edition inside a node marked data-game-framing, is identified in print as fictional in-world framing, collects no response, and no Answer Key exemplar rests on it. The contextual subtitle The Long Yield is the runtime tagline of that level and the title of its finale card, not an invention of the packet.",
+        "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056. The Phase 1 game-dependency census records no finding against C1 L7, so this unit carries no game-remediation dependency.",
+        "Six visible tasks: 1 Read the Campaign Record, 2 Trace the Long Yield, 3 Compare Continuity and Change, 4 Test the Limits of a Correct Mechanism, 5 Write the Archive Synthesis, 6 What Should the Archive Preserve? Task 1 is reference and is not keyed; the Answer Key omits it silently and does not renumber, per the task-reference parity rule.",
+        "This unit states no new historical finding of its own. Every factual statement is carried forward from the released Cases 01 to 06 and the sources those cases certified; no new external research was undertaken and no new factual claim was introduced. Each of the six evidence recaps preserves its own case's qualification, and the unit validator asserts each one positively rather than only forbidding its negation.",
+        "Case 06 two-layer truth is mandatory here and is carried forward intact: the recap declares both layers in markup and in printed text, prints both layer chips, and prints the non-merger rule in both learner editions.",
+        "Archive Orientation is not one of the six Core Case evidence selections. Its methodological rule - preservation does not equal historical verification - is carried forward instead, through the printed evidence-status key on page 1 of both learner editions and through Task 6.",
+        "Task 4 offers exactly Cases 02, 03, 05 and 06. Cases 01 and 04 are deliberately excluded because Case 01's reasoning is cumulative change across generations rather than a mechanism falling short of an outcome, and Case 04's is attribution across distinct kinds of work. Case 04 is used instead as the Accessible worked contrast, precisely because it cannot be chosen, so the model cannot be copied into an answer.",
+        "Canonical CER is deliberately not used and is not rendered in any role. The Blueprint names a continuity/change synthesis for cross-case reasoning and permits CER only where its structure genuinely supports the unit; the Archive Synthesis carries five load-bearing parts that a single claim frame would demote to support. Evidence and reasoning remain assessed through the synthesis itself and through rubric criteria 2 and 4.",
+        "Standards claimed are only those the implemented tasks assess: C3 D2.His.2.6-8, D2.His.1.6-8 and D2.His.14.6-8 and CCSS RH.6-8.1 and WHST.6-8.2 as directly assessed, with C3 D3.2.6-8 and CCSS RH.6-8.9 as supporting. No NGSS performance expectation is claimed, directly or contextually, and C3 D4.1.6-8 is deliberately not claimed because the culmination is an explanatory synthesis rather than a formal argument with counterclaims.",
+        "Review and correction provenance. Candidate 1 was built at 2f8ffd647f9b12b86f9e9e0a90d49e65b623f94d. An independent review produced bounded findings, remediated at 05f3eee7dab37848a271379e7eae9d357ac3b895, which moved an Answer Key block out from under the wrong task heading and added four semantic guards. A focused re-review found one remaining blocking source-certification failure - an uncertified Case 04 scale and interval claim - corrected at a6b08c5f51d0b73de6398d56a6f2a3f2a90fc3db across all eight occurrences found by a programmatic sweep. The owner then renamed the learner-facing chronology component from rail to timeline at 5107639cb777ea97e5c75de21156578ee8b9d9fc, the scale note was restated in the same terms at 9247e11a41d83a567da623ff51009e5308550e11, and the remaining registry prose and accessibility metadata were brought into agreement with the rendered text at f14797872f22fc13d4d0999871b081f88fb1e848, which the owner approved.",
+        "The terminology decision is recorded because it changed learner-facing wording after independent review. rail had never been learner-facing language in this curriculum - across Cases 00 to 06 it appears only as CSS classes and data attributes - and timeline is the established house term these learners already met in Case 01. Machine identifiers were deliberately not renamed: data-rail-case, chrono-rail, mission-rail, fill-rail, a-rail-supplied, railEntry, the chronology-rail evidence pointer, data-chronology-contract, every CSS selector and every persist ID are unchanged, so released identifiers may still contain rail while every prose value says timeline.",
+        "Regression protection retained by the release: nine closed negative semantic classes each paired with a positive structural requirement, seven of which reuse the literal prohibition registers the released Cases 01 to 06 already declared, so the Synthesis cannot relax a boundary an approved case established. Exemption is a closed contract - only the Teacher misconception register and the Answer Key scoring floors are registered, and markup cannot self-authorize. Every guard ships with negative controls the validator must flag and positive controls it must not.",
+        "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines; the Accessible DOM hash was additionally computed and compared at both trees to prove parity across all four roles."
+    ],
+    "retiredArtifacts": []
+}

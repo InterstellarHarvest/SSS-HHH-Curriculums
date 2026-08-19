@@ -427,15 +427,17 @@
               "title": "The Temporal Agricultural Archive",
               "instructionalType": "SYNTHESIS",
               "version": "0.1",
-              "status": "VALIDATION_BUILD",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "hhh/campaign-1/synthesis-campaign-1/source/case-package.json",
+              "historyRecord": "hhh/campaign-1/synthesis-campaign-1/history/release-v0.1.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "VALIDATION",
+              "packageStatus": "APPROVED",
               "approval": {
+                "date": "2026-08-18",
                 "owner": "Nate / Owner",
-                "status": "OWNER_REVIEW_NOT_STARTED",
-                "printStatus": "NOT_RUN"
+                "status": "APPROVED",
+                "printStatus": "PASS"
               }
             }
           ]
