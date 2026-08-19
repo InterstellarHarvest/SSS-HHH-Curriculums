@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C2-CASE07",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-2",
+  "title": "The Audit",
+  "subtitle": "Campaign 2 · Case 07 · TAA Facility, 2387",
+  "location": "TAA Facility",
+  "version": "0.1",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C2-CASE07:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-2/case-07-the-audit/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-2/case-07-the-audit/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-2/case-07-the-audit/source/task-registry.js",
+    "global": "HHH_CASE07_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-2/case-07-the-audit/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case07-authenticity-framework",
+      "type": "html-css-diagrams",
+      "selector": "[data-authenticity-contract]",
+      "embed": true
+    },
+    {
+      "id": "case07-provenance-comparison",
+      "type": "html-css-diagrams",
+      "selector": "[data-provenance-contract]",
+      "embed": true
+    },
+    {
+      "id": "case07-evidence-weight",
+      "type": "html-css-diagrams",
+      "selector": "[data-weight-contract]",
+      "embed": true
+    },
+    {
+      "id": "case07-source-status-notice",
+      "type": "html-css-diagrams",
+      "selector": "[data-source-status-notice]",
+      "embed": true
+    },
+    {
+      "id": "case07-validation-memorandum",
+      "type": "html-css-diagrams",
+      "selector": "[data-validation-memorandum]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 8
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 10
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C2_CASE07_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C2_CASE07_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C2_CASE07_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C2_CASE07_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C2_CASE07_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 2 Case 07 v0.1 — The Audit Curriculum Editor",
+    "loadAnnouncement": "Case 07 The Audit v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "3c60fff417f61b966dd532fc24bfa60a8ceaeaade62a983b0e3b2fc4e2f77296",
+    "presentation": "dfb52e74f051602bc9fc81c6ad27bb2bf2727dc279078dd55f16da1c09e31b77",
+    "taskRegistry": "6235bd2cff62140ce549110c0f6da76ebe0c486c7fbccf361431906f8aa1ca11",
+    "layoutOverrides": "bd973232e602051decf99d8ad38ee93adcce768ec3ea360f8ef7903bb3a1ba02"
+  }
+}

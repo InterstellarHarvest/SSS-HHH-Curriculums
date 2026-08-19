@@ -455,6 +455,7 @@
               "version": "0.1",
               "status": "DRAFT",
               "editorShell": "1.0",
+              "editorPackage": "hhh/campaign-2/case-07-the-audit/source/case-package.json",
               "centralWorkflow": "CANONICAL",
               "packageStatus": "DRAFT",
               "approval": {
