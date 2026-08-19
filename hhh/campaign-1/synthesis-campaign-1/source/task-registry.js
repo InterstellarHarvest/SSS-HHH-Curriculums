@@ -84,8 +84,8 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
       "semanticLabel": "CROSS-CASE CHRONOLOGY",
       "icon": "ph-flow",
       "title": "Trace the Long Yield",
-      "description": "Use the cross-case chronology rail to name one meaningful continuity and one meaningful change across Campaign 1, each with the cases it rests on.",
-      "instructionalPurpose": "Family H2 and H6. The rail supplies the dates and the case identities so that the reasoning operation is comparison rather than recall. A continuity and a change are the two halves of the same historical judgment: a learner who can only find change reads the campaign as a march of progress, and a learner who can only find continuity misses that anything happened. Both must name the cases they rest on, because a continuity asserted without cases is a slogan.",
+      "description": "Use the cross-case timeline to name one meaningful continuity and one meaningful change across Campaign 1, each with the cases it rests on.",
+      "instructionalPurpose": "Family H2 and H6. The timeline supplies the dates and the case identities so that the reasoning operation is comparison rather than recall. A continuity and a change are the two halves of the same historical judgment: a learner who can only find change reads the campaign as a march of progress, and a learner who can only find continuity misses that anything happened. Both must name the cases they rest on, because a continuity asserted without cases is a slogan.",
       "responseType": "two short constructed responses, each with a case citation",
       "answerScope": "One meaningful continuity with the cases it rests on, and one meaningful change with the cases it rests on.",
       "evidencePointers": [
@@ -421,7 +421,7 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
   ],
   "chronologyScale": {
     "system": "cross-case timeline with nonuniform spans, not a single continuous-scale timeline",
-    "rule": "The rail places six investigations in order and supplies their dates and identities so that no task depends on recall. The spans are of different kinds and different precisions - a set of overlapping archaeological evidence windows, a scene date, a famine period, a five-year industrial sequence, a decade with an instrumental drought record, and a fictional year - and both learner editions disclose that above the rail.",
+    "rule": "The timeline places six investigations in order and supplies their dates and identities so that no task depends on recall. The spans are of different kinds and different precisions - a set of overlapping archaeological evidence windows, a scene date, a famine period, a five-year industrial sequence, a decade with an instrumental drought record, and a fictional year - and both learner editions disclose that above the timeline.",
     "disclosure": "These six spans are not measured the same way. Case 01's range is a set of overlapping evidence windows from different regions, crops and studies, not one continuous event. Case 02's date is the setting of a reconstructed scene. Case 06's year belongs to an invented case.",
     "case01Note": "Case 01's span is given as the range of its dated evidence windows, about 9,750 to 6,350 BCE. Those windows overlap and come from different regions and studies. The unit does not place Case 01 on a single date."
   },
@@ -514,7 +514,7 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
     "excerptSource": "The Long Yield finale card, C1 L7, at game commit d9fc16baf272cb543c29cbd0c06ec85efad60be8.",
     "containment": "The excerpt text appears only inside [data-game-framing] nodes. No Answer Key exemplar may rest on a [data-game-framing] node.",
     "gamePlayRequired": false,
-    "noGameFallback": "Complete. Six cross-case evidence recaps, the chronology rail and every supplied pointer carry Tasks 2 to 6 with no gameplay at all. The finale excerpt is optional framing and no task depends on it.",
+    "noGameFallback": "Complete. Six cross-case evidence recaps, the timeline and every supplied pointer carry Tasks 2 to 6 with no gameplay at all. The finale excerpt is optional framing and no task depends on it.",
     "auditDisposition": "READY_AS_SYNTHESIS_NOT_CORE_CASE",
     "gameDependencies": "None. The Phase 1 audit's game-dependency census records no finding against C1 L7."
   },
@@ -593,7 +593,7 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
   ],
   "memoryIndependenceContract": {
     "id": "synthesis-memory-independence-v1.0",
-    "rule": "No task in either learner edition requires recall of a Campaign 1 case. Every task carries a printed pointer to the recap card or rail entry that answers it, and every date and case identity a task needs is supplied on the page or on a page the pointer names.",
+    "rule": "No task in either learner edition requires recall of a Campaign 1 case. Every task carries a printed pointer to the recap card or timeline entry that answers it, and every date and case identity a task needs is supplied on the page or on a page the pointer names.",
     "enforcedRoles": [
       "student",
       "accessible"
@@ -610,7 +610,7 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
     {
       "id": "a-rail-supplied",
       "task": "2",
-      "what": "The chronology rail prints the case number, the title and the date span on every row, at the Accessible type size.",
+      "what": "The cross-case timeline prints the case number, the title and the date span on every row, at the Accessible type size.",
       "effect": "Dates and case identities are supplied rather than recalled. The comparison itself is unchanged."
     },
     {
@@ -856,7 +856,7 @@ window.HHH_C1_SYNTHESIS_TASK_REGISTRY = {
           "student",
           "accessible"
         ],
-        "alt": "A rail of six rows in campaign order, each naming the case, its date span and what the campaign records. The spans are of different kinds and precisions and the rail says so above itself."
+        "alt": "A timeline of six rows in campaign order, each naming the case, its date span and what the campaign records. The spans are of different kinds and precisions, and the note above the timeline says so."
       },
       {
         "id": "comparison-organizer",
