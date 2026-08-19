@@ -147,7 +147,7 @@ used to support a real-world historical claim, and no Answer Key exemplar rests 
 that node.
 
 **The no-game route is the default route.** Every assessed task is answerable from
-the six recap cards, the chronology rail and the supplied pointers. Gameplay is
+the six recap cards, the cross-case timeline and the supplied pointers. Gameplay is
 never required, and the Teacher Guide states the no-game route on pages 1, 4 and 7.
 
 ## Accessible edition
@@ -158,7 +158,7 @@ titles, same order, continuous flow — not one task per page.
 | id | Task | What |
 | --- | --- | --- |
 | `a-chunked-recaps` | 1 | Recaps set larger, one or two to a page, each field on its own labelled line. |
-| `a-rail-supplied` | 2 | Every date and case identity printed on the rail. |
+| `a-rail-supplied` | 2 | Every date and case identity printed on the timeline. |
 | `a-t2-frames` | 2 | Sentence openers on both responses. |
 | `a-t3-frames` | 3 | A sentence frame in every organizer cell; permitted case numbers printed as options. |
 | `a-t3-short-phrases` | 3 | Short evidence phrases accepted in the four upper cells, stated in the directions. |
@@ -190,7 +190,7 @@ screenshot, no decorative artwork.
 | Figure | Task | What it does |
 | --- | --- | --- |
 | Six evidence recap cards | 1 | Seven labelled fields each; the *does not establish alone* line is boxed. |
-| Cross-case chronology rail | 2 | Six rows, dates supplied, with the mixed-precision disclosure printed above the rail rather than footnoted. |
+| Cross-case timeline | 2 | Six rows, dates supplied, with the mixed-precision disclosure printed above the timeline rather than footnoted. |
 | Continuity/change organizer | 3 | Two columns for the chosen pair, four comparison rows, two full-width rows. |
 | Mechanism-versus-broader-explanation organizer | 4 | Four stages, twice. The *does not explain alone* stage is the only one set in the institutional accent. |
 | Evidence-status key | 1 | Six statuses in words, plus the Archive rule that preservation is not verification. |
