@@ -47,6 +47,7 @@ Usage:
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -62,6 +63,29 @@ CASE_ID = "HHH-C1-SYNTHESIS"
 LEARNER_ROLES = ("student", "accessible")
 ALL_ROLES = ("student", "teacher", "answer", "accessible")
 CORE_CASES = ("01", "02", "03", "04", "05", "06")
+# The commit the owner reviewed and approved. It is NOT the certified
+# release-source commit: release conversion restamps task-registry.js with the
+# lifecycle keys, so the released four-file byte set first exists one commit
+# later. The two are deliberately separate provenance facts.
+OWNER_PRINTABLE_BASELINE = "f14797872f22fc13d4d0999871b081f88fb1e848"
+OWNER = "Nate / Owner"
+APPROVAL_DATE = "2026-08-18"
+RELEASE_RECORD = UNIT_REL = "hhh/campaign-1/synthesis-campaign-1/history/release-v0.1.json"
+APPROVAL_RECORD_NAME = "SYNTHESIS_OWNER_APPROVAL_v0.1.md"
+# Candidate 1, independent review, bounded remediation, a focused re-review that
+# found one remaining blocking source-certification failure, its correction, and
+# the owner's three terminology commits. Pinning the whole path rather than only
+# its last commit is what makes the approval auditable.
+REVIEW_LINEAGE = (
+    "2f8ffd647f9b12b86f9e9e0a90d49e65b623f94d",
+    "05f3eee7dab37848a271379e7eae9d357ac3b895",
+    "a6b08c5f51d0b73de6398d56a6f2a3f2a90fc3db",
+    "5107639cb777ea97e5c75de21156578ee8b9d9fc",
+    "9247e11a41d83a567da623ff51009e5308550e11",
+    "f14797872f22fc13d4d0999871b081f88fb1e848",
+)
+COMMIT_RE = re.compile(r"^[a-f0-9]{40}$")
+PLACEHOLDER_RE = re.compile(r"COMMIT_[A-Z]_PENDING|PENDING|TBD|XXXX", re.I)
 # Block containers a proposition can belong to. Inline elements are deliberately
 # ABSENT: an earlier draft listed span here and used "skip any node that contains
 # one of these" as the leaf test, which silently excluded every paragraph that
@@ -192,15 +216,68 @@ def main() -> int:  # noqa: C901 - one linear contract walk
                   "CORE_CASE" not in {package.get("instructionalType"), registry.get("instructionalType"), (entry or {}).get("instructionalType")})
     results.check("the display label is exactly Campaign 1 Synthesis",
                   registry.get("displayLabel") == (entry or {}).get("displayLabel") == "Campaign 1 Synthesis")
-    results.check("the pre-owner lifecycle state is VALIDATION_BUILD / VALIDATION with no release or approval record",
-                  package["status"] == "VALIDATION_BUILD" and (entry or {}).get("status") == "VALIDATION_BUILD"
-                  and (entry or {}).get("packageStatus") == "VALIDATION"
-                  and "releaseHistory" not in package and "historyRecord" not in (entry or {})
-                  and not (UNIT / "history").exists()
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN",
-                  json.dumps({"package": package["status"], "approval": package["approval"],
-                              "historyDir": (UNIT / "history").exists()}))
+    # ── Released lifecycle ────────────────────────────────────────────────
+    # These replace the candidate-state assertions this validator carried before
+    # release. Lifecycle protection is converted rather than dropped: an approved
+    # unit has MORE to protect than a candidate, not less.
+    release_path = UNIT / "history" / "release-v0.1.json"
+    approval_path = UNIT / "history" / APPROVAL_RECORD_NAME
+    release = json.loads(release_path.read_text(encoding="utf-8")) if release_path.is_file() else {}
+    approval_text = approval_path.read_text(encoding="utf-8") if approval_path.is_file() else ""
+
+    results.check("the released lifecycle is APPROVED_STABLE / APPROVED across package and registry",
+                  package["status"] == "APPROVED_STABLE" and (entry or {}).get("status") == "APPROVED_STABLE"
+                  and (entry or {}).get("packageStatus") == "APPROVED"
+                  and registry.get("status") == "APPROVED_STABLE"
+                  and registry.get("ownerReviewStatus") == "OWNER_REVIEW_PASS",
+                  json.dumps({"package": package["status"], "registryEntry": (entry or {}).get("status"),
+                              "packageStatus": (entry or {}).get("packageStatus"),
+                              "taskRegistry": registry.get("status"),
+                              "ownerReviewStatus": registry.get("ownerReviewStatus")}))
+    results.check("the owner approval is recorded identically in the package and the shared registry",
+                  package["approval"] == (entry or {}).get("approval")
+                  == {"date": APPROVAL_DATE, "owner": OWNER, "status": "APPROVED", "printStatus": "PASS"},
+                  json.dumps({"package": package["approval"], "registry": (entry or {}).get("approval")}))
+    results.check("both history records exist under the canonical special-unit stem",
+                  release_path.is_file() and approval_path.is_file()
+                  and not (UNIT / "history" / "CASE07_OWNER_APPROVAL_v0.1.md").exists(),
+                  sorted(p.name for p in (UNIT / "history").iterdir()) if (UNIT / "history").is_dir() else "no history/")
+    results.check("the package and the shared registry point at the release record",
+                  package.get("releaseHistory") == (entry or {}).get("historyRecord") == RELEASE_RECORD,
+                  json.dumps({"package": package.get("releaseHistory"), "registry": (entry or {}).get("historyRecord")}))
+    results.check("the release record agrees with the package on identity, version, approval and status",
+                  release.get("caseId") == CASE_ID and release.get("curriculumVersion") == package["version"]
+                  and release.get("status") == "APPROVED_STABLE"
+                  and release.get("approvalDate") == APPROVAL_DATE and release.get("owner") == OWNER,
+                  json.dumps({k: release.get(k) for k in ("caseId", "curriculumVersion", "status", "approvalDate", "owner")}))
+    results.check("the release record certifies the four source hashes the package declares",
+                  release.get("sourceHashes") == package["sourceHashes"],
+                  json.dumps({"release": release.get("sourceHashes"), "package": package["sourceHashes"]}))
+    certified = {name: hashlib.sha256((SOURCE / filename).read_bytes()).hexdigest()
+                 for name, filename in (("content", "content.html"), ("presentation", "presentation.css"),
+                                        ("taskRegistry", "task-registry.js"), ("layoutOverrides", "layout-overrides.json"))}
+    results.check("the certified source hashes match the files on disk",
+                  release.get("sourceHashes") == certified, json.dumps(certified))
+    results.check("the release record certifies the role page counts the package declares",
+                  release.get("rolePageCounts") == {role: package["rolePageStructure"][role]["pageCount"] for role in ALL_ROLES},
+                  json.dumps(release.get("rolePageCounts")))
+    pins = [release.get(key) for key in ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                                         "formerArtifactRecoveryCommit")]
+    results.check("every release-record commit pin is a resolved forty-character SHA",
+                  all(isinstance(pin, str) and COMMIT_RE.match(pin) for pin in pins), pins)
+    stray = PLACEHOLDER_RE.findall(json.dumps(release)) + PLACEHOLDER_RE.findall(approval_text)
+    results.check("no placeholder token survives anywhere in either record, including prose", not stray, stray)
+    results.check("both records name the owner-approved printable baseline",
+                  OWNER_PRINTABLE_BASELINE in json.dumps(release) and OWNER_PRINTABLE_BASELINE in approval_text)
+    results.check("the printable baseline is kept distinct from the certified release-source commit",
+                  release.get("canonicalSourceApprovalCommit") != OWNER_PRINTABLE_BASELINE,
+                  release.get("canonicalSourceApprovalCommit"))
+    results.check("both records carry the full review and correction lineage",
+                  all(commit in json.dumps(release) or commit in approval_text for commit in REVIEW_LINEAGE),
+                  [c for c in REVIEW_LINEAGE if c not in json.dumps(release) and c not in approval_text])
+    results.check("the approval record names the owner, the date and the approved page counts",
+                  OWNER in approval_text and APPROVAL_DATE in approval_text
+                  and all(str(package["rolePageStructure"][r]["pageCount"]) in approval_text for r in ALL_ROLES))
 
     # No Case 07 identity anywhere a reader or a tool can see it.
     case07 = re.compile(r"\bcase\s*0?7\b|\bCASE07\b", re.I)
@@ -567,7 +644,16 @@ def main() -> int:  # noqa: C901 - one linear contract walk
                       first is not None and all(continuations))
         results.check(f"{role} footers carry only the document role and position",
                       footers == [f"{label} {index} of {len(pages)}" for index in range(1, len(pages) + 1)], footers)
-    metadata = re.compile(r"\bcommit\b|\bsha256\b|\bchecksum\b|/source/|case-package\.json|\.git\b|/Users/|C:\\\\", re.I)
+    # Widened at release conversion. A candidate could only leak build metadata;
+    # a released unit can additionally leak the release stamp, the owner's name,
+    # the approval date and either provenance SHA onto a classroom page.
+    metadata = re.compile(
+        r"\bcommit\b|\bsha256\b|\bchecksum\b|/source/|case-package\.json|\.git\b|/Users/|C:\\\\"
+        r"|APPROVED_STABLE|OWNER_REVIEW|VALIDATION_BUILD|printStatus|releaseHistory|historyRecord"
+        r"|release-v[0-9]+\.[0-9]+\.json|canonicalSourceApprovalCommit"
+        r"|" + re.escape(OWNER) + r"|" + re.escape(APPROVAL_DATE)
+        + r"|" + OWNER_PRINTABLE_BASELINE[:12] + r"|" + re.escape(release.get("canonicalSourceApprovalCommit", "\u0000")[:12]),
+        re.I)
     leaks = []
     for role in ALL_ROLES:
         for node, part in propositions(soup, role):
