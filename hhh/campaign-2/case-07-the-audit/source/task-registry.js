@@ -1298,14 +1298,14 @@ window.HHH_CASE07_TASK_REGISTRY = {
     "directlyAssessed": [
       "C3 D3.1.6-8",
       "C3 D3.2.6-8",
-      "CCSS RH.6-8.6",
-      "CCSS RH.6-8.9"
+      "CCSS RH.6-8.6"
     ],
     "supporting": [
-      "CCSS WHST.6-8.1"
+      "CCSS WHST.6-8.1",
+      "CCSS RH.6-8.9"
     ],
     "contextual": [],
     "ngss": "No NGSS alignment is claimed at any status. This case contains no science content; it assesses source criticism, provenance and corroboration. Attaching a science performance expectation to it would be a false claim about what the tasks measure.",
-    "rationale": "Task-first alignment. The four directly assessed claims each name the task that measures them and the limit on the claim: the sources are supplied rather than researched, all four case sources are invented, and the texts are curriculum-written rather than excerpted. The single supporting claim is the written argument in Task 7, which is scored for reasoning rather than for craft. The list is deliberately short; nothing is claimed merely because the topic touches it."
+    "rationale": "Task-first alignment. The three directly assessed claims each name the task that measures them and the limit on the claim: the sources are supplied rather than researched, all four case sources are invented, and the texts are curriculum-written rather than excerpted. Two claims are supporting: the written argument in Task 7, which is scored for reasoning rather than for craft, and the record-to-record comparison in Tasks 6 and 7, which practises the relationship a primary-versus-secondary analysis rests on without assessing that analysis itself. The list is deliberately short; nothing is claimed merely because the topic touches it."
   }
 };
