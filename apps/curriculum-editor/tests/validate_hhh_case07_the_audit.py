@@ -1031,13 +1031,19 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                   not missing, missing)
 
     # --- STANDARDS -----------------------------------------------------------
+    # The partition pinned below is the independent-review ruling that superseded the
+    # original four-direct/one-supporting claim: the record-to-record comparison in
+    # Tasks 6 and 7 practises the relationship RH.6-8.9 rests on, but no learner
+    # performs a primary-versus-secondary analysis here, so it is supported rather
+    # than directly assessed. Both checks remain exact list equality.
     standards = registry["standards"]
-    results.check("the directly assessed standards are exactly the four locked claims",
+    results.check("the directly assessed standards are exactly the three locked claims",
                   standards["directlyAssessed"] == ["C3 D3.1.6-8", "C3 D3.2.6-8",
-                                                    "CCSS RH.6-8.6", "CCSS RH.6-8.9"],
+                                                    "CCSS RH.6-8.6"],
                   standards["directlyAssessed"])
-    results.check("the supporting standard is exactly the locked one",
-                  standards["supporting"] == ["CCSS WHST.6-8.1"], standards["supporting"])
+    results.check("the supporting standards are exactly the two locked claims",
+                  standards["supporting"] == ["CCSS WHST.6-8.1", "CCSS RH.6-8.9"],
+                  standards["supporting"])
     results.check("the standards list is not inflated with contextual claims",
                   standards["contextual"] == [], standards["contextual"])
     results.check("no NGSS alignment is claimed at any status",

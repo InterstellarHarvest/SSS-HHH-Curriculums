@@ -214,14 +214,14 @@ level.
 
 ## Standards
 
-Four directly assessed, one supporting, no NGSS at any status.
+Three directly assessed, two supporting, no NGSS at any status.
 
 | Standard | Status |
 | --- | --- |
 | C3 D3.1.6-8 | Directly assessed |
 | C3 D3.2.6-8 | Directly assessed |
 | CCSS RH.6-8.6 | Directly assessed |
-| CCSS RH.6-8.9 | Directly assessed |
+| CCSS RH.6-8.9 | Supporting |
 | CCSS WHST.6-8.1 | Supporting |
 
 There is no science content in this case, so no NGSS performance expectation is
