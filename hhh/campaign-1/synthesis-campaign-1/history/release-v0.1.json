@@ -43,9 +43,9 @@
         "pdf": "NOT A PROJECT GATE - production is HTML-only, no canonical PDF artifact exists, and any browser-exported PDF is noncanonical with no accessibility guarantee",
         "gitDiffCheck": "clean",
         "reviewPath": "Candidate 1 2f8ffd6 underwent independent review; bounded remediation landed at 05f3eee; a focused re-review found one remaining BLOCKING source-certification failure - an uncertified Case 04 scale and interval claim - corrected at a6b08c5 across all eight occurrences found by a programmatic sweep; the owner then took three terminology decisions at 5107639, 9247e11 and f147978, the last of which the owner approved.",
-        "visualReview": "PASS; owner review of the rendered packet through the local Curriculum Editor served from the owner-approved baseline, all four roles."
+        "visualReview": "PASS; owner on-screen review of the rendered packet through the local Curriculum Editor served from the owner-approved baseline, all four roles, and owner physical print review of that same baseline. The owner reports both as PASS on 2026-08-18. No print method detail beyond that is recorded."
     },
-    "acceptedPrintStatus": "PASS, confirmed by the owner on 2026-08-18. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
+    "acceptedPrintStatus": "PASS. The owner completed physical print review of the owner-approved printable baseline f14797872f22fc13d4d0999871b081f88fb1e848 on 2026-08-18 and reports PASS. No print method detail is recorded: the owner stated no scale setting, printer, or colour or grayscale mode, and none is independently established for this unit elsewhere in the project record. Production is HTML-only; no canonical PDF artifact exists and PDF generation is not a project release gate.",
     "formerArtifacts": {
         "status": "NO_FORMER_GENERATED_ARTIFACTS",
         "reason": "The Campaign 1 Synthesis was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated release artifact was ever created or committed for this unit, so there is nothing to recover."

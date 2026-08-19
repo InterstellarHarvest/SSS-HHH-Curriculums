@@ -34,7 +34,7 @@ its finale card.
 | --- | --- |
 | Package status | `APPROVED` |
 | Owner review | `OWNER_REVIEW_PASS` — Nate / Owner, 2026-08-18 |
-| Print status | `PASS` |
+| Physical print review | `PASS` |
 | Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
 | Approval record | [`history/SYNTHESIS_OWNER_APPROVAL_v0.1.md`](history/SYNTHESIS_OWNER_APPROVAL_v0.1.md) |
 

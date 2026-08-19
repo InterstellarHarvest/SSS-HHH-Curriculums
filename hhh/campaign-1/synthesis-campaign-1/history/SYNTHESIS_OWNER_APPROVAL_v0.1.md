@@ -47,10 +47,16 @@ keys.
 | Gate | Result |
 | --- | --- |
 | On-screen review, all four roles | **PASS** |
-| Print status | **PASS** |
+| Physical print review | **PASS** |
 
-The owner reviewed the rendered packet through the local Curriculum Editor served
-from the exact baseline above.
+The owner reviewed the rendered packet on screen through the local Curriculum
+Editor served from the exact baseline above, and separately completed a physical
+print review of that same baseline. The owner reports both gates as **PASS**.
+
+**No further print method is recorded.** This record deliberately states no scale
+setting, no printer, and no colour or grayscale mode for the physical print,
+because the owner stated none and no such detail is independently established for
+this unit elsewhere in the project record.
 
 **No canonical PDF was produced, approved, or required.** Production is HTML-only.
 Any PDF exported from a browser is noncanonical and carries no accessibility
