@@ -55,6 +55,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -69,6 +70,26 @@ CASE_ID = "HHH-C2-CASE07"
 LEARNER_ROLES = ("student", "accessible")
 ALL_ROLES = ("student", "teacher", "answer", "accessible")
 GAME_COMMIT = "d9fc16baf272cb543c29cbd0c06ec85efad60be8"
+HISTORY = UNIT / "history"
+RELEASE_RECORD = HISTORY / "release-v0.1.json"
+OWNER_APPROVAL_RECORD = HISTORY / "CASE07_OWNER_APPROVAL_v0.1.md"
+RELEASE_RECORD_PATH = "hhh/campaign-2/case-07-the-audit/history/release-v0.1.json"
+APPROVAL_DATE = "2026-08-19"
+OWNER = "Nate / Owner"
+# The exact byte set the owner reviewed on screen and printed. It is NOT the
+# certified-source commit: the released task-registry.js bytes are created by
+# release conversion, so the release pins name the release-conversion commit.
+# Conflating the two is the error these checks exist to prevent.
+OWNER_PRINTABLE_BASELINE = "14b301c42d80c5d4a0a62bc94530ea6638b5a62c"
+OWNER_BUNDLE_SHA256 = "05fb11ef3da0f8af1f67a91e04bf3c745121ef468206dde1a710288b4d96360f"
+PENDING_TOKEN_PATTERN = re.compile(r"COMMIT_[A-Z]_PENDING|PENDING|TBD|XXX|PLACEHOLDER")
+COMMIT_PATTERN = re.compile(r"^[a-f0-9]{40}$")
+RESOLVED_COMMIT_FIELDS = ("originalReleaseApprovalCommit",
+                          "canonicalSourceApprovalCommit",
+                          "formerArtifactRecoveryCommit")
+SOURCE_FILES = (("content", "content.html"), ("presentation", "presentation.css"),
+                ("taskRegistry", "task-registry.js"),
+                ("layoutOverrides", "layout-overrides.json"))
 AUDITED_GAME_COMMIT = "9b8545ed6ecf98b337326390400076e36789e056"
 
 # Propositions break on terminal punctuation only. A semicolon, colon or dash is
@@ -254,36 +275,45 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
     texts = {role: role_text(soup, role) for role in ALL_ROLES}
     teacher_text, answer_text = texts["teacher"], texts["answer"]
 
-    # --- IDENTITY AND CANDIDATE LIFECYCLE -----------------------------------
+    # --- IDENTITY AND RELEASED LIFECYCLE ------------------------------------
+    # Release conversion turned the six candidate-state lifecycle assertions below
+    # into released-state obligations. Nothing was deleted: every gate the candidate
+    # checks in one direction is still checked, in the other.
     results.check("package identity is HHH-C2-CASE07 v0.1 CORE_CASE in campaign-2",
                   (package["id"], package["version"], package["instructionalType"],
                    package["curriculum"], package["campaign"])
                   == (CASE_ID, "0.1", "CORE_CASE", "HHH", "campaign-2"))
-    results.check("the package and task registry both carry the unreleased candidate lifecycle",
-                  package["status"] == "DRAFT" and registry["status"] == "DRAFT"
-                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_NOT_STARTED"
+    results.check("the package and task registry both carry the released lifecycle",
+                  package["status"] == "APPROVED_STABLE" and registry["status"] == "APPROVED_STABLE"
+                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_PASS"
                   and registry["version"] == "0.1"
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN"
-                  and package["approval"]["owner"] == "Nate / Owner"
-                  and "date" not in package["approval"],
+                  and package["approval"]["status"] == "APPROVED"
+                  and package["approval"]["printStatus"] == "PASS"
+                  and package["approval"]["owner"] == OWNER
+                  and package["approval"]["date"] == APPROVAL_DATE,
                   json.dumps({"package": package["status"], "registry": registry["status"],
                               "approval": package["approval"]}))
-    results.check("no release history exists or is declared for the candidate",
-                  not (UNIT / "history").exists() and "releaseHistory" not in package,
+    results.check("the package points at the release record",
+                  package.get("releaseHistory") == RELEASE_RECORD_PATH,
+                  package.get("releaseHistory"))
+    results.check("the owner approval record and the release record both exist",
+                  OWNER_APPROVAL_RECORD.is_file() and RELEASE_RECORD.is_file(),
+                  sorted(x.name for x in HISTORY.iterdir()) if HISTORY.is_dir() else "no history/")
+    results.check("the unit directory holds only README.md, source/ and history/",
+                  sorted(p.name for p in UNIT.iterdir() if p.name != ".DS_Store")
+                  == ["README.md", "history", "source"],
                   sorted(p.name for p in UNIT.iterdir()))
-    results.check("the unit directory holds only README.md and source/",
-                  sorted(p.name for p in UNIT.iterdir() if p.name != ".DS_Store") == ["README.md", "source"],
-                  sorted(p.name for p in UNIT.iterdir()))
+    results.check("history/ holds only the owner approval record and the release record",
+                  sorted(p.name for p in HISTORY.iterdir() if p.name != ".DS_Store")
+                  == ["CASE07_OWNER_APPROVAL_v0.1.md", "release-v0.1.json"],
+                  sorted(p.name for p in HISTORY.iterdir()))
     results.check("task registry pins the current game baseline and the audit baseline",
                   registry["gameCommit"] == GAME_COMMIT
                   and registry["auditBaseline"] == "hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md"
                   and registry["blueprint"] == "hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md",
                   registry["gameCommit"])
 
-    for key, filename in (("content", "content.html"), ("presentation", "presentation.css"),
-                          ("taskRegistry", "task-registry.js"),
-                          ("layoutOverrides", "layout-overrides.json")):
+    for key, filename in SOURCE_FILES:
         digest = hashlib.sha256((SOURCE / filename).read_bytes()).hexdigest()
         results.check(f"package sourceHashes.{key} matches the working tree",
                       package["sourceHashes"][key] == digest, digest)
@@ -291,19 +321,92 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
     shared = json.loads(REGISTRY_FILE.read_text(encoding="utf-8"))
     entry = next(c for cur in shared["curricula"] if cur["id"] == "HHH"
                  for camp in cur["campaigns"] for c in camp["cases"] if c["id"] == CASE_ID)
-    results.check("the existing shared registry entry is activated rather than duplicated",
-                  entry["status"] == "DRAFT" and entry["packageStatus"] == "DRAFT"
+    results.check("the shared registry entry carries the released lifecycle and its history pointer",
+                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
                   and entry["displayOrder"] == 9 and entry["displayLabel"] == "7 - The Audit"
                   and entry["editorPackage"] == "hhh/campaign-2/case-07-the-audit/source/case-package.json"
-                  and "historyRecord" not in entry
-                  and entry["approval"] == {"owner": "Nate / Owner",
-                                            "status": "OWNER_REVIEW_NOT_STARTED",
-                                            "printStatus": "NOT_RUN"},
+                  and entry["historyRecord"] == RELEASE_RECORD_PATH
+                  and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
+                                            "status": "APPROVED",
+                                            "printStatus": "PASS"},
                   json.dumps(entry))
+    results.check("the shared registry and the package name the same release record",
+                  entry["historyRecord"] == package.get("releaseHistory") == RELEASE_RECORD_PATH,
+                  json.dumps({"registry": entry.get("historyRecord"),
+                              "package": package.get("releaseHistory")}))
     all_hhh = [c["id"] for cur in shared["curricula"] if cur["id"] == "HHH"
                for camp in cur["campaigns"] for c in camp["cases"]]
     results.check("exactly one HHH-C2-CASE07 identity exists in the shared registry",
                   all_hhh.count(CASE_ID) == 1, all_hhh)
+
+    # --- THE RELEASE RECORD --------------------------------------------------
+    # The release record is only trustworthy if it agrees with the package it
+    # describes, resolves every commit pin to a real SHA, and can be shown to
+    # describe a tree that actually carries the bytes it claims.
+    release = json.loads(RELEASE_RECORD.read_text(encoding="utf-8"))
+    results.check("release record identity, version, owner and date match the package",
+                  (release["schemaVersion"], release["caseId"], release["curriculumVersion"],
+                   release["status"], release["approvalDate"], release["owner"])
+                  == (1, CASE_ID, package["version"], "APPROVED_STABLE",
+                      package["approval"]["date"], package["approval"]["owner"]),
+                  json.dumps({k: release.get(k) for k in
+                              ("schemaVersion", "caseId", "curriculumVersion",
+                               "status", "approvalDate", "owner")}))
+    results.check("release record source hashes match the certified source hashes",
+                  release["sourceHashes"] == package["sourceHashes"],
+                  json.dumps({"release": release["sourceHashes"],
+                              "package": package["sourceHashes"]}))
+    results.check("release record page counts match the package role structure",
+                  release["rolePageCounts"]
+                  == {role: package["rolePageStructure"][role]["pageCount"] for role in ALL_ROLES},
+                  json.dumps(release["rolePageCounts"]))
+    for field in RESOLVED_COMMIT_FIELDS:
+        results.check(f"release record {field} is a resolved 40-character commit",
+                      bool(COMMIT_PATTERN.fullmatch(str(release.get(field, "")))),
+                      release.get(field))
+    results.check("no pending or placeholder token survives anywhere in the release record",
+                  not PENDING_TOKEN_PATTERN.search(RELEASE_RECORD.read_text(encoding="utf-8")),
+                  sorted(set(PENDING_TOKEN_PATTERN.findall(
+                      RELEASE_RECORD.read_text(encoding="utf-8")))))
+    # The certified-source commit must actually carry the four hashes the record
+    # claims. Checking the record against itself would prove nothing.
+    certified = release["canonicalSourceApprovalCommit"]
+    blobs = {}
+    for key, filename in SOURCE_FILES:
+        try:
+            blobs[key] = hashlib.sha256(subprocess.run(
+                ["git", "show", f"{certified}:hhh/campaign-2/case-07-the-audit/source/{filename}"],
+                cwd=ROOT, check=True, capture_output=True).stdout).hexdigest()
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            blobs[key] = None
+    results.check("the certified-source commit really carries the released source bytes",
+                  blobs == release["sourceHashes"], json.dumps(blobs))
+    # The printable baseline is a separate fact and must never be overwritten by the
+    # certified-source commit, nor silently equated with it.
+    approval_text = OWNER_APPROVAL_RECORD.read_text(encoding="utf-8")
+    results.check("the owner approval record names the owner-approved printable baseline",
+                  OWNER_PRINTABLE_BASELINE in approval_text)
+    results.check("the owner approval record preserves the approved bundle SHA-256",
+                  OWNER_BUNDLE_SHA256 in approval_text)
+    results.check("the release record preserves the printable baseline separately from the certified commit",
+                  OWNER_PRINTABLE_BASELINE in json.dumps(release)
+                  and certified != OWNER_PRINTABLE_BASELINE,
+                  json.dumps({"printableBaseline": OWNER_PRINTABLE_BASELINE,
+                              "certifiedSourceCommit": certified}))
+    results.check("the owner approval record states both owner gates and the approval date",
+                  APPROVAL_DATE in approval_text and OWNER in approval_text
+                  and "**PASS**" in approval_text,
+                  APPROVAL_DATE)
+    results.check("the release record keeps production HTML-only with no canonical PDF",
+                  "HTML-only" in release["artifactPolicy"]
+                  and "noncanonical" in release["artifactPolicy"],
+                  release["artifactPolicy"][:120])
+    # Release metadata is bookkeeping. None of it may reach a classroom page.
+    leak_terms = ("APPROVED_STABLE", "releaseHistory", "canonicalSourceApprovalCommit",
+                  OWNER_PRINTABLE_BASELINE, certified, "release-v0.1.json")
+    leaks = [f"{role}:{term}" for role in ALL_ROLES for term in leak_terms
+             if term.lower() in texts[role].lower()]
+    results.check("no release metadata leaks into printable classroom content", not leaks, leaks)
 
     # --- THE CLOSED GAME DEPENDENCY -----------------------------------------
     tracker = json.loads(TRACKER_FILE.read_text(encoding="utf-8"))
