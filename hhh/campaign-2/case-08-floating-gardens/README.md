@@ -5,7 +5,7 @@
 **Setting:** Tenochtitlan, 1487 — the system is **historical**; the 1487 scene is **reconstructed**
 **Instructional type:** `CORE_CASE`
 **Version:** 0.1
-**Status:** `DRAFT` — unreleased candidate
+**Status:** `APPROVED_STABLE` — released 2026-08-20
 **Blueprint:** `hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md`, Core Case 08
 **Audit baseline:** `hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md`
 **Game commit:** `d9fc16baf272cb543c29cbd0c06ec85efad60be8`
@@ -15,19 +15,44 @@ geographic and historical systems explanation with source qualification. Produce
 against curriculum main `337b6b23acb39b0df3bba248315839901c4a2eba` and the approved
 Blueprint.
 
-## Candidate state
+## Release state
 
 | Gate | State |
 | --- | --- |
-| Package status | `DRAFT` |
-| Owner review | `OWNER_REVIEW_NOT_STARTED` |
-| Print status | `NOT_RUN` |
-| Release record | none — no `history/` directory exists |
-| Approval record | none |
+| Package status | `APPROVED_STABLE` |
+| Owner review | `OWNER_REVIEW_PASS` |
+| Print status | `PASS` |
+| Approval date | 2026-08-20 |
+| Owner | Nate / Owner |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/CASE08_OWNER_APPROVAL_v0.1.md`](history/CASE08_OWNER_APPROVAL_v0.1.md) |
 
-**This candidate is unreleased.** No owner visual review has been performed, no
-physical print test has been run, and no approval or release record exists. Nothing in
-this package may be read as a claim that either gate has been met.
+The owner passed both gates — on-screen visual and content review, and physical print
+review — and approved the byte set for release, stating: *"Approved, including physical
+print review complete and approved."* The owner supplied no browser, printer, print
+scale, paper type, paper size, colour or grayscale print mode or print setting, and none
+is asserted anywhere in this release; the engineering colour and grayscale render checks
+in the release record are a separate internal measurement.
+
+### Printable baseline and certified-source commit are not the same commit
+
+| | Commit |
+| --- | --- |
+| **Owner-approved printable baseline** | `a3bbb0388cdb4233500fcfd4deadc8c939a7426e` |
+| **Released certified-source commit** | the release-conversion commit recorded in `history/release-v0.1.json` |
+
+The owner reviewed and printed `a3bbb03`. Release conversion changes no printable
+source: `content.html`, `presentation.css` and `layout-overrides.json` are
+byte-identical to that commit, and only `task-registry.js` moves, in its two lifecycle
+keys, neither of which renders. Because the released `task-registry.js` bytes first
+exist at the release-conversion commit, the release record's source pins name that
+commit rather than the printable baseline. The two are recorded separately and
+deliberately, and conflating them is the error this section exists to prevent.
+
+**No owner-approved bundle exists and none is claimed.** The release-history schema
+requires no bundle field. The bundle produced during the original implementation report
+covered the pre-remediation candidate `00f21423`, not this approved baseline, and there
+is no evidence the owner inspected or approved any bundle file.
 
 Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a
 release gate, and any PDF exported from the browser is noncanonical and carries no
@@ -334,13 +359,13 @@ unregistered id and a borrowed-role id both excuse nothing.
 
 ## Preservation
 
-This package adds files under `hhh/campaign-2/case-08-floating-gardens/` and touches
+This release adds files under `hhh/campaign-2/case-08-floating-gardens/` and touches
 nothing else in the curriculum tree. `sss/**`, `hhh/campaign-1/**`,
 `hhh/campaign-2/case-07-the-audit/**`, `hhh/audit/**`, `hhh/blueprint/**`,
 `hhh/production/**`, the shared contracts and schemas, the shared validators, the visual
 style guide and the Curriculum Bible are all unmodified. The game is unmodified.
 
-The only changes outside this directory are the narrowly necessary activation of the
-existing Case 08 entry in the shared case registry, the registration of the case in the
-browser-harness eligibility roster, and the addition of the Case 08 scoped validator
-and its chaining line.
+The only changes outside this directory are the narrowly necessary activation and then
+release conversion of the existing Case 08 entry in the shared case registry, the
+registration of the case in the browser-harness eligibility roster, and the Case 08
+scoped validator with its chaining line.

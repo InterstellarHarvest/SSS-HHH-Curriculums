@@ -8,12 +8,14 @@
   "subtitle": "Campaign 2 · Case 08 · Tenochtitlan, 1487",
   "location": "Tenochtitlan",
   "version": "0.1",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-20",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-2/case-08-floating-gardens/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -158,7 +160,7 @@
   "sourceHashes": {
     "content": "531fe23cf43356e4fe1f7e6bf289c8d78c8335472f6e8ed1da77df89f7eb7c7e",
     "presentation": "858d3b35f60481b831b539c2a69bad60877e689b629525085138bce9dbdfeba4",
-    "taskRegistry": "6763aa4dc9f7609723984c405e694d401a9ce7c73557006f1a6ed7af0228ad24",
+    "taskRegistry": "14f0b286777797c00a5246ec52c1f4311352bf25949f9b6f0731895ef4156d87",
     "layoutOverrides": "e8bf275ff5251da07070a501ff60d5e273845951300704a800e5880a204efd02"
   }
 }
