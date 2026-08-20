@@ -470,16 +470,21 @@ window.HHH_CASE08_TASK_REGISTRY = {
           "that Cortés's letter is dated 30 October 1520 and the plan depicts the city in that year",
           "that Tenochtitlan was founded in the fourteenth century on an island in the salt lake of Texcoco",
           "that wide causeways connect the island city to the shores of the lake",
+          "that the plate depicts settlements around the lake and along its shores, several of them carrying place-name labels on the plate (direct visual observation of the digitised plate)",
+          "that the plate draws the causeway connections between the island city and the shore at visibly uneven lengths and angles (direct visual observation of the digitised plate)",
           "that the plan is oriented with west at the top",
           "that Cortés and his army attacked and destroyed the city in May 1521"
         ],
         "doesNotSupport": [
           "the city or its farmland in 1487",
           "any count, direction or length of causeways",
+          "any number of settlements, or the position, spacing or extent of any one of them",
+          "the shoreline geometry of the lake, or any distance across or around it",
+          "the placement of any settlement or causeway as it stood in 1487",
           "any agricultural detail",
           "any claim that the plan is a survey, an aerial view or a measured map"
         ],
-        "rights": "The Library of Congress states that it is unaware of any copyright or other restrictions in this collection. No image from the item is reproduced in this package; the Task 3 figure is a curriculum redrawing of the relationships the Library's own catalogue record describes, and it is labelled ADAPTED FROM and RECONSTRUCTION accordingly."
+        "rights": "The Library of Congress states that it is unaware of any copyright or other restrictions in this collection. No image from the item is reproduced in this package; the Task 3 figure is a curriculum redrawing of relationships the Library's own catalogue record states or the plate itself plainly shows, and it is labelled ADAPTED FROM and RECONSTRUCTION accordingly."
       }
     ],
     "noFurtherClaims": "No historical, agricultural, hydrological, chronological, quantitative or archaeological claim appears in this package that is not on one of the lists above. If a later revision needs one, that is a source-certification dependency for the PMO, not an authoring decision."
@@ -662,7 +667,7 @@ window.HHH_CASE08_TASK_REGISTRY = {
       "instructionalPurpose": "The H4 operation, and the place the central source-status distinction becomes explicit. The four classes are deliberately not equivalent: a reconstruction can support reasoning inside the game and prove nothing outside it; current documentation can establish the system and its continuity but no event; archaeology can establish material presence and use but supply no words; a historical map can establish geographic relationships but is not a survey of the year in question.",
       "provenance": [
         "All five reconstructed case records",
-        "The three certified real-world sources"
+        "The three real-world source cards, F, G and H"
       ],
       "responseType": "eight matrix fields",
       "answerScope": "A genuine contribution and a genuine limit for each of the four source classes.",
@@ -690,7 +695,7 @@ window.HHH_CASE08_TASK_REGISTRY = {
       "instructionalPurpose": "The structural refusal of the merger. Two named bands, answered separately, so that a learner cannot reach an inside-the-game verdict by borrowing a real source, or a real-world conclusion by borrowing an invented record. The outside band is also where the overcorrection is refused: the real sources do not establish that the basin's water was ever free of trouble.",
       "provenance": [
         "The five reconstructed case records",
-        "The three certified real-world sources"
+        "The three real-world source cards, F, G and H"
       ],
       "responseType": "two constructed responses, one per evidence layer",
       "answerScope": "One layer answered from Sources A to E only, and one from Sources F to H only.",
@@ -717,7 +722,7 @@ window.HHH_CASE08_TASK_REGISTRY = {
       "description": "Write an Engineered Landscape Explanation with an accurate definition, two links from different real-world sources, a geographic connection, one source qualification and a synthesis of the whole system.",
       "instructionalPurpose": "The culminating historical and geographic reasoning product, and a systems explanation with source qualification rather than a canonical CER. Six parts, each separately scored, so that neither the definition nor the qualification can be lost inside a confident paragraph. Part E is the structural obligation the Blueprint names: the learner must state something a named source cannot establish.",
       "provenance": [
-        "The three certified real-world sources",
+        "The three real-world source cards, F, G and H",
         "Both curriculum figures"
       ],
       "responseType": "five short constructed responses and one medium synthesis",
@@ -903,8 +908,8 @@ window.HHH_CASE08_TASK_REGISTRY = {
       "sourceOrigin": "curriculum-original schematic",
       "evidentiaryStatus": "modeled",
       "evidenceLayer": "curriculum-model",
-      "contribution": "Redraws the relationships the Library's record of the 1524 plan describes: an island city in a lake, causeways running out to the shores, and settlements ringing the water.",
-      "limitation": "An adaptation, and it says so in print. It claims no number, direction or length for the causeways, no distance, shape or size for anything, and no orientation — the source's own west-at-the-top orientation is stated rather than imitated. It is not to scale and it is not the evidence; Source F is.",
+      "contribution": "Redraws relationships the Library's record of the 1524 plan states or the plate itself plainly shows: an island city in a lake, causeway connections running out to the shores at uneven lengths and angles, and settlement ringing the water.",
+      "limitation": "An adaptation, and it says so in print. Its connectors are schematic: their drawn number, direction and length are not historical measurements. Its shoreline settlement is drawn as grouped runs and claims no number, position or spacing. It claims no distance, shape or size for anything, and no orientation - the source's own west-at-the-top orientation is stated rather than imitated. It is not to scale and it is not the evidence; Source F is.",
       "gameCorrespondence": "No runtime counterpart. Drawn for this packet from the certified historical map.",
       "fallbackCorrespondence": "Student page 5 · Accessible page 7"
     },
@@ -1268,9 +1273,9 @@ window.HHH_CASE08_TASK_REGISTRY = {
     {
       "id": "t4-modelled-relationship",
       "task": "C08-T4",
-      "what": "Part B, the canal functions, is worked in full as a modelled relationship, with selected labels supplied on the figure.",
+      "what": "Part B, the canal functions, is worked in full as a modelled relationship.",
       "effect": "Accessible answers three parts of Task 4; Student answers four.",
-      "whyNotALeak": "The modelled part is the one whose answer the figure already lists. The three relationships the case turns on — how the field is built and held, how soil renewal permits repeated cropping, and how the basin scale reaches the plot — are answered independently in both editions, and the modelled example is written to show what explaining a relationship looks like.",
+      "whyNotALeak": "The modelled part is the one whose answer the figure already lists, and the figure itself is identical in both editions. The three relationships the case turns on — how the field is built and held, how soil renewal permits repeated cropping, and how the basin scale reaches the plot — are answered independently in both editions, and the modelled example is written to show what explaining a relationship looks like.",
       "declaredIn": [
         "teacher",
         "answer"
@@ -1363,7 +1368,7 @@ window.HHH_CASE08_TASK_REGISTRY = {
           "RECONSTRUCTION",
           "NOT TO SCALE"
         ],
-        "requiresAdaptationNote": "not claimed by this drawing",
+        "requiresAdaptationNote": "not historical measurements",
         "requiresOrientationNote": "oriented with west at the top",
         "prohibitedPatterns": [
           {
@@ -1377,9 +1382,14 @@ window.HHH_CASE08_TASK_REGISTRY = {
             "why": "The plan is not an exact map of 1487 and its accessibility text may not say so."
           },
           {
-            "id": "causeway-count",
-            "regex": "\\b(?:three|four|five|six|3|4|5|6)\\s+causeways\\b",
-            "why": "The certified record gives no number of causeways, so neither the drawing nor its alt text may."
+            "id": "enumerated-connectors",
+            "regex": "\\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\\d+)\\s+(?:\\w+\\s+){0,2}(?:causeways?|connectors?|connections?|bands?|strokes?)\\b",
+            "why": "The schematic may show representative connections, but neither the drawing's description nor any learner-facing prose may enumerate them, because an enumerated schematic reads as the historical count."
+          },
+          {
+            "id": "enumerated-settlements",
+            "regex": "\\b(?:one|two|three|four|five|six|seven|eight|nine|ten|\\d+)\\s+(?:\\w+\\s+){0,2}(?:settlements?|towns?|cities|villages?)\\b",
+            "why": "The plate depicts settlement around the lake and certifies no number of settlements."
           }
         ],
         "requiresAltConcepts": [
@@ -1387,7 +1397,10 @@ window.HHH_CASE08_TASK_REGISTRY = {
           "causeways",
           "lake",
           "lakeshore"
-        ]
+        ],
+        "schematicConnectorRule": "The schematic may show representative causeway connections. The number, direction, length and exact geometry of those schematic strokes must not be interpreted or asserted as the historical count, direction or length shown by the source, and no learner-facing prose or accessibility text may claim that the drawn connector count equals the historical count. The figure remains ADAPTED FROM, RECONSTRUCTION and NOT TO SCALE. The earlier form of this rule forbade the drawing from containing a visible count at all, which no finite drawing can satisfy; the obligation it was protecting - no false historical precision - is unchanged.",
+        "schematicSettlementRule": "The schematic may show that settlement rings the water, because the plate plainly does. It may not carry a settlement count, a placement, a spacing or a shoreline geometry, and the drawn treatment is deliberately grouped rather than enumerable for that reason.",
+        "requiresSettlementNote": "shows only that they ring the water"
       },
       {
         "id": "chinampa-system",

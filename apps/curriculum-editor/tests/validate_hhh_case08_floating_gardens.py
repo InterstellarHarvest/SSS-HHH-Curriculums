@@ -738,11 +738,26 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
         fig_text = normalise(figure.get_text(" ", strip=True))
         for fragment in ("THE ISLAND CITY", "CAUSEWAYS", "LAKE", "LAKESHORE"):
             results.check(f"{role}: the map figure prints {fragment}", fragment in fig_text.upper(), fragment)
-        results.check(f"{role}: the map figure refuses to claim a causeway count, direction or length",
-                      "number, direction and length are not claimed" in fig_text, fig_text[:220])
+        # The connectors are finite strokes and are visible as such. What the figure
+        # must refuse is not the existence of a drawn count but the reading of that
+        # count as the source's; the printed note says exactly that.
+        results.check(f"{role}: the map figure refuses the historical reading of its own drawn connectors",
+                      "not historical measurements" in fig_text
+                      and "at uneven lengths and angles" in fig_text, fig_text[:240])
+        results.check(f"{role}: the map figure states what the shoreline treatment does and does not show",
+                      "The plan names settlements around the lake" in fig_text
+                      and "shows only that they ring the water" in fig_text, fig_text[:240])
         results.check(f"{role}: the map figure states the source's own orientation rather than imitating it",
                       "oriented with west at the top" in fig_text
-                      and "No direction, distance, shape or size may be read" in fig_text, fig_text[:220])
+                      and "No number, position, direction, distance, shape or size may be read" in fig_text,
+                      fig_text[:240])
+        # The enumeration guards run against the printed figure text as well as the
+        # accessibility text, because a learner-facing count would be the same defect.
+        for pattern in next(f for f in registry["figureContract"]["figures"]
+                            if f["id"] == "lake-city-plan")["prohibitedPatterns"]:
+            hit = re.search(pattern["regex"], fig_text, re.I)
+            results.check(f"{role}: the printed map figure text avoids {pattern['id']}",
+                          hit is None, (hit.group(0) if hit else "") + " :: " + pattern["why"])
         root = figure_root(figure)
         caption = root.find("figcaption") if root is not None else None
         cap_text = normalise(caption.get_text(" ", strip=True)) if caption else ""
@@ -752,6 +767,56 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
         results.check(f"{role}: the map figure is declared a curriculum schematic, not the evidence itself",
                       figure.get("data-evidence-layer") == "curriculum-model"
                       and "this drawing organises it" in cap_text.lower(), cap_text[:200])
+
+    map_contract = next(f for f in registry["figureContract"]["figures"] if f["id"] == "lake-city-plan")
+    results.check("the map figure contract declares the schematic-connector rule rather than an impossible one",
+                  "representative causeway connections" in map_contract["schematicConnectorRule"]
+                  and "must not be interpreted or asserted as the historical count"
+                  in map_contract["schematicConnectorRule"]
+                  and "no learner-facing prose or accessibility text may claim"
+                  in map_contract["schematicConnectorRule"]
+                  and "ADAPTED FROM, RECONSTRUCTION and NOT TO SCALE" in map_contract["schematicConnectorRule"],
+                  map_contract.get("schematicConnectorRule", "")[:300])
+    results.check("the map figure contract declares the schematic-settlement rule",
+                  "may not carry a settlement count" in map_contract["schematicSettlementRule"]
+                  and "grouped rather than enumerable" in map_contract["schematicSettlementRule"],
+                  map_contract.get("schematicSettlementRule", "")[:300])
+    results.check("the contract still forbids enumerating connectors or settlements",
+                  {p["id"] for p in map_contract["prohibitedPatterns"]}
+                  == {"invented-distance", "exact-1487", "enumerated-connectors", "enumerated-settlements"},
+                  sorted(p["id"] for p in map_contract["prohibitedPatterns"]))
+    # The certification must carry the two directly observed relationships the drawing
+    # now rests on, and must refuse the precision it does not have.
+    loc_cert = next(c for c in registry["sourceCertification"]["caseCertified"]
+                    if c["caseSourceId"] == "loc-plan")
+    results.check("the LOC certification records the observed shoreline settlement relationship",
+                  any("settlements around the lake and along its shores" in s for s in loc_cert["supports"]),
+                  loc_cert["supports"])
+    results.check("the LOC certification records the observed uneven causeway arrangement",
+                  any("visibly uneven lengths and angles" in s for s in loc_cert["supports"]),
+                  loc_cert["supports"])
+    results.check("the LOC certification refuses a settlement count, placement and shoreline geometry",
+                  any("any number of settlements" in s for s in loc_cert["doesNotSupport"])
+                  and any("shoreline geometry" in s for s in loc_cert["doesNotSupport"])
+                  and any("as it stood in 1487" in s for s in loc_cert["doesNotSupport"]),
+                  loc_cert["doesNotSupport"])
+    # The same sweep across every role's prose, with registered exemption subtrees
+    # removed: a Teacher misconception row and an Answer Key floor exist precisely to
+    # quote the claim they refuse, and quoting it is not asserting it.
+    exemption_specs = {e["id"]: e for e in registry["semanticInvariants"]["exemptions"]}
+    unexempt = {}
+    for role in ALL_ROLES:
+        parts = []
+        for page in pages_for(soup, role):
+            parts.extend(text for _n, text, _a in leaf_blocks(page, exemption_specs, role))
+        unexempt[role] = normalise(" ".join(parts))
+    enumerations = [(role, p["id"], re.search(p["regex"], unexempt[role], re.I).group(0))
+                    for role in ALL_ROLES for p in map_contract["prohibitedPatterns"]
+                    if re.search(p["regex"], unexempt[role], re.I)]
+    results.check("no role enumerates the schematic connectors or the shoreline settlements",
+                  not enumerations, enumerations)
+    results.check("the retired alt-text enumeration appears nowhere in the package",
+                  not any("four straight bands" in texts[role].lower() for role in ALL_ROLES))
 
     # --- H8: THE ENGINEERED SYSTEM AT TWO SCALES -----------------------------
     model = registry["systemModel"]
@@ -801,6 +866,44 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                       "not evidence about any particular field" in cap_text.lower(), cap_text[:200])
         results.check(f"{role}: no measurement is offered as readable from the system figure",
                       "no measurement may be read from it" in cap_text.lower(), cap_text[:200])
+
+    # The Accessible edition supplies no figure label the Student edition lacks; the
+    # figures are intentionally identical, and no role may claim otherwise.
+    results.check("no role claims an Accessible figure-label support that does not exist",
+                  not any("selected labels" in texts[role].lower() for role in ALL_ROLES),
+                  [role for role in ALL_ROLES if "selected labels" in texts[role].lower()])
+    def described_alt(role: str, contract: str) -> str:
+        node = soup.select_one(f'section.page[data-role="{role}"] [{contract}] [role="img"][aria-label]')
+        return normalise(node.get("aria-label")) if node is not None else ""
+
+    for figure_id, contract in (("lake-city-plan", "data-map-contract"),
+                                ("chinampa-system", "data-system-contract")):
+        student_alt = described_alt("student", contract)
+        accessible_alt = described_alt("accessible", contract)
+        results.check(f"{figure_id} is identical in both learner editions, as declared",
+                      bool(student_alt) and student_alt == accessible_alt,
+                      json.dumps({"studentLen": len(student_alt), "accessibleLen": len(accessible_alt)}))
+    # The H8 accessibility text describes the cue the figure actually renders.
+    for role in LEARNER_ROLES:
+        alt = described_alt(role, "data-system-contract")
+        results.check(f"{role}: the H8 accessibility text names the soil-renewal cue that is drawn",
+                      "upward soil-renewal cue" in alt.lower(), alt[:240])
+        results.check(f"{role}: the H8 accessibility text describes no arrow the figure does not draw",
+                      "arrow runs from the canal floor" not in alt.lower(), alt[:240])
+        cue = soup.select_one(f'section.page[data-role="{role}"] [data-system-contract] .chs-flow')
+        results.check(f"{role}: the soil-renewal cue is actually rendered beneath the panel",
+                      cue is not None and "Soil renewal" in normalise(cue.get_text(" ", strip=True)),
+                      normalise(cue.get_text(" ", strip=True)) if cue else "missing")
+    # Source count and card count are different facts and both must stay true.
+    results.check("the Teacher Guide counts the four certified real-world sources",
+                  "Four published sources support everything this packet claims" in teacher_text)
+    results.check("the Teacher Guide still counts the three real-world source cards the learner holds",
+                  "all three real-world source cards" in teacher_text
+                  and "three real-world source cards under printed status lines" in teacher_text)
+    results.check("the four-source estate and the three-card packet are separately stated",
+                  len(registry["sourceCertification"]["caseCertified"]) == 4
+                  and len([s for s in registry["caseSources"]
+                           if s["evidenceLayer"] in {"documented", "historical-map"}]) == 3)
 
     # --- H4: THE CONTRIBUTION AND LIMITATION MATRIX --------------------------
     for role in LEARNER_ROLES:

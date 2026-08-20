@@ -106,7 +106,7 @@ claims it actually supports. The bounds are machine-readable in
 | **FAO GIAHS, "Chinampas Agricultural System in Mexico City, Mexico"** (audit `H12`) | Wetland raised-field agriculture; construction from lake-bottom sediment, branches and decaying vegetation; the staking sequence and the two soil layers; the ahuejote willow; canals averaging ~1.5 m deep and 4–6 m wide; organic-matter renewal from aquatic vegetation; intensive year-round cultivation; canals as flood regulation; continuity today; designation in 2017; and the summary's own "floating artificial islands" wording. | Any particular year; anything in the game's case; any archaeological date; any claim that the fields floated. |
 | **INAH, bulletin of 9 January 2024 on *Arqueología Mexicana* no. 184** | Chinampas far older than the Mexica; earliest in the basin 900–1200 CE at Xaltocan; adoption around the basin's lakes; a 2015 salvage excavation identifying chinampas and canals in use 1300–1521 CE in a Mexica district of ancient México-Tenochtitlan; the crops recovered. | Anyone's words; the date of any particular plot; any event in the game; any yield, area or population figure. |
 | **INAH, "El Albarradón de San Cristóbal"** | Pre-Hispanic hydraulic infrastructure in the basin; a dike built against flooding at Tenochtitlan, to separate the waters within Lake Texcoco; attribution to Moctezuma Ilhuicamina and Nezahualcóyotl; destruction on Cortés's orders; rebuilding after the 1604 flood and in 1675, 1692, 1743 and 1856. | **Which part of the lake held which water**; the game's reconstructed east-and-west arrangement, which this source is expressly not used to certify; any salinity measurement; a date for the pre-Hispanic work; that the standing structure is preserved rather than rebuilt. |
-| **Library of Congress, *Second Letter of Hernán Cortés*, Nuremberg: F. Peypus, 1524** | Publication at Nuremberg in 1524; the first published plan of Tenochtitlan, labelled *Temixtitan*; the letter dated 30 October 1520 and the plan depicting the city that year; the city founded in the fourteenth century on an island in the salt lake of Texcoco; wide causeways connecting the island city to the shores; the plan oriented with west at the top; the city attacked and destroyed in May 1521. | The city or its farmland in 1487; any count, direction or length of causeways; any agricultural detail; any reading of the plan as a survey or an aerial view. |
+| **Library of Congress, *Second Letter of Hernán Cortés*, Nuremberg: F. Peypus, 1524** | Publication at Nuremberg in 1524; the first published plan of Tenochtitlan, labelled *Temixtitan*; the letter dated 30 October 1520 and the plan depicting the city that year; the city founded in the fourteenth century on an island in the salt lake of Texcoco; wide causeways connecting the island city to the shores; the plan oriented with west at the top; the city attacked and destroyed in May 1521. Added on review, from direct inspection of the digitised plate: that the plate depicts settlements around the lake and along its shores, several carrying place-name labels; and that it draws the causeway connections at visibly uneven lengths and angles. | The city or its farmland in 1487; any count, direction or length of causeways; **any number of settlements, or the position, spacing or extent of any one of them**; the shoreline geometry or any distance; the placement of any settlement or causeway as it stood in 1487; any agricultural detail; any reading of the plan as a survey or an aerial view. |
 
 No historical, agricultural, hydrological, chronological, quantitative or
 archaeological claim appears anywhere in the package that is not on one of those
@@ -182,7 +182,7 @@ no reproduced map plate.
 
 | Figure | Task | What it does | Status treatment |
 | --- | --- | --- | --- |
-| The lake-city plan, adapted | 3 | Redraws the relationships the Library's record of the 1524 plan describes: an island city in a lake, causeways to the shores, settlements ringing the water. | `SOURCE STATUS · CURRICULUM-ORIGINAL SCHEMATIC`; caption `ADAPTED FROM · LIBRARY OF CONGRESS · SECOND LETTER OF HERNÁN CORTÉS, NUREMBERG, 1524 · RECONSTRUCTION · NOT TO SCALE` |
+| The lake-city plan, adapted | 3 | Redraws relationships the Library's record states or the plate itself plainly shows: an island city in a lake, causeway connections to the shores at uneven lengths and angles, and settlement ringing the water. | `SOURCE STATUS · CURRICULUM-ORIGINAL SCHEMATIC`; caption `ADAPTED FROM · LIBRARY OF CONGRESS · SECOND LETTER OF HERNÁN CORTÉS, NUREMBERG, 1524 · RECONSTRUCTION · NOT TO SCALE` |
 | The chinampa system at two scales | 4 | Panel A cuts through one field — canals, staked structure, the two soil layers, the cultivated surface, the willow, and the **lake bottom running beneath all of it**. Panel B is the basin: chinampa zone, open lake, dike, and the water beyond. | `SOURCE STATUS · CURRICULUM-ORIGINAL SCHEMATIC`; caption `BASED ON · FAO GIAHS CHINAMPAS DOCUMENTATION · INAH HYDRAULIC-WORKS DOCUMENTATION · RECONSTRUCTION · NOT TO SCALE` |
 
 The lake bottom drawn under the field is the point of the second figure as much as the
@@ -213,9 +213,11 @@ for three reasons, all of which are the PMO's to overrule:
 Nothing about the H3 obligation is weakened by the choice. The **source** is real,
 named, dated and certified; **Source F** carries its provenance and the geography from
 the Library's own catalogue record, and the learner reads and critiques *that*. The
-figure carries `ADAPTED FROM` and `RECONSTRUCTION` accurately, prints that it claims no
-number, direction or length for the causeways, and prints that the source's own
-orientation is west-at-the-top rather than imitating it. The exact asset, if the PMO
+figure carries `ADAPTED FROM` and `RECONSTRUCTION` accurately; its connectors are drawn
+at uneven lengths and uneven, non-cardinal angles and it prints that their drawn number,
+direction and length are **not historical measurements**; its shoreline settlement is drawn
+as grouped runs that claim no number, position or spacing; and it prints that the source's
+own orientation is west-at-the-top rather than imitating it. The exact asset, if the PMO
 directs reproduction instead, is
 `https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:19:99:4:wdl_19994:ayer_655_51_c8_1524d_014/full/pct:50/0/default.jpg`
 — the fold-out leaf, from which the city plan is the right-hand portion.
@@ -274,12 +276,14 @@ rather than retrofitted.
 | id | Task | What | Effect |
 | --- | --- | --- | --- |
 | `t3-supplied-setting` | 3 | Part A is supplied complete as a worked example: the island-in-a-lake setting is named. | Accessible answers **3** parts; Student answers 4. The connection, the geographic reasoning and the limitation all stay independent. |
-| `t4-modelled-relationship` | 4 | Part B, the canal functions, is worked in full as a modelled relationship, with selected labels supplied on the figure. | Accessible answers **3** parts; Student answers 4. Construction, soil renewal and the basin scale stay independent. |
+| `t4-modelled-relationship` | 4 | Part B, the canal functions, is worked in full as a modelled relationship. | Accessible answers **3** parts; Student answers 4. Construction, soil renewal and the basin scale stay independent. |
 | `t5-modelled-row` | 5 | The reconstructed-evidence row is supplied complete in both cells. | Accessible completes **5** matrix fields; Student completes 8. |
 | `t5-prefilled-cell` | 5 | The FAO row's contribution cell is supplied; its limitation is not. | The judgment in that row is preserved. |
 
 Everything else changes the route rather than the demand: bounded choices in Tasks 2
 and 8, direct source pointers and sentence frames in Task 6, sentence openers in Task 7.
+**Both figures are identical in the two editions**; the Accessible edition supplies no
+figure label that the Student edition does not.
 **No Accessible-only obligation exists** — every assessed Accessible response has a
 Student counterpart, checked structurally against `editionResponseContract`. Accessible
 pagination is continuous flow rather than one task per page.
