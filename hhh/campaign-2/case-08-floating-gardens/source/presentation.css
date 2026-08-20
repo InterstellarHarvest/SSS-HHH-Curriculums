@@ -1,0 +1,357 @@
+* { box-sizing: border-box; }
+
+/* HHH / TAA presentation tokens, carried forward from Archive Orientation, Core
+   Cases 01 to 06 and Core Case 07 so the units read as one institution. Archive
+   Amber is the institutional accent and Record Cyan the secondary. Nothing in
+   this package is signalled by colour alone: every source prints a SOURCE STATUS
+   line in words, every status chip prints its own name, every supplied or
+   modelled element prints GIVEN or WORKED EXAMPLE, the two figure panels print
+   their own scale names, and the two evidence layers in Task 6 print theirs. */
+:root {
+  --paper: #fff;
+  --ink: #18212b;
+  --muted: #4f5a64;
+  --rule: #8c959c;
+  --panel: #efe4d0;
+  --panel-light: #faf6ef;
+  --neutral-field: #f0efec;
+  --institution: #8a5a00;
+  --record-cyan: #0b6f82;
+  --accent-dark: #6a4600;
+  --accent-pale: #f5eddd;
+  /* Source-status tokens. Four bands in this case: reconstructed game evidence,
+     documented real-world record, historical map, and curriculum schematic.
+     Every band prints its own words, so no tint is ever the only carrier. */
+  --status-reconstructed: #7a4a12;
+  --status-reconstructed-field: #f7efe3;
+  --status-documented: #0b5f70;
+  --status-documented-field: #e9f2f4;
+  --status-map: #3d5a3a;
+  --status-map-field: #eaf0e8;
+  --status-model: #4f5a64;
+  --status-model-field: #f0efec;
+  --primary: var(--institution);
+  --secondary: var(--record-cyan);
+  --page-w: 8.5in;
+  --page-h: 11in;
+  --margin-top: .5in;
+  --margin-right: .5in;
+  --margin-bottom: .5in;
+  --margin-left: .5in;
+  --radius: 3px;
+}
+
+html, body { min-height: 100%; margin: 0; color: var(--ink); background: #dedad3; font: 9.35pt/1.23 Arial, sans-serif; }
+body { padding: 82px 18px 36px; }
+body[data-standalone="true"] { padding-top: 22px; }
+.workspace { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.page { position: relative; width: var(--page-w); height: var(--page-h); overflow: hidden; background: var(--paper); box-shadow: 0 8px 24px #23303a44; }
+.page .page-frame { position: absolute; inset: var(--margin-top) var(--margin-right) var(--margin-bottom) var(--margin-left); display: flex; flex-direction: column; padding: 0; }
+.content { flex: 1; min-height: 0; }
+.content-area > :first-child { margin-top: 0; }
+p { margin: 4px 0; }
+ul, ol { margin: 4px 0 6px; padding-left: 20px; }
+li { margin: 2px 0; }
+h2 { margin: 7px 0 5px; padding-bottom: 3px; border-bottom: 2px solid var(--primary); font-size: 13pt; }
+h3 { margin: 5px 0 3px; font-size: 10pt; }
+a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+sub, sup { line-height: 0; font-size: .72em; }
+
+/* TAA insignia. The shared protected sheet sizes only .saa-insignia, so the HHH
+   mark is sized here. */
+.taa-insignia { width: .58in; height: .58in; flex: 0 0 .58in; object-fit: contain; }
+.grayscale .taa-insignia { filter: grayscale(1); }
+
+.label { color: var(--muted); font: 800 7pt/1.1 monospace; letter-spacing: .06em; text-transform: uppercase; }
+.response-label { display: block; margin: 5px 0 2px; font-size: 8.8pt; }
+.response-label .part { font-weight: 700; }
+.support-heading { margin: .06in 0 .03in; padding: 0; border: 0; font-size: 10.5pt; }
+.directions { margin: 0 0 4px; font-size: 8.8pt; }
+.directions .part { font-weight: 700; }
+.small { font-weight: 400; font-size: 7.2pt; color: var(--muted); }
+.report-list { margin: 3px 0 4px; }
+
+.callout { margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--primary); background: var(--accent-pale); }
+.callout p { margin: 2px 0; }
+.alt-support { margin: 4px 0; padding: 5px 8px; border: 1px dashed var(--rule); background: var(--neutral-field); font-size: 8.6pt; }
+.alt-support p { margin: 2px 0; }
+.alt-support .report-list { margin: 3px 0; }
+.alt-note { margin: 3px 0 0; font-size: 8.1pt; color: var(--muted); }
+
+/* ── The source-status notice ──────────────────────────────────────────────
+   Four bands in this case, and the distinction between them is the assessment.
+   Each chip carries its own words, so the separation survives grayscale and
+   survives a reader who never sees the tints at all. */
+.status-note { margin: 4px 0; padding: 5px 8px; border: 1px dotted var(--rule); border-left: 4px dotted var(--institution); background: var(--panel-light); font-size: 8.3pt; }
+.status-note p { margin: 2px 0; }
+.status-note .report-list { margin: 3px 0; }
+.status-rule { margin-top: 4px !important; padding-top: 3px; border-top: 1px solid var(--rule); }
+.status-chip { display: inline-block; padding: 0 4px; border: 1px solid currentColor; border-radius: 2px; font: 700 6.4pt/1.5 monospace; letter-spacing: .04em; vertical-align: .5px; }
+.status-reconstructed { color: var(--status-reconstructed); background: var(--status-reconstructed-field); }
+.status-documented { color: var(--status-documented); background: var(--status-documented-field); }
+.status-map { color: var(--status-map); background: var(--status-map-field); }
+.status-schematic { color: var(--status-model); background: var(--status-model-field); }
+
+.teacher-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin: 4px 0; }
+.teacher-card { min-width: 0; padding: 6px; border: 1px solid var(--rule); background: var(--panel-light); font-size: 8.35pt; }
+.teacher-card p { margin: 2px 0 0; }
+
+.data-table { width: 100%; border-collapse: collapse; font-size: 8pt; margin: 4px 0; }
+.data-table caption { margin-bottom: 3px; color: var(--muted); font-size: 7.4pt; text-align: left; }
+.data-table th, .data-table td { padding: 3px 5px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.data-table thead th { background: var(--panel); font-size: 7.6pt; }
+.vocab-table th:first-child { width: 1.15in; }
+/* Standard codes are identifiers and must not break mid-code. */
+.standards-table th[scope="row"] { width: 1.08in; white-space: nowrap; }
+.standards-table td:nth-child(2) { width: .72in; }
+/* Teacher tables are reference matter a teacher scans rather than reads through.
+   Tightening the cell padding there buys the vertical room the misconception and
+   rubric tables need without touching the learner editions, where the same
+   tables are answer spaces. */
+.page[data-role="teacher"] .data-table th,
+.page[data-role="teacher"] .data-table td { padding: 1px 4px; }
+.page[data-role="teacher"] .data-table:not(.source-table):not(.analytic-rubric) { font-size: 7.15pt; line-height: 1.10; }
+.page[data-role="teacher"] .procedure { font-size: 8.1pt; }
+.page[data-role="teacher"] .procedure > li { margin: 3px 0; }
+.page[data-role="teacher"] ul > li { margin: 1px 0; }
+.page[data-role="teacher"] p { margin: 3px 0; }
+.source-table { font-size: 6.5pt; line-height: 1.10; }
+.source-table th:first-child { width: 1.5in; }
+.data-table.quick-rubric th:first-child { width: 1.5in; }
+.analytic-rubric { font-size: 6.9pt; line-height: 1.15; }
+.analytic-rubric th:first-child { width: 1.02in; }
+.key-matrix { font-size: 7.2pt; }
+.key-matrix th:first-child { width: 1.2in; }
+
+.response, .table-response, .inline-response, .mark-response { min-height: .38in; padding: 4px; border: 1px solid var(--ink); border-radius: var(--radius); background: var(--paper); outline: none; }
+.response.short { min-height: .55in; }
+.response.medium { min-height: .95in; }
+.response.roomy { min-height: 1.15in; }
+/* Response sizing. Each fill class is set from the response the task actually
+   expects - a phrase, a few sentences, an extended product - and not from the
+   space left on the page. Reference and figure pages are allowed to end short. */
+.response.short.fill-test { min-height: .78in; }
+.response.short.fill-map { min-height: .72in; }
+.response.medium.fill-geography { min-height: 1.02in; }
+.response.short.fill-system { min-height: .80in; }
+.response.short.fill-layer { min-height: 1.00in; }
+.response.short.fill-link { min-height: .52in; }
+.response.short.fill-part { min-height: .54in; }
+.response.medium.fill-synthesis { min-height: .96in; }
+.response.short.fill-transfer { min-height: .52in; }
+.response.medium.fill-transfer-why { min-height: .90in; }
+/* Accessible fills. Every Accessible short-answer area is at least as tall as its
+   Student counterpart. Where an Accessible page carries fewer tasks the surplus
+   goes to the writing; where the two editions carry the same task load on the
+   same page - Task 7 and Task 8 - the areas are sized identically. */
+.accessible .response.roomy.fill-test { min-height: 1.05in; }
+.accessible .response.roomy.fill-map { min-height: .92in; }
+.accessible .response.roomy.fill-geography { min-height: 1.12in; }
+.accessible .response.roomy.fill-system { min-height: 1.02in; }
+.accessible .response.roomy.fill-layer { min-height: 1.12in; }
+.accessible .response.roomy.fill-link { min-height: .52in; }
+.accessible .response.roomy.fill-part { min-height: .54in; }
+.accessible .response.roomy.fill-synthesis { min-height: .96in; }
+.accessible .response.roomy.fill-transfer-why { min-height: .90in; }
+.table-response { display: block; min-height: .95in; }
+.response:focus, .table-response:focus, .inline-response:focus, .mark-response:focus, .id-field:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+
+/* The term goes on its own line beneath its statement, because inline placement
+   wrapped raggedly whenever a statement ran past one line. */
+.term-list { margin: 6px 0 8px; }
+.term-list li { margin: 11px 0; }
+.term-list-roomy li { margin: 16px 0; }
+.inline-response { display: block; min-width: 2.2in; max-width: 2.6in; min-height: .28in; margin-top: 4px; padding: 2px 4px; }
+
+.word-bank { display: block; margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); background: var(--accent-pale); }
+.word-bank-label { display: inline-block; margin-right: 8px; color: var(--institution); font: 800 7pt/1.1 monospace; letter-spacing: .06em; }
+.word-bank-instruction { font-size: 7.6pt; color: var(--muted); }
+.word-bank-items { display: block; margin-top: 3px; }
+.word-bank-item { display: inline-block; margin: 2px 6px 2px 0; padding: 1px 6px; border: 1px solid var(--rule); border-radius: 2px; background: var(--paper); font-size: 8.2pt; }
+
+.student-id { display: grid; grid-template-columns: 2.1fr 1.2fr 1fr; gap: 8px; margin-bottom: 6px; }
+.id-field { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 5px; align-items: end; font-size: 8.2pt; }
+.id-field span { min-height: .22in; padding: 1px 3px; border-bottom: 1px solid var(--ink); }
+
+.mission-title-block { display: grid; grid-template-columns: 4px minmax(0, 1fr) auto; gap: 9px; align-items: center; margin-bottom: 6px; padding-bottom: 5px; border-bottom: 2px solid var(--primary); }
+.mission-rail { align-self: stretch; background: var(--primary); }
+.hero-title { margin: 0; font: 800 21pt/1.05 Arial, sans-serif; letter-spacing: -.01em; }
+.mission-subtitle { margin: 2px 0 0; color: var(--muted); font-size: 8.4pt; }
+.identity-mark, .continuation-identity { display: flex; align-items: center; gap: 6px; }
+.identity-copy { display: flex; flex-direction: column; }
+.institution { display: flex; flex-direction: column; color: var(--institution); font: 800 6.4pt/1.08 monospace; letter-spacing: .07em; text-transform: uppercase; }
+.document-role { margin-top: 2px; font: 700 8pt/1.1 Arial, sans-serif; }
+.continuation-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 5px; padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
+.continuation-copy h1 { margin: 0; font: 800 11.5pt/1.1 Arial, sans-serif; }
+.continuation-role { color: var(--muted); font-size: 7.6pt; }
+.publication-footer { display: flex; justify-content: flex-end; padding-top: 3px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 7pt; }
+
+.task-heading { display: grid !important; grid-template-columns: 20px minmax(0, 1fr); gap: .07in; align-items: start; margin: .055in 0 .035in !important; padding: 0 0 .035in !important; border-bottom: 1px solid var(--rule) !important; }
+.task-heading .ph-icon { width: 20px; height: 20px; margin-top: 1px; color: var(--institution); fill: none; stroke: currentColor; stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+.task-heading-copy { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.task-heading .technical-label { color: var(--institution); font: 700 6.7pt/1.05 monospace; letter-spacing: .07em; }
+.task-heading .section-title { font: 800 10.7pt/1.14 Arial, sans-serif; }
+.task-block { margin-top: .09in; break-inside: avoid; page-break-inside: avoid; }
+.task-reference { color: var(--institution); }
+
+/* ── Dossier cards ─────────────────────────────────────────────────────────
+   Every card prints its SOURCE STATUS line in the same monospace form, whichever
+   band it belongs to. The left rule differs by band, but the status text always
+   names the band in words, so the rule is redundancy rather than signal. */
+.dossier { display: flex; flex-direction: column; gap: 5px; }
+.dossier-card { padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--rule); background: var(--panel-light); font-size: 8.35pt; break-inside: avoid; page-break-inside: avoid; }
+.dossier-card h3 { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; margin: 0 0 3px; }
+.dossier-card[data-evidence-layer="reconstructed"] { border-left-color: var(--status-reconstructed); background: var(--status-reconstructed-field); }
+.dossier-card[data-evidence-layer="documented"] { border-left-color: var(--status-documented); background: var(--status-documented-field); }
+.dossier-card[data-evidence-layer="historical-map"] { border-left-color: var(--status-map); background: var(--status-map-field); }
+.dossier-card[data-evidence-layer="curriculum-model"] { border-left-color: var(--status-model); background: var(--status-model-field); }
+.source-status { color: var(--accent-dark); font: 700 6.6pt/1.15 monospace; letter-spacing: .03em; }
+.dossier-card[data-evidence-layer="documented"] .source-status { color: var(--status-documented); }
+.dossier-card[data-evidence-layer="historical-map"] .source-status { color: var(--status-map); }
+
+/* Field-survey extracts. A fixed-width transcript, printed as the case prints it. */
+.terminal { margin: 3px 0; padding: 4px 6px; border: 1px solid var(--rule); background: var(--paper); font: 7.2pt/1.28 monospace; white-space: pre-wrap; }
+.terminal-title { display: block; margin-bottom: 2px; color: var(--institution); font: 800 6.8pt/1.2 monospace; letter-spacing: .05em; }
+
+.figure.case-figure { margin: 4px 0; padding: 3px; break-inside: avoid; page-break-inside: avoid; }
+.figure.case-figure figcaption { margin-top: 3px; padding-top: 3px; font-size: 7.4pt; color: var(--muted); }
+.figure.case-figure > .source-status { display: block; margin-bottom: 2px; }
+.fig-meta { display: block; margin-bottom: 2px; color: var(--accent-dark); font: 700 6.2pt/1.25 monospace; letter-spacing: .03em; }
+
+/* ── Figure family — the lake-city plan, adapted ───────────────────────────
+   A redrawing of the relationships the 1524 plan's catalogue record describes,
+   and of nothing else. The plate is a fixed 4.6 by 2.45 inches so that every
+   element inside it sits at a determined position rather than at whatever the
+   column width happens to be. No compass appears, because the adaptation claims
+   no direction; the two printed notes inside the figure say so. */
+.lakecity { padding: 2px 0 0; }
+.lc-plate { position: relative; width: 4.6in; height: 2.45in; margin: 0 auto; border: 1px solid var(--ink); background: var(--paper); }
+.lc-shore-label { position: absolute; left: 5px; top: 3px; color: var(--muted); font: 700 6.3pt/1.2 monospace; letter-spacing: .03em; }
+.lc-lake { position: absolute; inset: .20in; border: 1px solid var(--ink); border-radius: 50% / 44%; background: var(--neutral-field); }
+.lc-lake-label { position: absolute; left: .26in; bottom: .10in; color: var(--muted); font: 800 7pt/1.2 Arial, sans-serif; letter-spacing: .08em; }
+.lc-causeway { position: absolute; border: 1px solid var(--ink); background: var(--paper); }
+.lc-cw-n { left: 2.235in; top: .20in; width: .13in; height: .705in; }
+.lc-cw-s { left: 2.235in; top: 1.575in; width: .13in; height: .675in; }
+.lc-cw-e { top: 1.1975in; left: 3.15in; height: .13in; width: 1.25in; }
+.lc-cw-w { top: 1.1975in; left: .20in; height: .13in; width: 1.25in; }
+.lc-causeway-label { position: absolute; right: .30in; top: .96in; color: var(--ink); font: 800 6.6pt/1.2 Arial, sans-serif; letter-spacing: .06em; }
+.lc-island { position: absolute; left: 1.45in; top: .835in; width: 1.70in; height: .74in; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 2px; border: 2px solid var(--ink); background: var(--panel-light); text-align: center; }
+.lc-island-name { font: 800 8pt/1.15 Arial, sans-serif; }
+.lc-island-sub { color: var(--muted); font-size: 6.4pt; line-height: 1.1; }
+.lc-mark { position: absolute; width: .07in; height: .07in; border: 1px solid var(--ink); background: var(--panel); }
+.lc-m1 { left: .55in; bottom: .055in; }
+.lc-m2 { left: 1.15in; bottom: .055in; }
+.lc-m3 { left: 1.75in; bottom: .055in; }
+.lc-m4 { left: 2.75in; bottom: .055in; }
+.lc-m5 { left: 3.35in; bottom: .055in; }
+.lc-m6 { left: 3.95in; bottom: .055in; }
+.lc-note { margin: 3px 0 0 !important; font-size: 7.2pt; color: var(--muted); }
+
+/* ── Figure family — the chinampa system at two scales ─────────────────────
+   Panel A is a cut-through of one field; Panel B is the basin the field sits in.
+   The lake-bottom bar runs the whole width of Panel A, beneath the canals and
+   beneath the field alike, because that is the single relationship this case
+   exists to get right. */
+.chsystem { padding: 2px 0 0; }
+.chs-panel { padding: 3px 5px 4px; border: 1px solid var(--ink); background: var(--paper); }
+.chs-panel + .chs-panel { margin-top: 0; }
+.chs-panel-tag { display: block; margin-bottom: 3px; color: var(--institution); font: 800 6.8pt/1.2 monospace; letter-spacing: .06em; }
+.chs-field { display: grid; grid-template-columns: .82in minmax(0, 1fr) .82in; gap: 4px; align-items: stretch; }
+.chs-canal { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 3px; border: 1px solid var(--ink); background: var(--neutral-field); text-align: center; }
+.chs-canal-name { font: 800 7pt/1.15 Arial, sans-serif; letter-spacing: .04em; }
+.chs-canal-note { color: var(--muted); font-size: 6.2pt; line-height: 1.1; }
+.chs-stack { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.chs-willow { padding: 0 4px; color: var(--muted); font-size: 6.4pt; text-align: center; letter-spacing: .02em; }
+.chs-layer { padding: 2px 5px; border: 1px solid var(--ink); background: var(--panel-light); font-size: 6.8pt; line-height: 1.14; }
+.chs-layer strong { display: inline-block; margin-right: 5px; font: 800 6.9pt/1.15 Arial, sans-serif; letter-spacing: .02em; }
+.chs-layer span { color: var(--muted); }
+.chs-crop { background: var(--accent-pale); }
+.chs-base { border-width: 2px; }
+.chs-bed { margin-top: 3px; padding: 2px 5px; border: 2px solid var(--ink); background: var(--panel); font: 800 7pt/1.2 Arial, sans-serif; letter-spacing: .1em; text-align: center; }
+.chs-rule { margin: 3px 0 0 !important; padding: 2px 5px; border: 1px solid var(--ink); background: var(--paper); font-size: 7.6pt; text-align: center; }
+.chs-flow { margin: 3px 0 0 !important; font-size: 7.1pt; color: var(--muted); }
+.chs-arrow { display: inline-block; min-width: .16in; margin-right: 4px; color: var(--institution); font-size: 8pt; }
+.chs-join { margin: 3px 0 !important; padding: 2px 5px; border-left: 3px solid var(--secondary); background: var(--panel-light); font-size: 7.2pt; }
+.chs-basin { display: grid; grid-template-columns: 1.25fr 1fr .5in 1fr; gap: 3px; align-items: stretch; }
+.chs-zone { padding: 3px 5px; border: 1px solid var(--ink); background: var(--neutral-field); font-size: 6.7pt; line-height: 1.14; }
+.chs-zone strong { display: block; font: 800 6.9pt/1.2 Arial, sans-serif; }
+.chs-zone span { color: var(--muted); }
+.chs-open { background: var(--panel-light); }
+.chs-dike { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; padding: 3px 2px; border: 2px solid var(--ink); background: var(--panel); text-align: center; }
+.chs-dike strong { font: 800 6.9pt/1.2 Arial, sans-serif; letter-spacing: .04em; }
+.chs-dike span { color: var(--muted); font-size: 6pt; line-height: 1.05; }
+.chs-note { margin: 3px 0 0 !important; font-size: 7.1pt; color: var(--muted); }
+
+/* ── The two evidence layers ───────────────────────────────────────────────
+   Two bands that must not be allowed to lean on each other, drawn apart and
+   named in words, with the rule that joins them printed underneath. */
+.layerbox { margin: 4px 0; }
+.ly-band { display: grid; grid-template-columns: 1.28in minmax(0, 1fr); gap: 6px; align-items: start; margin-bottom: 3px; padding: 3px 5px; border: 1px solid var(--ink); background: var(--panel-light); font-size: 7.8pt; line-height: 1.18; }
+.ly-band p { margin: 0; }
+.ly-tag { font: 800 7.2pt/1.2 Arial, sans-serif; letter-spacing: .03em; }
+.ly-rule { margin: 3px 0 0 !important; padding: 3px 6px; border: 1px solid var(--institution); border-left: 4px solid var(--institution); background: var(--accent-pale); font-size: 7.8pt; }
+
+/* ── The engineered landscape explanation ─────────────────────────────────*/
+.explanation { margin: 4px 0; padding: 3px 4px; border: 1px solid var(--rule); border-left: 4px solid var(--institution); background: var(--panel-light); }
+.explanation-title { display: block; margin-bottom: 2px; color: var(--institution); font: 800 7.2pt/1.2 monospace; letter-spacing: .05em; }
+.ex-item { display: grid; grid-template-columns: .24in minmax(0, 1fr); gap: 5px; margin: 1px 0; }
+.ex-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.ex-pair .ex-item { margin: 1px 0; }
+.ex-tag { align-self: start; width: .24in; border: 1px solid var(--ink); background: var(--accent-pale); font: 800 8pt/1.5 Arial, sans-serif; text-align: center; }
+.ex-body { min-width: 0; }
+.ex-body .response-label { margin: 0 0 1px; }
+.memo-frame { display: inline-block; margin: 0 0 1px 2px; padding: 0 5px; border-left: 3px solid var(--secondary); background: var(--paper); font-size: 7.5pt; font-style: italic; }
+
+/* ── The contribution-and-limitation matrix ───────────────────────────────*/
+.contribution-table th:first-child { width: 1.42in; }
+.contribution-table td { padding: 2px 4px; }
+.contribution-table .table-response { min-height: .86in; }
+.accessible .contribution-table .table-response { min-height: .90in; }
+.src-note { display: block; margin-top: 1px; color: var(--muted); font: 700 6.4pt/1.2 monospace; }
+.model-row .prefilled, .prefilled { background: var(--neutral-field); font-size: 7.4pt; }
+.model-example { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--record-cyan); color: var(--record-cyan); font: 700 6.1pt/1.4 monospace; letter-spacing: .04em; }
+
+/* ── Compact judgment slots ───────────────────────────────────────────────
+   Label/field pairs sit side by side as content-sized units with one controlled
+   gap between them, rather than being stretched across half the page each. */
+.rail-marker { display: grid; grid-template-columns: auto minmax(0, 1.15in); gap: 8px; align-items: center; padding: 2px 0; }
+.rail-marker .response-label { margin: 0; }
+.mark-response { display: inline-block; min-height: .3in; padding: 2px 4px; }
+.mark-response.wide { min-width: 1.05in; }
+.count-grid { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 30px; margin: 2px 0 3px; }
+.option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; margin: 2px 0 0; padding-left: 0; list-style: none; }
+.option-grid li { margin: 0; }
+
+/* ── Answer Key ────────────────────────────────────────────────────────────*/
+.key-note { margin: 3px 0; font-size: 7.9pt; }
+.answer-block { margin: 4px 0; padding: 5px 8px; border: 1px solid var(--rule); border-left: 4px solid var(--secondary); background: var(--panel-light); font-size: 8.2pt; }
+.answer-block p { margin: 3px 0; }
+.answer-list { margin: 0; padding-left: 18px; }
+.answer-list li { margin: 3px 0; }
+.answer-block .data-table { margin: 3px 0; background: var(--paper); }
+
+/* ── Teacher procedure ─────────────────────────────────────────────────────*/
+.procedure { padding-left: 18px; font-size: 8.3pt; }
+.procedure > li { margin: 4px 0; }
+.procedure p { margin: 2px 0 0; }
+.fallback-map li { margin: 2px 0; }
+
+/* ── Grayscale ─────────────────────────────────────────────────────────────
+   Nothing in this package depends on hue, so grayscale removes decoration and
+   not information. The four status chips, the SOURCE STATUS lines, the two
+   evidence-layer names, the GIVEN and WORKED EXAMPLE markers, the two panel
+   scale names and the printed rule that the field does not float are all words
+   and all survive. The border weights that distinguish the staked base, the
+   lake bottom and the dike from ordinary components are geometry rather than
+   colour. */
+.grayscale .status-chip,
+.grayscale .model-example { color: var(--ink); border-color: var(--ink); background: var(--neutral-field); }
+.grayscale .dossier-card[data-evidence-layer="reconstructed"],
+.grayscale .dossier-card[data-evidence-layer="documented"],
+.grayscale .dossier-card[data-evidence-layer="historical-map"],
+.grayscale .dossier-card[data-evidence-layer="curriculum-model"] { background: var(--panel-light); border-left-color: var(--ink); }
+.grayscale .dossier-card[data-evidence-layer="documented"] .source-status,
+.grayscale .dossier-card[data-evidence-layer="historical-map"] .source-status,
+.grayscale .source-status,
+.grayscale .fig-meta,
+.grayscale .src-note { color: var(--ink); }

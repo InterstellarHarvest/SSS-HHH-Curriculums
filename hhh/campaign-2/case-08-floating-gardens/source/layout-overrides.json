@@ -1,0 +1,493 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C2-CASE08",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C2-CASE08:accessible:t2:a2-water",
+      "persistId": "a2-water",
+      "pageId": "accessible-gardens-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 one kind of water evidence you would look for",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t2:a2-soil",
+      "persistId": "a2-soil",
+      "pageId": "accessible-gardens-05",
+      "taskId": 2,
+      "label": "Accessible Task 2 one kind of soil or land evidence you would look for",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t3:a3-connection",
+      "persistId": "a3-connection",
+      "pageId": "accessible-gardens-07",
+      "taskId": 3,
+      "label": "Accessible Task 3 how the plan shows the city connected to the land",
+      "minPx": 72,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t3:a3-geography",
+      "persistId": "a3-geography",
+      "pageId": "accessible-gardens-07",
+      "taskId": 3,
+      "label": "Accessible Task 3 why the lake setting mattered for farming",
+      "minPx": 88,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t3:a3-limit",
+      "persistId": "a3-limit",
+      "pageId": "accessible-gardens-07",
+      "taskId": 3,
+      "label": "Accessible Task 3 one limitation of the map as evidence about 1487",
+      "minPx": 72,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t4:a4-build",
+      "persistId": "a4-build",
+      "pageId": "accessible-gardens-08",
+      "taskId": 4,
+      "label": "Accessible Task 4 how a chinampa is built and what holds it in place",
+      "minPx": 80,
+      "maxPx": 360
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t4:a4-renewal",
+      "persistId": "a4-renewal",
+      "pageId": "accessible-gardens-08",
+      "taskId": 4,
+      "label": "Accessible Task 4 how soil renewal supports repeated cultivation",
+      "minPx": 80,
+      "maxPx": 360
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t4:a4-basin",
+      "persistId": "a4-basin",
+      "pageId": "accessible-gardens-08",
+      "taskId": 4,
+      "label": "Accessible Task 4 how basin-scale water management reaches one plot",
+      "minPx": 80,
+      "maxPx": 360
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t6:a6-inside",
+      "persistId": "a6-inside",
+      "pageId": "accessible-gardens-09",
+      "taskId": 6,
+      "label": "Accessible Task 6 the reconstructed evidence set against the collapse account",
+      "minPx": 92,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t6:a6-outside",
+      "persistId": "a6-outside",
+      "pageId": "accessible-gardens-09",
+      "taskId": 6,
+      "label": "Accessible Task 6 what the real-world sources do and do not establish",
+      "minPx": 92,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t7:a7-definition",
+      "persistId": "a7-definition",
+      "pageId": "accessible-gardens-10",
+      "taskId": 7,
+      "label": "Accessible Task 7 what a chinampa is",
+      "minPx": 48,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t7:a7-link-1",
+      "persistId": "a7-link-1",
+      "pageId": "accessible-gardens-10",
+      "taskId": 7,
+      "label": "Accessible Task 7 evidence link 1 and its source",
+      "minPx": 44,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t7:a7-link-2",
+      "persistId": "a7-link-2",
+      "pageId": "accessible-gardens-10",
+      "taskId": 7,
+      "label": "Accessible Task 7 evidence link 2 and its source",
+      "minPx": 44,
+      "maxPx": 260
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t7:a7-geography",
+      "persistId": "a7-geography",
+      "pageId": "accessible-gardens-10",
+      "taskId": 7,
+      "label": "Accessible Task 7 how the lake setting made this farming possible",
+      "minPx": 48,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t7:a7-qualification",
+      "persistId": "a7-qualification",
+      "pageId": "accessible-gardens-10",
+      "taskId": 7,
+      "label": "Accessible Task 7 one thing a named source cannot establish",
+      "minPx": 48,
+      "maxPx": 280
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t7:a7-synthesis",
+      "persistId": "a7-synthesis",
+      "pageId": "accessible-gardens-10",
+      "taskId": 7,
+      "label": "Accessible Task 7 how the parts of the system work together",
+      "minPx": 80,
+      "maxPx": 400
+    },
+    {
+      "id": "HHH-C2-CASE08:accessible:t8:a8-why",
+      "persistId": "a8-why",
+      "pageId": "accessible-gardens-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 why those two checks would matter",
+      "minPx": 72,
+      "maxPx": 360
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a5-r2-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-r3-contrib",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-r3-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-r4-contrib",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a5-r4-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a8-physical",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a8-source",
+      "reason": "compact-answer"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C2-CASE08:student:t2:t2-water",
+        "persistId": "t2-water",
+        "pageId": "student-gardens-03",
+        "taskId": 2,
+        "label": "Task 2 one kind of water evidence you would look for",
+        "minPx": 60,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t2:t2-soil",
+        "persistId": "t2-soil",
+        "pageId": "student-gardens-03",
+        "taskId": 2,
+        "label": "Task 2 one kind of soil or land evidence you would look for",
+        "minPx": 60,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t3:t3-setting",
+        "persistId": "t3-setting",
+        "pageId": "student-gardens-05",
+        "taskId": 3,
+        "label": "Task 3 where the city stands and what surrounds it",
+        "minPx": 56,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t3:t3-connection",
+        "persistId": "t3-connection",
+        "pageId": "student-gardens-05",
+        "taskId": 3,
+        "label": "Task 3 how the plan shows the city connected to the land",
+        "minPx": 56,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t3:t3-geography",
+        "persistId": "t3-geography",
+        "pageId": "student-gardens-05",
+        "taskId": 3,
+        "label": "Task 3 why the lake setting mattered for farming",
+        "minPx": 80,
+        "maxPx": 400
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t3:t3-limit",
+        "persistId": "t3-limit",
+        "pageId": "student-gardens-05",
+        "taskId": 3,
+        "label": "Task 3 one limitation of the map as evidence about 1487",
+        "minPx": 56,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t4:t4-build",
+        "persistId": "t4-build",
+        "pageId": "student-gardens-06",
+        "taskId": 4,
+        "label": "Task 4 how a chinampa is built and what holds it in place",
+        "minPx": 60,
+        "maxPx": 340
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t4:t4-canals",
+        "persistId": "t4-canals",
+        "pageId": "student-gardens-06",
+        "taskId": 4,
+        "label": "Task 4 what work the canals do in the system",
+        "minPx": 60,
+        "maxPx": 340
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t4:t4-renewal",
+        "persistId": "t4-renewal",
+        "pageId": "student-gardens-06",
+        "taskId": 4,
+        "label": "Task 4 how soil renewal supports repeated cultivation",
+        "minPx": 60,
+        "maxPx": 340
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t4:t4-basin",
+        "persistId": "t4-basin",
+        "pageId": "student-gardens-06",
+        "taskId": 4,
+        "label": "Task 4 how basin-scale water management reaches one plot",
+        "minPx": 60,
+        "maxPx": 340
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t6:t6-inside",
+        "persistId": "t6-inside",
+        "pageId": "student-gardens-07",
+        "taskId": 6,
+        "label": "Task 6 the reconstructed evidence set against the collapse account",
+        "minPx": 80,
+        "maxPx": 400
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t6:t6-outside",
+        "persistId": "t6-outside",
+        "pageId": "student-gardens-07",
+        "taskId": 6,
+        "label": "Task 6 what the real-world sources do and do not establish",
+        "minPx": 80,
+        "maxPx": 400
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t7:t7-definition",
+        "persistId": "t7-definition",
+        "pageId": "student-gardens-08",
+        "taskId": 7,
+        "label": "Task 7 what a chinampa is",
+        "minPx": 44,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t7:t7-link-1",
+        "persistId": "t7-link-1",
+        "pageId": "student-gardens-08",
+        "taskId": 7,
+        "label": "Task 7 evidence link 1 and its source",
+        "minPx": 40,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t7:t7-link-2",
+        "persistId": "t7-link-2",
+        "pageId": "student-gardens-08",
+        "taskId": 7,
+        "label": "Task 7 evidence link 2 and its source",
+        "minPx": 40,
+        "maxPx": 260
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t7:t7-geography",
+        "persistId": "t7-geography",
+        "pageId": "student-gardens-08",
+        "taskId": 7,
+        "label": "Task 7 how the lake setting made this farming possible",
+        "minPx": 44,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t7:t7-qualification",
+        "persistId": "t7-qualification",
+        "pageId": "student-gardens-08",
+        "taskId": 7,
+        "label": "Task 7 one thing a named source cannot establish",
+        "minPx": 44,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t7:t7-synthesis",
+        "persistId": "t7-synthesis",
+        "pageId": "student-gardens-08",
+        "taskId": 7,
+        "label": "Task 7 how the parts of the system work together",
+        "minPx": 80,
+        "maxPx": 400
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t8:t8-physical",
+        "persistId": "t8-physical",
+        "pageId": "student-gardens-08",
+        "taskId": 8,
+        "label": "Task 8 one physical-landscape check",
+        "minPx": 40,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t8:t8-source",
+        "persistId": "t8-source",
+        "pageId": "student-gardens-08",
+        "taskId": 8,
+        "label": "Task 8 one source or provenance check",
+        "minPx": 40,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE08:student:t8:t8-why",
+        "persistId": "t8-why",
+        "pageId": "student-gardens-08",
+        "taskId": 8,
+        "label": "Task 8 why those two checks would matter",
+        "minPx": 72,
+        "maxPx": 380
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t5-r1-contrib",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r1-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r2-contrib",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r2-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r3-contrib",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r3-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r4-contrib",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t5-r4-cannot",
+        "reason": "table-cell"
+      }
+    ],
+    "overrides": {}
+  }
+}
