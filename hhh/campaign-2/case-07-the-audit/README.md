@@ -5,7 +5,7 @@
 **Setting:** TAA Facility, 2387 — **fictional**
 **Instructional type:** `CORE_CASE`
 **Version:** 0.1
-**Status:** `DRAFT` — unreleased candidate, owner review not started
+**Status:** `APPROVED_STABLE` — released 2026-08-19
 **Blueprint:** `hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md`, Core Case 07
 **Audit baseline:** `hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md`
 **Game commit:** `d9fc16baf272cb543c29cbd0c06ec85efad60be8`
@@ -18,16 +18,34 @@ baseline `c078025678d18fb4ade9f3d15a390f01b4100733` and the approved Blueprint.
 
 | Gate | State |
 | --- | --- |
-| Package status | `DRAFT` |
-| Owner review | `OWNER_REVIEW_NOT_STARTED` |
-| Print status | `NOT_RUN` |
-| Release record | none — an unreleased candidate has no release history |
-| Approval record | none |
+| Package status | `APPROVED_STABLE` |
+| Owner review | `OWNER_REVIEW_PASS` |
+| Print status | `PASS` |
+| Approval date | 2026-08-19 |
+| Owner | Nate / Owner |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/CASE07_OWNER_APPROVAL_v0.1.md`](history/CASE07_OWNER_APPROVAL_v0.1.md) |
 
-This is a **candidate**, not a release. No `history/` directory exists, no release or
-owner-approval record has been created, and none may be created before the owner has
-passed both the Curriculum Editor review and a physical print test. An unreleased
-native candidate is not `APPROVED_STABLE`.
+The owner passed both gates — on-screen Curriculum Editor visual review and physical
+print review — and approved the byte set for release. The owner supplied no print
+scale, browser, printer or colour mode, and none is asserted anywhere in this release;
+the engineering colour and grayscale render checks in the release record are a separate
+internal measurement.
+
+### Printable baseline and certified-source commit are not the same commit
+
+| | Commit |
+| --- | --- |
+| **Owner-approved printable baseline** | `14b301c42d80c5d4a0a62bc94530ea6638b5a62c` |
+| **Released certified-source commit** | the release-conversion commit recorded in `history/release-v0.1.json` |
+
+The owner reviewed and printed `14b301c`. Release conversion changes no printable
+source: `content.html`, `presentation.css` and `layout-overrides.json` are
+byte-identical to that commit, and only `task-registry.js` moves, in its two lifecycle
+keys, neither of which renders. Because the released `task-registry.js` bytes first
+exist at the release-conversion commit, the release record's source pins name that
+commit rather than the printable baseline. The two are recorded separately and
+deliberately, and conflating them is the error this section exists to prevent.
 
 Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a
 release gate, and any PDF exported from the browser is noncanonical and carries no

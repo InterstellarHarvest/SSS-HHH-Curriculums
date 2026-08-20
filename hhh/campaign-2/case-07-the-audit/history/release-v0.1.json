@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C2-CASE07",
+  "curriculumVersion": "0.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-19",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "COMMIT_A_PENDING",
+  "canonicalSourceApprovalCommit": "COMMIT_A_PENDING",
+  "sourceHashes": {
+    "content": "aee07fc3700856d24c4ba388dbe30c1bbebb65bc9f9cc0c1565997902495a155",
+    "presentation": "0f0d4232ed1e80fd1ed773c346051ee5c11ac32ba47a798c28fcac02a4f866dc",
+    "taskRegistry": "488ab64ad69989d0c02f42fe3379565d6fa5fb41822c1b5ab80dc9a0f7271ac7",
+    "layoutOverrides": "bd973232e602051decf99d8ad38ee93adcce768ec3ea360f8ef7903bb3a1ba02"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "0ef277c3299434977495887d9a3630901b5e795faf6d65af0d8e87ba2ab0d78e",
+    "teacher": "c2569863a6c309c5c3a401fa6caae32e9c3680d100f5a91a285826cfcfeb3a72",
+    "answer": "ed7256f5aa6ff8b515cc3f8d16d5bfa491d680ec1248bdfed9d025232dcd61c1",
+    "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 2 is a full current-contract release and claims no SSS legacy exemption. The Accessible DOM hash 91a64d7d212b91e2780dc7e0115a817b1263b9af5193f7878649e7ebc4724578 was additionally computed and compared against the owner-approved printable baseline to prove parity across all four roles; content.html is byte-identical between the two trees, so all four hashes are unchanged by release conversion."
+  },
+  "rolePageCounts": {
+    "student": 8,
+    "teacher": 7,
+    "answer": 4,
+    "accessible": 10
+  },
+  "acceptedValidation": {
+    "status": "PROVISIONAL_PENDING_COMMIT_A",
+    "note": "Deliberately provisional at the release-conversion commit. Release-mode validation cannot be measured until the release-conversion commit exists and its SHA is resolved into the pins above; recording candidate totals here would misrepresent a tree that does not yet exist. The real measured release-mode results are written by the pin-resolution commit that immediately follows."
+  },
+  "acceptedPrintStatus": "PASS. The owner completed physical print review of the owner-approved printable baseline 14b301c42d80c5d4a0a62bc94530ea6638b5a62c and approved it on 2026-08-19. The owner supplied no print scale, browser, printer, paper or colour mode, and none is asserted. Production is HTML-only; no canonical PDF artifact exists, PDF generation is not a release gate, and any browser-exported PDF is noncanonical with no accessibility guarantee.",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Core Case 07 was authored natively as a canonical case package under the package-source workflow. No master document, published role HTML, PDF, screenshot or other generated artifact was ever created or committed for it, so there is nothing to recover and nothing to retire. The canonical source is the whole release."
+  },
+  "formerArtifactRecoveryCommit": "COMMIT_A_PENDING",
+  "recovery": "No artifact recovery applies. The canonical source at the release-conversion commit is the whole release.",
+  "priorApprovedReleases": [],
+  "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical, carries no accessibility guarantee, and is not a project release gate.",
+  "migrationNotes": [
+    "First HHH Campaign 2 release and the seventh HHH Core Case, produced against the released Campaign 1 Synthesis baseline c078025678d18fb4ade9f3d15a390f01b4100733 and the approved Blueprint.",
+    "Owner-approved printable baseline: 14b301c42d80c5d4a0a62bc94530ea6638b5a62c. The owner reviewed that byte set on screen through the local Curriculum Editor and completed physical print review of it. The owner supplied no print scale, browser, printer or colour mode and none is claimed anywhere in this release. Release conversion changed no printable source: content.html, presentation.css and layout-overrides.json are byte-identical to that commit, and only task-registry.js moved, to carry the lifecycle stamp, which renders nothing.",
+    "Certified release-source commit: COMMIT_A_PENDING. The released task-registry.js bytes first exist at the release-conversion commit, because the lifecycle stamp is created by release conversion, so the pins identify that commit rather than the owner printable baseline. This is proven by walking every commit in the feature range and testing the full released four-file byte set at each, not assumed. The two are recorded separately and deliberately, following the Case 03, Case 04, Case 05 and Case 06 precedent.",
+    "Five linear commits, zero merges, each independently reviewed before the next was authorised. fcb3b9060cd608baaa650e2b5f219a477df3b355 was the original candidate; the first full independent review returned CASE07_INDEPENDENT_REVIEW_REMEDIATION_REQUIRED on two findings. 143f953dde7c15f470926c0acc2806009340f412 corrected the Task 3 item 3 evidence attribution and demoted CCSS RH.6-8.9 to supporting. 0c4e0560ea625cfea3ba6b5070254880c025e96d locked the corrected standards partition in the scoped validator, and the re-review returned CASE07_REMEDIATION_REREVIEW_PASS_WITH_NONBLOCKING_NOTES. 45e3826741e56ab5554d608a84ad3a08868f563d added the shared visual clarification. 14b301c42d80c5d4a0a62bc94530ea6638b5a62c applied the owner visual remediation, and that review returned CASE07_OWNER_VISUAL_REVIEW_PASS_WITH_NONBLOCKING_NOTES.",
+    "Two findings were raised against the original candidate and both were remediated before owner review. F-1, MAJOR: Task 3 item 3 attributed Copy B's recall, re-filing and recorded reason to Source C, the TAA audit log, which contains none of it; the evidence lives in Source D, in the note on file and the custody entries. The learner item now reads 'The note on file records why Copy B was recalled mid-mission: to correct the grain count.' F-2, MODERATE: CCSS RH.6-8.9 was claimed as directly assessed, but no learner performs a primary-versus-secondary analysis in this packet, so it was demoted to supporting in the task registry, the Teacher standards table, the README and the scoped validator.",
+    "The exact commit the owner approved was independently confirmed after approval with no modifications - the post-owner confirmation was read-only and changed no bytes - and no commit existed after the owner-approved printable baseline before release conversion began. Final independent disposition: INDEPENDENT_CASE07_POST_OWNER_PASS - READY_FOR_RELEASE_CONVERSION.",
+    "Frozen game-source baseline: d9fc16baf272cb543c29cbd0c06ec85efad60be8. The Phase 1 audit baseline remains 9b8545ed6ecf98b337326390400076e36789e056, and the audit record of reference is hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md against the approved Blueprint hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md.",
+    "Runtime case identity: C2 L0, The Audit, the TAA Facility in a fictional 2387. instructionalType CORE_CASE.",
+    "The closed game finding HHH-GAME-C2L0-001, classified GAME_REMEDIATION_BLOCKS_FINALIZATION, was resolved in the game at d9fc16baf272cb543c29cbd0c06ec85efad60be8 and is recorded RESOLVED_VERIFIED. This package neither reopens the game nor propagates the retired 'too clean means forged' heuristic. It teaches the remediated rule instead: authenticity is judged from several kinds of evidence at once, and no single surface feature proves authenticity or forgery.",
+    "Eight visible tasks carry the Core Case spine, and the culminating product is a Record Validation Memorandum rather than canonical CER. CER is declined on the Blueprint ground Case 06 established: the memorandum keeps the finding, two evidentiary links from different sources, the connection between them, one refused clue and a stated limit as six separately scored parts, which a single-claim frame cannot hold. No role renders the shared canonical CER component and no role declares a CER contract.",
+    "Task 2 is deliberately non-keyable. It records a provisional authenticity test taken before the method arrives, there is no correct answer, and the Answer Key omits it without renumbering while stating on its first page that it is not keyed. The Teacher Guide carries the guidance for reading it.",
+    "Complete in-packet no-game dossier: the audit briefing, the pattern across the flagged records, the TAA audit log, and the competing memo pair with both custody histories, plus a real-world reference card. Campaign 2 has no level selector and no direct-launch mode, so every assessed piece of evidence exists in the learner packet and the Teacher Guide supplies both a gameplay route and a complete no-game route.",
+    "The real-world layer uses only the two Phase 1 certified sources, H10, the Society of American Archivists Dictionary of Archives Terminology entry for diplomatics, and H11, the U.S. National Archives trustworthy-record guidance. No new source certification was performed and no new factual claim was added. No historical forgery example, handwriting claim, forensic technique or statistic appears anywhere in the package.",
+    "Standards: three directly assessed - C3 D3.1.6-8, C3 D3.2.6-8 and CCSS RH.6-8.6 - and two supporting, CCSS WHST.6-8.1 and CCSS RH.6-8.9. No NGSS performance expectation is claimed at any status, because the case contains no science content.",
+    "Declared Accessible adaptations: exactly four, and no fifth. A modelled judgment in Task 3, supplied custody totals in Task 4, and a modelled row plus one prefilled cell in Task 5. One chunking split, which is not a scored difference: Task 2's open listing of two kinds of evidence is collected as two bounded slots. Edition parity is enforced structurally through editionResponseContract across 24 subparts - 19 parity, 4 declared reductions and 1 chunking, with accessible-only prohibited.",
+    "Regression protection retained by the release: five closed-class authenticity semantic guards each paired with a positive structural requirement, the three-band source-status contract, the four-source dossier requirement, task-reference parity, the edition response contract, the standards lock at exact list equality, the Task 7 multi-factor requirement with its floors in both directions, page identity, persistent response controls, HTML-only enforcement, and the controlled learner-facing SOURCE STATUS band form.",
+    "Visible learner provenance follows shared/visual-style-guide/amendments/STUDENT_FACING_METADATA_AND_VISUAL_HIERARCHY_v1.0.1.md, added at 45e3826741e56ab5554d608a84ad3a08868f563d as part of this release line. Sixteen learner-visible bands use exactly three controlled forms - SOURCE STATUS · FICTIONAL CASE EVIDENCE, SOURCE STATUS · DOCUMENTED and SOURCE STATUS · CURRICULUM-ORIGINAL SCHEMATIC - while the machine-readable evidence-layer markup is unchanged and is what validation binds to.",
+    "Four nonblocking observations are carried forward as future maintenance and were deliberately not reopened during release conversion: the authenticity guard misses some ordinary-language paraphrases outside its declared closed classes; it is negation-blind on two constructed refusal wordings; the Teacher assessment-guidance paragraph is dense with bold task references; and the cerDecision rationale miscounts its own enumeration. None affects a released classroom byte.",
+    "This release claims no SSS legacy exemption. It is a full current-contract release with frozen Student, Teacher and Answer Key DOM baselines; the Accessible DOM hash was additionally computed and compared at both trees to prove parity across all four roles."
+  ],
+  "retiredArtifacts": []
+}

@@ -453,15 +453,17 @@
               "title": "The Audit",
               "instructionalType": "CORE_CASE",
               "version": "0.1",
-              "status": "DRAFT",
+              "status": "APPROVED_STABLE",
               "editorShell": "1.0",
               "editorPackage": "hhh/campaign-2/case-07-the-audit/source/case-package.json",
+              "historyRecord": "hhh/campaign-2/case-07-the-audit/history/release-v0.1.json",
               "centralWorkflow": "CANONICAL",
-              "packageStatus": "DRAFT",
+              "packageStatus": "APPROVED",
               "approval": {
+                "date": "2026-08-19",
                 "owner": "Nate / Owner",
-                "status": "OWNER_REVIEW_NOT_STARTED",
-                "printStatus": "NOT_RUN"
+                "status": "APPROVED",
+                "printStatus": "PASS"
               }
             },
             {

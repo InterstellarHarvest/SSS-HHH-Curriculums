@@ -8,12 +8,14 @@
   "subtitle": "Campaign 2 · Case 07 · TAA Facility, 2387",
   "location": "TAA Facility",
   "version": "0.1",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-19",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-2/case-07-the-audit/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -158,7 +160,7 @@
   "sourceHashes": {
     "content": "aee07fc3700856d24c4ba388dbe30c1bbebb65bc9f9cc0c1565997902495a155",
     "presentation": "0f0d4232ed1e80fd1ed773c346051ee5c11ac32ba47a798c28fcac02a4f866dc",
-    "taskRegistry": "934396d75886ee635eed66ff074ee2c27585b87acd7e7129362968259bda6c64",
+    "taskRegistry": "488ab64ad69989d0c02f42fe3379565d6fa5fb41822c1b5ab80dc9a0f7271ac7",
     "layoutOverrides": "bd973232e602051decf99d8ad38ee93adcce768ec3ea360f8ef7903bb3a1ba02"
   }
 }
