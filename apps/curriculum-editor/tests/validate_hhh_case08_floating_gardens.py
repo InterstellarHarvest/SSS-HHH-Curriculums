@@ -55,6 +55,7 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -70,6 +71,26 @@ LEARNER_ROLES = ("student", "accessible")
 ALL_ROLES = ("student", "teacher", "answer", "accessible")
 GAME_COMMIT = "d9fc16baf272cb543c29cbd0c06ec85efad60be8"
 AUDITED_GAME_COMMIT = "9b8545ed6ecf98b337326390400076e36789e056"
+HISTORY = UNIT / "history"
+RELEASE_RECORD = HISTORY / "release-v0.1.json"
+OWNER_APPROVAL_RECORD = HISTORY / "CASE08_OWNER_APPROVAL_v0.1.md"
+RELEASE_RECORD_PATH = "hhh/campaign-2/case-08-floating-gardens/history/release-v0.1.json"
+APPROVAL_DATE = "2026-08-20"
+OWNER = "Nate / Owner"
+# The exact byte set the owner reviewed on screen and printed. It is NOT the
+# certified-source commit: the released task-registry.js bytes are created by release
+# conversion, so the release pins name the release-conversion commit. Conflating the
+# two is the error these checks exist to prevent.
+OWNER_PRINTABLE_BASELINE = "a3bbb0388cdb4233500fcfd4deadc8c939a7426e"
+OWNER_STATEMENT = "Approved, including physical print review complete and approved."
+PENDING_TOKEN_PATTERN = re.compile(r"COMMIT_[A-Z]_PENDING|PENDING|TBD|XXX|PLACEHOLDER")
+COMMIT_PATTERN = re.compile(r"^[a-f0-9]{40}$")
+RESOLVED_COMMIT_FIELDS = ("originalReleaseApprovalCommit",
+                          "canonicalSourceApprovalCommit",
+                          "formerArtifactRecoveryCommit")
+SOURCE_FILES = (("content", "content.html"), ("presentation", "presentation.css"),
+                ("taskRegistry", "task-registry.js"),
+                ("layoutOverrides", "layout-overrides.json"))
 
 # Propositions break on terminal punctuation only. A semicolon, colon or dash is
 # internal punctuation and not a safety boundary: splitting on them would let
@@ -265,22 +286,33 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                   (package["id"], package["version"], package["instructionalType"],
                    package["curriculum"], package["campaign"])
                   == (CASE_ID, "0.1", "CORE_CASE", "HHH", "campaign-2"))
-    results.check("the package and task registry both carry the unreleased candidate lifecycle",
-                  package["status"] == "DRAFT" and registry["status"] == "DRAFT"
-                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_NOT_STARTED"
+    # Release conversion turned the four candidate-state lifecycle assertions below into
+    # released-state obligations. Nothing was deleted: every gate the candidate checked
+    # in one direction is still checked, in the other.
+    results.check("the package and task registry both carry the released lifecycle",
+                  package["status"] == "APPROVED_STABLE" and registry["status"] == "APPROVED_STABLE"
+                  and registry["ownerReviewStatus"] == "OWNER_REVIEW_PASS"
                   and registry["version"] == "0.1"
-                  and package["approval"]["status"] == "OWNER_REVIEW_NOT_STARTED"
-                  and package["approval"]["printStatus"] == "NOT_RUN"
-                  and package["approval"]["owner"] == "Nate / Owner"
-                  and "date" not in package["approval"],
+                  and package["approval"]["status"] == "APPROVED"
+                  and package["approval"]["printStatus"] == "PASS"
+                  and package["approval"]["owner"] == OWNER
+                  and package["approval"]["date"] == APPROVAL_DATE,
                   json.dumps({"package": package["status"], "registry": registry["status"],
                               "approval": package["approval"]}))
-    results.check("no release history exists or is declared for the candidate",
-                  not (UNIT / "history").exists() and "releaseHistory" not in package,
+    results.check("the package points at the release record",
+                  package.get("releaseHistory") == RELEASE_RECORD_PATH,
+                  package.get("releaseHistory"))
+    results.check("the owner approval record and the release record both exist",
+                  OWNER_APPROVAL_RECORD.is_file() and RELEASE_RECORD.is_file(),
+                  sorted(x.name for x in HISTORY.iterdir()) if HISTORY.is_dir() else "no history/")
+    results.check("the unit directory holds only README.md, source/ and history/",
+                  sorted(p.name for p in UNIT.iterdir() if p.name != ".DS_Store")
+                  == ["README.md", "history", "source"],
                   sorted(p.name for p in UNIT.iterdir()))
-    results.check("the unit directory holds only README.md and source/",
-                  sorted(p.name for p in UNIT.iterdir() if p.name != ".DS_Store") == ["README.md", "source"],
-                  sorted(p.name for p in UNIT.iterdir()))
+    results.check("history/ holds only the owner approval record and the release record",
+                  sorted(p.name for p in HISTORY.iterdir() if p.name != ".DS_Store")
+                  == ["CASE08_OWNER_APPROVAL_v0.1.md", "release-v0.1.json"],
+                  sorted(p.name for p in HISTORY.iterdir()))
     results.check("the source directory holds exactly the four canonical sources",
                   sorted(p.name for p in SOURCE.iterdir() if p.name != ".DS_Store")
                   == ["case-package.json", "content.html", "layout-overrides.json", "presentation.css",
@@ -304,16 +336,20 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
     shared = json.loads(REGISTRY_FILE.read_text(encoding="utf-8"))
     entry = next(c for cur in shared["curricula"] if cur["id"] == "HHH"
                  for camp in cur["campaigns"] for c in camp["cases"] if c["id"] == CASE_ID)
-    results.check("the existing shared registry entry is activated rather than duplicated",
-                  entry["status"] == "DRAFT" and entry["packageStatus"] == "DRAFT"
+    results.check("the shared registry entry carries the released lifecycle and its history pointer",
+                  entry["status"] == "APPROVED_STABLE" and entry["packageStatus"] == "APPROVED"
                   and entry["displayOrder"] == 10 and entry["displayLabel"] == "8 - The Floating Gardens"
                   and entry["title"] == "The Floating Gardens"
+                  and entry["instructionalType"] == "CORE_CASE" and entry["version"] == "0.1"
                   and entry["editorPackage"] == "hhh/campaign-2/case-08-floating-gardens/source/case-package.json"
-                  and "historyRecord" not in entry
-                  and entry["approval"] == {"owner": "Nate / Owner",
-                                            "status": "OWNER_REVIEW_NOT_STARTED",
-                                            "printStatus": "NOT_RUN"},
+                  and entry["historyRecord"] == RELEASE_RECORD_PATH
+                  and entry["approval"] == {"date": APPROVAL_DATE, "owner": OWNER,
+                                            "status": "APPROVED", "printStatus": "PASS"},
                   json.dumps(entry))
+    results.check("the shared registry and the package name the same release record",
+                  entry["historyRecord"] == package.get("releaseHistory") == RELEASE_RECORD_PATH,
+                  json.dumps({"registry": entry.get("historyRecord"),
+                              "package": package.get("releaseHistory")}))
     all_hhh = [c["id"] for cur in shared["curricula"] if cur["id"] == "HHH"
                for camp in cur["campaigns"] for c in camp["cases"]]
     results.check("exactly one HHH-C2-CASE08 identity exists in the shared registry",
@@ -321,6 +357,124 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
     results.check("the registry display label and the package identity agree",
                   registry["displayLabel"] == entry["displayLabel"]
                   and registry["title"] == package["title"] == entry["title"])
+
+    # --- THE RELEASE RECORD --------------------------------------------------
+    # The release record is only trustworthy if it agrees with the package it describes,
+    # resolves every commit pin to a real SHA, and can be shown to describe a tree that
+    # actually carries the bytes it claims.
+    release = json.loads(RELEASE_RECORD.read_text(encoding="utf-8"))
+    results.check("release record identity, version, owner and date match the package",
+                  (release["schemaVersion"], release["caseId"], release["curriculumVersion"],
+                   release["status"], release["approvalDate"], release["owner"])
+                  == (1, CASE_ID, package["version"], "APPROVED_STABLE",
+                      package["approval"]["date"], package["approval"]["owner"]),
+                  json.dumps({k: release.get(k) for k in
+                              ("schemaVersion", "caseId", "curriculumVersion",
+                               "status", "approvalDate", "owner")}))
+    results.check("release record source hashes match the certified source hashes",
+                  release["sourceHashes"] == package["sourceHashes"],
+                  json.dumps({"release": release["sourceHashes"],
+                              "package": package["sourceHashes"]}))
+    results.check("release record page counts match the package role structure",
+                  release["rolePageCounts"]
+                  == {role: package["rolePageStructure"][role]["pageCount"] for role in ALL_ROLES},
+                  json.dumps(release["rolePageCounts"]))
+    for field in RESOLVED_COMMIT_FIELDS:
+        results.check(f"release record {field} is a resolved 40-character commit",
+                      bool(COMMIT_PATTERN.fullmatch(str(release.get(field, "")))),
+                      release.get(field))
+    results.check("no pending or placeholder token survives anywhere in the release record",
+                  not PENDING_TOKEN_PATTERN.search(RELEASE_RECORD.read_text(encoding="utf-8")),
+                  sorted(set(PENDING_TOKEN_PATTERN.findall(
+                      RELEASE_RECORD.read_text(encoding="utf-8")))))
+    results.check("the release record carries measured validation rather than the provisional stub",
+                  release["acceptedValidation"].get("status") == "PASS"
+                  and "caseScopedValidator" in release["acceptedValidation"],
+                  release["acceptedValidation"].get("status"))
+    # The certified-source commit must actually carry the four hashes the record claims.
+    # Checking the record against itself would prove nothing.
+    certified = release["canonicalSourceApprovalCommit"]
+    blobs = {}
+    for key, filename in SOURCE_FILES:
+        try:
+            blobs[key] = hashlib.sha256(subprocess.run(
+                ["git", "show", f"{certified}:hhh/campaign-2/case-08-floating-gardens/source/{filename}"],
+                cwd=ROOT, check=True, capture_output=True).stdout).hexdigest()
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            blobs[key] = None
+    results.check("the certified-source commit really carries the released source bytes",
+                  blobs == release["sourceHashes"], json.dumps(blobs))
+    # The printable baseline is a separate fact and must never be overwritten by the
+    # certified-source commit, nor silently equated with it.
+    approval_text = OWNER_APPROVAL_RECORD.read_text(encoding="utf-8")
+    results.check("the owner approval record names the owner-approved printable baseline",
+                  OWNER_PRINTABLE_BASELINE in approval_text)
+    results.check("the owner approval record preserves the exact owner statement",
+                  OWNER_STATEMENT in approval_text, OWNER_STATEMENT)
+    results.check("the release record preserves the printable baseline separately from the certified commit",
+                  OWNER_PRINTABLE_BASELINE in json.dumps(release)
+                  and certified != OWNER_PRINTABLE_BASELINE,
+                  json.dumps({"printableBaseline": OWNER_PRINTABLE_BASELINE,
+                              "certifiedSourceCommit": certified}))
+    results.check("the owner approval record states both owner gates and the approval date",
+                  APPROVAL_DATE in approval_text and OWNER in approval_text
+                  and "**PASS**" in approval_text,
+                  APPROVAL_DATE)
+    # No print method may be attributed to the owner anywhere in the release records.
+    # Word-anchored on purpose: a bare substring scan would match hexadecimal inside a
+    # commit pin or a source hash and report a paper size that nobody wrote.
+    PRINT_METHOD_PATTERNS = (r"\b100\s?%", r"\bactual size\b", r"\bletter paper\b", r"\bA4\b",
+                             r"\bduplex\b", r"\bchrome\b", r"\bsafari\b", r"\bfirefox\b",
+                             r"\blaserjet\b", r"\binkjet\b", r"\bfit to page\b",
+                             r"\bprint scale of\b", r"\bat \d+\s?% scale\b")
+    for label, text in (("release record", json.dumps(release)),
+                        ("owner approval record", approval_text)):
+        leaked = [p for p in PRINT_METHOD_PATTERNS if re.search(p, text, re.I)]
+        results.check(f"the {label} asserts no owner print method", not leaked, leaked)
+    for label, text in (("release record", json.dumps(release)),
+                        ("owner approval record", approval_text)):
+        results.check(f"the {label} states that no print method is asserted",
+                      "no browser, printer, print scale" in text, label)
+    results.check("the release record keeps production HTML-only with no canonical PDF",
+                  "HTML-only" in release["artifactPolicy"]
+                  and "no canonical PDF artifact exists" in release["acceptedPrintStatus"])
+    results.check("the release record records no former generated artifact, verified not assumed",
+                  release["formerArtifacts"]["status"] == "NO_FORMER_GENERATED_ARTIFACTS"
+                  and "every path ever committed" in release["formerArtifacts"]["reason"].lower(),
+                  release["formerArtifacts"]["status"])
+    results.check("the release record claims no owner-approved bundle",
+                  "bundle" not in json.dumps(release).lower()
+                  or "no owner-approved bundle exists and none is claimed" in json.dumps(release).lower(),
+                  "a bundle claim must be accompanied by the explicit disclaimer")
+    # The release-history schema loop in validate_static.py is bound to the SSS partition
+    # and never reaches an HHH package, so an HHH release record would otherwise ship
+    # unvalidated against its own schema. This closes that gap for Case 08, reusing the
+    # shared helper and the shared schema rather than introducing either.
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import validate_static as _vs  # noqa: E402
+    history_schema = json.loads(
+        (ROOT / "shared/implementation/case-release-history.schema.v1.json").read_text(encoding="utf-8"))
+    schema_findings = _vs.schema_errors(release, history_schema)
+    results.check("the release record validates against case-release-history.schema.v1.json",
+                  not schema_findings, schema_findings)
+    results.check("the release record declares no field the shared schema does not define",
+                  set(release) <= set(history_schema["properties"]),
+                  sorted(set(release) - set(history_schema["properties"])))
+    results.check("every schema-required release field is present",
+                  set(history_schema["required"]) <= set(release),
+                  sorted(set(history_schema["required"]) - set(release)))
+    results.check("the release record carries the four frozen role DOM baselines",
+                  set(release["frozenNonAccessibleDomBaselines"]) == {"student", "teacher", "answer", "note"}
+                  and all(re.fullmatch(r"[a-f0-9]{64}", release["frozenNonAccessibleDomBaselines"][r])
+                          for r in ("student", "teacher", "answer")))
+    # No release metadata may reach a printable classroom page.
+    RELEASE_METADATA_TOKENS = ("originalReleaseApprovalCommit", "canonicalSourceApprovalCommit",
+                               "formerArtifactRecoveryCommit", "acceptedValidation",
+                               "frozenNonAccessibleDomBaselines", "priorApprovedReleases",
+                               OWNER_PRINTABLE_BASELINE, certified)
+    for role in ALL_ROLES:
+        leaked = [tok for tok in RELEASE_METADATA_TOKENS if tok.lower() in texts[role].lower()]
+        results.check(f"{role}: no release metadata reaches a printable page", not leaked, leaked)
 
     # --- THE QUALIFICATION DEPENDENCY, WHICH IS NOT A BLOCKER ---------------
     tracker = json.loads(TRACKER_FILE.read_text(encoding="utf-8"))
@@ -354,7 +508,8 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
     # Lifecycle, repository and runtime metadata must never reach a printable page.
     LIFECYCLE_TOKENS = ("VALIDATION_BUILD", "OWNER_REVIEW", "packageStatus", "sourceHashes",
                         "case-package.json", "task-registry.js", "APPROVED_STABLE",
-                        "d9fc16ba", "9b8545ed", "337b6b23", "releaseHistory", "release-v0.1",
+                        "d9fc16ba", "9b8545ed", "337b6b23", "a3bbb03", "00f2142", "64b2a27",
+                        "releaseHistory", "release-v0.1", "APPROVED_STABLE", "OWNER_REVIEW_PASS",
                         "historyRecord", "Nate / Owner", "editorPackage", "OWNER_REVIEW_NOT_STARTED",
                         "HHH-GAME-C2L1-001", "HHH-C2-CASE08")
     for role in ALL_ROLES:
