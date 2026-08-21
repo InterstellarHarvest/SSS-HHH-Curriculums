@@ -8,12 +8,14 @@
   "subtitle": "Campaign 2 · Case 09 · Leningrad, 1941",
   "location": "Leningrad",
   "version": "0.1",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-21",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-2/case-09-seeds-they-kept/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -158,7 +160,7 @@
   "sourceHashes": {
     "content": "2904f736c83993daf0585d5bdeed2d630a91e7847c6d43cff81fe3e5c26722cb",
     "presentation": "e7d180b152c654e22866dd56a39caff20c7ebc4435eac4b0a4a8a1c9e42c5b4e",
-    "taskRegistry": "527f68218683d490e0e898f515537cd16fd683e2f42f51b1da4cb6808659382d",
+    "taskRegistry": "354e86753ee9a5b0dea1d0c6f04a0b2c849d17f68dcfbaa3d50a8bbdd27f398e",
     "layoutOverrides": "590500580cd97aa47b33994f35242884b713772d803ccecc4345d1d68fd9b60f"
   }
 }
