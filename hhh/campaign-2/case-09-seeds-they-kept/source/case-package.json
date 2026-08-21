@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C2-CASE09",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-2",
+  "title": "The Seeds They Kept",
+  "subtitle": "Campaign 2 · Case 09 · Leningrad, 1941",
+  "location": "Leningrad",
+  "version": "0.1",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C2-CASE09:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-2/case-09-seeds-they-kept/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-2/case-09-seeds-they-kept/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-2/case-09-seeds-they-kept/source/task-registry.js",
+    "global": "HHH_CASE09_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-2/case-09-seeds-they-kept/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case09-two-timelines",
+      "type": "html-css-diagrams",
+      "selector": "[data-chronology-contract]",
+      "embed": true
+    },
+    {
+      "id": "case09-continuity-chain",
+      "type": "html-css-diagrams",
+      "selector": "[data-continuity-contract]",
+      "embed": true
+    },
+    {
+      "id": "case09-claim-test",
+      "type": "html-css-diagrams",
+      "selector": "[data-claim-test]",
+      "embed": true
+    },
+    {
+      "id": "case09-source-status-notice",
+      "type": "html-css-diagrams",
+      "selector": "[data-source-status-notice]",
+      "embed": true
+    },
+    {
+      "id": "case09-continuity-judgment",
+      "type": "html-css-diagrams",
+      "selector": "[data-continuity-judgment]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 8
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 10
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C2_CASE09_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C2_CASE09_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C2_CASE09_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C2_CASE09_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C2_CASE09_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 2 Case 09 v0.1 — The Seeds They Kept Curriculum Editor",
+    "loadAnnouncement": "Case 09 The Seeds They Kept v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "655136e9f5a4b9a5199d886fbe5fa1dc35dae3521dad21ce69bef44dfa408301",
+    "presentation": "0aa070d20b9898fe47cda1d1f8c6a41745ba9ba45fd40ed0a13882ed5bdf0337",
+    "taskRegistry": "527f68218683d490e0e898f515537cd16fd683e2f42f51b1da4cb6808659382d",
+    "layoutOverrides": "590500580cd97aa47b33994f35242884b713772d803ccecc4345d1d68fd9b60f"
+  }
+}
