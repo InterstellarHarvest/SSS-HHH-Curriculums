@@ -282,8 +282,16 @@ sub, sup { line-height: 0; font-size: .72em; }
 .contribution-table .table-response { min-height: .56in; }
 .contribution-table .status-slot { display: block; min-width: 0; min-height: .34in; width: .78in; }
 .contribution-table th[scope="col"]:nth-child(2) { width: .86in; }
-.accessible-matrix th:first-child { width: 1.3in; }
-.accessible .contribution-table .table-response { min-height: .50in; }
+/* The Accessible matrix carries no answered status column - the status is supplied -
+   so the width the Student edition spends on it is given to the three judgment columns
+   rather than left to automatic distribution, which was sizing them from the length of
+   the supplied worked-example row and starving the first of them. Every column is set
+   so that its response is at least as wide as the Student response for the same
+   obligation, and the shared Accessible response height is taller than the Student's. */
+.accessible-matrix th:first-child { width: 1.12in; }
+.accessible-matrix th[scope="col"]:nth-child(2) { width: 1.5in; }
+.accessible-matrix th[scope="col"]:nth-child(3) { width: 1.85in; }
+.accessible .contribution-table .table-response { min-height: .58in; }
 .src-note { display: block; margin-top: 1px; color: var(--muted); font: 700 6.4pt/1.2 monospace; }
 .model-row .prefilled, .prefilled { background: var(--neutral-field); font-size: 7.4pt; }
 .model-example { display: inline-block; margin-left: 3px; padding: 0 3px; border: 1px solid var(--record-cyan); color: var(--record-cyan); font: 700 6.1pt/1.4 monospace; letter-spacing: .04em; }
@@ -291,6 +299,11 @@ sub, sup { line-height: 0; font-size: .72em; }
 /* ── The four-test organiser ───────────────────────────────────────────────*/
 .claim-test-table th:first-child { width: 1.3in; }
 .claim-test-table .ct-cell { min-height: .44in; }
+/* The Accessible claims column holds supplied text rather than an answer space, so it
+   is bounded and the released width goes to the response column, which was otherwise
+   squeezed to well under the Student width for the identical writing obligation. The
+   supplied claims wrap to at most two lines at this width and so cost no row height. */
+.accessible .claim-test-table th[scope="col"]:nth-child(2) { width: 2.3in; }
 .accessible .claim-test-table .ct-cell { min-height: .46in; }
 .ct-rule { margin: 3px 0 !important; padding: 3px 6px; border: 1px solid var(--institution); border-left: 4px solid var(--institution); background: var(--accent-pale); font-size: 7.8pt; }
 
