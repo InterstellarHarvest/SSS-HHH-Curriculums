@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 2,
+  "id": "HHH-C2-CASE10",
+  "curriculum": "HHH",
+  "instructionalType": "CORE_CASE",
+  "campaign": "campaign-2",
+  "title": "The Quiet Billion",
+  "subtitle": "Campaign 2 · Case 10 · Mexico and South Asia, 1968",
+  "location": "Mexico and South Asia",
+  "version": "0.1",
+  "status": "DRAFT",
+  "approval": {
+    "owner": "Nate / Owner",
+    "status": "OWNER_REVIEW_NOT_STARTED",
+    "printStatus": "NOT_RUN"
+  },
+  "institutionalIdentity": {
+    "id": "TAA",
+    "name": "Temporal Agricultural Archive",
+    "lockupLines": [
+      "Temporal",
+      "Agricultural",
+      "Archive"
+    ],
+    "insigniaSelector": ".taa-insignia"
+  },
+  "documentKey": "HHH-C2-CASE10:v0.1:curriculum-editor-v2",
+  "supportedRoles": [
+    "student",
+    "teacher",
+    "answer",
+    "accessible"
+  ],
+  "defaultRole": "student",
+  "shell": {
+    "version": "1.0",
+    "toolbar": "shared/implementation/editor-shell/v1.0/toolbar.html",
+    "styles": [
+      "shared/implementation/editor-shell/v1.0/curriculum-components.css",
+      "shared/implementation/editor-shell/v1.0/editor-shell.css",
+      "shared/implementation/editor-shell/v1.0/cer.css"
+    ],
+    "icons": "shared/implementation/editor-shell/v1.0/icons.svg"
+  },
+  "content": {
+    "source": "hhh/campaign-2/case-10-the-quiet-billion/source/content.html",
+    "format": "html-fragment"
+  },
+  "presentation": {
+    "source": "hhh/campaign-2/case-10-the-quiet-billion/source/presentation.css",
+    "isolation": "shadow-dom",
+    "sharedVisualStyles": true,
+    "sharedComponentStyles": true
+  },
+  "taskRegistry": {
+    "source": "hhh/campaign-2/case-10-the-quiet-billion/source/task-registry.js",
+    "global": "HHH_CASE10_TASK_REGISTRY",
+    "schemaVersion": 1
+  },
+  "layoutOverrides": {
+    "source": "hhh/campaign-2/case-10-the-quiet-billion/source/layout-overrides.json",
+    "schemaVersion": 1
+  },
+  "assets": [
+    {
+      "id": "phosphor-icon-sprite",
+      "type": "image/svg+xml",
+      "source": "shared/implementation/editor-shell/v1.0/icons.svg",
+      "embed": true
+    },
+    {
+      "id": "taa-insignia",
+      "type": "image/svg+xml",
+      "source": "shared/assets/insignia/taa.svg",
+      "selector": ".taa-insignia",
+      "embed": true
+    },
+    {
+      "id": "case10-source-status-notice",
+      "type": "html-css-diagrams",
+      "selector": "[data-source-status-notice]",
+      "embed": true
+    },
+    {
+      "id": "case10-india-record",
+      "type": "html-css-diagrams",
+      "selector": "[data-quant-contract]",
+      "embed": true
+    },
+    {
+      "id": "case10-transmission-route",
+      "type": "html-css-diagrams",
+      "selector": "[data-route-contract]",
+      "embed": true
+    },
+    {
+      "id": "case10-production-package",
+      "type": "html-css-diagrams",
+      "selector": "[data-package-contract]",
+      "embed": true
+    },
+    {
+      "id": "case10-evidence-layer-table",
+      "type": "html-css-diagrams",
+      "selector": "[data-evidence-layer-table]",
+      "embed": true
+    },
+    {
+      "id": "case10-claim-test",
+      "type": "html-css-diagrams",
+      "selector": "[data-claim-test]",
+      "embed": true
+    },
+    {
+      "id": "case10-interpretations",
+      "type": "html-css-diagrams",
+      "selector": "[data-interpretations]",
+      "embed": true
+    },
+    {
+      "id": "case10-qualified-finding",
+      "type": "html-css-diagrams",
+      "selector": "[data-qualified-finding]",
+      "embed": true
+    }
+  ],
+  "rolePageStructure": {
+    "student": {
+      "documentRole": "Student Mission",
+      "pageCount": 8
+    },
+    "teacher": {
+      "documentRole": "Teacher Guide",
+      "pageCount": 7
+    },
+    "answer": {
+      "documentRole": "Answer Key",
+      "pageCount": 4
+    },
+    "accessible": {
+      "documentRole": "Accessible Mission",
+      "pageCount": 10
+    }
+  },
+  "outputs": {
+    "complete": "HHH_C2_CASE10_CURRICULUM_EDITOR_v0.1_CUSTOM.html",
+    "student": "HHH_C2_CASE10_STUDENT_MISSION_v0.1_CUSTOM.html",
+    "teacher": "HHH_C2_CASE10_TEACHER_GUIDE_v0.1_CUSTOM.html",
+    "answer": "HHH_C2_CASE10_ANSWER_KEY_v0.1_CUSTOM.html",
+    "accessible": "HHH_C2_CASE10_ACCESSIBLE_MISSION_v0.1_CUSTOM.html"
+  },
+  "defaultToolbarState": {
+    "role": "student",
+    "fillMode": true,
+    "editMode": false,
+    "marginTop": 0.5,
+    "marginRight": 0.5,
+    "marginBottom": 0.5,
+    "marginLeft": 0.5,
+    "density": "normal",
+    "grayscale": false,
+    "guides": false,
+    "boundaries": true
+  },
+  "accessibility": {
+    "language": "en",
+    "documentTitle": "HHH Campaign 2 Case 10 v0.1 — The Quiet Billion Curriculum Editor",
+    "loadAnnouncement": "Case 10 The Quiet Billion v0.1 curriculum package loaded. Student Mission selected.",
+    "extendedDescriptionSelectors": [
+      ".extended-description",
+      ".alt-support",
+      "figure figcaption"
+    ],
+    "pdfNotice": "Browser PDF export does not guarantee PDF accessibility. Any PDF distributed requires separate accessibility verification."
+  },
+  "sourceHashes": {
+    "content": "b6ce2ea8f42e1cc1a244fad61afc51ce49ea4a030d806bbdb0c60da888ef48b3",
+    "presentation": "73e2d41b4d1bccd6824438fc90c53ec798e71cf99b69d115f5b30e39fc2ce2f4",
+    "taskRegistry": "cbcbd527612684bbb75b517d3178d894ee1e7ec43656e53277a3ab482ecf38a4",
+    "layoutOverrides": "7d9180892cca2ac927aa4adb53a171a1a30b9431e065ca509e6e69fee99f65b4"
+  }
+}

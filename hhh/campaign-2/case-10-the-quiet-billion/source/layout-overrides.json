@@ -1,0 +1,583 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C2-CASE10",
+  "edition": "accessible",
+  "stepPx": 4,
+  "areas": [
+    {
+      "id": "HHH-C2-CASE10:accessible:t2:a2-need-1",
+      "persistId": "a2-need-1",
+      "pageId": "accessible-billion-04",
+      "taskId": 2,
+      "label": "Accessible Task 2 first thing needed before treating the claim as measured",
+      "minPx": 84,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t2:a2-need-2",
+      "persistId": "a2-need-2",
+      "pageId": "accessible-billion-04",
+      "taskId": 2,
+      "label": "Accessible Task 2 second thing needed before treating the claim as measured",
+      "minPx": 84,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t2:a2-missing",
+      "persistId": "a2-missing",
+      "pageId": "accessible-billion-04",
+      "taskId": 2,
+      "label": "Accessible Task 2 one missing element that would show the number was estimated rather than measured",
+      "minPx": 84,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t3:a3-boundary",
+      "persistId": "a3-boundary",
+      "pageId": "accessible-billion-06",
+      "taskId": 3,
+      "label": "Accessible Task 3 why a verdict inside the game and a documented source do not settle each other",
+      "minPx": 60,
+      "maxPx": 340
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t4:a4-measures",
+      "persistId": "a4-measures",
+      "pageId": "accessible-billion-07",
+      "taskId": 4,
+      "label": "Accessible Task 4 what production and yield each tell you in 1967-68",
+      "minPx": 68,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t4:a4-conditions",
+      "persistId": "a4-conditions",
+      "pageId": "accessible-billion-07",
+      "taskId": 4,
+      "label": "Accessible Task 4 two conditions other than the seed variety that changed, and where each is visible",
+      "minPx": 68,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t4:a4-cause",
+      "persistId": "a4-cause",
+      "pageId": "accessible-billion-07",
+      "taskId": 4,
+      "label": "Accessible Task 4 why the record cannot say how much of the rise the new wheat caused",
+      "minPx": 68,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t5:a5-why",
+      "persistId": "a5-why",
+      "pageId": "accessible-billion-08",
+      "taskId": 5,
+      "label": "Accessible Task 5 why the new seed alone is not a correct explanation of the gains",
+      "minPx": 76,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t6:a6-paperwork",
+      "persistId": "a6-paperwork",
+      "pageId": "accessible-billion-09",
+      "taskId": 6,
+      "label": "Accessible Task 6 why the report's flawless paperwork is not one of the tests",
+      "minPx": 60,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t7:a7-why",
+      "persistId": "a7-why",
+      "pageId": "accessible-billion-09",
+      "taskId": 7,
+      "label": "Accessible Task 7 why the chosen interpretation is best supported",
+      "minPx": 60,
+      "maxPx": 300
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t8:a8-finding",
+      "persistId": "a8-finding",
+      "pageId": "accessible-billion-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 the finding the evidence supports",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t8:a8-quant",
+      "persistId": "a8-quant",
+      "pageId": "accessible-billion-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 one quantitative value or trend with units and scope",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t8:a8-second-source",
+      "persistId": "a8-second-source",
+      "pageId": "accessible-billion-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 a second documented source and what it adds",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t8:a8-qualification",
+      "persistId": "a8-qualification",
+      "pageId": "accessible-billion-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 other conditions that contributed and why that matters",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t8:a8-limitation",
+      "persistId": "a8-limitation",
+      "pageId": "accessible-billion-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 one thing the evidence does not prove",
+      "minPx": 80,
+      "maxPx": 320
+    },
+    {
+      "id": "HHH-C2-CASE10:accessible:t8:a8-next",
+      "persistId": "a8-next",
+      "pageId": "accessible-billion-10",
+      "taskId": 8,
+      "label": "Accessible Task 8 the additional evidence that would be needed",
+      "minPx": 88,
+      "maxPx": 360
+    }
+  ],
+  "lockedAreas": [
+    {
+      "persistId": "a-name",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-date",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a-class",
+      "reason": "identity"
+    },
+    {
+      "persistId": "a1-term-1",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-2",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-3",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-4",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-5",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-6",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a1-term-7",
+      "reason": "single-line"
+    },
+    {
+      "persistId": "a3-r1-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-r1-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-r2-can",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a3-r2-cannot",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a4-jump-year",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a4-area",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a4-irrigation",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a5-route-mexico",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-part-1",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-part-2",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a5-part-3",
+      "reason": "fixed-organizer"
+    },
+    {
+      "persistId": "a6-r2-shows",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r3-shows",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-r4-shows",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a6-verdict",
+      "reason": "compact-answer"
+    },
+    {
+      "persistId": "a7-b-supports",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-b-overreach",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-c-supports",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-c-overreach",
+      "reason": "table-cell"
+    },
+    {
+      "persistId": "a7-best",
+      "reason": "compact-answer"
+    }
+  ],
+  "overrides": {},
+  "student": {
+    "edition": "student",
+    "areas": [
+      {
+        "id": "HHH-C2-CASE10:student:t2:t2-need-1",
+        "persistId": "t2-need-1",
+        "pageId": "student-billion-03",
+        "taskId": 2,
+        "label": "Task 2 first thing needed before treating the claim as measured",
+        "minPx": 60,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t2:t2-need-2",
+        "persistId": "t2-need-2",
+        "pageId": "student-billion-03",
+        "taskId": 2,
+        "label": "Task 2 second thing needed before treating the claim as measured",
+        "minPx": 60,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t2:t2-missing",
+        "persistId": "t2-missing",
+        "pageId": "student-billion-03",
+        "taskId": 2,
+        "label": "Task 2 one missing element that would show the number was estimated rather than measured",
+        "minPx": 60,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t3:t3-boundary",
+        "persistId": "t3-boundary",
+        "pageId": "student-billion-05",
+        "taskId": 3,
+        "label": "Task 3 why a verdict inside the game and a documented source do not settle each other",
+        "minPx": 48,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t4:t4-measures",
+        "persistId": "t4-measures",
+        "pageId": "student-billion-05",
+        "taskId": 4,
+        "label": "Task 4 what production and yield each tell you in 1967-68",
+        "minPx": 44,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t4:t4-conditions",
+        "persistId": "t4-conditions",
+        "pageId": "student-billion-05",
+        "taskId": 4,
+        "label": "Task 4 two conditions other than the seed variety that changed, and where each is visible",
+        "minPx": 44,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t4:t4-cause",
+        "persistId": "t4-cause",
+        "pageId": "student-billion-05",
+        "taskId": 4,
+        "label": "Task 4 why the record cannot say how much of the rise the new wheat caused",
+        "minPx": 44,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t5:t5-why",
+        "persistId": "t5-why",
+        "pageId": "student-billion-06",
+        "taskId": 5,
+        "label": "Task 5 why the new seed alone is not a correct explanation of the gains",
+        "minPx": 72,
+        "maxPx": 300
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t6:t6-paperwork",
+        "persistId": "t6-paperwork",
+        "pageId": "student-billion-07",
+        "taskId": 6,
+        "label": "Task 6 why the report's flawless paperwork is not one of the tests",
+        "minPx": 56,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t7:t7-why",
+        "persistId": "t7-why",
+        "pageId": "student-billion-07",
+        "taskId": 7,
+        "label": "Task 7 why the chosen interpretation is best supported",
+        "minPx": 56,
+        "maxPx": 280
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t8:t8-finding",
+        "persistId": "t8-finding",
+        "pageId": "student-billion-08",
+        "taskId": 8,
+        "label": "Task 8 the finding the evidence supports",
+        "minPx": 80,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t8:t8-quant",
+        "persistId": "t8-quant",
+        "pageId": "student-billion-08",
+        "taskId": 8,
+        "label": "Task 8 one quantitative value or trend with units and scope",
+        "minPx": 80,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t8:t8-second-source",
+        "persistId": "t8-second-source",
+        "pageId": "student-billion-08",
+        "taskId": 8,
+        "label": "Task 8 a second documented source and what it adds",
+        "minPx": 80,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t8:t8-qualification",
+        "persistId": "t8-qualification",
+        "pageId": "student-billion-08",
+        "taskId": 8,
+        "label": "Task 8 other conditions that contributed and why that matters",
+        "minPx": 80,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t8:t8-limitation",
+        "persistId": "t8-limitation",
+        "pageId": "student-billion-08",
+        "taskId": 8,
+        "label": "Task 8 one thing the evidence does not prove",
+        "minPx": 80,
+        "maxPx": 320
+      },
+      {
+        "id": "HHH-C2-CASE10:student:t8:t8-next",
+        "persistId": "t8-next",
+        "pageId": "student-billion-08",
+        "taskId": 8,
+        "label": "Task 8 the additional evidence that would be needed",
+        "minPx": 96,
+        "maxPx": 360
+      }
+    ],
+    "lockedAreas": [
+      {
+        "persistId": "student-name",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-date",
+        "reason": "identity"
+      },
+      {
+        "persistId": "student-class",
+        "reason": "identity"
+      },
+      {
+        "persistId": "t1-term-1",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-2",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-3",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-4",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-5",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-6",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t1-term-7",
+        "reason": "single-line"
+      },
+      {
+        "persistId": "t3-r1-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-r1-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-r2-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-r2-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-r3-can",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t3-r3-cannot",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t4-low-year",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t4-jump-year",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t4-area",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t4-irrigation",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t5-route-japan",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-route-us",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-route-mexico",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-route-southasia",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-part-1",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-part-2",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t5-part-3",
+        "reason": "fixed-organizer"
+      },
+      {
+        "persistId": "t6-r1-shows",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r2-shows",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r3-shows",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-r4-shows",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t6-verdict",
+        "reason": "compact-answer"
+      },
+      {
+        "persistId": "t7-a-supports",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-a-overreach",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-b-supports",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-b-overreach",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-c-supports",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-c-overreach",
+        "reason": "table-cell"
+      },
+      {
+        "persistId": "t7-best",
+        "reason": "compact-answer"
+      }
+    ],
+    "overrides": {}
+  }
+}
