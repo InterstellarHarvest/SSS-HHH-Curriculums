@@ -423,10 +423,10 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                for camp in cur["campaigns"] for c in camp["cases"]]
     results.check("exactly one HHH-C2-CASE09 identity exists in the shared registry",
                   all_hhh.count(CASE_ID) == 1, all_hhh)
-    results.check("Case 10 and later units remain planned reservations",
-                  all("editorPackage" not in c for cur in shared["curricula"] if cur["id"] == "HHH"
-                      for camp in cur["campaigns"] for c in camp["cases"]
-                      if c["displayOrder"] > 11))
+    # This validator owns Case 09's own identity, package, release record and certified
+    # bytes. It deliberately makes no assertion about the lifecycle state of later HHH
+    # units: their activation is their own release's business, and a forward-looking
+    # check here would fail every subsequent case for no Case 09 reason.
     results.check("the registry display label and the package identity agree",
                   registry["displayLabel"] == entry["displayLabel"]
                   and registry["title"] == package["title"] == entry["title"])

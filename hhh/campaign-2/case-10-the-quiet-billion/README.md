@@ -115,7 +115,7 @@ They are the PMO-locked estate, bounded claim by claim in `sourceCertification`.
 
 | PMO id | Printed | Source |
 | --- | --- | --- |
-| A | F | Government of India, official agricultural statistics for wheat, crop years 1964-65 to 1969-70 |
+| A | F | Government of India, Directorate of Economics and Statistics, *Agricultural Statistics at a Glance 2015*, Table 4.7(a): "Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation", crop years 1964-65 to 1969-70 |
 | B | G | Norman E. Borlaug, Nobel Lecture, "The Green Revolution, Peace, and Humanity", 11 December 1970 — a **primary participant source** |
 | C | H | CIMMYT, "From east Asia to south Asia, via Mexico: how one gene changed the course of history" |
 | D | I | Prabhu L. Pingali, "Green Revolution: Impacts, limits, and the path ahead", *PNAS*, 2012, 109(31):12302-12308 |
@@ -126,16 +126,19 @@ of the 1970 lecture itself, which the PMO authorised and which was read in full 
 candidate. No historical, biographical, chronological, quantitative or institutional claim appears
 anywhere in the package that is not on one of the certification's bounded lists.
 
-Two variances are recorded rather than resolved by the implementation, and are reported to the
-PMO:
+The six-year series is pinned to a stated statistical edition: **Government of India,
+Directorate of Economics and Statistics, *Agricultural Statistics at a Glance 2015*, Table
+4.7(a)**. That edition supports the locked values, **the locked series is implemented exactly**,
+and its internal arithmetic is self-consistent: area multiplied by yield reproduces production to
+within published rounding in all six crop years. Later editions revise some historical values;
+that is a reason to cite the edition, which the packet now does in the learner Source F card, in
+the Teacher source estate and in `sourceCertification`, and not an error in these pages.
 
-- a currently published Government of India area table gives slightly different back-numbers for
-  wheat area in these crop years than the PMO's locked series. **The locked series is implemented
-  exactly**, and its internal arithmetic is self-consistent: area multiplied by yield reproduces
-  production to within published rounding in all six crop years;
-- the Nobel lecture and CIMMYT date India's large seed purchase to 1966 and 1967 respectively.
-  The packet prints the lecture's chronology and the Teacher Guide records the difference as a
-  limitation.
+The two consulted sources date India's large seed purchase differently — 1966 in Borlaug's
+lecture, 1967 in CIMMYT's account. The packet's chronology is settled: the bulk-shipment dates in
+Figure 2 are Source G's, and Source H carries the broader transmission sequence. The Teacher
+Guide records that as a disagreement between two sources rather than as an open question, and no
+learner task is built on it.
 
 ## Structure
 
@@ -176,6 +179,34 @@ is locked for a CER reason.
 None is authorised by the design lock and none is used. The nine definitions are printed as a
 glossary the learner keeps using all lesson, so Task 1 requires applying a term to a thing in this
 case rather than generating one from memory.
+
+### The sixty-minute classroom route
+
+The canonical no-game packet route is **approximately sixty minutes in total**, and the reading
+sits inside it rather than beside it:
+
+| Segment | Min |
+| --- | --- |
+| Launch / source-status boundary | 3 |
+| 1 · Build the Case Vocabulary | 4 |
+| Read reconstructed Sources A-E | 5 |
+| 2 · Set the Claim Test | 3 |
+| Read documented Sources F-I | 4 |
+| 3 · Keep the Evidence Layers Separate | 4 |
+| 4 · Read the Numbers Carefully | 8 |
+| 5 · Trace the Wheat and the Package | 6 |
+| 6 · Test the Failure Report | 6 |
+| 7 · Test the Competing Interpretations | 6 |
+| 8 · Write a Qualified Historical Finding | 9 |
+| Close / collect | 2 |
+| **Total** | **60** |
+
+Tasks account for 46 minutes and the unnumbered launch, reading and close segments for 14. The
+Teacher Guide invites a teacher to extend individual tasks where the calendar allows, but the
+canonical route is executable as written. Gameplay is not inserted into the sixty minutes: a
+class taking the game route plays in a separate period. The scoped validator checks the registry
+arithmetic, checks that the twelve printed procedure steps themselves sum to sixty, and fails any
+regression to "sixty minutes of task time plus a separate reading allowance".
 
 ### Role page counts
 

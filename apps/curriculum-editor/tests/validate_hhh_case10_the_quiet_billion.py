@@ -117,7 +117,25 @@ INDIA_SERIES = [
 RUNTIME_CLUE_TAGS = ("trials_succeeded", "lodging_resistance", "pedigree_verified", "real_yields")
 RUNTIME_INSIGHT_TAGS = ("forgery_read", "harvest_scale")
 RUNTIME_LOCATIONS = ("trial_plots", "research_station", "deployment_field")
-TASK_MINUTES = {"1": 5, "2": 4, "3": 5, "4": 10, "5": 8, "6": 8, "7": 8, "8": 12}
+TASK_MINUTES = {"1": 4, "2": 3, "3": 4, "4": 8, "5": 6, "6": 6, "7": 6, "8": 9}
+# The canonical no-game route is approximately sixty minutes IN TOTAL: launch, the required
+# source reading, the eight tasks and the close all sit inside it. The unnumbered segments
+# are timed here too, so that the printed procedure has to add up to sixty on its own.
+SURROUNDING_MINUTES = {"launch": ("Launch", 3), "read-reconstructed": ("Read Sources A to E", 5),
+                       "read-documented": ("Read Sources F to I", 4), "close": ("Close and collect", 2)}
+ROUTE_TOTAL_MINUTES = 60
+INDIA_EDITION = "Agricultural Statistics at a Glance 2015"
+INDIA_TABLE_TITLE = "Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation"
+PRINTED_STEP_MINUTES = re.compile(r"\b(\d+) min\b")
+# A route that quarantines reading outside the sixty minutes is the regression this class
+# exists to catch. The phrases are anchored on the route itself, never on the bare words.
+EXTERNAL_ALLOWANCE = re.compile(
+    r"(?:outside|on top of|in addition to|beyond|around|besides|added to|as well as)\s+"
+    r"(?:that|the|those|this)?\s*(?:assessed\s+)?(?:core\s+)?(?:sixty|60)[- ]?(?:minute|minutes)?"
+    r"|\b(?:sixty|60)\s+minutes\s+of\s+task\s+time"
+    r"|\bassessed\s+core\s+route\s+is\s+sixty\s+minutes"
+    r"|\b(?:about|around|another|a further|an additional)\s+twenty\s+minutes",
+    re.IGNORECASE)
 
 PROPOSITION_SPLIT = re.compile(r"(?<=[.!?])\s+")
 DECIMAL_GUARD = re.compile(r"(\d)\.(\d)")
@@ -604,21 +622,68 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                       and not page.select(".model-example"))
 
     # --- THE TIMED ROUTE ----------------------------------------------------
+    # The lock is a sixty-minute TOTAL route, reading included. Three things are checked:
+    # the registry's arithmetic, the printed procedure's arithmetic, and a closed negative
+    # class that fails any future regression to "sixty task minutes plus extra reading".
     route = registry["timedRoute"]
-    results.check("the registry declares the locked sixty-minute assessed core and its per-task minutes",
-                  route["assessedCoreMinutes"] == 60 and route["taskMinutes"] == TASK_MINUTES
-                  and sum(route["taskMinutes"].values()) == 60,
-                  json.dumps(route["taskMinutes"]))
+    results.check("the registry declares a sixty-minute total route rather than a sixty-minute task core",
+                  route.get("totalMinutes") == ROUTE_TOTAL_MINUTES and "assessedCoreMinutes" not in route,
+                  json.dumps({k: route.get(k) for k in ("totalMinutes", "assessedCoreMinutes")}))
+    results.check("the registry carries the locked per-task minutes",
+                  route.get("taskMinutes") == TASK_MINUTES, json.dumps(route.get("taskMinutes")))
+    results.check("the registry carries the locked launch, reading and close minutes",
+                  route.get("surroundingMinutes") == {key: minutes for key, (_, minutes)
+                                                     in SURROUNDING_MINUTES.items()},
+                  json.dumps(route.get("surroundingMinutes")))
+    results.check("the task minutes and the surrounding minutes together are exactly the sixty-minute route",
+                  sum(route.get("taskMinutes", {}).values()) + sum(route.get("surroundingMinutes", {}).values())
+                  == ROUTE_TOTAL_MINUTES == route.get("totalMinutes")
+                  and route.get("assessedTaskMinutes") == sum(route.get("taskMinutes", {}).values())
+                  and route.get("surroundingMinutesTotal") == sum(route.get("surroundingMinutes", {}).values()),
+                  json.dumps({"tasks": sum(route.get("taskMinutes", {}).values()),
+                              "surrounding": sum(route.get("surroundingMinutes", {}).values())}))
+    results.check("the reading segments are not a majority of the route, and no segment is untimed",
+                  all(minutes > 0 for minutes in route.get("taskMinutes", {}).values())
+                  and all(minutes > 0 for minutes in route.get("surroundingMinutes", {}).values()))
+    results.check("the registry states the no-external-allowance rule and keeps extension optional",
+                  len(route.get("noExternalAllowanceRule", "")) > 120 and len(route.get("extensionRule", "")) > 80
+                  and "regression" in route.get("noExternalAllowanceRule", ""))
+    results.check("the registry names the printed step order for all twelve route segments",
+                  route.get("printedStepOrder") == ["launch", "task-1", "read-reconstructed", "task-2",
+                                                "read-documented", "task-3", "task-4", "task-5",
+                                                "task-6", "task-7", "task-8", "close"],
+                  json.dumps(route.get("printedStepOrder")))
+
+    steps = [normalise(li.get_text(" ", strip=True))
+             for li in soup.select('section.page[data-role="teacher"] .procedure > li')]
+    results.check("the Teacher procedure prints exactly the twelve segments of the route",
+                  len(steps) == 12, len(steps))
     for number, minutes in TASK_MINUTES.items():
         title = dict(EXPECTED_TASKS)[number]
-        step = next((normalise(li.get_text(" ", strip=True))
-                     for li in soup.select('section.page[data-role="teacher"] .procedure > li')
-                     if normalise(f"{number} · {title}") in normalise(li.get_text(" ", strip=True))), "")
+        step = next((text for text in steps if normalise(f"{number} · {title}") in text), "")
         results.check(f"Teacher procedure gives task {number} its locked {minutes} minutes",
                       f"{minutes} min" in step, step[:160])
-    results.check("the Teacher procedure states the assessed core route and refuses to bury gameplay inside it",
-                  "assessed core route is sixty minutes" in teacher_text
-                  and "Do not attempt to insert gameplay into the sixty minutes" in teacher_text)
+    for key, (label, minutes) in SURROUNDING_MINUTES.items():
+        step = next((text for text in steps if text.startswith(label)), "")
+        results.check(f"Teacher procedure gives the {key} segment its locked {minutes} minutes",
+                      f"{minutes} min" in step, step[:160])
+    printed = [int(match) for text in steps for match in PRINTED_STEP_MINUTES.findall(text)[:1]]
+    results.check("every printed step carries a duration",
+                  len(printed) == len(steps) == 12, printed)
+    results.check("the printed procedure itself adds up to exactly sixty minutes",
+                  sum(printed) == ROUTE_TOTAL_MINUTES, sum(printed))
+    results.check("the Teacher procedure states the route as a sixty-minute total with the reading inside it",
+                  "approximately sixty minutes in total" in teacher_text
+                  and "reading is inside the sixty minutes" in teacher_text
+                  and "not an allowance added to them" in teacher_text)
+    results.check("the Teacher procedure still refuses to bury gameplay inside the route",
+                  "Do not attempt to insert gameplay into the sixty minutes" in teacher_text)
+    offender = EXTERNAL_ALLOWANCE.search(teacher_text)
+    results.check("no Teacher sentence places launch, reading or close outside the sixty-minute route",
+                  offender is None, offender.group(0) if offender else "")
+    results.check("the no-game route claims no framing allowance beyond the printed launch step",
+                  "three-minute launch step, and nothing beyond it" in teacher_text
+                  and "minutes of framing" not in teacher_text)
 
     # --- CER IS DECLINED, AND THE DECLINE IS STRUCTURAL ----------------------
     cer = registry["cerDecision"]
@@ -832,10 +897,52 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                       any("game" in s.lower() for s in entry_c["doesNotSupport"]))
     results.check("the certification closes the estate against uncertified claims",
                   "source-certification dependency for the PMO" in certification["noFurtherClaims"])
-    results.check("the certification records the two open variances rather than resolving them silently",
+    results.check("the certification records the resolved variances rather than resolving them silently",
                   "openVarianceForPmo" in certification
                   and "locked series is implemented exactly" in certification["openVarianceForPmo"]
                   and "1966 and 1967" in certification["openVarianceForPmo"])
+    # --- THE INDIA SERIES IS PINNED TO ONE STATISTICAL EDITION ---------------
+    # The locked values are a published edition's values, not an unattributed series, so the
+    # edition and table have to be identifiable from the package rather than inferred.
+    results.check("the India certification pins the publisher, edition and table",
+                  india["publisher"] == "Government of India, Directorate of Economics and Statistics"
+                  and india["edition"] == INDIA_EDITION
+                  and india["table"].startswith("Table 4.7(a)")
+                  and INDIA_TABLE_TITLE in india["table"],
+                  json.dumps({k: india.get(k) for k in ("publisher", "edition", "table")}))
+    results.check("the India certification citation carries the edition and the table number",
+                  INDIA_EDITION in india["citation"] and "Table 4.7(a)" in india["citation"]
+                  and "Directorate of Economics and Statistics" in india["citation"], india["citation"])
+    results.check("the PMO estate mapping records the pinned edition against source A",
+                  next(m for m in certification["pmoEstateMapping"] if m["pmoSourceId"] == "A")["pinnedEdition"]
+                  == f"{INDIA_EDITION}, Table 4.7(a)")
+    results.check("the open-variance record treats the later editions as a citation duty, not a defect",
+                  INDIA_EDITION in certification["openVarianceForPmo"]
+                  and "Later editions revise some historical values" in certification["openVarianceForPmo"]
+                  and "not an error" in certification["openVarianceForPmo"])
+    results.check("the certification attributes the figure's shipment dates to Source G",
+                  "figureDateAttribution" in certification
+                  and "Source G" in certification["figureDateAttribution"]
+                  and "1966" in certification["figureDateAttribution"]
+                  and "1967" in certification["figureDateAttribution"]
+                  and "no learner task" in certification["figureDateAttribution"])
+    for role in LEARNER_ROLES + ("teacher",):
+        results.check(f"{role}: the printed India record identifies the statistical edition it came from",
+                      INDIA_EDITION in texts[role] and "Table 4.7(a)" in texts[role])
+    results.check("the Teacher source estate carries the full publisher and table title",
+                  "Directorate of Economics and Statistics" in teacher_text
+                  and INDIA_TABLE_TITLE in teacher_text)
+    results.check("the Teacher limitations cite the edition rather than calling a revision an error",
+                  "Later editions revise some historical values" in teacher_text
+                  and "not an error" in teacher_text)
+    results.check("the Teacher limitations state the seed date as a source disagreement, not an open question",
+                  "differ on the date of India's large seed purchase" in normalise(teacher_text)
+                  and "This packet's chronology is settled" in normalise(teacher_text)
+                  and "disagreement between two sources" in teacher_text
+                  and "not an open question about these pages" in teacher_text)
+    results.check("no learner edition turns the seed-date disagreement into a task",
+                  not any("1967" in texts[role] and "disagree" in texts[role].lower()
+                          for role in LEARNER_ROLES))
     # The estate is bibliographically closed: no uncertified institution or publication
     # is cited anywhere as a source of a real-world claim.
     for role in ALL_ROLES:
@@ -1608,9 +1715,9 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
                   and "CIMMYT" in teacher_text and "Proceedings of the National Academy of Sciences" in teacher_text
                   and "Do not extend the real-world layer beyond these four" in teacher_text)
     results.check("the Teacher Guide records the seed-purchase date variance as a limitation",
-                  "1966 in the lecture, 1967 in CIMMYT's account" in teacher_text)
-    results.check("the Teacher Guide records that published statistical series are revised",
-                  "Published statistical series are revised" in teacher_text)
+                  "1966 in Borlaug's lecture, 1967 in CIMMYT's account" in normalise(teacher_text))
+    results.check("the Teacher Guide records that later statistical editions revise historical values",
+                  "Later editions revise some historical values" in teacher_text)
     results.check("the Teacher Guide flags any shortened route as a modified assessment route",
                   teacher_text.count("modified assessment route") >= 2)
     results.check("no Teacher page exposes a clue identifier or node path",

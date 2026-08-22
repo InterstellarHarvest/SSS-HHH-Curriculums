@@ -60,7 +60,7 @@ window.HHH_CASE10_TASK_REGISTRY = {
         "attribute": "documented",
         "statusMarker": "documented",
         "covers": [
-          "the Government of India wheat record for the crop years 1964-65 to 1969-70",
+          "the Government of India wheat record for the crop years 1964-65 to 1969-70, Agricultural Statistics at a Glance 2015, Table 4.7(a)",
           "Norman Borlaug's Nobel lecture of 11 December 1970, used as a primary participant source",
           "CIMMYT's account of the transmission of the Norin 10 dwarfing",
           "Pingali's 2012 retrospective in the Proceedings of the National Academy of Sciences"
@@ -870,7 +870,8 @@ window.HHH_CASE10_TASK_REGISTRY = {
       {
         "pmoSourceId": "A",
         "caseSourceId": "india-wheat-record",
-        "printedLabel": "F"
+        "printedLabel": "F",
+        "pinnedEdition": "Agricultural Statistics at a Glance 2015, Table 4.7(a)"
       },
       {
         "pmoSourceId": "B",
@@ -899,7 +900,10 @@ window.HHH_CASE10_TASK_REGISTRY = {
       {
         "caseSourceId": "india-wheat-record",
         "pmoSourceId": "A",
-        "citation": "Government of India, official agricultural statistics for wheat, crop years 1964-65 to 1969-70: area sown, production, yield and irrigated share of the wheat area.",
+        "citation": "Government of India, Directorate of Economics and Statistics, Agricultural Statistics at a Glance 2015, Table 4.7(a): “Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation”, crop years 1964-65 to 1969-70: area sown, production, yield and irrigated share of the wheat area.",
+        "edition": "Agricultural Statistics at a Glance 2015",
+        "table": "Table 4.7(a) \u2014 Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation",
+        "publisher": "Government of India, Directorate of Economics and Statistics",
         "supports": [
           "the annual area sown in million hectares for each of the six crop years: 13.42, 12.57, 12.84, 14.99, 15.96, 16.63",
           "the annual production in million tonnes for each of the six crop years: 12.26, 10.40, 11.39, 16.54, 18.65, 20.09",
@@ -991,7 +995,8 @@ window.HHH_CASE10_TASK_REGISTRY = {
       }
     ],
     "noFurtherClaims": "No historical, biographical, chronological, quantitative or institutional claim appears in this package that is not on one of the lists above. If a later revision needs one, that is a source-certification dependency for the PMO, not an authoring decision.",
-    "openVarianceForPmo": "Two variances are recorded rather than resolved by the implementation. First, a currently published Government of India area table gives slightly different back-numbers for wheat area in these crop years than the PMO's locked series; the locked series is implemented exactly and the variance is reported to the PMO. Second, the Nobel lecture and CIMMYT date India's large seed purchase to 1966 and 1967 respectively; the packet prints the lecture's chronology and the Teacher Guide records the difference as a limitation."
+    "figureDateAttribution": "The bulk seed-shipment dates printed in Figure 2 \u2014 18,000 tons to India in 1966 and 42,000 tons to Pakistan a year later \u2014 are Source G\u2019s, Borlaug\u2019s own 1970 lecture. Source H supports the broader transmission sequence and dates the same Indian purchase to 1967. The Teacher Guide records that as a disagreement between the two consulted sources; the packet\u2019s own chronology is settled, and no learner task is built on the difference.",
+    "openVarianceForPmo": "Neither remaining item is a defect in this packet. First, the six-year series is pinned to a stated statistical edition: Government of India, Directorate of Economics and Statistics, Agricultural Statistics at a Glance 2015, Table 4.7(a). That edition supports the locked values, the locked series is implemented exactly, and its internal arithmetic is self-consistent — area multiplied by yield reproduces production to within published rounding in all six crop years. Later editions revise some historical values; that is a reason to cite the edition, which this packet does, and not an error in these pages. Second, the two consulted sources date India’s large seed purchase differently — 1966 and 1967 — and the PMO has ruled the packet chronology settled: the bulk-shipment dates in Figure 2 are Source G’s, Borlaug’s own lecture, while Source H carries the broader transmission sequence. The Teacher Guide records the difference between the two sources rather than treating the packet’s chronology as open."
   },
   "noGameRoute": {
     "rule": "Campaign 2 has no teacher level selector, no direct-launch mode, no injected state and no developer shortcut, and none will be built. Every assessed piece of evidence therefore exists in the learner packet, and the dossier is the stable assessment record in both routes.",
@@ -1289,25 +1294,43 @@ window.HHH_CASE10_TASK_REGISTRY = {
     }
   ],
   "timedRoute": {
-    "id": "case10-core-route-v1.0",
-    "assessedCoreMinutes": 60,
-    "rule": "The assessed core route is sixty minutes of task time, at the minutes printed against each task in the Teacher procedure. Around it the packet needs about twenty minutes of launch, reading and close, which the procedure lists as unnumbered steps. The Teacher Guide states that gameplay is not inserted into the sixty minutes and that a class taking the game route should play in a separate period.",
+    "id": "case10-core-route-v1.1",
+    "totalMinutes": 60,
+    "rule": "The canonical no-game packet route is approximately sixty minutes in total. Launch, the required source reading, all eight tasks and the close are all inside those sixty minutes, at the minutes printed against each step of the Teacher procedure, and the printed steps sum to exactly sixty. Reading is part of the route, not an allowance added to it. The Teacher Guide may invite a teacher to extend individual tasks where the calendar allows, but the canonical route must remain honestly executable as a single approximately sixty-minute classroom route. Gameplay is not inserted into the sixty minutes: a class taking the game route plays in a separate period and arrives having already met Sources A to E.",
     "taskMinutes": {
-      "1": 5,
-      "2": 4,
-      "3": 5,
-      "4": 10,
-      "5": 8,
-      "6": 8,
-      "7": 8,
-      "8": 12
+      "1": 4,
+      "2": 3,
+      "3": 4,
+      "4": 8,
+      "5": 6,
+      "6": 6,
+      "7": 6,
+      "8": 9
     },
+    "assessedTaskMinutes": 46,
     "surroundingMinutes": {
       "launch": 3,
-      "read-reconstructed": 8,
-      "read-documented": 6,
-      "close": 3
-    }
+      "read-reconstructed": 5,
+      "read-documented": 4,
+      "close": 2
+    },
+    "surroundingMinutesTotal": 14,
+    "printedStepOrder": [
+      "launch",
+      "task-1",
+      "read-reconstructed",
+      "task-2",
+      "read-documented",
+      "task-3",
+      "task-4",
+      "task-5",
+      "task-6",
+      "task-7",
+      "task-8",
+      "close"
+    ],
+    "noExternalAllowanceRule": "No part of the canonical route may be described as sitting outside, on top of, in addition to or beyond the sixty minutes. A route stated as sixty minutes of task time plus a separate reading allowance is a regression and the case-scoped validator fails it.",
+    "extensionRule": "Individual tasks may be extended when time permits — tasks 4 and 8 repay it most — but an extension is a teacher's option, never part of the canonical route's arithmetic."
   },
   "vocabulary": [
     "baseline",
