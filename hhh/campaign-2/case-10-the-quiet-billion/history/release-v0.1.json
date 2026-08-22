@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "caseId": "HHH-C2-CASE10",
+  "curriculumVersion": "0.1",
+  "status": "APPROVED_STABLE",
+  "approvalDate": "2026-08-22",
+  "owner": "Nate / Owner",
+  "originalReleaseApprovalCommit": "COMMIT_A_PENDING",
+  "canonicalSourceApprovalCommit": "COMMIT_A_PENDING",
+  "sourceHashes": {
+    "content": "f63bb550049de09053a73dc36551677bd3e0838528e282bf702f67bb97e2a597",
+    "presentation": "73e2d41b4d1bccd6824438fc90c53ec798e71cf99b69d115f5b30e39fc2ce2f4",
+    "taskRegistry": "da9d992a285966155c4e5bf201b7a5a66b5f51f2ce21e8e7ec1580c83bbe0dfa",
+    "layoutOverrides": "7d9180892cca2ac927aa4adb53a171a1a30b9431e065ca509e6e69fee99f65b4"
+  },
+  "frozenNonAccessibleDomBaselines": {
+    "student": "653451709ada847396928a61fb006dae06e81f81692dcc6a1cc5109d84c358da",
+    "teacher": "8a1574a50f304fb6c573f14efa6cfe0c513b922cfd3ed4bff4c1fa8f0d8630b2",
+    "answer": "2c712135e81fa4ed00a071bd9a257f57431d67a10d31391d11b8adc865cd39d1",
+    "note": "Computed with the repository's canonical role_dom_hash over the released content.html. HHH Campaign 2 is a full current-contract release and claims no SSS legacy exemption. The Accessible DOM hash eb7bfee0bf877a97b2d4da576489d4ed75d4e5fef73198e110e7b0effa2e2c42 was additionally computed and compared against the owner-approved printable baseline to prove parity across all four roles; content.html is byte-identical between the two trees, so all four hashes are unchanged by release conversion."
+  },
+  "rolePageCounts": {
+    "student": 8,
+    "teacher": 7,
+    "answer": 4,
+    "accessible": 10
+  },
+  "acceptedValidation": {
+    "status": "PROVISIONAL_PENDING_COMMIT_A",
+    "note": "This commit carries the released lifecycle stamp and the two history records. It cannot truthfully pin its own SHA, and the release-mode validator conversion and the measured release-stage validation are recorded by the pin-resolution commit that immediately follows, following the Case 07, Case 08 and Case 09 pattern. The Case 10 scoped validator still asserts candidate-state lifecycle at this commit and is therefore expected to fail here; that is the intentional intermediate state, and it is closed by the next commit. This commit is not the release tip."
+  },
+  "acceptedPrintStatus": "PASS. The owner completed physical print review of the owner-approved printable baseline 990dce582f12d2f726b45b7c039ef0d34adc5c29 and approved it on 2026-08-22, stating exactly: \"CASE10_OWNER_PRINT_PASS\". That statement is recorded separately from the owner's on-screen statement and the two are never combined. The owner supplied no browser, printer, printer model, print scale, paper type, paper size, colour or grayscale print mode, print setting or PDF workflow, and none is asserted. Production is HTML-only; no canonical PDF artifact exists, PDF generation is not a release gate, and any browser-exported PDF is noncanonical with no accessibility guarantee.",
+  "formerArtifacts": {
+    "status": "NO_FORMER_GENERATED_ARTIFACTS",
+    "reason": "Core Case 10 was authored natively as a canonical case package under the package-source workflow. Every path ever committed under hhh/campaign-2/case-10-the-quiet-billion/ was walked across all refs before release conversion: the case had only ever held README.md and the canonical package sources. The two records under history/ are release metadata created by this release, not generated artifacts. No master document, published role HTML, PDF, screenshot or other generated artifact existed before release conversion, so there is nothing to recover and nothing to retire. The canonical source is the whole release."
+  },
+  "formerArtifactRecoveryCommit": "COMMIT_A_PENDING",
+  "recovery": "No artifact recovery applies. The canonical source at the approval commit is the whole release.",
+  "priorApprovedReleases": [],
+  "artifactPolicy": "HTML-only canonical production. Generated role HTML, PDFs and screenshots are not committed and are not release evidence. Any PDF a teacher exports from the browser is noncanonical, carries no accessibility guarantee, and is not a project release gate.",
+  "migrationNotes": [
+    "Fourth HHH Campaign 2 release and the tenth HHH Core Case, produced against the released Case 09 baseline a64d3ccc104a23ac1be99a435948ed39d09cf967 and the approved Blueprint.",
+    "Owner-approved printable baseline: 990dce582f12d2f726b45b7c039ef0d34adc5c29. The pins and the measured validation are resolved by the pin-resolution commit that immediately follows this one."
+  ],
+  "retiredArtifacts": []
+}

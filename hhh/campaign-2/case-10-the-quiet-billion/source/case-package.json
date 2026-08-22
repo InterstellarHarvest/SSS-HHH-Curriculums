@@ -8,12 +8,14 @@
   "subtitle": "Campaign 2 · Case 10 · Mexico and South Asia, 1968",
   "location": "Mexico and South Asia",
   "version": "0.1",
-  "status": "DRAFT",
+  "status": "APPROVED_STABLE",
   "approval": {
+    "date": "2026-08-22",
     "owner": "Nate / Owner",
-    "status": "OWNER_REVIEW_NOT_STARTED",
-    "printStatus": "NOT_RUN"
+    "status": "APPROVED",
+    "printStatus": "PASS"
   },
+  "releaseHistory": "hhh/campaign-2/case-10-the-quiet-billion/history/release-v0.1.json",
   "institutionalIdentity": {
     "id": "TAA",
     "name": "Temporal Agricultural Archive",
@@ -176,7 +178,7 @@
   "sourceHashes": {
     "content": "f63bb550049de09053a73dc36551677bd3e0838528e282bf702f67bb97e2a597",
     "presentation": "73e2d41b4d1bccd6824438fc90c53ec798e71cf99b69d115f5b30e39fc2ce2f4",
-    "taskRegistry": "2860c58282a9c8905de3d507c44c2d679be8490e4c9f39bb3add9868f6a1915e",
+    "taskRegistry": "da9d992a285966155c4e5bf201b7a5a66b5f51f2ce21e8e7ec1580c83bbe0dfa",
     "layoutOverrides": "7d9180892cca2ac927aa4adb53a171a1a30b9431e065ca509e6e69fee99f65b4"
   }
 }

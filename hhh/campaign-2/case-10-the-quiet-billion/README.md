@@ -7,7 +7,7 @@ source, the transfer to South Asia and the Indian wheat record are **historical*
 record, the two wheats, the pedigree records, Dr. Rao and the Failure Report are **reconstructed**
 **Instructional type:** `CORE_CASE`
 **Version:** 0.1
-**Status:** `DRAFT` — unreleased candidate
+**Status:** `APPROVED_STABLE` — released 2026-08-22
 **Blueprint:** `hhh/blueprint/HHH_CURRICULUM_BLUEPRINT_v1.0.md`, Core Case 10
 **Audit baseline:** `hhh/audit/HHH_MASTER_GAME_AUDIT_v0.1.md`
 **Game commit:** `d9fc16baf272cb543c29cbd0c06ec85efad60be8`
@@ -15,21 +15,77 @@ record, the two wheats, the pedigree records, Dr. Rao and the Failure Report are
 The fourth unit of Campaign 2, and the first HHH case whose culminating product is a
 **Qualified Historical Finding** — a five-part finding that has to carry quantitative evidence
 with its units, a second documented source, a causal qualification, an explicit statement of what
-the evidence does not prove, and a claim about the evidence that would be needed next.
+the evidence does not prove, and a claim about the evidence that would be needed next. Produced
+against curriculum main `a64d3ccc104a23ac1be99a435948ed39d09cf967` and the approved Blueprint.
 
-## Candidate state
+## Release state
 
 | Gate | State |
 | --- | --- |
-| Package status | `DRAFT` |
-| Owner review | `OWNER_REVIEW_NOT_STARTED` |
-| Print status | `NOT_RUN` |
-| Release record | none — no `history/` directory exists |
-| Approval record | none |
+| Package status | `APPROVED_STABLE` |
+| Owner review | `OWNER_REVIEW_PASS` |
+| Print status | `PASS` |
+| Approval date | 2026-08-22 |
+| Owner | Nate / Owner |
+| Release record | [`history/release-v0.1.json`](history/release-v0.1.json) |
+| Approval record | [`history/CASE10_OWNER_APPROVAL_v0.1.md`](history/CASE10_OWNER_APPROVAL_v0.1.md) |
 
-**This candidate is unreleased.** No owner visual review has been performed, no physical print
-test has been run, and no approval or release record exists. Nothing in this package may be read
-as a claim that either gate has been met.
+The owner passed both gates and approved the byte set for release. The two statements are
+recorded separately and exactly as given, and are **not** combined into a single quotation:
+
+| Gate | Result | Exact owner statement |
+| --- | --- | --- |
+| On-screen visual and content review | **PASS** | `CASE10_OWNER_SCREEN_REVIEW_PASS` |
+| Physical print review | **PASS** | `CASE10_OWNER_PRINT_PASS` |
+
+Their approved interpretation is only that owner on-screen visual and content review passed and
+that owner physical print review passed. The owner supplied no browser, printer, print scale,
+paper type, paper size, colour or grayscale print mode, print setting or physical-print method,
+and none is asserted anywhere in this release; the engineering colour and grayscale render
+checks in the release record are a separate internal measurement and are not a description of
+the owner's review or print environment.
+
+### Printable baseline and certified-source commit are not the same commit
+
+| | Commit |
+| --- | --- |
+| **Owner-approved printable baseline** | `990dce582f12d2f726b45b7c039ef0d34adc5c29` |
+| **Released certified-source commit** | the release-conversion commit recorded in `history/release-v0.1.json` |
+
+The owner reviewed and printed `990dce5`. Release conversion changes no printable source:
+`content.html`, `presentation.css` and `layout-overrides.json` are byte-identical to that commit,
+and only `task-registry.js` moves, in its two lifecycle keys, neither of which renders. Because
+the released `task-registry.js` bytes first exist at the release-conversion commit, that commit
+is the first in this line whose tree carries the complete released four-source byte set, and the
+release record's source pins name it rather than the printable baseline. The two are recorded
+separately and deliberately, and conflating them is the error this section exists to prevent.
+
+**No owner-approved bundle exists and none is claimed.** The release-history schema requires no
+bundle field, and there is no evidence that the owner inspected or approved any bundle file.
+
+### Release provenance
+
+Three linear commits carried this case to owner approval, each reviewed before the next was
+authorised.
+
+| # | Stage | Outcome |
+| --- | --- | --- |
+| 1 | `17f81c1cfe7e19a496af428a90c2793d7986d77b` | Original implementation candidate. |
+| 2 | `456ee72a5b0cce4784199a976a794fd215f256f8` | PMO bounded remediation — the Case 09 forward-coupled validator, the Case 10 total sixty-minute route, and the Government of India 2015 edition and table pin. |
+| 3 | Full independent review | `CASE10_INDEPENDENT_REVIEW_FAIL` — exactly two `REQUIRED_REMEDIATION` blockers. |
+| 4 | `990dce582f12d2f726b45b7c039ef0d34adc5c29` | Independent-review remediation closing both blockers. |
+| 5 | Independent remediation verification | `CASE10_INDEPENDENT_REMEDIATION_VERIFICATION_PASS`. |
+| 6 | Owner on-screen / content / visual review | **PASS** — `CASE10_OWNER_SCREEN_REVIEW_PASS` |
+| 7 | Owner physical print review | **PASS** — `CASE10_OWNER_PRINT_PASS` |
+
+The two blockers were the Task 6 Answer Key's use of an off-route Dr. Rao adoption detail that
+was unavailable in the learner editions, and the Task 7 Answer Key's description of India's 12.26
+to 20.09 Mt six-year rise as having "nearly doubled". The same review passed the broader
+historical, source, design, visual, accessibility and preservation architecture. The remediation
+removed the unreachable detail, replaced the magnitude overstatement with the exact endpoints,
+added Case 10-local Answer-Key evidence-reachability protection, and hardened the
+production-versus-yield semantic protection. No post-owner independent review was commissioned
+for Case 10 and none is claimed.
 
 Production is HTML-only. No canonical PDF artifact exists, PDF generation is not a release gate,
 and any PDF exported from the browser is noncanonical and carries no accessibility guarantee.
@@ -296,7 +352,11 @@ proves it. The guard is bounded and claims no general semantic completeness.
 
 ## Validation
 
-- Case 10 scoped validator — `apps/curriculum-editor/tests/validate_hhh_case10_the_quiet_billion.py`
+- Case 10 scoped validator — `apps/curriculum-editor/tests/validate_hhh_case10_the_quiet_billion.py`.
+  It validates this release's `history/release-v0.1.json` directly against
+  `shared/implementation/case-release-history.schema.v1.json`, following Case 08 and Case 09,
+  because `validate_static.py`'s release-history schema loop is bound to the SSS partition and
+  does not reach an HHH package
 - static repository validation — `apps/curriculum-editor/tests/validate_static.py --skip-mutation-tests`
 - browser render, geometry, overflow and layout harness — `apps/curriculum-editor/tests/run_browser_tests.py`
 - canonical case structure, release integrity, HHH activation, layout overrides, HHH operational,
@@ -305,9 +365,11 @@ proves it. The guard is bounded and claims no general semantic completeness.
 
 ## Preservation
 
-Outside the package this candidate changes only the narrowly necessary registration: the Case 10
-`editorPackage` pointer in the shared case registry, the browser-harness eligibility roster, and
-the new scoped validator with its chaining line in `validate_static.py`.
+This release adds files under `hhh/campaign-2/case-10-the-quiet-billion/` and touches nothing
+else in the curriculum tree. Outside the package the only changes are the narrowly necessary
+registration and then release conversion of the existing Case 10 entry in the shared case
+registry, the registration of the case in the browser-harness eligibility roster, and the Case 10
+scoped validator with its chaining line in `validate_static.py`.
 
 `sss/**`, `hhh/campaign-1/**`, `hhh/campaign-2/case-07-the-audit/**`,
 `hhh/campaign-2/case-08-floating-gardens/**`, `hhh/campaign-2/case-09-seeds-they-kept/**`,
