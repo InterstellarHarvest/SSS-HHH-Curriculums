@@ -383,7 +383,7 @@ window.HHH_CASE10_TASK_REGISTRY = {
         "layerExempt": true
       },
       "productionIsYield": {
-        "why": "Total production and yield per unit area treated as the same measure, or a production rise asserted as a yield rise.",
+        "why": "Total production and yield per unit area treated as the same measure — by an explicit copula, by an appositive with no verb, or by asserting that a production change is the same proportional change in yield.",
         "subjectPatterns": [
           "\\b(?:production|yield|harvest\\w*|tonnes)\\b"
         ],
@@ -391,7 +391,14 @@ window.HHH_CASE10_TASK_REGISTRY = {
           "\\b(?:production|the harvest|total production|the total harvest)\\b[^.!?]{0,20}\\b(?:is|are|means|equals|is the same as|was the same as)\\b[^.!?]{0,12}\\byield\\b",
           "\\byield\\b[^.!?]{0,20}\\b(?:is|means|equals|is the same as|was the same as)\\b[^.!?]{0,16}\\b(?:production|the total harvest|total production)\\b",
           "\\b(?:a|the) (?:rise|increase) in (?:total )?production\\b[^.!?]{0,24}\\b(?:is|means|shows|is the same as)\\b[^.!?]{0,24}\\b(?:a |the )?(?:rise|increase) in yield\\b",
-          "\\bproduction\\b[^.!?]{0,14}\\b(?:went up|rose|increased)\\b[^.!?]{0,10}\\bso\\b[^.!?]{0,20}\\byield\\b[^.!?]{0,20}\\b(?:went up|rose|increased)\\b"
+          "\\bproduction\\b[^.!?]{0,14}\\b(?:went up|rose|increased)\\b[^.!?]{0,10}\\bso\\b[^.!?]{0,20}\\byield\\b[^.!?]{0,20}\\b(?:went up|rose|increased)\\b",
+          "\\b(?:production|the harvest|total production|the total harvest)\\b[^.!?]{0,16}\\bthe same (?:thing )?as\\b[^.!?]{0,16}\\byield\\b",
+          "\\byield\\b[^.!?]{0,16}\\bthe same (?:thing )?as\\b[^.!?]{0,16}\\b(?:production|total production|the total harvest)\\b",
+          "\\b(?:production|the harvest)\\b[^.!?]{0,20}\\byield\\b[^.!?]{0,16}\\bare the same\\b",
+          "\\bproduction\\b[^.!?]{0,24}\\b(?:rose|increased|went up|grew)\\b[^.!?]{0,16}\\b(\\d+(?:\\.\\d+)?)\\s*(?:per cent|%)[^.!?]{0,48}\\b\\1\\s*(?:per cent|%)[^.!?]{0,24}\\byield\\b",
+          "\\bproduction\\b[^.!?]{0,24}\\b(?:rose|increased|went up|grew)\\b[^.!?]{0,16}\\b(\\d+(?:\\.\\d+)?)\\s*(?:per cent|%)[^.!?]{0,24}\\byield\\b[^.!?]{0,32}\\b\\1\\s*(?:per cent|%)",
+          "\\bproduction\\b[^.!?]{0,24}\\b(?:rose|increased|went up|grew)\\b[^.!?]{0,28}\\b(?:giving|producing|yielding|hence|therefore)\\b[^.!?]{0,24}\\byield (?:rise|increase|gain)\\b",
+          "\\bproduction\\b[^.!?]{0,24}\\b(?:rose|increased|went up|grew)\\b[^.!?]{0,32}\\b(?:giving|so|therefore|meaning|which means|hence)\\b[^.!?]{0,24}\\bthe same\\b[^.!?]{0,20}\\b(?:rise|increase)\\b[^.!?]{0,20}\\byield\\b"
         ],
         "unlessPatterns": [
           "\\b(?:multiplied by|times|divided by|per unit|per hectare|not the same|are different|two different|five different|separately|rather than)\\b"
@@ -443,7 +450,12 @@ window.HHH_CASE10_TASK_REGISTRY = {
         "Production is yield.",
         "A rise in total production is the same as a rise in yield.",
         "Production went up, so yield went up by the same amount.",
-        "Yield means total production."
+        "Yield means total production.",
+        "PRODUCTION — the same thing as yield, shown twice.",
+        "Production rose 45 per cent, giving a 45 per cent yield rise.",
+        "Production, the same as yield, is graphed twice.",
+        "Production increased 45 per cent, so yield increased 45 per cent.",
+        "Production and yield are the same measure."
       ],
       "dwarfingCausesRust": [
         "Making the wheat short is what made it rust-resistant.",
@@ -476,7 +488,12 @@ window.HHH_CASE10_TASK_REGISTRY = {
       "Sub-Saharan Africa is the exception to the global trend.",
       "The green revolution has won a temporary success and has given man a breathing space.",
       "The record shows that production rose, and it does not say how much of that rise the new wheat caused.",
-      "A correct mechanism is not a measured share."
+      "A correct mechanism is not a measured share.",
+      "Production and yield both rose.",
+      "Production rose about 45 per cent while yield rose about 24 per cent.",
+      "Production can rise because yield rises.",
+      "Production is yield multiplied by area.",
+      "Production rose 45 per cent on a 24 per cent yield rise and a 17 per cent area rise."
     ]
   },
   "quantitativeRecord": {
@@ -902,7 +919,7 @@ window.HHH_CASE10_TASK_REGISTRY = {
         "pmoSourceId": "A",
         "citation": "Government of India, Directorate of Economics and Statistics, Agricultural Statistics at a Glance 2015, Table 4.7(a): “Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation”, crop years 1964-65 to 1969-70: area sown, production, yield and irrigated share of the wheat area.",
         "edition": "Agricultural Statistics at a Glance 2015",
-        "table": "Table 4.7(a) \u2014 Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation",
+        "table": "Table 4.7(a) — Wheat: All-India Area, Production and Yield alongwith coverage under Irrigation",
         "publisher": "Government of India, Directorate of Economics and Statistics",
         "supports": [
           "the annual area sown in million hectares for each of the six crop years: 13.42, 12.57, 12.84, 14.99, 15.96, 16.63",
@@ -995,8 +1012,93 @@ window.HHH_CASE10_TASK_REGISTRY = {
       }
     ],
     "noFurtherClaims": "No historical, biographical, chronological, quantitative or institutional claim appears in this package that is not on one of the lists above. If a later revision needs one, that is a source-certification dependency for the PMO, not an authoring decision.",
-    "figureDateAttribution": "The bulk seed-shipment dates printed in Figure 2 \u2014 18,000 tons to India in 1966 and 42,000 tons to Pakistan a year later \u2014 are Source G\u2019s, Borlaug\u2019s own 1970 lecture. Source H supports the broader transmission sequence and dates the same Indian purchase to 1967. The Teacher Guide records that as a disagreement between the two consulted sources; the packet\u2019s own chronology is settled, and no learner task is built on the difference.",
+    "figureDateAttribution": "The bulk seed-shipment dates printed in Figure 2 — 18,000 tons to India in 1966 and 42,000 tons to Pakistan a year later — are Source G’s, Borlaug’s own 1970 lecture. Source H supports the broader transmission sequence and dates the same Indian purchase to 1967. The Teacher Guide records that as a disagreement between the two consulted sources; the packet’s own chronology is settled, and no learner task is built on the difference.",
     "openVarianceForPmo": "Neither remaining item is a defect in this packet. First, the six-year series is pinned to a stated statistical edition: Government of India, Directorate of Economics and Statistics, Agricultural Statistics at a Glance 2015, Table 4.7(a). That edition supports the locked values, the locked series is implemented exactly, and its internal arithmetic is self-consistent — area multiplied by yield reproduces production to within published rounding in all six crop years. Later editions revise some historical values; that is a reason to cite the edition, which this packet does, and not an error in these pages. Second, the two consulted sources date India’s large seed purchase differently — 1966 and 1967 — and the PMO has ruled the packet chronology settled: the bulk-shipment dates in Figure 2 are Source G’s, Borlaug’s own lecture, while Source H carries the broader transmission sequence. The Teacher Guide records the difference between the two sources rather than treating the packet’s chronology as open."
+  },
+  "answerKeyReachability": {
+    "id": "case10-answer-key-reachability-v1.0",
+    "rule": "A graded Answer Key exemplar may rest only on evidence a learner can actually read. Task 6 is judged inside the game, so its assessed evidence strands are Sources A to D exactly as printed in the Student and Accessible editions. The key may paraphrase and reason about that printed evidence; it may not introduce a reconstructed detail that appears in neither learner edition. The independent review of candidate 456ee72 found one: an off-route Dr. Rao adoption line that was never printed for learners. It has been removed, and this contract exists so the defect class cannot return.",
+    "assessedTask": "6",
+    "assessedTaskPage": "answer-key-03",
+    "reachableSources": [
+      {
+        "caseSourceId": "borlaug-record",
+        "printedLabel": "A",
+        "studentPage": "student-billion-02",
+        "accessiblePage": "accessible-billion-03"
+      },
+      {
+        "caseSourceId": "two-wheats",
+        "printedLabel": "B",
+        "studentPage": "student-billion-02",
+        "accessiblePage": "accessible-billion-03"
+      },
+      {
+        "caseSourceId": "pedigree-records",
+        "printedLabel": "C",
+        "studentPage": "student-billion-02",
+        "accessiblePage": "accessible-billion-03"
+      },
+      {
+        "caseSourceId": "rao-testimony",
+        "printedLabel": "D",
+        "studentPage": "student-billion-03",
+        "accessiblePage": "accessible-billion-04"
+      }
+    ],
+    "forbiddenOffRouteEvidence": [
+      {
+        "id": "rao-adoption-branch",
+        "why": "An optional Dr. Rao dialogue branch in Campaign 2 Level 3 reports that by the third season farmers were asking for seed faster than it could be cleaned. A learner on the no-game route never sees it, a learner on the game route may never open that branch, and it is printed in neither learner edition. It therefore cannot support a graded answer, and it must not be added to the dossier to make one work.",
+        "concepts": [
+          "third season adoption",
+          "farmers asking for seed",
+          "seed being requested faster than it could be cleaned",
+          "the off-route adoption outcome"
+        ],
+        "patterns": [
+          "\\bthird season\\b[^.!?]{0,40}\\b(?:farmers?|seed|asking|asked|demand\\w*)\\b",
+          "\\bfarmers?\\b[^.!?]{0,40}\\b(?:asking|asked|clamouring|clamoring|queuing|queueing|requesting|demanding)\\b[^.!?]{0,24}\\bseed\\b",
+          "\\b(?:asking|asked|requesting|demanding)\\b[^.!?]{0,24}\\bfor (?:the )?seed\\b",
+          "\\bseed\\b[^.!?]{0,40}\\bfaster than\\b[^.!?]{0,32}\\b(?:clean\\w*|process\\w*|bag\\w*|sort\\w*|suppl\\w*)\\b",
+          "\\bcould be cleaned\\b"
+        ]
+      }
+    ],
+    "analyticVocabularyRule": "The words below are what the Task 6 key reasons WITH: rubric language and paraphrase, not facts imported from outside the learner dossier. Every other word of five letters or more in the Task 6 key must appear in the Student or Accessible edition. A word joins this list only after checking that the claim it carries is printed for learners; a new FACTUAL term must be printed in both learner editions instead of registered here.",
+    "analyticVocabulary": [
+      "acceptable",
+      "accurate",
+      "adaptation",
+      "badly",
+      "completed",
+      "content",
+      "contradicted",
+      "contrary",
+      "declared",
+      "delivered",
+      "directions",
+      "editions",
+      "exemplar",
+      "honest",
+      "modelled",
+      "obligations",
+      "obtain",
+      "organiser",
+      "pairing",
+      "perfect",
+      "produce",
+      "provenance",
+      "reached",
+      "reaches",
+      "recommendation",
+      "regions",
+      "settle",
+      "typing",
+      "untidy",
+      "variation"
+    ],
+    "dossierUnchangedRule": "This contract is not permission to reproduce more runtime dialogue. The no-game dossier remains Sources A to E exactly as printed, and the remedy for an unreachable key claim is to remove the claim, never to enlarge the dossier without PMO authorisation."
   },
   "noGameRoute": {
     "rule": "Campaign 2 has no teacher level selector, no direct-launch mode, no injected state and no developer shortcut, and none will be built. Every assessed piece of evidence therefore exists in the learner packet, and the dossier is the stable assessment record in both routes.",

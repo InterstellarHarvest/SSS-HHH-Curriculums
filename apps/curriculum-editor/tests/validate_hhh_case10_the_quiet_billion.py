@@ -338,6 +338,27 @@ def figure_root(node):
     return node if node.name == "figure" else node.find_parent("figure")
 
 
+def answer_key_section(soup: BeautifulSoup, number: str) -> str:
+    """The graded Answer Key text for one task: its heading's siblings up to the next task."""
+    heading = soup.select_one(f'section.page[data-role="answer"] [data-shell-task-heading="{number}"]')
+    if heading is None:
+        return ""
+    parent = heading.parent
+    collected, started = [], False
+    for node in parent.children:
+        if getattr(node, "name", None) is None:
+            continue
+        if node is heading:
+            started = True
+            continue
+        if not started:
+            continue
+        if node.name == "h2" or (node.get("class") and "task-block" in node.get("class")):
+            break
+        collected.append(node)
+    return normalise(" ".join(n.get_text(" ", strip=True) for n in collected))
+
+
 def synthetic(role: str, body: str) -> str:
     return (f'<section class="page" data-role="{role}" data-page-id="control-page">'
             f'<div class="content content-area">{body}</div></section>')
@@ -1630,6 +1651,74 @@ def main() -> int:  # noqa: C901 - one flat assertion sequence, deliberately rea
     results.check("the Task 6 exemplar refuses a verdict from the paperwork and a reach outside the game",
                   "a verdict reached from the letterhead" in answer_text
                   and "reaches outside the game to Sources F to I" in answer_text)
+
+    # --- ANSWER-KEY EVIDENCE REACHABILITY -----------------------------------
+    # A graded exemplar may only rest on evidence a learner can read. The independent
+    # review of 456ee72 found a Task 6 cell resting on an optional Dr. Rao dialogue branch
+    # printed in neither learner edition. Three guards close that class, all Case 10 local:
+    # the assessed strands are pinned to Sources A-D as printed; the known off-route branch
+    # is a closed forbidden class; and every distinctive word of the Task 6 key must be
+    # readable in the learner editions or registered as analytic vocabulary.
+    reach = registry["answerKeyReachability"]
+    results.check("the registry carries the answer-key reachability contract",
+                  reach["assessedTask"] == "6" and reach["assessedTaskPage"] == "answer-key-03"
+                  and len(reach["rule"]) > 200 and len(reach["dossierUnchangedRule"]) > 120,
+                  reach.get("id"))
+    results.check("the contract pins the assessed Task 6 strands to the four reconstructed sources A to D",
+                  [(r["caseSourceId"], r["printedLabel"]) for r in reach["reachableSources"]]
+                  == [("borlaug-record", "A"), ("two-wheats", "B"),
+                      ("pedigree-records", "C"), ("rao-testimony", "D")],
+                  json.dumps(reach["reachableSources"]))
+    for entry_r in reach["reachableSources"]:
+        for role, key in (("student", "studentPage"), ("accessible", "accessiblePage")):
+            card = soup.select_one(f'section.page[data-role="{role}"][data-page-id="{entry_r[key]}"] '
+                                   f'[data-source-id="{entry_r["caseSourceId"]}"]')
+            results.check(f"{role}: assessed source {entry_r['printedLabel']} is printed where the contract says",
+                          card is not None and card.get("data-evidence-layer") == "reconstructed",
+                          entry_r[key])
+    # The dossier stays exactly A to E: this contract is not a licence to print more runtime text.
+    for role in LEARNER_ROLES:
+        results.check(f"{role}: the reconstructed dossier is still exactly the five printed sources",
+                      len(soup.select(f'section.page[data-role="{role}"] '
+                                      f'[data-evidence-layer="reconstructed"][data-source-id]')) == 5)
+
+    off_route = {spec["id"]: spec for spec in reach["forbiddenOffRouteEvidence"]}
+    results.check("the known off-route Dr. Rao adoption branch is registered with its concepts and patterns",
+                  set(off_route) == {"rao-adoption-branch"}
+                  and len(off_route["rao-adoption-branch"]["patterns"]) >= 4
+                  and {"third season adoption", "farmers asking for seed",
+                       "seed being requested faster than it could be cleaned",
+                       "the off-route adoption outcome"}
+                  <= set(off_route["rao-adoption-branch"]["concepts"])
+                  and len(off_route["rao-adoption-branch"]["why"]) > 200)
+    off_route_patterns = [(spec["id"], re.compile(pattern, re.I))
+                          for spec in reach["forbiddenOffRouteEvidence"] for pattern in spec["patterns"]]
+    for role in ALL_ROLES:
+        hits = [(branch_id, pattern.search(texts[role]).group(0))
+                for branch_id, pattern in off_route_patterns if pattern.search(texts[role])]
+        results.check(f"{role}: no forbidden off-route game evidence appears", not hits, hits)
+    # Live-fire: the removed sentence must be caught if it is ever put back.
+    injected = normalise("Source D. Dr. Rao ran the deployment and counted the harvests himself; the wheat "
+                         "delivered and held through the season, and by the third season farmers were asking "
+                         "for seed faster than it could be cleaned.")
+    results.check("mutation control: the removed off-route adoption sentence is detectable",
+                  any(pattern.search(injected) for _branch_id, pattern in off_route_patterns))
+
+    section = answer_key_section(soup, "6")
+    results.check("the Task 6 answer-key section is locatable for the reachability scan",
+                  len(section) > 400, len(section))
+    learner_lexicon = set(re.findall(r"[a-z']+", (texts["student"] + " " + texts["accessible"]).lower()))
+    analytic = {word.lower() for word in reach["analyticVocabulary"]}
+    results.check("the analytic vocabulary is a small documented list, not an escape hatch",
+                  len(analytic) == len(reach["analyticVocabulary"]) <= 40
+                  and len(reach["analyticVocabularyRule"]) > 200
+                  and "FACTUAL" in reach["analyticVocabularyRule"])
+    unreachable = sorted({token for token in re.findall(r"[a-z']+", section.lower())
+                          if len(token) >= 5 and token not in learner_lexicon and token not in analytic})
+    results.check("every distinctive word in the Task 6 key is readable in a learner edition or registered as analytic",
+                  not unreachable, unreachable)
+    stale = sorted(analytic - {token for token in re.findall(r"[a-z']+", section.lower())})
+    results.check("no analytic-vocabulary entry is a leftover the Task 6 key no longer uses", not stale, stale)
     results.check("the Answer Key completes all three Task 7 interpretations with supports and overreach",
                   all(k in answer_text for k in ("A The wheat failed", "Valid evidence:", "Overreach:",
                                                  "C A large contribution inside a system")))
